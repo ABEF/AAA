@@ -1,6 +1,6 @@
 # Component implementation status
 
-“Implemented in source” does not mean compiled, EVM-tested, independently audited or deployable. All Solidity entries below have that limitation. External Uniswap/bridge/oracle/token dependencies require independent verification.
+All 16 Solidity modules now compile and satisfy standard runtime/initcode size limits under the recorded build profile. The supplied mock-based unit/fuzz suite passes 70 tests. This does not establish full EVM branch/invariant coverage, real Uniswap/bridge integration, an independent audit, or funded-deployment approval. See [CI repair evidence](../reports/CI_REPAIR.md); the remaining qualifications below still apply.
 
 | Contract | Current implementation | Remaining qualification |
 |---|---|---|

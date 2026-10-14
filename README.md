@@ -108,12 +108,13 @@ Both use Python 3.11+ and shared utilities in `zzz_ops/`. Keeper state locking r
 |---|---|
 | Original Python verification | 84 passed: 66 implementation tests and 18 mathematical model tests |
 | Publication check on Windows | 81 passed, 1 failed, 2 errors; three state tests require Unix permissions/`fcntl` |
-| Solidity tests authored | 70 functions; compilation and execution remain unverified |
-| Solidity compilation, bytecode size, Slither, real Uniswap fork tests | Not completed |
+| Solidity unit/fuzz verification | 70 passed locally with Foundry 1.4.4 / Solidity 0.8.26; two fuzz tests run 1,000 cases each |
+| Solidity compilation and module bytecode sizes | All contracts/tests/scripts compile; all 16 modules fit standard EVM size limits |
+| Slither, real Uniswap fork tests | Not completed |
 | Production bridge transport and real cross-chain tests | Not completed |
 | Independent security audit | Not performed |
 
-Python model tests do not execute Solidity. The Windows result does not supersede the historical Linux-environment evidence; both are retained. Publication findings are recorded in [publication verification](reports/PUBLICATION_CHECKS.json).
+Python model tests do not execute Solidity. The Windows Python result does not supersede the historical Linux-environment evidence; both are retained. The repaired Ubuntu run reproduced all 84 Python tests before exposing the compiler issue. Publication findings remain in [publication verification](reports/PUBLICATION_CHECKS.json); the current build workaround and local Solidity results are in [CI repair evidence](reports/CI_REPAIR.md). Check the latest [GitHub Actions run](https://github.com/ABEF/AAA/actions/workflows/verify.yml) for the exact commit's complete CI status.
 
 Current limits include contribution-based Power, at most 32 reward assets, direct-route buybacks, and one-hop canonical-to-satellite migration over routes fixed before sealing. See [economic rules](docs/ECONOMICS.md), [security entry point](SECURITY.md), and the [release checklist](docs/RELEASE_CHECKLIST.md).
 

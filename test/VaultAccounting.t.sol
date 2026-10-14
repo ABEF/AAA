@@ -72,7 +72,7 @@ contract VaultAccountingTest is Test {
         venue.setSpendBps(100);vm.prank(alice);vm.expectRevert();vault.deposit(poolId,1000,1000,1,block.timestamp+100);
         assertEq(t0.balanceOf(alice),100000);assertEq(vault.sequence(),0);
     }
-    function testFailedMintRollsBackWholeDeposit() public {
+    function testMintFailureRollsBackWholeDeposit() public {
         venue.setFail(true);vm.prank(alice);vm.expectRevert();vault.deposit(poolId,1000,1000,1,block.timestamp+100);
         assertEq(t0.balanceOf(alice),100000);assertEq(vault.sequence(),0);assertEq(vault.totalIdle(address(t0)),0);
     }

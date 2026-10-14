@@ -1,0 +1,93 @@
+{
+  "solidity": "0.8.26",
+  "foundry": "1.4.4",
+  "evm": "cancun",
+  "via_ir": true,
+  "optimizer": true,
+  "optimizer_runs": 200,
+  "yul_optimizer": false,
+  "runtime_limit": 24576,
+  "initcode_limit": 49152,
+  "modules": [
+    {
+      "module": "ZZZVault",
+      "runtime_bytes": 23451,
+      "initcode_bytes": 24353
+    },
+    {
+      "module": "ZZZNFT",
+      "runtime_bytes": 6458,
+      "initcode_bytes": 7583
+    },
+    {
+      "module": "ZZZLiquidityManager",
+      "runtime_bytes": 19045,
+      "initcode_bytes": 20494
+    },
+    {
+      "module": "ZZZRewards",
+      "runtime_bytes": 7289,
+      "initcode_bytes": 7767
+    },
+    {
+      "module": "ZZZPower",
+      "runtime_bytes": 1814,
+      "initcode_bytes": 2180
+    },
+    {
+      "module": "ZZZFeeController",
+      "runtime_bytes": 10713,
+      "initcode_bytes": 11247
+    },
+    {
+      "module": "ZZZStrategy",
+      "runtime_bytes": 11139,
+      "initcode_bytes": 11568
+    },
+    {
+      "module": "ZZZCompounder",
+      "runtime_bytes": 1683,
+      "initcode_bytes": 2062
+    },
+    {
+      "module": "ZZZBuyback",
+      "runtime_bytes": 5825,
+      "initcode_bytes": 6484
+    },
+    {
+      "module": "ZZZMigration",
+      "runtime_bytes": 11282,
+      "initcode_bytes": 11837
+    },
+    {
+      "module": "ZZZBridgeAdapter",
+      "runtime_bytes": 9000,
+      "initcode_bytes": 9554
+    },
+    {
+      "module": "ZZZMigrationReceiver",
+      "runtime_bytes": 11109,
+      "initcode_bytes": 11664
+    },
+    {
+      "module": "ZZZAccessController",
+      "runtime_bytes": 9725,
+      "initcode_bytes": 11410
+    },
+    {
+      "module": "ZZZOracle",
+      "runtime_bytes": 5372,
+      "initcode_bytes": 5863
+    },
+    {
+      "module": "ZZZPoolRegistry",
+      "runtime_bytes": 5185,
+      "initcode_bytes": 5551
+    },
+    {
+      "module": "ZZZMigrationRegistry",
+      "runtime_bytes": 6098,
+      "initcode_bytes": 6513
+    }
+  ]
+}
