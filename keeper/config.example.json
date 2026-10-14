@@ -1,0 +1,28 @@
+{
+  "chain_id": 31337,
+  "rpc_urls": ["http://127.0.0.1:8545"],
+  "sender": "0x1111111111111111111111111111111111111111",
+  "contracts": {
+    "access": "0x2222222222222222222222222222222222222222",
+    "vault": "0x3333333333333333333333333333333333333333",
+    "strategy": "0x4444444444444444444444444444444444444444",
+    "fees": "0x5555555555555555555555555555555555555555",
+    "compounder": "0x6666666666666666666666666666666666666666",
+    "buyback": "0x7777777777777777777777777777777777777777"
+  },
+  "reviewed_for_live_use": false,
+  "code_hashes": {},
+  "keystore": "/run/zzz/keystore.json",
+  "password_file": "/run/zzz/password",
+  "interval_seconds": 600,
+  "confirmations": 12,
+  "max_gas_limit": 2500000,
+  "max_gas_price_wei": "5000000000",
+  "max_transaction_cost_wei": "10000000000000000",
+  "max_daily_cost_wei": "50000000000000000",
+  "l1_fee_allowance_wei": "0",
+  "state_path": "var/keeper.json",
+  "lock_path": "var/keeper.lock",
+  "positions": [],
+  "buybacks": []
+}

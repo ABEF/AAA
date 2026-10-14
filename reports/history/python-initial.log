@@ -1,0 +1,41 @@
+test_arity (test_abi.AbiTests.test_arity) ... ok
+test_balance_of_selector (test_abi.AbiTests.test_balance_of_selector) ... ok
+test_invalid_address (test_abi.AbiTests.test_invalid_address) ... ok
+test_keccak_abc (test_abi.AbiTests.test_keccak_abc) ... ok
+test_keccak_empty (test_abi.AbiTests.test_keccak_empty) ... ok
+test_malformed_boolean (test_abi.AbiTests.test_malformed_boolean) ... ok
+test_malformed_decode (test_abi.AbiTests.test_malformed_decode) ... ok
+test_transfer_log (test_abi.AbiTests.test_transfer_log) ... ok
+test_transfer_selector (test_abi.AbiTests.test_transfer_selector) ... ok
+test_uint_limits (test_abi.AbiTests.test_uint_limits) ... ok
+test_unknown_event_retained (test_abi.AbiTests.test_unknown_event_retained) ... ok
+test_unsupported_dynamic (test_abi.AbiTests.test_unsupported_dynamic) ... ok
+test_word_decode (test_abi.AbiTests.test_word_decode) ... ok
+test_bridge_message_nonce_domain (test_models.AccountingModelTests.test_bridge_message_nonce_domain) ... ok
+test_exact_fraction_upper_bound (test_models.AccountingModelTests.test_exact_fraction_upper_bound) ... ok
+test_fraction_survives_small_claims (test_models.AccountingModelTests.test_fraction_survives_small_claims) ... ok
+test_idle_balance_principal_conservation (test_models.AccountingModelTests.test_idle_balance_principal_conservation) ... ok
+test_migration_no_timeout_exit (test_models.AccountingModelTests.test_migration_no_timeout_exit) ... ok
+test_negative_tick_floor (test_models.AccountingModelTests.test_negative_tick_floor) ... ok
+test_new_power_cannot_receive_previous_index (test_models.AccountingModelTests.test_new_power_cannot_receive_previous_index) ... ok
+test_nft_transfer_does_not_copy_credit (test_models.AccountingModelTests.test_nft_transfer_does_not_copy_credit) ... ok
+test_oracle_freshness_boundaries (test_models.AccountingModelTests.test_oracle_freshness_boundaries) ... ok
+test_randomized_index_solvency (test_models.AccountingModelTests.test_randomized_index_solvency) ... ok
+test_range_sqrt_scaling (test_models.AccountingModelTests.test_range_sqrt_scaling) ... ok
+test_split_exact_example (test_models.AccountingModelTests.test_split_exact_example) ... ok
+test_split_micro_harvest_is_partition_independent (test_models.AccountingModelTests.test_split_micro_harvest_is_partition_independent) ... ok
+test_split_remote_and_local_conservation (test_models.AccountingModelTests.test_split_remote_and_local_conservation) ... ok
+test_tick_range_covers_plus_minus_ten_percent (test_models.AccountingModelTests.test_tick_range_covers_plus_minus_ten_percent) ... ok
+test_tiny_fees_are_carried_not_rejected (test_models.AccountingModelTests.test_tiny_fees_are_carried_not_rejected) ... ok
+test_topup_does_not_reprice_past_rewards (test_models.AccountingModelTests.test_topup_does_not_reprice_past_rewards) ... ok
+test_zero_power_not_windfall_for_first_user (test_models.AccountingModelTests.test_zero_power_not_windfall_for_first_user) ... ok
+test_atomic_roundtrip (test_state.StateTests.test_atomic_roundtrip) ... ok
+test_concurrent_lock_rejected (test_state.StateTests.test_concurrent_lock_rejected) ... ok
+test_lock_released (test_state.StateTests.test_lock_released) ... ok
+test_malformed_state_fails_closed (test_state.StateTests.test_malformed_state_fails_closed) ... ok
+test_missing_default (test_state.StateTests.test_missing_default) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.261s
+
+OK

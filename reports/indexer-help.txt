@@ -1,0 +1,9 @@
+usage: monitor.py [-h] --config CONFIG [--once]
+
+Confirmed-block SQLite event indexer with bounded reorg rollback. Python
+3.11+.
+
+options:
+  -h, --help       show this help message and exit
+  --config CONFIG
+  --once

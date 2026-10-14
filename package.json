@@ -1,0 +1,11 @@
+{
+  "name": "zzz-protocol-review-candidate",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Uncompiled security-review candidate; no production deployment authorization",
+  "devDependencies": {
+    "@openzeppelin/contracts": "5.4.0",
+    "@uniswap/v4-core": "1.0.2",
+    "@uniswap/v4-periphery": "1.0.4"
+  }
+}

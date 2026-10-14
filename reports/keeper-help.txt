@@ -1,0 +1,14 @@
+usage: monitor.py [-h] --config CONFIG [--live] [--once]
+                  [--resolve-pending RESOLVE_PENDING]
+
+ZZZKeeper: serial, dry-run-by-default automation. Python 3.11+, Linux. Live
+signing is delegated to a local Foundry `cast` encrypted keystore. No private
+key is accepted by this program. Ambiguous broadcasts stop further
+submissions.
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --live
+  --once
+  --resolve-pending RESOLVE_PENDING

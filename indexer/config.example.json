@@ -1,0 +1,12 @@
+{
+  "chain_id": 31337,
+  "rpc_urls": ["http://127.0.0.1:8545"],
+  "contracts": ["0x3333333333333333333333333333333333333333"],
+  "start_block": 0,
+  "confirmations": 12,
+  "block_chunk": 100,
+  "max_reorg_depth": 256,
+  "database": "var/indexer.sqlite",
+  "lock_path": "var/indexer.lock",
+  "poll_seconds": 15
+}

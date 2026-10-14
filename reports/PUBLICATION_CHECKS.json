@@ -1,0 +1,46 @@
+{
+  "scope": "documentation organization and GitHub publication; no new smart-contract audit",
+  "date_europe_paris": "2026-10-14",
+  "platform": "Windows",
+  "python_version": "3.12.14",
+  "solidity_compiled": false,
+  "solidity_tests_executed": 0,
+  "independent_audit": false,
+  "original_manifest_entries_verified_before_edits": 85,
+  "preserved_implementation_and_security_files": 60,
+  "unexpected_source_changes": [],
+  "python_tests": {
+    "run": 84,
+    "passed": 81,
+    "failures": 1,
+    "errors": 2,
+    "skipped": 0,
+    "successful": false,
+    "failed_test_ids": [
+      "test_state.StateTests.test_atomic_roundtrip"
+    ],
+    "error_test_ids": [
+      "test_state.StateTests.test_concurrent_lock_rejected",
+      "test_state.StateTests.test_lock_released"
+    ],
+    "platform_limit": "Unix-only fcntl locking and 0600 file permissions; no Linux environment is installed locally",
+    "unexpected_failures": []
+  },
+  "source_consistency": {
+    "successful": true,
+    "source_files": 20,
+    "errors": [],
+    "notice": "Text consistency only; not Solidity compilation or security analysis"
+  },
+  "python_syntax_files_checked": 19,
+  "cli_help_checks": {
+    "keeper.monitor": true,
+    "indexer.monitor": true
+  },
+  "documentation_links": {
+    "checked": 57,
+    "broken": []
+  },
+  "publication_checks_passed_except_documented_unix_tests": true,
+  "notice": "Original delivery reports remain historical. Publication and a clean source inventory do not establish production readiness."
+}

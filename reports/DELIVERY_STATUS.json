@@ -1,0 +1,44 @@
+{
+  "release": "0.2.0-review-candidate",
+  "mainnet_approved": false,
+  "independent_audit": false,
+  "solidity_compiled": false,
+  "solidity_tests_executed": 0,
+  "solidity_test_functions_authored": 70,
+  "python_tests": {
+    "utc": "2026-10-14T03:32:34.639094+00:00",
+    "python": "3.13.5",
+    "tests_run": 84,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "by_module": {
+      "test_abi": 13,
+      "test_indexer": 15,
+      "test_keeper": 21,
+      "test_models": 18,
+      "test_rpc": 12,
+      "test_state": 5
+    },
+    "solidity_tests_executed": 0,
+    "notice": "Python model tests do not execute or verify the Solidity implementation."
+  },
+  "source_modules": 16,
+  "production_transport_implemented": false,
+  "test_source_inventory": {
+    "AccessController.t.sol": 8,
+    "BridgeSecurity.t.sol": 10,
+    "LiquidityEncoding.t.sol": 10,
+    "OracleAndTransfers.t.sol": 13,
+    "RewardsAndFees.t.sol": 15,
+    "VaultAccounting.t.sol": 14
+  },
+  "blockers": [
+    "Compiler/dependencies/EVM verification absent",
+    "Production bridge transport not supplied",
+    "Actual v4 fork and cross-chain tests not performed",
+    "Economic and migration scope policies require approval",
+    "Independent external audit and deployment review outstanding"
+  ]
+}

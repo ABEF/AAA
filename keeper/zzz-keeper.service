@@ -1,0 +1,22 @@
+[Unit]
+Description=ZZZ liquidity keeper (dry run)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=zzz
+Group=zzz
+WorkingDirectory=/opt/zzz-protocol
+ExecStart=/usr/bin/python3 -m keeper.monitor --config /etc/zzz/keeper.json
+Restart=on-failure
+RestartSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/zzz-protocol/var
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-14T03:32:34.639094+00:00",
+  "python": "3.13.5",
+  "tests_run": 84,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "by_module": {
+    "test_abi": 13,
+    "test_indexer": 15,
+    "test_keeper": 21,
+    "test_models": 18,
+    "test_rpc": 12,
+    "test_state": 5
+  },
+  "solidity_tests_executed": 0,
+  "notice": "Python model tests do not execute or verify the Solidity implementation."
+}

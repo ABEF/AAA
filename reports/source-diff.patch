@@ -1,0 +1,2773 @@
+--- a/indexer/__init__.py
++++ b/indexer/__init__.py
+@@ -0,0 +1 @@
++
+--- a/indexer/events.py
++++ b/indexer/events.py
+@@ -0,0 +1,38 @@
++"""Static event decoding. Unknown/dynamic events retain their complete raw log."""
++from __future__ import annotations
++import json
++from pathlib import Path
++import re
++from typing import Any
++from zzz_ops.abi import decode_words
++
++SCHEMA = json.loads((Path(__file__).parent/'event_schema.json').read_text())
++
++def decode(log: dict[str,Any]) -> tuple[str|None,dict[str,Any]|None]:
++    topics=log.get('topics',[])
++    if not topics or topics[0].lower() not in SCHEMA: return None,None
++    entry=SCHEMA[topics[0].lower()]
++    words=decode_words(log.get('data','0x'))
++    indexed=[t[2:] for t in topics[1:]]
++    if any(not re.fullmatch(r'[0-9a-fA-F]{64}',w) for w in indexed): raise ValueError('Malformed indexed topic')
++    if len(indexed)!=sum(f['indexed'] for f in entry['fields']): raise ValueError('Indexed argument count mismatch')
++    if any(f['type'] not in ('address','bytes32','bool') and not re.fullmatch(r'uint\d*',f['type']) for f in entry['fields']):
++        return entry['name'],None
++    if len(words)!=sum(not f['indexed'] for f in entry['fields']): raise ValueError('Event data length mismatch')
++    result={};i=j=0
++    for f in entry['fields']:
++        if f['indexed']: word=indexed[i];i+=1
++        else: word=words[j];j+=1
++        typ=f['type']
++        if typ=='address':
++            if int(word[:24],16): raise ValueError('Noncanonical event address')
++            result[f['name']]='0x'+word[-40:].lower()
++        elif typ=='bytes32': result[f['name']]='0x'+word.lower()
++        elif typ=='bool':
++            if int(word,16)>1: raise ValueError('Invalid event boolean')
++            result[f['name']]=bool(int(word,16))
++        else:
++            bits=int(typ[4:] or 256)
++            if int(word,16)>=1<<bits: raise ValueError('Event integer overflow')
++            result[f['name']]=str(int(word,16))
++    return entry['name'],result
+--- a/indexer/events.ts
++++ b/indexer/events.ts
+@@ -1,11 +0,0 @@
+-/** Minimal normalized event definitions for a future RPC log indexer. */
+-export const indexedEvents = [
+-  'Transfer(address,address,uint256)',
+-  'Deposited(uint256,address,bytes32,uint256,uint256)',
+-  'LiquidityAdded(uint256,uint256,uint256)',
+-  'FeesAllocated(uint256,address,uint256)',
+-  'Claimed(uint256,address,address,uint256)',
+-  'MigrationProposed(bytes32,uint256,uint256,bytes32)',
+-  'MigrationApproved(bytes32)',
+-] as const;
+-// TODO: RPC ingestion, reorg rollback, persistent checkpointing, multi-chain support.
+--- a/indexer/monitor.py
++++ b/indexer/monitor.py
+@@ -0,0 +1,148 @@
++"""Confirmed-block SQLite event indexer with bounded reorg rollback. Python 3.11+."""
++from __future__ import annotations
++import argparse
++import json
++from pathlib import Path
++import signal
++import sqlite3
++import time
++from typing import Any
++from indexer.events import decode
++from zzz_ops.abi import address
++from zzz_ops.rpc import Rpc,RpcError
++from zzz_ops.state import process_lock
++
++class Indexer:
++    def __init__(self,config:dict[str,Any],rpc:Rpc|None=None):
++        self.config=config; self.chain=int(config['chain_id']);self.start=int(config['start_block'])
++        self.confirmations=int(config.get('confirmations',12));self.chunk=int(config.get('block_chunk',100))
++        self.max_reorg=int(config.get('max_reorg_depth',256))
++        if min(self.chain,self.confirmations,self.chunk,self.max_reorg)<=0 or self.start<0: raise ValueError('Invalid indexer configuration')
++        self.contracts=[address(a) for a in config['contracts']]
++        if not self.contracts: raise ValueError('At least one contract is required')
++        self.rpc=rpc or Rpc(config['rpc_urls'],self.chain)
++        path=Path(config.get('database','var/indexer.sqlite'))
++        path.parent.mkdir(parents=True,exist_ok=True)
++        self.db=sqlite3.connect(path,timeout=10)
++        self.db.execute('PRAGMA journal_mode=WAL');self.db.execute('PRAGMA foreign_keys=ON')
++        self.db.executescript('''
++        CREATE TABLE IF NOT EXISTS cursors(chain INTEGER PRIMARY KEY,next_block INTEGER NOT NULL,config TEXT NOT NULL);
++        CREATE TABLE IF NOT EXISTS blocks(chain INTEGER,number INTEGER,hash TEXT NOT NULL,parent TEXT NOT NULL,timestamp INTEGER NOT NULL,
++          PRIMARY KEY(chain,number));
++        CREATE TABLE IF NOT EXISTS logs(chain INTEGER,block_number INTEGER,block_hash TEXT,transaction_hash TEXT,log_index INTEGER,
++          address TEXT,event TEXT,decoded TEXT,raw TEXT NOT NULL,PRIMARY KEY(chain,transaction_hash,log_index),
++          FOREIGN KEY(chain,block_number) REFERENCES blocks(chain,number) ON DELETE CASCADE);
++        CREATE INDEX IF NOT EXISTS event_lookup ON logs(chain,address,event,block_number);
++        ''')
++        identity=json.dumps({'contracts':sorted(self.contracts),'start':self.start,
++            'parent_hash':config.get('start_parent_hash')},sort_keys=True)
++        cursor=self.db.execute('SELECT config FROM cursors WHERE chain=?',(self.chain,)).fetchone()
++        if cursor and cursor[0]!=identity:
++            self.db.close()
++            raise ValueError('Indexer identity changed; use a separate database or explicit rescan')
++        with self.db:self.db.execute('INSERT OR IGNORE INTO cursors VALUES(?,?,?)',(self.chain,self.start,identity))
++
++    @property
++    def next_block(self)->int:
++        return self.db.execute('SELECT next_block FROM cursors WHERE chain=?',(self.chain,)).fetchone()[0]
++    def header(self,number:int)->dict[str,Any]|None:
++        return self.rpc.call('eth_getBlockByNumber',[hex(number),False])
++    def reconcile(self)->int:
++        rows=self.db.execute('SELECT number,hash FROM blocks WHERE chain=? ORDER BY number DESC LIMIT ?',
++            (self.chain,self.max_reorg+1)).fetchall()
++        if not rows:return 0
++        ancestor=None;removed=0
++        for number,stored_hash in rows:
++            remote=self.header(number)
++            if remote and remote['hash'].lower()==stored_hash:
++                ancestor=number;break
++            removed+=1
++            if removed>self.max_reorg:raise RpcError('Reorg exceeds configured safety bound; manual reconciliation required')
++        if removed==0:return 0
++        rollback=self.start if ancestor is None else ancestor+1
++        with self.db:
++            self.db.execute('DELETE FROM blocks WHERE chain=? AND number>=?',(self.chain,rollback))
++            self.db.execute('UPDATE cursors SET next_block=? WHERE chain=?',(rollback,self.chain))
++        return removed
++
++    def step(self)->int:
++        self.reconcile()
++        head=int(self.rpc.call('eth_blockNumber',[]),16)
++        safe=head-self.confirmations+1
++        start=self.next_block
++        if start>safe:return 0
++        end=min(safe,start+self.chunk-1)
++        while True:
++            try:
++                logs=self.rpc.call('eth_getLogs',[{'address':self.contracts,'fromBlock':hex(start),'toBlock':hex(end)}]);break
++            except RpcError:
++                if end==start:raise
++                end=start+(end-start)//2
++        if not isinstance(logs,list):raise RpcError('Malformed eth_getLogs result')
++        headers={}
++        previous=self.db.execute('SELECT hash FROM blocks WHERE chain=? AND number=?',(self.chain,start-1)).fetchone()
++        parent=previous[0] if previous else self.config.get('start_parent_hash')
++        for number in range(start,end+1):
++            h=self.header(number)
++            if h is None or int(h['number'],16)!=number:raise RpcError('Missing or misnumbered block')
++            if parent is not None and h['parentHash'].lower()!=parent.lower():raise RpcError('Non-contiguous block ancestry')
++            headers[number]=h;parent=h['hash']
++        last=self.header(end)
++        if last is None or last['hash'].lower()!=headers[end]['hash'].lower():raise RpcError('Chain changed during log fetch')
++        prepared=[]
++        for item in logs:
++            number=int(item['blockNumber'],16)
++            if number not in headers or item.get('removed') or item['blockHash'].lower()!=headers[number]['hash'].lower():
++                raise RpcError('Log does not belong to the confirmed block range')
++            contract=address(item['address'])
++            if contract not in self.contracts:raise RpcError('Unexpected contract in log response')
++            event,decoded=decode(item)
++            prepared.append((self.chain,number,item['blockHash'].lower(),item['transactionHash'].lower(),
++                int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
++                json.dumps(item,sort_keys=True)))
++        with self.db:
++            for number,h in headers.items():
++                self.db.execute('INSERT INTO blocks VALUES(?,?,?,?,?)',(self.chain,number,h['hash'].lower(),h['parentHash'].lower(),int(h['timestamp'],16)))
++            self.db.executemany('INSERT INTO logs VALUES(?,?,?,?,?,?,?,?,?)',prepared)
++            self.db.execute('UPDATE cursors SET next_block=? WHERE chain=?',(end+1,self.chain))
++        return len(headers)
++
++    def nft_owners(self,nft_contract:str)->dict[str,str]:
++        owners={};contract=address(nft_contract)
++        rows=self.db.execute("SELECT decoded FROM logs WHERE chain=? AND address=? AND event='Transfer' ORDER BY block_number,log_index",
++            (self.chain,contract)).fetchall()
++        for (decoded,) in rows:
++            if decoded:
++                item=json.loads(decoded)
++                if int(item['to'],16)==0:owners.pop(item['tokenId'],None)
++                else:owners[item['tokenId']]=item['to']
++        return owners
++    def close(self)->None:self.db.close()
++
++def main()->None:
++    parser=argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--config',required=True);parser.add_argument('--once',action='store_true')
++    args=parser.parse_args();config=json.loads(Path(args.config).read_text())
++    stop=False
++    def halt(*_:Any)->None:
++        nonlocal stop;stop=True
++    signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
++    with process_lock(config.get('lock_path','var/indexer.lock')):
++        index=Indexer(config)
++        try:
++            while not stop:
++                try:
++                    count=index.step()
++                    print(json.dumps({'event':'indexed','blocks':count,'next_block':index.next_block}),flush=True)
++                except Exception as exc:
++                    print(json.dumps({'event':'indexer_error','error_type':type(exc).__name__}),flush=True)
++                    if args.once:raise
++                    count=0
++                if args.once:break
++                if count==0:
++                    for _ in range(int(config.get('poll_seconds',15))):
++                        if stop:break
++                        time.sleep(1)
++        finally:index.close()
++
++if __name__=='__main__':main()
+--- a/keeper/__init__.py
++++ b/keeper/__init__.py
+@@ -0,0 +1 @@
++
+--- a/keeper/monitor.py
++++ b/keeper/monitor.py
+@@ -0,0 +1,238 @@
++"""ZZZKeeper: serial, dry-run-by-default automation. Python 3.11+, Linux.
++
++Live signing is delegated to a local Foundry `cast` encrypted keystore. No private
++key is accepted by this program. Ambiguous broadcasts stop further submissions.
++"""
++from __future__ import annotations
++import argparse
++import datetime as dt
++import json
++import os
++from pathlib import Path
++import re
++import shutil
++import signal
++import stat
++import subprocess
++import time
++from typing import Any
++from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
++from zzz_ops.rpc import Rpc, RpcError
++from zzz_ops.state import atomic_json, process_lock, read_json
++
++def log(event: str, **fields: Any) -> None:
++    print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
++
++def positive(value: Any, field: str, *, zero: bool = False) -> int:
++    if isinstance(value,bool): raise ValueError(f'{field} must be an integer')
++    n = int(value)
++    if n < (0 if zero else 1): raise ValueError(f'{field} must be positive')
++    return n
++
++class Keeper:
++    def __init__(self, config: dict[str,Any], *, live: bool = False, rpc: Rpc | None = None):
++        self.config, self.live = config, live
++        self.chain = positive(config['chain_id'],'chain_id')
++        self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
++        self.sender = address(config['sender'])
++        self.contracts = {k:address(v) for k,v in config['contracts'].items()}
++        for name in ('access','vault','strategy','fees','compounder','buyback'):
++            if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
++        self.path = Path(config.get('state_path','var/keeper.json'))
++        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'last':{},'spent':{},'pending':None})
++        if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
++            raise ValueError('Persistent state belongs to another chain or sender')
++        self.confirmations = positive(config.get('confirmations',12),'confirmations')
++        if self.live:
++            if config.get('reviewed_for_live_use') is not True:
++                raise ValueError('Live use requires an explicit reviewed deployment configuration')
++            self._validate_signer()
++            self._validate_code_hashes()
++
++    def save(self) -> None: atomic_json(self.path,self.state)
++    def view(self,name: str,signature: str,*args: int|str) -> int:
++        return uint_result(self.rpc.eth_call(self.contracts[name],calldata(signature,*args)))
++
++    def _validate_signer(self) -> None:
++        self.cast = shutil.which(self.config.get('cast_binary','cast'))
++        if not self.cast: raise ValueError('Foundry cast is required for live signing')
++        self.keystore = Path(self.config['keystore']).resolve()
++        self.password = Path(self.config['password_file']).resolve()
++        for path in (self.keystore,self.password):
++            st = path.stat()
++            if not stat.S_ISREG(st.st_mode) or st.st_mode & 0o077:
++                raise ValueError('Signing files must be regular files with mode 0600')
++            if st.st_uid != os.getuid(): raise ValueError('Signing files must belong to the keeper user')
++        result = subprocess.run([self.cast,'wallet','address','--keystore',str(self.keystore),
++            '--password-file',str(self.password)],capture_output=True,text=True,timeout=30,check=False)
++        if result.returncode or address(result.stdout.strip()) != self.sender:
++            raise ValueError('Encrypted keystore does not match configured sender')
++
++    def _validate_code_hashes(self) -> None:
++        hashes = self.config.get('code_hashes',{})
++        for name,contract in self.contracts.items():
++            expected = hashes.get(name,'').lower()
++            if not re.fullmatch(r'0x[0-9a-f]{64}',expected): raise ValueError(f'Missing reviewed code hash: {name}')
++            code = self.rpc.call('eth_getCode',[contract,'latest'])
++            if code == '0x' or '0x'+keccak256(bytes.fromhex(code[2:])).hex() != expected:
++                raise ValueError(f'Deployment bytecode mismatch: {name}')
++
++    def _head(self) -> tuple[int,int]:
++        head = self.rpc.call('eth_getBlockByNumber',['latest',False])
++        number,timestamp = int(head['number'],16),int(head['timestamp'],16)
++        if abs(time.time()-timestamp) > 600: raise RpcError('RPC head timestamp is stale or implausible')
++        return number,timestamp
++
++    def poll_pending(self) -> bool:
++        pending = self.state.get('pending')
++        if not pending: return False
++        tx_hash = pending.get('hash')
++        if not tx_hash:
++            log('broadcast_ambiguous',nonce=pending['nonce'],action=pending['key'])
++            return True
++        receipt = self.rpc.call('eth_getTransactionReceipt',[tx_hash])
++        if receipt is None:
++            log('pending',transaction=tx_hash)
++            return True
++        head,_ = self._head()
++        block = int(receipt['blockNumber'],16)
++        if head-block+1 < self.confirmations: return True
++        header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
++        if header is None or header['hash'].lower() != receipt['blockHash'].lower():
++            log('receipt_reorged',transaction=tx_hash); return True
++        transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])
++        if not transaction or address(transaction['from']) != self.sender or int(transaction['nonce'],16) != pending['nonce'] or \
++            address(transaction['to']) != pending['to'] or transaction['input'].lower() != pending['data'].lower() or \
++            int(transaction.get('value','0x0'),16) != pending['value']:
++            raise RpcError('Pending transaction identity mismatch')
++        success = int(receipt['status'],16) == 1
++        gas_price = int(receipt.get('effectiveGasPrice',transaction.get('gasPrice','0x0')),16)
++        cost = int(receipt['gasUsed'],16)*gas_price + (pending['value'] if success else 0)
++        l1_fee = receipt.get('l1Fee','0x0')
++        cost += int(l1_fee,16) if isinstance(l1_fee,str) and l1_fee.startswith('0x') else int(l1_fee)
++        day = pending['day']
++        self.state['spent'][day] = int(self.state['spent'].get(day,0)) + cost
++        if success: self.state['last'][pending['key']] = int(header['timestamp'],16)
++        self.state['pending'] = None; self.save()
++        log('confirmed' if success else 'reverted',transaction=tx_hash,cost_wei=str(cost),action=pending['key'])
++        return False
++
++    def resolve_pending(self, tx_hash: str) -> None:
++        if not re.fullmatch(r'0x[0-9a-fA-F]{64}',tx_hash): raise ValueError('Invalid transaction hash')
++        if not self.state.get('pending'): raise ValueError('No ambiguous submission exists')
++        self.state['pending']['hash'] = tx_hash.lower(); self.save()
++        self.poll_pending()  # Independently checks sender, nonce, target and calldata.
++
++    def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0) -> bool:
++        if self.state.get('pending'): return False
++        _,timestamp = self._head()
++        to,data = self.contracts[name],calldata(signature,*args)
++        tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
++        self.rpc.call('eth_call',[tx,'latest'])
++        estimated = int(self.rpc.call('eth_estimateGas',[tx]),16)
++        gas_limit = (estimated*125+99)//100
++        gas_price = int(self.rpc.call('eth_gasPrice',[]),16)
++        if gas_limit > positive(self.config['max_gas_limit'],'max_gas_limit') or \
++            gas_price > positive(self.config['max_gas_price_wei'],'max_gas_price_wei'):
++            log('gas_cap_exceeded',action=key); return False
++        cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
++        day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
++        if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
++            int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
++            log('cost_cap_exceeded',action=key); return False
++        if not self.live:
++            log('dry_run',action=key,to=to,calldata=data,estimated_cost_wei=str(cost))
++            return False
++        # Revalidate code after simulation and before signing; stop on mutable deployments.
++        self._validate_code_hashes()
++        nonce = int(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),16)
++        pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
++        self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
++        command = [self.cast,'send',to,'--data',data,'--keystore',str(self.keystore),
++            '--password-file',str(self.password),'--chain',str(self.chain),'--nonce',str(nonce),
++            '--gas-limit',str(gas_limit),'--gas-price',str(gas_price),'--value',str(value),'--async','--json']
++        environment = dict(os.environ,ETH_RPC_URL=self.rpc.active_url)
++        try:
++            result = subprocess.run(command,env=environment,capture_output=True,text=True,timeout=90,check=False)
++            if result.returncode: raise RuntimeError('Signer command failed; broadcast status must be checked')
++            try: parsed = json.loads(result.stdout)
++            except json.JSONDecodeError: parsed = result.stdout.strip()
++            candidate = parsed.get('transactionHash',parsed.get('hash')) if isinstance(parsed,dict) else parsed
++            if not isinstance(candidate,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',candidate):
++                raise RuntimeError('Signer did not return a transaction hash')
++            pending['hash'] = candidate.lower(); self.save()
++            log('submitted',action=key,transaction=candidate)
++        except Exception as exc:
++            # Deliberately retain pending state. NEVER automatically resubmit on timeout.
++            log('submission_requires_reconciliation',action=key,error_type=type(exc).__name__)
++            raise
++        return True
++
++    def cycle(self) -> None:
++        if self.poll_pending(): return
++        if self.view('access','paused()') != 0:
++            log('protocol_paused'); return
++        if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
++        if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
++        _,now = self._head()
++        for item in self.config.get('positions',[]):
++            nft = positive(item['nft_id'],'nft_id')
++            minimum = positive(item['minimum_liquidity'],'minimum_liquidity')
++            try:
++                fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('position(uint256)',nft)))
++                if len(fields) != 15: raise RpcError('Unexpected vault Position ABI')
++                if int(fields[7],16) != 1: continue
++                _,fresh = self._head(); deadline = fresh+180
++                if self.view('strategy','needsRebalance(uint256)',nft):
++                    if self.submit('vault','rebalance(uint256,uint128,uint256)',(nft,minimum,deadline),f'rebalance:{nft}'): return
++                if item.get('compound'):
++                    tokens = [address(t) for t in item['tokens']]
++                    reserves = [self.view('fees','compoundBalance(uint256,address)',nft,t) for t in tokens]
++                    threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
++                    if max(reserves,default=0) >= threshold:
++                        if self.submit('compounder','compound(uint256,uint128,uint256)',(nft,minimum,deadline),f'compound:{nft}'): return
++                interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
++                if item.get('harvest') and now-int(self.state['last'].get(f'harvest:{nft}',0)) >= interval:
++                    if self.submit('vault','collectFees(uint256,uint256)',(nft,deadline),f'harvest:{nft}'): return
++                for remote in item.get('reward_routes',[]):
++                    token = address(remote['token'])
++                    personal = self.view('fees','remoteIndividual(uint256,address)',nft,token)
++                    shared = self.view('fees','remoteCollective(uint256,address)',nft,token)
++                    if personal+shared >= positive(remote['minimum_units'],'minimum_units'):
++                        if self.submit('fees','bridgeRewards(uint256,address,bytes32)',(nft,token,remote['route_id']),
++                            f'bridge_rewards:{nft}:{token}',value=positive(remote.get('native_fee_wei',0),'native_fee_wei',zero=True)): return
++            except (ValueError,RpcError) as exc:
++                log('position_skipped',nft_id=str(nft),error_type=type(exc).__name__)
++        for task in self.config.get('buybacks',[]):
++            token = address(task['token']); amount = positive(task['amount'],'amount')
++            if self.view('fees','buybackBalance(address)',token) >= amount:
++                _,fresh = self._head()
++                if self.submit('buyback','execute(address,uint256,bytes32,uint256)',(token,amount,task['pool_id'],fresh+180),f'buyback:{token}'): return
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--config',required=True);parser.add_argument('--live',action='store_true')
++    parser.add_argument('--once',action='store_true');parser.add_argument('--resolve-pending')
++    args = parser.parse_args()
++    config = json.loads(Path(args.config).read_text())
++    interval = positive(config.get('interval_seconds',600),'interval_seconds')
++    if interval < 60: raise ValueError('Polling interval must be at least 60 seconds')
++    stop = False
++    def halt(*_: Any) -> None:
++        nonlocal stop;stop=True
++    signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
++    with process_lock(config.get('lock_path','var/keeper.lock')):
++        keeper = Keeper(config,live=args.live)
++        if args.resolve_pending:
++            keeper.resolve_pending(args.resolve_pending);return
++        while not stop:
++            try: keeper.cycle()
++            except Exception as exc:
++                log('cycle_failed',error_type=type(exc).__name__)
++                if args.once: raise
++            if args.once: break
++            for _ in range(interval):
++                if stop: break
++                time.sleep(1)
++
++if __name__ == '__main__': main()
+--- a/keeper/monitor.ts
++++ b/keeper/monitor.ts
+@@ -1,11 +0,0 @@
+-/** Keeper outline: this program is intentionally read-only until live adapters exist. */
+-const INTERVAL_MS = 10 * 60 * 1000;
+-export type PositionSnapshot = { nftId: bigint; price: bigint; center: bigint; lastRebalance: number };
+-export function shouldRequestRebalance(p: PositionSnapshot, nowSeconds: number, thresholdBps = 500): boolean {
+-  if (p.price <= 0n) return false;
+-  if (p.center === 0n) return true;
+-  if (nowSeconds < p.lastRebalance + 600) return false;
+-  const delta = p.price >= p.center ? p.price - p.center : p.center - p.price;
+-  return delta * 10000n >= p.center * BigInt(thresholdBps);
+-}
+-console.log(`ZZZKeeper policy loaded: ${INTERVAL_MS / 60000} minute monitoring interval. No transactions submitted.`);
+--- a/src/ZZZAccessController.sol
++++ b/src/ZZZAccessController.sol
+@@ -1,20 +1,77 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-/// @notice Role registry; governor MUST be a timelock/multisig in production.
+-contract ZZZAccessController {
+-    address public governor;
+-    address public pendingGovernor;
+-    mapping(address=>bool) public isKeeper;
+-    mapping(address=>bool) public isOperator;
+-    event GovernorProposed(address indexed account);
+-    event GovernorAccepted(address indexed account);
+-    event KeeperSet(address indexed account,bool allowed);
+-    event OperatorSet(address indexed account,bool allowed);
+-    modifier onlyGovernor(){require(msg.sender==governor,"governor only");_;}
+-    constructor(address admin){require(admin!=address(0),"zero admin");governor=admin;}
+-    function isGovernor(address account) external view returns(bool){return governor==account;}
+-    function proposeGovernor(address to) external onlyGovernor {require(to!=address(0),"zero");pendingGovernor=to;emit GovernorProposed(to);}
+-    function acceptGovernor() external {require(msg.sender==pendingGovernor,"not pending");governor=msg.sender;pendingGovernor=address(0);emit GovernorAccepted(msg.sender);}
+-    function setKeeper(address who,bool yes) external onlyGovernor {isKeeper[who]=yes;emit KeeperSet(who,yes);}
+-    function setOperator(address who,bool yes) external onlyGovernor {isOperator[who]=yes;emit OperatorSet(who,yes);}
++pragma solidity 0.8.26;
++import {TimelockController} from "@openzeppelin/contracts/governance/TimelockController.sol";
++import {IZZZBound, IZZZAccess} from "./interfaces/IZZZ.sol";
++import {Ids} from "./libraries/ZZZTypes.sol";
++
++/// @notice Timelocked configuration; module addresses become immutable at seal().
++/// The timelock cannot replace the vault or execute calls as the vault.
++contract ZZZAccessController is TimelockController {
++    mapping(bytes32 => address) public module;
++    mapping(address => bool) public keepers;
++    mapping(address => bool) public guardians;
++    address public bootstrap;
++    bool public isSealed;
++    bool public paused;
++    event ModuleBound(bytes32 indexed id, address indexed implementation);
++    event SystemSealed();
++    event PauseChanged(bool paused);
++    event KeeperChanged(address indexed account, bool enabled);
++    error Unauthorized();
++    error InvalidConfiguration();
++
++    constructor(uint256 delay, address[] memory proposers, address[] memory executors, address initialKeeper,
++        address initialGuardian) TimelockController(delay, proposers, executors, address(0)) {
++        if (delay < 1 days || proposers.length == 0 || executors.length == 0 ||
++            initialKeeper == address(0) || initialGuardian == address(0)) revert InvalidConfiguration();
++        for (uint256 i; i < proposers.length; ++i) {
++            if (proposers[i] == address(0)) revert InvalidConfiguration();
++        }
++        bootstrap = msg.sender;
++        keepers[initialKeeper] = true;
++        guardians[initialGuardian] = true;
++    }
++    function canConfigure(address account) public view returns (bool) {
++        return account == address(this) || (!isSealed && account == bootstrap);
++    }
++    function bind(bytes32 id, address implementation) external {
++        if (msg.sender != bootstrap || isSealed) revert Unauthorized();
++        if (implementation.code.length == 0 || module[id] != address(0) ||
++            address(IZZZBound(implementation).access()) != address(this)) revert InvalidConfiguration();
++        module[id] = implementation;
++        emit ModuleBound(id, implementation);
++    }
++    function seal() external {
++        if (msg.sender != bootstrap || isSealed) revert Unauthorized();
++        bytes32[15] memory required = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.POWER,
++            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE,
++            Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES];
++        for (uint256 i; i < required.length; ++i) {
++            if (module[required[i]].code.length == 0) revert InvalidConfiguration();
++            for (uint256 j; j < i; ++j) {
++                if (module[required[i]] == module[required[j]]) revert InvalidConfiguration();
++            }
++        }
++        isSealed = true;
++        bootstrap = address(0);
++        emit SystemSealed();
++    }
++    function setKeeper(address who, bool enabled) external {
++        if (!canConfigure(msg.sender) || who == address(0)) revert Unauthorized();
++        keepers[who] = enabled;
++        emit KeeperChanged(who, enabled);
++    }
++    function setGuardian(address who, bool enabled) external {
++        if (!canConfigure(msg.sender) || who == address(0)) revert Unauthorized();
++        guardians[who] = enabled;
++    }
++    function setPaused(bool state) external {
++        if (!canConfigure(msg.sender) && !(state && guardians[msg.sender])) revert Unauthorized();
++        paused = state;
++        emit PauseChanged(state);
++    }
++    /// @notice The governance delay is fixed for the lifetime of this deployment.
++    function updateDelay(uint256) external pure override {
++        revert InvalidConfiguration();
++    }
+ }
+--- a/src/ZZZBridgeAdapter.sol
++++ b/src/ZZZBridgeAdapter.sol
+@@ -1,7 +1,95 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-/// @notice Bridge-specific adapter MUST authenticate messages and restricted destinations.
+-abstract contract ZZZBridgeAdapter {
+-    error BridgeIntegrationNotImplemented();
+-    function send(bytes32,uint256,address,address,uint256) external virtual {revert BridgeIntegrationNotImplemented();}
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, Route, BridgeMessage, MessageKind} from "./libraries/ZZZTypes.sol";
++import {ExactToken} from "./libraries/ExactToken.sol";
++import {IZZZRoutes, IZZZTransport, IZZZReceiver} from "./interfaces/IZZZ.sol";
++
++/// @notice Fully specified transport boundary, NOT a universal live bridge.
++/// Deploy with a separately reviewed production implementation of IZZZTransport.
++contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
++    using SafeERC20 for IERC20;
++    IZZZTransport public immutable transport;
++    uint256 public nonce;
++    mapping(bytes32 => bool) public processed;
++    event Sent(bytes32 indexed transportId, bytes32 indexed routeId, uint256 indexed nonce, uint8 kind);
++    event Received(bytes32 indexed deliveryId, bytes32 indexed routeId, uint256 indexed nftId, uint8 kind);
++    constructor(address controller, address endpoint) ZZZModule(controller) {
++        if (endpoint.code.length == 0) revert InvalidConfiguration();
++        transport = IZZZTransport(endpoint);
++    }
++    function _assets(Route memory r, BridgeMessage memory m, bool inbound)
++        private pure returns (address[] memory tokens, uint256[] memory amounts) {
++        if (m.version != 1) revert InvalidConfiguration();
++        uint256 count;
++        if (m.kind == MessageKind.Principal) {
++            if (r.sourceToken0 == address(0) || r.sourceToken1 == address(0) || m.amount0 + m.amount1 == 0 ||
++                m.individual != 0 || m.collective != 0 || m.migrationId == bytes32(0)) revert InvalidAmount();
++            count = 2;
++        } else if (m.kind == MessageKind.Reward) {
++            if (r.sourceToken0 == address(0) || r.sourceToken1 != address(0) || m.amount0 == 0 || m.amount1 != 0 ||
++                m.individual + m.collective != m.amount0) revert InvalidAmount();
++            count = 1;
++        } else {
++            if (r.sourceToken0 != address(0) || r.sourceToken1 != address(0) || m.amount0 != 0 || m.amount1 != 0 ||
++                m.individual != 0 || m.collective != 0 || m.migrationId == bytes32(0)) revert InvalidAmount();
++        }
++        tokens = new address[](count);
++        amounts = new uint256[](count);
++        if (count > 0) { tokens[0] = inbound ? r.destinationToken0 : r.sourceToken0; amounts[0] = m.amount0; }
++        if (count > 1) { tokens[1] = inbound ? r.destinationToken1 : r.sourceToken1; amounts[1] = m.amount1; }
++    }
++    function send(BridgeMessage calldata message) external payable live nonReentrant returns (bytes32 transportId) {
++        bytes32 required = message.kind == MessageKind.Principal ? Ids.MIGRATION :
++            message.kind == MessageKind.Reward ? Ids.FEES : Ids.RECEIVER;
++        if (msg.sender != access.module(required) || message.nonce != 0) revert Unauthorized();
++        (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(message.routeId);
++        if (!active || r.sourceChain != block.chainid || r.sourceAdapter != address(this) ||
++            r.sourceVault != access.module(Ids.VAULT)) revert InvalidConfiguration();
++        BridgeMessage memory m = message;
++        m.nonce = ++nonce;
++        (address[] memory tokens, uint256[] memory amounts) = _assets(r, m, false);
++        uint256[] memory beforeBalances = new uint256[](tokens.length);
++        for (uint256 i; i < tokens.length; ++i) {
++            beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this));
++            ExactToken.pull(tokens[i], msg.sender, amounts[i]);
++            IERC20(tokens[i]).forceApprove(address(transport), amounts[i]);
++        }
++        transportId = transport.send{value: msg.value}(r.destinationChain, r.destinationAdapter, tokens, amounts, abi.encode(m));
++        if (transportId == bytes32(0)) revert InvalidState();
++        for (uint256 i; i < tokens.length; ++i) {
++            IERC20(tokens[i]).forceApprove(address(transport), 0);
++            if (IERC20(tokens[i]).balanceOf(address(this)) != beforeBalances[i]) revert InvalidState();
++        }
++        emit Sent(transportId, m.routeId, m.nonce, uint8(m.kind));
++    }
++    function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external nonReentrant {
++        // Inbound settlement remains available during a local strategy pause.
++        if (!access.isSealed() || msg.sender != address(transport)) revert Unauthorized();
++        BridgeMessage memory m = abi.decode(payload, (BridgeMessage));
++        (Route memory r,) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId);
++        if (r.sourceChain != sourceChain || r.sourceAdapter != sourceAdapter ||
++            r.destinationChain != block.chainid || r.destinationAdapter != address(this) ||
++            r.destinationReceiver != access.module(Ids.RECEIVER) || m.nonce == 0) revert InvalidConfiguration();
++        bytes32 deliveryId = keccak256(abi.encode(sourceChain, sourceAdapter, m.nonce));
++        if (processed[deliveryId]) revert InvalidState();
++        processed[deliveryId] = true;
++        (address[] memory tokens, uint256[] memory amounts) = _assets(r, m, true);
++        address receiver = access.module(Ids.RECEIVER);
++        uint256[] memory beforeBalances = new uint256[](tokens.length);
++        for (uint256 i; i < tokens.length; ++i) {
++            beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this));
++            ExactToken.pull(tokens[i], msg.sender, amounts[i]);
++            IERC20(tokens[i]).forceApprove(receiver, amounts[i]);
++        }
++        IZZZReceiver(receiver).receiveMessage(sourceChain, sourceAdapter, m);
++        for (uint256 i; i < tokens.length; ++i) {
++            IERC20(tokens[i]).forceApprove(receiver, 0);
++            if (IERC20(tokens[i]).balanceOf(address(this)) != beforeBalances[i]) revert InvalidState();
++        }
++        emit Received(deliveryId, m.routeId, m.nftId, uint8(m.kind));
++    }
+ }
+--- a/src/ZZZBuyback.sol
++++ b/src/ZZZBuyback.sol
+@@ -1,12 +1,45 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-import {ZZZFeeController} from "./ZZZFeeController.sol";
+-/// @notice Buyback budgets tracked here. Swapping and burning are NOT implemented.
+-contract ZZZBuyback {
+-    IZZZAccess public immutable access;
+-    ZZZFeeController public immutable fees;
+-    event BuybackReserved(address indexed asset,uint256 amount);
+-    constructor(address a,address f){access=IZZZAccess(a);fees=ZZZFeeController(f);}
+-    function reserveForBuyback(address asset,uint256 amount) external {require(access.isOperator(msg.sender),"operator");fees.releaseBuyback(asset,amount);emit BuybackReserved(asset,amount);}
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, PoolConfig} from "./libraries/ZZZTypes.sol";
++import {IZZZFees, IZZZLiquidity, IZZZPools, IZZZOracle, IBurnable} from "./interfaces/IZZZ.sol";
++
++contract ZZZBuyback is ZZZModule, ReentrancyGuard {
++    using SafeERC20 for IERC20;
++    address public immutable zzz;
++    uint256 public immutable maxTradeUSD;
++    event BoughtAndBurned(address indexed input, uint256 inputAmount, uint256 zzzBurned);
++    constructor(address controller, address zzzToken, uint256 maximumTradeUSD) ZZZModule(controller) {
++        if (zzzToken.code.length == 0 || maximumTradeUSD == 0) revert InvalidConfiguration();
++        zzz = zzzToken;
++        maxTradeUSD = maximumTradeUSD;
++    }
++    function execute(address token, uint256 amount, bytes32 poolId, uint256 deadline) external onlyKeeper live nonReentrant {
++        _deadline(deadline);
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        if (amount == 0 || oracle.value(token, amount) > maxTradeUSD) revert InvalidAmount();
++        uint256 beforeZZZ = IERC20(zzz).balanceOf(address(this));
++        IZZZFees(access.module(Ids.FEES)).releaseBuyback(token, amount);
++        uint256 acquired = amount;
++        if (token != zzz) {
++            PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++            bool zeroForOne = c.key.currency0 == token && c.key.currency1 == zzz;
++            if (!zeroForOne && !(c.key.currency1 == token && c.key.currency0 == zzz)) revert InvalidConfiguration();
++            uint256 minimum = Math.mulDiv(oracle.quote(token, zzz, amount), 10000 - c.maxSlippageBps, 10000);
++            address manager = access.module(Ids.LIQUIDITY);
++            IERC20(token).forceApprove(manager, amount);
++            acquired = IZZZLiquidity(manager).swap(poolId, zeroForOne, amount, minimum, deadline);
++            IERC20(token).forceApprove(manager, 0);
++        }
++        if (IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired) revert InvalidState();
++        uint256 supplyBefore = IBurnable(zzz).totalSupply();
++        IBurnable(zzz).burn(acquired);
++        if (IBurnable(zzz).totalSupply() + acquired != supplyBefore ||
++            IERC20(zzz).balanceOf(address(this)) != beforeZZZ) revert InvalidState();
++        emit BoughtAndBurned(token, amount, acquired);
++    }
+ }
+--- a/src/ZZZCompounder.sol
++++ b/src/ZZZCompounder.sol
+@@ -1,13 +1,15 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-import {ZZZFeeController} from "./ZZZFeeController.sol";
+-/// @notice Reserve release only; actual compounding requires a vetted execution adapter.
+-contract ZZZCompounder {
+-    IZZZAccess public immutable access;
+-    ZZZFeeController public immutable fees;
+-    event CompoundReserved(address indexed asset,uint256 amount);
+-    constructor(address a,address f){access=IZZZAccess(a);fees=ZZZFeeController(f);}
+-    function reserveForCompounding(address asset,uint256 amount) external {require(access.isOperator(msg.sender),"operator");fees.releaseCompound(asset,amount);emit CompoundReserved(asset,amount);}
+-    // No transfer or swap function intentionally: non-deployable placeholder.
++pragma solidity 0.8.26;
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids} from "./libraries/ZZZTypes.sol";
++import {IZZZVault} from "./interfaces/IZZZ.sol";
++
++/// @notice Budget never passes through the keeper or this coordinator.
++contract ZZZCompounder is ZZZModule {
++    constructor(address controller) ZZZModule(controller) {}
++    function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live {
++        _deadline(deadline);
++        if (minimumLiquidity == 0) revert InvalidAmount();
++        IZZZVault(access.module(Ids.VAULT)).compound(id, minimumLiquidity, deadline);
++    }
+ }
+--- a/src/ZZZFeeController.sol
++++ b/src/ZZZFeeController.sol
+@@ -1,18 +1,128 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IERC20Minimal} from "./interfaces/IZZZ.sol";
+-import {ZZZRewards} from "./ZZZRewards.sol";
+-/// @notice Receives fees from vault and assigns exact 50/30/10/10 entitlements.
+-contract ZZZFeeController {
+-    address public immutable vault;
+-    ZZZRewards public immutable rewards;
+-    address public immutable compounder;
+-    address public immutable buyback;
+-    mapping(address=>uint256) public compoundPending;
+-    mapping(address=>uint256) public buybackPending;
+-    event FeesAllocated(uint256 indexed id,address indexed asset,uint256 total);
+-    constructor(address v,address r,address c,address b){vault=v;rewards=ZZZRewards(r);compounder=c;buyback=b;}
+-    function allocate(uint256 id,address asset,uint256 amount) external {require(msg.sender==vault,"vault");require(amount>=10,"dust");require(IERC20Minimal(asset).transferFrom(msg.sender,address(this),amount),"transfer");uint256 individual=amount/2;uint256 collective=amount*3/10;uint256 compound=amount/10;uint256 buy=amount-individual-collective-compound;require(IERC20Minimal(asset).transfer(address(rewards),individual+collective),"reward transfer");rewards.creditIndividual(id,asset,individual);rewards.creditCollective(asset,collective);compoundPending[asset]+=compound;buybackPending[asset]+=buy;emit FeesAllocated(id,asset,amount);}
+-    function releaseCompound(address asset,uint256 amount) external {require(msg.sender==compounder,"compounder");require(compoundPending[asset]>=amount,"insufficient");compoundPending[asset]-=amount;require(IERC20Minimal(asset).transfer(msg.sender,amount),"transfer");}
+-    function releaseBuyback(address asset,uint256 amount) external {require(msg.sender==buyback,"buyback");require(buybackPending[asset]>=amount,"insufficient");buybackPending[asset]-=amount;require(IERC20Minimal(asset).transfer(msg.sender,amount),"transfer");}
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind} from "./libraries/ZZZTypes.sol";
++import {ExactToken} from "./libraries/ExactToken.sol";
++import {IZZZRewards, IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge} from "./interfaces/IZZZ.sol";
++
++contract ZZZFeeController is ZZZModule, ReentrancyGuard {
++    using SafeERC20 for IERC20;
++    mapping(uint256 => mapping(address => uint256)) public dust;
++    mapping(uint256 => mapping(address => uint256)) public compoundBalance;
++    mapping(address => uint256) public buybackBalance;
++    mapping(uint256 => mapping(address => uint256)) public remoteIndividual;
++    mapping(uint256 => mapping(address => uint256)) public remoteCollective;
++    mapping(address => uint256) public accounted;
++    event FeesAllocated(uint256 indexed nftId, address indexed token, uint256 distributed, uint256 carriedDust);
++    event RemoteRewardsSent(uint256 indexed nftId, address indexed token, uint256 amount, bytes32 transportId);
++    constructor(address controller) ZZZModule(controller) {}
++    function _credit(uint256 id, address token, uint256 personal, uint256 shared) private {
++        address rewards = access.module(Ids.REWARDS);
++        IERC20(token).forceApprove(rewards, personal + shared);
++        IZZZRewards(rewards).credit(id, token, personal, shared);
++        IERC20(token).forceApprove(rewards, 0);
++    }
++    function _solvent(address token) private view {
++        if (IERC20(token).balanceOf(address(this)) < accounted[token]) revert InvalidState();
++    }
++    function allocate(uint256 id, address token, uint256 amount) external onlyModule(Ids.VAULT) nonReentrant {
++        if (amount == 0) revert InvalidAmount();
++        Position memory p = IZZZVault(msg.sender).position(id);
++        if (p.status != PositionStatus.Active) revert InvalidState();
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
++        if (token != c.key.currency0 && token != c.key.currency1) revert InvalidConfiguration();
++        ExactToken.pull(token, msg.sender, amount);
++        accounted[token] += amount;
++        uint256 total = dust[id][token] + amount;
++        uint256 units = total / 10;
++        dust[id][token] = total % 10;
++        if (units != 0) {
++            compoundBalance[id][token] += units;
++            buybackBalance[token] += units;
++            if (p.homeChain == block.chainid && p.homeVault == msg.sender) {
++                accounted[token] -= units * 8;
++                _credit(id, token, units * 5, units * 3);
++            } else {
++                remoteIndividual[id][token] += units * 5;
++                remoteCollective[id][token] += units * 3;
++            }
++        }
++        _solvent(token);
++        emit FeesAllocated(id, token, units * 10, dust[id][token]);
++    }
++    function flushDust(uint256 id, address token) external onlyModule(Ids.VAULT) nonReentrant {
++        Position memory p = IZZZVault(msg.sender).position(id);
++        if (p.status != PositionStatus.Outbound || p.homeChain != block.chainid || p.homeVault != msg.sender) revert InvalidState();
++        uint256 remainder = dust[id][token];
++        if (remainder == 0) return;
++        dust[id][token] = 0;
++        accounted[token] -= remainder;
++        // Final indivisible (<10 raw units) remainder goes to the canonical NFT.
++        _credit(id, token, remainder, 0);
++        _solvent(token);
++    }
++    function releaseCompound(uint256 id, address token)
++        external onlyModule(Ids.VAULT) nonReentrant returns (uint256 amount) {
++        amount = compoundBalance[id][token];
++        compoundBalance[id][token] = 0;
++        accounted[token] -= amount;
++        ExactToken.push(token, msg.sender, amount);
++        _solvent(token);
++    }
++    function releaseBuyback(address token, uint256 amount) external onlyModule(Ids.BUYBACK) nonReentrant {
++        if (amount == 0 || amount > buybackBalance[token]) revert InvalidAmount();
++        buybackBalance[token] -= amount;
++        accounted[token] -= amount;
++        ExactToken.push(token, msg.sender, amount);
++        _solvent(token);
++    }
++    function bridgeRewards(uint256 id, address token, bytes32 routeId) external payable live nonReentrant {
++        Position memory p = IZZZVault(access.module(Ids.VAULT)).position(id);
++        if (p.homeChain == block.chainid || p.status != PositionStatus.Active) revert InvalidState();
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
++        address homeToken;
++        if (token == c.key.currency0) homeToken = p.homeToken0;
++        else if (token == c.key.currency1) homeToken = p.homeToken1;
++        else revert InvalidConfiguration();
++        (Route memory r, bool enabled) = IZZZRoutes(access.module(Ids.ROUTES)).get(routeId);
++        if (!enabled || r.sourceVault != access.module(Ids.VAULT) || r.sourceChain != block.chainid ||
++            r.destinationChain != p.homeChain || r.destinationVault != p.homeVault || r.destinationReceiver != p.homeReceiver ||
++            r.sourceToken0 != token || r.destinationToken0 != homeToken || r.sourceToken1 != address(0)) revert InvalidConfiguration();
++        uint256 personal = remoteIndividual[id][token];
++        uint256 shared = remoteCollective[id][token];
++        uint256 amount = personal + shared;
++        if (amount == 0) revert InvalidAmount();
++        remoteIndividual[id][token] = 0;
++        remoteCollective[id][token] = 0;
++        accounted[token] -= amount;
++        BridgeMessage memory m;
++        m.version = 1;
++        m.kind = MessageKind.Reward;
++        m.routeId = routeId;
++        m.nftId = id;
++        m.homeChain = p.homeChain;
++        m.homeVault = p.homeVault;
++        m.homeReceiver = p.homeReceiver;
++        m.amount0 = amount;
++        m.individual = personal;
++        m.collective = shared;
++        address adapter = access.module(Ids.BRIDGE);
++        IERC20(token).forceApprove(adapter, amount);
++        bytes32 receipt = IZZZBridge(adapter).send{value: msg.value}(m);
++        IERC20(token).forceApprove(adapter, 0);
++        _solvent(token);
++        emit RemoteRewardsSent(id, token, amount, receipt);
++    }
++    function creditRemote(uint256 id, address token, uint256 personal, uint256 shared)
++        external onlyModule(Ids.RECEIVER) nonReentrant {
++        if (personal + shared == 0) revert InvalidAmount();
++        ExactToken.pull(token, msg.sender, personal + shared);
++        _credit(id, token, personal, shared);
++        _solvent(token);
++    }
++    // Final sub-10-unit fee dust is credited to the originating NFT on migration.
++    // No principal, reward liability or fee reserve can be swept by an administrator.
+ }
+--- a/src/ZZZLiquidityManager.sol
++++ b/src/ZZZLiquidityManager.sol
+@@ -1,11 +1,206 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZLPAdapter} from "./interfaces/IZZZ.sol";
+-/// @notice Explicit integration boundary; NOT a live Uniswap adapter.
+-/// A real implementation must encode v4 PositionManager actions, check deltas,
+-/// handle Permit2 / ERC6909 settlement, custody position NFTs and enforce oracle bounds.
+-abstract contract ZZZLiquidityManager is IZZZLPAdapter {
+-    error UniswapAdapterNotImplemented();
+-    function addLiquidity(uint256,address,address,uint256,uint256,bytes calldata) external virtual override returns(uint256,uint256,uint256){revert UniswapAdapterNotImplemented();}
+-    function collectFees(uint256,address,bytes calldata) external virtual override returns(uint256,uint256){revert UniswapAdapterNotImplemented();}
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
++import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
++import {LiquidityAmounts} from "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
++import {ExactToken} from "./libraries/ExactToken.sol";
++import {IZZZPools, IZZZOracle, IZZZStrategy, IPositionManagerMinimal, IStateViewMinimal,
++    IPermit2Minimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
++
++/// @notice Typed v4 operations only. No arbitrary call/action/recipient entrypoint.
++/// Vault owns every LP NFT. Per-NFT approvals authorize this immutable module.
++contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
++    using SafeERC20 for IERC20;
++    IPositionManagerMinimal private immutable posm;
++    IStateViewMinimal public immutable stateView;
++    IPoolManagerMinimal public immutable poolManager;
++    IPermit2Minimal public immutable permit2;
++    bytes32 private pendingSwapHash;
++    uint8 private constant INCREASE = 0x00;
++    uint8 private constant DECREASE = 0x01;
++    uint8 private constant MINT = 0x02;
++    uint8 private constant BURN = 0x03;
++    uint8 private constant SETTLE_PAIR = 0x0d;
++    uint8 private constant TAKE_PAIR = 0x11;
++
++    constructor(address controller, address positionManager_, address stateView_, address poolManager_, address permit2_)
++        ZZZModule(controller) {
++        if (positionManager_.code.length == 0 || stateView_.code.length == 0 || poolManager_.code.length == 0 ||
++            permit2_.code.length == 0) revert InvalidConfiguration();
++        posm = IPositionManagerMinimal(positionManager_);
++        stateView = IStateViewMinimal(stateView_);
++        poolManager = IPoolManagerMinimal(poolManager_);
++        permit2 = IPermit2Minimal(permit2_);
++        if (posm.poolManager() != poolManager_ || posm.permit2() != permit2_ ||
++            stateView.poolManager() != poolManager_) revert InvalidConfiguration();
++    }
++    function positionManager() external view returns (address) { return address(posm); }
++    function spot(bytes32 poolId) public view returns (uint160 priceX96) {
++        (priceX96,,,) = stateView.getSlot0(poolId);
++    }
++    function _config(bytes32 poolId) private view returns (PoolConfig memory c) {
++        c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++        if (!c.operationsEnabled || c.key.hooks != address(0)) revert InvalidState();
++    }
++    function _checkPosition(bytes32 poolId, uint256 id) private view returns (int24 lower, int24 upper) {
++        if (posm.ownerOf(id) != access.module(Ids.VAULT)) revert InvalidState();
++        (PoolKey memory key, uint256 info) = posm.getPoolAndPositionInfo(id);
++        if (keccak256(abi.encode(key)) != poolId) revert InvalidState();
++        lower = int24(uint24(info >> 8));
++        upper = int24(uint24(info >> 32));
++    }
++    function _approve(address token, uint256 amount, uint256 deadline) private {
++        if (amount > type(uint128).max) revert InvalidAmount();
++        IERC20(token).forceApprove(address(permit2), amount);
++        permit2.approve(token, address(posm), uint160(amount), uint48(deadline));
++    }
++    function _reset(address token) private {
++        permit2.approve(token, address(posm), 0, 0);
++        IERC20(token).forceApprove(address(permit2), 0);
++    }
++    function _mintOrIncrease(bytes32 poolId, uint256 id, int24 lower, int24 upper, uint256 amount0,
++        uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
++        private returns (uint256 tokenId, uint256 spent0, uint256 spent1) {
++        _deadline(deadline);
++        PoolConfig memory c = _config(poolId);
++        uint160 current = IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
++        if (lower % c.key.tickSpacing != 0 || upper % c.key.tickSpacing != 0 || lower >= upper) revert InvalidConfiguration();
++        uint128 previousLiquidity = id == 0 ? 0 : posm.getPositionLiquidity(id);
++        uint128 liquidity = LiquidityAmounts.getLiquidityForAmounts(current, TickMath.getSqrtPriceAtTick(lower),
++            TickMath.getSqrtPriceAtTick(upper), amount0, amount1);
++        if (liquidity == 0 || liquidity < minimumLiquidity) revert Slippage();
++        address t0 = c.key.currency0;
++        address t1 = c.key.currency1;
++        uint256 before0 = IERC20(t0).balanceOf(address(this));
++        uint256 before1 = IERC20(t1).balanceOf(address(this));
++        ExactToken.pull(t0, msg.sender, amount0);
++        ExactToken.pull(t1, msg.sender, amount1);
++        _approve(t0, amount0, deadline);
++        _approve(t1, amount1, deadline);
++        bytes[] memory parameters = new bytes[](2);
++        tokenId = id;
++        if (id == 0) {
++            tokenId = posm.nextTokenId();
++            parameters[0] = abi.encode(c.key, lower, upper, uint256(liquidity), uint128(amount0), uint128(amount1),
++                access.module(Ids.VAULT), bytes(""));
++        } else {
++            parameters[0] = abi.encode(id, uint256(liquidity), uint128(amount0), uint128(amount1), bytes(""));
++        }
++        parameters[1] = abi.encode(t0, t1);
++        posm.modifyLiquidities(abi.encode(abi.encodePacked(id == 0 ? MINT : INCREASE, SETTLE_PAIR), parameters), deadline);
++        _reset(t0);
++        _reset(t1);
++        (int24 actualLower, int24 actualUpper) = _checkPosition(poolId, tokenId);
++        if (actualLower != lower || actualUpper != upper ||
++            uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();
++        uint256 unused0 = IERC20(t0).balanceOf(address(this)) - before0;
++        uint256 unused1 = IERC20(t1).balanceOf(address(this)) - before1;
++        if (unused0 > amount0 || unused1 > amount1) revert InvalidState();
++        spent0 = amount0 - unused0;
++        spent1 = amount1 - unused1;
++        ExactToken.push(t0, msg.sender, unused0);
++        ExactToken.push(t1, msg.sender, unused1);
++    }
++    function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
++        uint128 minimumLiquidity, uint256 deadline)
++        external onlyModule(Ids.VAULT) nonReentrant returns (uint256 tokenId, uint256 spent0, uint256 spent1) {
++        return _mintOrIncrease(poolId, 0, lower, upper, amount0, amount1, minimumLiquidity, deadline);
++    }
++    function increase(bytes32 poolId, uint256 id, uint256 amount0, uint256 amount1,
++        uint128 minimumLiquidity, uint256 deadline)
++        external onlyModule(Ids.VAULT) nonReentrant returns (uint256 spent0, uint256 spent1) {
++        (int24 lower, int24 upper) = _checkPosition(poolId, id);
++        (, spent0, spent1) = _mintOrIncrease(poolId, id, lower, upper, amount0, amount1, minimumLiquidity, deadline);
++    }
++    function collect(bytes32 poolId, uint256 id, uint256 deadline) external onlyModule(Ids.VAULT) nonReentrant {
++        _deadline(deadline);
++        PoolConfig memory c = _config(poolId);
++        _checkPosition(poolId, id);
++        bytes[] memory parameters = new bytes[](2);
++        parameters[0] = abi.encode(id, uint256(0), uint128(0), uint128(0), bytes(""));
++        parameters[1] = abi.encode(c.key.currency0, c.key.currency1, access.module(Ids.VAULT));
++        posm.modifyLiquidities(abi.encode(abi.encodePacked(DECREASE, TAKE_PAIR), parameters), deadline);
++    }
++    function close(bytes32 poolId, uint256 id, uint256 deadline) external onlyModule(Ids.VAULT) nonReentrant {
++        _deadline(deadline);
++        PoolConfig memory c = _config(poolId);
++        _checkPosition(poolId, id);
++        (uint256 expected0, uint256 expected1) = amounts(id);
++        uint256 min0 = Math.mulDiv(expected0, 10000 - c.maxSlippageBps, 10000);
++        uint256 min1 = Math.mulDiv(expected1, 10000 - c.maxSlippageBps, 10000);
++        if (min0 > type(uint128).max || min1 > type(uint128).max) revert InvalidAmount();
++        bytes[] memory parameters = new bytes[](2);
++        parameters[0] = abi.encode(id, uint128(min0), uint128(min1), bytes(""));
++        parameters[1] = abi.encode(c.key.currency0, c.key.currency1, access.module(Ids.VAULT));
++        posm.modifyLiquidities(abi.encode(abi.encodePacked(BURN, TAKE_PAIR), parameters), deadline);
++    }
++    function ticks(uint256 id) external view returns (int24 lower, int24 upper) {
++        (, uint256 info) = posm.getPoolAndPositionInfo(id);
++        return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
++    }
++    function amounts(uint256 id) public view returns (uint256 amount0, uint256 amount1) {
++        (PoolKey memory key, uint256 info) = posm.getPoolAndPositionInfo(id);
++        int24 lower = int24(uint24(info >> 8));
++        int24 upper = int24(uint24(info >> 32));
++        uint160 priceX96 = spot(keccak256(abi.encode(key)));
++        uint160 a = TickMath.getSqrtPriceAtTick(lower);
++        uint160 b = TickMath.getSqrtPriceAtTick(upper);
++        uint128 liquidity = posm.getPositionLiquidity(id);
++        if (priceX96 <= a) amount0 = SqrtPriceMath.getAmount0Delta(a, b, liquidity, false);
++        else if (priceX96 >= b) amount1 = SqrtPriceMath.getAmount1Delta(a, b, liquidity, false);
++        else {
++            amount0 = SqrtPriceMath.getAmount0Delta(priceX96, b, liquidity, false);
++            amount1 = SqrtPriceMath.getAmount1Delta(a, priceX96, liquidity, false);
++        }
++    }
++    function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
++        external nonReentrant returns (uint256 amountOut) {
++        if (!access.isSealed() || (msg.sender != access.module(Ids.VAULT) && msg.sender != access.module(Ids.BUYBACK))) revert Unauthorized();
++        _deadline(deadline);
++        if (amountIn == 0 || amountIn > type(uint128).max) revert InvalidAmount();
++        PoolConfig memory c = _config(poolId);
++        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
++        address input = zeroForOne ? c.key.currency0 : c.key.currency1;
++        address output = zeroForOne ? c.key.currency1 : c.key.currency0;
++        uint256 protocolMinimum = Math.mulDiv(IZZZOracle(access.module(Ids.ORACLE)).quote(input, output, amountIn),
++            10000 - c.maxSlippageBps, 10000);
++        if (minimumOut < protocolMinimum || minimumOut == 0) revert Slippage();
++        ExactToken.pull(input, msg.sender, amountIn);
++        uint256 beforeOutput = IERC20(output).balanceOf(msg.sender);
++        bytes memory payload = abi.encode(c.key, zeroForOne, amountIn, minimumOut, msg.sender);
++        pendingSwapHash = keccak256(payload);
++        amountOut = abi.decode(poolManager.unlock(payload), (uint256));
++        if (pendingSwapHash != bytes32(0) || amountOut < minimumOut ||
++            IERC20(output).balanceOf(msg.sender) != beforeOutput + amountOut) revert InvalidState();
++        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
++    }
++    function unlockCallback(bytes calldata data) external returns (bytes memory) {
++        if (msg.sender != address(poolManager) || pendingSwapHash == bytes32(0) ||
++            pendingSwapHash != keccak256(data)) revert Unauthorized();
++        pendingSwapHash = bytes32(0);
++        (PoolKey memory key, bool zeroForOne, uint256 amountIn, uint256 minOut, address recipient) =
++            abi.decode(data, (PoolKey, bool, uint256, uint256, address));
++        int256 delta = poolManager.swap(key, IPoolManagerMinimal.SwapParams(zeroForOne, -int256(amountIn),
++            zeroForOne ? TickMath.MIN_SQRT_PRICE + 1 : TickMath.MAX_SQRT_PRICE - 1), bytes(""));
++        int128 delta0 = int128(delta >> 128);
++        int128 delta1 = int128(uint128(uint256(delta)));
++        int128 inputDelta = zeroForOne ? delta0 : delta1;
++        int128 outputDelta = zeroForOne ? delta1 : delta0;
++        if (inputDelta >= 0 || outputDelta <= 0 || uint256(-int256(inputDelta)) != amountIn ||
++            uint256(int256(outputDelta)) < minOut) revert Slippage();
++        address input = zeroForOne ? key.currency0 : key.currency1;
++        address output = zeroForOne ? key.currency1 : key.currency0;
++        poolManager.sync(input);
++        ExactToken.push(input, address(poolManager), amountIn);
++        if (poolManager.settle() != amountIn) revert InvalidState();
++        uint256 amountOut = uint256(int256(outputDelta));
++        poolManager.take(output, recipient, amountOut);
++        return abi.encode(amountOut);
++    }
+ }
+--- a/src/ZZZMigration.sol
++++ b/src/ZZZMigration.sol
+@@ -1,17 +1,107 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-import {ZZZMigrationRegistry} from "./ZZZMigrationRegistry.sol";
+-/// @notice Approval-only migration planning. DOES NOT release locked principal.
+-contract ZZZMigration {
+-    enum Status {None,Proposed,Approved,Executing,Completed,Failed}
+-    struct Plan {uint256 nftId;uint256 chainId;bytes32 destinationPool;Status status;}
+-    mapping(bytes32=>Plan) public plans;
+-    IZZZAccess public immutable access;
+-    ZZZMigrationRegistry public immutable registry;
+-    event MigrationProposed(bytes32 indexed migrationId,uint256 indexed nftId,uint256 chainId,bytes32 destinationPool);
+-    event MigrationApproved(bytes32 indexed migrationId);
+-    constructor(address a,address r){access=IZZZAccess(a);registry=ZZZMigrationRegistry(r);}
+-    function propose(bytes32 id,uint256 nftId,uint256 chainId,bytes32 pool) external {require(access.isOperator(msg.sender),"operator");require(plans[id].status==Status.None,"duplicate");(,,bool active)=registry.routes(chainId);require(active,"no route");plans[id]=Plan(nftId,chainId,pool,Status.Proposed);emit MigrationProposed(id,nftId,chainId,pool);}
+-    function approve(bytes32 id) external {require(access.isGovernor(msg.sender),"governor");require(plans[id].status==Status.Proposed,"status");plans[id].status=Status.Approved;emit MigrationApproved(id);}
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind} from "./libraries/ZZZTypes.sol";
++import {IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge} from "./interfaces/IZZZ.sol";
++
++contract ZZZMigration is ZZZModule, ReentrancyGuard {
++    using SafeERC20 for IERC20;
++    enum Status { None, Scheduled, Cancelled, Bridged, Completed }
++    struct Plan { uint256 nftId; bytes32 routeId; uint64 earliest; Status status; }
++    mapping(bytes32 => Plan) public plans;
++    mapping(uint256 => bytes32) public activePlan;
++    mapping(bytes32 => bool) private remotes;
++    mapping(bytes32 => bool) private rewardPaths;
++    uint256 public sequence;
++    uint256 public constant MIGRATION_DELAY = 2 days;
++    event Scheduled(bytes32 indexed migrationId, uint256 indexed nftId, bytes32 indexed routeId, uint64 earliest);
++    event Cancelled(bytes32 indexed migrationId);
++    event Bridged(bytes32 indexed migrationId, bytes32 transportId);
++    event Completed(bytes32 indexed migrationId, uint256 indexed nftId);
++    constructor(address controller) ZZZModule(controller) {}
++    function propose(uint256 id, bytes32 routeId) external onlyGovernance returns (bytes32 migrationId) {
++        Position memory p = IZZZVault(access.module(Ids.VAULT)).position(id);
++        (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(routeId);
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
++        if (!active || p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != access.module(Ids.VAULT) ||
++            r.sourceChain != block.chainid || r.sourceVault != p.homeVault || r.sourceReceiver != p.homeReceiver ||
++            r.sourceToken0 != c.key.currency0 || r.sourceToken1 != c.key.currency1 || activePlan[id] != bytes32(0)) revert InvalidConfiguration();
++        migrationId = keccak256(abi.encode(block.chainid, address(this), ++sequence, id, routeId));
++        uint64 earliest = uint64(block.timestamp + MIGRATION_DELAY);
++        plans[migrationId] = Plan(id, routeId, earliest, Status.Scheduled);
++        activePlan[id] = migrationId;
++        emit Scheduled(migrationId, id, routeId, earliest);
++    }
++    function cancel(bytes32 migrationId) external onlyGovernance {
++        Plan storage plan = plans[migrationId];
++        if (plan.status != Status.Scheduled) revert InvalidState();
++        plan.status = Status.Cancelled;
++        delete activePlan[plan.nftId];
++        emit Cancelled(migrationId);
++    }
++    function execute(bytes32 migrationId, uint256 deadline) external payable onlyKeeper live nonReentrant {
++        _deadline(deadline);
++        Plan storage plan = plans[migrationId];
++        if (plan.status != Status.Scheduled || block.timestamp < plan.earliest) revert InvalidState();
++        (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(plan.routeId);
++        if (!active) revert InvalidConfiguration();
++        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
++        Position memory p = vault.position(plan.nftId);
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
++        if (c.key.currency0 != r.sourceToken0 || c.key.currency1 != r.sourceToken1) revert InvalidState();
++        uint256 before0 = IERC20(r.sourceToken0).balanceOf(address(this));
++        uint256 before1 = IERC20(r.sourceToken1).balanceOf(address(this));
++        (uint256 amount0, uint256 amount1) = vault.releaseForMigration(plan.nftId, migrationId, deadline);
++        if (IERC20(r.sourceToken0).balanceOf(address(this)) != before0 + amount0 ||
++            IERC20(r.sourceToken1).balanceOf(address(this)) != before1 + amount1) revert InvalidState();
++        plan.status = Status.Bridged;
++        remotes[keccak256(abi.encode(plan.nftId, r.destinationChain, r.destinationVault))] = true;
++        rewardPaths[keccak256(abi.encode(plan.nftId, r.destinationChain, r.destinationVault, r.destinationToken0, r.sourceToken0))] = true;
++        rewardPaths[keccak256(abi.encode(plan.nftId, r.destinationChain, r.destinationVault, r.destinationToken1, r.sourceToken1))] = true;
++        BridgeMessage memory m;
++        m.version = 1;
++        m.kind = MessageKind.Principal;
++        m.routeId = plan.routeId;
++        m.nftId = plan.nftId;
++        m.migrationId = migrationId;
++        m.homeChain = p.homeChain;
++        m.homeVault = p.homeVault;
++        m.homeReceiver = p.homeReceiver;
++        m.depositUSD = p.depositUSD;
++        m.amount0 = amount0;
++        m.amount1 = amount1;
++        address adapter = access.module(Ids.BRIDGE);
++        IERC20(r.sourceToken0).forceApprove(adapter, amount0);
++        IERC20(r.sourceToken1).forceApprove(adapter, amount1);
++        bytes32 receipt = IZZZBridge(adapter).send{value: msg.value}(m);
++        IERC20(r.sourceToken0).forceApprove(adapter, 0);
++        IERC20(r.sourceToken1).forceApprove(adapter, 0);
++        if (IERC20(r.sourceToken0).balanceOf(address(this)) != before0 ||
++            IERC20(r.sourceToken1).balanceOf(address(this)) != before1) revert InvalidState();
++        emit Bridged(migrationId, receipt);
++    }
++    function authorizedRemote(uint256 id, uint256 chainId, address vault) external view returns (bool) {
++        return remotes[keccak256(abi.encode(id, chainId, vault))];
++    }
++    function authorizedReward(uint256 id, uint256 chainId, address vault, address remoteToken, address homeToken)
++        external view returns (bool) {
++        return rewardPaths[keccak256(abi.encode(id, chainId, vault, remoteToken, homeToken))];
++    }
++    function confirm(bytes32 migrationId, uint256 id, uint256 chainId, address vault) external onlyModule(Ids.RECEIVER) {
++        Plan storage plan = plans[migrationId];
++        (Route memory r,) = IZZZRoutes(access.module(Ids.ROUTES)).get(plan.routeId);
++        if (plan.nftId != id || chainId != r.destinationChain || vault != r.destinationVault) revert InvalidState();
++        if (plan.status == Status.Completed) return; // ACK retries are idempotent.
++        if (plan.status != Status.Bridged) revert InvalidState();
++        plan.status = Status.Completed;
++        IZZZVault(access.module(Ids.VAULT)).confirmMigration(id, chainId, vault);
++        emit Completed(migrationId, id);
++    }
++    function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) external onlyGovernance live {
++        IZZZVault(access.module(Ids.VAULT)).movePool(id, newPool, minimumLiquidity, deadline);
++    }
++    // No timeout-based principal release. A timeout is NOT proof of bridge cancellation.
+ }
+--- a/src/ZZZMigrationReceiver.sol
++++ b/src/ZZZMigrationReceiver.sol
+@@ -1,8 +1,96 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-/// @notice Destination replay protection skeleton; real bridge auth and deposits remain TODO.
+-contract ZZZMigrationReceiver {
+-    mapping(bytes32=>bool) public processed;
+-    error ReceiverIntegrationNotImplemented();
+-    function receiveMigration(bytes32,bytes calldata) external pure {revert ReceiverIntegrationNotImplemented();}
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, Position, PoolConfig, Route, BridgeMessage, MessageKind} from "./libraries/ZZZTypes.sol";
++import {ExactToken} from "./libraries/ExactToken.sol";
++import {IZZZRoutes, IZZZVault, IZZZPools, IZZZFees, IZZZMigration, IZZZBridge} from "./interfaces/IZZZ.sol";
++
++contract ZZZMigrationReceiver is ZZZModule, ReentrancyGuard {
++    using SafeERC20 for IERC20;
++    struct Receipt { uint256 nftId; bytes32 routeId; bool exists; bool finalized; }
++    mapping(bytes32 => Receipt) public receipts;
++    event PrincipalAccepted(bytes32 indexed migrationId, uint256 indexed nftId);
++    event PrincipalActivated(bytes32 indexed migrationId, uint256 indexed nftId);
++    event AcknowledgementSent(bytes32 indexed migrationId, bytes32 transportId);
++    constructor(address controller) ZZZModule(controller) {}
++    function receiveMessage(uint256 sourceChain, address sourceAdapter, BridgeMessage calldata m)
++        external onlyModule(Ids.BRIDGE) nonReentrant {
++        (Route memory r,) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId);
++        if (r.sourceChain != sourceChain || r.sourceAdapter != sourceAdapter ||
++            r.destinationChain != block.chainid || r.destinationVault != access.module(Ids.VAULT) ||
++            r.destinationReceiver != address(this)) revert InvalidConfiguration();
++        if (m.kind == MessageKind.Principal) _principal(r, m);
++        else if (m.kind == MessageKind.Reward) _reward(r, m);
++        else {
++            if (m.homeChain != block.chainid || m.homeVault != access.module(Ids.VAULT) || m.homeReceiver != address(this)) revert InvalidState();
++            IZZZMigration(access.module(Ids.MIGRATION)).confirm(m.migrationId, m.nftId, sourceChain, r.sourceVault);
++        }
++    }
++    function _principal(Route memory r, BridgeMessage calldata m) private {
++        if (receipts[m.migrationId].exists || m.homeChain != r.sourceChain || m.homeVault != r.sourceVault ||
++            m.homeReceiver != r.sourceReceiver || m.depositUSD == 0) revert InvalidState();
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(r.destinationPool);
++        bool sameOrder = c.key.currency0 == r.destinationToken0 && c.key.currency1 == r.destinationToken1;
++        if (!sameOrder && !(c.key.currency0 == r.destinationToken1 && c.key.currency1 == r.destinationToken0)) revert InvalidConfiguration();
++        receipts[m.migrationId] = Receipt(m.nftId, m.routeId, true, false);
++        ExactToken.pull(r.destinationToken0, msg.sender, m.amount0);
++        ExactToken.pull(r.destinationToken1, msg.sender, m.amount1);
++        address vault = access.module(Ids.VAULT);
++        IERC20(r.destinationToken0).forceApprove(vault, m.amount0);
++        IERC20(r.destinationToken1).forceApprove(vault, m.amount1);
++        Position memory origin;
++        origin.homeChain = m.homeChain;
++        origin.homeVault = m.homeVault;
++        origin.homeReceiver = m.homeReceiver;
++        origin.homeToken0 = sameOrder ? r.sourceToken0 : r.sourceToken1;
++        origin.homeToken1 = sameOrder ? r.sourceToken1 : r.sourceToken0;
++        origin.depositUSD = m.depositUSD;
++        IZZZVault(vault).importPending(m.nftId, r.destinationPool, origin,
++            sameOrder ? m.amount0 : m.amount1, sameOrder ? m.amount1 : m.amount0);
++        IERC20(r.destinationToken0).forceApprove(vault, 0);
++        IERC20(r.destinationToken1).forceApprove(vault, 0);
++        emit PrincipalAccepted(m.migrationId, m.nftId);
++    }
++    function _reward(Route memory r, BridgeMessage calldata m) private {
++        if (m.homeChain != block.chainid || m.homeVault != access.module(Ids.VAULT) || m.homeReceiver != address(this) ||
++            !IZZZMigration(access.module(Ids.MIGRATION)).authorizedReward(m.nftId, r.sourceChain, r.sourceVault,
++                r.sourceToken0, r.destinationToken0)) revert Unauthorized();
++        ExactToken.pull(r.destinationToken0, msg.sender, m.amount0);
++        address fees = access.module(Ids.FEES);
++        IERC20(r.destinationToken0).forceApprove(fees, m.amount0);
++        IZZZFees(fees).creditRemote(m.nftId, r.destinationToken0, m.individual, m.collective);
++        IERC20(r.destinationToken0).forceApprove(fees, 0);
++    }
++    function finalize(bytes32 migrationId, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live nonReentrant {
++        Receipt storage receipt = receipts[migrationId];
++        if (!receipt.exists || receipt.finalized) revert InvalidState();
++        receipt.finalized = true;
++        IZZZVault(access.module(Ids.VAULT)).finalizeImport(receipt.nftId, minimumLiquidity, deadline);
++        emit PrincipalActivated(migrationId, receipt.nftId);
++    }
++    function acknowledge(bytes32 migrationId, bytes32 reverseRouteId) external payable live nonReentrant returns (bytes32) {
++        Receipt memory receipt = receipts[migrationId];
++        if (!receipt.exists || !receipt.finalized) revert InvalidState();
++        (Route memory original,) = IZZZRoutes(access.module(Ids.ROUTES)).get(receipt.routeId);
++        (Route memory reverse, bool enabled) = IZZZRoutes(access.module(Ids.ROUTES)).get(reverseRouteId);
++        if (!enabled || reverse.sourceChain != block.chainid || reverse.sourceVault != access.module(Ids.VAULT) ||
++            reverse.destinationChain != original.sourceChain || reverse.destinationVault != original.sourceVault ||
++            reverse.destinationReceiver != original.sourceReceiver || reverse.sourceToken0 != address(0) ||
++            reverse.sourceToken1 != address(0)) revert InvalidConfiguration();
++        BridgeMessage memory m;
++        m.version = 1;
++        m.kind = MessageKind.Acknowledgement;
++        m.routeId = reverseRouteId;
++        m.nftId = receipt.nftId;
++        m.migrationId = migrationId;
++        m.homeChain = original.sourceChain;
++        m.homeVault = original.sourceVault;
++        m.homeReceiver = original.sourceReceiver;
++        bytes32 transportId = IZZZBridge(access.module(Ids.BRIDGE)).send{value: msg.value}(m);
++        emit AcknowledgementSent(migrationId, transportId);
++        return transportId;
++    }
+ }
+--- a/src/ZZZMigrationRegistry.sol
++++ b/src/ZZZMigrationRegistry.sol
+@@ -1,11 +1,53 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-contract ZZZMigrationRegistry {
+-    IZZZAccess public immutable access;
+-    struct Route {address destinationVault;address bridgeAdapter;bool active;}
+-    mapping(uint256=>Route) public routes;
+-    event RouteSet(uint256 indexed chainId,address destinationVault,address bridgeAdapter,bool active);
+-    constructor(address a){access=IZZZAccess(a);}
+-    function setRoute(uint256 chainId,Route calldata route) external {require(access.isGovernor(msg.sender),"governor");require(route.destinationVault!=address(0)&&route.bridgeAdapter!=address(0),"zero");routes[chainId]=route;emit RouteSet(chainId,route.destinationVault,route.bridgeAdapter,route.active);}
++pragma solidity 0.8.26;
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, Route} from "./libraries/ZZZTypes.sol";
++import {IZZZOracle} from "./interfaces/IZZZ.sol";
++
++/// @notice Route identities are FIXED before seal. Governance may disable/re-enable
++/// them, but cannot register an arbitrary new destination after deposits open.
++/// Adding genuinely new chains requires a separately reviewed future design.
++contract ZZZMigrationRegistry is ZZZModule {
++    mapping(bytes32 => Route) private routes;
++    mapping(bytes32 => bool) public exists;
++    mapping(bytes32 => bool) public enabled;
++    event RouteRegistered(bytes32 indexed routeId, uint256 sourceChain, uint256 destinationChain);
++    event RouteEnabled(bytes32 indexed routeId, bool enabled);
++    constructor(address controller) ZZZModule(controller) {}
++    function add(Route calldata r) external onlyGovernance returns (bytes32 id) {
++        if (access.isSealed() || r.sourceChain == 0 || r.destinationChain == 0 || r.sourceChain == r.destinationChain ||
++            r.sourceAdapter == address(0) || r.destinationAdapter == address(0) || r.sourceVault == address(0) ||
++            r.sourceReceiver == address(0) || r.destinationVault == address(0) || r.destinationReceiver == address(0) ||
++            (r.sourceToken0 == address(0)) != (r.destinationToken0 == address(0)) ||
++            (r.sourceToken1 == address(0)) != (r.destinationToken1 == address(0)) ||
++            (r.sourceToken1 != address(0) && (r.sourceToken0 == address(0) || r.sourceToken0 == r.sourceToken1 ||
++                r.destinationToken0 == r.destinationToken1)) || r.token0Decimals > 18 || r.token1Decimals > 18) revert InvalidConfiguration();
++        bool localSource = r.sourceChain == block.chainid;
++        bool localDestination = r.destinationChain == block.chainid;
++        if (!localSource && !localDestination) revert InvalidConfiguration();
++        if (localSource && (r.sourceAdapter != access.module(Ids.BRIDGE) || r.sourceVault != access.module(Ids.VAULT) ||
++            r.sourceReceiver != access.module(Ids.RECEIVER))) revert InvalidConfiguration();
++        if (localDestination && (r.destinationAdapter != access.module(Ids.BRIDGE) || r.destinationVault != access.module(Ids.VAULT) ||
++            r.destinationReceiver != access.module(Ids.RECEIVER))) revert InvalidConfiguration();
++        address t0 = localSource ? r.sourceToken0 : r.destinationToken0;
++        address t1 = localSource ? r.sourceToken1 : r.destinationToken1;
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        if (t0 != address(0) && (t0.code.length == 0 || oracle.tokenDecimals(t0) != r.token0Decimals)) revert InvalidConfiguration();
++        if (t1 != address(0) && (t1.code.length == 0 || oracle.tokenDecimals(t1) != r.token1Decimals)) revert InvalidConfiguration();
++        id = keccak256(abi.encode(r));
++        if (exists[id]) revert InvalidConfiguration();
++        routes[id] = r;
++        exists[id] = true;
++        enabled[id] = true;
++        emit RouteRegistered(id, r.sourceChain, r.destinationChain);
++    }
++    function setEnabled(bytes32 id, bool state) external onlyGovernance {
++        if (!exists[id]) revert InvalidConfiguration();
++        enabled[id] = state;
++        emit RouteEnabled(id, state);
++    }
++    function get(bytes32 id) external view returns (Route memory route, bool active) {
++        if (!exists[id]) revert InvalidConfiguration();
++        return (routes[id], enabled[id]);
++    }
+ }
+--- a/src/ZZZNFT.sol
++++ b/src/ZZZNFT.sol
+@@ -1,22 +1,25 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-/// @notice Minimal ERC721-like NFT for prototype; use audited OZ ERC721 for deployment.
+-contract ZZZNFT {
+-    string public constant name="ZZZ Permanent Liquidity";
+-    string public constant symbol="ZZZLP";
+-    address public immutable vault;
+-    mapping(uint256=>address) private owners;
+-    mapping(address=>uint256) public balanceOf;
+-    mapping(uint256=>address) public getApproved;
+-    mapping(address=>mapping(address=>bool)) public isApprovedForAll;
+-    event Transfer(address indexed from,address indexed to,uint256 indexed id);
+-    event Approval(address indexed owner,address indexed approved,uint256 indexed id);
+-    event ApprovalForAll(address indexed owner,address indexed operator,bool approved);
+-    constructor(address v){require(v!=address(0),"zero");vault=v;}
+-    function ownerOf(uint256 id) public view returns(address){address o=owners[id];require(o!=address(0),"not minted");return o;}
+-    function mint(address to,uint256 id) external {require(msg.sender==vault,"vault only");require(to!=address(0)&&owners[id]==address(0),"invalid");owners[id]=to;balanceOf[to]++;emit Transfer(address(0),to,id);}
+-    function approve(address to,uint256 id) external {address o=ownerOf(id);require(msg.sender==o||isApprovedForAll[o][msg.sender],"not authorized");getApproved[id]=to;emit Approval(o,to,id);}
+-    function setApprovalForAll(address operator,bool approved) external {isApprovedForAll[msg.sender][operator]=approved;emit ApprovalForAll(msg.sender,operator,approved);}
+-    function transferFrom(address from,address to,uint256 id) public {address o=ownerOf(id);require(o==from&&to!=address(0),"bad transfer");require(msg.sender==o||getApproved[id]==msg.sender||isApprovedForAll[o][msg.sender],"not authorized");delete getApproved[id];owners[id]=to;balanceOf[from]--;balanceOf[to]++;emit Transfer(from,to,id);}
+-    // safeTransferFrom must be added via OpenZeppelin in a deployment candidate.
++pragma solidity 0.8.26;
++import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids} from "./libraries/ZZZTypes.sol";
++
++/// @notice The canonical NFT never leaves its home chain. Unclaimed rewards
++/// belong to the current owner; selling an NFT transfers those unclaimed rights.
++contract ZZZNFT is ERC721, ZZZModule {
++    string private metadataBase;
++    event MetadataBaseChanged(string newBase);
++    constructor(address controller, string memory baseURI)
++        ERC721("ZZZ Permanent Liquidity Rights", "ZZZLP") ZZZModule(controller) {
++        metadataBase = baseURI;
++    }
++    function mint(address to, uint256 id) external onlyModule(Ids.VAULT) {
++        _safeMint(to, id);
++    }
++    function setBaseURI(string calldata baseURI) external onlyGovernance {
++        metadataBase = baseURI;
++        emit MetadataBaseChanged(baseURI);
++    }
++    function _baseURI() internal view override returns (string memory) { return metadataBase; }
++    // No burn or principal-redemption entrypoint. Standard ERC721 safe transfers.
+ }
+--- a/src/ZZZOracle.sol
++++ b/src/ZZZOracle.sol
+@@ -1,13 +1,64 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-/// @notice Configures external oracle feeds; price freshness enforced at call site.
+-interface IPriceFeed {function latestRoundData() external view returns(uint80,int256,uint256,uint256,uint80);function decimals() external view returns(uint8);}
+-contract ZZZOracle {
+-    struct Config {address feed;uint32 maxAge;}
+-    mapping(address=>Config) public feeds;
+-    IZZZAccess public immutable access;
+-    constructor(address a){access=IZZZAccess(a);}
+-    function setFeed(address asset,address feed,uint32 age) external {require(access.isGovernor(msg.sender),"governor");require(asset!=address(0)&&feed!=address(0)&&age>0,"invalid");feeds[asset]=Config(feed,age);}
+-    function price(address asset) external view returns(uint256 answer,uint8 decimals){Config memory c=feeds[asset];require(c.feed!=address(0),"no feed");(uint80 round,int256 value,,uint256 updated,uint80 answered)=IPriceFeed(c.feed).latestRoundData();require(value>0&&updated<=block.timestamp&&block.timestamp-updated<=c.maxAge&&answered>=round,"bad price");return(uint256(value),IPriceFeed(c.feed).decimals());}
++pragma solidity 0.8.26;
++import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
++import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {IPriceFeed} from "./interfaces/IZZZ.sol";
++
++/// @notice USD feed adapter, not a promise that every token has a safe price feed.
++contract ZZZOracle is ZZZModule {
++    struct Feed { address source; uint32 maxAge; uint8 feedDecimals; uint8 assetDecimals; }
++    mapping(address => Feed) public feeds;
++    address public immutable sequencerFeed;
++    uint256 public constant SEQUENCER_GRACE = 1 hours;
++    event FeedConfigured(address indexed token, address indexed source, uint32 maxAge);
++    error InvalidPrice(address token);
++    constructor(address controller, address sequencer) ZZZModule(controller) {
++        if (sequencer != address(0) && sequencer.code.length == 0) revert InvalidConfiguration();
++        sequencerFeed = sequencer;
++    }
++    function setFeed(address token, address feed, uint32 maxAge) external onlyGovernance {
++        if (token.code.length == 0 || feed.code.length == 0 || maxAge == 0 || maxAge > 1 days) revert InvalidConfiguration();
++        uint8 fd = IPriceFeed(feed).decimals();
++        uint8 td = IERC20Metadata(token).decimals();
++        if (fd > 18 || td > 18) revert InvalidConfiguration();
++        feeds[token] = Feed(feed, maxAge, fd, td);
++        emit FeedConfigured(token, feed, maxAge);
++    }
++    function _sequencerCheck() private view {
++        if (sequencerFeed == address(0)) return;
++        (, int256 answer, uint256 startedAt,,) = IPriceFeed(sequencerFeed).latestRoundData();
++        if (answer != 0 || startedAt == 0 || startedAt > block.timestamp ||
++            block.timestamp - startedAt <= SEQUENCER_GRACE) revert InvalidPrice(sequencerFeed);
++    }
++    function price(address token) public view returns (uint256 normalizedUSD) {
++        _sequencerCheck();
++        Feed memory f = feeds[token];
++        if (f.source == address(0)) revert InvalidPrice(token);
++        (uint80 round, int256 answer,, uint256 updated, uint80 answeredRound) = IPriceFeed(f.source).latestRoundData();
++        if (answer <= 0 || round == 0 || answeredRound < round || updated == 0 ||
++            updated > block.timestamp || block.timestamp - updated > f.maxAge) revert InvalidPrice(token);
++        normalizedUSD = uint256(answer) * 10 ** (18 - f.feedDecimals);
++        if (normalizedUSD == 0 || normalizedUSD > 1e36) revert InvalidPrice(token);
++    }
++    function tokenDecimals(address token) public view returns (uint8) {
++        if (feeds[token].source == address(0)) revert InvalidPrice(token);
++        return feeds[token].assetDecimals;
++    }
++    function value(address token, uint256 amount) public view returns (uint256) {
++        return Math.mulDiv(amount, price(token), 10 ** tokenDecimals(token));
++    }
++    function quote(address input, address output, uint256 amount) external view returns (uint256) {
++        return Math.mulDiv(value(input, amount), 10 ** tokenDecimals(output), price(output));
++    }
++    function referenceX96(address token0, address token1) external view returns (uint160) {
++        uint256 ratioX128 = Math.mulDiv(price(token0), uint256(1) << 128, price(token1));
++        uint8 d0 = tokenDecimals(token0);
++        uint8 d1 = tokenDecimals(token1);
++        if (d1 >= d0) ratioX128 = Math.mulDiv(ratioX128, 10 ** (d1 - d0), 1);
++        else ratioX128 /= 10 ** (d0 - d1);
++        uint256 root = Math.sqrt(ratioX128);
++        if (root == 0 || root > type(uint128).max) revert InvalidPrice(token0);
++        return uint160(root << 32);
++    }
+ }
+--- a/src/ZZZPoolRegistry.sol
++++ b/src/ZZZPoolRegistry.sol
+@@ -1,11 +1,37 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-contract ZZZPoolRegistry {
+-    struct Pool {address token0;address token1;address adapter;bool enabled;uint16 rangeBps;}
+-    mapping(bytes32=>Pool) public pools;
+-    IZZZAccess public immutable access;
+-    event PoolConfigured(bytes32 indexed poolId,address token0,address token1,address adapter,bool enabled,uint16 rangeBps);
+-    constructor(address a){access=IZZZAccess(a);}
+-    function configure(bytes32 id,Pool calldata p) external {require(access.isGovernor(msg.sender),"governor");require(p.token0!=p.token1&&p.adapter!=address(0)&&p.rangeBps>0&&p.rangeBps<10000,"invalid");pools[id]=p;emit PoolConfigured(id,p.token0,p.token1,p.adapter,p.enabled,p.rangeBps);}
++pragma solidity 0.8.26;
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, PoolKey, PoolConfig} from "./libraries/ZZZTypes.sol";
++import {IZZZOracle, IZZZRewards} from "./interfaces/IZZZ.sol";
++
++/// @notice Append-only pool identities; bounded strategy parameters are timelocked.
++/// No hooks, native ETH, rebasing, or transfer-tax token support in this version.
++contract ZZZPoolRegistry is ZZZModule {
++    mapping(bytes32 => PoolConfig) private pools;
++    mapping(bytes32 => bool) public exists;
++    event PoolConfigured(bytes32 indexed poolId, address indexed token0, address indexed token1);
++    constructor(address controller) ZZZModule(controller) {}
++    function configure(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
++        PoolKey memory k = config.key;
++        if (k.currency0 >= k.currency1 || k.currency0.code.length == 0 || k.currency1.code.length == 0 ||
++            k.hooks != address(0) || k.tickSpacing <= 0 || k.tickSpacing > 32767 || k.fee > 100000 ||
++            config.rangeBps < 100 || config.rangeBps > 5000 || config.triggerBps < 100 ||
++            config.triggerBps >= config.rangeBps || config.maxSpotDeviationBps == 0 ||
++            config.maxSpotDeviationBps > 500 || config.maxSpotDeviationBps >= config.rangeBps || config.maxSlippageBps == 0 || config.maxSlippageBps > 200 || k.fee >= uint24(config.maxSlippageBps) * 100 ||
++            config.minRebalanceInterval < 600 || config.minRebalanceInterval > 7 days ||
++            config.minDepositUSD == 0 || config.maxPositionUSD < config.minDepositUSD) revert InvalidConfiguration();
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        oracle.price(k.currency0);
++        oracle.price(k.currency1);
++        IZZZRewards rewards = IZZZRewards(access.module(Ids.REWARDS));
++        if (!rewards.isAsset(k.currency0) || !rewards.isAsset(k.currency1)) revert InvalidConfiguration();
++        poolId = keccak256(abi.encode(k));
++        pools[poolId] = config;
++        exists[poolId] = true;
++        emit PoolConfigured(poolId, k.currency0, k.currency1);
++    }
++    function get(bytes32 poolId) external view returns (PoolConfig memory) {
++        if (!exists[poolId]) revert InvalidConfiguration();
++        return pools[poolId];
++    }
+ }
+--- a/src/ZZZPower.sol
++++ b/src/ZZZPower.sol
+@@ -1,11 +1,24 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-/// @notice Operator records normalized Power; formula should be governed and deterministic before mainnet.
+-contract ZZZPower {
+-    address public immutable vault;
+-    mapping(uint256=>uint256) public powerOf;
++pragma solidity 0.8.26;
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {IZZZRewards, IZZZNFT} from "./interfaces/IZZZ.sol";
++import {Ids} from "./libraries/ZZZTypes.sol";
++
++/// @notice Explicit v2 policy: Power = lifetime oracle-USD of user contributions.
++/// Compounded fees and market appreciation do not increase Power. No manual setter.
++/// Local weights are preserved while canonical liquidity is in flight/remote.
++contract ZZZPower is ZZZModule {
++    uint256 public constant MAX_TOTAL_POWER = 1e36;
++    mapping(uint256 => uint256) public powerOf;
+     uint256 public totalPower;
+-    event PowerSet(uint256 indexed nftId,uint256 oldPower,uint256 newPower);
+-    constructor(address v){vault=v;}
+-    function setPower(uint256 id,uint256 power) external returns(uint256 old){require(msg.sender==vault,"vault");old=powerOf[id];totalPower=totalPower-old+power;powerOf[id]=power;emit PowerSet(id,old,power);}
++    event PowerIncreased(uint256 indexed nftId, uint256 increment, uint256 newPower);
++    constructor(address controller) ZZZModule(controller) {}
++    function add(uint256 id, uint256 amount) external onlyModule(Ids.VAULT) {
++        if (amount == 0 || amount > MAX_TOTAL_POWER - totalPower) revert InvalidAmount();
++        // This checkpoint MUST happen before either the local or total weight changes.
++        IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id);
++        powerOf[id] += amount;
++        totalPower += amount;
++        emit PowerIncreased(id, amount, powerOf[id]);
++    }
+ }
+--- a/src/ZZZRewards.sol
++++ b/src/ZZZRewards.sol
+@@ -1,29 +1,86 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IERC20Minimal,IZZZNFT,IZZZPower} from "./interfaces/IZZZ.sol";
+-/// @notice Per-token reward-per-power accumulator, with individual NFT entitlements.
+-contract ZZZRewards {
+-    uint256 private constant SCALE=1e27;
+-    address public immutable controller;
+-    IZZZNFT public immutable nft;
+-    IZZZPower public immutable power;
+-    mapping(address=>uint256) public accPerPower;
+-    mapping(address=>uint256) public undistributed;
+-    mapping(uint256=>mapping(address=>uint256)) public individual;
+-    mapping(uint256=>mapping(address=>uint256)) public collective;
+-    mapping(uint256=>mapping(address=>uint256)) public paidIndex;
+-    mapping(address=>uint256) public liabilities;
+-    uint256 private locked;
+-    event IndividualCredited(uint256 indexed id,address indexed asset,uint256 amount);
+-    event CollectiveCredited(address indexed asset,uint256 amount);
+-    event Claimed(uint256 indexed id,address indexed asset,address indexed recipient,uint256 amount);
+-    constructor(address c,address n,address p){controller=c;nft=IZZZNFT(n);power=IZZZPower(p);}
+-    modifier onlyController(){require(msg.sender==controller,"controller");_;}
+-    modifier nonReentrant(){require(locked==0,"reentrant");locked=1;_;locked=0;}
+-    function _sync(uint256 id,address asset) internal {uint256 idx=accPerPower[asset];uint256 prev=paidIndex[id][asset];if(idx>prev){collective[id][asset]+=power.powerOf(id)*(idx-prev)/SCALE;paidIndex[id][asset]=idx;}}
+-    function checkpoint(uint256 id,address asset) external { _sync(id,asset); }
+-    function creditIndividual(uint256 id,address asset,uint256 amount) external onlyController {individual[id][asset]+=amount;liabilities[asset]+=amount;emit IndividualCredited(id,asset,amount);}
+-    function creditCollective(address asset,uint256 amount) external onlyController {liabilities[asset]+=amount;uint256 weight=power.totalPower();if(weight==0){undistributed[asset]+=amount;}else{uint256 amt=amount+undistributed[asset];undistributed[asset]=0;accPerPower[asset]+=amt*SCALE/weight;}emit CollectiveCredited(asset,amount);}
+-    function claim(uint256 id,address asset) external nonReentrant returns(uint256 amount){require(nft.ownerOf(id)==msg.sender,"NFT owner");_sync(id,asset);amount=individual[id][asset]+collective[id][asset];require(amount>0,"no rewards");individual[id][asset]=0;collective[id][asset]=0;liabilities[asset]-=amount;require(IERC20Minimal(asset).transfer(msg.sender,amount),"transfer");emit Claimed(id,asset,msg.sender,amount);}
+-    // IMPORTANT: vault must checkpoint for EVERY reward token before changing NFT Power.
++pragma solidity 0.8.26;
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {IZZZPower, IZZZNFT} from "./interfaces/IZZZ.sol";
++import {Ids} from "./libraries/ZZZTypes.sol";
++import {ExactToken} from "./libraries/ExactToken.sol";
++
++contract ZZZRewards is ZZZModule, ReentrancyGuard {
++    uint256 public constant SCALE = 1e36;
++    uint256 public constant MAX_ASSETS = 32;
++    address[] public assets;
++    mapping(address => bool) public isAsset;
++    mapping(address => uint256) public index;
++    mapping(address => uint256) public liabilities;
++    mapping(address => uint256) public orphaned;
++    mapping(uint256 => mapping(address => uint256)) public individual;
++    mapping(uint256 => mapping(address => uint256)) public collective;
++    mapping(uint256 => mapping(address => uint256)) public paidIndex;
++    mapping(uint256 => mapping(address => uint256)) public fraction;
++    event AssetAdded(address indexed token);
++    event RewardsCredited(uint256 indexed nftId, address indexed token, uint256 individual, uint256 collective);
++    event Claimed(uint256 indexed nftId, address indexed token, address indexed recipient, uint256 amount);
++    constructor(address controller) ZZZModule(controller) {}
++    function addAsset(address token) external onlyGovernance {
++        if (token.code.length == 0 || isAsset[token] || assets.length == MAX_ASSETS) revert InvalidConfiguration();
++        isAsset[token] = true;
++        assets.push(token);
++        emit AssetAdded(token);
++    }
++    function assetCount() external view returns (uint256) { return assets.length; }
++    function _checkpoint(uint256 id, address token) private {
++        uint256 delta = index[token] - paidIndex[id][token];
++        uint256 weight = IZZZPower(access.module(Ids.POWER)).powerOf(id);
++        if (delta != 0 && weight != 0) {
++            uint256 whole = Math.mulDiv(weight, delta, SCALE);
++            uint256 remainder = mulmod(weight, delta, SCALE) + fraction[id][token];
++            collective[id][token] += whole + remainder / SCALE;
++            fraction[id][token] = remainder % SCALE;
++        }
++        paidIndex[id][token] = index[token];
++    }
++    function checkpointAll(uint256 id) external onlyModule(Ids.POWER) {
++        for (uint256 i; i < assets.length; ++i) _checkpoint(id, assets[i]);
++    }
++    function credit(uint256 id, address token, uint256 personal, uint256 shared)
++        external onlyModule(Ids.FEES) nonReentrant {
++        if (!isAsset[token] || personal + shared == 0) revert InvalidAmount();
++        // All credits refer to an already issued, canonical NFT.
++        IZZZNFT(access.module(Ids.NFT)).ownerOf(id);
++        ExactToken.pull(token, msg.sender, personal + shared);
++        individual[id][token] += personal;
++        uint256 weight = IZZZPower(access.module(Ids.POWER)).totalPower();
++        if (weight == 0) {
++            // Never give pre-participation revenue to a future entrant.
++            orphaned[token] += shared;
++            liabilities[token] += personal;
++        } else {
++            index[token] += Math.mulDiv(shared, SCALE, weight);
++            liabilities[token] += personal + shared;
++        }
++        if (IERC20(token).balanceOf(address(this)) < liabilities[token] + orphaned[token]) revert InvalidState();
++        emit RewardsCredited(id, token, personal, shared);
++    }
++    function claim(uint256 id, address token) external nonReentrant returns (uint256 amount) {
++        // Claims are NOT paused when strategy operations are paused.
++        if (!access.isSealed() || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != msg.sender) revert Unauthorized();
++        if (!isAsset[token]) revert InvalidConfiguration();
++        _checkpoint(id, token);
++        amount = individual[id][token] + collective[id][token];
++        individual[id][token] = 0;
++        collective[id][token] = 0;
++        liabilities[token] -= amount;
++        ExactToken.push(token, msg.sender, amount);
++        emit Claimed(id, token, msg.sender, amount);
++    }
++    function claimable(uint256 id, address token) external view returns (uint256) {
++        uint256 weight = IZZZPower(access.module(Ids.POWER)).powerOf(id);
++        uint256 delta = index[token] - paidIndex[id][token];
++        return individual[id][token] + collective[id][token] + Math.mulDiv(weight, delta, SCALE)
++            + (mulmod(weight, delta, SCALE) + fraction[id][token]) / SCALE;
++    }
++    // Global index-rounding dust remains reserved; no administrator sweep exists.
+ }
+--- a/src/ZZZStrategy.sol
++++ b/src/ZZZStrategy.sol
+@@ -1,17 +1,93 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IZZZAccess} from "./interfaces/IZZZ.sol";
+-/// @notice Price-range policy; executor must implement accurate ticks and swap protections.
+-contract ZZZStrategy {
+-    IZZZAccess public immutable access;
+-    uint256 public constant BPS=10000;
+-    uint256 public minRebalanceInterval=600;
+-    uint16 public triggerDeviationBps=500;
+-    mapping(uint256=>uint256) public lastRebalance;
+-    mapping(uint256=>uint256) public centerPrice;
+-    event CenterUpdated(uint256 indexed id,uint256 newPrice);
+-    constructor(address a){access=IZZZAccess(a);}
+-    function configure(uint256 interval,uint16 trigger) external {require(access.isGovernor(msg.sender),"governor");require(interval>=60&&trigger>0&&trigger<10000,"invalid");minRebalanceInterval=interval;triggerDeviationBps=trigger;}
+-    function needsRebalance(uint256 id,uint256 referencePrice) public view returns(bool){uint256 c=centerPrice[id];if(c==0)return true;if(block.timestamp<lastRebalance[id]+minRebalanceInterval)return false;uint256 delta=referencePrice>c?referencePrice-c:c-referencePrice;return delta*BPS>=c*triggerDeviationBps;}
+-    function recordRebalance(uint256 id,uint256 referencePrice) external {require(access.isOperator(msg.sender),"operator");require(referencePrice>0&&needsRebalance(id,referencePrice),"not eligible");centerPrice[id]=referencePrice;lastRebalance[id]=block.timestamp;emit CenterUpdated(id,referencePrice);}
++pragma solidity 0.8.26;
++import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
++import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
++import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
++import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault} from "./interfaces/IZZZ.sol";
++
++/// @notice Stateless policy. Only the vault can commit position state changes.
++contract ZZZStrategy is ZZZModule {
++    constructor(address controller) ZZZModule(controller) {}
++    function _floor(int24 tick, int24 spacing) private pure returns (int24) {
++        int24 quotient = tick / spacing;
++        if (tick < 0 && tick % spacing != 0) --quotient;
++        return quotient * spacing;
++    }
++    function target(bytes32 poolId) public view returns (int24 lower, int24 upper, uint160 referenceX96) {
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++        if (!c.operationsEnabled) revert InvalidState();
++        referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
++        uint256 lowerRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 - c.rangeBps) * 1e28), 1e16);
++        uint256 upperRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 + c.rangeBps) * 1e28), 1e16);
++        if (lowerRoot <= TickMath.MIN_SQRT_PRICE || upperRoot >= TickMath.MAX_SQRT_PRICE) revert InvalidConfiguration();
++        lower = _floor(TickMath.getTickAtSqrtPrice(uint160(lowerRoot)), c.key.tickSpacing);
++        // Always round the upper limit outward, including an exact tick boundary.
++        upper = _floor(TickMath.getTickAtSqrtPrice(uint160(upperRoot)), c.key.tickSpacing) + c.key.tickSpacing;
++        if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidConfiguration();
++    }
++    function validatePrice(bytes32 poolId) public view returns (uint160 spotX96) {
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++        if (!c.operationsEnabled) revert InvalidState();
++        uint160 referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
++        spotX96 = IZZZLiquidity(access.module(Ids.LIQUIDITY)).spot(poolId);
++        if (spotX96 == 0) revert InvalidState();
++        uint256 relativeRoot = Math.mulDiv(spotX96, 1e18, referenceX96);
++        uint256 relativePrice = Math.mulDiv(relativeRoot, relativeRoot, 1e18);
++        uint256 difference = relativePrice > 1e18 ? relativePrice - 1e18 : 1e18 - relativePrice;
++        if (difference > uint256(c.maxSpotDeviationBps) * 1e14) revert Slippage();
++    }
++    function needsRebalance(uint256 id) external view returns (bool) {
++        Position memory p = IZZZVault(access.module(Ids.VAULT)).position(id);
++        if (p.status != PositionStatus.Active || p.centerX96 == 0) return false;
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
++        if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
++        uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
++        uint256 rootRatio = Math.mulDiv(ref, 1e18, p.centerX96);
++        uint256 priceRatio = Math.mulDiv(rootRatio, rootRatio, 1e18);
++        uint256 delta = priceRatio > 1e18 ? priceRatio - 1e18 : 1e18 - priceRatio;
++        return delta >= uint256(c.triggerBps) * 1e14;
++    }
++    function swapPlan(bytes32 poolId, uint256 amount0, uint256 amount1)
++        external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut) {
++        (int24 lower, int24 upper,) = target(poolId);
++        return _plan(poolId, lower, upper, amount0, amount1);
++    }
++    function compoundPlan(uint256 id, uint256 amount0, uint256 amount1)
++        external view returns (bool, uint256, uint256) {
++        Position memory p = IZZZVault(access.module(Ids.VAULT)).position(id);
++        (int24 lower, int24 upper) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).ticks(p.lpTokenId);
++        return _plan(p.poolId, lower, upper, amount0, amount1);
++    }
++    function _plan(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1)
++        private view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut) {
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++        uint160 spotX96 = validatePrice(poolId);
++        uint160 a = TickMath.getSqrtPriceAtTick(lower);
++        uint160 b = TickMath.getSqrtPriceAtTick(upper);
++        uint256 unit0;
++        uint256 unit1;
++        if (spotX96 <= a) unit0 = SqrtPriceMath.getAmount0Delta(a, b, uint128(1e18), false);
++        else if (spotX96 >= b) unit1 = SqrtPriceMath.getAmount1Delta(a, b, uint128(1e18), false);
++        else {
++            unit0 = SqrtPriceMath.getAmount0Delta(spotX96, b, uint128(1e18), false);
++            unit1 = SqrtPriceMath.getAmount1Delta(a, spotX96, uint128(1e18), false);
++        }
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        uint256 v0 = oracle.value(c.key.currency0, amount0);
++        uint256 v1 = oracle.value(c.key.currency1, amount1);
++        uint256 u0 = oracle.value(c.key.currency0, unit0);
++        uint256 u1 = oracle.value(c.key.currency1, unit1);
++        if (u0 + u1 == 0) revert InvalidAmount();
++        uint256 desired0 = Math.mulDiv(v0 + v1, u0, u0 + u1);
++        zeroForOne = v0 > desired0;
++        address input = zeroForOne ? c.key.currency0 : c.key.currency1;
++        address output = zeroForOne ? c.key.currency1 : c.key.currency0;
++        uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
++        amountIn = Math.mulDiv(excess, 10 ** oracle.tokenDecimals(input), oracle.price(input));
++        if (amountIn > (zeroForOne ? amount0 : amount1)) revert InvalidState();
++        minimumOut = Math.mulDiv(oracle.quote(input, output, amountIn), 10000 - c.maxSlippageBps, 10000);
++        if (minimumOut == 0) amountIn = 0;
++    }
+ }
+--- a/src/ZZZVault.sol
++++ b/src/ZZZVault.sol
+@@ -1,42 +1,339 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-import {IERC20Minimal,IZZZNFT,IZZZAccess,IZZZLPAdapter} from "./interfaces/IZZZ.sol";
+-import {ZZZPoolRegistry} from "./ZZZPoolRegistry.sol";
+-/// @notice Custody prototype. Adapter trust must be eliminated or tightly verified pre-deployment.
+-contract ZZZVault {
+-    struct Position {bytes32 poolId;uint256 externalId;uint256 contributed0;uint256 contributed1;bool exists;}
+-    IZZZNFT public immutable nft;
+-    IZZZAccess public immutable access;
+-    ZZZPoolRegistry public immutable registry;
+-    mapping(uint256=>Position) public positions;
+-    uint256 public nextId=1;
+-    uint256 private entered;
+-    event Deposited(uint256 indexed nftId,address indexed owner,bytes32 indexed poolId,uint256 amount0,uint256 amount1);
+-    event LiquidityAdded(uint256 indexed nftId,uint256 amount0,uint256 amount1);
+-    constructor(address n,address a,address r){nft=IZZZNFT(n);access=IZZZAccess(a);registry=ZZZPoolRegistry(r);}
+-    modifier nonReentrant(){require(entered==0,"reentrant");entered=1;_;entered=0;}
+-    function _depositToAdapter(uint256 id,bytes32 poolId,uint256 amount0,uint256 amount1,bytes calldata data) internal returns(uint256 extId,uint256 spent0,uint256 spent1){
+-        (address token0,address token1,address adapter,bool enabled,)=registry.pools(poolId);require(enabled,"disabled pool");
+-        require(amount0>0&&amount1>0,"amounts");
+-        require(IERC20Minimal(token0).transferFrom(msg.sender,address(this),amount0),"transfer0");
+-        require(IERC20Minimal(token1).transferFrom(msg.sender,address(this),amount1),"transfer1");
+-        require(IERC20Minimal(token0).approve(adapter,0),"reset0");require(IERC20Minimal(token0).approve(adapter,amount0),"approve0");
+-        require(IERC20Minimal(token1).approve(adapter,0),"reset1");require(IERC20Minimal(token1).approve(adapter,amount1),"approve1");
+-        (extId,spent0,spent1)=IZZZLPAdapter(adapter).addLiquidity(id,token0,token1,amount0,amount1,data);
+-        require(spent0<=amount0&&spent1<=amount1,"overspent");
+-        require(IERC20Minimal(token0).approve(adapter,0),"revoke0");require(IERC20Minimal(token1).approve(adapter,0),"revoke1");
+-        // Unused tokens stay locked in vault; explicit strategy accounting needed before production.
+-    }
+-    function deposit(bytes32 poolId,uint256 amount0,uint256 amount1,bytes calldata data) external nonReentrant returns(uint256 id){
+-        id=nextId++;
+-        (uint256 extId,uint256 spent0,uint256 spent1)=_depositToAdapter(id,poolId,amount0,amount1,data);
+-        positions[id]=Position(poolId,extId,spent0,spent1,true);
+-        nft.mint(msg.sender,id);emit Deposited(id,msg.sender,poolId,spent0,spent1);
+-    }
+-    function increase(uint256 id,uint256 amount0,uint256 amount1,bytes calldata data) external nonReentrant {
+-        require(nft.ownerOf(id)==msg.sender,"NFT owner");Position storage p=positions[id];require(p.exists,"invalid");
+-        (uint256 extId,uint256 spent0,uint256 spent1)=_depositToAdapter(id,p.poolId,amount0,amount1,data);
+-        require(extId==p.externalId,"position changed");p.contributed0+=spent0;p.contributed1+=spent1;emit LiquidityAdded(id,spent0,spent1);
+-    }
+-    // No principal withdrawal or arbitrary call method. Production adapter must enforce LP NFT custody.
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
++import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
++import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
++import {ZZZModule} from "./base/ZZZModule.sol";
++import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
++import {ExactToken} from "./libraries/ExactToken.sol";
++import {IZZZNFT, IZZZPower, IZZZFees, IZZZPools, IZZZOracle, IZZZStrategy, IZZZLiquidity,
++    IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
++
++/// @notice Non-upgradeable custody. Principal has no owner/admin redemption path.
++/// Deposits, idle assets, compound reserves and earned fees are separate ledgers.
++contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
++    using SafeERC20 for IERC20;
++    mapping(uint256 => Position) private positions;
++    mapping(address => uint256) public totalIdle;
++    uint256 public sequence;
++    uint256 public immutable canonicalChainId;
++    uint256 public constant MAX_IDLE_BPS = 500; // At least 95% deployed by oracle value after LP updates.
++    event Deposited(uint256 indexed nftId, address indexed owner, bytes32 indexed poolId, uint256 amount0, uint256 amount1);
++    event LiquidityAdded(uint256 indexed nftId, uint256 amount0, uint256 amount1);
++    event FeesCollected(uint256 indexed nftId, uint256 amount0, uint256 amount1);
++    event Rebalanced(uint256 indexed nftId, uint256 oldLpTokenId, uint256 newLpTokenId, uint160 centerX96);
++    event Compounded(uint256 indexed nftId, uint256 amount0, uint256 amount1);
++    event PrincipalBridged(uint256 indexed nftId, bytes32 indexed migrationId, uint256 amount0, uint256 amount1);
++    event ImportPending(uint256 indexed nftId, uint256 indexed homeChain, address indexed homeVault);
++    event ImportFinalized(uint256 indexed nftId, uint256 lpTokenId);
++    event LocationConfirmed(uint256 indexed nftId, uint256 chainId, address destinationVault);
++    constructor(address controller, uint256 nftHomeChain) ZZZModule(controller) {
++        if (nftHomeChain == 0) revert InvalidConfiguration();
++        canonicalChainId = nftHomeChain;
++    }
++    function position(uint256 id) external view returns (Position memory) { return positions[id]; }
++    function _pool(uint256 id) private view returns (PoolConfig memory) {
++        return IZZZPools(access.module(Ids.POOLS)).get(positions[id].poolId);
++    }
++    function _isHome(Position storage p) private view returns (bool) {
++        return p.homeChain == block.chainid && p.homeVault == address(this);
++    }
++    function _active(uint256 id) private view {
++        if (positions[id].status != PositionStatus.Active) revert InvalidState();
++    }
++    function _idle(uint256 id, uint256 new0, uint256 new1) private {
++        if (new0 > type(uint128).max || new1 > type(uint128).max) revert InvalidAmount();
++        Position storage p = positions[id];
++        PoolConfig memory c = _pool(id);
++        totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0;
++        totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1;
++        p.idle0 = new0;
++        p.idle1 = new1;
++        if (IERC20(c.key.currency0).balanceOf(address(this)) < totalIdle[c.key.currency0] ||
++            IERC20(c.key.currency1).balanceOf(address(this)) < totalIdle[c.key.currency1]) revert InvalidState();
++    }
++    function _put(uint256 id, bool create, uint128 minimumLiquidity, uint256 deadline) private {
++        Position storage p = positions[id];
++        PoolConfig memory c = _pool(id);
++        IZZZLiquidity manager = IZZZLiquidity(access.module(Ids.LIQUIDITY));
++        uint256 a0 = p.idle0;
++        uint256 a1 = p.idle1;
++        uint256 before0 = IERC20(c.key.currency0).balanceOf(address(this));
++        uint256 before1 = IERC20(c.key.currency1).balanceOf(address(this));
++        IERC20(c.key.currency0).forceApprove(address(manager), a0);
++        IERC20(c.key.currency1).forceApprove(address(manager), a1);
++        uint256 spent0;
++        uint256 spent1;
++        if (create) {
++            (int24 lower, int24 upper, uint160 ref) = IZZZStrategy(access.module(Ids.STRATEGY)).target(p.poolId);
++            (p.lpTokenId, spent0, spent1) = manager.mint(p.poolId, lower, upper, a0, a1, minimumLiquidity, deadline);
++            IPositionManagerMinimal(manager.positionManager()).approve(address(manager), p.lpTokenId);
++            p.centerX96 = ref;
++            p.lastRebalance = uint64(block.timestamp);
++        } else {
++            (spent0, spent1) = manager.increase(p.poolId, p.lpTokenId, a0, a1, minimumLiquidity, deadline);
++        }
++        IERC20(c.key.currency0).forceApprove(address(manager), 0);
++        IERC20(c.key.currency1).forceApprove(address(manager), 0);
++        if (spent0 > a0 || spent1 > a1 ||
++            IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 ||
++            IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 ||
++            IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this)) revert InvalidState();
++        _idle(id, a0 - spent0, a1 - spent1);
++        (uint256 deployed0, uint256 deployed1) = manager.amounts(p.lpTokenId);
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        uint256 deployedValue = oracle.value(c.key.currency0, deployed0) + oracle.value(c.key.currency1, deployed1);
++        uint256 idleValue = _idleValue(id);
++        if (deployedValue == 0 || idleValue > Math.mulDiv(deployedValue + idleValue, MAX_IDLE_BPS, 10000)) revert Slippage();
++    }
++    function deposit(bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
++        external live nonReentrant returns (uint256 id) {
++        // Satellite vaults can receive migrated positions, but never issue a second collection.
++        if (block.chainid != canonicalChainId) revert InvalidState();
++        _deadline(deadline);
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++        if (!c.depositsEnabled || amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        uint256 valueUSD = oracle.value(c.key.currency0, amount0) + oracle.value(c.key.currency1, amount1);
++        if (valueUSD < c.minDepositUSD || valueUSD > c.maxPositionUSD) revert InvalidAmount();
++        id = uint256(keccak256(abi.encode(block.chainid, address(this), ++sequence)));
++        if (positions[id].status != PositionStatus.None) revert InvalidState();
++        Position storage p = positions[id];
++        p.poolId = poolId;
++        p.depositUSD = valueUSD;
++        p.status = PositionStatus.Active;
++        p.homeChain = block.chainid;
++        p.homeVault = address(this);
++        p.homeReceiver = access.module(Ids.RECEIVER);
++        p.homeToken0 = c.key.currency0;
++        p.homeToken1 = c.key.currency1;
++        p.locationChain = block.chainid;
++        p.locationVault = address(this);
++        ExactToken.pull(c.key.currency0, msg.sender, amount0);
++        ExactToken.pull(c.key.currency1, msg.sender, amount1);
++        _idle(id, amount0, amount1);
++        _balance(id, deadline);
++        if (_idleValue(id) < Math.mulDiv(valueUSD, 10000 - c.maxSlippageBps, 10000)) revert Slippage();
++        _put(id, true, minimumLiquidity, deadline);
++        IZZZNFT(access.module(Ids.NFT)).mint(msg.sender, id);
++        IZZZPower(access.module(Ids.POWER)).add(id, valueUSD);
++        emit Deposited(id, msg.sender, poolId, amount0, amount1);
++    }
++    function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
++        external live nonReentrant {
++        _deadline(deadline);
++        _active(id);
++        Position storage p = positions[id];
++        if (!_isHome(p) || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != msg.sender) revert Unauthorized();
++        PoolConfig memory c = _pool(id);
++        if (!c.depositsEnabled || amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        uint256 valueUSD = oracle.value(c.key.currency0, amount0) + oracle.value(c.key.currency1, amount1);
++        if (valueUSD < c.minDepositUSD || p.depositUSD + valueUSD > c.maxPositionUSD) revert InvalidAmount();
++        _harvest(id, deadline); // Old LP fees cannot be silently reinvested by v4.
++        ExactToken.pull(c.key.currency0, msg.sender, amount0);
++        ExactToken.pull(c.key.currency1, msg.sender, amount1);
++        _idle(id, p.idle0 + amount0, p.idle1 + amount1);
++        uint256 beforeValue = _idleValue(id);
++        _balanceUsing(id, deadline, true);
++        // A balancing swap can earn additional fees for the pre-existing LP.
++        _harvest(id, deadline);
++        if (_idleValue(id) < Math.mulDiv(beforeValue, 10000 - c.maxSlippageBps, 10000)) revert Slippage();
++        _put(id, false, minimumLiquidity, deadline);
++        p.depositUSD += valueUSD;
++        IZZZPower(access.module(Ids.POWER)).add(id, valueUSD);
++        emit LiquidityAdded(id, amount0, amount1);
++    }
++    function _allocate(uint256 id, address token, uint256 amount) private {
++        if (amount == 0) return;
++        address fees = access.module(Ids.FEES);
++        IERC20(token).forceApprove(fees, amount);
++        IZZZFees(fees).allocate(id, token, amount);
++        IERC20(token).forceApprove(fees, 0);
++    }
++    function _harvest(uint256 id, uint256 deadline) private {
++        Position storage p = positions[id];
++        PoolConfig memory c = _pool(id);
++        uint256 before0 = IERC20(c.key.currency0).balanceOf(address(this));
++        uint256 before1 = IERC20(c.key.currency1).balanceOf(address(this));
++        IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId, p.lpTokenId, deadline);
++        uint256 fee0 = IERC20(c.key.currency0).balanceOf(address(this)) - before0;
++        uint256 fee1 = IERC20(c.key.currency1).balanceOf(address(this)) - before1;
++        _allocate(id, c.key.currency0, fee0);
++        _allocate(id, c.key.currency1, fee1);
++        emit FeesCollected(id, fee0, fee1);
++    }
++    function collectFees(uint256 id, uint256 deadline) external live nonReentrant {
++        _deadline(deadline);
++        _active(id);
++        _harvest(id, deadline);
++    }
++    function _pullCompound(uint256 id) private returns (uint256 amount0, uint256 amount1) {
++        PoolConfig memory c = _pool(id);
++        Position storage p = positions[id];
++        IZZZFees fees = IZZZFees(access.module(Ids.FEES));
++        amount0 = fees.releaseCompound(id, c.key.currency0);
++        amount1 = fees.releaseCompound(id, c.key.currency1);
++        _idle(id, p.idle0 + amount0, p.idle1 + amount1);
++    }
++    function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline)
++        external onlyModule(Ids.COMPOUNDER) live nonReentrant {
++        _deadline(deadline);
++        _active(id);
++        _harvest(id, deadline);
++        (uint256 amount0, uint256 amount1) = _pullCompound(id);
++        if (amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
++        uint256 beforeValue = _idleValue(id);
++        _balanceUsing(id, deadline, true);
++        // A same-pool swap can itself generate fees for this still-active LP.
++        // Settle them separately before INCREASE so they cannot become principal.
++        _harvest(id, deadline);
++        if (_idleValue(id) < Math.mulDiv(beforeValue, 10000 - _pool(id).maxSlippageBps, 10000)) revert Slippage();
++        _put(id, false, minimumLiquidity, deadline);
++        emit Compounded(id, amount0, amount1);
++    }
++    function _close(uint256 id, uint256 deadline) private {
++        Position storage p = positions[id];
++        PoolConfig memory c = _pool(id);
++        uint256 before0 = IERC20(c.key.currency0).balanceOf(address(this));
++        uint256 before1 = IERC20(c.key.currency1).balanceOf(address(this));
++        IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId, p.lpTokenId, deadline);
++        p.lpTokenId = 0;
++        _idle(id, p.idle0 + IERC20(c.key.currency0).balanceOf(address(this)) - before0,
++            p.idle1 + IERC20(c.key.currency1).balanceOf(address(this)) - before1);
++    }
++    function _balance(uint256 id, uint256 deadline) private { _balanceUsing(id, deadline, false); }
++    function _balanceUsing(uint256 id, uint256 deadline, bool existingRange) private {
++        Position storage p = positions[id];
++        PoolConfig memory c = _pool(id);
++        IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
++        bool zeroForOne;
++        uint256 amountIn;
++        uint256 minimumOut;
++        if (existingRange) (zeroForOne, amountIn, minimumOut) = strategy.compoundPlan(id, p.idle0, p.idle1);
++        else (zeroForOne, amountIn, minimumOut) = strategy.swapPlan(p.poolId, p.idle0, p.idle1);
++        if (amountIn == 0) return;
++        address input = zeroForOne ? c.key.currency0 : c.key.currency1;
++        address manager = access.module(Ids.LIQUIDITY);
++        IERC20(input).forceApprove(manager, amountIn);
++        uint256 amountOut = IZZZLiquidity(manager).swap(p.poolId, zeroForOne, amountIn, minimumOut, deadline);
++        IERC20(input).forceApprove(manager, 0);
++        if (zeroForOne) _idle(id, p.idle0 - amountIn, p.idle1 + amountOut);
++        else _idle(id, p.idle0 + amountOut, p.idle1 - amountIn);
++    }
++    function _idleValue(uint256 id) private view returns (uint256) {
++        PoolConfig memory c = _pool(id);
++        Position storage p = positions[id];
++        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
++        return oracle.value(c.key.currency0, p.idle0) + oracle.value(c.key.currency1, p.idle1);
++    }
++    function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live nonReentrant {
++        _deadline(deadline);
++        _active(id);
++        if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(id)) revert InvalidState();
++        Position storage p = positions[id];
++        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId);
++        uint256 oldId = p.lpTokenId;
++        _harvest(id, deadline);
++        _pullCompound(id);
++        _close(id, deadline);
++        uint256 beforeValue = _idleValue(id);
++        _balance(id, deadline);
++        if (_idleValue(id) < Math.mulDiv(beforeValue, 10000 - _pool(id).maxSlippageBps, 10000)) revert Slippage();
++        _put(id, true, minimumLiquidity, deadline);
++        emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
++    }
++    function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
++        external onlyModule(Ids.MIGRATION) live nonReentrant returns (uint256 amount0, uint256 amount1) {
++        _deadline(deadline);
++        _active(id);
++        Position storage p = positions[id];
++        // v2 supports canonical -> satellite only; no silent onward migration.
++        if (!_isHome(p)) revert InvalidState();
++        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId);
++        _harvest(id, deadline);
++        _pullCompound(id);
++        _close(id, deadline);
++        PoolConfig memory c = _pool(id);
++        amount0 = p.idle0;
++        amount1 = p.idle1;
++        _idle(id, 0, 0);
++        p.status = PositionStatus.Outbound;
++        IZZZFees(access.module(Ids.FEES)).flushDust(id, c.key.currency0);
++        IZZZFees(access.module(Ids.FEES)).flushDust(id, c.key.currency1);
++        ExactToken.push(c.key.currency0, msg.sender, amount0);
++        ExactToken.push(c.key.currency1, msg.sender, amount1);
++        emit PrincipalBridged(id, migrationId, amount0, amount1);
++    }
++    function importPending(uint256 id, bytes32 poolId, Position calldata origin, uint256 amount0, uint256 amount1)
++        external onlyModule(Ids.RECEIVER) nonReentrant {
++        if (positions[id].status != PositionStatus.None || origin.homeChain != canonicalChainId || origin.homeChain == block.chainid ||
++            origin.homeVault == address(0) || origin.homeReceiver == address(0)) revert InvalidState();
++        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
++        Position storage p = positions[id];
++        p.poolId = poolId;
++        p.homeChain = origin.homeChain;
++        p.homeVault = origin.homeVault;
++        p.homeReceiver = origin.homeReceiver;
++        p.homeToken0 = origin.homeToken0;
++        p.homeToken1 = origin.homeToken1;
++        p.depositUSD = origin.depositUSD;
++        p.locationChain = block.chainid;
++        p.locationVault = address(this);
++        p.status = PositionStatus.Inbound;
++        ExactToken.pull(c.key.currency0, msg.sender, amount0);
++        ExactToken.pull(c.key.currency1, msg.sender, amount1);
++        _idle(id, amount0, amount1);
++        emit ImportPending(id, p.homeChain, p.homeVault);
++    }
++    function finalizeImport(uint256 id, uint128 minimumLiquidity, uint256 deadline)
++        external onlyModule(Ids.RECEIVER) live nonReentrant {
++        _deadline(deadline);
++        if (positions[id].status != PositionStatus.Inbound || minimumLiquidity == 0) revert InvalidState();
++        uint256 beforeValue = _idleValue(id);
++        _balance(id, deadline);
++        if (_idleValue(id) < Math.mulDiv(beforeValue, 10000 - _pool(id).maxSlippageBps, 10000)) revert Slippage();
++        _put(id, true, minimumLiquidity, deadline);
++        positions[id].status = PositionStatus.Active;
++        emit ImportFinalized(id, positions[id].lpTokenId);
++    }
++    function confirmMigration(uint256 id, uint256 destinationChain, address destinationVault)
++        external onlyModule(Ids.MIGRATION) {
++        Position storage p = positions[id];
++        if (p.status != PositionStatus.Outbound) revert InvalidState();
++        p.status = PositionStatus.Remote;
++        p.locationChain = destinationChain;
++        p.locationVault = destinationVault;
++        emit LocationConfirmed(id, destinationChain, destinationVault);
++    }
++
++    function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline)
++        external onlyModule(Ids.MIGRATION) live nonReentrant {
++        _deadline(deadline);
++        _active(id);
++        Position storage p = positions[id];
++        PoolConfig memory oldConfig = _pool(id);
++        PoolConfig memory nextConfig = IZZZPools(access.module(Ids.POOLS)).get(newPool);
++        if (p.poolId == newPool || minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
++            oldConfig.key.currency1 != nextConfig.key.currency1 || !nextConfig.operationsEnabled) revert InvalidConfiguration();
++        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId);
++        uint256 oldId = p.lpTokenId;
++        _harvest(id, deadline);
++        _pullCompound(id);
++        _close(id, deadline);
++        uint256 beforeValue = _idleValue(id);
++        p.poolId = newPool;
++        _balance(id, deadline);
++        if (_idleValue(id) < Math.mulDiv(beforeValue, 10000 - nextConfig.maxSlippageBps, 10000)) revert Slippage();
++        _put(id, true, minimumLiquidity, deadline);
++        emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
++    }
++    function onERC721Received(address, address, uint256, bytes calldata) external view override returns (bytes4) {
++        address manager = access.module(Ids.LIQUIDITY);
++        if (manager == address(0) || msg.sender != IZZZLiquidity(manager).positionManager()) revert Unauthorized();
++        return IERC721Receiver.onERC721Received.selector;
++    }
++    // No withdraw, rescue-token, arbitrary execution, proxy upgrade or admin NFT transfer.
+ }
+--- a/src/base/ZZZModule.sol
++++ b/src/base/ZZZModule.sol
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: MIT
++pragma solidity 0.8.26;
++import {IZZZAccess} from "../interfaces/IZZZ.sol";
++
++abstract contract ZZZModule {
++    IZZZAccess public immutable access;
++    error Unauthorized();
++    error InvalidConfiguration();
++    error NotReady();
++    error Paused();
++    error InvalidState();
++    error InvalidAmount();
++    error Slippage();
++    error Expired();
++    constructor(address controller) {
++        if (controller.code.length == 0) revert InvalidConfiguration();
++        access = IZZZAccess(controller);
++    }
++    modifier onlyModule(bytes32 id) {
++        if (!access.isSealed() || msg.sender != access.module(id)) revert Unauthorized();
++        _;
++    }
++    modifier onlyGovernance() {
++        if (!access.canConfigure(msg.sender)) revert Unauthorized();
++        _;
++    }
++    modifier onlyKeeper() {
++        if (!access.isSealed() || !access.keepers(msg.sender)) revert Unauthorized();
++        _;
++    }
++    modifier live() {
++        if (!access.isSealed()) revert NotReady();
++        if (access.paused()) revert Paused();
++        _;
++    }
++    function _deadline(uint256 deadline) internal view {
++        if (deadline < block.timestamp || deadline > block.timestamp + 10 minutes) revert Expired();
++    }
++}
+--- a/src/interfaces/IZZZ.sol
++++ b/src/interfaces/IZZZ.sol
+@@ -1,31 +1,137 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.24;
+-interface IERC20Minimal {
+-    function transferFrom(address from,address to,uint256 value) external returns(bool);
+-    function transfer(address to,uint256 value) external returns(bool);
+-    function balanceOf(address account) external view returns(uint256);
+-    function approve(address spender,uint256 value) external returns(bool);
++pragma solidity 0.8.26;
++import {PoolKey, PoolConfig, Position, Route, BridgeMessage} from "../libraries/ZZZTypes.sol";
++
++interface IZZZAccess {
++    function module(bytes32 key) external view returns (address);
++    function isSealed() external view returns (bool);
++    function paused() external view returns (bool);
++    function keepers(address who) external view returns (bool);
++    function canConfigure(address who) external view returns (bool);
+ }
+-interface IZZZAccess {
+-    function isGovernor(address) external view returns(bool);
+-    function isKeeper(address) external view returns(bool);
+-    function isOperator(address) external view returns(bool);
+-}
++interface IZZZBound { function access() external view returns (IZZZAccess); }
+ interface IZZZNFT {
+-    function ownerOf(uint256 id) external view returns(address);
+-    function mint(address receiver,uint256 id) external;
++    function ownerOf(uint256 id) external view returns (address);
++    function mint(address to, uint256 id) external;
+ }
+ interface IZZZPower {
+-    function powerOf(uint256 id) external view returns(uint256);
+-    function totalPower() external view returns(uint256);
++    function powerOf(uint256 id) external view returns (uint256);
++    function totalPower() external view returns (uint256);
++    function add(uint256 id, uint256 amount) external;
+ }
+ interface IZZZRewards {
+-    function onPowerChange(uint256 id,uint256 oldPower,uint256 newPower) external;
+-    function creditIndividual(uint256 id,address asset,uint256 amount) external;
+-    function creditCollective(address asset,uint256 amount) external;
++    function isAsset(address token) external view returns (bool);
++    function checkpointAll(uint256 id) external;
++    function credit(uint256 id, address token, uint256 individual, uint256 collective) external;
+ }
+-interface IZZZLPAdapter {
+-    // Adapter MUST prove custody of minted position and respect strategy-defined minimums.
+-    function addLiquidity(uint256 positionId,address token0,address token1,uint256 amount0,uint256 amount1,bytes calldata params) external returns(uint256 externalId,uint256 spent0,uint256 spent1);
+-    function collectFees(uint256 positionId,address recipient,bytes calldata params) external returns(uint256 fee0,uint256 fee1);
++interface IZZZFees {
++    function allocate(uint256 id, address token, uint256 amount) external;
++    function compoundBalance(uint256 id, address token) external view returns (uint256);
++    function releaseCompound(uint256 id, address token) external returns (uint256);
++    function flushDust(uint256 id, address token) external;
++    function releaseBuyback(address token, uint256 amount) external;
++    function creditRemote(uint256 id, address token, uint256 individual, uint256 collective) external;
+ }
++interface IZZZPools {
++    function get(bytes32 poolId) external view returns (PoolConfig memory);
++}
++interface IZZZOracle {
++    function price(address token) external view returns (uint256);
++    function tokenDecimals(address token) external view returns (uint8);
++    function value(address token, uint256 amount) external view returns (uint256);
++    function quote(address input, address output, uint256 amount) external view returns (uint256);
++    function referenceX96(address token0, address token1) external view returns (uint160);
++}
++interface IZZZStrategy {
++    function target(bytes32 poolId) external view returns (int24 lower, int24 upper, uint160 referenceX96);
++    function validatePrice(bytes32 poolId) external view returns (uint160 spotX96);
++    function needsRebalance(uint256 id) external view returns (bool);
++    function compoundPlan(uint256 id, uint256 amount0, uint256 amount1) external view returns (bool, uint256, uint256);
++    function swapPlan(bytes32 poolId, uint256 amount0, uint256 amount1)
++        external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut);
++}
++interface IZZZLiquidity {
++    function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
++        uint128 minimumLiquidity, uint256 deadline) external returns (uint256 tokenId, uint256 spent0, uint256 spent1);
++    function increase(bytes32 poolId, uint256 tokenId, uint256 amount0, uint256 amount1,
++        uint128 minimumLiquidity, uint256 deadline) external returns (uint256 spent0, uint256 spent1);
++    function collect(bytes32 poolId, uint256 tokenId, uint256 deadline) external;
++    function close(bytes32 poolId, uint256 tokenId, uint256 deadline) external;
++    function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
++        external returns (uint256 amountOut);
++    function amounts(uint256 tokenId) external view returns (uint256 amount0, uint256 amount1);
++    function ticks(uint256 tokenId) external view returns (int24 lower, int24 upper);
++    function spot(bytes32 poolId) external view returns (uint160);
++    function positionManager() external view returns (address);
++}
++interface IZZZVault {
++    function position(uint256 id) external view returns (Position memory);
++    function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
++    function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
++        external returns (uint256 amount0, uint256 amount1);
++    function importPending(uint256 id, bytes32 poolId, Position calldata origin, uint256 amount0, uint256 amount1) external;
++    function finalizeImport(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
++    function confirmMigration(uint256 id, uint256 destinationChain, address destinationVault) external;
++    function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) external;
++}
++interface IZZZRoutes {
++    function get(bytes32 id) external view returns (Route memory route, bool enabled);
++}
++interface IZZZBridge {
++    function send(BridgeMessage calldata message) external payable returns (bytes32 transportId);
++}
++interface IZZZMigration {
++    function authorizedRemote(uint256 id, uint256 chainId, address vault) external view returns (bool);
++    function confirm(bytes32 migrationId, uint256 id, uint256 chainId, address vault) external;
++    function authorizedReward(uint256 id, uint256 chainId, address vault, address remoteToken, address homeToken) external view returns (bool);
++}
++interface IZZZReceiver {
++    function receiveMessage(uint256 sourceChain, address sourceAdapter, BridgeMessage calldata message) external;
++}
++
++/// @notice Transport implementers MUST authenticate the origin chain and sender,
++/// enforce finality, and atomically deliver EXACT token amounts to the adapter.
++/// No particular production bridge is implied by this interface.
++interface IZZZTransport {
++    function send(uint256 destinationChain, address destinationAdapter, address[] calldata tokens,
++        uint256[] calldata amounts, bytes calldata payload) external payable returns (bytes32);
++}
++interface IZZZTransportReceiver {
++    function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external;
++}
++
++/// @dev Minimal external ABIs, checked against the official Uniswap v4 sources.
++interface IPositionManagerMinimal {
++    function modifyLiquidities(bytes calldata unlockData, uint256 deadline) external payable;
++    function nextTokenId() external view returns (uint256);
++    function getPositionLiquidity(uint256 id) external view returns (uint128);
++    function getPoolAndPositionInfo(uint256 id) external view returns (PoolKey memory, uint256);
++    function ownerOf(uint256 id) external view returns (address);
++    function approve(address spender, uint256 id) external;
++    function getApproved(uint256 id) external view returns (address);
++    function poolManager() external view returns (address);
++    function permit2() external view returns (address);
++}
++interface IStateViewMinimal {
++    function getSlot0(bytes32 poolId) external view returns (uint160, int24, uint24, uint24);
++    function poolManager() external view returns (address);
++}
++interface IPermit2Minimal {
++    function approve(address token, address spender, uint160 amount, uint48 expiration) external;
++}
++interface IPoolManagerMinimal {
++    struct SwapParams { bool zeroForOne; int256 amountSpecified; uint160 sqrtPriceLimitX96; }
++    function unlock(bytes calldata data) external returns (bytes memory);
++    function swap(PoolKey calldata key, SwapParams calldata params, bytes calldata hookData) external returns (int256 delta);
++    function sync(address currency) external;
++    function settle() external payable returns (uint256 paid);
++    function take(address currency, address to, uint256 amount) external;
++}
++interface IPriceFeed {
++    function latestRoundData() external view returns (uint80, int256, uint256, uint256, uint80);
++    function decimals() external view returns (uint8);
++}
++interface IBurnable {
++    function burn(uint256 amount) external;
++    function totalSupply() external view returns (uint256);
++}
+--- a/src/libraries/ExactToken.sol
++++ b/src/libraries/ExactToken.sol
+@@ -0,0 +1,27 @@
++// SPDX-License-Identifier: MIT
++pragma solidity 0.8.26;
++import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
++import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
++
++/// @notice Strict transfers for conventional non-rebasing, non-taxed ERC20s.
++/// Balance checks do not prove a token will remain non-malicious in the future.
++library ExactToken {
++    using SafeERC20 for IERC20;
++    error UnsupportedToken(address token);
++    function pull(address token, address from, uint256 amount) internal {
++        if (amount == 0) return;
++        uint256 beforeBalance = IERC20(token).balanceOf(address(this));
++        uint256 beforeSender = IERC20(token).balanceOf(from);
++        IERC20(token).safeTransferFrom(from, address(this), amount);
++        if (IERC20(token).balanceOf(address(this)) != beforeBalance + amount ||
++            IERC20(token).balanceOf(from) + amount != beforeSender) revert UnsupportedToken(token);
++    }
++    function push(address token, address to, uint256 amount) internal {
++        if (amount == 0) return;
++        uint256 beforeSender = IERC20(token).balanceOf(address(this));
++        uint256 beforeRecipient = IERC20(token).balanceOf(to);
++        IERC20(token).safeTransfer(to, amount);
++        if (IERC20(token).balanceOf(address(this)) + amount != beforeSender ||
++            IERC20(token).balanceOf(to) != beforeRecipient + amount) revert UnsupportedToken(token);
++    }
++}
+--- a/src/libraries/ZZZTypes.sol
++++ b/src/libraries/ZZZTypes.sol
+@@ -0,0 +1,100 @@
++// SPDX-License-Identifier: MIT
++pragma solidity 0.8.26;
++
++library Ids {
++    bytes32 internal constant VAULT = keccak256("ZZZVault");
++    bytes32 internal constant NFT = keccak256("ZZZNFT");
++    bytes32 internal constant LIQUIDITY = keccak256("ZZZLiquidityManager");
++    bytes32 internal constant REWARDS = keccak256("ZZZRewards");
++    bytes32 internal constant POWER = keccak256("ZZZPower");
++    bytes32 internal constant FEES = keccak256("ZZZFeeController");
++    bytes32 internal constant STRATEGY = keccak256("ZZZStrategy");
++    bytes32 internal constant COMPOUNDER = keccak256("ZZZCompounder");
++    bytes32 internal constant BUYBACK = keccak256("ZZZBuyback");
++    bytes32 internal constant MIGRATION = keccak256("ZZZMigration");
++    bytes32 internal constant BRIDGE = keccak256("ZZZBridgeAdapter");
++    bytes32 internal constant RECEIVER = keccak256("ZZZMigrationReceiver");
++    bytes32 internal constant ORACLE = keccak256("ZZZOracle");
++    bytes32 internal constant POOLS = keccak256("ZZZPoolRegistry");
++    bytes32 internal constant ROUTES = keccak256("ZZZMigrationRegistry");
++}
++
++// ABI-compatible with the canonical Uniswap v4 PoolKey. ERC20 currencies only.
++struct PoolKey {
++    address currency0;
++    address currency1;
++    uint24 fee;
++    int24 tickSpacing;
++    address hooks;
++}
++
++struct PoolConfig {
++    PoolKey key;
++    bool depositsEnabled;
++    bool operationsEnabled;
++    uint16 rangeBps;
++    uint16 triggerBps;
++    uint16 maxSpotDeviationBps;
++    uint16 maxSlippageBps;
++    uint32 minRebalanceInterval;
++    uint256 minDepositUSD;
++    uint256 maxPositionUSD;
++}
++
++enum PositionStatus { None, Active, Outbound, Remote, Inbound }
++struct Position {
++    bytes32 poolId;
++    uint256 lpTokenId;
++    uint256 idle0;
++    uint256 idle1;
++    uint256 depositUSD;
++    uint160 centerX96;
++    uint64 lastRebalance;
++    PositionStatus status;
++    uint256 homeChain;
++    address homeVault;
++    address homeReceiver;
++    address homeToken0;
++    address homeToken1;
++    uint256 locationChain;
++    address locationVault;
++}
++
++// Each route is append-only. Only enabled can subsequently be changed.
++// source/destination tokens must represent the same asset at identical decimals.
++struct Route {
++    uint256 sourceChain;
++    address sourceAdapter;
++    address sourceVault;
++    address sourceReceiver;
++    uint256 destinationChain;
++    address destinationAdapter;
++    address destinationVault;
++    address destinationReceiver;
++    bytes32 destinationPool;
++    address sourceToken0;
++    address sourceToken1;
++    address destinationToken0;
++    address destinationToken1;
++    uint8 token0Decimals;
++    uint8 token1Decimals;
++}
++
++enum MessageKind { Principal, Reward, Acknowledgement }
++struct BridgeMessage {
++    uint8 version;
++    MessageKind kind;
++    bytes32 routeId;
++    uint256 nonce;
++    uint256 nftId;
++    bytes32 migrationId;
++    uint256 homeChain;
++    address homeVault;
++    address homeReceiver;
++    uint256 depositUSD;
++    uint256 amount0;
++    uint256 amount1;
++    // Reward messages use amount0 only. Split must sum to amount0.
++    uint256 individual;
++    uint256 collective;
++}
+--- a/zzz_ops/__init__.py
++++ b/zzz_ops/__init__.py
+@@ -0,0 +1 @@
++
+--- a/zzz_ops/abi.py
++++ b/zzz_ops/abi.py
+@@ -0,0 +1,75 @@
++"""Small static-ABI codec. Never used for signing or wallet key handling."""
++from __future__ import annotations
++import re
++
++_MASK = (1 << 64) - 1
++_ROT = ((0,36,3,41,18),(1,44,10,45,2),(62,6,43,15,61),(28,55,25,21,56),(27,20,39,8,14))
++_RC = (0x0000000000000001,0x0000000000008082,0x800000000000808A,0x8000000080008000,
++       0x000000000000808B,0x0000000080000001,0x8000000080008081,0x8000000000008009,
++       0x000000000000008A,0x0000000000000088,0x0000000080008009,0x000000008000000A,
++       0x000000008000808B,0x800000000000008B,0x8000000000008089,0x8000000000008003,
++       0x8000000000008002,0x8000000000000080,0x000000000000800A,0x800000008000000A,
++       0x8000000080008081,0x8000000000008080,0x0000000080000001,0x8000000080008008)
++
++def keccak256(data: bytes) -> bytes:
++    """Ethereum Keccak-256 (not NIST SHA3-256); public-data utility only."""
++    def rol(x: int, n: int) -> int:
++        return ((x << n) | (x >> ((64-n) % 64))) & _MASK
++    a = [0] * 25
++    padding = 136 - len(data) % 136
++    data += b'\x81' if padding == 1 else b'\x01' + b'\0' * (padding-2) + b'\x80'
++    for offset in range(0, len(data), 136):
++        block = data[offset:offset+136]
++        for i in range(17): a[i] ^= int.from_bytes(block[8*i:8*i+8], 'little')
++        for rc in _RC:
++            c = [a[x] ^ a[x+5] ^ a[x+10] ^ a[x+15] ^ a[x+20] for x in range(5)]
++            d = [c[(x-1)%5] ^ rol(c[(x+1)%5], 1) for x in range(5)]
++            b = [0] * 25
++            for x in range(5):
++                for y in range(5):
++                    b[y + 5*((2*x+3*y)%5)] = rol(a[x+5*y] ^ d[x], _ROT[x][y])
++            for x in range(5):
++                for y in range(5):
++                    a[x+5*y] = b[x+5*y] ^ ((~b[(x+1)%5+5*y]) & b[(x+2)%5+5*y])
++            a[0] ^= rc
++    return b''.join(v.to_bytes(8, 'little') for v in a)[:32]
++
++def address(value: str) -> str:
++    if not isinstance(value, str) or not re.fullmatch(r'0x[0-9a-fA-F]{40}', value):
++        raise ValueError('Expected an Ethereum address')
++    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
++    return value.lower()
++
++def word(value: int | str, typ: str) -> str:
++    if typ == 'address': return address(str(value))[2:].rjust(64,'0')
++    if typ == 'bytes32':
++        if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',value):
++            raise ValueError('Expected bytes32')
++        return value[2:].lower()
++    if typ == 'bool':
++        if value not in (False,True,0,1): raise ValueError('Invalid boolean')
++        return f'{int(value):064x}'
++    m = re.fullmatch(r'uint(\d*)',typ)
++    if not m: raise ValueError(f'Unsupported static ABI type: {typ}')
++    bits = int(m[1] or 256)
++    if bits < 8 or bits > 256 or bits % 8: raise ValueError('Invalid integer width')
++    n = int(value)
++    if n < 0 or n >= 1 << bits: raise ValueError(f'Value exceeds {typ}')
++    return f'{n:064x}'
++
++def calldata(signature: str, *args: int | str) -> str:
++    match = re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\(([^()]*)\)',signature)
++    if not match: raise ValueError('Only flat static ABI signatures are supported')
++    types = match[1].split(',') if match[1] else []
++    if len(types) != len(args): raise ValueError('Argument count mismatch')
++    return '0x' + keccak256(signature.encode()).hex()[:8] + ''.join(word(a,t) for a,t in zip(args,types))
++
++def uint_result(result: str) -> int:
++    if not isinstance(result,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}', result):
++        raise ValueError('Expected one ABI word')
++    return int(result,16)
++
++def decode_words(data: str) -> list[str]:
++    if not isinstance(data,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{64})*',data):
++        raise ValueError('Malformed ABI event data')
++    return [data[i:i+64] for i in range(2,len(data),64)]
+--- a/zzz_ops/rpc.py
++++ b/zzz_ops/rpc.py
+@@ -0,0 +1,73 @@
++"""Read-only JSON-RPC client with endpoint chain checks and bounded retries."""
++from __future__ import annotations
++import itertools
++import json
++import time
++import urllib.error
++import urllib.parse
++import urllib.request
++from typing import Any
++
++class RpcError(RuntimeError): pass
++class WrongChain(RpcError): pass
++
++class Rpc:
++    READ_METHODS = frozenset({
++        'eth_chainId','eth_blockNumber','eth_call','eth_estimateGas','eth_gasPrice',
++        'eth_getBlockByNumber','eth_getBlockByHash','eth_getLogs','eth_getCode',
++        'eth_getTransactionByHash','eth_getTransactionReceipt','eth_getTransactionCount',
++        'eth_getBalance','eth_feeHistory','eth_maxPriorityFeePerGas','web3_clientVersion',
++    })
++    def __init__(self, urls: list[str], chain_id: int, *, timeout: float = 10, retries: int = 3):
++        if not urls or chain_id <= 0: raise ValueError('RPC URLs and positive chain_id are required')
++        for url in urls:
++            parsed = urllib.parse.urlsplit(url)
++            if parsed.scheme != 'https' and not (parsed.scheme == 'http' and parsed.hostname in ('localhost','127.0.0.1','::1')):
++                raise ValueError('RPC endpoints require HTTPS; HTTP is allowed only on loopback')
++            if not parsed.hostname: raise ValueError('Invalid RPC URL')
++        self.urls, self.chain_id = urls, chain_id
++        self.timeout, self.retries = timeout, retries
++        self.active = 0
++        self._ids = itertools.count(1)
++
++    @property
++    def active_url(self) -> str: return self.urls[self.active]
++
++    def _post(self, url: str, method: str, params: list[Any]) -> Any:
++        request_id = next(self._ids)
++        raw = json.dumps({'jsonrpc':'2.0','id':request_id,'method':method,'params':params}).encode()
++        request = urllib.request.Request(url, data=raw, headers={'Content-Type':'application/json'})
++        with urllib.request.urlopen(request,timeout=self.timeout) as response:
++            data = response.read(8 * 1024 * 1024 + 1)
++        if len(data) > 8 * 1024 * 1024: raise RpcError('RPC response exceeded size limit')
++        body = json.loads(data)
++        if not isinstance(body,dict) or body.get('id') != request_id or body.get('jsonrpc') != '2.0':
++            raise RpcError('Malformed JSON-RPC response')
++        if 'error' in body:
++            error = body['error']
++            # Do not include URLs, raw transport headers or credentials in error logs.
++            code = error.get('code') if isinstance(error,dict) else None
++            raise RpcError(f'{method} returned JSON-RPC error {code}')
++        if 'result' not in body: raise RpcError('Missing JSON-RPC result')
++        return body['result']
++
++    def call(self, method: str, params: list[Any] | None = None) -> Any:
++        if method not in self.READ_METHODS:
++            raise RpcError('RPC method is not on the read-only allowlist')
++        failure = None
++        for attempt in range(max(self.retries, len(self.urls))):
++            url = self.active_url
++            try:
++                actual = int(self._post(url,'eth_chainId',[]),16)
++                if actual != self.chain_id: raise WrongChain('RPC chain ID mismatch')
++                return actual if method == 'eth_chainId' else self._post(url, method, params or [])
++            except (OSError, ValueError, RpcError) as exc:
++                failure = exc
++                self.active = (self.active + 1) % len(self.urls)
++                if attempt + 1 < max(self.retries,len(self.urls)): time.sleep(min(.2 * 2**attempt,1.5))
++        raise RpcError(f'{method} failed after bounded retries ({type(failure).__name__})') from failure
++
++    def eth_call(self, to: str, data: str, sender: str | None = None, block: str = 'latest') -> str:
++        tx = {'to':to,'data':data}
++        if sender: tx['from'] = sender
++        return self.call('eth_call',[tx,block])
+--- a/zzz_ops/state.py
++++ b/zzz_ops/state.py
+@@ -0,0 +1,39 @@
++from __future__ import annotations
++import contextlib
++import json
++import os
++from pathlib import Path
++from typing import Any, Iterator
++
++def read_json(path: str | Path, default: Any = None) -> Any:
++    path = Path(path)
++    return json.loads(path.read_text()) if path.exists() else default
++
++def atomic_json(path: str | Path, data: Any) -> None:
++    path = Path(path)
++    path.parent.mkdir(parents=True,exist_ok=True)
++    temporary = path.with_name(path.name + '.tmp')
++    fd = os.open(temporary,os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600)
++    try:
++        with os.fdopen(fd,'w') as handle:
++            json.dump(data,handle,indent=2,sort_keys=True)
++            handle.write('\n'); handle.flush(); os.fsync(handle.fileno())
++        os.replace(temporary,path)
++        # Ensure the directory entry is durable before a transaction is submitted.
++        if hasattr(os,'O_DIRECTORY'):
++            directory = os.open(path.parent,os.O_RDONLY|os.O_DIRECTORY)
++            try: os.fsync(directory)
++            finally: os.close(directory)
++    finally:
++        if temporary.exists(): temporary.unlink()
++
++@contextlib.contextmanager
++def process_lock(path: str | Path) -> Iterator[None]:
++    """Linux/Unix advisory lock, automatically released on process death."""
++    import fcntl
++    path = Path(path); path.parent.mkdir(parents=True,exist_ok=True)
++    with path.open('a+') as handle:
++        try: fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
++        except BlockingIOError as exc: raise RuntimeError('Another instance holds the process lock') from exc
++        try: yield
++        finally: fcntl.flock(handle,fcntl.LOCK_UN)
