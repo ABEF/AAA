@@ -39,4 +39,4 @@ Solidity 0.8.26 Linux binary SHA-256 listed by the official manifest (the binary
 d5f23436f443edb85d8e76906d12f0a86ce0490e7663a9e608efeb7a93f149ef
 ```
 
-Upstream source package metadata requested direct versions OpenZeppelin 5.4.0, v4-core 1.0.2, v4-periphery 1.0.4. Published package availability and full transitive lock/integrity resolution still require verification by `scripts/install-deps.sh`; the archive intentionally does not invent a successful resolution.
+The original package requested OpenZeppelin 5.4.0, v4-core 1.0.2, and v4-periphery 1.0.4. npm does not publish periphery 1.0.4; the CI repair pins the published 1.0.3 release instead. Installation of all three direct packages succeeded with lifecycle scripts disabled. The real `package-lock.json` retains npm tarball URLs and integrity hashes. This dependency resolution does not establish an independent audit or compatibility with every upstream operation.

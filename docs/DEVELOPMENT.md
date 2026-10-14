@@ -28,7 +28,7 @@ bash scripts/verify.sh
 slither . --config-file slither.config.json
 ```
 
-Dependency installation suppresses npm lifecycle scripts. It requests OpenZeppelin 5.4.0, v4-core 1.0.2, v4-periphery 1.0.4, and forge-std v1.9.7. Resolve and review the actual packages, retain a lockfile, and pin upstream revisions and CI actions before a release. No lockfile or passing Solidity result is fabricated in this candidate.
+Dependency installation suppresses npm lifecycle scripts. It pins OpenZeppelin 5.4.0, v4-core 1.0.2, v4-periphery 1.0.3, and forge-std v1.9.7. The original periphery 1.0.4 request was not published on npm and caused the first GitHub Actions installation failure. The committed `package-lock.json` records the resolved npm versions, tarball URLs, and integrity hashes; subsequent installs use `npm ci`. Upstream Git revisions and workflow actions still need immutable release pins and review before production use.
 
 The verifier runs Python/source checks, then builds with size reporting and executes Foundry tests. Tests use mocks; actual Uniswap fork tests and provider-specific bridge tests remain separate release requirements. The existing Ubuntu [verification workflow](../.github/workflows/verify.yml) is configuration, not evidence that CI has passed.
 
