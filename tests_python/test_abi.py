@@ -28,6 +28,22 @@ class AbiTests(unittest.TestCase):
         event,decoded=decode(log)
         self.assertEqual(event,'Transfer');self.assertEqual(decoded['tokenId'],'42');self.assertEqual(decoded['to'],'0x'+'22'*20)
     def test_unknown_event_retained(self):self.assertEqual(decode({'topics':['0x'+'ff'*32],'data':'0x'}),(None,None))
+    def test_paid_dormant_mint_log(self):
+        topic='0x'+keccak256(b'DormantMinted(uint256,address,uint256)').hex()
+        price=50_000_000_000_000_000
+        owner='0x'+'22'*20
+        event,decoded=decode({'topics':[topic,'0x'+word(42,'uint256'),'0x'+word(owner,'address')],
+                              'data':'0x'+word(price,'uint256')})
+        self.assertEqual(event,'DormantMinted')
+        self.assertEqual(decoded,{'nftId':'42','owner':owner,'mintPrice':str(price)})
+    def test_activation_log_preserves_existing_nft(self):
+        topic='0x'+keccak256(b'Activated(uint256,address,bytes32,uint256,uint256)').hex()
+        owner='0x'+'22'*20
+        pool='0x'+'ab'*32
+        event,decoded=decode({'topics':[topic,'0x'+word(42,'uint256'),'0x'+word(owner,'address'),pool],
+                              'data':'0x'+word(250,'uint256')+word(300,'uint256')})
+        self.assertEqual(event,'Activated')
+        self.assertEqual(decoded,{'nftId':'42','owner':owner,'poolId':pool,'amount0':'250','amount1':'300'})
     def test_malformed_boolean(self):
         topic='0x'+keccak256(b'ApprovalForAll(address,address,bool)').hex()
         with self.assertRaises(ValueError):decode({'topics':[topic,'0x'+word('0x'+'11'*20,'address'),'0x'+word('0x'+'22'*20,'address')],'data':'0x'+word(2,'uint256')})

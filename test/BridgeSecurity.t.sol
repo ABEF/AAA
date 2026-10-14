@@ -17,7 +17,7 @@ contract BridgeSecurityTest is Test {
         r.sourceToken0=address(0x77);r.destinationToken0=address(token);routes.set(routeId,r);ac.seal();
     }
     function message() private view returns(BridgeMessage memory m){
-        m.version=1;m.kind=MessageKind.Reward;m.routeId=routeId;m.nonce=1;m.nftId=42;m.amount0=80;m.individual=50;m.collective=30;
+        m.version=2;m.kind=MessageKind.Reward;m.routeId=routeId;m.nonce=1;m.nftId=42;m.amount0=80;m.individual=50;m.collective=30;
     }
     function deliver(BridgeMessage memory m) private {transport.deliver(address(bridge),remote,source,abi.encode(m),address(token),m.amount0);}
     function testAuthenticatedFundedDelivery() public {
@@ -45,7 +45,7 @@ contract BridgeSecurityTest is Test {
         token.mint(address(transport),80);BridgeMessage memory m=message();m.collective=31;vm.expectRevert();deliver(m);
     }
     function testVersionMismatchRejected() public {
-        token.mint(address(transport),80);BridgeMessage memory m=message();m.version=2;vm.expectRevert();deliver(m);
+        token.mint(address(transport),80);BridgeMessage memory m=message();m.version=1;vm.expectRevert();deliver(m);
     }
     function testOutboundUnauthorized() public {vm.expectRevert();bridge.send(message());}
 }

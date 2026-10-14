@@ -31,7 +31,7 @@ contract DeployCore is Script {
         ZZZAccessController a=new ZZZAccessController(2 days,proposers,executors,
             vm.envAddress("KEEPER_ADDRESS"),vm.envAddress("GUARDIAN_ADDRESS"));
         address controller=address(a);
-        a.bind(Ids.VAULT,address(new ZZZVault(controller,home)));
+        a.bind(Ids.VAULT,address(new ZZZVault(controller,home,payable(vm.envAddress("MINT_PROCEEDS_RECIPIENT")))));
         a.bind(Ids.NFT,address(new ZZZNFT(controller,vm.envString("NFT_BASE_URI"))));
         a.bind(Ids.LIQUIDITY,address(new ZZZLiquidityManager(controller,
             vm.envAddress("V4_POSITION_MANAGER"),vm.envAddress("V4_STATE_VIEW"),

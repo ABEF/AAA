@@ -1,6 +1,6 @@
 # Release gate — NOT APPROVED
 
-Every item below must be closed with evidence, not assumed from the presence of contract files.
+Every item below must be closed with evidence, not assumed from the presence of contract files. [Current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) records development checks separately from historical reviews; passing those checks does not close the production integration and audit gates.
 
 ## Toolchain and reproducibility
 
@@ -18,6 +18,7 @@ Every item below must be closed with evidence, not assumed from the presence of 
 - [ ] Fee/principal segregation across swaps that themselves earn fees; rounding and all-asset solvency after arbitrary operation sequences.
 - [ ] Actual malicious-token and callback adversaries: additive/subtractive taxes, rebases, blacklists, false return values, recipient reentrancy and oracle manipulation.
 - [ ] Actual NFT receiver callbacks, transfer/claim races and canonical-chain restrictions.
+- [ ] Review exactly 0.05 ETH dormant issuance, immutable mint-proceeds routing, atomic payout/issuance failure, and owner activation with at least $500 actually deployed LP; prove mint income remains separate from principal, Power, and rewards.
 - [ ] Verify reference feeds, decimals, denomination, heartbeat, sequencer behavior, price bounds and unsupported asset rejection on every chain.
 - [ ] Benchmark 1/100/1,000+ NFT positions and all 32 reward assets; decide whether independent LPs are economically viable.
 - [ ] Validate the real ZZZ burn function and its global/cross-chain semantics; implement multi-hop routes or restrict supported fee assets honestly.
@@ -25,14 +26,18 @@ Every item below must be closed with evidence, not assumed from the presence of 
 ## Cross-chain security and scope
 
 - [ ] Select, implement and independently review a production `IZZZTransport` integration.
-- [ ] Verify immutable route identity, token equivalence/decimals and remote counterpart code/proxy authorities before sealing.
-- [ ] End-to-end two-chain tests: delayed, duplicated, reordered, forged, underfunded and partially failed deliveries; ACK retries; rewards before/after ACK; pauses; bridge/provider upgrades; reorgs/finality failures.
+- [ ] Verify append-only route identity, equivalent assets/identical decimals/nominal units, and counterpart code/proxy authorities for initial routes and every timelocked post-seal addition.
+- [ ] Review governance notice/onboarding powers and canonical remote-only graph approval; a timelock does not prove that future code preserves permanent-principal custody. Confirm fixed module bindings and immutable transport compatibility with future routes.
+- [ ] End-to-end real-provider canonical-to-satellite, onward, canonical-return, and revisit tests: delayed, duplicated, reordered, forged, underfunded and partially failed deliveries; pauses; provider upgrades; reorgs/finality failures.
+- [ ] Validate v2 canonical identity/asset provenance and epochs, immutable accepted ACK snapshots, separate source-completion/home-location purposes, strictly ordered canonical locations and retry, absent-hop satellite epochs, and no NFT remint or Power addition on import.
+- [ ] Reconcile historical reward paths and funded legacy reserves after custody leaves; test permanent token provenance, old-pool budgets, satellite migration dust, and rewards before/after each ACK.
 - [ ] Specify provider-authenticated cancellation/refund/retry behavior that never creates user/admin principal redemption.
-- [ ] Explicitly approve one-hop-only migration, no return/top-up flow and no arbitrary future route additions; redesign before sealing if those restrictions are unacceptable.
+- [ ] Approve the implemented repeated equivalent-asset custody scope and its governance trust. Keep satellite user deposits, arbitrary asset conversion, NFT-chain moves, and cross-chain holder top-ups disabled unless separately implemented and reviewed.
 
 ## Economic and operating approval
 
 - [ ] Approve lifetime-contribution Power, continued remote/in-flight eligibility, settlement-time collective rewards and 32-asset limit.
+- [ ] Decide and review the reward funding/integration for the selected Robinhood native-ETH/Pons-hook pool, or explicitly exclude it. Its 0% core LP fee and recipient-based hook revenue do not establish proportional PoPL LP rewards.
 - [ ] Model harvest/top-up timing, manipulated valuations, permanently depreciated positions and token eligibility attacks against collective rewards.
 - [ ] Review timelocked governance/feed powers: non-redeemability does not eliminate governance-mediated economic loss.
 - [ ] Backtest ranges/cooldowns, slippage, churn, rebalancing costs and MEV. Do not advertise guaranteed yield or protected principal.

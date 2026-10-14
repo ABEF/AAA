@@ -1,6 +1,6 @@
 # Development and operating procedures
 
-**All Solidity steps are unverified in this environment. No mainnet launch is approved.**
+**No mainnet launch or funded deployment is approved.** Current development build/test evidence is recorded in [the implementation update](../reports/IMPLEMENTATION_UPDATE.md); it does not verify a live provider transport, destination deployment, or real Uniswap lifecycle.
 
 ## Build and configuration
 
@@ -8,11 +8,11 @@ Install a reviewed Foundry toolchain and Node/npm on a networked development hos
 
 The supplied `DeployCore.s.sol` template is restricted to local chain IDs 31337/31338. It expects existing local Uniswap contracts and an explicitly selected test transport. It binds all 16 modules but deliberately does not seal configuration. It was not executed here.
 
-For each deployment, record: chain ID and canonical NFT chain ID; contract addresses and runtime bytecode hashes; constructor arguments; PosM/PoolManager/StateView/Permit2 identities; token decimals and code/proxy authorities; USD feed denomination/heartbeat; sequencer feed; governance/guardian/keeper roles; supported burn mechanism; every complete migration/reward/acknowledgement route.
+For each deployment, record: chain ID and canonical NFT chain ID; contract addresses and runtime bytecode hashes; constructor arguments, including the immutable mint-proceeds recipient; PosM/PoolManager/StateView/Permit2 identities; token decimals and code/proxy authorities; USD feed denomination/heartbeat; sequencer feed; governance/guardian/keeper roles; supported burn mechanism; every complete principal, source-completion ACK, canonical-location ACK, and reward route.
 
-Configure feeds first, reward assets next, pools next and paired routes on both chains last. All required local identities must match module bindings. Review dependency ownership/proxy powers as well as their current code hashes. Seal only after an independent deployment review: sealing freezes module and route identities permanently.
+Configure feeds first, reward assets next, pools next and initial routes on the participating chains last. All required local identities must match module bindings. Review dependency ownership/proxy powers as well as their current code hashes. Seal only after an independent deployment review: sealing freezes module bindings, while new append-only route identities require timelocked governance afterward. The bridge adapter's transport endpoint remains immutable.
 
-No deposits work before `seal()`. There is no general emergency rescue or admin withdrawal after sealing. A mistaken token/route/provider setting can strand capital indefinitely.
+Mint, activation, and holder top-ups require `seal()`. Verify the exact 0.05 ETH mint price, isolated constructor-selected recipient, and the $500 actually deployed LP activation minimum on a test deployment. There is no general emergency rescue or admin withdrawal after sealing. A mistaken token/route/provider setting can strand capital indefinitely.
 
 ## Keeper
 
@@ -52,10 +52,16 @@ The SQLite database is an off-chain cache, not proof of ownership. Claims and cu
 
 ## Deliberate migration procedure
 
-1. Independently verify a fully preconfigured principal route, reverse ACK route and one reverse reward route per fee asset; verify destination vault compatibility and finality assumptions.
-2. Schedule/execute the governance proposal. Review the source economic NFT, source pool, amount estimates and earliest execution time.
-3. A keeper calls `ZZZMigration.execute` after the delay, paying the bridge's native fee from operator funds. Watch both source transaction finality and provider status; no source timeout permits a refund.
-4. Verify the destination `PrincipalAccepted`/`ImportPending` records and exact token backing. A keeper calls receiver `finalize` with fresh bounds. Failed activation is retried without redirecting principal.
-5. Send/retry the reverse acknowledgement. Confirm source `Remote` status and the exact destination location. Remote NFT rewards subsequently return via configured reward routes for canonical claims.
+1. Review compatible destination runtime code and custody/proxy authorities, economically equivalent tokens at identical decimals/nominal units, and actual provider funding/finality/retry behavior. A timelock notice is not proof of perpetual destination custody.
+2. Onboard any missing append-only principal, source-completion ACK, canonical-location ACK, and reward routes through each deployment's governance timelock. For a satellite B-to-C hop, register its remote-only principal graph edge on the canonical chain too. Confirm routes and canonical token mappings across all participants before moving funds; module bindings and transport endpoints are not replaced.
+3. Schedule/execute the source governance proposal. Review the economic NFT, source pool, next custody epoch, immutable home identity, canonical asset mappings, and earliest execution time. Each move has an additional two-day migration delay; the keeper does not select a new chain autonomously.
+4. A keeper calls `ZZZMigration.execute` after the delay, paying the bridge's native fee from operator funds. Watch source finality and provider status. No timeout permits a principal refund.
+5. Verify destination `PrincipalAccepted`/`ImportPending`, the retained accepted-message snapshot, epoch, and exact token backing. A revisited satellite must have a drained old `Remote` record and accept a strictly newer local epoch. A keeper calls receiver `finalize` with fresh bounds; failed LP activation is retried without redirecting principal.
+6. Call destination `acknowledge(migrationId, reverseRouteId)` for source completion. Confirm that the immediately previous source becomes `Remote` and its plan completes. When that source is the canonical home, this ACK also records the new home location.
+7. For an onward hop between satellites, also call `acknowledgeHome(migrationId, homeRouteId)`. Verify canonical location events in strict next-epoch order. An out-of-order notification must be retried after earlier location updates; historical exact retries cannot regress the location. ACKs use the retained hop snapshot even if custody has since moved again.
+8. On canonical return, location is recorded atomically during principal import; do not construct a self-chain home ACK. Send source completion to the satellite that released custody. No imported hop remints the NFT or adds contribution Power.
+9. Drain funded old remote reward budgets through their historical authorized routes, even after principal has left a source. Immutable NFT/token provenance selects the canonical asset; satellite dust joins the funded individual budget. Keep reward and principal reconciliation separate.
 
 Source failure before successful submission reverts that transaction. Failure after the transport has taken custody requires its provider-specific recovery process, which is **not implemented by this generic adapter**. There is no safe catch-all admin recovery address.
+
+This procedure covers equivalent-asset custody hops, not arbitrary asset conversion, moving the NFT off its canonical chain, or satellite holder top-ups. The requested Robinhood native-ETH/hooked pool remains unsupported and its reward integration is deferred.

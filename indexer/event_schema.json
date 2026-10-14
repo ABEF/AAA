@@ -183,6 +183,27 @@
     "name": "LocationConfirmed",
     "signature": "LocationConfirmed(uint256,uint256,address)"
   },
+  "0x2f0ff3aa3d022c8597f8a6bd839c79611875a7ed49d0f71ec0258d45b066614d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "mintPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "DormantMinted",
+    "signature": "DormantMinted(uint256,address,uint256)"
+  },
   "0x35f2c394d2dc25fafb1b477d5744e3903afd28415142c68afc549eca0193181c": {
     "fields": [
       {
@@ -198,6 +219,32 @@
     ],
     "name": "PrincipalAccepted",
     "signature": "PrincipalAccepted(bytes32,uint256)"
+  },
+  "0x3aa39da67cd8832cc5ac2c6ba14c1c1060018a7e9c4a705734a3f42c6197e009": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "epoch",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "vault",
+        "type": "address"
+      }
+    ],
+    "name": "LocationRecorded",
+    "signature": "LocationRecorded(uint256,uint64,uint256,address)"
   },
   "0x458028136804ce46c04a2c68330019bae7f6406ecc2cb82b0666d139a867bf3b": {
     "fields": [
@@ -240,37 +287,6 @@
     ],
     "name": "KeeperChanged",
     "signature": "KeeperChanged(address,bool)"
-  },
-  "0x5fc3c5002af8fda6657e19279640634c718182e96267725c806ad59386af1c7a": {
-    "fields": [
-      {
-        "indexed": true,
-        "name": "nftId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "poolId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "amount0",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "amount1",
-        "type": "uint256"
-      }
-    ],
-    "name": "Deposited",
-    "signature": "Deposited(uint256,address,bytes32,uint256,uint256)"
   },
   "0x611a3c9f6297a5b31704c72866974accfdcb169fe090b94913217b0036c2eb8b": {
     "fields": [
@@ -355,6 +371,37 @@
     ],
     "name": "Sent",
     "signature": "Sent(bytes32,bytes32,uint256,uint8)"
+  },
+  "0x8248b84a4340fead02fa0d0934983325866898a1d6f3c4f6433f167bb9928c03": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "Activated",
+    "signature": "Activated(uint256,address,bytes32,uint256,uint256)"
   },
   "0x89f2af0f430b21b7a79356f44177d1d7e37de5e2adee55b97c146ff5de201fcc": {
     "fields": [
@@ -450,6 +497,27 @@
     ],
     "name": "PauseChanged",
     "signature": "PauseChanged(bool)"
+  },
+  "0x94ce596172b9e09c39761fa5c18994d4758b1d99845c10da3ad20b86b7b8a8af": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "canonicalToken",
+        "type": "address"
+      }
+    ],
+    "name": "RemoteAssetBound",
+    "signature": "RemoteAssetBound(uint256,address,address)"
   },
   "0x9ba5d54ef8921888adb4b023ca4f849533a99e05e94b762008e435d86833e6bb": {
     "fields": [

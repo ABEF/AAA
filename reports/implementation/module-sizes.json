@@ -1,0 +1,92 @@
+{
+  "Foundry": "1.4.4",
+  "Solidity": "0.8.26",
+  "EVM": "cancun",
+  "ViaIR": true,
+  "OptimizerRuns": 1,
+  "YulOptimizer": false,
+  "RuntimeLimit": 24576,
+  "InitcodeLimit": 49152,
+  "Modules": [
+    {
+      "Contract": "ZZZAccessController",
+      "RuntimeBytes": 9630,
+      "InitcodeBytes": 11309
+    },
+    {
+      "Contract": "ZZZBridgeAdapter",
+      "RuntimeBytes": 9248,
+      "InitcodeBytes": 9801
+    },
+    {
+      "Contract": "ZZZBuyback",
+      "RuntimeBytes": 5824,
+      "InitcodeBytes": 6481
+    },
+    {
+      "Contract": "ZZZCompounder",
+      "RuntimeBytes": 1682,
+      "InitcodeBytes": 2060
+    },
+    {
+      "Contract": "ZZZFeeController",
+      "RuntimeBytes": 11671,
+      "InitcodeBytes": 12211
+    },
+    {
+      "Contract": "ZZZLiquidityManager",
+      "RuntimeBytes": 18887,
+      "InitcodeBytes": 20320
+    },
+    {
+      "Contract": "ZZZMigration",
+      "RuntimeBytes": 20242,
+      "InitcodeBytes": 20880
+    },
+    {
+      "Contract": "ZZZMigrationReceiver",
+      "RuntimeBytes": 14350,
+      "InitcodeBytes": 14918
+    },
+    {
+      "Contract": "ZZZMigrationRegistry",
+      "RuntimeBytes": 7134,
+      "InitcodeBytes": 7555
+    },
+    {
+      "Contract": "ZZZNFT",
+      "RuntimeBytes": 6400,
+      "InitcodeBytes": 7546
+    },
+    {
+      "Contract": "ZZZOracle",
+      "RuntimeBytes": 5310,
+      "InitcodeBytes": 5798
+    },
+    {
+      "Contract": "ZZZPoolRegistry",
+      "RuntimeBytes": 5155,
+      "InitcodeBytes": 5520
+    },
+    {
+      "Contract": "ZZZPower",
+      "RuntimeBytes": 1812,
+      "InitcodeBytes": 2177
+    },
+    {
+      "Contract": "ZZZRewards",
+      "RuntimeBytes": 7230,
+      "InitcodeBytes": 7707
+    },
+    {
+      "Contract": "ZZZStrategy",
+      "RuntimeBytes": 11068,
+      "InitcodeBytes": 11496
+    },
+    {
+      "Contract": "ZZZVault",
+      "RuntimeBytes": 24439,
+      "InitcodeBytes": 25493
+    }
+  ]
+}

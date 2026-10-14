@@ -7,9 +7,10 @@ libs = ["lib", "node_modules"]
 solc_version = "0.8.26"
 evm_version = "cancun"
 optimizer = true
-optimizer_runs = 200
+optimizer_runs = 1
 # Solidity 0.8.26's Yul optimizer crashes when assembling ZZZVault bytecode.
 # Retain the EVM optimizer and enforce the normal runtime/initcode size limits.
+# Favor deployment size for the custody contract; benchmark execution gas before release.
 optimizer_details = { yul = false }
 via_ir = true
 ffi = false

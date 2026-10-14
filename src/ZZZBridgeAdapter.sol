@@ -23,7 +23,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
     }
     function _assets(Route memory r, BridgeMessage memory m, bool inbound)
         private pure returns (address[] memory tokens, uint256[] memory amounts) {
-        if (m.version != 1) revert InvalidConfiguration();
+        if (m.version != 2) revert InvalidConfiguration();
         uint256 count;
         if (m.kind == MessageKind.Principal) {
             if (r.sourceToken0 == address(0) || r.sourceToken1 == address(0) || m.amount0 + m.amount1 == 0 ||

@@ -3,6 +3,7 @@ pragma solidity 0.8.26;
 // Integration of real vault/rewards/NFT/Power contracts, with a FAKE liquidity venue.
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
@@ -43,13 +44,45 @@ contract VaultLiquidityMock is ERC721 {
     function collect(bytes32,uint256,uint256) external {uint256 x=fee0;uint256 y=fee1;fee0=0;fee1=0;t0.mint(msg.sender,x);t1.mint(msg.sender,y);}
     function close(bytes32,uint256 id,uint256) external {uint256 x=a0[id];uint256 y=a1[id];delete a0[id];delete a1[id];_burn(id);require(t0.transfer(msg.sender,x));require(t1.transfer(msg.sender,y));}
 }
+contract RejectingMintReceiver {
+    function mint(ZZZVault target) external payable returns(uint256) {return target.mintDormant{value:msg.value}();}
+}
+contract RejectingMintTreasury { receive() external payable {revert("reject proceeds");} }
+contract ReentrantMintReceiver is IERC721Receiver {
+    ZZZVault public immutable vault;bool public attempted;bool public reentrySucceeded;bytes4 public reentryError;
+    constructor(ZZZVault target){vault=target;}
+    function mint() external payable returns(uint256){return vault.mintDormant{value:msg.value}();}
+    function onERC721Received(address,address,uint256,bytes calldata) external returns(bytes4) {
+        if (!attempted) {
+            attempted=true;
+            (bool ok,bytes memory result)=address(vault).call{value:0.05 ether}(abi.encodeCall(ZZZVault.mintDormant,()));
+            reentrySucceeded=ok;if(result.length>=4)reentryError=bytes4(result);
+        }
+        return IERC721Receiver.onERC721Received.selector;
+    }
+}
+contract ReentrantMintTreasury is IERC721Receiver {
+    ZZZVault public vault;bool public attempted;bool public reentrySucceeded;bytes4 public reentryError;
+    function configure(ZZZVault target) external {vault=target;}
+    receive() external payable {
+        if (!attempted) {
+            attempted=true;
+            (bool ok,bytes memory result)=address(vault).call{value:0.05 ether}(abi.encodeCall(ZZZVault.mintDormant,()));
+            reentrySucceeded=ok;if(result.length>=4)reentryError=bytes4(result);
+        }
+    }
+    function onERC721Received(address,address,uint256,bytes calldata) external pure returns(bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
+    }
+}
 contract VaultAccountingTest is Test {
     MockAccess ac;MockToken t0;MockToken t1;MockPools pools;VaultPolicyMock policy;VaultLiquidityMock venue;
     ZZZVault vault;ZZZNFT nft;ZZZPower power;ZZZRewards rewards;ZZZFeeController fees;ZZZCompounder compounder;ZZZOracle oracle;
-    bytes32 poolId;address alice=address(0xA11CE);address bob=address(0xB0B);
-    function setUp() public {
-        vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(18);t1=new MockToken(18);pools=new MockPools();policy=new VaultPolicyMock();
-        venue=new VaultLiquidityMock(address(t0),address(t1));vault=new ZZZVault(address(ac),block.chainid);nft=new ZZZNFT(address(ac),"");
+    bytes32 poolId;address alice=address(0xA11CE);address bob=address(0xB0B);address payable treasury=payable(address(0x7EA5));
+    function setUp() public { _fixture(treasury); }
+    function _fixture(address payable recipient) private {
+        vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(0);t1=new MockToken(0);pools=new MockPools();policy=new VaultPolicyMock();
+        venue=new VaultLiquidityMock(address(t0),address(t1));vault=new ZZZVault(address(ac),block.chainid,recipient);nft=new ZZZNFT(address(ac),"");
         power=new ZZZPower(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         compounder=new ZZZCompounder(address(ac));oracle=new ZZZOracle(address(ac),address(0));
         MockFeed feed=new MockFeed(8,1e8);oracle.setFeed(address(t0),address(feed),3600);oracle.setFeed(address(t1),address(feed),3600);
@@ -59,65 +92,201 @@ contract VaultAccountingTest is Test {
         ac.bind(Ids.MIGRATION,address(this));ac.bind(Ids.RECEIVER,address(0x987));ac.setKeeper(address(this),true);
         rewards.addAsset(address(t0));rewards.addAsset(address(t1));
         PoolConfig memory c;c.key=PoolKey(address(t0),address(t1),3000,60,address(0));c.operationsEnabled=true;c.depositsEnabled=true;
-        c.minDepositUSD=1;c.maxPositionUSD=1e30;c.maxSlippageBps=100;poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);ac.seal();
-        t0.mint(alice,100000);t1.mint(alice,100000);vm.startPrank(alice);t0.approve(address(vault),type(uint256).max);t1.approve(address(vault),type(uint256).max);vm.stopPrank();
+        c.minDepositUSD=1e18;c.maxPositionUSD=1e30;c.maxSlippageBps=100;poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);ac.seal();
+        _fundUser(alice);_fundUser(bob);vm.deal(address(this),10 ether);
     }
-    function deposit() private returns(uint256 id){vm.prank(alice);id=vault.deposit(poolId,1000,1000,1,block.timestamp+100);}
-    function testDepositLeavesExactAttributedIdle() public {
-        uint256 id=deposit();Position memory p=vault.position(id);assertEq(nft.ownerOf(id),alice);assertEq(venue.ownerOf(p.lpTokenId),address(vault));
+    function _fundUser(address owner) private {
+        vm.deal(owner,1 ether);t0.mint(owner,100000);t1.mint(owner,100000);
+        vm.startPrank(owner);t0.approve(address(vault),type(uint256).max);t1.approve(address(vault),type(uint256).max);vm.stopPrank();
+    }
+    function _mint(address owner) private returns(uint256 id){vm.prank(owner);id=vault.mintDormant{value:0.05 ether}();}
+    function _activate(address owner,uint256 id,uint256 amount0,uint256 amount1) private {
+        vm.prank(owner);vault.activate(id,poolId,amount0,amount1,1,block.timestamp+100);
+    }
+    function activatedPosition() private returns(uint256 id){id=_mint(alice);_activate(alice,id,1000,1000);}
+    function testActivationLeavesExactAttributedIdle() public {
+        uint256 id=activatedPosition();Position memory p=vault.position(id);assertEq(nft.ownerOf(id),alice);assertEq(venue.ownerOf(p.lpTokenId),address(vault));
         assertEq(p.idle0,10);assertEq(vault.totalIdle(address(t0)),10);assertEq(venue.a0(p.lpTokenId)+p.idle0,1000);
-        assertEq(power.powerOf(id),2000);
+        assertEq(power.powerOf(id),2000e18);
     }
-    function testMostlyIdleDepositRejected() public {
-        venue.setSpendBps(100);vm.prank(alice);vm.expectRevert();vault.deposit(poolId,1000,1000,1,block.timestamp+100);
-        assertEq(t0.balanceOf(alice),100000);assertEq(vault.sequence(),0);
+    function testMostlyIdleActivationRejected() public {
+        uint256 id=_mint(alice);venue.setSpendBps(100);vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
+        assertEq(t0.balanceOf(alice),100000);assertEq(vault.sequence(),1);assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));
     }
-    function testMintFailureRollsBackWholeDeposit() public {
-        venue.setFail(true);vm.prank(alice);vm.expectRevert();vault.deposit(poolId,1000,1000,1,block.timestamp+100);
-        assertEq(t0.balanceOf(alice),100000);assertEq(vault.sequence(),0);assertEq(vault.totalIdle(address(t0)),0);
+    function testVenueFailureRollsBackActivationKeepsPaidDormantNFT() public {
+        uint256 id=_mint(alice);uint256 paid=treasury.balance;venue.setFail(true);vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
+        assertEq(t0.balanceOf(alice),100000);assertEq(vault.sequence(),1);assertEq(vault.totalIdle(address(t0)),0);
+        assertEq(nft.ownerOf(id),alice);assertEq(treasury.balance,paid);assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));
+        assertEq(vault.position(id).poolId,bytes32(0));assertEq(vault.position(id).depositUSD,0);assertEq(power.powerOf(id),0);
     }
     function testDonationNeverBecomesAnotherNFTPrincipal() public {
-        t0.mint(address(vault),777);uint256 id=deposit();assertEq(vault.position(id).idle0,10);assertEq(vault.totalIdle(address(t0)),10);
+        t0.mint(address(vault),777);uint256 id=activatedPosition();assertEq(vault.position(id).idle0,10);assertEq(vault.totalIdle(address(t0)),10);
         assertEq(t0.balanceOf(address(vault)),787);
     }
     function testFeesNotPrincipal() public {
-        uint256 id=deposit();venue.setFees(100,100);vault.collectFees(id,block.timestamp+100);
+        uint256 id=activatedPosition();venue.setFees(100,100);vault.collectFees(id,block.timestamp+100);
         assertEq(vault.position(id).idle0,10);assertEq(rewards.claimable(id,address(t0)),80);assertEq(fees.compoundBalance(id,address(t0)),10);
     }
     function testCompoundingAddsOnlyDesignatedShare() public {
-        uint256 id=deposit();venue.setFees(100,100);compounder.compound(id,1,block.timestamp+100);
+        uint256 id=activatedPosition();venue.setFees(100,100);compounder.compound(id,1,block.timestamp+100);
         Position memory p=vault.position(id);assertEq(p.idle0+venue.a0(p.lpTokenId),1010);
-        assertEq(rewards.claimable(id,address(t0)),80);assertEq(fees.buybackBalance(address(t0)),10);assertEq(power.powerOf(id),2000);
+        assertEq(rewards.claimable(id,address(t0)),80);assertEq(fees.buybackBalance(address(t0)),10);assertEq(power.powerOf(id),2000e18);
     }
     function testRebalanceReplacesLPButPreservesEconomicNFT() public {
-        uint256 id=deposit();uint256 old=vault.position(id).lpTokenId;vault.rebalance(id,1,block.timestamp+100);
+        uint256 id=activatedPosition();uint256 old=vault.position(id).lpTokenId;vault.rebalance(id,1,block.timestamp+100);
         Position memory p=vault.position(id);assertTrue(p.lpTokenId!=old);assertEq(nft.ownerOf(id),alice);
         assertEq(p.idle0+venue.a0(p.lpTokenId),1000);vm.expectRevert();venue.ownerOf(old);
     }
-    function testOnlyKeeperCanRebalance() public {uint256 id=deposit();vm.prank(alice);vm.expectRevert();vault.rebalance(id,1,block.timestamp+100);}
+    function testOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice);vm.expectRevert();vault.rebalance(id,1,block.timestamp+100);}
     function testNoOwnerWithdrawalEntrypoint() public {
-        uint256 id=deposit();vm.prank(alice);(bool ok,)=address(vault).call(abi.encodeWithSignature("withdraw(uint256)",id));assertFalse(ok);
+        uint256 id=activatedPosition();vm.prank(alice);(bool ok,)=address(vault).call(abi.encodeWithSignature("withdraw(uint256)",id));assertFalse(ok);
     }
     function testNFTUserCannotTransferUnderlyingLP() public {
-        uint256 id=deposit();uint256 lp=vault.position(id).lpTokenId;
+        uint256 id=activatedPosition();uint256 lp=vault.position(id).lpTokenId;
         vm.prank(alice);vm.expectRevert();venue.transferFrom(address(vault),alice,lp);
     }
     function testTopUpKeepsBothNFTsAndCheckpointsFees() public {
-        uint256 id=deposit();uint256 lp=vault.position(id).lpTokenId;venue.setFees(100,100);
+        uint256 id=activatedPosition();uint256 lp=vault.position(id).lpTokenId;venue.setFees(100,100);
         vm.prank(alice);vault.increase(id,100,100,1,block.timestamp+100);
-        assertEq(vault.position(id).lpTokenId,lp);assertEq(rewards.claimable(id,address(t0)),80);assertEq(power.powerOf(id),2200);
+        assertEq(vault.position(id).lpTokenId,lp);assertEq(rewards.claimable(id,address(t0)),80);assertEq(power.powerOf(id),2200e18);
     }
     function testMigrationReleaseOnlyGoesToBoundModule() public {
-        uint256 id=deposit();vm.prank(alice);vm.expectRevert();vault.releaseForMigration(id,bytes32(uint256(1)),block.timestamp+100);
+        uint256 id=activatedPosition();vm.prank(alice);vm.expectRevert();vault.releaseForMigration(id,bytes32(uint256(1)),block.timestamp+100);
         (uint256 a,uint256 b)=vault.releaseForMigration(id,bytes32(uint256(1)),block.timestamp+100);
         assertEq(a,1000);assertEq(b,1000);assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Outbound));
         assertEq(vault.totalIdle(address(t0)),0);assertEq(nft.ownerOf(id),alice);
     }
     function testSatelliteCannotIssueAnotherCollection() public {
-        vm.chainId(block.chainid+1);vm.prank(alice);vm.expectRevert();vault.deposit(poolId,1000,1000,1,block.timestamp+100);
+        vm.chainId(block.chainid+1);vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
         assertEq(vault.sequence(),0);
     }
-    function testPauseBlocksDeposit() public {
-        ac.setPaused(true);vm.prank(alice);vm.expectRevert();vault.deposit(poolId,1000,1000,1,block.timestamp+100);
+    function testPauseBlocksMint() public {
+        ac.setPaused(true);vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        assertEq(vault.sequence(),0);
+    }
+    function testDormantMintForwardsPriceWithoutLiquidityOrRewards() public {
+        uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;uint256 id=_mint(alice);Position memory p=vault.position(id);
+        assertEq(vault.MINT_PRICE(),0.05 ether);assertEq(vault.MIN_ACTIVATION_LP_USD(),500e18);
+        assertEq(vault.mintProceedsRecipient(),treasury);assertEq(treasury.balance,beforeTreasury+0.05 ether);
+        assertEq(alice.balance,beforeOwner-0.05 ether);assertEq(address(vault).balance,0);assertEq(nft.ownerOf(id),alice);
+        assertEq(uint256(p.status),uint256(PositionStatus.Dormant));assertEq(p.poolId,bytes32(0));assertEq(p.lpTokenId,0);
+        assertEq(p.depositUSD,0);assertEq(p.idle0,0);assertEq(p.idle1,0);assertEq(power.powerOf(id),0);assertEq(power.totalPower(),0);
+        assertEq(vault.totalIdle(address(t0)),0);assertEq(vault.totalIdle(address(t1)),0);assertEq(venue.next(),1);
+        assertEq(rewards.claimable(id,address(t0)),0);assertEq(rewards.claimable(id,address(t1)),0);
+        assertEq(fees.compoundBalance(id,address(t0)),0);assertEq(fees.buybackBalance(address(t0)),0);
+        assertEq(p.homeChain,block.chainid);assertEq(p.homeVault,address(vault));assertEq(p.locationVault,address(vault));
+    }
+    function testFuzzMintRejectsAnyUnderpayment(uint256 payment) public {
+        payment=bound(payment,0,0.05 ether-1);uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;
+        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:payment}();
+        assertEq(vault.sequence(),0);assertEq(treasury.balance,beforeTreasury);assertEq(alice.balance,beforeOwner);
+    }
+    function testFuzzMintRejectsAnyOverpayment(uint256 payment) public {
+        payment=bound(payment,0.05 ether+1,1 ether);uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;
+        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:payment}();
+        assertEq(vault.sequence(),0);assertEq(treasury.balance,beforeTreasury);assertEq(alice.balance,beforeOwner);
+    }
+    function testRejectingNFTReceiverRollsBackMintAndPayment() public {
+        RejectingMintReceiver receiver=new RejectingMintReceiver();uint256 beforeTreasury=treasury.balance;
+        vm.expectRevert();receiver.mint{value:0.05 ether}(vault);
+        assertEq(vault.sequence(),0);assertEq(treasury.balance,beforeTreasury);assertEq(address(vault).balance,0);
+        uint256 rejectedId=uint256(keccak256(abi.encode(block.chainid,address(vault),uint256(1))));
+        assertEq(uint256(vault.position(rejectedId).status),uint256(PositionStatus.None));vm.expectRevert();nft.ownerOf(rejectedId);
+    }
+    function testRejectingTreasuryRollsBackNFTAndPayment() public {
+        RejectingMintTreasury receiver=new RejectingMintTreasury();_fixture(payable(address(receiver)));uint256 beforeOwner=alice.balance;
+        vm.prank(alice);vm.expectRevert();vault.mintDormant{value:0.05 ether}();
+        assertEq(vault.sequence(),0);assertEq(alice.balance,beforeOwner);assertEq(address(receiver).balance,0);assertEq(address(vault).balance,0);
+        uint256 rejectedId=uint256(keccak256(abi.encode(block.chainid,address(vault),uint256(1))));
+        assertEq(uint256(vault.position(rejectedId).status),uint256(PositionStatus.None));vm.expectRevert();nft.ownerOf(rejectedId);
+    }
+    function testReceiverReentrancyCannotMintSecondNFT() public {
+        ReentrantMintReceiver receiver=new ReentrantMintReceiver(vault);vm.deal(address(receiver),1 ether);
+        uint256 id=receiver.mint{value:0.05 ether}();assertEq(nft.ownerOf(id),address(receiver));assertTrue(receiver.attempted());
+        assertFalse(receiver.reentrySucceeded());assertEq(receiver.reentryError(),bytes4(keccak256("ReentrancyGuardReentrantCall()")));
+        assertEq(vault.sequence(),1);assertEq(address(receiver).balance,1 ether);
+    }
+    function testTreasuryReentrancyCannotMintSecondNFT() public {
+        ReentrantMintTreasury receiver=new ReentrantMintTreasury();_fixture(payable(address(receiver)));receiver.configure(vault);
+        uint256 id=_mint(alice);assertEq(nft.ownerOf(id),alice);assertTrue(receiver.attempted());assertFalse(receiver.reentrySucceeded());
+        assertEq(receiver.reentryError(),bytes4(keccak256("ReentrancyGuardReentrantCall()")));assertEq(vault.sequence(),1);
+        assertEq(address(receiver).balance,0.05 ether);assertEq(address(vault).balance,0);
+    }
+    function testZeroProceedsRecipientRejected() public {
+        vm.expectRevert();new ZZZVault(address(ac),block.chainid,payable(address(0)));
+    }
+    function testSelfProceedsRecipientRejected() public {
+        address predicted=vm.computeCreateAddress(address(this),vm.getNonce(address(this)));
+        vm.expectRevert();new ZZZVault(address(ac),block.chainid,payable(predicted));
+    }
+    function testUnsealedSystemCannotMint() public {
+        MockAccess unsealed=new MockAccess();ZZZVault candidate=new ZZZVault(address(unsealed),block.chainid,treasury);
+        vm.prank(alice);vm.expectRevert();candidate.mintDormant{value:0.05 ether}();assertEq(candidate.sequence(),0);
+    }
+    function testDormantTransferOnlyNewOwnerCanActivate() public {
+        uint256 id=_mint(alice);vm.prank(alice);nft.transferFrom(alice,bob,id);
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
+        _activate(bob,id,1000,1000);assertEq(nft.ownerOf(id),bob);assertEq(vault.sequence(),1);
+        assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Active));assertEq(power.powerOf(id),2000e18);
+    }
+    function testActivationCannotIssueSecondNFTOrChargeAnotherMintFee() public {
+        uint256 id=_mint(alice);uint256 paid=treasury.balance;uint256 etherBalance=alice.balance;_activate(alice,id,1000,1000);
+        assertEq(vault.sequence(),1);assertEq(nft.balanceOf(alice),1);assertEq(treasury.balance,paid);assertEq(alice.balance,etherBalance);
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
+        assertEq(vault.sequence(),1);assertEq(nft.balanceOf(alice),1);assertEq(t0.balanceOf(alice),99000);
+    }
+    function testDormantCannotTopUpCollectCompoundRebalanceOrMigrate() public {
+        uint256 id=_mint(alice);
+        vm.prank(alice);vm.expectRevert();vault.increase(id,1000,1000,1,block.timestamp+100);
+        vm.expectRevert();vault.collectFees(id,block.timestamp+100);
+        vm.expectRevert();compounder.compound(id,1,block.timestamp+100);
+        vm.expectRevert();vault.rebalance(id,1,block.timestamp+100);
+        vm.expectRevert();vault.releaseForMigration(id,bytes32(uint256(1)),block.timestamp+100);
+        assertEq(power.totalPower(),0);assertEq(vault.position(id).lpTokenId,0);
+    }
+    function testActivationRequiresAtLeast500USDInput() public {
+        uint256 id=_mint(alice);venue.setSpendBps(10000);
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,249,250,1,block.timestamp+100);
+        assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));assertEq(t0.balanceOf(alice),100000);
+    }
+    function testActivationRejects500InputWhenActualLPIsBelow500() public {
+        uint256 id=_mint(alice);
+        // The mock deploys 99%; enough for the idle cap, but only $494 actual LP.
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,250,250,1,block.timestamp+100);
+        assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));assertEq(power.powerOf(id),0);
+        assertEq(vault.totalIdle(address(t0)),0);assertEq(t0.balanceOf(alice),100000);assertEq(venue.next(),1);
+    }
+    function testExactly500ActualLPActivates() public {
+        uint256 id=_mint(alice);venue.setSpendBps(10000);_activate(alice,id,250,250);
+        Position memory p=vault.position(id);assertEq(venue.a0(p.lpTokenId)+venue.a1(p.lpTokenId),500);
+        assertEq(p.idle0+p.idle1,0);assertEq(p.depositUSD,500e18);assertEq(power.powerOf(id),500e18);
+    }
+    function testActivationHonorsStricterPoolMinimum() public {
+        uint256 id=_mint(alice);PoolConfig memory c=pools.get(poolId);c.minDepositUSD=1000e18;pools.set(poolId,c);
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,450,450,1,block.timestamp+100);
+        assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));
+    }
+    function testPauseBlocksActivationKeepsDormantNFT() public {
+        uint256 id=_mint(alice);ac.setPaused(true);
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
+        assertEq(nft.ownerOf(id),alice);assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));
+    }
+    function testWrongChainCannotActivateCanonicalDormantNFT() public {
+        uint256 id=_mint(alice);vm.chainId(block.chainid+1);
+        vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
+        assertEq(uint256(vault.position(id).status),uint256(PositionStatus.Dormant));assertEq(power.powerOf(id),0);
+    }
+    function testOldDepositSelectorCannotBypassPaidMint() public {
+        vm.prank(alice);(bool ok,)=address(vault).call(abi.encodeWithSignature("deposit(bytes32,uint256,uint256,uint128,uint256)",poolId,1000,1000,uint128(1),block.timestamp+100));
+        assertFalse(ok);assertEq(vault.sequence(),0);assertEq(nft.balanceOf(alice),0);assertEq(t0.balanceOf(alice),100000);
+    }
+    function testActivationCannotCollectHistoricalSharedRewards() public {
+        uint256 activeId=activatedPosition();uint256 dormantId=_mint(bob);venue.setFees(100,100);vault.collectFees(activeId,block.timestamp+100);
+        assertEq(rewards.claimable(activeId,address(t0)),80);assertEq(rewards.claimable(dormantId,address(t0)),0);
+        _activate(bob,dormantId,1000,1000);assertEq(rewards.claimable(dormantId,address(t0)),0);
+        assertEq(rewards.paidIndex(dormantId,address(t0)),rewards.index(address(t0)));
+        venue.setFees(100,100);vault.collectFees(activeId,block.timestamp+100);
+        assertEq(rewards.claimable(dormantId,address(t0)),15);assertEq(rewards.claimable(activeId,address(t0)),145);
+        vm.prank(bob);assertEq(rewards.claim(dormantId,address(t0)),15);assertEq(vault.position(dormantId).depositUSD,2000e18);
     }
 }

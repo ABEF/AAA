@@ -15,7 +15,7 @@ python3 scripts/run_python_tests.py
 python3 scripts/source_checks.py
 ```
 
-The first command executes 66 off-chain implementation tests and 18 mathematical model tests and writes results under `reports/`. The models do not execute Solidity. The second command performs narrow textual consistency checks rather than compilation or security analysis.
+The first command executes the off-chain implementation and mathematical model suites and writes results under `reports/`. The original suite contained 66 implementation tests and 18 models; paid-mint/activation event decoding adds two implementation tests. The models do not execute Solidity. The second command performs narrow textual consistency checks rather than compilation or security analysis.
 
 The original delivery records 84 passing Python tests. Publication verification on Windows ran all 84 and found 81 passing, one failing permission assertion, and two missing-`fcntl` errors. See [publication checks](../reports/PUBLICATION_CHECKS.json). Historical delivery reports are retained rather than rewritten as current passing evidence.
 
@@ -32,13 +32,15 @@ Dependency installation suppresses npm lifecycle scripts. It pins OpenZeppelin 5
 
 The verifier runs Python/source checks, then builds with size reporting and executes Foundry tests. Tests use mocks; actual Uniswap fork tests and provider-specific bridge tests remain separate release requirements. See the latest [Ubuntu verification runs](https://github.com/ABEF/AAA/actions/workflows/verify.yml) for the status of the exact commit being reviewed.
 
-Solidity 0.8.26's default Yul optimizer triggers an internal bytecode-assembly error for this vault. The current profile keeps `via_ir = true`, the EVM optimizer, and 200 runs, with `optimizer_details = { yul = false }` as the tested workaround. All 16 module artifacts fit the standard runtime/initcode limits; the vault runtime is 23,451 bytes, leaving 1,125 bytes below EIP-170. This profile needs gas benchmarking and independent review before a funded release.
+Solidity 0.8.26's default Yul optimizer triggered an internal bytecode-assembly error for this vault. The current profile keeps `via_ir = true` and the EVM optimizer, with `optimizer_details = { yul = false }` as the tested workaround. `optimizer_runs = 1` favors deployment size as paid issuance and return migrations expand the vault. All 16 module artifacts fit the standard runtime/initcode limits; the current vault runtime is 24,439 bytes, leaving 137 bytes below EIP-170. This narrow headroom, execution gas and the optimizer profile require independent review before a funded release.
 
-Foundry 1.4.4 also reserves the removed `testFail*` naming pattern. The ordinary rollback test is named `testMintFailureRollsBackWholeDeposit`, retaining its explicit revert and state assertions. All 70 provided Solidity tests passed locally, including two fuzz tests with 1,000 runs each. See [CI repair evidence](../reports/CI_REPAIR.md).
+Foundry 1.4.4 also reserves the removed `testFail*` naming pattern. Revert tests use explicit `expectRevert` assertions with names that avoid this prefix. The earlier suite of 70 tests passed under the original repaired profile; paid dormant issuance, separate activation, repeated migrations and historical reward routing now have additional EVM tests. See [current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) separately from [CI repair evidence](../reports/CI_REPAIR.md).
 
 ## Local-only deployment and services
 
 [DeployCore.s.sol](../script/DeployCore.s.sol) is a local-only template. It does not seal module bindings or open deposits. [.env.example](../.env.example) contains placeholders, not deployment credentials.
+
+`MINT_PROCEEDS_RECIPIENT` is a required constructor parameter. Select and verify a recipient that accepts native ETH; a rejected payment reverts the entire mint. It cannot be changed after deployment. Minting requires sealing and costs exactly `0.05 ether`; `activate` preserves the paid NFT and requires at least $500 of measured deployed LP. The template retains its local-chain guard; this work does not deploy public-chain contracts.
 
 Retain dry-run mode while preparing service configuration:
 
@@ -51,6 +53,6 @@ Example addresses are placeholders. Live signing uses an encrypted external Foun
 
 ## Review and provenance
 
-The initial documentation/publication pass preserved all implementation and test sources. The later CI repair changes dependency/build configuration and one test function name, without changing contract logic or test assertions. [Original README](../reports/history/README.v0.2.md) and [original manifest](../reports/history/MANIFEST.v0.2.sha256) preserve the initial presentation and hashes. The root manifest describes the current Git snapshot.
+The initial documentation/publication pass preserved all implementation and test sources. The later CI repair changed dependency/build configuration and one test function name, without changing contract logic or test assertions. Subsequent paid-mint and future-migration work changes implementation, interfaces, event schemas and tests; it is separate evidence and requires fresh security review. [Original README](../reports/history/README.v0.2.md) and [original manifest](../reports/history/MANIFEST.v0.2.sha256) preserve the initial presentation and hashes. The root manifest describes the current Git snapshot.
 
 Start implementation work from the [component status](COMPONENT_STATUS.md), [source-level audit](AUDIT.md), and [release checklist](RELEASE_CHECKLIST.md). Every funded deployment gate remains open until evidence closes it.

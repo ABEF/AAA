@@ -41,7 +41,8 @@ struct PoolConfig {
     uint256 maxPositionUSD;
 }
 
-enum PositionStatus { None, Active, Outbound, Remote, Inbound }
+// Append new states so existing migration status values remain stable.
+enum PositionStatus { None, Active, Outbound, Remote, Inbound, Dormant }
 struct Position {
     bytes32 poolId;
     uint256 lpTokenId;
@@ -81,6 +82,7 @@ struct Route {
 }
 
 enum MessageKind { Principal, Reward, Acknowledgement }
+enum AckPurpose { SourceCompletion, CanonicalLocation }
 struct BridgeMessage {
     uint8 version;
     MessageKind kind;
@@ -97,4 +99,14 @@ struct BridgeMessage {
     // Reward messages use amount0 only. Split must sum to amount0.
     uint256 individual;
     uint256 collective;
+    // v2: permanent NFT identity survives multiple custody hops. Canonical token
+    // mappings follow the PRINCIPAL route's source order, not the ACK route order.
+    uint64 migrationEpoch;
+    bytes32 principalRouteId;
+    uint256 previousChain;
+    address previousVault;
+    address previousReceiver;
+    address canonicalToken0;
+    address canonicalToken1;
+    AckPurpose acknowledgement;
 }

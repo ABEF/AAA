@@ -1,10 +1,10 @@
 # Engineering roadmap
 
-The v0.2 source candidate and Python test evidence are available. This roadmap orders the remaining work; it does not assign dates or claim release approval.
+The development candidate implements paid dormant mint/activation and repeated custody migration with timelocked future-route onboarding. [Current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) records its checks separately from historical reports. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
 
 ## 1. Establish a reproducible build
 
-Resolve and review dependencies, retain a lockfile, pin upstream and CI revisions, compile all Solidity modules/tests/scripts, check runtime and initcode sizes, and execute the Foundry unit/fuzz suite. Reproduce off-chain tests on the supported Unix environment.
+Retain and reproduce the recorded dependency lockfile, compiler profile, unit/fuzz results, and standard runtime/initcode size checks. Review package contents and pin remaining upstream/CI references to immutable revisions. Benchmark execution gas under the size-oriented optimizer profile and preserve enough production deployment margin. Reproduce off-chain tests on the supported Unix environment.
 
 ## 2. Prove custody and reward accounting
 
@@ -16,11 +16,13 @@ Use pinned-block fork tests against actual supported PositionManager, PoolManage
 
 ## 4. Decide economics and migration scope
 
-Approve or redesign lifetime-contribution Power, settlement-time collective weights, remote/in-flight eligibility, reward-asset limits, and one-hop immutable routes. Model timing incentives, manipulated valuations, depreciated positions, strategy costs, and token eligibility.
+Approve or redesign lifetime-contribution Power, settlement-time collective weights, remote/in-flight eligibility, and reward-asset limits. Model timing incentives, manipulated valuations, depreciated positions, strategy costs, and token eligibility. Review the implemented repeated-hop custody epochs, ordered home-location ACKs, canonical returns, legacy reward budgets, and post-seal append-only route governance against adversarial operation sequences.
+
+Decide the reward source and integration for the selected Robinhood native-ETH/Pons-hook pool. Its zero core LP fee does not give external LPs proportional hook revenue; the old 0.30% website example is not a usable actual fee model. Native settlement and hook-aware integration are still absent.
 
 ## 5. Implement production transport and operations
 
-Select and independently review a bridge-specific `IZZZTransport`, establish token and supply semantics, and test two-chain authentication, backing, duplication, ordering, delays, retries, acknowledgements, pauses, and provider failures. Exercise real signer/RPC behavior and indexer backfill/reorg recovery on a test network.
+Select and independently review a bridge-specific `IZZZTransport`, establish equivalent-token and supply semantics, and test canonical-to-satellite, satellite-to-satellite, canonical return, and revisited destinations against actual providers. Exercise authentication, backing, duplication, ordered home notifications, absent-hop epochs, delays, retries, legacy rewards after departure, pauses, and provider failures. Review every future destination's code and authorities before timelocked route onboarding. Exercise real signer/RPC behavior and indexer backfill/reorg recovery on a test network.
 
 ## 6. Complete independent review before release
 
@@ -28,4 +30,4 @@ Obtain an independent security audit, verify remediation, review deployment conf
 
 ## Later product work
 
-A custom Uniswap v4 hook, NFT attributes/levels, Enhanced status, a hosted dashboard/API, multi-hop buybacks, and broader future-chain migration require separately designed and reviewed implementations. They are not included features of this candidate.
+A custom/native-ETH Uniswap v4 integration and reward model, NFT attributes/levels, Enhanced status, a hosted dashboard/API, multi-hop buybacks, and satellite user deposits require separately designed and reviewed implementations. Future-chain route onboarding and repeated equivalent-asset custody hops are implemented in the development candidate; they still require real transport/deployment validation and do not move the NFT between chains or provide general asset conversion.

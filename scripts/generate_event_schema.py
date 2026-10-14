@@ -20,5 +20,5 @@ for text in texts:
         signature=f"{name}({','.join(f['type'] for f in fields)})"
         topic='0x'+keccak256(signature.encode()).hex()
         schema[topic]={'name':name,'signature':signature,'fields':fields}
-(root/'indexer/event_schema.json').write_text(json.dumps(schema,indent=2,sort_keys=True)+'\n')
+(root/'indexer/event_schema.json').write_text(json.dumps(schema,indent=2,sort_keys=True)+'\n', newline='\n')
 print(f'Generated {len(schema)} event schemas from current source')

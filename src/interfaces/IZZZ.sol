@@ -31,6 +31,7 @@ interface IZZZFees {
     function flushDust(uint256 id, address token) external;
     function releaseBuyback(address token, uint256 amount) external;
     function creditRemote(uint256 id, address token, uint256 individual, uint256 collective) external;
+    function bindRemoteAsset(uint256 id, address token, address canonicalToken) external;
 }
 interface IZZZPools {
     function get(bytes32 poolId) external view returns (PoolConfig memory);
@@ -65,7 +66,10 @@ interface IZZZLiquidity {
     function positionManager() external view returns (address);
 }
 interface IZZZVault {
+    function canonicalChainId() external view returns (uint256);
     function position(uint256 id) external view returns (Position memory);
+    function mintDormant() external payable returns (uint256 id);
+    function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external;
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
     function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
         external returns (uint256 amount0, uint256 amount1);
@@ -82,7 +86,9 @@ interface IZZZBridge {
 }
 interface IZZZMigration {
     function authorizedRemote(uint256 id, uint256 chainId, address vault) external view returns (bool);
-    function confirm(bytes32 migrationId, uint256 id, uint256 chainId, address vault) external;
+    function custodyEpoch(uint256 id) external view returns (uint64);
+    function registerImport(BridgeMessage calldata message) external;
+    function confirm(BridgeMessage calldata message, uint256 chainId, address vault) external;
     function authorizedReward(uint256 id, uint256 chainId, address vault, address remoteToken, address homeToken) external view returns (bool);
 }
 interface IZZZReceiver {
