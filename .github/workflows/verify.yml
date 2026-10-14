@@ -45,7 +45,8 @@ jobs:
           version: v1.4.4
           cache: false
       - run: bash scripts/install-deps.sh
-      - run: python3 -m pip install --require-hashes --only-binary=:all: -r requirements-slither.lock
+      - run: |
+          python3 -m pip install --require-hashes --only-binary=:all: -r requirements-slither.lock
       - run: bash scripts/verify-slither.sh
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
