@@ -14,12 +14,13 @@ import {ZZZCompounder} from "../src/ZZZCompounder.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZBridgeAdapter} from "../src/ZZZBridgeAdapter.sol";
+import {ZZZBridgeRouter} from "../src/ZZZBridgeRouter.sol";
 import {ZZZMigrationReceiver} from "../src/ZZZMigrationReceiver.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZMigrationRegistry} from "../src/ZZZMigrationRegistry.sol";
 /// @notice LOCAL DEVELOPMENT ONLY. This script cannot deploy on public-chain IDs.
-/// Requires reviewed local Uniswap and transport dependencies to already exist.
+/// Requires reviewed local Uniswap dependencies. Bridge policies start empty.
 contract DeployCore is Script {
     function run() external {
         require(block.chainid == 31337 || block.chainid == 31338, "local chains only");
@@ -43,7 +44,9 @@ contract DeployCore is Script {
         a.bind(Ids.COMPOUNDER,address(new ZZZCompounder(controller)));
         a.bind(Ids.BUYBACK,address(new ZZZBuyback(controller,vm.envAddress("ZZZ_TOKEN"),vm.envUint("MAX_BUYBACK_USD18"))));
         a.bind(Ids.MIGRATION,address(new ZZZMigration(controller)));
-        a.bind(Ids.BRIDGE,address(new ZZZBridgeAdapter(controller,vm.envAddress("TRUSTED_TRANSPORT"))));
+        address router=address(new ZZZBridgeRouter(controller));
+        a.bind(Ids.TRANSPORT,router);
+        a.bind(Ids.BRIDGE,address(new ZZZBridgeAdapter(controller,router)));
         a.bind(Ids.RECEIVER,address(new ZZZMigrationReceiver(controller)));
         a.bind(Ids.ORACLE,address(new ZZZOracle(controller,vm.envAddress("SEQUENCER_FEED"))));
         a.bind(Ids.POOLS,address(new ZZZPoolRegistry(controller)));

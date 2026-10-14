@@ -1,0 +1,76 @@
+{
+  "solc": "0.8.26",
+  "evm": "cancun",
+  "profile": "via_ir,optimizer_runs=1,yul=false",
+  "standard_limits_unchanged": true,
+  "modules": {
+    "ZZZAccessController": {
+      "runtime_bytes": 9868,
+      "initcode_bytes": 11547
+    },
+    "ZZZBridgeAdapter": {
+      "runtime_bytes": 9248,
+      "initcode_bytes": 9801
+    },
+    "ZZZBridgeRouter": {
+      "runtime_bytes": 14964,
+      "initcode_bytes": 15476
+    },
+    "ZZZBuyback": {
+      "runtime_bytes": 5824,
+      "initcode_bytes": 6481
+    },
+    "ZZZCompounder": {
+      "runtime_bytes": 1682,
+      "initcode_bytes": 2060
+    },
+    "ZZZFeeController": {
+      "runtime_bytes": 11671,
+      "initcode_bytes": 12211
+    },
+    "ZZZLiquidityManager": {
+      "runtime_bytes": 18887,
+      "initcode_bytes": 20320
+    },
+    "ZZZMigration": {
+      "runtime_bytes": 20570,
+      "initcode_bytes": 21222
+    },
+    "ZZZMigrationReceiver": {
+      "runtime_bytes": 14350,
+      "initcode_bytes": 14918
+    },
+    "ZZZMigrationRegistry": {
+      "runtime_bytes": 7548,
+      "initcode_bytes": 7976
+    },
+    "ZZZNFT": {
+      "runtime_bytes": 6400,
+      "initcode_bytes": 7546
+    },
+    "ZZZOracle": {
+      "runtime_bytes": 5310,
+      "initcode_bytes": 5798
+    },
+    "ZZZPoolRegistry": {
+      "runtime_bytes": 5155,
+      "initcode_bytes": 5520
+    },
+    "ZZZPower": {
+      "runtime_bytes": 1812,
+      "initcode_bytes": 2177
+    },
+    "ZZZRewards": {
+      "runtime_bytes": 7230,
+      "initcode_bytes": 7707
+    },
+    "ZZZStrategy": {
+      "runtime_bytes": 11068,
+      "initcode_bytes": 11496
+    },
+    "ZZZVault": {
+      "runtime_bytes": 23662,
+      "initcode_bytes": 24688
+    }
+  }
+}

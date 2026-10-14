@@ -72,7 +72,7 @@ See [technical architecture](docs/ARCHITECTURE.md) for custody, reward accountin
 
 ## Contracts
 
-All 16 requested modules are present. Their inclusion does not establish compilation or safe runtime behavior.
+The 16 original modules and the fixed bridge router are present (17 modules). Their inclusion does not establish compilation or safe runtime behavior.
 
 | Contract | Responsibility |
 |---|---|
@@ -86,14 +86,15 @@ All 16 requested modules are present. Their inclusion does not establish compila
 | [ZZZCompounder.sol](src/ZZZCompounder.sol) | Reinvests the compounding reserve through the vault |
 | [ZZZBuyback.sol](src/ZZZBuyback.sol) | Direct-route buybacks and supply-checked ZZZ burns |
 | [ZZZMigration.sol](src/ZZZMigration.sol) | Coordinates approved source-to-destination migration and remote rewards |
-| [ZZZBridgeAdapter.sol](src/ZZZBridgeAdapter.sol) | Authenticated transport boundary and replay protection |
+| [ZZZBridgeAdapter.sol](src/ZZZBridgeAdapter.sol) | Fixed economic-message boundary and replay protection |
+| [ZZZBridgeRouter.sol](src/ZZZBridgeRouter.sol) | Immutable provider policies, exact funding and timelocked future bridge onboarding |
 | [ZZZMigrationReceiver.sol](src/ZZZMigrationReceiver.sol) | Incoming asset custody, destination activation, retries, and acknowledgements |
 | [ZZZAccessController.sol](src/ZZZAccessController.sol) | Timelocked governance, fixed module bindings, operators, and pauses |
 | [ZZZOracle.sol](src/ZZZOracle.sol) | Feed validation and value/price checks |
 | [ZZZPoolRegistry.sol](src/ZZZPoolRegistry.sol) | Approved tokens, pools, and bounded strategy parameters |
 | [ZZZMigrationRegistry.sol](src/ZZZMigrationRegistry.sol) | Append-only destinations, adapters and token mappings; new routes require timelocked governance after sealing |
 
-New migration routes can be approved after sealing, so liquidity can move to a later-selected EVM chain or pool and migrate again. The canonical registry also approves remote-to-remote paths; authenticated custody epochs and acknowledgements track each move. Assets remain attributed to the same canonical NFT without adding Power or minting replacement NFTs. Each destination, asset mapping and production transport still requires review; the supplied transport interface is not a deployed universal bridge. See [architecture](docs/ARCHITECTURE.md).
+New bridge policies and migration routes can be approved after sealing, so liquidity can move to a later-selected EVM chain or pool and migrate again. The canonical registry also approves remote-to-remote paths; authenticated custody epochs and acknowledgements track each move. Assets remain attributed to the same canonical NFT without adding Power or minting replacement NFTs. Each route permanently binds its provider policy; switching bridge providers requires a new policy and route ID. Outbound policies begin disabled, and old authenticated receipts remain valid after disabling sends. The vault and adapter never change. Each destination, asset mapping and production provider wrapper still requires review; no live bridge SDK is bundled. See [future bridge onboarding](docs/BRIDGE_ONBOARDING.md). See [architecture](docs/ARCHITECTURE.md).
 
 Governance is the deployment-selected `GOVERNANCE_MULTISIG`, not an automatic vote of NFT holders. The local deployment template uses a two-day timelock and a further two-day migration execution delay. Sealing removes bootstrap authority and fixes core module addresses; it does not disable timelocked approval of new routes. These destination-selection powers create governance trust even though the current vault has no principal-redemption function.
 
@@ -108,16 +109,16 @@ Both use Python 3.11+ and shared utilities in `zzz_ops/`. Keeper state locking r
 
 ## Development status
 
-**Development candidate. Do not deploy with real funds.** The [production-readiness review](reports/PRODUCTION_READINESS.md) records the current hardening and evidence. Internal reviews by collaborating agents do not constitute an independent audit.
+**Development candidate. Do not deploy with real funds.** The [future-bridge update](reports/future-bridge/README.md) records the latest router verification; the [production-readiness review](reports/PRODUCTION_READINESS.md) records the broader evidence and remaining gates. Internal reviews by collaborating agents do not constitute an independent audit.
 
 | Evidence | Status |
 |---|---|
 | Original Python verification | 84 passed: 66 implementation tests and 18 mathematical model tests |
 | Publication check on Windows | 81 passed, 1 failed, 2 errors; three state tests require Unix permissions/`fcntl` |
 | Solidity unit/fuzz verification | Paid-mint and repeated-migration tests execute the development contracts with mocked LP venues/transport; see current [implementation evidence](reports/IMPLEMENTATION_UPDATE.md) |
-| Solidity compilation and module bytecode sizes | All contracts/tests/scripts compile; all 16 modules fit standard EVM size limits |
+| Solidity compilation and module bytecode sizes | All contracts/tests/scripts compile; all 17 modules fit standard EVM size limits |
 | Stateful EVM accounting | Independent integer-ledger handler model; default 32 runs × 128 calls, with a larger audit profile |
-| Slither | 0.11.6 completed; all 127 findings individually recorded; CI rejects source drift and unreviewed findings |
+| Slither | Pinned 0.11.6 analysis with individual review coverage; CI rejects source drift and unreviewed findings; see dated evidence |
 | Real Uniswap fork tests | Six tests passed at a fixed Robinhood block/hash with deployed dependencies; the requested Pons pool is checked and rejected, adapter flows use a separate local hookless test pool |
 | Gas benchmarks | 1/100/1,000 NFTs and 32 funded reward assets; mock venue costs are explicitly separated from real network costs |
 | Production bridge transport and real cross-chain tests | Not completed |

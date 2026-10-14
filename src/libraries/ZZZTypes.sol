@@ -17,6 +17,7 @@ library Ids {
     bytes32 internal constant ORACLE = keccak256("ZZZOracle");
     bytes32 internal constant POOLS = keccak256("ZZZPoolRegistry");
     bytes32 internal constant ROUTES = keccak256("ZZZMigrationRegistry");
+    bytes32 internal constant TRANSPORT = keccak256("ZZZBridgeRouter");
 }
 
 // ABI-compatible with the canonical Uniswap v4 PoolKey. ERC20 currencies only.
@@ -79,6 +80,29 @@ struct Route {
     address destinationToken1;
     uint8 token0Decimals;
     uint8 token1Decimals;
+}
+
+// Append-only, versioned bridge custody policy. Remote hashes are reviewed
+// metadata; this chain cannot verify code or bridge security on another chain.
+struct TransportPolicy {
+    bytes32 providerId;
+    uint256 sourceChain;
+    address sourceRouter;
+    address sourceProvider;
+    bytes32 sourceCodeHash;
+    bytes32 sourceConfigurationHash;
+    uint256 destinationChain;
+    address destinationRouter;
+    address destinationProvider;
+    bytes32 destinationCodeHash;
+    bytes32 destinationConfigurationHash;
+    bytes32 channelId;
+    bytes32 reviewHash;
+}
+struct TransportEnvelope {
+    uint8 version;
+    bytes32 policyId;
+    bytes payload;
 }
 
 enum MessageKind { Principal, Reward, Acknowledgement }

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {PoolKey, PoolConfig, Position, Route, BridgeMessage} from "../libraries/ZZZTypes.sol";
+import {PoolKey, PoolConfig, Position, Route, BridgeMessage, TransportPolicy} from "../libraries/ZZZTypes.sol";
 
 interface IZZZAccess {
     function module(bytes32 key) external view returns (address);
@@ -80,6 +80,7 @@ interface IZZZVault {
 }
 interface IZZZRoutes {
     function get(bytes32 id) external view returns (Route memory route, bool enabled);
+    function transportPolicyId(bytes32 id) external view returns (bytes32);
 }
 interface IZZZBridge {
     function send(BridgeMessage calldata message) external payable returns (bytes32 transportId);
@@ -104,6 +105,29 @@ interface IZZZTransport {
 }
 interface IZZZTransportReceiver {
     function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external;
+}
+
+interface IZZZBridgeEndpoint { function transport() external view returns (address); }
+interface IZZZBridgeRouter {
+    function registerPolicy(TransportPolicy calldata policy) external returns (bytes32);
+    function matchesRoute(bytes32 policyId, Route calldata route) external view returns (bool);
+    function canSend(bytes32 routeId) external view returns (bool);
+}
+/// @notice A separately reviewed, router-bound SDK wrapper. The wrapper MUST
+/// authenticate the physical source router/chain, finality and exact backed
+/// destination assets before calling onProviderMessage. configurationHash must
+/// commit to all channel security/asset settings; a getter alone proves nothing.
+interface IZZZTransportProvider {
+    function router() external view returns (address);
+    function configurationHash(bytes32 channelId) external view returns (bytes32);
+    function send(bytes32 policyId, uint256 destinationChain, address destinationProvider,
+        address destinationRouter, address[] calldata tokens, uint256[] calldata amounts,
+        bytes calldata envelope) external payable returns (bytes32);
+}
+interface IZZZBridgeRouterReceiver {
+    function onProviderMessage(uint256 authenticatedSourceChain, address authenticatedSourceRouter,
+        address[] calldata actualDestinationTokens, uint256[] calldata actualAmounts,
+        bytes calldata envelope) external;
 }
 
 /// @dev Minimal external ABIs, checked against the official Uniswap v4 sources.

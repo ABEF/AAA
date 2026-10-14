@@ -20,8 +20,8 @@ from zzz_ops.state import integer
 
 ZERO = '0x'+'00'*20
 MODULES = ('access','vault','nft','liquidity','rewards','power','fees','strategy',
-    'compounder','buyback','migration','bridge','receiver','oracle','pools','routes')
-EVIDENCE = ('toolchain','static_analysis','invariants','uniswap_fork','multi_chain',
+    'compounder','buyback','migration','bridge','receiver','oracle','pools','routes','transport')
+EVIDENCE = ('toolchain','static_analysis','invariants','uniswap_fork',
     'staging','operations_recovery','gas_benchmarks','deployment_review','economic_approval',
     'independent_audit','remediation')
 ROUTE_FIELDS = (('sourceChain','uint256'),('sourceAdapter','address'),('sourceVault','address'),
@@ -29,6 +29,10 @@ ROUTE_FIELDS = (('sourceChain','uint256'),('sourceAdapter','address'),('sourceVa
     ('destinationVault','address'),('destinationReceiver','address'),('destinationPool','bytes32'),
     ('sourceToken0','address'),('sourceToken1','address'),('destinationToken0','address'),
     ('destinationToken1','address'),('token0Decimals','uint8'),('token1Decimals','uint8'))
+POLICY_FIELDS = (('providerId','bytes32'),('sourceChain','uint256'),('sourceRouter','address'),
+    ('sourceProvider','address'),('sourceCodeHash','bytes32'),('sourceConfigurationHash','bytes32'),
+    ('destinationChain','uint256'),('destinationRouter','address'),('destinationProvider','address'),
+    ('destinationCodeHash','bytes32'),('destinationConfigurationHash','bytes32'),('channelId','bytes32'),('reviewHash','bytes32'))
 
 def identity(values: list[tuple[Any,str]]) -> str:
     # Route ACK zero addresses are legitimate; the general address codec forbids them.
@@ -70,8 +74,8 @@ class Gate:
 def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) -> dict[str,Any]:
     config=copy.deepcopy(config) if isinstance(config,dict) else {}
     gate=Gate(config.get('release_commit'));g=gate;now=int(time.time()) if now is None else now
-    g.check(config.get('schema_version')==1 and type(config.get('schema_version')) is int,
-        'schema_version','schema.unsupported','Only schema version 1 is supported')
+    g.check(config.get('schema_version')==2 and type(config.get('schema_version')) is int,
+        'schema_version','schema.unsupported','Schema version 2 with the fixed bridge router is required')
     g.commit=g.hex(g.commit,'release_commit',length=20,prefix=False)
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Manifest differs from the expected commit')
     home=g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)
@@ -87,6 +91,13 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         'economics.fee_split_bps','reward.split','Implemented allocation is owner/collective/compound/burn = 50/30/10/10')
     evidence=g.obj(config.get('evidence'),'evidence')
     for key in EVIDENCE:g.proof(evidence.get(key),'evidence.'+key)
+    migration=g.obj(config.get('migration'),'migration');migration_enabled=migration.get('enabled')
+    g.check(type(migration_enabled) is bool,'migration.enabled','migration.mode','Choose migration.enabled explicitly as true or false')
+    g.proof(migration.get('future_onboarding_evidence'),'migration.future_onboarding_evidence')
+    if migration_enabled is True:
+        delivery=g.proof(evidence.get('multi_chain'),'evidence.multi_chain')
+        g.check(delivery.get('kind')=='provider_staged_multichain','evidence.multi_chain.kind','provider.evidence','Actual staged provider delivery evidence is required, not mock/model migration tests')
+    else:g.proof(migration.get('disabled_scope_approval'),'migration.disabled_scope_approval')
     audit=g.obj(evidence.get('independent_audit'),'evidence.independent_audit')
     g.text(audit.get('auditor'),'evidence.independent_audit.auditor')
     g.check(audit.get('independent') is True,'evidence.independent_audit.independent','audit.internal','An independent external audit is required')
@@ -94,7 +105,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
     for level in ('critical','high'):
         g.check(g.num(audit.get('open_'+level),'evidence.independent_audit.open_'+level)==0,
             'evidence.independent_audit.open_'+level,'audit.unresolved','No unresolved critical/high findings may remain')
-    chains={};pool_ids={};token_maps={}
+    chains={};pool_ids={};token_maps={};provider_maps={}
     for index,item in enumerate(g.items(config.get('chains'),'chains')):
         path=f'chains[{index}]';chain=g.obj(item,path);cid=g.num(chain.get('chain_id'),path+'.chain_id',1)
         if cid is not None:
@@ -145,8 +156,23 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.proof(constructor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
         g.text(constructor.get('nft_base_uri'),path+'.constructor.nft_base_uri')
         g.num(constructor.get('maximum_buyback_usd18'),path+'.constructor.maximum_buyback_usd18',1)
+        adapter_transport=g.hex(constructor.get('adapter_transport'),path+'.constructor.adapter_transport',20)
+        g.check(adapter_transport is not None and adapter_transport==modules['transport'].get('address'),
+            path+'.constructor.adapter_transport','router.binding','The adapter immutable transport must equal the sealed Ids.TRANSPORT router')
+        router=g.obj(chain.get('bridge_router'),path+'.bridge_router');chain['bridge_router']=router
+        g.check(router.get('immutable_module') is True and router.get('upgradeable') is False,
+            path+'.bridge_router','router.mutable','The deployment must contain the fixed, non-upgradeable router module')
+        policy_count=g.num(router.get('policy_count'),path+'.bridge_router.policy_count')
+        outbound_count=g.num(router.get('outbound_policy_count'),path+'.bridge_router.outbound_policy_count')
+        registered=g.items(router.get('registered_policy_ids'),path+'.bridge_router.registered_policy_ids',required=False)
+        router['registered_policy_ids']=[g.hex(value,path+'.bridge_router.registered_policy_ids') for value in registered]
+        g.check(policy_count is not None and outbound_count is not None and outbound_count<=policy_count,
+            path+'.bridge_router','router.counts','Observed outbound policies cannot exceed registered policies')
+        if migration_enabled is not True:g.check(policy_count==outbound_count==0 and not registered,
+            path+'.bridge_router','migration.not_disabled','Migration-disabled initial launch must verify zero registered/outbound policies')
+        g.proof(router.get('observation_evidence'),path+'.bridge_router.observation_evidence')
         dependencies=g.obj(chain.get('dependencies'),path+'.dependencies')
-        for name in ('position_manager','state_view','pool_manager','permit2','zzz','transport'):
+        for name in ('position_manager','state_view','pool_manager','permit2','zzz'):
             dependency=g.obj(dependencies.get(name),path+'.dependencies.'+name);dependencies[name]=dependency
             dependency['address']=g.hex(dependency.get('address'),path+'.dependencies.'+name+'.address',20)
             g.hex(dependency.get('runtime_hash'),path+'.dependencies.'+name+'.runtime_hash')
@@ -159,11 +185,31 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(zzz.get('burn_model')=='burn(uint256):exact_local_supply_reduction',path+'.dependencies.zzz.burn_model',
             'burn.unsupported','The buyback requires burn(uint256) to reduce local supply and balance by the exact amount')
         g.proof(zzz.get('burn_evidence'),path+'.dependencies.zzz.burn_evidence')
-        transport=dependencies.get('transport',{})
-        g.text(transport.get('provider'),path+'.dependencies.transport.provider')
-        for key in ('immutable_endpoint','authenticated_delivery','funded_equivalent_assets','nonce_domain_replay_protection','finality_and_retries_reviewed'):
-            g.check(transport.get(key) is True,path+'.dependencies.transport.'+key,'transport.incomplete','Reviewed production transport semantics are required')
-        g.proof(transport.get('integration_evidence'),path+'.dependencies.transport.integration_evidence')
+        providers={}
+        provider_items=g.items(chain.get('providers'),path+'.providers',required=False)
+        if migration_enabled is not True:g.check(not provider_items,path+'.providers','migration.not_disabled','Initial disabled launch must not invent approved provider wrappers')
+        for wi,item in enumerate(provider_items):
+            wp=path+f'.providers[{wi}]';provider=g.obj(item,wp)
+            provider_id=g.hex(provider.get('provider_id'),wp+'.provider_id');channel_id=g.hex(provider.get('channel_id'),wp+'.channel_id')
+            addr=g.hex(provider.get('address'),wp+'.address',20);provider['address']=addr
+            provider['runtime_hash']=g.hex(provider.get('runtime_hash'),wp+'.runtime_hash')
+            provider['router']=g.hex(provider.get('router'),wp+'.router',20)
+            provider['configuration_hash']=g.hex(provider.get('configuration_hash'),wp+'.configuration_hash')
+            g.check(provider.get('router')==modules['transport'].get('address') and provider.get('router') is not None,
+                wp+'.router','provider.router','Wrapper router() must match the fixed local router')
+            g.check(provider.get('upgradeable') is False and provider.get('immutable_configuration') is True,
+                wp,'provider.mutable','Review immutable wrapper code/configuration; runtime hashing alone does not exclude proxy/dependency upgrades')
+            for key in ('authenticated_delivery','funded_equivalent_assets','nonce_domain_replay_protection','finality_and_retries_reviewed'):
+                g.check(provider.get(key) is True,wp+'.'+key,'transport.incomplete','Reviewed production provider/channel semantics are required')
+            for key in ('authority_review','integration_evidence'):g.proof(provider.get(key),wp+'.'+key)
+            integration=g.obj(provider.get('integration_evidence'),wp+'.integration_evidence')
+            g.check(integration.get('kind')=='provider_staged_delivery' and integration.get('provider_id')==provider_id and
+                integration.get('channel_id')==channel_id and type(integration.get('chain_id')) is int and integration.get('chain_id')==cid,
+                wp+'.integration_evidence','provider.evidence','Staged delivery evidence must identify this exact provider/channel/chain')
+            identity_key=(provider_id,channel_id,addr)
+            g.check(identity_key not in providers,wp,'provider.duplicate','A provider/channel/wrapper identity must be unique on a chain')
+            providers[identity_key]=provider
+        provider_maps[cid]=providers
         tokens={}
         for ti,item in enumerate(g.items(chain.get('tokens'),path+'.tokens')):
             tp=path+f'.tokens[{ti}]';token=g.obj(item,tp);addr=g.hex(token.get('address'),tp+'.address',20)
@@ -216,17 +262,68 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             if pid:g.check(pid not in pools,pp+'.pool_id','pool.duplicate','Pool IDs must be unique');pools[pid]=pool
         pool_ids[cid]=pools
     g.check(home in chains,'canonical_chain_id','canonical.absent','Canonical chain must be present in the inventory')
+    policies={}
+    policy_items=g.items(config.get('transport_policies'),'transport_policies',required=migration_enabled is True)
+    if migration_enabled is not True:g.check(not policy_items,'transport_policies','migration.not_disabled','Initial disabled launch must have no approved transport policies')
+    for pi,item in enumerate(policy_items):
+        pp=f'transport_policies[{pi}]';policy=g.obj(item,pp);values={}
+        for key,typ in POLICY_FIELDS:
+            values[key]=g.hex(policy.get(key),pp+'.'+key,20 if typ=='address' else 32) if typ!='uint256' else g.num(policy.get(key),pp+'.'+key,1)
+        policy_id=g.hex(policy.get('policy_id'),pp+'.policy_id')
+        g.check(policy_id not in policies,pp+'.policy_id','policy.replay','Append-only policy identities must not be duplicated')
+        g.check(type(policy.get('outbound_enabled')) is bool,pp+'.outbound_enabled','policy.mode','Outbound activation must be explicit; registration defaults disabled')
+        if all(value is not None for value in values.values()):
+            g.check(policy_id==identity([(values[key],typ) for key,typ in POLICY_FIELDS]),pp+'.policy_id','policy.identity','Policy ID must hash every immutable TransportPolicy field')
+            g.check(values['sourceChain']!=values['destinationChain'] and values['sourceChain'] in chains and values['destinationChain'] in chains,
+                pp,'policy.chain','Policy needs distinct reviewed participating chains')
+            for side in ('source','destination'):
+                cid=values[side+'Chain'];modules=chains.get(cid,{}).get('modules',{})
+                g.check(values[side+'Router']==modules.get('transport',{}).get('address'),pp+'.'+side+'Router','policy.router','Policy router must match the fixed counterpart module')
+                wrapper=provider_maps.get(cid,{}).get((values['providerId'],values['channelId'],values[side+'Provider']),{})
+                g.check(bool(wrapper) and wrapper.get('runtime_hash')==values[side+'CodeHash'] and wrapper.get('router')==values[side+'Router'] and
+                    wrapper.get('configuration_hash')==values[side+'ConfigurationHash'],pp+'.'+side+'Provider','policy.provider','Reviewed wrapper code and channel configuration must match the immutable policy pins')
+        policy.update(values);review=g.proof(policy.get('review_evidence'),pp+'.review_evidence')
+        g.check(policy.get('reviewHash')=='0x'+str(review.get('sha256')),pp+'.reviewHash','policy.review','Pinned review hash must identify the supplied policy review evidence')
+        policies[policy_id]=policy
+    for cid,chain in chains.items():
+        router=chain['bridge_router'];relevant=[p for p in policies.values() if cid in (p.get('sourceChain'),p.get('destinationChain'))]
+        listed=router['registered_policy_ids'];registered=set(listed)
+        g.check(len(listed)==len(registered),f'chains[{cid}].bridge_router.registered_policy_ids','router.duplicate','Registered policy IDs must be unique')
+        g.check(all(policy_id is not None and policy_id in policies for policy_id in registered),
+            f'chains[{cid}].bridge_router.registered_policy_ids','router.unknown','Every observed registered policy must appear in the complete global inventory')
+        g.check(all(policy_id in registered for policy_id,policy in policies.items() if policy in relevant),
+            f'chains[{cid}].bridge_router.registered_policy_ids','router.unlisted','Every declared local source/destination policy must be registered on that chain')
+        raw_routes=config.get('routes') if isinstance(config.get('routes'),list) else []
+        for policy_id in registered:
+            policy=policies.get(policy_id,{})
+            if not policy or cid in (policy.get('sourceChain'),policy.get('destinationChain')):continue
+            graph=[route for route in raw_routes if isinstance(route,dict) and route.get('kind')=='principal' and
+                route.get('policy_id')==policy_id and route.get('sourceChain')==policy.get('sourceChain') and route.get('destinationChain')==policy.get('destinationChain')]
+            g.check(cid==home and bool(graph),f'chains[{cid}].bridge_router.registered_policy_ids','router.remote_registration',
+                'Remote-only policies are allowed only on the canonical chain with corresponding principal graph metadata')
+            for route in graph:g.proof(route.get('canonical_graph_evidence'),f'chains[{cid}].bridge_router.remote_graph_evidence')
+        count=g.num(router.get('policy_count'),f'chains[{cid}].bridge_router.policy_count')
+        outbound=g.num(router.get('outbound_policy_count'),f'chains[{cid}].bridge_router.outbound_policy_count')
+        g.check(count==len(registered) and outbound==sum(policies.get(policy_id,{}).get('sourceChain')==cid and policies.get(policy_id,{}).get('outbound_enabled') is True for policy_id in registered),
+            f'chains[{cid}].bridge_router','router.inventory','Counts must match complete verified registration history and enabled listed local sends')
     routes=[];seen=set()
-    for ri,item in enumerate(g.items(config.get('routes'),'routes')):
+    route_items=g.items(config.get('routes'),'routes',required=migration_enabled is True)
+    if migration_enabled is not True:g.check(not route_items,'routes','migration.not_disabled','Initial disabled launch must have no migration routes')
+    for ri,item in enumerate(route_items):
         rp=f'routes[{ri}]';route=g.obj(item,rp);values={}
         for key,typ in ROUTE_FIELDS:
             values[key]=g.hex(route.get(key),rp+'.'+key,20,zero=key.startswith(('sourceToken','destinationToken'))) if typ=='address' else \
                 g.hex(route.get(key),rp+'.'+key,zero=True) if typ=='bytes32' else g.num(route.get(key),rp+'.'+key,0 if typ=='uint8' else 1,18 if typ=='uint8' else 2**256-1)
         rid=g.hex(route.get('route_id'),rp+'.route_id');g.check(rid not in seen,rp+'.route_id','route.replay','Append-only route identities must not be duplicated');seen.add(rid)
-        if all(value is not None for value in values.values()):
-            g.check(rid==identity([(values[key],typ) for key,typ in ROUTE_FIELDS]),rp+'.route_id','route.identity','Route ID must hash every immutable Route field')
+        policy_id=g.hex(route.get('policy_id'),rp+'.policy_id');route['policy_id']=policy_id;policy=policies.get(policy_id,{})
+        g.check(bool(policy),rp+'.policy_id','route.policy','Route must bind an existing reviewed immutable transport policy')
+        if all(value is not None for value in values.values()) and policy_id is not None:
+            g.check(rid==identity([(values[key],typ) for key,typ in ROUTE_FIELDS]+[(policy_id,'bytes32')]),rp+'.route_id','route.identity','Route ID must hash the complete Route and its immutable policy ID')
             source=values['sourceChain'];destination=values['destinationChain']
             g.check(source!=destination and source in chains and destination in chains,rp,'route.chain','Distinct inventoried source/destination chains are required')
+            g.check(policy.get('sourceChain')==source and policy.get('destinationChain')==destination and
+                (route.get('enabled') is not True or policy.get('outbound_enabled') is True),
+                rp+'.policy_id','route.policy','Immutable route direction must match its policy; active routes also require outbound activation')
             for side,cid in (('source',source),('destination',destination)):
                 modules=chains.get(cid,{}).get('modules',{})
                 for suffix,module in (('Adapter','bridge'),('Vault','vault'),('Receiver','receiver')):
@@ -248,23 +345,26 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 g.check(any((p.get('currency0'),p.get('currency1'))==(values['sourceToken0'],values['sourceToken1']) for p in pool_ids.get(source,{}).values()),rp,'route.source_pool','Principal source tokens must match source PoolKey ordering')
                 if source!=home and destination!=home:
                     g.proof(route.get('canonical_graph_evidence'),rp+'.canonical_graph_evidence')
-            g.check(route.get('enabled') is True,rp+'.enabled','route.disabled','Release routes must explicitly be enabled')
+            g.check(type(route.get('enabled')) is bool,rp+'.enabled','route.mode','Declare active or historical/inbound-only route enablement explicitly')
         route.update(values)
         g.proof(route.get('asset_and_authority_evidence'),rp+'.asset_and_authority_evidence');routes.append(route)
-    for route in routes:
+    active=[r for r in routes if r.get('enabled') is True and policies.get(r.get('policy_id'),{}).get('outbound_enabled') is True]
+    if migration_enabled is True:g.check(any(r.get('kind')=='principal' for r in active),'routes','route.active_principal','Enabled migration requires an active reviewed principal route')
+    for route in active:
         if route.get('kind')=='principal':
-            reverse=[r for r in routes if r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==route.get('sourceChain')]
+            reverse=[r for r in active if r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==route.get('sourceChain')]
             g.check(any(r.get('kind')=='ack' for r in reverse),'routes','route.ack_missing','Every principal hop needs a reviewed source-completion ACK route')
             if route.get('destinationChain')!=home:
                 if route.get('sourceChain')!=home:
-                    g.check(any(r.get('kind')=='ack' and r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==home for r in routes),
+                    g.check(any(r.get('kind')=='ack' and r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==home for r in active),
                         'routes','route.home_ack_missing','Onward satellite hops also require a canonical-location ACK route')
                 for slot in (0,1):
                     token=route.get(f'destinationToken{slot}')
-                    g.check(any(r.get('kind')=='reward' and r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==home and r.get('sourceToken0')==token for r in routes),
+                    g.check(any(r.get('kind')=='reward' and r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==home and r.get('sourceToken0')==token for r in active),
                         'routes','route.rewards_missing','Satellite principal assets need funded reward paths to the canonical chain')
-    return {'schema_version':1,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
+    return {'schema_version':2,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
+        'migration_enabled':migration_enabled is True,
         'limitations':['Offline manifest checks do not authenticate evidence, runtime code, authorities, or current chain state.',
             'A complete manifest is not an audit, a safety guarantee, or deployment/sealing/transaction authorization.']}
 

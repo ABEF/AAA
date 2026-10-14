@@ -10,8 +10,8 @@ contract AccessControllerTest is Test {
         address[] memory a=new address[](1);a[0]=address(this);ac=new ZZZAccessController(1 days,a,a,keeper,guardian);
     }
     function fill() private {
-        bytes32[15] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.POWER,Ids.FEES,Ids.STRATEGY,
-            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES];
+        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.POWER,Ids.FEES,Ids.STRATEGY,
+            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
         for(uint256 i;i<ids.length;i++)ac.bind(ids[i],address(new BoundDummy(address(ac))));
     }
     function testIncompleteDeploymentCannotSeal() public {vm.expectRevert();ac.seal();}

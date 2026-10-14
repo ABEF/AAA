@@ -49,7 +49,7 @@ Foundry 1.4.4 also reserves the removed `testFail*` naming pattern. Revert tests
 
 ## Local-only deployment and services
 
-[DeployCore.s.sol](../script/DeployCore.s.sol) is a local-only template. It does not seal module bindings or open deposits. [.env.example](../.env.example) contains placeholders, not deployment credentials.
+[DeployCore.s.sol](../script/DeployCore.s.sol) is a local-only template. It creates the fixed router with no provider policies. It does not seal module bindings or open deposits. No bridge endpoint environment variable is required; add reviewed provider policies and policy-bound routes separately when needed. [.env.example](../.env.example) contains placeholders, not deployment credentials.
 
 `MINT_PROCEEDS_RECIPIENT` is a required constructor parameter. Select and verify a recipient that accepts native ETH; a rejected payment reverts the entire mint. It cannot be changed after deployment. Minting requires sealing and costs exactly `0.05 ether`; `activate` preserves the paid NFT and requires at least $500 of measured deployed LP. The template retains its local-chain guard; this work does not deploy public-chain contracts.
 

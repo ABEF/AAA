@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "_notes": [
     "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",
     "The selected Robinhood native-ETH/hooked/zero-core-fee pool is unsupported by the current contracts.",
@@ -9,6 +9,11 @@
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
+  "migration": {
+    "enabled": false,
+    "future_onboarding_evidence": null,
+    "disabled_scope_approval": null
+  },
   "economics": {
     "reward_model": null,
     "mint_price_wei": "50000000000000000",
@@ -53,7 +58,8 @@
       "receiver": {"address": null, "runtime_hash": null, "controller": null},
       "oracle": {"address": null, "runtime_hash": null, "controller": null},
       "pools": {"address": null, "runtime_hash": null, "controller": null},
-      "routes": {"address": null, "runtime_hash": null, "controller": null}
+      "routes": {"address": null, "runtime_hash": null, "controller": null},
+      "transport": {"address": null, "runtime_hash": null, "controller": null}
     },
     "governance": {
       "multisig": null, "proposers": [], "executors": [], "signers": [], "threshold": null,
@@ -64,19 +70,20 @@
     },
     "constructor": {
       "canonical_chain_id": 4663, "mint_proceeds_recipient": null,
-      "recipient_payment_evidence": null, "nft_base_uri": null, "maximum_buyback_usd18": null
+      "recipient_payment_evidence": null, "nft_base_uri": null, "maximum_buyback_usd18": null,
+      "adapter_transport": null
     },
+    "bridge_router": {
+      "immutable_module": true, "upgradeable": false,
+      "policy_count": null, "registered_policy_ids": [], "outbound_policy_count": null, "observation_evidence": null
+    },
+    "providers": [],
     "dependencies": {
       "position_manager": {"address": null, "runtime_hash": null, "authority_review": null, "pool_manager": null, "permit2": null},
       "state_view": {"address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b", "runtime_hash": null, "authority_review": null, "pool_manager": null},
       "pool_manager": {"address": "0x8366a39cc670b4001a1121b8f6a443a643e40951", "runtime_hash": null, "authority_review": null},
       "permit2": {"address": null, "runtime_hash": null, "authority_review": null},
-      "zzz": {"address": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a", "runtime_hash": null, "authority_review": null, "burn_model": null, "burn_evidence": null},
-      "transport": {
-        "address": null, "runtime_hash": null, "authority_review": null, "provider": null,
-        "immutable_endpoint": false, "authenticated_delivery": false, "funded_equivalent_assets": false,
-        "nonce_domain_replay_protection": false, "finality_and_retries_reviewed": false, "integration_evidence": null
-      }
+      "zzz": {"address": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a", "runtime_hash": null, "authority_review": null, "burn_model": null, "burn_evidence": null}
     },
     "tokens": [{
       "address": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a", "runtime_hash": null,
@@ -98,5 +105,6 @@
       "maxSlippageBps": null, "minRebalanceInterval": null, "minDepositUSD": null, "maxPositionUSD": null
     }]
   }],
-  "routes": []
+  "routes": [],
+  "transport_policies": []
 }

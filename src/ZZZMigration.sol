@@ -5,7 +5,7 @@ import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind, AckPurpose} from "./libraries/ZZZTypes.sol";
-import {IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge, IZZZNFT} from "./interfaces/IZZZ.sol";
+import {IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge, IZZZNFT, IZZZBridgeRouter} from "./interfaces/IZZZ.sol";
 
 /// @notice Repeated, timelocked custody moves. NFTs and Power remain canonical.
 contract ZZZMigration is ZZZModule, ReentrancyGuard {
@@ -60,7 +60,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         Position memory p = vault.position(id);
         (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(routeId);
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
-        if (!active || p.status != PositionStatus.Active || p.homeChain != vault.canonicalChainId() ||
+        if (!active || !IZZZBridgeRouter(access.module(Ids.TRANSPORT)).canSend(routeId) ||
+            p.status != PositionStatus.Active || p.homeChain != vault.canonicalChainId() ||
             p.homeVault == address(0) || p.homeReceiver == address(0) || p.depositUSD == 0 ||
             p.homeToken0 == address(0) || p.homeToken1 == address(0) ||
             r.sourceChain != block.chainid || r.sourceVault != address(vault) || r.sourceReceiver != access.module(Ids.RECEIVER) ||
@@ -86,7 +87,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         Plan storage plan = plans[migrationId];
         if (plan.status != Status.Scheduled || block.timestamp < plan.earliest) revert InvalidState();
         (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(plan.routeId);
-        if (!active) revert InvalidConfiguration();
+        if (!active || !IZZZBridgeRouter(access.module(Ids.TRANSPORT)).canSend(plan.routeId)) revert InvalidConfiguration();
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
         Position memory p = vault.position(plan.nftId);
         if (p.status != PositionStatus.Active || p.poolId != plan.poolId || custodyEpoch[plan.nftId] + 1 != plan.epoch ||

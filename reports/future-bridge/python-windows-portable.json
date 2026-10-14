@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-15",
+  "python": "3.12.14",
+  "inventory": 176,
+  "tests_run": 172,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "excluded_unchanged_unix_tests": [
+    "tests_python.test_state.StateTests.test_atomic_roundtrip",
+    "tests_python.test_state.StateTests.test_concurrent_lock_rejected",
+    "tests_python.test_state.StateTests.test_lock_released",
+    "tests_python.test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file"
+  ],
+  "qualification": "Full unchanged suite required in supported Ubuntu CI; native subset is not a replacement."
+}

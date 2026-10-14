@@ -5,7 +5,7 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import {PoolKey,PoolConfig,Position,Route,BridgeMessage} from "../../src/libraries/ZZZTypes.sol";
+import {Ids,PoolKey,PoolConfig,Position,Route,BridgeMessage} from "../../src/libraries/ZZZTypes.sol";
 import {IZZZAccess,IZZZTransportReceiver} from "../../src/interfaces/IZZZ.sol";
 contract MockAccess {
     mapping(bytes32=>address) public module;
@@ -89,4 +89,8 @@ contract MockTransport {
 contract BoundDummy {
     IZZZAccess public immutable access;
     constructor(address a){access=IZZZAccess(a);}
+    function transport() external view returns(address){return access.module(Ids.TRANSPORT);}
 }
+// TEST ONLY: custody unit tests explicitly bypass transport readiness. Router
+// readiness/authentication is tested with real modules in separate suites.
+contract MockReadyRouter { function canSend(bytes32) external pure returns(bool){return true;} }

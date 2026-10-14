@@ -1,0 +1,218 @@
+{
+  "review_date": "2026-10-15",
+  "review_type": "Internal secondary adversarial review; not an independent audit or release approval",
+  "scope": [
+    "Fixed Router/Adapter exact custody and provider policy onboarding",
+    "Immutable Registry route-policy identity",
+    "Migration availability preflight before LP release",
+    "All 15 changed High/Medium Slither findings; router bounded loops and interface observations"
+  ],
+  "result": "No confirmed new exploitable defect identified in this bounded review under the stated fixed-module, conventional-token and provider trust model.",
+  "source_hashes_sha256": {
+    "src/base/ZZZModule.sol": "e0e0792f353c82d4c85d686c55205306ab08a23e06f1ec2578e0a8bedbb7ea91",
+    "src/interfaces/IZZZ.sol": "52eed65610398b36eaa0a0921bffd4355d7f1c17826ac81fc70d2c6763d63593",
+    "src/libraries/BridgeAssets.sol": "59d54d93e3f111133f5908f67be60319417adaf7baa10ee11d6b789eb4a59259",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZTypes.sol": "243acd13661b00d804015107f241385fc14217e97ee5156638e4ad73daa89876",
+    "src/ZZZAccessController.sol": "f13c81ad52fc129cd0076c79ca5f238f3003fb26ef19746cf7da118c3195f345",
+    "src/ZZZBridgeAdapter.sol": "24b9fd9e393d9ae3cffc54c94a60db771c6286c2c71664fcc95fa70e763ac297",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "74843072ac083cc49d79020ad0cb4db984a056662106f7eaaf1164b2d71c823d",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZFeeController.sol": "c3a72adf39dd3814808fd9a93de81c00e6f8898180aba859d3147e5362dad253",
+    "src/ZZZLiquidityManager.sol": "8f7f89ba0a5b09e8247b832b15b7861a7af4b074c3ea6211a42e99c7d8e8d431",
+    "src/ZZZMigration.sol": "546cc2ba81840e033ba2b4fec2b6d2637ac2c0c4f3b1c7378441a93c5323880e",
+    "src/ZZZMigrationReceiver.sol": "ae39f8a884e623ec86d84875743521a4cc780cb99771f04155b7c29e7bf6bace",
+    "src/ZZZMigrationRegistry.sol": "415c55f3ce4142725d9e16f14f3bf16ee009e77b38f304b248500ab437c6b25b",
+    "src/ZZZNFT.sol": "5067854d4d3a45d8d225642f76bad516ce0606a4fed6f7505dffc14171b9c65b",
+    "src/ZZZOracle.sol": "0280b2b5ab562cebe2f4b64fe6f2942fae009ddf79e521b8b347e6695c545106",
+    "src/ZZZPoolRegistry.sol": "e6c6df06e07745a8aa91334f6a576d103946fca6c9bcac2f64b4f38ca2e7d732",
+    "src/ZZZPower.sol": "f81b764084dbc55d36625a878a7e962fb7fd35a067b4ca8e28f206d7fa26b10f",
+    "src/ZZZRewards.sol": "ff19c505d2e50b2bed954bf6b809e7444cc988342e828fb0dce530b1b334f292",
+    "src/ZZZStrategy.sol": "b034f1488b027660a5b867988f57b3ebb2bb4b4a1d437326829df69c621256b2",
+    "src/ZZZVault.sol": "c56a2806f6effc9ed500996c142df27276af824a48a7ed0ad4e7b243fbbb8bc3"
+  },
+  "isolated_source_matches_current_repository": true,
+  "test_evidence": {
+    "suite": "BridgeRouterSecurityTest",
+    "command": "forge test --match-contract BridgeRouterSecurityTest -vv",
+    "foundry_version": "v1.4.4",
+    "compiler": "0.8.26; viaIR; Yul disabled; EVM optimizer_runs=1",
+    "tests_passed": 38,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "fuzz_cases": 1000,
+    "execution_seconds": 2.59,
+    "log": "security/router-security-tests.log",
+    "log_sha256": "37bfb3ca4bd88628a9c491432f72470a14288e5a1797a60a58a7923fc85ae8f0",
+    "test_source_sha256": {
+      "test/BridgeRouterSecurity.t.sol": "b2b4acbd87438a63ab28dd570e3280650831ea45e22b1a2f7d523369b7894da6",
+      "test/mocks/RouterMocks.sol": "cb2abbd696e0296002e7f0fcc96636ef0fbc20bfb818d5f85edfef1750b33f74"
+    },
+    "fixtures": "Real access controller/timelock, Registry, Router, Adapter and Oracle; fake provider authentication, remote identities, Vault/Pool/Receiver stubs and ERC20s. No network or public-chain transactions."
+  },
+  "manual_checks": [
+    "Access seal verifies the fixed Bridge endpoint is the bound Router; post-seal registration, route addition and enabling require the existing timelock. Immutable route IDs commit to the provider policy; no global provider redirect exists.",
+    "Migration propose and execute require canSend for the bound route; execute preflights before LP release. Bridge/Router repeat availability checks at dispatch and later failures roll back the entire transaction.",
+    "Local wrapper caller, code hash, router binding and configuration are pinned; authenticated source chain/Router then binds the retained economic Adapter route and ordered exact token vectors. TransportEnvelope v1 wraps unchanged economic BridgeMessage v2.",
+    "Router and Adapter consume origin chain plus economic source Adapter plus nonce across providers and policy versions. Tests reject a replay through newly approved provider/policy while retaining old in-flight settlement.",
+    "Exact pulls enforce sender and recipient deltas; only declared amounts are approved; allowances reset; whole custody balances return to pre-call baselines. Tests preserve source/inbound donations, reject underfunding with custody preload, reject a receipt with partial consumption, and reject recipient/extra-sender taxes.",
+    "Symmetric provider pin checks after outgoing send and incoming handoff make callback-time configuration drift revert funding, receiver state and replay; exact retry succeeds after removing the mock mutation.",
+    "Inbound ignores outbound, route-disable and strategy-pause flags intentionally to retain pending settlement. Source sends still require current policy and route enablement.",
+    "BridgeAssets derives bounded vectors of 0 ACK, 1 Reward or 2 Principal tokens. _vector validates supplied lengths before iterating; _fund/_settled use those derived arrays. Changed calls-loop warnings expose no unbounded user list.",
+    "Missing-inheritance findings are structural suggestions where callable signatures already match; they do not demonstrate missing custody/access checks."
+  ],
+  "static_analysis": {
+    "final_scan": "slither-final.json",
+    "sha256": "86c5eee796ccfb5e4d532773850a1cefc6285536068b7f002a121d97314e8dc8",
+    "success": true,
+    "total_findings": 136,
+    "reviewed_changed_high_medium": 15,
+    "entries": [
+      {
+        "id": "3ff3e945f631a462617f3ad6fe332d4a87519a7d3201f87efc26d3906d00c596",
+        "check": "reentrancy-balance",
+        "impact": "High",
+        "description": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):\n\tExternal call allowing reentrancy:\n\t- (amount0,amount1) = vault.releaseForMigration(plan.nftId,migrationId,deadline) (src/ZZZMigration.sol#98)\n\tBalance read before the call:\n\t- before1 = IERC20(r.sourceToken1).balanceOf(address(this)) (src/ZZZMigration.sol#96)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 + amount0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 + amount1 (src/ZZZMigration.sol#99-100)\n\t\t- stale variable `before1`\n\t- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#111-112)\n\t\t- stale variable `before1`\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "execute is onlyKeeper/live/nonReentrant and canSend preflight is before custodyEpoch mutation or LP release. Fixed Vault.releaseForMigration is module-only/live/nonReentrant, sets Outbound and zeros idle before ExactToken.push. Fixed Bridge and Router are guarded and recheck authorization. Stored before balances are exact custody conservation baselines. A later pin/receipt/amount/balance failure reverts the entire LP release and migration transaction.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "9881eac51e5a3eaccdc4f927613e7678c02dfbb4bba533166b1e12ecd3d4da15",
+        "check": "reentrancy-balance",
+        "impact": "High",
+        "description": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):\n\tExternal call allowing reentrancy:\n\t- receipt = IZZZBridge(adapter).send{value: msg.value}(m) (src/ZZZMigration.sol#108)\n\tBalance read before the call:\n\t- before0 = IERC20(r.sourceToken0).balanceOf(address(this)) (src/ZZZMigration.sol#95)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#111-112)\n\t\t- stale variable `before0`\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "execute is onlyKeeper/live/nonReentrant and canSend preflight is before custodyEpoch mutation or LP release. Fixed Vault.releaseForMigration is module-only/live/nonReentrant, sets Outbound and zeros idle before ExactToken.push. Fixed Bridge and Router are guarded and recheck authorization. Stored before balances are exact custody conservation baselines. A later pin/receipt/amount/balance failure reverts the entire LP release and migration transaction.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "9c9b82eb30dca888be10fd68064049c0c11629c9c9e5c03ae4fb02009a33b235",
+        "check": "reentrancy-balance",
+        "impact": "High",
+        "description": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):\n\tExternal call allowing reentrancy:\n\t- (amount0,amount1) = vault.releaseForMigration(plan.nftId,migrationId,deadline) (src/ZZZMigration.sol#98)\n\tBalance read before the call:\n\t- before0 = IERC20(r.sourceToken0).balanceOf(address(this)) (src/ZZZMigration.sol#95)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 + amount0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 + amount1 (src/ZZZMigration.sol#99-100)\n\t\t- stale variable `before0`\n\t- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#111-112)\n\t\t- stale variable `before0`\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "execute is onlyKeeper/live/nonReentrant and canSend preflight is before custodyEpoch mutation or LP release. Fixed Vault.releaseForMigration is module-only/live/nonReentrant, sets Outbound and zeros idle before ExactToken.push. Fixed Bridge and Router are guarded and recheck authorization. Stored before balances are exact custody conservation baselines. A later pin/receipt/amount/balance failure reverts the entire LP release and migration transaction.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "a9c5afdb6ad14dc8194321beb44ef88478af4b2a484b1fb29620025a9f1f8223",
+        "check": "reentrancy-balance",
+        "impact": "High",
+        "description": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):\n\tExternal call allowing reentrancy:\n\t- receipt = IZZZBridge(adapter).send{value: msg.value}(m) (src/ZZZMigration.sol#108)\n\tBalance read before the call:\n\t- before1 = IERC20(r.sourceToken1).balanceOf(address(this)) (src/ZZZMigration.sol#96)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#111-112)\n\t\t- stale variable `before1`\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "execute is onlyKeeper/live/nonReentrant and canSend preflight is before custodyEpoch mutation or LP release. Fixed Vault.releaseForMigration is module-only/live/nonReentrant, sets Outbound and zeros idle before ExactToken.push. Fixed Bridge and Router are guarded and recheck authorization. Stored before balances are exact custody conservation baselines. A later pin/receipt/amount/balance failure reverts the entire LP release and migration transaction.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "240a71c1a730f726ac7e54c97a63000f00b417e2be37d9d0c74d4c1851c1e71f",
+        "check": "reentrancy-no-eth",
+        "impact": "Medium",
+        "description": "Reentrancy in ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#129-149):\n\tExternal calls:\n\t- _recordCanonical(m,r.destinationChain,r.destinationVault,false) (src/ZZZMigration.sol#145)\n\t\t- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#182)\n\tState variables written after the call(s):\n\t- custodyEpoch[m.nftId] = m.migrationEpoch (src/ZZZMigration.sol#148)\n\tZZZMigration.custodyEpoch (src/ZZZMigration.sol#18) can be used in cross function reentrancies:\n\t- ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184)\n\t- ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210)\n\t- ZZZMigration.custodyEpoch (src/ZZZMigration.sol#18)\n\t- ZZZMigration.propose(uint256,bytes32) (src/ZZZMigration.sol#58-77)\n\t- ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#129-149)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Only the fixed Receiver can call. _recordCanonical is called with updateVault=false, so the detector-attributed mutable Vault.confirmMigration call is unreachable on this branch. Other external getters are static; fixed inbound caller is nonReentrant.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "a9032c59b9161d207a9342cbd4ff21d20b84ce7a13fca194e28b35f38bb59cc7",
+        "check": "reentrancy-no-eth",
+        "impact": "Medium",
+        "description": "Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210):\n\tExternal calls:\n\t- _recordCanonical(m,chainId,destinationVault,true) (src/ZZZMigration.sol#198)\n\t\t- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#182)\n\t- IZZZVault(access.module(Ids.VAULT)).confirmMigration(m.nftId,chainId,destinationVault) (src/ZZZMigration.sol#202)\n\tState variables written after the call(s):\n\t- plan.status = Status.Completed (src/ZZZMigration.sol#204)\n\tZZZMigration.plans (src/ZZZMigration.sol#16) can be used in cross function reentrancies:\n\t- ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184)\n\t- ZZZMigration.cancel(bytes32) (src/ZZZMigration.sol#78-84)\n\t- ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210)\n\t- ZZZMigration.plans (src/ZZZMigration.sol#16)\n\t- ZZZMigration.propose(uint256,bytes32) (src/ZZZMigration.sol#58-77)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Only the fixed Receiver can call. Fixed Vault.confirmMigration is Migration-only and writes local position metadata plus event; it performs no external call, token transfer or callback. Fixed inbound caller is guarded. No untrusted reachable cross-function callback was identified.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "e87669b45f51fc924a6f2b9f58aa0e8c683a52e0c85316313052d9146e9a820a",
+        "check": "reentrancy-no-eth",
+        "impact": "Medium",
+        "description": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):\n\tExternal calls:\n\t- (amount0,amount1) = vault.releaseForMigration(plan.nftId,migrationId,deadline) (src/ZZZMigration.sol#98)\n\tState variables written after the call(s):\n\t- plan.status = Status.Bridged (src/ZZZMigration.sol#101)\n\tZZZMigration.plans (src/ZZZMigration.sol#16) can be used in cross function reentrancies:\n\t- ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184)\n\t- ZZZMigration.cancel(bytes32) (src/ZZZMigration.sol#78-84)\n\t- ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210)\n\t- ZZZMigration.plans (src/ZZZMigration.sol#16)\n\t- ZZZMigration.propose(uint256,bytes32) (src/ZZZMigration.sol#58-77)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Only the fixed Receiver can call. Fixed Vault.confirmMigration is Migration-only and writes local position metadata plus event; it performs no external call, token transfer or callback. Fixed inbound caller is guarded. No untrusted reachable cross-function callback was identified.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "1a9c0a067f868f7f37b0b6bc560bfb0838157ac70e7518878bf95041bb1332b8",
+        "check": "uninitialized-local",
+        "impact": "Medium",
+        "description": "BridgeAssets.assets(Route,BridgeMessage,bool).count (src/libraries/BridgeAssets.sol#12) is a local variable never initialized\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Solidity local uint256 count defaults to zero. Acknowledgement intentionally keeps a zero-length asset vector and validates all zero token/amount fields. Principal sets count=2, Reward count=1, invalid enum ABI values fail decoding. Typed reward/ACK test exercises both distinct vector lengths.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "55ea5e43fe68d50aaef792192e5f73744c65899f1a5397bc85c89cd3a5c763d4",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184) ignores return value by IZZZNFT(access.module(Ids.NFT)).ownerOf(m.nftId) (src/ZZZMigration.sol#163)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "ownerOf is used as a must-succeed existence check for the canonical NFT, so its address result is deliberately discarded. Nonexistent token reverts; this is a static getter, not a payout recipient choice.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "9ed217429f5bc58691bd22ad121195a2ced50208dcf2d2d9e4c1aebf71628090",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZBridgeRouter.onProviderMessage(uint256,address,address[],uint256[],bytes) (src/ZZZBridgeRouter.sol#130-156) ignores return value by (r,None) = registry.get(m.routeId) (src/ZZZBridgeRouter.sol#141)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Disabled route flags deliberately do not invalidate retained inbound settlement or historical import/ACK identity checks. Exact immutable route-policy binding, authenticated origin, replay, typed assets and applicable epoch/snapshot checks remain active. New outgoing use is separately blocked by canSend/Bridge.send and migration preflight.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "ac72136d7abedd2ce6af14efa5aa63727935f1de0dfdc88317f56b9ff478a49b",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#187)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Disabled route flags deliberately do not invalidate retained inbound settlement or historical import/ACK identity checks. Exact immutable route-policy binding, authenticated origin, replay, typed assets and applicable epoch/snapshot checks remain active. New outgoing use is separately blocked by canSend/Bridge.send and migration preflight.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "cb797025b55d330b458fab482bfb9687a5bef444e447a3e98355de2a06aef943",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZBridgeRouter.send(uint256,address,address[],uint256[],bytes) (src/ZZZBridgeRouter.sol#111-129) ignores return value by (r,None) = registry.get(m.routeId) (src/ZZZBridgeRouter.sol#115)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "The first registry.get enabled boolean is discarded, but send immediately calls canSend, which reloads the route and requires registry enabled, policy outboundEnabled, immutable route-policy match and provider pin before pulling assets.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "dd3a186f4c9e75089faa4012007c189b1e80022aa11ae6fc62e256a55f103fc8",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#49-74) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId) (src/ZZZBridgeAdapter.sol#53)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Disabled route flags deliberately do not invalidate retained inbound settlement or historical import/ACK identity checks. Exact immutable route-policy binding, authenticated origin, replay, typed assets and applicable epoch/snapshot checks remain active. New outgoing use is separately blocked by canSend/Bridge.send and migration preflight.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "e9c1219774823a8a2649fbdfa640ea20fbd6e37c858b74186b2c1bd3ad01b82f",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#167)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Disabled route flags deliberately do not invalidate retained inbound settlement or historical import/ACK identity checks. Exact immutable route-policy binding, authenticated origin, replay, typed assets and applicable epoch/snapshot checks remain active. New outgoing use is separately blocked by canSend/Bridge.send and migration preflight.",
+        "present_in_final_scan": true
+      },
+      {
+        "id": "f71f605c7da5d1d861c440b872aa5c47a2a8806e9eb8effdd3fb9a452b34ffab",
+        "check": "unused-return",
+        "impact": "Medium",
+        "description": "ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#129-149) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#131)\n",
+        "disposition": "reviewed_no_confirmed_exploit_under_documented_model",
+        "reasoning": "Disabled route flags deliberately do not invalidate retained inbound settlement or historical import/ACK identity checks. Exact immutable route-policy binding, authenticated origin, replay, typed assets and applicable epoch/snapshot checks remain active. New outgoing use is separately blocked by canSend/Bridge.send and migration preflight.",
+        "present_in_final_scan": true
+      }
+    ]
+  },
+  "limitations_and_pending": [
+    "Bounded internal review, not exhaustive verification or independent audit. This artifact does not newly disposition all 136 detector entries.",
+    "No production provider SDK selected or exercised. Supplied-authentication mocks cannot prove live bridge cryptography, backing, fees, finality or failure recovery.",
+    "Runtime and reported configuration pins do not prove absence of proxy or hidden underlying provider upgrades. The provider trust and upgrade model needs separate review; a temporary mutation restored before the postcheck is not detected by snapshot equality.",
+    "Remote code/configuration hashes and reviewHash are governance-reviewed commitments, not cross-chain EXTCODEHASH proofs.",
+    "Timelock notice does not prove approved provider solvency, token correctness or route economics. Actual deployment identities, supported chains/oracles/pools and operational monitoring remain release-specific work.",
+    "Real custody-hop integration and production deployment scope are separate from these stubbed Router tests.",
+    "The provider reentry test demonstrates blocked end-to-end reentry with both Router and Adapter guards active; it does not isolate each guard via mutation testing."
+  ]
+}

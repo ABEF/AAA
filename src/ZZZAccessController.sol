@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {TimelockController} from "@openzeppelin/contracts/governance/TimelockController.sol";
-import {IZZZBound, IZZZAccess} from "./interfaces/IZZZ.sol";
+import {IZZZBound, IZZZAccess, IZZZBridgeEndpoint} from "./interfaces/IZZZ.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
 
 /// @notice Timelocked configuration; module addresses become immutable at seal().
@@ -43,15 +43,16 @@ contract ZZZAccessController is TimelockController {
     }
     function seal() external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
-        bytes32[15] memory required = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.POWER,
+        bytes32[16] memory required = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.POWER,
             Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE,
-            Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES];
+            Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT];
         for (uint256 i; i < required.length; ++i) {
             if (module[required[i]].code.length == 0) revert InvalidConfiguration();
             for (uint256 j; j < i; ++j) {
                 if (module[required[i]] == module[required[j]]) revert InvalidConfiguration();
             }
         }
+        if (IZZZBridgeEndpoint(module[Ids.BRIDGE]).transport() != module[Ids.TRANSPORT]) revert InvalidConfiguration();
         isSealed = true;
         bootstrap = address(0);
         emit SystemSealed();

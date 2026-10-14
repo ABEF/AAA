@@ -10,7 +10,7 @@ Every item below must be closed with evidence, not assumed from the presence of 
 - [ ] Check mainnet runtime/initcode size and gas constraints without artificially raising production limits.
 - [x] Run every offline Foundry unit/fuzz test and retain output; explicitly enable and separately report the actual network fork suite.
 - [x] Add/run local stateful EVM invariants against an independent integer accounting model; retain handler counts/seed. This does not cover every provider or cross-chain sequence.
-- [x] Run Slither 0.11.6 and individually triage its complete 127-finding output; CI checks source identity and review coverage. No independent audit is implied.
+- [x] Run Slither 0.11.6 and individually triage its complete 136-finding output after adding the fixed router; CI checks source identity and review coverage. No independent audit is implied.
 
 ## Real protocol integration
 
@@ -27,9 +27,10 @@ Every item below must be closed with evidence, not assumed from the presence of 
 
 ## Cross-chain security and scope
 
-- [ ] Select, implement and independently review a production `IZZZTransport` integration.
+- [x] Implement a fixed router with append-only policies for future unknown providers and chains; test pending old-provider receipts, pin drift, exact funding and cross-provider replay. These tests use explicit mock SDK boundaries.
+- [ ] Select, implement and independently review production `IZZZTransportProvider` SDK wrappers and their actual channels/backing.
 - [ ] Verify append-only route identity, equivalent assets/identical decimals/nominal units, and counterpart code/proxy authorities for initial routes and every timelocked post-seal addition.
-- [ ] Review governance notice/onboarding powers and canonical remote-only graph approval; a timelock does not prove that future code preserves permanent-principal custody. Confirm fixed module bindings and immutable transport compatibility with future routes.
+- [ ] Review governance notice/onboarding powers and canonical remote-only graph approval; a timelock does not prove that future code preserves permanent-principal custody. Confirm fixed module bindings and fixed router and append-only transport-policy compatibility with future routes. Review each wrapper and channel before timelocked enablement; an initially empty router may seal but cannot send.
 - [ ] End-to-end real-provider canonical-to-satellite, onward, canonical-return, and revisit tests: delayed, duplicated, reordered, forged, underfunded and partially failed deliveries; pauses; provider upgrades; reorgs/finality failures.
 - [ ] Validate v2 canonical identity/asset provenance and epochs, immutable accepted ACK snapshots, separate source-completion/home-location purposes, strictly ordered canonical locations and retry, absent-hop satellite epochs, and no NFT remint or Power addition on import.
 - [ ] Reconcile historical reward paths and funded legacy reserves after custody leaves; test permanent token provenance, old-pool budgets, satellite migration dust, and rewards before/after each ACK.

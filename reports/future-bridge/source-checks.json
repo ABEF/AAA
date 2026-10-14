@@ -1,0 +1,114 @@
+{
+  "kind": "source_consistency_only",
+  "solidity_compiled": false,
+  "security_audit_pass": false,
+  "modules": 17,
+  "source_files": [
+    {
+      "file": "src\\base\\ZZZModule.sol",
+      "lines": 39
+    },
+    {
+      "file": "src\\interfaces\\IZZZ.sol",
+      "lines": 167
+    },
+    {
+      "file": "src\\libraries\\BridgeAssets.sol",
+      "lines": 30
+    },
+    {
+      "file": "src\\libraries\\ExactToken.sol",
+      "lines": 27
+    },
+    {
+      "file": "src\\libraries\\ZZZTypes.sol",
+      "lines": 136
+    },
+    {
+      "file": "src\\ZZZAccessController.sol",
+      "lines": 78
+    },
+    {
+      "file": "src\\ZZZBridgeAdapter.sol",
+      "lines": 75
+    },
+    {
+      "file": "src\\ZZZBridgeRouter.sol",
+      "lines": 157
+    },
+    {
+      "file": "src\\ZZZBuyback.sol",
+      "lines": 45
+    },
+    {
+      "file": "src\\ZZZCompounder.sol",
+      "lines": 15
+    },
+    {
+      "file": "src\\ZZZFeeController.sol",
+      "lines": 155
+    },
+    {
+      "file": "src\\ZZZLiquidityManager.sol",
+      "lines": 206
+    },
+    {
+      "file": "src\\ZZZMigration.sol",
+      "lines": 215
+    },
+    {
+      "file": "src\\ZZZMigrationReceiver.sol",
+      "lines": 124
+    },
+    {
+      "file": "src\\ZZZMigrationRegistry.sol",
+      "lines": 66
+    },
+    {
+      "file": "src\\ZZZNFT.sol",
+      "lines": 25
+    },
+    {
+      "file": "src\\ZZZOracle.sol",
+      "lines": 64
+    },
+    {
+      "file": "src\\ZZZPoolRegistry.sol",
+      "lines": 37
+    },
+    {
+      "file": "src\\ZZZPower.sol",
+      "lines": 24
+    },
+    {
+      "file": "src\\ZZZRewards.sol",
+      "lines": 86
+    },
+    {
+      "file": "src\\ZZZStrategy.sol",
+      "lines": 93
+    },
+    {
+      "file": "src\\ZZZVault.sol",
+      "lines": 363
+    }
+  ],
+  "external_imports": [
+    "@openzeppelin/contracts/governance/TimelockController.sol",
+    "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+    "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+    "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+    "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+    "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+    "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+    "@openzeppelin/contracts/utils/math/Math.sol",
+    "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+    "@uniswap/v4-core/src/libraries/TickMath.sol",
+    "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol"
+  ],
+  "errors": [],
+  "limitations": [
+    "Balanced delimiters do not prove valid Solidity",
+    "No type checking, EVM execution or exploit analysis"
+  ]
+}

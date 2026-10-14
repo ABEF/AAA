@@ -57,3 +57,14 @@ class AbiTests(unittest.TestCase):
     def test_malformed_boolean(self):
         topic='0x'+keccak256(b'ApprovalForAll(address,address,bool)').hex()
         with self.assertRaises(ValueError):decode({'topics':[topic,'0x'+word('0x'+'11'*20,'address'),'0x'+word('0x'+'22'*20,'address')],'data':'0x'+word(2,'uint256')})
+    def test_route_provider_binding_log(self):
+        route='0x'+'ab'*32;policy='0x'+'cd'*32
+        topic='0x'+keccak256(b'RouteTransportBound(bytes32,bytes32)').hex()
+        self.assertEqual(decode({'topics':[topic,route,policy],'data':'0x'}),
+                         ('RouteTransportBound',{'routeId':route,'policyId':policy}))
+    def test_transport_delivery_preserves_economic_nonce(self):
+        policy='0x'+'11'*32;route='0x'+'22'*32;delivery='0x'+'33'*32
+        topic='0x'+keccak256(b'TransportReceived(bytes32,bytes32,uint256,bytes32)').hex()
+        event,fields=decode({'topics':[topic,policy,route,'0x'+word(123,'uint256')],'data':delivery})
+        self.assertEqual(event,'TransportReceived')
+        self.assertEqual(fields,{'policyId':policy,'routeId':route,'nonce':'123','deliveryId':delivery})

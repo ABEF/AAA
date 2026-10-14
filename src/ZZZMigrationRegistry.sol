@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Route, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZOracle, IZZZVault, IZZZPools} from "./interfaces/IZZZ.sol";
+import {IZZZOracle, IZZZVault, IZZZPools, IZZZBridgeRouter} from "./interfaces/IZZZ.sol";
 
 /// @notice Append-only routes, including future chains, require timelocked governance
 /// after seal. Remote-only graph edges let the canonical chain authenticate onward hops.
@@ -10,10 +10,13 @@ contract ZZZMigrationRegistry is ZZZModule {
     mapping(bytes32 => Route) private routes;
     mapping(bytes32 => bool) public exists;
     mapping(bytes32 => bool) public enabled;
+    mapping(bytes32 => bytes32) public transportPolicyId;
     event RouteRegistered(bytes32 indexed routeId, uint256 sourceChain, uint256 destinationChain);
     event RouteEnabled(bytes32 indexed routeId, bool enabled);
+    event RouteTransportBound(bytes32 indexed routeId, bytes32 indexed policyId);
     constructor(address controller) ZZZModule(controller) {}
-    function add(Route calldata r) external onlyGovernance returns (bytes32 id) {
+    function add(Route calldata r, bytes32 policyId) external onlyGovernance returns (bytes32 id) {
+        if (!IZZZBridgeRouter(access.module(Ids.TRANSPORT)).matchesRoute(policyId, r)) revert InvalidConfiguration();
         if (r.sourceChain == 0 || r.destinationChain == 0 || r.sourceChain == r.destinationChain ||
             r.sourceAdapter == address(0) || r.destinationAdapter == address(0) || r.sourceVault == address(0) ||
             r.sourceReceiver == address(0) || r.destinationVault == address(0) || r.destinationReceiver == address(0) ||
@@ -42,12 +45,14 @@ contract ZZZMigrationRegistry is ZZZModule {
             if (t0 != address(0) && (t0.code.length == 0 || oracle.tokenDecimals(t0) != r.token0Decimals)) revert InvalidConfiguration();
             if (t1 != address(0) && (t1.code.length == 0 || oracle.tokenDecimals(t1) != r.token1Decimals)) revert InvalidConfiguration();
         }
-        id = keccak256(abi.encode(r));
+        id = keccak256(abi.encode(r, policyId));
         if (exists[id]) revert InvalidConfiguration();
         routes[id] = r;
         exists[id] = true;
         enabled[id] = true;
+        transportPolicyId[id] = policyId;
         emit RouteRegistered(id, r.sourceChain, r.destinationChain);
+        emit RouteTransportBound(id, policyId);
     }
     function setEnabled(bytes32 id, bool state) external onlyGovernance {
         if (!exists[id]) revert InvalidConfiguration();

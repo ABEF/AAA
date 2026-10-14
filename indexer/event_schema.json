@@ -110,6 +110,22 @@
     "name": "ApprovalForAll",
     "signature": "ApprovalForAll(address,address,bool)"
   },
+  "0x1cf892622deaf3baa98c77c1a49ef92ccaef9f6a8db08af1183119a38be2bca8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "OutboundEnabled",
+    "signature": "OutboundEnabled(bytes32,bool)"
+  },
   "0x1f9a280b429e275456caba36ae05580d4846000396d10ea85b8a4f756f22df8a": {
     "fields": [
       {
@@ -498,6 +514,32 @@
     "name": "PauseChanged",
     "signature": "PauseChanged(bool)"
   },
+  "0x906e5c2a5da54d2af5a8c402c4a9035d97a3742b44a5e391da95d561a84bf7a6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "deliveryId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "TransportReceived",
+    "signature": "TransportReceived(bytes32,bytes32,uint256,bytes32)"
+  },
   "0x94ce596172b9e09c39761fa5c18994d4758b1d99845c10da3ad20b86b7b8a8af": {
     "fields": [
       {
@@ -560,6 +602,57 @@
     ],
     "name": "FeesCollected",
     "signature": "FeesCollected(uint256,uint256,uint256)"
+  },
+  "0xa8456eb5cd823feca8f5635ef5c39ef504d80aba38683292cc84b8913924a8bb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "providerId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "sourceChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "destinationChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "sourceRouter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationRouter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceProvider",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationProvider",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "PolicyRegistered",
+    "signature": "PolicyRegistered(bytes32,bytes32,uint256,uint256,address,address,address,address,bytes32)"
   },
   "0xac0cf95d84e5ee01e37ba2c0c3aab21917003766b08d856b32310b6fc44abf8c": {
     "fields": [
@@ -662,6 +755,32 @@
     "name": "FeedConfigured",
     "signature": "FeedConfigured(address,address,uint32)"
   },
+  "0xcb2b99b8db573d53242a46f147b62926d703660f3d9bfcd6ddefe0d70c87d950": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "receipt",
+        "type": "bytes32"
+      }
+    ],
+    "name": "TransportSent",
+    "signature": "TransportSent(bytes32,bytes32,uint256,bytes32)"
+  },
   "0xcde340ce0756a8ebf322a0334529985972ad721a290b22b36bdee458feadd91b": {
     "fields": [],
     "name": "SystemSealed",
@@ -760,6 +879,22 @@
     ],
     "name": "RemoteRewardsSent",
     "signature": "RemoteRewardsSent(uint256,address,uint256,bytes32)"
+  },
+  "0xf04377ec608a4bbb0d427fc9e7329fd3350e839e65ae8548532c7fe9fae4dd1b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteTransportBound",
+    "signature": "RouteTransportBound(bytes32,bytes32)"
   },
   "0xf887dacc92cb9c4a8ce46c0aaef10c7a85f7758495f717c5e568259998610ed3": {
     "fields": [

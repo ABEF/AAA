@@ -17,10 +17,12 @@ def addr(number):return '0x'+f'{number:040x}'
 def proof():return {'status':'passed','commit':COMMIT,'sha256':'22'*32,'reference':'synthetic-test-evidence.json'}
 
 def fixture():
-    manifest={'schema_version':1,'release_commit':COMMIT,'canonical_chain_id':1,
+    manifest={'schema_version':2,'release_commit':COMMIT,'canonical_chain_id':1,
+        'migration':{'enabled':True,'future_onboarding_evidence':proof(),'disabled_scope_approval':proof()},
         'economics':{'reward_model':'conventional_lp_fees','mint_price_wei':'50000000000000000',
             'minimum_activation_usd18':str(500*10**18),'fee_split_bps':[5000,3000,1000,1000]},
-        'evidence':{key:proof() for key in GATE.EVIDENCE},'chains':[],'routes':[]}
+        'evidence':{key:proof() for key in GATE.EVIDENCE},'chains':[],'routes':[],'transport_policies':[]}
+    manifest['evidence']['multi_chain']=dict(proof(),kind='provider_staged_multichain')
     manifest['evidence']['independent_audit'].update(auditor='Synthetic external auditor fixture',
         independent=True,kind='external_security_audit',open_critical=0,open_high=0)
     for cid in (1,2):
@@ -29,12 +31,16 @@ def fixture():
             for i,name in enumerate(GATE.MODULES)}
         del modules['access']['controller']
         dependencies={name:{'address':addr(base+i+100),'runtime_hash':HASH,'authority_review':proof()}
-            for i,name in enumerate(('position_manager','state_view','pool_manager','permit2','zzz','transport'))}
+            for i,name in enumerate(('position_manager','state_view','pool_manager','permit2','zzz'))}
         dependencies['position_manager'].update(pool_manager=dependencies['pool_manager']['address'],permit2=dependencies['permit2']['address'])
         dependencies['state_view']['pool_manager']=dependencies['pool_manager']['address']
         dependencies['zzz'].update(address=addr(base+201),burn_model='burn(uint256):exact_local_supply_reduction',burn_evidence=proof())
-        dependencies['transport'].update(provider='Synthetic provider fixture',immutable_endpoint=True,authenticated_delivery=True,
-            funded_equivalent_assets=True,nonce_domain_replay_protection=True,finality_and_retries_reviewed=True,integration_evidence=proof())
+        provider={'provider_id':HASH,'channel_id':'0x'+'33'*32,'address':addr(base+105),'runtime_hash':HASH,
+            'router':modules['transport']['address'],'configuration_hash':'0x'+f'{cid:064x}',
+            'upgradeable':False,'immutable_configuration':True,'authenticated_delivery':True,
+            'funded_equivalent_assets':True,'nonce_domain_replay_protection':True,'finality_and_retries_reviewed':True,
+            'authority_review':proof(),'integration_evidence':proof()}
+        provider['integration_evidence'].update(kind='provider_staged_delivery',provider_id=HASH,channel_id=provider['channel_id'],chain_id=cid)
         tokens=[{'address':addr(base+200+i),'runtime_hash':HASH,'decimals':18,'canonical_asset':f'asset-{i}',
             'non_rebasing':True,'transfer_tax':False,'reward_asset':True,
             'feed':{'source':addr(base+300+i),'runtime_hash':HASH,'denomination':'USD','decimals':8,
@@ -53,8 +59,18 @@ def fixture():
                 'timelock_seconds':172800,'delay_fixed':True,'post_seal_routes_timelocked':True,
                 'migration_delay_seconds':172800,'sealed':True,'bootstrap':GATE.ZERO,'roles_and_seal_evidence':proof()},
             'constructor':{'canonical_chain_id':1,'mint_proceeds_recipient':addr(base+405),'nft_base_uri':'ipfs://synthetic',
-                'maximum_buyback_usd18':str(1000*10**18),'recipient_payment_evidence':proof()},
+                'maximum_buyback_usd18':str(1000*10**18),'recipient_payment_evidence':proof(),'adapter_transport':modules['transport']['address']},
+            'bridge_router':{'immutable_module':True,'upgradeable':False,'policy_count':2,'registered_policy_ids':[],'outbound_policy_count':1,'observation_evidence':proof()},
+            'providers':[provider],
             'dependencies':dependencies,'tokens':tokens,'sequencer':{'mode':'not_applicable','address':GATE.ZERO,'review':proof()},'pools':[pool]})
+    for source,destination in ((1,2),(2,1)):
+        a,b=manifest['chains'][source-1],manifest['chains'][destination-1];pa=a['providers'][0];pb=b['providers'][0]
+        policy={'providerId':HASH,'sourceChain':source,'sourceRouter':pa['router'],'sourceProvider':pa['address'],
+            'sourceCodeHash':pa['runtime_hash'],'sourceConfigurationHash':pa['configuration_hash'],
+            'destinationChain':destination,'destinationRouter':pb['router'],'destinationProvider':pb['address'],
+            'destinationCodeHash':pb['runtime_hash'],'destinationConfigurationHash':pb['configuration_hash'],
+            'channelId':pa['channel_id'],'reviewHash':'0x'+'22'*32,'outbound_enabled':True,'review_evidence':proof()}
+        policy['policy_id']=GATE.identity([(policy[key],typ) for key,typ in GATE.POLICY_FIELDS]);manifest['transport_policies'].append(policy)
     def route(source,destination,kind,slot=0):
         a,b=manifest['chains'][source-1],manifest['chains'][destination-1]
         item={'kind':kind,'enabled':True,'sourceChain':source,'destinationChain':destination,
@@ -68,9 +84,48 @@ def fixture():
             'destinationToken1':b['tokens'][1]['address'] if kind=='principal' else GATE.ZERO,
             'token0Decimals':18 if kind!='ack' else 0,'token1Decimals':18 if kind=='principal' else 0,
             'asset_and_authority_evidence':proof()}
-        item['route_id']=GATE.identity([(item[key],typ) for key,typ in GATE.ROUTE_FIELDS]);return item
+        item['policy_id']=next(p['policy_id'] for p in manifest['transport_policies'] if p['sourceChain']==source and p['destinationChain']==destination)
+        item['route_id']=GATE.identity([(item[key],typ) for key,typ in GATE.ROUTE_FIELDS]+[(item['policy_id'],'bytes32')]);return item
     manifest['routes']=[route(1,2,'principal'),route(2,1,'ack'),route(2,1,'reward',0),route(2,1,'reward',1),
         route(2,1,'principal'),route(1,2,'ack')]
+    for chain in manifest['chains']:chain['bridge_router']['registered_policy_ids']=[p['policy_id'] for p in manifest['transport_policies']]
+    return manifest
+
+def disabled_fixture():
+    manifest=fixture();manifest['migration']['enabled']=False
+    manifest['chains']=manifest['chains'][:1];manifest['routes']=[];manifest['transport_policies']=[]
+    manifest['chains'][0]['providers']=[]
+    manifest['chains'][0]['bridge_router'].update(policy_count=0,registered_policy_ids=[],outbound_policy_count=0)
+    del manifest['evidence']['multi_chain']
+    return manifest
+
+def onward_fixture():
+    manifest=fixture();third=copy.deepcopy(manifest['chains'][1]);third['chain_id']=3
+    third['providers'][0]['integration_evidence']['chain_id']=3;manifest['chains'].append(third)
+    for source,destination in ((2,3),(3,2),(3,1)):
+        policy=copy.deepcopy(manifest['transport_policies'][0])
+        for side,cid in (('source',source),('destination',destination)):
+            wrapper=manifest['chains'][cid-1]['providers'][0]
+            policy.update({side+'Chain':cid,side+'Router':wrapper['router'],side+'Provider':wrapper['address'],
+                side+'CodeHash':wrapper['runtime_hash'],side+'ConfigurationHash':wrapper['configuration_hash']})
+        policy['policy_id']=GATE.identity([(policy[key],typ) for key,typ in GATE.POLICY_FIELDS]);manifest['transport_policies'].append(policy)
+    for source,destination,kind,slot in ((2,3,'principal',0),(3,2,'ack',0),(3,1,'ack',0),(3,1,'reward',0),(3,1,'reward',1)):
+        route=copy.deepcopy(next(r for r in manifest['routes'] if r['kind']==kind))
+        a,b=manifest['chains'][source-1],manifest['chains'][destination-1]
+        for side,chain in (('source',a),('destination',b)):
+            route[side+'Chain']=chain['chain_id']
+            for suffix,module in (('Adapter','bridge'),('Vault','vault'),('Receiver','receiver')):route[side+suffix]=chain['modules'][module]['address']
+            route[side+'Token0']=chain['tokens'][slot]['address'] if kind!='ack' else GATE.ZERO
+            route[side+'Token1']=chain['tokens'][1]['address'] if kind=='principal' else GATE.ZERO
+        route['destinationPool']=b['pools'][0]['pool_id'] if kind=='principal' else '0x'+'00'*32
+        route['policy_id']=next(p['policy_id'] for p in manifest['transport_policies'] if p['sourceChain']==source and p['destinationChain']==destination)
+        if kind=='principal':route['canonical_graph_evidence']=proof()
+        route['route_id']=GATE.identity([(route[key],typ) for key,typ in GATE.ROUTE_FIELDS]+[(route['policy_id'],'bytes32')]);manifest['routes'].append(route)
+    for chain in manifest['chains']:
+        cid=chain['chain_id'];listed=[p['policy_id'] for p in manifest['transport_policies'] if cid in (p['sourceChain'],p['destinationChain'])]
+        if cid==1:listed.append(next(p['policy_id'] for p in manifest['transport_policies'] if p['sourceChain']==2 and p['destinationChain']==3))
+        chain['bridge_router'].update(registered_policy_ids=listed,policy_count=len(listed),
+            outbound_policy_count=sum(p['sourceChain']==cid and p['outbound_enabled'] for p in manifest['transport_policies'] if p['policy_id'] in listed))
     return manifest
 
 class ProductionConfigTests(unittest.TestCase):
@@ -83,6 +138,100 @@ class ProductionConfigTests(unittest.TestCase):
         before=copy.deepcopy(self.config);result=self.result()
         self.assertEqual(result['issues'],[]);self.assertEqual(result['status'],'ready')
         self.assertFalse(result['deployment_authorized']);self.assertEqual(self.config,before)
+    def test_canonical_only_sealed_launch_without_providers_is_consistent(self):
+        self.config=disabled_fixture();result=self.result()
+        self.assertEqual(result['issues'],[]);self.assertTrue(result['ready']);self.assertFalse(result['migration_enabled'])
+        self.assertFalse(result['deployment_authorized'])
+    def test_disabled_migration_does_not_waive_existing_release_gates(self):
+        for key in GATE.EVIDENCE:
+            with self.subTest(key=key):
+                self.config=disabled_fixture();del self.config['evidence'][key];self.blocked('evidence.missing')
+        self.config=disabled_fixture();self.config['economics']['reward_model']=None;self.blocked('reward.unsupported')
+    def test_disabled_launch_requires_future_architecture_evidence_and_scope_approval(self):
+        for key in ('future_onboarding_evidence','disabled_scope_approval'):
+            with self.subTest(key=key):
+                self.config=disabled_fixture();del self.config['migration'][key];self.blocked('evidence.missing')
+    def test_disabled_launch_rejects_any_observed_or_declared_provider_policies(self):
+        self.config=disabled_fixture();self.config['chains'][0]['bridge_router']['outbound_policy_count']=1;self.blocked('migration.not_disabled')
+        self.config=disabled_fixture();self.config['transport_policies']=[fixture()['transport_policies'][0]];self.blocked('migration.not_disabled')
+    def test_enabled_migration_requires_real_provider_delivery_evidence(self):
+        del self.config['evidence']['multi_chain'];self.blocked('evidence.missing')
+        self.config=fixture();del self.config['chains'][0]['providers'][0]['integration_evidence'];self.blocked('evidence.missing')
+        self.config=fixture();self.config['evidence']['multi_chain']['kind']='mock_model';self.blocked('provider.evidence')
+        self.config=fixture();self.config['chains'][0]['providers'][0]['integration_evidence']['channel_id']='0x'+'55'*32;self.blocked('provider.evidence')
+    def test_adapter_must_bind_fixed_router_and_all_seventeen_modules(self):
+        self.config['chains'][0]['constructor']['adapter_transport']=addr(999);self.blocked('router.binding')
+        self.config=fixture();del self.config['chains'][0]['modules']['transport'];self.blocked('hex.invalid')
+    def test_proxy_wrapper_configuration_drift_and_policy_rebinding_are_blocked(self):
+        provider=self.config['chains'][0]['providers'][0];provider['upgradeable']=True;self.blocked('provider.mutable')
+        provider.update(upgradeable=False,configuration_hash='0x'+'88'*32);self.blocked('policy.provider')
+        self.config=fixture();self.config['transport_policies'][0]['sourceProvider']=addr(999);self.blocked('policy.identity');self.blocked('policy.provider')
+    def test_policy_review_pin_and_observed_enabled_count_must_match(self):
+        self.config['transport_policies'][0]['review_evidence']['sha256']='77'*32;self.blocked('policy.review')
+        self.config=fixture();self.config['chains'][0]['bridge_router']['outbound_policy_count']=0;self.blocked('router.inventory')
+    def test_unknown_registered_policy_cannot_hide_an_inbound_provider(self):
+        router=self.config['chains'][0]['bridge_router'];router['registered_policy_ids'].append('0x'+'99'*32);router['policy_count']+=1
+        self.blocked('router.unknown')
+    def test_local_policy_missing_from_complete_registration_history_is_blocked(self):
+        router=self.config['chains'][0]['bridge_router'];router['registered_policy_ids'].pop();router['policy_count']=1
+        self.blocked('router.unlisted')
+    def test_duplicate_registration_ids_and_count_mismatch_are_blocked(self):
+        router=self.config['chains'][0]['bridge_router'];router['registered_policy_ids'].append(router['registered_policy_ids'][0])
+        self.blocked('router.duplicate')
+        self.config=fixture();self.config['chains'][0]['bridge_router']['policy_count']=3;self.blocked('router.inventory')
+    def test_canonical_remote_policy_registration_requires_complete_reviewed_graph(self):
+        self.config=onward_fixture();self.assertEqual(self.result()['issues'],[])
+        graph=next(r for r in self.config['routes'] if r['sourceChain']==2 and r['destinationChain']==3 and r['kind']=='principal')
+        del graph['canonical_graph_evidence'];self.blocked('evidence.missing')
+    def test_noncanonical_chain_cannot_register_remote_only_policy(self):
+        self.config=onward_fixture();router=self.config['chains'][2]['bridge_router']
+        router['registered_policy_ids'].append(self.config['transport_policies'][0]['policy_id']);router['policy_count']+=1
+        self.blocked('router.remote_registration')
+    def test_disabled_policy_is_not_usable_for_new_outbound_route(self):
+        self.config['transport_policies'][0]['outbound_enabled']=False
+        self.config['chains'][0]['bridge_router']['outbound_policy_count']=0
+        self.blocked('route.policy')
+    def test_new_policy_creates_new_route_identity_without_mutating_old_route(self):
+        old=copy.deepcopy(self.config['routes'][0]);policy=copy.deepcopy(self.config['transport_policies'][0])
+        policy.update(reviewHash='0x'+'77'*32,review_evidence=dict(proof(),sha256='77'*32))
+        policy['policy_id']=GATE.identity([(policy[key],typ) for key,typ in GATE.POLICY_FIELDS])
+        new=copy.deepcopy(old);new['policy_id']=policy['policy_id']
+        new['route_id']=GATE.identity([(new[key],typ) for key,typ in GATE.ROUTE_FIELDS]+[(new['policy_id'],'bytes32')])
+        self.config['transport_policies'].append(policy);self.config['routes'].append(new)
+        for chain in self.config['chains']:
+            chain['bridge_router']['policy_count']=3;chain['bridge_router']['registered_policy_ids'].append(policy['policy_id'])
+        self.config['chains'][0]['bridge_router']['outbound_policy_count']=2
+        self.assertNotEqual(new['route_id'],old['route_id']);self.assertEqual(self.config['routes'][0],old)
+        self.assertEqual(self.result()['issues'],[])
+    def test_provider_rotation_retains_disabled_old_routes_and_complete_policy_history(self):
+        old_policy=self.config['transport_policies'][0];old_policy['outbound_enabled']=False
+        old_routes=[r for r in self.config['routes'] if r['policy_id']==old_policy['policy_id']]
+        old_ids={r['route_id'] for r in old_routes}
+        for route in old_routes:route['enabled']=False
+        new_policy=copy.deepcopy(old_policy);new_policy.update(providerId='0x'+'aa'*32,channelId='0x'+'dd'*32,
+            reviewHash='0x'+'ee'*32,review_evidence=dict(proof(),sha256='ee'*32),outbound_enabled=True)
+        for side,index in (('source',0),('destination',1)):
+            wrapper=copy.deepcopy(self.config['chains'][index]['providers'][0]);wrapper.update(provider_id=new_policy['providerId'],
+                channel_id=new_policy['channelId'],address=addr(9000+index),runtime_hash='0x'+'bb'*32,configuration_hash='0x'+'cc'*32)
+            wrapper['integration_evidence'].update(provider_id=wrapper['provider_id'],channel_id=wrapper['channel_id'])
+            self.config['chains'][index]['providers'].append(wrapper)
+            new_policy.update({side+'Provider':wrapper['address'],side+'CodeHash':wrapper['runtime_hash'],side+'ConfigurationHash':wrapper['configuration_hash']})
+        new_policy['policy_id']=GATE.identity([(new_policy[key],typ) for key,typ in GATE.POLICY_FIELDS]);self.config['transport_policies'].append(new_policy)
+        for old in old_routes:
+            new=copy.deepcopy(old);new.update(policy_id=new_policy['policy_id'],enabled=True)
+            new['route_id']=GATE.identity([(new[key],typ) for key,typ in GATE.ROUTE_FIELDS]+[(new['policy_id'],'bytes32')]);self.config['routes'].append(new)
+        for chain in self.config['chains']:
+            chain['bridge_router']['registered_policy_ids'].append(new_policy['policy_id']);chain['bridge_router']['policy_count']=3
+        self.assertEqual(self.result()['issues'],[])
+        self.assertTrue(old_ids<={r['route_id'] for r in self.config['routes']});self.assertTrue(all(r['enabled'] is False for r in old_routes))
+        self.assertNotEqual(new_policy['sourceProvider'],old_policy['sourceProvider'])
+    def test_enabled_migration_requires_active_principal_and_active_settlement_paths(self):
+        for route in self.config['routes']:route['enabled']=False
+        self.blocked('route.active_principal')
+        self.config=fixture();next(r for r in self.config['routes'] if r['kind']=='ack' and r['sourceChain']==2)['enabled']=False
+        self.blocked('route.ack_missing')
+        self.config=fixture();next(r for r in self.config['routes'] if r['kind']=='reward')['enabled']=False
+        self.blocked('route.rewards_missing')
     def test_missing_every_release_evidence_gate_blocks(self):
         for key in GATE.EVIDENCE:
             with self.subTest(key=key):
@@ -124,7 +273,7 @@ class ProductionConfigTests(unittest.TestCase):
     def test_mint_recipient_cannot_be_protocol_custody(self):
         chain=self.config['chains'][0];chain['constructor']['mint_proceeds_recipient']=chain['modules']['vault']['address'];self.blocked('mint.custody')
     def test_float_boolean_integer_fields_are_not_truncated(self):
-        self.config['schema_version']=1.0;self.blocked('schema.unsupported');self.config['schema_version']=1
+        self.config['schema_version']=2.0;self.blocked('schema.unsupported');self.config['schema_version']=2
         for field,value in [('chain_id',True),('chain_id',1.9),('maximum_snapshot_age_seconds',1.0)]:
             with self.subTest(field=field,value=value):
                 previous=self.config['chains'][0][field];self.config['chains'][0][field]=value;self.blocked('integer.invalid');self.config['chains'][0][field]=previous
@@ -140,7 +289,7 @@ class ProductionConfigTests(unittest.TestCase):
         dependencies=self.config['chains'][0]['dependencies'];dependencies['position_manager']['pool_manager']=addr(99);self.blocked('uniswap.binding')
         dependencies['zzz']['burn_model']='send_to_dead_address';self.blocked('burn.unsupported')
     def test_missing_transport_authentication_backing_or_replay_protection_blocks(self):
-        transport=self.config['chains'][0]['dependencies']['transport']
+        transport=self.config['chains'][0]['providers'][0]
         for key in ('authenticated_delivery','funded_equivalent_assets','nonce_domain_replay_protection','finality_and_retries_reviewed'):
             with self.subTest(key=key):transport[key]=False;self.blocked('transport.incomplete');transport[key]=True
     def test_duplicate_route_and_mutated_identity_block(self):
@@ -157,12 +306,8 @@ class ProductionConfigTests(unittest.TestCase):
         self.config['routes']=[r for r in self.config['routes'] if r['kind']!='ack'];self.blocked('route.ack_missing')
         self.config=fixture();self.config['routes']=[r for r in self.config['routes'] if r['kind']!='reward'];self.blocked('route.rewards_missing')
     def test_onward_satellite_requires_canonical_graph_and_home_location_ack(self):
-        third=copy.deepcopy(self.config['chains'][1]);third['chain_id']=3;self.config['chains'].append(third)
-        route=copy.deepcopy(self.config['routes'][4]);route.update(sourceChain=2,destinationChain=3,
-            destinationAdapter=third['modules']['bridge']['address'],destinationVault=third['modules']['vault']['address'],
-            destinationReceiver=third['modules']['receiver']['address'],destinationPool=third['pools'][0]['pool_id'])
-        route['route_id']=GATE.identity([(route[key],typ) for key,typ in GATE.ROUTE_FIELDS]);self.config['routes'].append(route)
-        self.blocked('evidence.missing');self.blocked('route.home_ack_missing')
+        self.config=onward_fixture();self.config['routes']=[r for r in self.config['routes'] if not(r['sourceChain']==3 and r['destinationChain']==1 and r['kind']=='ack')]
+        self.blocked('route.home_ack_missing')
     def test_malformed_nested_objects_fail_closed_without_exception(self):
         for field,value in [('modules',[]),('dependencies',False),('governance','invalid'),('tokens',True),('sequencer',None)]:
             with self.subTest(field=field):

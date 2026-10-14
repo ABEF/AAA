@@ -5,11 +5,12 @@ import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Route, BridgeMessage, MessageKind} from "./libraries/ZZZTypes.sol";
+import {BridgeAssets} from "./libraries/BridgeAssets.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {IZZZRoutes, IZZZTransport, IZZZReceiver} from "./interfaces/IZZZ.sol";
 
 /// @notice Fully specified transport boundary, NOT a universal live bridge.
-/// Deploy with a separately reviewed production implementation of IZZZTransport.
+/// The sealed deployment pins this endpoint to the fixed ZZZBridgeRouter.
 contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     IZZZTransport public immutable transport;
@@ -21,27 +22,6 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
         if (endpoint.code.length == 0) revert InvalidConfiguration();
         transport = IZZZTransport(endpoint);
     }
-    function _assets(Route memory r, BridgeMessage memory m, bool inbound)
-        private pure returns (address[] memory tokens, uint256[] memory amounts) {
-        if (m.version != 2) revert InvalidConfiguration();
-        uint256 count;
-        if (m.kind == MessageKind.Principal) {
-            if (r.sourceToken0 == address(0) || r.sourceToken1 == address(0) || m.amount0 + m.amount1 == 0 ||
-                m.individual != 0 || m.collective != 0 || m.migrationId == bytes32(0)) revert InvalidAmount();
-            count = 2;
-        } else if (m.kind == MessageKind.Reward) {
-            if (r.sourceToken0 == address(0) || r.sourceToken1 != address(0) || m.amount0 == 0 || m.amount1 != 0 ||
-                m.individual + m.collective != m.amount0) revert InvalidAmount();
-            count = 1;
-        } else {
-            if (r.sourceToken0 != address(0) || r.sourceToken1 != address(0) || m.amount0 != 0 || m.amount1 != 0 ||
-                m.individual != 0 || m.collective != 0 || m.migrationId == bytes32(0)) revert InvalidAmount();
-        }
-        tokens = new address[](count);
-        amounts = new uint256[](count);
-        if (count > 0) { tokens[0] = inbound ? r.destinationToken0 : r.sourceToken0; amounts[0] = m.amount0; }
-        if (count > 1) { tokens[1] = inbound ? r.destinationToken1 : r.sourceToken1; amounts[1] = m.amount1; }
-    }
     function send(BridgeMessage calldata message) external payable live nonReentrant returns (bytes32 transportId) {
         bytes32 required = message.kind == MessageKind.Principal ? Ids.MIGRATION :
             message.kind == MessageKind.Reward ? Ids.FEES : Ids.RECEIVER;
@@ -51,7 +31,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
             r.sourceVault != access.module(Ids.VAULT)) revert InvalidConfiguration();
         BridgeMessage memory m = message;
         m.nonce = ++nonce;
-        (address[] memory tokens, uint256[] memory amounts) = _assets(r, m, false);
+        (address[] memory tokens, uint256[] memory amounts) = BridgeAssets.assets(r, m, false);
         uint256[] memory beforeBalances = new uint256[](tokens.length);
         for (uint256 i; i < tokens.length; ++i) {
             beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this));
@@ -77,7 +57,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
         bytes32 deliveryId = keccak256(abi.encode(sourceChain, sourceAdapter, m.nonce));
         if (processed[deliveryId]) revert InvalidState();
         processed[deliveryId] = true;
-        (address[] memory tokens, uint256[] memory amounts) = _assets(r, m, true);
+        (address[] memory tokens, uint256[] memory amounts) = BridgeAssets.assets(r, m, true);
         address receiver = access.module(Ids.RECEIVER);
         uint256[] memory beforeBalances = new uint256[](tokens.length);
         for (uint256 i; i < tokens.length; ++i) {

@@ -6,10 +6,12 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
 import {ZZZMigrationRegistry} from "../src/ZZZMigrationRegistry.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
+import {ZZZBridgeRouter} from "../src/ZZZBridgeRouter.sol";
+import {RouterProviderMock} from "./mocks/RouterMocks.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
-import {Ids,Position,PositionStatus,PoolKey,PoolConfig,Route,BridgeMessage,MessageKind,AckPurpose} from "../src/libraries/ZZZTypes.sol";
-import {MockAccess,MockToken,MockPools,MockRoutes,MockFeed,BoundDummy} from "./mocks/Mocks.sol";
+import {Ids,Position,PositionStatus,PoolKey,PoolConfig,Route,BridgeMessage,MessageKind,AckPurpose,TransportPolicy} from "../src/libraries/ZZZTypes.sol";
+import {MockAccess,MockToken,MockPools,MockRoutes,MockFeed,BoundDummy,MockReadyRouter} from "./mocks/Mocks.sol";
 
 contract HopVault {
     IZZZAccess public immutable access;
@@ -70,7 +72,7 @@ contract MultiHopMigrationTest is Test {
         bridge=new HopBridge(routes);migration=new ZZZMigration(address(ac));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.POOLS,address(pools));
         ac.bind(Ids.ROUTES,address(routes));ac.bind(Ids.BRIDGE,address(bridge));ac.bind(Ids.RECEIVER,receiver);
-        ac.bind(Ids.MIGRATION,address(migration));ac.setKeeper(address(this),true);ac.seal();
+        ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.TRANSPORT,address(new MockReadyRouter()));ac.setKeeper(address(this),true);ac.seal();
         PoolConfig memory cfg;cfg.key=PoolKey(address(t0),address(t1),3000,60,address(0));poolId=keccak256(abi.encode(cfg.key));pools.set(poolId,cfg);
         t0.mint(address(vault),1000);t1.mint(address(vault),1000);nft.set(ID,address(0xA11CE));
         if(chain==HOME){Position memory p=_active(HOME,address(vault),receiver,address(t0),address(t1));vault.set(ID,p);}
@@ -207,19 +209,21 @@ contract MultiHopMigrationTest is Test {
 contract MultiHopMigrationRegistryTest is Test {
     ZZZAccessController private ac;ZZZMigrationRegistry private registry;HopVault private vault;MockToken private token0;MockToken private token1;
     HopBoundPools private pools;bytes32 private localPool;
+    ZZZBridgeRouter private router;RouterProviderMock private provider;bytes32 private lastPolicy;
     function setUp() public {
         vm.chainId(1);vm.warp(1_000_000);address[] memory actors=new address[](1);actors[0]=address(this);
         ac=new ZZZAccessController(1 days,actors,actors,address(this),address(this));pools=new HopBoundPools(address(ac));
         vault=new HopVault(address(ac),block.chainid,pools);registry=new ZZZMigrationRegistry(address(ac));
+        router=new ZZZBridgeRouter(address(ac));provider=new RouterProviderMock(address(router),keccak256("test channel"));
         token0=new MockToken(6);token1=new MockToken(18);ZZZOracle oracle=new ZZZOracle(address(ac),address(0));
         PoolConfig memory c;c.key=PoolKey(address(token0),address(token1),3000,60,address(0));c.operationsEnabled=true;
         localPool=keccak256(abi.encode(c.key));pools.set(localPool,c);
         MockFeed feed=new MockFeed(8,1e8);oracle.setFeed(address(token0),address(feed),3600);oracle.setFeed(address(token1),address(feed),3600);
-        bytes32[15] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.POWER,Ids.FEES,Ids.STRATEGY,
-            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES];
+        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.POWER,Ids.FEES,Ids.STRATEGY,
+            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
         for(uint256 i;i<ids.length;i++){
             address implementation=ids[i]==Ids.VAULT?address(vault):ids[i]==Ids.ROUTES?address(registry):
-                ids[i]==Ids.ORACLE?address(oracle):ids[i]==Ids.POOLS?address(pools):address(new BoundDummy(address(ac)));ac.bind(ids[i],implementation);
+                ids[i]==Ids.TRANSPORT?address(router):ids[i]==Ids.ORACLE?address(oracle):ids[i]==Ids.POOLS?address(pools):address(new BoundDummy(address(ac)));ac.bind(ids[i],implementation);
         }
         ac.seal();
     }
@@ -230,14 +234,30 @@ contract MultiHopMigrationRegistryTest is Test {
         r.token0Decimals=6;r.token1Decimals=18;
     }
     function _schedule(Route memory r,bytes32 salt) private returns(bytes memory data){
-        data=abi.encodeCall(ZZZMigrationRegistry.add,(r));ac.schedule(address(registry),0,data,bytes32(0),salt,1 days);
+        TransportPolicy memory p;
+        p.providerId=keccak256("test provider");p.channelId=keccak256("test channel");p.reviewHash=keccak256("test review");
+        p.sourceChain=r.sourceChain;p.destinationChain=r.destinationChain;
+        p.sourceRouter=r.sourceChain==block.chainid?address(router):address(0x501);
+        p.destinationRouter=r.destinationChain==block.chainid?address(router):address(0x502);
+        p.sourceProvider=r.sourceChain==block.chainid?address(provider):address(0x601);
+        p.destinationProvider=r.destinationChain==block.chainid?address(provider):address(0x602);
+        p.sourceCodeHash=r.sourceChain==block.chainid?address(provider).codehash:keccak256("remote code");
+        p.destinationCodeHash=r.destinationChain==block.chainid?address(provider).codehash:keccak256("remote code");
+        p.sourceConfigurationHash=keccak256("test channel");p.destinationConfigurationHash=keccak256("test channel");
+        lastPolicy=keccak256(abi.encode(p));
+        if(!router.policyExists(lastPolicy)){
+            bytes memory policyData=abi.encodeCall(router.registerPolicy,(p));bytes32 policySalt=keccak256(abi.encode(salt,"policy"));
+            ac.schedule(address(router),0,policyData,bytes32(0),policySalt,1 days);vm.warp(block.timestamp+1 days);
+            ac.execute(address(router),0,policyData,bytes32(0),policySalt);
+        }
+        data=abi.encodeCall(ZZZMigrationRegistry.add,(r,lastPolicy));ac.schedule(address(registry),0,data,bytes32(0),salt,1 days);
     }
     function testFutureUnknownGraphEdgeRequiresCompletedTimelock() public {
-        Route memory r=_edge();vm.expectRevert();registry.add(r);
+        Route memory r=_edge();vm.expectRevert();registry.add(r,bytes32(0));
         bytes32 salt=keccak256("future edge");bytes memory data=_schedule(r,salt);
         vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);
         vm.warp(block.timestamp+1 days);ac.execute(address(registry),0,data,bytes32(0),salt);
-        bytes32 id=keccak256(abi.encode(r));assertTrue(registry.exists(id));assertTrue(registry.enabled(id));
+        bytes32 id=keccak256(abi.encode(r,lastPolicy));assertTrue(registry.exists(id));assertTrue(registry.enabled(id));
         (Route memory stored,)=registry.get(id);assertEq(stored.destinationChain,3);assertEq(stored.destinationVault,r.destinationVault);
     }
     function testGraphEdgesRemainAppendOnlyAfterSeal() public {
@@ -245,19 +265,19 @@ contract MultiHopMigrationRegistryTest is Test {
         vm.warp(block.timestamp+1 days);ac.execute(address(registry),0,data,bytes32(0),salt);
         salt=keccak256("duplicate");data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
         vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);
-        (Route memory stored,)=registry.get(keccak256(abi.encode(r)));assertEq(stored.destinationVault,r.destinationVault);
+        (Route memory stored,)=registry.get(keccak256(abi.encode(r,lastPolicy)));assertEq(stored.destinationVault,r.destinationVault);
     }
     function testLocalEndpointChecksStillApplyToPostSealRoutes() public {
         Route memory r=_edge();r.sourceChain=block.chainid;r.sourceVault=address(0xBAD);
         bytes32 salt=keccak256("bad local endpoint");bytes memory data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r))));
+        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r,lastPolicy))));
     }
     function testLocalDecimalsChecksStillApplyToPostSealRoutes() public {
         Route memory r=_edge();r.sourceChain=block.chainid;r.sourceVault=address(vault);
         r.sourceAdapter=ac.module(Ids.BRIDGE);r.sourceReceiver=ac.module(Ids.RECEIVER);
         r.sourceToken0=address(token0);r.sourceToken1=address(token1);r.token0Decimals=18;
         bytes32 salt=keccak256("bad local decimals");bytes memory data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r))));
+        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r,lastPolicy))));
     }
     function _incoming() private view returns(Route memory r){
         r=_edge();r.destinationChain=block.chainid;r.destinationVault=address(vault);
@@ -267,22 +287,22 @@ contract MultiHopMigrationRegistryTest is Test {
     function testLocalDestinationRequiresExistingConfiguredPool() public {
         Route memory r=_incoming();r.destinationPool=keccak256("unknown local pool");
         bytes32 salt=keccak256("unknown pool");bytes memory data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r))));
+        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r,lastPolicy))));
     }
     function testLocalDestinationRejectsWrongPoolAssetPair() public {
         Route memory r=_incoming();PoolConfig memory c=pools.get(localPool);c.key.currency1=address(0xBAD);pools.set(localPool,c);
         bytes32 salt=keccak256("wrong pool assets");bytes memory data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r))));
+        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r,lastPolicy))));
     }
     function testLocalDestinationRequiresEnabledPoolOperations() public {
         Route memory r=_incoming();PoolConfig memory c=pools.get(localPool);c.operationsEnabled=false;pools.set(localPool,c);
         bytes32 salt=keccak256("disabled local pool");bytes memory data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r))));
+        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);assertFalse(registry.exists(keccak256(abi.encode(r,lastPolicy))));
     }
     function testLocalDestinationAcceptsConfiguredPairInEitherOrder() public {
         Route memory r=_incoming();PoolConfig memory c=pools.get(localPool);
         c.key.currency0=address(token1);c.key.currency1=address(token0);pools.set(localPool,c);
         bytes32 salt=keccak256("configured reversed pool");bytes memory data=_schedule(r,salt);vm.warp(block.timestamp+1 days);
-        ac.execute(address(registry),0,data,bytes32(0),salt);assertTrue(registry.exists(keccak256(abi.encode(r))));
+        ac.execute(address(registry),0,data,bytes32(0),salt);assertTrue(registry.exists(keccak256(abi.encode(r,lastPolicy))));
     }
 }

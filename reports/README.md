@@ -2,7 +2,7 @@
 
 ## Current development review
 
-[PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) and `production/` contain the current hardening, compiled unit/fuzz/stateful tests, real dependency fork evidence, gas workloads and individually reviewed static-analysis output. The release remains blocked by external/product dependencies and independent audit. The records below describe earlier deliveries and are preserved in their original scope.
+[The future-bridge update](future-bridge/README.md) contains the latest fixed-router implementation and verification. [PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) and `production/` contain the current hardening, compiled unit/fuzz/stateful tests, real dependency fork evidence, gas workloads and individually reviewed static-analysis output. The release remains blocked by external/product dependencies and independent audit. The records below describe earlier deliveries and are preserved in their original scope.
 
 ## Original delivery evidence
 
