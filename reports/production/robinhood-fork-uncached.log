@@ -1,0 +1,13 @@
+No files changed, compilation skipped
+2026-10-14T18:27:31.536315Z  WARN traces::etherscan: etherscan config not found
+
+Ran 6 tests for test/UniswapV4Fork.t.sol:UniswapV4ForkTest
+[PASS] testActualETHUSDFeedIsPositiveAndCurrentAtPinnedBlock() (gas: 33174)
+[PASS] testActualTokenTransferBurnAndNativeWrapRoundTrip() (gas: 107225)
+[PASS] testCurrentRegistryRejectsSelectedNativeAndHookedPool() (gas: 42782)
+[PASS] testPinnedSelectedPoolIdentityAndZeroCoreFees() (gas: 52277)
+[PASS] testRealPositionMintIncreaseAndApprovalReset() (gas: 1041114)
+[PASS] testRealSwapFeeCollectionAndPositionBurn() (gas: 1093232)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 144.23s (60.05s CPU time)
+
+Ran 1 test suite in 144.24s (144.23s CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

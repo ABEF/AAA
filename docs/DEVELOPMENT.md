@@ -30,8 +30,8 @@ source .venv-slither/bin/activate
 python -m pip install --require-hashes --only-binary=:all: -r requirements-slither.lock
 bash scripts/verify-slither.sh
 # Explicit archive RPC access; no public-chain transactions are submitted:
-RUN_ROBINHOOD_FORK_TESTS=true ROBINHOOD_RPC_URL=https://robinhood.drpc.org \
-  forge test --match-contract UniswapV4ForkTest --threads 1 -vv
+ROBINHOOD_ARCHIVE_RPC_URL=https://robinhood.rpc.pinax.network \
+  python3 scripts/run-fork-checks.py
 # Longer stateful accounting run, when preparing review evidence:
 FOUNDRY_PROFILE=audit forge test --match-contract ProductionAccountingInvariantTest -vv
 forge test --match-contract ProductionGasTest -vv
@@ -40,6 +40,8 @@ forge test --match-contract ProductionGasTest -vv
 Dependency installation suppresses npm lifecycle scripts and requires the committed lockfile. It pins OpenZeppelin 5.4.0, v4-core 1.0.2, v4-periphery 1.0.3, and forge-std v1.9.7 at `77041d2ce690e692d6e03cc812b57d1ddaa4d505`, rejecting a modified forge-std checkout. The original periphery 1.0.4 request was not published on npm and caused the first GitHub Actions installation failure. `package-lock.json` records npm tarball URLs and integrity hashes; installation uses `npm ci`. CI actions use immutable reviewed release revisions. Slither and all 48 resolved packages are pinned with artifact hashes in `requirements-slither.lock` (Python 3.12; one Windows-only package).
 
 The verifier runs Python/source checks, then builds with size reporting and executes offline Foundry tests. The opt-in network suite reports one setup skip offline; an explicitly requested fork run fails if the RPC, block hash or dependency hashes do not match. CI has separate offline, static-analysis and real fork jobs. Public archive endpoints can rate limit or prune old blocks; an optional `ROBINHOOD_RPC_URL` Actions secret can provide a reviewed archive service. An RPC failure must be resolved, not converted into a passing mock test. See the latest [Ubuntu verification runs](https://github.com/ABEF/AAA/actions/workflows/verify.yml) for the exact commit.
+
+The fork runner uses a temporary loopback read-only relay to serialize archive requests at least 1.25 seconds apart. HTTP 429 alone has three bounded attempts; other failures remain failures. It forwards the actual pinned-block data without caching, fabricated responses or a latest-block fallback, denies write/sign/admin RPC methods and runs Forge with storage caching disabled. The upstream is explicit; credentials stay outside source/logs. For a reviewed higher-capacity endpoint, the direct opt-in command remains available, but anonymous endpoints may reject Foundry bursts.
 
 Solidity 0.8.26's default Yul optimizer triggered an internal bytecode-assembly error for this vault. The profile keeps `via_ir = true` and the EVM optimizer, with `optimizer_details = { yul = false }` as the tested workaround. `optimizer_runs = 1` favors deployment size. Private-helper deduplication preserves the public ABI and all custody checks while reducing vault runtime from 24,439 to **23,662 bytes**, leaving **914 bytes** below EIP-170; initcode is 24,688 bytes. No production size limit was increased. This headroom, execution gas and compiler profile still require independent review.
 

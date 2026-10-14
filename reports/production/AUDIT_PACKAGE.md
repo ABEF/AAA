@@ -10,7 +10,9 @@ This index accompanies the exact Git revision and root `MANIFEST.sha256`. It is 
 | Toolchain and locks | `foundry.toml`, `package-lock.json`, `requirements-slither.lock`, `scripts/install-deps.sh`, `.github/workflows/verify.yml` |
 | Local unit/fuzz/stateful/gas coverage | `test/`, especially `ProductionInvariants.t.sol`, `ProductionGas.t.sol`; retained final logs and invariant evidence in this directory |
 | Deployed dependency fork and market observations | `test/UniswapV4Fork.t.sol`, `current-pool.json`, `robinhood-fork-tests.log`, `bridge-capabilities.json` |
+| Fresh uncached archive verification | `robinhood-fork-uncached.json` / `.log`, `scripts/run-fork-checks.py`, `tests_python/test_fork_runner.py`; read-only paced relay, actual upstream responses |
 | Analyzer output and every recorded disposition | `slither-final.json`, `slither-final.log`, `slither-review.json`; `scripts/check-slither-review.py` |
+| Foundry lint output and individual rationale | `final-build.log`, `forge-lint-review.json`; timestamp-range assumptions are identified explicitly |
 | Operational code and regressions | `keeper/`, `indexer/`, `zzz_ops/`, `tests_python/`; `docs/OPERATIONS.md` |
 | Unready inventory and fail-closed validation | `config/production.example.json`, `scripts/validate-production-config.py`, `tests_python/test_production_config.py` |
 | Historical source/review provenance | `reports/history/`, `docs/AUDIT.md`, previous implementation and CI-repair reports |

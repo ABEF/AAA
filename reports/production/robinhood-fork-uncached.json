@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-14",
+  "scope": "actual_fixed_block_deployed_dependency_fork",
+  "rpc_public_source": "https://robinhood.rpc.pinax.network",
+  "chain_id": 4663,
+  "block_number": 88544093,
+  "block_hash": "0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490",
+  "runtime_hash_assertions": 8,
+  "passed": 6,
+  "failed": 0,
+  "skipped": 0,
+  "execution_seconds": 144.24,
+  "storage_caching_disabled": true,
+  "read_only": true,
+  "public_chain_transactions": 0,
+  "fabricated_rpc_data": false,
+  "independent_audit": false,
+  "command": "ROBINHOOD_ARCHIVE_RPC_URL=https://robinhood.rpc.pinax.network python3 scripts/run-fork-checks.py",
+  "log": "reports/production/robinhood-fork-uncached.log",
+  "scope_limitations": [
+    "Actual selected native/Pons pool is checked and rejected",
+    "Adapter operations use a separate hookless local fork pool and synthetic feeds",
+    "Transport, production pricing, economic approval and external audit remain blocked"
+  ]
+}
