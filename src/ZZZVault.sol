@@ -45,6 +45,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _isHome(Position storage p) private view returns (bool) {
         return p.homeChain == block.chainid && p.homeVault == address(this);
     }
+    function _requireOwner(uint256 id, Position storage p) private view {
+        if (!_isHome(p) || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != msg.sender) revert Unauthorized();
+    }
     function _active(uint256 id) private view {
         if (positions[id].status != PositionStatus.Active) revert InvalidState();
     }
@@ -58,6 +61,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         p.idle1 = new1;
         if (IERC20(c.key.currency0).balanceOf(address(this)) < totalIdle[c.key.currency0] ||
             IERC20(c.key.currency1).balanceOf(address(this)) < totalIdle[c.key.currency1]) revert InvalidState();
+    }
+    function _valuePair(PoolConfig memory c, uint256 amount0, uint256 amount1) private view returns (uint256) {
+        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
+        return oracle.value(c.key.currency0, amount0) + oracle.value(c.key.currency1, amount1);
     }
     function _put(uint256 id, bool create, uint128 minimumLiquidity, uint256 deadline) private returns (uint256 deployedValue) {
         Position storage p = positions[id];
@@ -88,9 +95,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this)) revert InvalidState();
         _idle(id, a0 - spent0, a1 - spent1);
         (uint256 deployed0, uint256 deployed1) = manager.amounts(p.lpTokenId);
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        deployedValue = oracle.value(c.key.currency0, deployed0) + oracle.value(c.key.currency1, deployed1);
-        uint256 idleValue = _idleValue(id);
+        deployedValue = _valuePair(c, deployed0, deployed1);
+        uint256 idleValue = _valuePair(c, p.idle0, p.idle1);
         if (deployedValue == 0 || idleValue > Math.mulDiv(deployedValue + idleValue, MAX_IDLE_BPS, 10000)) revert Slippage();
     }
     /// @notice Paid issuance creates no LP, Power or fee entitlement. Proceeds are
@@ -120,11 +126,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _deadline(deadline);
         Position storage p = positions[id];
         if (block.chainid != canonicalChainId || p.status != PositionStatus.Dormant) revert InvalidState();
-        if (!_isHome(p) || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != msg.sender) revert Unauthorized();
+        _requireOwner(id, p);
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
         if (!c.depositsEnabled || amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        uint256 valueUSD = oracle.value(c.key.currency0, amount0) + oracle.value(c.key.currency1, amount1);
+        uint256 valueUSD = _valuePair(c, amount0, amount1);
         if (valueUSD < MIN_ACTIVATION_LP_USD || valueUSD < c.minDepositUSD || valueUSD > c.maxPositionUSD) revert InvalidAmount();
         p.poolId = poolId;
         p.depositUSD = valueUSD;
@@ -145,11 +150,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _deadline(deadline);
         _active(id);
         Position storage p = positions[id];
-        if (!_isHome(p) || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != msg.sender) revert Unauthorized();
+        _requireOwner(id, p);
         PoolConfig memory c = _pool(id);
         if (!c.depositsEnabled || amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        uint256 valueUSD = oracle.value(c.key.currency0, amount0) + oracle.value(c.key.currency1, amount1);
+        uint256 valueUSD = _valuePair(c, amount0, amount1);
         if (valueUSD < c.minDepositUSD || p.depositUSD + valueUSD > c.maxPositionUSD) revert InvalidAmount();
         _harvest(id, deadline); // Old LP fees cannot be silently reinvested by v4.
         ExactToken.pull(c.key.currency0, msg.sender, amount0);
@@ -245,8 +249,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _idleValue(uint256 id) private view returns (uint256) {
         PoolConfig memory c = _pool(id);
         Position storage p = positions[id];
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        return oracle.value(c.key.currency0, p.idle0) + oracle.value(c.key.currency1, p.idle1);
+        return _valuePair(c, p.idle0, p.idle1);
     }
     function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live nonReentrant {
         _deadline(deadline);

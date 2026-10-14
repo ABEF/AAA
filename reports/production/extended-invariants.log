@@ -1,0 +1,121 @@
+No files changed, compilation skipped
+2026-10-14T17:53:14.099513Z  WARN traces::etherscan: etherscan config not found
+
+Ran 2 tests for test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest
+[PASS] invariant_custodyFeesAndClaimsRemainConserved() (runs: 256, calls: 65536, reverts: 0)
+
+╭-----------------------------+----------------+-------+---------+----------╮
+| Contract                    | Selector       | Calls | Reverts | Discards |
++===========================================================================+
+| ProductionAccountingHandler | activate       | 6035  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | claim          | 6005  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | compound       | 6022  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | donate         | 5913  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | harvest        | 5873  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | mint           | 5892  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | rebalance      | 6011  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | releaseBuyback | 6092  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | setPaused      | 5909  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | topUp          | 5844  | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | transfer       | 5940  | 0       | 0        |
+╰-----------------------------+----------------+-------+---------+----------╯
+
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 1428
+  Bound result 9618
+  Bound result 6346
+  Bound result 1505
+  Bound result 8294
+  Bound result 106
+  Bound result 3152
+  Bound result 1148
+  Bound result 2506
+  Bound result 1431
+  Bound result 6548
+  Bound result 5819
+  Bound result 7429
+  Bound result 3086
+  Bound result 384
+  Bound result 1004
+  Bound result 4599
+  Bound result 8639
+  Bound result 8
+  Bound result 14
+  Bound result 3262
+  Bound result 4562
+  Bound result 8058
+  Bound result 3382
+  Bound result 74
+  Bound result 382
+  Bound result 1694
+  Bound result 1686
+  Bound result 3
+  Bound result 503
+  Bound result 4209
+  Bound result 7
+  Bound result 146
+  Bound result 786
+  Bound result 4
+  Bound result 2598
+  Bound result 907
+  Bound result 777
+  Bound result 3592
+  Bound result 7144
+  Bound result 6015
+  Bound result 773
+  Bound result 451
+  Bound result 7140
+  Bound result 5258
+  Bound result 7458
+  Bound result 4569
+  Bound result 9765
+  Bound result 472
+  Bound result 386
+  Bound result 921
+  Bound result 1
+  Bound result 3973
+  Bound result 375
+  Bound result 1290
+  Bound result 8641
+  Bound result 1085
+  Bound result 6049
+  Bound result 9895
+  Bound result 125
+  Bound result 1050
+  Bound result 6366
+  Bound result 56
+  Bound result 212
+  Bound result 537
+  Bound result 7410
+  Bound result 2544
+  Bound result 31
+  Bound result 1087
+
+[PASS] testPausedClaimAndDormantTransferKeepPublishedHistory() (gas: 5350118)
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 109
+  Bound result 217
+  Bound result 1000
+  Bound result 1500
+  Bound result 300
+  Bound result 400
+  Bound result 211
+  Bound result 307
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 277.94s (277.95s CPU time)
+
+Ran 1 test suite in 277.95s (277.94s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

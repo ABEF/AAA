@@ -3,7 +3,19 @@ import contextlib
 import json
 import os
 from pathlib import Path
+import re
+import tempfile
 from typing import Any, Iterator
+
+def integer(value: Any, field: str, *, minimum: int = 0) -> int:
+    """Accept integer JSON values/decimal strings without truncating floats or bools."""
+    if isinstance(value, bool) or not isinstance(value, (int, str)) or \
+        isinstance(value, str) and not re.fullmatch(r'[0-9]+', value):
+        raise ValueError(f'{field} must be an integer')
+    number = int(value)
+    if number < minimum:
+        raise ValueError(f'{field} must be at least {minimum}')
+    return number
 
 def read_json(path: str | Path, default: Any = None) -> Any:
     path = Path(path)
@@ -12,8 +24,10 @@ def read_json(path: str | Path, default: Any = None) -> Any:
 def atomic_json(path: str | Path, data: Any) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True,exist_ok=True)
-    temporary = path.with_name(path.name + '.tmp')
-    fd = os.open(temporary,os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600)
+    # Exclusive random creation never follows/clobbers a pre-existing .tmp link.
+    # mkstemp creates a private 0600 file, regardless of stale file permissions.
+    fd, name = tempfile.mkstemp(prefix=f'.{path.name}.', suffix='.tmp', dir=path.parent)
+    temporary = Path(name)
     try:
         with os.fdopen(fd,'w') as handle:
             json.dump(data,handle,indent=2,sort_keys=True)

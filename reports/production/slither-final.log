@@ -1,0 +1,1003 @@
+
+Detector: arbitrary-send-erc20
+ExactToken.pull(address,address,uint256) (src/libraries/ExactToken.sol#11-18) uses arbitrary from in transferFrom: IERC20(token).safeTransferFrom(from,address(this),amount) (src/libraries/ExactToken.sol#15)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#arbitrary-from-in-transferfrom
+
+Detector: reentrancy-balance
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _approve(t0,amount0,deadline) (src/ZZZLiquidityManager.sol#84)
+		- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#61)
+	Balance read before the call:
+	- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#81)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused1`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _approve(t0,amount0,deadline) (src/ZZZLiquidityManager.sol#84)
+		- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#61)
+	Balance read before the call:
+	- before0 = IERC20(t0).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#80)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused0`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _approve(t1,amount1,deadline) (src/ZZZLiquidityManager.sol#85)
+		- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#61)
+	Balance read before the call:
+	- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#81)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused1`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _approve(t1,amount1,deadline) (src/ZZZLiquidityManager.sol#85)
+		- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#61)
+	Balance read before the call:
+	- before0 = IERC20(t0).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#80)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused0`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _reset(t0) (src/ZZZLiquidityManager.sol#97)
+		- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#64)
+	Balance read before the call:
+	- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#81)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused1`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _reset(t0) (src/ZZZLiquidityManager.sol#97)
+		- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#64)
+	Balance read before the call:
+	- before0 = IERC20(t0).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#80)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused0`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _reset(t1) (src/ZZZLiquidityManager.sol#98)
+		- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#64)
+	Balance read before the call:
+	- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#81)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused1`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- _reset(t1) (src/ZZZLiquidityManager.sol#98)
+		- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#64)
+	Balance read before the call:
+	- before0 = IERC20(t0).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#80)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused0`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- posm.modifyLiquidities(abi.encode(abi.encodePacked(MINT,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#96)
+	Balance read before the call:
+	- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#81)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused1`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- posm.modifyLiquidities(abi.encode(abi.encodePacked(MINT,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#96)
+	Balance read before the call:
+	- before0 = IERC20(t0).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#80)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused0`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- posm.modifyLiquidities(abi.encode(abi.encodePacked(INCREASE,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#96)
+	Balance read before the call:
+	- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#81)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused1`
+Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):
+	External call allowing reentrancy:
+	- posm.modifyLiquidities(abi.encode(abi.encodePacked(INCREASE,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#96)
+	Balance read before the call:
+	- before0 = IERC20(t0).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#80)
+	Possible stale balance used after the call in a condition:
+	- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#104)
+		- stale variable `unused0`
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External call allowing reentrancy:
+	- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+	Balance read before the call:
+	- before1 = IERC20(c.key.currency1).balanceOf(address(this)) (src/ZZZVault.sol#76)
+	Possible stale balance used after the call in a condition:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+		- stale variable `before1`
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External call allowing reentrancy:
+	- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+	Balance read before the call:
+	- before0 = IERC20(c.key.currency0).balanceOf(address(this)) (src/ZZZVault.sol#75)
+	Possible stale balance used after the call in a condition:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+		- stale variable `before0`
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External call allowing reentrancy:
+	- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+	Balance read before the call:
+	- before1 = IERC20(c.key.currency1).balanceOf(address(this)) (src/ZZZVault.sol#76)
+	Possible stale balance used after the call in a condition:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+		- stale variable `before1`
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External call allowing reentrancy:
+	- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+	Balance read before the call:
+	- before0 = IERC20(c.key.currency0).balanceOf(address(this)) (src/ZZZVault.sol#75)
+	Possible stale balance used after the call in a condition:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+		- stale variable `before0`
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External call allowing reentrancy:
+	- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	Balance read before the call:
+	- before1 = IERC20(c.key.currency1).balanceOf(address(this)) (src/ZZZVault.sol#76)
+	Possible stale balance used after the call in a condition:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+		- stale variable `before1`
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External call allowing reentrancy:
+	- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	Balance read before the call:
+	- before0 = IERC20(c.key.currency0).balanceOf(address(this)) (src/ZZZVault.sol#75)
+	Possible stale balance used after the call in a condition:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+		- stale variable `before0`
+Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):
+	External call allowing reentrancy:
+	- IZZZFees(access.module(Ids.FEES)).releaseBuyback(token,amount) (src/ZZZBuyback.sol#26)
+	Balance read before the call:
+	- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#25)
+	Possible stale balance used after the call in a condition:
+	- IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired (src/ZZZBuyback.sol#38)
+		- stale variable `beforeZZZ`
+	- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#41-42)
+		- stale variable `beforeZZZ`
+Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):
+	External call allowing reentrancy:
+	- acquired = IZZZLiquidity(manager).swap(poolId,zeroForOne,amount,minimum,deadline) (src/ZZZBuyback.sol#35)
+	Balance read before the call:
+	- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#25)
+	Possible stale balance used after the call in a condition:
+	- IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired (src/ZZZBuyback.sol#38)
+		- stale variable `beforeZZZ`
+	- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#41-42)
+		- stale variable `beforeZZZ`
+Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):
+	External call allowing reentrancy:
+	- (amount0,amount1) = vault.releaseForMigration(plan.nftId,migrationId,deadline) (src/ZZZMigration.sol#97)
+	Balance read before the call:
+	- before1 = IERC20(r.sourceToken1).balanceOf(address(this)) (src/ZZZMigration.sol#95)
+	Possible stale balance used after the call in a condition:
+	- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 + amount0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 + amount1 (src/ZZZMigration.sol#98-99)
+		- stale variable `before1`
+	- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#110-111)
+		- stale variable `before1`
+Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):
+	External call allowing reentrancy:
+	- (amount0,amount1) = vault.releaseForMigration(plan.nftId,migrationId,deadline) (src/ZZZMigration.sol#97)
+	Balance read before the call:
+	- before0 = IERC20(r.sourceToken0).balanceOf(address(this)) (src/ZZZMigration.sol#94)
+	Possible stale balance used after the call in a condition:
+	- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 + amount0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 + amount1 (src/ZZZMigration.sol#98-99)
+		- stale variable `before0`
+	- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#110-111)
+		- stale variable `before0`
+Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):
+	External call allowing reentrancy:
+	- IBurnable(zzz).burn(acquired) (src/ZZZBuyback.sol#40)
+	Balance read before the call:
+	- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#25)
+	Possible stale balance used after the call in a condition:
+	- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#41-42)
+		- stale variable `beforeZZZ`
+Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):
+	External call allowing reentrancy:
+	- receipt = IZZZBridge(adapter).send{value: msg.value}(m) (src/ZZZMigration.sol#107)
+	Balance read before the call:
+	- before1 = IERC20(r.sourceToken1).balanceOf(address(this)) (src/ZZZMigration.sol#95)
+	Possible stale balance used after the call in a condition:
+	- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#110-111)
+		- stale variable `before1`
+Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):
+	External call allowing reentrancy:
+	- receipt = IZZZBridge(adapter).send{value: msg.value}(m) (src/ZZZMigration.sol#107)
+	Balance read before the call:
+	- before0 = IERC20(r.sourceToken0).balanceOf(address(this)) (src/ZZZMigration.sol#94)
+	Possible stale balance used after the call in a condition:
+	- IERC20(r.sourceToken0).balanceOf(address(this)) != before0 || IERC20(r.sourceToken1).balanceOf(address(this)) != before1 (src/ZZZMigration.sol#110-111)
+		- stale variable `before0`
+Reentrancy in ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182):
+	External call allowing reentrancy:
+	- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#178)
+	Balance read before the call:
+	- beforeOutput = IERC20(output).balanceOf(msg.sender) (src/ZZZLiquidityManager.sol#175)
+	Possible stale balance used after the call in a condition:
+	- pendingSwapHash != bytes32(0) || amountOut < minimumOut || IERC20(output).balanceOf(msg.sender) != beforeOutput + amountOut (src/ZZZLiquidityManager.sol#179-180)
+		- stale variable `beforeOutput`
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities
+
+Detector: divide-before-multiply
+ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:
+	- units = total / 10 (src/ZZZFeeController.sol#61)
+	- FeesAllocated(id,token,units * 10,dust[id][token]) (src/ZZZFeeController.sol#75)
+ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:
+	- units = total / 10 (src/ZZZFeeController.sol#61)
+	- remoteIndividual[id][token] += units * 5 (src/ZZZFeeController.sol#70)
+ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:
+	- units = total / 10 (src/ZZZFeeController.sol#61)
+	- remoteCollective[id][token] += units * 3 (src/ZZZFeeController.sol#71)
+ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:
+	- units = total / 10 (src/ZZZFeeController.sol#61)
+	- accounted[token] -= units * 8 (src/ZZZFeeController.sol#67)
+ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:
+	- units = total / 10 (src/ZZZFeeController.sol#61)
+	- _credit(id,token,units * 5,units * 3) (src/ZZZFeeController.sol#68)
+ZZZStrategy._floor(int24,int24) (src/ZZZStrategy.sol#13-17) performs a multiplication on the result of a division:
+	- quotient = tick / spacing (src/ZZZStrategy.sol#14)
+	- quotient * spacing (src/ZZZStrategy.sol#16)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#divide-before-multiply
+
+Detector: incorrect-equality
+ZZZVault._allocate(uint256,address,uint256) (src/ZZZVault.sol#172-178) uses a dangerous strict equality:
+	- amount == 0 (src/ZZZVault.sol#173)
+ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219) uses a dangerous strict equality:
+	- amount0 + amount1 == 0 || minimumLiquidity == 0 (src/ZZZVault.sol#210)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dangerous-strict-equalities
+
+Detector: reentrancy-no-eth
+Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#231-248):
+	External calls:
+	- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 - amountIn,p.idle1 + amountOut) (src/ZZZVault.sol#246)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _idle(id,p.idle0 + amountOut,p.idle1 - amountIn) (src/ZZZVault.sol#247)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#220-229):
+	External calls:
+	- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	State variables written after the call(s):
+	- p.lpTokenId = 0 (src/ZZZVault.sol#226)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _idle(id,p.idle0 + IERC20(c.key.currency0).balanceOf(address(this)) - before0,p.idle1 + IERC20(c.key.currency1).balanceOf(address(this)) - before1) (src/ZZZVault.sol#227-228)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZMigrationReceiver._principal(Route,BridgeMessage) (src/ZZZMigrationReceiver.sol#36-73):
+	External calls:
+	- IZZZMigration(access.module(Ids.MIGRATION)).registerImport(m) (src/ZZZMigrationReceiver.sol#49)
+	State variables written after the call(s):
+	- receipts[m.migrationId] = Receipt(m.nftId,m.routeId,true,false) (src/ZZZMigrationReceiver.sol#50)
+	ZZZMigrationReceiver.receipts (src/ZZZMigrationReceiver.sol#14) can be used in cross function reentrancies:
+	- ZZZMigrationReceiver.receipts (src/ZZZMigrationReceiver.sol#14)
+Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#196-203):
+	External calls:
+	- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+	- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#202)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External calls:
+	- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+	- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+	State variables written after the call(s):
+	- p.centerX96 = ref (src/ZZZVault.sol#85)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External calls:
+	- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+	- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+	- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _idle(id,a0 - spent0,a1 - spent1) (src/ZZZVault.sol#96)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#124-147):
+	External calls:
+	- _balance(id,deadline) (src/ZZZVault.sol#142)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	- _put(id,true,minimumLiquidity,deadline) < MIN_ACTIVATION_LP_USD (src/ZZZVault.sol#144)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+		- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _put(id,true,minimumLiquidity,deadline) < MIN_ACTIVATION_LP_USD (src/ZZZVault.sol#144)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- p.centerX96 = ref (src/ZZZVault.sol#85)
+		- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _put(id,true,minimumLiquidity,deadline) < MIN_ACTIVATION_LP_USD (src/ZZZVault.sol#144)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):
+	External calls:
+	- IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id) (src/ZZZPower.sol#19)
+	State variables written after the call(s):
+	- totalPower += amount (src/ZZZPower.sol#21)
+	ZZZPower.totalPower (src/ZZZPower.sol#13) can be used in cross function reentrancies:
+	- ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23)
+	- ZZZPower.totalPower (src/ZZZPower.sol#13)
+Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#208)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#209)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	State variables written after the call(s):
+	- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#209)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#208)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#209)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#212)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	State variables written after the call(s):
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#212)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#212)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#208)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#209)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#212)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	- _harvest(id,deadline) (src/ZZZVault.sol#215)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _put(id,false,minimumLiquidity,deadline) (src/ZZZVault.sol#217)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+		- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _put(id,false,minimumLiquidity,deadline) (src/ZZZVault.sol#217)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- p.centerX96 = ref (src/ZZZVault.sol#85)
+		- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _put(id,false,minimumLiquidity,deadline) (src/ZZZVault.sol#217)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209):
+	External calls:
+	- _recordCanonical(m,chainId,destinationVault,true) (src/ZZZMigration.sol#197)
+		- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#181)
+	- IZZZVault(access.module(Ids.VAULT)).confirmMigration(m.nftId,chainId,destinationVault) (src/ZZZMigration.sol#201)
+	State variables written after the call(s):
+	- plan.status = Status.Completed (src/ZZZMigration.sol#203)
+	ZZZMigration.plans (src/ZZZMigration.sol#16) can be used in cross function reentrancies:
+	- ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#149-183)
+	- ZZZMigration.cancel(bytes32) (src/ZZZMigration.sol#77-83)
+	- ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209)
+	- ZZZMigration.plans (src/ZZZMigration.sol#16)
+	- ZZZMigration.propose(uint256,bytes32) (src/ZZZMigration.sol#58-76)
+Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):
+	External calls:
+	- (amount0,amount1) = vault.releaseForMigration(plan.nftId,migrationId,deadline) (src/ZZZMigration.sol#97)
+	State variables written after the call(s):
+	- plan.status = Status.Bridged (src/ZZZMigration.sol#100)
+	ZZZMigration.plans (src/ZZZMigration.sol#16) can be used in cross function reentrancies:
+	- ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#149-183)
+	- ZZZMigration.cancel(bytes32) (src/ZZZMigration.sol#77-83)
+	- ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209)
+	- ZZZMigration.plans (src/ZZZMigration.sol#16)
+	- ZZZMigration.propose(uint256,bytes32) (src/ZZZMigration.sol#58-76)
+Reentrancy in ZZZVault.finalizeImport(uint256,uint128,uint256) (src/ZZZVault.sol#315-325):
+	External calls:
+	- _balance(id,deadline) (src/ZZZVault.sol#320)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#322)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+		- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#322)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- p.centerX96 = ref (src/ZZZVault.sol#85)
+		- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- positions[id].status = PositionStatus.Active (src/ZZZVault.sol#323)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#322)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#158)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#161)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#158)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#163)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	State variables written after the call(s):
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#163)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#158)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _balanceUsing(id,deadline,true) (src/ZZZVault.sol#163)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	- _harvest(id,deadline) (src/ZZZVault.sol#165)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _put(id,false,minimumLiquidity,deadline) (src/ZZZVault.sol#167)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+		- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _put(id,false,minimumLiquidity,deadline) (src/ZZZVault.sol#167)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- p.centerX96 = ref (src/ZZZVault.sol#85)
+		- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- p.depositUSD += valueUSD (src/ZZZVault.sol#168)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _put(id,false,minimumLiquidity,deadline) (src/ZZZVault.sol#167)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#347)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#348)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	State variables written after the call(s):
+	- _pullCompound(id) (src/ZZZVault.sol#348)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#347)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#348)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#349)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	State variables written after the call(s):
+	- _close(id,deadline) (src/ZZZVault.sol#349)
+		- p.lpTokenId = 0 (src/ZZZVault.sol#226)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- p.poolId = newPool (src/ZZZVault.sol#351)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _close(id,deadline) (src/ZZZVault.sol#349)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#347)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#348)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#349)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	- _balance(id,deadline) (src/ZZZVault.sol#352)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	State variables written after the call(s):
+	- _balance(id,deadline) (src/ZZZVault.sol#352)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _balance(id,deadline) (src/ZZZVault.sol#352)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#347)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#348)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#349)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	- _balance(id,deadline) (src/ZZZVault.sol#352)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#354)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+		- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#354)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- p.centerX96 = ref (src/ZZZVault.sol#85)
+		- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#354)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#261)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#262)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	State variables written after the call(s):
+	- _pullCompound(id) (src/ZZZVault.sol#262)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#261)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#262)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#263)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	State variables written after the call(s):
+	- _close(id,deadline) (src/ZZZVault.sol#263)
+		- p.lpTokenId = 0 (src/ZZZVault.sol#226)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _close(id,deadline) (src/ZZZVault.sol#263)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#261)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#262)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#263)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	- _balance(id,deadline) (src/ZZZVault.sol#265)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	State variables written after the call(s):
+	- _balance(id,deadline) (src/ZZZVault.sol#265)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _balance(id,deadline) (src/ZZZVault.sol#265)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#261)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#262)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#263)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	- _balance(id,deadline) (src/ZZZVault.sol#265)
+		- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#267)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+		- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#267)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+		- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+		- p.centerX96 = ref (src/ZZZVault.sol#85)
+		- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#86)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _put(id,true,minimumLiquidity,deadline) (src/ZZZVault.sol#267)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reentrancy in ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#128-148):
+	External calls:
+	- _recordCanonical(m,r.destinationChain,r.destinationVault,false) (src/ZZZMigration.sol#144)
+		- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#181)
+	State variables written after the call(s):
+	- custodyEpoch[m.nftId] = m.migrationEpoch (src/ZZZMigration.sol#147)
+	ZZZMigration.custodyEpoch (src/ZZZMigration.sol#18) can be used in cross function reentrancies:
+	- ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#149-183)
+	- ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209)
+	- ZZZMigration.custodyEpoch (src/ZZZMigration.sol#18)
+	- ZZZMigration.propose(uint256,bytes32) (src/ZZZMigration.sol#58-76)
+	- ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#128-148)
+Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#270-289):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#276)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#277)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	State variables written after the call(s):
+	- _pullCompound(id) (src/ZZZVault.sol#277)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#270-289):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#276)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	- _pullCompound(id) (src/ZZZVault.sol#277)
+		- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+		- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	- _close(id,deadline) (src/ZZZVault.sol#278)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	State variables written after the call(s):
+	- _close(id,deadline) (src/ZZZVault.sol#278)
+		- p.lpTokenId = 0 (src/ZZZVault.sol#226)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _idle(id,0,0) (src/ZZZVault.sol#282)
+		- p.idle0 = new0 (src/ZZZVault.sol#60)
+		- p.idle1 = new1 (src/ZZZVault.sol#61)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- p.status = PositionStatus.Outbound (src/ZZZVault.sol#283)
+	ZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:
+	- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#326-334)
+	- ZZZVault.position(uint256) (src/ZZZVault.sol#41)
+	- _close(id,deadline) (src/ZZZVault.sol#278)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+	- _idle(id,0,0) (src/ZZZVault.sol#282)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	ZZZVault.totalIdle (src/ZZZVault.sol#19) can be used in cross function reentrancies:
+	- ZZZVault.totalIdle (src/ZZZVault.sol#19)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+Detector: uninitialized-local
+ZZZMigrationReceiver._principal(Route,BridgeMessage).origin (src/ZZZMigrationReceiver.sol#56) is a local variable never initialized
+ZZZBridgeAdapter._assets(Route,BridgeMessage,bool).count (src/ZZZBridgeAdapter.sol#27) is a local variable never initialized
+ZZZFeeController.bridgeRewards(uint256,address,bytes32).m (src/ZZZFeeController.sol#127) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+
+Detector: unused-return
+ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#69-94) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId) (src/ZZZBridgeAdapter.sol#73)
+ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#44-46) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#45)
+ZZZLiquidityManager.ticks(uint256) (src/ZZZLiquidityManager.sol#143-146) ignores return value by (None,info) = posm.getPoolAndPositionInfo(id) (src/ZZZLiquidityManager.sol#144)
+ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#168)
+ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#181)
+ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#128-148) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#130)
+ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#149-183) ignores return value by IZZZNFT(access.module(Ids.NFT)).ownerOf(m.nftId) (src/ZZZMigration.sol#162)
+ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#149-183) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#166)
+ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#186)
+ZZZMigrationReceiver.receiveMessage(uint256,address,BridgeMessage) (src/ZZZMigrationReceiver.sol#24-35) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId) (src/ZZZMigrationReceiver.sol#26)
+ZZZOracle._sequencerCheck() (src/ZZZOracle.sol#28-33) ignores return value by (None,answer,startedAt,None,None) = IPriceFeed(sequencerFeed).latestRoundData() (src/ZZZOracle.sol#30)
+ZZZOracle.price(address) (src/ZZZOracle.sol#34-43) ignores return value by (round,answer,None,updated,answeredRound) = IPriceFeed(f.source).latestRoundData() (src/ZZZOracle.sol#38)
+ZZZPoolRegistry.configure(PoolConfig) (src/ZZZPoolRegistry.sol#14-32) ignores return value by oracle.price(k.currency0) (src/ZZZPoolRegistry.sol#24)
+ZZZPoolRegistry.configure(PoolConfig) (src/ZZZPoolRegistry.sol#14-32) ignores return value by oracle.price(k.currency1) (src/ZZZPoolRegistry.sol#25)
+ZZZRewards.credit(uint256,address,uint256,uint256) (src/ZZZRewards.sol#48-66) ignores return value by IZZZNFT(access.module(Ids.NFT)).ownerOf(id) (src/ZZZRewards.sol#52)
+ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId) (src/ZZZVault.sol#259)
+ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#270-289) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId) (src/ZZZVault.sol#275)
+ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId) (src/ZZZVault.sol#345)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+Detector: calls-loop
+ZZZBridgeAdapter.send(BridgeMessage) (src/ZZZBridgeAdapter.sol#45-68) has external calls inside a loop: beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this)) (src/ZZZBridgeAdapter.sol#57)
+ZZZBridgeAdapter.send(BridgeMessage) (src/ZZZBridgeAdapter.sol#45-68) has external calls inside a loop: IERC20(tokens[i_scope_0]).balanceOf(address(this)) != beforeBalances[i_scope_0] (src/ZZZBridgeAdapter.sol#65)
+ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#69-94) has external calls inside a loop: beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this)) (src/ZZZBridgeAdapter.sol#84)
+ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#69-94) has external calls inside a loop: IERC20(tokens[i_scope_0]).balanceOf(address(this)) != beforeBalances[i_scope_0] (src/ZZZBridgeAdapter.sol#91)
+ZZZRewards._checkpoint(uint256,address) (src/ZZZRewards.sol#34-44) has external calls inside a loop: weight = IZZZPower(access.module(Ids.POWER)).powerOf(id) (src/ZZZRewards.sol#36)
+	Calls stack containing the loop:
+		ZZZRewards.checkpointAll(uint256)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+
+Detector: reentrancy-benign
+Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#231-248):
+	External calls:
+	- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#244)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 - amountIn,p.idle1 + amountOut) (src/ZZZVault.sol#246)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+	- _idle(id,p.idle0 + amountOut,p.idle1 - amountIn) (src/ZZZVault.sol#247)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#220-229):
+	External calls:
+	- IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#225)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 + IERC20(c.key.currency0).balanceOf(address(this)) - before0,p.idle1 + IERC20(c.key.currency1).balanceOf(address(this)) - before1) (src/ZZZVault.sol#227-228)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+Reentrancy in ZZZMigrationReceiver._principal(Route,BridgeMessage) (src/ZZZMigrationReceiver.sol#36-73):
+	External calls:
+	- IZZZMigration(access.module(Ids.MIGRATION)).registerImport(m) (src/ZZZMigrationReceiver.sol#49)
+	State variables written after the call(s):
+	- acceptedMessages[m.migrationId] = m (src/ZZZMigrationReceiver.sol#51)
+Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#196-203):
+	External calls:
+	- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#200)
+	- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#201)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#202)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):
+	External calls:
+	- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#83)
+	- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#84)
+	- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#88)
+	State variables written after the call(s):
+	- _idle(id,a0 - spent0,a1 - spent1) (src/ZZZVault.sol#96)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):
+	External calls:
+	- IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id) (src/ZZZPower.sol#19)
+	State variables written after the call(s):
+	- powerOf[id] += amount (src/ZZZPower.sol#20)
+Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209):
+	External calls:
+	- _recordCanonical(m,chainId,destinationVault,true) (src/ZZZMigration.sol#197)
+		- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#181)
+	- IZZZVault(access.module(Ids.VAULT)).confirmMigration(m.nftId,chainId,destinationVault) (src/ZZZMigration.sol#201)
+	State variables written after the call(s):
+	- delete activePlan[plan.nftId] (src/ZZZMigration.sol#204)
+Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):
+	External calls:
+	- _harvest(id,deadline) (src/ZZZVault.sol#158)
+		- IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#184)
+		- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#176)
+	State variables written after the call(s):
+	- _idle(id,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#161)
+		- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#58)
+		- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#59)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+Detector: reentrancy-events
+Reentrancy in ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#149-183):
+	External calls:
+	- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#181)
+	Event emitted after the call(s):
+	- LocationRecorded(m.nftId,m.migrationEpoch,destinationChain,destinationVault) (src/ZZZMigration.sol#182)
+Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):
+	External calls:
+	- IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id) (src/ZZZPower.sol#19)
+	Event emitted after the call(s):
+	- PowerIncreased(id,amount,powerOf[id]) (src/ZZZPower.sol#22)
+Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209):
+	External calls:
+	- _recordCanonical(m,chainId,destinationVault,true) (src/ZZZMigration.sol#197)
+		- vault.confirmMigration(m.nftId,destinationChain,destinationVault) (src/ZZZMigration.sol#181)
+	- IZZZVault(access.module(Ids.VAULT)).confirmMigration(m.nftId,chainId,destinationVault) (src/ZZZMigration.sol#201)
+	Event emitted after the call(s):
+	- Completed(m.migrationId,m.nftId) (src/ZZZMigration.sol#205)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-4
+
+Detector: timestamp
+ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113) uses timestamp for comparisons
+	Dangerous comparisons:
+	- plan.status != Status.Scheduled || block.timestamp < plan.earliest (src/ZZZMigration.sol#87)
+ZZZOracle._sequencerCheck() (src/ZZZOracle.sol#28-33) uses timestamp for comparisons
+	Dangerous comparisons:
+	- answer != 0 || startedAt == 0 || startedAt > block.timestamp || block.timestamp - startedAt <= SEQUENCER_GRACE (src/ZZZOracle.sol#31-32)
+ZZZOracle.price(address) (src/ZZZOracle.sol#34-43) uses timestamp for comparisons
+	Dangerous comparisons:
+	- answer <= 0 || round == 0 || answeredRound < round || updated == 0 || updated > block.timestamp || block.timestamp - updated > f.maxAge (src/ZZZOracle.sol#39-40)
+ZZZStrategy.needsRebalance(uint256) (src/ZZZStrategy.sol#41-51) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ! c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval (src/ZZZStrategy.sol#45)
+ZZZVault._active(uint256) (src/ZZZVault.sol#51-53) uses timestamp for comparisons
+	Dangerous comparisons:
+	- positions[id].status != PositionStatus.Active (src/ZZZVault.sol#52)
+ZZZVault._idle(uint256,uint256,uint256) (src/ZZZVault.sol#54-64) uses timestamp for comparisons
+	Dangerous comparisons:
+	- new0 > type()(uint128).max || new1 > type()(uint128).max (src/ZZZVault.sol#55)
+	- IERC20(c.key.currency0).balanceOf(address(this)) < totalIdle[c.key.currency0] || IERC20(c.key.currency1).balanceOf(address(this)) < totalIdle[c.key.currency1] (src/ZZZVault.sol#62-63)
+ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101) uses timestamp for comparisons
+	Dangerous comparisons:
+	- spent0 > a0 || spent1 > a1 || IERC20(c.key.currency0).balanceOf(address(this)) + spent0 != before0 || IERC20(c.key.currency1).balanceOf(address(this)) + spent1 != before1 || IPositionManagerMinimal(manager.positionManager()).ownerOf(p.lpTokenId) != address(this) (src/ZZZVault.sol#92-95)
+ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ! c.depositsEnabled || amount0 + amount1 == 0 || minimumLiquidity == 0 (src/ZZZVault.sol#155)
+	- valueUSD < c.minDepositUSD || p.depositUSD + valueUSD > c.maxPositionUSD (src/ZZZVault.sol#157)
+	- _idleValue(id) < Math.mulDiv(beforeValue,10000 - c.maxSlippageBps,10000) (src/ZZZVault.sol#166)
+ZZZVault._allocate(uint256,address,uint256) (src/ZZZVault.sol#172-178) uses timestamp for comparisons
+	Dangerous comparisons:
+	- amount == 0 (src/ZZZVault.sol#173)
+ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219) uses timestamp for comparisons
+	Dangerous comparisons:
+	- amount0 + amount1 == 0 || minimumLiquidity == 0 (src/ZZZVault.sol#210)
+	- _idleValue(id) < Math.mulDiv(beforeValue,10000 - _pool(id).maxSlippageBps,10000) (src/ZZZVault.sol#216)
+ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269) uses timestamp for comparisons
+	Dangerous comparisons:
+	- _idleValue(id) < Math.mulDiv(beforeValue,10000 - _pool(id).maxSlippageBps,10000) (src/ZZZVault.sol#266)
+ZZZVault.finalizeImport(uint256,uint128,uint256) (src/ZZZVault.sol#315-325) uses timestamp for comparisons
+	Dangerous comparisons:
+	- _idleValue(id) < Math.mulDiv(beforeValue,10000 - _pool(id).maxSlippageBps,10000) (src/ZZZVault.sol#321)
+ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356) uses timestamp for comparisons
+	Dangerous comparisons:
+	- p.poolId == newPool || minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 || oldConfig.key.currency1 != nextConfig.key.currency1 || ! nextConfig.operationsEnabled (src/ZZZVault.sol#343-344)
+ZZZModule._deadline(uint256) (src/base/ZZZModule.sol#36-38) uses timestamp for comparisons
+	Dangerous comparisons:
+	- deadline < block.timestamp || deadline > block.timestamp + 600 (src/base/ZZZModule.sol#37)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+
+Detector: cyclomatic-complexity
+ZZZMigrationRegistry.add(Route) (src/ZZZMigrationRegistry.sol#16-51) has a high cyclomatic complexity (13).
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#cyclomatic-complexity
+
+Detector: low-level-calls
+Low level call in ZZZVault.mintDormant() (src/ZZZVault.sol#104-121):
+	- (paid,None) = mintProceedsRecipient.call{value: msg.value}() (src/ZZZVault.sol#118)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+
+Detector: missing-inheritance
+ZZZBridgeAdapter (src/ZZZBridgeAdapter.sol#13-95) should inherit from IZZZBridge (src/interfaces/IZZZ.sol#84-86)
+ZZZBridgeAdapter (src/ZZZBridgeAdapter.sol#13-95) should inherit from IZZZTransportReceiver (src/interfaces/IZZZ.sol#105-107)
+ZZZLiquidityManager (src/ZZZLiquidityManager.sol#18-206) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#54-67)
+ZZZMigrationReceiver (src/ZZZMigrationReceiver.sol#11-124) should inherit from IZZZReceiver (src/interfaces/IZZZ.sol#94-96)
+ZZZMigrationRegistry (src/ZZZMigrationRegistry.sol#9-61) should inherit from IZZZPools (src/interfaces/IZZZ.sol#36-38)
+ZZZNFT (src/ZZZNFT.sol#9-25) should inherit from IZZZNFT (src/interfaces/IZZZ.sol#13-16)
+ZZZOracle (src/ZZZOracle.sol#9-64) should inherit from IZZZOracle (src/interfaces/IZZZ.sol#39-45)
+ZZZPoolRegistry (src/ZZZPoolRegistry.sol#9-37) should inherit from IZZZPools (src/interfaces/IZZZ.sol#36-38)
+ZZZStrategy (src/ZZZStrategy.sol#11-93) should inherit from IZZZStrategy (src/interfaces/IZZZ.sol#46-53)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-inheritance
+
+Detector: too-many-digits
+ZZZPoolRegistry.configure(PoolConfig) (src/ZZZPoolRegistry.sol#14-32) uses literals with too many digits:
+	- k.currency0 >= k.currency1 || k.currency0.code.length == 0 || k.currency1.code.length == 0 || k.hooks != address(0) || k.tickSpacing <= 0 || k.tickSpacing > 32767 || k.fee > 100000 || config.rangeBps < 100 || config.rangeBps > 5000 || config.triggerBps < 100 || config.triggerBps >= config.rangeBps || config.maxSpotDeviationBps == 0 || config.maxSpotDeviationBps > 500 || config.maxSpotDeviationBps >= config.rangeBps || config.maxSlippageBps == 0 || config.maxSlippageBps > 200 || k.fee >= uint24(config.maxSlippageBps) * 100 || config.minRebalanceInterval < 600 || config.minRebalanceInterval > 604800 || config.minDepositUSD == 0 || config.maxPositionUSD < config.minDepositUSD (src/ZZZPoolRegistry.sol#16-22)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#too-many-digits
+
+Detector: cache-array-length
+Loop condition i < assets.length (src/ZZZRewards.sol#46) should use cached array length instead of referencing `length` member of the storage array.
+ Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#cache-array-length
+. analyzed (80 contracts with 102 detectors), 127 result(s) found
+'forge clean' running (wd: <repository>)
+'forge config --json' running
+'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: <repository>)

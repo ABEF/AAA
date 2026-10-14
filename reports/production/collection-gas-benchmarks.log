@@ -1,0 +1,47 @@
+Compiling 2 files with Solc 0.8.26
+Solc 0.8.26 finished in 32.42s
+Compiler run successful!
+2026-10-14T17:48:59.066602Z  WARN traces::etherscan: etherscan config not found
+
+Ran 4 tests for test/ProductionGas.t.sol:ProductionGasTest
+[PASS] testGasCollection1() (gas: 3255355)
+Logs:
+  collection.1.assets.2.mintDormant: 276789
+  collection.1.assets.2.activate: 943380
+  collection.1.assets.2.topUpWithFeeCheckpoint: 1449243
+  collection.1.assets.2.harvest: 513409
+  collection.1.assets.2.checkpointAll: 93654
+  collection.1.assets.2.claimOneAsset: 66624
+
+[PASS] testGasCollection100() (gas: 3029119)
+Logs:
+  collection.100.assets.2.mintDormant: 209489
+  collection.100.assets.2.activate: 784180
+  collection.100.assets.2.topUpWithFeeCheckpoint: 1449243
+  collection.100.assets.2.harvest: 513409
+  collection.100.assets.2.checkpointAll: 93654
+  collection.100.assets.2.claimOneAsset: 66624
+
+[PASS] testGasCollection1000() (gas: 3009682)
+Logs:
+  collection.1000.assets.2.mintDormant: 209489
+  collection.1000.assets.2.activate: 784195
+  collection.1000.assets.2.topUpWithFeeCheckpoint: 1449243
+  collection.1000.assets.2.harvest: 513409
+  collection.1000.assets.2.checkpointAll: 53854
+  collection.1000.assets.2.claimOneAsset: 66624
+
+[PASS] testGasMaximum32FundedRewardAssets() (gas: 13731746)
+Logs:
+  collection.1000.assets.32.mintDormant: 209489
+  collection.1000.assets.32.activate: 1165504
+  collection.1000.assets.32.topUpWithFeeCheckpoint: 1830552
+  collection.1000.assets.32.harvest: 513409
+  collection.1000.assets.32.checkpointAll: 435163
+  collection.1000.assets.32.claimOneAsset: 66624
+  collection.1000.assets.32.funded.checkpointAll: 2499723
+  collection.1000.assets.32.funded.claim32BatchedCalls: 2363132
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 3.16s (5.50s CPU time)
+
+Ran 1 test suite in 3.17s (3.16s CPU time): 4 tests passed, 0 failed, 0 skipped (4 total tests)

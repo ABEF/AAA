@@ -10,14 +10,17 @@ from typing import Any
 from indexer.events import decode
 from zzz_ops.abi import address
 from zzz_ops.rpc import Rpc,RpcError
-from zzz_ops.state import process_lock
+from zzz_ops.state import integer, process_lock
 
 class Indexer:
     def __init__(self,config:dict[str,Any],rpc:Rpc|None=None):
-        self.config=config; self.chain=int(config['chain_id']);self.start=int(config['start_block'])
-        self.confirmations=int(config.get('confirmations',12));self.chunk=int(config.get('block_chunk',100))
-        self.max_reorg=int(config.get('max_reorg_depth',256))
-        if min(self.chain,self.confirmations,self.chunk,self.max_reorg)<=0 or self.start<0: raise ValueError('Invalid indexer configuration')
+        self.config=config
+        self.chain=integer(config['chain_id'],'chain_id',minimum=1)
+        self.start=integer(config['start_block'],'start_block')
+        self.confirmations=integer(config.get('confirmations',12),'confirmations',minimum=1)
+        self.chunk=integer(config.get('block_chunk',100),'block_chunk',minimum=1)
+        self.max_reorg=integer(config.get('max_reorg_depth',256),'max_reorg_depth',minimum=1)
+        self.poll_seconds=integer(config.get('poll_seconds',15),'poll_seconds',minimum=1)
         self.contracts=[address(a) for a in config['contracts']]
         if not self.contracts: raise ValueError('At least one contract is required')
         self.rpc=rpc or Rpc(config['rpc_urls'],self.chain)
@@ -140,7 +143,7 @@ def main()->None:
                     count=0
                 if args.once:break
                 if count==0:
-                    for _ in range(int(config.get('poll_seconds',15))):
+                    for _ in range(index.poll_seconds):
                         if stop:break
                         time.sleep(1)
         finally:index.close()

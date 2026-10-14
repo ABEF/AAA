@@ -1,5 +1,11 @@
 # Verification evidence
 
+## Current development review
+
+[PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) and `production/` contain the current hardening, compiled unit/fuzz/stateful tests, real dependency fork evidence, gas workloads and individually reviewed static-analysis output. The release remains blocked by external/product dependencies and independent audit. The records below describe earlier deliveries and are preserved in their original scope.
+
+## Original delivery evidence
+
 - `python-tests.json` and `python-tests.log`: the final executed Python test run.
 - `verify-attempt.log`: the full verification command; it intentionally exits with failure when Foundry is unavailable.
 - `source-checks.json`: narrow textual consistency checks only, not compilation or security analysis.

@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-14",
+  "kind": "isolated_semantics_preserving_vault_size_experiments",
+  "compiler_profile": {
+    "solc": "0.8.26",
+    "via_ir": true,
+    "yul_optimizer": false,
+    "optimizer_runs": 1,
+    "evm": "cancun"
+  },
+  "baseline_runtime_bytes": 24439,
+  "baseline_margin_bytes": 137,
+  "selected": "config_owner",
+  "baseline_source_sha256": "45bb57fdf7594f260762e71685293b9781db78763a9193cfb611bc3b339c2a1b",
+  "candidate_source_sha256": "0fe5ea006c98754890af05c88342b8f420ea0765dcb39c19832b6729b2f5ebc3",
+  "candidates": [
+    {
+      "candidate": "address_pair",
+      "runtime_bytes": 23885,
+      "initcode_bytes": 24918,
+      "runtime_margin_bytes": 691
+    },
+    {
+      "candidate": "config_pair",
+      "runtime_bytes": 23789,
+      "initcode_bytes": 24822,
+      "runtime_margin_bytes": 787
+    },
+    {
+      "candidate": "cached_put",
+      "runtime_bytes": 24656,
+      "initcode_bytes": 25710,
+      "runtime_margin_bytes": -80
+    },
+    {
+      "candidate": "config_owner",
+      "runtime_bytes": 23662,
+      "initcode_bytes": 24688,
+      "runtime_margin_bytes": 914
+    },
+    {
+      "candidate": "config_check",
+      "runtime_bytes": 23849,
+      "initcode_bytes": 24882,
+      "runtime_margin_bytes": 727
+    },
+    {
+      "candidate": "config_owner_check",
+      "runtime_bytes": 23722,
+      "initcode_bytes": 24748,
+      "runtime_margin_bytes": 854
+    }
+  ],
+  "public_abi_equal": true,
+  "tests": {
+    "passed": 136,
+    "failed": 0,
+    "skipped": 1,
+    "skipped_suite": "opt-in real-network fork tests disabled for isolated local comparison",
+    "invariant_runs": 32,
+    "invariant_calls": 4096,
+    "invariant_reverts": 0,
+    "fuzz_cases_per_test": 1000,
+    "log": "vault-headroom-tests.log"
+  },
+  "source_promotion": "promoted_exact_candidate_after_internal_review_and_passing_isolated_suite",
+  "post_test_runtime_bytes": 23662,
+  "promoted_source_sha256": "c56a2806f6effc9ed500996c142df27276af824a48a7ed0ad4e7b243fbbb8bc3"
+}

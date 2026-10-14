@@ -1,0 +1,256 @@
+Compiling 32 files with Solc 0.8.26
+Solc 0.8.26 finished in 138.32s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to view
+  --> test/OracleAndTransfers.t.sol:17:5:
+   |
+17 |     function testDecimalNormalization() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> test/OracleAndTransfers.t.sol:48:5:
+   |
+48 |     function testFuzzQuoteMonotonic(uint96 a,uint96 b) public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> test/RewardsAndFees.t.sol:59:5:
+   |
+59 |     function testNFTSupportsStandardERC721() public {assertTrue(nft.supportsInterface(0x80ac58cd));}
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2026-10-14T17:47:12.134109Z  WARN traces::etherscan: etherscan config not found
+
+Ran 1 test for test/UniswapV4Fork.t.sol:UniswapV4ForkTest
+[SKIP: skipped: Opt-in real-network fork suite; excluded from offline unit verification] setUp() (gas: 0)
+Suite result: ok. 0 passed; 0 failed; 1 skipped; finished in 8.41ms (0.00ns CPU time)
+
+Ran 8 tests for test/MultiHopMigration.t.sol:MultiHopMigrationRegistryTest
+[PASS] testFutureUnknownGraphEdgeRequiresCompletedTimelock() (gas: 468600)
+[PASS] testGraphEdgesRemainAppendOnlyAfterSeal() (gas: 505000)
+[PASS] testLocalDecimalsChecksStillApplyToPostSealRoutes() (gas: 134469)
+[PASS] testLocalDestinationAcceptsConfiguredPairInEitherOrder() (gas: 552058)
+[PASS] testLocalDestinationRejectsWrongPoolAssetPair() (gas: 177431)
+[PASS] testLocalDestinationRequiresEnabledPoolOperations() (gas: 172275)
+[PASS] testLocalDestinationRequiresExistingConfiguredPool() (gas: 151002)
+[PASS] testLocalEndpointChecksStillApplyToPostSealRoutes() (gas: 96645)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 14.71ms (4.83ms CPU time)
+
+Ran 10 tests for test/BridgeSecurity.t.sol:BridgeSecurityTest
+[PASS] testAuthenticatedFundedDelivery() (gas: 291511)
+[PASS] testDirectCallerCannotDeliver() (gas: 32099)
+[PASS] testInboundAllowedDuringPause() (gas: 289424)
+[PASS] testIncorrectAllocationRejected() (gas: 200849)
+[PASS] testOutboundUnauthorized() (gas: 32353)
+[PASS] testReceiverFailureIsRetryable() (gas: 495064)
+[PASS] testReplayRejected() (gas: 357168)
+[PASS] testUnfundedMessageRevertsAndNonceNotConsumed() (gas: 434544)
+[PASS] testVersionMismatchRejected() (gas: 199258)
+[PASS] testWrongSourceRejected() (gas: 169089)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 14.89ms (6.62ms CPU time)
+
+Ran 8 tests for test/AccessController.t.sol:AccessControllerTest
+[PASS] testBootstrapCannotConfigureAfterSeal() (gas: 1786567)
+[PASS] testCannotReplaceModules() (gas: 1866599)
+[PASS] testDelayCannotBeShortened() (gas: 10339)
+[PASS] testGuardianCanPauseNotUnpause() (gas: 1799749)
+[PASS] testIncompleteDeploymentCannotSeal() (gas: 15893)
+[PASS] testSealErasesBootstrap() (gas: 1790004)
+[PASS] testTimelockedKeeperChange() (gas: 1880724)
+[PASS] testWrongControllerBindingRejected() (gas: 98014)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 16.27ms (9.79ms CPU time)
+
+Ran 8 tests for test/ReceiverAndRemoteFees.t.sol:RemoteFeeReserveTest
+[PASS] testAllocationRejectsConflictingCanonicalMappingBeforeTakingFunds() (gas: 413918)
+[PASS] testBoundAssetCannotBeChangedByReceiver() (gas: 69048)
+[PASS] testDormantAndNoneCannotSendLegacyBudgets() (gas: 412755)
+[PASS] testLegacyBudgetUsesBoundCanonicalAssetAfterPoolReplacement() (gas: 763268)
+[PASS] testLegacyBudgetsBridgeInAllCustodyStates() (gas: 1399121)
+[PASS] testMappingRequiresAuthenticatedReceiver() (gas: 23984)
+[PASS] testRemoteDustStaysFundedUntilDeliveredHome() (gas: 819527)
+[PASS] testRewardSendFailureRestoresBudgetsAndFunding() (gas: 433647)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 25.20ms (13.40ms CPU time)
+
+Ran 13 tests for test/ReceiverAndRemoteFees.t.sol:MigrationReceiverSnapshotTest
+[PASS] testConflictingRemoteMappingRollsBackReceiptAndEpoch() (gas: 991409)
+[PASS] testForeignSourceCompletionAckDelegatesToMigrationValidation() (gas: 541794)
+[PASS] testHomeAckCannotUsePreviousCustodyRoute() (gas: 1257230)
+[PASS] testHomeAckHasSeparatePurposeAndCanonicalDestination() (gas: 1694080)
+[PASS] testOnwardImportKeepsCanonicalIdentityAndReordersMappings() (gas: 1239944)
+[PASS] testReturningHomeDoesNotRequireSelfChainHomeAck() (gas: 1149962)
+[PASS] testSourceAckUsesAcceptedSnapshotAfterAnotherPositionChange() (gas: 1550991)
+[PASS] testUnfinalizedReceiptCannotAcknowledge() (gas: 1189999)
+[PASS] testVaultImportFailureRollsBackCanonicalBindings() (gas: 995124)
+[PASS] testWrongCanonicalChainRejected() (gas: 262559)
+[PASS] testWrongPreviousCustodyRejectedBeforeImport() (gas: 266330)
+[PASS] testWrongPrincipalRouteRejected() (gas: 265570)
+[PASS] testZeroEpochRejected() (gas: 263571)
+Suite result: ok. 13 passed; 0 failed; 0 skipped; finished in 25.58ms (17.04ms CPU time)
+
+Ran 10 tests for test/LiquidityEncoding.t.sol:LiquidityEncodingTest
+[PASS] testApprovalsCleared() (gas: 598063)
+[PASS] testCollectUsesZeroDecreaseAndVaultRecipient() (gas: 694581)
+[PASS] testDonationsNotSweptToNextDepositor() (gas: 620139)
+[PASS] testExpiredDeadlineRejected() (gas: 30679)
+[PASS] testIncreasePreservesPositionID() (gas: 848451)
+[PASS] testInvalidTickSpacingRejected() (gas: 66359)
+[PASS] testMinimumLiquidityEnforced() (gas: 81375)
+[PASS] testMintKeepsNFTInVaultAndRefundsExactUnused() (gas: 571801)
+[PASS] testUnauthorizedMintRejected() (gas: 24654)
+[PASS] testUnsolicitedCallbackRejected() (gas: 12852)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 33.39ms (15.26ms CPU time)
+
+Ran 2 tests for test/FutureChainMigration.t.sol:FutureChainMigrationTest
+[PASS] testPostSealRoutesSupportThreeChainsReturnHomeAndRevisitSatellite() (gas: 29829060)
+[PASS] testReversedCurrenciesPreserveUnequalPrincipalAndRejectedDeliveryRollsBack() (gas: 9039622)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 105.85ms (116.30ms CPU time)
+
+Ran 12 tests for test/MultiHopMigration.t.sol:MultiHopMigrationTest
+[PASS] testCanonicalReturnRequiresExistingNFTAndCorrectAssets() (gas: 2816033)
+[PASS] testCanonicalReturnThenAnotherMigrationPreservesIdentity() (gas: 3811701)
+[PASS] testExactOldAckIsIdempotentAndAlteredOldAckRejected() (gas: 2449117)
+[PASS] testForgedPreviousLocationAndCanonicalMappingRejected() (gas: 2329280)
+[PASS] testLateSourceCompletionCannotRegressNewerCanonicalLocation() (gas: 2420260)
+[PASS] testRemoteToRemoteAckAdvancesHomeAndKeepsHistoricalRewardPaths() (gas: 2403134)
+[PASS] testReorderedLocationAckCanBeRetriedAfterEarlierAck() (gas: 2447509)
+[PASS] testSatelliteCanMigrateAndRevisitAfterSeveralAbsentEpochs() (gas: 11724834)
+[PASS] testSourceCompletionRecordsCanonicalLocationAndClearsPlan() (gas: 1914901)
+[PASS] testSourceSnapshotChangedAfterScheduleCannotExecute() (gas: 1040286)
+[PASS] testTransportFailureRestoresPrincipalEpochAndScheduledPlan() (gas: 1846764)
+[PASS] testUnauthorizedReceiverCannotUpdateCustody() (gas: 1627222)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 152.40ms (49.81ms CPU time)
+
+Ran 35 tests for test/VaultAccounting.t.sol:VaultAccountingTest
+[PASS] testActivationCannotCollectHistoricalSharedRewards() (gas: 3240207)
+[PASS] testActivationCannotIssueSecondNFTOrChargeAnotherMintFee() (gas: 1243720)
+[PASS] testActivationHonorsStricterPoolMinimum() (gas: 436102)
+[PASS] testActivationLeavesExactAttributedIdle() (gas: 1242131)
+[PASS] testActivationRejects500InputWhenActualLPIsBelow500() (gas: 1167266)
+[PASS] testActivationRequiresAtLeast500USDInput() (gas: 431563)
+[PASS] testCompoundingAddsOnlyDesignatedShare() (gas: 2309862)
+[PASS] testDonationNeverBecomesAnotherNFTPrincipal() (gas: 1235905)
+[PASS] testDormantCannotTopUpCollectCompoundRebalanceOrMigrate() (gas: 412885)
+[PASS] testDormantMintForwardsPriceWithoutLiquidityOrRewards() (gas: 466162)
+[PASS] testDormantTransferOnlyNewOwnerCanActivate() (gas: 1264525)
+[PASS] testExactly500ActualLPActivates() (gas: 1113598)
+[PASS] testFeesNotPrincipal() (gas: 1934312)
+[PASS] testFuzzMintRejectsAnyOverpayment(uint256) (runs: 1000, μ: 54985, ~: 55009)
+[PASS] testFuzzMintRejectsAnyUnderpayment(uint256) (runs: 1000, μ: 53956, ~: 53537)
+[PASS] testMigrationReleaseOnlyGoesToBoundModule() (gas: 1339845)
+[PASS] testMostlyIdleActivationRejected() (gas: 1152089)
+[PASS] testNFTUserCannotTransferUnderlyingLP() (gas: 1224325)
+[PASS] testNoOwnerWithdrawalEntrypoint() (gas: 1206548)
+[PASS] testOldDepositSelectorCannotBypassPaidMint() (gas: 42761)
+[PASS] testOnlyKeeperCanRebalance() (gas: 1212493)
+[PASS] testPauseBlocksActivationKeepsDormantNFT() (gas: 341156)
+[PASS] testPauseBlocksMint() (gas: 38784)
+[PASS] testRebalanceReplacesLPButPreservesEconomicNFT() (gas: 1745713)
+[PASS] testReceiverReentrancyCannotMintSecondNFT() (gas: 709378)
+[PASS] testRejectingNFTReceiverRollsBackMintAndPayment() (gas: 457160)
+[PASS] testRejectingTreasuryRollsBackNFTAndPayment() (gas: 17648196)
+[PASS] testSatelliteCannotIssueAnotherCollection() (gas: 38942)
+[PASS] testSelfProceedsRecipientRejected() (gas: 76429)
+[PASS] testTopUpKeepsBothNFTsAndCheckpointsFees() (gas: 2447933)
+[PASS] testTreasuryReentrancyCannotMintSecondNFT() (gas: 17935781)
+[PASS] testUnsealedSystemCannotMint() (gas: 5124435)
+[PASS] testVenueFailureRollsBackActivationKeepsPaidDormantNFT() (gas: 941433)
+[PASS] testWrongChainCannotActivateCanonicalDormantNFT() (gas: 343273)
+[PASS] testZeroProceedsRecipientRejected() (gas: 73621)
+Suite result: ok. 35 passed; 0 failed; 0 skipped; finished in 161.70ms (331.21ms CPU time)
+
+Ran 13 tests for test/OracleAndTransfers.t.sol:OracleAndTransfersTest
+[PASS] testConventionalTokenAccepted() (gas: 393658)
+[PASS] testDecimalNormalization() (gas: 83985)
+[PASS] testExtraSenderTaxRejectedAtomically() (gas: 1003629)
+[PASS] testFutureTimestampRejected() (gas: 43381)
+[PASS] testFuzzQuoteMonotonic(uint96,uint96) (runs: 1000, μ: 81786, ~: 81779)
+[PASS] testIncompleteRoundRejected() (gas: 42508)
+[PASS] testNegativeRejected() (gas: 40403)
+[PASS] testSequencerDownRejected() (gas: 1537193)
+[PASS] testSequencerGraceThenRecovery() (gas: 1551122)
+[PASS] testStaleRejected() (gas: 33803)
+[PASS] testTaxedTokenRejectedAtomically() (gas: 1009510)
+[PASS] testUnknownFeedRejected() (gas: 14454)
+[PASS] testZeroRejected() (gas: 35094)
+Suite result: ok. 13 passed; 0 failed; 0 skipped; finished in 250.68ms (244.39ms CPU time)
+
+Ran 15 tests for test/RewardsAndFees.t.sol:RewardsAndFeesTest
+[PASS] testClaimWorksWhilePaused() (gas: 300025)
+[PASS] testClaimsCannotRepeat() (gas: 317396)
+[PASS] testDustOnMigrationGoesToCanonicalNFT() (gas: 586209)
+[PASS] testFeeSplitIsExactAndBacked() (gas: 658572)
+[PASS] testFractionalClaimsRemainFunded() (gas: 3706406)
+[PASS] testFuzzFeeConservation(uint96) (runs: 1000, μ: 676063, ~: 687107)
+[PASS] testIncreasePowerCheckpointsEarlierAllocation() (gas: 421696)
+[PASS] testNFTSupportsStandardERC721() (gas: 10661)
+[PASS] testNFTTransferCarriesUnclaimedRewards() (gas: 331292)
+[PASS] testNewPowerCannotClaimPublishedPastReward() (gas: 403980)
+[PASS] testTinyFeesCannotManipulateSplit() (gas: 1155094)
+[PASS] testUnauthorizedCredit() (gas: 22448)
+[PASS] testUnauthorizedPowerChange() (gas: 22991)
+[PASS] testUnauthorizedReserveRelease() (gas: 641039)
+[PASS] testUnsafeReceiverRejected() (gas: 64373)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 814.25ms (837.28ms CPU time)
+
+Ran 2 tests for test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest
+[PASS] invariant_custodyFeesAndClaimsRemainConserved() (runs: 32, calls: 4096, reverts: 0)
+
+╭-----------------------------+----------------+-------+---------+----------╮
+| Contract                    | Selector       | Calls | Reverts | Discards |
++===========================================================================+
+| ProductionAccountingHandler | activate       | 384   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | claim          | 370   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | compound       | 323   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | donate         | 352   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | harvest        | 381   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | mint           | 370   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | rebalance      | 375   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | releaseBuyback | 368   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | setPaused      | 382   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | topUp          | 386   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | transfer       | 405   | 0       | 0        |
+╰-----------------------------+----------------+-------+---------+----------╯
+
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 3367
+  Bound result 2187
+  Bound result 7064
+  Bound result 161
+  Bound result 712
+  Bound result 9775
+  Bound result 2
+  Bound result 3773
+  Bound result 180
+  Bound result 2162
+  Bound result 50
+  Bound result 9997
+  Bound result 94
+
+[PASS] testPausedClaimAndDormantTransferKeepPublishedHistory() (gas: 5350118)
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 109
+  Bound result 217
+  Bound result 1000
+  Bound result 1500
+  Bound result 300
+  Bound result 400
+  Bound result 211
+  Bound result 307
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 15.00s (15.01s CPU time)
+
+Ran 13 test suites in 15.01s (16.63s CPU time): 136 tests passed, 0 failed, 1 skipped (137 total tests)

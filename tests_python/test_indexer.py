@@ -88,3 +88,19 @@ class IndexerTests(unittest.TestCase):
         self.assertEqual(self.idx.nft_owners(A),{})
     def test_multiple_collections_do_not_mix(self):
         self.chain.transfer(2,B);self.idx.step();self.assertEqual(self.idx.nft_owners(C),{})
+    def test_integer_configuration_rejects_floats_and_booleans(self):
+        for field in ('chain_id','start_block','confirmations','block_chunk','max_reorg_depth','poll_seconds'):
+            for value in (True,False,1.5,1.0,'1.5',None):
+                with self.subTest(field=field,value=value),self.assertRaises(ValueError):
+                    Indexer(dict(self.config,**{field:value}),self.chain)
+    def test_poll_interval_must_be_positive(self):
+        for value in (0,-1,'0'):
+            with self.subTest(value=value),self.assertRaises(ValueError):
+                Indexer(dict(self.config,poll_seconds=value),self.chain)
+    def test_decimal_string_configuration_remains_supported(self):
+        config=dict(self.config,poll_seconds='3',block_chunk='2',confirmations='2')
+        index=Indexer(config,self.chain)
+        try:
+            self.assertEqual(index.poll_seconds,3)
+            self.assertEqual(index.step(),2)
+        finally:index.close()

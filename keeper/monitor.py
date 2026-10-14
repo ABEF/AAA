@@ -18,16 +18,21 @@ import time
 from typing import Any
 from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
 from zzz_ops.rpc import Rpc, RpcError
-from zzz_ops.state import atomic_json, process_lock, read_json
+from zzz_ops.state import atomic_json, integer, process_lock, read_json
 
 def log(event: str, **fields: Any) -> None:
     print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
 
 def positive(value: Any, field: str, *, zero: bool = False) -> int:
-    if isinstance(value,bool): raise ValueError(f'{field} must be an integer')
-    n = int(value)
-    if n < (0 if zero else 1): raise ValueError(f'{field} must be positive')
-    return n
+    return integer(value,field,minimum=0 if zero else 1)
+
+def signer_environment(rpc_url: str | None = None) -> dict[str,str]:
+    """Keep host/runtime settings, excluding ambient Foundry wallet/tx overrides."""
+    blocked = ('ETH_', 'ETHERSCAN_', 'CAST_', 'FOUNDRY_', 'AWS_', 'GCP_')
+    environment = {key:value for key,value in os.environ.items()
+        if not key.startswith(blocked) and key not in ('CHAIN','PRIVATE_KEY','MNEMONIC','MNEMONIC_PASSPHRASE')}
+    if rpc_url is not None: environment['ETH_RPC_URL'] = rpc_url
+    return environment
 
 class Keeper:
     def __init__(self, config: dict[str,Any], *, live: bool = False, rpc: Rpc | None = None):
@@ -64,7 +69,8 @@ class Keeper:
                 raise ValueError('Signing files must be regular files with mode 0600')
             if st.st_uid != os.getuid(): raise ValueError('Signing files must belong to the keeper user')
         result = subprocess.run([self.cast,'wallet','address','--keystore',str(self.keystore),
-            '--password-file',str(self.password)],capture_output=True,text=True,timeout=30,check=False)
+            '--password-file',str(self.password)],env=signer_environment(),
+            capture_output=True,text=True,timeout=30,check=False)
         if result.returncode or address(result.stdout.strip()) != self.sender:
             raise ValueError('Encrypted keystore does not match configured sender')
 
@@ -101,10 +107,9 @@ class Keeper:
         if header is None or header['hash'].lower() != receipt['blockHash'].lower():
             log('receipt_reorged',transaction=tx_hash); return True
         transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])
-        if not transaction or address(transaction['from']) != self.sender or int(transaction['nonce'],16) != pending['nonce'] or \
-            address(transaction['to']) != pending['to'] or transaction['input'].lower() != pending['data'].lower() or \
-            int(transaction.get('value','0x0'),16) != pending['value']:
-            raise RpcError('Pending transaction identity mismatch')
+        self._validate_pending_transaction(transaction,pending,tx_hash)
+        if receipt.get('transactionHash','').lower() != tx_hash.lower():
+            raise RpcError('Pending receipt transaction hash mismatch')
         success = int(receipt['status'],16) == 1
         gas_price = int(receipt.get('effectiveGasPrice',transaction.get('gasPrice','0x0')),16)
         cost = int(receipt['gasUsed'],16)*gas_price + (pending['value'] if success else 0)
@@ -120,8 +125,22 @@ class Keeper:
     def resolve_pending(self, tx_hash: str) -> None:
         if not re.fullmatch(r'0x[0-9a-fA-F]{64}',tx_hash): raise ValueError('Invalid transaction hash')
         if not self.state.get('pending'): raise ValueError('No ambiguous submission exists')
-        self.state['pending']['hash'] = tx_hash.lower(); self.save()
+        pending = self.state['pending']
+        # Verify the human-supplied candidate BEFORE changing durable recovery state.
+        transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])
+        self._validate_pending_transaction(transaction,pending,tx_hash)
+        pending['hash'] = tx_hash.lower(); self.save()
         self.poll_pending()  # Independently checks sender, nonce, target and calldata.
+
+    def _validate_pending_transaction(self,transaction: Any,pending: dict[str,Any],tx_hash: str) -> None:
+        try:
+            valid = isinstance(transaction,dict) and transaction.get('hash','').lower() == tx_hash.lower() and \
+                address(transaction['from']) == self.sender and int(transaction['nonce'],16) == pending['nonce'] and \
+                address(transaction['to']) == pending['to'] and transaction['input'].lower() == pending['data'].lower() and \
+                int(transaction.get('value','0x0'),16) == pending['value']
+        except (KeyError,TypeError,ValueError,AttributeError):
+            valid = False
+        if not valid: raise RpcError('Pending transaction identity mismatch')
 
     def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0) -> bool:
         if self.state.get('pending'): return False
@@ -148,10 +167,11 @@ class Keeper:
         nonce = int(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),16)
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
-        command = [self.cast,'send',to,'--data',data,'--keystore',str(self.keystore),
+        # Foundry 1.4.4 accepts raw calldata as positional SIG; --data is invalid.
+        command = [self.cast,'send',to,data,'--from',self.sender,'--keystore',str(self.keystore),
             '--password-file',str(self.password),'--chain',str(self.chain),'--nonce',str(nonce),
             '--gas-limit',str(gas_limit),'--gas-price',str(gas_price),'--value',str(value),'--async','--json']
-        environment = dict(os.environ,ETH_RPC_URL=self.rpc.active_url)
+        environment = signer_environment(self.rpc.active_url)
         try:
             result = subprocess.run(command,env=environment,capture_output=True,text=True,timeout=90,check=False)
             if result.returncode: raise RuntimeError('Signer command failed; broadcast status must be checked')
@@ -181,19 +201,22 @@ class Keeper:
             try:
                 fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('position(uint256)',nft)))
                 if len(fields) != 15: raise RpcError('Unexpected vault Position ABI')
-                if int(fields[7],16) != 1: continue
-                _,fresh = self._head(); deadline = fresh+180
-                if self.view('strategy','needsRebalance(uint256)',nft):
-                    if self.submit('vault','rebalance(uint256,uint128,uint256)',(nft,minimum,deadline),f'rebalance:{nft}'): return
-                if item.get('compound'):
-                    tokens = [address(t) for t in item['tokens']]
-                    reserves = [self.view('fees','compoundBalance(uint256,address)',nft,t) for t in tokens]
-                    threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
-                    if max(reserves,default=0) >= threshold:
-                        if self.submit('compounder','compound(uint256,uint128,uint256)',(nft,minimum,deadline),f'compound:{nft}'): return
-                interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
-                if item.get('harvest') and now-int(self.state['last'].get(f'harvest:{nft}',0)) >= interval:
-                    if self.submit('vault','collectFees(uint256,uint256)',(nft,deadline),f'harvest:{nft}'): return
+                status = int(fields[7],16)
+                if status not in (1,2,3,4): continue
+                if status == 1:
+                    _,fresh = self._head(); deadline = fresh+180
+                    if self.view('strategy','needsRebalance(uint256)',nft):
+                        if self.submit('vault','rebalance(uint256,uint128,uint256)',(nft,minimum,deadline),f'rebalance:{nft}'): return
+                    if item.get('compound'):
+                        tokens = [address(t) for t in item['tokens']]
+                        reserves = [self.view('fees','compoundBalance(uint256,address)',nft,t) for t in tokens]
+                        threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
+                        if max(reserves,default=0) >= threshold:
+                            if self.submit('compounder','compound(uint256,uint128,uint256)',(nft,minimum,deadline),f'compound:{nft}'): return
+                    interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
+                    if item.get('harvest') and now-int(self.state['last'].get(f'harvest:{nft}',0)) >= interval:
+                        if self.submit('vault','collectFees(uint256,uint256)',(nft,deadline),f'harvest:{nft}'): return
+                # Funded satellite rewards remain deliverable after principal leaves.
                 for remote in item.get('reward_routes',[]):
                     token = address(remote['token'])
                     personal = self.view('fees','remoteIndividual(uint256,address)',nft,token)

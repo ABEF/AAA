@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -23,3 +24,31 @@ class StateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             with process_lock(Path(d)/'lock'):pass
             with process_lock(Path(d)/'lock'):pass
+    def test_stale_predictable_temporary_file_is_never_clobbered(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'state.json';stale=Path(d)/'state.json.tmp'
+            stale.write_text('leave untouched');atomic_json(p,{'pending':7})
+            self.assertEqual(stale.read_text(),'leave untouched')
+            self.assertEqual(read_json(p),{'pending':7})
+            self.assertFalse(list(Path(d).glob('.state.json.*.tmp')))
+    def test_predictable_temp_hardlink_cannot_overwrite_another_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'state.json';victim=Path(d)/'unrelated'
+            victim.write_text('retain original');os.link(victim,Path(d)/'state.json.tmp')
+            atomic_json(p,{'pending':7})
+            self.assertEqual(victim.read_text(),'retain original')
+            self.assertEqual(read_json(p),{'pending':7})
+    @unittest.skipUnless(os.name=='posix','Unix symlink/permission semantics required')
+    def test_predictable_temp_symlink_cannot_overwrite_another_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'state.json';victim=Path(d)/'unrelated'
+            victim.write_text('retain original');(Path(d)/'state.json.tmp').symlink_to(victim)
+            atomic_json(p,{'pending':7})
+            self.assertEqual(victim.read_text(),'retain original')
+            self.assertEqual(p.stat().st_mode&0o777,0o600)
+    def test_serialization_failure_retains_previous_state_and_removes_exclusive_temp(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'state.json';atomic_json(p,{'pending':7})
+            with self.assertRaises(TypeError):atomic_json(p,{'invalid':object()})
+            self.assertEqual(read_json(p),{'pending':7})
+            self.assertFalse(list(Path(d).glob('.state.json.*.tmp')))

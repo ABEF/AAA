@@ -1,10 +1,20 @@
+import json
 import unittest
+from pathlib import Path
 from zzz_ops.abi import address,calldata,decode_words,keccak256,uint_result,word
 from indexer.events import decode
 
 class AbiTests(unittest.TestCase):
     def test_keccak_empty(self):self.assertEqual(keccak256(b'').hex(),'c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470')
     def test_keccak_abc(self):self.assertEqual(keccak256(b'abc').hex(),'4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c45')
+    def test_keccak_rate_boundaries_and_long_inputs(self):
+        # Fixed vectors independently compared with cast 1.4.4 and PyCryptodome.
+        path=Path(__file__).resolve().parents[1]/'reports/production/keccak-vectors.json'
+        vectors=json.loads(path.read_text(encoding='utf-8'))['vectors']
+        for vector in vectors:
+            with self.subTest(length=vector['length']):
+                data=bytes(i % 256 for i in range(vector['length']))
+                self.assertEqual(keccak256(data).hex(),vector['ethereum_keccak256'])
     def test_transfer_selector(self):self.assertTrue(calldata('transfer(address,uint256)','0x'+'11'*20,1).startswith('0xa9059cbb'))
     def test_balance_of_selector(self):self.assertTrue(calldata('balanceOf(address)','0x'+'11'*20).startswith('0x70a08231'))
     def test_uint_limits(self):

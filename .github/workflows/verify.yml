@@ -7,22 +7,80 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.11'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
-      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1
         with:
           version: v1.4.4
+          cache: false
       - run: bash scripts/install-deps.sh
       - run: bash scripts/verify.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
         with:
           name: verification-evidence
           path: reports/
-# This workflow was written, NOT run, in the delivery environment.
-# Pin workflow actions to reviewed immutable SHAs before a release workflow is trusted.
+  static-analysis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1
+        with:
+          version: v1.4.4
+          cache: false
+      - run: bash scripts/install-deps.sh
+      - run: python3 -m pip install --require-hashes --only-binary=:all: -r requirements-slither.lock
+      - run: bash scripts/verify-slither.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: static-analysis-evidence
+          path: reports/production/slither-current.*
+  robinhood-fork:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      RUN_ROBINHOOD_FORK_TESTS: 'true'
+      # Optional archive endpoint; the public fallback contains no credentials.
+      ROBINHOOD_RPC_URL: ${{ secrets.ROBINHOOD_RPC_URL || 'https://robinhood.drpc.org' }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1
+        with:
+          version: v1.4.4
+          cache: false
+      - run: bash scripts/install-deps.sh
+      - name: Pinned deployed dependency tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/production
+          forge test --match-contract UniswapV4ForkTest --threads 1 -vvv 2>&1 | tee reports/production/robinhood-fork-current.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: robinhood-fork-evidence
+          path: reports/production/robinhood-fork-current.log
+# Immutable action revisions and dependency checks support development verification.
+# Passing this workflow does not authorize a funded deployment or replace an audit.

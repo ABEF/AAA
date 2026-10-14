@@ -108,7 +108,7 @@ Both use Python 3.11+ and shared utilities in `zzz_ops/`. Keeper state locking r
 
 ## Development status
 
-**v0.2 review candidate. Do not deploy with real funds.** The source-level review was performed by the same assistant that rewrote the code; it is not an independent audit.
+**Development candidate. Do not deploy with real funds.** The [production-readiness review](reports/PRODUCTION_READINESS.md) records the current hardening and evidence. Internal reviews by collaborating agents do not constitute an independent audit.
 
 | Evidence | Status |
 |---|---|
@@ -116,13 +116,18 @@ Both use Python 3.11+ and shared utilities in `zzz_ops/`. Keeper state locking r
 | Publication check on Windows | 81 passed, 1 failed, 2 errors; three state tests require Unix permissions/`fcntl` |
 | Solidity unit/fuzz verification | Paid-mint and repeated-migration tests execute the development contracts with mocked LP venues/transport; see current [implementation evidence](reports/IMPLEMENTATION_UPDATE.md) |
 | Solidity compilation and module bytecode sizes | All contracts/tests/scripts compile; all 16 modules fit standard EVM size limits |
-| Slither, real Uniswap fork tests | Not completed |
+| Stateful EVM accounting | Independent integer-ledger handler model; default 32 runs × 128 calls, with a larger audit profile |
+| Slither | 0.11.6 completed; all 127 findings individually recorded; CI rejects source drift and unreviewed findings |
+| Real Uniswap fork tests | Six tests passed at a fixed Robinhood block/hash with deployed dependencies; the requested Pons pool is checked and rejected, adapter flows use a separate local hookless test pool |
+| Gas benchmarks | 1/100/1,000 NFTs and 32 funded reward assets; mock venue costs are explicitly separated from real network costs |
 | Production bridge transport and real cross-chain tests | Not completed |
 | Independent security audit | Not performed |
 
 Python model tests do not execute Solidity. The Windows Python result does not supersede the historical Linux-environment evidence; both are retained. The earlier repaired Ubuntu run passed 84 Python and 70 Solidity tests. Publication findings remain in [publication verification](reports/PUBLICATION_CHECKS.json), and historical build results remain in [CI repair evidence](reports/CI_REPAIR.md). New implementation evidence is recorded separately. Check the latest [GitHub Actions run](https://github.com/ABEF/AAA/actions/workflows/verify.yml) for the exact commit's complete CI status.
 
 Current limits include contribution-based Power, at most 32 reward assets, direct-route buybacks, equivalent-asset migration rather than arbitrary asset conversion, and no satellite user top-ups. Native-ETH/hook integration for the selected Robinhood pool and a reviewed production bridge are still pending. See [economic rules](docs/ECONOMICS.md), [security entry point](SECURITY.md), and the [release checklist](docs/RELEASE_CHECKLIST.md).
+
+The revenue source remains **undecided**: the user deferred choosing a Pons hook share or a new pool. No percentage, payout agreement, recipient authority or alternative production pool is assumed. The repository now includes a [blocked production inventory template](config/production.example.json) and a read-only validator; a complete manifest still needs authentic external evidence and separately authorized deployment.
 
 ## Repository guide
 

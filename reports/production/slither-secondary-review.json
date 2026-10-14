@@ -1,0 +1,511 @@
+{
+  "date": "2026-10-14",
+  "kind": "secondary_internal_source_review_of_selected_slither_findings",
+  "independent_external_audit": false,
+  "raw_report": "slither-raw.json",
+  "raw_sha256": "159f753fd986ae0ad6c13980f881b38301a984f102a0cfe66ae53268affd12ef",
+  "scope": "55 High/Medium reentrancy and arbitrary-send findings from the PRE-refactor scan; root reruns final scan separately",
+  "findings": [
+    {
+      "baseline_detector_index": 0,
+      "slither_id": "d7f19c6bdf4cc2a964be3b00245df9ba1058329917385c8c3fe2293edec3daef",
+      "check": "arbitrary-send-erc20",
+      "tool_impact": "High",
+      "subject": "ExactToken.pull(address,address,uint256) (src/libraries/ExactToken.sol#11-18) uses arbitrary from in transferFrom: IERC20(token).safeTransferFrom(from,address(this),amount) (src/libraries/ExactToken.sol#15)",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "ExactToken.pull is an internal library helper. Current production callers pass their checked msg.sender: NFT owner, bound Vault/Fees/Receiver/Bridge module, or fixed transport. No public entrypoint supplies a third-party victim from address. Both sender and recipient deltas are checked. This is not evidence that malicious tokens are safe."
+    },
+    {
+      "baseline_detector_index": 1,
+      "slither_id": "0ce0404938a9f3b49f3a5d64755efef772f91a94aace9bf8563896a211045915",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 2,
+      "slither_id": "261ca5cc14c09428a472bdf3610099a31eb0c9433c544f5e80bf513b15dd3673",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 3,
+      "slither_id": "3a2755e5d3a34efe9ee614d341fa83b0139cd892716a818b9220e919455d56f2",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 4,
+      "slither_id": "4ac551439f9cb6d1eb145ba5ede9284830f814682bbe26205b2d0c2cad100d04",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 5,
+      "slither_id": "500885c278d3398b825b7a37cfd8badce0d6502418e1ce3bdb52ffa841b625d4",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 6,
+      "slither_id": "52f424ec0e23c0ca843a2303d167f76d13cf2ed49ee73137f3ab732608c21c14",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 7,
+      "slither_id": "5b15f55068b1a61783e9661bc353e612ee19cebd28128860ea3d719bb00727e8",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 8,
+      "slither_id": "5b827037515d843a11b37be01590c7570ae54e3c711263553e56d20e8f66bdd5",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Fee release is from the bound fee module, swaps use the bound LiquidityManager, and token balance plus totalSupply decreases are checked after burning. No repeat execute is reachable through a token/venue callback while its guard is entered. The fetched ZZZ source inherits ERC20Burnable. Actual runtime/burn integration and wrapped/global supply semantics require separate validation; the reentrancy guard review does not establish them."
+    },
+    {
+      "baseline_detector_index": 9,
+      "slither_id": "5f045a6132e33e2860bc9040d64d88ff81f2f139c09cbf2e245f05a34dab6cd2",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 10,
+      "slither_id": "62fef2ff25ea0c66188112e6ce0e2df8a5f2586b43ef18a531aac15a5460be1d",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 11,
+      "slither_id": "631c37b0be98a841846e2086128a1f44220813c68c3eb5c7433d804f1a5f0138",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 12,
+      "slither_id": "68c20e0691d90b5c9a68a11f0bc7cbb56840701e0aed88874edf1114c3a10af4",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Source Vault release is guarded; Bridge.send is guarded before calling the immutable transport. Synchronous transport delivery cannot reenter the same Bridge adapter. Other Migration metadata entries require the sealed Receiver, or timelocked governance, and enforce plan/epoch/custody snapshots. Provider-specific asynchronous authentication, funding and cancellation behavior still require implementation/review."
+    },
+    {
+      "baseline_detector_index": 13,
+      "slither_id": "7d6528f564050017db9e1111902ddb5ba66b8841569bfbe6dcd7313043b00180",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 14,
+      "slither_id": "7e5a0b13ab1c72baa5a526cf6acc5704dc601f8e1e005ec88fc54c04fdd3326f",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Source Vault release is guarded; Bridge.send is guarded before calling the immutable transport. Synchronous transport delivery cannot reenter the same Bridge adapter. Other Migration metadata entries require the sealed Receiver, or timelocked governance, and enforce plan/epoch/custody snapshots. Provider-specific asynchronous authentication, funding and cancellation behavior still require implementation/review."
+    },
+    {
+      "baseline_detector_index": 15,
+      "slither_id": "8609878f1216bee43c2cba70fc3404542b963faec1d3c621813ef4d3196f701c",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 16,
+      "slither_id": "8e93c9b87688c818bd3af0db2b1dd9ec757d7e1fa0488be54136b206eb67c32c",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 17,
+      "slither_id": "9124728af1b391b1cd3cc407f76fc1449ce66461bdbbda718c384cf62cebb569",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 18,
+      "slither_id": "99edf6a4bf9a2d4a2e1ddf20ef425769abc797150e0dcf02e3e3aded35402bcc",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Fee release is from the bound fee module, swaps use the bound LiquidityManager, and token balance plus totalSupply decreases are checked after burning. No repeat execute is reachable through a token/venue callback while its guard is entered. The fetched ZZZ source inherits ERC20Burnable. Actual runtime/burn integration and wrapped/global supply semantics require separate validation; the reentrancy guard review does not establish them."
+    },
+    {
+      "baseline_detector_index": 19,
+      "slither_id": "9b0864ba488f582f4a6f465adf66feb225e134633107d9f42640bf842c49da77",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 20,
+      "slither_id": "b6c5062080e4c52983f57a9ad4173edada4f429a6908f5005fc962644e97c31d",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Fee release is from the bound fee module, swaps use the bound LiquidityManager, and token balance plus totalSupply decreases are checked after burning. No repeat execute is reachable through a token/venue callback while its guard is entered. The fetched ZZZ source inherits ERC20Burnable. Actual runtime/burn integration and wrapped/global supply semantics require separate validation; the reentrancy guard review does not establish them."
+    },
+    {
+      "baseline_detector_index": 21,
+      "slither_id": "c3a789c79728d872d0e93968d9d07d0a81c5f9372ec031dbb56d2b6b481c774e",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 22,
+      "slither_id": "c471da67f934004c26e07be4fd231a3692106d5b971b6e1314638aab2ababdf5",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Source Vault release is guarded; Bridge.send is guarded before calling the immutable transport. Synchronous transport delivery cannot reenter the same Bridge adapter. Other Migration metadata entries require the sealed Receiver, or timelocked governance, and enforce plan/epoch/custody snapshots. Provider-specific asynchronous authentication, funding and cancellation behavior still require implementation/review."
+    },
+    {
+      "baseline_detector_index": 23,
+      "slither_id": "d46522e819c42e7629a3d4bdd140716e0bbe84fc304aba8d299aea2acb32ba9e",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 24,
+      "slither_id": "e99c59802c7ad0ea74e66696ceaa14c77c49149f0ecb297fbcdb8e5e8c3fb716",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "mint/increase/collect/close/swap are nonReentrant with bound-module callers. The intentional unguarded unlockCallback requires the immutable PoolManager and an exact pending payload hash, then clears that hash before settlement. Repeated callbacks or unrelated payloads fail. Exact transfer and output checks constrain measured deltas; dependency authentication and native/hook compatibility remain separate integration gates."
+    },
+    {
+      "baseline_detector_index": 25,
+      "slither_id": "f2cd45b468c3c462be67a678ecb3e259cd078b639d6119fa99855502b4abdc30",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Source Vault release is guarded; Bridge.send is guarded before calling the immutable transport. Synchronous transport delivery cannot reenter the same Bridge adapter. Other Migration metadata entries require the sealed Receiver, or timelocked governance, and enforce plan/epoch/custody snapshots. Provider-specific asynchronous authentication, funding and cancellation behavior still require implementation/review."
+    },
+    {
+      "baseline_detector_index": 26,
+      "slither_id": "fecc4863ac36951990362e62bf4fb689e9a9107667bd28bb4f048e9f3bccd15f",
+      "check": "reentrancy-balance",
+      "tool_impact": "High",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 35,
+      "slither_id": "004958ed1d836996a318c16a642728fff3c195101ed4db7f820cf533b9e9c39f",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#227-244):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 36,
+      "slither_id": "018837a9f691391459515701d20a4db1dc94909f3dd00672cb38bcb296c9c62b",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#333-353):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 37,
+      "slither_id": "0616ef724572a20ba157d795edde7f976c4c4264c0e9ad3444f6c61003982f78",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#333-353):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 38,
+      "slither_id": "08435aedf0e3b689833fc45c8fc13d051cb9598593811d109a6a74853b473978",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 39,
+      "slither_id": "19c8e38b52aa96320fc3e48088f99546b532900474602730e2ac20504e061701",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#333-353):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 40,
+      "slither_id": "1e3e187d1bc0b7f06adbeccff9869c59f0947b95e2bac4459c7dee9d163202f9",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#251-266):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 41,
+      "slither_id": "282629a26a4bf36a846243997c12f86ff5c2eb817af0e8ac5ed2fcae5be46f3e",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#84-113):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyKeeper live nonReentrant. Source Vault release is guarded; Bridge.send is guarded before calling the immutable transport. Synchronous transport delivery cannot reenter the same Bridge adapter. Other Migration metadata entries require the sealed Receiver, or timelocked governance, and enforce plan/epoch/custody snapshots. Provider-specific asynchronous authentication, funding and cancellation behavior still require implementation/review."
+    },
+    {
+      "baseline_detector_index": 42,
+      "slither_id": "2fcd6896774a611bd19ab29d07589028c62e2d74cc0a6ecacfb8b8f0f77a663f",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#143-167):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 43,
+      "slither_id": "30204662c3c92be5cc11dad829cc7c8029980140c3e8a618f546189fb5f2f202",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#118-142):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 44,
+      "slither_id": "373e4cd44b54102e18e6b4e36d0257f297013a53dfec873e72b3b7f7584808d2",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#184-209):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyModule(RECEIVER) under receiveMessage nonReentrant. Its fixed vault.confirmMigration is onlyModule(MIGRATION), requires Outbound/Remote, changes only location/status and emits an event; it has no external callback. Completed historical plans/snapshots return idempotently. Governing provider authentication/finality is not supplied by this review."
+    },
+    {
+      "baseline_detector_index": 45,
+      "slither_id": "5ea04a99d28c5aa64e958047ff794a5a44cc95d547bdc042944df43160344fc9",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#251-266):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 46,
+      "slither_id": "658b37e2f6a1348cdc2b21093f47cef329e070dbf2c48e9ddab8427ddd883d22",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyModule(VAULT), whose contribution paths are nonReentrant. The fixed Rewards checkpointAll is onlyModule(POWER), and its calls to powerOf are STATICCALLs to getters; there is no token transfer or mutable untrusted callback in this checkpoint path. Frozen local modules are part of the assumption."
+    },
+    {
+      "baseline_detector_index": 47,
+      "slither_id": "6b8e8d2ed7050513dd838dd40c9a6ae931e7b984828612c28bd135e86e520e53",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#143-167):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 48,
+      "slither_id": "6dfd44a55fac0a991ac577db228414aba1f1103dc4083c01fe8dfede93fb1189",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#267-286):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 49,
+      "slither_id": "899918d3a2c5dc5c3f292894962f1534313efae249a8c365aaecbc1f67ebe476",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#192-199):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 50,
+      "slither_id": "9da91ea59a3700555d1589aa7fbda6e1bb3cd5f852e1a066319b042959ee0f46",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#200-215):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 51,
+      "slither_id": "abe61c99b0adbed7b91887bc471c7b54ac9be5e3b16aa95fce11f961ee6a6ba0",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#128-148):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Entry is onlyModule(RECEIVER) under receiveMessage nonReentrant. The detector expands _recordCanonical(false) into a vault.confirmMigration call, but the false updateVault argument makes that mutable callback unreachable for this entry. Remaining external identity/route/NFT/position reads are static."
+    },
+    {
+      "baseline_detector_index": 52,
+      "slither_id": "ac518b2f33f219d3b1e4f6a1164bc3054a62af4442c1110bcd03c9b72f5cf37f",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.finalizeImport(uint256,uint128,uint256) (src/ZZZVault.sol#312-322):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 53,
+      "slither_id": "b2ed950605c1d4ec9ecb0e20c76a3d29acbf8d6a45b38a75e51f52805eb56e4a",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#216-225):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 54,
+      "slither_id": "b3d500e2adb041c25370f0a7ab4e81073aff17f6dbe2107fbd5da60cbb4f8b2e",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#251-266):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 55,
+      "slither_id": "b3d52475b580518de1ece4512ccbb92ca25c46cea47ac128d8700406952a44ee",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#333-353):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 56,
+      "slither_id": "b446a040e76e29c6439cc9544286405ee551fe25d69d65d8c2032ea27dbd14a3",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#200-215):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 57,
+      "slither_id": "b9cd110da4330606eae88fda0b951f3a0f3321e74b867e1c20c6021baa314a54",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#62-95):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 58,
+      "slither_id": "bd4c8a8d88fa057414e14a0afdea06ab25bbdd27e6d046fdbc35b05f7a5ac5db",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#267-286):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 59,
+      "slither_id": "e6ed29a0e90b257df3e425c2984463e1144fa5debafacb2267d3c2d258711361",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#200-215):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 60,
+      "slither_id": "e7901454af09419ece4fb967a3c994b527627916ee0006e6c2ca4848e6efb1f4",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#143-167):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    },
+    {
+      "baseline_detector_index": 61,
+      "slither_id": "efa3cf5d38b94e50b626886b1c73a418d2980904a3cc8a1857e9e692e1c7590a",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZMigrationReceiver._principal(Route,BridgeMessage) (src/ZZZMigrationReceiver.sol#36-73):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Private helper is reached through receiveMessage onlyModule(BRIDGE) nonReentrant. registerImport is the sealed Migration module and has no reachable mutable untrusted callback. Token/approval/import callbacks cannot reenter receiveMessage because the guard is entered; arbitrary outsiders also fail the module check."
+    },
+    {
+      "baseline_detector_index": 62,
+      "slither_id": "f4b157b92a0a97de7b5f90787898904d73a36f9ac2f5c83ef15b1be116785d1a",
+      "check": "reentrancy-no-eth",
+      "tool_impact": "Medium",
+      "subject": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#251-266):",
+      "disposition": "No exploitable untrusted-caller path confirmed in current fixed module graph; retain for external audit",
+      "rationale": "Every mutating route to the flagged private helper or public lifecycle function enters the Vault nonReentrant guard. The remaining unguarded confirmMigration requires the sealed Migration module and an Outbound/Remote record, cannot change balances/principal, and makes no external calls. position/totalIdle are read-only; transient reads are not by themselves a funded-accounting exploit. Exact balance checks intentionally compare pre/post deltas. Malicious approved dependencies and future destination code remain separate trust risks."
+    }
+  ],
+  "limits": [
+    "Not a malicious-dependency/provider proof or exhaustive audit",
+    "Do not suppress detectors globally based on this review",
+    "Compare final rerun identities/subjects and retain raw output",
+    "Route/feed/governance/provider trust and actual native-ETH/hook/burn integration remain release blockers"
+  ]
+}

@@ -1,0 +1,62 @@
+# Production-readiness review — funded release blocked
+
+Date: 2026-10-14. Scope: AAA smart-contract candidate and its keeper/indexer, not the separate simulation website. This is an internal engineering/security review by Codex and collaborating agents, not an independent audit. No contracts were deployed, no public-chain transactions were signed, and no revenue-source or bridge-custody decision was made.
+
+## Baseline and final behavior
+
+The untouched baseline was commit `14b773ee3612a80c32a01761c334080abd083e15`. All 134 existing Solidity tests and the ordinary bytecode size build were reproduced before edits. A fresh baseline [Ubuntu run](https://github.com/ABEF/AAA/actions/runs/38607658205) succeeded. Historical delivery, audit, CI-repair and implementation reports are preserved as evidence for their own revisions.
+
+Paid dormant mint remains exactly 0.05 ETH, routed immediately to the immutable recipient. Activation, separate from issuance, requires at least $500 of actually deployed oracle-valued LP. Top-ups remain permanently attributed to the same NFT, old fee checkpoints remain intact, principal has no owner/admin redemption entry, and claims follow the current canonical NFT owner. The public Vault ABI did not change in this readiness pass.
+
+## Corrections and hardening
+
+| Finding | Result and validation |
+| --- | --- |
+| Keeper used `cast send --data`, rejected by pinned cast 1.4.4 | Raw calldata is now positional with an explicit sender. CLI parsing and mocked signer regressions pass; live signing is still untested. |
+| Keeper skipped reward delivery once a source position left Active | LP operations stay Active-only; reviewed reward routes also run for Outbound/Remote/Inbound positions, preserving funded legacy delivery. State regressions cover all states. |
+| Pending recovery accepted a candidate hash before validating identity | Sender/nonce/destination/calldata/value and transaction/receipt hash identity are checked before accepting the candidate. Incorrect candidates preserve the pending record. |
+| Ambient signer settings could override reviewed execution context | ETH/CAST/FOUNDRY signer/chain/cloud-wallet settings are removed from the signer environment; reviewed RPC and explicit arguments are retained. |
+| Predictable temporary state path could follow an existing link | Exclusive random private temporary file, file fsync, atomic replacement and directory fsync replace predictable `.tmp` writes. Unix link/permission/lock regressions remain part of CI. |
+| Configuration integers silently accepted booleans/fractional values | Shared strict integer validation rejects truncation and invalid limits; indexer polling must be positive. |
+| Mutable build/action references and dirty forge-std tree | npm lockfile is mandatory, forge-std has an exact commit/cleanliness check, workflow actions have immutable pins, and Slither plus transitives use hash-locked artifacts. |
+| Vault had only 137 bytes of runtime headroom | Private owner/valuation helpers and reuse of immutable pool currency identities save 777 bytes. Runtime 23,662 / initcode 24,688 bytes, 914 bytes below EIP-170. Oracle reads, guard ordering, ABI and thresholds are preserved. |
+
+## Executed verification
+
+- Final local offline Solidity run: **140 passed, zero failed, one deliberately skipped opt-in fork setup**, 14 suites. Four existing fuzz tests each use 1,000 cases. [Build output](production/final-build.log), [complete test/gas output](production/final-tests-gas.log).
+- New stateful handler drives 11 actions: mint, activation, top-up, harvest, claim, ownership transfer, pause, donation, compound, rebalance and buyback-budget release. Its separate raw-unit/index model checks reward funding/rounding, principal and idle attribution, reserves/dust, Power, recipient proceeds, owner receipts and dormant zero-entitlement. Default run: 32 × 128 = 4,096 handler calls, zero unexpected reverts. Ineligible actions may return without a transition; call count is not a count of successful user transactions. Real core accounting modules use explicitly mocked venue/controller/policy/tokens. Cross-chain stateful/provider coverage is still absent.
+- Extended seeded stateful run: **256 × 256 = 65,536 calls**, zero unexpected reverts, all 11 selectors exercised, two tests passed. [Exact seed, command and qualifications](production/extended-invariants.json), [full log](production/extended-invariants.log).
+- Real Robinhood fork: **six passed, no failures/skips**, block 88,544,093/hash `c44dc8…d490`, eight deployed runtime hashes enforced. Actual Uniswap mint/increase/swap/fee collection/position burn, custody/approval reset, authentic ZZZ transfer/burn, WETH wrapping and ETH/USD read. The selected native/Pons pool is verified and rejected; adapter operations use a different hookless pool initialized only on the fork, with test-only feeds/access. [Evidence](production/robinhood-fork-tests.log), [dependency inventory](production/current-pool.json).
+- Slither 0.11.6 successfully analyzed 80 contracts with 102 detectors: **127 findings**. Individual grounded dispositions: 72 false positives under the fixed-module graph, 44 accepted risks/design assumptions, 11 informational items. No blanket detector suppression or claim of independent approval. [Raw normalized output](production/slither-final.json), [review](production/slither-review.json), [log](production/slither-final.log). CI reruns the analyzer and rejects source drift, missing/error output, new/stale/unresolved findings or missing rationales. Accepted assumptions must still be reviewed externally.
+- Eleven Ethereum Keccak vectors spanning 135/136/137-byte and 271/272/273-byte rate boundaries through 24,576 bytes matched the custom codec, cast 1.4.4 and PyCryptodome 3.24.1; fixed vectors now run in the Python suite. [Vectors](production/keccak-vectors.json).
+- Python inventory: **139 tests**, **135 passed on native Windows**; four Unix permission/locking/link assertions were explicitly excluded without changing their tests. [Inventory and exclusions](production/python-windows-portable.json), [log](production/python-windows-portable.log). The full unmodified suite runs in Ubuntu CI; native partial execution does not close its supported-platform gate.
+- Gas workloads: four tests at 1/100/1,000 NFTs and 2/32 assets. At 1,000 NFTs, two-asset mint/activation/top-up/harvest/claim execution gas was 209,489 / 784,195 / 1,449,243 / 513,409 / 66,624. A checkpoint with all 32 assets funded was 2,499,723. Venue gas is mocked, intrinsic/refunds/network fees excluded; 32 sequential claim calls are a local workload, not a production bulk-claim ABI. Initialization/rounding differences affect results. [All measurements and limitations](production/collection-gas-benchmarks.json).
+
+Foundry's retained lint warnings concern explicit checked packing/casts and timestamp policies; they are not ignored compiler failures. Position bounds/liquidity packing, signed deltas, positive oracle normalization and range checks must be checked during independent review. Solidity compiler warnings/errors did not block the successful build. No production code-size/gas limit was artificially raised.
+
+## Production blockers and deferred decisions
+
+| Gate | Current evidence and next required step |
+| --- | --- |
+| Reward source / actual market | **User deferred the decision**: Pons hook share or a new pool. No agreed percentage/base/payout cadence/authority, approved alternative pool or hook funding implementation. The requested pool has zero core LP fees; liquidity share does not confer hook rights. |
+| Native/hook integration | Current adapter deliberately requires conventional ERC20/ERC20 hookless static-fee pools. Do not remove this rejection merely to register the requested market. Implement/review the chosen settlement and revenue design after the decision. |
+| Production valuations/outage policy | Authentic ETH/USD exists and was read; the checked catalog has no ZZZ or Robinhood sequencer feed. Select/review a defensible ZZZ USD source and outage policy. Fork test feeds do not satisfy this gate. |
+| Actual bridge custody | Messaging lanes were observed, but no production `IZZZTransport`, backed two-asset route, provider security/finality/fees/recovery configuration or deployed peers are provided. LayerZero OFT dust trimming and separate compose execution are not a drop-in match for exact atomic transport. |
+| Cross-chain execution | Mock tests exercise A→B→C→A→B epochs, old rewards, ordered ACKs, no remint/Power duplication. Real provider delayed/reordered/forged/underfunded/failed delivery and recovery, multi-chain stateful coverage and supply equivalence remain unproved. |
+| Authority and immutable configuration | Production governance multisig/signers/threshold, guardian, keeper, mint recipient, feed/provider authorities, initial pools/routes and staged limits are not selected. A code hash alone does not prove proxy/governance safety. |
+| Economic/operating approval | Lifetime contribution Power, remote/in-flight participation, collection-time shared allocation, bounded asset costs, strategy/MEV/backtesting and live signer/indexer recovery need approval and staged rehearsal. |
+| Independent security/deployment review | External audit, remediation verification and deployment/configuration review have not occurred. An internal agent review cannot satisfy them. |
+
+## Threat model and operational boundaries
+
+Custody assets are principal, attributed idle balances and LP NFTs; rewards, compounding, buyback budgets, dust and orphan reserves are separate funded ledgers. The ERC-721 and its owner are canonical; remote custody records are not replacement economic NFTs. Untrusted users can mint, activate/top-up only owned home NFTs, transfer NFTs, claim owned funded rewards and trigger allowed collection. They must not select arbitrary recipients, module addresses or bridge victims.
+
+Trust boundaries include the fixed module graph, admitted ERC20 behavior, Uniswap dependencies, price feeds and chain clocks, governance timelock, operator signer/RPC, and authenticated transport plus destination custody. Guards/checkpoints/delta checks constrain local callbacks; they cannot force a malicious admitted asset to remain transferable, a price administrator to remain honest, a bridge to return funds or future governance to choose safe custody code. Principal non-redeemability is not preservation of market value or freedom from governance-mediated loss.
+
+The guardian can pause strategy operations. Claims and authenticated inbound settlement deliberately remain available. Sealing fixes bootstrap/module authority while timelocked append-only route onboarding stays possible. Disabling outbound routes does not invalidate already authenticated inbound settlement. Source-completion and canonical-location ACKs have separate purposes: a home-location update can leave the original source plan waiting for its completion ACK, so operators must retry that ACK before a new departure.
+
+The [offline production inventory validator](../scripts/validate-production-config.py) checks bindings, constructors, roles, exact pool/route hashes, equivalent decimals/assets, feeds, transport policy and commit-bound evidence references. The [example](../config/production.example.json) is intentionally blocked. `ready` only means manifest consistency; it never authenticates evidence, contacts a chain, authorizes deployment or certifies safety.
+
+## Audit handoff and release order
+
+Use [the audit package index](production/AUDIT_PACKAGE.md), current root checksums and the exact Git commit. Review current source rather than treating old `docs/AUDIT.md` as evidence for new implementation. Reproduce offline tests, extended invariants, analyzer and fork first. Resolve the user-deferred market/revenue choice, implement and verify price/transport dependencies, approve economics/authorities, then commission external audit/remediation and configuration review. Rehearse an unfunded staging deployment and operational incidents before separately authorized limited funded use. The [release checklist](../docs/RELEASE_CHECKLIST.md) remains **NOT APPROVED**.

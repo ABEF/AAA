@@ -1,0 +1,1311 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/UniswapV4Fork.t.sol:UniswapV4ForkTest
+[SKIP: skipped: Opt-in real-network fork suite; excluded from offline unit verification] setUp() (gas: 0)
+Suite result: ok. 0 passed; 0 failed; 1 skipped; finished in 1.16ms (0.00ns CPU time)
+
+Ran 10 tests for test/BridgeSecurity.t.sol:BridgeSecurityTest
+[PASS] testAuthenticatedFundedDelivery() (gas: 323522)
+[PASS] testDirectCallerCannotDeliver() (gas: 57043)
+[PASS] testInboundAllowedDuringPause() (gas: 324618)
+[PASS] testIncorrectAllocationRejected() (gas: 250741)
+[PASS] testOutboundUnauthorized() (gas: 56701)
+[PASS] testReceiverFailureIsRetryable() (gas: 637684)
+[PASS] testReplayRejected() (gas: 429956)
+[PASS] testUnfundedMessageRevertsAndNonceNotConsumed() (gas: 496632)
+[PASS] testVersionMismatchRejected() (gas: 249150)
+[PASS] testWrongSourceRejected() (gas: 218981)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 11.45ms (10.09ms CPU time)
+
+Ran 8 tests for test/MultiHopMigration.t.sol:MultiHopMigrationRegistryTest
+[PASS] testFutureUnknownGraphEdgeRequiresCompletedTimelock() (gas: 621464)
+[PASS] testGraphEdgesRemainAppendOnlyAfterSeal() (gas: 661108)
+[PASS] testLocalDecimalsChecksStillApplyToPostSealRoutes() (gas: 199045)
+[PASS] testLocalDestinationAcceptsConfiguredPairInEitherOrder() (gas: 683098)
+[PASS] testLocalDestinationRejectsWrongPoolAssetPair() (gas: 299455)
+[PASS] testLocalDestinationRequiresEnabledPoolOperations() (gas: 289703)
+[PASS] testLocalDestinationRequiresExistingConfiguredPool() (gas: 216346)
+[PASS] testLocalEndpointChecksStillApplyToPostSealRoutes() (gas: 151061)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 13.05ms (6.36ms CPU time)
+
+Ran 8 tests for test/AccessController.t.sol:AccessControllerTest
+[PASS] testBootstrapCannotConfigureAfterSeal() (gas: 3208443)
+[PASS] testCannotReplaceModules() (gas: 3349951)
+[PASS] testDelayCannotBeShortened() (gas: 10339)
+[PASS] testGuardianCanPauseNotUnpause() (gas: 3255965)
+[PASS] testIncompleteDeploymentCannotSeal() (gas: 36957)
+[PASS] testSealErasesBootstrap() (gas: 3197024)
+[PASS] testTimelockedKeeperChange() (gas: 3359516)
+[PASS] testWrongControllerBindingRejected() (gas: 183130)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 16.72ms (15.67ms CPU time)
+
+Ran 10 tests for test/LiquidityEncoding.t.sol:LiquidityEncodingTest
+[PASS] testApprovalsCleared() (gas: 539355)
+[PASS] testCollectUsesZeroDecreaseAndVaultRecipient() (gas: 734329)
+[PASS] testDonationsNotSweptToNextDepositor() (gas: 589603)
+[PASS] testExpiredDeadlineRejected() (gas: 53611)
+[PASS] testIncreasePreservesPositionID() (gas: 829304)
+[PASS] testInvalidTickSpacingRejected() (gas: 89279)
+[PASS] testMinimumLiquidityEnforced() (gas: 104475)
+[PASS] testMintKeepsNFTInVaultAndRefundsExactUnused() (gas: 490021)
+[PASS] testUnauthorizedMintRejected() (gas: 47574)
+[PASS] testUnsolicitedCallbackRejected() (gas: 34184)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 17.62ms (15.05ms CPU time)
+
+Ran 13 tests for test/ReceiverAndRemoteFees.t.sol:MigrationReceiverSnapshotTest
+[PASS] testConflictingRemoteMappingRollsBackReceiptAndEpoch() (gas: 1260857)
+[PASS] testForeignSourceCompletionAckDelegatesToMigrationValidation() (gas: 663378)
+[PASS] testHomeAckCannotUsePreviousCustodyRoute() (gas: 1474898)
+[PASS] testHomeAckHasSeparatePurposeAndCanonicalDestination() (gas: 1955948)
+[PASS] testOnwardImportKeepsCanonicalIdentityAndReordersMappings() (gas: 1434868)
+[PASS] testReturningHomeDoesNotRequireSelfChainHomeAck() (gas: 1387290)
+[PASS] testSourceAckUsesAcceptedSnapshotAfterAnotherPositionChange() (gas: 2014033)
+[PASS] testUnfinalizedReceiptCannotAcknowledge() (gas: 1319511)
+[PASS] testVaultImportFailureRollsBackCanonicalBindings() (gas: 1246052)
+[PASS] testWrongCanonicalChainRejected() (gas: 374483)
+[PASS] testWrongPreviousCustodyRejectedBeforeImport() (gas: 380754)
+[PASS] testWrongPrincipalRouteRejected() (gas: 379994)
+[PASS] testZeroEpochRejected() (gas: 375483)
+Suite result: ok. 13 passed; 0 failed; 0 skipped; finished in 26.24ms (22.65ms CPU time)
+
+Ran 2 tests for test/FutureChainMigration.t.sol:FutureChainMigrationTest
+[PASS] testPostSealRoutesSupportThreeChainsReturnHomeAndRevisitSatellite() (gas: 44627184)
+[PASS] testReversedCurrenciesPreserveUnequalPrincipalAndRejectedDeliveryRollsBack() (gas: 12795382)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 136.86ms (150.65ms CPU time)
+
+Ran 12 tests for test/MultiHopMigration.t.sol:MultiHopMigrationTest
+[PASS] testCanonicalReturnRequiresExistingNFTAndCorrectAssets() (gas: 3581181)
+[PASS] testCanonicalReturnThenAnotherMigrationPreservesIdentity() (gas: 5260673)
+[PASS] testExactOldAckIsIdempotentAndAlteredOldAckRejected() (gas: 3103193)
+[PASS] testForgedPreviousLocationAndCanonicalMappingRejected() (gas: 2911312)
+[PASS] testLateSourceCompletionCannotRegressNewerCanonicalLocation() (gas: 3026052)
+[PASS] testRemoteToRemoteAckAdvancesHomeAndKeepsHistoricalRewardPaths() (gas: 2954902)
+[PASS] testReorderedLocationAckCanBeRetriedAfterEarlierAck() (gas: 3046585)
+[PASS] testSatelliteCanMigrateAndRevisitAfterSeveralAbsentEpochs() (gas: 14110124)
+[PASS] testSourceCompletionRecordsCanonicalLocationAndClearsPlan() (gas: 2306489)
+[PASS] testSourceSnapshotChangedAfterScheduleCannotExecute() (gas: 1314298)
+[PASS] testTransportFailureRestoresPrincipalEpochAndScheduledPlan() (gas: 2299076)
+[PASS] testUnauthorizedReceiverCannotUpdateCustody() (gas: 1882842)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 223.50ms (91.66ms CPU time)
+
+Ran 35 tests for test/VaultAccounting.t.sol:VaultAccountingTest
+[PASS] testActivationCannotCollectHistoricalSharedRewards() (gas: 3911139)
+[PASS] testActivationCannotIssueSecondNFTOrChargeAnotherMintFee() (gas: 1350576)
+[PASS] testActivationHonorsStricterPoolMinimum() (gas: 574186)
+[PASS] testActivationLeavesExactAttributedIdle() (gas: 1331291)
+[PASS] testActivationRejects500InputWhenActualLPIsBelow500() (gas: 1302802)
+[PASS] testActivationRequiresAtLeast500USDInput() (gas: 531715)
+[PASS] testCompoundingAddsOnlyDesignatedShare() (gas: 2458246)
+[PASS] testDonationNeverBecomesAnotherNFTPrincipal() (gas: 1334937)
+[PASS] testDormantCannotTopUpCollectCompoundRebalanceOrMigrate() (gas: 609213)
+[PASS] testDormantMintForwardsPriceWithoutLiquidityOrRewards() (gas: 593426)
+[PASS] testDormantTransferOnlyNewOwnerCanActivate() (gas: 1423173)
+[PASS] testExactly500ActualLPActivates() (gas: 1088050)
+[PASS] testFeesNotPrincipal() (gas: 2078056)
+[PASS] testFuzzMintRejectsAnyOverpayment(uint256) (runs: 1000, μ: 87564, ~: 87620)
+[PASS] testFuzzMintRejectsAnyUnderpayment(uint256) (runs: 1000, μ: 86524, ~: 86101)
+[PASS] testMigrationReleaseOnlyGoesToBoundModule() (gas: 1717465)
+[PASS] testMostlyIdleActivationRejected() (gas: 1308353)
+[PASS] testNFTUserCannotTransferUnderlyingLP() (gas: 1307209)
+[PASS] testNoOwnerWithdrawalEntrypoint() (gas: 1250284)
+[PASS] testOldDepositSelectorCannotBypassPaidMint() (gas: 76445)
+[PASS] testOnlyKeeperCanRebalance() (gas: 1261033)
+[PASS] testPauseBlocksActivationKeepsDormantNFT() (gas: 435320)
+[PASS] testPauseBlocksMint() (gas: 88052)
+[PASS] testRebalanceReplacesLPButPreservesEconomicNFT() (gas: 1957053)
+[PASS] testReceiverReentrancyCannotMintSecondNFT() (gas: 840364)
+[PASS] testRejectingNFTReceiverRollsBackMintAndPayment() (gas: 550744)
+[PASS] testRejectingTreasuryRollsBackNFTAndPayment() (gas: 20464770)
+[PASS] testSatelliteCannotIssueAnotherCollection() (gas: 62506)
+[PASS] testSelfProceedsRecipientRejected() (gas: 501939)
+[PASS] testTopUpKeepsBothNFTsAndCheckpointsFees() (gas: 2694497)
+[PASS] testTreasuryReentrancyCannotMintSecondNFT() (gas: 20812501)
+[PASS] testUnsealedSystemCannotMint() (gas: 5654091)
+[PASS] testVenueFailureRollsBackActivationKeepsPaidDormantNFT() (gas: 1143897)
+[PASS] testWrongChainCannotActivateCanonicalDormantNFT() (gas: 407733)
+[PASS] testZeroProceedsRecipientRejected() (gas: 498891)
+Suite result: ok. 35 passed; 0 failed; 0 skipped; finished in 236.23ms (437.66ms CPU time)
+
+Ran 13 tests for test/OracleAndTransfers.t.sol:OracleAndTransfersTest
+[PASS] testConventionalTokenAccepted() (gas: 567442)
+[PASS] testDecimalNormalization() (gas: 125985)
+[PASS] testExtraSenderTaxRejectedAtomically() (gas: 1311089)
+[PASS] testFutureTimestampRejected() (gas: 73413)
+[PASS] testFuzzQuoteMonotonic(uint96,uint96) (runs: 1000, μ: 116786, ~: 116779)
+[PASS] testIncompleteRoundRejected() (gas: 70352)
+[PASS] testNegativeRejected() (gas: 70807)
+[PASS] testSequencerDownRejected() (gas: 1796507)
+[PASS] testSequencerGraceThenRecovery() (gas: 1866492)
+[PASS] testStaleRejected() (gas: 33803)
+[PASS] testTaxedTokenRejectedAtomically() (gas: 1317598)
+[PASS] testUnknownFeedRejected() (gas: 14454)
+[PASS] testZeroRejected() (gas: 60314)
+Suite result: ok. 13 passed; 0 failed; 0 skipped; finished in 306.95ms (307.67ms CPU time)
+
+Ran 15 tests for test/RewardsAndFees.t.sol:RewardsAndFeesTest
+[PASS] testClaimWorksWhilePaused() (gas: 451027)
+[PASS] testClaimsCannotRepeat() (gas: 497008)
+[PASS] testDustOnMigrationGoesToCanonicalNFT() (gas: 963573)
+[PASS] testFeeSplitIsExactAndBacked() (gas: 876304)
+[PASS] testFractionalClaimsRemainFunded() (gas: 9162909)
+[PASS] testFuzzFeeConservation(uint96) (runs: 1000, μ: 924810, ~: 934523)
+[PASS] testIncreasePowerCheckpointsEarlierAllocation() (gas: 812728)
+[PASS] testNFTSupportsStandardERC721() (gas: 10661)
+[PASS] testNFTTransferCarriesUnclaimedRewards() (gas: 515398)
+[PASS] testNewPowerCannotClaimPublishedPastReward() (gas: 767380)
+[PASS] testTinyFeesCannotManipulateSplit() (gas: 2212014)
+[PASS] testUnauthorizedCredit() (gas: 44300)
+[PASS] testUnauthorizedPowerChange() (gas: 44335)
+[PASS] testUnauthorizedReserveRelease() (gas: 857903)
+[PASS] testUnsafeReceiverRejected() (gas: 95409)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 1.32s (1.34s CPU time)
+
+Ran 2 tests for test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest
+[PASS] invariant_custodyFeesAndClaimsRemainConserved() (runs: 32, calls: 4096, reverts: 0)
+
+╭-----------------------------+----------------+-------+---------+----------╮
+| Contract                    | Selector       | Calls | Reverts | Discards |
++===========================================================================+
+| ProductionAccountingHandler | activate       | 365   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | claim          | 388   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | compound       | 351   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | donate         | 354   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | harvest        | 397   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | mint           | 393   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | rebalance      | 394   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | releaseBuyback | 383   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | setPaused      | 364   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | topUp          | 359   | 0       | 0        |
+|-----------------------------+----------------+-------+---------+----------|
+| ProductionAccountingHandler | transfer       | 348   | 0       | 0        |
+╰-----------------------------+----------------+-------+---------+----------╯
+
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 8544
+  Bound result 7345
+  Bound result 2320
+  Bound result 1228
+  Bound result 9252
+  Bound result 1
+  Bound result 2369
+  Bound result 648
+  Bound result 122
+  Bound result 335
+  Bound result 163
+  Bound result 213
+  Bound result 7783
+  Bound result 7419
+  Bound result 2191
+  Bound result 8640
+  Bound result 104
+  Bound result 82
+  Bound result 408
+  Bound result 6439
+  Bound result 1
+  Bound result 9997
+  Bound result 1833
+  Bound result 5616
+  Bound result 4163
+
+[PASS] testPausedClaimAndDormantTransferKeepPublishedHistory() (gas: 7010454)
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 109
+  Bound result 217
+  Bound result 1000
+  Bound result 1500
+  Bound result 300
+  Bound result 400
+  Bound result 211
+  Bound result 307
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 17.23s (17.25s CPU time)
+
+Ran 8 tests for test/ReceiverAndRemoteFees.t.sol:RemoteFeeReserveTest
+[PASS] testAllocationRejectsConflictingCanonicalMappingBeforeTakingFunds() (gas: 679690)
+[PASS] testBoundAssetCannotBeChangedByReceiver() (gas: 155720)
+[PASS] testDormantAndNoneCannotSendLegacyBudgets() (gas: 764739)
+[PASS] testLegacyBudgetUsesBoundCanonicalAssetAfterPoolReplacement() (gas: 1050652)
+[PASS] testLegacyBudgetsBridgeInAllCustodyStates() (gas: 3214969)
+[PASS] testMappingRequiresAuthenticatedReceiver() (gas: 45708)
+[PASS] testRemoteDustStaysFundedUntilDeliveredHome() (gas: 1285607)
+[PASS] testRewardSendFailureRestoresBudgetsAndFunding() (gas: 667707)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 23.83s (19.91ms CPU time)
+
+Ran 4 tests for test/ProductionGas.t.sol:ProductionGasTest
+[PASS] testGasCollection1() (gas: 3469375)
+Logs:
+  collection.1.assets.2.mintDormant: 302853
+  collection.1.assets.2.activate: 957237
+  collection.1.assets.2.topUpWithFeeCheckpoint: 1413418
+  collection.1.assets.2.harvest: 524477
+  collection.1.assets.2.checkpointAll: 131430
+  collection.1.assets.2.claimOneAsset: 102968
+
+[PASS] testGasCollection100() (gas: 3273639)
+Logs:
+  collection.100.assets.2.mintDormant: 243653
+  collection.100.assets.2.activate: 820437
+  collection.100.assets.2.topUpWithFeeCheckpoint: 1413418
+  collection.100.assets.2.harvest: 524477
+  collection.100.assets.2.checkpointAll: 131430
+  collection.100.assets.2.claimOneAsset: 102968
+
+[PASS] testGasCollection1000() (gas: 3241102)
+Logs:
+  collection.1000.assets.2.mintDormant: 243653
+  collection.1000.assets.2.activate: 820452
+  collection.1000.assets.2.topUpWithFeeCheckpoint: 1413418
+  collection.1000.assets.2.harvest: 524477
+  collection.1000.assets.2.checkpointAll: 91630
+  collection.1000.assets.2.claimOneAsset: 104968
+
+[PASS] testGasMaximum32FundedRewardAssets() (gas: 20223710)
+Logs:
+  collection.1000.assets.32.mintDormant: 243653
+  collection.1000.assets.32.activate: 1201761
+  collection.1000.assets.32.topUpWithFeeCheckpoint: 1794727
+  collection.1000.assets.32.harvest: 524477
+  collection.1000.assets.32.checkpointAll: 472939
+  collection.1000.assets.32.claimOneAsset: 104968
+  collection.1000.assets.32.funded.checkpointAll: 2534999
+  collection.1000.assets.32.funded.claim32BatchedCalls: 3814080
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 23.83s (33.75s CPU time)
+
+╭----------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| src/ZZZAccessController.sol:ZZZAccessController Contract |                 |        |        |        |         |
++=================================================================================================================+
+| Deployment Cost                                          | Deployment Size |        |        |        |         |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 2362858                                                  | 11597           |        |        |        |         |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                          |                 |        |        |        |         |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                            | Min             | Avg    | Median | Max    | # Calls |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| bind                                                     | 24914           | 54358  | 54496  | 54837  | 287     |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| bootstrap                                                | 3415            | 3415   | 3415   | 3415   | 20      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| canConfigure                                             | 1456            | 3095   | 3701   | 4009   | 99      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| execute                                                  | 33780           | 226292 | 85889  | 701141 | 60      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| getMinDelay                                              | 3271            | 3271   | 3271   | 3271   | 24      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| isSealed                                                 | 871             | 1614   | 871    | 2871   | 191     |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| keepers                                                  | 3192            | 3192   | 3192   | 3192   | 16      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| module                                                   | 1568            | 2664   | 3568   | 3568   | 695     |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| paused                                                   | 849             | 884    | 849    | 2849   | 56      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| schedule                                                 | 59300           | 64905  | 65633  | 66977  | 34      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| seal                                                     | 27549           | 198997 | 208021 | 208021 | 20      |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setKeeper                                                | 25117           | 25117  | 25117  | 25117  | 1       |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setPaused                                                | 24312           | 27673  | 27673  | 31035  | 2       |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| updateDelay                                              | 741             | 741    | 741    | 741    | 1       |
+╰----------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| src/ZZZBridgeAdapter.sol:ZZZBridgeAdapter Contract |                 |       |        |       |         |
++=========================================================================================================+
+| Deployment Cost                                    | Deployment Size |       |        |       |         |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 2083421                                            | 9865            |       |        |       |         |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                    |                 |       |        |       |         |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                      | Min             | Avg   | Median | Max   | # Calls |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+| access                                             | 495             | 495   | 495    | 495   | 19      |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+| onMessage                                          | 37475           | 37475 | 37475  | 37475 | 1       |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+| processed                                          | 2703            | 2703  | 2703   | 2703  | 1       |
+|----------------------------------------------------+-----------------+-------+--------+-------+---------|
+| send                                               | 42009           | 42009 | 42009  | 42009 | 1       |
+╰----------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭----------------------------------------------+-----------------+--------+--------+---------+---------╮
+| src/ZZZCompounder.sol:ZZZCompounder Contract |                 |        |        |         |         |
++======================================================================================================+
+| Deployment Cost                              | Deployment Size |        |        |         |         |
+|----------------------------------------------+-----------------+--------+--------+---------+---------|
+| 423238                                       | 2092            |        |        |         |         |
+|----------------------------------------------+-----------------+--------+--------+---------+---------|
+|                                              |                 |        |        |         |         |
+|----------------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                                | Min             | Avg    | Median | Max     | # Calls |
+|----------------------------------------------+-----------------+--------+--------+---------+---------|
+| access                                       | 433             | 433    | 433    | 433     | 6       |
+|----------------------------------------------+-----------------+--------+--------+---------+---------|
+| compound                                     | 59872           | 635791 | 635599 | 1236857 | 33      |
+╰----------------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭----------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| src/ZZZFeeController.sol:ZZZFeeController Contract |                 |        |        |        |         |
++===========================================================================================================+
+| Deployment Cost                                    | Deployment Size |        |        |        |         |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 2575022                                            | 12243           |        |        |        |         |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                    |                 |        |        |        |         |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                      | Min             | Avg    | Median | Max    | # Calls |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| access                                             | 521             | 521    | 521    | 521    | 6       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| accounted                                          | 3164            | 3164   | 3164   | 3164   | 269     |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| allocate                                           | 105585          | 391321 | 417128 | 417248 | 279     |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| bindRemoteAsset                                    | 32160           | 44234  | 35726  | 58787  | 5       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| bridgeRewards                                      | 79070           | 289343 | 259468 | 492668 | 9       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| buybackBalance                                     | 2904            | 2904   | 2904   | 2904   | 465     |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| compoundBalance                                    | 3151            | 3151   | 3151   | 3151   | 720     |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| dust                                               | 3305            | 3305   | 3305   | 3305   | 272     |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| flushDust                                          | 91357           | 160368 | 160368 | 229379 | 2       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| releaseBuyback                                     | 32013           | 83770  | 78102  | 95202  | 140     |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| releaseCompound                                    | 31960           | 31960  | 31960  | 31960  | 1       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| remoteCanonicalToken                               | 3504            | 3504   | 3504   | 3504   | 5       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| remoteCollective                                   | 3261            | 3261   | 3261   | 3261   | 2       |
+|----------------------------------------------------+-----------------+--------+--------+--------+---------|
+| remoteIndividual                                   | 3129            | 3129   | 3129   | 3129   | 3       |
+╰----------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| src/ZZZLiquidityManager.sol:ZZZLiquidityManager Contract |                 |        |        |        |         |
++=================================================================================================================+
+| Deployment Cost                                          | Deployment Size |        |        |        |         |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 4186221                                                  | 20480           |        |        |        |         |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                          |                 |        |        |        |         |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                            | Min             | Avg    | Median | Max    | # Calls |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| collect                                                  | 174203          | 174203 | 174203 | 174203 | 1       |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| increase                                                 | 382887          | 382887 | 382887 | 382887 | 1       |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| mint                                                     | 33946           | 340261 | 563916 | 563916 | 9       |
+|----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| unlockCallback                                           | 22374           | 22374  | 22374  | 22374  | 1       |
+╰----------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭--------------------------------------------+-----------------+--------+--------+---------+---------╮
+| src/ZZZMigration.sol:ZZZMigration Contract |                 |        |        |         |         |
++====================================================================================================+
+| Deployment Cost                            | Deployment Size |        |        |         |         |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| 4453812                                    | 20912           |        |        |         |         |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+|                                            |                 |        |        |         |         |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                              | Min             | Avg    | Median | Max     | # Calls |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| MIGRATION_DELAY                            | 592             | 592    | 592    | 592     | 5       |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| access                                     | 609             | 609    | 609    | 609     | 6       |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| activePlan                                 | 2721            | 2721   | 2721   | 2721    | 12      |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| authorizedReward                           | 3954            | 3954   | 3954   | 3954    | 6       |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| confirm                                    | 37140           | 266430 | 311986 | 398021  | 24      |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| custodyEpoch                               | 3117            | 3117   | 3117   | 3117    | 18      |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| execute                                    | 44542           | 750574 | 792688 | 1664868 | 24      |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| locationSnapshots                          | 3292            | 3292   | 3292   | 3292    | 2       |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| locations                                  | 7635            | 7635   | 7635   | 7635    | 10      |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| propose                                    | 655838          | 671621 | 672938 | 672938  | 13      |
+|--------------------------------------------+-----------------+--------+--------+---------+---------|
+| registerImport                             | 36325           | 148627 | 141644 | 311187  | 7       |
+╰--------------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭------------------------------------------------------------+-----------------+--------+--------+---------+---------╮
+| src/ZZZMigrationReceiver.sol:ZZZMigrationReceiver Contract |                 |        |        |         |         |
++====================================================================================================================+
+| Deployment Cost                                            | Deployment Size |        |        |         |         |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| 3179165                                                    | 14950           |        |        |         |         |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+|                                                            |                 |        |        |         |         |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                                              | Min             | Avg    | Median | Max     | # Calls |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| acceptedMessage                                            | 48701           | 48701  | 48701  | 48701   | 2       |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| access                                                     | 499             | 499    | 499    | 499     | 6       |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| acknowledge                                                | 42735           | 404051 | 537917 | 751151  | 13      |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| acknowledgeHome                                            | 89076           | 454740 | 538027 | 754061  | 5       |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| finalize                                                   | 61341           | 379971 | 634867 | 634879  | 9       |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| receipts                                                   | 7522            | 7522   | 7522   | 7522    | 2       |
+|------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| receiveMessage                                             | 96515           | 705640 | 884800 | 1106570 | 13      |
+╰------------------------------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭------------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| src/ZZZMigrationRegistry.sol:ZZZMigrationRegistry Contract |                 |       |        |       |         |
++=================================================================================================================+
+| Deployment Cost                                            | Deployment Size |       |        |       |         |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 1599664                                                    | 7587            |       |        |       |         |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                            |                 |       |        |       |         |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                              | Min             | Avg   | Median | Max   | # Calls |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| access                                                     | 477             | 477   | 477    | 477   | 14      |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| add                                                        | 30740           | 32477 | 31940  | 33284 | 20      |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| enabled                                                    | 2750            | 2750  | 2750   | 2750  | 20      |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| exists                                                     | 2644            | 2644  | 2644   | 2644  | 50      |
+|------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| get                                                        | 7395            | 21931 | 7395   | 37395 | 97      |
+╰------------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭--------------------------------+-----------------+-------+--------+-------+---------╮
+| src/ZZZNFT.sol:ZZZNFT Contract |                 |       |        |       |         |
++=====================================================================================+
+| Deployment Cost                | Deployment Size |       |        |       |         |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| 1452390                        | 7642            |       |        |       |         |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+|                                |                 |       |        |       |         |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                  | Min             | Avg   | Median | Max   | # Calls |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| access                         | 653             | 653   | 653    | 653   | 6       |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| balanceOf                      | 3273            | 3273  | 3273   | 3273  | 22      |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| mint                           | 84596           | 84602 | 84602  | 84608 | 30      |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| ownerOf                        | 0               | 1208  | 0      | 3317  | 3426    |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| safeTransferFrom               | 69165           | 69165 | 69165  | 69165 | 1       |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| supportsInterface              | 551             | 551   | 551    | 551   | 1       |
+|--------------------------------+-----------------+-------+--------+-------+---------|
+| transferFrom                   | 36873           | 47889 | 47273  | 64397 | 365     |
+╰--------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭--------------------------------------+-----------------+-------+--------+-------+---------╮
+| src/ZZZOracle.sol:ZZZOracle Contract |                 |       |        |       |         |
++===========================================================================================+
+| Deployment Cost                      | Deployment Size |       |        |       |         |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| 1204096                              | 5862            |       |        |       |         |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+|                                      |                 |       |        |       |         |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                        | Min             | Avg   | Median | Max   | # Calls |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| access                               | 543             | 543   | 543    | 543   | 14      |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| price                                | 4725            | 17726 | 20747  | 37967 | 22      |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| quote                                | 46896           | 46896 | 46896  | 46896 | 513     |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| setFeed                              | 21952           | 61835 | 64048  | 65170 | 138     |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| tokenDecimals                        | 3708            | 3708  | 3708   | 3708  | 19      |
+|--------------------------------------+-----------------+-------+--------+-------+---------|
+| value                                | 0               | 1827  | 0      | 23524 | 20159   |
+╰--------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭--------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| src/ZZZPoolRegistry.sol:ZZZPoolRegistry Contract |                 |        |        |        |         |
++=========================================================================================================+
+| Deployment Cost                                  | Deployment Size |        |        |        |         |
+|--------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 1173559                                          | 5552            |        |        |        |         |
+|--------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                  |                 |        |        |        |         |
+|--------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                    | Min             | Avg    | Median | Max    | # Calls |
+|--------------------------------------------------+-----------------+--------+--------+--------+---------|
+| access                                           | 455             | 455    | 455    | 455    | 6       |
+|--------------------------------------------------+-----------------+--------+--------+--------+---------|
+| configure                                        | 243109          | 243109 | 243109 | 243109 | 6       |
+|--------------------------------------------------+-----------------+--------+--------+--------+---------|
+| get                                              | 6346            | 9949   | 6346   | 20346  | 101     |
+╰--------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭------------------------------------+-----------------+--------+--------+--------+---------╮
+| src/ZZZPower.sol:ZZZPower Contract |                 |        |        |        |         |
++===========================================================================================+
+| Deployment Cost                    | Deployment Size |        |        |        |         |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+| 447944                             | 2209            |        |        |        |         |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+|                                    |                 |        |        |        |         |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                      | Min             | Avg    | Median | Max    | # Calls |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+| access                             | 455             | 455    | 455    | 455    | 6       |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+| add                                | 31543           | 102341 | 107009 | 120401 | 20      |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+| powerOf                            | 0               | 146    | 0      | 2719   | 36412   |
+|------------------------------------+-----------------+--------+--------+--------+---------|
+| totalPower                         | 516             | 2088   | 2516   | 2516   | 594     |
+╰------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------+-----------------+--------+--------+---------+---------╮
+| src/ZZZRewards.sol:ZZZRewards Contract |                 |        |        |         |         |
++================================================================================================+
+| Deployment Cost                        | Deployment Size |        |        |         |         |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| 1618004                                | 7739            |        |        |         |         |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+|                                        |                 |        |        |         |         |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                          | Min             | Avg    | Median | Max     | # Calls |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| access                                 | 565             | 565    | 565    | 565     | 6       |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| addAsset                               | 21420           | 73552  | 83209  | 101431  | 139     |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| assetCount                             | 2666            | 2666   | 2666   | 2666    | 1       |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| checkpointAll                          | 88141           | 669496 | 127941 | 2534010 | 5       |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| claim                                  | 44566           | 93484  | 85656  | 167479  | 478     |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| claimable                              | 8228            | 26959  | 27228  | 27228   | 952     |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| credit                                 | 32378           | 142888 | 158551 | 178883  | 70      |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| index                                  | 2861            | 2861   | 2861   | 2861    | 1       |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| isAsset                                | 3125            | 3125   | 3125   | 3125    | 12      |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| liabilities                            | 3103            | 3103   | 3103   | 3103    | 7       |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| orphaned                               | 3037            | 3037   | 3037   | 3037    | 6       |
+|----------------------------------------+-----------------+--------+--------+---------+---------|
+| paidIndex                              | 3163            | 3163   | 3163   | 3163    | 1       |
+╰----------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭------------------------------------+-----------------+--------+--------+---------+---------╮
+| src/ZZZVault.sol:ZZZVault Contract |                 |        |        |         |         |
++============================================================================================+
+| Deployment Cost                    | Deployment Size |        |        |         |         |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| 5157694                            | 24784           |        |        |         |         |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+|                                    |                 |        |        |         |         |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                      | Min             | Avg    | Median | Max     | # Calls |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| MINT_PRICE                         | 702             | 702    | 702    | 702     | 1       |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| MIN_ACTIVATION_LP_USD              | 746             | 746    | 746    | 746     | 1       |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| access                             | 743             | 743    | 743    | 743     | 6       |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| activate                           | 22672           | 66171  | 22696  | 1195420 | 2219    |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| canonicalChainId                   | 222             | 222    | 222    | 222     | 16      |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| collectFees                        | 38141           | 631262 | 611602 | 836702  | 124     |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| increase                           | 39000           | 746508 | 677395 | 1793121 | 123     |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| mintDormant                        | 21064           | 39380  | 21064  | 297776  | 2807    |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| mintProceedsRecipient              | 645             | 645    | 645    | 645     | 1       |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| position                           | 7098            | 30612  | 33098  | 33098   | 1895    |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| rebalance                          | 32433           | 718683 | 732514 | 770872  | 113     |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| releaseForMigration                | 32431           | 180608 | 43699  | 465694  | 3       |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| sequence                           | 2627            | 2627   | 2627   | 2627    | 543     |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| totalIdle                          | 3025            | 3025   | 3025   | 3025    | 23      |
+|------------------------------------+-----------------+--------+--------+---------+---------|
+| withdraw                           | 22095           | 22095  | 22095  | 22095   | 1       |
+╰------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭------------------------------------------------------------+-----------------+-----+--------+-----+---------╮
+| test/FutureChainMigration.t.sol:FutureBoundPolicy Contract |                 |     |        |     |         |
++=============================================================================================================+
+| Deployment Cost                                            | Deployment Size |     |        |     |         |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+| 308463                                                     | 1425            |     |        |     |         |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+|                                                            |                 |     |        |     |         |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+| Function Name                                              | Min             | Avg | Median | Max | # Calls |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+| access                                                     | 521             | 521 | 521    | 521 | 6       |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+| swapPlan                                                   | 904             | 904 | 904    | 904 | 7       |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+| target                                                     | 881             | 881 | 881    | 881 | 7       |
+|------------------------------------------------------------+-----------------+-----+--------+-----+---------|
+| validatePrice                                              | 649             | 649 | 649    | 649 | 5       |
+╰------------------------------------------------------------+-----------------+-----+--------+-----+---------╯
+
+╭-----------------------------------------------------------+-----------------+------+--------+------+---------╮
+| test/FutureChainMigration.t.sol:FutureBoundVenue Contract |                 |      |        |      |         |
++==============================================================================================================+
+| Deployment Cost                                           | Deployment Size |      |        |      |         |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| 1870712                                                   | 8886            |      |        |      |         |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+|                                                           |                 |      |        |      |         |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| Function Name                                             | Min             | Avg  | Median | Max  | # Calls |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| a0                                                        | 2885            | 2885 | 2885   | 2885 | 40      |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| a1                                                        | 2841            | 2841 | 2841   | 2841 | 40      |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| access                                                    | 770             | 770  | 770    | 770  | 6       |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| amounts                                                   | 1376            | 1376 | 1376   | 1376 | 7       |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| ownerOf                                                   | 1427            | 1427 | 1427   | 1427 | 7       |
+|-----------------------------------------------------------+-----------------+------+--------+------+---------|
+| positionManager                                           | 862             | 862  | 862    | 862  | 14      |
+╰-----------------------------------------------------------+-----------------+------+--------+------+---------╯
+
+╭----------------------------------------------------------------+-----------------+--------+--------+---------+---------╮
+| test/FutureChainMigration.t.sol:FutureQueuedTransport Contract |                 |        |        |         |         |
++========================================================================================================================+
+| Deployment Cost                                                | Deployment Size |        |        |         |         |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| 1724592                                                        | 7769            |        |        |         |         |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+|                                                                |                 |        |        |         |         |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                                                  | Min             | Avg    | Median | Max     | # Calls |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| deliver                                                        | 319897          | 887171 | 603882 | 1653250 | 13      |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| deliverAltered                                                 | 570374          | 570374 | 570374 | 570374  | 1       |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| latest                                                         | 2538            | 2538   | 2538   | 2538    | 7       |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| message                                                        | 56172           | 56172  | 56172  | 56172   | 3       |
+|----------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| replay                                                         | 158130          | 158130 | 158130 | 158130  | 5       |
+╰----------------------------------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭---------------------------------------------------+-----------------+------+--------+------+---------╮
+| test/LiquidityEncoding.t.sol:FakePermit2 Contract |                 |      |        |      |         |
++======================================================================================================+
+| Deployment Cost                                   | Deployment Size |      |        |      |         |
+|---------------------------------------------------+-----------------+------+--------+------+---------|
+| 324489                                            | 1288            |      |        |      |         |
+|---------------------------------------------------+-----------------+------+--------+------+---------|
+|                                                   |                 |      |        |      |         |
+|---------------------------------------------------+-----------------+------+--------+------+---------|
+| Function Name                                     | Min             | Avg  | Median | Max  | # Calls |
+|---------------------------------------------------+-----------------+------+--------+------+---------|
+| amount                                            | 3947            | 3947 | 3947   | 3947 | 1       |
+╰---------------------------------------------------+-----------------+------+--------+------+---------╯
+
+╭--------------------------------------------------+-----------------+-----+--------+-----+---------╮
+| test/LiquidityEncoding.t.sol:FakePolicy Contract |                 |     |        |     |         |
++===================================================================================================+
+| Deployment Cost                                  | Deployment Size |     |        |     |         |
+|--------------------------------------------------+-----------------+-----+--------+-----+---------|
+| 94990                                            | 219             |     |        |     |         |
+|--------------------------------------------------+-----------------+-----+--------+-----+---------|
+|                                                  |                 |     |        |     |         |
+|--------------------------------------------------+-----------------+-----+--------+-----+---------|
+| Function Name                                    | Min             | Avg | Median | Max | # Calls |
+|--------------------------------------------------+-----------------+-----+--------+-----+---------|
+| validatePrice                                    | 369             | 369 | 369    | 369 | 8       |
+╰--------------------------------------------------+-----------------+-----+--------+-----+---------╯
+
+╭-----------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/LiquidityEncoding.t.sol:FakePositionManager Contract |                 |       |        |       |         |
++================================================================================================================+
+| Deployment Cost                                           | Deployment Size |       |        |       |         |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 2189078                                                   | 10573           |       |        |       |         |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                           |                 |       |        |       |         |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                             | Min             | Avg   | Median | Max   | # Calls |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| approve                                                   | 50281           | 50281 | 50281  | 50281 | 4       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| collects                                                  | 2761            | 2761  | 2761   | 2761  | 1       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| getPoolAndPositionInfo                                    | 3580            | 5580  | 3580   | 11580 | 8       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| getPositionLiquidity                                      | 944             | 1853  | 944    | 2944  | 11      |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| nextTokenId                                               | 2695            | 2695  | 2695   | 2695  | 6       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| ownerOf                                                   | 1342            | 2008  | 1342   | 3342  | 9       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| permit2                                                   | 524             | 524   | 524    | 524   | 10      |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| poolManager                                               | 768             | 768   | 768    | 768   | 10      |
+╰-----------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭-------------------------------------------------+-----------------+-----+--------+-----+---------╮
+| test/LiquidityEncoding.t.sol:FakeState Contract |                 |     |        |     |         |
++==================================================================================================+
+| Deployment Cost                                 | Deployment Size |     |        |     |         |
+|-------------------------------------------------+-----------------+-----+--------+-----+---------|
+| 160527                                          | 733             |     |        |     |         |
+|-------------------------------------------------+-----------------+-----+--------+-----+---------|
+|                                                 |                 |     |        |     |         |
+|-------------------------------------------------+-----------------+-----+--------+-----+---------|
+| Function Name                                   | Min             | Avg | Median | Max | # Calls |
+|-------------------------------------------------+-----------------+-----+--------+-----+---------|
+| poolManager                                     | 325             | 325 | 325    | 325 | 10      |
+╰-------------------------------------------------+-----------------+-----+--------+-----+---------╯
+
+╭-----------------------------------------------------+-----------------+-------+--------+--------+---------╮
+| test/MultiHopMigration.t.sol:HopBoundPools Contract |                 |       |        |        |         |
++===========================================================================================================+
+| Deployment Cost                                     | Deployment Size |       |        |        |         |
+|-----------------------------------------------------+-----------------+-------+--------+--------+---------|
+| 702037                                              | 3300            |       |        |        |         |
+|-----------------------------------------------------+-----------------+-------+--------+--------+---------|
+|                                                     |                 |       |        |        |         |
+|-----------------------------------------------------+-----------------+-------+--------+--------+---------|
+| Function Name                                       | Min             | Avg   | Median | Max    | # Calls |
+|-----------------------------------------------------+-----------------+-------+--------+--------+---------|
+| access                                              | 455             | 455   | 455    | 455    | 8       |
+|-----------------------------------------------------+-----------------+-------+--------+--------+---------|
+| get                                                 | 17983           | 17983 | 17983  | 17983  | 7       |
+|-----------------------------------------------------+-----------------+-------+--------+--------+---------|
+| set                                                 | 43342           | 89333 | 105054 | 105054 | 11      |
+╰-----------------------------------------------------+-----------------+-------+--------+--------+---------╯
+
+╭-------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/MultiHopMigration.t.sol:HopBridge Contract |                 |       |        |       |         |
++======================================================================================================+
+| Deployment Cost                                 | Deployment Size |       |        |       |         |
+|-------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 939488                                          | 4359            |       |        |       |         |
+|-------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                 |                 |       |        |       |         |
+|-------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                   | Min             | Avg   | Median | Max   | # Calls |
+|-------------------------------------------------+-----------------+-------+--------+-------+---------|
+| message                                         | 48393           | 48393 | 48393  | 48393 | 11      |
+|-------------------------------------------------+-----------------+-------+--------+-------+---------|
+| setFail                                         | 21816           | 32772 | 32772  | 43728 | 2       |
+╰-------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭----------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/MultiHopMigration.t.sol:HopNFT Contract |                 |       |        |       |         |
++===================================================================================================+
+| Deployment Cost                              | Deployment Size |       |        |       |         |
+|----------------------------------------------+-----------------+-------+--------+-------+---------|
+| 215411                                       | 782             |       |        |       |         |
+|----------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                              |                 |       |        |       |         |
+|----------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                | Min             | Avg   | Median | Max   | # Calls |
+|----------------------------------------------+-----------------+-------+--------+-------+---------|
+| ownerOf                                      | 3105            | 3487  | 3507   | 3507  | 21      |
+|----------------------------------------------+-----------------+-------+--------+-------+---------|
+| set                                          | 22445           | 42814 | 44381  | 44381 | 14      |
+╰----------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/MultiHopMigration.t.sol:HopVault Contract |                 |        |        |        |         |
++=======================================================================================================+
+| Deployment Cost                                | Deployment Size |        |        |        |         |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 1093863                                        | 5297            |        |        |        |         |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                |                 |        |        |        |         |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                  | Min             | Avg    | Median | Max    | # Calls |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| access                                         | 574             | 574    | 574    | 574    | 8       |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| canonicalChainId                               | 221             | 221    | 221    | 221    | 21      |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| confirmations                                  | 2582            | 2582   | 2582   | 2582   | 2       |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| position                                       | 6833            | 31920  | 32833  | 32833  | 57      |
+|------------------------------------------------+-----------------+--------+--------+--------+---------|
+| set                                            | 64248           | 253181 | 280336 | 280336 | 15      |
+╰------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭--------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/OracleAndTransfers.t.sol:TransferHarness Contract |                 |       |        |       |         |
++=============================================================================================================+
+| Deployment Cost                                        | Deployment Size |       |        |       |         |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 344890                                                 | 1381            |       |        |       |         |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                        |                 |       |        |       |         |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                          | Min             | Avg   | Median | Max   | # Calls |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| pull                                                   | 64702           | 77144 | 82372  | 84358 | 3       |
+╰--------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭----------------------------------------------------------------------+-----------------+--------+--------+---------+---------╮
+| test/ProductionInvariants.t.sol:ProductionAccountingHandler Contract |                 |        |        |         |         |
++==============================================================================================================================+
+| Deployment Cost                                                      | Deployment Size |        |        |         |         |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| 25219156                                                             | 111602          |        |        |         |         |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+|                                                                      |                 |        |        |         |         |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| Function Name                                                        | Min             | Avg    | Median | Max     | # Calls |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| activate                                                             | 13865           | 293611 | 54797  | 1145830 | 377     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| assertConservation                                                   | 618472          | 684186 | 625320 | 808766  | 3       |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| claim                                                                | 149043          | 188265 | 151961 | 365258  | 408     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| compound                                                             | 13476           | 102225 | 54408  | 763642  | 361     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| donate                                                               | 63225           | 75092  | 80337  | 98598   | 365     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| harvest                                                              | 13247           | 276537 | 54179  | 1166021 | 410     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| mint                                                                 | 8785            | 157785 | 11043  | 388297  | 404     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| rebalance                                                            | 13718           | 266747 | 54650  | 977414  | 407     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| releaseBuyback                                                       | 8936            | 52790  | 20125  | 151139  | 396     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| setPaused                                                            | 29618           | 30960  | 29630  | 32430   | 375     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| topUp                                                                | 13410           | 344628 | 54342  | 1198780 | 369     |
+|----------------------------------------------------------------------+-----------------+--------+--------+---------+---------|
+| transfer                                                             | 56958           | 70129  | 70158  | 87282   | 365     |
+╰----------------------------------------------------------------------+-----------------+--------+--------+---------+---------╯
+
+╭------------------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/ReceiverAndRemoteFees.t.sol:CapturingBridgeFixture Contract |                 |       |        |       |         |
++=======================================================================================================================+
+| Deployment Cost                                                  | Deployment Size |       |        |       |         |
+|------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 956196                                                           | 4412            |       |        |       |         |
+|------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                                  |                 |       |        |       |         |
+|------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                                    | Min             | Avg   | Median | Max   | # Calls |
+|------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| message                                                          | 48376           | 48376 | 48376  | 48376 | 5       |
+|------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| sends                                                            | 2534            | 2534  | 2534   | 2534  | 1       |
+|------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| setFail                                                          | 43728           | 43728 | 43728  | 43728 | 1       |
+╰------------------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭--------------------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/ReceiverAndRemoteFees.t.sol:ReceiverMigrationFixture Contract |                 |       |        |       |         |
++=========================================================================================================================+
+| Deployment Cost                                                    | Deployment Size |       |        |       |         |
+|--------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 788930                                                             | 3438            |       |        |       |         |
+|--------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                                    |                 |       |        |       |         |
+|--------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                                      | Min             | Avg   | Median | Max   | # Calls |
+|--------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| confirmationCount                                                  | 2494            | 2494  | 2494   | 2494  | 1       |
+|--------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| confirmedMessage                                                   | 48521           | 48521 | 48521  | 48521 | 1       |
+|--------------------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| custodyEpoch                                                       | 2885            | 2885  | 2885   | 2885  | 5       |
+╰--------------------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭----------------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/ReceiverAndRemoteFees.t.sol:ReceiverVaultFixture Contract |                 |        |        |        |         |
++=======================================================================================================================+
+| Deployment Cost                                                | Deployment Size |        |        |        |         |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 1103853                                                        | 5108            |        |        |        |         |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                                |                 |        |        |        |         |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                                  | Min             | Avg    | Median | Max    | # Calls |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| canonicalChainId                                               | 2450            | 2450   | 2450   | 2450   | 10      |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| position                                                       | 32824           | 32824  | 32824  | 32824  | 34      |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| set                                                            | 58439           | 112993 | 63251  | 199751 | 22      |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setFailImport                                                  | 43894           | 43894  | 43894  | 43894  | 1       |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setHome                                                        | 26755           | 26755  | 26755  | 26755  | 1       |
+╰----------------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------------------------------+-----------------+------+--------+------+---------╮
+| test/ReceiverAndRemoteFees.t.sol:RemoteRewardsFixture Contract |                 |      |        |      |         |
++===================================================================================================================+
+| Deployment Cost                                                | Deployment Size |      |        |      |         |
+|----------------------------------------------------------------+-----------------+------+--------+------+---------|
+| 233879                                                         | 867             |      |        |      |         |
+|----------------------------------------------------------------+-----------------+------+--------+------+---------|
+|                                                                |                 |      |        |      |         |
+|----------------------------------------------------------------+-----------------+------+--------+------+---------|
+| Function Name                                                  | Min             | Avg  | Median | Max  | # Calls |
+|----------------------------------------------------------------+-----------------+------+--------+------+---------|
+| credited                                                       | 2450            | 2450 | 2450   | 2450 | 1       |
+╰----------------------------------------------------------------+-----------------+------+--------+------+---------╯
+
+╭-----------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/VaultAccounting.t.sol:ReentrantMintReceiver Contract |                 |        |        |        |         |
++==================================================================================================================+
+| Deployment Cost                                           | Deployment Size |        |        |        |         |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 402772                                                    | 1882            |        |        |        |         |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                           |                 |        |        |        |         |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                             | Min             | Avg    | Median | Max    | # Calls |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| attempted                                                 | 2517            | 2517   | 2517   | 2517   | 1       |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| mint                                                      | 342149          | 342149 | 342149 | 342149 | 1       |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| reentryError                                              | 2556            | 2556   | 2556   | 2556   | 1       |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| reentrySucceeded                                          | 2495            | 2495   | 2495   | 2495   | 1       |
+╰-----------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭-----------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/VaultAccounting.t.sol:ReentrantMintTreasury Contract |                 |       |        |       |         |
++================================================================================================================+
+| Deployment Cost                                           | Deployment Size |       |        |       |         |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 386543                                                    | 1574            |       |        |       |         |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                           |                 |       |        |       |         |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                             | Min             | Avg   | Median | Max   | # Calls |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| attempted                                                 | 2529            | 2529  | 2529   | 2529  | 1       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| configure                                                 | 44229           | 44229 | 44229  | 44229 | 1       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| reentryError                                              | 2568            | 2568  | 2568   | 2568  | 1       |
+|-----------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| reentrySucceeded                                          | 2485            | 2485  | 2485   | 2485  | 1       |
+╰-----------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭-----------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/VaultAccounting.t.sol:RejectingMintReceiver Contract |                 |        |        |        |         |
++==================================================================================================================+
+| Deployment Cost                                           | Deployment Size |        |        |        |         |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 155614                                                    | 504             |        |        |        |         |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                           |                 |        |        |        |         |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                             | Min             | Avg    | Median | Max    | # Calls |
+|-----------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| mint                                                      | 272170          | 272170 | 272170 | 272170 | 1       |
+╰-----------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭--------------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/VaultAccounting.t.sol:VaultLiquidityMock Contract |                 |       |        |       |         |
++=============================================================================================================+
+| Deployment Cost                                        | Deployment Size |       |        |       |         |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 1718376                                                | 8750            |       |        |       |         |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                        |                 |       |        |       |         |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                          | Min             | Avg   | Median | Max   | # Calls |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| a0                                                     | 2885            | 2885  | 2885   | 2885  | 11      |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| a1                                                     | 2841            | 2841  | 2841   | 2841  | 8       |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| amounts                                                | 0               | 212   | 0      | 1376  | 2481    |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| next                                                   | 2714            | 2714  | 2714   | 2714  | 2       |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| ownerOf                                                | 0               | 355   | 0      | 3427  | 2488    |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| positionManager                                        | 0               | 106   | 0      | 840   | 4806    |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| setFail                                                | 44168           | 44168 | 44168  | 44168 | 1       |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| setFees                                                | 46523           | 66290 | 66447  | 66447 | 129     |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| setSpendBps                                            | 27041           | 27049 | 27053  | 27053 | 3       |
+|--------------------------------------------------------+-----------------+-------+--------+-------+---------|
+| transferFrom                                           | 31682           | 31682 | 31682  | 31682 | 1       |
+╰--------------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭-----------------------------------------------------+-----------------+------+--------+------+---------╮
+| test/VaultAccounting.t.sol:VaultPolicyMock Contract |                 |      |        |      |         |
++========================================================================================================+
+| Deployment Cost                                     | Deployment Size |      |        |      |         |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| 250340                                              | 994             |      |        |      |         |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+|                                                     |                 |      |        |      |         |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| Function Name                                       | Min             | Avg  | Median | Max  | # Calls |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| compoundPlan                                        | 926             | 926  | 926    | 926  | 156     |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| needsRebalance                                      | 2575            | 2575 | 2575   | 2575 | 112     |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| swapPlan                                            | 0               | 89   | 0      | 904  | 2326    |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| target                                              | 0               | 84   | 0      | 859  | 2326    |
+|-----------------------------------------------------+-----------------+------+--------+------+---------|
+| validatePrice                                       | 627             | 627  | 627    | 627  | 113     |
+╰-----------------------------------------------------+-----------------+------+--------+------+---------╯
+
+╭------------------------------------------+-----------------+-----+--------+-----+---------╮
+| test/mocks/Mocks.sol:BoundDummy Contract |                 |     |        |     |         |
++===========================================================================================+
+| Deployment Cost                          | Deployment Size |     |        |     |         |
+|------------------------------------------+-----------------+-----+--------+-----+---------|
+| 108830                                   | 547             |     |        |     |         |
+|------------------------------------------+-----------------+-----+--------+-----+---------|
+|                                          |                 |     |        |     |         |
+|------------------------------------------+-----------------+-----+--------+-----+---------|
+| Function Name                            | Min             | Avg | Median | Max | # Calls |
+|------------------------------------------+-----------------+-----+--------+-----+---------|
+| access                                   | 429             | 429 | 429    | 429 | 170     |
+╰------------------------------------------+-----------------+-----+--------+-----+---------╯
+
+╭---------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/mocks/Mocks.sol:ExtraTaxToken Contract |                 |       |        |       |         |
++==================================================================================================+
+| Deployment Cost                             | Deployment Size |       |        |       |         |
+|---------------------------------------------+-----------------+-------+--------+-------+---------|
+| 682872                                      | 3455            |       |        |       |         |
+|---------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                             |                 |       |        |       |         |
+|---------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                               | Min             | Avg   | Median | Max   | # Calls |
+|---------------------------------------------+-----------------+-------+--------+-------+---------|
+| approve                                     | 47630           | 47630 | 47630  | 47630 | 1       |
+|---------------------------------------------+-----------------+-------+--------+-------+---------|
+| balanceOf                                   | 1011            | 2211  | 3011   | 3011  | 5       |
+|---------------------------------------------+-----------------+-------+--------+-------+---------|
+| mint                                        | 70568           | 70568 | 70568  | 70568 | 1       |
+╰---------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/mocks/Mocks.sol:MockAccess Contract |                 |       |        |       |         |
++===============================================================================================+
+| Deployment Cost                          | Deployment Size |       |        |       |         |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| 316398                                   | 1350            |       |        |       |         |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                          |                 |       |        |       |         |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                            | Min             | Avg   | Median | Max   | # Calls |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| bind                                     | 21728           | 40257 | 44939  | 44939 | 1149    |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| canConfigure                             | 0               | 2310  | 2887   | 2887  | 258     |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| isSealed                                 | 0               | 492   | 0      | 2594  | 14858   |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| keepers                                  | 2938            | 2938  | 2938   | 2938  | 166     |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| module                                   | 0               | 346   | 0      | 2958  | 94434   |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| paused                                   | 0               | 943   | 0      | 2573  | 8228    |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| seal                                     | 21064           | 26288 | 26486  | 26486 | 110     |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| setKeeper                                | 44673           | 44673 | 44673  | 44673 | 63      |
+|------------------------------------------+-----------------+-------+--------+-------+---------|
+| setPaused                                | 23844           | 25194 | 23856  | 26656 | 377     |
+╰------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭----------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/mocks/Mocks.sol:MockFeed Contract |                 |       |        |       |         |
++=============================================================================================+
+| Deployment Cost                        | Deployment Size |       |        |       |         |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| 311562                                 | 1677            |       |        |       |         |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+|                                        |                 |       |        |       |         |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                          | Min             | Avg   | Median | Max   | # Calls |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| decimals                               | 0               | 220   | 234    | 234   | 142     |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| latestRoundData                        | 0               | 1027  | 0      | 11679 | 21207   |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| rounds                                 | 32328           | 32328 | 32328  | 32328 | 1       |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| set                                    | 27395           | 34724 | 35031  | 35043 | 33      |
+╰----------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭---------------------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/mocks/Mocks.sol:MockMessageReceiver Contract |                 |       |        |       |         |
++========================================================================================================+
+| Deployment Cost                                   | Deployment Size |       |        |       |         |
+|---------------------------------------------------+-----------------+-------+--------+-------+---------|
+| 385005                                            | 1567            |       |        |       |         |
+|---------------------------------------------------+-----------------+-------+--------+-------+---------|
+|                                                   |                 |       |        |       |         |
+|---------------------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                                     | Min             | Avg   | Median | Max   | # Calls |
+|---------------------------------------------------+-----------------+-------+--------+-------+---------|
+| configure                                         | 24927           | 45003 | 46827  | 46839 | 12      |
+|---------------------------------------------------+-----------------+-------+--------+-------+---------|
+| received                                          | 2472            | 2472  | 2472   | 2472  | 5       |
+╰---------------------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭-----------------------------------------+-----------------+-------+--------+--------+---------╮
+| test/mocks/Mocks.sol:MockPools Contract |                 |       |        |        |         |
++===============================================================================================+
+| Deployment Cost                         | Deployment Size |       |        |        |         |
+|-----------------------------------------+-----------------+-------+--------+--------+---------|
+| 672658                                  | 2903            |       |        |        |         |
+|-----------------------------------------+-----------------+-------+--------+--------+---------|
+|                                         |                 |       |        |        |         |
+|-----------------------------------------+-----------------+-------+--------+--------+---------|
+| Function Name                           | Min             | Avg   | Median | Max    | # Calls |
+|-----------------------------------------+-----------------+-------+--------+--------+---------|
+| get                                     | 0               | 2063  | 0      | 17961  | 16676   |
+|-----------------------------------------+-----------------+-------+--------+--------+---------|
+| set                                     | 24112           | 91005 | 84734  | 145070 | 346     |
+╰-----------------------------------------+-----------------+-------+--------+--------+---------╯
+
+╭------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/mocks/Mocks.sol:MockRoutes Contract |                 |        |        |        |         |
++=================================================================================================+
+| Deployment Cost                          | Deployment Size |        |        |        |         |
+|------------------------------------------+-----------------+--------+--------+--------+---------|
+| 562081                                   | 2387            |        |        |        |         |
+|------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                          |                 |        |        |        |         |
+|------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                            | Min             | Avg    | Median | Max    | # Calls |
+|------------------------------------------+-----------------+--------+--------+--------+---------|
+| get                                      | 7072            | 26914  | 35072  | 35072  | 127     |
+|------------------------------------------+-----------------+--------+--------+--------+---------|
+| set                                      | 63144           | 268422 | 282836 | 343196 | 84      |
+╰------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭-----------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/mocks/Mocks.sol:MockToken Contract |                 |       |        |       |         |
++==============================================================================================+
+| Deployment Cost                         | Deployment Size |       |        |       |         |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| 597706                                  | 3350            |       |        |       |         |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+|                                         |                 |       |        |       |         |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                           | Min             | Avg   | Median | Max   | # Calls |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| allowance                               | 3486            | 3486  | 3486   | 3486  | 2       |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| approve                                 | 21944           | 47544 | 47990  | 48002 | 542     |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| balanceOf                               | 0               | 549   | 0      | 3011  | 50984   |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| decimals                                | 0               | 262   | 278    | 278   | 142     |
+|-----------------------------------------+-----------------+-------+--------+-------+---------|
+| mint                                    | 21392           | 51219 | 52962  | 70326 | 1203    |
+╰-----------------------------------------+-----------------+-------+--------+-------+---------╯
+
+╭---------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/mocks/Mocks.sol:MockTransport Contract |                 |        |        |        |         |
++====================================================================================================+
+| Deployment Cost                             | Deployment Size |        |        |        |         |
+|---------------------------------------------+-----------------+--------+--------+--------+---------|
+| 525272                                      | 2216            |        |        |        |         |
+|---------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                             |                 |        |        |        |         |
+|---------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                               | Min             | Avg    | Median | Max    | # Calls |
+|---------------------------------------------+-----------------+--------+--------+--------+---------|
+| deliver                                     | 121680          | 200931 | 238602 | 249648 | 11      |
+╰---------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭-----------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/mocks/Mocks.sol:MockVaultRecord Contract |                 |        |        |        |         |
++======================================================================================================+
+| Deployment Cost                               | Deployment Size |        |        |        |         |
+|-----------------------------------------------+-----------------+--------+--------+--------+---------|
+| 564397                                        | 2398            |        |        |        |         |
+|-----------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                               |                 |        |        |        |         |
+|-----------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                 | Min             | Avg    | Median | Max    | # Calls |
+|-----------------------------------------------+-----------------+--------+--------+--------+---------|
+| position                                      | 32512           | 32512  | 32512  | 32512  | 271     |
+|-----------------------------------------------+-----------------+--------+--------+--------+---------|
+| set                                           | 62458           | 138963 | 139258 | 139258 | 261     |
+╰-----------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------+-----------------+-------+--------+-------+---------╮
+| test/mocks/Mocks.sol:TaxToken Contract |                 |       |        |       |         |
++=============================================================================================+
+| Deployment Cost                        | Deployment Size |       |        |       |         |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| 691306                                 | 3494            |       |        |       |         |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+|                                        |                 |       |        |       |         |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| Function Name                          | Min             | Avg   | Median | Max   | # Calls |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| approve                                | 47630           | 47630 | 47630  | 47630 | 1       |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| balanceOf                              | 1011            | 2511  | 3011   | 3011  | 4       |
+|----------------------------------------+-----------------+-------+--------+-------+---------|
+| mint                                   | 70568           | 70568 | 70568  | 70568 | 1       |
+╰----------------------------------------+-----------------+-------+--------+-------+---------╯
+
+
+Ran 14 test suites in 24.54s (67.20s CPU time): 140 tests passed, 0 failed, 1 skipped (141 total tests)

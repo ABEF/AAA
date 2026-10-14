@@ -1,10 +1,12 @@
 # Development and operating procedures
 
-**No mainnet launch or funded deployment is approved.** Current development build/test evidence is recorded in [the implementation update](../reports/IMPLEMENTATION_UPDATE.md); it does not verify a live provider transport, destination deployment, or real Uniswap lifecycle.
+**No mainnet launch or funded deployment is approved.** The [current readiness review](../reports/PRODUCTION_READINESS.md) includes real Uniswap dependency fork checks and internal hardening. It does not establish a production bridge, approved reward source, authentic deployment configuration or independent audit.
 
 ## Build and configuration
 
-Install a reviewed Foundry toolchain and Node/npm on a networked development host. Run `scripts/install-deps.sh`, inspect the resolved versions/lockfile, then `scripts/verify.sh`. Retain the complete compiler output, runtime sizes, fuzz seeds and test results. Run Slither separately and triage every finding rather than merely suppressing it.
+Install the pinned Foundry toolchain and Node/npm on a networked development host. Run `scripts/install-deps.sh`, inspect the resolved lockfiles, then `scripts/verify.sh`, the pinned Slither review gate and explicit fork command in [development setup](DEVELOPMENT.md). Retain compiler output, runtime sizes, seeds and results. The static gate checks review coverage and source identity; it does not certify accepted trust assumptions.
+
+Copy `config/production.example.json` to an operator-owned configuration and complete its documented inventory. Run `python3 scripts/validate-production-config.py --config YOUR_CONFIG --expected-commit YOUR_RELEASE_COMMIT`. The committed example must fail: it includes pending decisions and the unsupported requested market. The validator is offline/read-only, validates consistency and evidence references, and never signs or contacts a chain. Operators and external reviewers must verify the claimed code, constructor values, roles, observations and evidence authenticity independently. A `ready` manifest result does not authorize deployment or funded use.
 
 The supplied `DeployCore.s.sol` template is restricted to local chain IDs 31337/31338. It expects existing local Uniswap contracts and an explicitly selected test transport. It binds all 16 modules but deliberately does not seal configuration. It was not executed here.
 
@@ -26,13 +28,13 @@ The example has no active jobs. Configure explicit NFT IDs, minimum liquidity, f
 
 For a reviewed test deployment, live mode additionally requires `--live`, reviewed runtime hashes for configured contracts, a matching encrypted `cast` wallet and private regular keystore/password files. Use a dedicated low-balance account with only keeper permissions. Do not use the governance wallet.
 
-The program serializes transactions and writes intended nonce, destination, calldata and value durably before invoking the signer. A timeout/error leaves an ambiguous pending record. It must not be deleted just to force a retry.
+The program serializes transactions and writes intended nonce, destination, calldata and value durably before invoking the signer. Its pinned `cast send` call uses raw calldata as the positional argument, an explicit sender and a cleaned environment; the invalid old `--data` form has been removed. State replacement uses an exclusive random private temporary file and fsync rather than a predictable temporary path. A timeout/error leaves an ambiguous pending record. It must not be deleted just to force a retry.
 
 ```bash
 python3 -m keeper.monitor --config keeper/config.local.json --resolve-pending 0xREVIEWED_TRANSACTION_HASH
 ```
 
-This recovery path verifies sender, nonce, destination, calldata, value, confirmations and canonical receipt block. If the transaction was never broadcast or was replaced/dropped, investigate the account across trusted nodes before a human edits recovery state; there is no automatic blind nonce replacement. Preserve state files and audit logs.
+This recovery path verifies transaction/receipt hash identity, sender, nonce, destination, calldata, value, confirmations and canonical receipt block before accepting it as the pending submission. An invalid candidate must not rewrite the pending hash. If the transaction was never broadcast or was replaced/dropped, investigate the account across trusted nodes before a human edits recovery state; there is no automatic blind nonce replacement. Preserve state files and audit logs. Signer/RPC/rollup estimates still require an actual staged network rehearsal.
 
 Gas-price, per-transaction and daily budgets apply to estimates; configure a conservative L1-fee allowance on rollups. Actual confirmation costs update accounting. These estimates are not a guarantee against a malicious RPC or changing chain-specific fee rules.
 
@@ -60,8 +62,14 @@ The SQLite database is an off-chain cache, not proof of ownership. Claims and cu
 6. Call destination `acknowledge(migrationId, reverseRouteId)` for source completion. Confirm that the immediately previous source becomes `Remote` and its plan completes. When that source is the canonical home, this ACK also records the new home location.
 7. For an onward hop between satellites, also call `acknowledgeHome(migrationId, homeRouteId)`. Verify canonical location events in strict next-epoch order. An out-of-order notification must be retried after earlier location updates; historical exact retries cannot regress the location. ACKs use the retained hop snapshot even if custody has since moved again.
 8. On canonical return, location is recorded atomically during principal import; do not construct a self-chain home ACK. Send source completion to the satellite that released custody. No imported hop remints the NFT or adds contribution Power.
-9. Drain funded old remote reward budgets through their historical authorized routes, even after principal has left a source. Immutable NFT/token provenance selects the canonical asset; satellite dust joins the funded individual budget. Keep reward and principal reconciliation separate.
+9. Drain funded old remote reward budgets through their historical authorized routes, even after principal has left a source. The keeper attempts reviewed reward routes in Active, Outbound, Remote and Inbound states; it performs LP operations only in Active. Immutable NFT/token provenance selects the canonical asset; satellite dust joins the funded individual budget. Keep reward and principal reconciliation separate.
 
 Source failure before successful submission reverts that transaction. Failure after the transport has taken custody requires its provider-specific recovery process, which is **not implemented by this generic adapter**. There is no safe catch-all admin recovery address.
 
 This procedure covers equivalent-asset custody hops, not arbitrary asset conversion, moving the NFT off its canonical chain, or satellite holder top-ups. The requested Robinhood native-ETH/hooked pool remains unsupported and its reward integration is deferred.
+
+## Incident and alert rehearsal
+
+Before funded operation, configure and test alerts for keeper/indexer heartbeat, confirmed-block lag, deep reorg halts, oracle stale/down/recovery states, low keeper native balance, ambiguous nonce age, reverted maintenance, reward liabilities versus balances, principal/idle attribution, and source/destination migration epochs. Track both source-completion and canonical-location ACKs: a home location notification alone does not clear a pending source plan. Retry the correct retained ACK after verifying earlier epochs; do not edit on-chain locations or reset custody counters.
+
+For an incident, preserve chain observations, logs and durable state first; stop the keeper signer if its key/RPC identity is uncertain. The guardian can pause strategy operations, but claims and authenticated inbound settlement remain available. Use timelocked governance for approved configuration changes. Rebuild the indexer from a verified deployment checkpoint and compare its ownership/event projection before resuming. Provider custody loss or unavailable delivery requires that provider's reviewed recovery protocol, which remains a release blocker here. Rehearse restoration and signer recovery on test infrastructure; these procedures have not been exercised on a funded deployment.

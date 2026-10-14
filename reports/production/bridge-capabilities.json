@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "chainId": 4663,
+  "blockNumber": 88544093,
+  "blockHash": "0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490",
+  "readOnly": true,
+  "rpcSource": "https://robinhood.drpc.org",
+  "CCIP": {
+    "robinhoodSelector": "6180753054346818345",
+    "router": "0x06fc836cf9839b1cd891c440a0a45242da6ae1c9",
+    "getter": "isChainSupported(uint64)",
+    "destinations": [
+      {
+        "chain": "Ink",
+        "chainId": 57073,
+        "selector": "3461204551265785888",
+        "supported": false
+      },
+      {
+        "chain": "Ethereum",
+        "chainId": 1,
+        "selector": "5009297550715157269",
+        "supported": true
+      }
+    ]
+  },
+  "LayerZero": {
+    "robinhoodEndpointId": 30416,
+    "endpoint": "0x6f475642a6e85809b1c36fa62763669b1b48dd5b",
+    "sendLibrary": "0xc39161c743d0307eb9bcc9fef03eeb9dc4802de7",
+    "getter": "isSupportedEid(uint32)",
+    "destinations": [
+      {
+        "chain": "Ink",
+        "chainId": 57073,
+        "endpointId": 30339,
+        "supported": true
+      },
+      {
+        "chain": "Ethereum",
+        "chainId": 1,
+        "endpointId": 30101,
+        "supported": true
+      }
+    ]
+  },
+  "boundaries": [
+    "A supported message lane does not establish a ZZZ token transfer or backed equivalent asset",
+    "Endpoint/library availability does not approve DVN configuration, confirmation depth, peers, upgrade authority, or transport deployment",
+    "No production transport or public-chain transfers were implemented",
+    "Existing fixed-supply ZZZ requires a reviewed lock-and-represent or equivalent fully backed model; burn-and-remint on Robinhood is not available",
+    "OFT shared-decimal dust and separate compose delivery conflict with unmodified exact-amount atomic delivery assumptions",
+    "CCIP direct Robinhood-to-Ink lane not supported at checked block; routes via Ethereum require separate validation"
+  ],
+  "sources": [
+    "https://docs.chain.link/ccip/directory/mainnet/chain/robinhood-mainnet",
+    "https://docs.chain.link/ccip/directory/mainnet/chain/ethereum-mainnet-ink-1",
+    "https://docs.chain.link/ccip/directory/mainnet/chain/mainnet",
+    "https://docs.chain.link/ccip/concepts/message-lifecycle",
+    "https://docs.chain.link/ccip/evm/tutorials/application-developers/manual-execution",
+    "https://docs.layerzero.network/v2/deployments/chains/robinhood",
+    "https://docs.layerzero.network/v2/deployments/chains/ink",
+    "https://docs.layerzero.network/v2/deployments/chains/ethereum",
+    "https://metadata.layerzero-api.com/v1/metadata/deployments",
+    "https://docs.layerzero.network/v2/concepts/applications/oft-standard",
+    "https://docs.layerzero.network/v2/concepts/technical-reference/oft-reference",
+    "https://docs.layerzero.network/v2/developers/evm/oft/quickstart",
+    "https://docs.robinhood.com/chain/bridging/",
+    "https://docs.robinhood.com/chain/cross-chain-messaging/",
+    "https://drpc.org/chainlist/robinhood-mainnet-rpc"
+  ]
+}

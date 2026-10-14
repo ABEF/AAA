@@ -2,6 +2,7 @@ node_modules/
 lib/
 out/
 cache/
+.venv-slither/
 __pycache__/
 *.py[cod]
 .env

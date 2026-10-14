@@ -23,5 +23,13 @@ remappings = [
 ]
 [profile.default.fuzz]
 runs = 1000
+[profile.default.invariant]
+runs = 32
+depth = 128
+fail_on_revert = true
+[profile.audit.invariant]
+runs = 256
+depth = 256
+fail_on_revert = true
 [fmt]
 line_length = 120

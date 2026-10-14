@@ -1,0 +1,1386 @@
+{
+  "compiler": "solc0.8.26/cancun/viaIR/optimizerRuns1/yulfalse",
+  "runtime_limit": 24576,
+  "initcode_limit": 49152,
+  "all_16_modules_within_limits": true,
+  "modules": [
+    {
+      "module": "ZZZAccessController",
+      "runtime_bytes": 9630,
+      "initcode_bytes": 11309,
+      "runtime_margin": 14946,
+      "initcode_margin": 37843,
+      "template_runtime_sha256": "17fd986499015ffc0c502cf4f20736278cf3c59a5450022b5a7ace64e6eece6c",
+      "immutable_references": {}
+    },
+    {
+      "module": "ZZZBridgeAdapter",
+      "runtime_bytes": 9248,
+      "initcode_bytes": 9801,
+      "runtime_margin": 15328,
+      "initcode_margin": 39351,
+      "template_runtime_sha256": "3e55d7cd706196406d74d9e345558ff62af1099f7713f8f5dd1c37a6b759b319",
+      "immutable_references": {
+        "11701": [
+          {
+            "start": 433,
+            "length": 32
+          },
+          {
+            "start": 4572,
+            "length": 32
+          },
+          {
+            "start": 5944,
+            "length": 32
+          },
+          {
+            "start": 6041,
+            "length": 32
+          },
+          {
+            "start": 6272,
+            "length": 32
+          }
+        ],
+        "24668": [
+          {
+            "start": 498,
+            "length": 32
+          },
+          {
+            "start": 2816,
+            "length": 32
+          },
+          {
+            "start": 2940,
+            "length": 32
+          },
+          {
+            "start": 3329,
+            "length": 32
+          },
+          {
+            "start": 4270,
+            "length": 32
+          },
+          {
+            "start": 4682,
+            "length": 32
+          },
+          {
+            "start": 4762,
+            "length": 32
+          },
+          {
+            "start": 5465,
+            "length": 32
+          },
+          {
+            "start": 5573,
+            "length": 32
+          },
+          {
+            "start": 6561,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZBuyback",
+      "runtime_bytes": 5824,
+      "initcode_bytes": 6481,
+      "runtime_margin": 18752,
+      "initcode_margin": 42671,
+      "template_runtime_sha256": "78e87626ac6cf1527472219f4508e435953b83bebade7b1e52271b921cbd02c6",
+      "immutable_references": {
+        "12574": [
+          {
+            "start": 358,
+            "length": 32
+          },
+          {
+            "start": 2230,
+            "length": 32
+          },
+          {
+            "start": 2517,
+            "length": 32
+          },
+          {
+            "start": 2581,
+            "length": 32
+          },
+          {
+            "start": 2670,
+            "length": 32
+          },
+          {
+            "start": 2753,
+            "length": 32
+          },
+          {
+            "start": 2863,
+            "length": 32
+          },
+          {
+            "start": 3058,
+            "length": 32
+          },
+          {
+            "start": 3582,
+            "length": 32
+          },
+          {
+            "start": 4206,
+            "length": 32
+          },
+          {
+            "start": 4273,
+            "length": 32
+          }
+        ],
+        "12576": [
+          {
+            "start": 126,
+            "length": 32
+          },
+          {
+            "start": 4531,
+            "length": 32
+          }
+        ],
+        "24668": [
+          {
+            "start": 271,
+            "length": 32
+          },
+          {
+            "start": 659,
+            "length": 32
+          },
+          {
+            "start": 800,
+            "length": 32
+          },
+          {
+            "start": 972,
+            "length": 32
+          },
+          {
+            "start": 1052,
+            "length": 32
+          },
+          {
+            "start": 2057,
+            "length": 32
+          },
+          {
+            "start": 2319,
+            "length": 32
+          },
+          {
+            "start": 3353,
+            "length": 32
+          },
+          {
+            "start": 3744,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZCompounder",
+      "runtime_bytes": 1682,
+      "initcode_bytes": 2060,
+      "runtime_margin": 22894,
+      "initcode_margin": 47092,
+      "template_runtime_sha256": "1f540adfb36741f62acad55f9636ef745c26dec221f49ce02fc808b30cd6e1d7",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 176,
+            "length": 32
+          },
+          {
+            "start": 492,
+            "length": 32
+          },
+          {
+            "start": 629,
+            "length": 32
+          },
+          {
+            "start": 800,
+            "length": 32
+          },
+          {
+            "start": 880,
+            "length": 32
+          },
+          {
+            "start": 1185,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZFeeController",
+      "runtime_bytes": 11671,
+      "initcode_bytes": 12211,
+      "runtime_margin": 12905,
+      "initcode_margin": 36941,
+      "template_runtime_sha256": "2eb886ae738e522f2bfd756608ce367ecd3a8b06fdc6e4055da879cf22ef87cf",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 798,
+            "length": 32
+          },
+          {
+            "start": 1582,
+            "length": 32
+          },
+          {
+            "start": 1728,
+            "length": 32
+          },
+          {
+            "start": 2027,
+            "length": 32
+          },
+          {
+            "start": 2129,
+            "length": 32
+          },
+          {
+            "start": 3511,
+            "length": 32
+          },
+          {
+            "start": 4594,
+            "length": 32
+          },
+          {
+            "start": 4696,
+            "length": 32
+          },
+          {
+            "start": 4914,
+            "length": 32
+          },
+          {
+            "start": 4994,
+            "length": 32
+          },
+          {
+            "start": 6262,
+            "length": 32
+          },
+          {
+            "start": 6470,
+            "length": 32
+          },
+          {
+            "start": 7048,
+            "length": 32
+          },
+          {
+            "start": 7712,
+            "length": 32
+          },
+          {
+            "start": 8046,
+            "length": 32
+          },
+          {
+            "start": 8148,
+            "length": 32
+          },
+          {
+            "start": 8362,
+            "length": 32
+          },
+          {
+            "start": 8464,
+            "length": 32
+          },
+          {
+            "start": 8685,
+            "length": 32
+          },
+          {
+            "start": 8787,
+            "length": 32
+          },
+          {
+            "start": 10144,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZLiquidityManager",
+      "runtime_bytes": 18887,
+      "initcode_bytes": 20320,
+      "runtime_margin": 5689,
+      "initcode_margin": 28832,
+      "template_runtime_sha256": "81b34e66cea1e2794f8e0bd946b06c92021c92bd76ee938dc95bb09771219ba4",
+      "immutable_references": {
+        "14053": [
+          {
+            "start": 5523,
+            "length": 32
+          },
+          {
+            "start": 5749,
+            "length": 32
+          },
+          {
+            "start": 6289,
+            "length": 32
+          },
+          {
+            "start": 6437,
+            "length": 32
+          },
+          {
+            "start": 9454,
+            "length": 32
+          },
+          {
+            "start": 10249,
+            "length": 32
+          },
+          {
+            "start": 12157,
+            "length": 32
+          },
+          {
+            "start": 12325,
+            "length": 32
+          },
+          {
+            "start": 13390,
+            "length": 32
+          },
+          {
+            "start": 13695,
+            "length": 32
+          },
+          {
+            "start": 14119,
+            "length": 32
+          },
+          {
+            "start": 14530,
+            "length": 32
+          },
+          {
+            "start": 17491,
+            "length": 32
+          },
+          {
+            "start": 17711,
+            "length": 32
+          }
+        ],
+        "14056": [
+          {
+            "start": 1110,
+            "length": 32
+          },
+          {
+            "start": 6150,
+            "length": 32
+          }
+        ],
+        "14059": [
+          {
+            "start": 1649,
+            "length": 32
+          },
+          {
+            "start": 3409,
+            "length": 32
+          },
+          {
+            "start": 7127,
+            "length": 32
+          },
+          {
+            "start": 7243,
+            "length": 32
+          },
+          {
+            "start": 7608,
+            "length": 32
+          },
+          {
+            "start": 7720,
+            "length": 32
+          },
+          {
+            "start": 7770,
+            "length": 32
+          },
+          {
+            "start": 7886,
+            "length": 32
+          }
+        ],
+        "14062": [
+          {
+            "start": 364,
+            "length": 32
+          },
+          {
+            "start": 17389,
+            "length": 32
+          },
+          {
+            "start": 17437,
+            "length": 32
+          },
+          {
+            "start": 17663,
+            "length": 32
+          },
+          {
+            "start": 17835,
+            "length": 32
+          }
+        ],
+        "24668": [
+          {
+            "start": 1229,
+            "length": 32
+          },
+          {
+            "start": 2553,
+            "length": 32
+          },
+          {
+            "start": 2712,
+            "length": 32
+          },
+          {
+            "start": 2954,
+            "length": 32
+          },
+          {
+            "start": 3591,
+            "length": 32
+          },
+          {
+            "start": 4257,
+            "length": 32
+          },
+          {
+            "start": 4368,
+            "length": 32
+          },
+          {
+            "start": 4602,
+            "length": 32
+          },
+          {
+            "start": 4704,
+            "length": 32
+          },
+          {
+            "start": 4918,
+            "length": 32
+          },
+          {
+            "start": 5025,
+            "length": 32
+          },
+          {
+            "start": 8388,
+            "length": 32
+          },
+          {
+            "start": 8490,
+            "length": 32
+          },
+          {
+            "start": 9306,
+            "length": 32
+          },
+          {
+            "start": 9743,
+            "length": 32
+          },
+          {
+            "start": 9845,
+            "length": 32
+          },
+          {
+            "start": 10962,
+            "length": 32
+          },
+          {
+            "start": 12242,
+            "length": 32
+          },
+          {
+            "start": 12832,
+            "length": 32
+          },
+          {
+            "start": 13517,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZMigration",
+      "runtime_bytes": 20242,
+      "initcode_bytes": 20880,
+      "runtime_margin": 4334,
+      "initcode_margin": 28272,
+      "template_runtime_sha256": "9c0f3b3e48446292e046149211223c04b270ef33bcb9d3e73bfa85de4b886cb9",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 1094,
+            "length": 32
+          },
+          {
+            "start": 2409,
+            "length": 32
+          },
+          {
+            "start": 2555,
+            "length": 32
+          },
+          {
+            "start": 4270,
+            "length": 32
+          },
+          {
+            "start": 4437,
+            "length": 32
+          },
+          {
+            "start": 5733,
+            "length": 32
+          },
+          {
+            "start": 6181,
+            "length": 32
+          },
+          {
+            "start": 6294,
+            "length": 32
+          },
+          {
+            "start": 6374,
+            "length": 32
+          },
+          {
+            "start": 6595,
+            "length": 32
+          },
+          {
+            "start": 6795,
+            "length": 32
+          },
+          {
+            "start": 8498,
+            "length": 32
+          },
+          {
+            "start": 8626,
+            "length": 32
+          },
+          {
+            "start": 8791,
+            "length": 32
+          },
+          {
+            "start": 9606,
+            "length": 32
+          },
+          {
+            "start": 10117,
+            "length": 32
+          },
+          {
+            "start": 10214,
+            "length": 32
+          },
+          {
+            "start": 10311,
+            "length": 32
+          },
+          {
+            "start": 10391,
+            "length": 32
+          },
+          {
+            "start": 11700,
+            "length": 32
+          },
+          {
+            "start": 11831,
+            "length": 32
+          },
+          {
+            "start": 12361,
+            "length": 32
+          },
+          {
+            "start": 13514,
+            "length": 32
+          },
+          {
+            "start": 13802,
+            "length": 32
+          },
+          {
+            "start": 13904,
+            "length": 32
+          },
+          {
+            "start": 14002,
+            "length": 32
+          },
+          {
+            "start": 14530,
+            "length": 32
+          },
+          {
+            "start": 14691,
+            "length": 32
+          },
+          {
+            "start": 14987,
+            "length": 32
+          },
+          {
+            "start": 16449,
+            "length": 32
+          },
+          {
+            "start": 16617,
+            "length": 32
+          },
+          {
+            "start": 16888,
+            "length": 32
+          },
+          {
+            "start": 18421,
+            "length": 32
+          },
+          {
+            "start": 18859,
+            "length": 32
+          },
+          {
+            "start": 18937,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZMigrationReceiver",
+      "runtime_bytes": 14350,
+      "initcode_bytes": 14918,
+      "runtime_margin": 10226,
+      "initcode_margin": 34234,
+      "template_runtime_sha256": "c2a658d0b78faa220fa4c1036f7df9be430027699b0e21d4270a97fbd02c6623",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 574,
+            "length": 32
+          },
+          {
+            "start": 1575,
+            "length": 32
+          },
+          {
+            "start": 1679,
+            "length": 32
+          },
+          {
+            "start": 2024,
+            "length": 32
+          },
+          {
+            "start": 2142,
+            "length": 32
+          },
+          {
+            "start": 3618,
+            "length": 32
+          },
+          {
+            "start": 3932,
+            "length": 32
+          },
+          {
+            "start": 4274,
+            "length": 32
+          },
+          {
+            "start": 4549,
+            "length": 32
+          },
+          {
+            "start": 4646,
+            "length": 32
+          },
+          {
+            "start": 4755,
+            "length": 32
+          },
+          {
+            "start": 4835,
+            "length": 32
+          },
+          {
+            "start": 5123,
+            "length": 32
+          },
+          {
+            "start": 5439,
+            "length": 32
+          },
+          {
+            "start": 5519,
+            "length": 32
+          },
+          {
+            "start": 6864,
+            "length": 32
+          },
+          {
+            "start": 7265,
+            "length": 32
+          },
+          {
+            "start": 7930,
+            "length": 32
+          },
+          {
+            "start": 8282,
+            "length": 32
+          },
+          {
+            "start": 8656,
+            "length": 32
+          },
+          {
+            "start": 8920,
+            "length": 32
+          },
+          {
+            "start": 10702,
+            "length": 32
+          },
+          {
+            "start": 10896,
+            "length": 32
+          },
+          {
+            "start": 11121,
+            "length": 32
+          },
+          {
+            "start": 12012,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZMigrationRegistry",
+      "runtime_bytes": 7134,
+      "initcode_bytes": 7555,
+      "runtime_margin": 17442,
+      "initcode_margin": 41597,
+      "template_runtime_sha256": "a5f549327f2392da004b03f6fc3c29883f3bb69d51954448892fed91ef07873d",
+      "immutable_references": {
+        "52323": [
+          {
+            "start": 479,
+            "length": 32
+          },
+          {
+            "start": 1118,
+            "length": 32
+          },
+          {
+            "start": 2173,
+            "length": 32
+          },
+          {
+            "start": 4356,
+            "length": 32
+          },
+          {
+            "start": 4959,
+            "length": 32
+          },
+          {
+            "start": 5476,
+            "length": 32
+          },
+          {
+            "start": 5628,
+            "length": 32
+          },
+          {
+            "start": 5802,
+            "length": 32
+          },
+          {
+            "start": 5946,
+            "length": 32
+          },
+          {
+            "start": 6050,
+            "length": 32
+          },
+          {
+            "start": 6147,
+            "length": 32
+          },
+          {
+            "start": 6233,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZNFT",
+      "runtime_bytes": 6400,
+      "initcode_bytes": 7546,
+      "runtime_margin": 18176,
+      "initcode_margin": 41606,
+      "template_runtime_sha256": "7c425358cd175cb14a7b5e884129e82bbff344eccf918c84f4c77fd5a4c601b1",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 1151,
+            "length": 32
+          },
+          {
+            "start": 2370,
+            "length": 32
+          },
+          {
+            "start": 2512,
+            "length": 32
+          },
+          {
+            "start": 2813,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZOracle",
+      "runtime_bytes": 5310,
+      "initcode_bytes": 5798,
+      "runtime_margin": 19266,
+      "initcode_margin": 43354,
+      "template_runtime_sha256": "cc94267462ea7cb2766e2dff4b1e9d2e4769e194005102904fe0b9356faeed1f",
+      "immutable_references": {
+        "19433": [
+          {
+            "start": 926,
+            "length": 32
+          },
+          {
+            "start": 4872,
+            "length": 32
+          },
+          {
+            "start": 4936,
+            "length": 32
+          },
+          {
+            "start": 5058,
+            "length": 32
+          }
+        ],
+        "24668": [
+          {
+            "start": 1013,
+            "length": 32
+          },
+          {
+            "start": 1843,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZPoolRegistry",
+      "runtime_bytes": 5155,
+      "initcode_bytes": 5520,
+      "runtime_margin": 19421,
+      "initcode_margin": 43632,
+      "template_runtime_sha256": "1c657f3c3531b495aa22bd59a513a5790c1df8219df566aa118a1b84a044cfca",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 360,
+            "length": 32
+          },
+          {
+            "start": 907,
+            "length": 32
+          },
+          {
+            "start": 2744,
+            "length": 32
+          },
+          {
+            "start": 2983,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZPower",
+      "runtime_bytes": 1812,
+      "initcode_bytes": 2177,
+      "runtime_margin": 22764,
+      "initcode_margin": 46975,
+      "template_runtime_sha256": "46df8f8af282c0481d0119e65f291ccb0c7ad1362a6e1d523b98f8d5a37bf272",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 391,
+            "length": 32
+          },
+          {
+            "start": 785,
+            "length": 32
+          },
+          {
+            "start": 927,
+            "length": 32
+          },
+          {
+            "start": 1295,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZRewards",
+      "runtime_bytes": 7230,
+      "initcode_bytes": 7707,
+      "runtime_margin": 17346,
+      "initcode_margin": 41445,
+      "template_runtime_sha256": "24d2dcee123463a2ba767ddd5b003f8afd0b1a5cb12a4f4e1aee2edd361ade50",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 934,
+            "length": 32
+          },
+          {
+            "start": 1730,
+            "length": 32
+          },
+          {
+            "start": 2357,
+            "length": 32
+          },
+          {
+            "start": 2483,
+            "length": 32
+          },
+          {
+            "start": 2766,
+            "length": 32
+          },
+          {
+            "start": 2868,
+            "length": 32
+          },
+          {
+            "start": 3161,
+            "length": 32
+          },
+          {
+            "start": 3408,
+            "length": 32
+          },
+          {
+            "start": 4116,
+            "length": 32
+          },
+          {
+            "start": 4474,
+            "length": 32
+          },
+          {
+            "start": 4816,
+            "length": 32
+          },
+          {
+            "start": 5041,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZStrategy",
+      "runtime_bytes": 11068,
+      "initcode_bytes": 11496,
+      "runtime_margin": 13508,
+      "initcode_margin": 37656,
+      "template_runtime_sha256": "114f57d285b8f0b3c9d1a2f0a04c18052c555acca218934ba44a434a6ef346f3",
+      "immutable_references": {
+        "24668": [
+          {
+            "start": 485,
+            "length": 32
+          },
+          {
+            "start": 2008,
+            "length": 32
+          },
+          {
+            "start": 2257,
+            "length": 32
+          },
+          {
+            "start": 2455,
+            "length": 32
+          },
+          {
+            "start": 3319,
+            "length": 32
+          },
+          {
+            "start": 3452,
+            "length": 32
+          },
+          {
+            "start": 3926,
+            "length": 32
+          },
+          {
+            "start": 4066,
+            "length": 32
+          },
+          {
+            "start": 4682,
+            "length": 32
+          },
+          {
+            "start": 4824,
+            "length": 32
+          },
+          {
+            "start": 4972,
+            "length": 32
+          },
+          {
+            "start": 5891,
+            "length": 32
+          },
+          {
+            "start": 6075,
+            "length": 32
+          }
+        ]
+      }
+    },
+    {
+      "module": "ZZZVault",
+      "runtime_bytes": 23662,
+      "initcode_bytes": 24688,
+      "runtime_margin": 914,
+      "initcode_margin": 24464,
+      "template_runtime_sha256": "58d2c88862f15473a91eeaa130f648b25edf395c6974e3166744dfef2dcbee6a",
+      "immutable_references": {
+        "61631": [
+          {
+            "start": 398,
+            "length": 32
+          },
+          {
+            "start": 3823,
+            "length": 32
+          },
+          {
+            "start": 8800,
+            "length": 32
+          },
+          {
+            "start": 11057,
+            "length": 32
+          }
+        ],
+        "61633": [
+          {
+            "start": 1848,
+            "length": 32
+          },
+          {
+            "start": 4460,
+            "length": 32
+          }
+        ],
+        "64520": [
+          {
+            "start": 1761,
+            "length": 32
+          },
+          {
+            "start": 2683,
+            "length": 32
+          },
+          {
+            "start": 3090,
+            "length": 32
+          },
+          {
+            "start": 3186,
+            "length": 32
+          },
+          {
+            "start": 4109,
+            "length": 32
+          },
+          {
+            "start": 4262,
+            "length": 32
+          },
+          {
+            "start": 4792,
+            "length": 32
+          },
+          {
+            "start": 4894,
+            "length": 32
+          },
+          {
+            "start": 5237,
+            "length": 32
+          },
+          {
+            "start": 5339,
+            "length": 32
+          },
+          {
+            "start": 5428,
+            "length": 32
+          },
+          {
+            "start": 5508,
+            "length": 32
+          },
+          {
+            "start": 5779,
+            "length": 32
+          },
+          {
+            "start": 6023,
+            "length": 32
+          },
+          {
+            "start": 6219,
+            "length": 32
+          },
+          {
+            "start": 6633,
+            "length": 32
+          },
+          {
+            "start": 6735,
+            "length": 32
+          },
+          {
+            "start": 6823,
+            "length": 32
+          },
+          {
+            "start": 6903,
+            "length": 32
+          },
+          {
+            "start": 7709,
+            "length": 32
+          },
+          {
+            "start": 7894,
+            "length": 32
+          },
+          {
+            "start": 8542,
+            "length": 32
+          },
+          {
+            "start": 8622,
+            "length": 32
+          },
+          {
+            "start": 8865,
+            "length": 32
+          },
+          {
+            "start": 9301,
+            "length": 32
+          },
+          {
+            "start": 9777,
+            "length": 32
+          },
+          {
+            "start": 9879,
+            "length": 32
+          },
+          {
+            "start": 10122,
+            "length": 32
+          },
+          {
+            "start": 11152,
+            "length": 32
+          },
+          {
+            "start": 11249,
+            "length": 32
+          },
+          {
+            "start": 11358,
+            "length": 32
+          },
+          {
+            "start": 11438,
+            "length": 32
+          },
+          {
+            "start": 11623,
+            "length": 32
+          },
+          {
+            "start": 11883,
+            "length": 32
+          },
+          {
+            "start": 12027,
+            "length": 32
+          },
+          {
+            "start": 12107,
+            "length": 32
+          },
+          {
+            "start": 12275,
+            "length": 32
+          },
+          {
+            "start": 12355,
+            "length": 32
+          },
+          {
+            "start": 12810,
+            "length": 32
+          },
+          {
+            "start": 13133,
+            "length": 32
+          },
+          {
+            "start": 13235,
+            "length": 32
+          },
+          {
+            "start": 13322,
+            "length": 32
+          },
+          {
+            "start": 13402,
+            "length": 32
+          },
+          {
+            "start": 13804,
+            "length": 32
+          },
+          {
+            "start": 13906,
+            "length": 32
+          },
+          {
+            "start": 13993,
+            "length": 32
+          },
+          {
+            "start": 14073,
+            "length": 32
+          },
+          {
+            "start": 15390,
+            "length": 32
+          },
+          {
+            "start": 15940,
+            "length": 32
+          },
+          {
+            "start": 16353,
+            "length": 32
+          },
+          {
+            "start": 17023,
+            "length": 32
+          },
+          {
+            "start": 19012,
+            "length": 32
+          },
+          {
+            "start": 19333,
+            "length": 32
+          },
+          {
+            "start": 20841,
+            "length": 32
+          },
+          {
+            "start": 21034,
+            "length": 32
+          },
+          {
+            "start": 21862,
+            "length": 32
+          },
+          {
+            "start": 22069,
+            "length": 32
+          },
+          {
+            "start": 22642,
+            "length": 32
+          }
+        ]
+      }
+    }
+  ],
+  "limitation": "Compiled runtime templates have placeholder immutable references. They are not actual deployed runtime hashes; recompute using actual constructor values."
+}

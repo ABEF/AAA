@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "compiler": {
+    "solc": "0.8.26",
+    "evm": "cancun",
+    "viaIR": true,
+    "optimizerRuns": 1,
+    "yulOptimizer": false
+  },
+  "measurementMethod": "gasleft delta around state-changing external calls after vm.cool resets reached accounts and storage slots; fixture seeding not metered",
+  "verifiedTests": 4,
+  "collectionSizes": [
+    1,
+    100,
+    1000
+  ],
+  "rewardAssetCounts": [
+    2,
+    32
+  ],
+  "measurements": [
+    {
+      "workload": "collection.1.assets.2.mintDormant",
+      "executionGas": 276789
+    },
+    {
+      "workload": "collection.1.assets.2.activate",
+      "executionGas": 943380
+    },
+    {
+      "workload": "collection.1.assets.2.topUpWithFeeCheckpoint",
+      "executionGas": 1449243
+    },
+    {
+      "workload": "collection.1.assets.2.harvest",
+      "executionGas": 513409
+    },
+    {
+      "workload": "collection.1.assets.2.checkpointAll",
+      "executionGas": 93654
+    },
+    {
+      "workload": "collection.1.assets.2.claimOneAsset",
+      "executionGas": 66624
+    },
+    {
+      "workload": "collection.100.assets.2.mintDormant",
+      "executionGas": 209489
+    },
+    {
+      "workload": "collection.100.assets.2.activate",
+      "executionGas": 784180
+    },
+    {
+      "workload": "collection.100.assets.2.topUpWithFeeCheckpoint",
+      "executionGas": 1449243
+    },
+    {
+      "workload": "collection.100.assets.2.harvest",
+      "executionGas": 513409
+    },
+    {
+      "workload": "collection.100.assets.2.checkpointAll",
+      "executionGas": 93654
+    },
+    {
+      "workload": "collection.100.assets.2.claimOneAsset",
+      "executionGas": 66624
+    },
+    {
+      "workload": "collection.1000.assets.2.mintDormant",
+      "executionGas": 209489
+    },
+    {
+      "workload": "collection.1000.assets.2.activate",
+      "executionGas": 784195
+    },
+    {
+      "workload": "collection.1000.assets.2.topUpWithFeeCheckpoint",
+      "executionGas": 1449243
+    },
+    {
+      "workload": "collection.1000.assets.2.harvest",
+      "executionGas": 513409
+    },
+    {
+      "workload": "collection.1000.assets.2.checkpointAll",
+      "executionGas": 53854
+    },
+    {
+      "workload": "collection.1000.assets.2.claimOneAsset",
+      "executionGas": 66624
+    },
+    {
+      "workload": "collection.1000.assets.32.mintDormant",
+      "executionGas": 209489
+    },
+    {
+      "workload": "collection.1000.assets.32.activate",
+      "executionGas": 1165504
+    },
+    {
+      "workload": "collection.1000.assets.32.topUpWithFeeCheckpoint",
+      "executionGas": 1830552
+    },
+    {
+      "workload": "collection.1000.assets.32.harvest",
+      "executionGas": 513409
+    },
+    {
+      "workload": "collection.1000.assets.32.checkpointAll",
+      "executionGas": 435163
+    },
+    {
+      "workload": "collection.1000.assets.32.claimOneAsset",
+      "executionGas": 66624
+    },
+    {
+      "workload": "collection.1000.assets.32.funded.checkpointAll",
+      "executionGas": 2499723
+    },
+    {
+      "workload": "collection.1000.assets.32.funded.claim32BatchedCalls",
+      "executionGas": 2363132
+    }
+  ],
+  "realModules": [
+    "ZZZVault",
+    "ZZZNFT",
+    "ZZZPower",
+    "ZZZRewards",
+    "ZZZFeeController",
+    "ZZZOracle"
+  ],
+  "testScaffolding": [
+    "MockAccess",
+    "MockPools",
+    "MockToken",
+    "MockFeed",
+    "VaultPolicyMock",
+    "VaultLiquidityMock",
+    "funded32-asset reward credit impersonates bound fee module"
+  ],
+  "limits": [
+    "No intrinsic transaction or calldata gas",
+    "No post-transaction refunds included in gasleft deltas",
+    "No network fee or dollar-cost estimate",
+    "Mock venue gas is not real Uniswap gas",
+    "32 claims are sequential calls in one local transaction, not an existing production bulk-claim ABI",
+    "First-position SSTORE zero-to-nonzero initialization differs from steady-state cohorts",
+    "Small collective balances can round to zero per holder at larger cohorts, changing checkpoint writes"
+  ],
+  "source": "test/ProductionGas.t.sol",
+  "log": "reports/production/collection-gas-benchmarks.log"
+}

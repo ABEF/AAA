@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-14",
+  "kind": "extended_internal_EVM_accounting_invariant_review",
+  "independent_external_audit": false,
+  "command": "FOUNDRY_PROFILE=audit forge test --match-contract ProductionAccountingInvariantTest --fuzz-seed 0x2026101420261014202610142026101420261014202610142026101420261014 -vv",
+  "seed": "0x2026101420261014202610142026101420261014202610142026101420261014",
+  "runs": 256,
+  "depth": 256,
+  "calls": 65536,
+  "reverts": 0,
+  "fail_on_revert": true,
+  "tests_passed": 2,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "execution_seconds": 277.95,
+  "compiler_profile": {
+    "foundry": "1.4.4",
+    "solc": "0.8.26",
+    "via_ir": true,
+    "yul_optimizer": false,
+    "optimizer_runs": 1,
+    "evm": "cancun"
+  },
+  "vault_source_sha256": "c56a2806f6effc9ed500996c142df27276af824a48a7ed0ad4e7b243fbbb8bc3",
+  "test_source_sha256": "85b846edc4def2d9183bab77617efbe65aeae354eddbeb0a932c1879aa62eb8d",
+  "log": "extended-invariants.log",
+  "action_counts": [
+    {
+      "selector": "activate",
+      "calls": 6035,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "claim",
+      "calls": 6005,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "compound",
+      "calls": 6022,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "donate",
+      "calls": 5913,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "harvest",
+      "calls": 5873,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "mint",
+      "calls": 5892,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "rebalance",
+      "calls": 6011,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "releaseBuyback",
+      "calls": 6092,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "setPaused",
+      "calls": 5909,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "topUp",
+      "calls": 5844,
+      "reverts": 0,
+      "discards": 0
+    },
+    {
+      "selector": "transfer",
+      "calls": 5940,
+      "reverts": 0,
+      "discards": 0
+    }
+  ],
+  "limits": [
+    "Ineligible lifecycle actions return without mutation; calls are not completed state transitions",
+    "Real local modules use fake liquidity venue, policy, tokens and access fixture",
+    "Does not validate a live Uniswap/provider/governance integration or establish an independent audit"
+  ]
+}

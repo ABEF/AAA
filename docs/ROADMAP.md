@@ -2,17 +2,21 @@
 
 The development candidate implements paid dormant mint/activation and repeated custody migration with timelocked future-route onboarding. [Current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) records its checks separately from historical reports. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
 
+The [2026-10-14 readiness pass](../reports/PRODUCTION_READINESS.md) adds immutable dependency/action pins, working keeper calldata submission, pending-state and file-write hardening, stateful EVM accounting, full Slither triage, six real dependency fork checks, collection/asset gas workloads and an offline production inventory gate. These development milestones do not close the remaining economic, live transport, oracle, staging and independent-review work.
+
 ## 1. Establish a reproducible build
 
 Retain and reproduce the recorded dependency lockfile, compiler profile, unit/fuzz results, and standard runtime/initcode size checks. Review package contents and pin remaining upstream/CI references to immutable revisions. Benchmark execution gas under the size-oriented optimizer profile and preserve enough production deployment margin. Reproduce off-chain tests on the supported Unix environment.
 
 ## 2. Prove custody and reward accounting
 
-Add stateful EVM invariants and adversarial tokens, callbacks, NFT receivers, and oracle behavior. Verify fee/principal separation, idle attribution, reward funding, rounding, checkpointing, and position replacement across arbitrary operation sequences.
+Extend the new independent integer-ledger stateful handler beyond its current local custody/reward scope. Existing unit/fuzz and stateful tests cover mint, activation, top-ups, harvest, owner changes, claims, pauses, donations, compounding and rebalance. Add full multi-chain stateful and real provider failure behavior; existing repeated migration tests still use a mock transport. Review coverage rather than treating a passing run as proof of every possible sequence.
 
 ## 3. Validate real Uniswap operation
 
 Use pinned-block fork tests against actual supported PositionManager, PoolManager, Permit2, and StateView deployments. Exercise mint, increase, collection, close, swaps, approvals, callbacks, donations, and failure paths. Measure rebalancing and all-asset checkpoint costs at realistic collection sizes.
+
+The new fixed Robinhood block/hash suite exercises ordinary typed settlement against deployed dependencies, authentic token burns and ETH/USD reads. It rejects the selected native/Pons market and uses a different hookless pool created only on the fork. Mock-venue gas workloads cover 1/100/1,000 NFTs and 32 funded assets; live venue/backtesting/MEV and operating-cost approval remain outstanding.
 
 ## 4. Decide economics and migration scope
 

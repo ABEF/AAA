@@ -1,7 +1,7 @@
-import json,tempfile,time,unittest,subprocess
+import json,os,shutil,tempfile,time,unittest,subprocess
 from pathlib import Path
 from unittest.mock import patch
-from keeper.monitor import Keeper
+from keeper.monitor import Keeper,positive
 from zzz_ops.rpc import RpcError
 from zzz_ops.abi import keccak256,calldata
 A='0x'+'11'*20;B='0x'+'22'*20;H='0x'+'ab'*32
@@ -39,8 +39,9 @@ class KeeperTests(unittest.TestCase):
         return self.k.state['pending']
     def receipt(self,success=True):
         p=self.pending()
-        self.rpc.receipt={'blockNumber':'0x63','blockHash':H,'status':hex(int(success)),'gasUsed':'0x64','effectiveGasPrice':'0x2','l1Fee':'0x5'}
-        self.rpc.tx={'from':A,'to':B,'nonce':'0x7','input':p['data'],'value':hex(p['value'])}
+        self.rpc.receipt={'transactionHash':H,'blockNumber':'0x63','blockHash':H,'status':hex(int(success)),
+            'gasUsed':'0x64','effectiveGasPrice':'0x2','l1Fee':'0x5'}
+        self.rpc.tx={'hash':H,'from':A,'to':B,'nonce':'0x7','input':p['data'],'value':hex(p['value'])}
     def test_default_dry_run_never_signs(self):
         with patch('subprocess.run') as run:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c'))
@@ -116,3 +117,78 @@ class KeeperTests(unittest.TestCase):
     def test_valid_code_hash_accepted(self):
         self.cfg['code_hashes']={k:'0x'+keccak256(bytes.fromhex('6000')).hex() for k in self.cfg['contracts']}
         self.k._validate_code_hashes()
+    def test_numeric_limits_reject_non_integer_json_values(self):
+        for value in (True,False,1.9,1.0,None,'1.9','-1',' 1','1e3'):
+            with self.subTest(value=value),self.assertRaises(ValueError):positive(value,'budget')
+        self.assertEqual(positive('5000000000','budget'),5000000000)
+        self.assertEqual(positive(0,'allowance',zero=True),0)
+    def test_live_command_binds_sender_and_removes_ambient_wallet_overrides(self):
+        self.enable_test_signer()
+        ambient={'ETH_FROM':B,'ETH_PASSWORD':'ambient-password','ETH_PRIORITY_GAS_PRICE':'999',
+            'CAST_ASYNC':'false','FOUNDRY_CONFIG':'/unreviewed/config','CHAIN':'2',
+            'AWS_KMS_KEY_ID':'other-key','GCP_PROJECT_ID':'other-project','PRIVATE_KEY':'ambient-key'}
+        with patch.dict(os.environ,ambient),patch('subprocess.run',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
+            self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
+        command=run.call_args.args[0];environment=run.call_args.kwargs['env']
+        self.assertEqual(command[:4],[self.k.cast,'send',B,calldata('collectFees(uint256,uint256)',1,123)])
+        self.assertNotIn('--data',command)
+        self.assertEqual(command[command.index('--from')+1],A)
+        self.assertEqual(environment['ETH_RPC_URL'],self.rpc.active_url)
+        for key in ambient:self.assertNotIn(key,environment)
+    @unittest.skipUnless(shutil.which('cast'),'Foundry cast is not installed')
+    def test_cast_cli_accepts_generated_command_without_signing(self):
+        self.enable_test_signer();self.k.cast=shutil.which('cast')
+        with patch('subprocess.run',return_value=subprocess.CompletedProcess([],0,H,'')) as run:
+            self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c')
+        # --help validates the actual installed parser and exits before RPC/signing.
+        result=subprocess.run(run.call_args.args[0]+['--help'],capture_output=True,text=True,timeout=30,check=False)
+        self.assertEqual(result.returncode,0,result.stderr)
+    def test_recovery_rejects_wrong_candidate_without_overwriting_state(self):
+        self.receipt();self.k.state['pending']['hash']=None;self.k.save()
+        self.rpc.tx['from']=B
+        before=self.k.path.read_text()
+        with self.assertRaises(RpcError):self.k.resolve_pending(H)
+        self.assertIsNone(self.k.state['pending']['hash']);self.assertEqual(self.k.path.read_text(),before)
+    def test_recovery_rejects_unknown_transaction_without_overwriting_state(self):
+        self.pending();self.k.state['pending']['hash']=None;self.k.save()
+        before=self.k.path.read_text()
+        with self.assertRaises(RpcError):self.k.resolve_pending(H)
+        self.assertEqual(self.k.path.read_text(),before)
+    def test_recovery_accepts_verified_pending_transaction(self):
+        self.receipt();self.rpc.receipt=None;self.k.state['pending']['hash']=None
+        self.k.resolve_pending(H)
+        self.assertEqual(self.k.state['pending']['hash'],H)
+        self.assertEqual(json.loads(self.k.path.read_text())['pending']['hash'],H)
+    def test_wrong_transaction_hash_fails_closed(self):
+        self.receipt();self.rpc.tx['hash']='0x'+'cd'*32
+        with self.assertRaises(RpcError):self.k.poll_pending()
+        self.assertIsNotNone(self.k.state['pending'])
+    def test_wrong_receipt_transaction_hash_fails_closed(self):
+        self.receipt();self.rpc.receipt['transactionHash']='0x'+'cd'*32
+        with self.assertRaises(RpcError):self.k.poll_pending()
+        self.assertIsNotNone(self.k.state['pending'])
+    def reward_cycle(self,status):
+        self.cfg['positions']=[{'nft_id':7,'minimum_liquidity':1,'harvest':True,'compound':True,'tokens':[B],
+            'reward_routes':[{'token':B,'route_id':H,'minimum_units':1,'native_fee_wei':3}]}]
+        fields=[0]*15;fields[7]=status
+        position='0x'+''.join(f'{value:064x}' for value in fields)
+        reads={'paused()':0,'isSealed()':1,'keepers(address)':1,
+            'remoteIndividual(uint256,address)':10,'remoteCollective(uint256,address)':6}
+        with patch.object(self.rpc,'eth_call',return_value=position), \
+             patch.object(self.k,'view',side_effect=lambda name,signature,*args:reads[signature]) as view, \
+             patch.object(self.k,'submit',return_value=True) as submit:
+            self.k.cycle()
+        return view,submit
+    def test_legacy_rewards_delivered_after_principal_departure(self):
+        for status in (2,3,4):
+            with self.subTest(status=status):
+                view,submit=self.reward_cycle(status)
+                submit.assert_called_once_with('fees','bridgeRewards(uint256,address,bytes32)',
+                    (7,B,H),f'bridge_rewards:7:{B}',value=3)
+                self.assertNotIn('needsRebalance(uint256)',[call.args[1] for call in view.call_args_list])
+    def test_missing_and_dormant_positions_do_not_bridge_rewards(self):
+        for status in (0,5):
+            with self.subTest(status=status):
+                view,submit=self.reward_cycle(status)
+                submit.assert_not_called()
+                self.assertFalse(any(call.args[1].startswith('remote') for call in view.call_args_list))

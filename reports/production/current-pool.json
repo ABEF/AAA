@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "verifiedAtUTC": "2026-10-14T17:44:14.386273+00:00",
+  "readOnly": true,
+  "rpcSource": "https://robinhood.rpc.pinax.network",
+  "chainId": 4663,
+  "blockNumber": 88544093,
+  "blockHash": "0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490",
+  "blockTimestamp": 1791998746,
+  "contracts": {
+    "PoolManager": {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "runtimeBytes": 24009,
+      "runtimeKeccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+      "runtimeSHA256": "6eb21c69298b064e37fcf8089a941ae096fe08c0f179b2d399567aef1b10585b"
+    },
+    "PositionManager": {
+      "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "runtimeBytes": 23877,
+      "runtimeKeccak256": "0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2",
+      "runtimeSHA256": "711c3ab6c4d7465f2c2f5cf91ab12b4fbb263677be40352013b7ebd85534954e"
+    },
+    "StateView": {
+      "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+      "runtimeBytes": 3531,
+      "runtimeKeccak256": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6",
+      "runtimeSHA256": "60cd24035661345b74c14895a641420f2598f910e376fb3f115bbd6bf504c8c0"
+    },
+    "Permit2": {
+      "address": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+      "runtimeBytes": 9152,
+      "runtimeKeccak256": "0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca",
+      "runtimeSHA256": "f1230820cf308bc40f6464d01918ecf44ffc3f692df923b382bc2b32370f6be8"
+    },
+    "WETH": {
+      "address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "runtimeBytes": 2202,
+      "runtimeKeccak256": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353",
+      "runtimeSHA256": "eb5a5f69ebb602e71cdf5fdeb7d49ca9e4b37d105432c0cbd31a754fc4d360a7"
+    },
+    "ZZZ": {
+      "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      "runtimeBytes": 3248,
+      "runtimeKeccak256": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+      "runtimeSHA256": "3b391fab42d16a06361cca60d10e62e10a49cf7c1bc2ad6bef5ab97a5d83e3c0"
+    },
+    "PonsHook": {
+      "address": "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044",
+      "runtimeBytes": 15167,
+      "runtimeKeccak256": "0xc21b1e6c1b45403e81a581f22ed6d9c747997af1cfdac1b1dc9f4b1d346a10db",
+      "runtimeSHA256": "dc18643fcd12fa11efe76c23b212f54417779d65b4351fdb354e56a744a3a1b6"
+    },
+    "ETHUSD": {
+      "address": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "runtimeBytes": 9571,
+      "runtimeKeccak256": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2",
+      "runtimeSHA256": "53ca1c4d67c7b092f36c66e575874226de7e8eaada554f445f43fe2779743ec1"
+    },
+    "PonsFactory": {
+      "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+      "runtimeBytes": 24177,
+      "runtimeKeccak256": "0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84",
+      "runtimeSHA256": "226a042e6d68a69a6038d4fda211925b03eb5299399434b87a7877f79f6e3848"
+    },
+    "PonsFeeEscrow": {
+      "address": "0xd3afeb2a57f70ef218aa82451c51b2fb0416ac9e",
+      "runtimeBytes": 1932,
+      "runtimeKeccak256": "0xf25f75cfbc1637ba068dc34f69098fa4e8a80f8ee8fe7bf7820594e0b3fed2f1",
+      "runtimeSHA256": "807b0bfa0936204ee6821bc0c029cf2704a491bdf47536edf6aa39db0afaa752"
+    }
+  },
+  "pool": {
+    "id": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f",
+    "currency0": "0x0000000000000000000000000000000000000000",
+    "currency1": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "fee": 0,
+    "tickSpacing": 200,
+    "hooks": "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044",
+    "sqrtPriceX96": "28985618865899744360092483858059",
+    "tick": 118050,
+    "protocolFee": 0,
+    "lpFee": 0
+  },
+  "hookPolicy": {
+    "creatorRecipient": "0x698084856f65bf1b4740e3d0dba0b57a5b1deba9",
+    "buybackCreatorRecipient": "0x5f799f365fa8a2b60ac0429c48b153ca5a6f0cf8",
+    "protocolRecipient": "0x263ed295dafae1d9aadd6e56c4b6f9f38ee019dd",
+    "creatorTaxBps": 0,
+    "protocolFeeShareBps": 3000,
+    "buybackSliceBps": 5000,
+    "hookFeeBps": 100,
+    "maxInternalPriceImpactBps": 300,
+    "buybackEnabled": false,
+    "hookOwner": "0x263ed295dafae1d9aadd6e56c4b6f9f38ee019dd",
+    "factoryOwner": "0x263ed295dafae1d9aadd6e56c4b6f9f38ee019dd",
+    "pendingCreatorRecipient": "0x0000000000000000000000000000000000000000",
+    "pendingCreatorChangeEffectiveAt": 0,
+    "pendingCreatorChangeExpiresAt": 0
+  },
+  "token": {
+    "decimals": 18,
+    "totalSupply": "840000000000000000000000000",
+    "sourceContract": "PonsV2LauncherToken",
+    "verifiedSourceProxy": false,
+    "verifiedSourceFeatures": [
+      "Standard ERC20 transfers",
+      "Constructor-only fixed supply mint",
+      "ERC20Burnable burn and burnFrom",
+      "No token owner or privileged transfer override"
+    ]
+  },
+  "ethUSDFeed": {
+    "proxy": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+    "decimals": 8,
+    "heartbeatSeconds": 86400,
+    "roundId": "18446744073709554307",
+    "answer": "243824705007",
+    "startedAt": 1791998597,
+    "updatedAt": 1791998610,
+    "answeredInRound": "18446744073709554307"
+  },
+  "boundaries": [
+    "Current candidate rejects native currency and hooks",
+    "Core LP fees are zero; LP ownership does not entitle PoPL to Pons hook revenue",
+    "Revenue source remains undecided: a Pons fee-share integration or a new fee-earning pool; no payout terms are approved",
+    "No ZZZ feed or Robinhood sequencer feed found in checked Chainlink catalogs",
+    "Provider chain support does not establish a backed ZZZ bridge route",
+    "Fork settlement tests use a separate locally initialized hookless pool and synthetic test-only reference feeds"
+  ],
+  "sources": [
+    "https://docs.robinhood.com/chain/connecting/",
+    "https://developers.uniswap.org/docs/protocols/v4/deployments",
+    "https://docs.ponsfamily.com/v2",
+    "https://docs.chain.link/data-feeds/price-feeds/addresses?network=robinhood-mainnet",
+    "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+    "https://docs.chain.link/data-feeds/l2-sequencer-feeds",
+    "https://robinhoodchain.blockscout.com/api?module=contract&action=getsourcecode&address=0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+    "https://robinhoodchain.blockscout.com/api?module=contract&action=getsourcecode&address=0xe5e702641ea86f4ae6cc3cdaed2b886f976be044"
+  ]
+}
