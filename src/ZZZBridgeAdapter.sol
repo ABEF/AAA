@@ -17,7 +17,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
     uint256 public nonce;
     mapping(bytes32 => bool) public processed;
     event Sent(bytes32 indexed transportId, bytes32 indexed routeId, uint256 indexed nonce, uint8 kind);
-    event Received(bytes32 indexed deliveryId, bytes32 indexed routeId, uint256 indexed nftId, uint8 kind);
+    event Received(bytes32 indexed deliveryId, bytes32 indexed routeId, uint256 indexed bucketId, uint8 kind);
     constructor(address controller, address endpoint) ZZZModule(controller) {
         if (endpoint.code.length == 0) revert InvalidConfiguration();
         transport = IZZZTransport(endpoint);
@@ -70,6 +70,6 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
             IERC20(tokens[i]).forceApprove(receiver, 0);
             if (IERC20(tokens[i]).balanceOf(address(this)) != beforeBalances[i]) revert InvalidState();
         }
-        emit Received(deliveryId, m.routeId, m.nftId, uint8(m.kind));
+        emit Received(deliveryId, m.routeId, m.bucketId, uint8(m.kind));
     }
 }

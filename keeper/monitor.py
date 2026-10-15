@@ -20,6 +20,8 @@ from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
 
+ACCOUNTING_MODEL = 'shared-pools-v1'
+
 def log(event: str, **fields: Any) -> None:
     print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
 
@@ -41,12 +43,33 @@ class Keeper:
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
         self.sender = address(config['sender'])
         self.contracts = {k:address(v) for k,v in config['contracts'].items()}
-        for name in ('access','vault','strategy','fees','compounder','buyback'):
+        for name in ('access','vault','strategy','fees','compounder','buyback','pools'):
             if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
+        if 'positions' in config or config.get('accounting_model',ACCOUNTING_MODEL) != ACCOUNTING_MODEL:
+            raise ValueError('Keeper configuration must use the shared-pool accounting model')
+        discovery = config.get('bucket_discovery',{})
+        if not isinstance(discovery,dict): raise ValueError('Bucket discovery settings must be an object')
+        self.max_buckets = positive(discovery.get('maximum_count',10000),'bucket_discovery.maximum_count')
+        self.batch_size = positive(discovery.get('max_per_cycle',32),'bucket_discovery.max_per_cycle')
+        if self.max_buckets > 100000 or self.batch_size > min(self.max_buckets,1000):
+            raise ValueError('Bucket discovery exceeds its bounded scan limits')
+        self.maintenance = config.get('maintenance',{})
+        self.overrides = config.get('bucket_overrides',{})
+        if not isinstance(self.maintenance,dict) or not isinstance(self.overrides,dict):
+            raise ValueError('Maintenance defaults and bucket overrides must be objects')
+        for bucket,settings in self.overrides.items():
+            if str(positive(bucket,'bucket_overrides key')) != bucket or not isinstance(settings,dict):
+                raise ValueError('Bucket overrides require canonical decimal bucket IDs and object settings')
         self.path = Path(config.get('state_path','var/keeper.json'))
-        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'last':{},'spent':{},'pending':None})
+        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,
+            'bucket_cursor':0,'last':{},'spent':{},'pending':None})
         if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
             raise ValueError('Persistent state belongs to another chain or sender')
+        if self.state.get('accounting_model') != ACCOUNTING_MODEL:
+            raise ValueError('Persistent keeper state requires a reviewed shared-pool migration; preserve pending records')
+        if self.state.get('contracts') != self.contracts:
+            raise ValueError('Persistent keeper state belongs to another deployment')
+        positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
         self.confirmations = positive(config.get('confirmations',12),'confirmations')
         if self.live:
             if config.get('reviewed_for_live_use') is not True:
@@ -188,6 +211,53 @@ class Keeper:
             raise
         return True
 
+    @staticmethod
+    def _address_word(word: str) -> str:
+        if int(word,16) >= 1 << 160: raise RpcError('Noncanonical address in contract response')
+        return address('0x'+word[-40:])
+
+    def _bucket_batch(self) -> list[tuple[int,int]]:
+        """Discover a bounded rotating batch of on-chain groups, never NFT IDs."""
+        count = self.view('vault','bucketCount()')
+        if count > self.max_buckets: raise RpcError('Bucket inventory exceeds reviewed discovery limit')
+        if count == 0:
+            self.state['bucket_cursor'] = 0
+            return []
+        start = positive(self.state['bucket_cursor'],'bucket_cursor',zero=True) % count
+        batch: list[tuple[int,int]] = []
+        seen: set[int] = set()
+        for offset in range(min(self.batch_size,count)):
+            slot = (start+offset) % count
+            bucket = self.view('vault','bucketAt(uint256)',slot)
+            if bucket == 0 or bucket in seen:
+                raise RpcError('Malformed shared-pool inventory')
+            seen.add(bucket); batch.append((slot,bucket))
+        return batch
+
+    def _bucket(self,bucket: int) -> tuple[list[str],list[str]]:
+        fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
+        if len(fields) != 15: raise RpcError('Unexpected vault group ABI')
+        status = int(fields[7],16)
+        if status not in (1,2,3,4): return fields,[]
+        if int(fields[0],16) == 0 or int(fields[5],16) >= 1 << 160 or int(fields[6],16) >= 1 << 64:
+            raise RpcError('Malformed shared-pool state')
+        if int(fields[8],16) == 0 or int(fields[13],16) == 0:
+            raise RpcError('Missing shared-pool provenance')
+        for index in (9,10,11,12,14): self._address_word(fields[index])
+        if self.view('vault','bucketTotalShares(uint256)',bucket) == 0:
+            raise RpcError('Shared pool has no shares')
+        pool_id = '0x'+fields[0]
+        if self.view('vault','poolBucket(bytes32)',pool_id) != bucket:
+            raise RpcError('Pool occupancy does not match discovered bucket')
+        if status == 1 and int(fields[1],16) == 0:
+            raise RpcError('Active shared pool has no LP position')
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
+        if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != pool_id:
+            raise RpcError('Pool configuration does not match its identity')
+        tokens = [self._address_word(config[0]),self._address_word(config[1])]
+        if int(tokens[0],16) >= int(tokens[1],16): raise RpcError('Invalid pool asset ordering')
+        return fields,tokens
+
     def cycle(self) -> None:
         if self.poll_pending(): return
         if self.view('access','paused()') != 0:
@@ -195,37 +265,40 @@ class Keeper:
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
         _,now = self._head()
-        for item in self.config.get('positions',[]):
-            nft = positive(item['nft_id'],'nft_id')
-            minimum = positive(item['minimum_liquidity'],'minimum_liquidity')
+        batch = self._bucket_batch()
+        for slot,bucket in batch:
+            # Advance before a submission: submit() persists this cursor together
+            # with the intended nonce before the signer can broadcast.
+            self.state['bucket_cursor'] = slot+1
+            item = {**self.maintenance,**self.overrides.get(str(bucket),{})}
             try:
-                fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('position(uint256)',nft)))
-                if len(fields) != 15: raise RpcError('Unexpected vault Position ABI')
+                fields,tokens = self._bucket(bucket)
                 status = int(fields[7],16)
                 if status not in (1,2,3,4): continue
                 if status == 1:
+                    minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
-                    if self.view('strategy','needsRebalance(uint256)',nft):
-                        if self.submit('vault','rebalance(uint256,uint128,uint256)',(nft,minimum,deadline),f'rebalance:{nft}'): return
-                    if item.get('compound'):
-                        tokens = [address(t) for t in item['tokens']]
-                        reserves = [self.view('fees','compoundBalance(uint256,address)',nft,t) for t in tokens]
+                    if self.view('strategy','needsRebalance(uint256)',bucket):
+                        if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
+                    if item.get('compound',True):
+                        reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
                         threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
                         if max(reserves,default=0) >= threshold:
-                            if self.submit('compounder','compound(uint256,uint128,uint256)',(nft,minimum,deadline),f'compound:{nft}'): return
+                            if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
                     interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
-                    if item.get('harvest') and now-int(self.state['last'].get(f'harvest:{nft}',0)) >= interval:
-                        if self.submit('vault','collectFees(uint256,uint256)',(nft,deadline),f'harvest:{nft}'): return
+                    if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
+                        if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
                 # Funded satellite rewards remain deliverable after principal leaves.
                 for remote in item.get('reward_routes',[]):
                     token = address(remote['token'])
-                    personal = self.view('fees','remoteIndividual(uint256,address)',nft,token)
-                    shared = self.view('fees','remoteCollective(uint256,address)',nft,token)
+                    personal = self.view('fees','remoteIndividual(uint256,address)',bucket,token)
+                    shared = self.view('fees','remoteCollective(uint256,address)',bucket,token)
                     if personal+shared >= positive(remote['minimum_units'],'minimum_units'):
-                        if self.submit('fees','bridgeRewards(uint256,address,bytes32)',(nft,token,remote['route_id']),
-                            f'bridge_rewards:{nft}:{token}',value=positive(remote.get('native_fee_wei',0),'native_fee_wei',zero=True)): return
+                        if self.submit('fees','bridgeRewards(uint256,address,bytes32)',(bucket,token,remote['route_id']),
+                            f'bridge_rewards:{bucket}:{token}',value=positive(remote.get('native_fee_wei',0),'native_fee_wei',zero=True)): return
             except (ValueError,RpcError) as exc:
-                log('position_skipped',nft_id=str(nft),error_type=type(exc).__name__)
+                log('bucket_skipped',bucket_id=str(bucket),error_type=type(exc).__name__)
+        if batch: self.save()
         for task in self.config.get('buybacks',[]):
             token = address(task['token']); amount = positive(task['amount'],'amount')
             if self.view('fees','buybackBalance(address)',token) >= amount:

@@ -74,8 +74,10 @@ class Gate:
 def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) -> dict[str,Any]:
     config=copy.deepcopy(config) if isinstance(config,dict) else {}
     gate=Gate(config.get('release_commit'));g=gate;now=int(time.time()) if now is None else now
-    g.check(config.get('schema_version')==2 and type(config.get('schema_version')) is int,
-        'schema_version','schema.unsupported','Schema version 2 with the fixed bridge router is required')
+    g.check(config.get('schema_version')==3 and type(config.get('schema_version')) is int,
+        'schema_version','schema.unsupported','Schema version 3 with pooled custody and the fixed bridge router is required')
+    g.check(config.get('accounting_model')=='shared-pools-v1','accounting_model','accounting.unsupported',
+        'Shared-pool accounting must be explicitly reviewed; legacy per-NFT manifests are unsupported')
     g.commit=g.hex(g.commit,'release_commit',length=20,prefix=False)
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Manifest differs from the expected commit')
     home=g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)
@@ -262,6 +264,58 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             if pid:g.check(pid not in pools,pp+'.pool_id','pool.duplicate','Pool IDs must be unique');pools[pid]=pool
         pool_ids[cid]=pools
     g.check(home in chains,'canonical_chain_id','canonical.absent','Canonical chain must be present in the inventory')
+    reservations={}
+    for cid,chain in chains.items():
+        inventory={};path=f'chains[{cid}].bucket_reservations'
+        observed=chain.get('observed_block') if isinstance(chain.get('observed_block'),dict) else {}
+        observed_number=g.num(observed.get('number'),f'chains[{cid}].observed_block.number')
+        observed_hash=g.hex(observed.get('hash'),f'chains[{cid}].observed_block.hash')
+        for index,item in enumerate(g.items(chain.get('bucket_reservations'),path,required=False)):
+            rp=path+f'[{index}]';record=g.obj(item,rp)
+            pool_id=g.hex(record.get('pool_id'),rp+'.pool_id')
+            bucket_id=g.num(record.get('bucket_id'),rp+'.bucket_id',1)
+            origin_chain=g.num(record.get('home_chain_id'),rp+'.home_chain_id',1)
+            origin_vault=g.hex(record.get('home_vault'),rp+'.home_vault',20)
+            origin_pool=g.hex(record.get('home_pool_id'),rp+'.home_pool_id')
+            canonical_vault=chains.get(home,{}).get('modules',{}).get('vault',{}).get('address')
+            g.check(origin_chain==home and origin_vault is not None and origin_vault==canonical_vault,
+                rp,'reservation.origin','Bucket origin must identify the inventoried canonical vault and chain')
+            local_pool=pool_ids.get(cid,{}).get(pool_id,{})
+            home_pool=pool_ids.get(home,{}).get(origin_pool,{})
+            g.check(bool(local_pool) and bool(home_pool),rp,'reservation.pool',
+                'The reserved local pool and canonical origin pool must both be inventoried')
+            if None not in (origin_chain,origin_vault,origin_pool,bucket_id):
+                computed=int(identity([(origin_chain,'uint256'),(origin_vault,'address'),(origin_pool,'bytes32')]),16)
+                g.check(bucket_id==computed,rp+'.bucket_id','reservation.identity',
+                    'Bucket ID must hash canonical home chain, vault and original PoolKey identity')
+            if local_pool and home_pool:
+                local_assets=[(token_maps.get(cid,{}).get(local_pool.get(key),{}).get('canonical_asset'),
+                    token_maps.get(cid,{}).get(local_pool.get(key),{}).get('decimals')) for key in ('currency0','currency1')]
+                home_assets=[(token_maps.get(home,{}).get(home_pool.get(key),{}).get('canonical_asset'),
+                    token_maps.get(home,{}).get(home_pool.get(key),{}).get('decimals')) for key in ('currency0','currency1')]
+                g.check(local_assets==home_assets or local_assets==home_assets[::-1],rp,'reservation.assets',
+                    'Reserved pool assets must match the canonical bucket assets and nominal decimals in either order')
+            observed_chain=g.num(record.get('observed_chain_id'),rp+'.observed_chain_id',1)
+            observed_vault=g.hex(record.get('observed_vault'),rp+'.observed_vault',20)
+            observed_bucket=g.num(record.get('observed_bucket_id'),rp+'.observed_bucket_id',1)
+            block_number=g.num(record.get('observed_block_number'),rp+'.observed_block_number')
+            block_hash=g.hex(record.get('observed_block_hash'),rp+'.observed_block_hash')
+            g.check(observed_chain==cid and observed_vault is not None and
+                observed_vault==chain.get('modules',{}).get('vault',{}).get('address') and
+                observed_bucket is not None and observed_bucket==bucket_id and
+                block_number is not None and block_number==observed_number and
+                block_hash is not None and block_hash==observed_hash,
+                rp,'reservation.observation',
+                'Observed vault.poolBucket(pool_id) must equal the bucket at the exact inventoried chain, vault and block')
+            review=g.proof(record.get('review_evidence'),rp+'.review_evidence')
+            g.check(review.get('independent') is True,rp+'.review_evidence.independent','reservation.review',
+                'An independent reservation and destination-custody review must be explicit')
+            g.text(review.get('reviewer'),rp+'.review_evidence.reviewer')
+            g.check(pool_id not in inventory,rp+'.pool_id','reservation.duplicate',
+                'A local pool cannot have multiple or conflicting bucket reservation records')
+            if pool_id is not None:inventory[pool_id]={'bucket_id':bucket_id,'home_chain_id':origin_chain,
+                'home_vault':origin_vault,'home_pool_id':origin_pool}
+        reservations[cid]=inventory
     policies={}
     policy_items=g.items(config.get('transport_policies'),'transport_policies',required=migration_enabled is True)
     if migration_enabled is not True:g.check(not policy_items,'transport_policies','migration.not_disabled','Initial disabled launch must have no approved transport policies')
@@ -342,7 +396,18 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             if kind=='principal':
                 pool=pool_ids.get(destination,{}).get(values['destinationPool'],{})
                 g.check({pool.get('currency0'),pool.get('currency1')}=={values['destinationToken0'],values['destinationToken1']},rp+'.destinationPool','route.pool','Destination pool must contain the equivalent principal assets')
-                g.check(any((p.get('currency0'),p.get('currency1'))==(values['sourceToken0'],values['sourceToken1']) for p in pool_ids.get(source,{}).values()),rp,'route.source_pool','Principal source tokens must match source PoolKey ordering')
+                bucket_id=g.num(route.get('bucket_id'),rp+'.bucket_id',1)
+                source_pool_id=g.hex(route.get('source_pool_id'),rp+'.source_pool_id')
+                source_pool=pool_ids.get(source,{}).get(source_pool_id,{})
+                g.check(bool(source_pool) and (source_pool.get('currency0'),source_pool.get('currency1'))==
+                    (values['sourceToken0'],values['sourceToken1']),rp+'.source_pool_id','route.source_pool',
+                    'Principal source pool must be explicit and match source PoolKey token ordering')
+                source_reservation=reservations.get(source,{}).get(source_pool_id,{})
+                destination_reservation=reservations.get(destination,{}).get(values['destinationPool'],{})
+                g.check(bucket_id is not None and bool(source_reservation) and bool(destination_reservation) and
+                    source_reservation.get('bucket_id')==bucket_id==destination_reservation.get('bucket_id'),
+                    rp,'route.reservation',
+                    'Both principal pools must be observed permanently reserved to this exact canonical bucket before a funded migration')
                 if source!=home and destination!=home:
                     g.proof(route.get('canonical_graph_evidence'),rp+'.canonical_graph_evidence')
             g.check(type(route.get('enabled')) is bool,rp+'.enabled','route.mode','Declare active or historical/inbound-only route enablement explicitly')
@@ -362,7 +427,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                     token=route.get(f'destinationToken{slot}')
                     g.check(any(r.get('kind')=='reward' and r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==home and r.get('sourceToken0')==token for r in active),
                         'routes','route.rewards_missing','Satellite principal assets need funded reward paths to the canonical chain')
-    return {'schema_version':2,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
+    return {'schema_version':3,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
         'migration_enabled':migration_enabled is True,
         'limitations':['Offline manifest checks do not authenticate evidence, runtime code, authorities, or current chain state.',

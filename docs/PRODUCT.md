@@ -4,6 +4,8 @@ ZZZ Collection — Proof of Permanent Liquidity turns an NFT into transferable e
 
 The user-selected market is ZZZ / native ETH on Robinhood Chain, Uniswap v4 pool ID `0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f`. Its native asset and Pons hook are unsupported by the current liquidity adapter. Pool integration and the project's source of rewards are deferred decisions; see [verified pool details](ROBINHOOD_POOL.md). Supported candidate pools currently use conventional ERC20/ERC20 assets, subject to registry, token, oracle, and deposit checks.
 
+NFTs activated into the same approved pool hold nonredeemable internal shares in **one shared LP position**. Owner fees follow pool shares; collective rewards follow lifetime contribution Power. Maintenance and whole-pool migration never iterate over NFT holders. Deposits, compounding and market movements can change the value of a share independently of historical Power.
+
 ## Holder rights
 
 A holder owns the NFT and can transfer it. The current owner can claim funded individual fees and Power-weighted collective rewards, including balances earned before the NFT was transferred. Approved NFT operators do not acquire a direct reward-claim right.
@@ -20,7 +22,7 @@ Holders cannot redeem underlying principal. Authorized maintenance can move attr
 6. Eligible keeper operations can compound or replace the underlying LP position. NFT transfers carry rights to the new owner while principal remains non-redeemable.
 7. Timelocked governance can onboard additional approved routes after sealing, and attributed custody can make repeated hops between compatible vaults, including returning home. The economic NFT and claims remain on the canonical chain; an import neither remints the NFT nor adds contribution Power.
 
-The keeper polls every ten minutes by default. Eligibility checks, available funds, network conditions, transaction costs, and operator availability govern execution; the polling interval is not an execution guarantee.
+The keeper discovers shared buckets automatically and polls every ten minutes by default. New contributions require home custody, no scheduled migration, and complete funding of any earlier remote owner/collective rewards. Eligibility checks, available funds, network conditions, transaction costs, and operator availability govern execution; the polling interval is not an execution guarantee.
 
 ## Proposed attributes
 

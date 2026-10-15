@@ -1,0 +1,157 @@
+No files changed, compilation skipped
+2026-10-15T00:28:27.962974Z  WARN traces::etherscan: etherscan config not found
+
+Ran 2 tests for test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest
+[PASS] invariant_pooledCustodyAndClaimsConserved() (runs: 256, calls: 65536, reverts: 0)
+
+╭-------------------------+-----------+-------+---------+----------╮
+| Contract                | Selector  | Calls | Reverts | Discards |
++==================================================================+
+| PooledAccountingHandler | activate  | 6610  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | claim     | 6578  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | compound  | 6505  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | donate    | 6611  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | harvest   | 6489  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | mint      | 6523  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | paused    | 6549  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | rebalance | 6630  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | topUp     | 6601  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | transfer  | 6440  | 0       | 0        |
+╰-------------------------+-----------+-------+---------+----------╯
+
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 180
+  Bound result 383
+  Bound result 30
+  Bound result 97
+  Bound result 19
+  Bound result 49
+  Bound result 381
+  Bound result 287
+  Bound result 926
+  Bound result 888
+  Bound result 834
+  Bound result 365
+  Bound result 880
+  Bound result 398
+  Bound result 675
+  Bound result 421
+  Bound result 114
+  Bound result 828
+  Bound result 61
+  Bound result 616
+  Bound result 742
+  Bound result 959
+  Bound result 210
+  Bound result 755
+  Bound result 396
+  Bound result 728
+  Bound result 569
+  Bound result 541
+  Bound result 729
+  Bound result 423
+  Bound result 715
+  Bound result 931
+  Bound result 726
+  Bound result 389
+  Bound result 834
+  Bound result 595
+  Bound result 63
+  Bound result 99
+  Bound result 198
+  Bound result 84
+  Bound result 549
+  Bound result 427
+  Bound result 541
+  Bound result 0
+  Bound result 980
+  Bound result 461
+  Bound result 23
+  Bound result 32
+  Bound result 479
+  Bound result 683
+  Bound result 1
+  Bound result 51
+  Bound result 263
+  Bound result 764
+  Bound result 118
+  Bound result 777
+  Bound result 752
+  Bound result 575
+  Bound result 761
+  Bound result 396
+  Bound result 476
+  Bound result 524
+  Bound result 948
+  Bound result 6
+  Bound result 11
+  Bound result 92
+  Bound result 85
+  Bound result 72
+  Bound result 93
+  Bound result 696
+  Bound result 772
+  Bound result 374
+  Bound result 60
+  Bound result 783
+  Bound result 29
+  Bound result 79
+  Bound result 141
+  Bound result 697
+  Bound result 661
+  Bound result 682
+  Bound result 547
+  Bound result 414
+  Bound result 994
+  Bound result 872
+  Bound result 74
+  Bound result 86
+  Bound result 58
+  Bound result 86
+  Bound result 999
+  Bound result 990
+  Bound result 10
+  Bound result 7
+  Bound result 65
+  Bound result 624
+  Bound result 1
+  Bound result 589
+  Bound result 249
+  Bound result 38
+  Bound result 27
+  Bound result 871
+  Bound result 223
+  Bound result 936
+  Bound result 3
+  Bound result 300
+  Bound result 576
+  Bound result 1
+  Bound result 2
+
+[PASS] testMembershipHistoryAndPausedClaims() (gas: 5077527)
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 109
+  Bound result 217
+  Bound result 700
+  Bound result 800
+  Bound result 30
+  Bound result 40
+  Bound result 211
+  Bound result 307
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 206.32s (206.32s CPU time)
+
+Ran 1 test suite in 206.34s (206.32s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

@@ -1,3 +1,5 @@
+> Historical source-level review. Shared custody changes share pricing, reward indexes and bridge messages. Earlier line references do not audit this rewrite. See [current pooled evidence](../reports/pooled/README.md).
+
 # ZZZ Protocol v0.2 — source-level security review
 
 **Review date: October 14, 2026**  

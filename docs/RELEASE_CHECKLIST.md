@@ -21,7 +21,7 @@ Every item below must be closed with evidence, not assumed from the presence of 
 - [ ] Actual NFT receiver callbacks, transfer/claim races and canonical-chain restrictions.
 - [ ] Review exactly 0.05 ETH dormant issuance, immutable mint-proceeds routing, atomic payout/issuance failure, and owner activation with at least $500 actually deployed LP; prove mint income remains separate from principal, Power, and rewards.
 - [ ] Verify reference feeds, decimals, denomination, heartbeat, sequencer behavior, price bounds and unsupported asset rejection on every chain.
-- [ ] Benchmark 1/100/1,000+ NFT positions and all 32 reward assets; decide whether independent LPs are economically viable.
+- [ ] Benchmark one shared pool with 1/100/1,000+ NFT shareholders and all 32 reward assets; verify maintenance does not loop over NFTs.
   Candidate cold-execution workloads now cover 1/100/1,000 NFTs and 32 funded assets. Real AMM/network costs, strategy backtesting and economic viability are still unapproved.
 - [ ] Validate the real ZZZ burn function and its global/cross-chain semantics; implement multi-hop routes or restrict supported fee assets honestly.
 
@@ -50,3 +50,8 @@ Every item below must be closed with evidence, not assumed from the presence of 
 - [ ] Use limited testnet exposure and carefully staged production limits only after the preceding gates close.
 
 No signature, badge or status in this repository waives these gates. No live funds were deployed by this work.
+
+- [ ] Independently audit shared NAV issuance, incumbent LP repricing, entry-swap fees, raw-unit dust exceptions, share fractions and funded liabilities.
+- [ ] Exercise whole-pool migrations and cumulative remote-fee drain barriers with an actual provider; reserve each destination before route approval.
+
+- [ ] Value nine raw units of every admitted fee token and approve the holder-triggerable dust-to-owner policy and top-up frequency; reject economically material rounding exposure or redesign it before admission.

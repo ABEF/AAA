@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-The development candidate implements paid dormant mint/activation and repeated custody migration with timelocked future-route onboarding. [Current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) records its checks separately from historical reports. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
+The development candidate implements paid dormant mint/activation, shared LP per pool with nonredeemable NFT shares, pool-level upkeep, and repeated whole-bucket custody migration with timelocked future-route onboarding. The shared rewrite invalidates earlier per-NFT audit/size evidence for changed modules; see [new evidence](../reports/pooled/README.md). [Current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) records its checks separately from historical reports. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
 
 The [2026-10-14 readiness pass](../reports/PRODUCTION_READINESS.md) adds immutable dependency/action pins, working keeper calldata submission, pending-state and file-write hardening, stateful EVM accounting, full Slither triage, six real dependency fork checks, collection/asset gas workloads and an offline production inventory gate. These development milestones do not close the remaining economic, live transport, oracle, staging and independent-review work.
 

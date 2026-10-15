@@ -35,6 +35,7 @@ contract ProductionGasTest is Test {
     address private constant OWNER = address(0xA11CE);
     address payable private constant TREASURY = payable(address(0x7EA5));
 
+    function activePlan(uint256) external pure returns(bytes32) {return bytes32(0);}
     function _fixture(uint256 assetCount) private {
         vm.warp(1_000_000);
         access = new MockAccess();
@@ -60,6 +61,8 @@ contract ProductionGasTest is Test {
         access.bind(Ids.STRATEGY, address(policy));
         access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.ORACLE, address(oracle));
+        access.bind(Ids.MIGRATION, address(this));
+        access.setKeeper(address(this),true);
         access.bind(Ids.RECEIVER, address(0x987));
         for (uint256 i; i < assetCount; ++i) rewards.addAsset(address(tokens[i]));
         PoolConfig memory c;
@@ -142,9 +145,17 @@ contract ProductionGasTest is Test {
         venue.setFees(1000, 1000);
         _cool();
         start = gasleft();
-        vault.collectFees(id, block.timestamp + 100);
+        vault.collectFees(vault.nftBucket(id), block.timestamp + 100);
         spent = start - gasleft();
         _report(prefix, "harvest", spent);
+
+        _cool();
+        start = gasleft();
+        vault.rebalance(vault.nftBucket(id), 1, block.timestamp + 100);
+        spent = start - gasleft();
+        _report(prefix, "sharedPoolRebalance", spent);
+        assertEq(vault.bucketCount(), 1);
+        assertEq(venue.next(), 3); // One initial mint, one replacement, regardless of NFT count.
 
         _cool();
         // Isolate the real checkpoint implementation without changing contribution Power.
@@ -176,7 +187,7 @@ contract ProductionGasTest is Test {
             tokens[i].mint(address(fees), 800_000);
             vm.startPrank(address(fees));
             tokens[i].approve(address(rewards), 800_000);
-            rewards.credit(id, address(tokens[i]), 500_000, 300_000);
+            rewards.creditPool(vault.nftBucket(id), address(tokens[i]), 500_000, 300_000);
             vm.stopPrank();
         }
         _cool();

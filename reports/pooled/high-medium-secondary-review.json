@@ -1,0 +1,895 @@
+{
+  "review_date": "2026-10-15",
+  "reviewer": "Codex internal secondary migration/accounting agent",
+  "independent_external_audit": false,
+  "scope": "All 83 High/Medium findings from the final frozen shared-pool source; manual call-path, custody, fee/share/index and final refactor review.",
+  "raw_slither_sha256": "e474b7a3ed533b1599c74fc5f06fce6007b295450bf6fe44942aab9def0f4135",
+  "source_sha256_lf": {
+    "src/base/ZZZModule.sol": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+    "src/interfaces/IZZZ.sol": "986a8c3dec15c3e3ee7f0c5f26a00f757ccbb6f56293e5ad7fcb53d8d919f5cd",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZTypes.sol": "2af3790b81dcee4ddeb2404110bf3c2df2e28de593ac982c58628d983ec13250",
+    "src/ZZZAccessController.sol": "f13c81ad52fc129cd0076c79ca5f238f3003fb26ef19746cf7da118c3195f345",
+    "src/ZZZBridgeAdapter.sol": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "74843072ac083cc49d79020ad0cb4db984a056662106f7eaaf1164b2d71c823d",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZFeeController.sol": "bc9c77f1586c61296132d48915f8ce6c93b751f018a4643f444f980dc1d47201",
+    "src/ZZZLiquidityManager.sol": "8f7f89ba0a5b09e8247b832b15b7861a7af4b074c3ea6211a42e99c7d8e8d431",
+    "src/ZZZMigration.sol": "f963fc090258ebc926c044262831172370cc8af42991ea84ffe140e46fa7992c",
+    "src/ZZZMigrationReceiver.sol": "d85bec31f018219bedd532dcdf069b7271bc3b633bdc24320ec1d9ce4269212e",
+    "src/ZZZMigrationRegistry.sol": "415c55f3ce4142725d9e16f14f3bf16ee009e77b38f304b248500ab437c6b25b",
+    "src/ZZZNFT.sol": "5067854d4d3a45d8d225642f76bad516ce0606a4fed6f7505dffc14171b9c65b",
+    "src/ZZZOracle.sol": "0280b2b5ab562cebe2f4b64fe6f2942fae009ddf79e521b8b347e6695c545106",
+    "src/ZZZPoolRegistry.sol": "e6c6df06e07745a8aa91334f6a576d103946fca6c9bcac2f64b4f38ca2e7d732",
+    "src/ZZZPower.sol": "11e4041d6480547af5c9dc822104504103cecc8fdda913e24ef9c11325bdc5be",
+    "src/ZZZRewards.sol": "880fbdfe0bf9e3d02213fd06810db870c6acf3500799cccc731f6f868ddf1f14",
+    "src/ZZZStrategy.sol": "12cfbaa52fdb44b9d33f1ec294c07f04aff7f42cc33bd955546ee0cf3b3b5561",
+    "src/ZZZVault.sol": "9510d291305b00e8b81f3b22216c6868078cc4aa0d2aa065cefa969ca7d1e3fc"
+  },
+  "counts": {
+    "conditional_false_positive": 51,
+    "intentional_behavior": 25,
+    "false_positive": 6,
+    "accepted_model_risk": 1
+  },
+  "actionable_findings": [],
+  "additional_review": [
+    "Private view access helpers preserve original caller identity, seal/keeper/governance/pause checks and revert ordering.",
+    "Replacing the old per-NFT position ABI with nftStatus and explicit group/share getters preserves custody separation; satellites do not mint NFTs.",
+    "Owner fees checkpoint before share increase; collective fees checkpoint before contribution Power increase; global and per-NFT rounding stay funded.",
+    "Canonical remote share membership remains frozen until the authenticated returning cumulative owner/collective allocations for both canonical assets are fully funded. Counters include unsent reserves and never reset across hops.",
+    "Historical ACK retries return against stored snapshots before comparing newer membership; replay, stale/altered snapshots and canonical location regressions remain rejected.",
+    "No production keeper, rebalance, fee allocation or migration loop iterates over NFT holders."
+  ],
+  "remaining_assumptions": [
+    "Ordinary reviewed ERC20s; exact balance checks cannot prove permanently honest token code, admins or balance reporting.",
+    "Reliable admitted USD feeds, supported sequencer/outage policy and bounded execution conditions.",
+    "Reviewed provider wrappers, physical origin authentication, backing/finality and destination reservation evidence.",
+    "Sub-ten raw-unit dust goes to incumbent owners before membership changes; governance must assess its monetary size for low-decimal/high-value future assets.",
+    "This internal review is not an independent external audit, live bridge test or approval of the deferred production reward source."
+  ],
+  "findings": [
+    {
+      "finding_id": "d7f19c6bdf4cc2a964be3b00245df9ba1058329917385c8c3fe2293edec3daef",
+      "check": "arbitrary-send-erc20",
+      "impact": "High",
+      "confidence": "High",
+      "function": "ExactToken.pull",
+      "decision": "conditional_false_positive",
+      "rationale": "Internal library helper has no public arbitrary-from entrypoint. Every custody call site was traced: caller-owned input or the sealed Vault/Fees/Rewards/Bridge/Receiver/provider module is the payer. Transfers require allowance and exact sender/recipient deltas. This is conditional on reviewed ordinary non-rebasing/non-taxed ERC20 behavior; dishonest balanceOf or token admin behavior is not proven safe by these checks.",
+      "description_sha256": "e563b494517807e11ed4dad2220d2891e14e1a798e249193dae3182bb09dab07"
+    },
+    {
+      "finding_id": "0afa6841c0311e4aa74c9714cf493a87aa80ac8922879facd8c2ecfd07a86e74",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant; manager and PosM are deployment-fixed. The before0/before1 snapshots intentionally measure the exact net debit after mint/increase/approval, allowances are cleared, spent amounts cannot exceed attributed idle, and LP ownership must remain Vault. Helpers are private. Unprotected confirmMigration is restricted to fixed Migration and has only authenticated state-update paths; views cannot mutate. Retain ordinary-token and fixed-dependency review assumptions.",
+      "description_sha256": "08a11ef161c493eb9ba26053620bd2a52e6a40c87142984a747dd2485027fe82"
+    },
+    {
+      "finding_id": "0f3663566acc83a067c658e6d12bf7784e912ae89560080ca5ac6d80469c9b02",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant; manager and PosM are deployment-fixed. The before0/before1 snapshots intentionally measure the exact net debit after mint/increase/approval, allowances are cleared, spent amounts cannot exceed attributed idle, and LP ownership must remain Vault. Helpers are private. Unprotected confirmMigration is restricted to fixed Migration and has only authenticated state-update paths; views cannot mutate. Retain ordinary-token and fixed-dependency review assumptions.",
+      "description_sha256": "cdff980961b3902c8079a1cfea826fde8a918d9b3007c38ca26f71833fff2b72"
+    },
+    {
+      "finding_id": "211be7e0311b293bb927d79a10ab8675d82c39059c1fb0de7f4a0ad6b16bba3c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZMigration.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper-only/live/nonReentrant. The Vault and Bridge endpoints are sealed bindings; before/after balances deliberately prove exact attributed release followed by complete transport consumption. Cohort identity and custody epoch are checked before release, final accrued-fee counters are frozen before send, and any failed check rolls back the whole transition. Propose/cancel require timelocked governance and confirm/registerImport require the authenticated fixed Receiver.",
+      "description_sha256": "321f77598dc003ca6bfdcd09e3b568f143b33f7d2da96ceb4b42c14ef7729927"
+    },
+    {
+      "finding_id": "219d7348f9246e26472aa67076bfa2149f8d122dd2c35fa3967bb1e1e3c7772a",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZMigration.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper-only/live/nonReentrant. The Vault and Bridge endpoints are sealed bindings; before/after balances deliberately prove exact attributed release followed by complete transport consumption. Cohort identity and custody epoch are checked before release, final accrued-fee counters are frozen before send, and any failed check rolls back the whole transition. Propose/cancel require timelocked governance and confirm/registerImport require the authenticated fixed Receiver.",
+      "description_sha256": "72cb527c9787dab241b8d5c2e01d417d707630e7fd5c8b42572c1cf95c4139e2"
+    },
+    {
+      "finding_id": "261ca5cc14c09428a472bdf3610099a31eb0c9433c544f5e80bf513b15dd3673",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "665599eb0fe70089c89b0faa5745e793d846928dd0a3d901ed8017bcd7c77027"
+    },
+    {
+      "finding_id": "386adac030d08b332ce9c51b343d498f221d94c453f59dac7bdaf6bc359ed631",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant; manager and PosM are deployment-fixed. The before0/before1 snapshots intentionally measure the exact net debit after mint/increase/approval, allowances are cleared, spent amounts cannot exceed attributed idle, and LP ownership must remain Vault. Helpers are private. Unprotected confirmMigration is restricted to fixed Migration and has only authenticated state-update paths; views cannot mutate. Retain ordinary-token and fixed-dependency review assumptions.",
+      "description_sha256": "8aee914c42c16175ae392ecdd72efa50f59b61e723997e13a313a881364296d0"
+    },
+    {
+      "finding_id": "3eabf28d9302033773893b0cae556b1c773aea41fa0da3f968e21e2534fe9864",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZMigration.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper-only/live/nonReentrant. The Vault and Bridge endpoints are sealed bindings; before/after balances deliberately prove exact attributed release followed by complete transport consumption. Cohort identity and custody epoch are checked before release, final accrued-fee counters are frozen before send, and any failed check rolls back the whole transition. Propose/cancel require timelocked governance and confirm/registerImport require the authenticated fixed Receiver.",
+      "description_sha256": "a276f8b465e07d45455642fc0d54853f20a14c5f361773bee5baddbab5d7ee9b"
+    },
+    {
+      "finding_id": "49c00499b8341b0d4eca7e3494e2b54a9ab3644f9f5ad1f694d4fd6a32c9b81e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant; manager and PosM are deployment-fixed. The before0/before1 snapshots intentionally measure the exact net debit after mint/increase/approval, allowances are cleared, spent amounts cannot exceed attributed idle, and LP ownership must remain Vault. Helpers are private. Unprotected confirmMigration is restricted to fixed Migration and has only authenticated state-update paths; views cannot mutate. Retain ordinary-token and fixed-dependency review assumptions.",
+      "description_sha256": "18db87890a85d17be366e4e0dff3371e80e433fe471db067b1e3f6ca238a7c77"
+    },
+    {
+      "finding_id": "4a833b9bdd20284a197926b4d7f9c8dbf7e45f33a69b900d62afadd739a648c7",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant; manager and PosM are deployment-fixed. The before0/before1 snapshots intentionally measure the exact net debit after mint/increase/approval, allowances are cleared, spent amounts cannot exceed attributed idle, and LP ownership must remain Vault. Helpers are private. Unprotected confirmMigration is restricted to fixed Migration and has only authenticated state-update paths; views cannot mutate. Retain ordinary-token and fixed-dependency review assumptions.",
+      "description_sha256": "a32dc1c6ea80a5ff6a63501735562051415c63e38cdc6275a48f6d3151dd31c9"
+    },
+    {
+      "finding_id": "4ac551439f9cb6d1eb145ba5ede9284830f814682bbe26205b2d0c2cad100d04",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "06e439b30e503b38803f1b6bf5e22bfc2a5d3527b295f25f2693f08e056581f9"
+    },
+    {
+      "finding_id": "52f424ec0e23c0ca843a2303d167f76d13cf2ed49ee73137f3ab732608c21c14",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "ee3fc0b1e9e3f54382814f9aec4c95ed1648aef62081acaca0c0ad8eae648990"
+    },
+    {
+      "finding_id": "5b15f55068b1a61783e9661bc353e612ee19cebd28128860ea3d719bb00727e8",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "666d41e3980fd256762c374844a132a35cdd51b6210c0612f3db6e6351c70020"
+    },
+    {
+      "finding_id": "5b827037515d843a11b37be01590c7570ae54e3c711263553e56d20e8f66bdd5",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZBuyback.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper/live/nonReentrant. Only the funded buyback reserve is released; any swap has a bounded direct-to-ZZZ route and temporary manager approval. The retained beforeZZZ snapshot proves exact acquisition and full burn, while totalSupply must fall by acquired. A future token with dishonest burn/supply behavior is not validated solely by balance checks and remains separately reviewed.",
+      "description_sha256": "85d2e58b6b579ee62513b285b8f8f33b3d3fd60b9dcb588a32933cccd32bf296"
+    },
+    {
+      "finding_id": "5f045a6132e33e2860bc9040d64d88ff81f2f139c09cbf2e245f05a34dab6cd2",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "afef4551d22d525d2d321225baa33a14ae11f0f7a0c3c641b409045ace6717d3"
+    },
+    {
+      "finding_id": "62fef2ff25ea0c66188112e6ce0e2df8a5f2586b43ef18a531aac15a5460be1d",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "35d503b3b0d3744f75e3692cfba944d435fdff06690e5e7129673adb43da407a"
+    },
+    {
+      "finding_id": "631c37b0be98a841846e2086128a1f44220813c68c3eb5c7433d804f1a5f0138",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "d5cacbeb41d8ae9f4d2b5795cbdc39763ca98003a9a0afeb9d9d920218ba3b4a"
+    },
+    {
+      "finding_id": "6f5198a8e49090dec11c12a2018bee03fda2872d66c577a63d78042910dfb618",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZMigration.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper-only/live/nonReentrant. The Vault and Bridge endpoints are sealed bindings; before/after balances deliberately prove exact attributed release followed by complete transport consumption. Cohort identity and custody epoch are checked before release, final accrued-fee counters are frozen before send, and any failed check rolls back the whole transition. Propose/cancel require timelocked governance and confirm/registerImport require the authenticated fixed Receiver.",
+      "description_sha256": "8e64464803a62e0738d3cec3d5901e3093cf5cd7c37000a6b133fdd2d5be8244"
+    },
+    {
+      "finding_id": "7d6528f564050017db9e1111902ddb5ba66b8841569bfbe6dcd7313043b00180",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "8c12263e256cca223160454b917be1b4de5e32718966984ff234f17dda9c30de"
+    },
+    {
+      "finding_id": "8609878f1216bee43c2cba70fc3404542b963faec1d3c621813ef4d3196f701c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "1bdaed1a0a0ba57a62f2f3e09877a6147674c6be0daeda209286b67d3af54ef5"
+    },
+    {
+      "finding_id": "8e93c9b87688c818bd3af0db2b1dd9ec757d7e1fa0488be54136b206eb67c32c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "731df58c2cff0d1d0aa8698706af8083503cd4bb5e2fc3d47d92114d63e74e1a"
+    },
+    {
+      "finding_id": "9124728af1b391b1cd3cc407f76fc1449ce66461bdbbda718c384cf62cebb569",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager.swap",
+      "decision": "conditional_false_positive",
+      "rationale": "swap is nonReentrant and restricted to sealed Vault/Buyback. The sole permitted pool-manager callback consumes a precommitted payload hash before settlement and requires exact input delta, minimum output and fixed recipient. beforeOutput is intentionally retained to prove exact recipient increase; pendingSwapHash must be cleared. Oracle deviation is checked before and after execution.",
+      "description_sha256": "2f196edbaf7008410667bef4c3414e99db05bbf0ed18264f7ecf3e2b1c3552c0"
+    },
+    {
+      "finding_id": "99edf6a4bf9a2d4a2e1ddf20ef425769abc797150e0dcf02e3e3aded35402bcc",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZBuyback.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper/live/nonReentrant. Only the funded buyback reserve is released; any swap has a bounded direct-to-ZZZ route and temporary manager approval. The retained beforeZZZ snapshot proves exact acquisition and full burn, while totalSupply must fall by acquired. A future token with dishonest burn/supply behavior is not validated solely by balance checks and remains separately reviewed.",
+      "description_sha256": "ed3a3a6f254f9bf588a405087b4d3e901ff70ca7c013904fc8c62b47f1447aaf"
+    },
+    {
+      "finding_id": "b6c5062080e4c52983f57a9ad4173edada4f429a6908f5005fc962644e97c31d",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZBuyback.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "execute is keeper/live/nonReentrant. Only the funded buyback reserve is released; any swap has a bounded direct-to-ZZZ route and temporary manager approval. The retained beforeZZZ snapshot proves exact acquisition and full burn, while totalSupply must fall by acquired. A future token with dishonest burn/supply behavior is not validated solely by balance checks and remains separately reviewed.",
+      "description_sha256": "6602dab8fc8e89d12e92ab2e58a8be6e7b0e43bcdd357fda9376a7fc46ea5c49"
+    },
+    {
+      "finding_id": "d46522e819c42e7629a3d4bdd140716e0bbe84fc304aba8d299aea2acb32ba9e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "55fa83c0e30944d19d72fb8f56eb9fbb7d0d8bf5091dba6868d9e4c6af1a46b3"
+    },
+    {
+      "finding_id": "e99c59802c7ad0ea74e66696ceaa14c77c49149f0ecb297fbcdb8e5e8c3fb716",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager._mintOrIncrease",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can enter mint/increase, both nonReentrant. Permit2, PosM and pool manager are constructor-fixed and cross-checked. ExactToken pulls the caller amounts, approvals are bounded then reset, post-operation position owner/key/ticks/liquidity are verified, and unused balances intentionally use the pre-call snapshots so preexisting donations are not returned as fresh capital. Unsupported malicious-token/dependency behavior remains an admission risk.",
+      "description_sha256": "208ea8286400d162fced51de796efe2a721c627c41756454a4c394e641d6904a"
+    },
+    {
+      "finding_id": "f20a7318989e4ed31d9675e642db8c81f7b3b0dbcbc1767483616dda4482c01e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant; manager and PosM are deployment-fixed. The before0/before1 snapshots intentionally measure the exact net debit after mint/increase/approval, allowances are cleared, spent amounts cannot exceed attributed idle, and LP ownership must remain Vault. Helpers are private. Unprotected confirmMigration is restricted to fixed Migration and has only authenticated state-update paths; views cannot mutate. Retain ordinary-token and fixed-dependency review assumptions.",
+      "description_sha256": "6a146eb6e02fafda22dc3e21e20e196ef7881f86ccd0ea80eea78b29b0df8970"
+    },
+    {
+      "finding_id": "12727f990d67b3a94fd388f280305c1e5ddb1e8bbd5b999ac281cb2a45b9dad0",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "8a5ec48a4f2b5b6221a75a82effe35f044b92c8d3f6f8b3cecf97a86076f95d3"
+    },
+    {
+      "finding_id": "54a224bb7732e5fb0f1da30f241f1c94d8837d666d4a6ce9e56404b39ce5c836",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "9b60150970f5060b9fe3a9fc91a0242dd320102102bbacda81688386db1dd22f"
+    },
+    {
+      "finding_id": "86e34813ff51aaeeece5bf5a0743df468ef42a8e687d49042d1305ddcc168f76",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "cf849b49d8392e6cba5148c93619eeffeb1155be8f5b12fff7cbe0150e664773"
+    },
+    {
+      "finding_id": "92b87375652b34c3cd583945672682498b6d687e0c92d9c409a9a7760cd470f0",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "4d6d7afca6f5132110be34799d0095972cf9b7eaf3e652d33464a7cb166a9151"
+    },
+    {
+      "finding_id": "95fb3dd3490b2b8479bb859563be31b19948cf8967184702b760784b606d339d",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZStrategy._floor",
+      "decision": "intentional_behavior",
+      "rationale": "Division followed by multiplication deliberately aligns ticks to spacing, with an extra decrement for negative nonmultiples. Validated positive spacing and Uniswap tick bounds apply. Multiplying before dividing would destroy the required floor-to-grid behavior.",
+      "description_sha256": "67aadfc187172f7f7094084190f4556c7f99dc7a243781c89a841e9466b68f8f"
+    },
+    {
+      "finding_id": "a0eb0a18d567e3ef422e09cd0952a23738e1b78e31fac65b83dbab82f405c182",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "48d5bfe95107909f5a6cda7f425f3ec55b3f00ef0755ed863d4bc2e9c6b96692"
+    },
+    {
+      "finding_id": "e1e84484d3a609679e1fcfc0a274de34d5c86e9c92168f23ce9b3818f89fa5ab",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "a027f62c46aeb1a0532b9f6737fbcaeb68368b3b2584808ae0cb501cada228ef"
+    },
+    {
+      "finding_id": "f7e100af0e74e807e3aacfb2294c144d7d1ef3e9c361c489340940f80046e040",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.allocate",
+      "decision": "intentional_behavior",
+      "rationale": "Division into raw 10-unit batches deliberately implements exact integer 50/30/10/10 allocation. All undistributed remainder stays funded in dust, not silently discarded. Before membership changes or departure, up to nine RAW units settle to incumbent owners. This is a documented rounding-policy exception; it is not universally economically negligible for future low-decimal/high-unit-value assets.",
+      "description_sha256": "6fcb7633dd3293d491631ab67706c0dd1d19912d34ac75229da10a4697b7bbbd"
+    },
+    {
+      "finding_id": "6013089a2a55ff146b6b98a00bda9ff0b56d437ee4f4bc0eb0ede1d7dccafb7c",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "function": "ZZZVault._allocate",
+      "decision": "false_positive",
+      "rationale": "amount == 0 skips an empty measured fee delta, not an equality on total account/ether balance or externally adjustable solvency target. Nonzero collected fees still require exact funded allocation.",
+      "description_sha256": "1fef48759f560c5cc5bc740f87c0adad4a915d9bbb03bc17880b1b65cd4488aa"
+    },
+    {
+      "finding_id": "6dce36cf3ca803b50b1e16dd875e62c3b6f519aef6d6ddc62acb211723538138",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "function": "ZZZVault.compound",
+      "decision": "intentional_behavior",
+      "rationale": "The zero total compound budget and zero user-supplied minimum-liquidity cases are invalid maintenance requests. Equality to zero is intentional input/budget validation, not a manipulable target-balance condition.",
+      "description_sha256": "830c3a3f4fc365dda22f153cd18a1ba73900172f94938f6da286c715f824f939"
+    },
+    {
+      "finding_id": "1656c6769dc7e4247b4e199f123f8b7e263b3e375ef05b5381a769af08c0c8ac",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._close",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. close is followed by zeroing the LP identifier and attributing only measured token deltas. Existing idle is conserved by aggregate-solvency checks. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "d99f0ab77b814eb0d7396055a1df58b01ca11218c5fe14acb71b9c171802b2a8"
+    },
+    {
+      "finding_id": "179291fd231f664f145c394ce3b9a42d139ace6b52709eaeff99747967948ae7",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigration.execute",
+      "decision": "conditional_false_positive",
+      "rationale": "The nonReentrant execute entry freezes custody and final accounting before bridge send and verifies exact balances. Calls reach only fixed Vault/Fees/Bridge; authenticated Receiver paths cannot manufacture a matching departure/ACK before a funded finalized receipt exists. Governance paths require the timelock. Any failure reverts release and plan changes.",
+      "description_sha256": "f52644180823f9ab414881ae53a3e5f2ee7efd1c5645ab86b41a623a0e156ee6"
+    },
+    {
+      "finding_id": "19d1eec6dbe3a95cf731ae9d7580f7ff3f3c35110371a96b637aacebdd442b11",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.compound",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. a second harvest separates same-pool swap fees from principal. Only designated compounding budgets are invested and share/Power membership is unchanged. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "f93f40bc45bd40f3c1bb052d84c5bfc6d9c27a66ee94ee9b27c8a92bab11ec00"
+    },
+    {
+      "finding_id": "1f352c6f4b6d29e64da193eba3a29b2e839fc1b9d0cdb15b2240cdc43e592c1d",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._pullCompound",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. only designated funded per-bucket reserves are pulled; fees debit their ledgers before ExactToken.push, and the Vault adds exactly the returned amounts to attributed idle. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "e285c80b5acf93a4f5da303aa15084dc791f2a0dba14fdf31bbfb1b50627fc26"
+    },
+    {
+      "finding_id": "215a75746f914ba18967d44057f22b0e75948a1b4da1ca0544a8a795f4392ef4",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._join",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. all old fees/dust settle before membership changes; entry-swap fees are harvested again for incumbents, existing LP is revalued after the swap, owner index checkpoints while shares are old, and shares increase only after marginal deployed/NAV thresholds pass. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "1842ef7d948b762bdfa229c96f2a5358e04621e154723fd0632049427eac8fa8"
+    },
+    {
+      "finding_id": "3d94aa4285d56eaa89df3d0fc22351ca7e27982aec318e7cce85a86568fd1591",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. LP mint/increase and approval use fixed dependencies with exact spend, cleared allowances, Vault ownership, nonzero deployment and maximum attributed idle checks. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "17a783dd6bd7f9499799dfce5091cc4fae4dc6d6debfd730549877c20aba82bd"
+    },
+    {
+      "finding_id": "4b6f63ecbfb6bd75b7808285d69caa85040130059795bb5790a49fc12533983e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._join",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. all old fees/dust settle before membership changes; entry-swap fees are harvested again for incumbents, existing LP is revalued after the swap, owner index checkpoints while shares are old, and shares increase only after marginal deployed/NAV thresholds pass. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "7fa370811b268d4d9a93b6c98708e5e6aa610d0b16f1fcd1c55e988b7886f47c"
+    },
+    {
+      "finding_id": "4cebddee870b2deb74a52bc0603b65604a01599054432088c80afa9343c13159",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._unwind",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. the new private helper only deduplicates the original validate-price, harvest, designated-compound and close sequence. Its state effects and caller guards are unchanged. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "3da14021c796be089702e661cf61c8d3ef8e0243a03e7c34ba4ad21dbcdebba2"
+    },
+    {
+      "finding_id": "5154281c5aae9597cdb3fe0a4bd23588aceeee9d84ed435239ca94bf4b694c0e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.movePool",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. only fixed Migration can request this governance-controlled move. Ordered currencies must match, destination reservation cannot alias another bucket, and unwind/redeploy retain fixed recipients and exact checks. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "bbbd0d4937ffe67ea4b4a5e3fc86dc48ffe71a599bb023bd2e4b38923ba010c2"
+    },
+    {
+      "finding_id": "526b52ee279e33fb198916d282322d4f14f9436a8bd17deca5ffe467bb2f85e9",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._put",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. LP mint/increase and approval use fixed dependencies with exact spend, cleared allowances, Vault ownership, nonzero deployment and maximum attributed idle checks. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "116140d8de611a25e16d70ceca86f67ad2824e53545b73d90979a315ec002d17"
+    },
+    {
+      "finding_id": "55834334d896f6061e6dc5e067f319a623f4ad84341ca41008a15692fcfbfbd8",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._balanceUsing",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. only the typed fixed manager can swap, temporary approval is cleared, manager enforces committed callback/exact settlement and the Vault updates only attributed idle. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "63cd59999dc93132c41fa2cbb802a1a6288875e12f372fbd706d925bfd66179f"
+    },
+    {
+      "finding_id": "695d5d819e67f1f15788f996e17b61849e50a4fdd9acdc7ab007ea8cd4bf1de9",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigration.registerImport",
+      "decision": "false_positive",
+      "rationale": "Only fixed Receiver may call. For canonical return the call is _recordCanonical(..., false), so the detector-reported vault.confirmMigration path is unreachable from this invocation. Other interactions here are view reads; custody epoch is monotonic and Receiver.receiveMessage is nonReentrant. Principal funding/import/accounting remain one atomic receiver transaction.",
+      "description_sha256": "54ff8a3e0a7438cece08f8e2bceb79fbefc3ffd961a897d8e081d3027e18641f"
+    },
+    {
+      "finding_id": "6b5b4a090a3b74114932a1967534a9b166832c404b3a7292d667f11930898d3b",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._redeploy",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. the private helper measures idle before balancing, checks execution loss under the current pool configuration and recreates a Vault-owned LP with deployment bounds. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "02eb89aae27a424a01929dc6667cc1adbbc11ff203fa46b2da973ef20a664cc7"
+    },
+    {
+      "finding_id": "7eef743a301b20266aa3f71cebf82a1998ff43e42ec6a6d38be1108cdb0233df",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.finalizeImport",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. only fixed Receiver may finalize the accepted inbound group. It retains the Inbound state until validated redeployment succeeds, then marks Active atomically. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "f829abcab073014852abd8f98b62d62e6aad57d96985d2dd58f8c8666f24180e"
+    },
+    {
+      "finding_id": "8bf6227f2daa78546a58ed09084a728fa241a7d44e5a5cc50060895ffad08fba",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._join",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. all old fees/dust settle before membership changes; entry-swap fees are harvested again for incumbents, existing LP is revalued after the swap, owner index checkpoints while shares are old, and shares increase only after marginal deployed/NAV thresholds pass. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "ebf83bdfb190d72dca9c4c978ac280ed2ce37a1df7637c6cfd4eeb8e8a4674a7"
+    },
+    {
+      "finding_id": "8d73bac0eb6b74c2b9d5ce16714876056725f61ad56cc6a0595638774490b316",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.releaseForMigration",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. only fixed Migration receives the complete measured group principal. Old local compound funds and dust are settled, attributed idle is zeroed, status becomes Outbound and exact push pays only the fixed caller. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "3786cfbd8ed0521fe29c515352defa4e586f0bff1146660db8b1bcd3ac2993e2"
+    },
+    {
+      "finding_id": "98d5db0f968466351bf1c784a9e0fcbf3027eb10946bc3f671f422aeb9ae07bf",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._unwind",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. the new private helper only deduplicates the original validate-price, harvest, designated-compound and close sequence. Its state effects and caller guards are unchanged. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "fd109cb1edcd59bad9581e5fd7cf8f39ebf26442edfcb23bd2d5cb7014eac389"
+    },
+    {
+      "finding_id": "9bb4924f6cedee08fd344f3587e89292c3450951a8915248e25692763c7d71f4",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._join",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. all old fees/dust settle before membership changes; entry-swap fees are harvested again for incumbents, existing LP is revalued after the swap, owner index checkpoints while shares are old, and shares increase only after marginal deployed/NAV thresholds pass. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "db5d8dec6c5670f4849e765c05c325204b07657193dbc35928c684e656a22610"
+    },
+    {
+      "finding_id": "a412d132a96c456eb6290b0a81283a2d29a61c89da1f04cd7b1e49b6c8284cfb",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigration.confirm",
+      "decision": "conditional_false_positive",
+      "rationale": "Only authenticated fixed Receiver may call and its message entry is nonReentrant. The sole mutating external target is fixed Vault.confirmMigration, which checks fixed Migration authority and updates custody location without token transfers or untrusted callbacks. Exact historical snapshots are idempotent; altered or reordered snapshots fail and cannot regress current location.",
+      "description_sha256": "7ea414e8cea60c607626ade61ee4b2416612cd3e322cc72116e44be0331aefa7"
+    },
+    {
+      "finding_id": "ae6331bc9af5d822fafabda0e5df620e474b04c5a3b0fbffabf352959015e4c9",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.movePool",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. only fixed Migration can request this governance-controlled move. Ordered currencies must match, destination reservation cannot alias another bucket, and unwind/redeploy retain fixed recipients and exact checks. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "f07832f7bae18c1f1b549d3a3d048b9066aec4e8b43e62d286f13f6fe54dddfc"
+    },
+    {
+      "finding_id": "af96aeac45fcb1635331c4460527e8fa760c5739e09233d809f8920721af0a95",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigrationReceiver._principal",
+      "decision": "conditional_false_positive",
+      "rationale": "Private helper is reachable only through the fixed-Bridge, nonReentrant receiveMessage entry. Migration.registerImport is fixed code with validated route, bucket identity, share snapshot and custody epoch; it has no untrusted mutating callback. Receipt, token pulls, Vault.importPending and Fees.importAccounting roll back together on any failure.",
+      "description_sha256": "4c3507e0abfee9af4672b578a87889d69ff9a9713ad396ddce0e6aaf5aca0f6d"
+    },
+    {
+      "finding_id": "b81fad758b2bd27800e762057385b7bc6254353055c56ff5f83c9230a0fc2082",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.rebalance",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. keeper/live gate and cooldown/strategy eligibility are unchanged. Unwind/redeploy replace the shared LP without changing NFT shares, Power or ownership. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "cfcbfc4ab24f514fd9aaff392f1b337ff441b07705ff8a9dba50e0588e9c86e3"
+    },
+    {
+      "finding_id": "bba2bab435269a529d0aa39d8ccc286117c9300f4e65ff6159b2f9295892a80c",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZPower.add",
+      "decision": "conditional_false_positive",
+      "rationale": "Only sealed Vault can add contribution Power. Fixed Rewards.checkpointAll performs index accounting and view reads of current Power; it cannot arbitrarily add Power or transfer tokens. Checkpointing before either individual or total Power changes is required to exclude retroactive collective rewards. The calling Vault entry is nonReentrant.",
+      "description_sha256": "6beeab16dd90c454272a511f6cd73e32b37046a51bac80b4d06ba513108413fe"
+    },
+    {
+      "finding_id": "c40711f49e0998769524ec15d3d8e92abc680e628686b49a888aa7532ca88a9a",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.compound",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. a second harvest separates same-pool swap fees from principal. Only designated compounding budgets are invested and share/Power membership is unchanged. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "01241e00efb5d480e49a2f902f8f2c1722e48554d849c766d85aea12079d8fee"
+    },
+    {
+      "finding_id": "ce194486e7f81f339fda72965aa833a0e0cf9daade76dc1b925c3c6743ad15a3",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault.compound",
+      "decision": "conditional_false_positive",
+      "rationale": "All reachable custody entrypoints are nonReentrant and sealed/live where required. The detector lists read-only views and confirmMigration as cross-function candidates; views cannot write, and confirmMigration is restricted to the fixed authenticated Migration path. a second harvest separates same-pool swap fees from principal. Only designated compounding budgets are invested and share/Power membership is unchanged. Ordinary-token and reviewed fixed-dependency assumptions remain explicit.",
+      "description_sha256": "0a1957f86492d07e5fddef5e6bc137d3e9998ed37a05d7c9c2af81d9af4a673a"
+    },
+    {
+      "finding_id": "1a9c0a067f868f7f37b0b6bc560bfb0838157ac70e7518878bf95041bb1332b8",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "BridgeAssets.assets",
+      "decision": "false_positive",
+      "rationale": "count deliberately defaults to zero for the ACK branch, after the branch checks zero tokens/amounts and a nonzero migration ID. Principal and Reward explicitly assign two/one. Solidity initializes the uint local to zero; no uninitialized stack data is read.",
+      "description_sha256": "6b9f4136b27ded09ac32316cd1a09d0bc7d0c4b8082c06a94a1acd0fd134f427"
+    },
+    {
+      "finding_id": "46bb7ad990c1c57601da1381b1814b614fafb71f568f5787c93f2d16124d33bc",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigrationReceiver._principal",
+      "decision": "false_positive",
+      "rationale": "Solidity memory Position is zero-initialized. Home identity, ordered canonical token mapping and aggregate deposit are explicitly populated. Vault.importPending independently sets pool, idle, location and Inbound status; ignored origin fields are intentionally zero, not stale memory.",
+      "description_sha256": "a982629669fbcdab55c37d1e56e84e29393a926e0cbd2d0726fa63af5112ba5b"
+    },
+    {
+      "finding_id": "a515c1371ffe7320b4d6106049e08bc77052fe41ba68045bc35a2492759fbfbd",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._join",
+      "decision": "false_positive",
+      "rationale": "freshCompound must be zero for the first join with no incumbent LP. Solidity initializes the local to zero; when supply is nonzero it is explicitly assigned from measured newly pulled post-swap compound funds before use. Incumbent idle and current old LP are separately reserved in every branch.",
+      "description_sha256": "f5bbdd4b00a604ba3dd7bb703a2f71351cd5b4c02c015a65b47754d5ba94d62c"
+    },
+    {
+      "finding_id": "d73e590685947462384add0e2d68e9aea5509970d7ddbcadf0e656f7372b1efa",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZFeeController.bridgeRewards",
+      "decision": "false_positive",
+      "rationale": "The memory BridgeMessage is zero-initialized. Every required V3 Reward field is explicitly set, including bucket/home pool/frozen supply/contribution/token/amount split. Principal-only fields, amount1 and unused counters intentionally stay zero. BridgeAssets and canonical Receiver enforce Reward-specific invariants.",
+      "description_sha256": "41eddd3c365fd017a0026fcab3e8bfd2a2e09450818850203d7d5fcf8a4e5256"
+    },
+    {
+      "finding_id": "17197991eca55c79480e01b692a826094ef2721b4f93dee8e31a126a6759a4b0",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager.swap",
+      "decision": "intentional_behavior",
+      "rationale": "validatePrice is invoked for its revert-on-deviation/disabled-pool assertion before and after the swap. The numerical spot return is unnecessary here; liquidity calculations use their own validated values.",
+      "description_sha256": "edb94541b8c197bfeb0a8ea335f246cc8cacbd21c8d0967e63a4e7b5460f526d"
+    },
+    {
+      "finding_id": "2e0185b57f1cd016aa90e76b432cccc9a85d555340b9dba230f82973f1fe9e61",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigration._recordCanonical",
+      "decision": "intentional_behavior",
+      "rationale": "Only the route enabled flag is omitted for authenticated inbound history/ACK recording. Economic peers, principal route, previous location, snapshot, home ledger and custody epoch remain checked. Disabling new sends must not discard already funded pending settlement.",
+      "description_sha256": "b320b12f770d200caec2f2640a8bec204a1a5101e8ba11f448e0f69c10f9f716"
+    },
+    {
+      "finding_id": "45898831daa60ecc3d217bf49ffe78f76690a545b46a99c3f44736e0b267e982",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigrationReceiver.receiveMessage",
+      "decision": "intentional_behavior",
+      "rationale": "The outbound enabled flag is intentionally ignored for authenticated inbound settlement. Fixed Bridge origin, route peers, destination, kind and strict V3 principal/reward/ACK validation still apply.",
+      "description_sha256": "c4aa5671bbb6f895031f48c82c8dda24f4c22717dcc37b57e98d07dfc141f361"
+    },
+    {
+      "finding_id": "49a5ad0b1f39738f029a17d3817a5a58db5f9a083c63c7c35c86d4a5fd8c6069",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZOracle._sequencerCheck",
+      "decision": "accepted_model_risk",
+      "rationale": "This query intentionally consumes sequencer up/down answer and startedAt/grace, ignoring unrelated round tuple fields. This is not proof of a universally safe outage policy: the selected sequencer feed semantics, network support and operational recovery policy require production review. A zero configured feed deliberately skips this protection and is separately release-gated.",
+      "description_sha256": "a8d90ec3637b541bad8b621beb801208c6491b172bdca0b1def72dc8649c3a6e"
+    },
+    {
+      "finding_id": "4a2587811c07f6f2bca1a1b6f1bb2067b7de82a332e3b8bcecba5b031d1a1d50",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager.spot",
+      "decision": "intentional_behavior",
+      "rationale": "Only sqrtPriceX96 is needed from slot0. Tick and fee tuple fields are intentionally unused by this view; operations separately use the configured immutable PoolKey, initialization/deviation validation and supported hookless pool rules.",
+      "description_sha256": "2b691cedc1e9c436b76a51a6f94d0dfc14a5009a8eb25530dfce2365f991abbd"
+    },
+    {
+      "finding_id": "5189ec643e9b72880e554c57b8b32b545e73d0b2c685b95bac239da70b0e1072",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZPoolRegistry.configure",
+      "decision": "intentional_behavior",
+      "rationale": "oracle.price is called for validation/revert on missing, stale, invalid or sequencer-disallowed feed data. The returned numerical price is not needed to register the approved pool. Both reward assets must also already be registered.",
+      "description_sha256": "4d59a9b43e43adf5cf9f39ebbaa68dcd2b94d63d26ef291d90a8c576d45313c6"
+    },
+    {
+      "finding_id": "63736ca2ba52ba8c0226298ed974a6941e57f839667d2ccf28a84ef52608b561",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigration.registerImport",
+      "decision": "intentional_behavior",
+      "rationale": "The route enabled flag controls new outbound work, not pending inbound completion. RegisterImport still verifies immutable route peers, bucket hash, frozen canonical ledger, no existing local principal and strictly newer custody epoch.",
+      "description_sha256": "66c98374846fac345a5a369ce2376a07afd8359df5d7f5de35c38049158adc8e"
+    },
+    {
+      "finding_id": "702399345c12c3da3e16931d5d4c01fe888763e0a990061be291045ed00feac6",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager.swap",
+      "decision": "intentional_behavior",
+      "rationale": "validatePrice is invoked for its revert-on-deviation/disabled-pool assertion before and after the swap. The numerical spot return is unnecessary here; liquidity calculations use their own validated values.",
+      "description_sha256": "1d880868170cff9d833bec8a287b6feb28e6ae6434708771db606e5336f5c465"
+    },
+    {
+      "finding_id": "795824987cc8bc1f1fc320e5ffffd4cdab23bc30a77342cd66ef4a0a206abcb1",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._reserve",
+      "decision": "intentional_behavior",
+      "rationale": "PoolRegistry.get is used as an existence assertion and reverts for unknown pools. No funds move here; reservations cannot be reassigned. A configured disabled pool may be reserved for staged onboarding, while actual placement and routes independently enforce their operational requirements.",
+      "description_sha256": "351d556e8fa1493d42344b6862b99484ba31a73b1cdca78bb3ad81c375b97eb1"
+    },
+    {
+      "finding_id": "82aa5ce00a77bc469f43bb74960411b6fec14bb81854353835f4b8b7d0ae877a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZLiquidityManager.ticks",
+      "decision": "intentional_behavior",
+      "rationale": "Only packed position info is required to decode tick bounds. Mutating operations independently check position owner and PoolKey. This public view does not confer custody permission.",
+      "description_sha256": "912ce3c189f5329c6b2a0896d07c988115555e51b33a6ff3c327ff40f569c4ef"
+    },
+    {
+      "finding_id": "9ed217429f5bc58691bd22ad121195a2ced50208dcf2d2d9e4c1aebf71628090",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZBridgeRouter.onProviderMessage",
+      "decision": "intentional_behavior",
+      "rationale": "Ignoring outbound route enabled preserves pending exact-funded receipts. Policy ID binding, local provider code/config identity, authenticated physical source, immutable economic peers, nonzero nonce, replay protection and exact destination token vectors still apply.",
+      "description_sha256": "f1fd0abaa2a72dd3d6dfa04339befdec15b9dc0b76132e6d47bd0180a125cdd8"
+    },
+    {
+      "finding_id": "cb797025b55d330b458fab482bfb9687a5bef444e447a3e98355de2a06aef943",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZBridgeRouter.send",
+      "decision": "intentional_behavior",
+      "rationale": "The first get omits enabled, but canSend subsequently re-reads and requires enabled and outbound policy readiness before any funding/send. There is no untrusted mutating call between these view checks and funding that can rebind the append-only route.",
+      "description_sha256": "7eba83474a525832f81bb476f0dd1e569a0aff2e61093867b4a3eefa38c37e88"
+    },
+    {
+      "finding_id": "d3575f4f5c9b0a60b68dc8a70cd1950965f63fb75f0303dc915ee849aa318322",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZOracle.price",
+      "decision": "intentional_behavior",
+      "rationale": "Feed startedAt is unused because freshness uses updatedAt. Positive bounded answer, nonzero/current round, answeredInRound, updatedAt not zero/future and maxAge are validated before normalization.",
+      "description_sha256": "db42ecf185899c2f1108a8794ff2ab2950799fd5ea5abd05c755984b1b9f4d13"
+    },
+    {
+      "finding_id": "d6c737e1868df3c7233954fcb0ca45484cb245c213eb9de57e69e9b67995bcc8",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZVault._unwind",
+      "decision": "intentional_behavior",
+      "rationale": "validatePrice is a mandatory assertion immediately before harvest, designated compound release and LP close. Its numerical return is unused because execution accounting measures actual assets and later _redeploy independently enforces swap/deployment value limits.",
+      "description_sha256": "d5493bc24dfc183e30d88740406c34fdb7b949fac4ae3e2718ebadaea800efec"
+    },
+    {
+      "finding_id": "dcb535832c2e51f9c41a91005cc13ac245432eb79954ea3417aa3eefe6df2129",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZMigration.confirm",
+      "decision": "intentional_behavior",
+      "rationale": "Disabling outbound routes cannot invalidate historical authenticated acknowledgements. Exact frozen departure snapshots and canonical sequential custody locations are checked independently of the omitted enabled flag.",
+      "description_sha256": "a96d191494efc9add3659e7d5ac0069c9cb0f37420b4dd3dddfc96719ea5f1f5"
+    },
+    {
+      "finding_id": "dd3a186f4c9e75089faa4012007c189b1e80022aa11ae6fc62e256a55f103fc8",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZBridgeAdapter.onMessage",
+      "decision": "intentional_behavior",
+      "rationale": "Inbound settlement deliberately ignores the outbound enabled bit. Only fixed Router can enter; source/destination peers, nonzero nonce, V3 kind/assets, replay domain and exact funded receipt are checked before the fixed Receiver handles the message.",
+      "description_sha256": "c60701f28e95001b4587cf8609c716d3227c461e519e874820a2792c77e26ca1"
+    },
+    {
+      "finding_id": "f4afe5186c990b6107e3a4ab859c60dd4ee40204a751d86a5c6a200f5dfbeb72",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "function": "ZZZPoolRegistry.configure",
+      "decision": "intentional_behavior",
+      "rationale": "oracle.price is called for validation/revert on missing, stale, invalid or sequencer-disallowed feed data. The returned numerical price is not needed to register the approved pool. Both reward assets must also already be registered.",
+      "description_sha256": "77196dc8d9b8d5a611636029124dc5ed6a8e0c5d943c1e3df8940784f7e44944"
+    }
+  ],
+  "open_policy_tradeoffs": [
+    {
+      "status": "open_product_and_token_admission_review",
+      "function": "ZZZFeeController.flushDust",
+      "description": "Before a holder-triggered join/top-up or authorized migration, the final remainder of zero to nine raw token units is allocated entirely to incumbent owner rewards. For future low-decimal/high-unit-value assets the remainder can have material USD value and repeated holder-triggered settlement can affect realized 50/30/10/10 proportions.",
+      "required_followup": "Assess nine raw units in USD and potential settlement frequency during token admission. Decide whether to retain this documented exception, constrain eligible token precision/unit value, or redesign fractional fee allocation before funding a newly affected market. No new token restriction was inferred during this implementation."
+    }
+  ],
+  "packaged_report_sha256": "cd9c001de9e6b185289ea6ebad74a72e5121322819861a718d0ed27e5c6f8cfe",
+  "packaging_note": "Original local raw-report hash retained. Packaged report normalizes host paths and terminal LF. All finding fingerprints were checked equal; descriptions, IDs and reviewed source identities are preserved."
+}

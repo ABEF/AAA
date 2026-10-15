@@ -6,7 +6,8 @@ import {Ids} from "./libraries/ZZZTypes.sol";
 
 /// @notice Explicit v2 policy: Power = lifetime oracle-USD of user contributions.
 /// Compounded fees and market appreciation do not increase Power. No manual setter.
-/// Local weights are preserved while canonical liquidity is in flight/remote.
+/// Collective rewards use Power; owner rewards independently use shared LP shares.
+/// Canonical weights are preserved while the whole bucket is in flight/remote.
 contract ZZZPower is ZZZModule {
     uint256 public constant MAX_TOTAL_POWER = 1e36;
     mapping(uint256 => uint256) public powerOf;

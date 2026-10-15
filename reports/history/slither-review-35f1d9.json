@@ -1,0 +1,1413 @@
+{
+  "analyzer": "slither-analyzer 0.11.6",
+  "date": "2026-10-15",
+  "reviewer": "Codex internal source review with a collaborating agent reviewing router adversaries and changed High/Medium transfer paths",
+  "independent_audit": false,
+  "source_sha256_lf": {
+    "src/base/ZZZModule.sol": "e0e0792f353c82d4c85d686c55205306ab08a23e06f1ec2578e0a8bedbb7ea91",
+    "src/interfaces/IZZZ.sol": "52eed65610398b36eaa0a0921bffd4355d7f1c17826ac81fc70d2c6763d63593",
+    "src/libraries/BridgeAssets.sol": "59d54d93e3f111133f5908f67be60319417adaf7baa10ee11d6b789eb4a59259",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZTypes.sol": "243acd13661b00d804015107f241385fc14217e97ee5156638e4ad73daa89876",
+    "src/ZZZAccessController.sol": "f13c81ad52fc129cd0076c79ca5f238f3003fb26ef19746cf7da118c3195f345",
+    "src/ZZZBridgeAdapter.sol": "24b9fd9e393d9ae3cffc54c94a60db771c6286c2c71664fcc95fa70e763ac297",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "74843072ac083cc49d79020ad0cb4db984a056662106f7eaaf1164b2d71c823d",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZFeeController.sol": "c3a72adf39dd3814808fd9a93de81c00e6f8898180aba859d3147e5362dad253",
+    "src/ZZZLiquidityManager.sol": "8f7f89ba0a5b09e8247b832b15b7861a7af4b074c3ea6211a42e99c7d8e8d431",
+    "src/ZZZMigration.sol": "546cc2ba81840e033ba2b4fec2b6d2637ac2c0c4f3b1c7378441a93c5323880e",
+    "src/ZZZMigrationReceiver.sol": "ae39f8a884e623ec86d84875743521a4cc780cb99771f04155b7c29e7bf6bace",
+    "src/ZZZMigrationRegistry.sol": "415c55f3ce4142725d9e16f14f3bf16ee009e77b38f304b248500ab437c6b25b",
+    "src/ZZZNFT.sol": "5067854d4d3a45d8d225642f76bad516ce0606a4fed6f7505dffc14171b9c65b",
+    "src/ZZZOracle.sol": "0280b2b5ab562cebe2f4b64fe6f2942fae009ddf79e521b8b347e6695c545106",
+    "src/ZZZPoolRegistry.sol": "e6c6df06e07745a8aa91334f6a576d103946fca6c9bcac2f64b4f38ca2e7d732",
+    "src/ZZZPower.sol": "f81b764084dbc55d36625a878a7e962fb7fd35a067b4ca8e28f206d7fa26b10f",
+    "src/ZZZRewards.sol": "ff19c505d2e50b2bed954bf6b809e7444cc988342e828fb0dce530b1b334f292",
+    "src/ZZZStrategy.sol": "b034f1488b027660a5b867988f57b3ebb2bb4b4a1d437326829df69c621256b2",
+    "src/ZZZVault.sol": "c56a2806f6effc9ed500996c142df27276af824a48a7ed0ad4e7b243fbbb8bc3",
+    "foundry.toml": "7d0537454ed4fbd912ec355fee4f1ccf457e6ce1105855cf6f1844c552eb0f91",
+    "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+    "slither.config.json": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f"
+  },
+  "detector_counts": {
+    "arbitrary-send-erc20": 1,
+    "cache-array-length": 1,
+    "calls-loop": 9,
+    "cyclomatic-complexity": 1,
+    "divide-before-multiply": 6,
+    "incorrect-equality": 2,
+    "low-level-calls": 1,
+    "missing-inheritance": 12,
+    "reentrancy-balance": 26,
+    "reentrancy-benign": 8,
+    "reentrancy-events": 3,
+    "reentrancy-no-eth": 28,
+    "timestamp": 14,
+    "too-many-digits": 1,
+    "uninitialized-local": 3,
+    "unused-return": 20
+  },
+  "findings": [
+    {
+      "fingerprint": "2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c",
+      "slither_id": "d7f19c6bdf4cc2a964be3b00245df9ba1058329917385c8c3fe2293edec3daef",
+      "check": "arbitrary-send-erc20",
+      "impact": "High",
+      "confidence": "High",
+      "location": "ExactToken.pull(address,address,uint256) (src/libraries/ExactToken.sol#11-18) uses arbitrary from in transferFrom: IERC20(token).safeTransferFrom(from,address(this),amount) (src/libraries/ExactToken.sol#15)",
+      "disposition": "false_positive",
+      "rationale": "ExactToken.pull is internal. Every production caller supplies its authenticated msg.sender (owner for activate/increase; bound Vault/Fees/Receiver/router/authenticated provider for module transfers). There is no externally selectable victim address. Both sender and recipient deltas are checked; module/token trust remains a deployment gate."
+    },
+    {
+      "fingerprint": "693709508c1a8899893dc1ce27f815c04485e1590cb65da59f63741706e6f401",
+      "slither_id": "261ca5cc14c09428a472bdf3610099a31eb0c9433c544f5e80bf513b15dd3673",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "98a6f4ca5b413ec87a8712131a1c2112cf8c0ebfad0ef4a40fcf2a2a5a7d5f11",
+      "slither_id": "3ff3e945f631a462617f3ad6fe332d4a87519a7d3201f87efc26d3906d00c596",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant. Vault principal release and bridge send are separately module-restricted and guarded; exact token deltas and zeroed allowances are checked. The immutable production transport must be independently reviewed: a valid code interface or balance delta does not prove remote asset delivery."
+    },
+    {
+      "fingerprint": "6440ebcd6090d788b11004dd1c510f60802d3dae5d6acc913f674cc552f4e8b5",
+      "slither_id": "4ac551439f9cb6d1eb145ba5ede9284830f814682bbe26205b2d0c2cad100d04",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "1398005d446ccd29fd804d9c5f7e9d5e945c8320031834eda3ff19e2c1986823",
+      "slither_id": "52f424ec0e23c0ca843a2303d167f76d13cf2ed49ee73137f3ab732608c21c14",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "b32e28768bdced6796c747a294bf730e66b2beb4f8a677387f564969887ac18c",
+      "slither_id": "5b15f55068b1a61783e9661bc353e612ee19cebd28128860ea3d719bb00727e8",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "6e04e92499fe94dd3569822a375f2b1d4af5ac9f053503ebdf07a7687c9c417a",
+      "slither_id": "5b68e7576f4a1a35bace1e57b4a8c0c442d1bb01f0ec5f359f89b63d798d712e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "513aa720741da273a785d4d484fbcf82a907e6c978f1e4fd1b28c409aab495d8",
+      "slither_id": "5b827037515d843a11b37be01590c7570ae54e3c711263553e56d20e8f66bdd5",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant; fee release and swap are module-restricted. Approved dependencies and post-burn balance plus totalSupply checks bound this path. The selected authentic ZZZ burn passed the real fork test; cross-chain supply/backing semantics remain unproved."
+    },
+    {
+      "fingerprint": "38e89b5502b829227ca17a56b754ba6fb2fbca2ff94a304f61d25b75e0b66fe7",
+      "slither_id": "5f045a6132e33e2860bc9040d64d88ff81f2f139c09cbf2e245f05a34dab6cd2",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "005cebccb81aa29d479480b42ad273396b75e8de9a782065e5ab3782a9ea6d06",
+      "slither_id": "62fef2ff25ea0c66188112e6ce0e2df8a5f2586b43ef18a531aac15a5460be1d",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "dd25c3f2079288875dc46b35a461fce169ccbe292dbfcde9e9350c0d27f1c22d",
+      "slither_id": "631c37b0be98a841846e2086128a1f44220813c68c3eb5c7433d804f1a5f0138",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "65f5d1d3e8ce2706c846a25671ba925dc350154dcbf4202d4b90f79c90f655c7",
+      "slither_id": "7d6528f564050017db9e1111902ddb5ba66b8841569bfbe6dcd7313043b00180",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "8888b711367a53c2097230ece01f6966f14c60cbca7e4fe6f4af2f73f0f4ebc5",
+      "slither_id": "8609878f1216bee43c2cba70fc3404542b963faec1d3c621813ef4d3196f701c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "06bb0f4304e3c07efd9355b21c3893114b9246926565a00b2a63f8685cf036c0",
+      "slither_id": "8e93c9b87688c818bd3af0db2b1dd9ec757d7e1fa0488be54136b206eb67c32c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "8e3c236c0388d105cba080ad85043a3f72250223a0d4eac953b46ee909830842",
+      "slither_id": "9124728af1b391b1cd3cc407f76fc1449ce66461bdbbda718c384cf62cebb569",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "c43174f310d78c8abc434139f82874099cddb4dcdad852065162814a9014c718",
+      "slither_id": "9226eb26cd654ce803688928c9cd93e44fc91525bd3405b42d0bb632ca90da88",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "d4bfb2dde0ab5283d467932417e1484e0ced3b00743d72c1620870f34dddca83",
+      "slither_id": "9881eac51e5a3eaccdc4f927613e7678c02dfbb4bba533166b1e12ecd3d4da15",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant. Vault principal release and bridge send are separately module-restricted and guarded; exact token deltas and zeroed allowances are checked. The immutable production transport must be independently reviewed: a valid code interface or balance delta does not prove remote asset delivery."
+    },
+    {
+      "fingerprint": "621b9b794a0a2e1963de7e1cc534a9b8ad5218c0e68fe373770e8e3b624534a4",
+      "slither_id": "99edf6a4bf9a2d4a2e1ddf20ef425769abc797150e0dcf02e3e3aded35402bcc",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant; fee release and swap are module-restricted. Approved dependencies and post-burn balance plus totalSupply checks bound this path. The selected authentic ZZZ burn passed the real fork test; cross-chain supply/backing semantics remain unproved."
+    },
+    {
+      "fingerprint": "6664037fbe115af87bbe8d484a3d4d91138fcfba50e4bd7860729a27f0ff8c0b",
+      "slither_id": "9c9b82eb30dca888be10fd68064049c0c11629c9c9e5c03ae4fb02009a33b235",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant. Vault principal release and bridge send are separately module-restricted and guarded; exact token deltas and zeroed allowances are checked. The immutable production transport must be independently reviewed: a valid code interface or balance delta does not prove remote asset delivery."
+    },
+    {
+      "fingerprint": "17a812f333e5ad67df2510630a95a7853d355c565b3bb5c6b4c718a216af300b",
+      "slither_id": "9ebf0b105d96fc1088a18d6be88de868674176d1e910b5de6a564d39526ce117",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "16ecfe2c82878c868573d3bd101e307598e18e58e44be542c9e0a342e2d8a91d",
+      "slither_id": "a9c5afdb6ad14dc8194321beb44ef88478af4b2a484b1fb29620025a9f1f8223",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant. Vault principal release and bridge send are separately module-restricted and guarded; exact token deltas and zeroed allowances are checked. The immutable production transport must be independently reviewed: a valid code interface or balance delta does not prove remote asset delivery."
+    },
+    {
+      "fingerprint": "0c986553cd66b7716e9b7c2ef01fddb8df1ff58089b1b1c60d4a54937c3301f1",
+      "slither_id": "a9e09f3196f5734347e024622bf9fea84ea6ed7ca67cd8753584b334c3efbefb",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "1600998c5e1d9e100a5ccbc9e8f52ba3f333e03963fba6597d7ffc5abf7e9b4a",
+      "slither_id": "b4bfbf0c2b784754dc3cfe730611d6b39cafa4370feb8d5edcdb25faae29a7cc",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "ebc36da713984e413b5a297a669153f2be47bbf61898d005c90e5f9eb3fe3d64",
+      "slither_id": "b6c5062080e4c52983f57a9ad4173edada4f429a6908f5005fc962644e97c31d",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#21-44):",
+      "disposition": "false_positive",
+      "rationale": "execute is onlyKeeper/live/nonReentrant; fee release and swap are module-restricted. Approved dependencies and post-burn balance plus totalSupply checks bound this path. The selected authentic ZZZ burn passed the real fork test; cross-chain supply/backing semantics remain unproved."
+    },
+    {
+      "fingerprint": "e76f3ba23eb30fac66f0036c348ac33b282148254ffceb269430fae55742d294",
+      "slither_id": "c73dbe72238a43669b83b4e4594ec4a0876eab14979d1cd8835d574d30e44280",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "c55c447be0cd859c04a0df52138902e6964c5833f0b8ae77d44c46eb2ec190f0",
+      "slither_id": "d46522e819c42e7629a3d4bdd140716e0bbe84fc304aba8d299aea2acb32ba9e",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "5fb18ba43b9aa93a16f99dfffb17ca2bd0892f11fa50a45390073289cc7befa5",
+      "slither_id": "e99c59802c7ad0ea74e66696ceaa14c77c49149f0ecb297fbcdb8e5e8c3fb716",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#67-109):",
+      "disposition": "false_positive",
+      "rationale": "mint/increase/swap public entries are nonReentrant and restricted to fixed custody/buyback modules. Private helpers are only reached under those guards. The intentionally callable unlockCallback requires the fixed PoolManager plus the pending payload hash and consumes the hash before settlement. Exact transfers, LP ownership, liquidity deltas and approval resets are enforced. This conclusion assumes the reviewed fixed Uniswap/token dependencies; pinned fork tests cover ordinary settlement."
+    },
+    {
+      "fingerprint": "3ef2e6c22ee70c7622a0e5ef952bfff17fab95a53fe36b97c9bac6b76a991b50",
+      "slither_id": "434c64c5ee60ceb0a7f2a8b4c6a2bb2995721939949cbf2224c4e5f9b7f08a31",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:",
+      "disposition": "accepted_risk",
+      "rationale": "Intentional 5/3/1/1 ten-raw-unit batch allocation. total % 10 is carried in dust, not lost or credited twice. Multiplying total first would change the rounding policy and can overflow. Unit/fuzz and independent integer-ledger stateful invariants check conservation; small fees may remain pending until a batch or explicit flush."
+    },
+    {
+      "fingerprint": "d57279437375db9c5cae02c58ec0722a2a0295f32d457a0f43c487d32736d9f1",
+      "slither_id": "5146cb9cf6ba819f2c5a868f3b675fee1fb72ed1ffa9ff9a39bbb6023650e652",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:",
+      "disposition": "accepted_risk",
+      "rationale": "Intentional 5/3/1/1 ten-raw-unit batch allocation. total % 10 is carried in dust, not lost or credited twice. Multiplying total first would change the rounding policy and can overflow. Unit/fuzz and independent integer-ledger stateful invariants check conservation; small fees may remain pending until a batch or explicit flush."
+    },
+    {
+      "fingerprint": "00e9468e8de7bc3bdc20c75ca84c563afd6f5c230766f1b79538068d4902b510",
+      "slither_id": "5e3dcea63d88eb185dc3fc0486524b7ad58cb179789e7b1f321a52e62c41e846",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:",
+      "disposition": "accepted_risk",
+      "rationale": "Intentional 5/3/1/1 ten-raw-unit batch allocation. total % 10 is carried in dust, not lost or credited twice. Multiplying total first would change the rounding policy and can overflow. Unit/fuzz and independent integer-ledger stateful invariants check conservation; small fees may remain pending until a batch or explicit flush."
+    },
+    {
+      "fingerprint": "5aeb7d04c5a697f4bd44b31dd12a15f6ce5f26a3be6104c1c018a41356660e8a",
+      "slither_id": "75b0a24b0fa38ea506a2e88f9a933bbe6ed8e590b4f186b671260e5387734b9c",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:",
+      "disposition": "accepted_risk",
+      "rationale": "Intentional 5/3/1/1 ten-raw-unit batch allocation. total % 10 is carried in dust, not lost or credited twice. Multiplying total first would change the rounding policy and can overflow. Unit/fuzz and independent integer-ledger stateful invariants check conservation; small fees may remain pending until a batch or explicit flush."
+    },
+    {
+      "fingerprint": "ddf4520e6e354e8e1421a32482dfa42137e3d663b5f9efb324b2f69fb212ae53",
+      "slither_id": "95fb3dd3490b2b8479bb859563be31b19948cf8967184702b760784b606d339d",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZStrategy._floor(int24,int24) (src/ZZZStrategy.sol#13-17) performs a multiplication on the result of a division:",
+      "disposition": "false_positive",
+      "rationale": "Strategy._floor deliberately divides signed ticks, adjusts negative nonmultiples, then multiplies by spacing to return the aligned floor. This is integer tick alignment, not an accidental loss of price precision; signed-boundary strategy regressions cover it."
+    },
+    {
+      "fingerprint": "d2bf8d069561dfcc1a357e5f89f6178a58fa711fe50fe723e725de52795d2711",
+      "slither_id": "e8f95f7d56cfccbfa6a043c8104e33de90ba7d87355b409cee1efc00aa6b8a1d",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#48-76) performs a multiplication on the result of a division:",
+      "disposition": "accepted_risk",
+      "rationale": "Intentional 5/3/1/1 ten-raw-unit batch allocation. total % 10 is carried in dust, not lost or credited twice. Multiplying total first would change the rounding policy and can overflow. Unit/fuzz and independent integer-ledger stateful invariants check conservation; small fees may remain pending until a batch or explicit flush."
+    },
+    {
+      "fingerprint": "1af856e1da92bca4238c18608317fa8aa10b4769ca7aa8b9c5f469a059c93673",
+      "slither_id": "40fc149ee168fe6986f0080403137e2c24d0b068d6a67f13dae9e5e2e5eed005",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "location": "ZZZVault._allocate(uint256,address,uint256) (src/ZZZVault.sol#172-178) uses a dangerous strict equality:",
+      "disposition": "false_positive",
+      "rationale": "An exact zero amount/minimum is an explicit invalid-input/no-work condition. It is not a balance, timestamp or user-controlled target-value equality that can lock a funded state. Donations cannot alter these local argument/budget comparisons."
+    },
+    {
+      "fingerprint": "12f519c899621a01baf1e323e570f8dadfefc486373b2e565fb502449bc055fd",
+      "slither_id": "4fb1efdf3271ae509a1175e07f7d76affeff71a961335a6a9532fa73160b524c",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "confidence": "High",
+      "location": "ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219) uses a dangerous strict equality:",
+      "disposition": "false_positive",
+      "rationale": "An exact zero amount/minimum is an explicit invalid-input/no-work condition. It is not a balance, timestamp or user-controlled target-value equality that can lock a funded state. Donations cannot alter these local argument/budget comparisons."
+    },
+    {
+      "fingerprint": "b4a6592aeb75aabca8a8f75ec33b7149853fc75b4e450b1db070c2f4c7a997c3",
+      "slither_id": "0e9d8fbb08312ce764ddd474eed7c6d8bed5d6e38cc33a910231d0e77d437b56",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "8f3c6c99bf228427ec1b59f05ac44f953fd0aed054f6bacab887225269d6ba65",
+      "slither_id": "1a8bfd42d6aab144a65f6d763e13c596e2bd027b9df427cfd5837a1c95fb9170",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "3e6e2960c024ddcce3d445cba1994b6967bac58b1d810c12e973dcd9c037463b",
+      "slither_id": "240a71c1a730f726ac7e54c97a63000f00b417e2be37d9d0c74d4c1851c1e71f",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#129-149):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Receiver can call registerImport, from guarded receiveMessage. _recordCanonical is called with updateVault=false here: the flagged conditional confirmMigration call is unreachable. Remaining vault, routes, access and NFT reads are static. Authenticated transport correctness is an unresolved external assumption."
+    },
+    {
+      "fingerprint": "cf50fb56746a31cac5f042ad070f075491720b952dd9efc8842cab1ebce38b46",
+      "slither_id": "658b37e2f6a1348cdc2b21093f47cef329e070dbf2c48e9ddab8427ddd883d22",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Vault can call add. Its mint/activation/increase entry points are guarded; checkpointAll is restricted to Power and its external Power getters are view/static calls. Checkpoint-before-weight-change and event ordering are intentional. No untrusted mutable callback is reached on this path."
+    },
+    {
+      "fingerprint": "5fab5f5db003719b9a06069341442010514da014950e05b0d8c324e516ab13e9",
+      "slither_id": "70f0ac62b2e741ec19afa78be3350ae5ff0db608b723ea39e8d66f0c61450301",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.finalizeImport(uint256,uint128,uint256) (src/ZZZVault.sol#315-325):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "08eba2ee5bbfd6e4f6567ad177c608131818fa1103776b3968520c975790265e",
+      "slither_id": "75eb7972dfc27a8fe060f857ebc250a2fc88508ab710f512a02ba8687e35489e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "01d25a70379d55e8f58516016e4b041fdae5b3008b40eb1185fd8f2df5cec82c",
+      "slither_id": "80d81c8e681c5df8df9bcd33029a65a8b05e4e101276fac3760c1ab027cb921f",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#270-289):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "7e69e4f96bb343193cb7052d750c8b9e55482db493dd42d77a2a5dccd8cf92a8",
+      "slither_id": "84b99041c0a2e64a6e813f60c1266feca402ab25e7867410b1e4c3c31cc2eb4f",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "4f33800c34956751aa1d4d98d41f8f04161c3a2e413a9cb2cb3f79ac17f5ee4f",
+      "slither_id": "8e983f4fb508d704c6d502bcd9768fe9e89bfe5556c6ccf81c88e7332bacfffa",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "5245670ed3a56347b7a64494e8e374a8d076e6f4f2c2681569dd58feb2375b64",
+      "slither_id": "9a2b03b71b00b5f271d8e5c3122066d4e9630e916a554ed2790d80e6cb65f475",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "2aac009aedccdf86b7d77260e10a657e788e6a0e3cf0b727c3ede1a557a60376",
+      "slither_id": "9d1c2c03c8e8865c3fee51e1af439bf98cf9028bd25118d05096aa9be24e353e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "f73741d303e296d8c60bac6c57dcbdeb937212501f688208ebea4d848f2f8c7c",
+      "slither_id": "9dba70d400e3c0bafb40d9e5e3019fac5b3f8aeef310d05250b5993d3016646e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "c6589c50e3505606facc5a276922b17dfc402334c299a881e7aacac9a4ad3066",
+      "slither_id": "a54cca783867a26f18c57d80da15f34001b2f814ad8155f71fe5b078d0f693ea",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "407a885654c7d28b262af66dd667090d380cb3c88d60a26674f82ae4f5b0f961",
+      "slither_id": "a5e6c2d83a33219bc22e078306de730e2e3cc0361d4163a17fedf04743319e3f",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#124-147):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "53ff120c59522d9fa5bf48943d682974b582f344ed49ba61375e6f0e9c0ebdb1",
+      "slither_id": "a5ec36179f9ae76574c80c792ba3eca26b4240c907c168ce0088e3394532017b",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "ffe24b9653659bdf051ebdac481e65913eea5893f251004e796abd76b14a7df5",
+      "slither_id": "a9032c59b9161d207a9342cbd4ff21d20b84ce7a13fca194e28b35f38bb59cc7",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
+    },
+    {
+      "fingerprint": "3317d6e6bb3d1f65fe3df7ed1152248d2e1599487e284e19fff18f80cbfb3f92",
+      "slither_id": "ada2f730c52673ef91acda709346a7dab65bc5e0e4ae3b7804ed91aaca5c8843",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "8b3c89bb2a696be6d0374e26ec1058f6836a8d9f4a298d7da67c432d32ccdc22",
+      "slither_id": "ba48dfef2eb602d1569230193ff9a117fb1b4eea1c267842b97d3fdfc313bc24",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "9d9a7c1db78e5a7d734f6284c51fc9e90146265fa5d1f6b3d71dd23e5bb90f8f",
+      "slither_id": "ba937b217bd9046a6bb71445e0fbc140504699c900c59e01e33201cba3e5ef3e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#270-289):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "2d2ca00ba80d0310f2b6cfffe28a04388441de7a93e53646ee720b95862397a1",
+      "slither_id": "c414162c1c28be32185b4d014a0967d8a539794d3e5fa298b4d7486093d11d4e",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "085b31ade95ca473325d130ffcfabb9d64d33054ef39cb9b0c07149b33ec8f08",
+      "slither_id": "cdc716d1a6502e59e54c4986d08ce63c9b4a92b07672e0496dccd58b095e77f3",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#196-203):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "e3d082a3ff693f257a2bd2f64943cc71f2b58f621d2833731d6d743df70452b0",
+      "slither_id": "d494df00c8e0b338dce79fc643e3aac4c29166e447e4022459a8087b8457f9f6",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "4c77b6fe5b5cbbd8c5b5d06d1d96593b85cb8f8913051dff87e5c629320e4419",
+      "slither_id": "e87669b45f51fc924a6f2b9f58aa0e8c683a52e0c85316313052d9146e9a820a",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
+    },
+    {
+      "fingerprint": "5add7972581a10f4f6ce6e896823adf9b0cec98cd3d0d05a2dae0d0f459db8e0",
+      "slither_id": "efa3cf5d38b94e50b626886b1c73a418d2980904a3cc8a1857e9e692e1c7590a",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigrationReceiver._principal(Route,BridgeMessage) (src/ZZZMigrationReceiver.sol#36-73):",
+      "disposition": "false_positive",
+      "rationale": "Private _principal is reached from nonReentrant receiveMessage, restricted to the fixed Bridge. Receipt/provenance changes roll back if any later transfer/import fails. registerImport is fixed-module authorized, tokens are exact-delta checked, and the fixed Vault import entry is separately guarded. Provider and destination trust are not removed by these guards."
+    },
+    {
+      "fingerprint": "426b63c0d79c31caf887615b61faaafabdc5e52e7049a337c9f49ec20af23677",
+      "slither_id": "f446a4fbf564a30c8ad915d7fd916ef4074b449c1f0a07ea6255255f2190465a",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "7205cd81e963afa52d4a0d41beaa99ab18f9b8a9f8c3d9876a93cb2eec6cc3e0",
+      "slither_id": "f69a09bfabf8f1dc55d59ed80a4732affd5cb68b52757173658cd71d80826316",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#220-229):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "52602be1ac1f67a0e79b747553d35094747f0f471652f12aeb5747d95b8bb14b",
+      "slither_id": "fb204049962081bd772aa39812833cc3a1e43533a2c92d926f773d96e6b35862",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "30899e2bc22508ac2bfa12f04ac63121331e90c53c64da1a5cb6b8a46876f80d",
+      "slither_id": "fca39b12d4c186f56a6a50aa6480b07e211cf52793a5be853f077940a48b4690",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#231-248):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "e1a3432a6d06741f20c66be61ca494435d4e037df3de32d4bb6834007a0e9fe3",
+      "slither_id": "1a9c0a067f868f7f37b0b6bc560bfb0838157ac70e7518878bf95041bb1332b8",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "BridgeAssets.assets(Route,BridgeMessage,bool).count (src/libraries/BridgeAssets.sol#12) is a local variable never initialized",
+      "disposition": "false_positive",
+      "rationale": "Solidity initializes the local memory struct/integer to zero. Bridge ACK count intentionally remains zero; the Principal/Reward branches set it. Receiver origin explicitly assigns all imported identity/contribution fields and importPending constructs local state. Fee bridge message explicitly assigns the required Reward fields, while ACK/principal-only fields intentionally remain zero; typed receiver checks enforce message kind."
+    },
+    {
+      "fingerprint": "8285fb21b98d4aacfa61253943ecb6c0f1beb82efe66d86fe30034ec274658c8",
+      "slither_id": "46bb7ad990c1c57601da1381b1814b614fafb71f568f5787c93f2d16124d33bc",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZMigrationReceiver._principal(Route,BridgeMessage).origin (src/ZZZMigrationReceiver.sol#56) is a local variable never initialized",
+      "disposition": "false_positive",
+      "rationale": "Solidity initializes the local memory struct/integer to zero. Bridge ACK count intentionally remains zero; the Principal/Reward branches set it. Receiver origin explicitly assigns all imported identity/contribution fields and importPending constructs local state. Fee bridge message explicitly assigns the required Reward fields, while ACK/principal-only fields intentionally remain zero; typed receiver checks enforce message kind."
+    },
+    {
+      "fingerprint": "c1ae1e3332995dff69160396a8fe148f9f2157f485bf0102844c6708466add7b",
+      "slither_id": "d73e590685947462384add0e2d68e9aea5509970d7ddbcadf0e656f7372b1efa",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZFeeController.bridgeRewards(uint256,address,bytes32).m (src/ZZZFeeController.sol#127) is a local variable never initialized",
+      "disposition": "false_positive",
+      "rationale": "Solidity initializes the local memory struct/integer to zero. Bridge ACK count intentionally remains zero; the Principal/Reward branches set it. Receiver origin explicitly assigns all imported identity/contribution fields and importPending constructs local state. Fee bridge message explicitly assigns the required Reward fields, while ACK/principal-only fields intentionally remain zero; typed receiver checks enforce message kind."
+    },
+    {
+      "fingerprint": "d99c3ed76f1758b0cae7d74af274dad4b01a023d37f921d662d7ed79d0611f7e",
+      "slither_id": "17197991eca55c79480e01b692a826094ef2721b4f93dee8e31a126a6759a4b0",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#168)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "d4cea5652094bcf0b498c7a5a22a3e35fc30e072f10c7ca95c089b17aa1e4705",
+      "slither_id": "269d8faea2fa5537dba8b8bb7b399b3893b146e25342c3dd71f7bc59eb369303",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZRewards.credit(uint256,address,uint256,uint256) (src/ZZZRewards.sol#48-66) ignores return value by IZZZNFT(access.module(Ids.NFT)).ownerOf(id) (src/ZZZRewards.sol#52)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "f7d405d877f4dc90da429aaeae9aa987413cdc2cc4b5c25ebe153b3a4bf04573",
+      "slither_id": "44a2b701852569ea2df613adcdedbc83f22004a05cf3090a9e3896684212799a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId) (src/ZZZVault.sol#345)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "57c851029ab83a3d4414671f16afdb464e032359e2d51a4575d7b7efbab749e6",
+      "slither_id": "45898831daa60ecc3d217bf49ffe78f76690a545b46a99c3f44736e0b267e982",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZMigrationReceiver.receiveMessage(uint256,address,BridgeMessage) (src/ZZZMigrationReceiver.sol#24-35) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId) (src/ZZZMigrationReceiver.sol#26)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "499c8916fedcb019075224eced030062985bd6fa5f797e6d552c2297119e05ed",
+      "slither_id": "49a5ad0b1f39738f029a17d3817a5a58db5f9a083c63c7c35c86d4a5fd8c6069",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZOracle._sequencerCheck() (src/ZZZOracle.sol#28-33) ignores return value by (None,answer,startedAt,None,None) = IPriceFeed(sequencerFeed).latestRoundData() (src/ZZZOracle.sol#30)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "3a7fbdbe0cd3de00a7018f03a9b7d3af5632c19fb7bc7c401b98811a54e520ec",
+      "slither_id": "4a2587811c07f6f2bca1a1b6f1bb2067b7de82a332e3b8bcecba5b031d1a1d50",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#44-46) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#45)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "d3ef840567f53015525392fdcd9d7814bb379d8d6f2d09dfcd8f8262a8d22c62",
+      "slither_id": "4ad76b9ab59808be76ee79c31030c004eb1c0f4d8c65cd1cf7141dab8a34f1e5",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId) (src/ZZZVault.sol#259)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "1068d1150f8548651a8bbec475bd2856090a51e6e20f087cdac8f2037bcd72f2",
+      "slither_id": "5189ec643e9b72880e554c57b8b32b545e73d0b2c685b95bac239da70b0e1072",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZPoolRegistry.configure(PoolConfig) (src/ZZZPoolRegistry.sol#14-32) ignores return value by oracle.price(k.currency0) (src/ZZZPoolRegistry.sol#24)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "56e2a1921d5188ec3679b42de918f98074d06d3eb529a0728dac0449d7f5c271",
+      "slither_id": "55ea5e43fe68d50aaef792192e5f73744c65899f1a5397bc85c89cd3a5c763d4",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184) ignores return value by IZZZNFT(access.module(Ids.NFT)).ownerOf(m.nftId) (src/ZZZMigration.sol#163)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "7e11bb96985ea72743012142cbd5ef69347fe22abe25dea3bb8c09bc8323c737",
+      "slither_id": "702399345c12c3da3e16931d5d4c01fe888763e0a990061be291045ed00feac6",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#162-182) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#181)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "1e5036fad719756fa72a3f90da5f31afdbd845504cb867f4a124568e14aa2934",
+      "slither_id": "82aa5ce00a77bc469f43bb74960411b6fec14bb81854353835f4b8b7d0ae877a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZLiquidityManager.ticks(uint256) (src/ZZZLiquidityManager.sol#143-146) ignores return value by (None,info) = posm.getPoolAndPositionInfo(id) (src/ZZZLiquidityManager.sol#144)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "2e5be1b1215c4fd50e3ce8995fa38e5541295850b5bd9c1acdc869d86c97390c",
+      "slither_id": "9ed217429f5bc58691bd22ad121195a2ced50208dcf2d2d9e4c1aebf71628090",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZBridgeRouter.onProviderMessage(uint256,address,address[],uint256[],bytes) (src/ZZZBridgeRouter.sol#130-156) ignores return value by (r,None) = registry.get(m.routeId) (src/ZZZBridgeRouter.sol#141)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "dd4a930be61955b5a55ebf798aa7d64d991491cf5c0f152ff66ffa3521d6a6b2",
+      "slither_id": "ac72136d7abedd2ce6af14efa5aa63727935f1de0dfdc88317f56b9ff478a49b",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#187)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "88ed526caa658b8ed345ca33405965bbc56f6d241ee979919157598a8ffe3fe0",
+      "slither_id": "cb797025b55d330b458fab482bfb9687a5bef444e447a3e98355de2a06aef943",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZBridgeRouter.send(uint256,address,address[],uint256[],bytes) (src/ZZZBridgeRouter.sol#111-129) ignores return value by (r,None) = registry.get(m.routeId) (src/ZZZBridgeRouter.sol#115)",
+      "disposition": "false_positive",
+      "rationale": "send reads immutable Route data here and deliberately defers its enabled-state validation to canSend(m.routeId) before any funding; canSend rereads the fixed registry and checks route enablement, source policy activation, sealed/pause state and wrapper code/router/config pins. Policy bindings cannot change. Tests reject disabled sends and roll back all principal and nonce state."
+    },
+    {
+      "fingerprint": "53a00a009bfcea45be84b697165f7d0dcaf995de9cb09fae0947a63caeaad2e3",
+      "slither_id": "d3575f4f5c9b0a60b68dc8a70cd1950965f63fb75f0303dc915ee849aa318322",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZOracle.price(address) (src/ZZZOracle.sol#34-43) ignores return value by (round,answer,None,updated,answeredRound) = IPriceFeed(f.source).latestRoundData() (src/ZZZOracle.sol#38)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "f8483e6b497827a7461ab6f650dab4a94cd5b3ec800c0f422da424d1811a9141",
+      "slither_id": "dd3a186f4c9e75089faa4012007c189b1e80022aa11ae6fc62e256a55f103fc8",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#49-74) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.routeId) (src/ZZZBridgeAdapter.sol#53)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "8024b796097a5ab633c081323ad1c2809fc3ba965cfa27d01604de75e2ef0d01",
+      "slither_id": "df1d6708f6c350708639fee900549a4db1966b94cae87eda53292f7ce4b75002",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#270-289) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(p.poolId) (src/ZZZVault.sol#275)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "654ed3c370473ca36583d52018d29f97cb229e0e812eda5b41486fee7dc307f5",
+      "slither_id": "e9c1219774823a8a2649fbdfa640ea20fbd6e37c858b74186b2c1bd3ad01b82f",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#167)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "98c8ff473165a0676f71c91ab7020e2701e51b3ab96a07d013f615a60645f8a9",
+      "slither_id": "f4afe5186c990b6107e3a4ab859c60dd4ee40204a751d86a5c6a200f5dfbeb72",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZPoolRegistry.configure(PoolConfig) (src/ZZZPoolRegistry.sol#14-32) ignores return value by oracle.price(k.currency1) (src/ZZZPoolRegistry.sol#25)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "7e4fdb8f8822e4317af649281c74a8d180eeede3c98fe789006a6e0c46942458",
+      "slither_id": "f71f605c7da5d1d861c440b872aa5c47a2a8806e9eb8effdd3fb9a452b34ffab",
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "location": "ZZZMigration.registerImport(BridgeMessage) (src/ZZZMigration.sol#129-149) ignores return value by (r,None) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId) (src/ZZZMigration.sol#131)",
+      "disposition": "accepted_risk",
+      "rationale": "Return values are intentionally ignored for these validation reads: ownerOf proves NFT existence, validatePrice/price validate by reverting, slot0/ticks need only the selected tuple member. Route enabled flags are deliberately ignored on authenticated inbound completion/history so disabling outbound routes does not strand in-flight funds. Oracle round/sequencer fields actually used are validated; feed denomination and sequencer policy still require per-chain deployment review."
+    },
+    {
+      "fingerprint": "44b82178fd5036cfc412e0c4b764346fb74c687b836868f76c61f7c4cbf3d338",
+      "slither_id": "153a9a9b8625a65232661233f3dae9cdee288a9a14c4533220652c515fb6d22f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeRouter._settled(address[],uint256[],address) (src/ZZZBridgeRouter.sol#105-110) has external calls inside a loop: IERC20(tokens[i]).balanceOf(address(this)) != beforeBalances[i] (src/ZZZBridgeRouter.sol#108)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "7a31990581aa836890bfce9fe0a451c2020a0c34676b6a61d9e1ef1f4e64ab0e",
+      "slither_id": "19fe7580a6625073eefa404f10d480e734e73028e4e12b205127342bfd00faf9",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeRouter._fund(address[],uint256[],address,address) (src/ZZZBridgeRouter.sol#96-104) has external calls inside a loop: beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this)) (src/ZZZBridgeRouter.sol#100)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "88ed238711e481cc32eb91302c3bb9b6aee0a4509732cee466df2679b6d1bd32",
+      "slither_id": "1acd761041c01a043d3e224e0814078de22ce9fecdee1d541076797668761246",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeRouter._fund(address[],uint256[],address,address) (src/ZZZBridgeRouter.sol#96-104) has external calls inside a loop: beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this)) (src/ZZZBridgeRouter.sol#100)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "19b0024bcd0e26295ce2e891671134c0aba132400cec32f84c9dcd4cfa70e14f",
+      "slither_id": "2c4c1d6243b83f40994e7efd09b5dc589642e4c4309123069de9a867711be687",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeAdapter.send(BridgeMessage) (src/ZZZBridgeAdapter.sol#25-48) has external calls inside a loop: beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this)) (src/ZZZBridgeAdapter.sol#37)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "3c6238184d2b671c640b83c868d17f7585804f4e82f071529b73a5505e8626c0",
+      "slither_id": "631dd232c7b58129b47e6d5fa94bfd6d9c5f10957cf7ba0f33ebf93283f6ea99",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZRewards._checkpoint(uint256,address) (src/ZZZRewards.sol#34-44) has external calls inside a loop: weight = IZZZPower(access.module(Ids.POWER)).powerOf(id) (src/ZZZRewards.sol#36)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "a9309aa3958ea3e910409f31ac4f75cc4f5e013841783d65d829e039aee6d9c1",
+      "slither_id": "65fb3ac97f006ea60bd6a6cac485f6766d7fd65f51d5be47b7c5bfeddb1d4421",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeRouter._settled(address[],uint256[],address) (src/ZZZBridgeRouter.sol#105-110) has external calls inside a loop: IERC20(tokens[i]).balanceOf(address(this)) != beforeBalances[i] (src/ZZZBridgeRouter.sol#108)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "75237ab474dc295d9c47e54cba041395428a27b98ae4c1dfec7017b6bf2aa8d2",
+      "slither_id": "82b7dce06267231780c4b5d73d3ae14c38db89e09e8efe70b01c94bdb572a8bd",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#49-74) has external calls inside a loop: IERC20(tokens[i_scope_0]).balanceOf(address(this)) != beforeBalances[i_scope_0] (src/ZZZBridgeAdapter.sol#71)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "f14759fd988c442cbd51d94cb2cdbbc25c772342f7847bbf9269d5b738412611",
+      "slither_id": "c0659a5fdd586b2f28ddca6c30be644dcde67d931082e9c7bad9a0994c594cfc",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeAdapter.onMessage(uint256,address,bytes) (src/ZZZBridgeAdapter.sol#49-74) has external calls inside a loop: beforeBalances[i] = IERC20(tokens[i]).balanceOf(address(this)) (src/ZZZBridgeAdapter.sol#64)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "2b66a4db6dd107335258c9bf1fca08e947608abfeaf105a22a7f9fb5a33152f5",
+      "slither_id": "fc55e6007626abcf97f95e83b84724eb749cf89a1db7b648ff509da1b89b2bd7",
+      "check": "calls-loop",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZBridgeAdapter.send(BridgeMessage) (src/ZZZBridgeAdapter.sol#25-48) has external calls inside a loop: IERC20(tokens[i_scope_0]).balanceOf(address(this)) != beforeBalances[i_scope_0] (src/ZZZBridgeAdapter.sol#45)",
+      "disposition": "accepted_risk",
+      "rationale": "Loops are explicitly bounded: bridge messages have 0 ACK, 1 Reward, or 2 Principal assets; Rewards.checkpointAll has at most MAX_ASSETS=32. Reads use fixed module/view getters and admitted tokens. The 32-funded-asset cold benchmark measures ~2.50M execution gas; this is bounded but costly and token blacklisting can halt an operation. Live network budgeting remains required."
+    },
+    {
+      "fingerprint": "656dd600cf0b9904033c2f4ce384125771614823ee64903cba9e5589eac36b35",
+      "slither_id": "1f0e5afb867cc654dbb427a53a21ad6e3241f8175841c0ff6b14123c1d359417",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigrationReceiver._principal(Route,BridgeMessage) (src/ZZZMigrationReceiver.sol#36-73):",
+      "disposition": "false_positive",
+      "rationale": "Private _principal is reached from nonReentrant receiveMessage, restricted to the fixed Bridge. Receipt/provenance changes roll back if any later transfer/import fails. registerImport is fixed-module authorized, tokens are exact-delta checked, and the fixed Vault import entry is separately guarded. Provider and destination trust are not removed by these guards."
+    },
+    {
+      "fingerprint": "24faf0cf82cff72c0e46a31028f9d4d9e8dacec4ca081aee880f67c085b74850",
+      "slither_id": "2a44899db713edc2a3c1007b6356197817b86776843efe94f6fcea72f3700f82",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "c51dafc3330d12be4f63e335512328a9930e067a0765a4ef346559829b955e08",
+      "slither_id": "523abb1c8105319593d78d9c150c832956324c86baf3037d45c462cecfbbb80c",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "157a227e732a095118dae98eb46e7321a8bc3968b170d3b752ac3a720d2349ef",
+      "slither_id": "924f8b7802f0f490c6e82aa2e9bbda8ed0c95f1e10f6b528b0fb899807e34371",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#231-248):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "e99618d159cd017dafe10414a822027d31e2f05ceffb8edecb001ced561a3d78",
+      "slither_id": "94ded994870958da1c2b792931fdda5e4e0e11ddbe64d295b9291b842883d625",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
+    },
+    {
+      "fingerprint": "a7113f70927bac22290d01b324a6a8a29561e33b1b57c51ecd90e4c71eece75e",
+      "slither_id": "957b3552a644190f94a70f5d12daeea4af51ba67b2d295aea8e13ba83e983bd3",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Vault can call add. Its mint/activation/increase entry points are guarded; checkpointAll is restricted to Power and its external Power getters are view/static calls. Checkpoint-before-weight-change and event ordering are intentional. No untrusted mutable callback is reached on this path."
+    },
+    {
+      "fingerprint": "4ea514ca895579446a7cf2e4535816d10c37d0daea3dcd55cee8dc16d857e059",
+      "slither_id": "cae13d8e6a8e2e85bca2bdf0fa362e8d522b96de4918bf329266f0b2d007b9f5",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#220-229):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "61303ec6c8cab06ec566c1d62a906e5c3e3052f25d78d14e264affe20e1c4df6",
+      "slither_id": "cc4f0137d50809b5739acd31edb2c193212aa632936ff893f7b6869b109689f3",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#196-203):",
+      "disposition": "false_positive",
+      "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
+    },
+    {
+      "fingerprint": "a33d3958a932805b692489e25b3ba46280acc4ba22e998bceb74d7ac9e8be6d8",
+      "slither_id": "12b7237699fa7ada45937f360b3c6ea93c0a3709542e5d22ee8a069cb63b0ed4",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZPower.add(uint256,uint256) (src/ZZZPower.sol#16-23):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Vault can call add. Its mint/activation/increase entry points are guarded; checkpointAll is restricted to Power and its external Power getters are view/static calls. Checkpoint-before-weight-change and event ordering are intentional. No untrusted mutable callback is reached on this path."
+    },
+    {
+      "fingerprint": "220d2dec1a12ecf37dfb629fe00d0203bbfed8d80633f5fee3f3949c69fe2a21",
+      "slither_id": "2cebcafbdebe208662757bc06912b4bde16ee3bc6fe2401734ef9fa85807092e",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration._recordCanonical(BridgeMessage,uint256,address,bool) (src/ZZZMigration.sol#150-184):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
+    },
+    {
+      "fingerprint": "b4c72e954d953f873d515fa2dd7cab78ed42b6a2de1e30dd5680e13b05f50bcf",
+      "slither_id": "756c2a2ba11f99f9750917fdb342c71ab4544a52f3071064c75824227754b385",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "Reentrancy in ZZZMigration.confirm(BridgeMessage,uint256,address) (src/ZZZMigration.sol#185-210):",
+      "disposition": "false_positive",
+      "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
+    },
+    {
+      "fingerprint": "eec920e773f64459d03289e4f35640d122a20c3253c42a92372a574115183001",
+      "slither_id": "00cb45b8468409624b704ea5119399823cd4f2aca7552e795de14bfeafb45ca7",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault.movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#336-356) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "ea1d9ada66a2f7d97bb00c64d57147bf74d153c9579d9b30b3fb2d525a79c521",
+      "slither_id": "1880ea430eecdc404d0492530b07d9f2c22f56e665a423d4c9fe83dc1b7fcbce",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault._active(uint256) (src/ZZZVault.sol#51-53) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "3f97800074a218282512d98f142671442f9562776d7c3a1537131847010cd310",
+      "slither_id": "2dffa1413433cd7cd1893df5cda76d38f26d42c50492de640d54b3deca9f9ee6",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZOracle._sequencerCheck() (src/ZZZOracle.sol#28-33) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "ae5ec71d9ffd1d425a0a2a6f4a476924057a9ed9b5162cb5cbf9107693387720",
+      "slither_id": "3340e2430ef06a0a936344e8c1765e1d38198cbf2d27c3ae92b15fe787f3a28a",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault.finalizeImport(uint256,uint128,uint256) (src/ZZZVault.sol#315-325) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "dff91608a44e029bed27877cdb5c77213721b605de002dc4f22cdc74bb81dc94",
+      "slither_id": "3a76dae1dd7f1de9a43e77cc19d8b196a1a69e4c76a0f8f9d22f4a65be2f8a7f",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZModule._deadline(uint256) (src/base/ZZZModule.sol#36-38) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "989547e07cd449997f3f768a1adea79792d64f8fcf55124a265ebf64666d8c17",
+      "slither_id": "68cdd7bf60d2b010925444f11c2041a88d2d06a313352a2de04b3ffabb6d22d5",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#204-219) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "8194c7a553e2bc10003a5a5b069484365e053c8cf13d166f4c396af5379ff0ed",
+      "slither_id": "7b0142a9197d22a93f3e013353dd648d9790223dd92cf053841e7af272532a0c",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZOracle.price(address) (src/ZZZOracle.sol#34-43) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "961f8239822f5799263222b1b18af98c20faef952972c9425edd0e00c70bfb24",
+      "slither_id": "8f2b7349ce6d6c4a607fa43455fa3eafdc0419530dea3590cc4d504e8dee45c0",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#69-101) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "523e95e7c97c7e183c2f25804582c57be1550178198bfa26d1813dc740eb7c92",
+      "slither_id": "aa41bafdb4f2d5dec9a6c53b7ccd2494f95d5cfc63bd04527fecc290159fa472",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault._idle(uint256,uint256,uint256) (src/ZZZVault.sol#54-64) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "4f6cc9f1fa0d5c9c9d819cb6b7d8170174ad12858909697491d991a2246ef94e",
+      "slither_id": "ae2ec4dd9a3df29445de616868a2e9bb4624ece5f17450abded859314a4f72c2",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault.increase(uint256,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#148-171) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "b9e221ad712404b6e0540d7097ca1fd1bc21f3d4b6f61584600db493ebba4c10",
+      "slither_id": "b15ec881f1b9a0b7141ef3bb118b7944bca5a12adb7739a01059cb22a9b0329e",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault._allocate(uint256,address,uint256) (src/ZZZVault.sol#172-178) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "21a90de5782705c37f78513adb701d0145625379d3bd910384cb1b7056748765",
+      "slither_id": "b47a5dde35946ce680d327815570e6ae4924e26e9c28c77b0f036fe89bf685b1",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZStrategy.needsRebalance(uint256) (src/ZZZStrategy.sol#41-51) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "417023da4456c3ac60de1c50dcc608129034e5d2f3f7b075cd2d49127f51c867",
+      "slither_id": "be06c4f61a1956d0d40068465eb33dba7be9337181ea10ed631145e3aaa397e1",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZMigration.execute(bytes32,uint256) (src/ZZZMigration.sol#85-114) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "2ad25ae5406dc629654f10e439ec6d070b076272a40bb9bc49aee35e639bac96",
+      "slither_id": "ffacb445a9a710827a46d8b59578cf38d34e1394daca5e674acf754662938021",
+      "check": "timestamp",
+      "impact": "Low",
+      "confidence": "Medium",
+      "location": "ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#254-269) uses timestamp for comparisons",
+      "disposition": "accepted_risk",
+      "rationale": "Chain time is intentionally used for short deadlines, oracle freshness/sequencer grace, keeper cooldowns and governance/migration delays; it is not entropy or a yield predictor. Some Vault comparisons are only timestamp-tainted through prior calls/lastRebalance. Boundary tests reject expired/future/stale values. L2 clock/finality assumptions and actual sequencer monitoring remain release configuration gates."
+    },
+    {
+      "fingerprint": "342a02066d4ef03e648b88dbf2b27c7cb8384792543e3c6fe250e330601e9134",
+      "slither_id": "dad8abaf6fc6748884f8bd00b05b62f871f250ed64354c3fb1d433e87c965bf1",
+      "check": "cyclomatic-complexity",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZMigrationRegistry.add(Route,bytes32) (src/ZZZMigrationRegistry.sol#18-56) has a high cyclomatic complexity (14).",
+      "disposition": "accepted_risk",
+      "rationale": "Route onboarding has many deliberate chain/module/token/decimal/kind checks. Removing checks to reduce this metric would weaken custody. Unit migration and route tests exercise invalid configurations; provider, future destination and full cross-chain stateful review remain open."
+    },
+    {
+      "fingerprint": "cfd5499e1fda4b6bcbc0fb475e43b01a0fc81fcf8b41de9bd3908afaf4a835d8",
+      "slither_id": "02e1105dd6f903018cb8ee8be6d076ef8cb3629c3f7853f5632d5a9fd27f0d5e",
+      "check": "low-level-calls",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "Low level call in ZZZVault.mintDormant() (src/ZZZVault.sol#104-121):",
+      "disposition": "accepted_risk",
+      "rationale": "mintDormant forwards exactly the paid 0.05 ETH to the immutable recipient under nonReentrant, reverting NFT issuance/proceeds atomically on failure. Paid-mint tests cover recipient and NFT receiver reentrancy/rejection. A recipient that permanently rejects ETH can permanently prevent minting; select/test the immutable recipient before deployment."
+    },
+    {
+      "fingerprint": "4f3706803ebbf33ce6d304f92cbd96f515cfdd0496210677a5e3d3fdb8a173b0",
+      "slither_id": "2b25e66457e4923d6c05dc969134901150ec3713fd4a52e6ac5e2b9fc1da06ed",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZBridgeAdapter (src/ZZZBridgeAdapter.sol#14-75) should inherit from IZZZTransportReceiver (src/interfaces/IZZZ.sol#106-108)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "2c689c95822082df5468ee03819e158b6eee0802431989aff1cdaf1c80f1a7ba",
+      "slither_id": "37577571c2bb295f0c7aa0c14509cf66b67af8d41de06df7add8cb5b8ad1134f",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZStrategy (src/ZZZStrategy.sol#11-93) should inherit from IZZZStrategy (src/interfaces/IZZZ.sol#46-53)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "c2e597de5bc5a7255fdadc2ce493a0806f412fe9ac3e953a3e7e99cd67b3ba7f",
+      "slither_id": "38666f3ac2965166018fee847791dd114f92fb1b82a12136f368274430fd22cf",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZOracle (src/ZZZOracle.sol#9-64) should inherit from IZZZOracle (src/interfaces/IZZZ.sol#39-45)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "d3d3c07f89952c216d5d83acd5fe622125bc601d4b6f97c06da08adddd3a2bea",
+      "slither_id": "6892f5227e10d3876f95bc1f1378781f920c4f77b99609e6ec53b11b19aa501d",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZPoolRegistry (src/ZZZPoolRegistry.sol#9-37) should inherit from IZZZPools (src/interfaces/IZZZ.sol#36-38)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "d4d0c3e17d6b832ab2d130d88dcf9fe912542430ce65fa8d249734a3b10e8c1e",
+      "slither_id": "76db9c16fdff5eb453547118da6bdf54491a9ebda0cb30d5887036b813d6d6ee",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZBridgeRouter (src/ZZZBridgeRouter.sol#15-157) should inherit from IZZZBridgeRouterReceiver (src/interfaces/IZZZ.sol#127-131)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "302b4c565e7005a1dac7a3fc10c1779fb5ae38701579469146093eeeef84e53f",
+      "slither_id": "8bf3779fe75d52ec7a4807442380f3936d9b5108135675a4dccd7d288661a933",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZBridgeAdapter (src/ZZZBridgeAdapter.sol#14-75) should inherit from IZZZBridge (src/interfaces/IZZZ.sol#85-87)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "fcf9c91edc83672dcd654deaed07195f7f48ee33784c5267fee8126193c0e106",
+      "slither_id": "908234a2f567b19a6b737d9e7713bf0dddc308211cffe82bbac3fae0fb894545",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZNFT (src/ZZZNFT.sol#9-25) should inherit from IZZZNFT (src/interfaces/IZZZ.sol#13-16)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "972d084bbebfa818f8f9d91b230f4455327dfea6916e8501bb83385126e600a7",
+      "slither_id": "923f4ebbc857a80762c7af4674ab0af4a6dbe78f8dffd40f95aace16e9ea5580",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZBridgeRouter (src/ZZZBridgeRouter.sol#15-157) should inherit from IZZZBridgeRouter (src/interfaces/IZZZ.sol#111-115)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "0b911f7dde6322910a7e936bb6380634a6d396063695366b322d28964938db8d",
+      "slither_id": "9e03a004fdfc1c1f0ddf8ccc28551c3ab764f70695ef36fdfcc43f563eaf6fb4",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZMigrationRegistry (src/ZZZMigrationRegistry.sol#9-66) should inherit from IZZZPools (src/interfaces/IZZZ.sol#36-38)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "9bc5fe402c177169a49e27781d5759c741eddd71073ee9608e30e3b3c52a99e3",
+      "slither_id": "acc180cbf38f77e8bdbee0fb4dd62766f328e3ad0e82a320aa660abb005536d6",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZMigrationReceiver (src/ZZZMigrationReceiver.sol#11-124) should inherit from IZZZReceiver (src/interfaces/IZZZ.sol#95-97)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "fbc7fef750b57d6f7f67a22dc58adf5b65d3bdb42dc81f2406187ed0b733bed5",
+      "slither_id": "cafec687b848876f7b73998155cff59e2f89d1fad7dc27a85e4753049b73c6bc",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#18-206) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#54-67)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "c2df7f2f9a5e22e67c57541e953155c69fcfe949a9548c4f562bc5e328008eb1",
+      "slither_id": "f5f86c4a63d66d6c01f8927675b67dda924dbd7c32dffb88ff2495f61bcadc41",
+      "check": "missing-inheritance",
+      "impact": "Informational",
+      "confidence": "High",
+      "location": "ZZZBridgeRouter (src/ZZZBridgeRouter.sol#15-157) should inherit from IZZZTransport (src/interfaces/IZZZ.sol#102-105)",
+      "disposition": "informational",
+      "rationale": "Structural interface suggestion. Minimal external interfaces intentionally coexist with concrete module ABIs; compiler/ABI tests and typed adapter tests validate selected signatures. In particular MigrationRegistry.get(bytes32) returns Route and is not semantically IZZZPools.get(bytes32), despite the equal input selector. This finding does not justify inheriting the suggested unrelated interface."
+    },
+    {
+      "fingerprint": "3b43f573b69b45452c4cbdf648db7697246d7463b56cd8aced218f54af45a6ca",
+      "slither_id": "693d5767a5d1c99eecb3697a32f875fbb29c51359f86af6b9471fa2ec7cbd2f0",
+      "check": "too-many-digits",
+      "impact": "Informational",
+      "confidence": "Medium",
+      "location": "ZZZPoolRegistry.configure(PoolConfig) (src/ZZZPoolRegistry.sol#14-32) uses literals with too many digits:",
+      "disposition": "informational",
+      "rationale": "The literals are documented tick, fee-unit, interval and basis-point bounds, not addresses or hardcoded monetary transfers. Configuration boundary tests enforce them; production policy may be stricter."
+    },
+    {
+      "fingerprint": "1db733a3f52a674664524809ee3d4575db6e1cf082edbaabb73b8222de9a8d8b",
+      "slither_id": "f5154c56c187d72a7008cf3a11b233314ccab39533f8cf91cd880817e9552eaf",
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "location": "Loop condition i < assets.length (src/ZZZRewards.sol#46) should use cached array length instead of referencing `length` member of the storage array.",
+      "disposition": "informational",
+      "rationale": "Bounded 32-asset loop optimization suggestion. Current getter/checkpoint behavior is retained; measured maximum funded checkpoint cost is reported. This is not a solvency or custody defect."
+    }
+  ]
+}

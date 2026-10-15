@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-15",
+  "profile": "audit",
+  "seed": "0x5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+  "runs": 256,
+  "depth": 256,
+  "scheduled_handler_calls": 65536,
+  "fail_on_revert": true,
+  "command": [
+    "forge",
+    "test",
+    "--match-contract",
+    "ProductionAccountingInvariantTest",
+    "--fuzz-seed",
+    "0x5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+    "-vv"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 207.58,
+  "scope": "Local shared custody/funding with a mock venue; ineligible actions may return without state change; not live-chain/provider coverage."
+}

@@ -1,0 +1,1189 @@
+{
+  "deployment_authorized": false,
+  "issues": [
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "release_commit"
+    },
+    {
+      "code": "reward.unsupported",
+      "message": "The current implementation supports collected conventional LP fees; hook revenue remains unimplemented",
+      "path": "economics.reward_model"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.toolchain"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.toolchain.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.toolchain.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.toolchain.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.static_analysis"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.static_analysis.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.static_analysis.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.static_analysis.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.invariants"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.invariants.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.invariants.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.invariants.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.uniswap_fork"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.uniswap_fork.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.uniswap_fork.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.uniswap_fork.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.staging"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.staging.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.staging.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.staging.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.operations_recovery"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.operations_recovery.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.operations_recovery.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.operations_recovery.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.gas_benchmarks"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.gas_benchmarks.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.gas_benchmarks.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.gas_benchmarks.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.deployment_review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.deployment_review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.deployment_review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.deployment_review.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.economic_approval"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.economic_approval.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.economic_approval.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.economic_approval.reference"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.independent_audit.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.independent_audit.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.independent_audit.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "evidence.remediation"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "evidence.remediation.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "evidence.remediation.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.remediation.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "migration.future_onboarding_evidence"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "migration.future_onboarding_evidence.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "migration.future_onboarding_evidence.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "migration.future_onboarding_evidence.reference"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "migration.disabled_scope_approval"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "migration.disabled_scope_approval.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "migration.disabled_scope_approval.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "migration.disabled_scope_approval.reference"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "evidence.independent_audit.auditor"
+    },
+    {
+      "code": "audit.internal",
+      "message": "An independent external audit is required",
+      "path": "evidence.independent_audit.independent"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "evidence.independent_audit.open_critical"
+    },
+    {
+      "code": "audit.unresolved",
+      "message": "No unresolved critical/high findings may remain",
+      "path": "evidence.independent_audit.open_critical"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "evidence.independent_audit.open_high"
+    },
+    {
+      "code": "audit.unresolved",
+      "message": "No unresolved critical/high findings may remain",
+      "path": "evidence.independent_audit.open_high"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].observed_block.number"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].observed_block.hash"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].observed_block.timestamp"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].maximum_snapshot_age_seconds"
+    },
+    {
+      "code": "snapshot.stale",
+      "message": "Observed snapshot must satisfy the explicitly selected age policy",
+      "path": "chains[0].observed_block"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.access.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.access.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.vault.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.vault.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.vault.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.vault.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.nft.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.nft.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.nft.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.nft.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.liquidity.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.liquidity.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.liquidity.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.liquidity.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.rewards.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.rewards.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.rewards.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.rewards.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.power.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.power.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.power.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.power.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.fees.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.fees.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.fees.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.fees.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.strategy.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.strategy.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.strategy.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.strategy.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.compounder.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.compounder.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.compounder.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.compounder.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.buyback.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.buyback.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.buyback.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.buyback.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.migration.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.migration.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.migration.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.migration.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.bridge.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.bridge.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.bridge.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.bridge.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.receiver.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.receiver.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.receiver.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.receiver.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.oracle.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.oracle.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.oracle.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.oracle.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.pools.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.pools.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.pools.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.pools.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.routes.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.routes.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.routes.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.routes.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.transport.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.transport.runtime_hash"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].modules.transport.controller"
+    },
+    {
+      "code": "binding.controller",
+      "message": "Every module must bind the configured access controller",
+      "path": "chains[0].modules.transport.controller"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].governance.multisig"
+    },
+    {
+      "code": "list.required",
+      "message": "A nonempty list is required",
+      "path": "chains[0].governance.proposers"
+    },
+    {
+      "code": "governance.proposer",
+      "message": "The reviewed governance multisig must be a timelock proposer",
+      "path": "chains[0].governance.proposers"
+    },
+    {
+      "code": "list.required",
+      "message": "A nonempty list is required",
+      "path": "chains[0].governance.executors"
+    },
+    {
+      "code": "list.required",
+      "message": "A nonempty list is required",
+      "path": "chains[0].governance.signers"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 0 is required; floats/bools are rejected",
+      "path": "chains[0].governance.threshold"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].governance.keeper"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].governance.guardian"
+    },
+    {
+      "code": "role.keeper",
+      "message": "Use a dedicated keeper account, not the governance wallet",
+      "path": "chains[0].governance.keeper"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].governance.overlap_review"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 86400 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].governance.timelock_seconds"
+    },
+    {
+      "code": "seal.incomplete",
+      "message": "Before funded operation, sealing must revoke bootstrap and fix all bindings",
+      "path": "chains[0].governance"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].governance.roles_and_seal_evidence"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].governance.roles_and_seal_evidence.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].governance.roles_and_seal_evidence.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].governance.roles_and_seal_evidence.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].constructor.mint_proceeds_recipient"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].constructor.recipient_payment_evidence"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].constructor.recipient_payment_evidence.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].constructor.recipient_payment_evidence.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].constructor.recipient_payment_evidence.reference"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].constructor.nft_base_uri"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].constructor.maximum_buyback_usd18"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].constructor.adapter_transport"
+    },
+    {
+      "code": "router.binding",
+      "message": "The adapter immutable transport must equal the sealed Ids.TRANSPORT router",
+      "path": "chains[0].constructor.adapter_transport"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].bridge_router.policy_count"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].bridge_router.outbound_policy_count"
+    },
+    {
+      "code": "router.counts",
+      "message": "Observed outbound policies cannot exceed registered policies",
+      "path": "chains[0].bridge_router"
+    },
+    {
+      "code": "migration.not_disabled",
+      "message": "Migration-disabled initial launch must verify zero registered/outbound policies",
+      "path": "chains[0].bridge_router"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].bridge_router.observation_evidence"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].bridge_router.observation_evidence.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].bridge_router.observation_evidence.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].bridge_router.observation_evidence.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.position_manager.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.position_manager.runtime_hash"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].dependencies.position_manager.authority_review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].dependencies.position_manager.authority_review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.position_manager.authority_review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].dependencies.position_manager.authority_review.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.state_view.runtime_hash"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].dependencies.state_view.authority_review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].dependencies.state_view.authority_review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.state_view.authority_review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].dependencies.state_view.authority_review.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.pool_manager.runtime_hash"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].dependencies.pool_manager.authority_review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].dependencies.pool_manager.authority_review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.pool_manager.authority_review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].dependencies.pool_manager.authority_review.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.permit2.address"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.permit2.runtime_hash"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].dependencies.permit2.authority_review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].dependencies.permit2.authority_review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.permit2.authority_review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].dependencies.permit2.authority_review.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.zzz.runtime_hash"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].dependencies.zzz.authority_review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].dependencies.zzz.authority_review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.zzz.authority_review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].dependencies.zzz.authority_review.reference"
+    },
+    {
+      "code": "uniswap.binding",
+      "message": "PosM, StateView, PoolManager and Permit2 identities must agree",
+      "path": "chains[0].dependencies"
+    },
+    {
+      "code": "burn.unsupported",
+      "message": "The buyback requires burn(uint256) to reduce local supply and balance by the exact amount",
+      "path": "chains[0].dependencies.zzz.burn_model"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].dependencies.zzz.burn_evidence"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].dependencies.zzz.burn_evidence.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].dependencies.zzz.burn_evidence.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].dependencies.zzz.burn_evidence.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].tokens[0].runtime_hash"
+    },
+    {
+      "code": "token.unsupported",
+      "message": "Only reviewed conventional, tax-free ERC20 reward assets are supported",
+      "path": "chains[0].tokens[0]"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].tokens[0].feed.source"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].tokens[0].feed.runtime_hash"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 18 is required; floats/bools are rejected",
+      "path": "chains[0].tokens[0].feed.decimals"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 86400 is required; floats/bools are rejected",
+      "path": "chains[0].tokens[0].feed.maximum_age_seconds"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].tokens[0].feed.answer"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].tokens[0].feed.updated_at"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 1208925819614629174706175 is required; floats/bools are rejected",
+      "path": "chains[0].tokens[0].feed.round_id"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 1208925819614629174706175 is required; floats/bools are rejected",
+      "path": "chains[0].tokens[0].feed.answered_in_round"
+    },
+    {
+      "code": "oracle.stale",
+      "message": "Fresh, complete oracle rounds must match the observed block",
+      "path": "chains[0].tokens[0].feed"
+    },
+    {
+      "code": "oracle.bounds",
+      "message": "Normalized price must satisfy the implemented bound",
+      "path": "chains[0].tokens[0].feed.answer"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].tokens[0].feed.review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].tokens[0].feed.review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].tokens[0].feed.review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].tokens[0].feed.review.reference"
+    },
+    {
+      "code": "sequencer.policy",
+      "message": "An explicit chain-specific sequencer policy is required",
+      "path": "chains[0].sequencer.mode"
+    },
+    {
+      "code": "sequencer.address",
+      "message": "No-feed policy must match the immutable zero feed",
+      "path": "chains[0].sequencer.address"
+    },
+    {
+      "code": "object.required",
+      "message": "An object is required",
+      "path": "chains[0].sequencer.review"
+    },
+    {
+      "code": "evidence.missing",
+      "message": "Explicit passing evidence is required",
+      "path": "chains[0].sequencer.review.status"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].sequencer.review.sha256"
+    },
+    {
+      "code": "decision.pending",
+      "message": "Reviewed non-placeholder text is required",
+      "path": "chains[0].sequencer.review.reference"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[0].pools[0].currency0"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 100000 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].fee"
+    },
+    {
+      "code": "pool.hook",
+      "message": "Native/hooked pools are unsupported, including the selected Robinhood pool",
+      "path": "chains[0].pools[0].hooks"
+    },
+    {
+      "code": "pool.assets",
+      "message": "Sorted supported ERC20 currencies with reviewed feeds/reward eligibility are required",
+      "path": "chains[0].pools[0]"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 100 through 5000 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].rangeBps"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 100 through 4999 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].triggerBps"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 500 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].maxSpotDeviationBps"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 200 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].maxSlippageBps"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 600 through 604800 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].minRebalanceInterval"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].minDepositUSD"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 1 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[0].pools[0].maxPositionUSD"
+    },
+    {
+      "code": "pool.disabled",
+      "message": "The release pool must explicitly enable reviewed deposits and operations",
+      "path": "chains[0].pools[0]"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[4663].observed_block.number"
+    },
+    {
+      "code": "hex.invalid",
+      "message": "A correctly sized non-placeholder hex value is required",
+      "path": "chains[4663].observed_block.hash"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[4663].bridge_router.policy_count"
+    },
+    {
+      "code": "integer.invalid",
+      "message": "An integer from 0 through 115792089237316195423570985008687907853269984665640564039457584007913129639935 is required; floats/bools are rejected",
+      "path": "chains[4663].bridge_router.outbound_policy_count"
+    },
+    {
+      "code": "router.inventory",
+      "message": "Counts must match complete verified registration history and enabled listed local sends",
+      "path": "chains[4663].bridge_router"
+    }
+  ],
+  "limitations": [
+    "Offline manifest checks do not authenticate evidence, runtime code, authorities, or current chain state.",
+    "A complete manifest is not an audit, a safety guarantee, or deployment/sealing/transaction authorization."
+  ],
+  "migration_enabled": false,
+  "ready": false,
+  "release_commit": null,
+  "schema_version": 3,
+  "status": "blocked"
+}

@@ -112,7 +112,8 @@ struct BridgeMessage {
     MessageKind kind;
     bytes32 routeId;
     uint256 nonce;
-    uint256 nftId;
+    // v3: whole shared-liquidity bucket, never an individual NFT identity.
+    uint256 bucketId;
     bytes32 migrationId;
     uint256 homeChain;
     address homeVault;
@@ -123,7 +124,7 @@ struct BridgeMessage {
     // Reward messages use amount0 only. Split must sum to amount0.
     uint256 individual;
     uint256 collective;
-    // v2: permanent NFT identity survives multiple custody hops. Canonical token
+    // Permanent bucket identity survives multiple custody hops. Canonical token
     // mappings follow the PRINCIPAL route's source order, not the ACK route order.
     uint64 migrationEpoch;
     bytes32 principalRouteId;
@@ -133,4 +134,13 @@ struct BridgeMessage {
     address canonicalToken0;
     address canonicalToken1;
     AckPurpose acknowledgement;
+    // The canonical membership ledger stays home and is frozen while remote.
+    bytes32 homePoolId;
+    uint256 totalShares;
+    // Lifetime remote fee allocations, in canonicalToken0/1 order. A returning
+    // home bucket cannot admit shares until every allocated fee is funded home.
+    uint256 allocatedIndividual0;
+    uint256 allocatedCollective0;
+    uint256 allocatedIndividual1;
+    uint256 allocatedCollective1;
 }

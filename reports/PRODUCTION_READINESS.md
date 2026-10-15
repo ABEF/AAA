@@ -1,6 +1,6 @@
 # Production-readiness review — funded release blocked
 
-Latest change: [2026-10-15 fixed future-bridge router and verification](future-bridge/README.md). The dated pass below retains its historical scope; current analyzer coverage is maintained separately.
+Latest change: [shared-pool accounting and whole-bucket migration](pooled/README.md). Previous change: [2026-10-15 fixed future-bridge router and verification](future-bridge/README.md). The dated pass below retains its historical scope; current analyzer coverage is maintained separately.
 
 Date: 2026-10-14. Scope: AAA smart-contract candidate and its keeper/indexer, not the separate simulation website. This is an internal engineering/security review by Codex and collaborating agents, not an independent audit. No contracts were deployed, no public-chain transactions were signed, and no revenue-source or bridge-custody decision was made.
 

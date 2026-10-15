@@ -39,7 +39,7 @@ contract ZZZStrategy is ZZZModule {
         if (difference > uint256(c.maxSpotDeviationBps) * 1e14) revert Slippage();
     }
     function needsRebalance(uint256 id) external view returns (bool) {
-        Position memory p = IZZZVault(access.module(Ids.VAULT)).position(id);
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
         if (p.status != PositionStatus.Active || p.centerX96 == 0) return false;
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
         if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
@@ -56,7 +56,7 @@ contract ZZZStrategy is ZZZModule {
     }
     function compoundPlan(uint256 id, uint256 amount0, uint256 amount1)
         external view returns (bool, uint256, uint256) {
-        Position memory p = IZZZVault(access.module(Ids.VAULT)).position(id);
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
         (int24 lower, int24 upper) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).ticks(p.lpTokenId);
         return _plan(p.poolId, lower, upper, amount0, amount1);
     }

@@ -127,8 +127,8 @@ contract BridgeRouterSecurityTest is Test {
     }
 
     function _message(bytes32 routeId, uint256 nonce) private view returns (BridgeMessage memory m) {
-        m.version = 2; m.kind = MessageKind.Principal; m.routeId = routeId; m.principalRouteId = routeId;
-        m.nonce = nonce; m.nftId = 42; m.migrationId = keccak256(abi.encode(routeId, nonce));
+        m.version = 3; m.kind = MessageKind.Principal; m.routeId = routeId; m.principalRouteId = routeId;
+        m.nonce = nonce; m.bucketId = 42; m.migrationId = keccak256(abi.encode(routeId, nonce));
         m.homeChain = block.chainid; m.homeVault = address(vault); m.homeReceiver = address(receiver);
         m.depositUSD = 1000e18; m.migrationEpoch = 1;
         m.previousChain = routeId == outgoing ? block.chainid : REMOTE;
@@ -264,7 +264,7 @@ contract BridgeRouterSecurityTest is Test {
         _enable(); assertTrue(_send(_message(outgoing, 0)) != bytes32(0));
         TransportEnvelope memory e = abi.decode(provider.lastEnvelope(), (TransportEnvelope));
         BridgeMessage memory m = abi.decode(e.payload, (BridgeMessage));
-        assertEq(e.version, 1); assertEq(e.policyId, outgoingPolicy); assertEq(m.version, 2); assertEq(m.nonce, 1);
+        assertEq(e.version, 1); assertEq(e.policyId, outgoingPolicy); assertEq(m.version, 3); assertEq(m.nonce, 1);
         assertEq(provider.lastDestinationRouter(), REMOTE_ROUTER);
         assertEq(provider.lastDestinationProvider(), REMOTE_PROVIDER);
         assertEq(token0.balanceOf(address(provider)), 13); assertEq(token1.balanceOf(address(provider)), 29);
@@ -547,7 +547,7 @@ contract BridgeRouterSecurityTest is Test {
         bytes memory badEnvelope = abi.encode(TransportEnvelope(2, incomingPolicy, abi.encode(m)));
         vm.expectRevert(); provider.deliver(REMOTE, REMOTE_ROUTER, tokens, amounts, badEnvelope);
         m.version = 1; vm.expectRevert(); _deliver(provider, incomingPolicy, m);
-        m.version = 2; m.nonce = 0; vm.expectRevert(); _deliver(provider, incomingPolicy, m);
+        m.version = 3; m.nonce = 0; vm.expectRevert(); _deliver(provider, incomingPolicy, m);
         assertEq(receiver.receipts(), 0);
     }
 

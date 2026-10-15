@@ -1,5 +1,6 @@
 {
   "chain_id": 31337,
+  "accounting_model": "shared-pools-v1",
   "rpc_urls": ["http://127.0.0.1:8545"],
   "sender": "0x1111111111111111111111111111111111111111",
   "contracts": {
@@ -8,7 +9,8 @@
     "strategy": "0x4444444444444444444444444444444444444444",
     "fees": "0x5555555555555555555555555555555555555555",
     "compounder": "0x6666666666666666666666666666666666666666",
-    "buyback": "0x7777777777777777777777777777777777777777"
+    "buyback": "0x7777777777777777777777777777777777777777",
+    "pools": "0x8888888888888888888888888888888888888888"
   },
   "reviewed_for_live_use": false,
   "code_hashes": {},
@@ -23,6 +25,18 @@
   "l1_fee_allowance_wei": "0",
   "state_path": "var/keeper.json",
   "lock_path": "var/keeper.lock",
-  "positions": [],
+  "bucket_discovery": {
+    "maximum_count": 10000,
+    "max_per_cycle": 32
+  },
+  "maintenance": {
+    "minimum_liquidity": 1,
+    "compound": true,
+    "minimum_compound_units": 1000,
+    "harvest": true,
+    "harvest_interval_seconds": 14400,
+    "reward_routes": []
+  },
+  "bucket_overrides": {},
   "buybacks": []
 }

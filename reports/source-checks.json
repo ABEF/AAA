@@ -2,15 +2,39 @@
   "kind": "source_consistency_only",
   "solidity_compiled": false,
   "security_audit_pass": false,
-  "modules": 16,
+  "modules": 17,
   "source_files": [
     {
+      "file": "src/base/ZZZModule.sol",
+      "lines": 51
+    },
+    {
+      "file": "src/interfaces/IZZZ.sol",
+      "lines": 181
+    },
+    {
+      "file": "src/libraries/BridgeAssets.sol",
+      "lines": 30
+    },
+    {
+      "file": "src/libraries/ExactToken.sol",
+      "lines": 27
+    },
+    {
+      "file": "src/libraries/ZZZTypes.sol",
+      "lines": 146
+    },
+    {
       "file": "src/ZZZAccessController.sol",
-      "lines": 77
+      "lines": 78
     },
     {
       "file": "src/ZZZBridgeAdapter.sol",
-      "lines": 95
+      "lines": 75
+    },
+    {
+      "file": "src/ZZZBridgeRouter.sol",
+      "lines": 157
     },
     {
       "file": "src/ZZZBuyback.sol",
@@ -22,7 +46,7 @@
     },
     {
       "file": "src/ZZZFeeController.sol",
-      "lines": 128
+      "lines": 223
     },
     {
       "file": "src/ZZZLiquidityManager.sol",
@@ -30,15 +54,15 @@
     },
     {
       "file": "src/ZZZMigration.sol",
-      "lines": 107
+      "lines": 235
     },
     {
       "file": "src/ZZZMigrationReceiver.sol",
-      "lines": 96
+      "lines": 132
     },
     {
       "file": "src/ZZZMigrationRegistry.sol",
-      "lines": 53
+      "lines": 66
     },
     {
       "file": "src/ZZZNFT.sol",
@@ -54,11 +78,11 @@
     },
     {
       "file": "src/ZZZPower.sol",
-      "lines": 24
+      "lines": 25
     },
     {
       "file": "src/ZZZRewards.sol",
-      "lines": 86
+      "lines": 116
     },
     {
       "file": "src/ZZZStrategy.sol",
@@ -66,23 +90,7 @@
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 339
-    },
-    {
-      "file": "src/base/ZZZModule.sol",
-      "lines": 39
-    },
-    {
-      "file": "src/interfaces/IZZZ.sol",
-      "lines": 137
-    },
-    {
-      "file": "src/libraries/ExactToken.sol",
-      "lines": 27
-    },
-    {
-      "file": "src/libraries/ZZZTypes.sol",
-      "lines": 100
+      "lines": 438
     }
   ],
   "external_imports": [

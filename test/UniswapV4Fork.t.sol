@@ -2,13 +2,23 @@
 pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
+import {ZZZVault} from "../src/ZZZVault.sol";
+import {ZZZNFT} from "../src/ZZZNFT.sol";
+import {ZZZPower} from "../src/ZZZPower.sol";
+import {ZZZRewards} from "../src/ZZZRewards.sol";
+import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
-import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";
+import {Ids, PoolKey, PoolConfig, Position} from "../src/libraries/ZZZTypes.sol";
 import {IPositionManagerMinimal, IStateViewMinimal, IPriceFeed, IBurnable} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockFeed} from "./mocks/Mocks.sol";
 
@@ -50,7 +60,7 @@ contract ForkRewardAssetAllowlist {
 /// Real Uniswap settlement, WETH and ZZZ are used; access and the two $1 valuation feeds
 /// are test scaffolding. This suite does not establish a safe production ZZZ price source,
 /// approve an alternative market, execute real transactions or prove Pons fee entitlement.
-contract UniswapV4ForkTest is Test {
+contract UniswapV4ForkTest is Test, IERC721Receiver {
     uint256 private constant FORK_BLOCK = 88_544_093;
     bytes32 private constant FORK_HASH = 0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490;
     address private constant CORE = 0x8366a39CC670B4001A1121B8F6A443A643e40951;
@@ -251,6 +261,122 @@ contract UniswapV4ForkTest is Test {
         assertGt(updated, 0);
         assertLe(updated, block.timestamp);
         assertLe(block.timestamp - updated, 1 days);
+    }
+
+    // TEST ONLY: an empty migration plan. Transport/migration authentication uses
+    // real controller/router suites; these tests isolate deployed Uniswap custody.
+    function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
+
+    struct SharedSystem { ZZZVault vault; ZZZRewards rewards; ZZZFeeController fees; ZZZPower power; }
+
+    function _sharedSystem() private returns (SharedSystem memory s) {
+        // Seed an independent LP so the first strategy-balancing swap has real
+        // market liquidity. All balances and positions exist on the local fork.
+        vm.deal(address(this), 200_000 ether);
+        IForkWETH(WETH).deposit{value: 150_000 ether}();
+        deal(ZZZ, address(this), 150_000 ether);
+        manager.mint(testPool, -600, 600, 100_000 ether, 100_000 ether, 1, block.timestamp + 100);
+        s.vault = new ZZZVault(address(access), block.chainid, payable(address(0x7EA5)));
+        s.rewards = new ZZZRewards(address(access)); s.fees = new ZZZFeeController(address(access));
+        s.power = new ZZZPower(address(access)); ZZZNFT nft = new ZZZNFT(address(access), "ipfs://");
+        access.bind(Ids.VAULT, address(s.vault)); access.bind(Ids.NFT, address(nft));
+        access.bind(Ids.POWER, address(s.power)); access.bind(Ids.REWARDS, address(s.rewards));
+        access.bind(Ids.FEES, address(s.fees)); access.bind(Ids.MIGRATION, address(this));
+        access.bind(Ids.RECEIVER, address(this)); access.bind(Ids.BUYBACK, address(this));
+        access.bind(Ids.COMPOUNDER, address(this)); access.setKeeper(address(this), true);
+        s.rewards.addAsset(WETH); s.rewards.addAsset(ZZZ);
+        PoolConfig memory config = _testConfig();
+        config.triggerBps = 100; config.maxSpotDeviationBps = 200; config.maxSlippageBps = 200;
+        assertEq(pools.configure(config), testPool);
+        IERC20(WETH).approve(address(s.vault), type(uint256).max);
+        IERC20(ZZZ).approve(address(s.vault), type(uint256).max);
+    }
+
+    function _sharedMint(SharedSystem memory s, uint256 amount0, uint256 amount1) private returns (uint256 id) {
+        id = s.vault.mintDormant{value: 0.05 ether}();
+        s.vault.activate(id, testPool, amount0, amount1, 1, block.timestamp + 100);
+    }
+
+    function _assertSharedApprovalsCleared(SharedSystem memory s) private view {
+        _assertApprovalsCleared();
+        assertEq(IERC20(WETH).allowance(address(s.vault), address(manager)), 0);
+        assertEq(IERC20(ZZZ).allowance(address(s.vault), address(manager)), 0);
+        assertEq(IERC20(WETH).allowance(address(s.vault), address(s.fees)), 0);
+        assertEq(IERC20(ZZZ).allowance(address(s.vault), address(s.fees)), 0);
+        assertEq(IERC20(WETH).allowance(address(s.fees), address(s.rewards)), 0);
+        assertEq(IERC20(ZZZ).allowance(address(s.fees), address(s.rewards)), 0);
+    }
+
+    function _liquidityValueAtCurrentSpot(uint256 tokenId, uint128 liquidity) private view returns (uint256 value) {
+        (int24 lower, int24 upper) = manager.ticks(tokenId);
+        uint160 spot = manager.spot(testPool); uint160 a = TickMath.getSqrtPriceAtTick(lower);
+        uint160 b = TickMath.getSqrtPriceAtTick(upper);
+        if (spot <= a) value = SqrtPriceMath.getAmount0Delta(a, b, liquidity, false);
+        else if (spot >= b) value = SqrtPriceMath.getAmount1Delta(a, b, liquidity, false);
+        else value = SqrtPriceMath.getAmount0Delta(spot, b, liquidity, false) +
+            SqrtPriceMath.getAmount1Delta(a, spot, liquidity, false);
+        // This helper is used only while both synthetic feeds remain exactly $1.
+    }
+
+    function testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing() public {
+        SharedSystem memory s = _sharedSystem(); uint256 first = _sharedMint(s, 300 ether, 300 ether);
+        uint256 bucket = s.vault.nftBucket(first); uint256 tokenId = s.vault.group(bucket).lpTokenId;
+        manager.swap(testPool, true, 100 ether, 99 ether, block.timestamp + 100);
+        s.vault.collectFees(bucket, block.timestamp + 100);
+        uint256 oldClaim = s.rewards.claimable(first, WETH); assertGt(oldClaim, 0, "Actual LP fees must be funded");
+        Position memory beforeEntry = s.vault.group(bucket);
+        uint256 priorSupply = s.vault.bucketTotalShares(bucket);
+        uint128 priorLiquidity = positions.getPositionLiquidity(tokenId);
+        uint256 oldLPValue = _liquidityValueAtCurrentSpot(tokenId, priorLiquidity);
+        uint256 incumbentIdle = beforeEntry.idle0 + beforeEntry.idle1 +
+            s.fees.compoundBalance(bucket, WETH) + s.fees.compoundBalance(bucket, ZZZ);
+        uint256 nextPosition = positions.nextTokenId();
+        uint256 second = s.vault.mintDormant{value: 0.05 ether}();
+        vm.recordLogs(); s.vault.activate(second, testPool, 310 ether, 290 ether, 1, block.timestamp + 100);
+        Vm.Log[] memory logs = vm.getRecordedLogs(); uint256 freshCompound;
+        bytes32 allocation = keccak256("FeesAllocated(uint256,address,uint256,uint256)");
+        for (uint256 i; i < logs.length; ++i) {
+            if (logs[i].emitter == address(s.fees) && logs[i].topics[0] == allocation) {
+                (uint256 distributed,) = abi.decode(logs[i].data, (uint256, uint256));
+                freshCompound += distributed / 10;
+            }
+        }
+        assertEq(s.vault.nftBucket(second), bucket); assertEq(s.vault.group(bucket).lpTokenId, tokenId);
+        assertEq(s.vault.group(bucket).lpTokenId, tokenId); assertEq(positions.nextTokenId(), nextPosition);
+        assertEq(positions.ownerOf(tokenId), address(s.vault));
+        assertEq(s.rewards.claimable(second, WETH), 0); assertEq(s.rewards.claimable(second, ZZZ), 0);
+        assertGe(s.rewards.claimable(first, WETH), oldClaim);
+        uint256 repricedLP = _liquidityValueAtCurrentSpot(tokenId, priorLiquidity);
+        assertTrue(repricedLP != oldLPValue, "Entry swap must exercise incumbent LP repricing");
+        (uint256 amount0, uint256 amount1) = manager.amounts(tokenId); Position memory afterEntry = s.vault.group(bucket);
+        uint256 incumbentNAV = repricedLP + incumbentIdle + freshCompound;
+        uint256 net = amount0 + amount1 + afterEntry.idle0 + afterEntry.idle1 - incumbentNAV;
+        assertEq(s.vault.sharesOf(second), Math.mulDiv(priorSupply, net, incumbentNAV));
+        assertEq(s.vault.sharesOf(first) + s.vault.sharesOf(second), s.vault.bucketTotalShares(bucket));
+        _assertSharedApprovalsCleared(s);
+    }
+
+    function testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares() public {
+        SharedSystem memory s = _sharedSystem(); uint256 first = _sharedMint(s, 300 ether, 300 ether);
+        uint256 second = _sharedMint(s, 310 ether, 290 ether); uint256 bucket = s.vault.nftBucket(first);
+        uint256 firstShares = s.vault.sharesOf(first); uint256 secondShares = s.vault.sharesOf(second);
+        uint256 supply = s.vault.bucketTotalShares(bucket); uint256 oldId = s.vault.group(bucket).lpTokenId;
+        manager.swap(testPool, true, 100 ether, 99 ether, block.timestamp + 100);
+        vm.warp(block.timestamp + 601);
+        ZZZOracle(access.module(Ids.ORACLE)).setFeed(WETH, address(new MockFeed(8, 101_100_000)), 1 days);
+        assertTrue(ZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(bucket));
+        uint256 next = positions.nextTokenId(); s.vault.rebalance(bucket, 1, block.timestamp + 100);
+        uint256 newId = s.vault.group(bucket).lpTokenId; assertEq(newId, next); assertTrue(newId != oldId);
+        assertEq(positions.nextTokenId(), next + 1); assertEq(s.vault.group(bucket).lpTokenId, newId);
+        assertEq(s.vault.group(bucket).lpTokenId, newId); assertEq(positions.ownerOf(newId), address(s.vault));
+        assertEq(s.vault.sharesOf(first), firstShares); assertEq(s.vault.sharesOf(second), secondShares);
+        assertEq(s.vault.bucketTotalShares(bucket), supply);
+        assertGt(s.rewards.claimable(first, WETH), 0); assertGt(s.rewards.claimable(second, WETH), 0);
+        vm.expectRevert(); positions.ownerOf(oldId); _assertSharedApprovalsCleared(s);
+    }
+
+    function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
     }
 
     receive() external payable {}

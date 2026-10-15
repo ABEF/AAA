@@ -1,10 +1,10 @@
 import json,os,shutil,tempfile,time,unittest,subprocess
 from pathlib import Path
 from unittest.mock import patch
-from keeper.monitor import Keeper,positive
+from keeper.monitor import Keeper,positive,ACCOUNTING_MODEL
 from zzz_ops.rpc import RpcError
 from zzz_ops.abi import keccak256,calldata
-A='0x'+'11'*20;B='0x'+'22'*20;H='0x'+'ab'*32
+A='0x'+'11'*20;B='0x'+'22'*20;H='0x'+'ab'*32;C='0x'+'33'*20
 class FakeRpc:
     active_url='https://rpc.invalid'
     def __init__(self):self.now=int(time.time());self.gas=100;self.gas_price=2;self.receipt=None;self.tx=None;self.error=False;self.calls=[]
@@ -25,7 +25,7 @@ class FakeRpc:
 class KeeperTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.rpc=FakeRpc()
-        self.cfg={'chain_id':1,'sender':A,'contracts':{k:B for k in ['access','vault','strategy','fees','compounder','buyback']},
+        self.cfg={'chain_id':1,'sender':A,'contracts':{k:B for k in ['access','vault','strategy','fees','compounder','buyback','pools']},
             'state_path':str(Path(self.tmp.name)/'state.json'),'confirmations':2,'max_gas_limit':100000,
             'max_gas_price_wei':100,'max_transaction_cost_wei':1000000,'max_daily_cost_wei':10000000}
         self.k=Keeper(self.cfg,rpc=self.rpc)
@@ -168,13 +168,13 @@ class KeeperTests(unittest.TestCase):
         with self.assertRaises(RpcError):self.k.poll_pending()
         self.assertIsNotNone(self.k.state['pending'])
     def reward_cycle(self,status):
-        self.cfg['positions']=[{'nft_id':7,'minimum_liquidity':1,'harvest':True,'compound':True,'tokens':[B],
-            'reward_routes':[{'token':B,'route_id':H,'minimum_units':1,'native_fee_wei':3}]}]
+        self.k.maintenance={'minimum_liquidity':1,'harvest':True,'compound':True,
+            'reward_routes':[{'token':B,'route_id':H,'minimum_units':1,'native_fee_wei':3}]}
         fields=[0]*15;fields[7]=status
-        position='0x'+''.join(f'{value:064x}' for value in fields)
         reads={'paused()':0,'isSealed()':1,'keepers(address)':1,
+            'bucketCount()':1,'bucketAt(uint256)':7,
             'remoteIndividual(uint256,address)':10,'remoteCollective(uint256,address)':6}
-        with patch.object(self.rpc,'eth_call',return_value=position), \
+        with patch.object(self.k,'_bucket',return_value=([f'{value:064x}' for value in fields],[B,C])), \
              patch.object(self.k,'view',side_effect=lambda name,signature,*args:reads[signature]) as view, \
              patch.object(self.k,'submit',return_value=True) as submit:
             self.k.cycle()
@@ -186,9 +186,175 @@ class KeeperTests(unittest.TestCase):
                 submit.assert_called_once_with('fees','bridgeRewards(uint256,address,bytes32)',
                     (7,B,H),f'bridge_rewards:7:{B}',value=3)
                 self.assertNotIn('needsRebalance(uint256)',[call.args[1] for call in view.call_args_list])
-    def test_missing_and_dormant_positions_do_not_bridge_rewards(self):
+    def test_missing_and_dormant_groups_do_not_bridge_rewards(self):
         for status in (0,5):
             with self.subTest(status=status):
                 view,submit=self.reward_cycle(status)
                 submit.assert_not_called()
                 self.assertFalse(any(call.args[1].startswith('remote') for call in view.call_args_list))
+
+class PoolKeeperTests(unittest.TestCase):
+    """Pool discovery and maintenance exercise real static-ABI decoding."""
+    def setUp(self):
+        KeeperTests.setUp(self)
+        self.ids=[7,9,11]
+        self.config_words=[int(B,16),int(C,16),3000,60,0,1,1,1000,500,100,100,600,1,10**30]
+        self.pool='0x'+keccak256(bytes.fromhex(''.join(f'{n:064x}' for n in self.config_words[:5]))).hex()
+        self.group_words=[int(self.pool,16),10,0,0,1000,1<<96,self.rpc.now,1,1,
+            int(B,16),int(B,16),int(B,16),int(C,16),1,int(B,16)]
+        self.rebalance=True
+        self.reserves={B:0,C:0}
+        self.original_call=self.rpc.call
+        self.rpc.call=self.contract_call
+    enable_test_signer=KeeperTests.enable_test_signer
+    def contract_call(self,method,params):
+        if method!='eth_call':return self.original_call(method,params)
+        if 'from' in params[0]:return self.original_call(method,params)
+        self.rpc.calls.append((method,params))
+        data=params[0]['data']
+        selector=data[:10]
+        args=[int(data[i:i+64],16) for i in range(10,len(data),64)]
+        values={
+            'paused()':0,'isSealed()':1,'keepers(address)':1,'bucketCount()':len(self.ids),
+            'needsRebalance(uint256)':int(self.rebalance),'bucketTotalShares(uint256)':100,
+            'remoteIndividual(uint256,address)':0,'remoteCollective(uint256,address)':0,
+            'buybackBalance(address)':0,
+        }
+        if selector==calldata('bucketAt(uint256)',0)[:10]:value=self.ids[args[0]]
+        elif selector==calldata('poolBucket(bytes32)',self.pool)[:10]:
+            # A fixture shares the same token pair across independent reviewed
+            # pool identities; this getter is selected by the currently read group.
+            value=self.current_bucket
+        elif selector==calldata('group(uint256)',7)[:10]:
+            self.current_bucket=args[0]
+            return '0x'+''.join(f'{n:064x}' for n in self.group_words)
+        elif selector==calldata('get(bytes32)',self.pool)[:10]:return '0x'+''.join(f'{n:064x}' for n in self.config_words)
+        elif selector==calldata('compoundBalance(uint256,address)',7,B)[:10]:value=self.reserves['0x'+f'{args[1]:040x}']
+        else:
+            for signature,value in values.items():
+                types=signature[signature.index('(')+1:-1]
+                placeholders=[A if typ=='address' else 0 for typ in types.split(',')] if types else []
+                if selector==calldata(signature,*placeholders)[:10]:break
+            else:raise AssertionError(f'Unexpected contract call: {data}')
+        return '0x'+f'{value:064x}'
+    def invoke(self,submitted=True):
+        with patch.object(self.k,'submit',return_value=submitted) as submit:
+            self.k.cycle()
+        return submit
+    def test_one_pool_operation_does_not_scan_nft_ids(self):
+        self.ids=[7]
+        submit=self.invoke()
+        submit.assert_called_once_with('vault','rebalance(uint256,uint128,uint256)',
+            (7,1,self.rpc.now+180),'rebalance:7')
+        calls=[call[1][0]['data'][:10] for call in self.rpc.calls if call[0]=='eth_call']
+        self.assertNotIn(calldata('position(uint256)',0)[:10],calls)
+        self.assertNotIn(calldata('ownerOf(uint256)',0)[:10],calls)
+    def test_repeated_cycles_rotate_even_when_each_pool_needs_work(self):
+        selected=[]
+        for _ in range(4):selected.append(self.invoke().call_args.args[2][0])
+        self.assertEqual(selected,[7,9,11,7])
+    def test_scan_budget_limits_contract_reads(self):
+        self.ids=list(range(1,101));self.k.batch_size=2
+        self.rebalance=False;self.k.maintenance={'compound':False,'harvest':False}
+        self.invoke()
+        selector=calldata('group(uint256)',0)[:10]
+        reads=[p for method,p in self.rpc.calls if method=='eth_call' and p[0]['data'].startswith(selector)]
+        self.assertEqual(len(reads),2);self.assertEqual(self.k.state['bucket_cursor'],2)
+    def test_empty_inventory_submits_nothing(self):
+        self.ids=[];self.invoke().assert_not_called()
+    def test_inventory_above_reviewed_limit_fails_closed(self):
+        self.k.max_buckets=2
+        with self.assertRaises(RpcError):self.invoke()
+    def test_duplicate_inventory_ids_fail_before_submission(self):
+        self.ids=[7,7]
+        with self.assertRaises(RpcError):self.invoke()
+    def test_zero_inventory_id_fails_before_submission(self):
+        self.ids=[0]
+        with self.assertRaises(RpcError):self.invoke()
+    def test_malformed_group_is_skipped_and_cursor_advances(self):
+        self.ids=[7];self.group_words.pop()
+        self.invoke().assert_not_called();self.assertEqual(self.k.state['bucket_cursor'],1)
+    def test_pool_identity_mismatch_never_submits(self):
+        self.ids=[7];self.config_words[2]=500
+        self.invoke().assert_not_called()
+    def test_noncanonical_token_address_never_submits(self):
+        self.ids=[7];self.config_words[0]=1<<200
+        self.invoke().assert_not_called()
+    def test_active_group_missing_lp_never_submits(self):
+        self.ids=[7];self.group_words[1]=0
+        self.invoke().assert_not_called()
+    def test_compound_reads_actual_local_pool_tokens(self):
+        self.ids=[7];self.rebalance=False
+        self.group_words[11]=int(A,16) # Canonical asset differs from local asset.
+        self.reserves[C]=17
+        submit=self.invoke()
+        submit.assert_called_once_with('compounder','compound(uint256,uint128,uint256)',
+            (7,1,self.rpc.now+180),'compound:7')
+        selector=calldata('compoundBalance(uint256,address)',7,B)[:10]
+        tokens=[p[0]['data'][-40:] for method,p in self.rpc.calls if method=='eth_call' and p[0]['data'].startswith(selector)]
+        self.assertEqual(tokens,[B[2:],C[2:]])
+    def test_paused_protocol_does_not_discover_or_submit(self):
+        with patch.object(self.k,'view',return_value=1),patch.object(self.k,'_bucket_batch') as batch:
+            self.k.cycle()
+        batch.assert_not_called()
+    def test_unknown_or_legacy_state_is_not_silently_reused(self):
+        self.k.save();state=json.loads(self.k.path.read_text());state.pop('accounting_model')
+        self.k.path.write_text(json.dumps(state))
+        with self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
+    def test_legacy_manual_nft_config_rejected(self):
+        self.cfg['positions']=[]
+        with self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
+    def test_invalid_scan_limits_rejected(self):
+        for settings in ({'max_per_cycle':0},{'max_per_cycle':1001},{'maximum_count':100001},
+            {'max_per_cycle':3,'maximum_count':2}):
+            self.cfg['bucket_discovery']=settings
+            with self.subTest(settings=settings),self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
+    def test_bucket_override_changes_bounds_without_manual_inventory(self):
+        self.ids=[7];self.k.overrides={'7':{'minimum_liquidity':17}}
+        self.assertEqual(self.invoke().call_args.args[2][1],17)
+    def test_restart_retains_scan_cursor(self):
+        self.k.batch_size=1;self.rebalance=False;self.k.maintenance={'compound':False,'harvest':False}
+        self.invoke()
+        restarted=Keeper(self.cfg,rpc=self.rpc)
+        self.assertEqual(restarted.state['bucket_cursor'],1)
+        self.assertEqual(restarted._bucket_batch()[0][1],9)
+    def test_one_bad_group_does_not_starve_other_groups(self):
+        valid_fields=[f'{n:064x}' for n in self.group_words]
+        def group(bucket):
+            if bucket==7:raise RpcError('Malformed first group')
+            return valid_fields,[B,C]
+        with patch.object(self.k,'_bucket',side_effect=group):submit=self.invoke()
+        self.assertEqual(submit.call_args.args[2][0],9)
+        self.assertEqual(self.k.state['bucket_cursor'],2)
+    def test_pending_broadcast_stops_discovery(self):
+        self.k.state['pending']={'hash':None,'nonce':7,'key':'rebalance:7'}
+        with patch.object(self.k,'_bucket_batch') as batch:self.k.cycle()
+        batch.assert_not_called()
+    def test_persisted_state_cannot_be_reused_for_another_vault(self):
+        self.k.save();self.cfg['contracts']['vault']=C
+        with self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
+    def test_zero_share_group_never_submits(self):
+        self.ids=[7]
+        original=self.k.view
+        def view(name,signature,*args):
+            return 0 if signature=='bucketTotalShares(uint256)' else original(name,signature,*args)
+        with patch.object(self.k,'view',side_effect=view):self.invoke().assert_not_called()
+    def test_pool_occupancy_mismatch_never_submits(self):
+        self.ids=[7]
+        original=self.k.view
+        def view(name,signature,*args):
+            return 9 if signature=='poolBucket(bytes32)' else original(name,signature,*args)
+        with patch.object(self.k,'view',side_effect=view):self.invoke().assert_not_called()
+    def test_outbound_group_never_rebalances_compounds_or_harvests(self):
+        self.ids=[7];self.group_words[7]=2
+        self.reserves[C]=100
+        self.invoke().assert_not_called()
+    def test_live_submission_persists_advanced_cursor_before_signing(self):
+        self.ids=[7];self.enable_test_signer()
+        def run(*args,**kwargs):
+            persisted=json.loads(self.k.path.read_text())
+            self.assertEqual(persisted['bucket_cursor'],1)
+            self.assertEqual(persisted['accounting_model'],ACCOUNTING_MODEL)
+            self.assertEqual(persisted['pending']['key'],'rebalance:7')
+            return subprocess.CompletedProcess(args[0],0,H,'')
+        with patch('subprocess.run',side_effect=run):self.k.cycle()

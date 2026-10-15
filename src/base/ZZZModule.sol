@@ -17,21 +17,33 @@ abstract contract ZZZModule {
         access = IZZZAccess(controller);
     }
     modifier onlyModule(bytes32 id) {
-        if (!access.isSealed() || msg.sender != access.module(id)) revert Unauthorized();
+        _checkModule(id);
         _;
+    }
+    function _checkModule(bytes32 id) private view {
+        if (!access.isSealed() || msg.sender != access.module(id)) revert Unauthorized();
     }
     modifier onlyGovernance() {
-        if (!access.canConfigure(msg.sender)) revert Unauthorized();
+        _checkGovernance();
         _;
+    }
+    function _checkGovernance() private view {
+        if (!access.canConfigure(msg.sender)) revert Unauthorized();
     }
     modifier onlyKeeper() {
-        if (!access.isSealed() || !access.keepers(msg.sender)) revert Unauthorized();
+        _checkKeeper();
         _;
     }
+    function _checkKeeper() private view {
+        if (!access.isSealed() || !access.keepers(msg.sender)) revert Unauthorized();
+    }
     modifier live() {
+        _checkLive();
+        _;
+    }
+    function _checkLive() private view {
         if (!access.isSealed()) revert NotReady();
         if (access.paused()) revert Paused();
-        _;
     }
     function _deadline(uint256 deadline) internal view {
         if (deadline < block.timestamp || deadline > block.timestamp + 10 minutes) revert Expired();

@@ -13,18 +13,27 @@ contract ReceiverVaultFixture {
     uint256 public canonicalChainId;
     MockPools private pools;
     mapping(uint256 => Position) private positions;
+    mapping(uint256 => uint256) public bucketTotalShares;
+    mapping(uint256 => bytes32) public homePoolId;
     bool public failImport;
     constructor(uint256 home, MockPools registry) { canonicalChainId = home; pools = registry; }
     function setHome(uint256 home) external { canonicalChainId = home; }
     function setFailImport(bool fail) external { failImport = fail; }
-    function set(uint256 id, Position memory p) external { positions[id] = p; }
+    function set(uint256 id, Position memory p) external {
+        positions[id] = p;
+        if(bucketTotalShares[id]==0)bucketTotalShares[id]=1000e18;
+        if(homePoolId[id]==bytes32(0))homePoolId[id]=keccak256("canonical receiver pool");
+    }
+    function group(uint256 id) external view returns (Position memory) { return positions[id]; }
     function position(uint256 id) external view returns (Position memory) { return positions[id]; }
-    function importPending(uint256 id, bytes32 pool, Position calldata origin, uint256 amount0, uint256 amount1) external {
+    function importPending(uint256 id, bytes32 pool, Position calldata origin, uint256 shares, bytes32 homePool, uint256 amount0, uint256 amount1) external {
         require(!failImport, "import failed");
         PoolConfig memory c = pools.get(pool);
         IERC20(c.key.currency0).transferFrom(msg.sender, address(this), amount0);
         IERC20(c.key.currency1).transferFrom(msg.sender, address(this), amount1);
         positions[id] = origin;
+        bucketTotalShares[id] = shares;
+        homePoolId[id] = homePool;
         positions[id].status = PositionStatus.Inbound;
         positions[id].poolId = pool;
         positions[id].idle0 = amount0;
@@ -38,8 +47,8 @@ contract ReceiverMigrationFixture {
     BridgeMessage private confirmed;
     uint256 public confirmationCount;
     function registerImport(BridgeMessage calldata m) external {
-        require(m.migrationEpoch > custodyEpoch[m.nftId], "stale epoch");
-        custodyEpoch[m.nftId] = m.migrationEpoch;
+        require(m.migrationEpoch > custodyEpoch[m.bucketId], "stale epoch");
+        custodyEpoch[m.bucketId] = m.migrationEpoch;
     }
     function confirm(BridgeMessage calldata m, uint256, address) external {
         confirmed = m;
@@ -69,7 +78,7 @@ contract CapturingBridgeFixture {
 
 contract RemoteRewardsFixture {
     uint256 public credited;
-    function credit(uint256, address token, uint256 personal, uint256 collective) external {
+    function creditPool(uint256, address token, uint256 personal, uint256 collective) external {
         IERC20(token).transferFrom(msg.sender, address(this), personal + collective);
         credited += personal + collective;
     }
@@ -126,8 +135,9 @@ contract MigrationReceiverSnapshotTest is Test {
         r.destinationVault = destinationVault; r.destinationReceiver = destinationReceiver; routes.set(id, r);
     }
     function _principal() private pure returns (BridgeMessage memory m) {
-        m.version = 2; m.kind = MessageKind.Principal; m.routeId = PRINCIPAL; m.principalRouteId = PRINCIPAL;
-        m.nonce = 8; m.nftId = 42; m.migrationId = keccak256("accepted-hop"); m.migrationEpoch = 2;
+        m.version = 3; m.kind = MessageKind.Principal; m.routeId = PRINCIPAL; m.principalRouteId = PRINCIPAL;
+        m.nonce = 8; m.homePoolId = keccak256("canonical receiver pool");
+        m.totalShares=1000e18; m.bucketId = uint256(keccak256(abi.encode(HOME, HOME_VAULT, m.homePoolId))); m.migrationId = keccak256("accepted-hop"); m.migrationEpoch = 2;
         m.homeChain = HOME; m.homeVault = HOME_VAULT; m.homeReceiver = HOME_RECEIVER; m.depositUSD = 1000e18;
         m.previousChain = PREVIOUS; m.previousVault = PREVIOUS_VAULT; m.previousReceiver = PREVIOUS_RECEIVER;
         m.canonicalToken0 = CANONICAL0; m.canonicalToken1 = CANONICAL1; m.amount0 = 13; m.amount1 = 29;
@@ -147,7 +157,7 @@ contract MigrationReceiverSnapshotTest is Test {
     function _finalize(BridgeMessage memory m) private { receiver.finalize(m.migrationId, 1, block.timestamp); }
     function _assertAck(BridgeMessage memory original, AckPurpose purpose, bytes32 deliveryRoute) private view {
         BridgeMessage memory ack = bridge.message();
-        assertEq(ack.version, 2); assertEq(uint256(ack.kind), uint256(MessageKind.Acknowledgement));
+        assertEq(ack.version, 3); assertEq(uint256(ack.kind), uint256(MessageKind.Acknowledgement));
         assertEq(ack.routeId, deliveryRoute); assertEq(ack.nonce, 0); assertEq(ack.migrationId, original.migrationId);
         assertEq(ack.migrationEpoch, original.migrationEpoch); assertEq(ack.principalRouteId, original.principalRouteId);
         assertEq(ack.homeChain, original.homeChain); assertEq(ack.homeVault, original.homeVault); assertEq(ack.homeReceiver, original.homeReceiver);
@@ -158,22 +168,22 @@ contract MigrationReceiverSnapshotTest is Test {
     }
     function testOnwardImportKeepsCanonicalIdentityAndReordersMappings() public {
         BridgeMessage memory m = _principal(); _deliver(m);
-        Position memory p = vault.position(m.nftId);
+        Position memory p = vault.position(m.bucketId);
         assertEq(p.homeChain, HOME); assertEq(p.homeVault, HOME_VAULT); assertEq(p.homeReceiver, HOME_RECEIVER);
         assertEq(p.homeToken0, CANONICAL1); assertEq(p.homeToken1, CANONICAL0);
-        assertEq(p.idle0, 29); assertEq(p.idle1, 13); assertEq(migration.custodyEpoch(m.nftId), 2);
-        assertEq(fees.remoteCanonicalToken(m.nftId, address(token1)), CANONICAL0);
-        assertEq(fees.remoteCanonicalToken(m.nftId, address(token0)), CANONICAL1);
+        assertEq(p.idle0, 29); assertEq(p.idle1, 13); assertEq(migration.custodyEpoch(m.bucketId), 2);
+        assertEq(fees.remoteCanonicalToken(m.bucketId, address(token1)), CANONICAL0);
+        assertEq(fees.remoteCanonicalToken(m.bucketId, address(token0)), CANONICAL1);
         BridgeMessage memory saved = receiver.acceptedMessage(m.migrationId);
         assertEq(keccak256(abi.encode(saved)), keccak256(abi.encode(m)));
     }
     function testWrongPreviousCustodyRejectedBeforeImport() public {
         BridgeMessage memory m = _principal(); m.previousVault = address(0xBAD);
-        _deliverRejected(m); assertEq(migration.custodyEpoch(m.nftId), 0);
+        _deliverRejected(m); assertEq(migration.custodyEpoch(m.bucketId), 0);
     }
     function testWrongPrincipalRouteRejected() public {
         BridgeMessage memory m = _principal(); m.principalRouteId = HOME_ACK;
-        _deliverRejected(m); assertEq(migration.custodyEpoch(m.nftId), 0);
+        _deliverRejected(m); assertEq(migration.custodyEpoch(m.bucketId), 0);
     }
     function testZeroEpochRejected() public {
         BridgeMessage memory m = _principal(); m.migrationEpoch = 0; _deliverRejected(m);
@@ -183,21 +193,21 @@ contract MigrationReceiverSnapshotTest is Test {
     }
     function testConflictingRemoteMappingRollsBackReceiptAndEpoch() public {
         BridgeMessage memory m = _principal();
-        vm.prank(address(receiver)); fees.bindRemoteAsset(m.nftId, address(token1), address(0xBAD));
+        vm.prank(address(receiver)); fees.bindRemoteAsset(m.bucketId, address(token1), address(0xBAD));
         _deliverRejected(m);
         (, , bool exists,) = receiver.receipts(m.migrationId); assertFalse(exists);
-        assertEq(migration.custodyEpoch(m.nftId), 0); assertEq(token1.balanceOf(address(receiver)), 0);
+        assertEq(migration.custodyEpoch(m.bucketId), 0); assertEq(token1.balanceOf(address(receiver)), 0);
         assertEq(receiver.acceptedMessage(m.migrationId).version, 0);
     }
     function testVaultImportFailureRollsBackCanonicalBindings() public {
         BridgeMessage memory m = _principal(); vault.setFailImport(true); _deliverRejected(m);
         (, , bool exists,) = receiver.receipts(m.migrationId); assertFalse(exists);
-        assertEq(migration.custodyEpoch(m.nftId), 0);
-        assertEq(fees.remoteCanonicalToken(m.nftId, address(token1)), address(0));
+        assertEq(migration.custodyEpoch(m.bucketId), 0);
+        assertEq(fees.remoteCanonicalToken(m.bucketId, address(token1)), address(0));
     }
     function testSourceAckUsesAcceptedSnapshotAfterAnotherPositionChange() public {
         BridgeMessage memory m = _principal(); _deliver(m); _finalize(m);
-        Position memory changed; changed.homeChain = 999; changed.homeVault = address(0xBAD); vault.set(m.nftId, changed);
+        Position memory changed; changed.homeChain = 999; changed.homeVault = address(0xBAD); vault.set(m.bucketId, changed);
         receiver.acknowledge(m.migrationId, SOURCE_ACK); _assertAck(m, AckPurpose.SourceCompletion, SOURCE_ACK);
     }
     function testHomeAckHasSeparatePurposeAndCanonicalDestination() public {
@@ -213,7 +223,8 @@ contract MigrationReceiverSnapshotTest is Test {
     }
     function testReturningHomeDoesNotRequireSelfChainHomeAck() public {
         BridgeMessage memory m = _principal(); vault.setHome(block.chainid); m.homeChain = block.chainid;
-        m.homeVault = address(vault); m.homeReceiver = address(receiver); _deliver(m); _finalize(m);
+        m.homeVault = address(vault); m.homeReceiver = address(receiver);
+        m.bucketId=uint256(keccak256(abi.encode(m.homeChain,m.homeVault,m.homePoolId))); _deliver(m); _finalize(m);
         vm.expectRevert(); receiver.acknowledgeHome(m.migrationId, HOME_ACK);
     }
     function testForeignSourceCompletionAckDelegatesToMigrationValidation() public {
@@ -225,6 +236,58 @@ contract MigrationReceiverSnapshotTest is Test {
         vm.prank(address(bridge)); receiver.receiveMessage(PREVIOUS, PREVIOUS_ADAPTER, m);
         assertEq(migration.confirmationCount(), 1); assertEq(migration.confirmedMessage().homeChain, HOME);
     }
+    function testPooledPrincipalRejectsLegacyVersionAndZeroShares() public {
+        BridgeMessage memory m=_principal();m.version=2;_deliverRejected(m);
+        m=_principal();m.totalShares=0;_deliverRejected(m);
+    }
+    function testPooledPrincipalRejectsAlteredInitialPoolOrBucketHash() public {
+        BridgeMessage memory m=_principal();m.homePoolId=keccak256("altered origin");_deliverRejected(m);
+        m=_principal();m.bucketId++;_deliverRejected(m);
+    }
+    function testSourceAckRetainsFrozenSharesAndFeeCounters() public {
+        BridgeMessage memory m=_principal();m.allocatedIndividual0=101;m.allocatedCollective0=61;
+        m.allocatedIndividual1=203;m.allocatedCollective1=122;_deliver(m);_finalize(m);
+        receiver.acknowledge(m.migrationId,SOURCE_ACK);BridgeMessage memory ack=bridge.message();
+        assertEq(ack.homePoolId,m.homePoolId);assertEq(ack.totalShares,m.totalShares);
+        assertEq(ack.allocatedIndividual0,101);assertEq(ack.allocatedCollective0,61);
+        assertEq(ack.allocatedIndividual1,203);assertEq(ack.allocatedCollective1,122);
+    }
+
+    function _fundedReward() private returns (BridgeMessage memory m) {
+        bytes32 rewardRoute=keccak256("authenticated bucket reward");
+        Route memory r;r.sourceChain=PREVIOUS;r.sourceAdapter=PREVIOUS_ADAPTER;r.sourceVault=PREVIOUS_VAULT;
+        r.destinationChain=block.chainid;r.destinationVault=address(vault);r.destinationReceiver=address(receiver);
+        r.sourceToken0=address(0xAA01);r.destinationToken0=address(token1);routes.set(rewardRoute,r);
+        m.version=3;m.kind=MessageKind.Reward;m.routeId=rewardRoute;
+        m.homeChain=block.chainid;m.homeVault=address(vault);m.homeReceiver=address(receiver);
+        m.homePoolId=keccak256("canonical receiver pool");m.totalShares=1000e18;m.depositUSD=1000e18;
+        m.bucketId=uint256(keccak256(abi.encode(m.homeChain,m.homeVault,m.homePoolId)));
+        m.canonicalToken0=address(token1);m.amount0=80;m.individual=50;m.collective=30;
+        Position memory p;p.homeChain=m.homeChain;p.homeVault=m.homeVault;p.homeReceiver=m.homeReceiver;
+        p.homeToken0=address(token0);p.homeToken1=address(token1);p.depositUSD=m.depositUSD;p.status=PositionStatus.Remote;
+        vault.set(m.bucketId,p);ac.bind(Ids.REWARDS,address(new RemoteRewardsFixture()));
+        token1.mint(address(bridge),80);vm.prank(address(bridge));token1.approve(address(receiver),80);
+    }
+    function testFundedRemoteRewardUsesFrozenCanonicalMembership() public {
+        BridgeMessage memory m=_fundedReward();
+        vm.prank(address(bridge));receiver.receiveMessage(PREVIOUS,PREVIOUS_ADAPTER,m);
+        assertEq(fees.receivedIndividual(m.bucketId,address(token1)),50);
+        assertEq(fees.receivedCollective(m.bucketId,address(token1)),30);
+        assertEq(token1.balanceOf(address(receiver)),0);
+    }
+    function testRemoteRewardRejectsChangedSharesPoolContributionAndAsset() public {
+        BridgeMessage memory m=_fundedReward();m.totalShares++;
+        vm.prank(address(bridge));vm.expectRevert();receiver.receiveMessage(PREVIOUS,PREVIOUS_ADAPTER,m);
+        m.totalShares--;m.homePoolId=keccak256("forged origin pool");
+        vm.prank(address(bridge));vm.expectRevert();receiver.receiveMessage(PREVIOUS,PREVIOUS_ADAPTER,m);
+        m.homePoolId=keccak256("canonical receiver pool");m.depositUSD++;
+        vm.prank(address(bridge));vm.expectRevert();receiver.receiveMessage(PREVIOUS,PREVIOUS_ADAPTER,m);
+        m.depositUSD--;m.canonicalToken0=address(token0);
+        vm.prank(address(bridge));vm.expectRevert();receiver.receiveMessage(PREVIOUS,PREVIOUS_ADAPTER,m);
+        assertEq(token1.balanceOf(address(bridge)),80);
+        assertEq(fees.receivedIndividual(m.bucketId,address(token1)),0);
+    }
+
 }
 
 contract RemoteFeeReserveTest is Test {
@@ -275,7 +338,7 @@ contract RemoteFeeReserveTest is Test {
         _allocate(100); Position memory p = vault.position(42); p.status = PositionStatus.Remote;
         p.poolId = keccak256("different-pool"); p.homeToken0 = address(0xBAD); p.homeToken1 = address(0xBEEF); vault.set(42, p);
         fees.bridgeRewards(42, address(token), REWARD_ROUTE);
-        BridgeMessage memory m = bridge.message(); assertEq(m.version, 2); assertEq(m.canonicalToken0, CANONICAL);
+        BridgeMessage memory m = bridge.message(); assertEq(m.version, 3); assertEq(m.canonicalToken0, CANONICAL);
         assertEq(m.amount0, 80); assertEq(fees.remoteCanonicalToken(42, address(token)), CANONICAL);
         assertEq(token.balanceOf(address(bridge)), 80);
     }

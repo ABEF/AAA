@@ -18,9 +18,15 @@ contract HopVault {
     uint256 public immutable canonicalChainId;
     MockPools public immutable pools;
     mapping(uint256=>Position) private records;
+    mapping(uint256=>uint256) private supplies;
+    bytes32 private constant HOME_POOL = keccak256("canonical initial pool");
     uint256 public confirmations;
     constructor(address controller,uint256 home,MockPools registry){access=IZZZAccess(controller);canonicalChainId=home;pools=registry;}
-    function set(uint256 id,Position memory p) external {records[id]=p;}
+    function set(uint256 id,Position memory p) external {records[id]=p;if(supplies[id]==0)supplies[id]=2000e18;}
+    function setShares(uint256 id,uint256 amount) external {supplies[id]=amount;}
+    function bucketTotalShares(uint256 id) external view returns(uint256){return supplies[id];}
+    function homePoolId(uint256) external pure returns(bytes32){return HOME_POOL;}
+    function group(uint256 id) external view returns(Position memory){return records[id];}
     function position(uint256 id) external view returns(Position memory){return records[id];}
     function releaseForMigration(uint256 id,bytes32,uint256) external returns(uint256,uint256){
         require(msg.sender==access.module(Ids.MIGRATION));Position storage p=records[id];require(p.status==PositionStatus.Active);
@@ -56,8 +62,13 @@ contract HopBridge {
         last=m;return keccak256(abi.encode(m.migrationId,m.migrationEpoch));
     }
 }
+contract HopFees {
+    function allocated(uint256,address) external pure returns(uint256,uint256){return(0,0);}
+    function remoteSettled(uint256) external pure returns(bool){return true;}
+}
 contract MultiHopMigrationTest is Test {
-    uint256 private constant HOME=1;uint256 private constant B=57073;uint256 private constant C=10;uint256 private constant ID=7;
+    uint256 private constant HOME=1;uint256 private constant B=57073;uint256 private constant C=10;uint256 private ID;
+    bytes32 private constant HOME_POOL=keccak256("canonical initial pool");
     address private constant BV=address(0xB001);address private constant BR=address(0xB002);
     address private constant CV=address(0xC001);address private constant CR=address(0xC002);
     address private constant BT0=address(0xB010);address private constant BT1=address(0xB011);
@@ -70,9 +81,10 @@ contract MultiHopMigrationTest is Test {
         vm.chainId(chain);vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(0);t1=new MockToken(0);
         pools=new MockPools();routes=new MockRoutes();vault=new HopVault(address(ac),HOME,pools);nft=new HopNFT();
         bridge=new HopBridge(routes);migration=new ZZZMigration(address(ac));
+        ID=uint256(keccak256(abi.encode(HOME,chain==HOME?address(vault):address(0xA001),HOME_POOL)));
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.POOLS,address(pools));
         ac.bind(Ids.ROUTES,address(routes));ac.bind(Ids.BRIDGE,address(bridge));ac.bind(Ids.RECEIVER,receiver);
-        ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.TRANSPORT,address(new MockReadyRouter()));ac.setKeeper(address(this),true);ac.seal();
+        ac.bind(Ids.MIGRATION,address(migration));ac.bind(Ids.FEES,address(new HopFees()));ac.bind(Ids.TRANSPORT,address(new MockReadyRouter()));ac.setKeeper(address(this),true);ac.seal();
         PoolConfig memory cfg;cfg.key=PoolKey(address(t0),address(t1),3000,60,address(0));poolId=keccak256(abi.encode(cfg.key));pools.set(poolId,cfg);
         t0.mint(address(vault),1000);t1.mint(address(vault),1000);nft.set(ID,address(0xA11CE));
         if(chain==HOME){Position memory p=_active(HOME,address(vault),receiver,address(t0),address(t1));vault.set(ID,p);}
@@ -121,7 +133,7 @@ contract MultiHopMigrationTest is Test {
         assertEq(actualEpoch,epoch);assertEq(actualChain,chain);assertEq(actualVault,location);
     }
     function testSourceCompletionRecordsCanonicalLocationAndClearsPlan() public {
-        BridgeMessage memory m=_first();assertEq(m.version,2);assertEq(m.migrationEpoch,1);
+        BridgeMessage memory m=_first();assertEq(m.version,3);assertEq(m.migrationEpoch,1);
         assertEq(m.previousVault,address(vault));assertEq(m.canonicalToken0,address(t0));
         _confirm(_ack(m,AckPurpose.SourceCompletion),B,BV);
         _assertLocation(1,B,BV);assertEq(migration.activePlan(ID),bytes32(0));
@@ -163,10 +175,10 @@ contract MultiHopMigrationTest is Test {
         BridgeMessage memory next=_first();assertEq(next.migrationEpoch,4);_confirm(_ack(next,AckPurpose.SourceCompletion),B,BV);
         _assertLocation(4,B,BV);assertEq(nft.ownerOf(ID),address(0xA11CE));assertEq(vault.position(ID).depositUSD,2000e18);
     }
-    function testCanonicalReturnRequiresExistingNFTAndCorrectAssets() public {
+    function testCanonicalReturnRequiresExistingSharesAndCorrectAssets() public {
         BridgeMessage memory first=_first();_confirm(_ack(first,AckPurpose.SourceCompletion),B,BV);_confirm(_second(first),C,CV);
         BridgeMessage memory returning=_returning(first);returning.canonicalToken0=address(t1);vm.expectRevert();_import(returning);
-        returning=_returning(first);nft.set(ID,address(0));vm.expectRevert();_import(returning);_assertLocation(2,C,CV);
+        returning=_returning(first);vault.setShares(ID,0);vm.expectRevert();_import(returning);_assertLocation(2,C,CV);
     }
     function testSourceSnapshotChangedAfterScheduleCannotExecute() public {
         bytes32 routeId=_store(_route(HOME,address(vault),receiver,address(t0),address(t1),B,BV,BR,BT0,BT1));
@@ -188,7 +200,8 @@ contract MultiHopMigrationTest is Test {
     }
     function testSatelliteCanMigrateAndRevisitAfterSeveralAbsentEpochs() public {
         _fixture(B);address homeVault=address(0xA001);address homeReceiver=address(0xA002);address home0=address(0xA010);address home1=address(0xA011);
-        BridgeMessage memory incoming;incoming.version=2;incoming.kind=MessageKind.Principal;incoming.nftId=ID;
+        BridgeMessage memory incoming;incoming.version=3;incoming.kind=MessageKind.Principal;incoming.bucketId=ID;
+        incoming.homePoolId=HOME_POOL;incoming.totalShares=2000e18;
         incoming.homeChain=HOME;incoming.homeVault=homeVault;incoming.homeReceiver=homeReceiver;incoming.depositUSD=2000e18;
         incoming.previousChain=HOME;incoming.previousVault=homeVault;incoming.previousReceiver=homeReceiver;
         incoming.migrationEpoch=1;incoming.migrationId=keccak256("initial satellite import");incoming.canonicalToken0=home0;incoming.canonicalToken1=home1;
@@ -204,6 +217,34 @@ contract MultiHopMigrationTest is Test {
         vm.expectRevert();_import(incoming);assertEq(migration.custodyEpoch(ID),5);
         _confirm(_ack(departure,AckPurpose.SourceCompletion),C,CV);assertEq(migration.custodyEpoch(ID),5);
     }
+    function testFrozenShareSupplyCannotChangeBetweenProposalAndExecution() public {
+        bytes32 routeId=_store(_route(HOME,address(vault),receiver,address(t0),address(t1),B,BV,BR,BT0,BT1));
+        bytes32 plan=migration.propose(ID,routeId);
+        vault.setShares(ID,2001e18);
+        vm.warp(block.timestamp+2 days);
+        vm.expectRevert();migration.execute(plan,block.timestamp+100);
+        assertEq(migration.custodyEpoch(ID),0);
+        assertEq(uint256(vault.position(ID).status),uint256(PositionStatus.Active));
+        assertEq(t0.balanceOf(address(vault)),1000);
+    }
+    function testPooledMessageRejectsOldNFTVersionAndAlteredBucketIdentity() public {
+        BridgeMessage memory first=_first();BridgeMessage memory ack=_ack(first,AckPurpose.SourceCompletion);
+        ack.version=2;vm.expectRevert();_confirm(ack,B,BV);
+        ack=_ack(first,AckPurpose.SourceCompletion);ack.bucketId++;
+        vm.expectRevert();_confirm(ack,B,BV);
+        ack=_ack(first,AckPurpose.SourceCompletion);ack.totalShares++;
+        vm.expectRevert();_confirm(ack,B,BV);
+        _assertLocation(0,0,address(0));
+        _confirm(_ack(first,AckPurpose.SourceCompletion),B,BV);_assertLocation(1,B,BV);
+    }
+    function testAcknowledgementCannotChangeFrozenRemoteFeeTotals() public {
+        BridgeMessage memory first=_first();BridgeMessage memory ack=_ack(first,AckPurpose.SourceCompletion);
+        ack.allocatedIndividual0=1;vm.expectRevert();_confirm(ack,B,BV);
+        ack=_ack(first,AckPurpose.SourceCompletion);ack.allocatedCollective1=1;
+        vm.expectRevert();_confirm(ack,B,BV);
+        _confirm(_ack(first,AckPurpose.SourceCompletion),B,BV);_assertLocation(1,B,BV);
+    }
+
 }
 
 contract MultiHopMigrationRegistryTest is Test {

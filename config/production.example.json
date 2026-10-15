@@ -1,10 +1,14 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
+  "accounting_model": "shared-pools-v1",
   "_notes": [
     "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",
     "The selected Robinhood native-ETH/hooked/zero-core-fee pool is unsupported by the current contracts.",
     "Fill independently reviewed values; never put credentials, signer keys or RPC secrets in this manifest.",
     "Evidence records require status=passed, exact release commit, SHA-256 of the retained report, and its reference.",
+    "Principal routes also require bucket_id/source_pool_id plus independently reviewed source and destination bucket_reservations at each chain's observed block.",
+    "An initial migration-disabled launch may leave bucket_reservations empty; future funded routes must prove permanent pool reservations for the canonical bucket.",
+    "Token admission must review the USD value of up to nine raw units settled to owners before membership changes and holder-triggered top-up frequency.",
     "Ready means offline inventory consistency only. It never authorizes deployment, sealing, signing or spending."
   ],
   "release_commit": null,
@@ -78,6 +82,7 @@
       "policy_count": null, "registered_policy_ids": [], "outbound_policy_count": null, "observation_evidence": null
     },
     "providers": [],
+    "bucket_reservations": [],
     "dependencies": {
       "position_manager": {"address": null, "runtime_hash": null, "authority_review": null, "pool_manager": null, "permit2": null},
       "state_view": {"address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b", "runtime_hash": null, "authority_review": null, "pool_manager": null},

@@ -17,7 +17,7 @@ def addr(number):return '0x'+f'{number:040x}'
 def proof():return {'status':'passed','commit':COMMIT,'sha256':'22'*32,'reference':'synthetic-test-evidence.json'}
 
 def fixture():
-    manifest={'schema_version':2,'release_commit':COMMIT,'canonical_chain_id':1,
+    manifest={'schema_version':3,'accounting_model':'shared-pools-v1','release_commit':COMMIT,'canonical_chain_id':1,
         'migration':{'enabled':True,'future_onboarding_evidence':proof(),'disabled_scope_approval':proof()},
         'economics':{'reward_model':'conventional_lp_fees','mint_price_wei':'50000000000000000',
             'minimum_activation_usd18':str(500*10**18),'fee_split_bps':[5000,3000,1000,1000]},
@@ -61,8 +61,18 @@ def fixture():
             'constructor':{'canonical_chain_id':1,'mint_proceeds_recipient':addr(base+405),'nft_base_uri':'ipfs://synthetic',
                 'maximum_buyback_usd18':str(1000*10**18),'recipient_payment_evidence':proof(),'adapter_transport':modules['transport']['address']},
             'bridge_router':{'immutable_module':True,'upgradeable':False,'policy_count':2,'registered_policy_ids':[],'outbound_policy_count':1,'observation_evidence':proof()},
-            'providers':[provider],
+            'providers':[provider],'bucket_reservations':[],
             'dependencies':dependencies,'tokens':tokens,'sequencer':{'mode':'not_applicable','address':GATE.ZERO,'review':proof()},'pools':[pool]})
+    origin=manifest['chains'][0]
+    bucket=int(GATE.identity([(1,'uint256'),(origin['modules']['vault']['address'],'address'),
+        (origin['pools'][0]['pool_id'],'bytes32')]),16)
+    for chain in manifest['chains']:
+        chain['bucket_reservations']=[{'pool_id':chain['pools'][0]['pool_id'],'bucket_id':str(bucket),
+            'home_chain_id':1,'home_vault':origin['modules']['vault']['address'],'home_pool_id':origin['pools'][0]['pool_id'],
+            'observed_chain_id':chain['chain_id'],'observed_vault':chain['modules']['vault']['address'],
+            'observed_bucket_id':str(bucket),'observed_block_number':chain['observed_block']['number'],
+            'observed_block_hash':chain['observed_block']['hash'],
+            'review_evidence':dict(proof(),independent=True,reviewer='Synthetic independent reservation reviewer')}]
     for source,destination in ((1,2),(2,1)):
         a,b=manifest['chains'][source-1],manifest['chains'][destination-1];pa=a['providers'][0];pb=b['providers'][0]
         policy={'providerId':HASH,'sourceChain':source,'sourceRouter':pa['router'],'sourceProvider':pa['address'],
@@ -84,6 +94,7 @@ def fixture():
             'destinationToken1':b['tokens'][1]['address'] if kind=='principal' else GATE.ZERO,
             'token0Decimals':18 if kind!='ack' else 0,'token1Decimals':18 if kind=='principal' else 0,
             'asset_and_authority_evidence':proof()}
+        if kind=='principal':item.update(bucket_id=str(bucket),source_pool_id=a['pools'][0]['pool_id'])
         item['policy_id']=next(p['policy_id'] for p in manifest['transport_policies'] if p['sourceChain']==source and p['destinationChain']==destination)
         item['route_id']=GATE.identity([(item[key],typ) for key,typ in GATE.ROUTE_FIELDS]+[(item['policy_id'],'bytes32')]);return item
     manifest['routes']=[route(1,2,'principal'),route(2,1,'ack'),route(2,1,'reward',0),route(2,1,'reward',1),
@@ -95,13 +106,15 @@ def disabled_fixture():
     manifest=fixture();manifest['migration']['enabled']=False
     manifest['chains']=manifest['chains'][:1];manifest['routes']=[];manifest['transport_policies']=[]
     manifest['chains'][0]['providers']=[]
+    manifest['chains'][0]['bucket_reservations']=[]
     manifest['chains'][0]['bridge_router'].update(policy_count=0,registered_policy_ids=[],outbound_policy_count=0)
     del manifest['evidence']['multi_chain']
     return manifest
 
 def onward_fixture():
     manifest=fixture();third=copy.deepcopy(manifest['chains'][1]);third['chain_id']=3
-    third['providers'][0]['integration_evidence']['chain_id']=3;manifest['chains'].append(third)
+    third['providers'][0]['integration_evidence']['chain_id']=3
+    third['bucket_reservations'][0]['observed_chain_id']=3;manifest['chains'].append(third)
     for source,destination in ((2,3),(3,2),(3,1)):
         policy=copy.deepcopy(manifest['transport_policies'][0])
         for side,cid in (('source',source),('destination',destination)):
@@ -119,7 +132,7 @@ def onward_fixture():
             route[side+'Token1']=chain['tokens'][1]['address'] if kind=='principal' else GATE.ZERO
         route['destinationPool']=b['pools'][0]['pool_id'] if kind=='principal' else '0x'+'00'*32
         route['policy_id']=next(p['policy_id'] for p in manifest['transport_policies'] if p['sourceChain']==source and p['destinationChain']==destination)
-        if kind=='principal':route['canonical_graph_evidence']=proof()
+        if kind=='principal':route.update(canonical_graph_evidence=proof(),source_pool_id=a['pools'][0]['pool_id'])
         route['route_id']=GATE.identity([(route[key],typ) for key,typ in GATE.ROUTE_FIELDS]+[(route['policy_id'],'bytes32')]);manifest['routes'].append(route)
     for chain in manifest['chains']:
         cid=chain['chain_id'];listed=[p['policy_id'] for p in manifest['transport_policies'] if cid in (p['sourceChain'],p['destinationChain'])]
@@ -273,10 +286,72 @@ class ProductionConfigTests(unittest.TestCase):
     def test_mint_recipient_cannot_be_protocol_custody(self):
         chain=self.config['chains'][0];chain['constructor']['mint_proceeds_recipient']=chain['modules']['vault']['address'];self.blocked('mint.custody')
     def test_float_boolean_integer_fields_are_not_truncated(self):
-        self.config['schema_version']=2.0;self.blocked('schema.unsupported');self.config['schema_version']=2
+        self.config['schema_version']=3.0;self.blocked('schema.unsupported');self.config['schema_version']=3
         for field,value in [('chain_id',True),('chain_id',1.9),('maximum_snapshot_age_seconds',1.0)]:
             with self.subTest(field=field,value=value):
                 previous=self.config['chains'][0][field];self.config['chains'][0][field]=value;self.blocked('integer.invalid');self.config['chains'][0][field]=previous
+    def test_legacy_per_nft_manifest_is_rejected(self):
+        self.config['schema_version']=2;self.blocked('schema.unsupported')
+    def test_accounting_model_must_explicitly_match_shared_pools(self):
+        for model in (None,'per-nft','pending'):
+            with self.subTest(model=model):
+                self.config['accounting_model']=model;self.blocked('accounting.unsupported')
+    def test_principal_route_requires_both_exact_bucket_reservations(self):
+        for chain_index in (0,1):
+            with self.subTest(chain_index=chain_index):
+                self.config=fixture();self.config['chains'][chain_index]['bucket_reservations']=[]
+                self.blocked('route.reservation')
+    def test_principal_route_requires_explicit_source_pool_and_bucket(self):
+        for field in ('bucket_id','source_pool_id'):
+            with self.subTest(field=field):
+                self.config=fixture();del self.config['routes'][0][field]
+                self.blocked('route.reservation')
+    def test_principal_route_cannot_claim_another_cohort_or_source_pool(self):
+        self.config['routes'][0]['bucket_id']='123';self.blocked('route.reservation')
+        self.config=fixture();self.config['routes'][0]['source_pool_id']='0x'+'44'*32
+        self.blocked('route.source_pool');self.blocked('route.reservation')
+    def test_bucket_identity_must_hash_canonical_origin(self):
+        record=self.config['chains'][1]['bucket_reservations'][0]
+        record['bucket_id']='123';record['observed_bucket_id']='123'
+        self.blocked('reservation.identity')
+    def test_reservation_origin_must_be_the_actual_canonical_vault_and_pool(self):
+        for field,value,code in (('home_chain_id',2,'reservation.origin'),('home_vault',addr(999),'reservation.origin'),
+            ('home_pool_id','0x'+'44'*32,'reservation.pool')):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][1]['bucket_reservations'][0][field]=value
+                self.blocked(code)
+    def test_observed_pool_reservation_must_match_exact_inventory_snapshot(self):
+        for field,value in (('observed_chain_id',1),('observed_vault',addr(999)),('observed_bucket_id','123'),
+            ('observed_block_number',4999),('observed_block_hash','0x'+'44'*32)):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][1]['bucket_reservations'][0][field]=value
+                self.blocked('reservation.observation')
+    def test_zero_unreserved_pool_or_malformed_bucket_is_rejected(self):
+        for value in (0,'0',True,'1.1',-1):
+            with self.subTest(value=value):
+                self.config=fixture();self.config['chains'][1]['bucket_reservations'][0]['observed_bucket_id']=value
+                self.blocked('integer.invalid');self.blocked('reservation.observation')
+    def test_reservation_evidence_must_be_independent_and_for_exact_release(self):
+        review=self.config['chains'][1]['bucket_reservations'][0]['review_evidence']
+        review['independent']=False;self.blocked('reservation.review')
+        review.update(independent=True,commit='cd'*20);self.blocked('evidence.stale')
+        review.update(commit=COMMIT,reviewer='pending');self.blocked('decision.pending')
+    def test_duplicate_or_conflicting_pool_reservation_is_rejected(self):
+        chain=self.config['chains'][1]
+        chain['bucket_reservations'].append(copy.deepcopy(chain['bucket_reservations'][0]))
+        self.blocked('reservation.duplicate')
+    def test_disabled_initial_launch_can_have_no_pool_reservations(self):
+        self.config=disabled_fixture();self.assertEqual(self.result()['issues'],[])
+    def test_reservation_assets_cannot_change_canonical_group_identity(self):
+        self.config['chains'][1]['tokens'][0]['canonical_asset']='unrelated-asset'
+        self.blocked('reservation.assets')
+    def test_malformed_reservation_inventory_fails_closed_without_exception(self):
+        for value in (None,{},True,[None],[False],[[]]):
+            with self.subTest(value=value):
+                self.config=fixture();self.config['chains'][1]['bucket_reservations']=value
+                self.assertFalse(self.result()['ready'])
+    def test_reservation_gate_output_declares_shared_pool_schema_three(self):
+        self.assertEqual(self.result()['schema_version'],3)
     def test_stale_snapshot_and_oracle_round_block(self):
         chain=self.config['chains'][0];chain['observed_block']['timestamp']=NOW-3601;self.blocked('snapshot.stale')
         chain['observed_block']['timestamp']=NOW;feed=chain['tokens'][0]['feed'];feed['updated_at']=NOW-3601;self.blocked('oracle.stale')
