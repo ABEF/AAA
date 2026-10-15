@@ -39,6 +39,31 @@ def fingerprint(finding):
                 cursor += 1
             if cursor == len(lines) or not lines[cursor].startswith("\t\t\t"):
                 lines[start:cursor] = sorted(lines[start:cursor])
+        if finding["check"] == "reentrancy-events":
+            # Slither sorts a set of event findings by event name/node only.
+            # Identical event roots reached through different call sites tie;
+            # their presentation order is process-dependent. Sort ONLY adjacent
+            # byte-identical event roots, keeping each descendant bundle intact.
+            # Distinct roots, child edges, duplicates and other sections retain
+            # their exact content/order; this is not execution-order inference.
+            cursor = 0
+            while cursor < len(lines):
+                if lines[cursor].rstrip("\n") != "\tEvent emitted after the call(s):":
+                    cursor += 1
+                    continue
+                cursor += 1
+                while cursor < len(lines) and lines[cursor].startswith("\t- "):
+                    start = cursor
+                    event_root = lines[cursor]
+                    bundles = []
+                    while cursor < len(lines) and lines[cursor] == event_root:
+                        block_start = cursor
+                        cursor += 1
+                        while cursor < len(lines) and lines[cursor].startswith("\t\t"):
+                            cursor += 1
+                        bundles.append(lines[block_start:cursor])
+                    if len(bundles) > 1:
+                        lines[start:cursor] = [line for bundle in sorted(bundles) for line in bundle]
         description = "".join(lines)
     payload = [finding[key] for key in ("check", "impact", "confidence")] + [description]
     return hashlib.sha256(json.dumps(payload, ensure_ascii=True).encode()).hexdigest()

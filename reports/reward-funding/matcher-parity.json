@@ -1,0 +1,26 @@
+{
+  "windows_findings": 160,
+  "ubuntu_findings": 160,
+  "windows_gate_passed": true,
+  "ubuntu_gate_passed": true,
+  "changed_ubuntu_presentational_fingerprints": [
+    {
+      "previous": "f65f9163ce51a5d8fddf923940c36413e1556a17ce75d6c639f072ae425ad08f",
+      "canonical": "7f55e4e3e76e7fde4f17a82b3f8e43022e43c177ffc126add4d774a061701a05"
+    }
+  ],
+  "unchanged_windows_review_identities": 160,
+  "windows_report_sha256": "a805c36a80eacd001ecc38efe7cbbb2ce56469791d1a73e5b21e69849a47baad",
+  "ubuntu_report_sha256": "dab9c6759c87340541d36dca51612ffbc413fef396ed620c3afccd7db8522c04",
+  "initial_ci": "https://github.com/ABEF/AAA/actions/runs/38669641381",
+  "contract_source_commit": "4a05f6103b1113a0fd06341d039f35b37fc2e55e",
+  "scope": "Review matching only; no Solidity or deployment changes, detector suppression or review disposition changes.",
+  "matcher_tests_passed": 28,
+  "new_regressions": 13,
+  "python_inventory": 268,
+  "portable_python_passed": 264,
+  "verification_source_sha256_lf": {
+    "scripts/check-slither-review.py": "2c97bab1072b402a61832ee3b2e80898f3b5bf7cddeaf62c14fe876bb6cc51be",
+    "tests_python/test_slither_review.py": "191f0a5e5615d753b5ac3fc08329768f4303f49364191120a8926c6aa85924c0"
+  }
+}

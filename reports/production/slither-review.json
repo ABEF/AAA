@@ -50,7 +50,7 @@
     "uninitialized-local": 4,
     "unused-return": 19
   },
-  "matching_policy": "Source-bound exact findings; only contiguous nested leaf-callee presentation order in reentrancy External calls sections is canonicalized. Locations, expressions, parent groups, duplicates, counts, severity and confidence remain significant.",
+  "matching_policy": "Exact detector/severity/confidence/description identity after path normalization; only unordered nested external-call leaves and adjacent byte-identical event-root bundles within their exact reentrancy sections are canonicalized. Parent groups, child edges, expressions, locations, duplicates and other section order remain identity-sensitive. Exact source/toolchain hashes are independently required.",
   "findings": [
     {
       "fingerprint": "2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c",

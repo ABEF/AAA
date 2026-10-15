@@ -39,7 +39,7 @@
     "src/libraries/ZZZTypes.sol": "2af3790b81dcee4ddeb2404110bf3c2df2e28de593ac982c58628d983ec13250"
   },
   "primary_review_coverage_check": "Independently checked: all160 identities match source-bound primary review; no stale/missing/duplicate findings.",
-  "fingerprint_policy": "Existing scripts/check-slither-review.py canonicalization: only nested leaf-callee presentation order in reentrancy External calls is normalized; all raw IDs/full descriptions recorded.",
+  "fingerprint_policy": "Path normalization and unordered nested external-callee leaves; for reentrancy-events only, adjacent byte-identical event roots in the exact Event emitted after the call(s) section sort as intact descendant bundles. Expressions, locations, child edges, duplicates, distinct roots and other sections remain significant. The new Low-event presentation rule changes none of these 91 High/Medium review identities. All raw IDs/full descriptions and source bindings remain recorded.",
   "outcome": "An independently identified late callback owner-index overclaim window was hardened during review: final global settlement, late compound NAV exclusion, deployment recheck, global pending/dust barrier and post-operation owner checkpoint. No further required source fix identified within reviewed conventional ERC20, admitted immutable native wrapper, fixed hookless venue and module/provider assumptions. This does not generally admit arbitrary malicious callback tokens. Production dependencies/economics still require external review.",
   "architecture_assessment": [
     {

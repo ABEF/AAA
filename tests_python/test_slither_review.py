@@ -122,6 +122,117 @@ class SlitherReviewTests(unittest.TestCase):
         for field in ("impact","confidence"):
             self.assertNotEqual(reviewer.fingerprint(original),reviewer.fingerprint(dict(original,**{field:"Low"})))
 
+    def events(self, bundles=None, section="Event emitted after the call(s):", check="reentrancy-events"):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        first = root + "\t\t- first() (src/Core.sol#3)\n"
+        second = root + "\t\t- second() (src/Core.sol#4)\n"
+        if bundles is None:
+            bundles = [second, first]
+        return dict(self.finding, check=check, description=
+            "Reentrancy in Core.call (src/Core.sol#1-9):\n"
+            "\tExternal calls:\n\t- dispatch() (src/Core.sol#2)\n"
+            "\t" + section + "\n" + "".join(bundles))
+
+    def test_tied_event_roots_keep_stable_identity_when_bundles_swap(self):
+        original = self.events()
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        ordered = self.events([root + "\t\t- first() (src/Core.sol#3)\n",
+            root + "\t\t- second() (src/Core.sol#4)\n"])
+        self.assertEqual(reviewer.fingerprint(original), reviewer.fingerprint(ordered))
+
+    def test_tied_event_bundles_keep_deeper_descendants_attached(self):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        first = root + "\t\t- first() (src/Core.sol#3)\n\t\t\t- childA() (src/Core.sol#5)\n"
+        second = root + "\t\t- second() (src/Core.sol#4)\n\t\t\t- childB() (src/Core.sol#6)\n"
+        original = self.events([second, first])
+        self.assertEqual(reviewer.fingerprint(original), reviewer.fingerprint(self.events([first, second])))
+        detached = self.events([first.replace("childA()", "childB()"), second.replace("childB()", "childA()")])
+        self.assertNotEqual(reviewer.fingerprint(original), reviewer.fingerprint(detached))
+
+    def test_changed_event_expression_or_source_location_requires_review(self):
+        original = self.events()
+        for old, new in (("Emitted(amount)", "Emitted(other)"), ("#8)", "#9)")):
+            changed = dict(original, description=original["description"].replace(old, new, 1))
+            self.assertNotEqual(reviewer.fingerprint(original), reviewer.fingerprint(changed))
+
+    def test_changed_event_origin_expression_or_location_requires_review(self):
+        original = self.events()
+        for old, new in (("first()", "withdraw()"), ("#3)", "#7)")):
+            changed = dict(original, description=original["description"].replace(old, new))
+            self.assertNotEqual(reviewer.fingerprint(original), reviewer.fingerprint(changed))
+
+    def test_event_bundle_duplicates_additions_and_removal_are_preserved(self):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        first = root + "\t\t- first() (src/Core.sol#3)\n"
+        second = root + "\t\t- second() (src/Core.sol#4)\n"
+        original = self.events([first, second])
+        for bundles in ([first], [first, second, first], [first, second, root]):
+            self.assertNotEqual(reviewer.fingerprint(original), reviewer.fingerprint(self.events(bundles)))
+
+    def test_event_child_partition_cannot_change_between_identical_roots(self):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        a = "\t\t- first() (src/Core.sol#3)\n"
+        b = "\t\t- second() (src/Core.sol#4)\n"
+        self.assertNotEqual(reviewer.fingerprint(self.events([root+a, root+b])),
+            reviewer.fingerprint(self.events([root+a+b, root])))
+
+    def test_distinct_event_root_order_is_not_normalized(self):
+        first = "\t- First(amount) (src/Core.sol#7)\n\t\t- first() (src/Core.sol#3)\n"
+        second = "\t- Second(amount) (src/Core.sol#8)\n\t\t- second() (src/Core.sol#4)\n"
+        self.assertNotEqual(reviewer.fingerprint(self.events([first, second])),
+            reviewer.fingerprint(self.events([second, first])))
+
+    def test_identical_event_roots_do_not_move_across_distinct_event(self):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        a = root + "\t\t- first() (src/Core.sol#3)\n"
+        b = root + "\t\t- second() (src/Core.sol#4)\n"
+        middle = "\t- Distinct(amount) (src/Core.sol#9)\n"
+        self.assertNotEqual(reviewer.fingerprint(self.events([a, middle, b])),
+            reviewer.fingerprint(self.events([b, middle, a])))
+
+    def test_event_origin_cannot_move_to_a_distinct_event_root(self):
+        a = "\t- First(amount) (src/Core.sol#7)\n"
+        b = "\t- Second(amount) (src/Core.sol#8)\n"
+        child = "\t\t- first() (src/Core.sol#3)\n"
+        self.assertNotEqual(reviewer.fingerprint(self.events([a+child, b])),
+            reviewer.fingerprint(self.events([a, b+child])))
+
+    def test_tied_event_normalization_does_not_apply_to_other_sections(self):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        a = root + "\t\t- first() (src/Core.sol#3)\n"
+        b = root + "\t\t- second() (src/Core.sol#4)\n"
+        for section in ("State variables written after the call(s):", "External calls:"):
+            self.assertNotEqual(reviewer.fingerprint(self.events([a, b], section=section)),
+                reviewer.fingerprint(self.events([b, a], section=section)))
+
+    def test_tied_event_normalization_does_not_apply_to_other_detectors(self):
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        a = root + "\t\t- first() (src/Core.sol#3)\n"
+        b = root + "\t\t- second() (src/Core.sol#4)\n"
+        for check in ("reentrancy-no-eth", "other-detector"):
+            self.assertNotEqual(reviewer.fingerprint(self.events([a, b], check=check)),
+                reviewer.fingerprint(self.events([b, a], check=check)))
+
+    def test_event_section_boundary_preserves_following_state_write_order(self):
+        original = self.events()
+        a = "\t- firstState (src/Core.sol#5)\n"
+        b = "\t- secondState (src/Core.sol#6)\n"
+        suffix = "\tState variables written after the call(s):\n"
+        self.assertNotEqual(reviewer.fingerprint(dict(original, description=original["description"]+suffix+a+b)),
+            reviewer.fingerprint(dict(original, description=original["description"]+suffix+b+a)))
+
+    def test_complete_review_accepts_tied_event_reorder_but_rejects_mutation(self):
+        original = self.events()
+        root = "\t- Emitted(amount) (src/Core.sol#8)\n"
+        reordered = self.events([root+"\t\t- first() (src/Core.sol#3)\n",
+            root+"\t\t- second() (src/Core.sol#4)\n"])
+        self.review["findings"][0]["fingerprint"] = reviewer.fingerprint(original)
+        self.report["results"]["detectors"] = [reordered]
+        self.assertEqual(reviewer.check(self.report, self.review, self.root), [])
+        self.report["results"]["detectors"] = [dict(reordered,
+            description=reordered["description"].replace("first()", "withdraw()"))]
+        self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
 
 if __name__ == "__main__":
     unittest.main()
