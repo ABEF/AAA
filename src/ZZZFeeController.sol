@@ -52,7 +52,7 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         Position memory p = vault.group(id);
         IZZZRewards rewards = IZZZRewards(access.module(Ids.REWARDS));
         if (!access.isSealed() || rewardReceiver[id] != address(0) || rewardReceivers.length == MAX_REWARD_RECEIVERS ||
-            p.status != PositionStatus.Active || !_isHome(p, vault) ||
+            (p.status != PositionStatus.Active && p.status != PositionStatus.Parked) || !_isHome(p, vault) ||
             vault.bucketTotalShares(id) == 0 || !rewards.isAsset(p.homeToken0) || !rewards.isAsset(p.homeToken1)) {
             revert InvalidConfiguration();
         }
@@ -126,7 +126,7 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         if (amount == 0) revert InvalidAmount();
         Position memory p = IZZZVault(msg.sender).group(id);
         if (p.status != PositionStatus.Active) revert InvalidState();
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (token != c.key.currency0 && token != c.key.currency1) revert InvalidConfiguration();
         bool canonical = _isHome(p, IZZZVault(msg.sender));
         if (!canonical) {
@@ -166,7 +166,8 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         Position memory p = vault.group(id);
         bool canonical = _isHome(p, vault);
         if (membership && !canonical) revert Unauthorized();
-        if (p.status != PositionStatus.Outbound && p.status != PositionStatus.Active) revert InvalidState();
+        if (p.status != PositionStatus.Outbound && p.status != PositionStatus.Active &&
+            p.status != PositionStatus.Parked) revert InvalidState();
         uint256 remainder = dust[id][token];
         if (remainder == 0) return;
         if (canonical) {
@@ -211,7 +212,8 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         IZZZVault vault = _vault();
         Position memory p = vault.group(id);
         if (p.homeChain == block.chainid || (p.status != PositionStatus.Active && p.status != PositionStatus.Outbound &&
-            p.status != PositionStatus.Remote && p.status != PositionStatus.Inbound)) revert InvalidState();
+            p.status != PositionStatus.Remote && p.status != PositionStatus.Inbound &&
+            p.status != PositionStatus.Parked)) revert InvalidState();
         address homeToken = remoteCanonicalToken[id][token];
         if (homeToken == address(0)) revert InvalidConfiguration();
         (Route memory r, bool enabled) = IZZZRoutes(access.module(Ids.ROUTES)).get(routeId);

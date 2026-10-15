@@ -9,6 +9,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 import json
 import math
 import os
+from pathlib import Path
 import re
 import shutil
 import subprocess
@@ -22,6 +23,9 @@ import urllib.request
 MAX_REQUEST=1024*1024
 MAX_RESPONSE=8*1024*1024
 FORGE_COMMIT='05794498bf47257b144e2e2789a1d5bf8566be0e'
+ROOT=Path(__file__).resolve().parents[1]
+FORK_SUITES=('test/UniswapV4Fork.t.sol:UniswapV4ForkTest','test/NativePoolFork.t.sol:NativePoolForkTest')
+FORK_PATTERN='^(UniswapV4ForkTest|NativePoolForkTest)$'
 READ_METHODS=frozenset({'eth_chainId','eth_gasPrice','eth_blockNumber','eth_getBlockByNumber','eth_getBlockByHash',
     'eth_getCode','eth_getStorageAt','eth_getBalance','eth_getTransactionCount','eth_getLogs',
     'eth_call','eth_getTransactionByHash','eth_getTransactionReceipt','web3_clientVersion'})
@@ -114,6 +118,39 @@ class RelayServer:
         self.server.server_close()
         if self.thread.is_alive():self.thread.join(timeout=5)
 
+def expected_tests(source):
+    # Both selected suites declare their tests directly. Fail closed on an empty
+    # inventory or overload rather than accepting a filtered/disabled green run.
+    text=(ROOT/source).read_text(encoding='utf-8')
+    text=re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'', '', text)
+    names=re.findall(r'\bfunction\s+(test[A-Za-z0-9_]*)\s*\(',text)
+    if not names or len(names)!=len(set(names)):
+        raise ValueError('Selected fork source test inventory is empty or ambiguous')
+    return set(names)
+
+def verify_fork_results(output):
+    if not isinstance(output,str):raise ValueError('Selected fork output is absent')
+    results=json.loads(output)
+    if not isinstance(results,dict):raise ValueError('Selected fork results must be a JSON object')
+    suites={key.replace('\\','/'):value for key,value in results.items()}
+    if len(suites)!=len(results) or set(suites)!=set(FORK_SUITES):
+        raise ValueError('Both exact selected fork suites must execute')
+    total=0
+    for suite in FORK_SUITES:
+        result=suites[suite]
+        tests=result.get('test_results') if isinstance(result,dict) else None
+        if not isinstance(tests,dict):raise ValueError('Selected fork test results are absent')
+        names=[]
+        for signature,test in tests.items():
+            match=re.fullmatch(r'(test[A-Za-z0-9_]*)\([^\n]*\)',signature)
+            if not match or not isinstance(test,dict) or test.get('status')!='Success':
+                raise ValueError('Every selected fork test must succeed without skips')
+            names.append(match[1])
+        if len(names)!=len(set(names)) or set(names)!=expected_tests(suite.split(':',1)[0]):
+            raise ValueError('Selected fork execution does not cover its complete source inventory')
+        total+=len(names)
+    return total
+
 def run_fork(upstream,*,forge=None,run=subprocess.run,server_factory=RelayServer,relay_factory=Relay):
     relay=relay_factory(upstream)
     executable=forge or shutil.which('forge') or 'forge'
@@ -126,8 +163,14 @@ def run_fork(upstream,*,forge=None,run=subprocess.run,server_factory=RelayServer
         environment=dict(os.environ,RUN_ROBINHOOD_FORK_TESTS='true',ROBINHOOD_RPC_URL=server.url)
         for name in ('ROBINHOOD_ARCHIVE_RPC_URL','ETH_RPC_URL','ETH_RPC_HEADERS','ETH_RPC_JWT_SECRET'):
             environment.pop(name,None)
-        command=[executable,'test','--match-contract','UniswapV4ForkTest','--threads','1','--no-storage-caching','-vvv']
-        return run(command,env=environment,check=False).returncode
+        command=[executable,'test','--match-contract',FORK_PATTERN,'--threads','1','--no-storage-caching','-vvv','--json']
+        result=run(command,env=environment,capture_output=True,text=True,check=False)
+        if result.stdout:print(result.stdout,end='' if result.stdout.endswith('\n') else '\n',flush=True)
+        if result.stderr:print(result.stderr,end='' if result.stderr.endswith('\n') else '\n',file=sys.stderr,flush=True)
+        if result.returncode:return result.returncode
+        total=verify_fork_results(result.stdout)
+        print(f'Fork coverage verified: both exact suites, {total} successful source tests, zero skips.',flush=True)
+        return 0
     finally:server.close()
 
 def main():
@@ -137,7 +180,7 @@ def main():
     args=parser.parse_args()
     try:return run_fork(args.upstream,forge=args.forge)
     except (OSError,ValueError,TimeoutError):
-        print('Fork runner failed: verify the explicit archive RPC and pinned Forge configuration.',file=sys.stderr)
+        print('Fork runner failed: verify the explicit archive RPC, pinned Forge and complete unskipped results for both selected suites.',file=sys.stderr)
         return 1
 
 if __name__=='__main__':sys.exit(main())

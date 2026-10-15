@@ -53,7 +53,7 @@ contract LowGasExternalPayment {
 /// beyond the currently fixed, hookless Uniswap implementation.
 contract LateExternalPaymentVenue is ERC721 {
     MockToken public t0; MockToken public t1;
-    uint256 public next = 1; uint256 public spendBps = 9900;
+    uint256 public next = 1; uint256 public spendBps = 10000;
     uint256 public fee0; uint256 public fee1;
     mapping(uint256 => uint256) public a0; mapping(uint256 => uint256) public a1;
     address public paymentInbox; uint256 public paymentAmount; bool public syncPayment;
@@ -445,7 +445,7 @@ contract ExternalRewardsTest is PooledVaultFixture {
         assertEq(rewards.liabilities(address(t0)), 0); assertEq(t0.balanceOf(address(rewards)), 0);
     }
 
-    function testLateUndeployedCompoundDoesNotRaiseTheExactly100DeployedActivationMinimum() public {
+    function testLateUndeployedCompoundDoesNotRaiseThe100GrossActivationMinimum() public {
         LateExternalPaymentVenue late = _lateVenue(); late.setSpendBps(10000);
         uint256 first = activatedPosition(); address inbox = _receiver(first); uint256 second = _mint(bob);
         late.configurePayment(inbox, 1000, true); _activate(bob, second, 50, 50);

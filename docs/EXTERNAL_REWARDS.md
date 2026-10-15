@@ -16,9 +16,11 @@ The current NFT owner claims funded ERC20 rewards, including WETH for wrappednat
 
 Funding uses processing-time shares/membership. A payment delivered after entry may benefit the entrant even if the creator earned it earlier. The protocol does not reconstruct historical swap entitlement or promise a creator percentage.
 
-Before activation or top-up, the vault syncs all registered inboxes and settles old dust. It repeats settlement after entry balancing and final LP updates. Late compounding belongs to incumbent NAV. A95%deployed check, final pending/dust barrier and old-owner checkpoint precede new shares and first collective/royalty membership. Failed guards roll back atomically. Old idle/compound funds cannot meet an entrant's$100marginal deployed minimum.
+Before activation or top-up, the vault syncs all registered inboxes and settles old dust. It repeats settlement after entry balancing and final LP updates. Late compounding belongs to incumbent NAV. A 95% whole-bucket deployment check, a separate 99% marginal original-source execution floor, final pending/dust barrier and old-owner checkpoint precede new shares and first collective/royalty membership. Failed guards roll back atomically. Old idle/compound funds cannot subsidize the $100 gross source contribution or its marginal LP floor. The immutable [Entry](ACTIVATION_ENTRY.md) retains that source value across conversion.
 
 Canonical processing/claims continue during pause or while LP custody is away. Home receipts do not discharge authenticated remote counters; their compounding reserve awaits compatible maintenance after return. Strategy pauses still stop maintenance, bridging and buybacks.
+
+[Parked custody](CUSTODY_PARKING.md) retains receiver creation, canonical processing/claims, incumbent dust settlement and satellite legacy reward delivery under their existing provenance checks. Ordinary venue allocation remains Active-only; parking harvests the venue before changing status. Parking itself omits creator-inbox synchronization so a broken unrelated inbox cannot trap principal inside a still-working LP. Compound reserves stay segregated until guarded resume or approved departure; a closed LP does not continue earning venue fees.
 
 ## Admission and production limits
 
@@ -26,4 +28,4 @@ Only admitted exact-transfer, non-rebasing tokens and exactwrappers are supporte
 
 The19raw-unit dust exception must be economically valued for every token. An admitted token/wrapper outage can block global synchronization and new entries. The16receiver bound limits loops but does not eliminate availability risk. Inventory receiver code, immutable getters, currencies, wrapper behavior and actual staging in schema4production configuration.
 
-The selected Robinhood native-ETH/Pons-hook LP remains unsupported by the LP adapter. Its0%corefee does not imply hook revenue entitlement. Payment intake never supplies native/hook custody support, production transport, approved valuation or an independent audit.
+The selected Robinhood native-ETH/Pons-hook LP has a separate strictly pinned development adapter, pending production qualification. Its 0% core fee does not imply hook revenue entitlement. Payment intake alone never supplies qualified custody, production transport, approved valuation or an independent audit.

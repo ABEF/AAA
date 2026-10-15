@@ -16,7 +16,7 @@ contract ZZZStrategy is ZZZModule {
         return quotient * spacing;
     }
     function target(bytes32 poolId) public view returns (int24 lower, int24 upper, uint160 referenceX96) {
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         if (!c.operationsEnabled) revert InvalidState();
         referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
         uint256 lowerRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 - c.rangeBps) * 1e28), 1e16);
@@ -28,8 +28,16 @@ contract ZZZStrategy is ZZZModule {
         if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidConfiguration();
     }
     function validatePrice(bytes32 poolId) public view returns (uint160 spotX96) {
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
-        if (!c.operationsEnabled) revert InvalidState();
+        return _validatePrice(poolId, true);
+    }
+    /// @notice A disabled source pool can still exit through governed custody paths.
+    /// Oracle freshness and spot-deviation checks remain mandatory.
+    function validateExitPrice(bytes32 poolId) public view returns (uint160 spotX96) {
+        return _validatePrice(poolId, false);
+    }
+    function _validatePrice(bytes32 poolId, bool requireOperations) private view returns (uint160 spotX96) {
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        if (requireOperations && !c.operationsEnabled) revert InvalidState();
         uint160 referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
         spotX96 = IZZZLiquidity(access.module(Ids.LIQUIDITY)).spot(poolId);
         if (spotX96 == 0) revert InvalidState();
@@ -41,7 +49,7 @@ contract ZZZStrategy is ZZZModule {
     function needsRebalance(uint256 id) external view returns (bool) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
         if (p.status != PositionStatus.Active || p.centerX96 == 0) return false;
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
         uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
         uint256 rootRatio = Math.mulDiv(ref, 1e18, p.centerX96);
@@ -62,7 +70,7 @@ contract ZZZStrategy is ZZZModule {
     }
     function _plan(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1)
         private view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut) {
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         uint160 spotX96 = validatePrice(poolId);
         uint160 a = TickMath.getSqrtPriceAtTick(lower);
         uint160 b = TickMath.getSqrtPriceAtTick(upper);
@@ -85,6 +93,13 @@ contract ZZZStrategy is ZZZModule {
         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
         address output = zeroForOne ? c.key.currency1 : c.key.currency0;
         uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
+        if (c.key.hooks != address(0)) {
+            // Registry admits only the reviewed native/Pons key with a frozen 100 bp
+            // fee on exact-input output. Rebalance the NET pair, not the pre-hook
+            // output: S = excess / (1 - target_input_weight * 1%).
+            uint256 inputWeight = Math.mulDiv(zeroForOne ? u0 : u1, 1e18, u0 + u1);
+            excess = Math.mulDiv(excess, 1e18, 1e18 - inputWeight / 100);
+        }
         amountIn = Math.mulDiv(excess, 10 ** oracle.tokenDecimals(input), oracle.price(input));
         if (amountIn > (zeroForOne ? amount0 : amount1)) revert InvalidState();
         minimumOut = Math.mulDiv(oracle.quote(input, output, amountIn), 10000 - c.maxSlippageBps, 10000);

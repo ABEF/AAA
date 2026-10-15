@@ -23,11 +23,14 @@ contract VaultPolicyMock {
     function needsRebalance(uint256) external view returns(bool){return need;}
     function target(bytes32) external pure returns(int24,int24,uint160){return(-600,600,uint160(1<<96));}
     function validatePrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
+    function validateExitPrice(bytes32) external pure returns(uint160){return uint160(1<<96);}
     function compoundPlan(uint256,uint256,uint256) external view returns(bool,uint256,uint256){return(true,swapAmount,swapAmount);}
     function swapPlan(bytes32,uint256,uint256) external pure returns(bool,uint256,uint256){return(false,0,0);}
 }
 contract VaultLiquidityMock is ERC721 {
-    MockToken public t0;MockToken public t1;uint256 public next=1;bool public failMint;uint256 public spendBps=9900;
+    // Default positive fixture deploys every supplied unit. Tests that exercise
+    // idle/rounding losses select 9900 explicitly instead of taxing all entries.
+    MockToken public t0;MockToken public t1;uint256 public next=1;bool public failMint;uint256 public spendBps=10000;
     uint256 public fee0;uint256 public fee1;
     uint256 public repricingLP;uint256 public repricingGain;
     mapping(uint256=>uint256) public a0;mapping(uint256=>uint256) public a1;
@@ -129,6 +132,7 @@ abstract contract PooledVaultFixture is Test {
 }
 contract VaultAccountingTest is PooledVaultFixture {
     function testActivationLeavesExactAttributedIdle() public {
+        venue.setSpendBps(9900);
         uint256 id=activatedPosition();Position memory p=_record(id);assertEq(nft.ownerOf(id),alice);assertEq(venue.ownerOf(p.lpTokenId),address(vault));
         assertEq(p.idle0,10);assertEq(vault.totalIdle(address(t0)),10);assertEq(venue.a0(p.lpTokenId)+p.idle0,1000);
         assertTrue(membership.eligible(id));assertEq(vault.contributionUSD(id),2000e18);
@@ -144,10 +148,12 @@ contract VaultAccountingTest is PooledVaultFixture {
         assertEq(_record(id).poolId,bytes32(0));assertEq(_record(id).depositUSD,0);assertFalse(membership.eligible(id));
     }
     function testDonationNeverBecomesAnotherNFTPrincipal() public {
+        venue.setSpendBps(9900);
         t0.mint(address(vault),777);uint256 id=activatedPosition();assertEq(_record(id).idle0,10);assertEq(vault.totalIdle(address(t0)),10);
         assertEq(t0.balanceOf(address(vault)),787);
     }
     function testFeesNotPrincipal() public {
+        venue.setSpendBps(9900);
         uint256 id=activatedPosition();venue.setFees(100,100);vault.collectFees(_bucket(),block.timestamp+100);
         assertEq(_record(id).idle0,10);assertEq(rewards.claimable(id,address(t0)),90);assertEq(fees.compoundBalance(_bucket(),address(t0)),5);
     }
@@ -190,7 +196,7 @@ contract VaultAccountingTest is PooledVaultFixture {
     }
     function testDormantMintForwardsPriceWithoutLiquidityOrRewards() public {
         uint256 beforeTreasury=treasury.balance;uint256 beforeOwner=alice.balance;uint256 id=_mint(alice);Position memory p=_record(id);
-        assertEq(vault.MINT_PRICE(),0.05 ether);assertEq(vault.MIN_ACTIVATION_LP_USD(),100e18);
+        assertEq(vault.MINT_PRICE(),0.05 ether); // Gross minimum is exercised by the 99/100 input tests.
         assertEq(vault.mintProceedsRecipient(),treasury);assertEq(treasury.balance,beforeTreasury+0.05 ether);
         assertEq(alice.balance,beforeOwner-0.05 ether);assertEq(address(vault).balance,0);assertEq(nft.ownerOf(id),alice);
         assertEq(uint256(p.status),uint256(PositionStatus.Dormant));assertEq(p.poolId,bytes32(0));assertEq(p.lpTokenId,0);
@@ -273,9 +279,10 @@ contract VaultAccountingTest is PooledVaultFixture {
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,49,50,1,block.timestamp+100);
         assertEq(uint256(_record(id).status),uint256(PositionStatus.Dormant));assertEq(t0.balanceOf(alice),100000);
     }
-    function testActivationRejects100InputWhenActualLPIsBelow100() public {
+    function testActivationRejects100InputWhenActualLPIsBelow99() public {
+        venue.setSpendBps(9900);
         uint256 id=_mint(alice);
-        // The mock deploys 99%; enough for the idle cap, but only $98 actual LP.
+        // Integer rounding deploys only $98; the $100 input requires at least $99 LP.
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,50,50,1,block.timestamp+100);
         assertEq(uint256(_record(id).status),uint256(PositionStatus.Dormant));assertFalse(membership.eligible(id));
         assertEq(vault.totalIdle(address(t0)),0);assertEq(t0.balanceOf(alice),100000);assertEq(venue.next(),1);

@@ -13,6 +13,24 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     enum Status { None, Scheduled, Cancelled, Bridged, Completed }
     struct Plan { uint256 bucketId; bytes32 routeId; uint64 earliest; Status status; uint64 epoch; bytes32 poolId; bytes32 snapshot; }
     struct Location { uint64 epoch; uint256 chainId; address vault; }
+    /// @dev Exact timelocked close authorization, denominated in raw tokens.
+    /// The operation keeps all assets in Vault; it does not bridge or withdraw.
+    struct ParkingRequest {
+        uint256 bucketId;
+        bytes32 poolId;
+        uint256 lpTokenId;
+        uint256 totalShares;
+        uint256 depositUSD;
+        uint64 custodyEpoch;
+        uint64 nonce;
+        address token0;
+        address token1;
+        uint128 minimum0;
+        uint128 minimum1;
+        uint256 deadline;
+        bytes32 reviewHash;
+    }
+    mapping(uint256 => uint64) public parkingNonce;
     mapping(bytes32 => Plan) public plans;
     mapping(uint256 => bytes32) public activePlan;
     mapping(uint256 => uint64) public custodyEpoch;
@@ -28,6 +46,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     event Bridged(bytes32 indexed migrationId, bytes32 transportId);
     event Completed(bytes32 indexed migrationId, uint256 indexed bucketId);
     event LocationRecorded(uint256 indexed bucketId, uint64 indexed epoch, uint256 chainId, address vault);
+    event ParkingExecuted(bytes32 indexed requestHash, uint256 indexed bucketId, uint64 nonce, uint256 principal0, uint256 principal1);
+    event ParkingInvalidated(uint256 indexed bucketId, uint64 nextNonce);
     constructor(address controller) ZZZModule(controller) {}
 
     function _snapshot(BridgeMessage memory m) private pure returns (bytes32) {
@@ -50,30 +70,30 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         m.migrationId = migrationId;
         m.migrationEpoch = epoch;
         m.previousChain = block.chainid;
-        m.previousVault = access.module(Ids.VAULT);
-        m.previousReceiver = access.module(Ids.RECEIVER);
+        m.previousVault = _moduleVault();
+        m.previousReceiver = _moduleReceiver();
         m.homeChain = p.homeChain;
         m.homeVault = p.homeVault;
         m.homeReceiver = p.homeReceiver;
         m.depositUSD = p.depositUSD;
         m.canonicalToken0 = p.homeToken0;
         m.canonicalToken1 = p.homeToken1;
-        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        IZZZVault vault = IZZZVault(_moduleVault());
         m.homePoolId = vault.homePoolId(id);
         m.totalShares = vault.bucketTotalShares(id);
     }
     function propose(uint256 id, bytes32 routeId) external onlyGovernance returns (bytes32 migrationId) {
-        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        IZZZVault vault = IZZZVault(_moduleVault());
         Position memory p = vault.group(id);
-        (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(routeId);
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(p.poolId);
-        if (!active || !IZZZBridgeRouter(access.module(Ids.TRANSPORT)).canSend(routeId) ||
-            p.status != PositionStatus.Active || p.homeChain != vault.canonicalChainId() ||
+        (Route memory r, bool active) = IZZZRoutes(_moduleRoutes()).get(routeId);
+        PoolConfig memory c = IZZZPools(_modulePools()).accounting(p.poolId);
+        if (!active || !IZZZBridgeRouter(_moduleTransport()).canSend(routeId) ||
+            (p.status != PositionStatus.Active && p.status != PositionStatus.Parked) || p.homeChain != vault.canonicalChainId() ||
             p.homeVault == address(0) || p.homeReceiver == address(0) || p.depositUSD == 0 ||
             p.homeToken0 == address(0) || p.homeToken1 == address(0) || vault.bucketTotalShares(id) == 0 ||
             vault.homePoolId(id) == bytes32(0) ||
             id != uint256(keccak256(abi.encode(p.homeChain, p.homeVault, vault.homePoolId(id)))) ||
-            r.sourceChain != block.chainid || r.sourceVault != address(vault) || r.sourceReceiver != access.module(Ids.RECEIVER) ||
+            r.sourceChain != block.chainid || r.sourceVault != address(vault) || r.sourceReceiver != _moduleReceiver() ||
             r.sourceToken0 != c.key.currency0 || r.sourceToken1 != c.key.currency1 || activePlan[id] != bytes32(0)) revert InvalidConfiguration();
         uint64 epoch = custodyEpoch[id] + 1;
         migrationId = keccak256(abi.encode(block.chainid, address(this), ++sequence, id, epoch, routeId));
@@ -95,11 +115,11 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         _deadline(deadline);
         Plan storage plan = plans[migrationId];
         if (plan.status != Status.Scheduled || block.timestamp < plan.earliest) revert InvalidState();
-        (Route memory r, bool active) = IZZZRoutes(access.module(Ids.ROUTES)).get(plan.routeId);
-        if (!active || !IZZZBridgeRouter(access.module(Ids.TRANSPORT)).canSend(plan.routeId)) revert InvalidConfiguration();
-        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        (Route memory r, bool active) = IZZZRoutes(_moduleRoutes()).get(plan.routeId);
+        if (!active || !IZZZBridgeRouter(_moduleTransport()).canSend(plan.routeId)) revert InvalidConfiguration();
+        IZZZVault vault = IZZZVault(_moduleVault());
         Position memory p = vault.group(plan.bucketId);
-        if (p.status != PositionStatus.Active || p.poolId != plan.poolId || custodyEpoch[plan.bucketId] + 1 != plan.epoch ||
+        if ((p.status != PositionStatus.Active && p.status != PositionStatus.Parked) || p.poolId != plan.poolId || custodyEpoch[plan.bucketId] + 1 != plan.epoch ||
             _snapshot(_principal(plan.bucketId, plan.routeId, plan.epoch, migrationId, p)) != plan.snapshot) revert InvalidState();
         uint256 before0 = IERC20(r.sourceToken0).balanceOf(address(this));
         uint256 before1 = IERC20(r.sourceToken1).balanceOf(address(this));
@@ -114,12 +134,12 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         // Harvest during release can increase fee allocations. Freeze the actual
         // departure accounting only after release, while the proposal's cohort
         // snapshot has already been checked above.
-        IZZZFees fees = IZZZFees(access.module(Ids.FEES));
+        IZZZFees fees = IZZZFees(_moduleFees());
         (m.allocatedIndividual0, m.allocatedCollective0) = fees.allocated(plan.bucketId, m.canonicalToken0);
         (m.allocatedIndividual1, m.allocatedCollective1) = fees.allocated(plan.bucketId, m.canonicalToken1);
         plan.snapshot = _snapshot(m);
         departures[migrationId] = m;
-        address adapter = access.module(Ids.BRIDGE);
+        address adapter = _moduleBridge();
         IERC20(r.sourceToken0).forceApprove(adapter, amount0);
         IERC20(r.sourceToken1).forceApprove(adapter, amount1);
         bytes32 receipt = IZZZBridge(adapter).send{value: msg.value}(m);
@@ -146,13 +166,13 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     function registerImport(BridgeMessage calldata message) external onlyModule(Ids.RECEIVER) {
         BridgeMessage memory m = message;
-        (Route memory r,) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId);
+        (Route memory r,) = IZZZRoutes(_moduleRoutes()).get(m.principalRouteId);
         _identity(m, r);
-        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        IZZZVault vault = IZZZVault(_moduleVault());
         Position memory p = vault.group(m.bucketId);
         if (m.kind != MessageKind.Principal || m.routeId != m.principalRouteId ||
             r.destinationChain != block.chainid || r.destinationVault != address(vault) ||
-            r.destinationReceiver != access.module(Ids.RECEIVER) || m.homeChain != vault.canonicalChainId() ||
+            r.destinationReceiver != _moduleReceiver() || m.homeChain != vault.canonicalChainId() ||
             m.migrationEpoch <= custodyEpoch[m.bucketId] || (p.status != PositionStatus.None && p.status != PositionStatus.Remote) ||
             p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0) revert InvalidState();
         if (p.status == PositionStatus.Remote && (p.homeChain != m.homeChain || p.homeVault != m.homeVault ||
@@ -175,16 +195,16 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
             if (existing != hash) revert InvalidState();
             return; // An exact historical retry cannot regress the current location.
         }
-        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        IZZZVault vault = IZZZVault(_moduleVault());
         Position memory p = vault.group(m.bucketId);
-        if (m.homeChain != block.chainid || m.homeVault != address(vault) || m.homeReceiver != access.module(Ids.RECEIVER) ||
+        if (m.homeChain != block.chainid || m.homeVault != address(vault) || m.homeReceiver != _moduleReceiver() ||
             p.homeChain != m.homeChain || p.homeVault != m.homeVault || p.homeReceiver != m.homeReceiver ||
             p.depositUSD != m.depositUSD || vault.homePoolId(m.bucketId) != m.homePoolId ||
             vault.bucketTotalShares(m.bucketId) != m.totalShares || (p.status != PositionStatus.Outbound && p.status != PositionStatus.Remote)) revert InvalidState();
         Location memory old = locations[m.bucketId];
         if (old.epoch == 0) { old.chainId = p.homeChain; old.vault = p.homeVault; }
         if (m.migrationEpoch != old.epoch + 1 || m.previousChain != old.chainId || m.previousVault != old.vault) revert InvalidState();
-        (Route memory r,) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId);
+        (Route memory r,) = IZZZRoutes(_moduleRoutes()).get(m.principalRouteId);
         _identity(m, r);
         if (r.destinationChain != destinationChain || r.destinationVault != destinationVault) revert InvalidState();
         if (r.sourceChain == m.homeChain && r.sourceVault == m.homeVault) {
@@ -204,7 +224,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     function confirm(BridgeMessage calldata message, uint256 chainId, address destinationVault) external onlyModule(Ids.RECEIVER) {
         BridgeMessage memory m = message;
-        (Route memory r,) = IZZZRoutes(access.module(Ids.ROUTES)).get(m.principalRouteId);
+        (Route memory r,) = IZZZRoutes(_moduleRoutes()).get(m.principalRouteId);
         _identity(m, r);
         if (m.kind != MessageKind.Acknowledgement || m.amount0 != 0 || m.amount1 != 0 ||
             m.individual != 0 || m.collective != 0 || chainId != r.destinationChain || destinationVault != r.destinationVault) revert InvalidState();
@@ -214,12 +234,12 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
                 plan.snapshot != _snapshot(m)) revert InvalidState();
             if (plan.status == Status.Completed) return;
             if (plan.status != Status.Bridged) revert InvalidState();
-            if (m.homeChain == block.chainid && m.homeVault == access.module(Ids.VAULT)) {
+            if (m.homeChain == block.chainid && m.homeVault == _moduleVault()) {
                 _recordCanonical(m, chainId, destinationVault, true);
             } else {
-                Position memory p = IZZZVault(access.module(Ids.VAULT)).group(m.bucketId);
+                Position memory p = IZZZVault(_moduleVault()).group(m.bucketId);
                 if (p.status != PositionStatus.Outbound || custodyEpoch[m.bucketId] != plan.epoch) revert InvalidState();
-                IZZZVault(access.module(Ids.VAULT)).confirmMigration(m.bucketId, chainId, destinationVault);
+                IZZZVault(_moduleVault()).confirmMigration(m.bucketId, chainId, destinationVault);
             }
             plan.status = Status.Completed;
             delete activePlan[plan.bucketId];
@@ -229,7 +249,53 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         }
     }
     function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) external onlyGovernance live {
-        IZZZVault(access.module(Ids.VAULT)).movePool(id, newPool, minimumLiquidity, deadline);
+        if (activePlan[id] != bytes32(0)) revert InvalidState();
+        IZZZVault(_moduleVault()).movePool(id, newPool, minimumLiquidity, deadline);
+    }
+    /// @notice Close a paused local LP without consulting price or sequencer feeds.
+    /// Guardian/governance pause freezes new capital and upkeep before the exact
+    /// snapshot is scheduled through the normal governance timelock.
+    function park(ParkingRequest calldata request) external onlyGovernance nonReentrant {
+        _deadline(request.deadline);
+        IZZZVault vault = IZZZVault(_moduleVault());
+        Position memory beforePosition = vault.group(request.bucketId);
+        PoolConfig memory config = IZZZPools(_modulePools()).accounting(request.poolId);
+        if (!access.isSealed() || !access.paused() || request.reviewHash == bytes32(0) ||
+            (request.minimum0 == 0 && request.minimum1 == 0) || request.lpTokenId == 0 ||
+            activePlan[request.bucketId] != bytes32(0) || request.nonce != parkingNonce[request.bucketId] ||
+            request.custodyEpoch != custodyEpoch[request.bucketId] ||
+            beforePosition.status != PositionStatus.Active || beforePosition.poolId != request.poolId ||
+            beforePosition.lpTokenId != request.lpTokenId || beforePosition.depositUSD != request.depositUSD ||
+            beforePosition.locationChain != block.chainid || beforePosition.locationVault != address(vault) ||
+            request.totalShares == 0 || vault.bucketTotalShares(request.bucketId) != request.totalShares ||
+            config.key.currency0 != request.token0 || config.key.currency1 != request.token1) revert InvalidState();
+        // Nonce consumes before external calls; failure rolls back nonce and all
+        // venue/fee/custody state. No old idle or compound counts as close output.
+        ++parkingNonce[request.bucketId];
+        vault.park(request.bucketId, request.deadline);
+        Position memory afterPosition = vault.group(request.bucketId);
+        uint256 principal0 = afterPosition.idle0 - beforePosition.idle0;
+        uint256 principal1 = afterPosition.idle1 - beforePosition.idle1;
+        if (afterPosition.status != PositionStatus.Parked || afterPosition.lpTokenId != 0 ||
+            principal0 < request.minimum0 || principal1 < request.minimum1) revert Slippage();
+        emit ParkingExecuted(keccak256(abi.encode(block.chainid, address(this), address(vault), request)),
+            request.bucketId, request.nonce, principal0, principal1);
+    }
+    function invalidateParking(uint256 id) external onlyGovernance {
+        ++parkingNonce[id];
+        emit ParkingInvalidated(id, parkingNonce[id]);
+    }
+    function resume(uint256 id, bytes32 poolId, uint128 minimumLiquidity, uint256 deadline)
+        external onlyGovernance live nonReentrant {
+        if (activePlan[id] != bytes32(0)) revert InvalidState();
+        IZZZVault(_moduleVault()).resume(id, poolId, minimumLiquidity, deadline);
     }
     // No per-NFT calls or timeout-based principal release. A timeout is NOT proof of bridge cancellation.
+    function _moduleVault() private view returns (address) { return access.module(Ids.VAULT); }
+    function _moduleReceiver() private view returns (address) { return access.module(Ids.RECEIVER); }
+    function _moduleRoutes() private view returns (address) { return access.module(Ids.ROUTES); }
+    function _modulePools() private view returns (address) { return access.module(Ids.POOLS); }
+    function _moduleTransport() private view returns (address) { return access.module(Ids.TRANSPORT); }
+    function _moduleFees() private view returns (address) { return access.module(Ids.FEES); }
+    function _moduleBridge() private view returns (address) { return access.module(Ids.BRIDGE); }
 }

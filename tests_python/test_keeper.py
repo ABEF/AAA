@@ -181,7 +181,7 @@ class KeeperTests(unittest.TestCase):
             self.k.cycle()
         return view,submit
     def test_legacy_rewards_delivered_after_principal_departure(self):
-        for status in (2,3,4):
+        for status in (2,3,4,6):
             with self.subTest(status=status):
                 view,submit=self.reward_cycle(status)
                 submit.assert_called_once_with('fees','bridgeRewards(uint256,address,bytes32)',
@@ -207,6 +207,7 @@ class PoolKeeperTests(unittest.TestCase):
         self.paused=False;self.inbox=0;self.inbox_pending=[0,0]
         self.inbox_fees=int(B,16);self.inbox_bucket=7
         self.reserves={B:0,C:0}
+        self.accounting_words=None;self.native_wrapper=int(B,16)
         self.original_call=self.rpc.call
         self.rpc.call=self.contract_call
     enable_test_signer=KeeperTests.enable_test_signer
@@ -234,6 +235,8 @@ class PoolKeeperTests(unittest.TestCase):
             self.current_bucket=args[0]
             return '0x'+''.join(f'{n:064x}' for n in self.group_words)
         elif selector==calldata('get(bytes32)',self.pool)[:10]:return '0x'+''.join(f'{n:064x}' for n in self.config_words)
+        elif selector==calldata('accounting(bytes32)',self.pool)[:10]:return '0x'+''.join(f'{n:064x}' for n in (self.accounting_words or self.config_words))
+        elif selector==calldata('nativeAsset(bytes32)',self.pool)[:10]:value=self.native_wrapper
         elif selector==calldata('compoundBalance(uint256,address)',7,B)[:10]:value=self.reserves['0x'+f'{args[1]:040x}']
         else:
             for signature,value in values.items():
@@ -287,6 +290,52 @@ class PoolKeeperTests(unittest.TestCase):
         self.invoke().assert_not_called()
     def test_active_group_missing_lp_never_submits(self):
         self.ids=[7];self.group_words[1]=0
+        self.invoke().assert_not_called()
+    def test_parked_group_never_runs_lp_upkeep_even_with_reserves(self):
+        self.ids=[7];self.group_words[7]=6;self.group_words[1]=0
+        self.reserves[C]=100
+        self.invoke().assert_not_called()
+        calls=[p[0]['data'][:10] for method,p in self.rpc.calls if method=='eth_call']
+        for signature,args in (('needsRebalance(uint256)',(7,)),
+                               ('compoundBalance(uint256,address)',(7,C))):
+            self.assertNotIn(calldata(signature,*args)[:10],calls)
+    def test_parked_group_with_live_lp_fails_before_any_receiver_submission(self):
+        self.ids=[7];self.group_words[7]=6
+        self.inbox=int(A,16);self.inbox_pending=[100,0]
+        self.invoke().assert_not_called()
+    def test_parked_group_keeps_accounting_and_provenance_validation(self):
+        self.ids=[7];self.group_words[7]=6;self.group_words[1]=0
+        self.inbox=int(A,16);self.inbox_pending=[100,0]
+        for field,wrong in ((0,0),(8,0),(13,0),(13,2),(14,int(C,16)),(14,1<<200)):
+            with self.subTest(field=field):
+                before=self.group_words[field];self.group_words[field]=wrong
+                self.invoke().assert_not_called();self.group_words[field]=before
+        self.accounting_words=list(self.config_words);self.accounting_words[0]=int(A,16)
+        self.invoke().assert_not_called()
+    def test_parked_pending_rewards_sync_while_paused_or_unpaused(self):
+        self.ids=[7];self.group_words[7]=6;self.group_words[1]=0
+        self.inbox=int(A,16);self.inbox_pending=[100,0]
+        for paused in (False,True):
+            with self.subTest(paused=paused):
+                self.paused=paused
+                self.invoke().assert_called_once_with('fees','syncExternal(uint256)',(7,),'external_rewards:7')
+    def test_native_pool_uses_wrapped_accounting_asset_without_resorting(self):
+        self.ids=[7];self.rebalance=False
+        self.config_words[0]=0;self.config_words[2]=0;self.config_words[4]=123
+        self.pool='0x'+keccak256(bytes.fromhex(''.join(f'{n:064x}' for n in self.config_words[:5]))).hex()
+        self.group_words[0]=int(self.pool,16)
+        self.accounting_words=list(self.config_words);self.accounting_words[0]=int(B,16)
+        self.reserves[B]=17
+        submit=self.invoke()
+        submit.assert_called_once_with('compounder','compound(uint256,uint128,uint256)',(7,1,self.rpc.now+180),'compound:7')
+    def test_wrong_native_wrapper_or_accounting_policy_never_submits(self):
+        self.ids=[7];self.config_words[0]=0
+        self.pool='0x'+keccak256(bytes.fromhex(''.join(f'{n:064x}' for n in self.config_words[:5]))).hex()
+        self.group_words[0]=int(self.pool,16)
+        self.accounting_words=list(self.config_words);self.accounting_words[0]=int(B,16)
+        self.native_wrapper=int(C,16)
+        self.invoke().assert_not_called()
+        self.native_wrapper=int(B,16);self.accounting_words[2]+=1
         self.invoke().assert_not_called()
     def test_compound_reads_actual_local_pool_tokens(self):
         self.ids=[7];self.rebalance=False

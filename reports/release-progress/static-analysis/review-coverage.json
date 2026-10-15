@@ -1,0 +1,145 @@
+{
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "security_audit_pass": false,
+  "source_json_sha256": "16cdea0d9130cb4c46d1e142ca1b65e2f5f235805a8d1eb23a5ee7665f27d799",
+  "findings": 210,
+  "production_sources": 28,
+  "impacts": {
+    "High": 34,
+    "Medium": 70,
+    "Low": 72,
+    "Informational": 29,
+    "Optimization": 5
+  },
+  "dispositions": {
+    "false_positive": 121,
+    "accepted_risk": 56,
+    "informational": 33
+  },
+  "unresolved": 0,
+  "fragment_counts": {
+    "high-review.json": 34,
+    "medium-review.json": 70,
+    "root-review.json": 106
+  },
+  "reviewed_indices": 210,
+  "narrow_write_bundle_entries": 17,
+  "evidence_files_checked": 48,
+  "sources_match_analysis": true,
+  "historical_review_sha256": "33ec34265d33a31a8232a55602c8f727b4ef672a38e02504cd0cfe51e9b060fc",
+  "candidate_review_sha256": "8a7c492cc32f28d03db67225f0da54d9b98f0353f225856ddba8d994a1c3bfde",
+  "errors": [],
+  "scope": "Internal current-source review; not an independent audit or production approval",
+  "analyzer": "Slither 0.11.6",
+  "analysis_complete": true,
+  "compiler_ast_bindings_verified": true,
+  "current_source_review": "reports/production/slither-review.json",
+  "historical_review": "reports/history/slither-review-pre-release-progress.json",
+  "sources_sha256_lf": {
+    "foundry.toml": "7d0537454ed4fbd912ec355fee4f1ccf457e6ce1105855cf6f1844c552eb0f91",
+    "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+    "slither.config.json": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f",
+    "src/ZZZAccessController.sol": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+    "src/ZZZActivationAssets.sol": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+    "src/ZZZBridgeAdapter.sol": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZFeeController.sol": "8820071b1d99b38f27be076223c2441e2725ab8a467de8421b932fcab8b27b9c",
+    "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+    "src/ZZZMembership.sol": "048ba350e6cda58436ac3c1478aca2806a7209c43a87feed50e625e6a256f33b",
+    "src/ZZZMigration.sol": "56a539e97da2f54626cc0f3e19b6b2f3a0aed24bb71d715a2558221a2c7a8890",
+    "src/ZZZMigrationReceiver.sol": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+    "src/ZZZMigrationRegistry.sol": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+    "src/ZZZNFT.sol": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+    "src/ZZZNFTMetadata.sol": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+    "src/ZZZOracle.sol": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+    "src/ZZZPoolRegistry.sol": "46fe124ad54772790049a0b86d062771cda665572b24f866e05d3d8c418d8a48",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "src/ZZZRewards.sol": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+    "src/ZZZRoyaltyRewards.sol": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+    "src/ZZZStrategy.sol": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+    "src/ZZZVault.sol": "1acb2e945184606c25bd5995959cd1b8c917967033220ab41db37fdc38c7968e",
+    "src/base/ZZZModule.sol": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+    "src/interfaces/IZZZ.sol": "562028fbb05ef593dcf63d11b5b857452963e50b7aa605a937c442a590343d0d",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZTypes.sol": "0ca97dd1e79eedd2320e1e29b9a046ce1ddeb2a0cbc6539634394d2e5a65bc5b"
+  },
+  "canonical_review_sha256": "e77e91329d26650c269bb3eec4e223ebc0d7e1ce09c7ca95e678d6aff81b2dcd",
+  "no_compile_replay": {
+    "pass": true,
+    "findings": 210,
+    "source_json_sha256": "b91d029dfd3aecbb22cd0b7f37de6300c757f51a1a971b16a7a6ccbfffa64a49"
+  },
+  "matcher_unit_tests": {
+    "passed": 43,
+    "failed": 0,
+    "command": "python -m unittest tests_python.test_slither_review -v"
+  },
+  "fresh_report_mutation_tests": [
+    {
+      "name": "changed finding expression",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 0e444ecd4ab69bd762f3d0297c63b898b1dbdf907259c246e05abc3c5bd7d910"
+    },
+    {
+      "name": "changed finding severity",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: c76ba05ffbd96c4a9b9014a170133f0f584e8ba5b64e0962ed78efb1a3337646"
+    },
+    {
+      "name": "changed finding confidence",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 86c619123097268d1fe0a53678867bd78b5b866cfcfd9e5a0e7cc394993542ab"
+    },
+    {
+      "name": "missing finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "duplicate finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Duplicate analyzer fingerprints"
+    },
+    {
+      "name": "new finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unreviewed finding: eb406932d4fa54383285623a51f2dc7e387d0f7ed6195b61ca763e7906486094"
+    },
+    {
+      "name": "unresolved review",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unresolved finding: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "missing rationale",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Missing rationale: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "source binding changed",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Reviewed content changed: src/ZZZVault.sol"
+    }
+  ],
+  "external_evidence": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/release-progress-20261015/static-analysis/",
+  "external_replay_evidence": "C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/release-progress-20261015/static-analysis-replay/",
+  "raw_json_tracked_in_git": false,
+  "compilation_invoked_by_analysis": false,
+  "slither_read_only_forge_config_invoked": true,
+  "canonical_review_newlines": "LF; JSON review entries unchanged from assembled candidate"
+}

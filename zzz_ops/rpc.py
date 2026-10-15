@@ -14,7 +14,7 @@ class WrongChain(RpcError): pass
 class Rpc:
     READ_METHODS = frozenset({
         'eth_chainId','eth_blockNumber','eth_call','eth_estimateGas','eth_gasPrice',
-        'eth_getBlockByNumber','eth_getBlockByHash','eth_getLogs','eth_getCode',
+        'eth_getBlockByNumber','eth_getBlockByHash','eth_getLogs','eth_getCode','eth_getStorageAt',
         'eth_getTransactionByHash','eth_getTransactionReceipt','eth_getTransactionCount',
         'eth_getBalance','eth_feeHistory','eth_maxPriorityFeePerGas','web3_clientVersion',
     })

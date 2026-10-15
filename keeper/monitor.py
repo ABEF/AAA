@@ -484,7 +484,7 @@ class Keeper:
         fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
         if len(fields) != 15: raise RpcError('Unexpected vault group ABI')
         status = int(fields[7],16)
-        if status not in (1,2,3,4): return fields,[]
+        if status not in (1,2,3,4,6): return fields,[]
         if int(fields[0],16) == 0 or int(fields[5],16) >= 1 << 160 or int(fields[6],16) >= 1 << 64:
             raise RpcError('Malformed shared-pool state')
         if int(fields[8],16) == 0 or int(fields[13],16) == 0:
@@ -497,11 +497,26 @@ class Keeper:
             raise RpcError('Pool occupancy does not match discovered bucket')
         if status == 1 and int(fields[1],16) == 0:
             raise RpcError('Active shared pool has no LP position')
+        if status == 6 and int(fields[1],16) != 0:
+            raise RpcError('Parked shared pool still has an LP position')
+        if status == 6 and (int(fields[13],16) != self.chain or
+                self._address_word(fields[14]) != self.contracts['vault']):
+            raise RpcError('Parked principal is not in this local vault')
         config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
         if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != pool_id:
             raise RpcError('Pool configuration does not match its identity')
-        tokens = [self._address_word(config[0]),self._address_word(config[1])]
-        if int(tokens[0],16) >= int(tokens[1],16): raise RpcError('Invalid pool asset ordering')
+        if int(config[0],16) >= int(config[1],16): raise RpcError('Invalid venue currency ordering')
+        accounting = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('accounting(bytes32)',pool_id)))
+        if len(accounting) != 14 or accounting[1:] != config[1:]:
+            raise RpcError('Accounting configuration differs from the venue policy')
+        tokens = [self._address_word(accounting[0]),self._address_word(accounting[1])]
+        if int(config[0],16) == 0:
+            wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
+            if len(wrapper) != 1 or self._address_word(wrapper[0]) != tokens[0] or tokens[0] == tokens[1]:
+                raise RpcError('Native accounting wrapper mismatch')
+        elif accounting[0] != config[0]:
+            raise RpcError('ERC20 accounting asset differs from the venue')
+        # Normalized native assets retain venue orientation; never re-sort WETH.
         return fields,tokens
 
     def _sync_external(self, bucket: int) -> bool:
@@ -541,7 +556,7 @@ class Keeper:
             try:
                 fields,tokens = self._bucket(bucket)
                 status = int(fields[7],16)
-                if status not in (1,2,3,4): continue
+                if status not in (1,2,3,4,6): continue
                 # Canonical funded revenue and claims remain available during
                 # pauses and while the physical LP is away. No principal moves.
                 if item.get('sync_external_rewards',True) and self._sync_external(bucket): return

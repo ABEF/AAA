@@ -20,10 +20,11 @@ def proof():return {'status':'passed','commit':COMMIT,'sha256':'22'*32,'referenc
 def nft_inventory(chain):
     """Synthetic coordinator/helper observations, never claims about live availability."""
     nft=chain['modules']['nft']['address'];controller=chain['modules']['access']['address'];cid=chain['chain_id']
-    royalty=addr(cid*1000+700);renderer=addr(cid*1000+701);coordinator=addr(cid*1000+702)
+    royalty=addr(cid*1000+700);renderer=addr(cid*1000+701);coordinator=addr(cid*1000+702);router=addr(cid*1000+703)
     key_hash='0x'+'77'*32
     artwork_base=chain['constructor']['nft_base_uri'];asset_manifest='55'*32
     bindings={'nft':nft,'royaltyRewards':royalty,'metadataRenderer':renderer,'royaltyReceiver':royalty,'royaltyBps':500,
+        'claimRouter':router,'claimRouterNft':nft,'claimRouterController':controller,'claimRouterRoyalties':royalty,'MAX_CLAIMS':32,
         'artworkBaseURI':artwork_base,
         'MAX_SUPPLY':1000,'mintedCount':2,'nextToFinalize':2,'remainingToReveal':999,'rarityRemaining':[599,300,100],
         'randomnessConfigured':True,'randomnessCoordinator':coordinator,'keyHash':key_hash,'subscriptionId':7,
@@ -32,6 +33,8 @@ def nft_inventory(chain):
             'review_evidence':dict(proof(),independent=True)},
         'metadata_renderer':{'address':renderer,'runtime_hash':HASH,'immutable':True,'controller':controller,
             'review_evidence':dict(proof(),independent=True)},
+        'claim_router':{'address':router,'runtime_hash':HASH,'immutable':True,'nft':nft,'controller':controller,
+            'royalties':royalty,'max_claims':32,'review_evidence':dict(proof(),independent=True)},
         'observed_chain_id':cid,'observed_block_number':chain['observed_block']['number'],
         'observed_block_hash':chain['observed_block']['hash'],'observed_bindings':bindings,
         'artwork_publication':{'base_uri':artwork_base,'manifest_sha256':asset_manifest,'asset_count':len(GATE.ARTWORK_FILES),'asset_paths':list(GATE.ARTWORK_FILES),
@@ -52,7 +55,8 @@ def fixture():
     manifest={'schema_version':4,'accounting_model':'shared-pools-v2','release_commit':COMMIT,'canonical_chain_id':1,
         'migration':{'enabled':True,'future_onboarding_evidence':proof(),'disabled_scope_approval':proof()},
         'economics':{'reward_model':'conventional_lp_fees','mint_price_wei':'50000000000000000',
-            'minimum_activation_usd18':str(100*10**18),'fee_split_bps':[8000,1000,500,500],
+            'minimum_activation_usd18':str(100*10**18),'activation_minimum_basis':'gross_source_input',
+            'maximum_entry_loss_bps':100,'network_gas_separate':True,'fee_split_bps':[8000,1000,500,500],
             'collective_weights':'equal_activated_nfts','maximum_membership_dust_raw':19},
         'nft_policy':{'max_supply':1000,'rarity_distribution':'fixed_quotas_without_replacement',
             'rarity_randomization':'vrf_mint_order_without_replacement','rarity_counts':[600,300,100],
@@ -98,12 +102,29 @@ def fixture():
             'governance':{'multisig':addr(base+400),'proposers':[addr(base+400)],'executors':[GATE.ZERO],
                 'signers':[addr(base+401),addr(base+402)],'threshold':2,'keeper':addr(base+403),'guardian':addr(base+404),
                 'timelock_seconds':172800,'delay_fixed':True,'post_seal_routes_timelocked':True,
-                'migration_delay_seconds':172800,'sealed':True,'bootstrap':GATE.ZERO,'roles_and_seal_evidence':proof()},
+                'migration_delay_seconds':172800,'sealed':True,'bootstrap':GATE.ZERO,'roles_and_seal_evidence':proof(),
+                'parking_rehearsal':dict(proof(),independent=True,oracle_independent_close_tested=True,
+                    close_only_minimums_tested=True,timelock_pause_nonce_tested=True,
+                    oracle_guarded_resume_tested=True,parked_rewards_and_migration_tested=True)},
             'constructor':{'canonical_chain_id':1,'mint_proceeds_recipient':addr(base+405),'nft_base_uri':ARTWORK_BASE,
                 'maximum_buyback_usd18':str(1000*10**18),'recipient_payment_evidence':proof(),'adapter_transport':modules['transport']['address']},
             'bridge_router':{'immutable_module':True,'upgradeable':False,'policy_count':2,'registered_policy_ids':[],'outbound_policy_count':1,'observation_evidence':proof()},
             'providers':[provider],'bucket_reservations':[],
-            'dependencies':dependencies,'tokens':tokens,'sequencer':{'mode':'not_applicable','address':GATE.ZERO,'review':proof()},'pools':[pool]})
+            'dependencies':dependencies,'tokens':tokens,'sequencer':{'mode':'not_applicable','address':GATE.ZERO,
+                'observed_oracle_feed':GATE.ZERO,'active_policy_id':'0x'+'00'*32,'policy_count':0,'review':proof()},'pools':[pool]})
+        activation_address=addr(base+704)
+        manifest['chains'][-1]['activation_assets']={'address':activation_address,'runtime_hash':HASH,'immutable':True,
+            'registry':modules['pools']['address'],'controller':controller,'observed_registry_helper':activation_address,
+            'observed_chain_id':cid,'observed_block_number':5000,'observed_block_hash':HASH,
+            'review_evidence':dict(proof(),independent=True,add_disable_reenable_tested=True,
+                active_policies_reviewed=True,no_claim_or_exit_dependency=True)}
+        entry_address=addr(base+705)
+        manifest['chains'][-1]['activation_entry']={'address':entry_address,'runtime_hash':HASH,'immutable':True,
+            'registry':modules['pools']['address'],'controller':controller,'activation_assets':activation_address,
+            'observed_registry_entry':entry_address,'observed_chain_id':cid,'observed_block_number':5000,'observed_block_hash':HASH,
+            'review_evidence':dict(proof(),independent=True,original_source_value_tested=True,
+                aggregate_loss_budget_tested=True,callback_owner_context_reviewed=True,
+                typed_routes_reviewed=True,complete_route_history_reviewed=True)}
         if cid==1:manifest['chains'][-1]['nft_inventory']=nft_inventory(manifest['chains'][-1])
     origin=manifest['chains'][0]
     bucket=int(GATE.identity([(1,'uint256'),(origin['modules']['vault']['address'],'address'),
@@ -178,6 +199,8 @@ def external_fixture():
 def onward_fixture():
     manifest=fixture();third=copy.deepcopy(manifest['chains'][1]);third['chain_id']=3
     third['providers'][0]['integration_evidence']['chain_id']=3
+    third['activation_assets']['observed_chain_id']=3
+    third['activation_entry']['observed_chain_id']=3
     third['bucket_reservations'][0]['observed_chain_id']=3;manifest['chains'].append(third)
     for source,destination in ((2,3),(3,2),(3,1)):
         policy=copy.deepcopy(manifest['transport_policies'][0])
@@ -219,6 +242,47 @@ class ProductionConfigTests(unittest.TestCase):
         self.config=disabled_fixture();result=self.result()
         self.assertEqual(result['issues'],[]);self.assertTrue(result['ready']);self.assertFalse(result['migration_enabled'])
         self.assertFalse(result['deployment_authorized'])
+    def test_activation_helper_inventory_requires_fixed_registry_binding_and_observation(self):
+        for field,value,code in (('registry',addr(999),'activation.binding'),
+                ('controller',addr(999),'activation.binding'),('immutable',False,'activation.binding'),
+                ('observed_registry_helper',addr(999),'activation.observation'),
+                ('observed_block_hash','0x'+'99'*32,'activation.observation')):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][0]['activation_assets'][field]=value;self.blocked(code)
+    def test_activation_helper_policy_and_recovery_review_is_required(self):
+        for field in ('independent','add_disable_reenable_tested','active_policies_reviewed','no_claim_or_exit_dependency'):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][0]['activation_assets']['review_evidence'][field]=False
+                self.blocked('activation.review')
+    def test_activation_helper_cannot_receive_mint_proceeds_or_alias_nft_helper(self):
+        chain=self.config['chains'][0];chain['constructor']['mint_proceeds_recipient']=chain['activation_assets']['address']
+        self.blocked('mint.custody')
+        self.config=fixture();chain=self.config['chains'][0]
+        chain['nft_inventory']['claim_router']['address']=chain['activation_assets']['address'];self.blocked('nft.helper')
+    def test_atomic_entry_requires_exact_immutable_registry_source_and_context_review(self):
+        for field,value,code in (('registry',addr(999),'entry.binding'),('controller',addr(999),'entry.binding'),
+                ('activation_assets',addr(999),'entry.binding'),('immutable',False,'entry.binding'),
+                ('observed_registry_entry',addr(999),'entry.observation'),
+                ('observed_block_hash','0x'+'99'*32,'entry.observation')):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][0]['activation_entry'][field]=value;self.blocked(code)
+        for field in ('independent','original_source_value_tested','aggregate_loss_budget_tested',
+                'callback_owner_context_reviewed','typed_routes_reviewed','complete_route_history_reviewed'):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][0]['activation_entry']['review_evidence'][field]=False
+                self.blocked('entry.review')
+    def test_recovery_requires_complete_independent_parking_resume_and_claim_rehearsal(self):
+        for field in ('independent','oracle_independent_close_tested','close_only_minimums_tested',
+                'timelock_pause_nonce_tested','oracle_guarded_resume_tested','parked_rewards_and_migration_tested'):
+            with self.subTest(field=field):
+                self.config=fixture();self.config['chains'][0]['governance']['parking_rehearsal'][field]=False
+                self.blocked('recovery.review')
+    def test_atomic_entry_cannot_alias_other_helpers_or_mint_proceeds(self):
+        chain=self.config['chains'][0];chain['activation_entry']['address']=chain['activation_assets']['address'];self.blocked('entry.binding')
+        self.config=fixture();chain=self.config['chains'][0];chain['constructor']['mint_proceeds_recipient']=chain['activation_entry']['address']
+        self.blocked('mint.custody')
+        self.config=fixture();chain=self.config['chains'][0];chain['nft_inventory']['claim_router']['address']=chain['activation_entry']['address']
+        self.blocked('nft.helper')
     def test_disabled_migration_does_not_waive_existing_release_gates(self):
         for key in GATE.EVIDENCE:
             with self.subTest(key=key):
@@ -439,8 +503,15 @@ class ProductionConfigTests(unittest.TestCase):
         feed.update(updated_at=NOW,answered_in_round=6);self.blocked('oracle.stale')
     def test_wrong_feed_denomination_or_sequencer_grace_blocks(self):
         chain=self.config['chains'][0];feed=chain['tokens'][0]['feed'];feed['denomination']='ETH';self.blocked('oracle.denomination');feed['denomination']='USD'
-        chain['sequencer'].update(mode='feed',address=addr(999),runtime_hash=HASH,answer=0,started_at=NOW-3600);self.blocked('sequencer.down')
+        chain['sequencer'].update(mode='feed',address=addr(999),runtime_hash=HASH,answer=0,started_at=NOW-3600,
+            observed_oracle_feed=addr(999),active_policy_id=HASH,policy_count=1,
+            observed_policy={'source':addr(999),'expected_code_hash':HASH,'review_hash':HASH,'bootstrap_admission':True},
+            replacement_review=dict(proof(),independent=True,failed_source_replacement_tested=True,zero_bypass_disabled=True))
+        self.blocked('sequencer.down')
         chain['sequencer']['started_at']=NOW-3601;self.assertTrue(self.result()['ready'])
+        chain['sequencer']['replacement_review']['zero_bypass_disabled']=False;self.blocked('sequencer.recovery')
+        chain['sequencer']['replacement_review']['zero_bypass_disabled']=True
+        chain['sequencer']['observed_policy']['expected_code_hash']='0x'+'99'*32;self.blocked('sequencer.binding')
     def test_uniswap_dependency_mismatch_and_burn_semantics_block(self):
         dependencies=self.config['chains'][0]['dependencies'];dependencies['position_manager']['pool_manager']=addr(99);self.blocked('uniswap.binding')
         dependencies['zzz']['burn_model']='send_to_dead_address';self.blocked('burn.unsupported')
@@ -539,6 +610,12 @@ class NFTProductionConfigTests(unittest.TestCase):
     def test_mint_recipient_cannot_be_the_royalty_receiver(self):
         self.config['chains'][0]['constructor']['mint_proceeds_recipient']=self.inventory()['royalty_rewards']['address']
         self.blocked('nft.helper')
+    def test_claim_router_binding_limit_and_independent_review_are_required(self):
+        for field,value in (('nft',addr(99)),('controller',addr(99)),('royalties',addr(99)),('max_claims',33)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['claim_router'][field]=value;self.blocked('nft.binding')
+        self.config=disabled_fixture();self.inventory()['observed_bindings']['claimRouter']=addr(99);self.blocked('nft.binding')
+        self.config=disabled_fixture();self.inventory()['claim_router']['review_evidence']['independent']=False;self.blocked('nft.review')
     def test_royalty_tokens_need_not_be_lp_assets_but_require_their_own_admission(self):
         inventory=self.inventory()['royalty_assets'];inventory['asset_count']=2;inventory['assets'].append(self.royalty_token())
         self.assertNotIn(inventory['assets'][1]['address'],[token['address'] for token in self.config['chains'][0]['tokens']])
@@ -686,6 +763,10 @@ class ExternalRewardConfigTests(unittest.TestCase):
         self.inbox()['address']=self.config['chains'][0]['constructor']['mint_proceeds_recipient']
         self.blocked('reward.custody')
         self.config=external_fixture();self.inbox()['address']=self.config['chains'][0]['nft_inventory']['royalty_rewards']['address']
+        self.blocked('reward.custody')
+        self.config=external_fixture();self.inbox()['address']=self.config['chains'][0]['activation_assets']['address']
+        self.blocked('reward.custody')
+        self.config=external_fixture();self.inbox()['address']=self.config['chains'][0]['activation_entry']['address']
         self.blocked('reward.custody')
     def test_mutable_receiver_or_unreviewed_getters_rejected(self):
         self.inbox()['upgradeable']=True;self.blocked('reward.mutable')

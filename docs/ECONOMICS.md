@@ -4,9 +4,11 @@ Current accepted rules: $100 activation, 80/10/5/5 revenue, equal activated-NFT 
 
 ## Permanent capital
 
-The 0.05 ETH mint charge is forwarded to the immutable mint recipient and never becomes LP or rewards. Initial activation requires $100 of marginal oracle-valued deployed LP, excluding idle and incumbent assets; losses/slippage may require more than $100 input. Pool limits still apply. Permanent additions remain attributed to the same NFT.
+The 0.05 ETH mint charge is forwarded to the immutable mint recipient and never becomes LP or rewards. The accepted activation input minimum is **$100 in value**, with **at least 99% deployed as marginal LP** after execution; network gas is separate. The same 1% execution/undeployed limit applies to additions. Incumbent LP, idle and compound assets cannot subsidize the new contribution. Stricter pool execution bounds still apply. The immutable [atomic Entry](ACTIVATION_ENTRY.md) authenticates exact original-source ingress, current-owner intent and measured USD value through typed conversion into the Vault. Its short-lived context prevents using post-conversion value to reset the 1% budget. Actual production feeds/routes and combined Pons execution still need qualification.
 
 Shares are nonredeemable. They are priced against the pool's current principal NAV, including attributed idle and designated compounding reserves. Earlier owner fees are checkpointed before new shares. Swaps can reprice incumbent LP; this gain/loss belongs to incumbents, and execution losses are charged to the net new contribution. Compounding and market changes do not create collective memberships. Transfers preserve shares and unclaimed rewards for the current holder.
+
+[Governed paused parking](CUSTODY_PARKING.md) closes LP into bucket-attributed Vault balances without holder redemption or a USD price read. Independently reviewed raw-token minimums bound only actual LP-close proceeds. NFT shares, equal membership, royalty eligibility and funded claims persist; no ongoing LP revenue is fabricated while closed. Resume restores ordinary valuation/deployment guards, and parked migration retains authenticated funding and remote-liability barriers.
 
 ## Collected LP and creator funding
 

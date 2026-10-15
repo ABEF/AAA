@@ -1,0 +1,267 @@
+{
+  "test/NativePoolFork.t.sol:NativePoolForkTest": {
+    "testSelectedNativeAccountingKeepsRealPoolKey()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 195426
+        }
+      }
+    },
+    "testSelectedNativeBothSwapDirectionsUseNetOutput()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1190946
+        }
+      }
+    },
+    "testSelectedNativeChangedRuntimeDisablesAdmissionAndAccounting()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 126292
+        }
+      }
+    },
+    "testSelectedNativeCoreZeroFeeDoesNotConferPonsRevenue()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1552671
+        }
+      }
+    },
+    "testSelectedNativeDisabledSourceVaultMigrationRetainsPriceGuard()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 18644926
+        }
+      }
+    },
+    "testSelectedNativeMintIncreaseAndClose()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1871980
+        }
+      }
+    },
+    "testSelectedNativeMutablePayoutSettingsDoNotTrapCustody()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1299434
+        }
+      }
+    },
+    "testSelectedNativeOneBucketRebalancePreservesBothNFTShares()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 24449445
+        }
+      }
+    },
+    "testSelectedNativeParkedResumeRequiresFreshFeedsAndPreservesAttachedShares()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 26607720
+        }
+      }
+    },
+    "testSelectedNativeParkingMinimaExcludeCompoundAndUnattributedVaultDonations()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 24542626
+        }
+      }
+    },
+    "testSelectedNativePausedParkingWorksWithStaleFeedsAndBrokenCreatorInbox()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 24737025
+        }
+      }
+    },
+    "testSelectedNativePrefundsCannotBecomePrincipalOrFees()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1657102
+        }
+      }
+    },
+    "testSelectedNativeProtocolFeeObservationDoesNotTrapCustody()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1289248
+        }
+      }
+    },
+    "testSelectedNativeReopenAtAnotherRangeKeepsPoolIdentity()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1892728
+        }
+      }
+    },
+    "testSelectedNativeReportedWrapperImplementationChangeFailsClosed()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 145984
+        }
+      }
+    },
+    "testSelectedNativeReviewedRenouncedWrapperAdminRestoresCustody()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1459325
+        }
+      }
+    },
+    "testSelectedNativeReviewedWrapperUpgradeRestoresSameAssetAndCustody()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1607510
+        }
+      }
+    },
+    "testSelectedNativeStaleOracleBlocksVaultExitUntilReviewedFeedReplacement()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 19406692
+        }
+      }
+    },
+    "testSelectedNativeTwoNFTsShareOneLPAndFundedRewards()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 27150909
+        }
+      }
+    },
+    "testSelectedNativeWrapperAdminOwnershipChangeFailsClosed()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 127222
+        }
+      }
+    }
+  },
+  "test/UniswapV4Fork.t.sol:UniswapV4ForkTest": {
+    "testActualETHUSDFeedIsPositiveAndCurrentAtPinnedBlock()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 33251
+        }
+      }
+    },
+    "testActualTokenTransferBurnAndNativeWrapRoundTrip()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 107192
+        }
+      }
+    },
+    "testCurrentRegistryRejectsSelectedNativeAndHookedPool()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 43130
+        }
+      }
+    },
+    "testPinnedSelectedPoolIdentityAndZeroCoreFees()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 52420
+        }
+      }
+    },
+    "testRealNativeAndZZZPaymentsFundNFTClaimsWithoutChangingLP()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 19034147
+        }
+      }
+    },
+    "testRealPositionMintIncreaseAndApprovalReset()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1054181
+        }
+      }
+    },
+    "testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 21076664
+        }
+      }
+    },
+    "testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 22723395
+        }
+      }
+    },
+    "testRealSwapFeeCollectionAndPositionBurn()": {
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 1110403
+        }
+      }
+    }
+  }
+}

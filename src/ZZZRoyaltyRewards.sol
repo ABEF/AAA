@@ -8,6 +8,7 @@ import {ExactToken} from "./libraries/ExactToken.sol";
 
 interface IZZZRoyaltyNFTOwner {
     function ownerOf(uint256 id) external view returns (address);
+    function claimRouter() external view returns (address);
 }
 
 /// @notice Separate, funded NFT-sale royalty ledger. LP trading fees never enter
@@ -155,7 +156,17 @@ contract ZZZRoyaltyRewards is ReentrancyGuard {
 
     /// @notice Claims remain available independently of operational pauses.
     function claim(uint256 id, address asset) external nonReentrant returns (uint256 amount) {
-        if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) != msg.sender) revert Unauthorized();
+        return _claim(id, asset, msg.sender);
+    }
+
+    /// @notice Router-only forwarding, always paid directly to the current owner.
+    function claimFor(uint256 id, address asset, address owner) external nonReentrant returns (uint256 amount) {
+        if (msg.sender != IZZZRoyaltyNFTOwner(nft).claimRouter()) revert Unauthorized();
+        return _claim(id, asset, owner);
+    }
+
+    function _claim(uint256 id, address asset, address owner) private returns (uint256 amount) {
+        if (IZZZRoyaltyNFTOwner(nft).ownerOf(id) != owner) revert Unauthorized();
         if (!isAsset[asset]) revert InvalidConfiguration();
         _sync(asset);
         _checkpoint(id, asset);
@@ -165,16 +176,16 @@ contract ZZZRoyaltyRewards is ReentrancyGuard {
         accounted[asset] -= amount;
         if (asset == address(0)) {
             if (amount != 0) {
-                (bool success,) = payable(msg.sender).call{value: amount}("");
+                (bool success,) = payable(owner).call{value: amount}("");
                 if (!success) revert NativeTransferFailed();
             }
         } else {
-            ExactToken.push(asset, msg.sender, amount);
+            ExactToken.push(asset, owner, amount);
         }
         // A receiver can return native ETH during its callback; that new inbox
         // payment remains pending. Existing backing must never decrease further.
         if (_balance(asset) < accounted[asset]) revert InvalidState();
-        emit Claimed(id, asset, msg.sender, amount);
+        emit Claimed(id, asset, owner, amount);
     }
 
     /// @dev Includes actual pending receipts at the CURRENT membership weight.

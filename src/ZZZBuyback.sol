@@ -26,7 +26,7 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         IZZZFees(access.module(Ids.FEES)).releaseBuyback(token, amount);
         uint256 acquired = amount;
         if (token != zzz) {
-            PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
+            PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
             bool zeroForOne = c.key.currency0 == token && c.key.currency1 == zzz;
             if (!zeroForOne && !(c.key.currency1 == token && c.key.currency0 == zzz)) revert InvalidConfiguration();
             uint256 minimum = Math.mulDiv(oracle.quote(token, zzz, amount), 10000 - c.maxSlippageBps, 10000);

@@ -1,0 +1,716 @@
+{
+  "date": "2026-10-16",
+  "generated_utc": "2026-10-15T22:36:34.299993+00:00",
+  "status": "undeployed_uncommitted_development_candidate",
+  "production_approved": false,
+  "independent_external_audit": false,
+  "public_transactions": false,
+  "website_changed": false,
+  "solidity": {
+    "passed": 488,
+    "failed": 0,
+    "skipped": 2,
+    "total": 490,
+    "suites": 37,
+    "skips": "Opt-in mainnet-fork setUp checks intentionally disabled for offline run; actual fork run is recorded separately.",
+    "log_sha256": "a75879334e5ffcf9528450d02e6ac2ad9b9e6f7a8da32e5b90890de52fd0aaec",
+    "source_sha256": {
+      "src/base/ZZZModule.sol": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+      "src/interfaces/IZZZ.sol": "0d23f02ba6c93d226070a6e28c379d3c0ee6ac0f38b82399a37f5fb278a78b9e",
+      "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "src/libraries/ZZZTypes.sol": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+      "src/ZZZAccessController.sol": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+      "src/ZZZActivationAssets.sol": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "src/ZZZActivationEntry.sol": "247502848ccb42c6a4d73632edeebff12b8c8993a3f160ee5b3c1f012f4199ed",
+      "src/ZZZBridgeAdapter.sol": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+      "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "src/ZZZBuyback.sol": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+      "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+      "src/ZZZFeeController.sol": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+      "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "src/ZZZMembership.sol": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "src/ZZZMigration.sol": "76da59cea8d77f77a5d6757b692541cf2ea87a50cada01b8ece745057bd24068",
+      "src/ZZZMigrationReceiver.sol": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "src/ZZZMigrationRegistry.sol": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "src/ZZZNFT.sol": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+      "src/ZZZNFTMetadata.sol": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "src/ZZZOracle.sol": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "src/ZZZPoolRegistry.sol": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "src/ZZZRewards.sol": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "src/ZZZRoyaltyRewards.sol": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "src/ZZZStrategy.sol": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "src/ZZZVault.sol": "8e4fc7db780b671e993823adf7a0a1cdfa886f2d11f205d74e7b78f890163616",
+      "test/AccessController.t.sol": "d427044df4952061bc2d19a205df66039f24e70f52cc1d5c3ca3f6cae19f633f",
+      "test/ActivationAssets.t.sol": "cb3a6ca8f769c5397e0fbaae51cfc26acf6ec78040f5823c2e25d3598f6ced24",
+      "test/ActivationEntry.t.sol": "05cc8bfd3fb9b3c88d820d6b803f3c6873d549e933b0ddbd5bc76f69c5070966",
+      "test/AtomicActivationIntegration.t.sol": "4e3f7fb27b632ed118b531f0d2b661321d5b30e16b89a614a87138e33bf4534c",
+      "test/BridgeRouterSecurity.t.sol": "f312b4eb14ea95ee712e7f3bdf6ba3260869db0b282926da8ce4d7e544e0445d",
+      "test/BridgeSecurity.t.sol": "d49e48af7177a650e3424ab5c47c2fe0594e83bc1f4daa84495cab23edd66880",
+      "test/BucketCapacity.t.sol": "e7cddea34caeaafbaa29d79e678c198efe5c5c54a72949a2df4dc429d5f89725",
+      "test/ClaimRouter.t.sol": "e04d5577e8f18169ed096d19dffe97a28fbb201cac0c6569831f13c338b7e2bf",
+      "test/CustodyParking.t.sol": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+      "test/EntryExecutionBudget.t.sol": "b2850bee5ce23fa615d6b2d0e043845c1fe613275ad03a62984605765600c83a",
+      "test/ExternalRewards.t.sol": "099fe25a584cc0dbe2b0d8a4a16209dd85151c6ff9b84bc5203f2d8b4b188580",
+      "test/FutureChainMigration.t.sol": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+      "test/GlobalMembershipDust.t.sol": "4ac8b2df7d9e9d75368f8025daf53278c6a8dd4d8303992471981e85875aebc4",
+      "test/LiquidityEncoding.t.sol": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+      "test/mocks/Mocks.sol": "5ab54c2b11a6e1e99caeb4725f1fc6cb9434abe2d7c6e06ad1d74e3d204b6d33",
+      "test/mocks/MockVRF.sol": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "test/mocks/RouterMocks.sol": "cf8bf1a7386f937255197cedc65e0033d3192911f5a9bd30787807cbe0915324",
+      "test/MultiHopMigration.t.sol": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+      "test/NativeLiquidity.t.sol": "ae18253e35b61a42b18bef69d35ee757ac1bf3696f55e52f66fe33ec0a7efb99",
+      "test/NativePoolFork.t.sol": "5d38a60f3914943e9e9686cd2bcad450daaad54ce36966b0ce286b1fca41c9bd",
+      "test/NativeWrapperPolicy.t.sol": "b4941ccb001214f63b9f9399f66bb0b35b03a9df82c64602c9ed2018a371bbb2",
+      "test/NFTMetadata.t.sol": "fca1307db2977c87fb34e37285b2d831e6d9d50594ceba5c3391773e03e25046",
+      "test/NFTRoyalties.t.sol": "3e8f3bc99639857bf8a19b0c43405b886f16c9dd32ae5b63fa2cde74382df3af",
+      "test/OracleAndTransfers.t.sol": "7bd955fe543fa9c9a81ba0deeeec2b42c275521b4852fb1185b9b80e3fa24bec",
+      "test/ParkedRewards.t.sol": "6be0644e6006d3ba24ddcc802c8b636eca5f9b28f6b5c2b1ff7c8acbf5339fec",
+      "test/PooledEntry.t.sol": "6551b2341d1037e8c24de75d85212774ab9fc622d120a86fe1f4aff9e64e2ea8",
+      "test/PooledRewards.t.sol": "bd9b9617163818a6cd0584d81192b65b14542508d734bfbed1ef36e5ea3bea84",
+      "test/PooledSecurity.t.sol": "76c92e964ef238867148a793bd48320b2a19587b2819236686217d15b22fad53",
+      "test/ProductionGas.t.sol": "6b7a86570e98bdca439690aa121ad6d626e43fdb6651a7731915a0a0ca64f7d6",
+      "test/ProductionInvariants.t.sol": "87ccc50a0a89aa818a3f5d251b68693f73394da637bdec2a86a8416dc65631aa",
+      "test/ReceiverAndRemoteFees.t.sol": "a9ab9389c19f7162f056ceee940e43a31697b4afb05fab9f6ac8122b7ebd4c0e",
+      "test/RewardsAndFees.t.sol": "e5971044fa62366c3194bb3173e0ac88cb24b62123588584d126a0def364ca13",
+      "test/SequencerPolicy.t.sol": "c4adfc89c0f6ba09b56081923820d141a50a70eccd75b1472798452080d69a1c",
+      "test/UniswapV4Fork.t.sol": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+      "test/VaultAccounting.t.sol": "137c91e5dc7b5464c75dc291487a79cc7f8e17257ef3f86e65db6de53a5166ac",
+      "script/DeployCore.s.sol": "69624bdd1f05ecf5bd5005ec1918dcd0c44a4c6c44cc8b349c0c24cf376828fe"
+    },
+    "executed_suite_artifact_bindings": [
+      {
+        "source": "test/CustodyParking.t.sol",
+        "contract": "CustodyParkingTimelockTest",
+        "tests": 1,
+        "artifact_sha256": "5800d84339daacc92dae099c6cd81356d833f67a3d6e8787335775da3ad01028",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/NativeWrapperPolicy.t.sol",
+        "contract": "NativeWrapperPolicyTest",
+        "tests": 7,
+        "artifact_sha256": "af263e1f30ad3cc8254687847ae95ca043dc564a0c9eac293dcd8fb197a957a1",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/LiquidityEncoding.t.sol",
+        "contract": "LiquidityEncodingTest",
+        "tests": 10,
+        "artifact_sha256": "55787f1070a3228c76035800417598b29238191c5ea8524f6a4fcaa589a86aae",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ParkedRewards.t.sol",
+        "contract": "ParkedRewardsTest",
+        "tests": 6,
+        "artifact_sha256": "0b1473440ce03abebe5d51de09a6830ff6ea6b390fa001e42e98db8ab0683383",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/AccessController.t.sol",
+        "contract": "AccessControllerTest",
+        "tests": 9,
+        "artifact_sha256": "d17f78293b1b7b75e57548fd2f9204abff9f3f1e3d543286af2ee107c276f451",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ParkedRewards.t.sol",
+        "contract": "ParkedSatelliteRewardsTest",
+        "tests": 1,
+        "artifact_sha256": "cbedc3a454bfb0c1407886fa5930cbba83d200fb4f9fb7ce3593cb9a6b25f9bd",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/MultiHopMigration.t.sol",
+        "contract": "MultiHopMigrationRegistryTest",
+        "tests": 8,
+        "artifact_sha256": "b3176f2a8a114eaed011af07588eb8454d8cd0496a123682ff81783b4ffedf18",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/NativeLiquidity.t.sol",
+        "contract": "NativeLiquidityTest",
+        "tests": 23,
+        "artifact_sha256": "8232a6557891081a68fca018cee725a5ebe2d6f89cadd4607b43f4d4d01c20b8",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/NativePoolFork.t.sol",
+        "contract": "NativePoolForkTest",
+        "tests": 1,
+        "artifact_sha256": "bbac868cd2583807da6118184cc59b2a09f2ebd6c630e073c62052c7f76da791",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ActivationAssets.t.sol",
+        "contract": "ActivationAssetsTest",
+        "tests": 19,
+        "artifact_sha256": "56cf8ca5370458a4902b71acc220a0ef01a24287e255d683be0371dd659fc2b8",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/EntryExecutionBudget.t.sol",
+        "contract": "EntryExecutionBudgetTest",
+        "tests": 5,
+        "artifact_sha256": "b7d9e2a760b1de1c2759656696d4b4a2363bd66b3f54918cd3797bc8969f91c9",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/MultiHopMigration.t.sol",
+        "contract": "MultiHopMigrationTest",
+        "tests": 15,
+        "artifact_sha256": "91215b99dde57b842d4c7e9bfef1e1d69ca46f9e52ec2a642b3944d741530e3b",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/AtomicActivationIntegration.t.sol",
+        "contract": "AtomicActivationIntegrationTest",
+        "tests": 9,
+        "artifact_sha256": "9f62ade6492d4436a28a89941c0411009e062e755a8aec2caeab06c9984d68e1",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "ba0c2bf230323a98.json",
+            "sha256": "b5b8ded3d3dc10da896737e09579107bbae9fefc87c4deaadfa3d487ff1247da"
+          }
+        ]
+      },
+      {
+        "source": "test/OracleAndTransfers.t.sol",
+        "contract": "OracleAndTransfersTest",
+        "tests": 13,
+        "artifact_sha256": "5d458c29fe33b04c861c96a637f90cfe41ac5053cdad6ced1f1408d3be1a7687",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/GlobalMembershipDust.t.sol",
+        "contract": "GlobalMembershipDustTest",
+        "tests": 5,
+        "artifact_sha256": "749a109fc9a61c590745e77c27781e12c01fe0ed900964d6f801f07ca7c7e377",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/FutureChainMigration.t.sol",
+        "contract": "FutureChainMigrationTest",
+        "tests": 12,
+        "artifact_sha256": "1f355048f9e3fdbc40580a37762b35bb12f855d50d9defc273ddd774915c1fdc",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ReceiverAndRemoteFees.t.sol",
+        "contract": "RemoteFeeReserveTest",
+        "tests": 8,
+        "artifact_sha256": "3e7f22d8e2895dbc66754d07c4a2412fc5fbd18b9318c78c9ce2a34fc5fed884",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/CustodyParking.t.sol",
+        "contract": "CustodyParkingTest",
+        "tests": 13,
+        "artifact_sha256": "02f311e80257dd99f2282b68ebfef35f22ed467f372b0fbca3bab89f16de8e5f",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/BridgeSecurity.t.sol",
+        "contract": "BridgeSecurityTest",
+        "tests": 10,
+        "artifact_sha256": "14e34c750652c469cc1a92f6c641a214f7c1705488b64a6db1ff7ce8cc8adc32",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/SequencerPolicy.t.sol",
+        "contract": "SequencerPolicyTest",
+        "tests": 12,
+        "artifact_sha256": "66dfc04b7695f7c8835b694ce1090b8406bc03ce11a6a5c5a17f6b9135c11e15",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/UniswapV4Fork.t.sol",
+        "contract": "UniswapV4ForkTest",
+        "tests": 1,
+        "artifact_sha256": "9ef74af3cd7c42ec70a35f1c5d58d94a61204cbad749ae9709c7d937476348f6",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/BucketCapacity.t.sol",
+        "contract": "BucketCapacityTest",
+        "tests": 4,
+        "artifact_sha256": "8f481f3ec94c9f020b23df9f3613dd962461e3a164cdfbf4b3f161ee9f05c11e",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/NFTMetadata.t.sol",
+        "contract": "NFTMetadataTest",
+        "tests": 26,
+        "artifact_sha256": "5b6e5427fdb981602b8b57735d7f92f84c37b966b78324adb25f2e14dcf482ff",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/VaultAccounting.t.sol",
+        "contract": "VaultAccountingTest",
+        "tests": 35,
+        "artifact_sha256": "cf7c408c012b9cc8b4d62a51598bb08b6ff753a0c8fbbbddbd160488a1ca59a3",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ReceiverAndRemoteFees.t.sol",
+        "contract": "MigrationReceiverSnapshotTest",
+        "tests": 18,
+        "artifact_sha256": "4b9e02471099a392eba32c357326d85f989f4a11c03bcc615cf7d79228a82736",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ActivationEntry.t.sol",
+        "contract": "ActivationEntryTest",
+        "tests": 28,
+        "artifact_sha256": "77fa78a59d9ae4d532cc45489e0906918a9687a8007419d2e9af24657deeb796",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/NFTRoyalties.t.sol",
+        "contract": "NFTRoyaltiesTest",
+        "tests": 22,
+        "artifact_sha256": "afe98d76fc54ad192007a9bc15cb590215da786d26dae7caaf6c01654e937936",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ClaimRouter.t.sol",
+        "contract": "ClaimRouterTest",
+        "tests": 22,
+        "artifact_sha256": "3f4f145569153dbe5f0167eb8a8738a4c04384b0b05b16e6113149da971a42a3",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/PooledRewards.t.sol",
+        "contract": "PooledRewardsTest",
+        "tests": 18,
+        "artifact_sha256": "f74e4f1c684d1bd85206dec4a5b908b6e8d261cc449e553bc843ccce24dfa6c0",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/BridgeRouterSecurity.t.sol",
+        "contract": "BridgeRouterSecurityTest",
+        "tests": 38,
+        "artifact_sha256": "3755d30044d0b0bd778706959ff64e48660a9ba6e8c3398d32e72dfce80fb78a",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/RewardsAndFees.t.sol",
+        "contract": "RewardsAndFeesTest",
+        "tests": 22,
+        "artifact_sha256": "545139e7c9524f345759e2b35bcfd570d8ac469a704389ddf78a423029e91244",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ProductionGas.t.sol",
+        "contract": "ProductionGasTest",
+        "tests": 4,
+        "artifact_sha256": "0d4a5af53431f1af237d40dad864a4193fbbf9880e2d187d5a3da92cd72142c1",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ExternalRewards.t.sol",
+        "contract": "ExternalFundingInvariantTest",
+        "tests": 2,
+        "artifact_sha256": "5f820cab7febdb616ce597526e8ed7bcde082455d422c465aac3088d8e4e379b",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ProductionInvariants.t.sol",
+        "contract": "ProductionAccountingInvariantTest",
+        "tests": 2,
+        "artifact_sha256": "44d113a13994de5ff48af4faddb070e8bca9d4892e620157299973e389276b6b",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/PooledEntry.t.sol",
+        "contract": "PooledEntryTest",
+        "tests": 4,
+        "artifact_sha256": "8fcd93be0eb23a5486ce658f2276c116ff8b1b74cbdf8e90a6b1804f5556f5c9",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/ExternalRewards.t.sol",
+        "contract": "ExternalRewardsTest",
+        "tests": 43,
+        "artifact_sha256": "75ae4876a8d9247e28e1431fa149b9697ddf2b0904f147570c29c57cba17a273",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      },
+      {
+        "source": "test/PooledSecurity.t.sol",
+        "contract": "PooledSecurityTest",
+        "tests": 14,
+        "artifact_sha256": "b42421dff75ee53e0fa110c2be9f5fed9d885c4f4fbf123f1a5b62c787f6c820",
+        "matching_current_closure_compiler_units": [
+          {
+            "build_info": "fd4f375be9a4c36a.json",
+            "sha256": "be7e5d7c5473f3bbfd3dbf26b7beb8de0812b447059e65c072e3e6df101b4879"
+          }
+        ]
+      }
+    ]
+  },
+  "portable_python": {
+    "utc": "2026-10-15T22:23:25.931606+00:00",
+    "python": "3.12.14",
+    "inventory": 492,
+    "tests_run": 488,
+    "failures": [],
+    "errors": [],
+    "skipped": [],
+    "unix_cases_reserved_for_ubuntu": [
+      "test_state.StateTests.test_atomic_roundtrip",
+      "test_state.StateTests.test_concurrent_lock_rejected",
+      "test_state.StateTests.test_lock_released",
+      "test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file"
+    ],
+    "successful": true
+  },
+  "size_gates": {
+    "objects": 23,
+    "sources": 29,
+    "runtime_limit": 24576,
+    "initcode_limit": 49152,
+    "constructor_arguments_excluded": true
+  },
+  "static_analysis": {
+    "findings": 220,
+    "reviewed": 220,
+    "unresolved_review_entries": 0,
+    "dispositions": {
+      "false_positive": 128,
+      "accepted_risk": 53,
+      "informational": 39
+    },
+    "independent_audit": false
+  },
+  "initial_test_expectation_repair": {
+    "initial_passed": 487,
+    "initial_failed": 1,
+    "initial_expected_offline_skips": 2,
+    "initial_log_sha256": "8c3d8de5777357058b482bd6db6bab83c7df5d5cf87ac3f08d2d732b2bef6365",
+    "changed_file": "test/AtomicActivationIntegration.t.sol",
+    "kind": "Test expectation corrected; no production behavior change",
+    "explanation": "80e18 owner revenue indexed over99e18 shares rounds down by one raw unit. Total funded claim is90e18-1; the added assertions verify the final raw unit remains both a ledger liability and token-backed. Final full suite rerun passes."
+  },
+  "compiler_normalized_vendored_dependencies": {
+    "lib/forge-std/src/Base.sol": {
+      "disk_sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "compiler_lf_content_sha256": "29297a56d2b1692d4439545b93ed62890da7e9e1060c03005b43151af7984bf0",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdAssertions.sol": {
+      "disk_sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "compiler_lf_content_sha256": "d4c89eec70d267dec6188461fbc74d3dc8c47e518d176a23417533a232ed9780",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdChains.sol": {
+      "disk_sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "compiler_lf_content_sha256": "09a88ace5bc037f4a805c7ae071abf675ce802c8b36810287cd327b7d035fb81",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdCheats.sol": {
+      "disk_sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "compiler_lf_content_sha256": "29af42f9d670fd22e9fc3ebe3c2da194471e93e210361c41d3d26ef04e9dca28",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdConstants.sol": {
+      "disk_sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "compiler_lf_content_sha256": "6c785abd2fb9d42560f867d8e43e729c55f5bda2c06e5ddae27b17e301de4f04",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdError.sol": {
+      "disk_sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "compiler_lf_content_sha256": "82ca17e33a03775e95b4612bd604a8732c73b2982a0278d214e06c68a886dc11",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdInvariant.sol": {
+      "disk_sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "compiler_lf_content_sha256": "f572e991cfe874844b3b75a540e38e2161c29b5d9ab1635a3c4f1a16c548f987",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "disk_sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "compiler_lf_content_sha256": "0211b47e93dbeb6a7de6112470a77137038ed73b79b015847f013e49fcd7511f",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdMath.sol": {
+      "disk_sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "compiler_lf_content_sha256": "f04fc0616741563eb32d66c11af7fdca55a7202221e14282268c7be851fc63ab",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdStorage.sol": {
+      "disk_sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "compiler_lf_content_sha256": "c6dbb05b29be5bcbfabf06ea46b64fe9fbdb7542681795614ca3dee248214215",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdStyle.sol": {
+      "disk_sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "compiler_lf_content_sha256": "324c2b0e100e88edbdb75f60f8a4c42f056f8d618ae5f56b1c404df64e8280a7",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdToml.sol": {
+      "disk_sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "compiler_lf_content_sha256": "de3fb35af79a1fd2a2de9bc4ca7866e4102f9d3fbf11f66f3fe82696412d47e2",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/StdUtils.sol": {
+      "disk_sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "compiler_lf_content_sha256": "c64a4d5023e6d46884734b8cb1b0f424bab26f0ccc920779b58d2f841c4506ae",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/Test.sol": {
+      "disk_sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "compiler_lf_content_sha256": "b1b48a4dfbd65fed186163326dc8870316679f64a195aa18050f83657d2df39c",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "disk_sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "compiler_lf_content_sha256": "9068805b59ac1d0ea03a8fa1f15ae49c094e0c6c852a2500e0dd112f264b2cb1",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/console.sol": {
+      "disk_sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "compiler_lf_content_sha256": "896c5a5a5c235cb11a39876d430e1fc2c621e7950c4637ca58251b84b053f178",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/console2.sol": {
+      "disk_sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "compiler_lf_content_sha256": "3bbe2e07ec53d8cf9c091667fe10234fcb3e2b45eab2c711002188806f46e779",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/interfaces/IMulticall3.sol": {
+      "disk_sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "compiler_lf_content_sha256": "6620d9c5ea2e2291440e1dcce5072f948b7ec4d65075876a0d0ac9267d3342e3",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    },
+    "lib/forge-std/src/safeconsole.sol": {
+      "disk_sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "compiler_lf_content_sha256": "ed11aa2efc83fa8e575215a11dd7a9be385cf49dacbc379630168d7334899e46",
+      "only_normalization": "CRLF to LF in vendored forge-std, as used by Foundry compiler input"
+    }
+  },
+  "production_configuration": {
+    "status": "blocked",
+    "issue_count": 354,
+    "deployment_authorized": false
+  },
+  "limitations": [
+    "Offline route/LP fixtures do not establish actual stable-to-Pons execution or production services.",
+    "Actual authorities, reviewed feeds/VRF, creator terms, funded USDC route, IPFS pinning, hosted wallet/projections, Testnet operation and external audit remain open.",
+    "Parking depends on actual token/wrapper/venue function; no universal recovery guarantee.",
+    "Runtime/initcode-object sizes exclude final constructor arguments.",
+    "Windows portable run excludes only four unchanged Unix-specific state-lock/file-safety cases; supported Ubuntu qualification is pending."
+  ],
+  "mainnet_fork": {
+    "actual_executions": 1,
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0,
+    "counts_by_suite": {
+      "test/NativePoolFork.t.sol:NativePoolForkTest": {
+        "Success": 20,
+        "Failure": 0,
+        "Skipped": 0
+      },
+      "test/UniswapV4Fork.t.sol:UniswapV4ForkTest": {
+        "Success": 9,
+        "Failure": 0,
+        "Skipped": 0
+      }
+    },
+    "chain_id": 4663,
+    "block_number": 88544093,
+    "block_hash": "0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490",
+    "elapsed_seconds": 359.344,
+    "source_unchanged": true,
+    "receipt": "fork/verification-summary.json",
+    "receipt_sha256": "540d1e0948be53d2ce365f6e11c5cd36c1bf141283d3a454846b78142c130bb7",
+    "qualification": "20 actual selected native/Pons plus 9 secondary hookless cases, with explicit mock authorities/VRF and synthetic USD; no actual stable-to-Pons conversion/service qualification."
+  },
+  "source_consistency": {
+    "source_files": 29,
+    "event_schemas": 75,
+    "event_schema_sha256": "7b33f325ba0b01e0722eedb0a29bed1d3e1b184ed4e254d47f739b8c90c34ec2",
+    "source_checks_sha256": "c9b4cd3569991f66fec5945d89c581e31d56d3ec47217058bc526314911e53ca"
+  },
+  "finalized_utc": "2026-10-15T22:44:17.251533+00:00"
+}

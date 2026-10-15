@@ -1,0 +1,24 @@
+{
+  "scope": "Current local gap-hardening report files only; does not replace the committed-root MANIFEST.sha256",
+  "sha256": {
+    "fork/README.md": "29910c0ff863bb4de90df67e9e25cdabe5b63c0574535c18863efda3ab0ae347",
+    "fork/runner.log": "66a3218b2776047a550c1aae407fc187e30a125c8e9df724fc2f304f1a2f1524",
+    "fork/test-results.json": "643e92e70aceedba65eade3f0c55fc4269c7d7773c1daeddf0764168fc62d040",
+    "fork/verification-summary.json": "540d1e0948be53d2ce365f6e11c5cd36c1bf141283d3a454846b78142c130bb7",
+    "production-build.log": "a5b653b8afcc1bec5a5c0e224a1e8bc5fdf468ff0e2f2ab30321272e0b0cc430",
+    "production-gates.json": "fe1e350d1acca574818fddbad9a54f167de747752e9af5e55b4cc31659ec5989",
+    "production-size-gates.json": "6bf4581a54b6b96382ccb7b299dd5ba1be27a2f23b30e96f9425db3c7c6e37d8",
+    "python-tests.json": "ab2e967457458e9c9e293d0ff0162563e85b586a5bf107f69c2eb47ef22b68d8",
+    "python-tests.log": "a18bf765f2bb292759f666fca02f7a31225446b77626cab650d4c2827fe71586",
+    "README.md": "1e5ae44343440a14ab6769e297325e174c33e2fa59ab7606084043dc89025e55",
+    "solidity-tests-first-attempt.log": "8c3d8de5777357058b482bd6db6bab83c7df5d5cf87ac3f08d2d732b2bef6365",
+    "solidity-tests.log": "a75879334e5ffcf9528450d02e6ac2ad9b9e6f7a8da32e5b90890de52fd0aaec",
+    "static-analysis/coverage.json": "9a38e0f3b6acae469872d9a24a21884a9830371579b089e2ca1f4cc31651f2ca",
+    "static-analysis/matcher-tests.log": "71a584b7e3b028256ba9704fd897ae4c23a5dd65cbf4fd470f7dd41936eaafed",
+    "static-analysis/mutation-tests.json": "d6b4373941bd25ea20da74c80f488d6608a6cf7ac95542bbc6681a5c30a91c1d",
+    "static-analysis/README.md": "6c4ecc082632fee6bb90ca4bffb9889146b55b74c8a8819aba9f08d52bff523e",
+    "static-analysis/run-summary.json": "ef736a1f7ab385233e514af17cb9242e1b45baa40f35cb7b3d056b1cf4ecd2c5",
+    "static-analysis/slither-review.json": "1ede86edf2ee1c03f18529348171e1fe9a4ec840a67bc0b9967307ed3e4d3be4",
+    "verification-summary.json": "cd5fe2c5c8e5af4139d2dd61261c551acf77926370581dd9e3d69f5b13bf8503"
+  }
+}

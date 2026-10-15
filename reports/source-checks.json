@@ -4,7 +4,12 @@
   "security_audit_pass": false,
   "modules": 17,
   "standalone_helpers": [
-    "ZZZRewardReceiver"
+    "ZZZRewardReceiver",
+    "ZZZRoyaltyRewards",
+    "ZZZNFTMetadata",
+    "ZZZClaimRouter",
+    "ZZZActivationAssets",
+    "ZZZActivationEntry"
   ],
   "source_files": [
     {
@@ -13,7 +18,7 @@
     },
     {
       "file": "src/interfaces/IZZZ.sol",
-      "lines": 185
+      "lines": 204
     },
     {
       "file": "src/libraries/BridgeAssets.sol",
@@ -24,12 +29,24 @@
       "lines": 27
     },
     {
+      "file": "src/libraries/ZZZArtwork.sol",
+      "lines": 30
+    },
+    {
       "file": "src/libraries/ZZZTypes.sol",
       "lines": 146
     },
     {
       "file": "src/ZZZAccessController.sol",
-      "lines": 78
+      "lines": 82
+    },
+    {
+      "file": "src/ZZZActivationAssets.sol",
+      "lines": 99
+    },
+    {
+      "file": "src/ZZZActivationEntry.sol",
+      "lines": 235
     },
     {
       "file": "src/ZZZBridgeAdapter.sol",
@@ -44,20 +61,28 @@
       "lines": 45
     },
     {
+      "file": "src/ZZZClaimRouter.sol",
+      "lines": 75
+    },
+    {
       "file": "src/ZZZCompounder.sol",
       "lines": 15
     },
     {
       "file": "src/ZZZFeeController.sol",
-      "lines": 296
+      "lines": 314
     },
     {
       "file": "src/ZZZLiquidityManager.sol",
-      "lines": 206
+      "lines": 315
+    },
+    {
+      "file": "src/ZZZMembership.sol",
+      "lines": 44
     },
     {
       "file": "src/ZZZMigration.sol",
-      "lines": 235
+      "lines": 301
     },
     {
       "file": "src/ZZZMigrationReceiver.sol",
@@ -69,19 +94,19 @@
     },
     {
       "file": "src/ZZZNFT.sol",
-      "lines": 25
+      "lines": 251
+    },
+    {
+      "file": "src/ZZZNFTMetadata.sol",
+      "lines": 132
     },
     {
       "file": "src/ZZZOracle.sol",
-      "lines": 64
+      "lines": 113
     },
     {
       "file": "src/ZZZPoolRegistry.sol",
-      "lines": 37
-    },
-    {
-      "file": "src/ZZZPower.sol",
-      "lines": 25
+      "lines": 195
     },
     {
       "file": "src/ZZZRewardReceiver.sol",
@@ -89,15 +114,19 @@
     },
     {
       "file": "src/ZZZRewards.sol",
-      "lines": 116
+      "lines": 125
+    },
+    {
+      "file": "src/ZZZRoyaltyRewards.sol",
+      "lines": 206
     },
     {
       "file": "src/ZZZStrategy.sol",
-      "lines": 93
+      "lines": 108
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 454
+      "lines": 500
     }
   ],
   "external_imports": [
@@ -107,7 +136,9 @@
     "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
     "@openzeppelin/contracts/token/ERC721/ERC721.sol",
     "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+    "@openzeppelin/contracts/utils/Base64.sol",
     "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+    "@openzeppelin/contracts/utils/Strings.sol",
     "@openzeppelin/contracts/utils/math/Math.sol",
     "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
     "@uniswap/v4-core/src/libraries/TickMath.sol",

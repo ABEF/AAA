@@ -25,8 +25,9 @@ contract ZZZMembership is ZZZModule {
             uint256 bucket = vault.bucketAt(i);
             Position memory position = vault.group(bucket);
             if (position.homeChain != block.chainid || position.homeVault != address(vault) ||
-                (position.status != PositionStatus.Active && position.status != PositionStatus.Outbound)) continue;
-            PoolConfig memory config = pools.get(position.poolId);
+                (position.status != PositionStatus.Active && position.status != PositionStatus.Outbound &&
+                    position.status != PositionStatus.Parked)) continue;
+            PoolConfig memory config = pools.accounting(position.poolId);
             fees.flushDust(bucket, config.key.currency0);
             fees.flushDust(bucket, config.key.currency1);
         }

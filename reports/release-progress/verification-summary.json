@@ -1,0 +1,123 @@
+{
+  "recorded_utc": "2026-10-15T21:56:48.242455+00:00",
+  "scope": "Undeployed working candidate; internal development verification, not independent audit",
+  "base_commit": "9da25bdec0ebe14549974c42c3bb69e01ac54758",
+  "candidate_changes_committed": false,
+  "production_approved": false,
+  "public_chain_transactions": 0,
+  "website_changed": false,
+  "solidity": {
+    "passed": 430,
+    "failed": 0,
+    "skipped_opt_in_fork_setups": 2,
+    "suites": 31,
+    "all_28_current_sources_compiler_bound": true,
+    "production_test_build_objects_match": true
+  },
+  "python": {
+    "inventory": 482,
+    "passed": 478,
+    "failures": 0,
+    "errors": 0,
+    "runtime_skips": 0,
+    "unix_cases_reserved_for_ubuntu": [
+      "test_state.StateTests.test_atomic_roundtrip",
+      "test_state.StateTests.test_concurrent_lock_rejected",
+      "test_state.StateTests.test_lock_released",
+      "test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file"
+    ]
+  },
+  "normal_size_gates": {
+    "contracts": 22,
+    "all_pass": true,
+    "vault_runtime_bytes": 24434,
+    "vault_margin_bytes": 142,
+    "nft_initcode_object_bytes": 46294,
+    "constructor_arguments_require_separate_allowance": true
+  },
+  "actual_selected_pool_fork": {
+    "passed": 17,
+    "failed": 0,
+    "skipped": 0,
+    "chain_id": 4663,
+    "block_number": 88544093,
+    "block_hash": "0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490",
+    "pool_id": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f",
+    "test_scaffolding": "Mock authority and randomness, synthetic USD calibration; not production services or live deployment"
+  },
+  "static_analysis": {
+    "version": "0.11.6",
+    "current_findings": 210,
+    "false_positive": 121,
+    "accepted_risk": 56,
+    "informational": 33,
+    "unresolved": 0,
+    "independent_external_audit": false,
+    "coverage": "All28 production sources plus3 build configuration files; fresh manual triage, two analyzer runs and adversarial matcher checks"
+  },
+  "production_inventory": {
+    "ready": false,
+    "deployment_authorized": false,
+    "issues": 340,
+    "expected_blocked": true
+  },
+  "external_evidence_directory": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\release-progress-20261015",
+  "source_sha256": {
+    "src/ZZZVault.sol": "1acb2e945184606c25bd5995959cd1b8c917967033220ab41db37fdc38c7968e",
+    "src/base/ZZZModule.sol": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+    "src/interfaces/IZZZ.sol": "562028fbb05ef593dcf63d11b5b857452963e50b7aa605a937c442a590343d0d",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZTypes.sol": "0ca97dd1e79eedd2320e1e29b9a046ce1ddeb2a0cbc6539634394d2e5a65bc5b",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZNFT.sol": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+    "src/ZZZNFTMetadata.sol": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+    "src/ZZZRoyaltyRewards.sol": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+    "src/ZZZRewards.sol": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+    "src/ZZZMembership.sol": "048ba350e6cda58436ac3c1478aca2806a7209c43a87feed50e625e6a256f33b",
+    "src/ZZZFeeController.sol": "8820071b1d99b38f27be076223c2441e2725ab8a467de8421b932fcab8b27b9c",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "src/ZZZStrategy.sol": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZBuyback.sol": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+    "src/ZZZMigration.sol": "56a539e97da2f54626cc0f3e19b6b2f3a0aed24bb71d715a2558221a2c7a8890",
+    "src/ZZZBridgeAdapter.sol": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/ZZZMigrationReceiver.sol": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+    "src/ZZZAccessController.sol": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+    "src/ZZZOracle.sol": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+    "src/ZZZActivationAssets.sol": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+    "src/ZZZPoolRegistry.sol": "46fe124ad54772790049a0b86d062771cda665572b24f866e05d3d8c418d8a48",
+    "src/ZZZMigrationRegistry.sol": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc"
+  },
+  "evidence_sha256": {
+    "creator-revenue-20261015.md": "0879ee0c930b4e8cc4dfa103dd71ce763ff2ea5a00e4993c7c7cfdc51d7aa538",
+    "forge-build.log": "8a08d2297da18023c31eb954c28f160c3e9c5cfbbdf3619e1e2c2a1c26be8bab",
+    "forge-tests.log": "045eab31aecf15514907e67dd10c4541f2a2cce3ca3b20e80aa784f199e21061",
+    "fork-inventory-replay.json": "114cb1e61289d0621b3d8f896d07e051bfcd6b38d00900afb815e0b69fbd6b41",
+    "original-pool-fork-summary.json": "039c4af141817274503d610d7ed32dd83d3bb201879fd95f3e7c06615943cc1a",
+    "production-gate.json": "9ec86a807a24d7da2e4973fb879fe6b5d3f75f5c1cd5c170f7956ec3baf20c25",
+    "production-size-gates.json": "154014ce8037225d46ec25677deab2d633886615592553d6220d7549d3c84051",
+    "python-tests.json": "1fce7fb73ad028dc0fc81326bd00a57a195e52bb9c6bdd154c0c3e989bbb1e87",
+    "python-tests.log": "00db4dd8ef20c85403ea80ca0edec3cbdfa6759fadfa984c341517e13c2c9bb3",
+    "README.md": "335e4dc42d97319b5e65d187a5f5e31396185aacee3191b8dcd18a73016d665a",
+    "selected-pool-fork-summary.json": "9c3231a464d0d93bec62565488a73f417f5d1bdf269c62dace4d1998ce757784",
+    "solidity-verification.json": "4edf40b93eec9b403fc1aae1fdda36ab1e8e12cd8cf7b2d7f14bf2f89489a261",
+    "static-analysis/README.md": "93b70f7b6fddf564c2f4b40e43c8819b85de6ac5b99cfccf1dfdca0b3510c160",
+    "static-analysis/review-coverage.json": "79c26d05c6b62caa4d32da057b974a3d141533691bcb34a4a49cc44aa8e8e843"
+  },
+  "additional_original_hookless_fork": {
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Separate alternative hookless-pool/dependency regression; not the actual selected native/Pons pool"
+  },
+  "fork_inventory_gate_replay": {
+    "passed": 26,
+    "separate_live_executions": 2,
+    "single_combined_live_execution": false,
+    "exact_source_inventory_verified": true
+  }
+}

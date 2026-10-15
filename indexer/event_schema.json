@@ -51,6 +51,22 @@
     "name": "FeesAllocated",
     "signature": "FeesAllocated(uint256,address,uint256,uint256)"
   },
+  "0x084db70deeccf6fa32645575c7b3e115fcf775e58be7aaa0cd24cf7605fc74d8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperPolicyActivated",
+    "signature": "WrapperPolicyActivated(bytes32,bytes32)"
+  },
   "0x09dea7dba19f2080ee37b19654b28abc3e323c329cdc223fa0e51baebd1dec78": {
     "fields": [
       {
@@ -87,6 +103,57 @@
     ],
     "name": "ImportFinalized",
     "signature": "ImportFinalized(uint256,uint256)"
+  },
+  "0x0b7799b44b2fea7595e7c3227a0d4457e298ff7304e8068aaec078f1d4ed76e0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAsset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "grossUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "outputAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "increase",
+        "type": "bool"
+      }
+    ],
+    "name": "SourceContributed",
+    "signature": "SourceContributed(address,uint256,bytes32,address,uint256,uint256,address,uint256,bool)"
   },
   "0x0d9e8200abf8556438eea9469b6d71fe067bb43d008d3f123dc547e4043c41fd": {
     "fields": [
@@ -419,6 +486,22 @@
     "name": "Activated",
     "signature": "Activated(uint256,uint256)"
   },
+  "0x4c2a5dbed875c71a9bc5efcc41693a5d0a073d5be29010d0f46b4f5be2bc2146": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "SequencerPolicyActivated",
+    "signature": "SequencerPolicyActivated(bytes32,bytes32)"
+  },
   "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da": {
     "fields": [
       {
@@ -498,6 +581,78 @@
     "name": "NativeRewardWrapped",
     "signature": "NativeRewardWrapped(uint256,address,uint256)"
   },
+  "0x5978f2026a782bb024c4e8fb6eab5d94109f9cd960e9c88f799fc8a77d5e4803": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "router",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "fee",
+        "type": "uint24"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteRecorded",
+    "signature": "RouteRecorded(bytes32,address,address,address,address,uint24,bytes32)"
+  },
+  "0x606eecb31d18a2b915e97b5c7696afbdd899610ad12dbe5d806a75be4dd5d0ab": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "expectedCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "bootstrapAdmission",
+        "type": "bool"
+      }
+    ],
+    "name": "SequencerPolicyRecorded",
+    "signature": "SequencerPolicyRecorded(bytes32,address,bytes32,bytes32,bool)"
+  },
   "0x611a3c9f6297a5b31704c72866974accfdcb169fe090b94913217b0036c2eb8b": {
     "fields": [
       {
@@ -572,6 +727,22 @@
     "name": "AssetAdded",
     "signature": "AssetAdded(address,uint256)"
   },
+  "0x6798b16963626b4e151e09277cfe1d068e55f63f8a5fef33f171e9415af99a94": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "operations",
+        "type": "uint256"
+      }
+    ],
+    "name": "BatchClaimed",
+    "signature": "BatchClaimed(address,uint256)"
+  },
   "0x6bd5c950a8d8df17f772f5af37cb3655737899cbf903264b9795592da439661c": {
     "fields": [
       {
@@ -587,6 +758,37 @@
     ],
     "name": "BatchMetadataUpdate",
     "signature": "BatchMetadataUpdate(uint256,uint256)"
+  },
+  "0x7944ce879045beea193a1ee058a451f76ebda3f907378c7c2ebda760acce4d90": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "requestHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nonce",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "name": "principal0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "principal1",
+        "type": "uint256"
+      }
+    ],
+    "name": "ParkingExecuted",
+    "signature": "ParkingExecuted(bytes32,uint256,uint64,uint256,uint256)"
   },
   "0x7ba23be9189f8ae1184a411b958e9993e217a63818ceefdb0fccfbc4456b5edf": {
     "fields": [
@@ -644,6 +846,27 @@
     ],
     "name": "Activated",
     "signature": "Activated(uint256,address,bytes32,uint256,uint256)"
+  },
+  "0x884cd9cebd382d81877b2cf14d09f70ea21f3c26c12e891063084a524cb96426": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "AssetPolicyActivated",
+    "signature": "AssetPolicyActivated(address,bytes32,bytes32)"
   },
   "0x89f2af0f430b21b7a79356f44177d1d7e37de5e2adee55b97c146ff5de201fcc": {
     "fields": [
@@ -781,6 +1004,47 @@
     ],
     "name": "RemoteAssetBound",
     "signature": "RemoteAssetBound(uint256,address,address)"
+  },
+  "0x9b20a1d7d889cb00887b51eabc4dc07e0ba78ad7421d9a2a92fa30e6e0711f89": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "expectedCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "decimals",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "poolAdmission",
+        "type": "bool"
+      }
+    ],
+    "name": "AssetPolicyRecorded",
+    "signature": "AssetPolicyRecorded(bytes32,address,bool,bytes32,bytes32,uint8,bool)"
   },
   "0x9ba5d54ef8921888adb4b023ca4f849533a99e05e94b762008e435d86833e6bb": {
     "fields": [
@@ -922,7 +1186,7 @@
     "fields": [
       {
         "indexed": true,
-        "name": "routeId",
+        "name": "id",
         "type": "bytes32"
       },
       {
@@ -1205,6 +1469,22 @@
     "name": "RandomnessConfigured",
     "signature": "RandomnessConfigured(address,bytes32,uint256,uint16,uint32,bool)"
   },
+  "0xe5cf04452d692bb32619df453d25e83f48fb36b0c38de5fb2c73cb8db4d82ca3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "oldLpTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "PrincipalParked",
+    "signature": "PrincipalParked(uint256,uint256)"
+  },
   "0xe604aa747eea4821f00cd60f5f79481faa41c309238fe760e998e6983fe1c50d": {
     "fields": [
       {
@@ -1225,6 +1505,22 @@
     ],
     "name": "RewardPaymentProcessed",
     "signature": "RewardPaymentProcessed(uint256,uint256,uint256)"
+  },
+  "0xead2d22dd54e6d3db7ec6836aca3d4307e591a6a933d12cddcdf06ad59efede8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nextNonce",
+        "type": "uint64"
+      }
+    ],
+    "name": "ParkingInvalidated",
+    "signature": "ParkingInvalidated(uint256,uint64)"
   },
   "0xefdc04937cb176f9e57ed71502bb583bb69fdaf9bf426036c356a1f66ef14a0c": {
     "fields": [
@@ -1284,6 +1580,42 @@
     ],
     "name": "MetadataUpdate",
     "signature": "MetadataUpdate(uint256)"
+  },
+  "0xfa52367867acff4a12c8d11f2c1e1eee45f2d0be3b36d754b7a70241df84bace": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "implementation",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "adminOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "adminCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "implementationCodeHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperPolicyApproved",
+    "signature": "WrapperPolicyApproved(bytes32,address,address,address,bytes32,bytes32)"
   },
   "0xfc4f5fcc8d06289fc47194fce7eb3a1a1b253724834a7f6eb882419f4679011d": {
     "fields": [

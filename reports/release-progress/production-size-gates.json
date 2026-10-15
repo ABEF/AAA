@@ -1,0 +1,184 @@
+{
+  "all_22_pass": true,
+  "runtime_limit": 24576,
+  "initcode_limit": 49152,
+  "deployment_arguments_not_included": true,
+  "contracts": [
+    {
+      "contract": "ZZZVault",
+      "runtime_bytes": 24434,
+      "initcode_object_bytes": 25313,
+      "artifact_sha256": "8e220b4fb0e429bb49a6169996eb4343ad3ed4a2df87588fb7d973f282a39d2e",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZNFT",
+      "runtime_bytes": 18895,
+      "initcode_object_bytes": 46294,
+      "artifact_sha256": "d79392da97953c712db7c20de79b94ca0919f386e2f22245f21b5e3bfe14a9f7",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZLiquidityManager",
+      "runtime_bytes": 22047,
+      "initcode_object_bytes": 23522,
+      "artifact_sha256": "ade96227bf8acb3478f387eb76417aaa734230ce14cfb843f40aa381af83647e",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZRewards",
+      "runtime_bytes": 8684,
+      "initcode_object_bytes": 9168,
+      "artifact_sha256": "5a65695f215866fd54419d6cde4902697b6995ac5b7e6ec7a74cf9fb735557f4",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZMembership",
+      "runtime_bytes": 4204,
+      "initcode_object_bytes": 4590,
+      "artifact_sha256": "072266044cc7b225014794f6f6ed3dd822e85905690ca160416e450fcdd7db6c",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZFeeController",
+      "runtime_bytes": 23692,
+      "initcode_object_bytes": 24211,
+      "artifact_sha256": "a33028170048330a16943a91e249a52a0d00bbdf9ccc2ec3631defd41e0cfb87",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZStrategy",
+      "runtime_bytes": 11337,
+      "initcode_object_bytes": 11765,
+      "artifact_sha256": "7b41f0fe97d4c4d167f0bac3d6935edc121cf45dfeadcfd05c176e598670dd22",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZCompounder",
+      "runtime_bytes": 1697,
+      "initcode_object_bytes": 2075,
+      "artifact_sha256": "3fe727b7b885e41c97e208a8ca5dc5d4632310292d318aa7bfce6d6364081694",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZBuyback",
+      "runtime_bytes": 5834,
+      "initcode_object_bytes": 6491,
+      "artifact_sha256": "0a6084c137a42fe39cf914df85c9a2a32d9cd7928b831831cc5cc5cd6fc8be90",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZMigration",
+      "runtime_bytes": 22549,
+      "initcode_object_bytes": 23166,
+      "artifact_sha256": "6c0f1dc685b6c55357f93d8378012a90dcbc9156dd1e16d4dedaaeacaf9a06cc",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZBridgeAdapter",
+      "runtime_bytes": 9475,
+      "initcode_object_bytes": 10028,
+      "artifact_sha256": "4c4d081659bb32ad8c8ec6257a03b77385786b36c39cc22c05ca42d2b7dcdba1",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZMigrationReceiver",
+      "runtime_bytes": 15938,
+      "initcode_object_bytes": 16492,
+      "artifact_sha256": "dfda3ecea4ec5ea83ac5ec87a5fb2ea47f32d1a0300c9d88160bd1b06a68e97c",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZAccessController",
+      "runtime_bytes": 10191,
+      "initcode_object_bytes": 11870,
+      "artifact_sha256": "5eaaeaa69fdacd3eb7621a509e9783b1055f6c1094470118cbb7cdf90f56350e",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZOracle",
+      "runtime_bytes": 7199,
+      "initcode_object_bytes": 9567,
+      "artifact_sha256": "40859a3845c73bb721bdaaca84807f9921d22ec392dda23a64e02fe3af58975d",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "runtime_bytes": 11506,
+      "initcode_object_bytes": 18335,
+      "artifact_sha256": "19071c5d14f1a14616129e46a5d6563adb3f9f5117ee92a783ec69cc9d078d8f",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZMigrationRegistry",
+      "runtime_bytes": 7491,
+      "initcode_object_bytes": 7912,
+      "artifact_sha256": "8e7da97be3b11ea28f87e574cd87bdd152ba0001e069c7421bf75c00c8f1153f",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZBridgeRouter",
+      "runtime_bytes": 15157,
+      "initcode_object_bytes": 15662,
+      "artifact_sha256": "c2ff5123d052b787899a1b85ebc9388d11825faa310cefcb92bd8f0d952ba6e6",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZRewardReceiver",
+      "runtime_bytes": 4265,
+      "initcode_object_bytes": 5801,
+      "artifact_sha256": "6537fe30e00d9bfa022495405cfc2e418a382ea23ff787e15fddcc1b57230f9e",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZRoyaltyRewards",
+      "runtime_bytes": 7534,
+      "initcode_object_bytes": 8415,
+      "artifact_sha256": "db3f1d46fb058474dcb3f1e4f1fa490d3943368462ad1cfd7296a34cd291e864",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZNFTMetadata",
+      "runtime_bytes": 12191,
+      "initcode_object_bytes": 12508,
+      "artifact_sha256": "7847518607e1293103f8d4c308d23f7d67944fc8df1acbf00c27f8d2f7d59564",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZClaimRouter",
+      "runtime_bytes": 2885,
+      "initcode_object_bytes": 3443,
+      "artifact_sha256": "12d377f6122ff9f53a44866b92e40d7327cf7f4075bac173ef4bfb728292dcdf",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    },
+    {
+      "contract": "ZZZActivationAssets",
+      "runtime_bytes": 4810,
+      "initcode_object_bytes": 5305,
+      "artifact_sha256": "bf4b7491496e11117c14583aecf23cd0d763aa727851301ea9bc0c494a7e3ed9",
+      "runtime_pass": true,
+      "initcode_object_pass": true
+    }
+  ]
+}

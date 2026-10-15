@@ -89,8 +89,17 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
         emit PoolRewardsCredited(bucketId, token, personal, shared);
     }
     function claim(uint256 id, address token) external nonReentrant returns (uint256 amount) {
+        return _claim(id, token, msg.sender);
+    }
+    /// @notice Only the NFT's immutable router can claim for its authenticated
+    /// current owner. No approvals or arbitrary payout destinations are used.
+    function claimFor(uint256 id, address token, address owner) external nonReentrant returns (uint256 amount) {
+        if (msg.sender != IZZZNFT(access.module(Ids.NFT)).claimRouter()) revert Unauthorized();
+        return _claim(id, token, owner);
+    }
+    function _claim(uint256 id, address token, address owner) private returns (uint256 amount) {
         // Claims are NOT paused when strategy operations are paused.
-        if (!access.isSealed() || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != msg.sender) revert Unauthorized();
+        if (!access.isSealed() || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) != owner) revert Unauthorized();
         if (!isAsset[token]) revert InvalidConfiguration();
         _checkpoint(id, token);
         _checkpointOwner(id, token);
@@ -98,8 +107,8 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
         individual[id][token] = 0;
         collective[id][token] = 0;
         liabilities[token] -= amount;
-        ExactToken.push(token, msg.sender, amount);
-        emit Claimed(id, token, msg.sender, amount);
+        ExactToken.push(token, owner, amount);
+        emit Claimed(id, token, owner, amount);
     }
     function claimable(uint256 id, address token) external view returns (uint256) {
         uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;

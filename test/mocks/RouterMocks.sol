@@ -74,6 +74,7 @@ contract RouterPoolsStub {
     PoolConfig private config;
     constructor(address controller, PoolConfig memory value) { access = IZZZAccess(controller); config = value; }
     function get(bytes32) external view returns (PoolConfig memory) { return config; }
+    function accounting(bytes32) external view returns (PoolConfig memory) { return config; }
 }
 
 interface IRouterRoutesFixture { function get(bytes32) external view returns (Route memory, bool); }

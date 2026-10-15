@@ -9,7 +9,7 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZOracle, IZZZStrategy, IZZZLiquidity,
-    IPositionManagerMinimal, IZZZRewards, IZZZMigration} from "./interfaces/IZZZ.sol";
+    IPositionManagerMinimal, IZZZRewards, IZZZMigration, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
 
 /// @notice Non-upgradeable custody. Principal has no owner/admin redemption path.
 /// Deposits, idle assets, compound reserves and earned fees are separate ledgers.
@@ -24,7 +24,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     mapping(uint256 => bytes32) public homePoolId;
     mapping(bytes32 => uint256) public poolBucket;
     uint256[] private buckets;
-    uint256 public constant MAX_SHARES = 1e36;
+    uint256 private constant MAX_SHARES = 1e36;
     uint256 public constant MAX_BUCKETS = 16;
     event PoolReserved(bytes32 indexed poolId, uint256 indexed bucketId);
     event SharesAdded(uint256 indexed nftId, uint256 indexed bucketId, uint256 shares, uint256 netUSD);
@@ -33,8 +33,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     uint256 public immutable canonicalChainId;
     address payable public immutable mintProceedsRecipient;
     uint256 public constant MINT_PRICE = 0.05 ether;
-    uint256 public constant MIN_ACTIVATION_LP_USD = 100e18;
-    uint256 public constant MAX_IDLE_BPS = 500; // At least 95% deployed by oracle value after LP updates.
+    uint256 private constant MIN_ACTIVATION_INPUT_USD = 100e18;
+    uint256 private constant MAX_IDLE_BPS = 500; // At least 95% deployed by oracle value after LP updates.
     event DormantMinted(uint256 indexed nftId, address indexed owner, uint256 mintPrice);
     event Activated(uint256 indexed nftId, address indexed owner, bytes32 indexed poolId, uint256 amount0, uint256 amount1);
     event LiquidityAdded(uint256 indexed nftId, uint256 amount0, uint256 amount1);
@@ -45,6 +45,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     event ImportPending(uint256 indexed bucketId, uint256 indexed homeChain, address indexed homeVault);
     event ImportFinalized(uint256 indexed bucketId, uint256 lpTokenId);
     event LocationConfirmed(uint256 indexed bucketId, uint256 chainId, address destinationVault);
+    event PrincipalParked(uint256 indexed bucketId, uint256 oldLpTokenId);
     constructor(address controller, uint256 nftHomeChain, address payable mintRecipient) ZZZModule(controller) {
         if (nftHomeChain == 0 || mintRecipient == address(0) || mintRecipient == address(this)) revert InvalidConfiguration();
         canonicalChainId = nftHomeChain;
@@ -68,22 +69,25 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function reservePool(bytes32 pool, uint256 bucket) external onlyGovernance { _reserve(pool, bucket); }
     function _reserve(bytes32 pool, uint256 bucket) private {
         if (pool == bytes32(0) || bucket == 0) revert InvalidConfiguration();
-        IZZZPools(access.module(Ids.POOLS)).get(pool);
+        IZZZPools(_modulePools()).get(pool);
         uint256 old = poolBucket[pool];
         if (old != 0 && old != bucket) revert InvalidState();
         poolBucket[pool] = bucket;
         emit PoolReserved(pool, bucket);
     }
     function _pool(uint256 id) private view returns (PoolConfig memory) {
-        return IZZZPools(access.module(Ids.POOLS)).get(positions[id].poolId);
+        return IZZZPools(_modulePools()).accounting(positions[id].poolId);
     }
     function _isHome(Position storage p) private view returns (bool) {
         return p.homeChain == block.chainid && p.homeVault == address(this);
     }
     function _nft() private view returns (IZZZNFT) { return IZZZNFT(access.module(Ids.NFT)); }
     function _requireOwner(uint256 id) private view {
-        if (block.chainid != canonicalChainId || !minted[id] ||
-            _nft().ownerOf(id) != msg.sender) revert Unauthorized();
+        if (block.chainid != canonicalChainId || !minted[id]) revert Unauthorized();
+        if (_nft().ownerOf(id) == msg.sender) return;
+        address entry = IZZZPools(_modulePools()).activationEntry();
+        if (entry == address(0) || msg.sender != entry) revert Unauthorized();
+        IZZZActivationEntry(entry).validateOwner(id, keccak256(msg.data));
     }
     function _active(uint256 id) private view {
         if (positions[id].status != PositionStatus.Active) revert InvalidState();
@@ -109,7 +113,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _put(uint256 id, bool create, uint128 minimumLiquidity, uint256 deadline) private returns (uint256 deployedValue) {
         Position storage p = positions[id];
         PoolConfig memory c = _pool(id);
-        IZZZLiquidity manager = IZZZLiquidity(access.module(Ids.LIQUIDITY));
+        IZZZLiquidity manager = IZZZLiquidity(_moduleLiquidity());
         uint256 a0 = p.idle0;
         uint256 a1 = p.idle1;
         uint256 before0 = _tokenBalance(c.key.currency0);
@@ -119,7 +123,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 spent0;
         uint256 spent1;
         if (create) {
-            (int24 lower, int24 upper, uint160 ref) = IZZZStrategy(access.module(Ids.STRATEGY)).target(p.poolId);
+            (int24 lower, int24 upper, uint160 ref) = IZZZStrategy(_moduleStrategy()).target(p.poolId);
             (p.lpTokenId, spent0, spent1) = manager.mint(p.poolId, lower, upper, a0, a1, minimumLiquidity, deadline);
             IPositionManagerMinimal(manager.positionManager()).approve(address(manager), p.lpTokenId);
             p.centerX96 = ref;
@@ -170,7 +174,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             homePoolId[bucket] = poolId;
             _registerBucket(bucket);
             Position storage p = positions[bucket];
-            PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
+            PoolConfig memory c = IZZZPools(_modulePools()).accounting(poolId);
             p.poolId = poolId; p.status = PositionStatus.Active;
             p.homeChain = block.chainid; p.homeVault = address(this); p.homeReceiver = access.module(Ids.RECEIVER);
             p.homeToken0 = c.key.currency0; p.homeToken1 = c.key.currency1;
@@ -179,7 +183,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (positions[bucket].poolId != poolId) revert InvalidState();
         nftBucket[id] = bucket; // Set the fee-index domain BEFORE checkpointing zero shares.
         _join(id, bucket, amount0, amount1, minimumLiquidity, deadline, true);
-        emit Activated(id, msg.sender, poolId, amount0, amount1);
+        emit Activated(id, _nft().ownerOf(id), poolId, amount0, amount1);
     }
     function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
         external live nonReentrant {
@@ -193,7 +197,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         Position storage p = positions[bucket];
         PoolConfig memory c = _pool(bucket);
         if (p.lpTokenId != 0) {
-            (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
+            (uint256 a0, uint256 a1) = IZZZLiquidity(_moduleLiquidity()).amounts(p.lpTokenId);
             deployed = _valuePair(c, a0, a1);
         }
         idleValue = _valuePair(c, p.idle0, p.idle1);
@@ -202,12 +206,13 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 deadline, bool activation) private {
         _deadline(deadline); _active(bucket);
         Position storage p = positions[bucket];
-        IZZZFees fees = IZZZFees(access.module(Ids.FEES));
+        IZZZFees fees = IZZZFees(_moduleFees());
         if (!_isHome(p) || !fees.remoteSettled(bucket) ||
             IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
         PoolConfig memory c = _pool(bucket);
         if (!c.depositsEnabled || amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
-        uint256 inputUSD = _valuePair(c, amount0, amount1);
+        uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
+        if (activation && inputUSD < MIN_ACTIVATION_INPUT_USD) revert InvalidAmount();
         if (inputUSD < c.minDepositUSD || contributionUSD[id] + inputUSD > c.maxPositionUSD) revert InvalidAmount();
         uint256 supply = bucketTotalShares[bucket];
         // Other inboxes also fund the global collective index. Settle ALL before entry.
@@ -253,10 +258,11 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (newLP + newIdle <= incumbentNAV) revert InvalidAmount();
         uint256 netUSD = newLP + newIdle - incumbentNAV;
         if (netUSD < Math.mulDiv(inputUSD, 10000 - c.maxSlippageBps, 10000)) revert Slippage();
-        // Subtract ALL pre-existing idle/compound value from marginal LP: an entrant
-        // cannot satisfy the activation threshold by deploying incumbents' assets.
-        if (activation && (newLP < oldLP + oldIdle + freshCompound + MIN_ACTIVATION_LP_USD ||
-            netUSD < MIN_ACTIVATION_LP_USD)) revert InvalidAmount();
+        // A $100 gross contribution may deploy $99; network gas is separate.
+        // Apply the same 1% execution/undeployed limit to later contributions.
+        // Incumbent idle/compound assets cannot subsidize this contribution.
+        uint256 minimumNet = inputUSD - inputUSD / 100; // ceil(99%); no multiplication overflow.
+        if (netUSD < minimumNet || newLP < oldLP + oldIdle + freshCompound + minimumNet) revert Slippage();
         uint256 issued = supply == 0 ? netUSD : Math.mulDiv(supply, netUSD, incumbentNAV);
         if (issued == 0 || supply + issued > MAX_SHARES) revert InvalidAmount();
         sharesOf[id] += issued; bucketTotalShares[bucket] = supply + issued;
@@ -267,18 +273,23 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     function _allocate(uint256 id, address token, uint256 amount) private {
         if (amount == 0) return;
-        address fees = access.module(Ids.FEES);
+        address fees = _moduleFees();
         IERC20(token).forceApprove(fees, amount);
         IZZZFees(fees).allocate(id, token, amount);
         IERC20(token).forceApprove(fees, 0);
     }
     function _harvest(uint256 id, uint256 deadline) private {
-        IZZZFees(access.module(Ids.FEES)).syncExternal(id);
+        IZZZFees(_moduleFees()).syncExternal(id);
+        _harvestVenue(id, deadline);
+    }
+    /// @dev Custody parking must not depend on an unrelated creator inbox.
+    /// Venue fees are still separated and funded before closing principal.
+    function _harvestVenue(uint256 id, uint256 deadline) private {
         Position storage p = positions[id];
         PoolConfig memory c = _pool(id);
         uint256 before0 = _tokenBalance(c.key.currency0);
         uint256 before1 = _tokenBalance(c.key.currency1);
-        IZZZLiquidity(access.module(Ids.LIQUIDITY)).collect(p.poolId, p.lpTokenId, deadline);
+        IZZZLiquidity(_moduleLiquidity()).collect(p.poolId, p.lpTokenId, deadline);
         uint256 fee0 = _tokenBalance(c.key.currency0) - before0;
         uint256 fee1 = _tokenBalance(c.key.currency1) - before1;
         _allocate(id, c.key.currency0, fee0);
@@ -293,7 +304,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _pullCompound(uint256 id) private returns (uint256 amount0, uint256 amount1) {
         PoolConfig memory c = _pool(id);
         Position storage p = positions[id];
-        IZZZFees fees = IZZZFees(access.module(Ids.FEES));
+        IZZZFees fees = IZZZFees(_moduleFees());
         amount0 = fees.releaseCompound(id, c.key.currency0);
         amount1 = fees.releaseCompound(id, c.key.currency1);
         _idle(id, p.idle0 + amount0, p.idle1 + amount1);
@@ -319,7 +330,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         PoolConfig memory c = _pool(id);
         uint256 before0 = _tokenBalance(c.key.currency0);
         uint256 before1 = _tokenBalance(c.key.currency1);
-        IZZZLiquidity(access.module(Ids.LIQUIDITY)).close(p.poolId, p.lpTokenId, deadline);
+        IZZZLiquidity(_moduleLiquidity()).close(p.poolId, p.lpTokenId, deadline);
         p.lpTokenId = 0;
         _idle(id, p.idle0 + _tokenBalance(c.key.currency0) - before0,
             p.idle1 + _tokenBalance(c.key.currency1) - before1);
@@ -328,7 +339,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function _balanceUsing(uint256 id, uint256 deadline, bool existingRange) private {
         Position storage p = positions[id];
         PoolConfig memory c = _pool(id);
-        IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
+        IZZZStrategy strategy = IZZZStrategy(_moduleStrategy());
         bool zeroForOne;
         uint256 amountIn;
         uint256 minimumOut;
@@ -336,7 +347,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         else (zeroForOne, amountIn, minimumOut) = strategy.swapPlan(p.poolId, p.idle0, p.idle1);
         if (amountIn == 0) return;
         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
-        address manager = access.module(Ids.LIQUIDITY);
+        address manager = _moduleLiquidity();
         IERC20(input).forceApprove(manager, amountIn);
         uint256 amountOut = IZZZLiquidity(manager).swap(p.poolId, zeroForOne, amountIn, minimumOut, deadline);
         IERC20(input).forceApprove(manager, 0);
@@ -349,7 +360,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         return _valuePair(c, p.idle0, p.idle1);
     }
     function _unwind(uint256 id, uint256 deadline) private {
-        IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(positions[id].poolId);
+        IZZZStrategy(_moduleStrategy()).validateExitPrice(positions[id].poolId);
         _harvest(id, deadline);
         _pullCompound(id);
         _close(id, deadline);
@@ -363,7 +374,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live nonReentrant {
         _deadline(deadline);
         _active(id);
-        if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(id)) revert InvalidState();
+        if (minimumLiquidity == 0 || !IZZZStrategy(_moduleStrategy()).needsRebalance(id)) revert InvalidState();
         Position storage p = positions[id];
         uint256 oldId = p.lpTokenId;
         _unwind(id, deadline);
@@ -373,17 +384,17 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
         external onlyModule(Ids.MIGRATION) live nonReentrant returns (uint256 amount0, uint256 amount1) {
         _deadline(deadline);
-        _active(id);
         Position storage p = positions[id];
-        if (!IZZZFees(access.module(Ids.FEES)).remoteSettled(id)) revert InvalidState();
-        _unwind(id, deadline);
+        if (!IZZZFees(_moduleFees()).remoteSettled(id)) revert InvalidState();
+        if (p.status == PositionStatus.Parked) _pullCompound(id);
+        else { _active(id); _unwind(id, deadline); }
         PoolConfig memory c = _pool(id);
         amount0 = p.idle0;
         amount1 = p.idle1;
         _idle(id, 0, 0);
         p.status = PositionStatus.Outbound;
-        IZZZFees(access.module(Ids.FEES)).flushDust(id, c.key.currency0);
-        IZZZFees(access.module(Ids.FEES)).flushDust(id, c.key.currency1);
+        IZZZFees(_moduleFees()).flushDust(id, c.key.currency0);
+        IZZZFees(_moduleFees()).flushDust(id, c.key.currency1);
         ExactToken.push(c.key.currency0, msg.sender, amount0);
         ExactToken.push(c.key.currency1, msg.sender, amount1);
         emit PrincipalBridged(id, migrationId, amount0, amount1);
@@ -403,7 +414,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             (bucketTotalShares[id] != shares || p.depositUSD != origin.depositUSD)) revert InvalidState();
         if (!returning) _registerBucket(id);
         bucketTotalShares[id] = shares; homePoolId[id] = homePool;
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
+        PoolConfig memory c = IZZZPools(_modulePools()).accounting(poolId);
         p.poolId = poolId;
         p.homeChain = origin.homeChain;
         p.homeVault = origin.homeVault;
@@ -437,26 +448,53 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         emit LocationConfirmed(id, destinationChain, destinationVault);
     }
 
+    /// @notice Only the fixed Migration module can park an LP. Its timelocked
+    /// request binds exact custody and raw close minimums. No assets leave Vault.
+    function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant {
+        _deadline(deadline); _active(id);
+        if (!access.paused() || positions[id].lpTokenId == 0) revert InvalidState();
+        uint256 oldLp = positions[id].lpTokenId;
+        _harvestVenue(id, deadline);
+        _close(id, deadline);
+        positions[id].status = PositionStatus.Parked;
+        emit PrincipalParked(id, oldLp);
+    }
+    function resume(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline)
+        external onlyModule(Ids.MIGRATION) live nonReentrant {
+        _deadline(deadline);
+        if (positions[id].status != PositionStatus.Parked) revert InvalidState();
+        _movePool(id, newPool, minimumLiquidity, deadline);
+        positions[id].status = PositionStatus.Active;
+    }
     function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline)
         external onlyModule(Ids.MIGRATION) live nonReentrant {
         _deadline(deadline);
         _active(id);
+        if (positions[id].poolId == newPool) revert InvalidConfiguration();
+        _movePool(id, newPool, minimumLiquidity, deadline);
+    }
+    function _movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) private {
         Position storage p = positions[id];
         PoolConfig memory oldConfig = _pool(id);
-        PoolConfig memory nextConfig = IZZZPools(access.module(Ids.POOLS)).get(newPool);
-        if (p.poolId == newPool || minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
+        PoolConfig memory nextConfig = IZZZPools(_modulePools()).accounting(newPool);
+        if (minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
             oldConfig.key.currency1 != nextConfig.key.currency1 || !nextConfig.operationsEnabled) revert InvalidConfiguration();
         _reserve(newPool, id);
         uint256 oldId = p.lpTokenId;
-        _unwind(id, deadline);
+        if (p.status == PositionStatus.Parked) _pullCompound(id);
+        else _unwind(id, deadline);
         p.poolId = newPool; // Both pool keys have the exact same ordered currencies.
         _redeploy(id, minimumLiquidity, deadline);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
     }
     function onERC721Received(address, address, uint256, bytes calldata) external view override returns (bytes4) {
-        address manager = access.module(Ids.LIQUIDITY);
+        address manager = _moduleLiquidity();
         if (manager == address(0) || msg.sender != IZZZLiquidity(manager).positionManager()) revert Unauthorized();
         return IERC721Receiver.onERC721Received.selector;
     }
     // No withdraw, rescue-token, arbitrary execution, proxy upgrade or admin NFT transfer.
+    function _modulePools() private view returns (address) { return access.module(Ids.POOLS); }
+    function _moduleLiquidity() private view returns (address) { return access.module(Ids.LIQUIDITY); }
+    function _moduleStrategy() private view returns (address) { return access.module(Ids.STRATEGY); }
+    function _moduleFees() private view returns (address) { return access.module(Ids.FEES); }
 }

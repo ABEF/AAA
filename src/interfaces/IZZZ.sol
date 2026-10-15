@@ -12,6 +12,7 @@ interface IZZZAccess {
 interface IZZZBound { function access() external view returns (IZZZAccess); }
 interface IZZZNFT {
     function ownerOf(uint256 id) external view returns (address);
+    function claimRouter() external view returns (address);
     function mint(address to, uint256 id) external;
     function traitsReady(uint256 id) external view returns (bool);
     function randomnessConfigured() external view returns (bool);
@@ -45,7 +46,16 @@ interface IZZZFees {
     function remoteSettled(uint256 bucketId) external view returns (bool);
 }
 interface IZZZPools {
+    function activationEntry() external view returns (address);
     function get(bytes32 poolId) external view returns (PoolConfig memory);
+    /// @notice Canonical ERC20 accounting assets in the actual venue's slot order.
+    /// Native venue currency is normalized only by the reviewed liquidity adapter.
+    function accounting(bytes32 poolId) external view returns (PoolConfig memory);
+    function contributionValue(bytes32 poolId, uint256 amount0, uint256 amount1) external view returns (uint256);
+}
+interface IZZZActivationEntry {
+    function validateOwner(uint256 id, bytes32 vaultCallHash) external view;
+    function sourceValue(bytes32 poolId, uint256 amount0, uint256 amount1) external view returns (uint256);
 }
 interface IZZZOracle {
     function price(address token) external view returns (uint256);
@@ -55,6 +65,7 @@ interface IZZZOracle {
     function referenceX96(address token0, address token1) external view returns (uint160);
 }
 interface IZZZStrategy {
+    function validateExitPrice(bytes32 poolId) external view returns (uint160);
     function target(bytes32 poolId) external view returns (int24 lower, int24 upper, uint160 referenceX96);
     function validatePrice(bytes32 poolId) external view returns (uint160 spotX96);
     function needsRebalance(uint256 id) external view returns (bool);
@@ -91,6 +102,9 @@ interface IZZZVault {
     function bucketAt(uint256 index) external view returns (uint256);
     function mintDormant() external payable returns (uint256 id);
     function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external;
+    function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external;
+    function park(uint256 id, uint256 deadline) external;
+    function resume(uint256 id, bytes32 poolId, uint128 minimumLiquidity, uint256 deadline) external;
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
     function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
         external returns (uint256 amount0, uint256 amount1);

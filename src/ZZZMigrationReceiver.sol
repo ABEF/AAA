@@ -43,7 +43,7 @@ contract ZZZMigrationReceiver is ZZZModule, ReentrancyGuard {
             m.bucketId != uint256(keccak256(abi.encode(m.homeChain, m.homeVault, m.homePoolId))) ||
             m.canonicalToken0 == address(0) || m.canonicalToken1 == address(0) ||
             m.canonicalToken0 == m.canonicalToken1) revert InvalidState();
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).get(r.destinationPool);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(r.destinationPool);
         bool sameOrder = c.key.currency0 == r.destinationToken0 && c.key.currency1 == r.destinationToken1;
         if (!sameOrder && !(c.key.currency0 == r.destinationToken1 && c.key.currency1 == r.destinationToken0)) revert InvalidConfiguration();
         // Provenance and monotonically increasing custody epochs are recorded by

@@ -1,8 +1,10 @@
 import importlib.util
+import io
 import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -92,7 +94,9 @@ class ForkRelayTests(unittest.TestCase):
             with self.subTest(interval=interval),self.assertRaises(ValueError):RUNNER.Relay(UPSTREAM,interval=interval)
 
 class ForkProcessTests(unittest.TestCase):
-    def setUp(self):self.servers=[];self.commands=[];self.fail=False
+    def setUp(self):
+        self.servers=[];self.commands=[];self.fail=False
+        self.code=9;self.output='';self.stderr=''
     def server(self,relay):
         outer=self
         class FakeServer:
@@ -106,14 +110,34 @@ class ForkProcessTests(unittest.TestCase):
         if '--version' in command:
             return subprocess.CompletedProcess(command,0,'forge Version: 1.4.4-v1.4.4\nCommit SHA: '+RUNNER.FORGE_COMMIT+'\n','')
         if self.fail:raise OSError('upstream secret must not enter runner logs')
-        return subprocess.CompletedProcess(command,9)
+        return subprocess.CompletedProcess(command,self.code,self.output,self.stderr)
     def test_exit_code_and_loopback_fork_environment_are_forwarded_then_closed(self):
         code=RUNNER.run_fork(UPSTREAM,forge='/reviewed/forge',run=self.spawn,server_factory=self.server)
         self.assertEqual(code,9);self.assertTrue(self.servers[0].started);self.assertTrue(self.servers[0].closed)
         command,options=self.commands[-1]
-        self.assertEqual(command,['/reviewed/forge','test','--match-contract','UniswapV4ForkTest','--threads','1','--no-storage-caching','-vvv'])
+        self.assertEqual(command,['/reviewed/forge','test','--match-contract','^(UniswapV4ForkTest|NativePoolForkTest)$','--threads','1','--no-storage-caching','-vvv','--json'])
         self.assertEqual(options['env']['ROBINHOOD_RPC_URL'],self.servers[0].url)
         self.assertEqual(options['env']['RUN_ROBINHOOD_FORK_TESTS'],'true')
+        self.assertTrue(options['capture_output']);self.assertTrue(options['text'])
+    def test_successful_complete_run_forwards_both_streams_and_checks_inventory(self):
+        self.code=0;self.output=json.dumps(complete_results());self.stderr='compiler diagnostic\n'
+        stdout=io.StringIO();stderr=io.StringIO()
+        with patch.object(sys,'stdout',stdout),patch.object(sys,'stderr',stderr):
+            code=RUNNER.run_fork(UPSTREAM,run=self.spawn,server_factory=self.server)
+        self.assertEqual(code,0);self.assertTrue(self.servers[0].closed)
+        self.assertIn(self.output,stdout.getvalue());self.assertIn('29 successful source tests, zero skips',stdout.getvalue())
+        self.assertEqual(stderr.getvalue(),self.stderr)
+    def test_filtered_green_run_is_rejected_and_relay_closed(self):
+        self.code=0;results=complete_results();results[RUNNER.FORK_SUITES[1]]['test_results'].popitem()
+        self.output=json.dumps(results)
+        with patch.dict('os.environ',{'FOUNDRY_MATCH_TEST':'only_one_test','ROBINHOOD_ARCHIVE_RPC_URL':UPSTREAM,
+                'ETH_RPC_URL':'https://other.invalid','ETH_RPC_HEADERS':'secret','ETH_RPC_JWT_SECRET':'secret'}), \
+                patch.object(sys,'stdout',io.StringIO()),self.assertRaises(ValueError):
+            RUNNER.run_fork(UPSTREAM,run=self.spawn,server_factory=self.server)
+        self.assertTrue(self.servers[0].closed)
+        environment=self.commands[-1][1]['env']
+        for name in ('ROBINHOOD_ARCHIVE_RPC_URL','ETH_RPC_URL','ETH_RPC_HEADERS','ETH_RPC_JWT_SECRET'):
+            self.assertNotIn(name,environment)
     def test_subprocess_failure_always_closes_relay(self):
         self.fail=True
         with self.assertRaises(OSError):RUNNER.run_fork(UPSTREAM,run=self.spawn,server_factory=self.server)
@@ -125,5 +149,66 @@ class ForkProcessTests(unittest.TestCase):
     def test_main_preserves_forge_failure_exit_status(self):
         with patch.object(sys,'argv',['run-fork-checks.py','--upstream',UPSTREAM]),patch.object(RUNNER,'run_fork',return_value=9):
             self.assertEqual(RUNNER.main(),9)
+    def test_main_reports_incomplete_results_as_failure_without_private_exception(self):
+        stderr=io.StringIO()
+        with patch.object(sys,'argv',['run-fork-checks.py','--upstream',UPSTREAM]), \
+                patch.object(RUNNER,'run_fork',side_effect=ValueError('private upstream value')),patch.object(sys,'stderr',stderr):
+            self.assertEqual(RUNNER.main(),1)
+        self.assertIn('both selected suites',stderr.getvalue());self.assertNotIn('private upstream value',stderr.getvalue())
+
+def complete_results():
+    return {suite:{'test_results':{name+'()':{'status':'Success'}
+        for name in RUNNER.expected_tests(suite.split(':',1)[0])}} for suite in RUNNER.FORK_SUITES}
+
+class ForkCoverageTests(unittest.TestCase):
+    def test_current_source_inventories_include_both_actual_fork_classes(self):
+        old=RUNNER.expected_tests('test/UniswapV4Fork.t.sol');native=RUNNER.expected_tests('test/NativePoolFork.t.sol')
+        self.assertEqual(len(old),9);self.assertEqual(len(native),20)
+        self.assertIn('testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares',old)
+        self.assertIn('testSelectedNativeReviewedRenouncedWrapperAdminRestoresCustody',native)
+    def test_complete_unskipped_exact_suites_succeed_with_windows_paths(self):
+        results={key.replace('/','\\'):value for key,value in complete_results().items()}
+        self.assertEqual(RUNNER.verify_fork_results(json.dumps(results)),29)
+    def test_missing_or_similarly_named_native_suite_cannot_pass(self):
+        for replacement in (None,'test/NativePoolFork.t.sol:NativePoolForkTestDisabled'):
+            with self.subTest(replacement=replacement),self.assertRaises(ValueError):
+                results=complete_results();native=results.pop(RUNNER.FORK_SUITES[1])
+                if replacement:results[replacement]=native
+                RUNNER.verify_fork_results(json.dumps(results))
+    def test_zero_exit_with_any_skipped_failed_or_setup_only_native_result_is_rejected(self):
+        for status in ('Skipped','Failure',None):
+            with self.subTest(status=status),self.assertRaises(ValueError):
+                results=complete_results();tests=results[RUNNER.FORK_SUITES[1]]['test_results']
+                tests[next(iter(tests))]['status']=status
+                RUNNER.verify_fork_results(json.dumps(results))
+        results=complete_results();results[RUNNER.FORK_SUITES[1]]['test_results']={'setUp()':{'status':'Skipped'}}
+        with self.assertRaises(ValueError):RUNNER.verify_fork_results(json.dumps(results))
+    def test_partial_empty_extra_and_overloaded_test_results_are_rejected(self):
+        for mode in ('partial','empty','extra','overloaded'):
+            with self.subTest(mode=mode),self.assertRaises(ValueError):
+                results=complete_results();tests=results[RUNNER.FORK_SUITES[1]]['test_results']
+                if mode=='partial':tests.popitem()
+                elif mode=='empty':tests.clear()
+                elif mode=='extra':tests['testUnknown()']={'status':'Success'}
+                else:tests[next(iter(tests)).replace('()','(uint256)')]={'status':'Success'}
+                RUNNER.verify_fork_results(json.dumps(results))
+    def test_missing_or_malformed_json_results_are_rejected(self):
+        for output in (None,'No tests to run!','{}','[]','null'):
+            with self.subTest(output=output),self.assertRaises(ValueError):RUNNER.verify_fork_results(output)
+        for value in (None,{}, {'test_results':[]}, {'test_results':{'testMissing()':None}}):
+            with self.subTest(value=value),self.assertRaises(ValueError):
+                results=complete_results();results[RUNNER.FORK_SUITES[1]]=value
+                RUNNER.verify_fork_results(json.dumps(results))
+    def test_inventory_ignores_commented_and_quoted_function_declarations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source=Path(directory)/'Example.sol'
+            source.write_text('''// function testComment() public {}\n/* function testBlock() public {} */
+                string constant S="function testQuoted()";
+                function testActual() public {} function testFuzz(uint256 value) public {}''',encoding='utf-8')
+            with patch.object(RUNNER,'ROOT',Path(directory)):
+                self.assertEqual(RUNNER.expected_tests('Example.sol'),{'testActual','testFuzz'})
+                for text in ('contract Empty {}','function testSame() public {} function testSame(uint256) public {}'):
+                    source.write_text(text,encoding='utf-8')
+                    with self.assertRaises(ValueError):RUNNER.expected_tests('Example.sol')
 
 if __name__=='__main__':unittest.main()

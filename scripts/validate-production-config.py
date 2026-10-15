@@ -112,7 +112,11 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
     g.check(g.num(economics.get('mint_price_wei'),'economics.mint_price_wei')==50_000_000_000_000_000,
         'economics.mint_price_wei','mint.price','Implemented mint price is exactly 0.05 ETH')
     g.check(g.num(economics.get('minimum_activation_usd18'),'economics.minimum_activation_usd18')==100*10**18,
-        'economics.minimum_activation_usd18','activation.minimum','Implemented activation minimum is $100 of deployed LP')
+        'economics.minimum_activation_usd18','activation.minimum','Implemented activation minimum is $100 original gross source input')
+    g.check(economics.get('activation_minimum_basis')=='gross_source_input' and
+        type(economics.get('maximum_entry_loss_bps')) is int and economics.get('maximum_entry_loss_bps')==100 and
+        economics.get('network_gas_separate') is True,
+        'economics','activation.execution_budget','Direct or atomic routed entry requires at least 99% of the original gross source value as marginal deployed LP; gas is separate.')
     split=economics.get('fee_split_bps')
     g.check(isinstance(split,list) and all(type(n) is int for n in split) and split==[8000,1000,500,500],
         'economics.fee_split_bps','reward.split','Implemented allocation is owner/collective/compound/burn = 80/10/5/5')
@@ -179,6 +183,40 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 g.check(controller is not None and controller==modules['access'].get('address'),
                     path+'.modules.'+name+'.controller','binding.controller','Every module must bind the configured access controller')
         g.check(len(set(addresses))==len(addresses),path+'.modules','binding.duplicate','Module implementations must be distinct')
+        ap=path+'.activation_assets';activation=g.obj(chain.get('activation_assets'),ap)
+        activation_address=g.hex(activation.get('address'),ap+'.address',20)
+        g.hex(activation.get('runtime_hash'),ap+'.runtime_hash')
+        g.check(activation_address is not None and activation_address not in addresses and
+            activation.get('immutable') is True and activation.get('registry')==modules['pools'].get('address') and
+            activation.get('controller')==modules['access'].get('address'),ap,'activation.binding',
+            'The immutable activation helper must bind this pool registry and access controller, separately from custody modules')
+        g.check(activation.get('observed_registry_helper')==activation_address and activation_address is not None and
+            type(activation.get('observed_chain_id')) is int and activation.get('observed_chain_id')==cid and
+            type(activation.get('observed_block_number')) is int and activation.get('observed_block_number')==observed.get('number') and
+            activation.get('observed_block_hash')==observed.get('hash'),ap,'activation.observation',
+            'Registry.activationAssets, helper bindings and runtime must be observed at the exact inventory block')
+        activation_review=g.proof(activation.get('review_evidence'),ap+'.review_evidence')
+        g.check(activation_review.get('independent') is True and
+            activation_review.get('add_disable_reenable_tested') is True and
+            activation_review.get('active_policies_reviewed') is True and
+            activation_review.get('no_claim_or_exit_dependency') is True,ap+'.review_evidence','activation.review',
+            'Independently review current policy history, asset add/disable/re-enable and admission-independent claims/exits')
+        ep=path+'.activation_entry';entry=g.obj(chain.get('activation_entry'),ep)
+        entry_address=g.hex(entry.get('address'),ep+'.address',20)
+        g.hex(entry.get('runtime_hash'),ep+'.runtime_hash')
+        g.check(entry_address is not None and entry_address not in addresses and entry_address!=activation_address and
+            entry.get('immutable') is True and entry.get('registry')==modules['pools'].get('address') and
+            entry.get('controller')==modules['access'].get('address') and entry.get('activation_assets')==activation_address,
+            ep,'entry.binding','Atomic Entry must be the immutable Registry child bound to its exact access/asset policies')
+        g.check(entry.get('observed_registry_entry')==entry_address and entry_address is not None and
+            type(entry.get('observed_chain_id')) is int and entry.get('observed_chain_id')==cid and
+            type(entry.get('observed_block_number')) is int and entry.get('observed_block_number')==observed.get('number') and
+            entry.get('observed_block_hash')==observed.get('hash'),ep,'entry.observation',
+            'Observe Registry.activationEntry, immutable Entry bindings and runtime at the exact inventory block')
+        er=g.proof(entry.get('review_evidence'),ep+'.review_evidence')
+        g.check(all(er.get(key) is True for key in ('independent','original_source_value_tested','aggregate_loss_budget_tested',
+            'callback_owner_context_reviewed','typed_routes_reviewed','complete_route_history_reviewed')),
+            ep+'.review_evidence','entry.review','Independently review source custody/value, total loss, callback context and complete typed-route policy history')
         governance=g.obj(chain.get('governance'),path+'.governance')
         gov=g.hex(governance.get('multisig'),path+'.governance.multisig',20)
         proposers=[g.hex(a,path+'.governance.proposers',20) for a in g.items(governance.get('proposers'),path+'.governance.proposers')]
@@ -199,12 +237,19 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(governance.get('sealed') is True and governance.get('bootstrap')==ZERO,
             path+'.governance','seal.incomplete','Before funded operation, sealing must revoke bootstrap and fix all bindings')
         g.proof(governance.get('roles_and_seal_evidence'),path+'.governance.roles_and_seal_evidence')
+        recovery=g.proof(governance.get('parking_rehearsal'),path+'.governance.parking_rehearsal')
+        g.check(all(recovery.get(key) is True for key in ('independent','oracle_independent_close_tested',
+            'close_only_minimums_tested','timelock_pause_nonce_tested','oracle_guarded_resume_tested',
+            'parked_rewards_and_migration_tested')),path+'.governance.parking_rehearsal','recovery.review',
+            'Require independent current-source parking/resume rehearsal: exact raw close bounds, pause/timelock/snapshot/nonce, preserved claims and migration')
         constructor=g.obj(chain.get('constructor'),path+'.constructor')
         g.check(constructor.get('canonical_chain_id')==home and type(constructor.get('canonical_chain_id')) is int,
             path+'.constructor.canonical_chain_id','canonical.mismatch','Every vault must share the canonical chain ID')
         recipient=g.hex(constructor.get('mint_proceeds_recipient'),path+'.constructor.mint_proceeds_recipient',20)
         constructor['mint_proceeds_recipient']=recipient
         g.check(recipient not in addresses,path+'.constructor.mint_proceeds_recipient','mint.custody','Mint proceeds must stay outside protocol custody/reward modules')
+        g.check(recipient not in (activation_address,entry_address),path+'.constructor.mint_proceeds_recipient','mint.custody',
+            'Mint proceeds cannot be sent to noncustodial activation helpers')
         g.proof(constructor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
         g.text(constructor.get('nft_base_uri'),path+'.constructor.nft_base_uri')
         if cid==home:
@@ -215,21 +260,27 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 r'(?:ipfs://(?:Qm[1-9A-HJ-NP-Za-km-z]{44}|b[a-z2-7]{20,})|ar://[A-Za-z0-9_-]{43})/(?:[^\s"<>]*/)?',artwork_base) is not None,
                 path+'.constructor.nft_base_uri','nft.artwork','Production artwork must use a reviewed IPFS/Arweave content root and trailing slash')
             helper_addresses=[]
-            for name in ('royalty_rewards','metadata_renderer'):
+            for name in ('royalty_rewards','metadata_renderer','claim_router'):
                 hp=np+'.'+name;helper=g.obj(nft.get(name),hp)
                 helper_address=g.hex(helper.get('address'),hp+'.address',20);helper_addresses.append(helper_address)
                 g.hex(helper.get('runtime_hash'),hp+'.runtime_hash')
-                g.check(helper_address is not None and helper_address not in addresses and helper_address!=recipient,
+                g.check(helper_address is not None and helper_address not in addresses and helper_address!=recipient and
+                    helper_address not in (activation_address,entry_address),
                     hp+'.address','nft.helper','NFT-owned helpers must be distinct from modules and the mint recipient')
                 g.check(helper.get('immutable') is True,hp+'.immutable','nft.helper','NFT helper addresses must be immutable constructor bindings')
                 review=g.proof(helper.get('review_evidence'),hp+'.review_evidence')
                 g.check(review.get('independent') is True,hp+'.review_evidence','nft.review','Independent helper admission review is required')
-                if name=='royalty_rewards':
+                if name in ('royalty_rewards','claim_router'):
                     g.check(helper.get('nft')==nft_address and nft_address is not None,
-                        hp+'.nft','nft.binding','The separate royalty helper must bind the canonical NFT')
+                        hp+'.nft','nft.binding','The NFT-owned claim/royalty helper must bind the canonical NFT')
                 else:
                     g.check(helper.get('controller')==modules['access'].get('address') and helper.get('controller') is not None,
                         hp+'.controller','nft.binding','The metadata renderer must bind the reviewed access controller')
+                if name=='claim_router':
+                    g.check(helper.get('controller')==modules['access'].get('address') and helper.get('controller') is not None and
+                        helper.get('royalties')==helper_addresses[0] and helper_addresses[0] is not None and
+                        type(helper.get('max_claims')) is int and helper.get('max_claims')==32,
+                        hp,'nft.binding','Claim router must bind the canonical access/royalty ledger and the 32-operation bound')
             g.check(len(set(helper_addresses))==len(helper_addresses),np,'nft.helper','NFT helper implementations must be distinct')
             g.check(type(nft.get('observed_chain_id')) is int and nft.get('observed_chain_id')==cid and
                 type(nft.get('observed_block_number')) is int and nft.get('observed_block_number')==observed.get('number') and
@@ -238,6 +289,9 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             bindings=g.obj(nft.get('observed_bindings'),np+'.observed_bindings')
             g.check(bindings.get('nft')==nft_address and nft_address is not None and
                 bindings.get('royaltyRewards')==helper_addresses[0] and bindings.get('metadataRenderer')==helper_addresses[1] and
+                bindings.get('claimRouter')==helper_addresses[2] and helper_addresses[2] is not None and
+                bindings.get('claimRouterNft')==nft_address and bindings.get('claimRouterController')==modules['access'].get('address') and
+                bindings.get('claimRouterRoyalties')==helper_addresses[0] and type(bindings.get('MAX_CLAIMS')) is int and bindings.get('MAX_CLAIMS')==32 and
                 bindings.get('artworkBaseURI')==artwork_base and isinstance(artwork_base,str) and
                 bindings.get('royaltyReceiver')==helper_addresses[0] and
                 type(bindings.get('royaltyBps')) is int and bindings.get('royaltyBps')==500,
@@ -405,7 +459,22 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             started=g.num(sequencer.get('started_at'),path+'.sequencer.started_at',1)
             g.check(type(sequencer.get('answer')) is int and sequencer.get('answer')==0 and timestamp is not None and started is not None and timestamp-started>3600,
                 path+'.sequencer','sequencer.down','Sequencer must be up beyond the implemented one-hour grace')
-        else:g.check(sequencer.get('address')==ZERO,path+'.sequencer.address','sequencer.address','No-feed policy must match the immutable zero feed')
+            g.hex(sequencer.get('active_policy_id'),path+'.sequencer.active_policy_id')
+            g.num(sequencer.get('policy_count'),path+'.sequencer.policy_count',1)
+            sp=g.obj(sequencer.get('observed_policy'),path+'.sequencer.observed_policy')
+            g.hex(sp.get('review_hash'),path+'.sequencer.observed_policy.review_hash')
+            g.check(sp.get('source')==sequencer.get('address') and sp.get('expected_code_hash')==sequencer.get('runtime_hash') and
+                type(sp.get('bootstrap_admission')) is bool,path+'.sequencer','sequencer.binding',
+                'Observe the active append-only sequencer source policy and exact runtime pin')
+            replacement=g.proof(sequencer.get('replacement_review'),path+'.sequencer.replacement_review')
+            g.check(replacement.get('independent') is True and replacement.get('failed_source_replacement_tested') is True and
+                replacement.get('zero_bypass_disabled') is True,path+'.sequencer.replacement_review','sequencer.recovery',
+                'Review timelocked failed-source replacement, retained uptime/grace checks and forbidden zero-feed bypass')
+        else:g.check(sequencer.get('address')==ZERO and sequencer.get('active_policy_id')=='0x'+'00'*32 and
+            type(sequencer.get('policy_count')) is int and sequencer.get('policy_count')==0,
+            path+'.sequencer.address','sequencer.address','No-feed mode requires the initial zero-source state with no admitted policy')
+        g.check(sequencer.get('observed_oracle_feed')==sequencer.get('address') and sequencer.get('address') is not None,
+            path+'.sequencer','sequencer.binding','Observe Oracle.sequencerFeed at the exact inventory block')
         g.proof(sequencer.get('review'),path+'.sequencer.review')
         pools={}
         for pi,item in enumerate(g.items(chain.get('pools'),path+'.pools')):
@@ -477,10 +546,13 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             constructor=chain.get('constructor') if isinstance(chain.get('constructor'),dict) else {}
             nft_inventory=chain.get('nft_inventory') if isinstance(chain.get('nft_inventory'),dict) else {}
             nft_helpers=[helper_record.get('address') for helper_record in
-                (nft_inventory.get('royalty_rewards'),nft_inventory.get('metadata_renderer')) if isinstance(helper_record,dict)]
+                (nft_inventory.get('royalty_rewards'),nft_inventory.get('metadata_renderer'),nft_inventory.get('claim_router')) if isinstance(helper_record,dict)]
+            activation_record=chain.get('activation_assets') if isinstance(chain.get('activation_assets'),dict) else {}
+            entry_record=chain.get('activation_entry') if isinstance(chain.get('activation_entry'),dict) else {}
             g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and
-                receiver not in nft_helpers and receiver!=constructor.get('mint_proceeds_recipient'),
-                rp+'.address','reward.custody','Reward receivers must be separate from modules and the mint-proceeds recipient')
+                receiver not in nft_helpers and receiver!=constructor.get('mint_proceeds_recipient') and
+                receiver not in (activation_record.get('address'),entry_record.get('address')),rp+'.address','reward.custody',
+                'Reward receivers must be separate from modules, NFT/activation helpers and the mint-proceeds recipient')
             g.check(record.get('immutable_configuration') is True and record.get('upgradeable') is False,
                 rp,'reward.mutable','Receiver code and bucket/currency/wrapper bindings must be immutable and reviewed')
             g.check(type(record.get('observed_chain_id')) is int and record.get('observed_chain_id')==cid and

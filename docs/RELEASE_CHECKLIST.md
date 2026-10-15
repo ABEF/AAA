@@ -1,6 +1,6 @@
 # Release checklist - NOT APPROVED
 
-Updated 2026-10-15. Checked development items identify implemented code and recorded internal evidence; they do not approve deployment or real funds. Unchecked production gates require actual integration, release-specific evidence and independent qualification. The [Implemented / Todo checklist](IMPLEMENTATION_STATUS.md) records feature status. Current evidence is in [release hardening](../reports/release-hardening/README.md). Earlier artwork, website-alignment and other reports retain their exact source scope.
+Updated 2026-10-16. Checked development items identify implemented code and recorded internal evidence; they do not approve deployment or real funds. Unchecked production gates require actual integration, release-specific evidence and independent qualification. The [Implemented / Todo checklist](IMPLEMENTATION_STATUS.md) records feature status. Historical metadata and integration/recovery receipts retain their exact source scope; later Entry/parking source requires its own verification.
 
 ## Completed development work
 
@@ -12,13 +12,37 @@ Updated 2026-10-15. Checked development items identify implemented code and reco
 - [x] Run the complete local offline suite: 342 Solidity passes, one expected fork setup skip, and 372 portable Python passes; four unchanged Unix-only cases remain for Ubuntu. The focused keeper run passes 109 tests, with separate internal execution of ten regression cases.
 - [x] Check all 20 normal runtime/initcode objects and the 318,466-gas cold 50-token notification workload. Constructor-argument allowance, actual-venue gas and the Vault's 169-byte runtime margin still need release qualification.
 
+The completed counts above describe the earlier metadata source snapshot. Its Slither triage does not cover the subsequent native/Pons, gross-input, policy, router and API changes; the fresh receipts below cover the current candidate separately.
+
+Earlier local [integration/recovery evidence](../reports/release-progress/README.md) records **430 Solidity passes**, **478 portable Python passes**, all **22 size gates**, all **28 source bindings**, **17 actual selected-pool fork passes** and **210 individually reviewed Slither findings** with zero unresolved review entries. These counts predate the atomic Entry and custody-parking changes. Four Unix-only Python cases, release-revision Ubuntu CI, production services/staging and independent audit remain open.
+
+- [x] Implement the strictly pinned selected native/Pons boundary and canonical WETH accounting, retaining rejection of other native/hooks.
+- [x] Add append-only activation-source admission and wrapper dependency policies, plus disabled-source-pool exits that retain price and real dependency checks. These preserve governed onboarding/recovery paths without making arbitrary new tokens, implementations or bridges safe.
+- [x] Add governed, append-only sequencer source replacement with code/review provenance, no zero-source bypass after configuration and mandatory up-plus-one-hour grace. All 12 focused tests pass within the current full suite; no production source is selected.
+- [x] Implement the immutable 32-operation LP/royalty claim router and confirmed read API, including optional canonical wallet inventory and cumulative raw LP/royalty claim history from complete trusted indexer coverage. Hosting and frontend transactions remain open.
+- [x] Implement fee-weighted/time-weighted measurement proposals and prepare the complete verified artwork upload archive; creator agreement and pinning remain open.
+- [x] Implement immutable [atomic source entry](ACTIVATION_ENTRY.md), binding the exact current owner and Vault calldata to original measured source value, with one 1% conversion-plus-LP budget and callback-safe context. Actual production routes and feeds remain unqualified.
+- [x] Implement [custody parking](CUSTODY_PARKING.md): paused timelocked exact snapshot, close-only raw minimums, nonce/deadline/review binding, principal retained in Vault, preserved funded claims and oracle-guarded resume. Parked cross-chain departure retains authenticated route/funding/legacy-liability barriers; actual providers remain unqualified.
+
+Current [gap-hardening evidence](../reports/gap-hardening/README.md) records **488 Solidity passes**, **488 portable Python passes**, **23 normal size gates**, **29 production source bindings**, and **220 individually reviewed Slither findings**, with zero unresolved review entries. The separate actual fork run passes **20 selected native/Pons plus nine secondary hookless cases**, zero failures/skips; the two offline setup skips are not reused as fork evidence. This remains local development evidence with explicit authority/VRF/USD fixtures; final-release Ubuntu, external services/staging and independent qualification remain unchecked below.
+
+## Required testing layers
+
+Complete all three layers for the final release, retaining the source revision, configuration and results. Existing local tests and fork evidence remain scoped to the revisions and dependencies they actually exercised.
+
+- [ ] **Local tests:** minting, activation, rewards, royalties, transfers and security.
+- [ ] **Robinhood mainnet fork:** compatibility with the actual ZZZ pool, hook and deployed dependencies. The existing separate hookless-pool tests do not close this gate.
+- [ ] **Robinhood Testnet:** wallet flows, website integration, keeper operations and deployment rehearsals, with actual supported services and explicit records of any mocked or unavailable dependencies.
+
+Sepolia may supplement these layers; it does not replace Robinhood-specific integration and staging. This checklist does not authorize deployment or transactions.
+
 ## Source, toolchain and economics
 
 - [ ] Reproduce all Solidity/Python tests for the final frozen production release on supported Ubuntu, retaining exact source revision, compiler settings and full logs. Candidate CI and earlier green CI for `5febe70` do not validate future source changes.
 - [ ] Compile every contract/test/script and check normal runtime/initcode limits and current gas; small Vault/FeeController margins require explicit review.
 - [ ] Independently review the final source-bound Slither triage and accepted risks, refreshing analysis if source changes. Completed internal triage does not close the external audit gate.
 - [ ] Independently verify isolated 0.05 ETH mint proceeds, the 1,000-NFT cap, exact 600/300/100 quotas, atomic failure and no reroll/trait override.
-- [ ] Independently verify $100 marginal actually deployed activation, incumbent NAV pricing, entry-swap fees, callbacks, pending/dust barriers, top-ups and nonredeemability.
+- [ ] Independently verify $100 original source value with at least 99% marginal actually deployed LP, separate network gas, incumbent NAV pricing, all conversion-leg costs, callbacks, pending/dust barriers, top-ups and nonredeemability. Review the immutable Entry's exact owner/calldata context, inactive approval window, Registry-only valuation and callback cleanup; a post-conversion pair value cannot replace original source value.
 - [ ] Independently verify 80/10/5/5 funding, 90% remote delivery, equal collective membership and index/fractional solvency across transfers, entries and migrations.
 - [ ] Review the economic value of at most 19 raw units settled before membership changes, asset decimals and holder-triggerable entry frequency.
 
@@ -35,15 +59,21 @@ Updated 2026-10-15. Checked development items identify implemented code and reco
 
 ## Market, valuation and operating integration
 
-- [ ] Implement and independently review the selected native-ETH/Pons-hook LP market, or explicitly exclude it. Keep current rejection guards until complete; creator funding does not make custody compatible.
+- [ ] Independently qualify the implemented selected native-ETH/Pons boundary, including wrapper implementation/admin upgrades, native settlement, real-key/accounting mapping and actual-pool tests. Keep production inventory native admission blocked until complete; do not broaden it to arbitrary hooks.
 - [ ] Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.
-- [ ] Review ZZZ/USDC activation routing if the target pool has different assets; current arbitrary-input routing is absent.
-- [ ] Quote and test enough gross input to produce at least $100 net deployed LP after execution costs/slippage; validate any live wallet bulk-claim approach against the single-NFT/single-asset claim ABI.
+- [ ] Independently review and stage sequencer policy replacement through the actual sealed timelock, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
+- [ ] Review governed activation-source enable/disable, future token admission, wrapper implementation/admin changes and disabled-source exit rehearsals. Admitting a source token does not add its conversion route; removing it must not revoke existing LP/reward rights. Ordinary exits remain price-guarded; parked close uses separately approved raw-token bounds. Rehearse governed feed repair without claiming unconditional recovery from external wrapper/bridge failure.
+- [ ] Independently stage paused parking through the sealed timelock: missing/stale price feeds, failed creator inbox, exact share/LP/custody snapshot, close-only minimums excluding idle/compound/donations, one-sided principal, invalidation/replay/expiry, claims/transfers and fresh-oracle resume. Authenticate current-source evidence in the inventory's mandatory `parking_rehearsal` record.
+- [ ] Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native ingress is restricted to the actual native-pool wrapper. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution.
+- [ ] Quote and test $100 source value with no more than 1% total execution/undeployed cost and gas separate. Reject quotes or revert when the limit cannot be met; do not promise zero gas loss on reverts. Independently review the 32-operation claim router, runtime/bindings, constructor-byte allowance and wallet batching behavior.
 - [ ] Stage actual Uniswap swaps/entry/maintenance, malicious token/callback behavior, exact approvals/settlement, stale prices, donations and failures.
 - [ ] Qualify gas for 1/100/1,000 NFTs and maximum actual assets/inboxes; prove upkeep scales by shared pool. Backtest range, trigger, cooldown, slippage, impermanent loss, MEV and operating cost. Production strategy parameters remain unset.
 - [ ] Review creator inboxes, optional wrappers, discretionary payment terms, processing-time eligibility and maximum-16-inbox costs. Creator payment frequency and percentage remain undecided.
+- [ ] Confirm terms with the pool creator: percentage and calculation basis, payout asset/network, payment frequency, authorized payer/configurer and actual PoPL receiver. Terms were explicitly deferred on 2026-10-15; receipt-driven implementation must not imply guaranteed revenue. Stage a payment through allocation and holder claim.
+- [ ] Agree and qualify the proposed active-liquidity measurement policy: fee-weighted or time-weighted, epoch/sampling/finality, complete fee events, tick-crossing approximation, cross-asset payout conversion and receipt reconciliation. The implemented calculator has no payout authority and does not prove creator acceptance.
+- [ ] Select an IPFS pinning provider and publish the verified complete artwork bundle; independently verify the resulting CID, all renderer paths and ongoing pin availability. Provider selection and publication were deferred; preparing a bundle alone does not establish hosting.
 - [ ] Stage keeper keystore isolation, nonce/receipt recovery, RPC failover, budgets, indexer backfill/reorgs, alerts and Unix state locking. The supplied systemd unit defaults to dry run.
-- [ ] Integrate actual wallet transactions and confirmed website balances/history, including the separate royalty ledger. Review any bulk approach against today's single-NFT/single-asset claim entrypoints.
+- [ ] Integrate actual wallet transactions and the implemented confirmed API/history service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review the immutable 32-operation router, simulate exact batches and bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them.
 
 ## Migration, governance and independent release review
 
@@ -54,6 +84,7 @@ The provider/delivery gates apply before enabling real migration. An explicitly 
 - [ ] Independently review real provider SDK wrappers, backing/equivalent token semantics, channels, finality, exact funding and recovery.
 - [ ] Stage canonical -> satellite -> satellite -> home -> revisit with actual providers, duplicate/reordered/forged/underfunded receipts, ACK epochs, pauses, old-policy and historical reward paths.
 - [ ] Verify destination reservations, frozen canonical shares/membership, no remint/principal refund, legacy liability barriers, and governance trust for every new destination.
+- [ ] Rehearse source-oracle-independent departure of an already Parked bucket with designated compound reserves, retained `remoteSettled` barrier, exact attributed transfers, destination valuation and reviewed provider recovery. Parking does not waive bridge backing or enable arbitrary conversion.
 - [ ] Select and verify multisig/keeper/guardian/mint-recipient authorities, fixed timelock and module bindings; prohibit mint/LP/royalty receiver collisions.
 - [ ] Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
 

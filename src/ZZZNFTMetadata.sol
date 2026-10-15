@@ -37,7 +37,7 @@ contract ZZZNFTMetadata {
             position.homeChain != block.chainid || position.homeVault != address(vault) ||
             position.locationChain != block.chainid || position.locationVault != address(vault) ||
             position.lpTokenId == 0) revert ValuationUnavailable();
-        PoolConfig memory config = IZZZPools(access.module(Ids.POOLS)).get(position.poolId);
+        PoolConfig memory config = IZZZPools(access.module(Ids.POOLS)).accounting(position.poolId);
         (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(position.lpTokenId);
         IZZZFees fees = IZZZFees(access.module(Ids.FEES));
         a0 += position.idle0 + fees.compoundBalance(bucket, config.key.currency0);

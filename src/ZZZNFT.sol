@@ -7,6 +7,7 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
 import {IZZZVault} from "./interfaces/IZZZ.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
+import {ZZZClaimRouter} from "./ZZZClaimRouter.sol";
 import {ZZZNFTMetadata, NFTMetadataInput} from "./ZZZNFTMetadata.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
 
@@ -31,6 +32,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     string private metadataBase;
     bool private metadataConfigured;
     ZZZRoyaltyRewards public immutable royaltyRewards;
+    ZZZClaimRouter public immutable claimRouter;
     ZZZNFTMetadata public immutable metadataRenderer;
     address public randomnessCoordinator;
     bytes32 public keyHash;
@@ -81,6 +83,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         metadataBase = baseURI;
         metadataConfigured = bytes(baseURI).length != 0;
         royaltyRewards = new ZZZRoyaltyRewards(address(this));
+        claimRouter = new ZZZClaimRouter(controller, address(this), address(royaltyRewards));
         metadataRenderer = new ZZZNFTMetadata(controller);
     }
 

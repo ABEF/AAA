@@ -1,0 +1,63 @@
+{
+  "source_json_sha256": "30f5565905e901c439613b8c37751e86f916cf1f64cb6d13f35bc43d12b817b7",
+  "review_sha256": "1ede86edf2ee1c03f18529348171e1fe9a4ec840a67bc0b9967307ed3e4d3be4",
+  "checker_unchanged": true,
+  "mutations": [
+    {
+      "name": "changed expression",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 0e444ecd4ab69bd762f3d0297c63b898b1dbdf907259c246e05abc3c5bd7d910"
+    },
+    {
+      "name": "changed severity",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: c76ba05ffbd96c4a9b9014a170133f0f584e8ba5b64e0962ed78efb1a3337646"
+    },
+    {
+      "name": "changed confidence",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 86c619123097268d1fe0a53678867bd78b5b866cfcfd9e5a0e7cc394993542ab"
+    },
+    {
+      "name": "missing finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "duplicate finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Duplicate analyzer fingerprints"
+    },
+    {
+      "name": "new finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unreviewed finding: eb406932d4fa54383285623a51f2dc7e387d0f7ed6195b61ca763e7906486094"
+    },
+    {
+      "name": "unresolved disposition",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unresolved finding: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "missing rationale",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Missing rationale: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "source binding drift",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Reviewed content changed: src/ZZZActivationEntry.sol"
+    }
+  ],
+  "all_rejected": true,
+  "independent_audit": false
+}

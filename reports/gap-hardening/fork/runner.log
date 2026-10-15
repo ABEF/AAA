@@ -1,0 +1,42 @@
+Concise final fork runner evidence
+One actual combined run; verbose JSON/traces retained externally with hashes in verification-summary.json.
+The PASS lines below project the preserved Forge JSON; they are not a replacement raw transcript.
+
+test/NativePoolFork.t.sol:NativePoolForkTest
+[PASS] testSelectedNativeAccountingKeepsRealPoolKey()
+[PASS] testSelectedNativeBothSwapDirectionsUseNetOutput()
+[PASS] testSelectedNativeChangedRuntimeDisablesAdmissionAndAccounting()
+[PASS] testSelectedNativeCoreZeroFeeDoesNotConferPonsRevenue()
+[PASS] testSelectedNativeDisabledSourceVaultMigrationRetainsPriceGuard()
+[PASS] testSelectedNativeMintIncreaseAndClose()
+[PASS] testSelectedNativeMutablePayoutSettingsDoNotTrapCustody()
+[PASS] testSelectedNativeOneBucketRebalancePreservesBothNFTShares()
+[PASS] testSelectedNativeParkedResumeRequiresFreshFeedsAndPreservesAttachedShares()
+[PASS] testSelectedNativeParkingMinimaExcludeCompoundAndUnattributedVaultDonations()
+[PASS] testSelectedNativePausedParkingWorksWithStaleFeedsAndBrokenCreatorInbox()
+[PASS] testSelectedNativePrefundsCannotBecomePrincipalOrFees()
+[PASS] testSelectedNativeProtocolFeeObservationDoesNotTrapCustody()
+[PASS] testSelectedNativeReopenAtAnotherRangeKeepsPoolIdentity()
+[PASS] testSelectedNativeReportedWrapperImplementationChangeFailsClosed()
+[PASS] testSelectedNativeReviewedRenouncedWrapperAdminRestoresCustody()
+[PASS] testSelectedNativeReviewedWrapperUpgradeRestoresSameAssetAndCustody()
+[PASS] testSelectedNativeStaleOracleBlocksVaultExitUntilReviewedFeedReplacement()
+[PASS] testSelectedNativeTwoNFTsShareOneLPAndFundedRewards()
+[PASS] testSelectedNativeWrapperAdminOwnershipChangeFailsClosed()
+
+test/UniswapV4Fork.t.sol:UniswapV4ForkTest
+[PASS] testActualETHUSDFeedIsPositiveAndCurrentAtPinnedBlock()
+[PASS] testActualTokenTransferBurnAndNativeWrapRoundTrip()
+[PASS] testCurrentRegistryRejectsSelectedNativeAndHookedPool()
+[PASS] testPinnedSelectedPoolIdentityAndZeroCoreFees()
+[PASS] testRealNativeAndZZZPaymentsFundNFTClaimsWithoutChangingLP()
+[PASS] testRealPositionMintIncreaseAndApprovalReset()
+[PASS] testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing()
+[PASS] testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares()
+[PASS] testRealSwapFeeCollectionAndPositionBurn()
+
+Exact final coverage line from the preserved raw runner log:
+Fork coverage verified: both exact suites, 29 successful source tests, zero skips.
+Chain 4663; block 88544093; block hash 0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490
+Source snapshot and compiler closure bindings unchanged before/after.
+No signatures or public-chain transactions; production approval remains false.

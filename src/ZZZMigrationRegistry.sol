@@ -33,7 +33,7 @@ contract ZZZMigrationRegistry is ZZZModule {
         if (localDestination && (r.destinationAdapter != access.module(Ids.BRIDGE) || r.destinationVault != access.module(Ids.VAULT) ||
             r.destinationReceiver != access.module(Ids.RECEIVER))) revert InvalidConfiguration();
         if (localDestination && r.sourceToken1 != address(0)) {
-            PoolConfig memory destination = IZZZPools(access.module(Ids.POOLS)).get(r.destinationPool);
+            PoolConfig memory destination = IZZZPools(access.module(Ids.POOLS)).accounting(r.destinationPool);
             bool sameOrder = destination.key.currency0 == r.destinationToken0 && destination.key.currency1 == r.destinationToken1;
             bool reverseOrder = destination.key.currency0 == r.destinationToken1 && destination.key.currency1 == r.destinationToken0;
             if (!destination.operationsEnabled || (!sameOrder && !reverseOrder)) revert InvalidConfiguration();

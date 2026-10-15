@@ -1,0 +1,11 @@
+# Current-source static analysis - 2026-10-15
+
+Slither 0.11.6 analyzed the frozen candidate with the existing production build: all **28 production Solidity sources**, full typed AST and corresponding artifact bytecodes were verified against compiler inputs before analysis. Three configuration files are also bound. No source compilation was invoked by this analysis; Slither did read `forge config --json`.
+
+The fresh report contains **210 findings**: 34 High, 70 Medium, 72 Low, 29 Informational and 5 Optimization. Separate internal reviewers examined every finding against the current source; the root reviewer cross-checked High conclusions and Medium accepted risks. The result is **121 false positives, 56 accepted risks, 33 informational and zero unresolved**. Historical dispositions were not imported automatically. This is internal review coverage, **not an independent audit or production approval**.
+
+The canonical detailed review is [../../production/slither-review.json](../../production/slither-review.json). The previous 179-finding review is preserved byte-for-byte at [../../history/slither-review-pre-release-progress.json](../../history/slither-review-pre-release-progress.json). [review-coverage.json](review-coverage.json) records source hashes, raw-report SHA-256, individual-review coverage, replay and mutation results. The 46 MB raw analyzer JSON and full build/logs stay in the external evidence directory recorded there.
+
+A second no-compile Slither run passed the unchanged review checker. All **43 matcher unit tests** passed. Nine mutations of the fresh report/review were rejected: changed expression, severity, confidence, missing finding, duplicate finding, new finding, unresolved disposition, empty rationale and changed source binding. No checker or detector configuration was weakened.
+
+Accepted risks retain token/wrapper/provider implementation and upgrade trust, bounded external-call liveness, production maximum-workload gas/strategy qualification and intentional raw-unit rounding rules. Native custody checks and reviewed dependency recovery do not make malicious external contracts recoverable. Actual feed/VRF/provider configuration, wallet integration and independent audit/remediation remain release work.

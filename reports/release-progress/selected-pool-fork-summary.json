@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUTC": "2026-10-15T21:39:18.513699+00:00",
+  "scope": "Actual selected native-ETH/Pons pool custody development tests; not production approval or independent audit",
+  "productionApproved": false,
+  "readOnlyPublicChainAccess": true,
+  "signedOrBroadcastTransactions": 0,
+  "chainId": 4663,
+  "blockNumber": 88544093,
+  "blockHash": "0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490",
+  "actualSelectedPoolId": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f",
+  "testCounts": {
+    "Success": 17,
+    "Failure": 0,
+    "Skipped": 0
+  },
+  "testResultsSHA256": "1bafb9c40694f116e5f5fa4117ea38fd74ab5cfcb5358f927ced70d961f16b52",
+  "compiledCurrentSourceBindings": {
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "compiledKeccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394",
+      "currentKeccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394",
+      "matches": true
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "compiledKeccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+      "currentKeccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+      "matches": true
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "8820071b1d99b38f27be076223c2441e2725ab8a467de8421b932fcab8b27b9c",
+      "compiledKeccak256": "0xbbc02e15f21be1980404603e2c9ca1952596f69b18cce5064ef4fabae089f0a9",
+      "currentKeccak256": "0xbbc02e15f21be1980404603e2c9ca1952596f69b18cce5064ef4fabae089f0a9",
+      "matches": true
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "compiledKeccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7",
+      "currentKeccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7",
+      "matches": true
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "048ba350e6cda58436ac3c1478aca2806a7209c43a87feed50e625e6a256f33b",
+      "compiledKeccak256": "0x273669a52f2c129cbecaf5c1543d7b8bec6d34123a67124a2ecd3b6cfd400f8d",
+      "currentKeccak256": "0x273669a52f2c129cbecaf5c1543d7b8bec6d34123a67124a2ecd3b6cfd400f8d",
+      "matches": true
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+      "compiledKeccak256": "0x69dd53d7a9c601d6d106dd32cbaa5f532d38db9fa46e330a44a13e1a51db4b7c",
+      "currentKeccak256": "0x69dd53d7a9c601d6d106dd32cbaa5f532d38db9fa46e330a44a13e1a51db4b7c",
+      "matches": true
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "compiledKeccak256": "0xf42209f28ee63f95880aef61a1f35223ddf58ae06d81b8aaac2be378c9f5fc8d",
+      "currentKeccak256": "0xf42209f28ee63f95880aef61a1f35223ddf58ae06d81b8aaac2be378c9f5fc8d",
+      "matches": true
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "compiledKeccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df",
+      "currentKeccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df",
+      "matches": true
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "46fe124ad54772790049a0b86d062771cda665572b24f866e05d3d8c418d8a48",
+      "compiledKeccak256": "0x70800b25d32e46e2f311033b2a98b6c94debdf2e1a8c22e6bd313b79433a5c16",
+      "currentKeccak256": "0x70800b25d32e46e2f311033b2a98b6c94debdf2e1a8c22e6bd313b79433a5c16",
+      "matches": true
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "compiledKeccak256": "0x6bebfb829c9e8c341e4759642012464a8e666faa18a85f5ac567b5c85b7bbb12",
+      "currentKeccak256": "0x6bebfb829c9e8c341e4759642012464a8e666faa18a85f5ac567b5c85b7bbb12",
+      "matches": true
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "compiledKeccak256": "0xcdc2f89a39a12e478c797d17ebedf5ecc10a58ef71cdc860c4360f7e5c447914",
+      "currentKeccak256": "0xcdc2f89a39a12e478c797d17ebedf5ecc10a58ef71cdc860c4360f7e5c447914",
+      "matches": true
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "compiledKeccak256": "0x7526c0f724a23022ac0d58ee73caf40fc89cba37b89e8eac96627e29d6de85c5",
+      "currentKeccak256": "0x7526c0f724a23022ac0d58ee73caf40fc89cba37b89e8eac96627e29d6de85c5",
+      "matches": true
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "compiledKeccak256": "0x3337d0cbc0bbe44735521313a9c36e56d7aea4f2df3afbe98572a12b545ca099",
+      "currentKeccak256": "0x3337d0cbc0bbe44735521313a9c36e56d7aea4f2df3afbe98572a12b545ca099",
+      "matches": true
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "1acb2e945184606c25bd5995959cd1b8c917967033220ab41db37fdc38c7968e",
+      "compiledKeccak256": "0x2198fc61ac7a7da5ae37cf7f804e464711ed65eff566497d0661636cd7b920c1",
+      "currentKeccak256": "0x2198fc61ac7a7da5ae37cf7f804e464711ed65eff566497d0661636cd7b920c1",
+      "matches": true
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+      "compiledKeccak256": "0x4687a92aa59af102486da2fe1cf001c9b1ae5b3ec8047e2ef51f10f465fe89a1",
+      "currentKeccak256": "0x4687a92aa59af102486da2fe1cf001c9b1ae5b3ec8047e2ef51f10f465fe89a1",
+      "matches": true
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "562028fbb05ef593dcf63d11b5b857452963e50b7aa605a937c442a590343d0d",
+      "compiledKeccak256": "0x34bc75157483ad87969a500158ec681f21449d3ef19b463f33ca60ab5d2c53bb",
+      "currentKeccak256": "0x34bc75157483ad87969a500158ec681f21449d3ef19b463f33ca60ab5d2c53bb",
+      "matches": true
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "compiledKeccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "currentKeccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "matches": true
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "compiledKeccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+      "currentKeccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+      "matches": true
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "0ca97dd1e79eedd2320e1e29b9a046ce1ddeb2a0cbc6539634394d2e5a65bc5b",
+      "compiledKeccak256": "0x13f3752ce35066a5960cbf96a781eb503b67d5504f09c73c3c140b93d3204ee6",
+      "currentKeccak256": "0x13f3752ce35066a5960cbf96a781eb503b67d5504f09c73c3c140b93d3204ee6",
+      "matches": true
+    },
+    "test/NativePoolFork.t.sol": {
+      "sha256": "d1c0632e85ef964875aa9c82ae413e37c28244671d6257e475482546db879bd7",
+      "compiledKeccak256": "0xb8c51f0d74ffc4b98e5496a12362d3d69c4d9d368451ea9d26b63406f218e400",
+      "currentKeccak256": "0xb8c51f0d74ffc4b98e5496a12362d3d69c4d9d368451ea9d26b63406f218e400",
+      "matches": true
+    }
+  },
+  "sourceFilesOutsideThisTestCompilationClosure": [
+    "src/ZZZAccessController.sol",
+    "src/ZZZBridgeAdapter.sol",
+    "src/ZZZBridgeRouter.sol",
+    "src/ZZZBuyback.sol",
+    "src/ZZZCompounder.sol",
+    "src/ZZZMigration.sol",
+    "src/ZZZMigrationReceiver.sol",
+    "src/ZZZMigrationRegistry.sol",
+    "src/libraries/BridgeAssets.sol"
+  ],
+  "objects": {
+    "ZZZLiquidityManager": {
+      "runtimeBytes": 22047,
+      "initcodeObjectBytes": 23522,
+      "runtimeFitsEIP170": true,
+      "initcodeObjectFitsEIP3860": true
+    },
+    "ZZZPoolRegistry": {
+      "runtimeBytes": 11506,
+      "initcodeObjectBytes": 18335,
+      "runtimeFitsEIP170": true,
+      "initcodeObjectFitsEIP3860": true
+    },
+    "ZZZStrategy": {
+      "runtimeBytes": 11337,
+      "initcodeObjectBytes": 11765,
+      "runtimeFitsEIP170": true,
+      "initcodeObjectFitsEIP3860": true
+    },
+    "ZZZVault": {
+      "runtimeBytes": 24434,
+      "initcodeObjectBytes": 25313,
+      "runtimeFitsEIP170": true,
+      "initcodeObjectFitsEIP3860": true
+    },
+    "ZZZActivationAssets": {
+      "runtimeBytes": 4810,
+      "initcodeObjectBytes": 5305,
+      "runtimeFitsEIP170": true,
+      "initcodeObjectFitsEIP3860": true
+    }
+  },
+  "testScaffolding": [
+    "Mock access controller",
+    "Mock VRF",
+    "Synthetic USD reference calibration",
+    "Forced rebalance policy decision for custody/share preservation test",
+    "Local EIP1967 proxy implementation slot change using byte-identical implementation code",
+    "Local Ownable proxy-admin owner-slot renunciation simulation",
+    "Migration-module stub for source custody release"
+  ],
+  "remainingGates": [
+    "Actual production feeds/VRF and authority admission",
+    "WETH proxy upgrade authority and source review",
+    "Creator-payment terms and operating payout",
+    "Production strategy/gas qualification",
+    "Real target testnet operating rehearsals",
+    "Independent audit and remediation",
+    "Actual bridge backing/provider integration; migration initially disabled"
+  ]
+}

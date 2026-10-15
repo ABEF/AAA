@@ -3,7 +3,7 @@
   "accounting_model": "shared-pools-v2",
   "_notes": [
     "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",
-    "The selected Robinhood native-ETH/hooked/zero-core-fee pool is unsupported by the current contracts.",
+    "The selected Robinhood native-ETH/Pons boundary is a new development candidate; this production validator deliberately keeps native/hooked pool admission closed pending complete release qualification and mapping observations.",
     "Fill independently reviewed values; never put credentials, signer keys or RPC secrets in this manifest.",
     "Evidence records require status=passed, exact release commit, SHA-256 of the retained report, and its reference.",
     "Principal routes also require bucket_id/source_pool_id plus independently reviewed source and destination bucket_reservations at each chain's observed block.",
@@ -35,6 +35,9 @@
     },
     "mint_price_wei": "50000000000000000",
     "minimum_activation_usd18": "100000000000000000000",
+    "activation_minimum_basis": "gross_source_input",
+    "maximum_entry_loss_bps": 100,
+    "network_gas_separate": true,
     "fee_split_bps": [8000, 1000, 500, 500],
     "collective_weights": "equal_activated_nfts",
     "maximum_membership_dust_raw": 19
@@ -97,12 +100,22 @@
       "routes": {"address": null, "runtime_hash": null, "controller": null},
       "transport": {"address": null, "runtime_hash": null, "controller": null}
     },
+    "activation_assets": {
+      "address": null, "runtime_hash": null, "immutable": true, "registry": null, "controller": null,
+      "observed_registry_helper": null, "observed_chain_id": 4663, "observed_block_number": null,
+      "observed_block_hash": null, "review_evidence": null
+    },
+    "activation_entry": {
+      "address": null, "runtime_hash": null, "immutable": true, "registry": null, "controller": null,
+      "activation_assets": null, "observed_registry_entry": null, "observed_chain_id": 4663,
+      "observed_block_number": null, "observed_block_hash": null, "review_evidence": null
+    },
     "governance": {
       "multisig": null, "proposers": [], "executors": [], "signers": [], "threshold": null,
       "keeper": null, "guardian": null, "overlap_review": null,
       "timelock_seconds": null, "delay_fixed": true, "migration_delay_seconds": 172800,
       "post_seal_routes_timelocked": true, "sealed": false, "bootstrap": null,
-      "roles_and_seal_evidence": null
+      "roles_and_seal_evidence": null, "parking_rehearsal": null
     },
     "constructor": {
       "canonical_chain_id": 4663, "mint_proceeds_recipient": null,
@@ -112,9 +125,11 @@
     "nft_inventory": {
       "royalty_rewards": {"address": null, "runtime_hash": null, "immutable": true, "nft": null, "review_evidence": null},
       "metadata_renderer": {"address": null, "runtime_hash": null, "immutable": true, "controller": null, "review_evidence": null},
+      "claim_router": {"address": null, "runtime_hash": null, "immutable": true, "nft": null, "controller": null, "royalties": null, "max_claims": 32, "review_evidence": null},
       "observed_chain_id": 4663, "observed_block_number": null, "observed_block_hash": null,
       "observed_bindings": {
         "nft": null, "royaltyRewards": null, "metadataRenderer": null, "royaltyReceiver": null, "royaltyBps": 500,
+        "claimRouter": null, "claimRouterNft": null, "claimRouterController": null, "claimRouterRoyalties": null, "MAX_CLAIMS": 32,
         "artworkBaseURI": null,
         "MAX_SUPPLY": 1000, "mintedCount": null, "nextToFinalize": null, "remainingToReveal": null, "rarityRemaining": [],
         "randomnessConfigured": false, "randomnessCoordinator": null, "keyHash": null, "subscriptionId": null,
@@ -161,7 +176,11 @@
         "round_id": null, "answered_in_round": null, "review": null
       }
     }],
-    "sequencer": {"mode": null, "address": null, "runtime_hash": null, "answer": null, "started_at": null, "review": null},
+    "sequencer": {
+      "mode": null, "address": null, "runtime_hash": null, "answer": null, "started_at": null,
+      "observed_oracle_feed": null, "active_policy_id": null, "policy_count": null,
+      "observed_policy": null, "replacement_review": null, "review": null
+    },
     "pools": [{
       "pool_id": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f",
       "currency0": "0x0000000000000000000000000000000000000000",

@@ -1,0 +1,11 @@
+{
+  "scope": "Offline replay of the final CI result-inventory gate against two separately executed real fork-result files; not a single combined live run",
+  "successfulTests": 26,
+  "failureTests": 0,
+  "skippedTests": 0,
+  "inputs": {
+    "original-hookless-final-tests.json": "56e8dde8d27bfd79a95529e27a58fc6534e329752135d9d69757673673891512",
+    "native-selected-pool-final-tests.json": "1bafb9c40694f116e5f5fa4117ea38fd74ab5cfcb5358f927ced70d961f16b52"
+  },
+  "runnerSHA256": "8e6d3049646bed2fe4d41700d1b7e128ce53ccd2568aeff1774a6c56014266b2"
+}

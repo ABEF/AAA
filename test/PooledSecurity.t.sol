@@ -95,10 +95,11 @@ contract PooledSecurityTest is PooledVaultFixture {
     }
 
     function testIncumbentIdleCannotSatisfyNewNFTDeployedMinimum() public {
+        venue.setSpendBps(9900);
         uint256 first=activatedPosition();uint256 second=_mint(bob);uint256 bucket=vault.nftBucket(first);
         Position memory beforeState=vault.group(bucket);uint256 oldShares=vault.bucketTotalShares(bucket);
         assertEq(beforeState.idle0+beforeState.idle1,20);
-        // $100 supplied, but the 99% venue deploys less than $100 of marginal
+        // $100 supplied, but the 99% venue deploys less than $99 of marginal
         // entrant LP even though it also deploys some incumbents' idle assets.
         vm.prank(bob);vm.expectRevert();vault.activate(second,poolId,50,50,1,block.timestamp+100);
         assertEq(vault.nftBucket(second),0);assertEq(vault.sharesOf(second),0);

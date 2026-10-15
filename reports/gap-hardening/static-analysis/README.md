@@ -1,0 +1,13 @@
+# Gap-hardening current-source static analysis - 2026-10-16
+
+Slither **0.11.6** analyzed the frozen candidate after a clean normal-profile production build. All **29 production Solidity sources**, their full typed AST and artifact bytecodes match exact compiler input bytes; three build/configuration files are also bound. The analysis invoked no compilation. Slither read only Forge configuration while consuming the prebuilt AST/bytecodes.
+
+All **220 findings** received fresh individual internal review: 40 High, 73 Medium, 69 Low, 33 Informational and 5 Optimization. Dispositions are **128 false positives, 53 accepted risks, 39 informational and zero unresolved**. Prior classifications were not automatically imported. Root separately cross-checked the six new Entry High balance-boundary conclusions. Author corroboration and internal review coverage are **not an independent audit or production approval**.
+
+The detailed current review is [slither-review.json](slither-review.json), also copied to [the canonical review](../../production/slither-review.json). The previous 210-finding review remains byte-for-byte preserved at [the historical snapshot](../../history/slither-review-pre-gap-hardening.json). Existing release-progress reports were left unchanged.
+
+[coverage.json](coverage.json) records source/report/review hashes and complete index coverage. [run-summary.json](run-summary.json) records exact compiler/artifact/tool bindings, fresh analysis status and external raw evidence paths. The 50,438,587-byte raw JSON and AST/build logs remain external, bound by SHA-256. An earlier incremental build failed preflight and was preserved separately; no stale code was analyzed.
+
+A second fresh no-compile Slither run passed the unchanged checker against this review. All **43 matcher tests** pass in [matcher-tests.log](matcher-tests.log). Nine fresh report/review mutations were rejected in [mutation-tests.json](mutation-tests.json), including changed expressions, severity, confidence, finding inventory, unresolved status, rationale and source binding. Detector configuration and matcher rules were not weakened.
+
+Reviewed Entry baselines intentionally span wrapper, typed router and fixed Vault calls; context stays inactive during approvals, and final balances/ownership must match. Parking preserves governed custody with raw close minima and distinct fee/compound ledgers; it creates no redemption path. Accepted external dependency, liveness, arithmetic and maximum-workload risks remain documented. Actual funded stablecoin/Pons execution, production services/authorities, staging and independent audit/remediation remain release gates.

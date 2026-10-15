@@ -43,7 +43,7 @@ struct PoolConfig {
 }
 
 // Append new states so existing migration status values remain stable.
-enum PositionStatus { None, Active, Outbound, Remote, Inbound, Dormant }
+enum PositionStatus { None, Active, Outbound, Remote, Inbound, Dormant, Parked }
 struct Position {
     bytes32 poolId;
     uint256 lpTokenId;

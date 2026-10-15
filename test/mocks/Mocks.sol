@@ -6,7 +6,8 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Ids,PoolKey,PoolConfig,Position,Route,BridgeMessage} from "../../src/libraries/ZZZTypes.sol";
-import {IZZZAccess,IZZZTransportReceiver} from "../../src/interfaces/IZZZ.sol";
+import {IZZZAccess,IZZZTransportReceiver,IZZZOracle} from "../../src/interfaces/IZZZ.sol";
+interface IMockCallerAccess { function access() external view returns (address); }
 contract MockAccess {
     mapping(bytes32=>address) public module;
     mapping(address=>bool) public keepers;
@@ -49,9 +50,16 @@ contract MockFeed {
     function latestRoundData() external view returns(uint80,int256,uint256,uint256,uint80){return(round,answer,started,updated,answeredRound);}
 }
 contract MockPools {
+    address public activationEntry;
     mapping(bytes32=>PoolConfig) private configs;
     function set(bytes32 id,PoolConfig memory c) external {configs[id]=c;}
     function get(bytes32 id) external view returns(PoolConfig memory){return configs[id];}
+    function accounting(bytes32 id) external view returns(PoolConfig memory){return configs[id];}
+    function contributionValue(bytes32 id,uint256 amount0,uint256 amount1) external view returns(uint256){
+        IZZZAccess controller=IZZZAccess(IMockCallerAccess(msg.sender).access());
+        IZZZOracle oracle=IZZZOracle(controller.module(Ids.ORACLE));PoolConfig memory c=configs[id];
+        return oracle.value(c.key.currency0,amount0)+oracle.value(c.key.currency1,amount1);
+    }
 }
 contract MockVaultRecord {
     Position private p;
