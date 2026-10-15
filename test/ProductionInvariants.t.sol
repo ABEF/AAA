@@ -17,7 +17,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
     uint256[2] private collected;
     uint256[2] private paid;
     uint256[2] private donations;
-    uint256 public expectedPower;
+    uint256 public expectedContribution;
     constructor() {
         setUp();
         // A constructor has no deployed runtime; use a deployed plan fixture.
@@ -28,7 +28,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
         if(ac.paused() || ids.length>=8) return;
         address owner=second ? bob : alice;vm.deal(owner,10 ether);
         uint256 id=_mint(owner);ids.push(id);owners[id]=owner;
-        assertEq(vault.sharesOf(id),0);assertEq(power.powerOf(id),0);
+        assertEq(vault.sharesOf(id),0);assertFalse(membership.eligible(id));
     }
     function activate(uint256 seed,uint256 x,uint256 y) public {
         uint256 id=ids[seed%ids.length];
@@ -52,7 +52,7 @@ contract PooledAccountingHandler is PooledVaultFixture {
         assertEq(vault.sharesOf(id)-beforeShares,expected,"independent share price");
         assertGe(rewards.claimable(id,address(t0)),old0,"lost history");
         assertGe(rewards.claimable(id,address(t1)),old1,"lost history");
-        deposited[0]+=x;deposited[1]+=y;expectedPower+=(x+y)*1e18;
+        deposited[0]+=x;deposited[1]+=y;expectedContribution+=(x+y)*1e18;
     }
     function topUp(uint256 seed,uint256 x,uint256 y) external {
         uint256 id=ids[seed%ids.length];if(ac.paused() || vault.nftBucket(id)==0)return;
@@ -91,16 +91,17 @@ contract PooledAccountingHandler is PooledVaultFixture {
     }
     function assertConservation() external view {
         uint256 bucket=vault.poolBucket(poolId);Position memory p=vault.group(bucket);
-        uint256 shares;uint256 contribution;uint256[2] memory claims;
+        uint256 shares;uint256 contribution;uint256 active;uint256[2] memory claims;
         for(uint256 i;i<ids.length;i++) {
             uint256 id=ids[i];assertEq(nft.ownerOf(id),owners[id]);
             shares+=vault.sharesOf(id);contribution+=vault.contributionUSD(id);
-            assertEq(vault.contributionUSD(id),power.powerOf(id));
+            assertEq(membership.eligible(id),vault.nftBucket(id)!=0);
+            if(membership.eligible(id))active++;
             if(vault.nftBucket(id)==0)assertEq(vault.sharesOf(id),0);
             claims[0]+=rewards.claimable(id,address(t0));claims[1]+=rewards.claimable(id,address(t1));
         }
         assertEq(shares,vault.bucketTotalShares(bucket));assertEq(contribution,p.depositUSD);
-        assertEq(power.totalPower(),expectedPower);assertEq(contribution,expectedPower);
+        assertEq(membership.totalEligible(),active);assertEq(contribution,expectedContribution);
         assertEq(vault.bucketCount(),1);assertEq(venue.ownerOf(p.lpTokenId),address(vault));
         assertEq(vault.totalIdle(address(t0)),p.idle0);assertEq(vault.totalIdle(address(t1)),p.idle1);
         assertEq(t0.balanceOf(address(vault)),p.idle0+donations[0]);assertEq(t1.balanceOf(address(vault)),p.idle1+donations[1]);

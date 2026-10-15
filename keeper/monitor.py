@@ -20,7 +20,7 @@ from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
 
-ACCOUNTING_MODEL = 'shared-pools-v1'
+ACCOUNTING_MODEL = 'shared-pools-v2'
 
 def log(event: str, **fields: Any) -> None:
     print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)

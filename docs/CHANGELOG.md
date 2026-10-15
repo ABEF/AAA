@@ -1,3 +1,16 @@
+# Product alignment candidate — 2026-10-15
+
+Undeployed breaking development changes, with verification and release gates recorded in [the alignment review](../reports/website-alignment/README.md). This is not an upgrade of deployed contracts.
+
+- $100 net-deployed activation; 80/10/5/5 funded LP allocation; equal activated-NFT collective membership replaces Power.
+- A capped 1,000-NFT collection with exact 600/300/100 rarities drawn through fixed-coordinator verifiable randomness requests and ordered finalization.
+- Separate 5% requested marketplace royalties, distributing actual admitted receipts at activated rarity weights 1/2/3.
+- Dynamic metadata based on current attributed LP NAV, including valuation-unavailable handling and $1,000/$10,000 artwork thresholds.
+- Shared physical LP custody remains per pool, with an initial single-pool intent and a 16-historical-bucket registration cap to bound global entry settlement. Future migrations reuse an existing bucket.
+- Production market/native-token routing, actual VRF/bridge provider setup, authority selection, staging and independent audit remain open. The public website remains a simulation.
+
+The following entry is preserved as historical prototype-review evidence.
+
 # v0.2 versus the supplied prototype
 
 This is a breaking source rewrite, not an upgrade transaction or migration of an existing deployed system. No prior live deployment is assumed.

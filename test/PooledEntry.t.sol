@@ -16,10 +16,10 @@ contract PooledEntryTest is PooledVaultFixture {
         uint256 first=activatedPosition();uint256 bucket=vault.nftBucket(first);
         venue.setFees(100,100);vault.collectFees(bucket,block.timestamp+100);
         uint256 second=_mint(bob);_activate(bob,second,1000,1000);
-        assertEq(vault.sharesOf(second),uint256(2000e18)*2000/2020);
+        assertEq(vault.sharesOf(second),uint256(2000e18)*2000/2010);
         assertEq(rewards.claimable(second,address(t0)),0);
-        assertEq(rewards.claimable(first,address(t0)),80);
-        assertEq(power.powerOf(second),2000e18);assertEq(vault.bucketCount(),1);
+        assertEq(rewards.claimable(first,address(t0)),90);
+        assertTrue(membership.eligible(second));assertEq(membership.totalEligible(),2);assertEq(vault.bucketCount(),1);
     }
     function testDonationDoesNotReduceSharesPurchased() public {
         uint256 first=activatedPosition();uint256 second=_mint(bob);
@@ -30,9 +30,9 @@ contract PooledEntryTest is PooledVaultFixture {
     }
     function testFeeDustSettlesToPreviousMembershipBeforeJoin() public {
         uint256 first=activatedPosition();uint256 bucket=vault.nftBucket(first);
-        venue.setFees(9,9);vault.collectFees(bucket,block.timestamp+100);
+        venue.setFees(19,19);vault.collectFees(bucket,block.timestamp+100);
         uint256 second=_mint(bob);_activate(bob,second,1000,1000);
-        assertEq(rewards.claimable(first,address(t0)),9);
+        assertEq(rewards.claimable(first,address(t0)),19);
         assertEq(rewards.claimable(second,address(t0)),0);
         assertEq(fees.dust(bucket,address(t0)),0);
     }

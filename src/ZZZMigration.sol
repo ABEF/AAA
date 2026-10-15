@@ -7,7 +7,7 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind, AckPurpose} from "./libraries/ZZZTypes.sol";
 import {IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge, IZZZBridgeRouter, IZZZFees} from "./interfaces/IZZZ.sol";
 
-/// @notice Repeated, timelocked custody moves. NFT shares and Power remain canonical; custody moves whole buckets without NFT loops.
+/// @notice Repeated, timelocked custody moves. NFT shares and membership remain canonical; custody moves whole buckets without NFT loops.
 contract ZZZMigration is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     enum Status { None, Scheduled, Cancelled, Bridged, Completed }

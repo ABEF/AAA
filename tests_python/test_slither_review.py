@@ -233,6 +233,232 @@ class SlitherReviewTests(unittest.TestCase):
             description=reordered["description"].replace("first()", "withdraw()"))]
         self.assertTrue(reviewer.check(self.report, self.review, self.root))
 
+    def write_bundles(self):
+        positions = ("\tCore.positions (src/Core.sol#1) can be used in cross function reentrancies:\n"
+            "\t- Core.confirm(uint256) (src/Core.sol#20-22)\n"
+            "\t- Core.group(uint256) (src/Core.sol#23)\n")
+        total = ("\tCore.totalIdle (src/Core.sol#2) can be used in cross function reentrancies:\n"
+            "\t- Core.totalIdle (src/Core.sol#2)\n")
+        return [
+            "\t- _compound(bucket) (src/Core.sol#6)\n"
+            "\t\t- p.idle0 = new0 (src/Core.sol#10)\n"
+            "\t\t- p.idle1 = new1 (src/Core.sol#11)\n" + positions,
+            "\t- _idle(bucket,new0,new1) (src/Core.sol#7)\n"
+            "\t\t- p.idle0 = new0 (src/Core.sol#10)\n"
+            "\t\t- p.idle1 = new1 (src/Core.sol#11)\n" + positions,
+            "\t- _idle(bucket,new0,new1) (src/Core.sol#7)\n"
+            "\t\t- totalIdle[token0] = new0 (src/Core.sol#8)\n"
+            "\t\t- totalIdle[token1] = new1 (src/Core.sol#9)\n" + total,
+        ]
+
+    def grouped_finding(self, bundles):
+        return dict(self.finding, check="reentrancy-no-eth", description=
+            "Reentrancy in Core.join(uint256) (src/Core.sol#3-19):\n"
+            "\tExternal calls:\n\t- fees.sync() (src/Core.sol#4)\n"
+            "\t- _harvest(bucket) (src/Core.sol#5)\n"
+            "\t\t- manager.collect(bucket) (src/Core.sol#15)\n"
+            "\t\t- fees.allocate(bucket) (src/Core.sol#16)\n"
+            "\tState variables written after the call(s):\n" + "".join(bundles))
+
+    def set_grouped_review(self, findings):
+        self.review["findings"] = [dict(finding, fingerprint=reviewer.fingerprint(finding),
+            comparison=reviewer.WRITE_BUNDLES, disposition="false_positive",
+            rationale="Reviewed guarded calls and each write/cross-function bundle") for finding in findings]
+
+    def test_opted_in_write_bundles_match_split_and_merged_same_build_reports(self):
+        a, b, c = self.write_bundles()
+        merged = self.grouped_finding([a, b, c])
+        split = [self.grouped_finding([b, c]), self.grouped_finding([a])]
+        for canonical, incoming in (([merged], split), (split, [merged])):
+            with self.subTest(canonical_count=len(canonical)):
+                self.set_grouped_review(canonical)
+                self.report["results"]["detectors"] = incoming
+                self.assertEqual(reviewer.check(self.report, self.review, self.root), [])
+
+    def test_write_regrouping_requires_explicit_per_entry_opt_in(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        del self.review["findings"][0]["comparison"]
+        self.report["results"]["detectors"] = [self.grouped_finding([b, c]), self.grouped_finding([a])]
+        self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_reviewed_description_must_reconstruct_fingerprint_even_on_exact_hit(self):
+        self.review["findings"][0].update(self.finding)
+        self.review["findings"][0]["description"] += "unreviewed change\n"
+        self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_unknown_comparison_wrong_detector_and_missing_description_fail(self):
+        original = self.grouped_finding(self.write_bundles())
+        for mutation in ("unknown", "wrong-detector", "missing-description"):
+            with self.subTest(mutation=mutation):
+                self.set_grouped_review([original])
+                self.report["results"]["detectors"] = [original]
+                entry = self.review["findings"][0]
+                if mutation == "unknown":
+                    entry["comparison"] = "future-unreviewed-normalization"
+                elif mutation == "wrong-detector":
+                    entry["check"] = "reentrancy-events"
+                    entry["fingerprint"] = reviewer.fingerprint(entry)
+                    self.report["results"]["detectors"] = [entry]
+                else:
+                    del entry["description"]
+                self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_write_bundle_order_can_change_but_multiplicity_cannot(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        for bundles in ([c, a, b], [a, b], [a, b, c, a], [a, a, c]):
+            self.report["results"]["detectors"] = [self.grouped_finding(bundles)]
+            errors = reviewer.check(self.report, self.review, self.root)
+            self.assertEqual(not errors, bundles == [c, a, b])
+
+    def test_write_regrouping_preserves_all_call_context_expressions_and_locations(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        split = [self.grouped_finding([b, c]), self.grouped_finding([a])]
+        replacements = (("fees.sync()", "fees.withdraw()"), ("#4)", "#24)"),
+            ("manager.collect(bucket)", "manager.collect(other)"), ("#15)", "#25)"),
+            ("Core.join(uint256)", "Core.exit(uint256)"), ("#3-19)", "#3-29)"))
+        for old, new in replacements:
+            with self.subTest(old=old, new=new):
+                self.report["results"]["detectors"] = [split[0], dict(split[1],
+                    description=split[1]["description"].replace(old, new))]
+                self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_write_regrouping_keeps_external_root_order_and_parentage(self):
+        original = self.grouped_finding(self.write_bundles())
+        self.set_grouped_review([original])
+        description = original["description"]
+        first = "\t- fees.sync() (src/Core.sol#4)\n"
+        parent = "\t- _harvest(bucket) (src/Core.sol#5)\n"
+        children = ("\t\t- manager.collect(bucket) (src/Core.sol#15)\n"
+            "\t\t- fees.allocate(bucket) (src/Core.sol#16)\n")
+        for changed in (description.replace(first+parent+children, parent+children+first),
+                description.replace(first+parent+children, first+children+parent)):
+            self.report["results"]["detectors"] = [dict(original, description=changed)]
+            self.assertTrue(reviewer.check(self.report, self.review, self.root))
+        reordered = children.splitlines(keepends=True)
+        self.report["results"]["detectors"] = [dict(original,
+            description=description.replace(children, "".join(reversed(reordered))))]
+        self.assertEqual(reviewer.check(self.report, self.review, self.root), [])
+
+    def test_write_regrouping_preserves_external_call_multiplicity(self):
+        original = self.grouped_finding(self.write_bundles())
+        self.set_grouped_review([original])
+        root = "\t- fees.sync() (src/Core.sol#4)\n"
+        child = "\t\t- manager.collect(bucket) (src/Core.sol#15)\n"
+        for description in (original["description"].replace(root, root+root),
+                original["description"].replace(child, child+child),
+                original["description"].replace(child, "")):
+            self.report["results"]["detectors"] = [dict(original, description=description)]
+            self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_write_regrouping_preserves_root_child_order_and_deeper_parentage(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        child0 = "\t\t- p.idle0 = new0 (src/Core.sol#10)\n"
+        child1 = "\t\t- p.idle1 = new1 (src/Core.sol#11)\n"
+        for altered in (a.replace("_compound(bucket)", "_different(bucket)"),
+                a.replace("#6)", "#26)"), a.replace("new0", "other0"),
+                a.replace("#10)", "#30)"), a.replace(child0+child1, child1+child0),
+                a.replace(child1, child1+child1), a.replace(child0, "")):
+            with self.subTest(altered=altered):
+                self.report["results"]["detectors"] = [self.grouped_finding([altered, b, c])]
+                self.assertTrue(reviewer.check(self.report, self.review, self.root))
+        a_deep = a.replace(child0, child0+"\t\t\t- inner() (src/Core.sol#12)\n")
+        self.set_grouped_review([self.grouped_finding([a_deep, b, c])])
+        detached = a.replace(child1, child1+"\t\t\t- inner() (src/Core.sol#12)\n")
+        self.report["results"]["detectors"] = [self.grouped_finding([detached, b, c])]
+        self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_write_child_partition_cannot_change_between_identical_roots(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        child = "\t\t- p.idle1 = new1 (src/Core.sol#11)\n"
+        altered = [a.replace(child, ""), b.replace(child, child+child), c]
+        self.report["results"]["detectors"] = [self.grouped_finding(altered)]
+        self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_cross_function_paragraph_content_order_locations_and_duplicates_preserved(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        confirm = "\t- Core.confirm(uint256) (src/Core.sol#20-22)\n"
+        group = "\t- Core.group(uint256) (src/Core.sol#23)\n"
+        for altered in (a.replace("Core.positions", "Core.other"),
+                a.replace("#1)", "#31)"), a.replace("Core.confirm", "Core.destroy"),
+                a.replace("#20-22)", "#30-32)"),
+                a.replace(confirm, ""), a.replace(group, group+group),
+                a.replace(confirm+group, group+confirm)):
+            self.report["results"]["detectors"] = [self.grouped_finding([altered, b, c])]
+            self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_cross_function_paragraph_cannot_move_to_different_write_root(self):
+        a, b, c = self.write_bundles()
+        self.set_grouped_review([self.grouped_finding([a, b, c])])
+        a_root, a_cross = a.split("\tCore.positions", 1)
+        c_root, c_cross = c.split("\tCore.totalIdle", 1)
+        self.report["results"]["detectors"] = [self.grouped_finding([
+            a_root+"\tCore.totalIdle"+c_cross, b, c_root+"\tCore.positions"+a_cross])]
+        self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_write_regrouping_rejects_unknown_shape_even_when_exactly_reviewed(self):
+        a, b, c = self.write_bundles()
+        original = self.grouped_finding([a, b, c])
+        descriptions = [original["description"]+"\tFuture section:\n",
+            original["description"].replace("\tExternal calls:\n", "\tOther calls:\n"),
+            original["description"].replace("\t\t- p.idle0 = new0 (src/Core.sol#10)\n", "").replace(
+                "\t\t- p.idle1 = new1 (src/Core.sol#11)\n", ""),
+            original["description"].replace(" can be used in cross function reentrancies:", " changed syntax:"),
+            original["description"].replace("\t- Core.confirm", "\t\t- Core.confirm"),
+            original["description"]+"\n"]
+        for description in descriptions:
+            with self.subTest(description=description):
+                changed = dict(original, description=description)
+                self.set_grouped_review([changed])
+                self.report["results"]["detectors"] = [changed]
+                self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
+    def test_grouped_matches_still_require_source_disposition_rationale_and_severity(self):
+        a, b, c = self.write_bundles()
+        canonical = self.grouped_finding([a, b, c])
+        split = [self.grouped_finding([b, c]), self.grouped_finding([a])]
+        for mutation in ("source", "disposition", "rationale", "impact", "confidence"):
+            with self.subTest(mutation=mutation):
+                self.set_grouped_review([canonical])
+                self.report["results"]["detectors"] = [dict(finding) for finding in split]
+                if mutation == "source":
+                    (self.root / "src/Core.sol").write_text("drift\n")
+                elif mutation == "disposition":
+                    self.review["findings"][0]["disposition"] = "unresolved"
+                elif mutation == "rationale":
+                    self.review["findings"][0]["rationale"] = " "
+                else:
+                    self.report["results"]["detectors"][0][mutation] = "Low"
+                self.assertTrue(reviewer.check(self.report, self.review, self.root))
+                (self.root / "src/Core.sol").write_text("reviewed\n")
+
+    def test_grouped_matches_cannot_hide_other_new_stale_or_duplicate_findings(self):
+        a, b, c = self.write_bundles()
+        canonical = self.grouped_finding([a, b, c])
+        split = [self.grouped_finding([b, c]), self.grouped_finding([a])]
+        for mutation in ("new", "stale", "duplicate-analyzer", "duplicate-review", "mixed-context"):
+            with self.subTest(mutation=mutation):
+                self.set_grouped_review([canonical])
+                self.report["results"]["detectors"] = list(split)
+                if mutation == "new":
+                    self.report["results"]["detectors"].append(self.finding)
+                elif mutation == "stale":
+                    self.review["findings"].append(dict(self.finding, fingerprint=reviewer.fingerprint(self.finding),
+                        disposition="accepted_risk", rationale="Unchanged exact review"))
+                elif mutation == "duplicate-analyzer":
+                    self.report["results"]["detectors"].append(split[0])
+                elif mutation == "duplicate-review":
+                    self.review["findings"].append(dict(self.review["findings"][0]))
+                else:
+                    self.review["findings"].append(dict(split[0], fingerprint=reviewer.fingerprint(split[0]),
+                        disposition="accepted_risk", rationale="Ambiguous exact context"))
+                self.assertTrue(reviewer.check(self.report, self.review, self.root))
+
 
 if __name__ == "__main__":
     unittest.main()

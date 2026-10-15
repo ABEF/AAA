@@ -1,6 +1,6 @@
 {
-  "schema_version": 3,
-  "accounting_model": "shared-pools-v1",
+  "schema_version": 4,
+  "accounting_model": "shared-pools-v2",
   "_notes": [
     "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",
     "The selected Robinhood native-ETH/hooked/zero-core-fee pool is unsupported by the current contracts.",
@@ -8,9 +8,13 @@
     "Evidence records require status=passed, exact release commit, SHA-256 of the retained report, and its reference.",
     "Principal routes also require bucket_id/source_pool_id plus independently reviewed source and destination bucket_reservations at each chain's observed block.",
     "An initial migration-disabled launch may leave bucket_reservations empty; future funded routes must prove permanent pool reservations for the canonical bucket.",
-    "Token admission must review the USD value of up to nine raw units settled to owners before membership changes and holder-triggered top-up frequency.",
+    "Token admission must review the USD value of up to nineteen raw units settled to owners before membership changes and holder-triggered top-up frequency.",
     "External creator payments are funded revenue only; no creator percentage, payment promise or proportional Pons entitlement is assumed.",
     "Inventory every immutable canonical reward receiver, exact getter/code observations and native wrapper review; max16 receivers. These are helpers, not new sealed modules.",
+    "Collection supply is capped at 1000 with exact600Commun/300Rare/100Legendary quotas. Verified randomness assigns rarity in mint order without replacement; later odds follow remaining quotas, not fixed 60/30/10 chances.",
+    "Six artwork colors remain the current supported palettes. Metadata uses current attributed LP value; stale/remote valuation is unavailable.",
+    "No verified randomness coordinator, subscription, key hash or staged fulfillment is supplied for Robinhood. Required randomness review and canonical NFT/helper observations remain pending.",
+    "ERC-2981 requests 5% but cannot enforce marketplace payment. All royalties actually received are shared by activated Commun/Rare/Legendary weights 1/2/3 in a separate ledger.",
     "Ready means offline inventory consistency only. It never authorizes deployment, sealing, signing or spending."
   ],
   "release_commit": null,
@@ -24,14 +28,33 @@
     "reward_model": "external_funded_revenue",
     "external_reward_policy": {
       "payment_method": "plain_transfers", "allocation_timing": "processing_time",
-      "owner_weights": "bucket_shares", "collective_weights": "lifetime_power",
+      "owner_weights": "bucket_shares", "collective_weights": "equal_activated_nfts",
       "revenue_entitlement": "received_funds_only",
-      "source_description": "Discretionary creator payments, with ordinary collected LP fees allocated separately through the same 50/30/10/10 rule",
+      "source_description": "Discretionary creator payments, with ordinary collected LP fees allocated separately through the same 80/10/5/5 rule",
       "terms_evidence": null
     },
     "mint_price_wei": "50000000000000000",
-    "minimum_activation_usd18": "500000000000000000000",
-    "fee_split_bps": [5000, 3000, 1000, 1000]
+    "minimum_activation_usd18": "100000000000000000000",
+    "fee_split_bps": [8000, 1000, 500, 500],
+    "collective_weights": "equal_activated_nfts",
+    "maximum_membership_dust_raw": 19
+  },
+  "nft_policy": {
+    "max_supply": 1000,
+    "rarity_distribution": "fixed_quotas_without_replacement",
+    "rarity_randomization": "vrf_mint_order_without_replacement",
+    "rarity_counts": [600, 300, 100],
+    "initial_rarity_bps": [6000, 3000, 1000],
+    "marketplace_royalty_bps": 500,
+    "received_royalty_distribution_bps": 10000,
+    "royalty_weights": [1, 2, 3],
+    "royalty_eligibility": "activated_nfts_only",
+    "royalty_entitlement": "received_funds_only",
+    "evolution_basis": "current_attributed_lp_value_usd18",
+    "unavailable_valuation": "unavailable",
+    "evolution_thresholds_usd18": ["0", "100000000000000000000", "1000000000000000000000", "10000000000000000000000"],
+    "randomness_policy": "verified_coordinator_two_words",
+    "economic_review_evidence": null
   },
   "evidence": {
     "toolchain": null,
@@ -61,7 +84,7 @@
       "nft": {"address": null, "runtime_hash": null, "controller": null},
       "liquidity": {"address": null, "runtime_hash": null, "controller": null},
       "rewards": {"address": null, "runtime_hash": null, "controller": null},
-      "power": {"address": null, "runtime_hash": null, "controller": null},
+      "membership": {"address": null, "runtime_hash": null, "controller": null},
       "fees": {"address": null, "runtime_hash": null, "controller": null},
       "strategy": {"address": null, "runtime_hash": null, "controller": null},
       "compounder": {"address": null, "runtime_hash": null, "controller": null},
@@ -85,6 +108,35 @@
       "canonical_chain_id": 4663, "mint_proceeds_recipient": null,
       "recipient_payment_evidence": null, "nft_base_uri": null, "maximum_buyback_usd18": null,
       "adapter_transport": null
+    },
+    "nft_inventory": {
+      "royalty_rewards": {"address": null, "runtime_hash": null, "immutable": true, "nft": null, "review_evidence": null},
+      "metadata_renderer": {"address": null, "runtime_hash": null, "immutable": true, "controller": null, "review_evidence": null},
+      "observed_chain_id": 4663, "observed_block_number": null, "observed_block_hash": null,
+      "observed_bindings": {
+        "nft": null, "royaltyRewards": null, "metadataRenderer": null, "royaltyReceiver": null, "royaltyBps": 500,
+        "artworkBaseURI": null,
+        "MAX_SUPPLY": 1000, "mintedCount": null, "nextToFinalize": null, "remainingToReveal": null, "rarityRemaining": [],
+        "randomnessConfigured": false, "randomnessCoordinator": null, "keyHash": null, "subscriptionId": null,
+        "requestConfirmations": null, "callbackGasLimit": null, "nativePayment": null
+      },
+      "artwork_publication": {
+        "base_uri": null, "manifest_sha256": null, "asset_count": 72, "asset_paths": [], "review_evidence": null
+      },
+      "royalty_assets": {
+        "asset_count": null, "complete_admission_history": false, "observation_evidence": null,
+        "assets": [{
+          "address": "0x0000000000000000000000000000000000000000", "observed_asset": null, "observed_is_asset": null,
+          "kind": "native", "decimals": 18, "runtime_hash": null, "admission_evidence": null
+        }]
+      },
+      "randomness": {
+        "coordinator": null, "runtime_hash": null, "keyHash": null, "subscriptionId": null,
+        "requestConfirmations": null, "callbackGasLimit": null, "nativePayment": null,
+        "immutable_configuration": true, "no_admin_reroll": true,
+        "review_evidence": null, "integration_evidence": null
+      },
+      "observation_evidence": null
     },
     "bridge_router": {
       "immutable_module": true, "upgradeable": false,

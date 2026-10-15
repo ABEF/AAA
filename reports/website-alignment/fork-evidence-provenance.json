@@ -1,0 +1,7 @@
+{
+  "phase": "Final 16-bucket source; fresh read-only pinned-block execution",
+  "log_original_and_copy_sha256": "de7a19551d067ba847ab70c4ac024b02ab76427ed23edda7122a50cd1fc9ab05",
+  "execution_original_sha256": "2531781edb39aa756d7f366b856d2170f8e1e7ae784c36a87c368881e62ef093",
+  "execution_curated_sha256": "ede09369b77fe839e69b6595d91bc8be5b38412d7860af840a0c7986a00f781c",
+  "sanitization": "Nonessential absolute executable/cache paths removed; portable command and build isolation descriptions retained. Tool/source/log hashes, timing, exact test results and any broad-inventory change preserved."
+}

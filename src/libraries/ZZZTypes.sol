@@ -6,7 +6,7 @@ library Ids {
     bytes32 internal constant NFT = keccak256("ZZZNFT");
     bytes32 internal constant LIQUIDITY = keccak256("ZZZLiquidityManager");
     bytes32 internal constant REWARDS = keccak256("ZZZRewards");
-    bytes32 internal constant POWER = keccak256("ZZZPower");
+    bytes32 internal constant MEMBERSHIP = keccak256("ZZZMembership");
     bytes32 internal constant FEES = keccak256("ZZZFeeController");
     bytes32 internal constant STRATEGY = keccak256("ZZZStrategy");
     bytes32 internal constant COMPOUNDER = keccak256("ZZZCompounder");

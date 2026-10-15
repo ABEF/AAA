@@ -1,0 +1,71 @@
+{
+  "independent_audit": false,
+  "checker_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+  "positive_reports": [
+    {
+      "label": "final16_fresh_native177",
+      "findings": 177,
+      "sha256": "442deeeae1f166a8c77a3f6238830d36a91cd3d7587182d464a6f7ca0346f9b3",
+      "review_coverage_pass": true,
+      "scope": "actual final16 source fresh analyzer"
+    },
+    {
+      "label": "final16_repeat_native177",
+      "findings": 177,
+      "sha256": "5397a207acc4246681b1610a2990e898c04b0acc31ee810975b892818193c8d3",
+      "review_coverage_pass": true,
+      "scope": "actual same final16 captured build repeat"
+    },
+    {
+      "label": "merged_native176_matcher_replay",
+      "findings": 176,
+      "sha256": "581c59570529f267a9ae22da7f40bcf7faf49b0147381b534f630802a21c80ee",
+      "review_coverage_pass": true,
+      "scope": "matching-only replay of the previously captured identical call/write context merged variant; not a final16 source analyzer run"
+    }
+  ],
+  "actual_report_mutations": [
+    {
+      "mutation": "drop_one_reviewed_write_bundle_record",
+      "rejected": true,
+      "errors": [
+        "Reviewed write-bundle multiplicity/content changed",
+        "Stale review entry: 60740754cc3f5d84200f8ec85ff27117d472249021be99d20a2a1b34a1920340"
+      ]
+    },
+    {
+      "mutation": "duplicate_reviewed_write_bundle_record",
+      "rejected": true,
+      "errors": [
+        "Duplicate analyzer fingerprints",
+        "Reviewed write-bundle multiplicity/content changed"
+      ]
+    },
+    {
+      "mutation": "alter_reviewed_write_expression",
+      "rejected": true,
+      "errors": [
+        "Reviewed write-bundle multiplicity/content changed",
+        "Unreviewed finding: 492a6360ef0d4622147f6b221ab85192fafb41cc50f7b357a2652e355ac11c9d",
+        "Stale review entry: 60740754cc3f5d84200f8ec85ff27117d472249021be99d20a2a1b34a1920340"
+      ]
+    },
+    {
+      "mutation": "alter_reviewed_severity",
+      "rejected": true,
+      "errors": [
+        "Reviewed write-bundle multiplicity/content changed",
+        "Unreviewed finding: 5cd6b1e74c49360babd76e227cea87ab66954730f2a42133c3146b2c450373c1",
+        "Stale review entry: 60740754cc3f5d84200f8ec85ff27117d472249021be99d20a2a1b34a1920340"
+      ]
+    },
+    {
+      "mutation": "alter_unrelated_exact_finding",
+      "rejected": true,
+      "errors": [
+        "Unreviewed finding: e846c22ab1d297be7c323a0330f909877ef4d7f19612d3e427c36cc5bcf56aa1",
+        "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+      ]
+    }
+  ]
+}

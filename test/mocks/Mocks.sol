@@ -88,8 +88,11 @@ contract MockTransport {
 }
 contract BoundDummy {
     IZZZAccess public immutable access;
+    bool public randomnessConfigured = true;
     constructor(address a){access=IZZZAccess(a);}
     function transport() external view returns(address){return access.module(Ids.TRANSPORT);}
+    function canonicalChainId() external view returns(uint256){return block.chainid;}
+    function setRandomnessConfigured(bool ready) external {randomnessConfigured=ready;}
 }
 // TEST ONLY: custody unit tests explicitly bypass transport readiness. Router
 // readiness/authentication is tested with real modules in separate suites.

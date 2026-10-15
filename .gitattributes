@@ -1,0 +1,4 @@
+# Preserve native review evidence bytes and Windows line endings.
+reports/website-alignment/** -text whitespace=cr-at-eol
+# Formatted native diagnostics contain intentional trailing spacing.
+reports/website-alignment/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

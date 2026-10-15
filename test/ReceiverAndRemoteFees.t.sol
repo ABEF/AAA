@@ -327,33 +327,33 @@ contract RemoteFeeReserveTest is Test {
     }
     function testRemoteDustStaysFundedUntilDeliveredHome() public {
         _allocate(1009); _status(PositionStatus.Outbound); vm.prank(address(vault)); fees.flushDust(42, address(token));
-        assertEq(fees.dust(42, address(token)), 0); assertEq(fees.remoteIndividual(42, address(token)), 509);
-        assertEq(fees.remoteCollective(42, address(token)), 300); assertEq(fees.accounted(address(token)), 1009);
+        assertEq(fees.dust(42, address(token)), 0); assertEq(fees.remoteIndividual(42, address(token)), 809);
+        assertEq(fees.remoteCollective(42, address(token)), 100); assertEq(fees.accounted(address(token)), 1009);
         assertEq(token.balanceOf(address(fees)), 1009); assertEq(rewards.credited(), 0);
         fees.bridgeRewards(42, address(token), REWARD_ROUTE);
-        assertEq(bridge.message().individual, 509); assertEq(bridge.message().collective, 300);
-        assertEq(fees.accounted(address(token)), 200); assertEq(token.balanceOf(address(fees)), 200);
+        assertEq(bridge.message().individual, 809); assertEq(bridge.message().collective, 100);
+        assertEq(fees.accounted(address(token)), 100); assertEq(token.balanceOf(address(fees)), 100);
     }
     function testLegacyBudgetUsesBoundCanonicalAssetAfterPoolReplacement() public {
         _allocate(100); Position memory p = vault.position(42); p.status = PositionStatus.Remote;
         p.poolId = keccak256("different-pool"); p.homeToken0 = address(0xBAD); p.homeToken1 = address(0xBEEF); vault.set(42, p);
         fees.bridgeRewards(42, address(token), REWARD_ROUTE);
         BridgeMessage memory m = bridge.message(); assertEq(m.version, 3); assertEq(m.canonicalToken0, CANONICAL);
-        assertEq(m.amount0, 80); assertEq(fees.remoteCanonicalToken(42, address(token)), CANONICAL);
-        assertEq(token.balanceOf(address(bridge)), 80);
+        assertEq(m.amount0, 90); assertEq(fees.remoteCanonicalToken(42, address(token)), CANONICAL);
+        assertEq(token.balanceOf(address(bridge)), 90);
     }
     function testLegacyBudgetsBridgeInAllCustodyStates() public {
         PositionStatus[4] memory states = [PositionStatus.Active, PositionStatus.Outbound, PositionStatus.Remote, PositionStatus.Inbound];
         for (uint256 i; i < states.length; i++) {
             _status(PositionStatus.Active); _allocate(100); _status(states[i]); fees.bridgeRewards(42, address(token), REWARD_ROUTE);
         }
-        assertEq(bridge.sends(), 4); assertEq(token.balanceOf(address(bridge)), 320);
-        assertEq(fees.accounted(address(token)), 80);
+        assertEq(bridge.sends(), 4); assertEq(token.balanceOf(address(bridge)), 360);
+        assertEq(fees.accounted(address(token)), 40);
     }
     function testDormantAndNoneCannotSendLegacyBudgets() public {
         _allocate(100); _status(PositionStatus.Dormant); vm.expectRevert(); fees.bridgeRewards(42, address(token), REWARD_ROUTE);
         _status(PositionStatus.None); vm.expectRevert(); fees.bridgeRewards(42, address(token), REWARD_ROUTE);
-        assertEq(fees.remoteIndividual(42, address(token)), 50);
+        assertEq(fees.remoteIndividual(42, address(token)), 80);
     }
     function testBoundAssetCannotBeChangedByReceiver() public {
         fees.bindRemoteAsset(42, address(token), CANONICAL); fees.bindRemoteAsset(42, address(token), CANONICAL);
@@ -370,7 +370,7 @@ contract RemoteFeeReserveTest is Test {
     }
     function testRewardSendFailureRestoresBudgetsAndFunding() public {
         _allocate(100); bridge.setFail(true); vm.expectRevert(); fees.bridgeRewards(42, address(token), REWARD_ROUTE);
-        assertEq(fees.remoteIndividual(42, address(token)), 50); assertEq(fees.remoteCollective(42, address(token)), 30);
+        assertEq(fees.remoteIndividual(42, address(token)), 80); assertEq(fees.remoteCollective(42, address(token)), 10);
         assertEq(fees.accounted(address(token)), 100); assertEq(token.balanceOf(address(fees)), 100);
     }
 }

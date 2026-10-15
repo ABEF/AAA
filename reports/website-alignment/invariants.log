@@ -1,0 +1,122 @@
+No files changed, compilation skipped
+
+Ran 2 tests for test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest
+[PASS] invariant_pooledCustodyAndClaimsConserved() (runs: 256, calls: 65536, reverts: 0)
+
+╭-------------------------+-----------+-------+---------+----------╮
+| Contract                | Selector  | Calls | Reverts | Discards |
++==================================================================+
+| PooledAccountingHandler | activate  | 6479  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | claim     | 6411  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | compound  | 6596  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | donate    | 6625  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | harvest   | 6469  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | mint      | 6587  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | paused    | 6556  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | rebalance | 6684  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | topUp     | 6487  | 0       | 0        |
+|-------------------------+-----------+-------+---------+----------|
+| PooledAccountingHandler | transfer  | 6642  | 0       | 0        |
+╰-------------------------+-----------+-------+---------+----------╯
+
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 43
+  Bound result 7
+  Bound result 0
+  Bound result 890
+  Bound result 467
+  Bound result 572
+  Bound result 882
+  Bound result 35
+  Bound result 780
+  Bound result 137
+  Bound result 863
+  Bound result 298
+  Bound result 626
+  Bound result 909
+  Bound result 429
+  Bound result 20
+  Bound result 815
+  Bound result 760
+  Bound result 242
+  Bound result 731
+  Bound result 730
+  Bound result 415
+  Bound result 824
+  Bound result 126
+  Bound result 100
+  Bound result 1
+  Bound result 70
+  Bound result 28
+  Bound result 974
+  Bound result 898
+  Bound result 980
+  Bound result 378
+  Bound result 78
+  Bound result 49
+  Bound result 238
+  Bound result 316
+  Bound result 49
+  Bound result 71
+  Bound result 950
+  Bound result 380
+  Bound result 857
+  Bound result 984
+  Bound result 469
+  Bound result 510
+  Bound result 502
+  Bound result 22
+  Bound result 95
+  Bound result 812
+  Bound result 934
+  Bound result 1
+  Bound result 907
+  Bound result 0
+  Bound result 577
+  Bound result 284
+  Bound result 33
+  Bound result 15
+  Bound result 735
+  Bound result 720
+  Bound result 904
+  Bound result 1
+  Bound result 603
+  Bound result 720
+  Bound result 886
+  Bound result 568
+  Bound result 394
+  Bound result 593
+  Bound result 673
+  Bound result 787
+  Bound result 745
+  Bound result 992
+  Bound result 886
+  Bound result 148
+  Bound result 1
+
+[PASS] testMembershipHistoryAndPausedClaims() (gas: 5778021)
+Logs:
+  Bound result 1000
+  Bound result 1000
+  Bound result 109
+  Bound result 217
+  Bound result 700
+  Bound result 800
+  Bound result 30
+  Bound result 40
+  Bound result 211
+  Bound result 307
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 208.78s (208.79s CPU time)
+
+Ran 1 test suite in 208.79s (208.78s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

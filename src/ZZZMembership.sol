@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+import {ZZZModule} from "./base/ZZZModule.sol";
+import {IZZZRewards, IZZZNFT, IZZZVault, IZZZFees, IZZZPools} from "./interfaces/IZZZ.sol";
+import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
+
+/// @notice Each activated canonical NFT has one equal collective-reward share.
+/// Eligibility belongs to the NFT, persists through transfers and LP migration,
+/// and never increases when its attached LP receives an additional contribution.
+contract ZZZMembership is ZZZModule {
+    mapping(uint256 => bool) public eligible;
+    uint256 public totalEligible;
+    event MembershipActivated(uint256 indexed nftId);
+    constructor(address controller) ZZZModule(controller) {}
+    /// @notice Settle funded fee dust in every canonical bucket before an entry.
+    /// The Vault caps all historical local buckets, including imported custody.
+    /// Unharvested fees and undelivered remote rewards retain receipt-time policy.
+    function settleDust() external onlyModule(Ids.FEES) {
+        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        IZZZFees fees = IZZZFees(msg.sender);
+        IZZZPools pools = IZZZPools(access.module(Ids.POOLS));
+        uint256 count = vault.bucketCount();
+        if (count > vault.MAX_BUCKETS()) revert InvalidState();
+        for (uint256 i; i < count; ++i) {
+            uint256 bucket = vault.bucketAt(i);
+            Position memory position = vault.group(bucket);
+            if (position.homeChain != block.chainid || position.homeVault != address(vault) ||
+                (position.status != PositionStatus.Active && position.status != PositionStatus.Outbound)) continue;
+            PoolConfig memory config = pools.get(position.poolId);
+            fees.flushDust(bucket, config.key.currency0);
+            fees.flushDust(bucket, config.key.currency1);
+        }
+    }
+    function activate(uint256 id) external onlyModule(Ids.VAULT) {
+        if (eligible[id] || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) == address(0)) revert InvalidState();
+        // The inactive NFT checkpoints at the current index before its one
+        // collective share exists, excluding every previously published reward.
+        IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id);
+        eligible[id] = true;
+        ++totalEligible;
+        emit MembershipActivated(id);
+    }
+}

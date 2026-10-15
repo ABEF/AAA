@@ -13,14 +13,55 @@ ROOT=Path(__file__).resolve().parents[1]
 SPEC=importlib.util.spec_from_file_location('production_gate',ROOT/'scripts/validate-production-config.py')
 GATE=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(GATE)
 COMMIT='ab'*20;NOW=int(time.time());HASH='0x'+'11'*32
+ARTWORK_BASE='ipfs://bafy'+'a'*55+'/'
 def addr(number):return '0x'+f'{number:040x}'
 def proof():return {'status':'passed','commit':COMMIT,'sha256':'22'*32,'reference':'synthetic-test-evidence.json'}
 
+def nft_inventory(chain):
+    """Synthetic coordinator/helper observations, never claims about live availability."""
+    nft=chain['modules']['nft']['address'];controller=chain['modules']['access']['address'];cid=chain['chain_id']
+    royalty=addr(cid*1000+700);renderer=addr(cid*1000+701);coordinator=addr(cid*1000+702)
+    key_hash='0x'+'77'*32
+    artwork_base=chain['constructor']['nft_base_uri'];asset_manifest='55'*32
+    bindings={'nft':nft,'royaltyRewards':royalty,'metadataRenderer':renderer,'royaltyReceiver':royalty,'royaltyBps':500,
+        'artworkBaseURI':artwork_base,
+        'MAX_SUPPLY':1000,'mintedCount':2,'nextToFinalize':2,'remainingToReveal':999,'rarityRemaining':[599,300,100],
+        'randomnessConfigured':True,'randomnessCoordinator':coordinator,'keyHash':key_hash,'subscriptionId':7,
+        'requestConfirmations':3,'callbackGasLimit':300000,'nativePayment':False}
+    return {'royalty_rewards':{'address':royalty,'runtime_hash':HASH,'immutable':True,'nft':nft,
+            'review_evidence':dict(proof(),independent=True)},
+        'metadata_renderer':{'address':renderer,'runtime_hash':HASH,'immutable':True,'controller':controller,
+            'review_evidence':dict(proof(),independent=True)},
+        'observed_chain_id':cid,'observed_block_number':chain['observed_block']['number'],
+        'observed_block_hash':chain['observed_block']['hash'],'observed_bindings':bindings,
+        'artwork_publication':{'base_uri':artwork_base,'manifest_sha256':asset_manifest,'asset_count':72,'asset_paths':list(GATE.ARTWORK_FILES),
+            'review_evidence':dict(proof(),independent=True,kind='content_addressed_artwork_review',base_uri=artwork_base,
+                asset_manifest_sha256=asset_manifest)},
+        'royalty_assets':{'asset_count':1,'complete_admission_history':True,'observation_evidence':proof(),
+            'assets':[{'address':GATE.ZERO,'observed_asset':GATE.ZERO,'observed_is_asset':True,'kind':'native','decimals':18,
+                'runtime_hash':None,'admission_evidence':dict(proof(),independent=True,kind='royalty_asset_admission',asset=GATE.ZERO,
+                    chain_id=cid,exact_transfers_reviewed=True,authority_risks_reviewed=True,activation_griefing_reviewed=True)}]},
+        'randomness':{'coordinator':coordinator,'runtime_hash':HASH,'keyHash':key_hash,'subscriptionId':7,
+            'requestConfirmations':3,'callbackGasLimit':300000,'nativePayment':False,
+            'immutable_configuration':True,'no_admin_reroll':True,
+            'review_evidence':dict(proof(),independent=True,kind='verified_randomness_coordinator_review',chain_id=cid,coordinator=coordinator),
+            'integration_evidence':dict(proof(),kind='coordinator_staged_randomness',chain_id=cid,coordinator=coordinator,
+                nft=nft,fulfilled_request_id=91,finalized_token_id=123)},'observation_evidence':proof()}
+
 def fixture():
-    manifest={'schema_version':3,'accounting_model':'shared-pools-v1','release_commit':COMMIT,'canonical_chain_id':1,
+    manifest={'schema_version':4,'accounting_model':'shared-pools-v2','release_commit':COMMIT,'canonical_chain_id':1,
         'migration':{'enabled':True,'future_onboarding_evidence':proof(),'disabled_scope_approval':proof()},
         'economics':{'reward_model':'conventional_lp_fees','mint_price_wei':'50000000000000000',
-            'minimum_activation_usd18':str(500*10**18),'fee_split_bps':[5000,3000,1000,1000]},
+            'minimum_activation_usd18':str(100*10**18),'fee_split_bps':[8000,1000,500,500],
+            'collective_weights':'equal_activated_nfts','maximum_membership_dust_raw':19},
+        'nft_policy':{'max_supply':1000,'rarity_distribution':'fixed_quotas_without_replacement',
+            'rarity_randomization':'vrf_mint_order_without_replacement','rarity_counts':[600,300,100],
+            'initial_rarity_bps':[6000,3000,1000],
+            'marketplace_royalty_bps':500,'received_royalty_distribution_bps':10000,'royalty_weights':[1,2,3],
+            'royalty_eligibility':'activated_nfts_only','royalty_entitlement':'received_funds_only',
+            'evolution_basis':'current_attributed_lp_value_usd18','unavailable_valuation':'unavailable',
+            'evolution_thresholds_usd18':[str(n*10**18) for n in (0,100,1000,10000)],
+            'randomness_policy':'verified_coordinator_two_words','economic_review_evidence':proof()},
         'evidence':{key:proof() for key in GATE.EVIDENCE},'chains':[],'routes':[],'transport_policies':[]}
     manifest['evidence']['multi_chain']=dict(proof(),kind='provider_staged_multichain')
     manifest['evidence']['independent_audit'].update(auditor='Synthetic external auditor fixture',
@@ -48,7 +89,7 @@ def fixture():
                 'answered_in_round':7,'review':proof()}} for i in range(2)]
         pool={'currency0':tokens[0]['address'],'currency1':tokens[1]['address'],'fee':3000,'tickSpacing':60,
             'hooks':GATE.ZERO,'rangeBps':1000,'triggerBps':300,'maxSpotDeviationBps':100,'maxSlippageBps':100,
-            'minRebalanceInterval':600,'minDepositUSD':str(500*10**18),'maxPositionUSD':str(100_000*10**18),
+            'minRebalanceInterval':600,'minDepositUSD':str(10**16),'maxPositionUSD':str(100_000*10**18),
             'depositsEnabled':True,'operationsEnabled':True}
         pool['pool_id']=GATE.identity([(pool['currency0'],'address'),(pool['currency1'],'address'),
             (pool['fee'],'uint24'),(pool['tickSpacing'],'uint24'),(GATE.ZERO,'address')])
@@ -58,11 +99,12 @@ def fixture():
                 'signers':[addr(base+401),addr(base+402)],'threshold':2,'keeper':addr(base+403),'guardian':addr(base+404),
                 'timelock_seconds':172800,'delay_fixed':True,'post_seal_routes_timelocked':True,
                 'migration_delay_seconds':172800,'sealed':True,'bootstrap':GATE.ZERO,'roles_and_seal_evidence':proof()},
-            'constructor':{'canonical_chain_id':1,'mint_proceeds_recipient':addr(base+405),'nft_base_uri':'ipfs://synthetic',
+            'constructor':{'canonical_chain_id':1,'mint_proceeds_recipient':addr(base+405),'nft_base_uri':ARTWORK_BASE,
                 'maximum_buyback_usd18':str(1000*10**18),'recipient_payment_evidence':proof(),'adapter_transport':modules['transport']['address']},
             'bridge_router':{'immutable_module':True,'upgradeable':False,'policy_count':2,'registered_policy_ids':[],'outbound_policy_count':1,'observation_evidence':proof()},
             'providers':[provider],'bucket_reservations':[],
             'dependencies':dependencies,'tokens':tokens,'sequencer':{'mode':'not_applicable','address':GATE.ZERO,'review':proof()},'pools':[pool]})
+        if cid==1:manifest['chains'][-1]['nft_inventory']=nft_inventory(manifest['chains'][-1])
     origin=manifest['chains'][0]
     bucket=int(GATE.identity([(1,'uint256'),(origin['modules']['vault']['address'],'address'),
         (origin['pools'][0]['pool_id'],'bytes32')]),16)
@@ -118,7 +160,7 @@ def external_fixture():
         (pool['pool_id'],'bytes32')]),16)
     manifest['economics'].update(reward_model='external_funded_revenue',external_reward_policy={
         'payment_method':'plain_transfers','allocation_timing':'processing_time','owner_weights':'bucket_shares',
-        'collective_weights':'lifetime_power','revenue_entitlement':'received_funds_only',
+        'collective_weights':'equal_activated_nfts','revenue_entitlement':'received_funds_only',
         'source_description':'Discretionary creator payments without a guaranteed share','terms_evidence':proof()})
     receiver={'address':addr(7777),'runtime_hash':HASH,'bucket_id':str(bucket),'home_pool_id':pool['pool_id'],
         'fees':chain['modules']['fees']['address'],'token0':pool['currency0'],'token1':pool['currency1'],
@@ -286,9 +328,23 @@ class ProductionConfigTests(unittest.TestCase):
         self.config['economics']['reward_model']='pending';self.blocked('reward.unsupported')
     def test_wrong_price_activation_or_split_blocks(self):
         for key,value,code in [('mint_price_wei','1','mint.price'),('minimum_activation_usd18','499','activation.minimum'),
-            ('fee_split_bps',[5000,3000,1000,999],'reward.split')]:
+            ('minimum_activation_usd18',str(500*10**18),'activation.minimum'),
+            ('fee_split_bps',[5000,3000,1000,1000],'reward.split'),('fee_split_bps',[8000,1000,500,499],'reward.split')]:
             with self.subTest(key=key):
                 old=self.config['economics'][key];self.config['economics'][key]=value;self.blocked(code);self.config['economics'][key]=old
+    def test_collective_allocation_must_use_equal_activated_membership(self):
+        for value in ('lifetime_power','bucket_shares','rarity_weights',None):
+            with self.subTest(value=value):
+                self.config['economics']['collective_weights']=value;self.blocked('reward.collective')
+    def test_twenty_unit_basket_dust_limit_is_explicit(self):
+        for value in (9,20,True,19.0,None):
+            with self.subTest(value=value):
+                self.config['economics']['maximum_membership_dust_raw']=value;self.blocked('reward.dust')
+    def test_legacy_power_module_is_rejected_even_alongside_membership(self):
+        self.config['chains'][0]['modules']['power']={'address':addr(9999),'runtime_hash':HASH}
+        self.blocked('binding.legacy')
+    def test_pool_bounds_must_allow_hundred_dollar_activation(self):
+        self.config['chains'][0]['pools'][0]['minDepositUSD']=str(500*10**18);self.blocked('pool.activation_minimum')
     def test_missing_module_hash_or_wrong_binding_blocks(self):
         module=self.config['chains'][0]['modules']['vault'];module['runtime_hash']=None;self.blocked('hex.invalid')
         module['controller']=addr(999);self.blocked('binding.controller')
@@ -308,12 +364,15 @@ class ProductionConfigTests(unittest.TestCase):
     def test_mint_recipient_cannot_be_protocol_custody(self):
         chain=self.config['chains'][0];chain['constructor']['mint_proceeds_recipient']=chain['modules']['vault']['address'];self.blocked('mint.custody')
     def test_float_boolean_integer_fields_are_not_truncated(self):
-        self.config['schema_version']=3.0;self.blocked('schema.unsupported');self.config['schema_version']=3
+        self.config['schema_version']=4.0;self.blocked('schema.unsupported');self.config['schema_version']=4
         for field,value in [('chain_id',True),('chain_id',1.9),('maximum_snapshot_age_seconds',1.0)]:
             with self.subTest(field=field,value=value):
                 previous=self.config['chains'][0][field];self.config['chains'][0][field]=value;self.blocked('integer.invalid');self.config['chains'][0][field]=previous
     def test_legacy_per_nft_manifest_is_rejected(self):
         self.config['schema_version']=2;self.blocked('schema.unsupported')
+    def test_previous_power_weighted_schema_is_rejected(self):
+        self.config['schema_version']=3;self.config['accounting_model']='shared-pools-v1'
+        self.blocked('schema.unsupported');self.blocked('accounting.unsupported')
     def test_accounting_model_must_explicitly_match_shared_pools(self):
         for model in (None,'per-nft','pending'):
             with self.subTest(model=model):
@@ -372,8 +431,8 @@ class ProductionConfigTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.config=fixture();self.config['chains'][1]['bucket_reservations']=value
                 self.assertFalse(self.result()['ready'])
-    def test_reservation_gate_output_declares_shared_pool_schema_three(self):
-        self.assertEqual(self.result()['schema_version'],3)
+    def test_gate_output_declares_current_schema_four(self):
+        self.assertEqual(self.result()['schema_version'],4)
     def test_stale_snapshot_and_oracle_round_block(self):
         chain=self.config['chains'][0];chain['observed_block']['timestamp']=NOW-3601;self.blocked('snapshot.stale')
         chain['observed_block']['timestamp']=NOW;feed=chain['tokens'][0]['feed'];feed['updated_at']=NOW-3601;self.blocked('oracle.stale')
@@ -427,7 +486,11 @@ class ProductionConfigTests(unittest.TestCase):
             self.assertEqual(result.returncode,1,result.stderr)
             self.assertIn('route.kind',[issue['code'] for issue in json.loads(result.stdout)['issues']])
     def test_cli_reads_utf8_inventory_and_writes_utf8_report(self):
-        self.config['chains'][0]['constructor']['nft_base_uri']='ipfs://synthetic/caf\u00e9'
+        uri=ARTWORK_BASE+'caf\u00e9/'
+        chain=self.config['chains'][0];chain['constructor']['nft_base_uri']=uri
+        chain['nft_inventory']['observed_bindings']['artworkBaseURI']=uri
+        publication=chain['nft_inventory']['artwork_publication'];publication['base_uri']=uri
+        publication['review_evidence']['base_uri']=uri
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'inventory.json';output=Path(directory)/'gate.json'
             path.write_text(json.dumps(self.config,ensure_ascii=False),encoding='utf-8')
@@ -439,7 +502,132 @@ class ProductionConfigTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'invalid.json';path.write_text('{broken')
             result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),'--config',str(path)],capture_output=True,text=True,check=False)
-            self.assertEqual(result.returncode,1);self.assertFalse(json.loads(result.stdout)['ready'])
+            self.assertEqual(result.returncode,1);report=json.loads(result.stdout)
+            self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],4)
+
+class NFTProductionConfigTests(unittest.TestCase):
+    def setUp(self):self.config=disabled_fixture()
+    result=ProductionConfigTests.result
+    blocked=ProductionConfigTests.blocked
+    def inventory(self):return self.config['chains'][0]['nft_inventory']
+    def royalty_token(self,number=8800):
+        token=addr(number);asset=copy.deepcopy(self.inventory()['royalty_assets']['assets'][0])
+        asset.update(address=token,observed_asset=token,kind='erc20',runtime_hash=HASH,non_rebasing=True,transfer_tax=False)
+        asset['admission_evidence']['asset']=token
+        return asset
+    def test_nft_policy_requires_exact_supply_quotas_and_received_royalties(self):
+        mutations=(('max_supply',1001),('rarity_counts',[600,299,101]),('initial_rarity_bps',[6000,2999,1001]),
+            ('rarity_distribution','independent_per_nft_odds'),('rarity_randomization','fulfillment_order'),
+            ('marketplace_royalty_bps',1000),('received_royalty_distribution_bps',8000),('royalty_weights',[1,2,4]),
+            ('royalty_weights',[True,2,3]),('royalty_eligibility','all_minted_nfts'),('royalty_entitlement','guaranteed_marketplace_payment'))
+        for field,value in mutations:
+            with self.subTest(field=field,value=value):
+                self.config=disabled_fixture();self.config['nft_policy'][field]=value;self.blocked('nft.policy')
+    def test_live_lp_evolution_cannot_use_historical_contributions_or_stale_fallback(self):
+        for field,value in (('evolution_basis','lifetime_contribution_usd18'),('unavailable_valuation','dormant')):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.config['nft_policy'][field]=value;self.blocked('nft.policy')
+        self.config=disabled_fixture();self.config['nft_policy']['evolution_thresholds_usd18'][-1]=str(100000*10**18)
+        self.blocked('nft.evolution')
+    def test_helper_bindings_code_and_independent_reviews_are_required(self):
+        self.inventory()['royalty_rewards']['nft']=addr(99);self.blocked('nft.binding')
+        self.config=disabled_fixture();self.inventory()['metadata_renderer']['controller']=addr(99);self.blocked('nft.binding')
+        self.config=disabled_fixture();self.inventory()['royalty_rewards']['address']=self.config['chains'][0]['modules']['vault']['address']
+        self.blocked('nft.helper')
+        self.config=disabled_fixture();self.inventory()['metadata_renderer']['runtime_hash']=None;self.blocked('hex.invalid')
+        self.config=disabled_fixture();self.inventory()['royalty_rewards']['review_evidence']['independent']=False;self.blocked('nft.review')
+    def test_mint_recipient_cannot_be_the_royalty_receiver(self):
+        self.config['chains'][0]['constructor']['mint_proceeds_recipient']=self.inventory()['royalty_rewards']['address']
+        self.blocked('nft.helper')
+    def test_royalty_tokens_need_not_be_lp_assets_but_require_their_own_admission(self):
+        inventory=self.inventory()['royalty_assets'];inventory['asset_count']=2;inventory['assets'].append(self.royalty_token())
+        self.assertNotIn(inventory['assets'][1]['address'],[token['address'] for token in self.config['chains'][0]['tokens']])
+        self.assertTrue(self.result()['ready'])
+    def test_native_plus_sixteen_erc20_asset_bound_is_enforced(self):
+        inventory=self.inventory()['royalty_assets'];inventory['asset_count']=17
+        inventory['assets'].extend(self.royalty_token(8800+i) for i in range(16));self.assertTrue(self.result()['ready'])
+        inventory['asset_count']=18;inventory['assets'].append(self.royalty_token(9900));self.blocked('nft.royalty_assets')
+    def test_royalty_admission_count_history_order_and_getters_must_match(self):
+        for field,value in (('asset_count',2),('complete_admission_history',False)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['royalty_assets'][field]=value;self.blocked('nft.royalty_assets')
+        self.config=disabled_fixture();self.inventory()['royalty_assets']['assets'][0]=self.royalty_token();self.blocked('nft.royalty_assets')
+        self.config=disabled_fixture();inventory=self.inventory()['royalty_assets'];inventory['asset_count']=2
+        inventory['assets'].append(copy.deepcopy(inventory['assets'][0]));self.blocked('nft.royalty_assets')
+        self.config=disabled_fixture();self.inventory()['royalty_assets']['assets'][0]['observed_is_asset']=False;self.blocked('nft.royalty_assets')
+    def test_royalty_assets_require_exact_transfer_semantics_and_runtime_code(self):
+        for field,value,code in (('non_rebasing',False,'nft.royalty_asset_semantics'),('transfer_tax',True,'nft.royalty_asset_semantics'),
+            ('runtime_hash',None,'hex.invalid')):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();inventory=self.inventory()['royalty_assets'];inventory['asset_count']=2
+                token=self.royalty_token();token[field]=value;inventory['assets'].append(token);self.blocked(code)
+    def test_royalty_asset_review_covers_actual_chain_authority_and_activation_griefing(self):
+        for field,value in (('chain_id',2),('asset',addr(99)),('independent',False),('exact_transfers_reviewed',False),
+            ('authority_risks_reviewed',False),('activation_griefing_reviewed',False)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['royalty_assets']['assets'][0]['admission_evidence'][field]=value
+                self.blocked('nft.royalty_asset_review')
+    def test_artwork_base_and_all_seventy_two_content_paths_are_reviewed(self):
+        self.inventory()['artwork_publication']['asset_paths'].pop();self.blocked('nft.artwork')
+        self.config=disabled_fixture();self.inventory()['artwork_publication']['asset_paths'][0]='missing.png';self.blocked('nft.artwork')
+        self.config=disabled_fixture();self.inventory()['artwork_publication']['review_evidence']['independent']=False;self.blocked('nft.artwork_review')
+        self.config=disabled_fixture();self.inventory()['artwork_publication']['manifest_sha256']='66'*32;self.blocked('nft.artwork_review')
+    def test_artwork_rejects_mutable_http_malformed_content_root_and_missing_slash(self):
+        for uri in ('https://example.com/art/','ipfs://synthetic/',ARTWORK_BASE.rstrip('/')):
+            with self.subTest(uri=uri):
+                self.config=disabled_fixture();self.config['chains'][0]['constructor']['nft_base_uri']=uri;self.blocked('nft.artwork')
+    def test_artwork_getter_must_match_reviewed_frozen_content_root(self):
+        self.inventory()['observed_bindings']['artworkBaseURI']=ARTWORK_BASE+'other/';self.blocked('nft.binding')
+    def test_royalty_receiver_and_rate_getters_must_match(self):
+        for field,value in (('royaltyReceiver',addr(99)),('royaltyBps',499),('royaltyBps',True),('metadataRenderer',addr(99))):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['observed_bindings'][field]=value;self.blocked('nft.binding')
+    def test_nft_snapshot_must_match_confirmed_chain_inventory(self):
+        for field,value in (('observed_chain_id',2),('observed_block_number',5001),('observed_block_hash','0x'+'33'*32)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()[field]=value;self.blocked('nft.observation')
+    def test_remaining_quotas_and_mint_order_are_conserved(self):
+        for field,value in (('MAX_SUPPLY',999),('mintedCount',0),('nextToFinalize',3),
+            ('remainingToReveal',1000),('rarityRemaining',[599,299,100]),('rarityRemaining',[601,298,100]),
+            ('rarityRemaining',[599,300]),('rarityRemaining',[True,300,100])):
+            with self.subTest(field=field,value=value):
+                self.config=disabled_fixture();self.inventory()['observed_bindings'][field]=value;self.blocked('nft.quotas')
+    def test_complete_reveal_can_exhaust_all_exact_quotas(self):
+        self.inventory()['observed_bindings'].update(mintedCount=1000,nextToFinalize=1001,remainingToReveal=0,rarityRemaining=[0,0,0])
+        self.assertTrue(self.result()['ready'])
+    def test_verified_randomness_cannot_be_replaced_with_admin_entropy(self):
+        self.config['nft_policy']['randomness_policy']='admin_seed';self.blocked('nft.policy')
+        self.config=disabled_fixture();self.inventory()['randomness']['no_admin_reroll']=False;self.blocked('nft.randomness')
+        self.config=disabled_fixture();self.inventory()['randomness']['immutable_configuration']=False;self.blocked('nft.randomness')
+    def test_randomness_configuration_and_observed_getters_must_match(self):
+        for field,value in (('randomnessConfigured',False),('randomnessCoordinator',addr(99)),('keyHash','0x'+'33'*32),
+            ('subscriptionId',8),('requestConfirmations',4),('callbackGasLimit',300001),('nativePayment',True)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['observed_bindings'][field]=value;self.blocked('nft.randomness')
+    def test_randomness_configuration_must_satisfy_immutable_nft_bounds(self):
+        for field,value in (('requestConfirmations',2),('requestConfirmations',201),('callbackGasLimit',199999),('callbackGasLimit',10000001)):
+            with self.subTest(field=field,value=value):
+                self.config=disabled_fixture();self.inventory()['randomness'][field]=value
+                self.inventory()['observed_bindings'][field]=value;self.blocked('integer.invalid')
+    def test_randomness_review_must_name_actual_chain_coordinator_and_independent_reviewer(self):
+        for field,value in (('independent',False),('kind','internal_review'),('chain_id',4663),('coordinator',addr(99))):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['randomness']['review_evidence'][field]=value;self.blocked('nft.randomness_review')
+    def test_mock_or_wrong_chain_randomness_evidence_cannot_pass_staging(self):
+        for field,value in (('kind','mock_model'),('chain_id',4663),('coordinator',addr(99)),('nft',addr(99))):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.inventory()['randomness']['integration_evidence'][field]=value;self.blocked('nft.randomness_staging')
+    def test_missing_or_stale_randomness_evidence_is_blocked(self):
+        self.inventory()['randomness']['review_evidence']=None;self.blocked('evidence.missing')
+        self.config=disabled_fixture();self.inventory()['randomness']['integration_evidence']['commit']='cd'*20;self.blocked('evidence.stale')
+        self.config=disabled_fixture();self.inventory()['randomness']['integration_evidence']['fulfilled_request_id']=0;self.blocked('integer.invalid')
+    def test_malformed_nft_records_fail_closed_without_exception(self):
+        for key,value in (('nft_policy',[]),('nft_policy',None)):
+            with self.subTest(key=key,value=value):
+                self.config=disabled_fixture();self.config[key]=value;self.assertFalse(self.result()['ready'])
+        for value in (None,[],False):
+            with self.subTest(inventory=value):
+                self.config=disabled_fixture();self.config['chains'][0]['nft_inventory']=value;self.assertFalse(self.result()['ready'])
 
 class ExternalRewardConfigTests(unittest.TestCase):
     def setUp(self):self.config=external_fixture()
@@ -455,7 +643,7 @@ class ExternalRewardConfigTests(unittest.TestCase):
         self.assertTrue(self.result()['ready'])
     def test_external_policy_cannot_claim_historical_swap_time_or_guaranteed_revenue(self):
         for key,value in (('allocation_timing','swap_time'),('owner_weights','wallet_balance'),
-            ('collective_weights','pool_shares'),('revenue_entitlement','guaranteed_34_percent')):
+            ('collective_weights','pool_shares'),('collective_weights','lifetime_power'),('revenue_entitlement','guaranteed_34_percent')):
             with self.subTest(key=key):
                 self.config=external_fixture();self.config['economics']['external_reward_policy'][key]=value
                 self.blocked('reward.policy')
@@ -496,6 +684,8 @@ class ExternalRewardConfigTests(unittest.TestCase):
         external['receivers'].append(copy.deepcopy(self.inbox()));self.blocked('reward.duplicate')
     def test_receiver_is_separate_from_mint_and_protocol_custody(self):
         self.inbox()['address']=self.config['chains'][0]['constructor']['mint_proceeds_recipient']
+        self.blocked('reward.custody')
+        self.config=external_fixture();self.inbox()['address']=self.config['chains'][0]['nft_inventory']['royalty_rewards']['address']
         self.blocked('reward.custody')
     def test_mutable_receiver_or_unreviewed_getters_rejected(self):
         self.inbox()['upgradeable']=True;self.blocked('reward.mutable')

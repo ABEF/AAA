@@ -1,0 +1,18 @@
+Compiling 2 files with Solc 0.8.26
+Solc 0.8.26 finished in 42.95s
+Compiler run successful!
+2026-10-15T17:38:39.916458Z  WARN traces::etherscan: etherscan config not found
+
+Ran 9 tests for test/UniswapV4Fork.t.sol:UniswapV4ForkTest
+[PASS] testActualETHUSDFeedIsPositiveAndCurrentAtPinnedBlock() (gas: 33251)
+[PASS] testActualTokenTransferBurnAndNativeWrapRoundTrip() (gas: 107192)
+[PASS] testCurrentRegistryRejectsSelectedNativeAndHookedPool() (gas: 42832)
+[PASS] testPinnedSelectedPoolIdentityAndZeroCoreFees() (gas: 52420)
+[PASS] testRealNativeAndZZZPaymentsFundNFTClaimsWithoutChangingLP() (gas: 18807129)
+[PASS] testRealPositionMintIncreaseAndApprovalReset() (gas: 1041051)
+[PASS] testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing() (gas: 20713819)
+[PASS] testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares() (gas: 22319680)
+[PASS] testRealSwapFeeCollectionAndPositionBurn() (gas: 1093148)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 243.02s (143.89s CPU time)
+
+Ran 1 test suite in 243.06s (243.02s CPU time): 9 tests passed, 0 failed, 0 skipped (9 total tests)

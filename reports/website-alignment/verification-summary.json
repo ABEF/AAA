@@ -1,0 +1,130 @@
+{
+  "recorded_at": "2026-10-15T17:57:12.221992+00:00",
+  "scope": "Locally verified, undeployed development candidate; not independent audit or production approval",
+  "contract_baseline_commit": "9674824000836f4e21e176a58220f9e22b3778b8",
+  "contract_publication": "local_git_checkpoint_only",
+  "production_ready": false,
+  "deployment_authorized": false,
+  "independent_audit": false,
+  "source_sha256_lf": {
+    "src/base/ZZZModule.sol": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+    "src/interfaces/IZZZ.sol": "2918fd97b5fee9023dec1aeaa32e0fe50fad12cb595249476af5994a4170118f",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZTypes.sol": "0ca97dd1e79eedd2320e1e29b9a046ce1ddeb2a0cbc6539634394d2e5a65bc5b",
+    "src/ZZZAccessController.sol": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+    "src/ZZZBridgeAdapter.sol": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "74843072ac083cc49d79020ad0cb4db984a056662106f7eaaf1164b2d71c823d",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZFeeController.sol": "74a05b39955e26b774f6ce37fdbcaf0addc18ca4ddeb76457615082bb92069e6",
+    "src/ZZZLiquidityManager.sol": "8f7f89ba0a5b09e8247b832b15b7861a7af4b074c3ea6211a42e99c7d8e8d431",
+    "src/ZZZMembership.sol": "7139d52ae4e58259c5682d8bd3d382e2d3f6a773d868a026279a1fa288322b20",
+    "src/ZZZMigration.sol": "61410a194feaa20cd13af5a4fac491459fdd5f06d7aafd05511eac22eb56dd04",
+    "src/ZZZMigrationReceiver.sol": "d85bec31f018219bedd532dcdf069b7271bc3b633bdc24320ec1d9ce4269212e",
+    "src/ZZZMigrationRegistry.sol": "415c55f3ce4142725d9e16f14f3bf16ee009e77b38f304b248500ab437c6b25b",
+    "src/ZZZNFT.sol": "38b7a0fbda2062df5af39235b21350522541e234b4bbc1fa28e4b70a573a258f",
+    "src/ZZZNFTMetadata.sol": "a8b71672ea03555928cb1497c7a2b98248d3324cbbd6f3e339179725f6027ad4",
+    "src/ZZZOracle.sol": "0280b2b5ab562cebe2f4b64fe6f2942fae009ddf79e521b8b347e6695c545106",
+    "src/ZZZPoolRegistry.sol": "e6c6df06e07745a8aa91334f6a576d103946fca6c9bcac2f64b4f38ca2e7d732",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "src/ZZZRewards.sol": "b1270b56ceda95c08d9afe7f4b5cea18244ab06373dd8b41c99f4aba3322fe2a",
+    "src/ZZZRoyaltyRewards.sol": "21fc2c747418a980b6cb199c27d1e1d64092067fb8692c0971a271d5c5a334ff",
+    "src/ZZZStrategy.sol": "12cfbaa52fdb44b9d33f1ec294c07f04aff7f42cc33bd955546ee0cf3b3b5561",
+    "src/ZZZVault.sol": "1d13e0c267d10c979801b3529f13ebb5fa2a96f80ac03b27cc4b4206b20969fd",
+    "foundry.toml": "7d0537454ed4fbd912ec355fee4f1ccf457e6ce1105855cf6f1844c552eb0f91",
+    "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+    "slither.config.json": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f"
+  },
+  "toolchain": {
+    "forge_version": "forge Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:20:33.723172900Z (1761837633)\nBuild Profile: maxperf",
+    "forge_sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "solc_version": "solc, the solidity compiler commandline interface\nVersion: 0.8.26+commit.8a97fa7a.Windows.msvc",
+    "solc_sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "checks": {
+    "offline_solidity": {
+      "passed": 334,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "Network fork suite is opt-in; separately executed nine fork tests passed",
+      "suites": 24,
+      "fuzz_runs": 1000,
+      "seed": "0x20261015"
+    },
+    "accounting_stress": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "runs": 256,
+      "depth": 256,
+      "calls": 65536,
+      "reverts": 0,
+      "seconds": 208.78
+    },
+    "python_windows": {
+      "passed": 321,
+      "inventory": 325,
+      "excluded_unix_only": [
+        "test_state.StateTests.test_atomic_roundtrip",
+        "test_state.StateTests.test_concurrent_lock_rejected",
+        "test_state.StateTests.test_lock_released",
+        "test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file"
+      ],
+      "runtime_skips": 0
+    },
+    "fresh_fork": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "block": 88544093,
+      "scope": "Actual deployed dependencies; separate local hookless pool, mocked VRF; no public-chain transactions"
+    },
+    "slither": {
+      "findings": 177,
+      "false_positive": 110,
+      "accepted_risk": 42,
+      "informational": 25,
+      "unresolved": 0,
+      "coverage_pass": true
+    },
+    "size_gate": {
+      "contracts": 20,
+      "runtime_limit": 24576,
+      "initcode_object_limit": 49152,
+      "normal_forge_build_exit": 0,
+      "vault_runtime": 24407,
+      "vault_runtime_margin": 169,
+      "constructor_arguments_require_deployment_allowance": true
+    },
+    "funded_bucket_entry": {
+      "historical_bucket_limit": 16,
+      "measured_gas": 8909042,
+      "local_budget": 12000000,
+      "cap_tests_passed": 4,
+      "scope": "Shared two-token pair and mock venue; production asset/receiver/venue combinations still require staging"
+    }
+  },
+  "website": {
+    "commit": "4cf1c81a59067c8530708f2a68dd6da6797ca1fc",
+    "url": "https://popldemo.0xwave.com",
+    "published": true,
+    "public_file_hashes": 155,
+    "host_checks": 5,
+    "private_path_checks": 4
+  },
+  "logs_sha256": {
+    "solidity-tests.log": "c2fce859cf0e141a0200173090c55761af8b0c2491e903d5791ff74a2a431cc3",
+    "invariants.log": "1d254909a4e25007dce60a3d9733de2f0897ae8e7041772e210a5f8ee1249977",
+    "forge-build-sizes.log": "353dd9d06291c09efa1f57fd4d22108fdf9554efa06165239f3ff3ecbe5fd985",
+    "python-windows-portable.log": "c214de446468cb6c674b0f212ea501ce0d533521dba5115b408336bd1a7231e1",
+    "fork-tests.log": "de7a19551d067ba847ab70c4ac024b02ab76427ed23edda7122a50cd1fc9ab05"
+  },
+  "limitations": [
+    "Four Unix-only Python cases await Ubuntu CI; this local contract checkpoint is not pushed.",
+    "Actual native-ETH/Pons LP integration, single-input routing and revenue arrangement are not finalized.",
+    "Actual VRF service and production bridge/authority/oracle configuration require review and staging.",
+    "Internal source-bound static triage is not an independent external audit."
+  ]
+}

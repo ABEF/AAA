@@ -12,7 +12,7 @@ contract ImpairedPooledVenue is VaultLiquidityMock {
     function markPrincipal(uint256 tokenId,uint256 amount0,uint256 amount1) external { a0[tokenId]=amount0; a1[tokenId]=amount1; }
 }
 
-/// @notice Real Vault/Fees/Rewards/NFT/Power security integration with a mock LP venue.
+/// @notice Real Vault/Fees/Rewards/NFT/Membership security integration with a mock LP venue.
 contract PooledSecurityTest is PooledVaultFixture {
     function testCorrectCanonicalPreReservationCanActivateAndEnumeratesOnce() public {
         uint256 bucket=uint256(keccak256(abi.encode(block.chainid,address(vault),poolId)));
@@ -46,19 +46,19 @@ contract PooledSecurityTest is PooledVaultFixture {
         assertEq(vault.poolBucket(poolId),0);
     }
 
-    function testSubTenHistoricalFeeDustBelongsOnlyToIncumbents() public {
+    function testSubTwentyHistoricalFeeDustBelongsOnlyToIncumbents() public {
         uint256 first=activatedPosition();uint256 second=_mint(bob);
         uint256 bucket=vault.nftBucket(first);
-        venue.setFees(9,0);
+        venue.setFees(19,0);
         _activate(bob,second,1000,1000);
-        assertEq(rewards.claimable(first,address(t0)),9);
+        assertEq(rewards.claimable(first,address(t0)),19);
         assertEq(rewards.claimable(second,address(t0)),0);
         assertEq(fees.dust(bucket,address(t0)),0);
         venue.setFees(100,0);vault.collectFees(bucket,block.timestamp+100);
-        assertEq(rewards.claimable(first,address(t0)),49);
-        assertEq(rewards.claimable(second,address(t0)),40);
-        vm.prank(bob);assertEq(rewards.claim(second,address(t0)),40);
-        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),49);
+        assertEq(rewards.claimable(first,address(t0)),64);
+        assertEq(rewards.claimable(second,address(t0)),45);
+        vm.prank(bob);assertEq(rewards.claim(second,address(t0)),45);
+        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),64);
         assertEq(rewards.liabilities(address(t0)),0);
     }
 
@@ -71,15 +71,16 @@ contract PooledSecurityTest is PooledVaultFixture {
         vm.prank(bob);vault.increase(id,100,100,1,block.timestamp+100);
         assertGt(vault.sharesOf(id),oldShares);assertEq(vault.nftBucket(id),bucket);
         assertEq(vault.bucketCount(),1);assertEq(venue.next(),2);
-        vm.prank(bob);assertEq(rewards.claim(id,address(t0)),80);
-        assertEq(power.powerOf(id),2200e18);assertEq(nft.ownerOf(id),bob);
+        vm.prank(bob);assertEq(rewards.claim(id,address(t0)),90);
+        assertEq(vault.contributionUSD(id),2200e18);assertTrue(membership.eligible(id));
+        assertEq(membership.totalEligible(),1);assertEq(nft.ownerOf(id),bob);
     }
 
     function testFuzzTopUpCannotRewriteEitherOwnersPreviouslyEarnedFees(uint64 rawFees,uint16 rawTopUp,uint16 rawOther) public {
         uint256 first=activatedPosition();uint256 second=_mint(bob);
-        uint256 other=bound(uint256(rawOther),500,20000);_activate(bob,second,other,other);
+        uint256 other=bound(uint256(rawOther),100,20000);_activate(bob,second,other,other);
         uint256 bucket=vault.nftBucket(first);uint256 oldLp=vault.group(bucket).lpTokenId;
-        uint256 gross=bound(uint256(rawFees),1,1e6)*10;
+        uint256 gross=bound(uint256(rawFees),1,1e6)*20;
         venue.setFees(gross,0);vault.collectFees(bucket,block.timestamp+100);
         uint256 earnedFirst=rewards.claimable(first,address(t0));uint256 earnedSecond=rewards.claimable(second,address(t0));
         uint256 secondShares=vault.sharesOf(second);uint256 topUp=bound(uint256(rawTopUp),1,30000);
@@ -97,9 +98,9 @@ contract PooledSecurityTest is PooledVaultFixture {
         uint256 first=activatedPosition();uint256 second=_mint(bob);uint256 bucket=vault.nftBucket(first);
         Position memory beforeState=vault.group(bucket);uint256 oldShares=vault.bucketTotalShares(bucket);
         assertEq(beforeState.idle0+beforeState.idle1,20);
-        // $500 supplied, but the 99% venue deploys less than $500 of marginal
+        // $100 supplied, but the 99% venue deploys less than $100 of marginal
         // entrant LP even though it also deploys some incumbents' idle assets.
-        vm.prank(bob);vm.expectRevert();vault.activate(second,poolId,250,250,1,block.timestamp+100);
+        vm.prank(bob);vm.expectRevert();vault.activate(second,poolId,50,50,1,block.timestamp+100);
         assertEq(vault.nftBucket(second),0);assertEq(vault.sharesOf(second),0);
         assertEq(vault.bucketTotalShares(bucket),oldShares);assertEq(t0.balanceOf(bob),100000);
         assertEq(vault.group(bucket).idle0,beforeState.idle0);assertEq(vault.group(bucket).lpTokenId,beforeState.lpTokenId);
@@ -133,13 +134,31 @@ contract PooledSecurityTest is PooledVaultFixture {
         uint256 incumbent=vault.sharesOf(first);uint256 second=_mint(bob);
         impaired.markPrincipal(vault.group(bucket).lpTokenId,500,500);
         // Incumbents now own $1,000 of measured principal. A new $2,000
-        // contribution receives twice their shares, while Power stays historical.
+        // contribution receives twice their shares, while collective membership stays equal.
         _activate(bob,second,1000,1000);
         assertEq(vault.sharesOf(first),incumbent);assertEq(vault.sharesOf(second),incumbent*2);
-        assertEq(power.powerOf(first),2000e18);assertEq(power.powerOf(second),2000e18);
+        assertEq(vault.contributionUSD(first),2000e18);assertEq(vault.contributionUSD(second),2000e18);
+        assertTrue(membership.eligible(first));assertTrue(membership.eligible(second));assertEq(membership.totalEligible(),2);
         venue.setFees(1000,0);vault.collectFees(bucket,block.timestamp+100);
         assertEq(rewards.claimable(first,address(t0)),316);
-        assertEq(rewards.claimable(second,address(t0)),483);
+        assertEq(rewards.claimable(second,address(t0)),583);
+    }
+
+    function testUnequalLPSharesKeepEqualCollectiveMembership() public {
+        uint256 first=activatedPosition();uint256 second=_mint(bob);_activate(bob,second,2000,2000);
+        uint256 bucket=vault.nftBucket(first);
+        assertEq(vault.sharesOf(second),vault.sharesOf(first)*2);
+        assertEq(membership.totalEligible(),2);
+        venue.setFees(6000,0);vault.collectFees(bucket,block.timestamp+100);
+        // Owner allocation is 1,600/3,200 by LP shares; collective is 300 each.
+        assertEq(rewards.claimable(first,address(t0)),1900);
+        assertEq(rewards.claimable(second,address(t0)),3500);
+        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),1900);
+        vm.prank(bob);assertEq(rewards.claim(second,address(t0)),3500);
+        vm.prank(alice);vault.increase(first,1000,1000,1,block.timestamp+100);
+        assertEq(membership.totalEligible(),2);
+        uint256 dormant=_mint(alice);assertFalse(membership.eligible(dormant));
+        assertEq(membership.totalEligible(),2);
     }
 
     function testShareCapFailureRollsBackCustodyAndLeavesPaidNFTDormant() public {
@@ -150,13 +169,13 @@ contract PooledSecurityTest is PooledVaultFixture {
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
         assertEq(vault.sharesOf(id),0);assertEq(vault.bucketCount(),0);assertEq(vault.poolBucket(poolId),0);
         assertEq(t0.balanceOf(alice),100000);assertEq(venue.next(),1);assertEq(treasury.balance,paid);
-        assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Dormant));assertEq(power.totalPower(),0);
+        assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Dormant));assertEq(membership.totalEligible(),0);
     }
 
     function _outstandingRemoteFees(uint256 bucket) private {
         BridgeMessage memory m;m.version=3;m.kind=MessageKind.Principal;m.bucketId=bucket;
         m.homeChain=block.chainid;m.homeVault=address(vault);m.canonicalToken0=address(t0);m.canonicalToken1=address(t1);
-        m.totalShares=vault.bucketTotalShares(bucket);m.allocatedIndividual0=50;m.allocatedCollective0=30;
+        m.totalShares=vault.bucketTotalShares(bucket);m.allocatedIndividual0=80;m.allocatedCollective0=10;
         vm.prank(address(0x987));fees.importAccounting(m);
     }
 
@@ -169,13 +188,13 @@ contract PooledSecurityTest is PooledVaultFixture {
         vm.expectRevert();vault.releaseForMigration(bucket,bytes32(uint256(1)),block.timestamp+100);
         assertEq(vault.bucketTotalShares(bucket),oldShares);assertEq(vault.group(bucket).lpTokenId,lp);
         venue.setFees(100,0);vault.collectFees(bucket,block.timestamp+100);
-        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),80);
+        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),90);
         assertFalse(fees.remoteSettled(bucket));
-        address receiver=address(0x987);t0.mint(receiver,80);
-        vm.startPrank(receiver);t0.approve(address(fees),80);fees.creditRemote(bucket,address(t0),50,30);vm.stopPrank();
+        address receiver=address(0x987);t0.mint(receiver,90);
+        vm.startPrank(receiver);t0.approve(address(fees),90);fees.creditRemote(bucket,address(t0),80,10);vm.stopPrank();
         assertTrue(fees.remoteSettled(bucket));
         _activate(bob,second,1000,1000);
         assertEq(rewards.claimable(second,address(t0)),0);
-        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),80);
+        vm.prank(alice);assertEq(rewards.claim(first,address(t0)),90);
     }
 }

@@ -9,15 +9,20 @@ import unittest
 class RewardsModel:
     SCALE=10**36
     def __init__(self):
-        self.weight=defaultdict(int);self.index=0;self.paid=defaultdict(int);self.credit=defaultdict(int)
-        self.fraction=defaultdict(int);self.total=0;self.liability=0;self.orphan=0;self.distributed=0
+        self.members=set();self.attached=defaultdict(int);self.index=0;self.paid=defaultdict(int);self.credit=defaultdict(int)
+        self.fraction=defaultdict(int);self.liability=0;self.orphan=0;self.distributed=0
     def sync(self,i):
-        product=self.weight[i]*(self.index-self.paid[i])+self.fraction[i]
+        product=int(i in self.members)*(self.index-self.paid[i])+self.fraction[i]
         self.credit[i]+=product//self.SCALE;self.fraction[i]=product%self.SCALE;self.paid[i]=self.index
-    def add(self,i,w):self.sync(i);self.weight[i]+=w;self.total+=w
+    def activate(self,i,lp=100):
+        if i in self.members:raise ValueError('already activated')
+        self.sync(i);self.members.add(i);self.attached[i]=lp
+    def topup(self,i,lp):
+        if i not in self.members or lp<=0:raise ValueError('active NFT and positive LP required')
+        self.attached[i]+=lp
     def fund(self,n):
         self.distributed+=n
-        if self.total:self.index+=n*self.SCALE//self.total;self.liability+=n
+        if self.members:self.index+=n*self.SCALE//len(self.members);self.liability+=n
         else:self.orphan+=n
     def claim(self,i):
         self.sync(i);n=self.credit[i];self.credit[i]=0;self.liability-=n
@@ -26,51 +31,61 @@ class RewardsModel:
 
 class AccountingModelTests(unittest.TestCase):
     def test_split_exact_example(self):
-        n=1000;u,d=divmod(n,10);self.assertEqual((5*u,3*u,u,u,d),(500,300,100,100,0))
+        n=1000;u,d=divmod(n,20);self.assertEqual((16*u,2*u,u,u,d),(800,100,50,50,0))
     def test_split_micro_harvest_is_partition_independent(self):
         rng=random.Random(47)
         for _ in range(500):
             total=0;dust=0;alloc=[0,0,0,0]
             for _ in range(40):
-                n=rng.randrange(0,10**12);total+=n;u,dust=divmod(n+dust,10)
-                alloc=[x+u*w for x,w in zip(alloc,[5,3,1,1])]
+                n=rng.randrange(0,10**12);total+=n;u,dust=divmod(n+dust,20)
+                alloc=[x+u*w for x,w in zip(alloc,[16,2,1,1])]
             self.assertEqual(sum(alloc)+dust,total)
-            u,remainder=divmod(total,10);self.assertEqual(alloc,[u*5,u*3,u,u]);self.assertEqual(dust,remainder)
+            u,remainder=divmod(total,20);self.assertEqual(alloc,[u*16,u*2,u,u]);self.assertEqual(dust,remainder)
     def test_tiny_fees_are_carried_not_rejected(self):
         dust=0;distributed=0
-        for _ in range(9):u,dust=divmod(dust+1,10);distributed+=u*10
-        self.assertEqual((distributed,dust),(0,9))
-        u,dust=divmod(dust+1,10);self.assertEqual((u,dust),(1,0))
-    def test_new_power_cannot_receive_previous_index(self):
-        m=RewardsModel();m.add(1,100);m.fund(300);m.add(2,100)
+        for _ in range(19):u,dust=divmod(dust+1,20);distributed+=u*20
+        self.assertEqual((distributed,dust),(0,19))
+        u,dust=divmod(dust+1,20);self.assertEqual((u,dust),(1,0))
+    def test_new_membership_cannot_receive_previous_index(self):
+        m=RewardsModel();m.activate(1);m.fund(300);m.activate(2,10000)
         self.assertEqual(m.claim(2),0);self.assertEqual(m.claim(1),300)
         m.fund(100);self.assertEqual(m.claim(2),50);self.assertEqual(m.claim(1),50)
     def test_topup_does_not_reprice_past_rewards(self):
-        m=RewardsModel();m.add(1,100);m.add(2,100);m.fund(200);m.add(1,100)
+        m=RewardsModel();m.activate(1);m.activate(2);m.fund(200);m.topup(1,10000)
         self.assertEqual(m.claim(1),100);self.assertEqual(m.claim(2),100)
-        m.fund(300);self.assertEqual(m.claim(1),200);self.assertEqual(m.claim(2),100)
-    def test_zero_power_not_windfall_for_first_user(self):
-        m=RewardsModel();m.fund(99);m.add(1,100);self.assertEqual(m.claim(1),0);self.assertEqual(m.orphan,99)
+        m.fund(300);self.assertEqual(m.claim(1),150);self.assertEqual(m.claim(2),150)
+        self.assertEqual(len(m.members),2);self.assertEqual(m.attached[1],10100)
+    def test_zero_membership_not_windfall_for_first_user(self):
+        m=RewardsModel();m.fund(99);m.activate(1);self.assertEqual(m.claim(1),0);self.assertEqual(m.orphan,99)
+    def test_duplicate_activation_cannot_create_extra_collective_share(self):
+        m=RewardsModel();m.activate(1)
+        with self.assertRaises(ValueError):m.activate(1)
+        self.assertEqual(len(m.members),1)
+    def test_dormant_nft_has_no_collective_share(self):
+        m=RewardsModel();m.activate(1);m.fund(100);self.assertEqual(m.claim(2),0)
+        self.assertEqual(m.claim(1),100)
     def test_fraction_survives_small_claims(self):
-        m=RewardsModel();m.add(1,1);m.add(2,2);paid=0
+        m=RewardsModel();m.activate(1);m.activate(2);m.activate(3);paid=0
         for _ in range(30):m.fund(1);paid+=m.claim(1)
         self.assertGreaterEqual(paid,9);self.assertLessEqual(paid,10)
     def test_randomized_index_solvency(self):
-        rng=random.Random(1942);m=RewardsModel();m.add(0,10**18);paid=0
+        rng=random.Random(1942);m=RewardsModel();m.activate(0);paid=0
         for _ in range(10000):
             user=rng.randrange(20);op=rng.randrange(3)
-            if op==0:m.add(user,rng.randrange(1,10**18))
+            if op==0:
+                if user in m.members:m.topup(user,rng.randrange(1,10**18))
+                else:m.activate(user,rng.randrange(100,10**18))
             elif op==1:m.fund(rng.randrange(1,10**24))
             else:paid+=m.claim(user)
             self.assertLessEqual(paid+m.orphan,m.distributed);self.assertGreaterEqual(m.liability,0)
-        for user in list(m.weight):paid+=m.claim(user)
+        for user in list(m.members):paid+=m.claim(user)
         self.assertEqual(m.distributed,paid+m.liability+m.orphan)
     def test_exact_fraction_upper_bound(self):
-        m=RewardsModel();m.add(1,7);m.add(2,11);ideal=Fraction(0)
-        for n in (1,3,101,10**9,17):m.fund(n);ideal+=Fraction(7*n,18)
+        m=RewardsModel();m.activate(1,100);m.activate(2,1000);m.activate(3,10000);ideal=Fraction(0)
+        for n in (1,3,101,10**9,17):m.fund(n);ideal+=Fraction(n,3)
         self.assertLessEqual(m.claim(1),ideal)
     def test_nft_transfer_does_not_copy_credit(self):
-        m=RewardsModel();m.add(42,100);m.fund(70);owners={42:'alice'};owners[42]='bob'
+        m=RewardsModel();m.activate(42);m.fund(70);owners={42:'alice'};owners[42]='bob'
         self.assertEqual(owners[42],'bob');self.assertEqual(m.claim(42),70);self.assertEqual(m.claim(42),0)
     def test_idle_balance_principal_conservation(self):
         rng=random.Random(123);total=0;idle=defaultdict(int);deposited=defaultdict(int);lp=defaultdict(int)
@@ -110,6 +125,6 @@ class AccountingModelTests(unittest.TestCase):
         self.assertLess(abs(Fraction(hi*hi,scale*scale)-Fraction(11,10)),Fraction(1,10**14))
     def test_split_remote_and_local_conservation(self):
         for total in range(0,1000):
-            u,d=divmod(total,10);remote=u*8;compound=u;buyback=u
+            u,d=divmod(total,20);remote=u*18;compound=u;buyback=u
             self.assertEqual(remote+compound+buyback+d,total)
-            self.assertEqual(u*5+u*3,remote)
+            self.assertEqual(u*16+u*2,remote)

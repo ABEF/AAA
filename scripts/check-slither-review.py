@@ -3,6 +3,7 @@
 This checks review coverage, not exploit absence or independent audit approval.
 """
 import argparse
+from collections import Counter
 import hashlib
 import json
 import re
@@ -16,7 +17,7 @@ def source_hash(path):
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
-def fingerprint(finding):
+def normalized_description(finding):
     description = finding["description"].replace("\\", "/").replace("\r\n", "\n")
     description = re.sub(r"(?:[A-Za-z]:)?/[^\n()]*?/(?=src/)", "", description)
     if finding["check"].startswith("reentrancy-"):
@@ -65,8 +66,76 @@ def fingerprint(finding):
                     if len(bundles) > 1:
                         lines[start:cursor] = [line for bundle in sorted(bundles) for line in bundle]
         description = "".join(lines)
-    payload = [finding[key] for key in ("check", "impact", "confidence")] + [description]
+    return description
+
+
+def fingerprint(finding):
+    payload = [finding[key] for key in ("check", "impact", "confidence")] + [normalized_description(finding)]
     return hashlib.sha256(json.dumps(payload, ensure_ascii=True).encode()).hexdigest()
+
+
+WRITE_BUNDLES = "reentrancy-no-eth-write-bundles-v1"
+LOCATION = r" \(src/[^()\n]+#\d+(?:-\d+)?\)"
+
+
+def write_bundle_atoms(finding):
+    """Parse only the reviewed Slither no-eth grouping shape, without dropping text.
+
+    Slither keys these records by a set-derived call collection, so one identical
+    call context can be split across records on a second run of the same build.
+    Each atom retains its write root, ordered descendant lines, and entire
+    cross-function paragraph. The caller compares a multiset, not a set. This
+    narrow parser deliberately rejects direct writes/unknown future syntax;
+    they remain eligible for the ordinary exact-fingerprint comparison only.
+    """
+    if finding["check"] != "reentrancy-no-eth":
+        raise ValueError("Write-bundle comparison requires reentrancy-no-eth")
+    lines = normalized_description(finding).splitlines(keepends=True)
+    marker = "\tState variables written after the call(s):\n"
+    if (len(lines) < 5 or not re.fullmatch(r"Reentrancy in .+" + LOCATION + r":\n", lines[0])
+            or lines[1] != "\tExternal calls:\n" or lines.count(marker) != 1):
+        raise ValueError("Unsupported write-bundle finding header/sections")
+    boundary = lines.index(marker)
+    roots = 0
+    for line in lines[2:boundary]:
+        if re.fullmatch(r"\t- .+" + LOCATION + r"\n", line):
+            roots += 1
+        elif not roots or not re.fullmatch(r"\t{2,}- .+" + LOCATION + r"\n", line):
+            raise ValueError("Unsupported write-bundle call tree")
+    if not roots:
+        raise ValueError("Write-bundle call context is empty")
+    context = tuple(finding[key] for key in ("check", "impact", "confidence")) + ("".join(lines[:boundary + 1]),)
+    atoms = Counter()
+    cursor = boundary + 1
+    while cursor < len(lines):
+        start = cursor
+        if not re.fullmatch(r"\t- .+" + LOCATION + r"\n", lines[cursor]):
+            raise ValueError("Unsupported state-write root")
+        cursor += 1
+        children = cursor
+        while cursor < len(lines) and re.fullmatch(r"\t{2,}- .+" + LOCATION + r"\n", lines[cursor]):
+            cursor += 1
+        if cursor == children:
+            raise ValueError("Write-bundle root has no descendants")
+        if cursor == len(lines) or not re.fullmatch(
+                r"\t[^\n]+" + LOCATION + r" can be used in cross function reentrancies:\n", lines[cursor]):
+            raise ValueError("Write-bundle cross-function paragraph is missing")
+        cursor += 1
+        cross_functions = cursor
+        while cursor < len(lines) and re.fullmatch(r"\t- .+" + LOCATION + r"\n", lines[cursor]):
+            # A root with descendants begins the next atom. Cross-function
+            # entries are qualified function/getter names, never call-tree roots.
+            if cursor + 1 < len(lines) and lines[cursor + 1].startswith("\t\t"):
+                break
+            if not re.fullmatch(r"\t- [A-Za-z_$][\w$]*\.[A-Za-z_$][\w$]*(?:\([^\n]*\))?" + LOCATION + r"\n", lines[cursor]):
+                raise ValueError("Unsupported cross-function entry")
+            cursor += 1
+        if cursor == cross_functions:
+            raise ValueError("Write-bundle cross-function list is empty")
+        atoms["".join(lines[start:cursor])] += 1
+    if not atoms:
+        raise ValueError("Write-bundle state section is empty")
+    return context, atoms
 
 
 def check(report, review, root=ROOT):
@@ -92,11 +161,58 @@ def check(report, review, root=ROOT):
     current = {fingerprint(item) for item in detectors}
     if len(current) != len(detectors):
         errors.append("Duplicate analyzer fingerprints")
-    for key in sorted(current - reviewed.keys()):
+    unreviewed = current - reviewed.keys()
+    stale = reviewed.keys() - current
+    matched = current & reviewed.keys()
+    groups = {}
+    for key, item in reviewed.items():
+        # Descriptions are optional for legacy exact reviews. When recorded,
+        # they must reconstruct the reviewed fingerprint, even for exact hits.
+        if "description" in item:
+            try:
+                if fingerprint(item) != key:
+                    raise ValueError("description/fingerprint mismatch")
+            except (KeyError, TypeError, ValueError) as exc:
+                errors.append(f"Invalid reviewed description: {key}: {exc}")
+                continue
+        comparison = item.get("comparison")
+        if comparison is None:
+            continue
+        if comparison != WRITE_BUNDLES:
+            errors.append(f"Unsupported review comparison: {key}")
+            continue
+        try:
+            context, atoms = write_bundle_atoms(item)
+        except (KeyError, TypeError, ValueError) as exc:
+            errors.append(f"Invalid reviewed write bundles: {key}: {exc}")
+            continue
+        group = groups.setdefault(context, {"keys": set(), "atoms": Counter()})
+        group["keys"].add(key)
+        group["atoms"].update(atoms)
+    for context, group in groups.items():
+        incoming_keys = set()
+        incoming_atoms = Counter()
+        for finding in detectors:
+            try:
+                finding_context, atoms = write_bundle_atoms(finding)
+            except (KeyError, TypeError, ValueError):
+                continue  # Unsupported shapes still require an exact review.
+            if finding_context == context:
+                incoming_keys.add(fingerprint(finding))
+                incoming_atoms.update(atoms)
+        if incoming_keys & (reviewed.keys() - group["keys"]):
+            errors.append("Write-bundle context mixes exact and regrouped reviews")
+        elif incoming_atoms != group["atoms"]:
+            errors.append("Reviewed write-bundle multiplicity/content changed")
+        else:
+            unreviewed.difference_update(incoming_keys)
+            stale.difference_update(group["keys"])
+            matched.update(group["keys"])
+    for key in sorted(unreviewed):
         errors.append(f"Unreviewed finding: {key}")
-    for key in sorted(reviewed.keys() - current):
+    for key in sorted(stale):
         errors.append(f"Stale review entry: {key}")
-    for key in current & reviewed.keys():
+    for key in matched:
         item = reviewed[key]
         if item.get("disposition") not in {"false_positive", "accepted_risk", "informational"}:
             errors.append(f"Unresolved finding: {key}")

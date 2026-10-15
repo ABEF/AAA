@@ -4,17 +4,18 @@ pragma solidity 0.8.26;
 import {Test} from "forge-std/Test.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
-import {ZZZPower} from "../src/ZZZPower.sol";
+import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {MockAccess, MockToken, MockPools, MockFeed} from "./mocks/Mocks.sol";
 import {VaultPolicyMock, VaultLiquidityMock} from "./VaultAccounting.t.sol";
+import {MockVRF} from "./mocks/MockVRF.sol";
 
 /// @notice Reproducible cold-account/slot execution-gas scaling workloads.
 /// Profile: solc 0.8.26, Cancun, via-IR, optimizer runs 1, Yul disabled.
-/// Real Vault/NFT/Power/Rewards/FeeController/Oracle; mock access, tokens,
+/// Real Vault/NFT/Membership/Rewards/FeeController/Oracle; mock access, tokens,
 /// feeds, strategy and liquidity venue. No live valuation or network execution.
 /// gasleft deltas exclude fixture construction, transaction intrinsic/calldata
 /// gas and post-transaction refunds. Mock venue costs are not Uniswap gas costs.
@@ -26,7 +27,8 @@ contract ProductionGasTest is Test {
     VaultLiquidityMock private venue;
     ZZZVault private vault;
     ZZZNFT private nft;
-    ZZZPower private power;
+    MockVRF private vrf;
+    ZZZMembership private membership;
     ZZZRewards private rewards;
     ZZZFeeController private fees;
     ZZZOracle private oracle;
@@ -46,7 +48,9 @@ contract ProductionGasTest is Test {
         venue = new VaultLiquidityMock(address(tokens[0]), address(tokens[1]));
         vault = new ZZZVault(address(access), block.chainid, TREASURY);
         nft = new ZZZNFT(address(access), "");
-        power = new ZZZPower(address(access));
+        vrf = new MockVRF();
+        nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        membership = new ZZZMembership(address(access));
         rewards = new ZZZRewards(address(access));
         fees = new ZZZFeeController(address(access));
         oracle = new ZZZOracle(address(access), address(0));
@@ -54,7 +58,7 @@ contract ProductionGasTest is Test {
         oracle.setFeed(address(tokens[1]), address(feed), 3600);
         access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.NFT, address(nft));
-        access.bind(Ids.POWER, address(power));
+        access.bind(Ids.MEMBERSHIP, address(membership));
         access.bind(Ids.REWARDS, address(rewards));
         access.bind(Ids.FEES, address(fees));
         access.bind(Ids.LIQUIDITY, address(venue));
@@ -89,7 +93,10 @@ contract ProductionGasTest is Test {
         vm.cool(address(access));
         vm.cool(address(vault));
         vm.cool(address(nft));
-        vm.cool(address(power));
+        vm.cool(address(nft.royaltyRewards()));
+        vm.cool(address(nft.metadataRenderer()));
+        vm.cool(address(vrf));
+        vm.cool(address(membership));
         vm.cool(address(rewards));
         vm.cool(address(fees));
         vm.cool(address(oracle));
@@ -114,6 +121,9 @@ contract ProductionGasTest is Test {
         for (uint256 i = 1; i < size; ++i) {
             vm.startPrank(OWNER);
             uint256 previous = vault.mintDormant{value: 0.05 ether}();
+            vm.stopPrank();
+            _finalizeTraits(previous);
+            vm.startPrank(OWNER);
             vault.activate(previous, poolId, 1000, 1000, 1, block.timestamp + 100);
             vm.stopPrank();
         }
@@ -126,6 +136,12 @@ contract ProductionGasTest is Test {
         uint256 spent = start - gasleft();
         _report(prefix, "mintDormant", spent);
         assertEq(nft.balanceOf(OWNER), size);
+
+        // Coordinator fulfillment and trait finalization are separate execution,
+        // excluded from dormant-mint and activation measurements alike.
+        vm.pauseGasMetering();
+        _finalizeTraits(id);
+        vm.resumeGasMetering();
 
         _cool();
         vm.prank(OWNER);
@@ -158,8 +174,8 @@ contract ProductionGasTest is Test {
         assertEq(venue.next(), 3); // One initial mint, one replacement, regardless of NFT count.
 
         _cool();
-        // Isolate the real checkpoint implementation without changing contribution Power.
-        vm.prank(address(power));
+        // Isolate checkpoint execution without changing equal NFT membership.
+        vm.prank(address(membership));
         start = gasleft();
         rewards.checkpointAll(id);
         spent = start - gasleft();
@@ -178,20 +194,25 @@ contract ProductionGasTest is Test {
     function testGasCollection100() public { _runCollectionWorkload(100, 2); }
     function testGasCollection1000() public { _runCollectionWorkload(1000, 2); }
 
+    function _finalizeTraits(uint256 id) private {
+        vrf.fulfill(nft.requestOf(id), 1, 1);
+        nft.finalizeTraits(id);
+    }
+
     function testGasMaximum32FundedRewardAssets() public {
         uint256 id = _runCollectionWorkload(1000, 32);
         // Model funded balances retained across historical pools/routes. Only the
         // bound fee module is impersonated to fund the real reward ledger for all
         // assets; this does not pretend one pool produces 32 different currencies.
         for (uint256 i; i < tokens.length; ++i) {
-            tokens[i].mint(address(fees), 800_000);
+            tokens[i].mint(address(fees), 900_000);
             vm.startPrank(address(fees));
-            tokens[i].approve(address(rewards), 800_000);
-            rewards.creditPool(vault.nftBucket(id), address(tokens[i]), 500_000, 300_000);
+            tokens[i].approve(address(rewards), 900_000);
+            rewards.creditPool(vault.nftBucket(id), address(tokens[i]), 800_000, 100_000);
             vm.stopPrank();
         }
         _cool();
-        vm.prank(address(power));
+        vm.prank(address(membership));
         uint256 start = gasleft();
         rewards.checkpointAll(id);
         uint256 spent = start - gasleft();

@@ -7,7 +7,7 @@ import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
-import {ZZZPower} from "../src/ZZZPower.sol";
+import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
@@ -33,12 +33,19 @@ contract DeployCore is Script {
             vm.envAddress("KEEPER_ADDRESS"),vm.envAddress("GUARDIAN_ADDRESS"));
         address controller=address(a);
         a.bind(Ids.VAULT,address(new ZZZVault(controller,home,payable(vm.envAddress("MINT_PROCEEDS_RECIPIENT")))));
-        a.bind(Ids.NFT,address(new ZZZNFT(controller,vm.envString("NFT_BASE_URI"))));
+        ZZZNFT nft=new ZZZNFT(controller,vm.envString("NFT_BASE_URI"));
+        a.bind(Ids.NFT,address(nft));
+        // Optional LOCAL reviewed coordinator configuration. Without it minting
+        // remains disabled. No public-network coordinator is assumed here.
+        address coordinator=vm.envOr("NFT_VRF_COORDINATOR",address(0));
+        if(coordinator!=address(0))nft.configureRandomness(coordinator,vm.envBytes32("NFT_VRF_KEY_HASH"),
+            vm.envUint("NFT_VRF_SUBSCRIPTION_ID"),uint16(vm.envUint("NFT_VRF_CONFIRMATIONS")),
+            uint32(vm.envUint("NFT_VRF_CALLBACK_GAS")),vm.envBool("NFT_VRF_NATIVE_PAYMENT"));
         a.bind(Ids.LIQUIDITY,address(new ZZZLiquidityManager(controller,
             vm.envAddress("V4_POSITION_MANAGER"),vm.envAddress("V4_STATE_VIEW"),
             vm.envAddress("V4_POOL_MANAGER"),vm.envAddress("PERMIT2"))));
         a.bind(Ids.REWARDS,address(new ZZZRewards(controller)));
-        a.bind(Ids.POWER,address(new ZZZPower(controller)));
+        a.bind(Ids.MEMBERSHIP,address(new ZZZMembership(controller)));
         a.bind(Ids.FEES,address(new ZZZFeeController(controller)));
         a.bind(Ids.STRATEGY,address(new ZZZStrategy(controller)));
         a.bind(Ids.COMPOUNDER,address(new ZZZCompounder(controller)));

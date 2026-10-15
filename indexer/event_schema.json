@@ -110,6 +110,27 @@
     "name": "AssetAdded",
     "signature": "AssetAdded(address)"
   },
+  "0x110fde9853f67e31a87dff7323b4030d2af37a27ac65ac038cef110e70a7bccb": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "rarity",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "color",
+        "type": "uint8"
+      }
+    ],
+    "name": "TraitsFinalized",
+    "signature": "TraitsFinalized(uint256,uint8,uint8)"
+  },
   "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31": {
     "fields": [
       {
@@ -298,6 +319,48 @@
     "name": "DormantMinted",
     "signature": "DormantMinted(uint256,address,uint256)"
   },
+  "0x33e79962e8d633cf34bd5e370ee8d12f6c74799825aa236c2d51338fb3e54a42": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "eligible",
+        "type": "bool"
+      }
+    ],
+    "name": "RoyaltiesReceived",
+    "signature": "RoyaltiesReceived(address,uint256,bool)"
+  },
+  "0x34e010a4ef37e7b53b3d02e76e84b745a250daa244a2768dabaf7c0c1947963e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "requestId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "ordinal",
+        "type": "uint256"
+      }
+    ],
+    "name": "RandomnessRequested",
+    "signature": "RandomnessRequested(uint256,uint256,uint256)"
+  },
   "0x35f2c394d2dc25fafb1b477d5744e3903afd28415142c68afc549eca0193181c": {
     "fields": [
       {
@@ -339,6 +402,22 @@
     ],
     "name": "LocationRecorded",
     "signature": "LocationRecorded(uint256,uint64,uint256,address)"
+  },
+  "0x4867887a5b0bebacccb6e4c9c656b3a6b2fe478e226ea1fa5230d9b4bdabc26e": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "weight",
+        "type": "uint256"
+      }
+    ],
+    "name": "Activated",
+    "signature": "Activated(uint256,uint256)"
   },
   "0x4e4109d520c9526f0541c4732fe75bfe81842ffcba4a1a829277abfaeba117da": {
     "fields": [
@@ -456,6 +535,38 @@
     "name": "RouteRegistered",
     "signature": "RouteRegistered(bytes32,uint256,uint256)"
   },
+  "0x66ace591f7c88075839f4a0246420d0cc8a34cbe9a924cd0e1ca63c336344f4b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "quarantined",
+        "type": "uint256"
+      }
+    ],
+    "name": "AssetAdded",
+    "signature": "AssetAdded(address,uint256)"
+  },
+  "0x6bd5c950a8d8df17f772f5af37cb3655737899cbf903264b9795592da439661c": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "fromTokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "toTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "BatchMetadataUpdate",
+    "signature": "BatchMetadataUpdate(uint256,uint256)"
+  },
   "0x7ba23be9189f8ae1184a411b958e9993e217a63818ceefdb0fccfbc4456b5edf": {
     "fields": [
       {
@@ -538,27 +649,6 @@
     ],
     "name": "Rebalanced",
     "signature": "Rebalanced(uint256,uint256,uint256,uint160)"
-  },
-  "0x8af5df7f9d4390a43e0711eac5d32b2201c3b6c33e4725d03d6a1f199044c3ad": {
-    "fields": [
-      {
-        "indexed": true,
-        "name": "nftId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "increment",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "newPower",
-        "type": "uint256"
-      }
-    ],
-    "name": "PowerIncreased",
-    "signature": "PowerIncreased(uint256,uint256,uint256)"
   },
   "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
     "fields": [
@@ -691,6 +781,17 @@
     ],
     "name": "PoolConfigured",
     "signature": "PoolConfigured(bytes32,address,address)"
+  },
+  "0xa3f81bbd3aa95507a476e060c61d620846dd098c485c00e7af8876d328c2a792": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "requestId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RandomnessReceived",
+    "signature": "RandomnessReceived(uint256)"
   },
   "0xa54e6c2fc0861aa9c991b26891d71059d517983b9e84b91020f42609c452eb9d": {
     "fields": [
@@ -1047,6 +1148,42 @@
     "name": "RemoteRewardsSent",
     "signature": "RemoteRewardsSent(uint256,address,uint256,bytes32)"
   },
+  "0xe44a4d0f9fc4587d20c3a42f0e0980c30b3a6b993d81cea87a9531b9a41489e5": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "coordinator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "keyHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "subscriptionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "confirmations",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "callbackGasLimit",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "name": "nativePayment",
+        "type": "bool"
+      }
+    ],
+    "name": "RandomnessConfigured",
+    "signature": "RandomnessConfigured(address,bytes32,uint256,uint16,uint32,bool)"
+  },
   "0xe604aa747eea4821f00cd60f5f79481faa41c309238fe760e998e6983fe1c50d": {
     "fields": [
       {
@@ -1067,6 +1204,17 @@
     ],
     "name": "RewardPaymentProcessed",
     "signature": "RewardPaymentProcessed(uint256,uint256,uint256)"
+  },
+  "0xefdc04937cb176f9e57ed71502bb583bb69fdaf9bf426036c356a1f66ef14a0c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      }
+    ],
+    "name": "MembershipActivated",
+    "signature": "MembershipActivated(uint256)"
   },
   "0xf04377ec608a4bbb0d427fc9e7329fd3350e839e65ae8548532c7fe9fae4dd1b": {
     "fields": [
@@ -1104,6 +1252,17 @@
     ],
     "name": "BoughtAndBurned",
     "signature": "BoughtAndBurned(address,uint256,uint256)"
+  },
+  "0xf8e1a15aba9398e019f0b49df1a4fde98ee17ae345cb5f6b5e2c27f5033e8ce7": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "MetadataUpdate",
+    "signature": "MetadataUpdate(uint256)"
   },
   "0xfc4f5fcc8d06289fc47194fce7eb3a1a1b253724834a7f6eb882419f4679011d": {
     "fields": [

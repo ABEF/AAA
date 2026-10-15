@@ -1,0 +1,18 @@
+{
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "errors": [],
+  "findings": 177,
+  "reviewed_source_and_configuration_files": 28,
+  "matching": {
+    "exact_custom_identity": 119,
+    "reviewed_line_location_shift": 55,
+    "fresh_split_context_review": 2,
+    "fresh_naming_review": 1
+  },
+  "dispositions": {
+    "false_positive": 110,
+    "accepted_risk": 42,
+    "informational": 25
+  }
+}

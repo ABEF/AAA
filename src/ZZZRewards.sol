@@ -4,7 +4,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
-import {IZZZPower, IZZZNFT, IZZZVault} from "./interfaces/IZZZ.sol";
+import {IZZZMembership, IZZZNFT, IZZZVault} from "./interfaces/IZZZ.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 
@@ -21,7 +21,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
     mapping(uint256 => mapping(address => uint256)) public paidIndex;
     mapping(uint256 => mapping(address => uint256)) public fraction;
     // Owner rewards follow nonredeemable NFT shares in a shared LP bucket.
-    // Collective rewards continue to follow lifetime contribution Power.
+    // Collective rewards are shared equally by activated canonical NFTs.
     mapping(uint256 => mapping(address => uint256)) public ownerIndex;
     mapping(uint256 => mapping(address => uint256)) public paidOwnerIndex;
     mapping(uint256 => mapping(address => uint256)) public ownerFraction;
@@ -38,7 +38,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
     function assetCount() external view returns (uint256) { return assets.length; }
     function _checkpoint(uint256 id, address token) private {
         uint256 delta = index[token] - paidIndex[id][token];
-        uint256 weight = IZZZPower(access.module(Ids.POWER)).powerOf(id);
+        uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;
         if (delta != 0 && weight != 0) {
             uint256 whole = Math.mulDiv(weight, delta, SCALE);
             uint256 remainder = mulmod(weight, delta, SCALE) + fraction[id][token];
@@ -47,7 +47,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
         }
         paidIndex[id][token] = index[token];
     }
-    function checkpointAll(uint256 id) external onlyModule(Ids.POWER) {
+    function checkpointAll(uint256 id) external onlyModule(Ids.MEMBERSHIP) {
         for (uint256 i; i < assets.length; ++i) _checkpoint(id, assets[i]);
     }
     function _checkpointOwner(uint256 id, address token) private {
@@ -76,7 +76,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
         if (supply == 0) revert InvalidState();
         ExactToken.pull(token, msg.sender, personal + shared);
         ownerIndex[bucketId][token] += Math.mulDiv(personal, SCALE, supply);
-        uint256 weight = IZZZPower(access.module(Ids.POWER)).totalPower();
+        uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).totalEligible();
         if (weight == 0) {
             // Never give pre-participation revenue to a future entrant.
             orphaned[token] += shared;
@@ -102,7 +102,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard {
         emit Claimed(id, token, msg.sender, amount);
     }
     function claimable(uint256 id, address token) external view returns (uint256) {
-        uint256 weight = IZZZPower(access.module(Ids.POWER)).powerOf(id);
+        uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;
         uint256 delta = index[token] - paidIndex[id][token];
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
         uint256 shares = vault.sharesOf(id);

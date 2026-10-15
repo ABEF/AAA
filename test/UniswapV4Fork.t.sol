@@ -14,7 +14,7 @@ import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
-import {ZZZPower} from "../src/ZZZPower.sol";
+import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZRewardReceiver} from "../src/ZZZRewardReceiver.sol";
@@ -22,6 +22,7 @@ import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig, Position} from "../src/libraries/ZZZTypes.sol";
 import {IPositionManagerMinimal, IStateViewMinimal, IPriceFeed, IBurnable} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockFeed} from "./mocks/Mocks.sol";
+import {MockVRF} from "./mocks/MockVRF.sol";
 
 interface IForkPoolInitializer {
     function initialize(PoolKey calldata key, uint160 sqrtPriceX96) external returns (int24);
@@ -78,6 +79,8 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
     ZZZLiquidityManager private manager;
     ZZZPoolRegistry private pools;
     IPositionManagerMinimal private positions;
+    ZZZNFT private canonicalNFT;
+    MockVRF private vrf;
     bytes32 private testPool;
 
     function setUp() public {
@@ -107,6 +110,9 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         assertEq(IStateViewMinimal(STATE).poolManager(), CORE);
 
         access = new MockAccess();
+        canonicalNFT = new ZZZNFT(address(access), "ipfs://");
+        vrf = new MockVRF();
+        canonicalNFT.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
         pools = new ZZZPoolRegistry(address(access));
         ZZZOracle oracle = new ZZZOracle(address(access), address(0));
         ZZZStrategy strategy = new ZZZStrategy(address(access));
@@ -143,7 +149,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         c.maxSpotDeviationBps = 100;
         c.maxSlippageBps = 100;
         c.minRebalanceInterval = 600;
-        c.minDepositUSD = 500 ether;
+        c.minDepositUSD = 100 ether;
         c.maxPositionUSD = 100_000 ether;
     }
 
@@ -268,7 +274,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
     // real controller/router suites; these tests isolate deployed Uniswap custody.
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
 
-    struct SharedSystem { ZZZVault vault; ZZZRewards rewards; ZZZFeeController fees; ZZZPower power; }
+    struct SharedSystem { ZZZVault vault; ZZZRewards rewards; ZZZFeeController fees; ZZZMembership membership; }
 
     function _sharedSystem() private returns (SharedSystem memory s) {
         // Seed an independent LP so the first strategy-balancing swap has real
@@ -279,9 +285,9 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         manager.mint(testPool, -600, 600, 100_000 ether, 100_000 ether, 1, block.timestamp + 100);
         s.vault = new ZZZVault(address(access), block.chainid, payable(address(0x7EA5)));
         s.rewards = new ZZZRewards(address(access)); s.fees = new ZZZFeeController(address(access));
-        s.power = new ZZZPower(address(access)); ZZZNFT nft = new ZZZNFT(address(access), "ipfs://");
-        access.bind(Ids.VAULT, address(s.vault)); access.bind(Ids.NFT, address(nft));
-        access.bind(Ids.POWER, address(s.power)); access.bind(Ids.REWARDS, address(s.rewards));
+        s.membership = new ZZZMembership(address(access));
+        access.bind(Ids.VAULT, address(s.vault)); access.bind(Ids.NFT, address(canonicalNFT));
+        access.bind(Ids.MEMBERSHIP, address(s.membership)); access.bind(Ids.REWARDS, address(s.rewards));
         access.bind(Ids.FEES, address(s.fees)); access.bind(Ids.MIGRATION, address(this));
         access.bind(Ids.RECEIVER, address(this)); access.bind(Ids.BUYBACK, address(this));
         access.bind(Ids.COMPOUNDER, address(this)); access.setKeeper(address(this), true);
@@ -295,7 +301,14 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
 
     function _sharedMint(SharedSystem memory s, uint256 amount0, uint256 amount1) private returns (uint256 id) {
         id = s.vault.mintDormant{value: 0.05 ether}();
+        _finalizeTraits(id);
         s.vault.activate(id, testPool, amount0, amount1, 1, block.timestamp + 100);
+    }
+
+    function _finalizeTraits(uint256 id) private {
+        // TEST ONLY local coordinator callback, not a real VRF service request.
+        vrf.fulfill(canonicalNFT.requestOf(id), 1, 1);
+        canonicalNFT.finalizeTraits(id);
     }
 
     function _assertSharedApprovalsCleared(SharedSystem memory s) private view {
@@ -342,16 +355,16 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         assertEq(IERC20(ZZZ).balanceOf(inbox), 0);
         assertEq(s.fees.totalExternalFunded(bucket, WETH), 1 ether);
         assertEq(s.fees.totalExternalFunded(bucket, ZZZ), 100 ether);
-        assertEq(s.fees.compoundBalance(bucket, WETH), 0.1 ether);
-        assertEq(s.fees.buybackBalance(WETH), 0.1 ether);
+        assertEq(s.fees.compoundBalance(bucket, WETH), 0.05 ether);
+        assertEq(s.fees.buybackBalance(WETH), 0.05 ether);
         assertEq(s.vault.group(bucket).lpTokenId, prior.lpTokenId);
         assertEq(s.vault.group(bucket).idle0, prior.idle0);
         assertEq(s.vault.group(bucket).idle1, prior.idle1);
         assertEq(s.vault.sharesOf(id), shares);
         assertEq(s.vault.contributionUSD(id), contribution);
         uint256 owed = s.rewards.claimable(id, WETH);
-        assertGe(owed, 0.8 ether - 2);
-        assertLe(owed, 0.8 ether);
+        assertGe(owed, 0.9 ether - 2);
+        assertLe(owed, 0.9 ether);
         uint256 before = IERC20(WETH).balanceOf(address(this));
         assertEq(s.rewards.claim(id, WETH), owed);
         assertEq(IERC20(WETH).balanceOf(address(this)), before + owed);
@@ -375,13 +388,14 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
             s.fees.compoundBalance(bucket, WETH) + s.fees.compoundBalance(bucket, ZZZ);
         uint256 nextPosition = positions.nextTokenId();
         uint256 second = s.vault.mintDormant{value: 0.05 ether}();
+        _finalizeTraits(second);
         vm.recordLogs(); s.vault.activate(second, testPool, 310 ether, 290 ether, 1, block.timestamp + 100);
         Vm.Log[] memory logs = vm.getRecordedLogs(); uint256 freshCompound;
         bytes32 allocation = keccak256("FeesAllocated(uint256,address,uint256,uint256)");
         for (uint256 i; i < logs.length; ++i) {
             if (logs[i].emitter == address(s.fees) && logs[i].topics[0] == allocation) {
                 (uint256 distributed,) = abi.decode(logs[i].data, (uint256, uint256));
-                freshCompound += distributed / 10;
+                freshCompound += distributed / 20;
             }
         }
         assertEq(s.vault.nftBucket(second), bucket); assertEq(s.vault.group(bucket).lpTokenId, tokenId);

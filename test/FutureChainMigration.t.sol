@@ -9,7 +9,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
-import {ZZZPower} from "../src/ZZZPower.sol";
+import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
@@ -25,6 +25,7 @@ import {Ids, PoolKey, PoolConfig, Route, Position, PositionStatus, BridgeMessage
     from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed, BoundDummy} from "./mocks/Mocks.sol";
 import {VaultPolicyMock, VaultLiquidityMock} from "./VaultAccounting.t.sol";
+import {MockVRF} from "./mocks/MockVRF.sol";
 
 contract FutureBoundPolicy is VaultPolicyMock {
     IZZZAccess public immutable access;
@@ -159,7 +160,8 @@ contract FutureChainMigrationTest is Test {
         ZZZAccessController access;
         ZZZVault vault;
         ZZZNFT nft;
-        ZZZPower power;
+        MockVRF vrf;
+        ZZZMembership membership;
         ZZZRewards rewards;
         ZZZFeeController fees;
         ZZZMigration migration;
@@ -213,7 +215,9 @@ contract FutureChainMigrationTest is Test {
         address controller = address(bundle.access);
         bundle.vault = new ZZZVault(controller, HOME_CHAIN, TREASURY);
         bundle.nft = new ZZZNFT(controller, "");
-        bundle.power = new ZZZPower(controller);
+        bundle.vrf = new MockVRF();
+        bundle.nft.configureRandomness(address(bundle.vrf), bytes32(uint256(1)), 1, 3, 500000, false);
+        bundle.membership = new ZZZMembership(controller);
         bundle.rewards = new ZZZRewards(controller);
         bundle.fees = new ZZZFeeController(controller);
         bundle.migration = new ZZZMigration(controller);
@@ -227,7 +231,7 @@ contract FutureChainMigrationTest is Test {
         ZZZPoolRegistry pools = new ZZZPoolRegistry(controller);
         bundle.access.bind(Ids.VAULT, address(bundle.vault));
         bundle.access.bind(Ids.NFT, address(bundle.nft));
-        bundle.access.bind(Ids.POWER, address(bundle.power));
+        bundle.access.bind(Ids.MEMBERSHIP, address(bundle.membership));
         bundle.access.bind(Ids.REWARDS, address(bundle.rewards));
         bundle.access.bind(Ids.FEES, address(bundle.fees));
         bundle.access.bind(Ids.LIQUIDITY, address(bundle.venue));
@@ -365,11 +369,18 @@ contract FutureChainMigrationTest is Test {
         vm.chainId(HOME_CHAIN);
         vm.startPrank(ALICE);
         uint256 nftId = a.vault.mintDormant{value: 0.05 ether}();
+        vm.stopPrank();
+        _finalizeTraits(nftId);
+        vm.startPrank(ALICE);
         canonicalNFTs.push(nftId);
         a.vault.activate(nftId, a.poolId, amount0, amount1, 1, block.timestamp + 100);
         bucketId = a.vault.nftBucket(nftId);
         vm.stopPrank();
         assertEq(TREASURY.balance, 0.05 ether * canonicalNFTs.length);
+    }
+    function _finalizeTraits(uint256 id) private {
+        a.vrf.fulfill(a.nft.requestOf(id), 1, 1);
+        a.nft.finalizeTraits(id);
     }
     function _logicalAmount(Bundle storage bundle, uint256 bucketId, bool assetZero) private view returns (uint256) {
         Position memory position = bundle.vault.group(bucketId);
@@ -386,25 +397,28 @@ contract FutureChainMigrationTest is Test {
     }
     function _assertIdentity(uint256 bucketId, uint256 contributedUSD) private view {
         uint256 shares;
-        uint256 power;
+        uint256 members;
+        uint256 contributions;
         for (uint256 i; i < canonicalNFTs.length; ++i) {
             uint256 nftId = canonicalNFTs[i];
             assertEq(a.nft.ownerOf(nftId), ALICE);
             assertEq(a.vault.nftBucket(nftId), bucketId);
             shares += a.vault.sharesOf(nftId);
-            power += a.power.powerOf(nftId);
+            if (a.membership.eligible(nftId)) ++members;
+            contributions += a.vault.contributionUSD(nftId);
         }
         assertEq(shares, a.vault.bucketTotalShares(bucketId));
-        assertEq(power, contributedUSD);
+        assertEq(members, canonicalNFTs.length);
+        assertEq(contributions, contributedUSD);
         assertEq(a.nft.balanceOf(ALICE), canonicalNFTs.length);
         assertEq(a.vault.sequence(), canonicalNFTs.length);
         assertEq(b.vault.sequence(), 0);
         assertEq(c.vault.sequence(), 0);
         assertEq(b.nft.balanceOf(ALICE), 0);
         assertEq(c.nft.balanceOf(ALICE), 0);
-        assertEq(a.power.totalPower(), contributedUSD);
-        assertEq(b.power.totalPower(), 0);
-        assertEq(c.power.totalPower(), 0);
+        assertEq(a.membership.totalEligible(), canonicalNFTs.length);
+        assertEq(b.membership.totalEligible(), 0);
+        assertEq(c.membership.totalEligible(), 0);
         assertEq(a.vault.group(bucketId).depositUSD, contributedUSD);
         assertEq(a.access.module(Ids.VAULT), address(a.vault));
         assertEq(b.access.module(Ids.VAULT), address(b.vault));
@@ -509,14 +523,15 @@ contract FutureChainMigrationTest is Test {
         assertEq(a.vault.nftBucket(nftId), 0);
         assertEq(a.vault.sharesOf(nftId), 0);
         assertEq(a.vault.contributionUSD(nftId), 0);
-        assertEq(a.power.powerOf(nftId), 0);
-        assertEq(a.power.totalPower(), 0);
+        assertFalse(a.membership.eligible(nftId));
+        assertEq(a.membership.totalEligible(), 0);
         assertEq(_totalLogical(bucketId, true), 0);
         assertEq(_totalLogical(bucketId, false), 0);
         assertEq(TREASURY.balance, 0.05 ether);
 
+        _finalizeTraits(nftId);
         vm.prank(ALICE);
-        // This mock venue leaves 1% idle; the deployed LP must still exceed $500.
+        // This mock venue leaves 1% idle; the deployed LP must still exceed $100.
         a.vault.activate(nftId, a.poolId, 300, 300, 1, block.timestamp + 100);
         Position memory active = a.vault.group(bucketId);
         assertEq(uint256(active.status), uint256(PositionStatus.Active));
@@ -565,7 +580,8 @@ contract FutureChainMigrationTest is Test {
         _hop(a, b, bucketId, 1000, 2000, 1, true);
         assertEq(_logicalAmount(b, bucketId, true), 1000);
         assertEq(_logicalAmount(b, bucketId, false), 2000);
-        assertEq(a.power.powerOf(canonicalNFTs[0]), 3000e18);
+        assertTrue(a.membership.eligible(canonicalNFTs[0]));
+        assertEq(a.vault.contributionUSD(canonicalNFTs[0]), 3000e18);
     }
 
     function testOneSidedPrincipalKeepsTwoLogicalMappingsThroughRealRouters() public {
@@ -664,11 +680,11 @@ contract FutureChainMigrationTest is Test {
         uint256 bucketId = _mintAndActivate(1000, 1000);
         _hop(a, b, bucketId, 1000, 1000, 1, false);
         vm.chainId(b.chainId);
-        b.venue.setFees(10, 20);
+        b.venue.setFees(20, 40);
         b.vault.collectFees(bucketId, block.timestamp + 100);
-        assertEq(b.fees.remoteIndividual(bucketId, address(b.asset0)), 10);
-        assertEq(b.fees.remoteCollective(bucketId, address(b.asset0)), 6);
-        // Compounding adds LP principal, while lifetime contribution Power remains unchanged.
+        assertEq(b.fees.remoteIndividual(bucketId, address(b.asset0)), 32);
+        assertEq(b.fees.remoteCollective(bucketId, address(b.asset0)), 4);
+        // Five-percent compounding adds principal without changing equal membership.
         _hop(b, c, bucketId, 1002, 1001, 2, false);
         _rotateProvider(b);
         _rotateProvider(a);
@@ -682,9 +698,9 @@ contract FutureChainMigrationTest is Test {
         assertEq(b.fees.remoteCollective(bucketId, address(b.asset0)), 0);
         vm.chainId(HOME_CHAIN);
         transport.deliver(rewardPacket);
-        assertEq(a.rewards.claimable(canonicalNFTs[0], address(a.asset0)), 16);
+        assertEq(a.rewards.claimable(canonicalNFTs[0], address(a.asset0)), 36);
         vm.prank(ALICE);
-        assertEq(a.rewards.claim(canonicalNFTs[0], address(a.asset0)), 16);
+        assertEq(a.rewards.claim(canonicalNFTs[0], address(a.asset0)), 36);
         assertEq(_logicalAmount(c, bucketId, true), 1002);
         assertEq(_logicalAmount(c, bucketId, false), 1001);
         assertEq(_totalLogical(bucketId, true), 1002);
@@ -744,12 +760,13 @@ contract FutureChainMigrationTest is Test {
         uint256 firstNFT = canonicalNFTs[0];
         _hop(a, b, bucket, 1000, 1000, 1, false);
         vm.chainId(b.chainId);
-        b.venue.setFees(10, 20);
+        b.venue.setFees(20, 40);
         b.vault.collectFees(bucket, block.timestamp + 100);
         _hop(b, a, bucket, 1002, 1001, 2, false);
         assertFalse(a.fees.remoteSettled(bucket));
         vm.prank(ALICE);
         uint256 newcomer = a.vault.mintDormant{value: 0.05 ether}();
+        _finalizeTraits(newcomer);
         canonicalNFTs.push(newcomer);
         vm.prank(ALICE);
         vm.expectRevert();
@@ -763,7 +780,7 @@ contract FutureChainMigrationTest is Test {
         a.venue.setFees(100, 100);
         a.vault.collectFees(bucket, block.timestamp + 100);
         vm.prank(ALICE);
-        assertEq(a.rewards.claim(firstNFT, address(a.asset0)), 80);
+        assertEq(a.rewards.claim(firstNFT, address(a.asset0)), 90);
         assertFalse(a.fees.remoteSettled(bucket));
         _deliverLegacyRewards(b, bucket, true);
         assertFalse(a.fees.remoteSettled(bucket));

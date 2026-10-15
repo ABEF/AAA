@@ -10,11 +10,16 @@ contract AccessControllerTest is Test {
         address[] memory a=new address[](1);a[0]=address(this);ac=new ZZZAccessController(1 days,a,a,keeper,guardian);
     }
     function fill() private {
-        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.POWER,Ids.FEES,Ids.STRATEGY,
+        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
             Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
         for(uint256 i;i<ids.length;i++)ac.bind(ids[i],address(new BoundDummy(address(ac))));
     }
     function testIncompleteDeploymentCannotSeal() public {vm.expectRevert();ac.seal();}
+    function testCanonicalRandomnessMustBeConfiguredBeforeSeal() public {
+        fill();BoundDummy nft=BoundDummy(ac.module(Ids.NFT));nft.setRandomnessConfigured(false);
+        vm.expectRevert();ac.seal();assertFalse(ac.isSealed());assertEq(ac.bootstrap(),address(this));
+        nft.setRandomnessConfigured(true);ac.seal();assertTrue(ac.isSealed());
+    }
     function testSealErasesBootstrap() public {fill();ac.seal();assertEq(ac.bootstrap(),address(0));assertTrue(ac.isSealed());}
     function testCannotReplaceModules() public {
         fill();ac.seal();BoundDummy other=new BoundDummy(address(ac));vm.expectRevert();ac.bind(Ids.VAULT,address(other));

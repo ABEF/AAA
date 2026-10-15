@@ -1,0 +1,133 @@
+{
+  "kind": "source_consistency_only",
+  "solidity_compiled": false,
+  "security_audit_pass": false,
+  "modules": 17,
+  "standalone_helpers": [
+    "ZZZRewardReceiver",
+    "ZZZRoyaltyRewards",
+    "ZZZNFTMetadata"
+  ],
+  "source_files": [
+    {
+      "file": "src/base/ZZZModule.sol",
+      "lines": 51
+    },
+    {
+      "file": "src/interfaces/IZZZ.sol",
+      "lines": 190
+    },
+    {
+      "file": "src/libraries/BridgeAssets.sol",
+      "lines": 30
+    },
+    {
+      "file": "src/libraries/ExactToken.sol",
+      "lines": 27
+    },
+    {
+      "file": "src/libraries/ZZZTypes.sol",
+      "lines": 146
+    },
+    {
+      "file": "src/ZZZAccessController.sol",
+      "lines": 82
+    },
+    {
+      "file": "src/ZZZBridgeAdapter.sol",
+      "lines": 75
+    },
+    {
+      "file": "src/ZZZBridgeRouter.sol",
+      "lines": 157
+    },
+    {
+      "file": "src/ZZZBuyback.sol",
+      "lines": 45
+    },
+    {
+      "file": "src/ZZZCompounder.sol",
+      "lines": 15
+    },
+    {
+      "file": "src/ZZZFeeController.sol",
+      "lines": 312
+    },
+    {
+      "file": "src/ZZZLiquidityManager.sol",
+      "lines": 206
+    },
+    {
+      "file": "src/ZZZMembership.sol",
+      "lines": 43
+    },
+    {
+      "file": "src/ZZZMigration.sol",
+      "lines": 235
+    },
+    {
+      "file": "src/ZZZMigrationReceiver.sol",
+      "lines": 132
+    },
+    {
+      "file": "src/ZZZMigrationRegistry.sol",
+      "lines": 66
+    },
+    {
+      "file": "src/ZZZNFT.sol",
+      "lines": 211
+    },
+    {
+      "file": "src/ZZZNFTMetadata.sol",
+      "lines": 98
+    },
+    {
+      "file": "src/ZZZOracle.sol",
+      "lines": 64
+    },
+    {
+      "file": "src/ZZZPoolRegistry.sol",
+      "lines": 37
+    },
+    {
+      "file": "src/ZZZRewardReceiver.sol",
+      "lines": 85
+    },
+    {
+      "file": "src/ZZZRewards.sol",
+      "lines": 116
+    },
+    {
+      "file": "src/ZZZRoyaltyRewards.sol",
+      "lines": 195
+    },
+    {
+      "file": "src/ZZZStrategy.sol",
+      "lines": 93
+    },
+    {
+      "file": "src/ZZZVault.sol",
+      "lines": 462
+    }
+  ],
+  "external_imports": [
+    "@openzeppelin/contracts/governance/TimelockController.sol",
+    "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+    "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+    "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+    "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+    "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+    "@openzeppelin/contracts/utils/Base64.sol",
+    "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+    "@openzeppelin/contracts/utils/Strings.sol",
+    "@openzeppelin/contracts/utils/math/Math.sol",
+    "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+    "@uniswap/v4-core/src/libraries/TickMath.sol",
+    "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol"
+  ],
+  "errors": [],
+  "limitations": [
+    "Balanced delimiters do not prove valid Solidity",
+    "No type checking, EVM execution or exploit analysis"
+  ]
+}

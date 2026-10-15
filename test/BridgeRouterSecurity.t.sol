@@ -71,7 +71,7 @@ contract BridgeRouterSecurityTest is Test {
         controller.bind(Ids.MIGRATION, migration);
         controller.bind(Ids.ORACLE, address(oracle));
         controller.bind(Ids.POOLS, address(pools));
-        bytes32[8] memory other = [Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.POWER,
+        bytes32[8] memory other = [Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
             Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK];
         for (uint256 i; i < other.length; ++i) controller.bind(other[i], address(new BoundDummy(address(controller))));
         receiver.setRegistry(address(registry));
@@ -183,7 +183,7 @@ contract BridgeRouterSecurityTest is Test {
         ZZZBridgeRouter expected = new ZZZBridgeRouter(address(isolated));
         ZZZBridgeRouter different = new ZZZBridgeRouter(address(isolated));
         ZZZBridgeAdapter mismatch = new ZZZBridgeAdapter(address(isolated), address(different));
-        bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.POWER,
+        bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
             Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE,
             Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT];
         for (uint256 i; i < ids.length; ++i) {

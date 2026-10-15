@@ -260,7 +260,7 @@ contract MultiHopMigrationRegistryTest is Test {
         PoolConfig memory c;c.key=PoolKey(address(token0),address(token1),3000,60,address(0));c.operationsEnabled=true;
         localPool=keccak256(abi.encode(c.key));pools.set(localPool,c);
         MockFeed feed=new MockFeed(8,1e8);oracle.setFeed(address(token0),address(feed),3600);oracle.setFeed(address(token1),address(feed),3600);
-        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.POWER,Ids.FEES,Ids.STRATEGY,
+        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
             Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
         for(uint256 i;i<ids.length;i++){
             address implementation=ids[i]==Ids.VAULT?address(vault):ids[i]==Ids.ROUTES?address(registry):

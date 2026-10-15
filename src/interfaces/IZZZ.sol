@@ -13,11 +13,15 @@ interface IZZZBound { function access() external view returns (IZZZAccess); }
 interface IZZZNFT {
     function ownerOf(uint256 id) external view returns (address);
     function mint(address to, uint256 id) external;
+    function traitsReady(uint256 id) external view returns (bool);
+    function randomnessConfigured() external view returns (bool);
+    function notifyContribution(uint256 id) external;
 }
-interface IZZZPower {
-    function powerOf(uint256 id) external view returns (uint256);
-    function totalPower() external view returns (uint256);
-    function add(uint256 id, uint256 amount) external;
+interface IZZZMembership {
+    function eligible(uint256 id) external view returns (bool);
+    function totalEligible() external view returns (uint256);
+    function activate(uint256 id) external;
+    function settleDust() external;
 }
 interface IZZZRewards {
     function isAsset(address token) external view returns (bool);
@@ -83,6 +87,7 @@ interface IZZZVault {
     function homePoolId(uint256 bucketId) external view returns (bytes32);
     function poolBucket(bytes32 poolId) external view returns (uint256);
     function bucketCount() external view returns (uint256);
+    function MAX_BUCKETS() external view returns (uint256);
     function bucketAt(uint256 index) external view returns (uint256);
     function mintDormant() external payable returns (uint256 id);
     function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external;

@@ -1,0 +1,16 @@
+{
+  "phase": "16-total-historical-bucket current source",
+  "source_hashes_match": true,
+  "copies": [
+    {
+      "file": "size-gate.json",
+      "source_evidence": "slither-alignment-final16-20261015/size-gate.json",
+      "sha256": "9075c3c5fc0e2151e8b3e9c7fb3c39628110060555b3ee5d1530c0cff2c8616e"
+    },
+    {
+      "file": "size-gate.log",
+      "source_evidence": "slither-alignment-final16-20261015/size-gate.log",
+      "sha256": "ed2b2e1302f8c72d56b9c4ca31659a0604e21bb45287c7df647d2443f01cc66e"
+    }
+  ]
+}

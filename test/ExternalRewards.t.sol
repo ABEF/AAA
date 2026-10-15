@@ -134,7 +134,7 @@ contract ExternalFundingHandler is PooledVaultFixture {
     uint256[2] private deposited;
     uint256[2] private externalGross;
     uint256[2] private paid;
-    uint256 private expectedPower;
+    uint256 private expectedEligible;
     address private constant CREATOR = address(0xC2EA70);
 
     constructor() {
@@ -148,14 +148,15 @@ contract ExternalFundingHandler is PooledVaultFixture {
         if (ac.paused() || ids.length >= 8) return;
         address owner = second ? bob : alice; vm.deal(owner, 10 ether);
         uint256 id = _mint(owner); ids.push(id); owners[id] = owner;
-        assertEq(vault.sharesOf(id), 0); assertEq(power.powerOf(id), 0);
+        assertEq(vault.sharesOf(id), 0); assertFalse(membership.eligible(id));
     }
 
     function activate(uint256 seed) public {
         uint256 id = ids[seed % ids.length];
         if (ac.paused() || vault.nftBucket(id) != 0) return;
         vm.prank(owners[id]); vault.activate(id, poolId, 1000, 1000, 1, block.timestamp + 100);
-        deposited[0] += 1000; deposited[1] += 1000; expectedPower += 2000e18;
+        deposited[0] += 1000; deposited[1] += 1000; ++expectedEligible;
+        assertTrue(membership.eligible(id));
         assertEq(rewards.claimable(id, address(t0)), 0, "new participant received old external revenue");
         assertEq(rewards.claimable(id, address(t1)), 0, "new participant received old external revenue");
     }
@@ -166,7 +167,8 @@ contract ExternalFundingHandler is PooledVaultFixture {
         amount = bound(amount, 1, 100);
         uint256 old0 = rewards.claimable(id, address(t0)); uint256 old1 = rewards.claimable(id, address(t1));
         vm.prank(owners[id]); vault.increase(id, amount, amount, 1, block.timestamp + 100);
-        deposited[0] += amount; deposited[1] += amount; expectedPower += amount * 2e18;
+        deposited[0] += amount; deposited[1] += amount;
+        assertEq(membership.totalEligible(), expectedEligible, "top-up changed collective membership");
         assertGe(rewards.claimable(id, address(t0)), old0); assertGe(rewards.claimable(id, address(t1)), old1);
     }
 
@@ -213,12 +215,13 @@ contract ExternalFundingHandler is PooledVaultFixture {
         for (uint256 i; i < ids.length; ++i) {
             uint256 id = ids[i]; assertEq(nft.ownerOf(id), owners[id]);
             shares += vault.sharesOf(id); contribution += vault.contributionUSD(id);
-            assertEq(vault.contributionUSD(id), power.powerOf(id));
+            assertEq(membership.eligible(id), vault.nftBucket(id) != 0);
             if (vault.nftBucket(id) == 0) assertEq(vault.sharesOf(id), 0);
             claims[0] += rewards.claimable(id, address(t0)); claims[1] += rewards.claimable(id, address(t1));
         }
         assertEq(shares, vault.bucketTotalShares(bucket)); assertEq(contribution, p.depositUSD);
-        assertEq(power.totalPower(), expectedPower); assertEq(contribution, expectedPower);
+        assertEq(membership.totalEligible(), expectedEligible);
+        assertEq(contribution, (deposited[0] + deposited[1]) * 1e18);
         assertEq(vault.bucketCount(), 1); assertEq(venue.ownerOf(p.lpTokenId), address(vault));
         assertEq(t0.balanceOf(address(vault)), p.idle0); assertEq(t1.balanceOf(address(vault)), p.idle1);
         for (uint256 i; i < 2; ++i) {
@@ -257,7 +260,7 @@ contract ExternalFundingInvariantTest is Test {
     }
 }
 
-/// @notice External ingress plus real Vault/Fees/Rewards/NFT/Power accounting.
+/// @notice External ingress plus real Vault/Fees/Rewards/NFT/Membership accounting.
 /// The LP venue, price feeds and optional native wrapper are deliberately local mocks.
 contract ExternalRewardsTest is PooledVaultFixture {
     address private constant CREATOR = address(0xC2EA70);
@@ -281,7 +284,7 @@ contract ExternalRewardsTest is PooledVaultFixture {
     }
 
     function _assertNativeClaimBacking(uint256 id, address token, uint256 gross) private view returns (uint256 amount) {
-        uint256 funded = gross / 10 * 8;
+        uint256 funded = gross / 20 * 18;
         amount = rewards.claimable(id, token);
         // Each separate single-owner index may retain less than one raw unit.
         // The two index floors remain funded liabilities rather than disappearing.
@@ -331,9 +334,9 @@ contract ExternalRewardsTest is PooledVaultFixture {
         assertEq(p0, 1000); assertEq(p1, 0);
         assertEq(rewards.claimable(id, address(t0)), 0);
         vm.prank(bob); ExternalRewardInbox(inbox).sync();
-        assertEq(rewards.claimable(id, address(t0)), 800);
-        assertEq(fees.compoundBalance(bucket, address(t0)), 100);
-        assertEq(fees.buybackBalance(address(t0)), 100);
+        assertEq(rewards.claimable(id, address(t0)), 900);
+        assertEq(fees.compoundBalance(bucket, address(t0)), 50);
+        assertEq(fees.buybackBalance(address(t0)), 50);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
         assertEq(t0.balanceOf(inbox), 0);
         assertEq(t0.allowance(inbox, address(fees)), 0);
@@ -341,30 +344,31 @@ contract ExternalRewardsTest is PooledVaultFixture {
         assertEq(t0.balanceOf(address(fees)), fees.accounted(address(t0)));
         ExternalRewardInbox(inbox).sync();
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
-        assertEq(rewards.claimable(id, address(t0)), 800);
+        assertEq(rewards.claimable(id, address(t0)), 900);
     }
 
     function testBothPairTokensUseIndependentFundedAllocations() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id); address inbox = _receiver(id);
         _send(t0, inbox, 1000); _send(t1, inbox, 2170);
         fees.syncExternal(bucket);
-        assertEq(rewards.claimable(id, address(t0)), 800);
-        assertEq(rewards.claimable(id, address(t1)), 1736);
-        assertEq(fees.compoundBalance(bucket, address(t1)), 217);
-        assertEq(fees.buybackBalance(address(t1)), 217);
+        assertEq(rewards.claimable(id, address(t0)), 900);
+        assertEq(rewards.claimable(id, address(t1)), 1944);
+        assertEq(fees.compoundBalance(bucket, address(t1)), 108);
+        assertEq(fees.buybackBalance(address(t1)), 108);
+        assertEq(fees.dust(bucket, address(t1)), 10);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
         assertEq(fees.totalExternalFunded(bucket, address(t1)), 2170);
     }
 
-    function testExternalPaymentDoesNotChangePrincipalSharesPowerOrMintProceeds() public {
+    function testExternalPaymentDoesNotChangePrincipalSharesMembershipOrMintProceeds() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id); address inbox = _receiver(id);
-        Position memory p = vault.group(bucket); uint256 shares = vault.sharesOf(id); uint256 weight = power.totalPower();
+        Position memory p = vault.group(bucket); uint256 shares = vault.sharesOf(id); uint256 count = membership.totalEligible();
         uint256 proceeds = treasury.balance;
         _send(t0, inbox, 1000); _syncAll();
         Position memory next = vault.group(bucket);
         assertEq(next.lpTokenId, p.lpTokenId); assertEq(next.idle0, p.idle0); assertEq(next.idle1, p.idle1);
         assertEq(vault.sharesOf(id), shares); assertEq(vault.bucketTotalShares(bucket), shares);
-        assertEq(power.totalPower(), weight); assertEq(vault.contributionUSD(id), 2000e18);
+        assertEq(membership.totalEligible(), count); assertEq(vault.contributionUSD(id), 2000e18);
         assertEq(treasury.balance, proceeds); assertEq(address(vault).balance, 0);
     }
 
@@ -372,13 +376,14 @@ contract ExternalRewardsTest is PooledVaultFixture {
         uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first); address inbox = _receiver(first);
         uint256 second = _mint(bob); _send(t0, inbox, 1000);
         _activate(bob, second, 1000, 1000);
-        assertEq(rewards.claimable(first, address(t0)), 800);
+        assertEq(rewards.claimable(first, address(t0)), 900);
         assertEq(rewards.claimable(second, address(t0)), 0);
-        assertEq(vault.sharesOf(second), uint256(2000e18) * 2000 / 2100);
+        assertEq(vault.sharesOf(second), uint256(2000e18) * 2000 / 2050);
         assertEq(fees.compoundBalance(bucket, address(t0)), 0);
         Position memory p = vault.group(bucket);
-        assertEq(venue.a0(p.lpTokenId) + p.idle0, 2100);
-        assertEq(power.powerOf(first), 2000e18); assertEq(power.powerOf(second), 2000e18);
+        assertEq(venue.a0(p.lpTokenId) + p.idle0, 2050);
+        assertTrue(membership.eligible(first)); assertTrue(membership.eligible(second));
+        assertEq(membership.totalEligible(), 2);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
     }
 
@@ -387,30 +392,30 @@ contract ExternalRewardsTest is PooledVaultFixture {
         address inbox = _receiver(first);
         uint256 beforeShares = vault.sharesOf(first); _send(t0, inbox, 1000);
         vm.prank(alice); vault.increase(first, 100, 100, 1, block.timestamp + 100);
-        assertEq(rewards.claimable(first, address(t0)), 400);
-        assertEq(rewards.claimable(second, address(t0)), 400);
-        assertEq(vault.sharesOf(first) - beforeShares, uint256(4000e18) * 200 / 4100);
+        assertEq(rewards.claimable(first, address(t0)), 450);
+        assertEq(rewards.claimable(second, address(t0)), 450);
+        assertEq(vault.sharesOf(first) - beforeShares, uint256(4000e18) * 200 / 4050);
         assertEq(vault.sharesOf(second), 2000e18);
-        vm.prank(alice); assertEq(rewards.claim(first, address(t0)), 400);
-        vm.prank(bob); assertEq(rewards.claim(second, address(t0)), 400);
+        vm.prank(alice); assertEq(rewards.claim(first, address(t0)), 450);
+        vm.prank(bob); assertEq(rewards.claim(second, address(t0)), 450);
     }
 
     function testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement() public {
         LateExternalPaymentVenue late = _lateVenue(); uint256 first = activatedPosition();
         uint256 bucket = vault.nftBucket(first); address inbox = _receiver(first); uint256 second = _mint(bob);
         late.configurePayment(inbox, 1000, true); _activate(bob, second, 1000, 1000);
-        assertEq(rewards.claimable(first, address(t0)), 800);
+        assertEq(rewards.claimable(first, address(t0)), 900);
         assertEq(rewards.claimable(second, address(t0)), 0);
         assertEq(rewards.paidOwnerIndex(second, address(t0)), rewards.ownerIndex(bucket, address(t0)));
-        assertEq(rewards.liabilities(address(t0)), 800);
-        assertEq(vault.sharesOf(second), uint256(2000e18) * 2000 / 2100);
+        assertEq(rewards.liabilities(address(t0)), 900);
+        assertEq(vault.sharesOf(second), uint256(2000e18) * 2000 / 2050);
         assertEq(fees.compoundBalance(bucket, address(t0)), 0);
         Position memory p = vault.group(bucket);
-        assertEq(late.a0(p.lpTokenId) + p.idle0, 2100);
+        assertEq(late.a0(p.lpTokenId) + p.idle0, 2050);
         assertEq(late.a1(p.lpTokenId) + p.idle1, 2000);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
         vm.prank(bob); assertEq(rewards.claim(second, address(t0)), 0);
-        vm.prank(alice); assertEq(rewards.claim(first, address(t0)), 800);
+        vm.prank(alice); assertEq(rewards.claim(first, address(t0)), 900);
         assertEq(rewards.liabilities(address(t0)), 0); assertEq(t0.balanceOf(address(rewards)), 0);
     }
 
@@ -419,8 +424,8 @@ contract ExternalRewardsTest is PooledVaultFixture {
         uint256 bucket = vault.nftBucket(first); address inbox = _receiver(first); uint256 second = _mint(bob);
         late.configurePayment(inbox, 1000, false); _activate(bob, second, 1000, 1000);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
-        assertEq(rewards.claimable(first, address(t0)), 800); assertEq(rewards.claimable(second, address(t0)), 0);
-        assertEq(vault.sharesOf(second), uint256(2000e18) * 2000 / 2100);
+        assertEq(rewards.claimable(first, address(t0)), 900); assertEq(rewards.claimable(second, address(t0)), 0);
+        assertEq(vault.sharesOf(second), uint256(2000e18) * 2000 / 2050);
         (uint256 p0, uint256 p1) = _pending(inbox); assertEq(p0, 0); assertEq(p1, 0);
     }
 
@@ -430,26 +435,26 @@ contract ExternalRewardsTest is PooledVaultFixture {
         uint256 bucket = vault.nftBucket(first); address inbox = _receiver(first); uint256 oldShares = vault.sharesOf(first);
         late.configurePayment(inbox, 1000, true);
         vm.prank(alice); vault.increase(first, 100, 100, 1, block.timestamp + 100);
-        assertEq(rewards.claimable(first, address(t0)), 400); assertEq(rewards.claimable(second, address(t0)), 400);
-        assertEq(vault.sharesOf(first) - oldShares, uint256(4000e18) * 200 / 4100);
-        assertEq(vault.sharesOf(second), 2000e18); assertEq(rewards.liabilities(address(t0)), 800);
+        assertEq(rewards.claimable(first, address(t0)), 450); assertEq(rewards.claimable(second, address(t0)), 450);
+        assertEq(vault.sharesOf(first) - oldShares, uint256(4000e18) * 200 / 4050);
+        assertEq(vault.sharesOf(second), 2000e18); assertEq(rewards.liabilities(address(t0)), 900);
         Position memory p = vault.group(bucket);
-        assertEq(late.a0(p.lpTokenId) + late.a1(p.lpTokenId) + p.idle0 + p.idle1, 4300);
-        vm.prank(alice); assertEq(rewards.claim(first, address(t0)), 400);
-        vm.prank(bob); assertEq(rewards.claim(second, address(t0)), 400);
+        assertEq(late.a0(p.lpTokenId) + late.a1(p.lpTokenId) + p.idle0 + p.idle1, 4250);
+        vm.prank(alice); assertEq(rewards.claim(first, address(t0)), 450);
+        vm.prank(bob); assertEq(rewards.claim(second, address(t0)), 450);
         assertEq(rewards.liabilities(address(t0)), 0); assertEq(t0.balanceOf(address(rewards)), 0);
     }
 
-    function testLateUndeployedCompoundDoesNotRaiseTheExactly500DeployedActivationMinimum() public {
+    function testLateUndeployedCompoundDoesNotRaiseTheExactly100DeployedActivationMinimum() public {
         LateExternalPaymentVenue late = _lateVenue(); late.setSpendBps(10000);
         uint256 first = activatedPosition(); address inbox = _receiver(first); uint256 second = _mint(bob);
-        late.configurePayment(inbox, 1000, true); _activate(bob, second, 250, 250);
+        late.configurePayment(inbox, 1000, true); _activate(bob, second, 50, 50);
         uint256 bucket = vault.nftBucket(first); Position memory p = vault.group(bucket);
-        assertEq(late.a0(p.lpTokenId) + late.a1(p.lpTokenId), 2500);
-        assertEq(p.idle0 + p.idle1, 100);
-        assertEq(vault.sharesOf(second), uint256(2000e18) * 500 / 2100);
-        assertEq(vault.contributionUSD(second), 500e18);
-        assertEq(rewards.claimable(second, address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 800);
+        assertEq(late.a0(p.lpTokenId) + late.a1(p.lpTokenId), 2100);
+        assertEq(p.idle0 + p.idle1, 50);
+        assertEq(vault.sharesOf(second), uint256(2000e18) * 100 / 2050);
+        assertEq(vault.contributionUSD(second), 100e18);
+        assertEq(rewards.claimable(second, address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 900);
     }
 
     function testHugeLateCompoundCannotLeaveEntryAboveTheFivePercentIdleCap() public {
@@ -467,17 +472,17 @@ contract ExternalRewardsTest is PooledVaultFixture {
         assertEq(fees.compoundBalance(bucket, address(t0)), 0); assertEq(t0.balanceOf(inbox), 0);
     }
 
-    function testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewPower() public {
+    function testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewMember() public {
         RequeueExternalRewardToken token = new RequeueExternalRewardToken(); _replaceFirstToken(token);
         LateExternalPaymentVenue late = _lateVenue(); uint256 first = activatedPosition();
         uint256 firstBucket = vault.nftBucket(first); address firstInbox = _receiver(first);
         uint256 other = _mint(bob); _activateOther(bob, other, _anotherPool(500)); address otherInbox = _receiver(other);
         uint256 entrant = _mint(bob); token.configureRequeue(address(fees), address(vault), otherInbox, 7);
         late.configurePayment(firstInbox, 1000, true);
-        uint256 oldSupply = vault.bucketTotalShares(firstBucket); uint256 oldPower = power.totalPower();
+        uint256 oldSupply = vault.bucketTotalShares(firstBucket); uint256 oldCount = membership.totalEligible();
         vm.prank(bob); vm.expectRevert(); vault.activate(entrant, poolId, 1000, 1000, 1, block.timestamp + 100);
         assertEq(vault.nftBucket(entrant), 0); assertEq(vault.sharesOf(entrant), 0);
-        assertEq(vault.bucketTotalShares(firstBucket), oldSupply); assertEq(power.totalPower(), oldPower);
+        assertEq(vault.bucketTotalShares(firstBucket), oldSupply); assertEq(membership.totalEligible(), oldCount);
         assertEq(rewards.liabilities(address(token)), 0); assertEq(fees.totalExternalFunded(firstBucket, address(token)), 0);
         assertEq(token.balanceOf(firstInbox), 0); assertEq(token.balanceOf(otherInbox), 0);
         assertEq(token.balanceOf(address(token)), 7);
@@ -489,32 +494,36 @@ contract ExternalRewardsTest is PooledVaultFixture {
         uint256 oldLP = vault.group(bucket).lpTokenId; address inbox = _receiver(id);
         late.configurePayment(inbox, 1000, true); vault.rebalance(bucket, 1, block.timestamp + 100);
         assertTrue(vault.group(bucket).lpTokenId != oldLP); assertEq(vault.sharesOf(id), 2000e18);
-        assertEq(rewards.claimable(id, address(t0)), 800); assertEq(rewards.liabilities(address(t0)), 800);
+        assertEq(rewards.claimable(id, address(t0)), 900); assertEq(rewards.liabilities(address(t0)), 900);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
         Position memory p = vault.group(bucket);
         assertEq(late.a0(p.lpTokenId) + late.a1(p.lpTokenId) + p.idle0 + p.idle1
             + fees.accounted(address(t0)) + t0.balanceOf(address(rewards)), 3000);
     }
 
-    function testPendingRewardFromOtherPoolSettlesBeforeNewCollectivePower() public {
+    function testPendingRewardFromOtherPoolSettlesBeforeNewCollectiveMember() public {
         uint256 first = activatedPosition(); address inbox = _receiver(first); _send(t0, inbox, 1000);
         uint256 second = _mint(bob); _activateOther(bob, second, _anotherPool(500));
         assertTrue(vault.nftBucket(first) != vault.nftBucket(second));
-        assertEq(rewards.claimable(first, address(t0)), 800);
+        assertEq(rewards.claimable(first, address(t0)), 900);
         assertEq(rewards.claimable(second, address(t0)), 0);
         assertEq(rewards.ownerIndex(vault.nftBucket(second), address(t0)), 0);
     }
 
-    function testOwnerAllocationStaysInItsBucketAndCollectiveUsesGlobalPower() public {
-        uint256 first = activatedPosition(); uint256 second = _mint(bob); _activateOther(bob, second, _anotherPool(500));
+    function testOwnerAllocationStaysInItsBucketAndCollectiveUsesGlobalMembership() public {
+        uint256 first = activatedPosition(); uint256 second = _mint(bob); bytes32 other = _anotherPool(500);
+        // Unequal LP contributions still receive one collective share each.
+        vm.prank(bob); vault.activate(second, other, 2000, 2000, 1, block.timestamp + 100);
         uint256 bucket = vault.nftBucket(first); address inbox = _receiver(first); _send(t0, inbox, 1000);
         _syncAll();
-        assertEq(rewards.claimable(first, address(t0)), 650);
-        assertEq(rewards.claimable(second, address(t0)), 150);
+        assertEq(rewards.claimable(first, address(t0)), 850);
+        assertEq(rewards.claimable(second, address(t0)), 50);
+        assertEq(membership.totalEligible(), 2);
+        assertEq(vault.contributionUSD(first), 2000e18); assertEq(vault.contributionUSD(second), 4000e18);
         assertEq(rewards.ownerIndex(vault.nftBucket(second), address(t0)), 0);
         assertEq(fees.compoundBalance(vault.nftBucket(second), address(t0)), 0);
         assertEq(fees.totalExternalFunded(vault.nftBucket(second), address(t0)), 0);
-        assertEq(fees.compoundBalance(bucket, address(t0)), 100);
+        assertEq(fees.compoundBalance(bucket, address(t0)), 50);
     }
 
     function testDormantNFTCannotReceiveCurrentOrHistoricalExternalRewards() public {
@@ -524,7 +533,7 @@ contract ExternalRewardsTest is PooledVaultFixture {
         vm.prank(bob); assertEq(rewards.claim(dormant, address(t0)), 0);
         _activate(bob, dormant, 1000, 1000);
         assertEq(rewards.claimable(dormant, address(t0)), 0);
-        assertEq(rewards.claimable(first, address(t0)), 800);
+        assertEq(rewards.claimable(first, address(t0)), 900);
     }
 
     function testNFTTransferCarriesExternalEntitlementAndOnlyCurrentOwnerCanClaim() public {
@@ -532,22 +541,22 @@ contract ExternalRewardsTest is PooledVaultFixture {
         vm.prank(alice); nft.transferFrom(alice, bob, id);
         vm.prank(alice); vm.expectRevert(); rewards.claim(id, address(t0));
         uint256 old = t0.balanceOf(bob);
-        vm.prank(bob); assertEq(rewards.claim(id, address(t0)), 800);
+        vm.prank(bob); assertEq(rewards.claim(id, address(t0)), 900);
         vm.prank(bob); assertEq(rewards.claim(id, address(t0)), 0);
-        assertEq(t0.balanceOf(bob), old + 800);
+        assertEq(t0.balanceOf(bob), old + 900);
     }
 
     function testPausedSystemCanPublishAlreadyFundedExternalRewardsAndClaim() public {
         uint256 id = activatedPosition(); address inbox = _receiver(id); ac.setPaused(true); _send(t0, inbox, 1000);
         ExternalRewardInbox(inbox).sync();
-        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 800);
+        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 900);
         assertEq(vault.sharesOf(id), 2000e18);
     }
 
-    function testSubTenPendingDustBelongsToIncumbentBeforeActivation() public {
+    function testSubTwentyPendingDustBelongsToIncumbentBeforeActivation() public {
         uint256 first = activatedPosition(); address inbox = _receiver(first); uint256 second = _mint(bob);
-        _send(t0, inbox, 9); _activate(bob, second, 1000, 1000);
-        assertEq(rewards.claimable(first, address(t0)), 9);
+        _send(t0, inbox, 19); _activate(bob, second, 1000, 1000);
+        assertEq(rewards.claimable(first, address(t0)), 19);
         assertEq(rewards.claimable(second, address(t0)), 0);
         assertEq(fees.dust(vault.nftBucket(first), address(t0)), 0);
     }
@@ -581,7 +590,7 @@ contract ExternalRewardsTest is PooledVaultFixture {
         (uint256 p0, uint256 p1) = _pending(inbox); assertEq(p0, 0); assertEq(p1, 0);
         ExternalRewardInbox(inbox).sync(); assertEq(rewards.claimable(id, address(t0)), 0);
         _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync();
-        assertEq(rewards.claimable(id, address(t0)), 800);
+        assertEq(rewards.claimable(id, address(t0)), 900);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
         assertEq(t0.balanceOf(inbox), 111); assertEq(t1.balanceOf(inbox), 222); assertEq(inbox.balance, 333);
     }
@@ -649,29 +658,37 @@ contract ExternalRewardsTest is PooledVaultFixture {
         vm.expectRevert(); fees.syncAllExternal();
     }
 
-    function testPendingMicroDustFromOtherPoolCannotRewardFutureCollectivePower() public {
+    function testPendingMicroDustFromOtherPoolCannotRewardFutureCollectiveMember() public {
         uint256 first = activatedPosition(); uint256 firstBucket = vault.nftBucket(first); address inbox = _receiver(first);
-        _send(t0, inbox, 9);
+        _send(t0, inbox, 19);
         uint256 second = _mint(bob); _activateOther(bob, second, _anotherPool(500));
-        assertEq(rewards.claimable(first, address(t0)), 9);
+        assertEq(rewards.claimable(first, address(t0)), 19);
         assertEq(rewards.claimable(second, address(t0)), 0);
         assertEq(fees.dust(firstBucket, address(t0)), 0);
         // The next full split may reward current collective participants, but
-        // cannot pull old sub-ten units into their Power index.
-        _send(t0, inbox, 10); ExternalRewardInbox(inbox).sync();
+        // cannot pull old sub-twenty units into their membership index.
+        _send(t0, inbox, 20); ExternalRewardInbox(inbox).sync();
         assertEq(rewards.claimable(second, address(t0)), 1);
-        assertEq(rewards.claimable(first, address(t0)), 15);
+        assertEq(rewards.claimable(first, address(t0)), 36);
     }
 
-    function testExternalReceiversAreBoundedToSixteen() public {
+    function testSixteenExternalReceiversFitBucketCapAndSeventeenthActivationFails() public {
         for (uint256 i; i < 16; ++i) {
             _fundUser(alice); uint256 id = _mint(alice); bytes32 other = _anotherPool(uint24(500 + i));
-            _activateOther(alice, id, other); _receiver(id);
+            _activateOther(alice, id, other); address inbox = _receiver(id);
+            assertGt(inbox.code.length, 0);
+            assertEq(fees.rewardReceiver(vault.nftBucket(id)), inbox);
         }
-        assertEq(fees.rewardReceiverCount(), 16);
-        _fundUser(alice); uint256 seventeenth = _mint(alice); _activateOther(alice, seventeenth, _anotherPool(516));
-        uint256 seventeenthBucket = vault.nftBucket(seventeenth);
-        vm.expectRevert(); fees.createRewardReceiver(seventeenthBucket, address(0));
+        assertEq(fees.rewardReceiverCount(), 16); assertEq(vault.bucketCount(), 16);
+        _fundUser(alice); uint256 seventeenth = _mint(alice); bytes32 newPool = _anotherPool(516);
+        uint256 balance0 = t0.balanceOf(alice); uint256 balance1 = t1.balanceOf(alice);
+        // The historical Vault limit now rejects a seventeenth distinct bucket
+        // before it could reach the separate receiver factory's capacity guard.
+        vm.expectRevert(bytes4(keccak256("InvalidState()")));
+        _activateOther(alice, seventeenth, newPool);
+        assertEq(vault.bucketCount(), 16); assertEq(vault.nftBucket(seventeenth), 0);
+        assertEq(uint256(vault.nftStatus(seventeenth)), uint256(PositionStatus.Dormant));
+        assertEq(t0.balanceOf(alice), balance0); assertEq(t1.balanceOf(alice), balance1);
         assertEq(fees.rewardReceiverCount(), 16);
     }
 
@@ -692,11 +709,11 @@ contract ExternalRewardsTest is PooledVaultFixture {
         assertEq(inbox.balance, 0); assertEq(address(wrapper).balance, 1 ether);
         assertEq(fees.totalExternalFunded(bucket, address(wrapper)), 1 ether);
         uint256 claimable = _assertNativeClaimBacking(id, address(wrapper), 1 ether);
-        assertEq(fees.compoundBalance(bucket, address(wrapper)), 0.1 ether);
-        assertEq(fees.buybackBalance(address(wrapper)), 0.1 ether);
+        assertEq(fees.compoundBalance(bucket, address(wrapper)), 0.05 ether);
+        assertEq(fees.buybackBalance(address(wrapper)), 0.05 ether);
         vm.prank(alice); assertEq(rewards.claim(id, address(wrapper)), claimable);
-        assertEq(wrapper.balanceOf(address(rewards)), 0.8 ether - claimable);
-        assertEq(rewards.liabilities(address(wrapper)), 0.8 ether - claimable);
+        assertEq(wrapper.balanceOf(address(rewards)), 0.9 ether - claimable);
+        assertEq(rewards.liabilities(address(wrapper)), 0.9 ether - claimable);
     }
 
     function testNativeLowGasPaymentAlsoSupportsSecondPairAsset() public {
@@ -771,20 +788,20 @@ contract ExternalRewardsTest is PooledVaultFixture {
     function _outstandingRemote(uint256 bucket) private {
         BridgeMessage memory m; m.version = 3; m.kind = MessageKind.Principal; m.bucketId = bucket;
         m.homeChain = block.chainid; m.homeVault = address(vault); m.canonicalToken0 = address(t0); m.canonicalToken1 = address(t1);
-        m.totalShares = vault.bucketTotalShares(bucket); m.allocatedIndividual0 = 50; m.allocatedCollective0 = 30;
+        m.totalShares = vault.bucketTotalShares(bucket); m.allocatedIndividual0 = 80; m.allocatedCollective0 = 10;
         vm.prank(address(0x987)); fees.importAccounting(m);
     }
 
     function testExternalRewardsCannotMasqueradeAsOldRemoteSettlement() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id); address inbox = _receiver(id);
         _outstandingRemote(bucket); _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync();
-        assertEq(rewards.claimable(id, address(t0)), 800);
+        assertEq(rewards.claimable(id, address(t0)), 900);
         assertEq(fees.receivedIndividual(bucket, address(t0)), 0);
         assertEq(fees.receivedCollective(bucket, address(t0)), 0);
-        assertEq(fees.expectedIndividual(bucket, address(t0)), 50);
-        assertEq(fees.expectedCollective(bucket, address(t0)), 30);
+        assertEq(fees.expectedIndividual(bucket, address(t0)), 80);
+        assertEq(fees.expectedCollective(bucket, address(t0)), 10);
         assertFalse(fees.remoteSettled(bucket));
-        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 800);
+        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 900);
         assertFalse(fees.remoteSettled(bucket));
         vm.prank(alice); vm.expectRevert(); vault.increase(id, 100, 100, 1, block.timestamp + 100);
     }
@@ -793,37 +810,37 @@ contract ExternalRewardsTest is PooledVaultFixture {
         uint256 id = activatedPosition(); address inbox = _receiver(id); ac.bind(Ids.MIGRATION, address(new ExternalPendingMigration()));
         _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync();
         vm.prank(alice); vm.expectRevert(); vault.increase(id, 100, 100, 1, block.timestamp + 100);
-        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 800);
+        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 900);
     }
 
     function testCanonicalRewardInboxContinuesAcrossOutboundRemoteAndInboundCustody() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id); address inbox = _receiver(id);
         vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Outbound));
-        _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync(); assertEq(rewards.claimable(id, address(t0)), 800);
+        _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync(); assertEq(rewards.claimable(id, address(t0)), 900);
         vault.confirmMigration(bucket, block.chainid + 1, address(0xF001));
         assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Remote));
-        _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync(); assertEq(rewards.claimable(id, address(t0)), 1600);
+        _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync(); assertEq(rewards.claimable(id, address(t0)), 1800);
         Position memory p = vault.group(bucket); address receiver = address(0x987);
         t0.mint(receiver, 1000); t1.mint(receiver, 1000);
         vm.startPrank(receiver); t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
         vault.importPending(bucket, poolId, p, vault.bucketTotalShares(bucket), vault.homePoolId(bucket), 1000, 1000); vm.stopPrank();
         assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Inbound));
         _send(t0, inbox, 1000); ExternalRewardInbox(inbox).sync();
-        assertEq(rewards.claimable(id, address(t0)), 2400);
+        assertEq(rewards.claimable(id, address(t0)), 2700);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 3000);
         assertEq(fees.receivedIndividual(bucket, address(t0)), 0);
         assertEq(fees.receivedCollective(bucket, address(t0)), 0);
         assertEq(vault.sharesOf(id), 2000e18);
-        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 2400);
+        vm.prank(alice); assertEq(rewards.claim(id, address(t0)), 2700);
     }
 
     function testCollectingVenueFeesAlsoSynchronizesPendingExternalFunds() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id); address inbox = _receiver(id);
         _send(t0, inbox, 1000); venue.setFees(100, 0); vault.collectFees(bucket, block.timestamp + 100);
-        assertEq(rewards.claimable(id, address(t0)), 880);
-        assertEq(fees.compoundBalance(bucket, address(t0)), 110);
-        assertEq(fees.buybackBalance(address(t0)), 110);
+        assertEq(rewards.claimable(id, address(t0)), 990);
+        assertEq(fees.compoundBalance(bucket, address(t0)), 55);
+        assertEq(fees.buybackBalance(address(t0)), 55);
         assertEq(fees.totalExternalFunded(bucket, address(t0)), 1000);
     }
 

@@ -1,0 +1,43 @@
+{
+  "scope": "Intermediate 32-bucket artifacts, superseded by final 16-bucket remediation; not final candidate verification.",
+  "copies": [
+    {
+      "source_evidence": "fork-final.log",
+      "destination": "fork-32-bucket-intermediate.log",
+      "source_sha256": "9ffa2af31743d93084adf868e1278021e8243d52b5b8f21f33424ed283d43c0c",
+      "copy_sha256": "9ffa2af31743d93084adf868e1278021e8243d52b5b8f21f33424ed283d43c0c"
+    },
+    {
+      "source_evidence": "slither-alignment-final-retry-20261015/size-gate.log",
+      "destination": "size-32-bucket-intermediate.log",
+      "source_sha256": "a7deab2364eefbc7bd2321c527d4000068f7e3eb3cd27c3826eb8bad161f8d3c",
+      "copy_sha256": "a7deab2364eefbc7bd2321c527d4000068f7e3eb3cd27c3826eb8bad161f8d3c"
+    },
+    {
+      "source_evidence": "alignment-32-bucket-intermediate-tests.log",
+      "destination": "solidity-32-bucket-intermediate.log",
+      "source_sha256": "26f83a73469f321d4342e9344c196d5f3c5c45dfdbbf89c8caf174ab7d9c4092",
+      "copy_sha256": "26f83a73469f321d4342e9344c196d5f3c5c45dfdbbf89c8caf174ab7d9c4092"
+    },
+    {
+      "source_evidence": "website-alignment-20261015/production-template-blocked.json",
+      "destination": "production-template-blocked.json",
+      "source_sha256": "3f0a2e22c4c34e580d1677e2c2877b12abcc6666171247e6613ed0db3d773da4",
+      "copy_sha256": "3f0a2e22c4c34e580d1677e2c2877b12abcc6666171247e6613ed0db3d773da4"
+    }
+  ],
+  "curated_json": [
+    {
+      "file": "fork-32-bucket-intermediate.json",
+      "original_sha256": "e6af07ca9a88595925f33fcbd5c07d83ba51d2b251f03e2c481cfb76a9154486",
+      "curated_sha256": "fd198732ba8aff1cce946dc898f7e7c64647a5c2a0a4d45b0ee5e51552e77b4f",
+      "changes": "Omit nonessential absolute executable/cache paths; add explicit intermediate/superseded phase, preserve source/tool/log hashes and actual results."
+    },
+    {
+      "file": "size-32-bucket-intermediate.json",
+      "original_sha256": "0d2a0047b494030bc64de4bc658a982ccffd551a5c17a924b3a4c4db2c546511",
+      "curated_sha256": "cfee13f120a033f6d9baf26433470d80d89eb9fd1b45c4d5daa2960530a9962c",
+      "changes": "Preserve original source/artifact hashes and size result; add intermediate phase and recompute current source match instead of retaining stale true."
+    }
+  ]
+}

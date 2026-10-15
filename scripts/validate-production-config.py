@@ -19,11 +19,14 @@ from zzz_ops.abi import keccak256,word
 from zzz_ops.state import integer
 
 ZERO = '0x'+'00'*20
-MODULES = ('access','vault','nft','liquidity','rewards','power','fees','strategy',
+MODULES = ('access','vault','nft','liquidity','rewards','membership','fees','strategy',
     'compounder','buyback','migration','bridge','receiver','oracle','pools','routes','transport')
 EVIDENCE = ('toolchain','static_analysis','invariants','uniswap_fork',
     'staging','operations_recovery','gas_benchmarks','deployment_review','economic_approval',
     'independent_audit','remediation')
+ARTWORK_FILES = tuple(f'{color}-{rarity}-{stage}.png' for color in
+    ('cyan','blue','violet','emerald','amber','crimson') for rarity in ('commun','rare','legendary')
+    for stage in ('dormant','activated','enhanced','singularity'))
 ROUTE_FIELDS = (('sourceChain','uint256'),('sourceAdapter','address'),('sourceVault','address'),
     ('sourceReceiver','address'),('destinationChain','uint256'),('destinationAdapter','address'),
     ('destinationVault','address'),('destinationReceiver','address'),('destinationPool','bytes32'),
@@ -74,10 +77,10 @@ class Gate:
 def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) -> dict[str,Any]:
     config=copy.deepcopy(config) if isinstance(config,dict) else {}
     gate=Gate(config.get('release_commit'));g=gate;now=int(time.time()) if now is None else now
-    g.check(config.get('schema_version')==3 and type(config.get('schema_version')) is int,
-        'schema_version','schema.unsupported','Schema version 3 with pooled custody and the fixed bridge router is required')
-    g.check(config.get('accounting_model')=='shared-pools-v1','accounting_model','accounting.unsupported',
-        'Shared-pool accounting must be explicitly reviewed; legacy per-NFT manifests are unsupported')
+    g.check(config.get('schema_version')==4 and type(config.get('schema_version')) is int,
+        'schema_version','schema.unsupported','Schema version 4 with equal activated membership and separate NFT royalties is required')
+    g.check(config.get('accounting_model')=='shared-pools-v2','accounting_model','accounting.unsupported',
+        'Current shared-pool accounting must be explicitly reviewed; legacy per-NFT and Power-weighted manifests are unsupported')
     g.commit=g.hex(g.commit,'release_commit',length=20,prefix=False)
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Manifest differs from the expected commit')
     home=g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)
@@ -88,19 +91,42 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
     if reward_model=='external_funded_revenue':
         policy=g.obj(economics.get('external_reward_policy'),'economics.external_reward_policy')
         for field,expected in {'payment_method':'plain_transfers','allocation_timing':'processing_time',
-            'owner_weights':'bucket_shares','collective_weights':'lifetime_power',
+            'owner_weights':'bucket_shares','collective_weights':'equal_activated_nfts',
             'revenue_entitlement':'received_funds_only'}.items():
             g.check(policy.get(field)==expected,'economics.external_reward_policy.'+field,
-                'reward.policy','External funding uses plain transfers and the current funded share/Power indexes, without guaranteed historical revenue')
+                'reward.policy','External funding uses plain transfers, bucket owner shares and equal activated-NFT collective shares, without guaranteed historical revenue')
         g.text(policy.get('source_description'),'economics.external_reward_policy.source_description')
         g.proof(policy.get('terms_evidence'),'economics.external_reward_policy.terms_evidence')
     g.check(g.num(economics.get('mint_price_wei'),'economics.mint_price_wei')==50_000_000_000_000_000,
         'economics.mint_price_wei','mint.price','Implemented mint price is exactly 0.05 ETH')
-    g.check(g.num(economics.get('minimum_activation_usd18'),'economics.minimum_activation_usd18')==500*10**18,
-        'economics.minimum_activation_usd18','activation.minimum','Implemented activation minimum is $500 of deployed LP')
+    g.check(g.num(economics.get('minimum_activation_usd18'),'economics.minimum_activation_usd18')==100*10**18,
+        'economics.minimum_activation_usd18','activation.minimum','Implemented activation minimum is $100 of deployed LP')
     split=economics.get('fee_split_bps')
-    g.check(isinstance(split,list) and all(type(n) is int for n in split) and split==[5000,3000,1000,1000],
-        'economics.fee_split_bps','reward.split','Implemented allocation is owner/collective/compound/burn = 50/30/10/10')
+    g.check(isinstance(split,list) and all(type(n) is int for n in split) and split==[8000,1000,500,500],
+        'economics.fee_split_bps','reward.split','Implemented allocation is owner/collective/compound/burn = 80/10/5/5')
+    g.check(economics.get('collective_weights')=='equal_activated_nfts',
+        'economics.collective_weights','reward.collective','The 10% collective allocation is equal per activated NFT, independently of LP size or rarity')
+    g.check(g.num(economics.get('maximum_membership_dust_raw'),'economics.maximum_membership_dust_raw')==19,
+        'economics.maximum_membership_dust_raw','reward.dust','Twenty-unit fee baskets settle at most nineteen raw token units to incumbent owners at membership boundaries')
+    nft_policy=g.obj(config.get('nft_policy'),'nft_policy')
+    for key,expected in {'rarity_counts':[600,300,100],'initial_rarity_bps':[6000,3000,1000],'royalty_weights':[1,2,3]}.items():
+        value=nft_policy.get(key)
+        g.check(isinstance(value,list) and all(type(n) is int for n in value) and value==expected,
+            'nft_policy.'+key,'nft.policy','The exact collection rarity quotas, initial odds and activated NFT royalty weights must match the implemented policy')
+    for key,expected in {'max_supply':1000,'marketplace_royalty_bps':500,'received_royalty_distribution_bps':10000}.items():
+        g.check(g.num(nft_policy.get(key),'nft_policy.'+key)==expected,
+            'nft_policy.'+key,'nft.policy','Supply is capped at 1000; marketplace royalties are 5%, with all received royalties in the separate NFT royalty ledger')
+    for key,expected in {'rarity_distribution':'fixed_quotas_without_replacement',
+        'rarity_randomization':'vrf_mint_order_without_replacement',
+        'royalty_eligibility':'activated_nfts_only','royalty_entitlement':'received_funds_only',
+        'evolution_basis':'current_attributed_lp_value_usd18','unavailable_valuation':'unavailable',
+        'randomness_policy':'verified_coordinator_two_words'}.items():
+        g.check(nft_policy.get(key)==expected,'nft_policy.'+key,'nft.policy','Explicit current NFT behavior must match the reviewed implementation')
+    thresholds=g.items(nft_policy.get('evolution_thresholds_usd18'),'nft_policy.evolution_thresholds_usd18')
+    values=[g.num(value,f'nft_policy.evolution_thresholds_usd18[{i}]') for i,value in enumerate(thresholds)]
+    g.check(values==[0,100*10**18,1000*10**18,10000*10**18],
+        'nft_policy.evolution_thresholds_usd18','nft.evolution','Current attributed LP thresholds must be Dormant/Activated/Enhanced/Singularity = $0/$100/$1,000/$10,000')
+    g.proof(nft_policy.get('economic_review_evidence'),'nft_policy.economic_review_evidence')
     evidence=g.obj(config.get('evidence'),'evidence')
     for key in EVIDENCE:g.proof(evidence.get(key),'evidence.'+key)
     migration=g.obj(config.get('migration'),'migration');migration_enabled=migration.get('enabled')
@@ -129,6 +155,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(timestamp is not None and age is not None and 0<=now-timestamp<=age,
             path+'.observed_block','snapshot.stale','Observed snapshot must satisfy the explicitly selected age policy')
         modules=g.obj(chain.get('modules'),path+'.modules');chain['modules']=modules;addresses=[]
+        g.check('power' not in modules,path+'.modules.power','binding.legacy','Legacy Power modules cannot replace or accompany equal activated membership')
         for name in MODULES:
             module=g.obj(modules.get(name),path+'.modules.'+name);modules[name]=module
             addr=g.hex(module.get('address'),path+'.modules.'+name+'.address',20)
@@ -168,6 +195,121 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(recipient not in addresses,path+'.constructor.mint_proceeds_recipient','mint.custody','Mint proceeds must stay outside protocol custody/reward modules')
         g.proof(constructor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
         g.text(constructor.get('nft_base_uri'),path+'.constructor.nft_base_uri')
+        if cid==home:
+            np=path+'.nft_inventory';nft=g.obj(chain.get('nft_inventory'),np)
+            nft_address=modules['nft'].get('address')
+            artwork_base=constructor.get('nft_base_uri')
+            g.check(isinstance(artwork_base,str) and re.fullmatch(
+                r'(?:ipfs://(?:Qm[1-9A-HJ-NP-Za-km-z]{44}|b[a-z2-7]{20,})|ar://[A-Za-z0-9_-]{43})/(?:[^\s"<>]*/)?',artwork_base) is not None,
+                path+'.constructor.nft_base_uri','nft.artwork','Production artwork must use a reviewed IPFS/Arweave content root and trailing slash')
+            helper_addresses=[]
+            for name in ('royalty_rewards','metadata_renderer'):
+                hp=np+'.'+name;helper=g.obj(nft.get(name),hp)
+                helper_address=g.hex(helper.get('address'),hp+'.address',20);helper_addresses.append(helper_address)
+                g.hex(helper.get('runtime_hash'),hp+'.runtime_hash')
+                g.check(helper_address is not None and helper_address not in addresses and helper_address!=recipient,
+                    hp+'.address','nft.helper','NFT-owned helpers must be distinct from modules and the mint recipient')
+                g.check(helper.get('immutable') is True,hp+'.immutable','nft.helper','NFT helper addresses must be immutable constructor bindings')
+                review=g.proof(helper.get('review_evidence'),hp+'.review_evidence')
+                g.check(review.get('independent') is True,hp+'.review_evidence','nft.review','Independent helper admission review is required')
+                if name=='royalty_rewards':
+                    g.check(helper.get('nft')==nft_address and nft_address is not None,
+                        hp+'.nft','nft.binding','The separate royalty helper must bind the canonical NFT')
+                else:
+                    g.check(helper.get('controller')==modules['access'].get('address') and helper.get('controller') is not None,
+                        hp+'.controller','nft.binding','The metadata renderer must bind the reviewed access controller')
+            g.check(len(set(helper_addresses))==len(helper_addresses),np,'nft.helper','NFT helper implementations must be distinct')
+            g.check(type(nft.get('observed_chain_id')) is int and nft.get('observed_chain_id')==cid and
+                type(nft.get('observed_block_number')) is int and nft.get('observed_block_number')==observed.get('number') and
+                nft.get('observed_block_hash')==observed.get('hash'),np,'nft.observation',
+                'NFT/helper code and bindings must be observed at the exact confirmed inventory block')
+            bindings=g.obj(nft.get('observed_bindings'),np+'.observed_bindings')
+            g.check(bindings.get('nft')==nft_address and nft_address is not None and
+                bindings.get('royaltyRewards')==helper_addresses[0] and bindings.get('metadataRenderer')==helper_addresses[1] and
+                bindings.get('artworkBaseURI')==artwork_base and isinstance(artwork_base,str) and
+                bindings.get('royaltyReceiver')==helper_addresses[0] and
+                type(bindings.get('royaltyBps')) is int and bindings.get('royaltyBps')==500,
+                np+'.observed_bindings','nft.binding','Observed NFT getters and ERC-2981 royaltyInfo must match immutable helpers and the 5% royalty rate')
+            ap=np+'.artwork_publication';artwork=g.obj(nft.get('artwork_publication'),ap)
+            manifest_hash=g.hex(artwork.get('manifest_sha256'),ap+'.manifest_sha256',prefix=False)
+            files=g.items(artwork.get('asset_paths'),ap+'.asset_paths')
+            g.check(artwork.get('base_uri')==artwork_base and isinstance(artwork_base,str) and
+                g.num(artwork.get('asset_count'),ap+'.asset_count',1)==72 and len(files)==72 and
+                all(isinstance(value,str) for value in files) and set(files)==set(ARTWORK_FILES),
+                ap,'nft.artwork','Content publication must inventory exactly the 72 supported six-color/three-rarity/four-evolution PNG paths')
+            publication=g.proof(artwork.get('review_evidence'),ap+'.review_evidence')
+            g.check(publication.get('independent') is True and publication.get('kind')=='content_addressed_artwork_review' and
+                publication.get('base_uri')==artwork_base and isinstance(artwork_base,str) and
+                publication.get('asset_manifest_sha256')==manifest_hash and manifest_hash is not None,
+                ap+'.review_evidence','nft.artwork_review','Independent publication evidence must pin the reviewed content root and exact asset manifest hash')
+            rp=np+'.royalty_assets';royalty_assets=g.obj(nft.get('royalty_assets'),rp)
+            asset_count=g.num(royalty_assets.get('asset_count'),rp+'.asset_count',1,17)
+            asset_records=g.items(royalty_assets.get('assets'),rp+'.assets')
+            g.check(asset_count==len(asset_records) and royalty_assets.get('complete_admission_history') is True,
+                rp,'nft.royalty_assets','Native plus at most sixteen ERC20 royalty assets require a complete assetCount/assets/isAsset admission inventory')
+            g.proof(royalty_assets.get('observation_evidence'),rp+'.observation_evidence')
+            seen_assets=set()
+            for ai,item in enumerate(asset_records):
+                asp=rp+f'.assets[{ai}]';asset=g.obj(item,asp)
+                token=g.hex(asset.get('address'),asp+'.address',20,zero=True)
+                g.check(token is not None and token not in seen_assets and (ai!=0 or token==ZERO),
+                    asp,'nft.royalty_assets','Royalty assets must be unique and native ETH must be the first admitted asset')
+                seen_assets.add(token)
+                g.check(asset.get('observed_asset')==token and token is not None and asset.get('observed_is_asset') is True,
+                    asp,'nft.royalty_assets','Observed assets(index) and isAsset(asset) must match each admitted royalty asset at the inventory block')
+                decimals=g.num(asset.get('decimals'),asp+'.decimals',0,18)
+                if token==ZERO:
+                    g.check(ai==0 and asset.get('kind')=='native' and decimals==18 and asset.get('runtime_hash') is None,
+                        asp,'nft.royalty_assets','Native ETH is the default first asset, with 18 decimals and no ERC20 runtime hash')
+                else:
+                    g.hex(asset.get('runtime_hash'),asp+'.runtime_hash')
+                    g.check(asset.get('kind')=='erc20' and asset.get('non_rebasing') is True and asset.get('transfer_tax') is False,
+                        asp,'nft.royalty_asset_semantics','Only independently reviewed conventional non-rebasing, exact-transfer ERC20 royalty assets may be admitted')
+                admission=g.proof(asset.get('admission_evidence'),asp+'.admission_evidence')
+                g.check(admission.get('independent') is True and admission.get('kind')=='royalty_asset_admission' and
+                    admission.get('asset')==token and token is not None and type(admission.get('chain_id')) is int and
+                    admission.get('chain_id')==cid and admission.get('exact_transfers_reviewed') is True and
+                    admission.get('authority_risks_reviewed') is True and admission.get('activation_griefing_reviewed') is True,
+                    asp+'.admission_evidence','nft.royalty_asset_review','Independent exact-chain asset admission must review exact transfers, upgrade/authority risks and cross-asset activation griefing')
+            maximum=g.num(bindings.get('MAX_SUPPLY'),np+'.observed_bindings.MAX_SUPPLY',1)
+            minted=g.num(bindings.get('mintedCount'),np+'.observed_bindings.mintedCount',0,1000)
+            next_ordinal=g.num(bindings.get('nextToFinalize'),np+'.observed_bindings.nextToFinalize',1,1001)
+            remaining=g.num(bindings.get('remainingToReveal'),np+'.observed_bindings.remainingToReveal',0,1000)
+            quotas=g.items(bindings.get('rarityRemaining'),np+'.observed_bindings.rarityRemaining')
+            remaining_counts=[g.num(value,f'{np}.observed_bindings.rarityRemaining[{i}]',0) for i,value in enumerate(quotas)]
+            g.check(maximum==1000 and minted is not None and next_ordinal is not None and remaining is not None and
+                len(remaining_counts)==3 and all(value is not None and value<=limit for value,limit in zip(remaining_counts,(600,300,100))) and
+                sum(remaining_counts)==remaining and next_ordinal==1000-remaining+1 and minted>=1000-remaining,
+                np+'.observed_bindings','nft.quotas','Observed supply and remaining rarity quotas must conserve the exact 1000 NFT / 600 Commun / 300 Rare / 100 Legendary policy and mint-order finalization')
+            rp=np+'.randomness';randomness=g.obj(nft.get('randomness'),rp)
+            coordinator=g.hex(randomness.get('coordinator'),rp+'.coordinator',20)
+            g.hex(randomness.get('runtime_hash'),rp+'.runtime_hash')
+            key_hash=g.hex(randomness.get('keyHash'),rp+'.keyHash')
+            subscription=g.num(randomness.get('subscriptionId'),rp+'.subscriptionId',1)
+            confirmations=g.num(randomness.get('requestConfirmations'),rp+'.requestConfirmations',3,200)
+            callback_gas=g.num(randomness.get('callbackGasLimit'),rp+'.callbackGasLimit',200000,10000000)
+            native=randomness.get('nativePayment')
+            g.check(type(native) is bool,rp+'.nativePayment','nft.randomness','Native-payment mode must be selected explicitly')
+            g.check(randomness.get('immutable_configuration') is True and randomness.get('no_admin_reroll') is True,
+                rp,'nft.randomness','One-time coordinator configuration and absence of a privileged reroll must be reviewed')
+            g.check(bindings.get('randomnessConfigured') is True and bindings.get('randomnessCoordinator')==coordinator and coordinator is not None and
+                bindings.get('keyHash')==key_hash and key_hash is not None and
+                g.num(bindings.get('subscriptionId'),np+'.observed_bindings.subscriptionId',1)==subscription and
+                g.num(bindings.get('requestConfirmations'),np+'.observed_bindings.requestConfirmations',3,200)==confirmations and
+                g.num(bindings.get('callbackGasLimit'),np+'.observed_bindings.callbackGasLimit',200000,10000000)==callback_gas and
+                type(bindings.get('nativePayment')) is bool and bindings.get('nativePayment')==native,
+                rp,'nft.randomness','Observed NFT randomness getters must match the complete reviewed coordinator configuration')
+            review=g.proof(randomness.get('review_evidence'),rp+'.review_evidence')
+            g.check(review.get('independent') is True and review.get('kind')=='verified_randomness_coordinator_review' and
+                type(review.get('chain_id')) is int and review.get('chain_id')==cid and review.get('coordinator')==coordinator and coordinator is not None,
+                rp+'.review_evidence','nft.randomness_review','An independent exact-chain coordinator/funding/security review is required; coordinator availability cannot be assumed')
+            staged=g.proof(randomness.get('integration_evidence'),rp+'.integration_evidence')
+            g.check(staged.get('kind')=='coordinator_staged_randomness' and type(staged.get('chain_id')) is int and staged.get('chain_id')==cid and
+                staged.get('coordinator')==coordinator and coordinator is not None and staged.get('nft')==nft_address and nft_address is not None,
+                rp+'.integration_evidence','nft.randomness_staging','Actual staged coordinator fulfillment must identify this chain, coordinator and canonical NFT; mock/model evidence is insufficient')
+            g.num(staged.get('fulfilled_request_id'),rp+'.integration_evidence.fulfilled_request_id',1)
+            g.num(staged.get('finalized_token_id'),rp+'.integration_evidence.finalized_token_id',1)
+            g.proof(nft.get('observation_evidence'),np+'.observation_evidence')
         g.num(constructor.get('maximum_buyback_usd18'),path+'.constructor.maximum_buyback_usd18',1)
         adapter_transport=g.hex(constructor.get('adapter_transport'),path+'.constructor.adapter_transport',20)
         g.check(adapter_transport is not None and adapter_transport==modules['transport'].get('address'),
@@ -269,6 +411,8 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 g.check(bounds['triggerBps']<bounds['rangeBps'] and bounds['maxSpotDeviationBps']<bounds['rangeBps'] and
                     fee is not None and fee<bounds['maxSlippageBps']*100 and bounds['maxPositionUSD']>=bounds['minDepositUSD'],
                     pp,'pool.bounds','Strategy/fee/value bounds must satisfy ZZZPoolRegistry')
+                g.check(bounds['minDepositUSD']<=100*10**18<=bounds['maxPositionUSD'],
+                    pp,'pool.activation_minimum','Admitted pool contribution bounds must allow the advertised $100 activation')
             g.check(pool.get('depositsEnabled') is True and pool.get('operationsEnabled') is True,pp,'pool.disabled','The release pool must explicitly enable reviewed deposits and operations')
             if None not in (t0,t1,fee,spacing) and pool.get('hooks')==ZERO:
                 g.check(pid==identity([(t0,'address'),(t1,'address'),(fee,'uint24'),(spacing,'uint24'),(ZERO,'address')]),pp+'.pool_id','pool.identity','Pool ID must hash the complete PoolKey')
@@ -319,7 +463,11 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 'One immutable receiver per canonical bucket; addresses and buckets must be unique')
             seen_receivers.add(receiver);seen_buckets.add(bucket)
             constructor=chain.get('constructor') if isinstance(chain.get('constructor'),dict) else {}
-            g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and receiver!=constructor.get('mint_proceeds_recipient'),
+            nft_inventory=chain.get('nft_inventory') if isinstance(chain.get('nft_inventory'),dict) else {}
+            nft_helpers=[helper_record.get('address') for helper_record in
+                (nft_inventory.get('royalty_rewards'),nft_inventory.get('metadata_renderer')) if isinstance(helper_record,dict)]
+            g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and
+                receiver not in nft_helpers and receiver!=constructor.get('mint_proceeds_recipient'),
                 rp+'.address','reward.custody','Reward receivers must be separate from modules and the mint-proceeds recipient')
             g.check(record.get('immutable_configuration') is True and record.get('upgradeable') is False,
                 rp,'reward.mutable','Receiver code and bucket/currency/wrapper bindings must be immutable and reviewed')
@@ -515,7 +663,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                     token=route.get(f'destinationToken{slot}')
                     g.check(any(r.get('kind')=='reward' and r.get('sourceChain')==route.get('destinationChain') and r.get('destinationChain')==home and r.get('sourceToken0')==token for r in active),
                         'routes','route.rewards_missing','Satellite principal assets need funded reward paths to the canonical chain')
-    return {'schema_version':3,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
+    return {'schema_version':4,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
         'migration_enabled':migration_enabled is True,
         'limitations':['Offline manifest checks do not authenticate evidence, runtime code, authorities, or current chain state.',
@@ -527,7 +675,7 @@ def main() -> int:
     args=parser.parse_args()
     try:result=validate(json.loads(Path(args.config).read_text(encoding='utf-8')),expected_commit=args.expected_commit)
     except (OSError,UnicodeError,json.JSONDecodeError) as exc:
-        result={'status':'blocked','ready':False,'deployment_authorized':False,
+        result={'schema_version':4,'status':'blocked','ready':False,'deployment_authorized':False,
             'issues':[{'code':'config.unreadable','path':'config','message':type(exc).__name__}]}
     encoded=json.dumps(result,indent=2,sort_keys=True)+'\n'
     if args.output:Path(args.output).write_text(encoded,encoding='utf-8')

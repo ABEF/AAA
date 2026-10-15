@@ -1,0 +1,20 @@
+{
+  "copies_are_byte_exact": true,
+  "copies": [
+    {
+      "source_evidence": "alignment-final-invariants.log",
+      "copy": "invariants.log",
+      "sha256": "1d254909a4e25007dce60a3d9733de2f0897ae8e7041772e210a5f8ee1249977"
+    },
+    {
+      "source_evidence": "alignment-final-sizes.log",
+      "copy": "forge-build-sizes.log",
+      "sha256": "353dd9d06291c09efa1f57fd4d22108fdf9554efa06165239f3ff3ecbe5fd985"
+    },
+    {
+      "source_evidence": "alignment-signature-cache-blocked-sizes.log",
+      "copy": "forge-build-signature-cache-intermediate.log",
+      "sha256": "e9b8286235cfdaadd6c1cd90eb32369851f16fe6e8c4da151d4b5209a54e7a02"
+    }
+  ]
+}

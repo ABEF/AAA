@@ -1,5 +1,7 @@
 # Development setup and verification
 
+> Current candidate uses $100 activation, 80/10/5/5 LP fees, equal activated membership, exact 600/300/100 rarities across at most 1,000 NFTs, VRF reveal and separate 5% royalties. Fresh verification is in progress; historical counts/sizes below belong to earlier revisions. Read [economics](ECONOMICS.md) and [NFT rules](NFT_METADATA.md).
+
 ## Supported environment
 
 Use Linux/Unix with Python 3.11+ for the full off-chain test suite and keeper. `zzz_ops.state.process_lock` uses `fcntl`, and state-file tests require Unix `0600` permissions. Native Windows does not satisfy those assumptions. A Windows checkout can be edited and published; keeper operation and complete verification require a supported Linux environment such as WSL with a Linux distribution.
@@ -15,7 +17,7 @@ python3 scripts/run_python_tests.py
 python3 scripts/source_checks.py
 ```
 
-The first command executes the off-chain implementation and mathematical model suites and writes results under `reports/`. The original suite contained 66 implementation tests and 18 models; paid-mint/activation event decoding adds two implementation tests. The models do not execute Solidity. The second command performs narrow textual consistency checks rather than compilation or security analysis.
+The first command executes off-chain implementation and mathematical model suites and writes results under `reports/`. Models do not execute Solidity. The second performs narrow textual consistency checks rather than compilation or security analysis. Discover and report the current test inventory from the actual run; do not reuse a preceding revision's count as current evidence.
 
 The original delivery records 84 passing Python tests. Publication verification on Windows ran all 84 and found 81 passing, one failing permission assertion, and two missing-`fcntl` errors. See [publication checks](../reports/PUBLICATION_CHECKS.json). Historical delivery reports are retained rather than rewritten as current passing evidence.
 
@@ -43,15 +45,30 @@ The verifier runs Python/source checks, then builds with size reporting and exec
 
 The fork runner uses a temporary loopback read-only relay to serialize archive requests at least 1.25 seconds apart. HTTP 429 alone has three bounded attempts; other failures remain failures. It forwards the actual pinned-block data without caching, fabricated responses or a latest-block fallback, denies write/sign/admin RPC methods and runs Forge with storage caching disabled. The upstream is explicit; credentials stay outside source/logs. For a reviewed higher-capacity endpoint, the direct opt-in command remains available, but anonymous endpoints may reject Foundry bursts.
 
-Solidity 0.8.26's default Yul optimizer triggered an internal bytecode-assembly error for this vault. The profile keeps `via_ir = true` and the EVM optimizer, with `optimizer_details = { yul = false }` as the tested workaround. `optimizer_runs = 1` favors deployment size. The shared-pool rewrite changes custody, rewards and migration ABIs and requires fresh size/security evidence. `group(bucketId)` is the maintenance/custody view; `nftStatus`, `nftBucket`, `sharesOf` and `contributionUSD` expose NFT rights; the old `position(nftId)` ABI is removed. Economic bridge messages are version 3. Do not reuse per-NFT keeper state or old manifests. Current measured sizes and test counts are in [shared-pool evidence](../reports/pooled/README.md); older 23,662-byte figures describe the preceding per-NFT Vault only. No standard deployment size limit is raised.
+Solidity 0.8.26's default Yul optimizer triggered an internal bytecode-assembly error for this vault. The profile keeps `via_ir = true` and the EVM optimizer, with `optimizer_details = { yul = false }` as the tested workaround. `optimizer_runs = 1` favors deployment size. The shared-pool rewrite changes custody, rewards and migration ABIs and requires fresh size/security evidence. `group(bucketId)` is the maintenance/custody view; `nftStatus`, `nftBucket`, `sharesOf` and `contributionUSD` expose NFT rights; the old `position(nftId)` ABI is removed. Economic bridge messages are version 3. Do not reuse per-NFT keeper state or old manifests. The [shared-pool evidence](../reports/pooled/README.md) and [reward-funding evidence](../reports/reward-funding/README.md) describe earlier revisions. The current economics/membership/NFT changes require a fresh complete run, module/helper size measurements and source-bound analyzer review; previous runtime margins are not current headroom. No standard deployment size limit is raised.
 
-Foundry 1.4.4 also reserves the removed `testFail*` naming pattern. Revert tests use explicit `expectRevert` assertions with names that avoid this prefix. The earlier suite of 70 tests passed under the original repaired profile; paid dormant issuance, separate activation, repeated migrations and historical reward routing now have additional EVM tests. See [current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) separately from [CI repair evidence](../reports/CI_REPAIR.md).
+Foundry 1.4.4 also reserves the removed `testFail*` naming pattern. Revert tests use explicit `expectRevert` assertions with names that avoid this prefix. The earlier suite of 70 tests passed under the original repaired profile; paid dormant issuance, separate activation, repeated migrations and historical reward routing now have additional EVM tests. See the historical [implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) separately from [CI repair evidence](../reports/CI_REPAIR.md); neither verifies the current alignment revision.
+
+## Current alignment coverage
+
+Run the full verifier before release. Targeted development commands include:
+
+```bash
+forge test --match-contract NFTMetadataTest -vv
+forge test --match-contract NFTRoyaltiesTest -vv
+forge test --match-contract PooledSecurityTest -vv
+forge test --match-contract ExternalRewardsTest -vv
+```
+
+The NFT tests use an explicitly non-proof-verifying `MockVRF`: they cover request binding/authentication, strict mint-order finalization, exact quota exhaustion, cap rejection, immutable traits, separate royalties, current-value evolution/downgrades and unavailable valuation. They do not establish live VRF, subscription backing or Robinhood support. Test-only venue/feed fixtures are not actual selected-market evidence. Preserve the new equal-member timing, all-bucket funded-dust barriers and token-callback regression coverage when changing entry accounting.
 
 ## Local-only deployment and services
 
 [DeployCore.s.sol](../script/DeployCore.s.sol) is a local-only template. It creates the fixed router with no provider policies. It does not seal module bindings or open deposits. No bridge endpoint environment variable is required; add reviewed provider policies and policy-bound routes separately when needed. [.env.example](../.env.example) contains placeholders, not deployment credentials.
 
-`MINT_PROCEEDS_RECIPIENT` is a required constructor parameter. Select and verify a recipient that accepts native ETH; a rejected payment reverts the entire mint. It cannot be changed after deployment. Minting requires sealing and costs exactly `0.05 ether`; `activate` preserves the paid NFT and requires at least $500 of measured deployed LP. The template retains its local-chain guard; this work does not deploy public-chain contracts.
+The canonical NFT must be configured with a reviewed VRF-v2.5-compatible coordinator before `seal()`; canonical sealing rejects missing randomness configuration. Mint requests two words once and activation waits for authenticated, mint-order `finalizeTraits(id)`. A missing earlier fulfillment blocks later reveals without a fallback. The immutable artwork root must be reviewed content-addressed assets, and the separate royalty/metadata helper bindings must be included in deployment observations. Actual coordinator/network review remains open.
+
+`MINT_PROCEEDS_RECIPIENT` is a required constructor parameter. Select and verify a recipient that accepts native ETH; a rejected payment reverts the entire mint. It cannot be changed after deployment. Minting requires sealing and costs exactly `0.05 ether`; `activate` preserves the paid NFT and requires at least $100 of measured deployed LP. The template retains its local-chain guard; this work does not deploy public-chain contracts.
 
 Retain dry-run mode while preparing service configuration:
 
@@ -64,6 +81,6 @@ Example addresses are placeholders. Live signing uses an encrypted external Foun
 
 ## Review and provenance
 
-The initial documentation/publication pass preserved all implementation and test sources. The later CI repair changed dependency/build configuration and one test function name, without changing contract logic or test assertions. Subsequent paid-mint and future-migration work changes implementation, interfaces, event schemas and tests; it is separate evidence and requires fresh security review. [Original README](../reports/history/README.v0.2.md) and [original manifest](../reports/history/MANIFEST.v0.2.sha256) preserve the initial presentation and hashes. The root manifest describes the current Git snapshot.
+The initial documentation/publication pass preserved all implementation and test sources. The later CI repair changed dependency/build configuration and one test function name, without changing contract logic or test assertions. Subsequent paid-mint and future-migration work changes implementation, interfaces, event schemas and tests; it is separate evidence and requires fresh security review. [Original README](../reports/history/README.v0.2.md) and [original manifest](../reports/history/MANIFEST.v0.2.sha256) preserve the initial presentation and hashes. The root manifest describes its committed Git snapshot; regenerate it for a completed release rather than presenting an earlier manifest as a hash inventory for uncommitted edits.
 
-Start implementation work from the [component status](COMPONENT_STATUS.md), [current internal review](../reports/PRODUCTION_READINESS.md), historical [source-level audit](AUDIT.md), and [release checklist](RELEASE_CHECKLIST.md). The internal review never closes the independent audit gate.
+Start implementation work from the [component status](COMPONENT_STATUS.md), [earlier internal review](../reports/PRODUCTION_READINESS.md), historical [source-level audit](AUDIT.md), and [release checklist](RELEASE_CHECKLIST.md). The internal review never closes the independent audit gate.

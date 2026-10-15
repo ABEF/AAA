@@ -1,6 +1,6 @@
 {
   "chain_id": 31337,
-  "accounting_model": "shared-pools-v1",
+  "accounting_model": "shared-pools-v2",
   "rpc_urls": ["http://127.0.0.1:8545"],
   "sender": "0x1111111111111111111111111111111111111111",
   "contracts": {
