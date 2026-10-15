@@ -1,0 +1,17 @@
+{
+  "recorded_at_utc": "2026-10-15T20:04:19.697488+00:00",
+  "scope": "Freeze3 mocked metadata watcher and existing keeper lifecycle, including fairness and receipt-state race regressions; no live signatures or transactions",
+  "tests_run": 109,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "pinned_cast_cli_test_executed": true,
+  "source_sha256": {
+    "keeper/monitor.py": "25fc60e9d9d0e4966b5c919b69532330b98c72ae34c7ef9dbed028ad37a4c125",
+    "keeper/config.example.json": "aa7986b2ca6c60214732b4851789f2a24da04e22eaa25b4197ccd19f6312f39e",
+    "tests_python/test_metadata_keeper.py": "1f07219db1be9d66d01b9135229f9b093ec472262cac97184e4db2ecc28c879f",
+    "tests_python/test_keeper.py": "5569b50a341cfdfb3e9e6d8d7036ac7898abeff2588db86e341c2c08749e7bd1"
+  },
+  "log_sha256": "dbfbd02c5df7ea30c354c8f010854752dd845025ebf5e5e847848e96b073fb05"
+}

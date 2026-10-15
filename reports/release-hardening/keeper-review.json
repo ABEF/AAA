@@ -1,0 +1,117 @@
+{
+  "kind": "separate_internal_keeper_metadata_security_review",
+  "reviewed_at_utc": "2026-10-15T20:06:47.925645+00:00",
+  "reviewer": "operational_gap_review agent, separate from keeper implementation author",
+  "independent_of_implementation_author": true,
+  "independent_external_audit": false,
+  "production_approved": false,
+  "scope": "Metadata configuration/state identity, confirmed-block discovery, notification fairness, durable intent/submission, exact pending receipt reconciliation, reorg handling and baseline checkpointing; generic existing LP/accounting implementation unchanged.",
+  "frozen_source_sha256": {
+    "keeper/monitor.py": "25fc60e9d9d0e4966b5c919b69532330b98c72ae34c7ef9dbed028ad37a4c125",
+    "keeper/config.example.json": "aa7986b2ca6c60214732b4851789f2a24da04e22eaa25b4197ccd19f6312f39e",
+    "tests_python/test_metadata_keeper.py": "1f07219db1be9d66d01b9135229f9b093ec472262cac97184e4db2ecc28c879f"
+  },
+  "resolved_findings": [
+    {
+      "id": "KEEPER-METADATA-01",
+      "origin": "Separate internal review",
+      "classification": "Metadata notification liveness; no custody authority",
+      "problem": "Advancing over the entire scan before selecting a smaller or nonwrapping notification range could repeatedly revisit a changing prefix and indefinitely omit the rest.",
+      "adversarial_schedule": [
+        "100 NFTs, scan50, notification batch10, initial cursor1, continuing changes at ordinals1 and51",
+        "100 NFTs, scan50/batch50, initial cursor98, continuing change at ordinal98"
+      ],
+      "resolution": "Changed work advances cursor after the selected range, modulo current count; unchanged scans advance over the full window. The cursor is durably saved before submission without marking notification success.",
+      "source": "keeper/monitor.py:420-429",
+      "regressions": [
+        "test_smaller_notification_batches_cannot_starve_unnotified_tail",
+        "test_wrapping_scan_cannot_starve_low_ordinals_behind_changing_prefix"
+      ],
+      "status": "resolved_in_frozen_source"
+    },
+    {
+      "id": "KEEPER-METADATA-02",
+      "origin": "Separate internal review",
+      "classification": "Metadata cache fingerprint correctness; no custody authority",
+      "problem": "Checkpointing the old triggering observation after a notification executed in a different stage could suppress a later return to the trigger stage (A\u2192B\u2192A). An aged/reorged trigger could also leave an old prior fingerprint suppressing a retry.",
+      "resolution": "Re-read exact selected ordinal/token identities, traits/evolution/availability and fixed deployment bindings at the confirmed receipt block; re-anchor that block after the reads and checkpoint its state. Retain original durable trigger payload. For invalid/aged triggers, clear prior selected fingerprints only after a canonical receipt check. Malformed execution state or receipt reorg retains pending without changing cost/cache success.",
+      "source": "keeper/monitor.py:435-458",
+      "regressions": [
+        "test_receipt_snapshot_prevents_return_to_trigger_stage_from_being_suppressed",
+        "test_invalidated_trigger_forgets_prior_fingerprint_before_retry",
+        "test_corrupt_receipt_snapshot_retains_pending_without_false_checkpoint"
+      ],
+      "status": "resolved_in_frozen_source"
+    },
+    {
+      "id": "KEEPER-METADATA-03",
+      "origin": "Implementation author found before freeze2; separately rechecked here",
+      "classification": "Receipt reorg reconciliation correctness",
+      "problem": "An invalid triggering observation previously returned before a final receipt-anchor check, potentially clearing pending during a simultaneous receipt reorg.",
+      "resolution": "Final receipt block anchoring precedes both normal checkpointing and invalid-trigger cache invalidation.",
+      "source": "keeper/monitor.py:447-454",
+      "regressions": [
+        "test_simultaneous_observation_and_receipt_reorg_keeps_pending",
+        "test_receipt_reorg_during_confirmation_keeps_pending"
+      ],
+      "status": "resolved_in_frozen_source"
+    }
+  ],
+  "reviewed_properties": [
+    "Explicit optional NFT target and persistent identity bind chain/controller/NFT; a changed deployment cannot silently reuse or erase pending state.",
+    "Confirmed observation reads verify sealed access, NFT/Vault module bindings, canonical chain, cap1000 and batch50. Live operation checks reviewed runtime identities.",
+    "Ordinal/token forward and reverse mapping, canonical ABI booleans/stages, record uniqueness and bounded50-record payload are validated before constructing fixed zero-value notification calldata.",
+    "Dry run, failed simulation/budget checks, ambiguous submission, reverts and unconfirmed receipts never mark notification fingerprints successful.",
+    "Existing nonce/from/to/calldata/value/hash checks, private signer inputs, sanitized signing environment, cost limits and durable pre-broadcast intent apply to metadata transactions.",
+    "Receipt and observation anchors are rechecked; invalidated successful-notification records are reconsidered after later reorgs.",
+    "Metadata and LP maintenance alternate priority. The NFT scan is separate from shared-pool upkeep and does not create per-NFT LP rebalance calls.",
+    "Notification remains usable through strategy pause and unavailable valuation; no LP, claim, royalty or migration authority is added."
+  ],
+  "independent_targeted_execution": {
+    "kind": "separate_internal_reviewer_targeted_execution",
+    "independent_external_audit": false,
+    "real_signing_or_public_chain_transactions": false,
+    "tests": [
+      "test_smaller_notification_batches_cannot_starve_unnotified_tail",
+      "test_wrapping_scan_cannot_starve_low_ordinals_behind_changing_prefix",
+      "test_receipt_snapshot_prevents_return_to_trigger_stage_from_being_suppressed",
+      "test_invalidated_trigger_forgets_prior_fingerprint_before_retry",
+      "test_corrupt_receipt_snapshot_retains_pending_without_false_checkpoint",
+      "test_simultaneous_observation_and_receipt_reorg_keeps_pending",
+      "test_receipt_reorg_during_confirmation_keeps_pending",
+      "test_tampered_pending_range_cannot_commit_other_snapshots",
+      "test_disabling_feature_still_reconciles_existing_pending_snapshot",
+      "test_metadata_priority_alternates_with_pool_maintenance"
+    ],
+    "tests_run": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsed_seconds": 3.968,
+    "source_sha256_before": {
+      "keeper/monitor.py": "25fc60e9d9d0e4966b5c919b69532330b98c72ae34c7ef9dbed028ad37a4c125",
+      "keeper/config.example.json": "aa7986b2ca6c60214732b4851789f2a24da04e22eaa25b4197ccd19f6312f39e",
+      "tests_python/test_metadata_keeper.py": "1f07219db1be9d66d01b9135229f9b093ec472262cac97184e4db2ecc28c879f"
+    },
+    "source_sha256_after": {
+      "keeper/monitor.py": "25fc60e9d9d0e4966b5c919b69532330b98c72ae34c7ef9dbed028ad37a4c125",
+      "keeper/config.example.json": "aa7986b2ca6c60214732b4851789f2a24da04e22eaa25b4197ccd19f6312f39e",
+      "tests_python/test_metadata_keeper.py": "1f07219db1be9d66d01b9135229f9b093ec472262cac97184e4db2ecc28c879f"
+    },
+    "source_unchanged": true,
+    "log_sha256": "85bdda84430ed5ed21541c588c476108f732ff92f7bb2f42d0550a18885411a6"
+  },
+  "execution_log": {
+    "repository_file": "reports/release-hardening/keeper-review-tests.log",
+    "sha256": "85bdda84430ed5ed21541c588c476108f732ff92f7bb2f42d0550a18885411a6"
+  },
+  "unresolved_actionable_findings_in_scope": [],
+  "remaining_limits": [
+    "The fingerprint tracks evolution stage, valuation availability and reveal readiness, not every intra-stage USD-value fluctuation; marketplace numeric metadata may therefore be cached between refreshes.",
+    "An ERC4906 event is a notification, not a guarantee of when an external marketplace fetches or displays artwork.",
+    "The targeted executions use mock RPC and mock encrypted-keystore signer results; no real live signer, production request or transaction was executed.",
+    "Configured confirmations and two-anchor checks do not guarantee absolute chain finality or defend against a dishonest RPC; actual chain/provider policies and staged recovery remain required.",
+    "Metadata refresh defaults disabled and production authorities/configuration remain unselected; no deployment/funded operation is approved.",
+    "Real VRF, immutable complete artwork publication, selected native-ETH/Pons custody/routing, actual bridge backing, staged monitoring and independent audit remain separate production gates."
+  ]
+}

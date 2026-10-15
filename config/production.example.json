@@ -12,7 +12,7 @@
     "External creator payments are funded revenue only; no creator percentage, payment promise or proportional Pons entitlement is assumed.",
     "Inventory every immutable canonical reward receiver, exact getter/code observations and native wrapper review; max16 receivers. These are helpers, not new sealed modules.",
     "Collection supply is capped at 1000 with exact600Commun/300Rare/100Legendary quotas. Verified randomness assigns rarity in mint order without replacement; later odds follow remaining quotas, not fixed 60/30/10 chances.",
-    "Six artwork colors remain the current supported palettes. Metadata uses current attributed LP value; stale/remote valuation is unavailable.",
+    "Eight base colors form 58 palettes and four patterns covering 2784 artwork states; reviewed immutable production publication remains pending. Metadata uses current attributed LP value; stale/remote valuation is unavailable.",
     "No verified randomness coordinator, subscription, key hash or staged fulfillment is supplied for Robinhood. Required randomness review and canonical NFT/helper observations remain pending.",
     "ERC-2981 requests 5% but cannot enforce marketplace payment. All royalties actually received are shared by activated Commun/Rare/Legendary weights 1/2/3 in a separate ledger.",
     "Ready means offline inventory consistency only. It never authorizes deployment, sealing, signing or spending."

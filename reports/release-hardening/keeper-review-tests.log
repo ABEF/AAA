@@ -1,0 +1,15 @@
+test_smaller_notification_batches_cannot_starve_unnotified_tail (tests_python.test_metadata_keeper.MetadataKeeperTests.test_smaller_notification_batches_cannot_starve_unnotified_tail) ... ok
+test_wrapping_scan_cannot_starve_low_ordinals_behind_changing_prefix (tests_python.test_metadata_keeper.MetadataKeeperTests.test_wrapping_scan_cannot_starve_low_ordinals_behind_changing_prefix) ... ok
+test_receipt_snapshot_prevents_return_to_trigger_stage_from_being_suppressed (tests_python.test_metadata_keeper.MetadataKeeperTests.test_receipt_snapshot_prevents_return_to_trigger_stage_from_being_suppressed) ... ok
+test_invalidated_trigger_forgets_prior_fingerprint_before_retry (tests_python.test_metadata_keeper.MetadataKeeperTests.test_invalidated_trigger_forgets_prior_fingerprint_before_retry) ... ok
+test_corrupt_receipt_snapshot_retains_pending_without_false_checkpoint (tests_python.test_metadata_keeper.MetadataKeeperTests.test_corrupt_receipt_snapshot_retains_pending_without_false_checkpoint) ... ok
+test_simultaneous_observation_and_receipt_reorg_keeps_pending (tests_python.test_metadata_keeper.MetadataKeeperTests.test_simultaneous_observation_and_receipt_reorg_keeps_pending) ... ok
+test_receipt_reorg_during_confirmation_keeps_pending (tests_python.test_metadata_keeper.MetadataKeeperTests.test_receipt_reorg_during_confirmation_keeps_pending) ... ok
+test_tampered_pending_range_cannot_commit_other_snapshots (tests_python.test_metadata_keeper.MetadataKeeperTests.test_tampered_pending_range_cannot_commit_other_snapshots) ... ok
+test_disabling_feature_still_reconciles_existing_pending_snapshot (tests_python.test_metadata_keeper.MetadataKeeperTests.test_disabling_feature_still_reconciles_existing_pending_snapshot) ... ok
+test_metadata_priority_alternates_with_pool_maintenance (tests_python.test_metadata_keeper.MetadataKeeperTests.test_metadata_priority_alternates_with_pool_maintenance) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 3.956s
+
+OK

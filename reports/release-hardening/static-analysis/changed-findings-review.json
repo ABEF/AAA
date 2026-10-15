@@ -1,0 +1,78 @@
+[
+  {
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "fingerprint": "bdd748e846eb79ba8bab1fbb7e2f09b884b63c4b730ccf9cd4651209c171b9fd",
+    "slither_id": "d49fb544ff70c3d8224c2d548f80de540df1d22efe82c3db6ca154e901ef774a",
+    "description": "Reentrancy in ZZZNFT.mint(address,uint256) (src/ZZZNFT.sol#100-117):\n\tExternal calls:\n\t- requestId = IZZZVRFCoordinator(randomnessCoordinator).requestRandomWords(IZZZVRFCoordinator.RandomWordsRequest(keyHash,subscriptionId,requestConfirmations,callbackGasLimit,2,abi.encodeWithSelector(bytes4(keccak256(bytes)(VRF ExtraArgsV1)),nativePayment))) (src/ZZZNFT.sol#109-111)\n\tState variables written after the call(s):\n\t- randomness[requestId].nftId = id (src/ZZZNFT.sol#113)\n\t- randomness[requestId].requested = true (src/ZZZNFT.sol#113)\n\t- requestOf[id] = requestId (src/ZZZNFT.sol#114)\n",
+    "location": "Reentrancy in ZZZNFT.mint(address,uint256) (src/ZZZNFT.sol#100-117):",
+    "disposition": "false_positive",
+    "rationale": "Current mint was read against its retained compiler-input predecessor. Its executable body is unchanged: only the sealed Vault can enter, nonReentrant excludes recursive mint/finalize, the ordinal is committed before the fixed coordinator request, zero/reused requests revert, and the request is bound before the ERC721 receiver callback. Synchronous fulfillment of the new request sees requested=false and reverts. The new refreshMetadataRange entrypoint can emit notifications during a callback but makes no external call or state change, so it cannot change request bindings, quotas, ownership or funds. Actual proof-verifying coordinator authenticity/subscription operation remains a production gate.",
+    "remaining_release_gate": "Independent current-source audit/remediation, actual token/oracle/VRF/provider integration, authenticated configuration and staged gas/operations remain required.",
+    "previous_review_reference": {
+      "path": "reports/history/slither-review-pre-release-hardening.json",
+      "fingerprint": "1a11882fc2288f1ba1d018dca24b344d75bccf641de45c94177d9986b1ac9581",
+      "slither_id": "f7bcb39af0fe384717f4d45504ebffbf0ff3271b4654982ace04da134129ee6b",
+      "matching": "fresh_individual_NFT_source_and_location_review"
+    },
+    "current_source_review": "Reviewed current function body and new notifier together; retained old compiler input proves only one constant and the bounded notification method changed. This is an internal review, not an independent audit."
+  },
+  {
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "fingerprint": "112e060b20d4a498444194d166f7232703e191a9f881edb695ad54105c181331",
+    "slither_id": "55f1242c25b82ba11de32145a04f7bc0ea6cba9782eb66affbcbf177fcd4f747",
+    "description": "Reentrancy in ZZZNFT.notifyContribution(uint256) (src/ZZZNFT.sol#166-171):\n\tExternal calls:\n\t- royaltyRewards.activate(id,uint256(rarityOf[id]) + 1) (src/ZZZNFT.sol#169)\n\tEvent emitted after the call(s):\n\t- MetadataUpdate(id) (src/ZZZNFT.sol#170)\n",
+    "location": "Reentrancy in ZZZNFT.notifyContribution(uint256) (src/ZZZNFT.sol#166-171):",
+    "disposition": "false_positive",
+    "rationale": "Current notifyContribution was read against its retained predecessor and its executable body is unchanged. It is sealed-Vault-only after successful share issuance and requires revealed traits/nonzero shares. The immutable NFT-only, nonReentrant RoyaltyRewards.activate checkpoints pending receipts before adding fixed weight; its asset observations use static calls and it makes no payout callback. MetadataUpdate follows that successful change. The new permissionless range method only repeats notifications for existing IDs and cannot alter membership, royalties or LP indexes.",
+    "remaining_release_gate": "Independent current-source audit/remediation, actual token/oracle/VRF/provider integration, authenticated configuration and staged gas/operations remain required.",
+    "previous_review_reference": {
+      "path": "reports/history/slither-review-pre-release-hardening.json",
+      "fingerprint": "696622fc3648f7253621bbe0ea07da4b68f9870f81b715519cf90427487626c1",
+      "slither_id": "3ecf255e2f385d72d0b80e4e7e050fc01fffa67bd32ab19f6d5ab88113016a02",
+      "matching": "fresh_individual_NFT_source_and_location_review"
+    },
+    "current_source_review": "Reviewed current function body and new notifier together; retained old compiler input proves only one constant and the bounded notification method changed. This is an internal review, not an independent audit."
+  },
+  {
+    "check": "dead-code",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "fingerprint": "69f3f320b81bb7d0f30f48016417afb9002ff978d6f916e97710a0d826034b56",
+    "slither_id": "71746c3d0c308bf8c183aeae04a13e0c4d008691ce2dbcb461eaa20f3667160b",
+    "description": "ZZZNFT._baseURI() (src/ZZZNFT.sol#246) is never used and should be removed\n",
+    "location": "ZZZNFT._baseURI() (src/ZZZNFT.sol#246) is never used and should be removed",
+    "disposition": "informational",
+    "rationale": "Current _baseURI override still only returns metadataBase, unchanged except line location. tokenURI uses the independent read-only JSON renderer and artworkBaseURI exposes the fixed root, so the inherited default hook remains harmless unused code. The new range notifier neither calls this hook nor mutates metadataBase, and adds no post-seal metadata mutability or authority.",
+    "remaining_release_gate": "Independent current-source audit/remediation, actual token/oracle/VRF/provider integration, authenticated configuration and staged gas/operations remain required.",
+    "previous_review_reference": {
+      "path": "reports/history/slither-review-pre-release-hardening.json",
+      "fingerprint": "3f56bc80e26944af8200fdd98ab856a418051127d5704525f230c74aba84dcc6",
+      "slither_id": "71746c3d0c308bf8c183aeae04a13e0c4d008691ce2dbcb461eaa20f3667160b",
+      "matching": "fresh_individual_NFT_source_and_location_review"
+    },
+    "current_source_review": "Reviewed current function body and new notifier together; retained old compiler input proves only one constant and the bounded notification method changed. This is an internal review, not an independent audit."
+  },
+  {
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "fingerprint": "3b9b9d994d912bce75163b8b0cdcf756287a635e007b9639d481816978648a68",
+    "slither_id": "e8b6f971099400dd84f89a5ccadc75d6d1328958b52b2cf80b877c0c8f5752af",
+    "description": "ZZZNFT.configureRandomness(address,bytes32,uint256,uint16,uint32,bool) (src/ZZZNFT.sol#89-98) uses literals with too many digits:\n\t- access.isSealed() || randomnessConfigured || coordinator.code.length == 0 || gasLane == bytes32(0) || subId == 0 || confirmations < 3 || confirmations > 200 || gasLimit < 200000 || gasLimit > 10000000 (src/ZZZNFT.sol#91-93)\n",
+    "location": "ZZZNFT.configureRandomness(address,bytes32,uint256,uint16,uint32,bool) (src/ZZZNFT.sol#89-98) uses literals with too many digits:",
+    "disposition": "informational",
+    "rationale": "Current configureRandomness was read against its retained predecessor and its executable body/limits are unchanged. The long literals bound confirmations to 3..200 and callback gas to 200,000..10,000,000; they are not entropy, prices or hidden reward percentages. The new refresh bound is the separate small constant 50 and performs no coordinator request. Generic VRF ABI and gas limits do not prove actual selected-chain availability, proof security, subscription backing or fulfillment.",
+    "remaining_release_gate": "Independent current-source audit/remediation, actual token/oracle/VRF/provider integration, authenticated configuration and staged gas/operations remain required.",
+    "previous_review_reference": {
+      "path": "reports/history/slither-review-pre-release-hardening.json",
+      "fingerprint": "4d33bff38e1fd4b56d21c76ac879dac818fb9ede96a4c21a022d948f2fd0fa56",
+      "slither_id": "ed4ec1c686358265c60d95f562627598c872df82361595515e8dfb89b42e6973",
+      "matching": "fresh_individual_NFT_source_and_location_review"
+    },
+    "current_source_review": "Reviewed current function body and new notifier together; retained old compiler input proves only one constant and the bounded notification method changed. This is an internal review, not an independent audit."
+  }
+]

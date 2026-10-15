@@ -40,6 +40,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     bool public nativePayment;
     bool public randomnessConfigured;
     uint256 public constant MAX_SUPPLY = 1000;
+    uint256 public constant MAX_METADATA_REFRESH_BATCH = 50;
     uint256 public mintedCount;
     uint256 public nextToFinalize = 1;
     uint256 public remainingToReveal = MAX_SUPPLY;
@@ -210,6 +211,18 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
 
     /// @notice Permissionless indexer notification after market moves.
     function refreshMetadata(uint256 id) external { _requireOwned(id); emit MetadataUpdate(id); }
+
+    /// @notice Notify a bounded inclusive range of mint ordinals without reading valuations.
+    /// Ordinals are not token IDs: each notification uses the actual minted ID.
+    function refreshMetadataRange(uint256 firstOrdinal, uint256 lastOrdinal) external {
+        if (firstOrdinal == 0 || firstOrdinal > lastOrdinal || lastOrdinal > mintedCount ||
+            lastOrdinal - firstOrdinal >= MAX_METADATA_REFRESH_BATCH) revert InvalidAmount();
+        for (uint256 ordinal = firstOrdinal; ordinal <= lastOrdinal; ++ordinal) {
+            uint256 id = tokenAtOrdinal[ordinal];
+            _requireOwned(id);
+            emit MetadataUpdate(id);
+        }
+    }
 
     function artworkBaseURI() external view returns (string memory) { return metadataBase; }
 

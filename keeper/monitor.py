@@ -21,6 +21,8 @@ from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
+MAX_METADATA_SUPPLY = 1000
+MAX_METADATA_BATCH = 50
 
 def log(event: str, **fields: Any) -> None:
     print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
@@ -74,6 +76,7 @@ class Keeper:
             raise ValueError('Persistent keeper state belongs to another deployment')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
         self.confirmations = positive(config.get('confirmations',12),'confirmations')
+        self._configure_metadata()
         if self.live:
             if config.get('reviewed_for_live_use') is not True:
                 raise ValueError('Live use requires an explicit reviewed deployment configuration')
@@ -102,7 +105,10 @@ class Keeper:
 
     def _validate_code_hashes(self) -> None:
         hashes = self.config.get('code_hashes',{})
-        for name,contract in self.contracts.items():
+        targets = dict(self.contracts)
+        if self.metadata_enabled or (self.state.get('pending') or {}).get('metadata_observation'):
+            targets['nft'] = self.metadata_nft
+        for name,contract in targets.items():
             expected = hashes.get(name,'').lower()
             if not re.fullmatch(r'0x[0-9a-f]{64}',expected): raise ValueError(f'Missing reviewed code hash: {name}')
             code = self.rpc.call('eth_getCode',[contract,'latest'])
@@ -142,8 +148,11 @@ class Keeper:
         l1_fee = receipt.get('l1Fee','0x0')
         cost += int(l1_fee,16) if isinstance(l1_fee,str) and l1_fee.startswith('0x') else int(l1_fee)
         day = pending['day']
+        if success and pending.get('metadata_observation') is not None:
+            self._confirm_metadata(pending,block,header['hash'],head)
         self.state['spent'][day] = int(self.state['spent'].get(day,0)) + cost
-        if success: self.state['last'][pending['key']] = int(header['timestamp'],16)
+        if success:
+            self.state['last'][pending['key']] = int(header['timestamp'],16)
         self.state['pending'] = None; self.save()
         log('confirmed' if success else 'reverted',transaction=tx_hash,cost_wei=str(cost),action=pending['key'])
         return False
@@ -168,10 +177,16 @@ class Keeper:
             valid = False
         if not valid: raise RpcError('Pending transaction identity mismatch')
 
-    def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0) -> bool:
+    def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0,
+               metadata_observation: dict[str,Any] | None = None) -> bool:
         if self.state.get('pending'): return False
         _,timestamp = self._head()
-        to,data = self.contracts[name],calldata(signature,*args)
+        to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
+        data = calldata(signature,*args)
+        if metadata_observation is not None:
+            self._validate_metadata_payload(metadata_observation)
+            self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
+                'metadata_observation':metadata_observation})
         tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
         self.rpc.call('eth_call',[tx,'latest'])
         estimated = int(self.rpc.call('eth_estimateGas',[tx]),16)
@@ -192,6 +207,7 @@ class Keeper:
         self._validate_code_hashes()
         nonce = int(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),16)
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
+        if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
         self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
         # Foundry 1.4.4 accepts raw calldata as positional SIG; --data is invalid.
         command = [self.cast,'send',to,data,'--from',self.sender,'--keystore',str(self.keystore),
@@ -213,6 +229,233 @@ class Keeper:
             log('submission_requires_reconciliation',action=key,error_type=type(exc).__name__)
             raise
         return True
+
+    def _configure_metadata(self) -> None:
+        settings = self.config.get('metadata_refresh',{})
+        if not isinstance(settings,dict) or type(settings.get('enabled',False)) is not bool:
+            raise ValueError('metadata_refresh requires an object and explicit boolean enabled flag')
+        self.metadata_enabled = settings.get('enabled',False)
+        configured = settings.get('nft')
+        self.metadata_nft = address(configured) if configured is not None else None
+        self.metadata_maximum = positive(settings.get('maximum_count',MAX_METADATA_SUPPLY),'metadata_refresh.maximum_count')
+        self.metadata_scan = positive(settings.get('max_per_cycle',MAX_METADATA_BATCH),'metadata_refresh.max_per_cycle')
+        self.metadata_batch = positive(settings.get('max_refresh_batch',min(self.metadata_scan,MAX_METADATA_BATCH)),
+            'metadata_refresh.max_refresh_batch')
+        self.metadata_age = positive(settings.get('maximum_observation_age_blocks',256),'metadata_refresh.maximum_observation_age_blocks')
+        if self.metadata_maximum > MAX_METADATA_SUPPLY or self.metadata_scan > MAX_METADATA_BATCH or \
+            self.metadata_batch > min(self.metadata_scan,MAX_METADATA_BATCH) or self.metadata_age > 10000:
+            raise ValueError('Metadata discovery or refresh exceeds its bounded limits')
+        if self.metadata_enabled and self.metadata_nft is None:
+            raise ValueError('Enabled metadata refresh requires an explicit NFT address')
+        state = self.state.get('metadata_refresh')
+        if state is not None:
+            if not isinstance(state,dict) or not isinstance(state.get('identity'),dict):
+                raise ValueError('Malformed persistent metadata state')
+            identity = state['identity']
+            stored_nft = address(identity.get('nft'))
+            expected = {'chain_id':self.chain,'controller':self.contracts['access'],'nft':stored_nft}
+            if type(identity.get('chain_id')) is not int or identity != expected or \
+                self.metadata_nft is not None and self.metadata_nft != stored_nft:
+                raise ValueError('Persistent metadata state belongs to another NFT deployment')
+            self.metadata_nft = stored_nft
+            cursor = positive(state.get('cursor'),'metadata cursor')
+            if cursor > MAX_METADATA_SUPPLY or type(state.get('next_first')) is not bool:
+                raise ValueError('Malformed metadata scan cursor')
+            records = state.get('notified')
+            if not isinstance(records,dict) or len(records) > MAX_METADATA_SUPPLY:
+                raise ValueError('Malformed notified metadata inventory')
+            for ordinal,record in records.items():
+                self._validate_metadata_record(record)
+                if ordinal != str(record['ordinal']): raise ValueError('Metadata ordinal identity mismatch')
+                for prefix in ('observed','notification'):
+                    if type(record.get(prefix+'_number')) is not int:
+                        raise ValueError('Malformed metadata block number')
+                    positive(record.get(prefix+'_number'),prefix+' block',zero=True)
+                    self._metadata_hash(record.get(prefix+'_hash'))
+                if record['notification_number'] < record['observed_number']:
+                    raise ValueError('Metadata notification precedes its observation')
+        elif self.metadata_enabled:
+            self.state['metadata_refresh'] = {'identity':{'chain_id':self.chain,'controller':self.contracts['access'],
+                'nft':self.metadata_nft},'cursor':1,'next_first':True,'notified':{}}
+        if self.metadata_nft is not None and 'nft' in self.contracts and self.contracts['nft'] != self.metadata_nft:
+            raise ValueError('Conflicting configured NFT addresses')
+        pending = self.state.get('pending')
+        if pending and pending.get('metadata_observation') is not None:
+            self._validate_metadata_payload(pending['metadata_observation'])
+            self._metadata_transaction(pending)
+
+    @staticmethod
+    def _metadata_hash(value: Any) -> str:
+        if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-f]{64}',value):
+            raise ValueError('Malformed metadata block hash')
+        return value
+
+    @staticmethod
+    def _validate_metadata_record(record: Any) -> None:
+        if not isinstance(record,dict): raise ValueError('Malformed metadata observation')
+        ordinal = positive(record.get('ordinal'),'metadata ordinal')
+        token = positive(record.get('token_id'),'metadata token ID',zero=True)
+        if type(record.get('ordinal')) is not int or record.get('token_id') != str(token) or \
+            ordinal > MAX_METADATA_SUPPLY or token >= 1 << 256 or \
+            type(record.get('available')) is not bool or type(record.get('traits_ready')) is not bool or \
+            type(record.get('stage')) is not int or not 0 <= record['stage'] <= 3 or \
+            not record['available'] and record['stage'] != 1 or \
+            not record['traits_ready'] and (record['stage'] != 0 or not record['available']):
+            raise ValueError('Noncanonical metadata state')
+
+    def _validate_metadata_payload(self, payload: Any) -> None:
+        state = self.state.get('metadata_refresh')
+        if not isinstance(payload,dict) or not state or payload.get('identity') != state['identity']:
+            raise ValueError('Pending metadata belongs to another deployment')
+        for field in ('first_ordinal','last_ordinal','observed_number','maximum_age'):
+            if type(payload.get(field)) is not int: raise ValueError('Malformed pending metadata integer')
+        first = positive(payload.get('first_ordinal'),'metadata first ordinal')
+        last = positive(payload.get('last_ordinal'),'metadata last ordinal')
+        records = payload.get('records')
+        if last < first or last > MAX_METADATA_SUPPLY or last-first+1 > MAX_METADATA_BATCH or \
+            not isinstance(records,list) or len(records) != last-first+1:
+            raise ValueError('Malformed pending metadata range')
+        positive(payload.get('observed_number'),'metadata observed block',zero=True)
+        self._metadata_hash(payload.get('observed_hash'))
+        age = positive(payload.get('maximum_age'),'metadata observation maximum age')
+        if age > 10000: raise ValueError('Metadata observation age exceeds bounded limit')
+        ids = set()
+        for ordinal,record in zip(range(first,last+1),records):
+            self._validate_metadata_record(record)
+            if record['ordinal'] != ordinal or str(record['token_id']) in ids:
+                raise ValueError('Malformed pending metadata token inventory')
+            ids.add(str(record['token_id']))
+
+    def _metadata_transaction(self, pending: dict[str,Any]) -> None:
+        payload = pending['metadata_observation']
+        first,last = payload['first_ordinal'],payload['last_ordinal']
+        if pending['to'] != self.metadata_nft or pending['value'] != 0 or \
+            pending['key'] != f'metadata:{first}:{last}' or \
+            pending['data'] != calldata('refreshMetadataRange(uint256,uint256)',first,last):
+            raise ValueError('Pending metadata transaction does not match its observations')
+
+    def _metadata_words(self, target: str, signature: str, block: int, *args: int|str) -> list[int]:
+        result = self.rpc.call('eth_call',[{'to':target,'data':calldata(signature,*args)},hex(block)])
+        return [int(word,16) for word in decode_words(result)]
+
+    def _metadata_uint(self, target: str, signature: str, block: int, *args: int|str) -> int:
+        words = self._metadata_words(target,signature,block,*args)
+        if len(words) != 1: raise RpcError('Unexpected metadata getter ABI')
+        return words[0]
+
+    def _metadata_anchor(self, number: int, expected_hash: str) -> bool:
+        header = self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+        return isinstance(header,dict) and header.get('number') == hex(number) and \
+            isinstance(header.get('hash'),str) and header['hash'].lower() == expected_hash
+
+    def _metadata_bindings(self, block: int) -> None:
+        access,vault = self.contracts['access'],self.contracts['vault']
+        reads = ((self.metadata_nft,'access()',(),int(access,16)),
+            (access,'module(bytes32)',('0x'+keccak256(b'ZZZNFT').hex(),),int(self.metadata_nft,16)),
+            (access,'module(bytes32)',('0x'+keccak256(b'ZZZVault').hex(),),int(vault,16)),
+            (vault,'access()',(),int(access,16)),(vault,'canonicalChainId()',(),self.chain),
+            (access,'isSealed()',(),1),(self.metadata_nft,'MAX_SUPPLY()',(),MAX_METADATA_SUPPLY),
+            (self.metadata_nft,'MAX_METADATA_REFRESH_BATCH()',(),MAX_METADATA_BATCH))
+        for target,signature,args,expected in reads:
+            if self._metadata_uint(target,signature,block,*args) != expected:
+                raise RpcError('Metadata deployment binding or protocol limit mismatch')
+        if self.live: self._metadata_code_hash(block)
+
+    def _metadata_code_hash(self, block: int) -> None:
+        expected = self.config.get('code_hashes',{}).get('nft','').lower()
+        if not re.fullmatch(r'0x[0-9a-f]{64}',expected): raise ValueError('Missing reviewed code hash: nft')
+        code = self.rpc.call('eth_getCode',[self.metadata_nft,hex(block)])
+        if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+            '0x'+keccak256(bytes.fromhex(code[2:])).hex() != expected:
+            raise RpcError('Metadata NFT deployment bytecode mismatch')
+
+    def _metadata_record_at(self, ordinal: int, block: int, expected_token: str | None = None) -> dict[str,Any]:
+        token = self._metadata_uint(self.metadata_nft,'tokenAtOrdinal(uint256)',block,ordinal)
+        if expected_token is not None and str(token) != expected_token or \
+            self._metadata_uint(self.metadata_nft,'mintOrdinalOf(uint256)',block,token) != ordinal:
+            raise RpcError('NFT mint ordinal identity mismatch')
+        ready = self._metadata_uint(self.metadata_nft,'traitsReady(uint256)',block,token)
+        values = self._metadata_words(self.metadata_nft,'evolution(uint256)',block,token)
+        if ready not in (0,1) or len(values) != 2 or values[0] not in (0,1):
+            raise RpcError('Noncanonical NFT evolution ABI')
+        record = {'ordinal':ordinal,'token_id':str(token),'traits_ready':bool(ready),
+            'available':bool(values[0]),'stage':values[1]}
+        self._validate_metadata_record(record)
+        return record
+
+    def _refresh_metadata(self) -> bool:
+        """Separate bounded NFT notification scan; never an LP maintenance loop."""
+        if not self.metadata_enabled or self.state.get('pending'): return False
+        head,_ = self._head()
+        block = head-self.confirmations+1
+        if block < 0: raise RpcError('Insufficient chain history for confirmed metadata observation')
+        header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if not isinstance(header,dict) or header.get('number') != hex(block):
+            raise RpcError('Missing pinned metadata observation block')
+        block_hash = self._metadata_hash(header.get('hash','').lower())
+        self._metadata_bindings(block)
+        count = self._metadata_uint(self.metadata_nft,'mintedCount()',block)
+        if count > self.metadata_maximum: raise RpcError('NFT inventory exceeds reviewed metadata discovery limit')
+        state = self.state['metadata_refresh']
+        if count == 0:
+            if not self._metadata_anchor(block,block_hash): raise RpcError('Metadata observation block reorged')
+            state['cursor'] = 1; self.save(); return False
+        first = (positive(state['cursor'],'metadata cursor')-1) % count+1
+        records,changed,seen,anchors = [],[],set(),{}
+        for offset in range(min(self.metadata_scan,count)):
+            ordinal = (first-1+offset) % count+1
+            record = self._metadata_record_at(ordinal,block)
+            if record['token_id'] in seen: raise RpcError('Duplicate NFT token identity')
+            seen.add(record['token_id'])
+            records.append(record)
+            previous = state['notified'].get(str(ordinal))
+            differs = previous is None or any(previous[key] != value for key,value in record.items())
+            if previous is not None and not differs:
+                for prefix in ('observed','notification'):
+                    anchor = (previous[prefix+'_number'],previous[prefix+'_hash'])
+                    if anchor not in anchors: anchors[anchor] = self._metadata_anchor(*anchor)
+                    if not anchors[anchor]: differs = True
+            if differs: changed.append(ordinal)
+        if not self._metadata_anchor(block,block_hash): raise RpcError('Metadata observation block reorged')
+        if not changed:
+            state['cursor'] = records[-1]['ordinal'] % count+1
+            self.save(); return False
+        start = changed[0]
+        end = max(ordinal for ordinal in changed if start <= ordinal < start+self.metadata_batch)
+        selected = [record for record in records if start <= record['ordinal'] <= end]
+        # Retry unsent trailing work before rescanning a continuously changing
+        # prefix, including when a discovery window wraps through ordinal one.
+        state['cursor'] = end % count+1
+        self.save()  # A fair scan cursor is not a successfully notified baseline.
+        payload = {'identity':dict(state['identity']),'observed_number':block,'observed_hash':block_hash,
+            'maximum_age':self.metadata_age,'first_ordinal':start,'last_ordinal':end,'records':selected}
+        return self.submit('nft','refreshMetadataRange(uint256,uint256)',(start,end),f'metadata:{start}:{end}',
+            metadata_observation=payload)
+
+    def _confirm_metadata(self, pending: dict[str,Any], block: int, block_hash: str, head: int) -> None:
+        payload = pending['metadata_observation']
+        self._validate_metadata_payload(payload)
+        self._metadata_transaction(pending)
+        observed = payload['observed_number']
+        observation_valid = observed <= block and head-observed <= payload['maximum_age'] and \
+            self._metadata_anchor(observed,payload['observed_hash'])
+        execution_records = []
+        if observation_valid:
+            self._metadata_bindings(block)
+            execution_records = [self._metadata_record_at(record['ordinal'],block,record['token_id'])
+                for record in payload['records']]
+        if not self._metadata_anchor(block,block_hash.lower()):
+            raise RpcError('Metadata confirmation block changed before checkpoint')
+        records = self.state['metadata_refresh']['notified']
+        if not observation_valid:
+            # The event still happened, but its old trigger cannot describe the
+            # cache state. Forget prior fingerprints so a retry is never hidden.
+            for record in payload['records']: records.pop(str(record['ordinal']),None)
+            log('metadata_observation_invalidated',action=pending['key']); return
+        for record in execution_records:
+            records[str(record['ordinal'])] = {**record,'observed_number':block,
+                'observed_hash':block_hash.lower(),'notification_number':block,
+                'notification_hash':self._metadata_hash(block_hash.lower())}
 
     @staticmethod
     def _address_word(word: str) -> str:
@@ -281,6 +524,13 @@ class Keeper:
         paused = self.view('access','paused()') != 0
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        metadata_first = False
+        if self.metadata_enabled:
+            # Alternate priority so changing artwork cannot starve LP maintenance
+            # and a busy LP cannot indefinitely starve metadata notifications.
+            metadata_first = self.state['metadata_refresh']['next_first']
+            self.state['metadata_refresh']['next_first'] = not metadata_first
+            if metadata_first and self._refresh_metadata(): return
         _,now = self._head()
         batch = self._bucket_batch()
         for slot,bucket in batch:
@@ -320,6 +570,7 @@ class Keeper:
             except (ValueError,RpcError) as exc:
                 log('bucket_skipped',bucket_id=str(bucket),error_type=type(exc).__name__)
         if batch: self.save()
+        if self.metadata_enabled and not metadata_first and self._refresh_metadata(): return
         if paused:
             log('protocol_paused'); return
         for task in self.config.get('buybacks',[]):

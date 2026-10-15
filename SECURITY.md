@@ -1,6 +1,6 @@
 # Security and release status
 
-ZZZ Protocol is a compiled, tested development candidate with an internal source review. It is not independently audited or approved for real-fund deployment. The [current readiness review](reports/PRODUCTION_READINESS.md) records implemented hardening, reproducible evidence and outstanding gates.
+ZZZ Protocol is a compiled, tested development candidate with an internal source review. It is not independently audited or approved for real-fund deployment. Current source-bound evidence is in [release hardening](reports/release-hardening/README.md) and [internal static analysis](reports/release-hardening/static-analysis/README.md). The [Implemented / Todo checklist](docs/IMPLEMENTATION_STATUS.md) separates source features from remaining integration and release work. Earlier artwork/alignment/readiness reports preserve their historical scope.
 
 Permanent custody makes implementation and configuration mistakes particularly difficult to recover from. Publishing this repository does not close any release gate.
 

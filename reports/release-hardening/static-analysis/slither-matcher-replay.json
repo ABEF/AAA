@@ -1,0 +1,55 @@
+{
+  "native_findings": 179,
+  "native_coverage_pass": true,
+  "historical_split_fixture_findings": 180,
+  "historical_split_fixture_pass": true,
+  "scope": "Matcher fixture using old native descriptions, not an additional current-source analyzer execution.",
+  "adversarial_mutations": {
+    "remove_finding": {
+      "rejected": true,
+      "errors": [
+        "Stale review entry: 8ff227b09b4c1b5e1a0a70998a3cf00d2fd96514a218dfd915f6af5b51bf368b"
+      ]
+    },
+    "change_description": {
+      "rejected": true,
+      "errors": [
+        "Unreviewed finding: d15c8a0f02d75dc136074fc0e42f9c3fd02b5c5fe2be6431bef84f7b5f4b12e1",
+        "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+      ]
+    },
+    "change_severity": {
+      "rejected": true,
+      "errors": [
+        "Unreviewed finding: 55c41b54c18a196f8cd270186b2afb97fac4900d3859fa3745568ac8aefbd7aa",
+        "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+      ]
+    },
+    "add_duplicate": {
+      "rejected": true,
+      "errors": [
+        "Duplicate analyzer fingerprints"
+      ]
+    },
+    "drop_write_atom": {
+      "rejected": true,
+      "errors": [
+        "Reviewed write-bundle multiplicity/content changed",
+        "Unreviewed finding: 3b7eefab7278cac73ad9de5505d274adc77ef74b51fe7321c92603d8dbf68fad",
+        "Stale review entry: 2a1604b13a2d3c222e7e50c3a73d37c815ad79e60926f88b484279a8e326aaf1"
+      ]
+    },
+    "unresolved_review": {
+      "rejected": true,
+      "errors": [
+        "Unresolved finding: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+      ]
+    },
+    "source_hash_drift": {
+      "rejected": true,
+      "errors": [
+        "Reviewed content changed: src/ZZZNFT.sol"
+      ]
+    }
+  }
+}

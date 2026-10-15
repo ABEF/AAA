@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-10-15T20:10:46.028902+00:00",
+  "source_hash_bindings_valid": true,
+  "python_hash_bindings_valid": true,
+  "historical_slither_review_preserved": true,
+  "relative_markdown_links": 144,
+  "missing_relative_markdown_links": [],
+  "readme_title_plain_ascii_hyphen": true,
+  "changed_production_solidity": [
+    "src/ZZZNFT.sol"
+  ],
+  "effective_production_configuration_unchanged": true,
+  "public_authority_addresses_unselected": true,
+  "website_or_server_changed": false,
+  "contracts_deployed": false
+}

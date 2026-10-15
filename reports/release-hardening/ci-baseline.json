@@ -1,0 +1,31 @@
+{
+  "scope": "Previously completed baseline CI, not execution of new metadata source",
+  "source_commit": "5febe7065856749345010ecca23dcd368b472c9e",
+  "url": "https://github.com/ABEF/AAA/actions/runs/38793910449",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "static-analysis",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ABEF/AAA/actions/runs/38793910449/job/116625217421"
+    },
+    {
+      "name": "robinhood-fork",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ABEF/AAA/actions/runs/38793910449/job/116625217646"
+    },
+    {
+      "name": "local-checks",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ABEF/AAA/actions/runs/38793910449/job/116625217681"
+    }
+  ],
+  "python_tests": 331,
+  "offline_solidity_passed": 336,
+  "offline_expected_fork_skip": 1,
+  "dependency_fork_passed": 9
+}

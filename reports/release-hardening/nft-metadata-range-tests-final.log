@@ -1,0 +1,48 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 28.98s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+   --> test/NFTMetadata.t.sol:261:14:
+    |
+261 |             (bool available,) = nft.currentLPValue(1); assertFalse(available);
+    |              ^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> test/NFTMetadata.t.sol:266:10:
+    |
+266 |         (bool available,) = nft.currentLPValue(1); assertFalse(available);
+    |          ^^^^^^^^^^^^^^
+
+
+Ran 26 tests for test/NFTMetadata.t.sol:NFTMetadataTest
+[PASS] testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment() (gas: 8573197)
+[PASS] testCurrentNAVIncludesIdleAndCompoundAndAttributesOnlyNFTShares() (gas: 1085662)
+[PASS] testERC2981UsesFivePercentSingleImmutableReceiverAndERC4906IsSupported() (gas: 639079)
+[PASS] testFullSupplyConsumesExactQuotasAndCannotRequestMint1001() (gas: 376406540)
+[PASS] testFuzzInitialRarityOddsAndIndependentArtwork(uint256,uint256) (runs: 1000, μ: 637854, ~: 638724)
+[PASS] testInitialRarityBoundaries() (gas: 3774878)
+[PASS] testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight() (gas: 5181034)
+[PASS] testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights() (gas: 1441300)
+[PASS] testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata() (gas: 7348050)
+[PASS] testMintRecipientCannotDivertMintProceedsIntoRoyaltyLedgerOrNFT() (gas: 116788)
+[PASS] testMintRequiresFixedVRFAndRollbackLeavesNoRequest() (gas: 8501715)
+[PASS] testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords() (gas: 705153)
+[PASS] testOutOfOrderCallbackCannotReorderQuotaConsumption() (gas: 1018172)
+[PASS] testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert() (gas: 5397233)
+[PASS] testPendingTraitsCannotActivateAndTransferCannotReroll() (gas: 771820)
+[PASS] testRefreshMetadataRangeAcceptsOneAndMaximumFifty() (gas: 10670349)
+Logs:
+  50-NFT metadata refresh gas (cold storage): 318466
+
+[PASS] testRefreshMetadataRangeDoesNotCacheOrChangePriceDrivenEvolution() (gas: 2355386)
+[PASS] testRefreshMetadataRangeEmitsActualHashedIDsInMintOrder() (gas: 1023656)
+[PASS] testRefreshMetadataRangeIgnoresPauseTransferAndUnavailableValuation() (gas: 1049540)
+[PASS] testRefreshMetadataRangeRejectsEmptyZeroReversedAndUnmintedBoundsAtomically() (gas: 648554)
+[PASS] testRefreshMetadataRangeRejectsFiftyOneBeforeAnyNotification() (gas: 9806487)
+[PASS] testStaleOracleDoesNotBreakURIOrRoyaltyClaimsOrFabricateDormantState() (gas: 3302694)
+[PASS] testTraitsStayFixedThroughActivationTopUpAndTransfer() (gas: 880234)
+[PASS] testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration() (gas: 8485332)
+[PASS] testVRFConfigurationAndRequestTupleAreFixed() (gas: 462128)
+[PASS] testZeroWordsConsumeTheFullInventoryWithoutArtworkRerollsOrQuotaLoss() (gas: 330982646)
+Suite result: ok. 26 passed; 0 failed; 0 skipped; finished in 388.36ms (1.20s CPU time)
+
+Ran 1 test suite in 392.68ms (388.36ms CPU time): 26 tests passed, 0 failed, 0 skipped (26 total tests)

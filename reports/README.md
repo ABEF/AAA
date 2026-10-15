@@ -2,7 +2,9 @@
 
 ## Current development review
 
-[The future-bridge update](future-bridge/README.md) contains the latest fixed-router implementation and verification. [PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) and `production/` contain the current hardening, compiled unit/fuzz/stateful tests, real dependency fork evidence, gas workloads and individually reviewed static-analysis output. The release remains blocked by external/product dependencies and independent audit. The records below describe earlier deliveries and are preserved in their original scope.
+Current source evidence is [release hardening](release-hardening/README.md), including [fresh internal static analysis](release-hardening/static-analysis/README.md), bounded metadata notifications and optional keeper monitoring. That review corresponds to the current `production/slither-review.json`; its prior bytes are preserved in `history/slither-review-pre-release-hardening.json`. It is not an independent audit. Earlier [artwork test/size verification](artwork-palettes/README.md) and [artwork static review](artwork-palette/README.md) retain their source scope. See the [Implemented / Todo checklist](../docs/IMPLEMENTATION_STATUS.md) and exact-commit Ubuntu CI separately.
+
+[Website alignment](website-alignment/README.md), [the future-bridge update](future-bridge/README.md) and [PRODUCTION_READINESS.md](PRODUCTION_READINESS.md) preserve earlier implementation/test/fork/gas evidence for their recorded source revisions. Older files in `production/` are not automatically fresh evidence because the review JSON was updated. The release remains blocked by real integrations, production qualification and independent audit. The records below describe earlier deliveries and are preserved in their original scope.
 
 ## Original delivery evidence
 

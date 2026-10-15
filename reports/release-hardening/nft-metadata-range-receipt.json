@@ -1,0 +1,24 @@
+{
+  "scope": "Bounded permissionless metadata notification candidate; targeted local checks only, not independent audit or deployment approval",
+  "api": "refreshMetadataRange(uint256 firstOrdinal,uint256 lastOrdinal)",
+  "maximum_inclusive_batch": 50,
+  "bounds": "1 <= firstOrdinal <= lastOrdinal <= mintedCount; lastOrdinal-firstOrdinal < 50",
+  "events": "One MetadataUpdate(actual minted token ID) per ordinal; no BatchMetadataUpdate with ordinals",
+  "state_or_funds_changes": false,
+  "valuation_external_calls": false,
+  "passed": 26,
+  "failed": 0,
+  "skipped": 0,
+  "fuzz_runs": 1000,
+  "gas_cold_storage_fifty_notifications": 318466,
+  "gas_budget": 500000,
+  "runtime_bytes": 18822,
+  "initcode_object_bytes": 42307,
+  "constructor_arguments_included": false,
+  "source_sha256": {
+    "src/ZZZNFT.sol": "b366bb5a58994b442033fad85e55d8312f6affee612f9f7f719da4a88b0a01e6",
+    "test/NFTMetadata.t.sol": "fca1307db2977c87fb34e37285b2d831e6d9d50594ceba5c3391773e03e25046"
+  },
+  "log": "nft-metadata-range-tests-final.log",
+  "log_sha256": "da5b3c0a4caadb35aef6aa6c6546e68bfc38fa4d4eabf7462c1ce3a419547eb5"
+}

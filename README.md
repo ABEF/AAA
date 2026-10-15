@@ -1,6 +1,8 @@
-# ZZZ Collection â€” Proof of Permanent Liquidity (PoPL)
+# ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
 Development candidate for transferable NFT rights to permanently attached LP and funded rewards. **Undeployed; not approved for real funds.** The website is a separate simulation at [popldemo.0xwave.com](https://popldemo.0xwave.com).
+
+Start with the **[Implemented / Todo checklist](docs/IMPLEMENTATION_STATUS.md)** for current feature status, then the [component map](docs/COMPONENT_STATUS.md) for source boundaries and the separate [release checklist](docs/RELEASE_CHECKLIST.md) for production approval. The accepted website economics and artwork rules are implemented in the candidate; selected-pool custody, arbitrary USDC routing, live services and production qualification remain open.
 
 ## Current product rules
 
@@ -23,7 +25,9 @@ Development candidate for transferable NFT rights to permanently attached LP and
 
 Actual funded receipts use batches of 20 raw token units: 16/2/1/1. Smaller receipts carry; membership/migration dust settles to incumbents under the documented bounded exception. Satellite owner/collective reserves return as already-allocated 90% rewards, without a second split. See [economic rules](docs/ECONOMICS.md).
 
-NFT-sale royalties are **separate**: ERC-2981 requests **5% of sale value**, payable to an immutable `ZZZRoyaltyRewards` receiver. **100% of royalties actually received while members exist** are reserved for activated NFT holders: Commun Ã—1, Rare Ã—2, Legendary Ã—3. Dormant NFTs get no royalties. The royalty ledger accepts native ETH and reviewed exact-transfer ERC20 assets; it has no administrator withdrawal. Marketplace payment is not enforceable through ERC-2981. Rarity never changes LP or collective weights.
+NFT-sale royalties are **separate**: ERC-2981 requests **5% of sale value**, payable to an immutable `ZZZRoyaltyRewards` receiver. **100% of royalties actually received while members exist** are reserved for activated NFT holders: Commun ×1, Rare ×2, Legendary ×3. Dormant NFTs get no royalties. The royalty ledger accepts native ETH and reviewed exact-transfer ERC20 assets; it has no administrator withdrawal. Marketplace payment is not enforceable through ERC-2981. Rarity never changes LP or collective weights.
+
+Both reward ledgers are funded by actual receipts, with no fixed per-minute accrual or periodic claim window. LP claims use already allocated funding; royalty claims also process pending admitted receipts. The current holder claims one NFT and one asset per call. The website still simulates LP claims and needs live royalty integration. See [reward timing and keeper schedules](docs/OPERATIONS.md#reward-timing-and-maintenance-schedule).
 
 ## Random traits and current-value artwork
 
@@ -52,13 +56,13 @@ Evolution follows current oracle-marked attached principal, attributed idle and 
 
 The fixed module inventory remains 17 contracts including the controller; Membership replaces Power. The per-bucket creator receiver and NFT royalty/metadata helpers are not additional sealed modules. Governance is the deployment-selected multisig, not automatic holder voting. New migration routes and provider policies require timelocked governance; sealing fixes core bindings without preventing reviewed future routes. The local template uses a two-day timelock and additional two-day migration delay.
 
-The [keeper](keeper/monitor.py) operates once per shared bucket and defaults to dry run. The [indexer](indexer/monitor.py) stores confirmed events and handles bounded reorganizations; a hosted frontend API is not supplied. Linux/Unix and Python 3.11+ are required for full keeper/state-lock operation. See [architecture](docs/ARCHITECTURE.md) and [operations](docs/OPERATIONS.md).
+The [keeper](keeper/monitor.py) operates once per shared bucket and defaults to dry run. Its ten-minute example polling interval does not force a rebalance: price movement, cooldown, oracle and execution bounds must pass. An optional watcher separately observes NFT evolution and sends bounded ERC-4906 notifications through the same budgeted transaction path. It defaults to disabled. The [indexer](indexer/monitor.py) stores confirmed events and handles bounded reorganizations; a hosted frontend API is not supplied. Linux/Unix and Python 3.11+ are required for full keeper/state-lock operation. See [architecture](docs/ARCHITECTURE.md) and [operations](docs/OPERATIONS.md).
 
 ## Development and release boundary
 
 The selected Robinhood Chain ZZZ/native-ETH Pons-hooked pool remains **unsupported by the LP adapter**. Its 0% conventional LP fee does not create proportional hook-revenue rights. Plain creator payments can fund the separate bucket receiver, but intake does not add native/hook custody support or promise payments. The selected chain also needs an independently reviewed available VRF coordinator and funded subscription; a compatible ABI or mock does not prove verifiable randomness.
 
-Production still requires actual market and bridge integrations, reviewed oracle/token/wrapper policies, governance addresses, staged operations, bytecode/gas review, fresh source-bound static analysis and an independent external audit with remediation. No public deployment, signatures or real transactions are part of this work. Historical checks in [reward-funding](reports/reward-funding/README.md) describe the previous 50/30/10/10/Power revision and do not validate these changes. Current alignment evidence is recorded separately in [website alignment](reports/website-alignment/README.md).
+Production still requires actual market integration, reviewed oracle/token/wrapper policies, governance addresses, staged operations, actual-venue gas qualification and an independent external audit with remediation. The user has not chosen production authority or mint-recipient addresses; those gates remain open. Current [release-hardening evidence](reports/release-hardening/README.md) records metadata notifications, keeper tests, normal size gates, fresh internal [Slither review](reports/release-hardening/static-analysis/README.md) and a read-only [selected-market design review](reports/release-hardening/selected-market-review.md). Check Ubuntu CI for the exact published revision. Real bridge wrappers and multi-chain staging are required before migration is enabled; an independently approved initial launch may keep migration disabled. No public deployment, signatures or real transactions are part of this work. Earlier artwork, website-alignment and reward-funding reports retain their own source snapshots and evidence scope.
 
 The blocked [production inventory](config/production.example.json) uses schema 4 / `shared-pools-v2`. Its read-only validator requires the current economics, exact NFT quotas, helper bindings, randomness observations and actual staging evidence. A passing inventory is consistency evidence, never deployment approval.
 

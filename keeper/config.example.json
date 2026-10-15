@@ -39,5 +39,13 @@
     "reward_routes": []
   },
   "bucket_overrides": {},
+  "metadata_refresh": {
+    "enabled": false,
+    "nft": null,
+    "maximum_count": 1000,
+    "max_per_cycle": 50,
+    "max_refresh_batch": 50,
+    "maximum_observation_age_blocks": 256
+  },
   "buybacks": []
 }

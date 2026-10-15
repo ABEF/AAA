@@ -293,6 +293,91 @@ contract NFTMetadataTest is Test {
         otherAccess.seal(); vm.expectRevert(); other.setBaseURI("ipfs://later/");
     }
 
+    function _hashedId(uint256 ordinal) private view returns (uint256) {
+        return uint256(keccak256(abi.encode(block.chainid, address(vault), ordinal)));
+    }
+
+    function _mintHashed(uint256 count) private {
+        for (uint256 ordinal = 1; ordinal <= count; ++ordinal) vault.mint(ALICE, _hashedId(ordinal));
+    }
+
+    function _assertRefreshLogs(uint256 firstOrdinal, uint256 lastOrdinal) private {
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        assertEq(logs.length, lastOrdinal - firstOrdinal + 1);
+        for (uint256 i; i < logs.length; ++i) {
+            assertEq(logs[i].emitter, address(nft));
+            assertEq(logs[i].topics.length, 1);
+            assertEq(logs[i].topics[0], keccak256("MetadataUpdate(uint256)"));
+            assertEq(abi.decode(logs[i].data, (uint256)), _hashedId(firstOrdinal + i));
+        }
+    }
+
+    function _rejectRefreshRange(uint256 firstOrdinal, uint256 lastOrdinal) private {
+        vm.recordLogs();
+        vm.expectRevert(bytes4(keccak256("InvalidAmount()")));
+        nft.refreshMetadataRange(firstOrdinal, lastOrdinal);
+        assertEq(vm.getRecordedLogs().length, 0);
+    }
+
+    function testRefreshMetadataRangeEmitsActualHashedIDsInMintOrder() public {
+        _mintHashed(4);
+        assertTrue(_hashedId(2) != 2); assertTrue(_hashedId(3) != 3);
+        vm.recordLogs(); vm.prank(BOB); nft.refreshMetadataRange(2, 3);
+        _assertRefreshLogs(2, 3);
+        assertEq(nft.mintedCount(), 4); assertEq(nft.nextToFinalize(), 1);
+        assertFalse(nft.traitsReady(_hashedId(2)));
+    }
+
+    function testRefreshMetadataRangeAcceptsOneAndMaximumFifty() public {
+        _mintHashed(51); assertEq(nft.MAX_METADATA_REFRESH_BATCH(), 50);
+        vm.recordLogs(); vm.prank(BOB); nft.refreshMetadataRange(51, 51);
+        _assertRefreshLogs(51, 51);
+        // Mint setup warmed storage; cool it to measure a fresh operator call.
+        vm.recordLogs(); vm.cool(address(nft)); vm.prank(BOB);
+        uint256 beforeGas = gasleft(); nft.refreshMetadataRange(2, 51);
+        uint256 usedGas = beforeGas - gasleft();
+        _assertRefreshLogs(2, 51);
+        emit log_named_uint("50-NFT metadata refresh gas (cold storage)", usedGas);
+        assertLt(usedGas, 500000, "bounded metadata notification exceeds operator budget");
+    }
+
+    function testRefreshMetadataRangeRejectsEmptyZeroReversedAndUnmintedBoundsAtomically() public {
+        _rejectRefreshRange(1, 1);
+        _mintHashed(2);
+        _rejectRefreshRange(0, 0); _rejectRefreshRange(0, 1); _rejectRefreshRange(2, 1);
+        _rejectRefreshRange(1, 3); _rejectRefreshRange(3, 3);
+        _rejectRefreshRange(type(uint256).max, type(uint256).max);
+    }
+
+    function testRefreshMetadataRangeRejectsFiftyOneBeforeAnyNotification() public {
+        _mintHashed(51); _rejectRefreshRange(1, 51);
+    }
+
+    function testRefreshMetadataRangeIgnoresPauseTransferAndUnavailableValuation() public {
+        uint256 id = _hashedId(1); _active(id, 950, 5);
+        vm.prank(ALICE); nft.transferFrom(ALICE, BOB, id);
+        access.setPaused(true); venue.setFail(true); vm.warp(block.timestamp + 3601);
+        (bool available,) = nft.currentLPValue(id); assertFalse(available);
+        vm.recordLogs(); vm.prank(address(0xC0FFEE)); nft.refreshMetadataRange(1, 1);
+        _assertRefreshLogs(1, 1);
+        assertEq(nft.ownerOf(id), BOB); assertTrue(nft.traitsReady(id));
+        assertEq(nft.royaltyRewards().weightOf(id), 3); assertEq(vault.sharesOf(id), 100);
+        (available,) = nft.currentLPValue(id); assertFalse(available);
+    }
+
+    function testRefreshMetadataRangeDoesNotCacheOrChangePriceDrivenEvolution() public {
+        uint256 id = _hashedId(1); _active(id, 0, 0);
+        venue.set(1000, 0); _stage(id, 2);
+        feed0.set(1e7, block.timestamp, block.timestamp); _stage(id, 1);
+        string memory beforeURI = nft.tokenURI(id);
+        vm.prank(BOB); nft.refreshMetadataRange(1, 1);
+        assertEq(nft.tokenURI(id), beforeURI); _stage(id, 1);
+        venue.set(100000, 0); _stage(id, 3);
+        beforeURI = nft.tokenURI(id); nft.refreshMetadataRange(1, 1);
+        assertEq(nft.tokenURI(id), beforeURI); _stage(id, 3);
+        assertEq(nft.royaltyRewards().weightOf(id), 1); assertEq(vault.sharesOf(id), 100);
+    }
+
     function testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert() public {
         vault.mint(ALICE, 1); string memory json = _json(1);
         assertEq(vm.parseJsonString(json, ".attributes[0].value"), "Unrevealed");

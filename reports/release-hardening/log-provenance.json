@@ -1,0 +1,16 @@
+[
+  {
+    "file": "solidity-tests.log",
+    "native_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\release-checklist-20261015\\solidity-tests.log",
+    "native_sha256": "73cdd542299470cab21d14f94f96a8180f4546b5d13fe204b2509acd444bb616",
+    "copy_sha256": "73cdd542299470cab21d14f94f96a8180f4546b5d13fe204b2509acd444bb616",
+    "normalization": "CRLF to LF only"
+  },
+  {
+    "file": "forge-build-sizes.log",
+    "native_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\release-checklist-20261015\\forge-build-sizes.log",
+    "native_sha256": "fb670d4052d088e73539918e9e5f20a88ace1a757bae7aaddc43944955e6903a",
+    "copy_sha256": "fb670d4052d088e73539918e9e5f20a88ace1a757bae7aaddc43944955e6903a",
+    "normalization": "CRLF to LF only"
+  }
+]

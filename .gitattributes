@@ -4,6 +4,9 @@ reports/website-alignment/** -text whitespace=cr-at-eol
 reports/website-alignment/*.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Preserve intentional spacing in the current compiler diagnostic log.
 reports/artwork-palettes/forge-build-sizes.log whitespace=-blank-at-eol,-blank-at-eof
+reports/release-hardening/** -text whitespace=cr-at-eol
+reports/release-hardening/solidity-tests.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+reports/release-hardening/forge-build-sizes.log whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 # Preserve the native Windows independent-model receipt bytes.
 reports/artwork-palette/independent-draw-model.json -text whitespace=cr-at-eol
 # The generated Solidity catalogue pins these exact JSON bytes on every OS.
