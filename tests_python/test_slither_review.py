@@ -61,6 +61,67 @@ class SlitherReviewTests(unittest.TestCase):
         windows = dict(self.finding, description="Core.call (C:\\repo\\src\\Core.sol#1)\n")
         self.assertEqual(reviewer.fingerprint(windows), reviewer.fingerprint(self.finding))
 
+    def nested(self, children="\t\t- b() (src/Core.sol#3)\n\t\t- a() (src/Core.sol#2)\n"):
+        return dict(self.finding, check="reentrancy-no-eth", description=
+            "Reentrancy in Core.call (src/Core.sol#1-9):\n\tExternal calls:\n"
+            "\t- parent() (src/Core.sol#4)\n" + children +
+            "\tState variables written after the call(s):\n\t- value (src/Core.sol#5)\n")
+
+    def test_unordered_nested_callees_have_stable_identity(self):
+        ordered = self.nested("\t\t- a() (src/Core.sol#2)\n\t\t- b() (src/Core.sol#3)\n")
+        self.assertEqual(reviewer.fingerprint(self.nested()), reviewer.fingerprint(ordered))
+
+    def test_changed_expression_or_location_still_requires_review(self):
+        for old,new in (("a()","withdraw()"),("#2)","#8)")):
+            altered = dict(self.nested(),description=self.nested()["description"].replace(old,new))
+            self.assertNotEqual(reviewer.fingerprint(self.nested()),reviewer.fingerprint(altered))
+
+    def test_nested_call_duplicates_and_membership_are_preserved(self):
+        extra = self.nested("\t\t- a() (src/Core.sol#2)\n\t\t- b() (src/Core.sol#3)\n\t\t- b() (src/Core.sol#3)\n")
+        missing = self.nested("\t\t- a() (src/Core.sol#2)\n")
+        for altered in (extra,missing):
+            self.assertNotEqual(reviewer.fingerprint(self.nested()),reviewer.fingerprint(altered))
+
+    def test_parent_groups_and_root_call_order_are_preserved(self):
+        original=self.nested();changed=dict(original,description=original["description"].replace("parent()","otherParent()"))
+        self.assertNotEqual(reviewer.fingerprint(original),reviewer.fingerprint(changed))
+        a="\t- first() (src/Core.sol#6)\n";b="\t- second() (src/Core.sol#7)\n"
+        self.assertNotEqual(reviewer.fingerprint(dict(original,description=original["description"]+a+b)),
+            reviewer.fingerprint(dict(original,description=original["description"]+b+a)))
+
+    def test_callee_cannot_move_to_another_parent(self):
+        first="\t- first() (src/Core.sol#6)\n";second="\t- second() (src/Core.sol#7)\n"
+        child="\t\t- a() (src/Core.sol#2)\n";header="Reentrancy in Core.call (src/Core.sol#1):\n"
+        self.assertNotEqual(reviewer.fingerprint(dict(self.nested(),description=header+first+child+second)),
+            reviewer.fingerprint(dict(self.nested(),description=header+first+second+child)))
+
+    def test_deeper_nodes_are_not_detached_by_sorting(self):
+        original=self.nested("\t\t- b() (src/Core.sol#3)\n\t\t- a() (src/Core.sol#2)\n\t\t\t- child() (src/Core.sol#8)\n")
+        altered=dict(original,description=original["description"].replace(
+            "\t\t- b() (src/Core.sol#3)\n\t\t- a() (src/Core.sol#2)",
+            "\t\t- a() (src/Core.sol#2)\n\t\t- b() (src/Core.sol#3)"))
+        self.assertNotEqual(reviewer.fingerprint(original),reviewer.fingerprint(altered))
+
+    def test_other_detectors_keep_exact_description_order(self):
+        original=dict(self.nested(),check="other-detector")
+        altered=dict(original,description=original["description"].replace(
+            "\t\t- b() (src/Core.sol#3)\n\t\t- a() (src/Core.sol#2)",
+            "\t\t- a() (src/Core.sol#2)\n\t\t- b() (src/Core.sol#3)"))
+        self.assertNotEqual(reviewer.fingerprint(original),reviewer.fingerprint(altered))
+
+    def test_state_write_leaf_order_is_not_normalized(self):
+        original=self.nested()
+        original=dict(original,description=original["description"].replace("External calls:","State variables written after the call(s):"))
+        altered=dict(original,description=original["description"].replace(
+            "\t\t- b() (src/Core.sol#3)\n\t\t- a() (src/Core.sol#2)",
+            "\t\t- a() (src/Core.sol#2)\n\t\t- b() (src/Core.sol#3)"))
+        self.assertNotEqual(reviewer.fingerprint(original),reviewer.fingerprint(altered))
+
+    def test_severity_and_confidence_remain_part_of_identity(self):
+        original=self.nested()
+        for field in ("impact","confidence"):
+            self.assertNotEqual(reviewer.fingerprint(original),reviewer.fingerprint(dict(original,**{field:"Low"})))
+
 
 if __name__ == "__main__":
     unittest.main()

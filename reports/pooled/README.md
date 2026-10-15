@@ -22,13 +22,15 @@ The former `position(nftId)` ABI is removed. NFT consumers read `nftStatus`, `nf
 |---|---|---|
 | Offline Solidity | 234 passed, zero failed, one intentional opt-in fork setup skip; 18 suites | [complete run](final-tests-gas.log) |
 | Stateful stress | 256 runs x 256 depth = 65,536 scheduled handler calls; zero unexpected reverts; two tests passed | [command/seed](extended-invariants.json), [log](extended-invariants.log) |
-| Python | 216 total; 212 portable Windows tests passed without skips; four unchanged Unix-only assertions retained for Ubuntu CI | [summary](python-windows-portable.json), [log](python-windows-portable.log) |
+| Python | 225 total; 221 portable Windows tests passed without skips; four unchanged Unix-only assertions retained for Ubuntu CI | [summary](python-windows-portable.json), [log](python-windows-portable.log) |
 | Actual Uniswap dependency fork | Eight passed, zero failed/skipped, including shared-Vault entry/pricing and one-LP rebalance | [fork log](robinhood-fork-tests.log) |
 | Standard EVM sizes | All 17 modules pass EIP-170/EIP-3860; Vault runtime 23,591 / initcode 24,463 bytes, runtime margin 985 | [sizes/templates](module-sizes.json), [build](final-build.log) |
 | Slither 0.11.6 | 86 contracts / 102 detectors, 139 individually reviewed findings: 72 conditional false positives, 52 accepted risks, 15 informational | [raw normalized output](slither-final.json), [source-bound review](../production/slither-review.json), [log](slither-final.log) |
 | Separate High/Medium review | All 83 findings reviewed individually with source identities and rationales | [review](high-medium-secondary-review.json), [notes](high-medium-secondary-review.md) |
 | Retained Forge warnings | 41 casts and six test-only unchecked transfers reviewed; no suppressions added | [47 dispositions](forge-lint-review.json) |
 | Production manifest | Schema 3 requires shared-pool identity and reviewed source/destination reservations; supplied template remains blocked | [blocked result](production-config-check.json) |
+
+The initial Ubuntu run passed offline verification and the real fork suite, but its static-analysis coverage gate failed because Slither emitted the same nested external callees in a different Python-set order. The matcher now canonicalizes only that leaf presentation order in reentrancy external-call sections. All 139 findings, source/toolchain hashes, locations, severities, parent groups and duplicate checks remain required. Both complete platform artifacts pass the corrected gate; 15 regression tests and nine separate mutated-input checks validate its scope. The original published review is preserved in [history](../history/slither-review-1c0f76b.json). See the [CI comparison](ci-review-matching.json) and [secondary review](cross-platform-slither-review.md). No Solidity source or compiler setting changed in this repair.
 
 Fuzz tests use 1,000 cases each. The local stateful handler covers mint, activation, top-up, harvest, claim, transfer, pause, donations, compounding and rebalance with real custody/reward modules behind a fake venue. Ineligible calls may return without changing state; handler-call count is not a count of successful user transactions. Multi-chain stateful testing with an actual SDK remains absent.
 

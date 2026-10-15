@@ -19,6 +19,27 @@ def source_hash(path):
 def fingerprint(finding):
     description = finding["description"].replace("\\", "/").replace("\r\n", "\n")
     description = re.sub(r"(?:[A-Za-z]:)?/[^\n()]*?/(?=src/)", "", description)
+    if finding["check"].startswith("reentrancy-"):
+        # Slither emits these nested callee leaves from a Python set. Their
+        # presentation order varies across processes/platforms, not call order.
+        # Preserve parent groups, expressions, locations, duplicates and every
+        # other line; do not reorder a node that itself has deeper children.
+        lines = description.splitlines(keepends=True)
+        cursor = 0
+        external_calls = False
+        while cursor < len(lines):
+            line = lines[cursor]
+            if line.startswith("\t") and not line.startswith(("\t\t", "\t- ")):
+                external_calls = line.strip() == "External calls:"
+            if not external_calls or not line.startswith("\t\t- "):
+                cursor += 1
+                continue
+            start = cursor
+            while cursor < len(lines) and lines[cursor].startswith("\t\t- "):
+                cursor += 1
+            if cursor == len(lines) or not lines[cursor].startswith("\t\t\t"):
+                lines[start:cursor] = sorted(lines[start:cursor])
+        description = "".join(lines)
     payload = [finding[key] for key in ("check", "impact", "confidence")] + [description]
     return hashlib.sha256(json.dumps(payload, ensure_ascii=True).encode()).hexdigest()
 

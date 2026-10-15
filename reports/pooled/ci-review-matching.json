@@ -1,0 +1,12 @@
+{
+  "source_commit": "1c0f76b4d8a456c20d5d20ccc2d016eb751e831f",
+  "failed_run": "https://github.com/ABEF/AAA/actions/runs/38660995988",
+  "cause": "Four reentrancy descriptions enumerate identical nested _unwind callees in a different Python-set order on Ubuntu. No contract or finding content changed.",
+  "findings": 139,
+  "canonical_unique_windows": 139,
+  "canonical_unique_ubuntu": 139,
+  "all_findings_match": true,
+  "ubuntu_raw_sha256": "542f9e28870a5d4d6d5d4fcaf7be192425ea6d333dc2ab09891b4993648f91d5",
+  "gate_still_fail_closed": true,
+  "scope": "Only the review matcher and its regression tests changed. All Solidity source and compiler settings match the verified shared-pool implementation."
+}

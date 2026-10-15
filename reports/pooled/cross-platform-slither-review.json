@@ -1,0 +1,80 @@
+{
+  "review_date": "2026-10-15",
+  "reviewer": "Codex internal secondary migration/accounting agent",
+  "independent_external_audit": false,
+  "scope": "Read-only comparison of cross-platform Slither outputs and the narrowed fingerprint normalization/gate regressions.",
+  "windows_raw_sha256": "e474b7a3ed533b1599c74fc5f06fce6007b295450bf6fe44942aab9def0f4135",
+  "ubuntu_raw_sha256": "542f9e28870a5d4d6d5d4fcaf7be192425ea6d333dc2ab09891b4993648f91d5",
+  "gate_script_sha256_lf": "f3958b56340f32b6c03b1ff4cc99baf4a7f31a6c1ac2e51e25999aff7c54dc4e",
+  "gate_tests_sha256_lf": "79447d678dde59bd46922d6b7c040e018e85c2d925ef1955ef9e198264810afe",
+  "finding_counts": {
+    "windows": 139,
+    "ubuntu": 139,
+    "unique_windows": 139,
+    "unique_ubuntu": 139,
+    "common_after_normalization": 139,
+    "presentation_only_mismatches_before_normalization": 4
+  },
+  "changed_ids": [
+    {
+      "windows_id": "5154281c5aae9597cdb3fe0a4bd23588aceeee9d84ed435239ca94bf4b694c0e",
+      "ubuntu_id": "06d1f80bf46dd10003bccf981787c821c00b9213739aff08661ba704ffc4f118",
+      "check": "reentrancy-no-eth",
+      "canonical_fingerprint": "2497a896745f3a356bdc614f2125ef6f419777418ef71b3ecadc92706e8e552b"
+    },
+    {
+      "windows_id": "8d73bac0eb6b74c2b9d5ce16714876056725f61ad56cc6a0595638774490b316",
+      "ubuntu_id": "2cc65ad05ab100c49d32ffa1d897ad814f28402fa1c3fc6daacf2070a87d3dd6",
+      "check": "reentrancy-no-eth",
+      "canonical_fingerprint": "e66d515775f8b133ff9ed428a7da0259cc876bed0486f3cd7502bb028a7aafbf"
+    },
+    {
+      "windows_id": "ae6331bc9af5d822fafabda0e5df620e474b04c5a3b0fbffabf352959015e4c9",
+      "ubuntu_id": "a247dad9b0d9ab09615c96101ca6c482d23bc17b7a4a63f1d121bd6c7955934a",
+      "check": "reentrancy-no-eth",
+      "canonical_fingerprint": "b4fa76ba1e789795059eec111d0fa160a19b9caa5a2c7593d314afa23ed9baf0"
+    },
+    {
+      "windows_id": "b81fad758b2bd27800e762057385b7bc6254353055c56ff5f83c9230a0fc2082",
+      "ubuntu_id": "8a4848b588c5092f826c07ab1bee4cf685e1410737b3815b4b113f06f735ba58",
+      "check": "reentrancy-no-eth",
+      "canonical_fingerprint": "e4754a861e21209f13678fadd32370104943d3122c0c75667786a16022e8fe90"
+    }
+  ],
+  "windows_gate_errors": [],
+  "ubuntu_gate_errors": [],
+  "unit_tests_passed": 15,
+  "mutated_inputs_rejected": {
+    "duplicate_finding": [
+      "Duplicate analyzer fingerprints"
+    ],
+    "removed_finding": [
+      "Stale review entry: 0a65d05434be91ca4518a76c1c30dccac73267fb8918f1225c6abb06d21307f9"
+    ],
+    "changed_severity": [
+      "Unreviewed finding: 55c41b54c18a196f8cd270186b2afb97fac4900d3859fa3745568ac8aefbd7aa",
+      "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    ],
+    "changed_confidence": [
+      "Unreviewed finding: 34b770020f2c4800f9b50e15fc33ba6feb5e4a08b726dcb80fe967b906b567d6",
+      "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    ],
+    "analyzer_failure": [
+      "Slither did not complete successfully"
+    ],
+    "source_hash_drift": [
+      "Reviewed content changed: src/base/ZZZModule.sol"
+    ],
+    "source_inventory_drift": [
+      "Reviewed source/toolchain inventory changed"
+    ],
+    "missing_rationale": [
+      "Missing rationale: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    ],
+    "unresolved_disposition": [
+      "Unresolved finding: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    ]
+  },
+  "conclusion": "Accepted narrow presentation normalization. Only contiguous nested callee leaf lists in the External calls section of reentrancy descriptions are sorted; duplicate leaves are retained, parent/root/deeper/state-write ordering and all text/locations/check/severity/confidence remain identity-sensitive. Both 139-finding sets stay complete and unique. Existing source/toolchain inventory, exact content hashes, analyzer success, new/stale finding, duplicate, rationale and disposition checks remain fail-closed. No detector or finding suppression observed.",
+  "review_limitations": "Internal code/evidence review, not an independent external audit. No Solidity source or primary gate files were edited by this reviewer."
+}

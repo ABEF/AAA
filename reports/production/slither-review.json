@@ -440,7 +440,7 @@
       "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
     },
     {
-      "fingerprint": "5688c7061f8e84ee093b302f1bad2ac644dcea6b4eb5779aa6885b94134dff44",
+      "fingerprint": "d646b254b6a9d78e6affb5a22f4c920b80ac646d26c5a5b04c2fd1cbd1a2c290",
       "slither_id": "19d1eec6dbe3a95cf731ae9d7580f7ff3f3c35110371a96b637aacebdd442b11",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -460,7 +460,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "3d76d1d34a4866514941aaf60095dfb727a547472236329da148582b08292936",
+      "fingerprint": "b03419607e402dd41eb3b82586578ced0f4d2dfdc1d061d4cf8bd7da9b07d82c",
       "slither_id": "215a75746f914ba18967d44057f22b0e75948a1b4da1ca0544a8a795f4392ef4",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -480,7 +480,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "68af14266c0159cbcf57df044d67f3cff9563bd9a64e1e690c9bc5551be0e0e7",
+      "fingerprint": "2e91a084418f04c57a0da8db7a94257de43f35a765c43372a645a0e5fc266472",
       "slither_id": "4b6f63ecbfb6bd75b7808285d69caa85040130059795bb5790a49fc12533983e",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -490,7 +490,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "69190c90462cb5469d88988ef4f2b39f11793888330e8a28fcf5606a66f06358",
+      "fingerprint": "c2d269c589df6a08f2414c62891c31735b9bf51187749daa2d709a6f1d80440d",
       "slither_id": "4cebddee870b2deb74a52bc0603b65604a01599054432088c80afa9343c13159",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -500,7 +500,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "a662b40422145caf7318093cc04db71b8bf6a36d51f4e57535f8d1287266d769",
+      "fingerprint": "2497a896745f3a356bdc614f2125ef6f419777418ef71b3ecadc92706e8e552b",
       "slither_id": "5154281c5aae9597cdb3fe0a4bd23588aceeee9d84ed435239ca94bf4b694c0e",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -540,7 +540,7 @@
       "rationale": "Only the fixed Receiver can call registerImport, from guarded receiveMessage. _recordCanonical is called with updateVault=false here: the flagged conditional confirmMigration call is unreachable. Remaining vault, routes, access and NFT reads are static. Authenticated transport correctness is an unresolved external assumption."
     },
     {
-      "fingerprint": "aa5e9c92c8c7d49fe4e09e1acfcc1c654d9d07ccf55bfd0dd19c2bf230e24880",
+      "fingerprint": "1901ddc48a55a6f85bf2d2729afc8ea2dae364d3148a2285ed4fff8532656624",
       "slither_id": "6b5b4a090a3b74114932a1967534a9b166832c404b3a7292d667f11930898d3b",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -550,7 +550,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "bbced261461ad891213cd7d9a410635f1b544405b6fa640009c0aa5a345c9958",
+      "fingerprint": "2327cbf3e27253c39c80d9314a0fb4786fa6c1c40716e75a9afdc263478fe71c",
       "slither_id": "7eef743a301b20266aa3f71cebf82a1998ff43e42ec6a6d38be1108cdb0233df",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -560,7 +560,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "ccfed9866969d22761cc8cc435db47bea8701d53e82052ac459be0e2255cdd6e",
+      "fingerprint": "dbf7a30b2986cd92dbd7eaa4fc5002261400330a67a229d93a8a4ef125c987cc",
       "slither_id": "8bf6227f2daa78546a58ed09084a728fa241a7d44e5a5cc50060895ffad08fba",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -570,7 +570,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "8e5b94df001e53dedb91d72ee7279df6b8e6a6c430b01e221a869ed72e691cf4",
+      "fingerprint": "e66d515775f8b133ff9ed428a7da0259cc876bed0486f3cd7502bb028a7aafbf",
       "slither_id": "8d73bac0eb6b74c2b9d5ce16714876056725f61ad56cc6a0595638774490b316",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -580,7 +580,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "1a5a2d540aef7c35be12162701f00e88c5308ab5c3c58890b4b50953d5a650e3",
+      "fingerprint": "4da364a7e88cd0b8c1418de3b608768a49675a09baa60b0eec7962d42ccc128f",
       "slither_id": "98d5db0f968466351bf1c784a9e0fcbf3027eb10946bc3f671f422aeb9ae07bf",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -590,7 +590,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "645725b313b4e0c8775929944cfc24b92bf30cb466f724ac0d7286dd8fe5e4ed",
+      "fingerprint": "1c3b386613fab04758c3fb3d3d88ce6b4fe44d8a80cc83b1b551c519818c6fdf",
       "slither_id": "9bb4924f6cedee08fd344f3587e89292c3450951a8915248e25692763c7d71f4",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -610,7 +610,7 @@
       "rationale": "Only the fixed Receiver calls confirm through guarded receiveMessage. _recordCanonical writes the immutable snapshot before calling the fixed Vault.confirmMigration; that function checks the migration module and updates custody location/status without external calls. Repeated exact ACKs are idempotent. Provider authenticity and compromised destination code remain production gates."
     },
     {
-      "fingerprint": "2339f3210cd2184ec762850f65ed2e0961799a7ec3172a6800da4d0facccded5",
+      "fingerprint": "b4fa76ba1e789795059eec111d0fa160a19b9caa5a2c7593d314afa23ed9baf0",
       "slither_id": "ae6331bc9af5d822fafabda0e5df620e474b04c5a3b0fbffabf352959015e4c9",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -630,7 +630,7 @@
       "rationale": "Private _principal is reached from nonReentrant receiveMessage, restricted to the fixed Bridge. Receipt/provenance changes roll back if any later transfer/import fails. registerImport is fixed-module authorized, tokens are exact-delta checked, and the fixed Vault import entry is separately guarded. Provider and destination trust are not removed by these guards."
     },
     {
-      "fingerprint": "32460b94a99ee68ebe19e1df3b3c277631c767b7d6028e689359120050bd6149",
+      "fingerprint": "e4754a861e21209f13678fadd32370104943d3122c0c75667786a16022e8fe90",
       "slither_id": "b81fad758b2bd27800e762057385b7bc6254353055c56ff5f83c9230a0fc2082",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -650,7 +650,7 @@
       "rationale": "Only the fixed Vault can call add. Its activation/increase entry points are guarded; checkpointAll is restricted to Power and its external Power getters are view/static calls. Checkpoint-before-weight-change and event ordering are intentional. No untrusted mutable callback is reached on this path."
     },
     {
-      "fingerprint": "5564055531ebce6de5299ffc6e5c9d5b1056b3c0bb7d61a21cdb0bc30a1bcfbf",
+      "fingerprint": "63bbbf41e430505d3651f61cb6720eb72cb2b0a0bc9322a78f4090de22b923a0",
       "slither_id": "c40711f49e0998769524ec15d3d8e92abc680e628686b49a888aa7532ca88a9a",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -660,7 +660,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "3f197664b16f397f42e31a0de6aac61bdf15c3dc92a7a5295a2adec48538af1d",
+      "fingerprint": "e634e3b408b6a5d73c49fe14d700f4c51d2ea1298ffd4fd0662c81438a13034d",
       "slither_id": "ce194486e7f81f339fda72965aa833a0e0cf9daade76dc1b925c3c6743ad15a3",
       "check": "reentrancy-no-eth",
       "impact": "Medium",
@@ -1080,7 +1080,7 @@
       "rationale": "The named private helper is reachable only through Vault nonReentrant custody entry points, or the named public entry itself has that guard and its live/module/owner check. No external dependency can reenter a mutable Vault path through these helpers. _idle updates enforce aggregate backing, LP spending/ownership is checked, and fee transfers preserve separate ledgers. Malicious approved token/governance behavior can still deny service or change economic assumptions; no unconditional security claim is made."
     },
     {
-      "fingerprint": "84de8ba47b07b2c62a8b9281482ca92625d1ee2ad42af655733709c8dcd66593",
+      "fingerprint": "dfab1ed2319ba7689d9ea871fc81b12d00f303e30895b2df7829cc6ac895ebb1",
       "slither_id": "aeff3376c7afb45dac99592e2233399abc92556a877ad5ff6be7cd9fb3cab0ff",
       "check": "reentrancy-benign",
       "impact": "Low",
@@ -1439,5 +1439,6 @@
       "disposition": "informational",
       "rationale": "Bounded 32-asset loop optimization suggestion. Current getter/checkpoint behavior is retained; measured maximum funded checkpoint cost is reported. This is not a solvency or custody defect."
     }
-  ]
+  ],
+  "matching_policy": "Source-bound exact findings; only contiguous nested leaf-callee presentation order in reentrancy External calls sections is canonicalized. Locations, expressions, parent groups, duplicates, counts, severity and confidence remain significant."
 }
