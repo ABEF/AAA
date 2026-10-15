@@ -173,6 +173,7 @@ class KeeperTests(unittest.TestCase):
         fields=[0]*15;fields[7]=status
         reads={'paused()':0,'isSealed()':1,'keepers(address)':1,
             'bucketCount()':1,'bucketAt(uint256)':7,
+            'rewardReceiver(uint256)':0,
             'remoteIndividual(uint256,address)':10,'remoteCollective(uint256,address)':6}
         with patch.object(self.k,'_bucket',return_value=([f'{value:064x}' for value in fields],[B,C])), \
              patch.object(self.k,'view',side_effect=lambda name,signature,*args:reads[signature]) as view, \
@@ -203,6 +204,8 @@ class PoolKeeperTests(unittest.TestCase):
         self.group_words=[int(self.pool,16),10,0,0,1000,1<<96,self.rpc.now,1,1,
             int(B,16),int(B,16),int(B,16),int(C,16),1,int(B,16)]
         self.rebalance=True
+        self.paused=False;self.inbox=0;self.inbox_pending=[0,0]
+        self.inbox_fees=int(B,16);self.inbox_bucket=7
         self.reserves={B:0,C:0}
         self.original_call=self.rpc.call
         self.rpc.call=self.contract_call
@@ -215,12 +218,14 @@ class PoolKeeperTests(unittest.TestCase):
         selector=data[:10]
         args=[int(data[i:i+64],16) for i in range(10,len(data),64)]
         values={
-            'paused()':0,'isSealed()':1,'keepers(address)':1,'bucketCount()':len(self.ids),
+            'paused()':int(self.paused),'isSealed()':1,'keepers(address)':1,'bucketCount()':len(self.ids),
+            'rewardReceiver(uint256)':self.inbox,'fees()':self.inbox_fees,'bucketId()':self.inbox_bucket,
             'needsRebalance(uint256)':int(self.rebalance),'bucketTotalShares(uint256)':100,
             'remoteIndividual(uint256,address)':0,'remoteCollective(uint256,address)':0,
             'buybackBalance(address)':0,
         }
-        if selector==calldata('bucketAt(uint256)',0)[:10]:value=self.ids[args[0]]
+        if selector==calldata('pending()')[:10]:return '0x'+''.join(f'{n:064x}' for n in self.inbox_pending)
+        elif selector==calldata('bucketAt(uint256)',0)[:10]:value=self.ids[args[0]]
         elif selector==calldata('poolBucket(bytes32)',self.pool)[:10]:
             # A fixture shares the same token pair across independent reviewed
             # pool identities; this getter is selected by the currently read group.
@@ -293,10 +298,12 @@ class PoolKeeperTests(unittest.TestCase):
         selector=calldata('compoundBalance(uint256,address)',7,B)[:10]
         tokens=[p[0]['data'][-40:] for method,p in self.rpc.calls if method=='eth_call' and p[0]['data'].startswith(selector)]
         self.assertEqual(tokens,[B[2:],C[2:]])
-    def test_paused_protocol_does_not_discover_or_submit(self):
-        with patch.object(self.k,'view',return_value=1),patch.object(self.k,'_bucket_batch') as batch:
-            self.k.cycle()
-        batch.assert_not_called()
+    def test_paused_protocol_scans_receivers_without_lp_or_bridge_operations(self):
+        self.paused=True;self.ids=[7]
+        self.invoke().assert_not_called()
+        calls=[p[0]['data'][:10] for method,p in self.rpc.calls if method=='eth_call']
+        self.assertIn(calldata('rewardReceiver(uint256)',7)[:10],calls)
+        self.assertNotIn(calldata('needsRebalance(uint256)',7)[:10],calls)
     def test_unknown_or_legacy_state_is_not_silently_reused(self):
         self.k.save();state=json.loads(self.k.path.read_text());state.pop('accounting_model')
         self.k.path.write_text(json.dumps(state))
@@ -356,5 +363,48 @@ class PoolKeeperTests(unittest.TestCase):
             self.assertEqual(persisted['bucket_cursor'],1)
             self.assertEqual(persisted['accounting_model'],ACCOUNTING_MODEL)
             self.assertEqual(persisted['pending']['key'],'rebalance:7')
+            return subprocess.CompletedProcess(args[0],0,H,'')
+        with patch('subprocess.run',side_effect=run):self.k.cycle()
+    def test_external_pending_rewards_sync_before_lp_maintenance(self):
+        self.ids=[7];self.inbox=int(A,16);self.inbox_pending=[0,500]
+        self.invoke().assert_called_once_with('fees','syncExternal(uint256)',(7,),'external_rewards:7')
+    def test_external_rewards_can_sync_paused_and_remote(self):
+        self.ids=[7];self.paused=True;self.inbox=int(A,16);self.inbox_pending=[300,0]
+        for status in (1,2,3,4):
+            with self.subTest(status=status):
+                self.group_words[7]=status
+                self.invoke().assert_called_once_with('fees','syncExternal(uint256)',(7,),'external_rewards:7')
+    def test_empty_external_receiver_does_not_create_transaction(self):
+        self.ids=[7];self.paused=True;self.inbox=int(A,16)
+        self.invoke().assert_not_called()
+    def test_external_receiver_binding_mismatch_fails_closed(self):
+        self.ids=[7];self.inbox=int(A,16);self.inbox_pending=[1,0]
+        for field,value in (('inbox_fees',int(C,16)),('inbox_bucket',9),('inbox',1<<200)):
+            with self.subTest(field=field):
+                before=getattr(self,field);setattr(self,field,value)
+                self.invoke().assert_not_called();setattr(self,field,before)
+    def test_external_receiver_pending_malformed_fails_closed(self):
+        self.ids=[7];self.inbox=int(A,16);self.inbox_pending=[1]
+        self.invoke().assert_not_called()
+    def test_external_sync_can_be_explicitly_disabled(self):
+        self.ids=[7];self.paused=True;self.inbox=int(A,16);self.inbox_pending=[1,0]
+        self.k.maintenance={'sync_external_rewards':False}
+        self.invoke().assert_not_called()
+        calls=[p[0]['data'][:10] for method,p in self.rpc.calls if method=='eth_call']
+        self.assertNotIn(calldata('rewardReceiver(uint256)',7)[:10],calls)
+    def test_external_sync_flag_rejects_non_boolean_configuration(self):
+        for value in ('false',0,1,None):
+            with self.subTest(value=value):
+                self.cfg['maintenance']={'sync_external_rewards':value}
+                with self.assertRaises(ValueError):Keeper(self.cfg,rpc=self.rpc)
+    def test_external_sync_keeps_durable_pending_identity_before_signing(self):
+        self.ids=[7];self.paused=True;self.inbox=int(A,16);self.inbox_pending=[500,0]
+        self.enable_test_signer()
+        def run(*args,**kwargs):
+            state=json.loads(self.k.path.read_text())
+            self.assertEqual(state['bucket_cursor'],1)
+            self.assertEqual(state['pending']['to'],B)
+            self.assertEqual(state['pending']['data'],calldata('syncExternal(uint256)',7))
+            self.assertEqual(state['pending']['value'],0)
             return subprocess.CompletedProcess(args[0],0,H,'')
         with patch('subprocess.run',side_effect=run):self.k.cycle()

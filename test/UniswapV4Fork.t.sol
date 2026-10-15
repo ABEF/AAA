@@ -17,6 +17,7 @@ import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZPower} from "../src/ZZZPower.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
+import {ZZZRewardReceiver} from "../src/ZZZRewardReceiver.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {Ids, PoolKey, PoolConfig, Position} from "../src/libraries/ZZZTypes.sol";
 import {IPositionManagerMinimal, IStateViewMinimal, IPriceFeed, IBurnable} from "../src/interfaces/IZZZ.sol";
@@ -316,6 +317,48 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         else value = SqrtPriceMath.getAmount0Delta(spot, b, liquidity, false) +
             SqrtPriceMath.getAmount1Delta(a, spot, liquidity, false);
         // This helper is used only while both synthetic feeds remain exactly $1.
+    }
+
+    function testRealNativeAndZZZPaymentsFundNFTClaimsWithoutChangingLP() public {
+        SharedSystem memory s = _sharedSystem();
+        uint256 id = _sharedMint(s, 300 ether, 300 ether);
+        uint256 bucket = s.vault.nftBucket(id);
+        Position memory prior = s.vault.group(bucket);
+        uint256 shares = s.vault.sharesOf(id);
+        uint256 contribution = s.vault.contributionUSD(id);
+        address inbox = s.fees.createRewardReceiver(bucket, WETH);
+        assertEq(ZZZRewardReceiver(payable(inbox)).wrappedNative(), WETH);
+        address creator = address(0xC2EA70);
+        vm.deal(creator, 1 ether);
+        vm.prank(creator);
+        (bool paid,) = inbox.call{value: 1 ether}("");
+        assertTrue(paid);
+        assertTrue(IERC20(ZZZ).transfer(inbox, 100 ether));
+        assertEq(s.rewards.claimable(id, WETH), 0);
+        assertEq(address(inbox).balance, 1 ether);
+        s.fees.syncExternal(bucket);
+        assertEq(address(inbox).balance, 0);
+        assertEq(IERC20(WETH).balanceOf(inbox), 0);
+        assertEq(IERC20(ZZZ).balanceOf(inbox), 0);
+        assertEq(s.fees.totalExternalFunded(bucket, WETH), 1 ether);
+        assertEq(s.fees.totalExternalFunded(bucket, ZZZ), 100 ether);
+        assertEq(s.fees.compoundBalance(bucket, WETH), 0.1 ether);
+        assertEq(s.fees.buybackBalance(WETH), 0.1 ether);
+        assertEq(s.vault.group(bucket).lpTokenId, prior.lpTokenId);
+        assertEq(s.vault.group(bucket).idle0, prior.idle0);
+        assertEq(s.vault.group(bucket).idle1, prior.idle1);
+        assertEq(s.vault.sharesOf(id), shares);
+        assertEq(s.vault.contributionUSD(id), contribution);
+        uint256 owed = s.rewards.claimable(id, WETH);
+        assertGe(owed, 0.8 ether - 2);
+        assertLe(owed, 0.8 ether);
+        uint256 before = IERC20(WETH).balanceOf(address(this));
+        assertEq(s.rewards.claim(id, WETH), owed);
+        assertEq(IERC20(WETH).balanceOf(address(this)), before + owed);
+        assertEq(s.rewards.claim(id, WETH), 0);
+        assertEq(IERC20(WETH).allowance(inbox, address(s.fees)), 0);
+        assertEq(IERC20(ZZZ).allowance(inbox, address(s.fees)), 0);
+        _assertSharedApprovalsCleared(s);
     }
 
     function testRealSharedPoolEntryUsesOneLPAndPostSwapSharePricing() public {

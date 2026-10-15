@@ -5,14 +5,15 @@ ROOT=Path(__file__).resolve().parents[1]
 EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZPower','ZZZFeeController','ZZZStrategy',
 'ZZZCompounder','ZZZBuyback','ZZZMigration','ZZZBridgeAdapter','ZZZMigrationReceiver','ZZZAccessController',
 'ZZZOracle','ZZZPoolRegistry','ZZZMigrationRegistry','ZZZBridgeRouter']
+HELPERS=['ZZZRewardReceiver']
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
         lambda m:'\n'*m.group(0).count('\n')+' '*len(m.group(0)),text)
 def main():
     errors=[];external=set();inventory=[]
-    for name in EXPECTED:
+    for name in EXPECTED+HELPERS:
         p=ROOT/'src'/f'{name}.sol'
-        if not p.exists():errors.append(f'Missing required module {name}')
+        if not p.exists():errors.append(f'Missing required contract {name}')
     sources=sorted((ROOT/'src').rglob('*.sol'))
     for p in sources:
         text=p.read_text();clean=sanitized(text);stack=[];pairs={')':'(',']':'[','}':'{'}
@@ -27,12 +28,12 @@ def main():
             if target.startswith('.'):
                 if not (p.parent/target).resolve().is_file():errors.append(f'{p.name}: missing local import {target}')
             else:external.add(target)
-        inventory.append({'file':str(p.relative_to(ROOT)),'lines':len(text.splitlines())})
+        inventory.append({'file':p.relative_to(ROOT).as_posix(),'lines':len(text.splitlines())})
     report={'kind':'source_consistency_only','solidity_compiled':False,'security_audit_pass':False,
-      'modules':len(EXPECTED),'source_files':inventory,'external_imports':sorted(external),'errors':errors,
+      'modules':len(EXPECTED),'standalone_helpers':HELPERS,'source_files':inventory,'external_imports':sorted(external),'errors':errors,
       'limitations':['Balanced delimiters do not prove valid Solidity','No type checking, EVM execution or exploit analysis']}
     (ROOT/'reports').mkdir(exist_ok=True)
-    (ROOT/'reports/source-checks.json').write_text(json.dumps(report,indent=2)+'\n')
+    (ROOT/'reports/source-checks.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps({'source_files':len(sources),'errors':errors,'scope':'consistency only'}))
     return bool(errors)
 if __name__=='__main__':sys.exit(main())

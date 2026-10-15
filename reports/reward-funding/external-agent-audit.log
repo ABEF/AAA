@@ -1,0 +1,130 @@
+Compiling 2 files with Solc 0.8.26
+Solc 0.8.26 finished in 99.31s
+Compiler run successful with warnings:
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:162:51:
+    |
+162 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+2026-10-15T01:54:44.449458Z  WARN traces::etherscan: etherscan config not found
+
+Ran 43 tests for test/ExternalRewards.t.sol:ExternalRewardsTest
+[PASS] testBothPairTokensUseIndependentFundedAllocations() (gas: 3535367)
+[PASS] testCanonicalRewardInboxContinuesAcrossOutboundRemoteAndInboundCustody() (gas: 3991847)
+[PASS] testCollectingVenueFeesAlsoSynchronizesPendingExternalFunds() (gas: 3354621)
+[PASS] testConstructionPrefundingIsPermanentlyExcludedFromFutureRewards() (gas: 3276408)
+[PASS] testDormantNFTCannotReceiveCurrentOrHistoricalExternalRewards() (gas: 4567592)
+[PASS] testExternalPaymentDoesNotChangePrincipalSharesPowerOrMintProceeds() (gas: 3184874)
+[PASS] testExternalReceiversAreBoundedToSixteen() (gas: 50994657)
+[PASS] testExternalRewardsCannotMasqueradeAsOldRemoteSettlement() (gas: 3383065)
+[PASS] testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewPower() (gas: 12221747)
+[PASS] testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement() (gas: 6460881)
+[PASS] testFinalIncreaseCallbackCheckpointsTopUpAtItsPreviousShareWeight() (gas: 7439784)
+[PASS] testFutureReceiverCannotBeTheImmutableMintProceedsRecipient() (gas: 22948036)
+[PASS] testFuzzExternalFundedClaimsAndAllReservesConserveActualIngress(uint96,uint96) (runs: 1000, μ: 4868814, ~: 4886860)
+[PASS] testGlobalMembershipBarrierCannotBeInvokedByOrdinaryCaller() (gas: 2778223)
+[PASS] testHugeLateCompoundCannotLeaveEntryAboveTheFivePercentIdleCap() (gas: 6167720)
+[PASS] testIncorrectWrapperOutputRollsBackAllFundingAndLeavesNativePending() (gas: 6099877)
+[PASS] testLateMintCallbackDuringRebalancePreservesFundedOwnerEntitlements() (gas: 5527842)
+[PASS] testLateUndeployedCompoundDoesNotRaiseTheExactly500DeployedActivationMinimum() (gas: 6289497)
+[PASS] testNFTTransferCarriesExternalEntitlementAndOnlyCurrentOwnerCanClaim() (gas: 3278624)
+[PASS] testNativeAndWrappedPaymentsCannotDoubleCount() (gas: 6432830)
+[PASS] testNativeLowGasPaymentAlsoSupportsSecondPairAsset() (gas: 6506448)
+[PASS] testNativePaymentWrapsOnlyActualNewFundsAndBecomesClaimableWETH() (gas: 6593567)
+[PASS] testOneImmutableReceiverPerBucketAndWrapperMustBePairAsset() (gas: 3473008)
+[PASS] testOwnerAllocationStaysInItsBucketAndCollectiveUsesGlobalPower() (gas: 4709114)
+[PASS] testPairAssetWithWrongDecimalsCannotBeNativeWrapper() (gas: 1851316)
+[PASS] testPairDonationToOtherCustodyContractsIsNotExternalRevenue() (gas: 2940000)
+[PASS] testPausedSystemCanPublishAlreadyFundedExternalRewardsAndClaim() (gas: 3195183)
+[PASS] testPendingMicroDustFromOtherPoolCannotRewardFutureCollectivePower() (gas: 4923739)
+[PASS] testPendingPaymentSettlesBeforeSamePoolActivationAndPricesCompoundNAV() (gas: 4526066)
+[PASS] testPendingPaymentSettlesBeforeTopUpWithoutRewritingEitherNFTsFees() (gas: 5577809)
+[PASS] testPendingRewardFromOtherPoolSettlesBeforeNewCollectivePower() (gas: 4757982)
+[PASS] testRawERC20PaymentIsFundedAndAllocatedExactlyOnce() (gas: 3252611)
+[PASS] testReceiverCannotAcceptNativePaymentWithoutExplicitWrapper() (gas: 2778661)
+[PASS] testReceiverCreationRequiresSealedCanonicalActiveBucketAndGovernance() (gas: 1925106)
+[PASS] testScheduledMigrationFreezesMembershipButDoesNotPreventFundedClaims() (gas: 3303934)
+[PASS] testSubTenPendingDustBelongsToIncumbentBeforeActivation() (gas: 4379846)
+[PASS] testTaxedForwardTransferIsRejectedAtomically() (gas: 6313776)
+[PASS] testUnknownTokenIsNotAllocatedOrRescued() (gas: 3456527)
+[PASS] testUnregisteredCallerCannotAllocateExternalFundsOrChooseAnotherBucket() (gas: 2855879)
+[PASS] testUnsealedControllerCannotCreateReceiverEvenForExistingShareLedger() (gas: 7020751)
+[PASS] testUnsyncedPaymentDuringFinalIncreaseSettlesBeforeSharesChange() (gas: 6308147)
+[PASS] testWrappedAndNativeConstructionPrefundingRemainsQuarantined() (gas: 6438325)
+[PASS] testWrapperCannotReenterSyncDuringWrapping() (gas: 6514816)
+Suite result: ok. 43 passed; 0 failed; 0 skipped; finished in 8.78s (9.36s CPU time)
+
+Ran 2 tests for test/ExternalRewards.t.sol:ExternalFundingInvariantTest
+[PASS] invariant_pendingExternalFundsPrincipalAndClaimsAreConserved() (runs: 256, calls: 65536, reverts: 0)
+
+╭------------------------+-----------+-------+---------+----------╮
+| Contract               | Selector  | Calls | Reverts | Discards |
++=================================================================+
+| ExternalFundingHandler | activate  | 6572  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | claim     | 6513  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | compound  | 6542  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | fund      | 6636  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | mint      | 6498  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | paused    | 6391  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | rebalance | 6663  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | sync      | 6616  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | topUp     | 6536  | 0       | 0        |
+|------------------------+-----------+-------+---------+----------|
+| ExternalFundingHandler | transfer  | 6569  | 0       | 0        |
+╰------------------------+-----------+-------+---------+----------╯
+
+Logs:
+  Bound result 98
+  Bound result 825
+  Bound result 83
+  Bound result 37
+  Bound result 230
+  Bound result 957
+  Bound result 795
+  Bound result 728
+  Bound result 5
+  Bound result 20
+  Bound result 325
+  Bound result 999
+  Bound result 64
+  Bound result 492
+  Bound result 307
+  Bound result 469
+  Bound result 424
+  Bound result 737
+  Bound result 586
+  Bound result 144
+  Bound result 20
+  Bound result 68
+  Bound result 50
+  Bound result 188
+  Bound result 1
+  Bound result 88
+  Bound result 799
+  Bound result 1
+  Bound result 162
+  Bound result 452
+  Bound result 616
+  Bound result 597
+  Bound result 13
+
+[PASS] testPendingFundingActivationTopUpAndPausedClaims() (gas: 5840810)
+Logs:
+  Bound result 109
+  Bound result 217
+  Bound result 40
+  Bound result 211
+  Bound result 307
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 200.49s (200.49s CPU time)
+
+Ran 2 test suites in 200.50s (209.27s CPU time): 45 tests passed, 0 failed, 0 skipped (45 total tests)

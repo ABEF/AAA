@@ -27,6 +27,9 @@ interface IZZZRewards {
 }
 interface IZZZFees {
     function allocate(uint256 id, address token, uint256 amount) external;
+    function syncExternal(uint256 bucketId) external;
+    function syncAllExternal() external;
+    function hasPendingExternal() external view returns (bool);
     function compoundBalance(uint256 id, address token) external view returns (uint256);
     function releaseCompound(uint256 id, address token) external returns (uint256);
     function flushDust(uint256 id, address token) external;
@@ -71,6 +74,7 @@ interface IZZZLiquidity {
 }
 interface IZZZVault {
     function canonicalChainId() external view returns (uint256);
+    function mintProceedsRecipient() external view returns (address payable);
     function nftStatus(uint256 id) external view returns (PositionStatus);
     function group(uint256 bucketId) external view returns (Position memory);
     function nftBucket(uint256 id) external view returns (uint256);

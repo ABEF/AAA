@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-15",
+  "inventory": 255,
+  "run": 251,
+  "passed": 251,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [],
+  "unix_only_retained_for_ubuntu": [
+    "test_state.StateTests.test_atomic_roundtrip",
+    "test_state.StateTests.test_concurrent_lock_rejected",
+    "test_state.StateTests.test_lock_released",
+    "test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file"
+  ],
+  "successful": true
+}

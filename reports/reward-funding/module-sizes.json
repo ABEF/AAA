@@ -1,0 +1,175 @@
+{
+  "compiler": "0.8.26",
+  "evm": "cancun",
+  "via_ir": true,
+  "optimizer_runs": 1,
+  "yul_optimizer": false,
+  "limits_increased": false,
+  "sealed_modules": 17,
+  "receiver_helper_types": 1,
+  "note": "Templates contain immutable placeholders; constructor argument bytes are additional initcode. Not deployed runtime hashes or deployment approval.",
+  "contracts": [
+    {
+      "contract": "ZZZVault",
+      "kind": "sealed_module",
+      "runtime_bytes": 24212,
+      "initcode_bytes": 25091,
+      "runtime_margin": 364,
+      "initcode_margin": 24061,
+      "runtime_template_sha256": "8e5909926043c2d1bcfd523c39e390812971dfde90197d04b3baeb608f10272b"
+    },
+    {
+      "contract": "ZZZNFT",
+      "kind": "sealed_module",
+      "runtime_bytes": 6415,
+      "initcode_bytes": 7561,
+      "runtime_margin": 18161,
+      "initcode_margin": 41591,
+      "runtime_template_sha256": "44caaf09e1a12849f75244430d841750f2fe154fc375365992d41ebd0b1cf1b8"
+    },
+    {
+      "contract": "ZZZLiquidityManager",
+      "kind": "sealed_module",
+      "runtime_bytes": 18357,
+      "initcode_bytes": 19748,
+      "runtime_margin": 6219,
+      "initcode_margin": 29404,
+      "runtime_template_sha256": "82a7dda7d57ac7ec8cdc9cd19a8809d95d695e51e1671cb1a6e3da410310cfac"
+    },
+    {
+      "contract": "ZZZRewards",
+      "kind": "sealed_module",
+      "runtime_bytes": 8309,
+      "initcode_bytes": 8786,
+      "runtime_margin": 16267,
+      "initcode_margin": 40366,
+      "runtime_template_sha256": "1d3056a5349b0c902ed9c86f65fd6aa7c7388415ee254f95e9a7d4c05429d2d0"
+    },
+    {
+      "contract": "ZZZPower",
+      "kind": "sealed_module",
+      "runtime_bytes": 1822,
+      "initcode_bytes": 2187,
+      "runtime_margin": 22754,
+      "initcode_margin": 46965,
+      "runtime_template_sha256": "11930c00abc502c4de1116896a32e8710a8f58690c027c8f6fff44ef55a8e7d0"
+    },
+    {
+      "contract": "ZZZFeeController",
+      "kind": "sealed_module",
+      "runtime_bytes": 24203,
+      "initcode_bytes": 24764,
+      "runtime_margin": 373,
+      "initcode_margin": 24388,
+      "runtime_template_sha256": "a317b4e802bc63ee9909563db9df86b354e31bc209895f11ed1fbb56a49956bb"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "kind": "sealed_module",
+      "runtime_bytes": 11068,
+      "initcode_bytes": 11496,
+      "runtime_margin": 13508,
+      "initcode_margin": 37656,
+      "runtime_template_sha256": "8fc60e2b962c0be1867bcb7d7e65d33f252627a34bae29300515c0e9c7a38e58"
+    },
+    {
+      "contract": "ZZZCompounder",
+      "kind": "sealed_module",
+      "runtime_bytes": 1697,
+      "initcode_bytes": 2075,
+      "runtime_margin": 22879,
+      "initcode_margin": 47077,
+      "runtime_template_sha256": "1383cba5e8ee8f4e9ad2c8356feda36b16f3fceafd83db73f86fef51d719ae05"
+    },
+    {
+      "contract": "ZZZBuyback",
+      "kind": "sealed_module",
+      "runtime_bytes": 5834,
+      "initcode_bytes": 6491,
+      "runtime_margin": 18742,
+      "initcode_margin": 42661,
+      "runtime_template_sha256": "536f1d28b1f79d4dc868a766f210f7f46afd01aa179ce51270ef630b12bfa002"
+    },
+    {
+      "contract": "ZZZMigration",
+      "kind": "sealed_module",
+      "runtime_bytes": 22549,
+      "initcode_bytes": 23166,
+      "runtime_margin": 2027,
+      "initcode_margin": 25986,
+      "runtime_template_sha256": "81a78d5dc5162515f34e46be2e15795ecb69eed76758500013ca7ccaa9051a83"
+    },
+    {
+      "contract": "ZZZBridgeAdapter",
+      "kind": "sealed_module",
+      "runtime_bytes": 9475,
+      "initcode_bytes": 10028,
+      "runtime_margin": 15101,
+      "initcode_margin": 39124,
+      "runtime_template_sha256": "a634f32aa25691c94876680e653182dd3760722ab1027f9f189070ac586dd1c1"
+    },
+    {
+      "contract": "ZZZMigrationReceiver",
+      "kind": "sealed_module",
+      "runtime_bytes": 15938,
+      "initcode_bytes": 16492,
+      "runtime_margin": 8638,
+      "initcode_margin": 32660,
+      "runtime_template_sha256": "70280a956e1850e05f5a152d392a5965ae46d590e296e297cd45195f4bc674a1"
+    },
+    {
+      "contract": "ZZZAccessController",
+      "kind": "sealed_module",
+      "runtime_bytes": 9868,
+      "initcode_bytes": 11547,
+      "runtime_margin": 14708,
+      "initcode_margin": 37605,
+      "runtime_template_sha256": "ed874c2615c081c066eb0e98297318a46260c9fc391be77ccec3678648486029"
+    },
+    {
+      "contract": "ZZZOracle",
+      "kind": "sealed_module",
+      "runtime_bytes": 5320,
+      "initcode_bytes": 5808,
+      "runtime_margin": 19256,
+      "initcode_margin": 43344,
+      "runtime_template_sha256": "a359c802c20a7f6cf1ca6f1e0a57abb26cdfa5a79252f2da9b0e3db56aea85ea"
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "kind": "sealed_module",
+      "runtime_bytes": 5165,
+      "initcode_bytes": 5530,
+      "runtime_margin": 19411,
+      "initcode_margin": 43622,
+      "runtime_template_sha256": "766877c1274c6d1d2d72dd827a36aa9a401670adc85a406a3187f6ddf8ac828a"
+    },
+    {
+      "contract": "ZZZMigrationRegistry",
+      "kind": "sealed_module",
+      "runtime_bytes": 7491,
+      "initcode_bytes": 7912,
+      "runtime_margin": 17085,
+      "initcode_margin": 41240,
+      "runtime_template_sha256": "e3fb6f95461ab0d4c974e1138937dea64f9aab63e9809d5c653fc7f2c9e92dee"
+    },
+    {
+      "contract": "ZZZBridgeRouter",
+      "kind": "sealed_module",
+      "runtime_bytes": 15157,
+      "initcode_bytes": 15662,
+      "runtime_margin": 9419,
+      "initcode_margin": 33490,
+      "runtime_template_sha256": "a87e6533933c6403692581d736d07830ab8b8c45a32b5e070b39844ddd141ec3"
+    },
+    {
+      "contract": "ZZZRewardReceiver",
+      "kind": "standalone_helper",
+      "runtime_bytes": 4265,
+      "initcode_bytes": 5801,
+      "runtime_margin": 20311,
+      "initcode_margin": 43351,
+      "runtime_template_sha256": "7f7fcd05b5a52d6f1d0738d657e6ebb7f3ebaaf65e18747c802c47c750c01e6c"
+    }
+  ]
+}

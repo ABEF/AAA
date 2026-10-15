@@ -170,7 +170,7 @@ def main():
                            answeredInRound=str(answered)),
         "boundaries": ["Current candidate rejects native currency and hooks",
                        "Core LP fees are zero; LP ownership does not entitle PoPL to Pons hook revenue",
-                       "Revenue source remains undecided: a Pons fee-share integration or a new fee-earning pool; no payout terms are approved",
+                       "Voluntary creator funding has a separate canonical inbox path; no percentage entitlement or native/Pons LP custody integration is established",
                        "No ZZZ feed or Robinhood sequencer feed found in checked Chainlink catalogs",
                        "Provider chain support does not establish a backed ZZZ bridge route",
                        "Fork settlement tests use a separate locally initialized hookless pool and synthetic test-only reference feeds"],

@@ -111,6 +111,28 @@ def disabled_fixture():
     del manifest['evidence']['multi_chain']
     return manifest
 
+def external_fixture():
+    """Synthetic creator-payment inventory, never actual deployed contracts."""
+    manifest=disabled_fixture();chain=manifest['chains'][0];pool=chain['pools'][0]
+    bucket=int(GATE.identity([(1,'uint256'),(chain['modules']['vault']['address'],'address'),
+        (pool['pool_id'],'bytes32')]),16)
+    manifest['economics'].update(reward_model='external_funded_revenue',external_reward_policy={
+        'payment_method':'plain_transfers','allocation_timing':'processing_time','owner_weights':'bucket_shares',
+        'collective_weights':'lifetime_power','revenue_entitlement':'received_funds_only',
+        'source_description':'Discretionary creator payments without a guaranteed share','terms_evidence':proof()})
+    receiver={'address':addr(7777),'runtime_hash':HASH,'bucket_id':str(bucket),'home_pool_id':pool['pool_id'],
+        'fees':chain['modules']['fees']['address'],'token0':pool['currency0'],'token1':pool['currency1'],
+        'wrapped_native':pool['currency0'],'immutable_configuration':True,'upgradeable':False,
+        'observed_chain_id':1,'observed_receiver':addr(7777),'observed_fee_receiver':addr(7777),
+        'observed_block_number':chain['observed_block']['number'],'observed_block_hash':HASH,
+        'observed_total_shares':'1000000000000000000000',
+        'review_evidence':dict(proof(),independent=True,reviewer='Synthetic independent receiver reviewer'),
+        'wrapper_review':{'address':pool['currency0'],'runtime_hash':HASH,'upgradeable':False,
+            'conversion':'deposit:exact_1_to_1','evidence':proof()}}
+    receiver['observed_bindings']={key:receiver[key] for key in ('fees','bucket_id','token0','token1','wrapped_native')}
+    chain['external_rewards']={'receiver_count':1,'observation_evidence':proof(),'receivers':[receiver]}
+    return manifest
+
 def onward_fixture():
     manifest=fixture();third=copy.deepcopy(manifest['chains'][1]);third['chain_id']=3
     third['providers'][0]['integration_evidence']['chain_id']=3
@@ -418,3 +440,93 @@ class ProductionConfigTests(unittest.TestCase):
             path=Path(directory)/'invalid.json';path.write_text('{broken')
             result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),'--config',str(path)],capture_output=True,text=True,check=False)
             self.assertEqual(result.returncode,1);self.assertFalse(json.loads(result.stdout)['ready'])
+
+class ExternalRewardConfigTests(unittest.TestCase):
+    def setUp(self):self.config=external_fixture()
+    result=ProductionConfigTests.result
+    blocked=ProductionConfigTests.blocked
+    def inbox(self):return self.config['chains'][0]['external_rewards']['receivers'][0]
+    def test_complete_external_inventory_is_consistent_but_never_authorizes_deployment(self):
+        before=copy.deepcopy(self.config);result=self.result()
+        self.assertEqual(result['issues'],[]);self.assertTrue(result['ready'])
+        self.assertFalse(result['deployment_authorized']);self.assertEqual(self.config,before)
+    def test_discretionary_funding_does_not_require_an_invented_creator_percentage(self):
+        self.assertNotIn('creator_share_bps',self.config['economics']['external_reward_policy'])
+        self.assertTrue(self.result()['ready'])
+    def test_external_policy_cannot_claim_historical_swap_time_or_guaranteed_revenue(self):
+        for key,value in (('allocation_timing','swap_time'),('owner_weights','wallet_balance'),
+            ('collective_weights','pool_shares'),('revenue_entitlement','guaranteed_34_percent')):
+            with self.subTest(key=key):
+                self.config=external_fixture();self.config['economics']['external_reward_policy'][key]=value
+                self.blocked('reward.policy')
+    def test_external_terms_must_be_exact_release_reviewed(self):
+        self.config['economics']['external_reward_policy']['terms_evidence']['commit']='cd'*20
+        self.blocked('evidence.stale')
+    def test_external_mode_requires_nonempty_canonical_inventory(self):
+        for inventory in (None,{'receiver_count':0,'observation_evidence':proof(),'receivers':[]}):
+            with self.subTest(inventory=inventory):
+                self.config=external_fixture();self.config['chains'][0]['external_rewards']=inventory
+                self.blocked('reward.inventory')
+    def test_receiver_inventory_count_and_bound_must_match(self):
+        for count in (0,2,17,True):
+            with self.subTest(count=count):
+                self.config=external_fixture();self.config['chains'][0]['external_rewards']['receiver_count']=count
+                self.assertFalse(self.result()['ready'])
+    def test_external_mode_preserves_selected_native_pons_pool_rejection(self):
+        self.config['chains'][0]['pools'][0].update(currency0=GATE.ZERO,fee=0,hooks=addr(77))
+        self.blocked('pool.hook');self.blocked('pool.assets')
+    def test_external_mode_accepts_zero_fee_hookless_erc20_pool_with_funded_receivers(self):
+        chain=self.config['chains'][0];pool=chain['pools'][0];pool['fee']=0
+        pool['pool_id']=GATE.identity([(pool['currency0'],'address'),(pool['currency1'],'address'),
+            (0,'uint24'),(pool['tickSpacing'],'uint24'),(GATE.ZERO,'address')])
+        receiver=self.inbox();receiver['home_pool_id']=pool['pool_id']
+        receiver['bucket_id']=str(int(GATE.identity([(1,'uint256'),(chain['modules']['vault']['address'],'address'),
+            (pool['pool_id'],'bytes32')]),16));receiver['observed_bindings']['bucket_id']=receiver['bucket_id']
+        self.assertTrue(self.result()['ready'])
+    def test_conventional_fee_model_rejects_zero_core_fee_pool(self):
+        self.config=disabled_fixture();self.config['chains'][0]['pools'][0]['fee']=0
+        self.blocked('integer.invalid')
+    def test_receiver_cannot_point_at_wrong_fee_controller_or_bucket(self):
+        self.inbox()['fees']=addr(4444);self.blocked('reward.binding')
+        self.config=external_fixture();self.inbox()['bucket_id']='5';self.blocked('reward.bucket')
+    def test_receiver_pair_must_match_original_home_pool(self):
+        self.inbox()['token1']=addr(5555);self.blocked('reward.assets')
+    def test_receiver_duplicate_bucket_or_address_is_rejected(self):
+        external=self.config['chains'][0]['external_rewards'];external['receiver_count']=2
+        external['receivers'].append(copy.deepcopy(self.inbox()));self.blocked('reward.duplicate')
+    def test_receiver_is_separate_from_mint_and_protocol_custody(self):
+        self.inbox()['address']=self.config['chains'][0]['constructor']['mint_proceeds_recipient']
+        self.blocked('reward.custody')
+    def test_mutable_receiver_or_unreviewed_getters_rejected(self):
+        self.inbox()['upgradeable']=True;self.blocked('reward.mutable')
+        self.config=external_fixture();self.inbox()['observed_bindings']['fees']=addr(4444)
+        self.blocked('reward.observation')
+    def test_snapshot_must_match_receiver_and_factory_getters(self):
+        for field,value in (('observed_block_number',5001),('observed_block_hash','0x'+'33'*32),
+            ('observed_receiver',addr(5555)),('observed_fee_receiver',addr(5555)),('observed_chain_id',2)):
+            with self.subTest(field=field):
+                self.config=external_fixture();self.inbox()[field]=value;self.blocked('reward.observation')
+    def test_receiver_review_cannot_be_internal_or_stale(self):
+        self.inbox()['review_evidence']['independent']=False;self.blocked('reward.review')
+        self.config=external_fixture();self.inbox()['review_evidence']['commit']='cd'*20
+        self.blocked('evidence.stale')
+    def test_receiver_requires_positive_observed_share_supply(self):
+        self.inbox()['observed_total_shares']=0;self.blocked('integer.invalid')
+    def test_wrapper_must_be_one_original_admitted_18_decimal_asset(self):
+        self.inbox()['wrapped_native']=addr(5555);self.blocked('reward.wrapper')
+        self.config=external_fixture();self.config['chains'][0]['tokens'][0]['decimals']=6
+        self.blocked('reward.wrapper')
+    def test_wrapper_runtime_or_conversion_or_authority_drift_rejected(self):
+        for field,value in (('runtime_hash','0x'+'44'*32),('conversion','deposit:variable_rate'),('upgradeable',True)):
+            with self.subTest(field=field):
+                self.config=external_fixture();self.inbox()['wrapper_review'][field]=value
+                self.blocked('reward.wrapper')
+    def test_erc20_only_receiver_has_no_native_wrapper_review(self):
+        self.inbox()['wrapped_native']=GATE.ZERO;self.inbox()['observed_bindings']['wrapped_native']=GATE.ZERO
+        self.inbox()['wrapper_review']=None;self.assertTrue(self.result()['ready'])
+    def test_conventional_only_mode_cannot_hide_receivers(self):
+        self.config['economics']['reward_model']='conventional_lp_fees';self.blocked('reward.model')
+    def test_satellite_cannot_register_external_receiver(self):
+        satellite=copy.deepcopy(fixture()['chains'][1])
+        satellite['external_rewards']=copy.deepcopy(self.config['chains'][0]['external_rewards'])
+        self.config['chains'].append(satellite);self.blocked('reward.canonical')

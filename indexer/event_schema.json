@@ -356,6 +356,48 @@
     "name": "KeeperChanged",
     "signature": "KeeperChanged(address,bool)"
   },
+  "0x4f9da6a7e022cf8b647c0e7081de9755744c61d6d1bdc467b0b71e4319eaf6e6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "ExternalRewardsFunded",
+    "signature": "ExternalRewardsFunded(uint256,address,uint256)"
+  },
+  "0x573ecbd82bb44aa34b4cfe9a63c5beccf84cfbdbe01028c886f25d5c3183e725": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "NativeRewardWrapped",
+    "signature": "NativeRewardWrapped(uint256,address,uint256)"
+  },
   "0x611a3c9f6297a5b31704c72866974accfdcb169fe090b94913217b0036c2eb8b": {
     "fields": [
       {
@@ -927,6 +969,37 @@
     "name": "LiquidityAdded",
     "signature": "LiquidityAdded(uint256,uint256,uint256)"
   },
+  "0xd99b076a34941b2d36ccab51cfc066547e4fcb8750f0451a2c58806038b56c1d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "token0",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "token1",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wrappedNative",
+        "type": "address"
+      }
+    ],
+    "name": "RewardReceiverCreated",
+    "signature": "RewardReceiverCreated(uint256,address,address,address,address)"
+  },
   "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
     "fields": [
       {
@@ -973,6 +1046,27 @@
     ],
     "name": "RemoteRewardsSent",
     "signature": "RemoteRewardsSent(uint256,address,uint256,bytes32)"
+  },
+  "0xe604aa747eea4821f00cd60f5f79481faa41c309238fe760e998e6983fe1c50d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "RewardPaymentProcessed",
+    "signature": "RewardPaymentProcessed(uint256,uint256,uint256)"
   },
   "0xf04377ec608a4bbb0d427fc9e7329fd3350e839e65ae8548532c7fe9fae4dd1b": {
     "fields": [

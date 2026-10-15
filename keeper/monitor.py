@@ -60,6 +60,9 @@ class Keeper:
         for bucket,settings in self.overrides.items():
             if str(positive(bucket,'bucket_overrides key')) != bucket or not isinstance(settings,dict):
                 raise ValueError('Bucket overrides require canonical decimal bucket IDs and object settings')
+        for settings in (self.maintenance,*self.overrides.values()):
+            if 'sync_external_rewards' in settings and type(settings['sync_external_rewards']) is not bool:
+                raise ValueError('sync_external_rewards must be an explicit boolean')
         self.path = Path(config.get('state_path','var/keeper.json'))
         self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,
             'bucket_cursor':0,'last':{},'spent':{},'pending':None})
@@ -258,10 +261,24 @@ class Keeper:
         if int(tokens[0],16) >= int(tokens[1],16): raise RpcError('Invalid pool asset ordering')
         return fields,tokens
 
+    def _sync_external(self, bucket: int) -> bool:
+        receiver = self.view('fees','rewardReceiver(uint256)',bucket)
+        if receiver == 0: return False
+        if receiver >= 1 << 160: raise RpcError('Noncanonical reward receiver address')
+        inbox = '0x'+f'{receiver:040x}'
+        bound_fees = uint_result(self.rpc.eth_call(inbox,calldata('fees()')))
+        bound_bucket = uint_result(self.rpc.eth_call(inbox,calldata('bucketId()')))
+        if bound_fees != int(self.contracts['fees'],16) or bound_bucket != bucket:
+            raise RpcError('Reward receiver does not bind the discovered bucket and fee controller')
+        pending = decode_words(self.rpc.eth_call(inbox,calldata('pending()')))
+        if len(pending) != 2: raise RpcError('Unexpected reward receiver pending ABI')
+        if any(int(amount,16) != 0 for amount in pending):
+            return self.submit('fees','syncExternal(uint256)',(bucket,),f'external_rewards:{bucket}')
+        return False
+
     def cycle(self) -> None:
         if self.poll_pending(): return
-        if self.view('access','paused()') != 0:
-            log('protocol_paused'); return
+        paused = self.view('access','paused()') != 0
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
         _,now = self._head()
@@ -275,6 +292,10 @@ class Keeper:
                 fields,tokens = self._bucket(bucket)
                 status = int(fields[7],16)
                 if status not in (1,2,3,4): continue
+                # Canonical funded revenue and claims remain available during
+                # pauses and while the physical LP is away. No principal moves.
+                if item.get('sync_external_rewards',True) and self._sync_external(bucket): return
+                if paused: continue
                 if status == 1:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
@@ -299,6 +320,8 @@ class Keeper:
             except (ValueError,RpcError) as exc:
                 log('bucket_skipped',bucket_id=str(bucket),error_type=type(exc).__name__)
         if batch: self.save()
+        if paused:
+            log('protocol_paused'); return
         for task in self.config.get('buybacks',[]):
             token = address(task['token']); amount = positive(task['amount'],'amount')
             if self.view('fees','buybackBalance(address)',token) >= amount:

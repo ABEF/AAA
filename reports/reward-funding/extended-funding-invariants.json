@@ -1,0 +1,20 @@
+{
+  "profile": "audit",
+  "seed": "0x0000000000000000000000000000000000000000000000000000000020261015",
+  "runs": 256,
+  "depth": 256,
+  "scheduled_handler_calls": 65536,
+  "unexpected_reverts": 0,
+  "tests_passed": 45,
+  "integration_tests": 43,
+  "invariant_tests": 1,
+  "deterministic_handler_sequence": 1,
+  "log_sha256": "9d6f6473b6a0176e811283f3ff41eacf1abfba5e912d9e3597325bad4fb2dc8f",
+  "source_sha256_lf": {
+    "src/ZZZVault.sol": "16a69c1b93cdc598f4400af04a245bd2be95421a7c5ce7ad8a4f217589fe6ef5",
+    "src/ZZZFeeController.sol": "9ccb458b1da8765571e85b1a31513bd1bd02637edbfe7f3aebe5ce7946618fe0",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "test/ExternalRewards.t.sol": "679ab51b6cd1fd01309de769c0bb106a720166e97afb6463ddd6fb131d7d6ba3"
+  },
+  "limitations": "Actual custody/reward modules with fake LP venue, feeds and native wrapper. Ineligible handler calls may return without transitions. No live bridge or selected native/Pons pool support."
+}

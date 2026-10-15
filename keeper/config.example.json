@@ -30,6 +30,7 @@
     "max_per_cycle": 32
   },
   "maintenance": {
+    "sync_external_rewards": true,
     "minimum_liquidity": 1,
     "compound": true,
     "minimum_compound_units": 1000,

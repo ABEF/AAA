@@ -46,7 +46,7 @@ When sold, the buyer inherits the NFT, its shares in the shared liquidity positi
 
 These figures are illustrative. NFT levels and the "Enhanced" status are product concepts, not implemented mechanics or live position data.
 
-Current shared-pool verification: [implementation and internal review](reports/pooled/README.md). Production remains undeployed and requires the deferred market/reward integration, staged operations and an independent audit.
+Current verification: [creator-payment implementation and internal review](reports/reward-funding/README.md). The [earlier shared-pool review](reports/pooled/README.md) records its own 2026-10-15 revision. Production remains undeployed and requires the selected native/hooked market integration, payment-policy review, staged operations and an independent audit.
 
 ## Technical architecture
 
@@ -58,7 +58,7 @@ Current shared-pool verification: [implementation and internal review](reports/p
 
 The proposed product architecture includes a Uniswap v4 hook. **This candidate does not implement a custom hook**: it supports static-fee pools without hooks. A custom hook and NFT attribute/level mechanics remain future work.
 
-The selected Robinhood Chain ZZZ/native-ETH pool has **0% conventional LP fees** and a separate Pons hook fee. Its native-ETH settlement and revenue integration are not implemented by this adapter; the project's reward mechanism for that pool is pending. See the verified [Robinhood pool record](docs/ROBINHOOD_POOL.md).
+The selected Robinhood Chain ZZZ/native-ETH pool has **0% conventional LP fees** and a separate Pons hook fee. Its native-ETH liquidity settlement is not implemented by this adapter. The creator intends to send payments to a dedicated immutable receiver, which processes funded revenue into the existing 50/30/10/10 allocation. See [creator-funded rewards](docs/EXTERNAL_REWARDS.md) and the verified [Robinhood pool record](docs/ROBINHOOD_POOL.md).
 
 ```text
 User -> Permanent vault -> Liquidity manager -> Uniswap v4 position
@@ -76,7 +76,7 @@ See [technical architecture](docs/ARCHITECTURE.md) for custody, reward accountin
 
 ## Contracts
 
-The 16 original modules and the fixed bridge router are present (17 modules). Their inclusion does not establish compilation or safe runtime behavior.
+The 16 original modules and the fixed bridge router are present (17 sealed modules), plus a standalone receiver helper created by the fee controller. Their inclusion does not establish safe runtime behavior.
 
 | Contract | Responsibility |
 |---|---|
@@ -84,6 +84,7 @@ The 16 original modules and the fixed bridge router are present (17 modules). Th
 | [ZZZNFT.sol](src/ZZZNFT.sol) | Transferable NFTs representing permanent LP economic rights |
 | [ZZZLiquidityManager.sol](src/ZZZLiquidityManager.sol) | Creates, increases, collects, closes, and redeploys Uniswap positions for authorized custody operations |
 | [ZZZRewards.sol](src/ZZZRewards.sol) | Funded individual and Power-weighted collective rewards |
+| [ZZZRewardReceiver.sol](src/ZZZRewardReceiver.sol) | Immutable per-bucket creator-payment inbox; optional native wrapping and permissionless funded processing |
 | [ZZZPower.sol](src/ZZZPower.sol) | Contribution-based Power and reward checkpoints |
 | [ZZZFeeController.sol](src/ZZZFeeController.sol) | 50/30/10/10 fee allocation and isolated reserves |
 | [ZZZStrategy.sol](src/ZZZStrategy.sol) | Oracle-relative ranges, rebalance triggers, cooldowns, and swap bounds |
@@ -113,7 +114,11 @@ Both use Python 3.11+ and shared utilities in `zzz_ops/`. Keeper state locking r
 
 ## Development status
 
-**Development candidate. Do not deploy with real funds.** The [future-bridge update](reports/future-bridge/README.md) records the latest router verification; the [production-readiness review](reports/PRODUCTION_READINESS.md) records the broader evidence and remaining gates. Internal reviews by collaborating agents do not constitute an independent audit.
+**Development candidate. Do not deploy with real funds.** The [current reward-funding review](reports/reward-funding/README.md) records the external payment and entry-ordering checks. Local targeted verification passed 45 tests: 43 security cases and two invariant-suite tests. Python inventory is 255 tests; 251 portable Windows tests passed, with four Unix-only cases retained for Ubuntu. Slither produced 160 reviewed findings, with a second internal review of all 91 High/Medium findings. This is not an independent audit. The full offline Solidity run passed 279 cases with zero failures and one intentional offline fork-setup skip; exact-commit CI completion must be checked in the current report.
+
+The unchanged compiler profile produces Vault runtime **24,212 bytes** (364 below EIP-170) and FeeController runtime **24,203 bytes** (373 below). Both margins are small and require review. These checks do not supply selected Pons-market support, a live bridge, production configuration or funded-deployment approval.
+
+The following table preserves earlier evidence, principally from the 2026-10-14 readiness pass. Its counts do not verify the new external funding code. Historical [future-bridge](reports/future-bridge/README.md) and [production-readiness](reports/PRODUCTION_READINESS.md) reports remain scoped to their own revisions.
 
 | Evidence | Status |
 |---|---|
@@ -132,7 +137,7 @@ Python model tests do not execute Solidity. The Windows Python result does not s
 
 Current limits include contribution-based Power, at most 32 reward assets, direct-route buybacks, equivalent-asset migration rather than arbitrary asset conversion, and no satellite user top-ups. Native-ETH/hook integration for the selected Robinhood pool and a reviewed production bridge are still pending. See [economic rules](docs/ECONOMICS.md), [security entry point](SECURITY.md), and the [release checklist](docs/RELEASE_CHECKLIST.md).
 
-The revenue source remains **undecided**: the user deferred choosing a Pons hook share or a new pool. No percentage, payout agreement, recipient authority or alternative production pool is assumed. The repository now includes a [blocked production inventory template](config/production.example.json) and a read-only validator; a complete manifest still needs authentic external evidence and separately authorized deployment.
+The intended external source is **creator payments sent directly to a bucket's receiver**. Only actually funded and processed receipts are distributed; no creator percentage, guaranteed payout or 34% liquidity-based entitlement is assumed. The 50% owner allocation follows bucket shares; the 30% collective allocation follows lifetime contribution Power. The [blocked production inventory template](config/production.example.json) and read-only validator require reviewed payment policy, receiver/wrapper inventory, authentic release evidence and separately authorized deployment. External intake does not enable the selected Pons pool's native/hooked LP custody.
 
 ## Repository guide
 

@@ -3,6 +3,9 @@
   "solidity_compiled": false,
   "security_audit_pass": false,
   "modules": 17,
+  "standalone_helpers": [
+    "ZZZRewardReceiver"
+  ],
   "source_files": [
     {
       "file": "src/base/ZZZModule.sol",
@@ -10,7 +13,7 @@
     },
     {
       "file": "src/interfaces/IZZZ.sol",
-      "lines": 181
+      "lines": 185
     },
     {
       "file": "src/libraries/BridgeAssets.sol",
@@ -46,7 +49,7 @@
     },
     {
       "file": "src/ZZZFeeController.sol",
-      "lines": 223
+      "lines": 296
     },
     {
       "file": "src/ZZZLiquidityManager.sol",
@@ -81,6 +84,10 @@
       "lines": 25
     },
     {
+      "file": "src/ZZZRewardReceiver.sol",
+      "lines": 85
+    },
+    {
       "file": "src/ZZZRewards.sol",
       "lines": 116
     },
@@ -90,7 +97,7 @@
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 438
+      "lines": 454
     }
   ],
   "external_imports": [

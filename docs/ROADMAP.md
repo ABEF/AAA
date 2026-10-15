@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-The development candidate implements paid dormant mint/activation, shared LP per pool with nonredeemable NFT shares, pool-level upkeep, and repeated whole-bucket custody migration with timelocked future-route onboarding. The shared rewrite invalidates earlier per-NFT audit/size evidence for changed modules; see [new evidence](../reports/pooled/README.md). [Current implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) records its checks separately from historical reports. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
+The development candidate implements paid dormant mint/activation, shared LP per pool with nonredeemable NFT shares, pool-level upkeep, repeated whole-bucket custody migration with timelocked future-route onboarding, and immutable creator-payment intake. See [current verification](../reports/reward-funding/README.md). The [shared-pool review](../reports/pooled/README.md) and [earlier implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) remain scoped to their own revisions; they do not validate the changed reward entrypoints. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
 
 The [2026-10-14 readiness pass](../reports/PRODUCTION_READINESS.md) adds immutable dependency/action pins, working keeper calldata submission, pending-state and file-write hardening, stateful EVM accounting, full Slither triage, six real dependency fork checks, collection/asset gas workloads and an offline production inventory gate. These development milestones do not close the remaining economic, live transport, oracle, staging and independent-review work.
 
@@ -22,7 +22,7 @@ The new fixed Robinhood block/hash suite exercises ordinary typed settlement aga
 
 Approve or redesign lifetime-contribution Power, settlement-time collective weights, remote/in-flight eligibility, and reward-asset limits. Model timing incentives, manipulated valuations, depreciated positions, strategy costs, and token eligibility. Review the implemented repeated-hop custody epochs, ordered home-location ACKs, canonical returns, legacy reward budgets, and post-seal append-only route governance against adversarial operation sequences.
 
-Decide the reward source and integration for the selected Robinhood native-ETH/Pons-hook pool. Its zero core LP fee does not give external LPs proportional hook revenue; the old 0.30% website example is not a usable actual fee model. Native settlement and hook-aware integration are still absent.
+The selected funding direction is creator payments to an immutable per-bucket receiver, with actual processed funds using the existing 50/30/10/10 indexes. Review processing-time weights, voluntary payment terms, all-inbox membership synchronization, constructor prefund quarantine, optional native wrapping and dependency outages. No creator percentage or guaranteed proportional hook revenue is inferred. The zero-core-fee Robinhood native-ETH/Pons pool still requires its separate native settlement and hook-aware LP adapter integration; the old 0.30% website example remains hypothetical. See [external funding](EXTERNAL_REWARDS.md).
 
 ## 5. Implement production transport and operations
 
@@ -34,4 +34,4 @@ Obtain an independent security audit, verify remediation, review deployment conf
 
 ## Later product work
 
-A custom/native-ETH Uniswap v4 integration and reward model, NFT attributes/levels, Enhanced status, a hosted dashboard/API, multi-hop buybacks, and satellite user deposits require separately designed and reviewed implementations. Future-chain route onboarding and repeated equivalent-asset custody hops are implemented in the development candidate; they still require real transport/deployment validation and do not move the NFT between chains or provide general asset conversion.
+A custom/native-ETH Uniswap v4 liquidity integration, NFT attributes/levels, Enhanced status, a hosted dashboard/API, multi-hop buybacks, and satellite user deposits require separately designed and reviewed implementations. Future-chain route onboarding and repeated equivalent-asset custody hops are implemented in the development candidate; they still require real transport/deployment validation and do not move the NFT between chains or provide general asset conversion.

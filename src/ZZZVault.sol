@@ -130,7 +130,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         (uint256 deployed0, uint256 deployed1) = manager.amounts(p.lpTokenId);
         deployedValue = _valuePair(c, deployed0, deployed1);
         uint256 idleValue = _valuePair(c, p.idle0, p.idle1);
-        if (deployedValue == 0 || idleValue > Math.mulDiv(deployedValue + idleValue, MAX_IDLE_BPS, 10000)) revert Slippage();
+        _checkIdle(deployedValue, idleValue);
+    }
+    function _checkIdle(uint256 deployed, uint256 idleValue) private pure {
+        if (deployed == 0 || idleValue > Math.mulDiv(deployed + idleValue, MAX_IDLE_BPS, 10000)) revert Slippage();
     }
     /// @notice Paid issuance creates no LP, Power or fee entitlement. Proceeds are
     /// forwarded separately and never enter the permanently locked principal ledger.
@@ -200,6 +203,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 inputUSD = _valuePair(c, amount0, amount1);
         if (inputUSD < c.minDepositUSD || contributionUSD[id] + inputUSD > c.maxPositionUSD) revert InvalidAmount();
         uint256 supply = bucketTotalShares[bucket];
+        // Other inboxes also fund the global Power index. Settle ALL before entry.
+        fees.syncAllExternal();
         if (supply != 0) {
             _harvest(bucket, deadline);
             fees.flushDust(bucket, c.key.currency0); fees.flushDust(bucket, c.key.currency1);
@@ -213,6 +218,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _idle(bucket, p.idle0 + amount0, p.idle1 + amount1);
         _balanceUsing(bucket, deadline, supply != 0);
         uint256 freshCompound;
+        // Settle any payments arriving during external entry calls before weights change.
+        fees.syncAllExternal();
         if (supply != 0) {
             // Fees earned by the entry swap belong to pre-entry membership.
             _harvest(bucket, deadline);
@@ -220,14 +227,22 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             (uint256 f0, uint256 f1) = _pullCompound(bucket);
             freshCompound = _valuePair(c, f0, f1);
         }
-        IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id);
         // Concentrated LP amounts reprice during the entry swap. Preserve that
         // gain/loss for incumbents; only net new assets buy the entrant's shares.
         (oldLP,) = _nav(bucket);
         incumbentNAV = oldLP + oldIdle + freshCompound;
         if (supply != 0 && incumbentNAV == 0) revert InvalidState();
         _put(bucket, supply == 0, minimumLiquidity, deadline);
+        // LP mint/increase can call tokens. Settle late receipts under OLD weights.
+        fees.syncAllExternal();
+        (uint256 late0, uint256 late1) = _pullCompound(bucket);
+        incumbentNAV += _valuePair(c, late0, late1);
         (uint256 newLP, uint256 newIdle) = _nav(bucket);
+        _checkIdle(newLP, newIdle);
+        // A transfer callback during the final pull may queue more receipts/dust.
+        // All remaining dependency calls are static reads or fixed checkpoints.
+        if (fees.hasPendingExternal()) revert InvalidState();
+        IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id);
         if (newLP + newIdle <= incumbentNAV) revert InvalidAmount();
         uint256 netUSD = newLP + newIdle - incumbentNAV;
         if (netUSD < Math.mulDiv(inputUSD, 10000 - c.maxSlippageBps, 10000)) revert Slippage();
@@ -250,6 +265,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         IERC20(token).forceApprove(fees, 0);
     }
     function _harvest(uint256 id, uint256 deadline) private {
+        IZZZFees(access.module(Ids.FEES)).syncExternal(id);
         Position storage p = positions[id];
         PoolConfig memory c = _pool(id);
         uint256 before0 = _tokenBalance(c.key.currency0);

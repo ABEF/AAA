@@ -6,6 +6,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
+import {ZZZRewardReceiver} from "./ZZZRewardReceiver.sol";
 import {IZZZRewards, IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge} from "./interfaces/IZZZ.sol";
 
 contract ZZZFeeController is ZZZModule, ReentrancyGuard {
@@ -20,6 +21,10 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     // further custody hops. Once bound, a local asset cannot change identity.
     mapping(uint256 => mapping(address => address)) public remoteCanonicalToken;
     mapping(address => uint256) public accounted;
+    uint256 public constant MAX_REWARD_RECEIVERS = 16;
+    mapping(uint256 => address) public rewardReceiver;
+    address[] public rewardReceivers;
+    mapping(uint256 => mapping(address => uint256)) public totalExternalFunded;
     // Lifetime counters use canonical token identities. They include allocated
     // but unsent remote reserves and are propagated through every custody hop.
     mapping(uint256 => mapping(address => uint256)) private allocatedPersonal;
@@ -33,7 +38,63 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     event RemoteAssetBound(uint256 indexed bucketId, address indexed token, address indexed canonicalToken);
     event RemoteAccountingImported(uint256 indexed bucketId, address indexed canonicalToken, uint256 individual, uint256 collective, bool canonical);
     event MembershipDustSettled(uint256 indexed bucketId, address indexed token, uint256 amount);
+    event RewardReceiverCreated(uint256 indexed bucketId, address indexed receiver, address token0, address token1, address wrappedNative);
+    event ExternalRewardsFunded(uint256 indexed bucketId, address indexed token, uint256 amount);
     constructor(address controller) ZZZModule(controller) {}
+    function rewardReceiverCount() external view returns (uint256) { return rewardReceivers.length; }
+    /// @notice Append-only funding destination. Governance cannot replace it or sweep payments.
+    function createRewardReceiver(uint256 id, address wrapper) external onlyGovernance nonReentrant returns (address receiver) {
+        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        Position memory p = vault.group(id);
+        IZZZRewards rewards = IZZZRewards(access.module(Ids.REWARDS));
+        if (!access.isSealed() || rewardReceiver[id] != address(0) || rewardReceivers.length == MAX_REWARD_RECEIVERS ||
+            p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != address(vault) ||
+            vault.bucketTotalShares(id) == 0 || !rewards.isAsset(p.homeToken0) || !rewards.isAsset(p.homeToken1)) {
+            revert InvalidConfiguration();
+        }
+        receiver = address(new ZZZRewardReceiver(id, p.homeToken0, p.homeToken1, wrapper));
+        if (receiver == vault.mintProceedsRecipient()) revert InvalidConfiguration();
+        rewardReceiver[id] = receiver;
+        rewardReceivers.push(receiver);
+        emit RewardReceiverCreated(id, receiver, p.homeToken0, p.homeToken1, wrapper);
+    }
+    /// @dev Dispatch has no guard: the immutable inbox calls the guarded allocator.
+    function syncExternal(uint256 id) external {
+        address receiver = rewardReceiver[id];
+        if (receiver != address(0)) ZZZRewardReceiver(payable(receiver)).sync();
+    }
+    /// @notice Bounded global settlement protects the 30% global Power index before entry.
+    function syncAllExternal() external onlyModule(Ids.VAULT) {
+        for (uint256 i; i < rewardReceivers.length; ++i) {
+            ZZZRewardReceiver receiver = ZZZRewardReceiver(payable(rewardReceivers[i]));
+            receiver.sync();
+            // Old sub-ten-unit dust must not cross a global Power membership change.
+            _flushHomeDust(receiver.bucketId(), receiver.token0());
+            _flushHomeDust(receiver.bucketId(), receiver.token1());
+        }
+    }
+    /// @notice Final entry barrier also catches dust queued by nested callbacks.
+    function hasPendingExternal() external view returns (bool) {
+        for (uint256 i; i < rewardReceivers.length; ++i) {
+            ZZZRewardReceiver receiver = ZZZRewardReceiver(payable(rewardReceivers[i]));
+            (uint256 a0, uint256 a1) = receiver.pending();
+            uint256 id = receiver.bucketId();
+            if (a0 != 0 || a1 != 0 || dust[id][receiver.token0()] != 0 || dust[id][receiver.token1()] != 0) return true;
+        }
+        return false;
+    }
+    function allocateExternal(uint256 id, address token, uint256 amount) external nonReentrant {
+        if (rewardReceiver[id] == address(0) || msg.sender != rewardReceiver[id]) revert Unauthorized();
+        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        Position memory p = vault.group(id);
+        if (!access.isSealed() || amount == 0 || p.status == PositionStatus.None || p.status == PositionStatus.Dormant ||
+            p.homeChain != block.chainid || p.homeVault != address(vault) || vault.bucketTotalShares(id) == 0 ||
+            (token != p.homeToken0 && token != p.homeToken1)) revert InvalidState();
+        ExactToken.pull(token, msg.sender, amount);
+        totalExternalFunded[id][token] += amount;
+        _distribute(id, token, amount, true);
+        emit ExternalRewardsFunded(id, token, amount);
+    }
     function _bindRemoteAsset(uint256 id, address token, address canonicalToken) private {
         if (token == address(0) || canonicalToken == address(0)) revert InvalidConfiguration();
         address bound = remoteCanonicalToken[id][token];
@@ -67,6 +128,9 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
             _bindRemoteAsset(id, token, token == c.key.currency0 ? p.homeToken0 : p.homeToken1);
         }
         ExactToken.pull(token, msg.sender, amount);
+        _distribute(id, token, amount, canonical);
+    }
+    function _distribute(uint256 id, address token, uint256 amount, bool canonical) private {
         accounted[token] += amount;
         uint256 total = dust[id][token] + amount;
         uint256 units = total / 10;
@@ -93,17 +157,26 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         if (p.status != PositionStatus.Outbound && p.status != PositionStatus.Active) revert InvalidState();
         uint256 remainder = dust[id][token];
         if (remainder == 0) return;
-        dust[id][token] = 0;
         if (p.homeChain == block.chainid && p.homeVault == msg.sender) {
-            accounted[token] -= remainder;
-            _credit(id, token, remainder, 0);
+            _flushHomeDust(id, token);
+            return;
         } else {
             if (remoteCanonicalToken[id][token] == address(0)) revert InvalidConfiguration();
+            dust[id][token] = 0;
             // Keep the funded reserve here until it is delivered home; flushing
             // at a satellite does not turn dust into local canonical rewards.
             remoteIndividual[id][token] += remainder;
             allocatedPersonal[id][remoteCanonicalToken[id][token]] += remainder;
         }
+        _solvent(token);
+        emit MembershipDustSettled(id, token, remainder);
+    }
+    function _flushHomeDust(uint256 id, address token) private {
+        uint256 remainder = dust[id][token];
+        if (remainder == 0) return;
+        dust[id][token] = 0;
+        accounted[token] -= remainder;
+        _credit(id, token, remainder, 0);
         _solvent(token);
         emit MembershipDustSettled(id, token, remainder);
     }

@@ -82,8 +82,18 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
     if expected_commit is not None:g.check(g.commit==expected_commit,'release_commit','commit.mismatch','Manifest differs from the expected commit')
     home=g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)
     economics=g.obj(config.get('economics'),'economics')
-    g.check(economics.get('reward_model')=='conventional_lp_fees','economics.reward_model',
-        'reward.unsupported','The current implementation supports collected conventional LP fees; hook revenue remains unimplemented')
+    reward_model=economics.get('reward_model')
+    g.check(reward_model in ('conventional_lp_fees','external_funded_revenue'),'economics.reward_model',
+        'reward.unsupported','Choose supported conventional LP fees or actual externally funded revenue; this does not enable native/hooked LP custody')
+    if reward_model=='external_funded_revenue':
+        policy=g.obj(economics.get('external_reward_policy'),'economics.external_reward_policy')
+        for field,expected in {'payment_method':'plain_transfers','allocation_timing':'processing_time',
+            'owner_weights':'bucket_shares','collective_weights':'lifetime_power',
+            'revenue_entitlement':'received_funds_only'}.items():
+            g.check(policy.get(field)==expected,'economics.external_reward_policy.'+field,
+                'reward.policy','External funding uses plain transfers and the current funded share/Power indexes, without guaranteed historical revenue')
+        g.text(policy.get('source_description'),'economics.external_reward_policy.source_description')
+        g.proof(policy.get('terms_evidence'),'economics.external_reward_policy.terms_evidence')
     g.check(g.num(economics.get('mint_price_wei'),'economics.mint_price_wei')==50_000_000_000_000_000,
         'economics.mint_price_wei','mint.price','Implemented mint price is exactly 0.05 ETH')
     g.check(g.num(economics.get('minimum_activation_usd18'),'economics.minimum_activation_usd18')==500*10**18,
@@ -154,6 +164,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(constructor.get('canonical_chain_id')==home and type(constructor.get('canonical_chain_id')) is int,
             path+'.constructor.canonical_chain_id','canonical.mismatch','Every vault must share the canonical chain ID')
         recipient=g.hex(constructor.get('mint_proceeds_recipient'),path+'.constructor.mint_proceeds_recipient',20)
+        constructor['mint_proceeds_recipient']=recipient
         g.check(recipient not in addresses,path+'.constructor.mint_proceeds_recipient','mint.custody','Mint proceeds must stay outside protocol custody/reward modules')
         g.proof(constructor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
         g.text(constructor.get('nft_base_uri'),path+'.constructor.nft_base_uri')
@@ -246,7 +257,8 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         for pi,item in enumerate(g.items(chain.get('pools'),path+'.pools')):
             pp=path+f'.pools[{pi}]';pool=g.obj(item,pp);pid=g.hex(pool.get('pool_id'),pp+'.pool_id')
             t0=g.hex(pool.get('currency0'),pp+'.currency0',20);t1=g.hex(pool.get('currency1'),pp+'.currency1',20)
-            fee=g.num(pool.get('fee'),pp+'.fee',1,100000);spacing=g.num(pool.get('tickSpacing'),pp+'.tickSpacing',1,32767)
+            fee=g.num(pool.get('fee'),pp+'.fee',0 if reward_model=='external_funded_revenue' else 1,100000)
+            spacing=g.num(pool.get('tickSpacing'),pp+'.tickSpacing',1,32767)
             g.check(pool.get('hooks')==ZERO,pp+'.hooks','pool.hook','Native/hooked pools are unsupported, including the selected Robinhood pool')
             g.check(t0 is not None and t1 is not None and t0<t1 and t0 in tokens and t1 in tokens,
                 pp,'pool.assets','Sorted supported ERC20 currencies with reviewed feeds/reward eligibility are required')
@@ -264,6 +276,82 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             if pid:g.check(pid not in pools,pp+'.pool_id','pool.duplicate','Pool IDs must be unique');pools[pid]=pool
         pool_ids[cid]=pools
     g.check(home in chains,'canonical_chain_id','canonical.absent','Canonical chain must be present in the inventory')
+    total_receivers=0
+    for cid,chain in chains.items():
+        path=f'chains[{cid}].external_rewards'
+        external=chain.get('external_rewards')
+        if external is None:
+            if reward_model=='external_funded_revenue' and cid==home:
+                g.check(False,path,'reward.inventory','External funding requires the canonical receiver inventory and exact-block observations')
+            continue
+        external=g.obj(external,path)
+        count=g.num(external.get('receiver_count'),path+'.receiver_count',0,16)
+        records=g.items(external.get('receivers'),path+'.receivers',required=False)
+        g.check(count==len(records),path,'reward.inventory','Count must match complete verified RewardReceiverCreated history and current receiver getters')
+        g.proof(external.get('observation_evidence'),path+'.observation_evidence')
+        g.check(cid==home or not records,path,'reward.canonical','External receiver funding is canonical-only; satellites use authenticated reward transport')
+        if reward_model!='external_funded_revenue':
+            g.check(not records,path,'reward.model','Declare external_funded_revenue when registered receivers may accept payments')
+        seen_receivers=set();seen_buckets=set()
+        modules=chain.get('modules',{});fees=modules.get('fees',{}).get('address')
+        vault=modules.get('vault',{}).get('address')
+        observed=chain.get('observed_block') if isinstance(chain.get('observed_block'),dict) else {}
+        for index,item in enumerate(records):
+            rp=path+f'.receivers[{index}]';record=g.obj(item,rp)
+            receiver=g.hex(record.get('address'),rp+'.address',20)
+            g.hex(record.get('runtime_hash'),rp+'.runtime_hash')
+            bucket=g.num(record.get('bucket_id'),rp+'.bucket_id',1)
+            origin=g.hex(record.get('home_pool_id'),rp+'.home_pool_id')
+            token0=g.hex(record.get('token0'),rp+'.token0',20)
+            token1=g.hex(record.get('token1'),rp+'.token1',20)
+            wrapper=g.hex(record.get('wrapped_native'),rp+'.wrapped_native',20,zero=True)
+            bound_fees=g.hex(record.get('fees'),rp+'.fees',20)
+            pool=pool_ids.get(home,{}).get(origin,{})
+            g.check(cid==home and bound_fees is not None and bound_fees==fees,
+                rp,'reward.binding','Receiver must bind the canonical fee controller')
+            g.check(bool(pool) and (token0,token1)==(pool.get('currency0'),pool.get('currency1')),
+                rp,'reward.assets','Immutable receiver currencies must match the original canonical pool and admitted assets')
+            computed=None
+            if None not in (home,vault,origin):computed=int(identity([(home,'uint256'),(vault,'address'),(origin,'bytes32')]),16)
+            g.check(bucket is not None and computed==bucket,rp+'.bucket_id','reward.bucket',
+                'Receiver bucket must hash canonical chain, vault and permanent original home pool')
+            g.check(receiver not in seen_receivers and bucket not in seen_buckets,rp,'reward.duplicate',
+                'One immutable receiver per canonical bucket; addresses and buckets must be unique')
+            seen_receivers.add(receiver);seen_buckets.add(bucket)
+            constructor=chain.get('constructor') if isinstance(chain.get('constructor'),dict) else {}
+            g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and receiver!=constructor.get('mint_proceeds_recipient'),
+                rp+'.address','reward.custody','Reward receivers must be separate from modules and the mint-proceeds recipient')
+            g.check(record.get('immutable_configuration') is True and record.get('upgradeable') is False,
+                rp,'reward.mutable','Receiver code and bucket/currency/wrapper bindings must be immutable and reviewed')
+            g.check(type(record.get('observed_chain_id')) is int and record.get('observed_chain_id')==cid and
+                record.get('observed_receiver')==receiver and record.get('observed_fee_receiver')==receiver and
+                type(record.get('observed_block_number')) is int and record.get('observed_block_number')==observed.get('number') and
+                record.get('observed_block_hash')==observed.get('hash'),rp,'reward.observation',
+                'Receiver code/getters and Fees.rewardReceiver(bucket) must be observed at the exact confirmed inventory block')
+            bindings=g.obj(record.get('observed_bindings'),rp+'.observed_bindings')
+            observed_bucket=g.num(bindings.get('bucket_id'),rp+'.observed_bindings.bucket_id',1)
+            g.num(record.get('observed_total_shares'),rp+'.observed_total_shares',1)
+            g.check(observed_bucket==bucket and all(bindings.get(key)==value for key,value in
+                {'fees':bound_fees,'token0':token0,'token1':token1,'wrapped_native':wrapper}.items()),
+                rp+'.observed_bindings','reward.observation','Observed immutable getters must match every reviewed receiver binding')
+            review=g.proof(record.get('review_evidence'),rp+'.review_evidence')
+            g.check(review.get('independent') is True,rp+'.review_evidence','reward.review','An independent receiver/wrapper admission review is required')
+            g.text(review.get('reviewer'),rp+'.review_evidence.reviewer')
+            if wrapper is not None and wrapper!=ZERO:
+                wrapped=token_maps.get(home,{}).get(wrapper,{})
+                g.check(wrapper in (token0,token1) and wrapped.get('decimals')==18,
+                    rp+'.wrapped_native','reward.wrapper','Native wrapping requires an admitted 18-decimal original pool currency')
+                wr=g.obj(record.get('wrapper_review'),rp+'.wrapper_review')
+                code=g.hex(wr.get('runtime_hash'),rp+'.wrapper_review.runtime_hash')
+                token_code=wrapped.get('runtime_hash')
+                g.check(wr.get('address')==wrapper and code is not None and isinstance(token_code,str) and code==token_code.lower() and
+                    wr.get('upgradeable') is False and wr.get('conversion')=='deposit:exact_1_to_1',
+                    rp+'.wrapper_review','reward.wrapper','Review immutable one-for-one native deposit behavior and the exact inventoried wrapper runtime')
+                g.proof(wr.get('evidence'),rp+'.wrapper_review.evidence')
+            else:g.check(record.get('wrapper_review') is None,rp+'.wrapper_review','reward.wrapper','An ERC20-only receiver must not declare native wrapping')
+        total_receivers+=len(records) if cid==home else 0
+    if reward_model=='external_funded_revenue':
+        g.check(total_receivers>0,'economics.reward_model','reward.inventory','External revenue mode requires at least one independently reviewed canonical receiver')
     reservations={}
     for cid,chain in chains.items():
         inventory={};path=f'chains[{cid}].bucket_reservations'
