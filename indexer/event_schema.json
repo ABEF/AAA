@@ -456,6 +456,27 @@
     "name": "ExternalRewardsFunded",
     "signature": "ExternalRewardsFunded(uint256,address,uint256)"
   },
+  "0x50e2b2b9ab2f28ec350dfef5f8d85818a1dd022acedec4f760ffd3638be6b30a": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "palette",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "pattern",
+        "type": "uint8"
+      }
+    ],
+    "name": "ArtworkFinalized",
+    "signature": "ArtworkFinalized(uint256,uint8,uint8)"
+  },
   "0x573ecbd82bb44aa34b4cfe9a63c5beccf84cfbdbe01028c886f25d5c3183e725": {
     "fields": [
       {

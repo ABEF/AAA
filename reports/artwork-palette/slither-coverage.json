@@ -1,0 +1,19 @@
+{
+  "review_coverage_pass": true,
+  "independent_audit": false,
+  "errors": [],
+  "native_findings": 179,
+  "review_entries": 179,
+  "reviewed_source_and_configuration_files": 29,
+  "matching": {
+    "exact_previous_review": 171,
+    "existing_opted_in_write_atoms_native_regrouping": 1,
+    "fresh_individual_review": 3,
+    "individually_rechecked_NFT_line_location_shift": 4
+  },
+  "dispositions": {
+    "false_positive": 110,
+    "accepted_risk": 42,
+    "informational": 27
+  }
+}

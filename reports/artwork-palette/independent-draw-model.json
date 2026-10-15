@@ -1,0 +1,40 @@
+{
+  "kind": "independent_dense_list_reference_for_sparse_without_replacement_draw",
+  "pass": true,
+  "independent_external_audit": false,
+  "catalogue_sha256": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+  "source_sha256_lf": {
+    "src/ZZZNFT.sol": "daea14c7a12ef0328e3f718914cf186c8cc61d5b32951ef0ecb59339b655e2e2",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606"
+  },
+  "pattern_order": [
+    "arcs",
+    "panels",
+    "orbits",
+    "ribs"
+  ],
+  "encoding_factor": 4,
+  "catalogue_entries_byte_exact": true,
+  "seed_sequences": "0: all-zero; 1: always-last; 2: uint256-max; 3..99: deterministic Python Random full-width words",
+  "rarities": {
+    "commun": {
+      "entries": 600,
+      "word_sequences": 100,
+      "all_indices_consumed_once": true,
+      "maximum_complete_artwork_copies": 4
+    },
+    "rare": {
+      "entries": 300,
+      "word_sequences": 100,
+      "all_indices_consumed_once": true,
+      "maximum_complete_artwork_copies": 2
+    },
+    "legendary": {
+      "entries": 100,
+      "word_sequences": 100,
+      "all_indices_consumed_once": true,
+      "maximum_complete_artwork_copies": 1
+    }
+  },
+  "total_draws_checked": 100000
+}

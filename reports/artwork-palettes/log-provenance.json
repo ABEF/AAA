@@ -1,0 +1,23 @@
+[
+  {
+    "file": "solidity-tests.log",
+    "native_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\artwork-palette-four-pattern-contract-20261015\\solidity-tests.log",
+    "native_sha256": "3eda99ac8275d20ed0161aee6e1fdc6c3fa36e72a0fc5c2e8b62825f3648fc40",
+    "copy_sha256": "6e2532450e90d26c22d5f9072237da06a756561c01154d8b7c5be4da0cf951ce",
+    "normalization": "CRLF to LF only"
+  },
+  {
+    "file": "forge-build-sizes.log",
+    "native_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\artwork-palette-four-pattern-contract-20261015\\forge-build-sizes.log",
+    "native_sha256": "8a43565eb1552b73e6bc09bd5b68c52414129ea6dbe874b5031586c542ef5ba6",
+    "copy_sha256": "6af341849caf2c28c0f142f0f4f8fd2e533c328e925242e11d57c22df55b38ef",
+    "normalization": "CRLF to LF only"
+  },
+  {
+    "file": "python-portable.log",
+    "native_path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\artwork-palette-four-pattern-contract-20261015\\python-portable.log",
+    "native_sha256": "20c968f81f28352e376c35adc0f08f4a0f22f41bf5d05e8fd430237f3d8db435",
+    "copy_sha256": "9c01c06fd9dc05264b62e1b4bf794100ad8250370a0f54c599562f231161c062",
+    "normalization": "CRLF to LF only"
+  }
+]

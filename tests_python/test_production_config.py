@@ -34,7 +34,7 @@ def nft_inventory(chain):
             'review_evidence':dict(proof(),independent=True)},
         'observed_chain_id':cid,'observed_block_number':chain['observed_block']['number'],
         'observed_block_hash':chain['observed_block']['hash'],'observed_bindings':bindings,
-        'artwork_publication':{'base_uri':artwork_base,'manifest_sha256':asset_manifest,'asset_count':72,'asset_paths':list(GATE.ARTWORK_FILES),
+        'artwork_publication':{'base_uri':artwork_base,'manifest_sha256':asset_manifest,'asset_count':len(GATE.ARTWORK_FILES),'asset_paths':list(GATE.ARTWORK_FILES),
             'review_evidence':dict(proof(),independent=True,kind='content_addressed_artwork_review',base_uri=artwork_base,
                 asset_manifest_sha256=asset_manifest)},
         'royalty_assets':{'asset_count':1,'complete_admission_history':True,'observation_evidence':proof(),

@@ -5,6 +5,8 @@ import {Vm} from "forge-std/Vm.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
+import {ZZZArtwork} from "../src/libraries/ZZZArtwork.sol";
+import {ZZZNFTMetadata, NFTMetadataInput} from "../src/ZZZNFTMetadata.sol";
 import {Ids, Position, PositionStatus, PoolConfig, PoolKey} from "../src/libraries/ZZZTypes.sol";
 import {MockAccess, MockToken, MockFeed, MockPools} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
@@ -151,7 +153,8 @@ contract NFTMetadataTest is Test {
         assertEq(vault.sharesOf(1), 0); assertEq(nft.royaltyRewards().weightOf(1), 0);
         vm.prank(ALICE); nft.transferFrom(ALICE, BOB, 1);
         vrf.fulfill(nft.requestOf(1), 999, 4); nft.finalizeTraits(1);
-        assertEq(nft.ownerOf(1), BOB); assertEq(nft.rarityOf(1), 2); assertEq(nft.colorOf(1), 4);
+        assertEq(nft.ownerOf(1), BOB); assertEq(nft.rarityOf(1), 2); assertEq(nft.colorOf(1), 2);
+        assertEq(nft.paletteOf(1), 45); assertEq(nft.patternOf(1), 2);
         assertEq(vrf.sequence(), 1); assertEq(nft.mintedCount(), 1);
     }
 
@@ -166,10 +169,13 @@ contract NFTMetadataTest is Test {
         assertEq(nft.nextToFinalize(), 3);
     }
 
-    function testFuzzInitialRarityOddsAndIndependentColor(uint256 rarityWord, uint256 colorWord) public {
+    function testFuzzInitialRarityOddsAndIndependentArtwork(uint256 rarityWord, uint256 colorWord) public {
         _reveal(1, rarityWord, colorWord); uint256 roll = rarityWord % 1000;
-        assertEq(nft.rarityOf(1), roll < 600 ? 0 : roll < 900 ? 1 : 2);
-        assertEq(nft.colorOf(1), colorWord % 6);
+        uint8 rarity = roll < 600 ? 0 : roll < 900 ? 1 : 2;
+        assertEq(nft.rarityOf(1), rarity);
+        (uint8 palette, uint8 pattern) = ZZZArtwork.item(rarity, colorWord % (rarity == 0 ? 600 : rarity == 1 ? 300 : 100));
+        assertEq(nft.paletteOf(1), palette); assertEq(nft.patternOf(1), pattern);
+        assertEq(nft.colorOf(1), ZZZArtwork.primaryColor(palette));
     }
 
     function testInitialRarityBoundaries() public {
@@ -177,18 +183,24 @@ contract NFTMetadataTest is Test {
         uint256[6] memory expected = [uint256(0), 0, 1, 1, 2, 2];
         for (uint256 i; i < words.length; ++i) {
             uint256 snapshot = vm.snapshotState(); _reveal(1, words[i], i);
-            assertEq(nft.rarityOf(1), expected[i]); assertEq(nft.colorOf(1), i);
+            assertEq(nft.rarityOf(1), expected[i]);
             assertTrue(vm.revertToState(snapshot));
         }
     }
 
     function testFullSupplyConsumesExactQuotasAndCannotRequestMint1001() public {
-        uint256[3] memory counts;
+        uint256[3] memory counts; uint256[9] memory styleRarity; uint256[696] memory artworkCopies;
         for (uint256 i = 1; i <= 1000; ++i) {
             _reveal(i, uint256(keccak256(abi.encode(i, "rarity"))), uint256(keccak256(abi.encode(i, "color"))));
-            ++counts[nft.rarityOf(i)];
+            uint8 rarity = nft.rarityOf(i); uint8 palette = nft.paletteOf(i); uint8 pattern = nft.patternOf(i);
+            assertLt(palette, 58); assertLt(pattern, 4);
+            ++counts[rarity]; ++styleRarity[(palette < 8 ? 0 : palette < 30 ? 1 : 2) * 3 + rarity];
+            uint256 copies = ++artworkCopies[uint256(rarity) * 232 + uint256(palette) * 4 + pattern];
+            assertLe(copies, rarity == 2 ? 1 : 4);
         }
         assertEq(counts[0], 600); assertEq(counts[1], 300); assertEq(counts[2], 100);
+        uint256[9] memory expected = [uint256(120), 60, 20, 300, 150, 50, 180, 90, 30];
+        for (uint256 i; i < expected.length; ++i) assertEq(styleRarity[i], expected[i]);
         assertEq(nft.mintedCount(), 1000); assertEq(nft.remainingToReveal(), 0); assertEq(nft.nextToFinalize(), 1001);
         for (uint256 i; i < 3; ++i) assertEq(nft.rarityRemaining(i), 0);
         vm.expectRevert(); vault.mint(ALICE, 1001);
@@ -197,10 +209,12 @@ contract NFTMetadataTest is Test {
 
     function testTraitsStayFixedThroughActivationTopUpAndTransfer() public {
         _reveal(1, 950, 5); assertEq(nft.royaltyRewards().weightOf(1), 0); _stage(1, 0);
+        assertEq(nft.paletteOf(1), 5); assertEq(nft.patternOf(1), 1);
         vault.contribute(1, 100, 100); assertEq(nft.royaltyRewards().weightOf(1), 3);
         vault.contribute(1, 200, 200); assertEq(nft.royaltyRewards().totalWeight(), 3);
         vm.prank(ALICE); nft.transferFrom(ALICE, BOB, 1);
         assertEq(nft.rarityOf(1), 2); assertEq(nft.colorOf(1), 5); assertEq(nft.royaltyRewards().weightOf(1), 3);
+        assertEq(nft.paletteOf(1), 5); assertEq(nft.patternOf(1), 1);
         assertEq(vrf.sequence(), 1); assertEq(nft.mintedCount(), 1);
     }
 
@@ -231,9 +245,9 @@ contract NFTMetadataTest is Test {
         uint8 state; (available, state) = nft.evolution(1); assertFalse(available); assertEq(state, 1);
         string memory json = _json(1);
         assertFalse(vm.parseJsonBool(json, ".valuation_available"));
-        assertEq(vm.parseJsonString(json, ".attributes[2].value"), "Valuation unavailable");
-        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/crimson-legendary-activated.png");
-        assertEq(vm.parseJsonUint(json, ".attributes[3].value"), 3);
+        assertEq(_stringAttribute(json, "Evolution"), "Valuation unavailable");
+        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/crimson-panels-legendary-activated.svg");
+        assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 3);
         ZZZRoyaltyRewards royaltyReceiver = nft.royaltyRewards();
         vm.deal(address(royaltyReceiver), 1 ether);
         vm.prank(ALICE); assertEq(royaltyReceiver.claim(1, address(0)), 1 ether - 1);
@@ -282,12 +296,64 @@ contract NFTMetadataTest is Test {
     function testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert() public {
         vault.mint(ALICE, 1); string memory json = _json(1);
         assertEq(vm.parseJsonString(json, ".attributes[0].value"), "Unrevealed");
-        assertEq(vm.parseJsonString(json, ".attributes[2].value"), "Dormant");
-        assertEq(vm.parseJsonUint(json, ".attributes[3].value"), 0);
-        vrf.fulfill(nft.requestOf(1), 0, 0); nft.finalizeTraits(1); json = _json(1);
-        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/cyan-commun-dormant.png");
+        assertEq(_stringAttribute(json, "Evolution"), "Dormant");
+        assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 0);
+        vrf.fulfill(nft.requestOf(1), 0, 54); nft.finalizeTraits(1); json = _json(1);
+        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/cyan-orbits-commun-dormant.svg");
+        assertEq(_stringAttribute(json, "Color style"), "Monochrome");
+        assertEq(_stringAttribute(json, "Palette"), "Cyan");
+        assertEq(_stringAttribute(json, "Color 1"), "Cyan");
+        assertEq(_stringAttribute(json, "Circuit pattern"), "Orbital rings");
         assertEq(vm.parseJsonString(json, ".lp_value_usd_18"), "0");
         vm.expectRevert(); nft.tokenURI(2); vm.expectRevert(); nft.evolution(2);
+    }
+
+    function testZeroWordsConsumeTheFullInventoryWithoutArtworkRerollsOrQuotaLoss() public {
+        uint256[696] memory copies;
+        for (uint256 id = 1; id <= 1000; ++id) {
+            _reveal(id, 0, 0);
+            uint8 rarity = nft.rarityOf(id); uint8 palette = nft.paletteOf(id); uint8 pattern = nft.patternOf(id);
+            uint256 count = ++copies[uint256(rarity) * 232 + uint256(palette) * 4 + pattern];
+            assertLe(count, rarity == 2 ? 1 : 4);
+        }
+        assertEq(nft.remainingToReveal(), 0);
+        assertEq(nft.rarityOf(600), 0); assertEq(nft.rarityOf(601), 1);
+        assertEq(nft.rarityOf(900), 1); assertEq(nft.rarityOf(901), 2);
+    }
+
+    function testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight() public {
+        _reveal(1, 0, 3); // Onyx / Orbital rings, Commun.
+        string memory json = _json(1);
+        assertEq(_stringAttribute(json, "Palette"), "Onyx");
+        assertEq(_stringAttribute(json, "Color style"), "Monochrome");
+        _reveal(2, 0, 5); // Violet / Crimson / Ivory, Commun.
+        json = _json(2);
+        assertEq(_stringAttribute(json, "Color style"), "Tricolor");
+        assertEq(_stringAttribute(json, "Palette"), "Violet / Crimson / Ivory");
+        assertEq(_stringAttribute(json, "Color 1"), "Violet");
+        assertEq(_stringAttribute(json, "Color 2"), "Crimson");
+        assertEq(_stringAttribute(json, "Color 3"), "Ivory");
+        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/violet-crimson-ivory-ribs-commun-dormant.svg");
+        assertEq(_stringAttribute(json, "Circuit pattern"), "Vertical ribs");
+        vault.contribute(1, 100, 200); vault.contribute(2, 100, 200);
+        assertEq(nft.royaltyRewards().weightOf(1), 1); assertEq(nft.royaltyRewards().weightOf(2), 1);
+        assertEq(nft.royaltyRewards().totalWeight(), 2);
+    }
+
+    function _attributeIndex(string memory json, string memory trait) private pure returns (string memory) {
+        for (uint256 i; i < 9; ++i) {
+            string memory prefix = string.concat(".attributes[", vm.toString(i), "]");
+            if (keccak256(bytes(vm.parseJsonString(json, string.concat(prefix, ".trait_type")))) == keccak256(bytes(trait))) {
+                return string.concat(prefix, ".value");
+            }
+        }
+        revert("Attribute missing");
+    }
+    function _stringAttribute(string memory json, string memory trait) private pure returns (string memory) {
+        return vm.parseJsonString(json, _attributeIndex(json, trait));
+    }
+    function _uintAttribute(string memory json, string memory trait) private pure returns (uint256) {
+        return vm.parseJsonUint(json, _attributeIndex(json, trait));
     }
 
     function _json(uint256 id) private view returns (string memory) {

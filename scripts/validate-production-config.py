@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import sys
 import time
+from itertools import combinations
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,8 +25,19 @@ MODULES = ('access','vault','nft','liquidity','rewards','membership','fees','str
 EVIDENCE = ('toolchain','static_analysis','invariants','uniswap_fork',
     'staging','operations_recovery','gas_benchmarks','deployment_review','economic_approval',
     'independent_audit','remediation')
-ARTWORK_FILES = tuple(f'{color}-{rarity}-{stage}.png' for color in
-    ('cyan','blue','violet','emerald','amber','crimson') for rarity in ('commun','rare','legendary')
+ARTWORK_COLORS = ('cyan','blue','violet','emerald','amber','crimson','ivory','onyx')
+ARTWORK_ANCHORS = frozenset(('amber','crimson','ivory','onyx'))
+ARTWORK_ADDITIONS = frozenset(('amber','crimson','onyx'))
+ARTWORK_PATTERNS = ('arcs','panels','orbits','ribs')
+def allowed_artwork_palette(colors):
+    if len(colors)==1:return True
+    if len(colors)==2:return bool(ARTWORK_ANCHORS.intersection(colors))
+    return any(color in ARTWORK_ADDITIONS and ARTWORK_ANCHORS.intersection(
+        other for other in colors if other!=color) for color in colors)
+ARTWORK_PALETTES = tuple('-'.join(colors) for count in (1,2,3)
+    for colors in combinations(ARTWORK_COLORS,count) if allowed_artwork_palette(colors))
+ARTWORK_FILES = tuple(f'{palette}-{pattern}-{rarity}-{stage}.svg' for palette in ARTWORK_PALETTES
+    for pattern in ARTWORK_PATTERNS for rarity in ('commun','rare','legendary')
     for stage in ('dormant','activated','enhanced','singularity'))
 ROUTE_FIELDS = (('sourceChain','uint256'),('sourceAdapter','address'),('sourceVault','address'),
     ('sourceReceiver','address'),('destinationChain','uint256'),('destinationAdapter','address'),
@@ -234,9 +246,9 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             manifest_hash=g.hex(artwork.get('manifest_sha256'),ap+'.manifest_sha256',prefix=False)
             files=g.items(artwork.get('asset_paths'),ap+'.asset_paths')
             g.check(artwork.get('base_uri')==artwork_base and isinstance(artwork_base,str) and
-                g.num(artwork.get('asset_count'),ap+'.asset_count',1)==72 and len(files)==72 and
+                g.num(artwork.get('asset_count'),ap+'.asset_count',1)==len(ARTWORK_FILES) and len(files)==len(ARTWORK_FILES) and
                 all(isinstance(value,str) for value in files) and set(files)==set(ARTWORK_FILES),
-                ap,'nft.artwork','Content publication must inventory exactly the 72 supported six-color/three-rarity/four-evolution PNG paths')
+                ap,'nft.artwork','Content publication must inventory exactly the 2,784 supported 58-palette/four-pattern/three-rarity/four-evolution SVG paths')
             publication=g.proof(artwork.get('review_evidence'),ap+'.review_evidence')
             g.check(publication.get('independent') is True and publication.get('kind')=='content_addressed_artwork_review' and
                 publication.get('base_uri')==artwork_base and isinstance(artwork_base,str) and

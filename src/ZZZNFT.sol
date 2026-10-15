@@ -8,6 +8,7 @@ import {Ids} from "./libraries/ZZZTypes.sol";
 import {IZZZVault} from "./interfaces/IZZZ.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
 import {ZZZNFTMetadata, NFTMetadataInput} from "./ZZZNFTMetadata.sol";
+import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
 
 /// @dev Minimal official VRF v2.5 subscription ABI. A matching selector does not
 /// prove a coordinator verifies VRF proofs; actual network support, coordinator,
@@ -49,6 +50,12 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     mapping(uint256 => bool) public traitsReady;
     mapping(uint256 => uint8) public rarityOf;
     mapping(uint256 => uint8) public colorOf;
+    mapping(uint256 => uint8) public paletteOf;
+    mapping(uint256 => uint8) public patternOf;
+    // Sparse Fisher-Yates indices, encoded plus one so zero denotes identity.
+    // Each rarity owns a finite, immutable artwork inventory independent of the
+    // rarity draw. Neither owners nor governance can choose or reroll artwork.
+    mapping(uint8 => mapping(uint256 => uint16)) private artworkDraw;
     struct RandomnessResult {
         uint256 nftId;
         uint256 rarityWord;
@@ -63,6 +70,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     event RandomnessRequested(uint256 indexed nftId, uint256 indexed requestId, uint256 indexed ordinal);
     event RandomnessReceived(uint256 indexed requestId);
     event TraitsFinalized(uint256 indexed nftId, uint8 rarity, uint8 color);
+    event ArtworkFinalized(uint256 indexed nftId, uint8 palette, uint8 pattern);
     event MetadataUpdate(uint256 tokenId);
     event BatchMetadataUpdate(uint256 fromTokenId, uint256 toTokenId);
 
@@ -129,11 +137,27 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         uint256 rarityRoll = result.rarityWord % remainingToReveal;
         uint8 rarity = rarityRoll < rarityRemaining[0] ? 0 :
             rarityRoll < uint256(rarityRemaining[0]) + rarityRemaining[1] ? 1 : 2;
+        (uint8 palette, uint8 pattern) = _drawArtwork(rarity, result.colorWord, rarityRemaining[rarity]);
         --rarityRemaining[rarity]; --remainingToReveal; ++nextToFinalize;
-        rarityOf[id] = rarity; colorOf[id] = uint8(result.colorWord % 6);
+        rarityOf[id] = rarity; paletteOf[id] = palette; patternOf[id] = pattern;
+        colorOf[id] = ZZZArtwork.primaryColor(palette);
         traitsReady[id] = true;
         emit TraitsFinalized(id, rarity, colorOf[id]);
+        emit ArtworkFinalized(id, palette, pattern);
         emit MetadataUpdate(id);
+    }
+
+    function _drawArtwork(uint8 rarity, uint256 word, uint256 remaining) private returns (uint8, uint8) {
+        uint256 draw = word % remaining;
+        uint16 stored = artworkDraw[rarity][draw];
+        uint256 entry = stored == 0 ? draw : uint256(stored) - 1;
+        uint256 last = remaining - 1;
+        if (draw != last) {
+            uint16 replacement = artworkDraw[rarity][last];
+            artworkDraw[rarity][draw] = replacement == 0 ? uint16(last + 1) : replacement;
+        }
+        delete artworkDraw[rarity][last];
+        return ZZZArtwork.item(rarity, entry);
     }
 
     /// @notice Called after the Vault commits successful share issuance.
@@ -180,7 +204,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         (bool available, uint256 value) = currentLPValue(id);
         uint8 weight = uint8(royaltyRewards.weightOf(id));
         uint8 stage = weight == 0 ? 0 : value >= 10000e18 ? 3 : value >= 1000e18 ? 2 : 1;
-        return metadataRenderer.render(NFTMetadataInput(id, rarityOf[id], colorOf[id], stage, traitsReady[id],
+        return metadataRenderer.render(NFTMetadataInput(id, rarityOf[id], paletteOf[id], patternOf[id], stage, traitsReady[id],
             available, value, weight, metadataBase));
     }
 

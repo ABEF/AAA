@@ -20,7 +20,7 @@ NFT-sale royalties use an independent ledger. Marketplaces are asked for **5%** 
 
 Verifiable random draws without replacement allocate exactly **600 Commun, 300 Rare and 100 Legendary** after the full 1,000 reveals. The initial 60/30/10 odds change with remaining quotas. Callbacks store words, and finalization follows mint order. No reroll, cancellation or owner-selected traits exists. A pending earlier fulfillment blocks later reveal and activation.
 
-Color and rarity remain fixed. Current artwork has six palettes and four evolution states. Evolution follows current attached LP market value: Activated after initial activation, Enhanced from $1,000, Singularity from $10,000; market losses can lower the visual state. Activation and royalty membership remain permanent. Unavailable remote/oracle valuation is explicitly labelled rather than invented. [Metadata details](NFT_METADATA.md).
+Rarity, palette and circuit pattern remain fixed. Eight base colors form 58 monochrome/bicolor/tricolor palettes, combined with four circuit patterns and four evolution states. The finite 1,000-entry visual inventory contains 200 monochrome, 500 bicolor and 300 tricolor NFTs, each style maintaining the 60/30/10 rarity composition. An identical palette/pattern/rarity appears at most four times; Legendary finished artwork has no duplicates. These visual traits have no economic weight. Evolution follows current attached LP market value: Activated after initial activation, Enhanced from $1,000, Singularity from $10,000; market losses can lower the visual state. Activation and royalty membership remain permanent. Unavailable remote/oracle valuation is explicitly labelled rather than invented. [Metadata details](NFT_METADATA.md).
 
 ## Custody and integration boundary
 

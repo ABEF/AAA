@@ -1,0 +1,124 @@
+{
+  "kind": "fresh_current_source_internal_slither_review",
+  "date": "2026-10-15",
+  "independent_audit": false,
+  "security_audit_pass": false,
+  "analyzer": "slither-analyzer0.11.6",
+  "build_exit_code": 0,
+  "analyzer_success": true,
+  "native_windows_analyzer_exit_code": 4294967295,
+  "exit_code_note": "Windows represents Slither findings exit -1 as uint32 4294967295; JSON success and complete review coverage are checked separately.",
+  "source_snapshot_unchanged": true,
+  "source_sha256_lf": {
+    "src/base/ZZZModule.sol": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+    "src/interfaces/IZZZ.sol": "2918fd97b5fee9023dec1aeaa32e0fe50fad12cb595249476af5994a4170118f",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZTypes.sol": "0ca97dd1e79eedd2320e1e29b9a046ce1ddeb2a0cbc6539634394d2e5a65bc5b",
+    "src/ZZZAccessController.sol": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+    "src/ZZZBridgeAdapter.sol": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "74843072ac083cc49d79020ad0cb4db984a056662106f7eaaf1164b2d71c823d",
+    "src/ZZZCompounder.sol": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+    "src/ZZZFeeController.sol": "74a05b39955e26b774f6ce37fdbcaf0addc18ca4ddeb76457615082bb92069e6",
+    "src/ZZZLiquidityManager.sol": "8f7f89ba0a5b09e8247b832b15b7861a7af4b074c3ea6211a42e99c7d8e8d431",
+    "src/ZZZMembership.sol": "7139d52ae4e58259c5682d8bd3d382e2d3f6a773d868a026279a1fa288322b20",
+    "src/ZZZMigration.sol": "61410a194feaa20cd13af5a4fac491459fdd5f06d7aafd05511eac22eb56dd04",
+    "src/ZZZMigrationReceiver.sol": "d85bec31f018219bedd532dcdf069b7271bc3b633bdc24320ec1d9ce4269212e",
+    "src/ZZZMigrationRegistry.sol": "415c55f3ce4142725d9e16f14f3bf16ee009e77b38f304b248500ab437c6b25b",
+    "src/ZZZNFT.sol": "daea14c7a12ef0328e3f718914cf186c8cc61d5b32951ef0ecb59339b655e2e2",
+    "src/ZZZNFTMetadata.sol": "6cdd8e95158db8a09c109dc874b2e0d36e9b878f2a9670f26d211f4b48d8cd00",
+    "src/ZZZOracle.sol": "0280b2b5ab562cebe2f4b64fe6f2942fae009ddf79e521b8b347e6695c545106",
+    "src/ZZZPoolRegistry.sol": "e6c6df06e07745a8aa91334f6a576d103946fca6c9bcac2f64b4f38ca2e7d732",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "src/ZZZRewards.sol": "b1270b56ceda95c08d9afe7f4b5cea18244ab06373dd8b41c99f4aba3322fe2a",
+    "src/ZZZRoyaltyRewards.sol": "21fc2c747418a980b6cb199c27d1e1d64092067fb8692c0971a271d5c5a334ff",
+    "src/ZZZStrategy.sol": "12cfbaa52fdb44b9d33f1ec294c07f04aff7f42cc33bd955546ee0cf3b3b5561",
+    "src/ZZZVault.sol": "1d13e0c267d10c979801b3529f13ebb5fa2a96f80ac03b27cc4b4206b20969fd",
+    "foundry.toml": "7d0537454ed4fbd912ec355fee4f1ccf457e6ce1105855cf6f1844c552eb0f91",
+    "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+    "slither.config.json": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f"
+  },
+  "native_findings": 179,
+  "by_impact": {
+    "High": 29,
+    "Medium": 65,
+    "Low": 58,
+    "Informational": 22,
+    "Optimization": 5
+  },
+  "detector_counts": {
+    "arbitrary-send-erc20": 1,
+    "arbitrary-send-eth": 1,
+    "cache-array-length": 5,
+    "calls-loop": 28,
+    "cyclomatic-complexity": 2,
+    "dead-code": 1,
+    "divide-before-multiply": 8,
+    "incorrect-equality": 5,
+    "low-level-calls": 2,
+    "missing-inheritance": 12,
+    "naming-convention": 1,
+    "reentrancy-balance": 27,
+    "reentrancy-benign": 10,
+    "reentrancy-events": 6,
+    "reentrancy-no-eth": 28,
+    "timestamp": 14,
+    "too-many-digits": 4,
+    "uninitialized-local": 5,
+    "unused-return": 19
+  },
+  "dispositions": {
+    "false_positive": 110,
+    "accepted_risk": 42,
+    "informational": 27
+  },
+  "matching": {
+    "exact_previous_review": 171,
+    "existing_opted_in_write_atoms_native_regrouping": 1,
+    "fresh_individual_review": 3,
+    "individually_rechecked_NFT_line_location_shift": 4
+  },
+  "full_raw_report_sha256": "d87b712ee04f8c354dc209a1272ab099525821f07b43eec1068ce36c8d7641ff",
+  "compact_report_sha256": "8f07acddf90df7431072e4ebb45ddca783736343475753e0c2a16ffe55e55058",
+  "review_sha256": "a5755e0159e75761b03e032b2a50a860546876e7544c26a244aaeaa2bf4e1521",
+  "previous_review_sha256": "c15d5ca78a670a8a95c3fae02572c8c10493ff6525746c0f7e64bb7759582f26",
+  "checker_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+  "tool_sha256": {
+    "forge.exe": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "solc.exe": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+    "slither.exe": "e5a05e26bc7bd46a48b8d2e205e20a59025371e616d0e35da1ba15b02f4924ce"
+  },
+  "coverage_command": [
+    "python3",
+    "scripts/check-slither-review.py",
+    "reports/artwork-palette/slither.json"
+  ],
+  "unchanged_CI_gate": "scripts/verify-slither.sh invokes fresh Slither and source-bound reports/production/slither-review.json; no detector, source binding or gate was disabled.",
+  "environment": "Final four-pattern analysis used required native Windows signature-cache access and completed its fresh build with exit zero. The earlier five-pattern run had a signature-cache failure/retry; that intermediate evidence remains separately preserved.",
+  "artwork_scope": {
+    "patterns": [
+      "arcs",
+      "panels",
+      "orbits",
+      "ribs"
+    ],
+    "palette_count": 58,
+    "encoding_factor": 4,
+    "expected_visual_variants": 2784,
+    "maximum_identical_complete_artworks": 4,
+    "catalogue_sha256": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb"
+  },
+  "external_evidence_directory": "slither-artwork-palette-four-pattern-20261015",
+  "build_info_sha256": {
+    "build-info\\91131d172925a637.json": "9a95fd324d25d7ddf2ebe156be7d6906957bed89d105bda13630d7a96ff4a10c"
+  },
+  "remaining_release_gates": [
+    "Independent external audit and remediation",
+    "Actual proof-verifying VRF coordinator/subscription/fulfillment on selected chain",
+    "Selected native-ETH/Pons custody and real payout integration",
+    "Production bridge provider/backing and multi-chain staging",
+    "Immutable complete artwork publication/CID and final target-chain gas/authority/token/oracle review"
+  ]
+}

@@ -121,7 +121,7 @@
         "requestConfirmations": null, "callbackGasLimit": null, "nativePayment": null
       },
       "artwork_publication": {
-        "base_uri": null, "manifest_sha256": null, "asset_count": 72, "asset_paths": [], "review_evidence": null
+        "base_uri": null, "manifest_sha256": null, "asset_count": 2784, "asset_paths": [], "review_evidence": null
       },
       "royalty_assets": {
         "asset_count": null, "complete_admission_history": false, "observation_evidence": null,
