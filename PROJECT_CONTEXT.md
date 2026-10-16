@@ -329,3 +329,23 @@ than repeating them in architecture. Group keeper runbooks under operations;
 link current verification and detailed reports instead of repeating historical
 test-count narratives. Preserve clickable task/file links and explicit release,
 sealing and canonical home-chain recovery boundaries.
+
+## One task ledger and separate release approval - 2026-10-16
+
+The user requested consolidation of the three overlapping checklist pages.
+TODO.md, generated from docs/project-todo.json, is the only task-status list.
+Its 38 existing IDs and statuses are preserved; detailed release requirements
+now live in expandable acceptance criteria under their owning tasks. Keep the
+Smart contracts / Backend / Frontend order and clickable related-file titles.
+All 50 previous release requirements and distinct implementation-list details
+were mapped, including creator sampling gaps/rounding and production NFT labels.
+
+docs/IMPLEMENTATION_STATUS.md is a feature/evidence reference, with published
+source distinguished from local unpublished wallet/quote/process-runner work.
+docs/RELEASE_CHECKLIST.md is a short exact-release approval record, NOT APPROVED,
+not another task list. Preserve existing filenames/compatibility anchors.
+Update only the central ledger for progress; update references for behavior or
+evidence changes and the approval record for release scope/reviewer decisions.
+See docs/TODO_WORKFLOW.md. Historical audit reports keep their original scope.
+This documentation change does not publish the unrelated local code candidate,
+deploy contracts, change the website or approve real funds.

@@ -1,126 +1,88 @@
-# Implemented and Todo
+# Feature and evidence reference
 
-## NFT economic-rights verification - 2026-10-16
+Reviewed 2026-10-16 against published source `e35663c7edaef4bf66efa43d0c7e15d45ca2751b`.
+The contracts remain undeployed and the website remains a simulation.
+Implemented means the behavior exists in source; it does not mean production
+services, deployment or independent audit are approved.
 
-This entry supersedes older capacity statements: the candidate caps historical
-buckets at four, including imports; all 1,000 NFTs can share the initial LP.
+**All task status, remaining work and acceptance criteria live in the
+[central Todo](../TODO.md).** This page describes published capabilities and their
+evidence. The [release approval record](RELEASE_CHECKLIST.md) records the final
+decision for an exact release, not development progress.
 
-- [x] Internally review canonical NFT identity, current-owner claims, immutable
-  rarity, shared LP shares, 80/10/5/5 and separate actual-receipt royalties.
-- [x] Add executable full-collection payouts, successive/operator/contract
-  receiver transfers, atomic rollback, direct/swapped buyback failures and
-  combined LP/royalty stateful invariants. See the
-  [source-bound test report](../reports/nft-rights-audit/VERIFICATION.md).
-- [x] Preserve and verify the prior four-bucket gas safeguard with current
-  capacity tests and production config validation; do not restore the unsafe
-  combined 16-bucket workload or confuse bucket count with NFT count.
-- [ ] Qualify actual tokens, creator payment terms, input routes, feeds, VRF,
-  authorities, market/operating rehearsals, wallet integration and external audit.
-- [ ] Before real bridging, reserve destination capacity permanently and qualify
-  transport/backing/recovery and remote compounding. Identity reservation alone
-  does not protect a future import slot.
+## Published capabilities
 
-- [ ] Complete the seven [security audit workstreams](SECURITY_AUDIT_PLAN.md), including a pre-seal decision on permanent home-chain loss and canonical NFT/reward-ledger recovery. LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
+| Area | Behavior available in published source | Reference |
+|---|---|---|
+| Mint and identity | Dormant mint costs exactly 0.05 ETH and adds no LP. The fixed 1,000 supply uses canonical hashed token IDs, separate mint ordinals and exact eventual 600 Commun / 300 Rare / 100 Legendary quotas. Ordered VRF draws select existing artwork without replacement; no administrator reroll exists. | [NFT metadata](NFT_METADATA.md), [Vault](../src/ZZZVault.sol) |
+| Activation and additions | Immutable Registry-created Entry binds the original source value, current owner and exact Vault call. Activation starts at $100 gross value; conversion and marginal LP deployment share a 1% execution/undeployed budget, with network gas separate. Governed asset and route admission does not itself qualify a live route or price feed. | [Activation Entry](ACTIVATION_ENTRY.md), [asset policies](../src/ZZZActivationAssets.sol) |
+| Shared LP custody | Many NFTs own nonredeemable shares of one physical LP per pool/strategy. Maintenance acts on the shared bucket. The cap is four historical local buckets, including imports; all 1,000 NFTs can share the initial pool. | [Architecture](ARCHITECTURE.md), [scale/capacity verification](../reports/nft-rights-audit/VERIFICATION.md#execution-gas-and-capacity) |
+| LP revenue | Actual admitted receipts allocate 80% by LP shares, 10% equally among activated NFTs, 5% to the earning bucket's compounding reserve and 5% to buyback/burn. Rarity does not affect LP rewards. Documented raw-unit dust and receipt-time membership rules apply. Creator inboxes receive funds; they cannot enforce a creator's payment obligation. | [Economics](ECONOMICS.md), [external funding](EXTERNAL_REWARDS.md) |
+| Royalties and claims | ERC-2981 requests 5%; actual eligible receipts use a separate immutable ledger at activated rarity weights x1/x2/x3. Current owners claim; unpaid balances follow the NFT. Direct ledger claims and an immutable 1-32-operation mixed claim router exist. Marketplace payment is not enforced. | [Claim router](CLAIM_ROUTER.md), [ownership review](../reports/nft-rights-audit/REVIEW.md#identity-and-ownership) |
+| Artwork and metadata | Eight colors, 58 palettes and four patterns produce 2,784 evolution states for the fixed inventory. Current marked LP value selects the stage; a market decline can lower it without removing activation rights. Bounded ERC-4906 notifications and an optional keeper watcher exist. The prepared artwork bundle is not a published immutable CID. | [Metadata](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md) |
+| Venue and recovery boundaries | The selected native-ETH/Pons adapter separates venue keys from WETH accounting and rejects unrelated native/hooks. Pause, timelocked asset/wrapper/sequencer policies, close-only custody parking and guarded resumption exist. They do not guarantee recovery from every external dependency failure. | [Selected market](ROBINHOOD_POOL.md), [parking](CUSTODY_PARKING.md), [recovery model](CHANGE_AND_RECOVERY.md) |
+| Read services and measurements | The confirmed read API exposes NFT ownership and funded LP/royalty balances. Optional complete indexed history supplies wallet inventory and cumulative raw claims. Route/revenue measurement tools exist. Gross generated-fee/USD history and hosted live website transactions are not supplied by those balances. | [Read API](FRONTEND_API.md), [history](FRONTEND_HISTORY.md), [revenue measurement](REVENUE_SHARE.md) |
+| Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. Isolated Anvil/systemd rehearsals are recorded; production signing and target-chain qualification are separate. | [Recovery runbook](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
+| Future migration | Timelocked routes and whole-bucket migration/parking preserve canonical NFT rights and funded-liability barriers. Identity reservation does not reserve destination capacity. Canonical NFTs and claim ledgers do not automatically migrate with LP custody. | [Migration source](../src/ZZZMigration.sol), [recovery model](CHANGE_AND_RECOVERY.md) |
 
-The [component-by-component assessment](../reports/nft-rights-audit/IMPLEMENTATION.md)
-records what is implemented, tested and internally reviewed. No component receives
-unconditional production approval. Earlier snapshots retain their original scope.
+The [component assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) gives
+module-level boundaries. All remaining qualification, implementation and decision
+requirements are maintained once in the [Todo](../TODO.md), including the
+[migration gate](../TODO.md#task-destination-slots) and
+[canonical-chain recovery decision](../TODO.md#task-security-chain-recovery).
 
-Updated 2026-10-16 for atomic original-source activation and governed custody parking. Earlier metadata and integration/recovery receipts retain their exact source scope. The separate website is the simulated release `8c0b93523d914644d440129d74745c9e12f8e08a`; no smart contracts are deployed.
+## Evidence and its limits
 
-**Checked means implemented in the undeployed development candidate, with local test evidence. It does not mean deployed, independently audited or approved for real funds.** Unchecked items identify missing implementation, integration or production qualification. The separate [release checklist](RELEASE_CHECKLIST.md) remains NOT APPROVED.
+- The [NFT-rights verification](../reports/nft-rights-audit/VERIFICATION.md)
+  records 531 offline Solidity passes, zero failures and two intentional fork
+  setup skips, plus 23 normal object-size gates and 29 production source
+  bindings. The 1,000-NFT scenario and extended dual-ledger invariant use explicit
+  local venue, authority, price and VRF fixtures.
+- The same report identifies reused source-bound evidence: 33 prior fork cases
+  (24 selected native/Pons and nine hookless) and 220 internally reviewed Slither
+  findings. Those were not fresh runs in the NFT-rights review and are not an
+  independent audit.
+- [Keeper operating evidence](../reports/keeper-rehearsal/README.md) records
+  runtime revision `089d391`, 209 Ubuntu tests and 14 local process rehearsals,
+  plus isolated server crash/restart and snapshot restoration. It does not prove
+  a multi-day soak, production RPC/fees or physical host-loss/key rotation.
+- The 628-pass portable Python receipt in the NFT-rights report covered a broader
+  local working tree, including unpublished work. It is not evidence that those
+  unpublished features exist in this GitHub revision. Exact-release CI and
+  production approval belong to the [release record](RELEASE_CHECKLIST.md).
 
-## Implemented in the contract candidate
+Historical reports retain their original revisions and assumptions; they are not
+maintained as additional task lists.
 
-- [x] Exact **0.05 ETH dormant mint**, forwarded to the fixed mint recipient; minting adds no LP or reward eligibility. [Vault](../src/ZZZVault.sol).
-- [x] Owner activation with at least **$100 original gross source value** and **99% marginal actually deployed LP**, with the same 1% execution/undeployed limit for additions; gas is separate. The immutable [Entry](ACTIVATION_ENTRY.md) binds measured source value and the exact owner/Vault call across typed conversion; conversion and deployment share one loss budget. Principal is nonredeemable; attached shares and unclaimed/future reward rights follow NFT ownership.
-- [x] Registry-created, immutable activation Entry: admitted direct pair assets, exact native wrapping for the selected native pool, or append-only reviewed single-hop V3 routes into one accounting currency. Current owner only, exact balances/approvals, callback-safe short-lived context and atomic rollback. Real route liquidity, dependency authority and staging remain release gates; no usable USDC route is currently qualified.
-- [x] **One physical LP position per approved pool/strategy**, with individual NFT shares. Rebalance, harvest and compounding operate per shared bucket, rather than once per NFT. The intended initial collection uses one pool; the defensive cap is 4 historical buckets, including imports.
-- [x] **80% individual / 10% collective / 5% compounding / 5% buyback and burn** funded allocation. The individual share follows LP shares; the collective share is equal per activated NFT. No Power or rarity multiplier changes LP rewards. [Fees](../src/ZZZFeeController.sol), [rewards](../src/ZZZRewards.sol).
-- [x] Immutable creator-payment receivers, funded processing and current-owner claims, with segregated reserves and incumbent entry settlement. The receiver accepts actual payments; it does not establish a creator's payment obligation. [Funding rules](EXTERNAL_REWARDS.md).
-- [x] Separate **5% ERC-2981 royalty request** and distribution of **100% of eligible royalty receipts** at activated Commun ×1 / Rare ×2 / Legendary ×3. Dormant NFTs have zero weight; pre-admission/prefund/no-member receipts remain quarantined. Marketplace payment is voluntary. [Royalty ledger](../src/ZZZRoyaltyRewards.sol).
-- [x] **1,000 NFT cap** and exact final quotas of **600 Commun / 300 Rare / 100 Legendary**, with authenticated randomness callbacks and mint-order draws without replacement. No administrator trait selection, reroll or cancellation. Actual production VRF remains an integration gate. [NFT](../src/ZZZNFT.sol).
-- [x] Immutable visual traits: **eight colors, 58 palettes, monochrome/bicolor/tricolor and four patterns**. A fixed 1,000-entry artwork inventory limits identical palette/pattern/rarity looks to four; all 100 Legendary finished looks are unique. [Catalogue](../design/nft-metadata/palette-system-v1/README.md).
-- [x] **2,784 rendered artwork states**, retaining the approved egg material. This is a rendering library, not additional NFT supply. Production immutable hosting remains pending.
-- [x] Dynamic metadata selects the current marked attached LP evolution: Dormant, Activated, **Enhanced from $1,000**, **Singularity from $10,000**. Market losses can lower the stage without removing activation rights. Remote/stale valuation is explicitly unavailable. Reveal and contributions emit ERC-4906 notifications. [Metadata](NFT_METADATA.md).
-- [x] Constrained keeper rebalancing, harvesting, compounding and direct buyback/burn, plus guardian pause and timelocked governance roles. This does not eliminate impermanent loss. [Operations](OPERATIONS.md).
-- [x] Repeated whole-bucket migration framework, equivalent-asset accounting and timelocked onboarding of future chains/pools/providers after sealing. Real transport wrappers are not supplied. [Migration framework](../src/ZZZMigration.sol).
-- [x] Bucket-discovering dry-run keeper, confirmed/reorg-aware event indexer, and an intentionally blocked offline production-configuration validator. These tools are not a hosted frontend API or an approved live operating service.
-- [x] Permissionless bounded metadata notifications for at most 50 inclusive mint ordinals, resolving actual hashed token IDs. An optional disabled-by-default watcher detects confirmed evolution/availability/reveal changes through the keeper's existing simulation, budgets, serial signing and durable pending recovery. Production operation and external marketplace refresh remain unqualified.
-- [x] Selected Robinhood native-ETH/Pons development adapter, with the real PoolKey separated from WETH accounting, exact native settlement, bounded approvals, prefund protection and fee-aware balancing. Other native/hooked markets remain rejected; production admission and independent qualification remain open.
-- [x] Governed append-only [activation-asset policies](../src/ZZZActivationAssets.sol) separate new contribution admission from existing principal, rewards and exit rights. After sealing, token enable/disable and reviewed policy changes require the existing timelock. Admitting a future token does not implement its swap route or supply an independent USD feed.
-- [x] Reviewed native-wrapper policies and disabled-source-pool exits in the candidate: governance can update reviewed wrapper dependency pins; disabling new pool operations does not itself disable collection/close/migration. Exit price/deviation and actual dependency checks remain mandatory. This does not guarantee recovery from a failed wrapper or bridge.
-- [x] [Custody parking](CUSTODY_PARKING.md): globally paused, timelocked exact-snapshot close into Vault idle balances, with nonce/epoch/deadline/review binding and raw minimums applied only to principal returned by closing the LP. No price feed or creator-inbox synchronization is needed for parking. Parked claims, royalty rights and equal membership remain; keeper upkeep stays off. Resume uses fresh ordinary guards; parked migration retains authenticated route, funding and legacy-liability checks.
-- [x] [Oracle](../src/ZZZOracle.sol) candidate adds append-only, code-pinned sequencer-source recovery through governance, retaining uptime and one-hour recovery grace. Constructor zero remains available only for an explicitly reviewed no-feed chain; once configured, a source cannot be disabled. Bootstrap provenance is not an independent review. Focused source qualification is required for this new change.
-- [x] Immutable NFT-created [claim router](CLAIM_ROUTER.md): 1-32 owner-authenticated LP/royalty claim operations, direct owner payouts, no approvals or custody, duplicate rejection and atomic failure. Live wallet integration remains pending.
-- [x] Deployment-pinned, confirmed [read API](FRONTEND_API.md) with actual LP/royalty balances and optional [wallet inventory/lifetime claimed history](FRONTEND_HISTORY.md). History requires complete trusted indexer coverage from NFT deployment and canonical block matching, and otherwise reports unavailable. Raw per-asset totals include LP and royalty claims across owners. The service is unhosted; gross earned-fee/USD history is not inferred from payouts.
-- [x] Exact-rational [creator revenue measurement tools](REVENUE_SHARE.md), with active-liquidity snapshots and proposed fee/time weighting. The calculator cannot authorize payments or establish agreed terms.
-- [x] Reproducible [artwork upload bundle](ARTWORK_PUBLICATION.md), verifying 2,784 image states and all 5,571 archived files. Provider selection, a verified directory CID and public pinning are not complete.
+## Local unpublished candidates
 
-## Todo to turn the website flows into real transactions
+The local working tree also contains unsigned mint/mixed-claim preparation and
+HTTP handling, final read freshness/depth checks, canonical-hash activation quote
+hardening, and bounded fork-runner process/timeout cleanup. These are distinct
+from the published read API and contract claim router. This page does not link
+to their unpublished files or describe them as shipped features.
 
-- [ ] **Selected pool qualification:** independently review the new native/Pons adapter, wrapper implementation/upgrade authority, real-key/accounting mapping and actual-market fork evidence. Extend production inventory/validator observations only after qualification; its native admission gate stays closed meanwhile. Creator-payment rights remain separate from custody. [Historical pool boundary](ROBINHOOD_POOL.md).
-- [ ] **USDC/USDG/ETH/ZZZ activation qualification:** independently review and stage the implemented Entry/Registry/Vault path against actual approved routes, wrapper and USD feeds. Authenticate complete route-policy history and immutable helper bindings in the production inventory. [Route tools](ACTIVATION_ROUTING.md) provide identity and unsigned USDG/ETH groundwork; USDC still needs a usable funded route. Quotes must satisfy the original-source 99% floor through the actual Pons deployment leg; a mock conversion pass is not production qualification.
-- [ ] **Production randomness:** establish a supported proof-verifying VRF service, immutable coordinator, funded subscription, finality/callback parameters and a rehearsed fulfillment/outage procedure. A compatible interface and MockVRF tests do not prove live availability. Earlier missing fulfillment can block later ordered reveals.
-- [ ] **Metadata operation:** publish/pin and independently verify the complete artwork manifest at its immutable IPFS/Arweave root. Stage the implemented bounded watcher with actual feeds, NFT bytecode pins, RPC/confirmation limits and budgets. Test actual marketplace rendering/cache refresh.
-- [ ] **Live frontend and metrics:** deploy and qualify the implemented read-only HTTP service and optional confirmed ownership/claim-history indexer; wire wallet approvals, quotes, mint, activation, additions and claims to reviewed deployments. Complete gross earned-revenue history and token/USD valuation policy separately. The website's 24-hour/all-time USD fees remain simulations; cumulative raw claims are not gross generated revenue.
-- [ ] **Royalty UI:** connect the already updated simulated royalty cards and lifetime claimed totals to confirmed per-asset royalty/LP data and complete event history. The website remains a simulation.
-- [ ] **Bulk-claim integration:** independently review, pin and wire the implemented 32-operation claim router; simulate exact batches, estimate gas and chunk larger portfolios. Direct single-NFT/single-asset ledger claims remain available.
-- [ ] **Revenue and pricing:** finalize the actual Pons/creator payment terms or alternative revenue market; review ZZZ and other asset USD feeds, denominations, decimals, wrapping and outage policy. The website's assumed 0.30% fee does not apply to the selected 0%-conventional-fee pool.
-- [ ] **Dependency recovery:** independently qualify activation-asset/wrapper/route policy provenance, proxy authority and timelock replacement rehearsals. Stage paused parking with broken feeds/inboxes, exact close-only minimums, nonce/snapshot rejection, oracle-guarded resume and parked migration with remote liabilities. Also stage disabled-source exits and token/sequencer-feed replacement with grace retained. Runtime proxy hashes do not authenticate future implementations; broken external custody/bridging can still strand funds. No reviewed ZZZ/USD or Robinhood uptime source is currently selected.
-- [ ] **Follow up with the pool creator:** agree the percentage and its basis (total hook revenue or creator payout), payout asset/network, frequency, authorized payer/configurer and the exact PoPL receiver to fund. The user explicitly deferred these terms on 2026-10-15. Keep implementation based on actual admitted receipts, without hardcoding a promised share or schedule; verify a real payment and distribution before closing this item.
-- [ ] **Agree the measurement policy with the creator:** review the implemented fee-weighted sampled active-liquidity proposal and time-weighted alternative. Fix epoch length, confirmation depth, snapshot frequency/gap limits, complete hook-fee event sources, tick-crossing approximation, payout-asset conversion/reconciliation, rounding and independent verification. The user reports a proportional-liquidity agreement, but no specific sampled policy has been accepted by the creator. Test the full data-to-payment-to-holder-claim cycle.
-- [ ] **IPFS publication:** select a pinning provider, publish the already prepared and verified complete artwork upload bundle, and independently verify its content root and retrieval. The user deferred provider selection on 2026-10-15.
+Publication/review and integration are tracked under
+[unsigned actions](../TODO.md#task-unsigned-actions),
+[activation quotes](../TODO.md#task-activation-quotes),
+[read API](../TODO.md#task-read-api) and
+[mainnet-fork qualification](../TODO.md#task-mainnet-fork).
+No candidate signs, broadcasts or makes the simulated website live merely by
+being saved locally.
 
-Production NFT labels also need a display-number decision: current token IDs hash chain/vault/sequence and metadata names use that raw number. Sequential labels can use the existing mint ordinal, with a reviewed metadata/UI change if desired, without changing stable custody IDs. The demo's short labels such as #444 are examples.
+## Moved task links
 
-## Todo before a funded initial launch
+<a id="todo-to-turn-the-website-flows-into-real-transactions"></a>
+Website transaction work is now maintained in the central
+[wallet task](../TODO.md#task-wallet),
+[unsigned-action task](../TODO.md#task-unsigned-actions) and
+[activation-quote task](../TODO.md#task-activation-quotes).
 
-- [ ] Complete the three [required testing layers](RELEASE_CHECKLIST.md#required-testing-layers): local lifecycle/accounting/security tests, a Robinhood mainnet fork against the actual ZZZ pool/hook/dependencies, and Robinhood Testnet wallet/website/keeper/deployment rehearsals. Retain final-release evidence; earlier local and hookless-fork passes do not close all three gates.
-- [ ] Choose and independently verify governance multisig, guardian, keeper, mint recipient, feeds, admitted assets/pools and every module/helper binding. The user has not selected these public authority addresses and requested keeping the gates open.
-- [ ] Stage actual entry, top-ups, reward funding/claims, royalties, transfers, real keeper signing/recovery, rebalances, indexer backfill/reorgs and alerts on the reviewed chain/dependencies.
-- [ ] Qualify worst-case gas for the actual venue, assets and inboxes, including the 16-historical-bucket bound; backtest strategy costs, volatility, slippage and MEV. Refresh all runtime/initcode limits for the final source; the earlier Vault's 169-byte runtime margin is historical. Constructor arguments still need initcode allowance.
-- [ ] Obtain an independent external audit, remediate findings, complete deployment/configuration review and satisfy the [release checklist](RELEASE_CHECKLIST.md). Local tests and internal Slither triage are not this audit.
-- [ ] Fill and independently authenticate the [production inventory](../config/production.example.json), including release-specific code, asset, randomness and staging evidence. Its current blocked state is intentional; an offline pass would still not authorize deployment.
+<a id="todo-before-enabling-real-bridging"></a>
+Future bridge work is now maintained in
+[destination capacity](../TODO.md#task-destination-slots) and
+[bridge operation](../TODO.md#task-bridge-operation).
 
-## Todo before enabling real bridging
-
-- [ ] Implement and independently review actual provider SDK wrappers, authentication, finality, equivalent-token backing, delivery fees, failure/recovery and retained historical routes.
-- [ ] Stage canonical → satellite → satellite → home → revisit, including delayed/forged/reordered receipts, ACK epochs, pauses and old reward liabilities with the actual providers.
-- [ ] Review each future destination and onboard its immutable policy/routes through the timelock before approving an economic migration.
-
-An independently reviewed initial deployment can keep migration disabled with no provider policies or routes. The existing framework allows later onboarding after sealing; no arbitrary future chain, asset conversion, bridge recovery or satellite user top-ups are automatically supported. See [migration-disabled launch](OPERATIONS.md#migration-disabled-initial-launch).
-
-## Current gap-hardening verification
-
-- [Current source-bound receipts](../reports/gap-hardening/README.md): **488 Solidity passes**, zero failures, two expected offline opt-in fork setup skips; **488 portable Python passes** from 492 cases, with the four unchanged Unix-only cases reserved for Ubuntu. All 37 executed suite artifacts match current compiler input/output closures.
-- All **23 normal module/helper size gates** and **29 production source bindings** pass under the unchanged compiler. Vault runtime/initcode is **24,056 / 24,809 bytes** (520 runtime bytes available); Migration is **24,252 / 24,764** (324 available). Final constructor arguments still require separate allowance.
-- Fresh internal Slither: **220 findings**, individually reviewed as 128 false positives / 53 accepted risks / 39 informational / zero unresolved review entries. Both analyzer runs pass coverage; 43 matcher cases and nine mutation rejections pass. These are internal checks; independent audit, actual routing/services, staging and release-revision Ubuntu CI remain open.
-- One actual hardened-runner fork execution passes **20 selected native/Pons cases and nine secondary hookless-pool cases**, zero failures/skips, with current source/bytecode closures checked before/after. Native parking is exercised against deployed venue/wrapper dependencies; authority/VRF and USD calibration remain explicit fixtures. [Fork receipt](../reports/gap-hardening/fork/README.md).
-
-## Previous integration verification
-
-- These receipts predate atomic original-source entry and custody parking: **430 local Solidity passes**, zero failures and two expected opt-in fork setup skips; **478 portable Python passes** with four Unix-only cases reserved for Ubuntu. All **22 normal size gates** and all **28 then-current compiler/source bindings** pass. That Vault runtime was 24,434 bytes, leaving 142 bytes; constructor arguments require separate allowance.
-- Actual selected native/Pons pool: **17 fork tests pass**, zero failures/skips, with mock authority/VRF and synthetic USD calibration explicitly retained. Fresh internal Slither reviews **210 findings** (121 false positives / 56 accepted risks / 33 informational / zero unresolved); this does not close independent audit or production gates. See [current evidence](../reports/release-progress/README.md).
-
-## Historical metadata verification evidence
-
-- Earlier metadata-source Solidity: **342 passed, zero failed, one expected opt-in fork setup skip**, across 24 suites. The 50-token notification workload used **318,466 gas**, below its 500,000 regression budget.
-- Earlier metadata-source portable Python: **372 passed** from a **376-test inventory**, zero failures/errors/runtime skips. The focused keeper run passed **109** cases, including 45 metadata cases. Four unchanged Unix-only cases remain reserved for supported Ubuntu verification. Exact source hashes are in [release-hardening verification](../reports/release-hardening/verification-summary.json).
-- All **20 module/helper runtime and initcode-object size gates** passed; source-bound compiler records cover 26 Solidity files.
-- Earlier metadata-source internal Slither: **179 findings**, individually triaged as 110 false positives / 42 accepted risks / 27 informational / zero unresolved review entries. Accepted risks and the independent audit remain release considerations.
-- Historical metadata receipts: [test/size summary](../reports/release-hardening/verification-summary.json) and [static-analysis review](../reports/release-hardening/static-analysis/README.md). New native/policy/router/API source requires fresh source-bound verification; artwork/alignment reports retain their earlier exact-source scope.
-- Earlier [Ubuntu CI for source revision 5febe70](https://github.com/ABEF/AAA/actions/runs/38793910449) passed **local-checks, static-analysis and robinhood-fork**. Check all three jobs for the new published revision separately; earlier green CI does not validate subsequent source changes or close production integration, configuration or audit gates.
-
-The detailed [component map](COMPONENT_STATUS.md) describes implementation boundaries. The [roadmap](ROADMAP.md) orders the remaining work; the [release checklist](RELEASE_CHECKLIST.md) records independent production qualification.
-
-## Keeper recovery follow-up
-
-Missing live state/nonce checkpoints and unqualified network fee policies now block startup; submissions check nonce continuity, canonical receipt anchors and signer balance. Structured health/error logs and bounded retry delays accompany the explicit unused-signer bootstrap. See [recovery runbook](KEEPER_RECOVERY.md). Full server-loss recovery, backups/alert routing, Linux deployment and multi-day outage rehearsals are still required. See [central Todo](../TODO.md).
-
-
-## Keeper operating qualification - 2026-10-16
-
-Read-only preflight, health evaluation, exclusive recovery snapshots and a bounded RPC compatibility probe are implemented. Runtime revision 089d391 passed 209 Ubuntu tests without skips/failures and 14 actual process-crash/recovery cases. Isolated staging on the authorized website server now exercises systemd and disposable local-chain signing; controlled crash/restart, off-host snapshot round-trip restoration and read-only monitor restrictions were checked. See [operating evidence](../reports/keeper-rehearsal/README.md).
-
-This closes the recorded isolated rehearsal cases, not the multi-day soak, actual Robinhood Testnet integration, production services/configuration, lost-key governance or external audit. The documented public RPC returned HTTP 403 from this environment; the Pinax sample passed, so redundant production provider qualification is still open.
+<a id="todo-before-a-funded-initial-launch"></a>
+Initial-launch acceptance and final approval are tracked in
+[audit and release](../TODO.md#task-audit-release).

@@ -8,9 +8,10 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 | Purpose | Start here |
 | --- | --- |
-| Progress and remaining work | **[Project Todo](TODO.md)** for the central task list; **[Implementation status](docs/IMPLEMENTATION_STATUS.md)** for feature details and evidence |
+| Progress and remaining work | **[Project Todo](TODO.md)** - the single task list, with expandable acceptance criteria |
+| What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
-| Security and release | [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release checklist](docs/RELEASE_CHECKLIST.md) for approval gates |
+| Security and release | [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 
@@ -18,7 +19,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 | --- | --- | --- |
 | **1. Smart contracts** | NFT ownership, shared LP custody, per-NFT shares, funded reward accounting and authorization. Entry routes contributions into the Vault; separate ledgers account for LP fees and royalties. | [Vault source](src/ZZZVault.sol), [Activation Entry](docs/ACTIVATION_ENTRY.md), [economics](docs/ECONOMICS.md) |
 | **2. Backend and operations** | The keeper coordinates authorized LP maintenance. The indexer and API expose confirmed ownership, balances and claim history. These services need production deployment and operating qualification. | [Keeper](keeper/monitor.py), [indexer](indexer/monitor.py), [read API](docs/FRONTEND_API.md), [history](docs/FRONTEND_HISTORY.md) |
-| **3. Frontend** | The separate website presents minting, activation, portfolios and claims. Live wallet transactions and data integration remain pending. | [Website repository](https://github.com/ABEF/AAA-website), [integration tasks](docs/IMPLEMENTATION_STATUS.md#todo-to-turn-the-website-flows-into-real-transactions) |
+| **3. Frontend** | The separate website presents minting, activation, portfolios and claims. Live wallet transactions and data integration remain pending. | [Website repository](https://github.com/ABEF/AAA-website), [integration tasks](TODO.md#frontend) |
 
 Many NFTs share one physical Uniswap v4 LP position per supported pool/strategy, with independent NFT share accounts. Maintenance operates on that shared position, without looping through every holder. The initial collection is intended to use one pool. The Vault permits **four historical custody buckets**, including imports; an existing bucket's migration or return reuses its slot. This bounds settlement work, not the number of NFTs. See the [architecture and capacity boundary](docs/ARCHITECTURE.md).
 
@@ -50,7 +51,7 @@ The allocation is fixed in the current contracts:
 
 Rarity does not change LP or collective weights; there is no Power multiplier. Actual receipts allocate in batches of 20 raw token units, with a documented sub-20-unit incumbent-dust exception at membership/migration boundaries. Returned remote holder rewards are already allocated and are not split again. See [accounting and timing](docs/ECONOMICS.md).
 
-The selected Robinhood ZZZ/native-ETH Pons pool has **0% conventional LP fees**. Creator/hook revenue is a separate funding path: the reported proportional-liquidity agreement still needs final payment and measurement terms. Adding LP does not by itself fund claims. See [current market qualification](docs/IMPLEMENTATION_STATUS.md#todo-to-turn-the-website-flows-into-real-transactions) and [creator revenue-sharing proposals](docs/REVENUE_SHARE.md).
+The selected Robinhood ZZZ/native-ETH Pons pool has **0% conventional LP fees**. Creator/hook revenue is a separate funding path: the reported proportional-liquidity agreement still needs final payment and measurement terms. Adding LP does not by itself fund claims. See [current market qualification](TODO.md#task-pons-qualification) and [creator revenue-sharing proposals](docs/REVENUE_SHARE.md).
 
 ### NFT-sale royalties
 
@@ -91,7 +92,7 @@ The keeper defaults to dry run. Its example ten-minute polling interval does not
 
 The latest [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md) records **531 offline Solidity passes**, two expected fork-setup skips, **23 normal size gates** and an extended invariant run of **65,536 calls**. The report separates fresh checks from reused static/fork evidence and the broader local Python candidate. The [internal review](reports/nft-rights-audit/REVIEW.md) records findings and remaining risks; [historical reports](reports/README.md) retain their original source scope.
 
-Production approval still requires qualified market/input routes, tokens and price feeds; supported VRF; authority addresses and creator terms; live frontend/backend integration; target-chain gas and operating rehearsals; and an independent audit with remediation. Use the [release checklist](docs/RELEASE_CHECKLIST.md) and [production inventory](config/production.example.json) for sign-off. Check [CI for the exact revision](https://github.com/ABEF/AAA/actions); local evidence does not imply a green published workflow.
+Production approval still requires qualified market/input routes, tokens and price feeds; supported VRF; authority addresses and creator terms; live frontend/backend integration; target-chain gas and operating rehearsals; and an independent audit with remediation. Track these in the [Project Todo](TODO.md); record final sign-off in the [release approval record](docs/RELEASE_CHECKLIST.md) with the [production inventory](config/production.example.json). Check [CI for the exact revision](https://github.com/ABEF/AAA/actions); local evidence does not imply a green published workflow.
 
 ## Development
 

@@ -4,7 +4,7 @@ Reviewed 2026-10-16. **Undeployed candidate; not approved for real funds.**
 These seven workstreams define acceptance evidence, not completed audit claims.
 Status lives in the [central Todo](../TODO.md#security--audit) and
 [task ledger](project-todo.json); production approval stays in the
-[release checklist](RELEASE_CHECKLIST.md).
+[release approval record](RELEASE_CHECKLIST.md).
 
 The current [internal NFT-rights review](../reports/nft-rights-audit/REVIEW.md),
 [implementation assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) and

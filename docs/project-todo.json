@@ -34,21 +34,33 @@
           "status": "progress",
           "title": "Qualify the selected Robinhood pool",
           "text": "The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.",
-          "href": "docs/ROBINHOOD_POOL.md#popl-lp-integration-and-creator-payments"
+          "href": "docs/ROBINHOOD_POOL.md#popl-lp-integration-and-creator-payments",
+          "acceptance": [
+            "Independently qualify the implemented selected native-ETH/Pons boundary, including wrapper implementation/admin upgrades, native settlement, real-key/accounting mapping and actual-pool tests. Keep production inventory native admission blocked until complete; do not broaden it to arbitrary hooks."
+          ]
         },
         {
           "id": "activation-assets",
           "status": "progress",
           "title": "Qualify ETH, ZZZ, USDG & USDC inputs",
           "text": "Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.",
-          "href": "docs/ACTIVATION_ENTRY.md"
+          "href": "docs/ACTIVATION_ENTRY.md",
+          "acceptance": [
+            "Independently verify $100 original source value with at least 99% marginal actually deployed LP, separate network gas, incumbent NAV pricing, all conversion-leg costs, callbacks, pending/dust barriers, top-ups and nonredeemability. Review the immutable Entry's exact owner/calldata context, inactive approval window, Registry-only valuation and callback cleanup; a post-conversion pair value cannot replace original source value.",
+            "Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native ingress is restricted to the actual native-pool wrapper. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution."
+          ]
         },
         {
           "id": "fair-draw",
           "status": "progress",
           "title": "Fair random assignment at mint",
           "text": "The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.",
-          "href": "docs/NFT_METADATA.md#random-reveal"
+          "href": "docs/NFT_METADATA.md#random-reveal",
+          "acceptance": [
+            "Independently verify actual supported proof-verifying coordinator code/key/subscription/confirmations/gas and service availability on the deployment chain. An ABI or mock is not verification.",
+            "Stage real requests, out-of-order callbacks, strict mint-order reveal, subscription outages, reorg/finality and permanent early-request blocking recovery. No cancellation/reroll/admin bypass exists.",
+            "Verify canonical sealing rejects missing randomness configuration; verify content root and every artwork/metadata path against an independently reviewed immutable catalog."
+          ]
         }
       ]
     },
@@ -69,29 +81,42 @@
           "id": "unsigned-actions",
           "status": "done",
           "title": "Prepare unsigned mint & claim requests",
-          "text": "Validate and simulate 0.05 ETH mints and up to 32 LP / royalty claim operations. Signing stays in the wallet.",
-          "href": "docs/IMPLEMENTATION_STATUS.md#todo-to-turn-the-website-flows-into-real-transactions"
+          "text": "Local, unpublished preparation validates and simulates 0.05 ETH mints and up to 32 LP / royalty claims. Signing stays in the wallet; this task is not live integration.",
+          "href": "docs/IMPLEMENTATION_STATUS.md#local-unpublished-candidates"
         },
         {
           "id": "activation-quotes",
           "status": "progress",
           "title": "Complete activation & top-up quotes",
           "text": "Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately.",
-          "href": "docs/ACTIVATION_ROUTING.md#atomic-entry-candidate-and-remaining-qualification"
+          "href": "docs/ACTIVATION_ROUTING.md#atomic-entry-candidate-and-remaining-qualification",
+          "acceptance": [
+            "Quote and test $100 source value with no more than 1% total execution/undeployed cost and gas separate. Reject quotes or revert when the limit cannot be met; do not promise zero gas loss on reverts.",
+            "Build a complete original-source-to-LP quote against actual reviewed routes and feeds, including the Pons deployment leg. Authenticate Entry/Registry/Oracle/helper bindings and append-only route policy history; conversion-only quotes are not signable activation preparation.",
+            "Pin all call/code/storage reads to one canonical block hash; verify provider support and final snapshot freshness, rejecting stale/future observations and unsupported selectors without fallback. Rehearse every target input with separate gas estimates."
+          ]
         },
         {
           "id": "financial-history",
           "status": "todo",
           "title": "Build live fee history & USD values",
           "text": "Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct.",
-          "href": "docs/FRONTEND_HISTORY.md#verification-and-remaining-scope"
+          "href": "docs/FRONTEND_HISTORY.md#verification-and-remaining-scope",
+          "acceptance": [
+            "Index gross earned revenue, actual receipts, allocations and claims as distinct events, with complete deployment-to-present coverage, canonical/reorg reconciliation and unavailable responses when coverage is incomplete.",
+            "Define reviewed per-asset USD pricing and 24-hour/all-time valuation. Cumulative raw claimed totals, including claims by previous NFT owners, must not be presented as gross revenue; the selected Pons pool has 0% conventional fees, not the demo's assumed 0.30%."
+          ]
         },
         {
           "id": "host-services",
           "status": "todo",
           "title": "Host and monitor the API & indexer",
           "text": "A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts.",
-          "href": "docs/FRONTEND_API.md#local-operation-and-verification"
+          "href": "docs/FRONTEND_API.md#local-operation-and-verification",
+          "acceptance": [
+            "Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.",
+            "Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API."
+          ]
         }
       ]
     },
@@ -113,35 +138,54 @@
           "status": "todo",
           "title": "Connect real wallet transactions",
           "text": "Wire minting, activation, LP additions and claims to reviewed deployed contracts.",
-          "href": "docs/IMPLEMENTATION_STATUS.md#todo-to-turn-the-website-flows-into-real-transactions"
+          "href": "docs/FRONTEND_API.md",
+          "acceptance": [
+            "Integrate actual wallet transactions and the implemented confirmed API/history/unsigned-preparation service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review deployments and calldata; discard drafts on account/chain changes or expiry; freshly simulate/estimate gas, confirm with the user and handle canonical receipts/replacements/reorgs. Bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them."
+          ]
         },
         {
           "id": "portfolio",
           "status": "todo",
           "title": "Show actual holdings & claimable fees",
           "text": "Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.",
-          "href": "docs/FRONTEND_API.md#implemented-endpoint"
+          "href": "docs/FRONTEND_API.md#implemented-endpoint",
+          "acceptance": [
+            "Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.",
+            "Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier."
+          ]
         },
         {
           "id": "transaction-ui",
           "status": "todo",
           "title": "Handle the complete transaction journey",
           "text": "Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.",
-          "href": "docs/RELEASE_CHECKLIST.md#market-valuation-and-operating-integration"
+          "href": "docs/CLAIM_ROUTER.md",
+          "acceptance": [
+            "Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.",
+            "Independently review and pin deployments, the immutable 32-operation claim router runtime/bindings and exact calldata. Chunk larger portfolios; recheck owner/assets, simulate and estimate gas immediately before user confirmation. Handle account/network changes, stale drafts, rejection, replacement, failure and canonical receipt/reorg recovery.",
+            "Mint/claim drafts have client-enforced expiry, not an on-chain calldata deadline. Discard stale drafts and prepare again; do not describe unsigned backend preparation as signing or live wallet integration."
+          ]
         },
         {
           "id": "live-history-ui",
           "status": "todo",
           "title": "Connect live history & cumulative claims",
           "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.",
-          "href": "docs/FRONTEND_HISTORY.md#api-behavior"
+          "href": "docs/FRONTEND_HISTORY.md#api-behavior",
+          "acceptance": [
+            "Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners, not just the last claim.",
+            "Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing."
+          ]
         },
         {
           "id": "purchase-rights",
           "status": "todo",
           "title": "Show execution-time rights when buying an NFT",
           "text": "Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.",
-          "href": "reports/nft-rights-audit/REVIEW.md#identity-and-ownership"
+          "href": "reports/nft-rights-audit/REVIEW.md#identity-and-ownership",
+          "acceptance": [
+            "Verify marketplace payment and claims; do not advertise ERC2981 as enforced royalties or a listing's claim balance as guaranteed at purchase."
+          ]
         }
       ]
     },
@@ -163,21 +207,41 @@
           "status": "progress",
           "title": "Robinhood mainnet-fork qualification",
           "text": "Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates.",
-          "href": "test/NativePoolFork.t.sol"
+          "href": "test/NativePoolFork.t.sol",
+          "acceptance": [
+            "**Robinhood mainnet fork:** compatibility with the actual ZZZ pool, hook and deployed dependencies. The existing separate hookless-pool tests do not close this gate.",
+            "Stage actual Uniswap swaps/entry/maintenance, malicious token/callback behavior, exact approvals/settlement, stale prices, donations and failures."
+          ]
         },
         {
           "id": "testnet-rehearsal",
           "status": "todo",
           "title": "Robinhood Testnet end-to-end rehearsal",
           "text": "Exercise wallet flows, the website, keeper operations and deployment with explicit records of unavailable or mocked dependencies.",
-          "href": "docs/RELEASE_CHECKLIST.md#required-testing-layers"
+          "href": "docs/RELEASE_CHECKLIST.md#required-testing-layers",
+          "acceptance": [
+            "**Robinhood Testnet:** wallet flows, website integration, keeper operations and deployment rehearsals, with actual supported services and explicit records of any mocked or unavailable dependencies.",
+            "Complete actual Robinhood Testnet end-to-end operation, physical host-loss/key-rotation rehearsal and independent audit/configuration approval.",
+            "Exercise actual entry, top-ups, fee funding/claims, royalties, transfers, rebalances, live keeper signing/recovery, indexer backfill/reorgs and alerts. Record mock or unavailable dependencies; Sepolia and local Anvil supplement but do not replace Robinhood-specific qualification."
+          ]
         },
         {
           "id": "audit-release",
           "status": "todo",
           "title": "Independent audit and release approval",
           "text": "Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.",
-          "href": "docs/RELEASE_CHECKLIST.md"
+          "href": "docs/RELEASE_CHECKLIST.md",
+          "acceptance": [
+            "**Local tests:** minting, activation, rewards, royalties, transfers and security.",
+            "Reproduce all Solidity/Python tests for the final frozen production release on supported Ubuntu, retaining exact source revision, compiler settings and full logs. Candidate CI and earlier green CI for `5febe70` do not validate future source changes.",
+            "Compile every contract/test/script and check normal runtime/initcode limits, constructor-argument allowance (including the claim router) and current gas; all small bytecode margins require explicit review.",
+            "Independently review the final source-bound Slither triage and accepted risks, refreshing analysis if source changes. Completed internal triage does not close the external audit gate.",
+            "Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.",
+            "Complete production services, creator terms, frozen-release independent audit and operating rehearsals. Real bridging remains blocked by destination capacity admission and provider/recovery qualification.",
+            "Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including a pre-seal decision on permanent home-chain loss and canonical NFT/reward-ledger recovery. LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.",
+            "Fill and independently authenticate the schema-4 production inventory: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.",
+            "Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass."
+          ]
         },
         {
           "id": "economic-rights-audit",
@@ -199,28 +263,45 @@
           "status": "progress",
           "title": "Governance, permissions & sealing",
           "text": "Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.",
-          "href": "docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing"
+          "href": "docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing",
+          "acceptance": [
+            "Review governed activation-source enable/disable, future token admission, wrapper implementation/admin changes and disabled-source exit rehearsals. Admitting a source token does not add its conversion route; removing it must not revoke existing LP/reward rights. Ordinary exits remain price-guarded; parked close uses separately approved raw-token bounds. Rehearse governed feed repair without claiming unconditional recovery from external wrapper/bridge failure.",
+            "Independently stage paused parking through the sealed timelock: missing/stale price feeds, failed creator inbox, exact share/LP/custody snapshot, close-only minimums excluding idle/compound/donations, one-sided principal, invalidation/replay/expiry, claims/transfers and fresh-oracle resume. Authenticate current-source evidence in the inventory's mandatory `parking_rehearsal` record."
+          ]
         },
         {
           "id": "security-share-accounting",
           "status": "progress",
           "title": "Shared LP accounting & economic manipulation",
           "text": "Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues.",
-          "href": "docs/SECURITY_AUDIT_PLAN.md#2-shared-lp-accounting-and-economic-manipulation"
+          "href": "docs/SECURITY_AUDIT_PLAN.md#2-shared-lp-accounting-and-economic-manipulation",
+          "acceptance": [
+            "Review creator inboxes, optional wrappers, discretionary payment terms, processing-time eligibility and combined four-bucket/four-inbox costs with all admitted assets. The factory's separate 16-inbox ceiling does not enlarge current Vault capacity. Qualify actual Entry/Pons gas, not only the passing local fixture. Creator payment frequency and percentage remain undecided."
+          ]
         },
         {
           "id": "security-ownership-rewards",
           "status": "progress",
           "title": "Ownership, claims & allocation rules",
           "text": "Verify all unclaimed balances and fractions follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized.",
-          "href": "docs/SECURITY_AUDIT_PLAN.md#3-nft-ownership-and-reward-distribution"
+          "href": "docs/SECURITY_AUDIT_PLAN.md#3-nft-ownership-and-reward-distribution",
+          "acceptance": [
+            "Independently verify isolated 0.05 ETH mint proceeds, the 1,000-NFT cap, exact 600/300/100 quotas, atomic failure and no reroll/trait override.",
+            "Independently verify 80/10/5/5 funding, 90% remote delivery, equal collective membership and index/fractional solvency across transfers, entries and migrations.",
+            "Independently review the 5% ERC-2981 request and 100% eligible royalty redistribution in the separate immutable ETH/ERC20 ledger at activated rarity weights 1/2/3. Marketplace payment remains voluntary.",
+            "Configure OpenSea creator earnings to the actual `NFT.royaltyRewards()` helper at 5%, verify collection-administration access and each admitted payout asset, and stage a paid sale through receipt, weighted claim and NFT transfer. The current contract requests optional earnings; it does not implement ERC-721-C enforcement."
+          ]
         },
         {
           "id": "security-strategy",
           "status": "progress",
           "title": "Oracles, keepers, strategies & MEV",
           "text": "Test compromised keepers, stale/manipulated prices, repeated rebalances, unfavorable swaps and sandwich/MEV costs. Qualify execution bounds, cooldowns, fee/gas budgets and outage policies with actual venues; access control alone does not prevent economic loss or impermanent loss.",
-          "href": "docs/SECURITY_AUDIT_PLAN.md#4-oracle-keeper-and-strategy-vulnerabilities"
+          "href": "docs/SECURITY_AUDIT_PLAN.md#4-oracle-keeper-and-strategy-vulnerabilities",
+          "acceptance": [
+            "Qualify gas for 1/100/1,000 NFTs and maximum actual assets/inboxes; prove upkeep scales by shared pool. Backtest range, trigger, cooldown, slippage, impermanent loss, MEV and operating cost. Production strategy parameters remain unset.",
+            "Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source."
+          ]
         },
         {
           "id": "security-dependencies",
@@ -234,7 +315,10 @@
           "status": "todo",
           "title": "Whole-protocol recovery & canonical chain loss",
           "text": "Decide before sealing how to handle permanent home-chain loss, lost governance keys and unusable critical contracts. LP migration alone leaves canonical NFT ownership and reward ledgers at home. A full identity/liability migration needs an audited snapshot/finality, duplicate-prevention, in-flight claims and old-chain resurrection policy; it is not implemented.",
-          "href": "docs/SECURITY_AUDIT_PLAN.md#6-protocol-availability-and-long-term-recoverability"
+          "href": "docs/SECURITY_AUDIT_PLAN.md#6-protocol-availability-and-long-term-recoverability",
+          "acceptance": [
+            "Make an explicit reviewed architecture decision before sealing for permanent home-chain loss, canonical NFT ownership and reward-ledger recovery. Moving LP alone does not restore those records or authorities; do not claim universal recovery."
+          ]
         },
         {
           "id": "security-integration",
@@ -256,42 +340,71 @@
           "status": "todo",
           "title": "Select authorities & price services",
           "text": "Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.",
-          "href": "docs/PRODUCTION_SERVICES.md"
+          "href": "docs/PRODUCTION_SERVICES.md",
+          "acceptance": [
+            "Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.",
+            "Independently review and stage sequencer policy replacement through the actual sealed timelock, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.",
+            "Select and verify multisig/keeper/guardian/mint-recipient authorities, fixed timelock and module bindings; prohibit mint/LP/royalty receiver collisions."
+          ]
         },
         {
           "id": "creator-terms",
           "status": "todo",
           "title": "Finalize creator revenue-sharing terms",
           "text": "Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.",
-          "href": "docs/REVENUE_SHARE.md"
+          "href": "docs/REVENUE_SHARE.md",
+          "acceptance": [
+            "Confirm terms with the pool creator: percentage and calculation basis, payout asset/network, payment frequency, authorized payer/configurer and actual PoPL receiver. Terms were explicitly deferred on 2026-10-15; receipt-driven implementation must not imply guaranteed revenue. Stage a payment through allocation and holder claim.",
+            "Agree and qualify the proposed active-liquidity measurement policy: fee-weighted or time-weighted, epoch length, snapshot frequency/gap limits, finality, complete fee events, tick-crossing approximation, cross-asset payout conversion, rounding and independent receipt reconciliation. Rehearse the complete data-to-payment-to-holder-claim cycle. The implemented calculator has no payout authority and does not prove creator acceptance."
+          ]
         },
         {
           "id": "metadata-ops",
           "status": "progress",
           "title": "Publish artwork & operate metadata refresh",
           "text": "The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.",
-          "href": "docs/ARTWORK_PUBLICATION.md"
+          "href": "docs/ARTWORK_PUBLICATION.md",
+          "acceptance": [
+            "Stage live oracle/NAV thresholds, downward evolution and remote/stale unavailable labels; claims and migration must remain independent of metadata price reads.",
+            "Stage the implemented watcher with actual feeds, reviewed NFT runtime pins, RPC limits, confirmation recovery and gas budgets. Publish/pin the complete 2,784-state artwork manifest and independently verify its root, every path and actual marketplace rendering/ERC-4906 cache refresh.",
+            "Select an IPFS pinning provider and publish the verified complete artwork bundle; independently verify the resulting CID, all renderer paths and ongoing pin availability. Provider selection and publication were deferred; preparing a bundle alone does not establish hosting."
+          ]
         },
         {
           "id": "keeper-guardrails",
           "status": "progress",
           "title": "Harden keeper recovery and monitoring",
           "text": "Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open.",
-          "href": "docs/KEEPER_RECOVERY.md"
+          "href": "docs/KEEPER_RECOVERY.md",
+          "acceptance": [
+            "Stage keeper keystore isolation, nonce/receipt recovery, RPC failover, budgets, indexer backfill/reorgs, alerts and Unix state locking. The supplied systemd unit defaults to dry run.",
+            "Qualify canonical-hash RPC selectors for every activation state read, stale-snapshot rejection, strict receipt recovery across midnight/reorgs, and the chain's complete L2/L1 fee reporting. Offline mocks do not establish provider support or complete real network costs.",
+            "Qualify independent production alerts/backups/retention, redundant RPCs and complete real fee accounting."
+          ]
         },
         {
           "id": "keeper-recovery",
           "status": "progress",
           "title": "Rehearse keeper outage & server recovery",
           "text": "209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.",
-          "href": "docs/KEEPER_REHEARSALS.md"
+          "href": "docs/KEEPER_REHEARSALS.md",
+          "acceptance": [
+            "Stage [the keeper recovery runbook](docs/KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.",
+            "Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.",
+            "Finish and review sustained multi-day staging; preserve observation gaps. The current 30-minute chat heartbeat depends on desktop availability."
+          ]
         },
         {
           "id": "asset-liveness-dust",
           "status": "todo",
           "title": "Approve reward-token liveness and dust economics",
           "text": "Review admitted token upgrade, blacklist, rebase and transfer behavior. A broken royalty token can stop new activations; sub-20-raw-unit owner dust is bounded per settlement, not cumulatively. Qualify every asset before admission.",
-          "href": "docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting"
+          "href": "docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting",
+          "acceptance": [
+            "Review the economic value of at most 19 raw units settled before membership changes, asset decimals and holder-triggerable entry frequency.",
+            "Inventory all royalty assets and review exact transfers, rebases, mutable authority, prefund/zero-member quarantine, pending settlement, claim callbacks, fractional/global dust, transfer rights and activation outage behavior.",
+            "Approve admitted-token outage/upgrade/blacklist behavior and economic value of repeated sub-20-raw-unit incumbent dust settlements."
+          ]
         }
       ]
     },
@@ -314,14 +427,26 @@
           "status": "todo",
           "title": "Reserve destination capacity",
           "text": "Reserve space before liquidity travels, including concurrent arrivals, returns and recovery if delivery is delayed.",
-          "href": "docs/CHANGE_AND_RECOVERY.md#destination-capacity-unresolved-proposed-next-implementation"
+          "href": "docs/CHANGE_AND_RECOVERY.md#destination-capacity-unresolved-proposed-next-implementation",
+          "acceptance": [
+            "Fix and independently review destination **capacity** reservation: the present pool-to-bucket reservation does not reserve a historical slot, so unrelated first arrivals can exhaust it before delivery. Test concurrent arrivals/local registrations, duplicate pool reservations for one bucket, returns and failure recovery. Keep real bridging disabled until this is resolved.",
+            "Reserve durable historical capacity before delivery, not just pool identity. Reuse returning slots; test local/remote concurrency, duplicate/idempotent registration, reserved None-state enumeration and delayed/cancelled operations without freeing a reservation that an in-flight delivery may still need."
+          ]
         },
         {
           "id": "bridge-operation",
           "status": "todo",
           "title": "Qualify bridges & remote compounding",
           "text": "Review real transport providers, backing and repeated migrations; implement funded compounding when LP stays on another chain.",
-          "href": "docs/IMPLEMENTATION_STATUS.md#todo-before-enabling-real-bridging"
+          "href": "docs/CHANGE_AND_RECOVERY.md",
+          "acceptance": [
+            "Independently review real provider SDK wrappers, backing/equivalent token semantics, channels, finality, exact funding and recovery.",
+            "Stage canonical -> satellite -> satellite -> home -> revisit with actual providers, duplicate/reordered/forged/underfunded receipts, ACK epochs, pauses, old-policy and historical reward paths.",
+            "Verify destination reservations, frozen canonical shares/membership, no remint/principal refund, legacy liability barriers, and governance trust for every new destination.",
+            "Rehearse source-oracle-independent departure of an already Parked bucket with designated compound reserves, retained `remoteSettled` barrier, exact attributed transfers, destination valuation and reviewed provider recovery. Parking does not waive bridge backing or enable arbitrary conversion.",
+            "Review each future destination and onboard its immutable policy/routes through the timelock before economic migration. Authenticate provider SDKs, delivery fees, delayed receipts, failure/recovery and retained historical routes; future chains, arbitrary conversions and satellite top-ups are not automatically supported.",
+            "Resolve permanent-relocation compounding: the canonical creator receiver reserves its 5% compounding share at home while principal is remote. Remote reinvestment needs a separately reviewed funded bridge/top-up design; the current path waits for return."
+          ]
         }
       ]
     }
