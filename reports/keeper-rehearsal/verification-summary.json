@@ -1,0 +1,48 @@
+{
+  "reviewed_commit": "089d391c1689c2036db518c7a9705989896a14d8",
+  "created_at": "2026-10-16T20:26:54.429162+00:00",
+  "production_approved": false,
+  "ubuntu": {
+    "run_id": 38961988650,
+    "url": "https://github.com/ABEF/AAA/actions/runs/38961988650",
+    "unit_tests": 209,
+    "failures": 0,
+    "skips": 0,
+    "process_rehearsals": 14,
+    "source_hashes_match": true
+  },
+  "rpc_probe": {
+    "compatibility_checks_passed": false,
+    "public_endpoint_observation": "HTTP 403 from this environment",
+    "pinax_checks_passed": 11,
+    "production_fee_policy": "unverified"
+  },
+  "website": {
+    "server_index_before_sha256": "468e02ed4375e796d3034419b58b4e11eb0626215d314f4e89a5c4c72e60d50a",
+    "server_index_after_sha256": "468e02ed4375e796d3034419b58b4e11eb0626215d314f4e89a5c4c72e60d50a"
+  },
+  "monitor": {
+    "automation_id": "popl-staging-health",
+    "interval_minutes": 30,
+    "requires_desktop_available": true,
+    "server_export_interval_minutes": 5,
+    "forced_command_verified": true,
+    "port_forwarding_rejected": true,
+    "stopped_keeper_detected": true,
+    "restart_recovery_detected": true
+  },
+  "credentials_included": false,
+  "public_chain_transactions": 0,
+  "server": {
+    "process_receipt": "server-089d391.json",
+    "process_cases_passed": 14,
+    "source_hashes_match": true,
+    "operating_observation": "server-operating-observation.json",
+    "runtime_source_commit": "089d391c1689c2036db518c7a9705989896a14d8",
+    "runtime_source_file_count": 24,
+    "keeper_and_chain_active": true,
+    "crash_auto_restart_observed": true,
+    "same_host_offhost_snapshot_restore_passed": true,
+    "sustained_soak_complete": false
+  }
+}

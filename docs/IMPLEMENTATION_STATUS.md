@@ -91,3 +91,10 @@ The detailed [component map](COMPONENT_STATUS.md) describes implementation bound
 ## Keeper recovery follow-up
 
 Missing live state/nonce checkpoints and unqualified network fee policies now block startup; submissions check nonce continuity, canonical receipt anchors and signer balance. Structured health/error logs and bounded retry delays accompany the explicit unused-signer bootstrap. See [recovery runbook](KEEPER_RECOVERY.md). Full server-loss recovery, backups/alert routing, Linux deployment and multi-day outage rehearsals are still required. See [central Todo](../TODO.md).
+
+
+## Keeper operating qualification - 2026-10-16
+
+Read-only preflight, health evaluation, exclusive recovery snapshots and a bounded RPC compatibility probe are implemented. Runtime revision 089d391 passed 209 Ubuntu tests without skips/failures and 14 actual process-crash/recovery cases. Isolated staging on the authorized website server now exercises systemd and disposable local-chain signing; controlled crash/restart, off-host snapshot round-trip restoration and read-only monitor restrictions were checked. See [operating evidence](../reports/keeper-rehearsal/README.md).
+
+This closes the recorded isolated rehearsal cases, not the multi-day soak, actual Robinhood Testnet integration, production services/configuration, lost-key governance or external audit. The documented public RPC returned HTTP 403 from this environment; the Pinax sample passed, so redundant production provider qualification is still open.

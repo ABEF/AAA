@@ -58,7 +58,7 @@ Decisions and rehearsals before real funds.
 - [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
 - [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
 - [ ] **Harden keeper recovery and monitoring** - In progress. Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open.
-- [ ] **Rehearse keeper outage & server recovery** - In progress. Fourteen process rehearsals pass on Ubuntu CI and the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
+- [ ] **Rehearse keeper outage & server recovery** - In progress. 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
 
 ## Future migration
 
@@ -72,4 +72,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `dcdda7598093eb96e25db62dc358e05d18f015829c50e648cacc00182939fa6b`.
+Snapshot SHA-256: `6ef519d798357c1d71b44380b10746050925dd8d3ff9b047f050254d277d7943`.

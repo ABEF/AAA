@@ -188,7 +188,7 @@
           "id": "keeper-recovery",
           "status": "progress",
           "title": "Rehearse keeper outage & server recovery",
-          "text": "Fourteen process rehearsals pass on Ubuntu CI and the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open."
+          "text": "209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open."
         }
       ]
     },

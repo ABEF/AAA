@@ -1,0 +1,79 @@
+{
+  "health": {
+    "blocked_actions": 0,
+    "chain_id": 31337,
+    "consecutive_failures": 0,
+    "duration_seconds": 0.089,
+    "last_success_at": "2026-10-16T20:30:18.627478+00:00",
+    "live": true,
+    "pending": false,
+    "pending_action": null,
+    "pending_day": null,
+    "sender": "0xe31ab504e756ef476d43aaedb8a4af7bd846d463",
+    "skipped_buckets": 0,
+    "status": "healthy",
+    "strategy_paused": false,
+    "time": "2026-10-16T20:30:18.627499+00:00"
+  },
+  "keeper_accounting": {
+    "next_nonce": 1,
+    "pending": null,
+    "spent": {
+      "2026-10-16": 37905625419200
+    }
+  },
+  "observed_at": "2026-10-16T20:30:47.469641+00:00",
+  "production_approved": false,
+  "rehearsal_sha256": "76a65a2a61e1cfb54fcf81fee7ac97135c748a66d718449cf936c3b1e156c627",
+  "scope": "Isolated Anvil 31337; no public transactions",
+  "source_commit": "089d391c1689c2036db518c7a9705989896a14d8",
+  "source_file_count": 24,
+  "source_hashes_match": true,
+  "units": {
+    "nginx.service": {
+      "ActiveState": "active",
+      "CPUQuotaPerSecUSec": "infinity",
+      "IPAddressAllow": "",
+      "IPAddressDeny": "",
+      "MemoryMax": "infinity",
+      "NRestarts": "0",
+      "NoNewPrivileges": "no",
+      "ProtectSystem": "no",
+      "SubState": "running",
+      "TasksMax": "9211",
+      "User": ""
+    },
+    "zzz-stage-anvil.service": {
+      "ActiveState": "active",
+      "CPUQuotaPerSecUSec": "200ms",
+      "IPAddressAllow": "::1/128 127.0.0.0/8",
+      "IPAddressDeny": "0.0.0.0/0 ::/0",
+      "MemoryMax": "536870912",
+      "NRestarts": "0",
+      "NoNewPrivileges": "yes",
+      "ProtectSystem": "strict",
+      "SubState": "running",
+      "TasksMax": "64",
+      "User": "zzz-stage"
+    },
+    "zzz-stage-keeper.service": {
+      "ActiveState": "active",
+      "CPUQuotaPerSecUSec": "200ms",
+      "IPAddressAllow": "::1/128 127.0.0.0/8",
+      "IPAddressDeny": "0.0.0.0/0 ::/0",
+      "MemoryMax": "268435456",
+      "NRestarts": "0",
+      "NoNewPrivileges": "yes",
+      "ProtectSystem": "strict",
+      "SubState": "running",
+      "TasksMax": "64",
+      "User": "zzz-stage"
+    },
+    "zzz-stage-observer.timer": {
+      "ActiveState": "active",
+      "SubState": "waiting"
+    }
+  },
+  "website_after_sha256": "468e02ed4375e796d3034419b58b4e11eb0626215d314f4e89a5c4c72e60d50a",
+  "website_before_sha256": "468e02ed4375e796d3034419b58b4e11eb0626215d314f4e89a5c4c72e60d50a"
+}

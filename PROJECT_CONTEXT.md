@@ -277,3 +277,10 @@ Current keeper hardening adds explicit unused-signer bootstrap, strict live stat
 ## Published keeper verification - 2026-10-16
 
 Keeper/Todo commit `3db782b087d5add2327f519030055d288d9d6512` is pushed. Exact-commit Ubuntu keeper verification (run 38956992156) passed 183 tests with zero failures/skips and systemd unit validation; Todo consistency run 38956992065 passed. The local broader workspace passed 602 Python tests with five Unix cases separately covered by Ubuntu. The keeper changes are published; other pre-existing Solidity/frontend development remains uncommitted and must not be silently discarded or included. The website is clean at its previous deployed revision, with no Todo page. Read `reports/keeper-recovery/REVIEW.md`; production operating gates remain open.
+
+
+## Keeper staging handoff - 2026-10-16
+
+The user selected the existing Ubuntu website host for isolated keeper rehearsals. The stage is running under zzz-stage in /opt/zzz-keeper-staging and /var/lib/zzz-keeper-staging, using only an isolated Anvil chain 31337 on 127.0.0.1:18545 and disposable test ETH. Runtime source 089d391c1689c2036db518c7a9705989896a14d8 passed 209 Ubuntu safety tests and 14 process rehearsals. Server process/crash/restart, off-host snapshot round-trip restore and forced-command monitoring tests have evidence in reports/keeper-rehearsal/. Website release/content is unchanged.
+
+A five-minute local observer exports snapshots and health through read-only SSH. The popl-staging-health chat heartbeat reads every 30 minutes and saves off-host copies; desktop downtime creates observation gaps, so this is not independently hosted 24/7 production monitoring. Credentials remain outside Git. Multi-day soak is underway, not passed. Keep actual Robinhood services, fee/RPC qualification, Testnet operation, independent audit and authority decisions open. See docs/KEEPER_REHEARSALS.md for the service boundaries and stop procedure.

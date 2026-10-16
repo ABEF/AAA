@@ -94,3 +94,16 @@ The schema-4 production inventory must include current economics, NFT helper/ran
 
 - [ ] Stage [the keeper recovery runbook](KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.
 - [ ] Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.
+
+
+## Isolated operating rehearsal evidence - 2026-10-16
+
+- [x] 209 exact-revision Ubuntu keeper/monitor/RPC/state tests with zero failures/skips; 14 local Anvil process scenarios, including broadcast crash boundaries and stale state.
+- [x] Authorized website-host staging with an isolated service account, loopback-only test chain and resource/filesystem/network limits.
+- [x] Actual systemd keeper restart/forced-crash recovery, preserved nonce/budget, controlled off-host snapshot round-trip restore, and read-only monitor command/forwarding restrictions.
+- [x] Stopped-service detection and recovery through the off-host read-only monitor; unchanged public website hash over HTTPS.
+- [ ] Finish and review sustained multi-day staging; preserve observation gaps. The current 30-minute chat heartbeat depends on desktop availability.
+- [ ] Qualify independent production alerts/backups/retention, redundant RPCs and complete real fee accounting.
+- [ ] Complete actual Robinhood Testnet end-to-end operation, physical host-loss/key-rotation rehearsal and independent audit/configuration approval.
+
+Evidence: [keeper operating rehearsals](../reports/keeper-rehearsal/README.md). No public contracts or transactions were deployed/submitted in this work.

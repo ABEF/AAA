@@ -7,6 +7,15 @@ are outside this publication and remain preserved.
 
 ## Evidence
 
+- Current reviewed runtime commit `089d391c1689c2036db518c7a9705989896a14d8`:
+  **209 Ubuntu tests, zero failures/skips, and all 14 process rehearsals passed**
+  in [run 38961988650](https://github.com/ABEF/AAA/actions/runs/38961988650).
+  Exact logs and source-bound receipts are in `ubuntu-089d391/`.
+  `server-089d391.json` independently records all 14 cases passing on the Ubuntu
+  staging host with the same source hashes. `server-operating-observation.json`
+  records the active isolated services, resource/network restrictions, healthy
+  keeper, preserved accounting and unchanged website index hashes. These are
+  initial operating checks; the multi-day soak is **not complete**.
 - `ubuntu-f53fb2b/`: 194 Ubuntu unit tests, zero failures/skips, and **14 actual
   process scenarios** passed in [run 38959176755](https://github.com/ABEF/AAA/actions/runs/38959176755).
   Receipts bind the exact source hashes. The earlier failed run in `attempt1/`
@@ -28,6 +37,11 @@ are outside this publication and remain preserved.
   retrieval, ignored arbitrary command requests and rejected port forwarding.
   Five-minute local export plus a 30-minute desktop heartbeat is staging monitoring,
   not an independently hosted production alarm service.
+- The off-host check reported failure when the keeper was deliberately stopped
+  and success after restart and a fresh health/export cycle. The active
+  `popl-staging-health` chat heartbeat preserves off-host snapshots and stays
+  quiet on unchanged healthy observations. It requires the desktop to remain
+  available; observation gaps and retention require review.
 - Fresh exact-source CI/host receipts are added alongside this report. Do not treat
   an earlier source hash as evidence for later changed code.
 
