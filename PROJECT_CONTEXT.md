@@ -319,3 +319,13 @@ not an assertion that independent audit is complete. The split is currently
 fixed; configurable percentages are only a risk/benefit question, not an approved
 change. Permanent home-chain loss has no canonical NFT/reward-ledger recovery;
 LP migration alone does not solve it. Decide this architecture before sealing.
+
+## README organization - 2026-10-16
+
+The README is the project entry point: short purpose/status, adjacent central
+Todo and implementation-status links, then Smart contracts / Backend / Frontend
+responsibilities. Keep lifecycle and economic rules in their own sections rather
+than repeating them in architecture. Group keeper runbooks under operations;
+link current verification and detailed reports instead of repeating historical
+test-count narratives. Preserve clickable task/file links and explicit release,
+sealing and canonical home-chain recovery boundaries.
