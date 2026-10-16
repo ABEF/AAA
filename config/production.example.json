@@ -110,6 +110,11 @@
       "activation_assets": null, "observed_registry_entry": null, "observed_chain_id": 4663,
       "observed_block_number": null, "observed_block_hash": null, "review_evidence": null
     },
+    "migration_budget": {
+      "address": null, "runtime_hash": null, "immutable": true, "vault": null, "controller": null,
+      "observed_vault_helper": null, "observed_chain_id": 4663, "observed_block_number": null,
+      "observed_block_hash": null, "review_evidence": null
+    },
     "governance": {
       "multisig": null, "proposers": [], "executors": [], "signers": [], "threshold": null,
       "keeper": null, "guardian": null, "overlap_review": null,

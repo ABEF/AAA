@@ -1,0 +1,1333 @@
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+ --> src\base\ZZZModule.sol:6:33
+  |
+6 |     IZZZAccess public immutable access;
+  |                                 ^^^^^^
+  |
+  = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZActivationAssets.sol:12:30
+   |
+12 |     address public immutable registry;
+   |                              ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\libraries\ZZZTypes.sol:41:13
+   |
+41 |     uint256 minDepositUSD;
+   |             ^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+  --> src\libraries\ZZZArtwork.sol:21:17
+   |
+21 |         return (uint8(code / PATTERN_COUNT), uint8(code % PATTERN_COUNT));
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: Consider disabling this lint if you're certain the cast is safe:
+           
+           // casting to 'uint8' is safe because [explain why]
+           // forge-lint: disable-next-line(unsafe-typecast)
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+  --> src\libraries\ZZZArtwork.sol:21:46
+   |
+21 |         return (uint8(code / PATTERN_COUNT), uint8(code % PATTERN_COUNT));
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: Consider disabling this lint if you're certain the cast is safe:
+           
+           // casting to 'uint8' is safe because [explain why]
+           // forge-lint: disable-next-line(unsafe-typecast)
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZActivationAssets.sol:46:24
+   |
+46 |         return _record(Policy(token, enabled, expectedCodeHash, reviewHash, decimals, false));
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZActivationAssets.sol:61:38
+   |
+61 |         bytes32 admissionReference = keccak256(abi.encode("ZZZ_POOL_ASSET_ADMISSION_V1", registry, token, codeHash, decimals));
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZActivationAssets.sol:62:24
+   |
+62 |         return _record(Policy(token, true, codeHash, admissionReference, decimals, true));
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZPoolRegistry.sol:27:42
+   |
+27 |     ZZZActivationAssets public immutable activationAssets;
+   |                                          ^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[pascal-case-struct]: structs should use PascalCase
+  --> src\ZZZNFTMetadata.sol:10:8
+   |
+10 | struct NFTMetadataInput {
+   |        ^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#pascal-case-struct
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZNFTMetadata.sol:18:13
+   |
+18 |     uint256 valueUSD;
+   |             ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[unused-import]: unused imports should be removed
+ --> src\ZZZAccessController.sol:4:20
+  |
+4 | import {IZZZBound, IZZZAccess, IZZZBridgeEndpoint, IZZZVault, IZZZNFT} from "./interfaces/IZZZ.sol";
+  |                    ^^^^^^^^^^
+  |
+  = help: https://book.getfoundry.sh/reference/forge/forge-lint#unused-import
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZMigration.sol:23:17
+   |
+23 |         uint256 depositUSD;
+   |                 ^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZActivationEntry.sol:45:30
+   |
+45 |     address public immutable registry;
+   |                              ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZActivationEntry.sol:46:42
+   |
+46 |     ZZZActivationAssets public immutable activationAssets;
+   |                                          ^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZNFT.sol:34:40
+   |
+34 |     ZZZRoyaltyRewards public immutable royaltyRewards;
+   |                                        ^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZNFT.sol:35:37
+   |
+35 |     ZZZClaimRouter public immutable claimRouter;
+   |                                     ^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZNFT.sol:36:37
+   |
+36 |     ZZZNFTMetadata public immutable metadataRenderer;
+   |                                     ^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\libraries\ZZZTypes.sol:42:13
+   |
+42 |     uint256 maxPositionUSD;
+   |             ^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZMigration.sol:55:28
+   |
+55 |           bytes32 identity = keccak256(abi.encode(m.bucketId, m.homeChain, m.homeVault,
+   |  ____________________________^
+56 | |             m.homeReceiver, m.homePoolId, m.depositUSD, m.totalShares));
+   | |_______________________________________________________________________^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZMigration.sol:57:27
+   |
+57 |           bytes32 custody = keccak256(abi.encode(m.migrationId, m.migrationEpoch, m.principalRouteId,
+   |  ___________________________^
+58 | |             m.previousChain, m.previousVault, m.previousReceiver));
+   | |__________________________________________________________________^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZPoolRegistry.sol:28:41
+   |
+28 |     ZZZActivationEntry public immutable activationEntry;
+   |                                         ^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-function]: function names should use mixedCase
+   --> src\ZZZNFT.sol:190:14
+    |
+190 |     function currentLPValue(uint256 id) public view returns (bool available, uint256 valueUSD) {
+    |              ^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZNFT.sol:190:86
+    |
+190 |     function currentLPValue(uint256 id) public view returns (bool available, uint256 valueUSD) {
+    |                                                                                      ^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-function]: function names should use mixedCase
+   --> src\ZZZNFT.sol:240:14
+    |
+240 |     function _validateBaseURI(string memory baseURI) private pure {
+    |              ^^^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function
+
+note[mixed-case-function]: function names should use mixedCase
+   --> src\ZZZNFT.sol:249:14
+    |
+249 |     function _baseURI() internal view override returns (string memory) { return metadataBase; }
+    |              ^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZAccessController.sol:62:30
+   |
+62 |           bytes32 noticeHash = keccak256(abi.encode("ZZZ_CANONICAL_PREPARATION_V1", block.chainid, address(this),
+   |  ______________________________^
+63 | |             module[Ids.VAULT], module[Ids.NFT], nonce, notice));
+   | |_______________________________________________________________^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZNFTMetadata.sol:27:33
+   |
+27 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZNFTMetadata.sol:31:70
+   |
+31 |     function currentValue(uint256 id) external view returns (uint256 valueUSD) {
+   |                                                                      ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZActivationEntry.sol:80:17
+   |
+80 |         uint256 grossUSD;
+   |                 ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZActivationEntry.sol:90:60
+   |
+90 |         address sourceAsset, uint256 sourceAmount, uint256 grossUSD, address output, uint256 outputAmount, bool increase);
+   |                                                            ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZNFT.sol:161:60
+    |
+161 |             artworkDraw[rarity][draw] = replacement == 0 ? uint16(last + 1) : replacement;
+    |                                                            ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint16' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZMigration.sol:59:30
+   |
+59 |           bytes32 accounting = keccak256(abi.encode(m.canonicalToken0, m.canonicalToken1,
+   |  ______________________________^
+60 | |             m.allocatedIndividual0, m.allocatedCollective0, m.allocatedIndividual1, m.allocatedCollective1));
+   | |____________________________________________________________________________________________________________^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZMigration.sol:61:16
+   |
+61 |         return keccak256(abi.encode(identity, custody, accounting));
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRoyaltyRewards.sol:22:30
+   |
+22 |     address public immutable nft;
+   |                              ^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-function]: function names should use mixedCase
+  --> src\ZZZRoyaltyRewards.sol:61:14
+   |
+61 |     modifier onlyNFT() {
+   |              ^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-function
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+  --> src\ZZZStrategy.sol:25:52
+   |
+25 |         lower = _floor(TickMath.getTickAtSqrtPrice(uint160(lowerRoot)), c.key.tickSpacing);
+   |                                                    ^^^^^^^^^^^^^^^^^^
+   |
+   = note: Consider disabling this lint if you're certain the cast is safe:
+           
+           // casting to 'uint160' is safe because [explain why]
+           // forge-lint: disable-next-line(unsafe-typecast)
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+  --> src\ZZZStrategy.sol:27:52
+   |
+27 |         upper = _floor(TickMath.getTickAtSqrtPrice(uint160(upperRoot)), c.key.tickSpacing) + c.key.tickSpacing;
+   |                                                    ^^^^^^^^^^^^^^^^^^
+   |
+   = note: Consider disabling this lint if you're certain the cast is safe:
+           
+           // casting to 'uint160' is safe because [explain why]
+           // forge-lint: disable-next-line(unsafe-typecast)
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZOracle.sol:83:64
+   |
+83 |     function price(address token) public view returns (uint256 normalizedUSD) {
+   |                                                                ^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZPoolRegistry.sol:156:21
+    |
+156 |             uint256 sourceUSD = activationEntry.sourceValue(poolId, amount0, amount1);
+    |                     ^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+   --> src\ZZZNFT.sol:211:40
+    |
+211 |           return metadataRenderer.render(NFTMetadataInput(id, rarityOf[id], paletteOf[id], patternOf[id], stage, traitsReady[id],
+    |  ________________________________________^
+212 | |             available, value, weight, metadataBase));
+    | |___________________________________________________^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZMigration.sol:100:27
+    |
+100 |         uint64 earliest = uint64(block.timestamp + MIGRATION_DELAY);
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint64' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZOracle.sol:31:42
+   |
+31 |             bytes32 admissionReference = keccak256(abi.encode("ZZZ_SEQUENCER_BOOTSTRAP_V1", sequencer, codeHash));
+   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZOracle.sol:32:30
+   |
+32 |             _recordSequencer(SequencerPolicy(sequencer, codeHash, admissionReference, true));
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZOracle.sol:45:33
+   |
+45 |         return _recordSequencer(SequencerPolicy(source, expectedCodeHash, reviewHash, false));
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZOracle.sol:74:24
+   |
+74 |         feeds[token] = Feed(feed, maxAge, fd, td);
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+  --> src\ZZZOracle.sol:90:25
+   |
+90 |         normalizedUSD = uint256(answer) * 10 ** (18 - f.feedDecimals);
+   |                         ^^^^^^^^^^^^^^^
+   |
+   = note: Consider disabling this lint if you're certain the cast is safe:
+           
+           // casting to 'uint256' is safe because [explain why]
+           // forge-lint: disable-next-line(unsafe-typecast)
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZOracle.sol:111:16
+    |
+111 |         return uint160(root << 32);
+    |                ^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint160' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+note[named-struct-fields]: prefer initializing structs with named fields
+   --> src\ZZZMigration.sol:102:30
+    |
+102 |         plans[migrationId] = Plan(id, routeId, earliest, Status.Scheduled, epoch, p.poolId, _snapshot(m));
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZMigrationBudget.sol:10:30
+   |
+10 |     address public immutable vault;
+   |                              ^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZActivationEntry.sol:203:17
+    |
+203 |         uint256 grossUSD = activationAssets.value(source, request.amountIn);
+    |                 ^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZVault.sol:23:40
+   |
+23 |     mapping(uint256 => uint256) public contributionUSD;
+   |                                        ^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZVault.sol:33:96
+   |
+33 |     event SharesAdded(uint256 indexed nftId, uint256 indexed bucketId, uint256 shares, uint256 netUSD);
+   |                                                                                                ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZVault.sol:36:30
+   |
+36 |     uint256 public immutable canonicalChainId;
+   |                              ^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZVault.sol:37:38
+   |
+37 |     address payable public immutable mintProceedsRecipient;
+   |                                      ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZVault.sol:38:41
+   |
+38 |     ZZZMigrationBudget public immutable migrationBudget;
+   |                                         ^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZMigrationBudget.sol:11:33
+   |
+11 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\Mocks.sol:25:29
+   |
+25 |     uint8 private immutable digits;
+   |                             ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\Mocks.sol:46:28
+   |
+46 |     uint8 public immutable decimals; uint80 public round=1;int256 public answer;uint256 public started;
+   |                            ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+   --> src\ZZZMigration.sol:217:33
+    |
+217 |         locations[m.bucketId] = Location(m.migrationEpoch, destinationChain, destinationVault);
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZMigrationBudget.sol:27:67
+   |
+27 |     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
+   |                                                                   ^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZMigrationBudget.sol:27:86
+   |
+27 |     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
+   |                                                                                      ^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZMigrationBudget.sol:27:107
+   |
+27 |     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
+   |                                                                                                           ^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\libraries\ZZZTypes.sol:52:13
+   |
+52 |     uint256 depositUSD;
+   |             ^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+   --> src\ZZZActivationEntry.sol:225:19
+    |
+225 |         context = Context(msg.sender, request.nftId, keccak256(payload), request.poolId, amount0, amount1, grossUSD);
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[unwrapped-modifier-logic]: wrap modifier logic to reduce code size
+  --> src\ZZZRoyaltyRewards.sol:61:14
+   |
+61 |     modifier onlyNFT() {
+   |              ^^^^^^^
+   |
+   = note: wrap modifier logic to reduce code size
+           
+           - modifier onlyNFT() {
+           -     if (msg.sender != nft) revert Unauthorized();
+           -     _;
+           - }
+           + modifier onlyNFT() {
+           +     _onlyNFT();
+           +     _;
+           + }
+           + 
+           + function _onlyNFT() internal {
+           +     if (msg.sender != nft) revert Unauthorized();
+           + }
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZBridgeAdapter.sol:16:36
+   |
+16 |     IZZZTransport public immutable transport;
+   |                                    ^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[unwrapped-modifier-logic]: wrap modifier logic to reduce code size
+  --> src\ZZZMigrationBudget.sol:33:14
+   |
+33 |     modifier onlyVault() {
+   |              ^^^^^^^^^
+   |
+   = note: wrap modifier logic to reduce code size
+           
+           - modifier onlyVault() {
+           -     if (msg.sender != vault) revert Unauthorized();
+           -     _;
+           - }
+           + modifier onlyVault() {
+           +     _onlyVault();
+           +     _;
+           + }
+           + 
+           + function _onlyVault() internal {
+           +     if (msg.sender != vault) revert Unauthorized();
+           + }
+           
+           
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#unwrapped-modifier-logic
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+  --> src\ZZZBridgeAdapter.sol:59:30
+   |
+59 |         bytes32 deliveryId = keccak256(abi.encode(sourceChain, sourceAdapter, m.nonce));
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\Mocks.sol:99:33
+   |
+99 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZClaimRouter.sol:17:33
+   |
+17 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZClaimRouter.sol:18:30
+   |
+18 |     address public immutable nft;
+   |                              ^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZPoolRegistry.sol:61:39
+   |
+61 |           WrapperPolicy memory policy = WrapperPolicy(WETH_ADMIN, WETH_IMPLEMENTATION, WETH_ADMIN_OWNER,
+   |  _______________________________________^
+62 | |             0xa4b2186ab82fa36fb4ae158582e5615ea519e757c26c13ba4a33daaaed8902a7,
+63 | |             0xbe1295f37be34ffe03ad779bda0ef278907e1856b51a3be2f35ee541d75d4650);
+   | |_______________________________________________________________________________^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[unused-import]: unused imports should be removed
+ --> test\mocks\Mocks.sol:6:9
+  |
+6 | import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+  |         ^^^^^^
+  |
+  = help: https://book.getfoundry.sh/reference/forge/forge-lint#unused-import
+
+note[unused-import]: unused imports should be removed
+ --> test\mocks\Mocks.sol:8:13
+  |
+8 | import {Ids,PoolKey,PoolConfig,Position,Route,BridgeMessage} from "../../src/libraries/ZZZTypes.sol";
+  |             ^^^^^^^
+  |
+  = help: https://book.getfoundry.sh/reference/forge/forge-lint#unused-import
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZClaimRouter.sol:19:30
+   |
+19 |     address public immutable royalties;
+   |                              ^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\libraries\ZZZTypes.sol:121:13
+    |
+121 |     uint256 depositUSD;
+    |             ^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZVault.sol:224:17
+    |
+224 |         uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
+    |                 ^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZVault.sol:235:18
+    |
+235 |         (uint256 oldLP, uint256 oldIdle) = _nav(bucket);
+    |                  ^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+  --> src\ZZZMigrationReceiver.sol:52:35
+   |
+52 |         receipts[m.migrationId] = Receipt(m.bucketId, m.routeId, true, false);
+   |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:20:30
+   |
+20 |     address public immutable fees;
+   |                              ^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:21:30
+   |
+21 |     uint256 public immutable bucketId;
+   |                              ^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:22:30
+   |
+22 |     address public immutable token0;
+   |                              ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[named-struct-fields]: prefer initializing structs with named fields
+   --> src\ZZZBridgeRouter.sol:124:85
+    |
+124 |             p.destinationProvider, p.destinationRouter, tokens, amounts, abi.encode(TransportEnvelope(1, id, payload)));
+    |                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#named-struct-fields
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZLiquidityManager.sol:29:47
+   |
+29 |     IPositionManagerMinimal private immutable posm;
+   |                                               ^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\RouterMocks.sol:16:30
+   |
+16 |     address public immutable router;
+   |                              ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZVault.sol:236:17
+    |
+236 |         uint256 incumbentNAV = oldLP + oldIdle;
+    |                 ^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[asm-keccak256]: use of inefficient hashing mechanism; consider using inline assembly
+   --> src\ZZZBridgeRouter.sol:144:30
+    |
+144 |         bytes32 deliveryId = keccak256(abi.encode(authenticatedSourceChain, r.sourceAdapter, m.nonce));
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#asm-keccak256
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZLiquidityManager.sol:30:40
+   |
+30 |     IStateViewMinimal public immutable stateView;
+   |                                        ^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\RouterMocks.sol:65:33
+   |
+65 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\RouterMocks.sol:66:30
+   |
+66 |     uint256 public immutable canonicalChainId;
+   |                              ^^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\RouterMocks.sol:73:33
+   |
+73 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> test\mocks\RouterMocks.sol:83:33
+   |
+83 |     IZZZAccess public immutable access;
+   |                                 ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZBuyback.sol:13:30
+   |
+13 |     address public immutable zzz;
+   |                              ^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:23:30
+   |
+23 |     address public immutable token1;
+   |                              ^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:24:30
+   |
+24 |     address public immutable wrappedNative;
+   |                              ^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:25:30
+   |
+25 |     uint256 public immutable protected0;
+   |                              ^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:26:30
+   |
+26 |     uint256 public immutable protected1;
+   |                              ^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZRewardReceiver.sol:27:30
+   |
+27 |     uint256 public immutable protectedNative;
+   |                              ^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZLiquidityManager.sol:31:42
+   |
+31 |     IPoolManagerMinimal public immutable poolManager;
+   |                                          ^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZBuyback.sol:14:30
+   |
+14 |     uint256 public immutable maxTradeUSD;
+   |                              ^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[screaming-snake-case-immutable]: immutables should use SCREAMING_SNAKE_CASE
+  --> src\ZZZLiquidityManager.sol:32:38
+   |
+32 |     IPermit2Minimal public immutable permit2;
+   |                                      ^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#screaming-snake-case-immutable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZVault.sol:262:18
+    |
+262 |         (uint256 newLP, uint256 newIdle) = _nav(bucket);
+    |                  ^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZBuyback.sol:16:63
+   |
+16 |     constructor(address controller, address zzzToken, uint256 maximumTradeUSD) ZZZModule(controller) {
+   |                                                               ^^^^^^^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+   --> src\ZZZVault.sol:269:17
+    |
+269 |         uint256 netUSD = newLP + newIdle - incumbentNAV;
+    |                 ^^^^^^
+    |
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+note[mixed-case-variable]: mutable variables should use mixedCase
+  --> src\ZZZBuyback.sol:25:17
+   |
+25 |         uint256 beforeZZZ = IERC20(zzz).balanceOf(address(this));
+   |                 ^^^^^^^^^
+   |
+   = help: https://book.getfoundry.sh/reference/forge/forge-lint#mixed-case-variable
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:119:17
+    |
+119 |         lower = int24(uint24(info >> 8));
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:119:23
+    |
+119 |         lower = int24(uint24(info >> 8));
+    |                       ^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:120:17
+    |
+120 |         upper = int24(uint24(info >> 32));
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:120:23
+    |
+120 |         upper = int24(uint24(info >> 32));
+    |                       ^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:125:47
+    |
+125 |         permit2.approve(token, address(posm), uint160(amount), uint48(deadline));
+    |                                               ^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint160' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:125:64
+    |
+125 |         permit2.approve(token, address(posm), uint160(amount), uint48(deadline));
+    |                                                                ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint48' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:165:81
+    |
+165 |             parameters[0] = abi.encode(c.key, lower, upper, uint256(liquidity), uint128(amount0), uint128(amount1),
+    |                                                                                 ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:165:99
+    |
+165 |             parameters[0] = abi.encode(c.key, lower, upper, uint256(liquidity), uint128(amount0), uint128(amount1),
+    |                                                                                                   ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:168:64
+    |
+168 |             parameters[0] = abi.encode(id, uint256(liquidity), uint128(amount0), uint128(amount1), bytes(""));
+    |                                                                ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:168:82
+    |
+168 |             parameters[0] = abi.encode(id, uint256(liquidity), uint128(amount0), uint128(amount1), bytes(""));
+    |                                                                                  ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:225:40
+    |
+225 |         parameters[0] = abi.encode(id, uint128(min0), uint128(min1), bytes(""));
+    |                                        ^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:225:55
+    |
+225 |         parameters[0] = abi.encode(id, uint128(min0), uint128(min1), bytes(""));
+    |                                                       ^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:239:17
+    |
+239 |         return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:239:23
+    |
+239 |         return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
+    |                       ^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:239:43
+    |
+239 |         return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:239:49
+    |
+239 |         return (int24(uint24(info >> 8)), int24(uint24(info >> 32)));
+    |                                                 ^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:243:23
+    |
+243 |         int24 lower = int24(uint24(info >> 8));
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:243:29
+    |
+243 |         int24 lower = int24(uint24(info >> 8));
+    |                             ^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:244:23
+    |
+244 |         int24 upper = int24(uint24(info >> 32));
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:244:29
+    |
+244 |         int24 upper = int24(uint24(info >> 32));
+    |                             ^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint24' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:287:90
+    |
+287 |         int256 delta = poolManager.swap(key, IPoolManagerMinimal.SwapParams(zeroForOne, -int256(amountIn),
+    |                                                                                          ^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int256' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:289:25
+    |
+289 |         int128 delta0 = int128(delta >> 128);
+    |                         ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:290:25
+    |
+290 |         int128 delta1 = int128(uint128(uint256(delta)));
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'int128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:290:32
+    |
+290 |         int128 delta1 = int128(uint128(uint256(delta)));
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint128' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:290:40
+    |
+290 |         int128 delta1 = int128(uint128(uint256(delta)));
+    |                                        ^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint256' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:293:52
+    |
+293 |         if (inputDelta >= 0 || outputDelta <= 0 || uint256(-int256(inputDelta)) != amountIn ||
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint256' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:294:13
+    |
+294 |             uint256(int256(outputDelta)) < minOut) revert Slippage();
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint256' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+
+warning[unsafe-typecast]: typecasts that can truncate values should be checked
+   --> src\ZZZLiquidityManager.sol:304:29
+    |
+304 |         uint256 amountOut = uint256(int256(outputDelta));
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: Consider disabling this lint if you're certain the cast is safe:
+            
+            // casting to 'uint256' is safe because [explain why]
+            // forge-lint: disable-next-line(unsafe-typecast)
+            
+            
+    = help: https://book.getfoundry.sh/reference/forge/forge-lint#unsafe-typecast
+

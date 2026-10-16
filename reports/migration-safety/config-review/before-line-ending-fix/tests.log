@@ -1,0 +1,9 @@
+test_budget_mixed_case_cannot_alias_creator_inbox (tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_mixed_case_cannot_alias_creator_inbox) ... ok
+test_budget_cannot_alias_nft_helper_or_creator_inbox (tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_alias_nft_helper_or_creator_inbox) ... ok
+test_budget_cannot_alias_modules_entry_or_assets_helper (tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_alias_modules_entry_or_assets_helper) ... ok
+test_budget_cannot_receive_mint_proceeds (tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_receive_mint_proceeds) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.329s
+
+OK

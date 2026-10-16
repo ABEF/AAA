@@ -114,8 +114,12 @@ Do not trade away checks or raise standard EVM limits to fit this feature.
 ## Accepted migration execution budget
 
 The user chose **at most 3% aggregate execution loss per migration, gas separate**.
-Activation/top-ups retain the **1%** original-input budget. The 3% migration floor
-is a design requirement, **not an existing contract guarantee**.
+Activation/top-ups retain the **1%** original-input budget. The current candidate
+enforces the 3% floor for atomic same-ordered-pair `movePool` and parked `resume`,
+using one pre-callback price vector and exact designated compounding. The floor
+covers retained LP plus attributed idle, with the existing 5% idle cap. It does
+not yet cover arbitrary conversion, asynchronous bridging, rebalancing or an
+earlier parking close. See [implemented scope](MIGRATION_SAFETY.md).
 
 For an atomic move, compare attributed principal before/after using one fresh
 trusted price vector. Conversion fees, slippage, bridge charges deducted from

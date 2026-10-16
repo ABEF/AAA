@@ -13,3 +13,6 @@ reports/artwork-palette/independent-draw-model.json -text whitespace=cr-at-eol
 design/nft-metadata/palette-system-v1/*.json text eol=lf
 # Preserve exact source-bound audit receipt bytes and native diagnostic spacing.
 reports/nft-rights-audit/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+# Preserve the exact migration/preparation receipts and native diagnostics.
+reports/migration-safety/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+reports/canonical-preparation/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,15 +1,26 @@
 # Planned whole-protocol canonical migration
 
-Design direction recorded 2026-10-17. **Design only: no export/import, terminal
-freeze or successor activation capability is implemented by this document.**
+Design direction recorded 2026-10-17. **Export/import, terminal freeze and successor
+activation remain unimplemented.** A reversible, timelocked preparation phase is
+implemented separately; see its [scope and permitted draining](MIGRATION_SAFETY.md).
 The [central Todo](../TODO.md) owns implementation progress; the
 [architecture review](ARCHITECTURE_EVOLUTION.md) records the wider decisions.
 The release decision remains **NOT APPROVED**.
 
 The user selected a controlled whole-protocol migration **while the original
 canonical chain still works**. Recovery after an irreversible chain halt is
-deferred. This accepts the direction, not a particular verifier, attestation
-authority, successor implementation or operating parameter.
+deferred. The user additionally requires **verified finality, with no multisig-only
+override**. A reviewed proof must authenticate finalized source retirement before
+successor activation; a vote, timeout or transport send receipt is insufficient.
+This does not select a particular verifier, successor implementation or operating
+parameter. Unsupported destinations must remain unavailable until qualified.
+
+Here, **successor** means the replacement PoPL deployment that takes over the
+collection's NFT ownership, LP allocations and reward balances. For example,
+PoPL contracts on Ink could replace the original deployment on Robinhood.
+Only one deployment may provide those economic rights for a given migrated state;
+the replacement must verify the old deployment's finalized retirement before
+activating them, preventing duplicate ownership or claims across both chains.
 
 ## What moves, and what must remain fixed
 
@@ -105,7 +116,9 @@ Those are handled through the explicit post-cutoff mechanism below, not ignored.
 
 ## Proposed bounded state machine
 
-These are protocol states to implement and test, not current functions.
+The Announced preparation controls now exist within the scope described above.
+Frozen/exporting and later states below remain design requirements, not current
+functions. Preparation is local and does not itself authenticate satellite drain.
 
 | State | Source authority and permitted work | Destination state |
 | --- | --- | --- |

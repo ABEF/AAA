@@ -11,10 +11,11 @@ interface IMockCallerAccess { function access() external view returns (address);
 contract MockAccess {
     mapping(bytes32=>address) public module;
     mapping(address=>bool) public keepers;
-    bool public isSealed; bool public paused;
+    bool public isSealed; bool public paused; bool public preparationActive;
     address public governor;
     constructor(){governor=msg.sender;}
-    function canConfigure(address a) external view returns(bool){return a==governor;}
+    function canConfigure(address a) external view returns(bool){return !preparationActive && a==governor;}
+    function setPreparation(bool active) external {preparationActive=active;}
     function bind(bytes32 id,address a) external {module[id]=a;}
     function seal() external {isSealed=true;}
     function setPaused(bool a) external {paused=a;}

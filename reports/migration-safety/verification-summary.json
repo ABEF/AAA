@@ -1,0 +1,37 @@
+{
+  "solidity": {
+    "counts": {
+      "Success": 579,
+      "Failure": 0,
+      "Skipped": 2
+    },
+    "unique_case_count": 581,
+    "suite_count": 49,
+    "disjoint_runs": true,
+    "source_unchanged": true,
+    "skipped_cases": {
+      "test/NativePoolFork.t.sol:NativePoolForkTest:setUp()": {
+        "status": "Skipped",
+        "reason": "skipped: Opt-in selected-market fork suite; excluded from offline unit verification"
+      },
+      "test/UniswapV4Fork.t.sol:UniswapV4ForkTest:setUp()": {
+        "status": "Skipped",
+        "reason": "skipped: Opt-in real-network fork suite; excluded from offline unit verification"
+      }
+    }
+  },
+  "normal_production_objects": 24,
+  "production_source_count": 30,
+  "static_review_sha256": "f43663a908ea810ba73bc86f6325ac2bbd5dcdcc4e578703772218d1912ef2a1",
+  "exact_commit_ci": "Not established by these local receipts",
+  "independent_audit": false,
+  "production_approved": false,
+  "receipt_sha256": {
+    "reports/migration-safety/focused/attempt1/receipt.json": "8ff2f08975eae0074dd61a28dd158890a260f2617d3034d69588581a46668952",
+    "reports/migration-safety/regression/attempt1/receipt.json": "d86bd2bc5fb3d00aa91f9398b2625cf05f06bb7e650289cb422078be6bfaa1ef",
+    "reports/migration-safety/production/attempt3/receipt.json": "7cbf516a67d0f46dedf5a5d661d436647be5d23b1a92b0fbeaaf6f63e0333a1a",
+    "reports/migration-safety/static-analysis/run-summary.json": "ddea65a23e6bacb47eefbf130ecb8f73d4a634172eb224d009b9ec18503c2619",
+    "reports/migration-safety/config-review/verification.json": "921f3e678381c0d7193f3aca6fcddbda23fe5d2e6593bb0850c9b021d738dc6b",
+    "reports/canonical-preparation/keeper/verification.json": "03a63a1506bcfc0dec5650d42e6433ddd8eb206802e3f664850151c53adfa6e8"
+  }
+}

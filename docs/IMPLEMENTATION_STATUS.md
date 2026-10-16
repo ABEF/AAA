@@ -4,6 +4,8 @@ Reviewed 2026-10-17; the architecture repair and evidence were first recorded in
 `4fbd4c0`. The user subsequently requested integration into `main` and use of
 `main` for future work. Check the current Git revision for publication identity.
 The contracts remain undeployed and the website remains a simulation.
+This candidate includes canonical-preparation, local migration-budget and keeper
+changes. Exact publication is established by Git HEAD and origin/main.
 Implemented means the behavior exists in source; it does not mean production
 services, deployment or independent audit are approved.
 
@@ -24,8 +26,10 @@ decision for an exact release, not development progress.
 | Artwork and metadata | Eight colors, 58 palettes and four patterns produce 2,784 evolution states for the fixed inventory. Current marked LP value selects the stage; a market decline can lower it without removing activation rights. Bounded ERC-4906 notifications and an optional keeper watcher exist. The prepared artwork bundle is not a published immutable CID. | [Metadata](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md) |
 | Venue and recovery boundaries | The selected native-ETH/Pons adapter separates venue keys from WETH accounting and rejects unrelated native/hooks. Pause, timelocked asset/wrapper/sequencer policies, close-only custody parking and guarded resumption exist. They do not guarantee recovery from every external dependency failure. | [Selected market](ROBINHOOD_POOL.md), [parking](CUSTODY_PARKING.md), [recovery model](CHANGE_AND_RECOVERY.md) |
 | Read services and measurements | The confirmed read API exposes NFT ownership and funded LP/royalty balances. Optional complete indexed history supplies wallet inventory and cumulative raw claims. Route/revenue measurement tools exist. Gross generated-fee/USD history and hosted live website transactions are not supplied by those balances. | [Read API](FRONTEND_API.md), [history](FRONTEND_HISTORY.md), [revenue measurement](REVENUE_SHARE.md) |
-| Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. Isolated Anvil/systemd rehearsals are recorded; production signing and target-chain qualification are separate. | [Recovery runbook](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
+| Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. The local keeper strictly reads preparationActive(), defers rebalance/compound/buyback and retains receipt recovery, harvest, funded inbox/reward delivery and metadata work. Older deployed staging code is unchanged and does not establish compatibility with this new required getter. | [Recovery runbook](KEEPER_RECOVERY.md), [preparation keeper evidence](../reports/canonical-preparation/keeper/README.md) |
 | Future migration | Timelocked routes and whole-bucket migration/parking preserve canonical NFT rights and funded-liability barriers. Reservations now permanently admit capacity; aliases/returns are idempotent and None-state consumers skip unfunded entries. Remote admission proof and real provider qualification remain separate. Canonical NFTs and claim ledgers do not automatically migrate with LP custody. | [Migration source](../src/ZZZMigration.sol), [recovery model](CHANGE_AND_RECOVERY.md) |
+| Local migration execution budget | Atomic same-ordered-pair movePool/resume uses an immutable Vault-created helper. It values principal/attributed idle before harvest, adds only exact released compound, and applies the same initial fresh price/decimal vector after close, balance and mint. Retained LP plus attributed idle must be at least 97%, with the existing 5% idle ceiling under that vector. Gas is separate; activation/top-ups retain 1%. Different-pair and asynchronous bridge enforcement is not supplied. | [Budget helper](../src/ZZZMigrationBudget.sol), [Vault](../src/ZZZVault.sol) |
+| Canonical preparation | The existing timelock can announce and cancel an exact notice on the canonical controller. New economic work and protocol configuration stop; transfers, direct/batch claims, ordered reveal, fee settlement, incoming delivery, funded Reward/ACK sends and exact parking/plan-cancellation drains remain available. Trailing guards roll back new work if a callback starts preparation. Guardian pause and timelock unpause remain distinct. The notice grants no successor authority and does not freeze/export/import rights or prove satellite shutdown. | [Controller](../src/ZZZAccessController.sol), [canonical design](CANONICAL_MIGRATION_DESIGN.md) |
 
 The [component assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) gives
 module-level boundaries. All remaining qualification, implementation and decision
@@ -35,12 +39,35 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 
 ## Evidence and its limits
 
+The new preparation foundation and local same-pair execution budget change
+production source. Development preparation tests passed ten cases with the real
+timelock/NFT/Vault/reward modules and explicit mock venue, feed, randomness and
+transport dependencies. The [keeper receipt](../reports/canonical-preparation/keeper/verification.json)
+records 185 scoped portable tests with zero failures/errors/runtime skips; one
+POSIX-only case is explicitly excluded from its 186-case inventory. This is
+local evidence, not an updated server rehearsal or independent audit. The final
+[source-bound verification](../reports/migration-safety/VERIFICATION.md) records
+579 offline Solidity passes, zero failures and two intentional fork setup skips
+across 49 suites; all 24 normal object gates and 30 production source bindings
+pass. Fresh internal Slither review classifies 229 entries as 138 false positives,
+46 accepted risks and 45 informational, with zero unresolved detector entries.
+Coverage and nine targeted review/source mutation checks pass. The manifest
+review also corrected a mixed-case helper/inbox alias, verified by four targeted
+regressions after the earlier 126-test validator run. Vault and Migration have
+only 17 and 30 runtime bytes free; subsequent handoff work needs modularization.
+These receipts do not establish fresh target-chain fork, operating or audit approval.
+
+The user selected verified source finality for cross-chain canonical activation,
+with no multisig/manual override or signer-attestation fallback. Concrete
+chain-specific verification remains unselected. Full immutable receipt cutoffs,
+freeze/export/import, classified backing, irreversible one-successor retirement
+and late-receipt forwarding remain unimplemented pre-seal requirements.
+Preparation cannot add them after sealing. Post-halt recovery remains deferred.
+
 The [architecture review verification](../reports/architecture-evolution/VERIFICATION.md)
-records the current targeted reservation/switching, keeper, trust-boundary and
-size/static checks. The Vault changed; older whole-Vault/static/fork receipts
-below remain historical and are not fresh verification of this revision.
-Different-pair conversion, canonical portability and a 3% aggregate migration
-execution floor are designs, not implemented capabilities.
+retains its earlier targeted reservation/switching, keeper, trust-boundary and
+size/static checks. That source scope predates the new preparation/budget changes.
+Older whole-Vault/static/fork receipts below remain historical.
 
 
 - The [NFT-rights verification](../reports/nft-rights-audit/VERIFICATION.md)

@@ -1,0 +1,1797 @@
+{
+  "kind": "semantic_delta_partition_not_approval",
+  "prior_review_sha256": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2",
+  "raw_report_sha256": "821a3079eb9c4bf3bce588bf2d3bee4857d018326631f5cadcb5cca991e927d7",
+  "prior_count": 221,
+  "current_count": 229,
+  "current_by_detector": {
+    "arbitrary-send-erc20": 1,
+    "arbitrary-send-eth": 2,
+    "reentrancy-balance": 42,
+    "divide-before-multiply": 8,
+    "incorrect-equality": 6,
+    "reentrancy-no-eth": 32,
+    "uninitialized-local": 8,
+    "unused-return": 22,
+    "events-maths": 1,
+    "calls-loop": 32,
+    "reentrancy-benign": 19,
+    "reentrancy-events": 7,
+    "timestamp": 10,
+    "assembly": 1,
+    "cyclomatic-complexity": 6,
+    "dead-code": 1,
+    "low-level-calls": 3,
+    "missing-inheritance": 15,
+    "naming-convention": 3,
+    "too-many-digits": 4,
+    "cache-array-length": 6
+  },
+  "source_changes": {
+    "src/base/ZZZModule.sol": {
+      "prior": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+      "current": "bbb204d6f179830fe32b2ef75842fbe626a6f7050db061ec6d2f3c762c8d0dd8"
+    },
+    "src/interfaces/IZZZ.sol": {
+      "prior": "0d23f02ba6c93d226070a6e28c379d3c0ee6ac0f38b82399a37f5fb278a78b9e",
+      "current": "f76ba36847bdef2c81d3a89e99c98a06bb2990ba17665d81925d9dfd8dd891c2"
+    },
+    "src/ZZZAccessController.sol": {
+      "prior": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+      "current": "648ef6233d77b041f8a2ea4edae8236cae4e12c50167d19bd43b4b0e3e0bac48"
+    },
+    "src/ZZZActivationEntry.sol": {
+      "prior": "247502848ccb42c6a4d73632edeebff12b8c8993a3f160ee5b3c1f012f4199ed",
+      "current": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4"
+    },
+    "src/ZZZBridgeAdapter.sol": {
+      "prior": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+      "current": "a3aa70c89e9bee4b9dc284c628a796b02102469abd03d769d0285e702011b62d"
+    },
+    "src/ZZZBuyback.sol": {
+      "prior": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+      "current": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16"
+    },
+    "src/ZZZCompounder.sol": {
+      "prior": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+      "current": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4"
+    },
+    "src/ZZZMigration.sol": {
+      "prior": "76da59cea8d77f77a5d6757b692541cf2ea87a50cada01b8ece745057bd24068",
+      "current": "9cce0857c086248473bc674a578618ed10817fcefbf0358fa8421c8731d63afe"
+    },
+    "src/ZZZNFT.sol": {
+      "prior": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+      "current": "9d19639ec8061adae9fe8b18f58bffe881bed4a5c88dfd3fc9ce9ede23959132"
+    },
+    "src/ZZZVault.sol": {
+      "prior": "b021a3814c8694717cbe5b2ca8d0b29bc9a19d96abc4a3614be5af9082b519af",
+      "current": "c6bf9ae21b00f3ba0b14678be1241d18ab3734b0426c94ba039217da2bc314ef"
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "prior": null,
+      "current": "44e348b51d8873e7ed5d79bbfefa30794c3c6ee467cc5a43dddd7024fc7c1599"
+    }
+  },
+  "matched_ignoring_only_source_line_ranges": [
+    {
+      "index": 0,
+      "prior_index": 0,
+      "check": "arbitrary-send-erc20",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 1,
+      "prior_index": 1,
+      "check": "arbitrary-send-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 2,
+      "prior_index": 2,
+      "check": "arbitrary-send-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 3,
+      "prior_index": 3,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 4,
+      "prior_index": 24,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 5,
+      "prior_index": 4,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 8,
+      "prior_index": 5,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 9,
+      "prior_index": 6,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 11,
+      "prior_index": 7,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 12,
+      "prior_index": 8,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 13,
+      "prior_index": 9,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 14,
+      "prior_index": 10,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 15,
+      "prior_index": 16,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 16,
+      "prior_index": 11,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 18,
+      "prior_index": 12,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 19,
+      "prior_index": 13,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 20,
+      "prior_index": 23,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 21,
+      "prior_index": 14,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 22,
+      "prior_index": 15,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 23,
+      "prior_index": 32,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 24,
+      "prior_index": 37,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 25,
+      "prior_index": 17,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 26,
+      "prior_index": 18,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 27,
+      "prior_index": 19,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 28,
+      "prior_index": 20,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 29,
+      "prior_index": 21,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 30,
+      "prior_index": 22,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 31,
+      "prior_index": 25,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 32,
+      "prior_index": 26,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 33,
+      "prior_index": 27,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 34,
+      "prior_index": 28,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 35,
+      "prior_index": 29,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 36,
+      "prior_index": 30,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 37,
+      "prior_index": 31,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 39,
+      "prior_index": 33,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 40,
+      "prior_index": 34,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 41,
+      "prior_index": 35,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 42,
+      "prior_index": 36,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 43,
+      "prior_index": 38,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 44,
+      "prior_index": 39,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 45,
+      "prior_index": 40,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 46,
+      "prior_index": 41,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 47,
+      "prior_index": 42,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 48,
+      "prior_index": 43,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 49,
+      "prior_index": 44,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 50,
+      "prior_index": 45,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 51,
+      "prior_index": 46,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 52,
+      "prior_index": 47,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 53,
+      "prior_index": 48,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 54,
+      "prior_index": 51,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 55,
+      "prior_index": 50,
+      "check": "incorrect-equality",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 56,
+      "prior_index": 49,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 57,
+      "prior_index": 52,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 58,
+      "prior_index": 53,
+      "check": "incorrect-equality",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 59,
+      "prior_index": 57,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 61,
+      "prior_index": 65,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 63,
+      "prior_index": 58,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 65,
+      "prior_index": 62,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 67,
+      "prior_index": 69,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 68,
+      "prior_index": 63,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 69,
+      "prior_index": 76,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 70,
+      "prior_index": 64,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 71,
+      "prior_index": 56,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 74,
+      "prior_index": 55,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 75,
+      "prior_index": 68,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 76,
+      "prior_index": 78,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 78,
+      "prior_index": 61,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 80,
+      "prior_index": 71,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 81,
+      "prior_index": 80,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 82,
+      "prior_index": 82,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 83,
+      "prior_index": 74,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 84,
+      "prior_index": 66,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 85,
+      "prior_index": 72,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 87,
+      "prior_index": 75,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 88,
+      "prior_index": 77,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 89,
+      "prior_index": 83,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 90,
+      "prior_index": 70,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 91,
+      "prior_index": 84,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 92,
+      "prior_index": 85,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 93,
+      "prior_index": 86,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 94,
+      "prior_index": 87,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 95,
+      "prior_index": 88,
+      "check": "uninitialized-local",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 96,
+      "prior_index": 89,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 97,
+      "prior_index": 90,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 99,
+      "prior_index": 91,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 100,
+      "prior_index": 93,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 101,
+      "prior_index": 94,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 102,
+      "prior_index": 95,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 103,
+      "prior_index": 96,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 104,
+      "prior_index": 97,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 105,
+      "prior_index": 111,
+      "check": "unused-return",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 106,
+      "prior_index": 98,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 107,
+      "prior_index": 99,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 108,
+      "prior_index": 100,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 110,
+      "prior_index": 101,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 111,
+      "prior_index": 102,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 112,
+      "prior_index": 103,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 113,
+      "prior_index": 104,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 114,
+      "prior_index": 105,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 115,
+      "prior_index": 106,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 116,
+      "prior_index": 107,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 117,
+      "prior_index": 108,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 118,
+      "prior_index": 109,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 119,
+      "prior_index": 110,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 120,
+      "prior_index": 112,
+      "check": "unused-return",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 121,
+      "prior_index": 113,
+      "check": "events-maths",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 122,
+      "prior_index": 114,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 123,
+      "prior_index": 130,
+      "check": "calls-loop",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 124,
+      "prior_index": 115,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 125,
+      "prior_index": 116,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 126,
+      "prior_index": 117,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 127,
+      "prior_index": 118,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 128,
+      "prior_index": 119,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 129,
+      "prior_index": 121,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 130,
+      "prior_index": 134,
+      "check": "calls-loop",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 131,
+      "prior_index": 122,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 132,
+      "prior_index": 123,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 133,
+      "prior_index": 124,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 134,
+      "prior_index": 125,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 135,
+      "prior_index": 126,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 136,
+      "prior_index": 127,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 137,
+      "prior_index": 128,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 138,
+      "prior_index": 129,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 139,
+      "prior_index": 131,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 140,
+      "prior_index": 132,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 141,
+      "prior_index": 145,
+      "check": "calls-loop",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 142,
+      "prior_index": 133,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 143,
+      "prior_index": 135,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 144,
+      "prior_index": 136,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 145,
+      "prior_index": 137,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 146,
+      "prior_index": 138,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 147,
+      "prior_index": 139,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 148,
+      "prior_index": 140,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 149,
+      "prior_index": 141,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 150,
+      "prior_index": 120,
+      "check": "calls-loop",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 151,
+      "prior_index": 142,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 152,
+      "prior_index": 143,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 153,
+      "prior_index": 144,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 154,
+      "prior_index": 147,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 155,
+      "prior_index": 148,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 156,
+      "prior_index": 146,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 157,
+      "prior_index": 150,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 158,
+      "prior_index": 152,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 159,
+      "prior_index": 151,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 160,
+      "prior_index": 153,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 161,
+      "prior_index": 155,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 162,
+      "prior_index": 156,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 163,
+      "prior_index": 157,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 164,
+      "prior_index": 158,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 165,
+      "prior_index": 159,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 166,
+      "prior_index": 160,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 167,
+      "prior_index": 154,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 168,
+      "prior_index": 161,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 169,
+      "prior_index": 149,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 170,
+      "prior_index": 162,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 171,
+      "prior_index": 163,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 172,
+      "prior_index": 164,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 173,
+      "prior_index": 166,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 174,
+      "prior_index": 165,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 175,
+      "prior_index": 167,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 176,
+      "prior_index": 168,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 177,
+      "prior_index": 169,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 178,
+      "prior_index": 170,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 179,
+      "prior_index": 171,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 180,
+      "prior_index": 172,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 181,
+      "prior_index": 175,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 182,
+      "prior_index": 174,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 183,
+      "prior_index": 176,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 184,
+      "prior_index": 177,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 185,
+      "prior_index": 178,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 186,
+      "prior_index": 173,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 187,
+      "prior_index": 179,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 188,
+      "prior_index": 180,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 189,
+      "prior_index": 181,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 190,
+      "prior_index": 182,
+      "check": "assembly",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 191,
+      "prior_index": 183,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 192,
+      "prior_index": 184,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 193,
+      "prior_index": 185,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 194,
+      "prior_index": 186,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 195,
+      "prior_index": 187,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 196,
+      "prior_index": 188,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 197,
+      "prior_index": 189,
+      "check": "dead-code",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 198,
+      "prior_index": 190,
+      "check": "low-level-calls",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 199,
+      "prior_index": 192,
+      "check": "low-level-calls",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 200,
+      "prior_index": 191,
+      "check": "low-level-calls",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 201,
+      "prior_index": 193,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 202,
+      "prior_index": 194,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 203,
+      "prior_index": 195,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 204,
+      "prior_index": 196,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 205,
+      "prior_index": 197,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 206,
+      "prior_index": 198,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 207,
+      "prior_index": 199,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 208,
+      "prior_index": 200,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 209,
+      "prior_index": 201,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 210,
+      "prior_index": 202,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 211,
+      "prior_index": 203,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 212,
+      "prior_index": 204,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 213,
+      "prior_index": 205,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 214,
+      "prior_index": 206,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 215,
+      "prior_index": 207,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 216,
+      "prior_index": 208,
+      "check": "naming-convention",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 217,
+      "prior_index": 209,
+      "check": "naming-convention",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 218,
+      "prior_index": 210,
+      "check": "naming-convention",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 219,
+      "prior_index": 211,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 220,
+      "prior_index": 212,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 221,
+      "prior_index": 213,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 222,
+      "prior_index": 214,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 223,
+      "prior_index": 215,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 224,
+      "prior_index": 216,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 225,
+      "prior_index": 217,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 226,
+      "prior_index": 218,
+      "check": "cache-array-length",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 227,
+      "prior_index": 219,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 228,
+      "prior_index": 220,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    }
+  ],
+  "fresh_or_changed": [
+    {
+      "index": 6,
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#215-283):\n\tExternal call allowing reentrancy:\n\t- fees.syncAllExternal() (src/ZZZVault.sol#259)\n\tBalance read before the call:\n\t- (f0,f1) = _pullCompound(bucket) (src/ZZZVault.sol#249)\n\tPossible stale balance used after the call in a condition:\n\t- issued == 0 || supply + issued > MAX_SHARES (src/ZZZVault.sol#277)\n\t\t- stale variable `issued`\n\t- netUSD < Math.mulDiv(inputUSD,10000 - c.maxSlippageBps,10000) (src/ZZZVault.sol#270)\n\t\t- stale variable `netUSD`\n\t- netUSD < minimumNet || newLP < oldLP + oldIdle + freshCompound + minimumNet (src/ZZZVault.sol#275)\n\t\t- stale variable `netUSD`\n\t- newLP + newIdle <= incumbentNAV (src/ZZZVault.sol#268)\n\t\t- stale variable `newLP`\n"
+    },
+    {
+      "index": 7,
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#215-283):\n\tExternal call allowing reentrancy:\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id) (src/ZZZVault.sol#267)\n\tBalance read before the call:\n\t- (f0,f1) = _pullCompound(bucket) (src/ZZZVault.sol#249)\n\tPossible stale balance used after the call in a condition:\n\t- issued == 0 || supply + issued > MAX_SHARES (src/ZZZVault.sol#277)\n\t\t- stale variable `issued`\n\t- netUSD < Math.mulDiv(inputUSD,10000 - c.maxSlippageBps,10000) (src/ZZZVault.sol#270)\n\t\t- stale variable `netUSD`\n\t- netUSD < minimumNet || newLP < oldLP + oldIdle + freshCompound + minimumNet (src/ZZZVault.sol#275)\n\t\t- stale variable `netUSD`\n\t- newLP + newIdle <= incumbentNAV (src/ZZZVault.sol#268)\n\t\t- stale variable `newLP`\n"
+    },
+    {
+      "index": 10,
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#215-283):\n\tExternal call allowing reentrancy:\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id) (src/ZZZVault.sol#267)\n\tBalance read before the call:\n\t- (late0,late1) = _pullCompound(bucket) (src/ZZZVault.sol#260)\n\tPossible stale balance used after the call in a condition:\n\t- issued == 0 || supply + issued > MAX_SHARES (src/ZZZVault.sol#277)\n\t\t- stale variable `issued`\n\t- netUSD < Math.mulDiv(inputUSD,10000 - c.maxSlippageBps,10000) (src/ZZZVault.sol#270)\n\t\t- stale variable `netUSD`\n\t- netUSD < minimumNet || newLP < oldLP + oldIdle + freshCompound + minimumNet (src/ZZZVault.sol#275)\n\t\t- stale variable `netUSD`\n\t- newLP + newIdle <= incumbentNAV (src/ZZZVault.sol#268)\n\t\t- stale variable `newLP`\n"
+    },
+    {
+      "index": 17,
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#215-283):\n\tExternal call allowing reentrancy:\n\t- (late0,late1) = _pullCompound(bucket) (src/ZZZVault.sol#260)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\tBalance read before the call:\n\t- (f0,f1) = _pullCompound(bucket) (src/ZZZVault.sol#249)\n\tPossible stale balance used after the call in a condition:\n\t- issued == 0 || supply + issued > MAX_SHARES (src/ZZZVault.sol#277)\n\t\t- stale variable `issued`\n\t- netUSD < Math.mulDiv(inputUSD,10000 - c.maxSlippageBps,10000) (src/ZZZVault.sol#270)\n\t\t- stale variable `netUSD`\n\t- netUSD < minimumNet || newLP < oldLP + oldIdle + freshCompound + minimumNet (src/ZZZVault.sol#275)\n\t\t- stale variable `netUSD`\n\t- newLP + newIdle <= incumbentNAV (src/ZZZVault.sol#268)\n\t\t- stale variable `newLP`\n"
+    },
+    {
+      "index": 38,
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#215-283):\n\tExternal call allowing reentrancy:\n\t- _put(bucket,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#257)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#137)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#138)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#142)\n\tBalance read before the call:\n\t- (f0,f1) = _pullCompound(bucket) (src/ZZZVault.sol#249)\n\tPossible stale balance used after the call in a condition:\n\t- issued == 0 || supply + issued > MAX_SHARES (src/ZZZVault.sol#277)\n\t\t- stale variable `issued`\n\t- netUSD < Math.mulDiv(inputUSD,10000 - c.maxSlippageBps,10000) (src/ZZZVault.sol#270)\n\t\t- stale variable `netUSD`\n\t- netUSD < minimumNet || newLP < oldLP + oldIdle + freshCompound + minimumNet (src/ZZZVault.sol#275)\n\t\t- stale variable `netUSD`\n\t- newLP + newIdle <= incumbentNAV (src/ZZZVault.sol#268)\n\t\t- stale variable `newLP`\n"
+    },
+    {
+      "index": 60,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#490-508):\n\tExternal calls:\n\t- _migrationCheckpoint(id,0) (src/ZZZVault.sol#498)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _pullCompound(id) (src/ZZZVault.sol#500)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t- _migrationCheckpoint(id,1) (src/ZZZVault.sol#501)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _unwind(id,deadline,true) (src/ZZZVault.sol#503)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#505)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#137)\n\t\t- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#362)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#138)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#142)\n\tState variables written after the call(s):\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#505)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#137)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#139)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#140)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#505)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#113)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#114)\n\tZZZVault.totalIdle (src/ZZZVault.sol#34) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#34)\n"
+    },
+    {
+      "index": 62,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#490-508):\n\tExternal calls:\n\t- _migrationCheckpoint(id,0) (src/ZZZVault.sol#498)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _pullCompound(id) (src/ZZZVault.sol#500)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\tState variables written after the call(s):\n\t- _pullCompound(id) (src/ZZZVault.sol#500)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n"
+    },
+    {
+      "index": 64,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#490-508):\n\tExternal calls:\n\t- _migrationCheckpoint(id,0) (src/ZZZVault.sol#498)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _pullCompound(id) (src/ZZZVault.sol#500)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t- _migrationCheckpoint(id,1) (src/ZZZVault.sol#501)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _unwind(id,deadline,true) (src/ZZZVault.sol#503)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\tState variables written after the call(s):\n\t- p.poolId = newPool (src/ZZZVault.sol#504)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n"
+    },
+    {
+      "index": 66,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#490-508):\n\tExternal calls:\n\t- _migrationCheckpoint(id,0) (src/ZZZVault.sol#498)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _unwind(id,deadline,true) (src/ZZZVault.sol#503)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\tState variables written after the call(s):\n\t- _unwind(id,deadline,true) (src/ZZZVault.sol#503)\n\t\t- p.lpTokenId = 0 (src/ZZZVault.sol#344)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n"
+    },
+    {
+      "index": 72,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#388-397):\n\tExternal calls:\n\t- _unwind(id,deadline,false) (src/ZZZVault.sol#394)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#395)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#137)\n\t\t- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#362)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#138)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#142)\n\tState variables written after the call(s):\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#395)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#137)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#139)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#140)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#395)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#113)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#114)\n\tZZZVault.totalIdle (src/ZZZVault.sol#34) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#34)\n"
+    },
+    {
+      "index": 73,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._unwind(uint256,uint256,bool) (src/ZZZVault.sol#372-378):\n\tExternal calls:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#374)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\t- _pullCompound(id) (src/ZZZVault.sol#375)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t- _migrationCheckpoint(id,1) (src/ZZZVault.sol#376)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t- _close(id,deadline) (src/ZZZVault.sol#377)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\tState variables written after the call(s):\n\t- _close(id,deadline) (src/ZZZVault.sol#377)\n\t\t- p.lpTokenId = 0 (src/ZZZVault.sol#344)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n\t- _close(id,deadline) (src/ZZZVault.sol#377)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#113)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#114)\n\tZZZVault.totalIdle (src/ZZZVault.sol#34) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#34)\n"
+    },
+    {
+      "index": 77,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._unwind(uint256,uint256,bool) (src/ZZZVault.sol#372-378):\n\tExternal calls:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#374)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\t- _pullCompound(id) (src/ZZZVault.sol#375)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\tState variables written after the call(s):\n\t- _pullCompound(id) (src/ZZZVault.sol#375)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n"
+    },
+    {
+      "index": 79,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#398-415):\n\tExternal calls:\n\t- _pullCompound(id) (src/ZZZVault.sol#403)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t- _unwind(id,deadline,false) (src/ZZZVault.sol#404)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\tState variables written after the call(s):\n\t- _idle(id,0,0) (src/ZZZVault.sol#408)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#115)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#116)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n\t- p.status = PositionStatus.Outbound (src/ZZZVault.sol#409)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n\t- _idle(id,0,0) (src/ZZZVault.sol#408)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#113)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#114)\n\tZZZVault.totalIdle (src/ZZZVault.sol#34) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#34)\n"
+    },
+    {
+      "index": 86,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault.resume(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#476-482):\n\tExternal calls:\n\t- _movePool(id,newPool,minimumLiquidity,deadline) (src/ZZZVault.sol#480)\n\t\t- migrationBudget.checkpoint(id,phase) (src/ZZZVault.sol#380)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#292)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#318)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#319)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#302)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#343)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#288)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#137)\n\t\t- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#362)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#138)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#142)\n\tState variables written after the call(s):\n\t- positions[id].status = PositionStatus.Active (src/ZZZVault.sol#481)\n\tZZZVault.positions (src/ZZZVault.sol#19) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#455-463)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#65)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#60-64)\n"
+    },
+    {
+      "index": 98,
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZMigrationBudget._beforeMove(uint256).s (src/ZZZMigrationBudget.sol#50) is a local variable never initialized\n"
+    },
+    {
+      "index": 109,
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZVault._unwind(uint256,uint256,bool) (src/ZZZVault.sol#372-378) ignores return value by IZZZStrategy(_moduleStrategy()).validateExitPrice(positions[id].poolId) (src/ZZZVault.sol#373)\n"
+    }
+  ],
+  "prior_unmatched": [
+    {
+      "prior_index": 54,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#382-391):\n\tExternal calls:\n\t- _unwind(id,deadline) (src/ZZZVault.sol#388)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#341)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#389)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#135)\n\t\t- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#360)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#136)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#140)\n\tState variables written after the call(s):\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#389)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#112)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#113)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#135)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#137)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#138)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#389)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#110)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#111)\n\tZZZVault.totalIdle (src/ZZZVault.sol#33) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#33)\n"
+    },
+    {
+      "prior_index": 59,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#484-497):\n\tExternal calls:\n\t- _pullCompound(id) (src/ZZZVault.sol#492)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t- _unwind(id,deadline) (src/ZZZVault.sol#493)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#341)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#495)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#135)\n\t\t- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#360)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#136)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#140)\n\tState variables written after the call(s):\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#495)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#112)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#113)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#135)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#137)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#138)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#495)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#110)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#111)\n\tZZZVault.totalIdle (src/ZZZVault.sol#33) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#33)\n"
+    },
+    {
+      "prior_index": 60,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault.releaseForMigration(uint256,bytes32,uint256) (src/ZZZVault.sol#392-409):\n\tExternal calls:\n\t- _pullCompound(id) (src/ZZZVault.sol#397)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t- _unwind(id,deadline) (src/ZZZVault.sol#398)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#341)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\tState variables written after the call(s):\n\t- _idle(id,0,0) (src/ZZZVault.sol#402)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#112)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#113)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n\t- p.status = PositionStatus.Outbound (src/ZZZVault.sol#403)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n\t- _idle(id,0,0) (src/ZZZVault.sol#402)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#110)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#111)\n\tZZZVault.totalIdle (src/ZZZVault.sol#33) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#33)\n"
+    },
+    {
+      "prior_index": 67,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#484-497):\n\tExternal calls:\n\t- _pullCompound(id) (src/ZZZVault.sol#492)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t- _unwind(id,deadline) (src/ZZZVault.sol#493)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#341)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\tState variables written after the call(s):\n\t- p.poolId = newPool (src/ZZZVault.sol#494)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n"
+    },
+    {
+      "prior_index": 73,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault.resume(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#470-476):\n\tExternal calls:\n\t- _movePool(id,newPool,minimumLiquidity,deadline) (src/ZZZVault.sol#474)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#341)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#135)\n\t\t- amountOut = IZZZLiquidity(manager).swap(p.poolId,zeroForOne,amountIn,minimumOut,deadline) (src/ZZZVault.sol#360)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#136)\n\t\t- (spent0,spent1) = manager.increase(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#140)\n\tState variables written after the call(s):\n\t- positions[id].status = PositionStatus.Active (src/ZZZVault.sol#475)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n"
+    },
+    {
+      "prior_index": 79,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#370-375):\n\tExternal calls:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#372)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\t- _pullCompound(id) (src/ZZZVault.sol#373)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\t- _close(id,deadline) (src/ZZZVault.sol#374)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#341)\n\tState variables written after the call(s):\n\t- _close(id,deadline) (src/ZZZVault.sol#374)\n\t\t- p.lpTokenId = 0 (src/ZZZVault.sol#342)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#112)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#113)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n\t- _close(id,deadline) (src/ZZZVault.sol#374)\n\t\t- totalIdle[c.key.currency0] = totalIdle[c.key.currency0] - p.idle0 + new0 (src/ZZZVault.sol#110)\n\t\t- totalIdle[c.key.currency1] = totalIdle[c.key.currency1] - p.idle1 + new1 (src/ZZZVault.sol#111)\n\tZZZVault.totalIdle (src/ZZZVault.sol#33) can be used in cross function reentrancies:\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#33)\n"
+    },
+    {
+      "prior_index": 81,
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "Reentrancy in ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#370-375):\n\tExternal calls:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#372)\n\t\t- IZZZFees(_moduleFees()).syncExternal(id) (src/ZZZVault.sol#290)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#300)\n\t\t- IZZZFees(fees).allocate(id,token,amount) (src/ZZZVault.sol#286)\n\t- _pullCompound(id) (src/ZZZVault.sol#373)\n\t\t- amount0 = fees.releaseCompound(id,c.key.currency0) (src/ZZZVault.sol#316)\n\t\t- amount1 = fees.releaseCompound(id,c.key.currency1) (src/ZZZVault.sol#317)\n\tState variables written after the call(s):\n\t- _pullCompound(id) (src/ZZZVault.sol#373)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#112)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#113)\n\tZZZVault.positions (src/ZZZVault.sol#18) can be used in cross function reentrancies:\n\t- ZZZVault.confirmMigration(uint256,uint256,address) (src/ZZZVault.sol#449-457)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#62)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#57-61)\n"
+    },
+    {
+      "prior_index": 92,
+      "check": "unused-return",
+      "impact": "Medium",
+      "confidence": "Medium",
+      "description": "ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#370-375) ignores return value by IZZZStrategy(_moduleStrategy()).validateExitPrice(positions[id].poolId) (src/ZZZVault.sol#371)\n"
+    }
+  ],
+  "individual_current_reviews": [
+    {
+      "index": 6,
+      "fingerprint": "5bba01839ac7fd25c9290fcdd0e29e85e092207cebccb48501b687a53ee9beef",
+      "disposition": "false_positive",
+      "rationale": "The reported f0/f1 values are exact compound amounts already released to this bucket, not a spendable token-balance baseline. The final syncAllExternal settles receipts under incumbent shares; the subsequent late compound pull is added to incumbentNAV and final LP/idle NAV is read after these calls. hasPendingExternal rejects receipts queued after that pull before issuance. Both callers hold the Vault reentrancy lock. The extracted valuePair is an external view/staticcall to the immutable helper and Oracle; it introduces no mutable callback.",
+      "evidence": [
+        "src/ZZZVault.sol:_join",
+        "src/ZZZMigrationBudget.sol:valuePair",
+        "test/ExternalRewards.t.sol:testUnsyncedPaymentDuringFinalIncreaseSettlesBeforeSharesChange",
+        "test/ExternalRewards.t.sol:testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewMember"
+      ]
+    },
+    {
+      "index": 7,
+      "fingerprint": "3240866790c06804bec7886f34583ee825be2550b32efa883191970bdc3e7818",
+      "disposition": "false_positive",
+      "rationale": "checkpointOwner targets the fixed Rewards module and requires the Vault caller. Its bounded internal index arithmetic uses only static Vault nftBucket/sharesOf reads; there is no token transfer or mutable external callback capable of changing the saved fresh compound or final NAV. The surrounding activate/increase operation holds nonReentrant and commits share issuance only after this checkpoint. Historical f0/f1 deliberately remain part of the incumbent attribution.",
+      "evidence": [
+        "src/ZZZRewards.sol:checkpointOwner",
+        "src/ZZZRewards.sol:_checkpointOwner",
+        "src/ZZZVault.sol:_join",
+        "test/ExternalRewards.t.sol:testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement"
+      ]
+    },
+    {
+      "index": 10,
+      "fingerprint": "c89a5ba13f8fb875d426a8804e6c92a98f0f83b8e35773d24ae2d3d1d96be0e6",
+      "disposition": "false_positive",
+      "rationale": "The late0/late1 amounts were returned by the exact final compound release and added to incumbentNAV before final NAV is measured. The later fixed Rewards.checkpointOwner performs internal accounting and static Vault reads only, so it cannot alter these custody amounts or permit stale share issuance. The Vault lock and final pending-receipt barrier remain in force. This is a historical attribution scalar, not an unchecked external token balance.",
+      "evidence": [
+        "src/ZZZVault.sol:_join",
+        "src/ZZZRewards.sol:_checkpointOwner",
+        "test/ExternalRewards.t.sol:testFinalIncreaseCallbackCheckpointsTopUpAtItsPreviousShareWeight",
+        "test/ExternalRewards.t.sol:testLateUndeployedCompoundDoesNotRaiseThe100GrossActivationMinimum"
+      ]
+    },
+    {
+      "index": 17,
+      "fingerprint": "7135e602af25d5461d75fa10d89ff92f54e70368cce2bb02d610d53829c5d60b",
+      "disposition": "false_positive",
+      "rationale": "The final releaseCompound calls are fixed-Vault-only and nonReentrant; FeeController clears its compound ledger and accounted reserve before ExactToken.push. The enclosing Vault entry lock prevents callback mutation of its principal/share state. Returned late amounts are then added to the incumbent baseline, final LP and attributed idle are re-read, and pending external receipts cause a revert before issuance. Earlier f0/f1 correctly remain historical incumbent compound even if later receipts arrive. Dishonest admitted token/oracle/venue behavior remains an external trust risk.",
+      "evidence": [
+        "src/ZZZFeeController.sol:releaseCompound",
+        "src/ZZZVault.sol:_join",
+        "src/ZZZVault.sol:_pullCompound",
+        "test/ExternalRewards.t.sol:testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewMember",
+        "test/ExternalRewards.t.sol:testHugeLateCompoundCannotLeaveEntryAboveTheFivePercentIdleCap"
+      ]
+    },
+    {
+      "index": 38,
+      "fingerprint": "4f7529057b719f3a64c0cf21f9859447e938968b39fa43d3fe7a4730880f804b",
+      "disposition": "false_positive",
+      "rationale": "The mint/increase/approval operations execute inside the Vault lock with exact token-debit, temporary-allowance and final LP-owner checks. f0/f1 record incumbent compound deployed by that operation; they are not expected to remain a live token balance. After _put, late receipt settlement and compound release adjust incumbentNAV and final _nav reads the actual retained LP/idle before share issuance. The helper extraction is read-only and preserves the existing Oracle.value semantics.",
+      "evidence": [
+        "src/ZZZVault.sol:_put",
+        "src/ZZZVault.sol:_join",
+        "src/ZZZMigrationBudget.sol:valuePair",
+        "test/ExternalRewards.t.sol:testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement",
+        "test/ExternalRewards.t.sol:testUnsyncedPaymentDuringFinalIncreaseSettlesBeforeSharesChange"
+      ]
+    },
+    {
+      "index": 60,
+      "fingerprint": "118aca1ffedd746f115a6a17f8f1b78014ed885780935155de39bc690d8dc289",
+      "disposition": "false_positive",
+      "rationale": "_movePool remains reachable only through fixed-Migration-authorized, nonReentrant move/resume. New checkpoint calls target the Vault-created immutable helper, whose mutator accepts only that Vault and makes only static reads; it has no token custody, configurable recipient or arbitrary executor. Venue calls retain exact debit/LP-owner checks. The cached pre-callback valuation plus exact compound attribution and final 97% retained-value/5% idle checks must pass before success. confirmMigration requires the fixed Migration caller and Outbound/Remote state, so it cannot mutate the Active/Parked position during this path. Failure rolls back helper state, pool reservation and custody.",
+      "evidence": [
+        "src/ZZZVault.sol:_movePool",
+        "src/ZZZMigrationBudget.sol:checkpoint",
+        "src/ZZZMigrationBudget.sol:_afterMove",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetMigrationBlocksCloseCallbackReentry",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry"
+      ]
+    },
+    {
+      "index": 62,
+      "fingerprint": "04c5243c59c5d7ef2892bb0cf0813ea0dccf3098b923a6de928049b3023d549c",
+      "disposition": "false_positive",
+      "rationale": "This is the Parked branch of guarded move/resume: the initial helper checkpoint is fixed and read-only toward Vault, then the fixed FeeController releases only this bucket's designated compound after clearing its reserve. _idle adds the exact returned amounts under the enclosing Vault lock. Before close/redeployment the helper records only that attributed-idle increase, so raw donations cannot enter its compound denominator. The public readers are static, and confirmMigration cannot act on Parked custody.",
+      "evidence": [
+        "src/ZZZVault.sol:_movePool",
+        "src/ZZZVault.sol:_pullCompound",
+        "src/ZZZFeeController.sol:releaseCompound",
+        "src/ZZZMigrationBudget.sol:_includeCompound",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint"
+      ]
+    },
+    {
+      "index": 64,
+      "fingerprint": "0ea49794d493c4d4c522ca6a48c3fa593b971373b49ea7277bbc4ad2f4193f47",
+      "disposition": "false_positive",
+      "rationale": "The poolId change remains inside the nonReentrant Migration-authorized local move after exact ordered-currency and enabled-destination checks and permanent reservation of the same bucket. The new helper checkpoints cannot alter Vault state: only Vault can invoke them and all their outgoing calls are static reads. The helper retains the original price vector across the pool change, then verifies final principal; failure restores the original pool and reservation state. No callback can impersonate Migration or confirm an Active/Parked position.",
+      "evidence": [
+        "src/ZZZVault.sol:_movePool",
+        "src/ZZZMigrationBudget.sol:_beforeMove",
+        "src/ZZZMigrationBudget.sol:_afterMove",
+        "test/PoolSwitching.t.sol:testChangedPairReversedOrderAndDisabledPoolRemainRejectedAtomically",
+        "test/MigrationBudgetAdversarial.t.sol:testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss"
+      ]
+    },
+    {
+      "index": 66,
+      "fingerprint": "24fe8b75ec9139b4ca0d93382b390dabddfcaa7097852c5c4b45fbf591020055",
+      "disposition": "false_positive",
+      "rationale": "The source close, LP-id clearing and attributed-idle updates occur under the same external Vault lock. Checkpoint zero now captures old LP/idle before mutable harvest callbacks; checkpoint one adds only exact released compound at those cached prices. The fixed helper performs only static outgoing reads and cannot initiate another custody action. Close and final redeploy failures roll back all state; a harvest/close callback cannot hide principal loss by moving the starting snapshot or changing the price vector.",
+      "evidence": [
+        "src/ZZZVault.sol:_unwind",
+        "src/ZZZVault.sol:_close",
+        "src/ZZZMigrationBudget.sol:checkpoint",
+        "test/MigrationBudgetAdversarial.t.sol:testHarvestCallbackPrincipalLossAndPriceChangeCannotPrecedeStartingSnapshot",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetMigrationBlocksCloseCallbackReentry"
+      ]
+    },
+    {
+      "index": 72,
+      "fingerprint": "3e464c49ae4efb930aa117f2aa4324ffb16058b79ff4cc85d0785749bdd68280",
+      "disposition": "false_positive",
+      "rationale": "rebalance remains keeper-only, live/operating, Active-only and nonReentrant, with the existing strategy trigger and execution guards. It calls _unwind with migrating=false, so the analyzer-expanded migrationBudget.checkpoint leaf is unreachable on this path. The physical LP changes under the Vault lock while shares remain unchanged; exact balances and final LP ownership still constrain redeployment. The newly added 3% migration floor does not apply to ordinary keeper rebalance, and no such guarantee is inferred.",
+      "evidence": [
+        "src/ZZZVault.sol:rebalance",
+        "src/ZZZVault.sol:_unwind",
+        "test/VaultAccounting.t.sol:testRebalanceReplacesLPButPreservesEconomicNFT",
+        "test/CanonicalPreparation.t.sol:testNewEconomicWorkStopsAndCancellationRestoresIt"
+      ]
+    },
+    {
+      "index": 73,
+      "fingerprint": "347b5da409f0f3c6274902bedb408a0d3b360fb8ec7a4d9e6dcba91c5355d594",
+      "disposition": "false_positive",
+      "rationale": "The changed unwind signature distinguishes local migration from ordinary rebalance/release without exposing a new external entrypoint. All callers hold the Vault lock. For the migration branch, the immutable helper records exact compound attribution using only static reads before the fixed manager closes principal; it cannot mutate Vault custody or supply a recipient. lpTokenId and idle writes after close remain measured, and the final local-migration budget failure reverts the entire unwind. Public intermediate reads do not grant authority to confirm Active/Parked custody.",
+      "evidence": [
+        "src/ZZZVault.sol:_unwind",
+        "src/ZZZVault.sol:_close",
+        "src/ZZZMigrationBudget.sol:_includeCompound",
+        "test/MigrationBudgetAdversarial.t.sol:testFreshHarvestCompoundEntersDenominatorInsteadOfMaskingCloseLoss",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry"
+      ]
+    },
+    {
+      "index": 77,
+      "fingerprint": "5deacb6dc4db2f6d23d27a2c61ee63c68806be1c3ae9d68a3608efbc69fdbee5",
+      "disposition": "false_positive",
+      "rationale": "This finding is the existing harvest/compound-to-idle transition with the new private boolean parameter. The harvest and compound calls still target fixed modules under the external Vault reentrancy lock. FeeController reduces its compound ledger before the exact transfer, and _idle credits the returned reserve amount; callbacks cannot enter another guarded custody/share mutation or use confirmMigration on Active local custody. The subsequent migration checkpoint only reads this resulting idle and does not weaken these controls.",
+      "evidence": [
+        "src/ZZZVault.sol:_unwind",
+        "src/ZZZVault.sol:_pullCompound",
+        "src/ZZZFeeController.sol:releaseCompound",
+        "test/MigrationExecutionBudget.t.sol:testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations"
+      ]
+    },
+    {
+      "index": 79,
+      "fingerprint": "900d71c03f3afc86ded2323b78598437a5d2237779a7d7c6473db954cd7d50e6",
+      "disposition": "false_positive",
+      "rationale": "releaseForMigration remains fixed-Migration-only, live/operating and nonReentrant. It calls _unwind with migrating=false, so the detector-expanded budget checkpoint is unreachable here; this asynchronous departure does not acquire a 3% end-to-end guarantee. It zeroes attributed idle and marks Outbound before exact pushes to Migration, whose own checks require exact source deltas and roll back failure. Existing remote-funded-liability protections remain. Callbacks cannot change Active/Parked custody through confirmation or reenter the guarded release.",
+      "evidence": [
+        "src/ZZZVault.sol:releaseForMigration",
+        "src/ZZZVault.sol:_unwind",
+        "src/ZZZMigration.sol:execute",
+        "test/VaultAccounting.t.sol:testMigrationReleaseOnlyGoesToBoundModule",
+        "test/CustodyParking.t.sol:testParkedMigrationNeedsRemoteLiabilityFundingButNotRecoveredOracle"
+      ]
+    },
+    {
+      "index": 86,
+      "fingerprint": "69d54bb208d7495d4420ec6e289f98d677745ea63a610dbdc09043057aa8efa7",
+      "disposition": "false_positive",
+      "rationale": "resume requires the fixed Migration caller, Parked custody, operating state and the Vault lock. The immutable helper starts from the currently parked principal and adds exact designated compound, then verifies final LP/idle before resume commits Active status. Helper outgoing calls are static and cannot mutate custody; confirmMigration rejects Parked state. Any bad mint, stale feed, changed pair or loss-budget failure restores the original parked position. The floor covers this resume only, not the earlier parking close.",
+      "evidence": [
+        "src/ZZZVault.sol:resume",
+        "src/ZZZVault.sol:_movePool",
+        "src/ZZZMigrationBudget.sol:_afterMove",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint",
+        "test/CustodyParking.t.sol:testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares"
+      ]
+    },
+    {
+      "index": 98,
+      "fingerprint": "fd4209e2339b3dc3f1b69af96407343dfe5fc45ae68dbd43c913cf6a3759d852",
+      "disposition": "false_positive",
+      "rationale": "Solidity zero-initializes the local Snapshot struct. _beforeMove explicitly assigns bucketId, both validated prices, both decimal scales and both starting idle amounts before using them; _values consumes only the price/scale fields. It then sets value from measured LP plus attributed idle, rejects zero, and only then writes the complete struct to storage. No uninitialized memory or user-controlled omitted field can set the floor or checkpoint identity.",
+      "evidence": [
+        "src/ZZZMigrationBudget.sol:_beforeMove",
+        "src/ZZZMigrationBudget.sol:_values",
+        "test/MigrationExecutionBudget.t.sol:testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss",
+        "test/MigrationExecutionBudget.t.sol:testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed",
+        "test/MigrationBudgetAdversarial.t.sol:testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary"
+      ]
+    },
+    {
+      "index": 109,
+      "fingerprint": "e6ecb415d6af4107f662dce4f4b07dd669962c3284ee79e54ca5ff0134d9d9d2",
+      "disposition": "false_positive",
+      "rationale": "validateExitPrice is deliberately a reverting fresh-price/sequencer/spot-deviation guard; its returned spot value is not the valuation baseline. Source close retains its own raw execution minima. Atomic local move additionally uses the helper's pre-callback cached price vector and final aggregate budget; ordinary rebalance/release pass migrating=false and retain their existing guards. Paused parking remains the separate price-independent custody path.",
+      "evidence": [
+        "src/ZZZVault.sol:_unwind",
+        "src/ZZZStrategy.sol:validateExitPrice",
+        "src/ZZZMigrationBudget.sol:_beforeMove",
+        "test/MigrationExecutionBudget.t.sol:testStaleBaselineFeedRejectsBeforeHarvestAndPreservesCustody",
+        "test/CustodyParking.t.sol:testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights"
+      ]
+    }
+  ],
+  "superseded_prior_entries": [
+    {
+      "prior_index": 54,
+      "current_indices": [
+        72
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 59,
+      "current_indices": [
+        60
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 60,
+      "current_indices": [
+        79
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 67,
+      "current_indices": [
+        64
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 73,
+      "current_indices": [
+        86
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 79,
+      "current_indices": [
+        73
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 81,
+      "current_indices": [
+        77
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    },
+    {
+      "prior_index": 92,
+      "current_indices": [
+        109
+      ],
+      "reason": "Private unwind signature and/or immutable budget checkpoint call tree changed; corresponding current finding was individually reviewed."
+    }
+  ],
+  "retained_review_context": [
+    "Reviewed source changes in the shared module authorization: onlyGovernance retains its existing caller check and adds a final check; operating is a pre/post preparation barrier.",
+    "onlyDrainGovernance preserves existing timelock authority solely for scheduled-plan cancellation, exact paused parking and parking invalidation; it adds no asset recipient or generic configuration path.",
+    "The static valuePair extraction invokes the same Oracle.value methods through an immutable Vault-created helper and cannot introduce a mutable callback.",
+    "Ten existing production files changed and one helper was added; unchanged detector bodies do not mean all inheriting bytecode is unchanged. Historical tests are not relabelled as fresh current-source runs."
+  ]
+}

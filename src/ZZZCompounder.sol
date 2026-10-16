@@ -7,7 +7,7 @@ import {IZZZVault} from "./interfaces/IZZZ.sol";
 /// @notice Budget never passes through the keeper or this coordinator.
 contract ZZZCompounder is ZZZModule {
     constructor(address controller) ZZZModule(controller) {}
-    function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live {
+    function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live operating {
         _deadline(deadline);
         if (minimumLiquidity == 0) revert InvalidAmount();
         IZZZVault(access.module(Ids.VAULT)).compound(id, minimumLiquidity, deadline);

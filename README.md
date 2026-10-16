@@ -90,7 +90,7 @@ The keeper defaults to dry run. Its example ten-minute polling interval does not
 
 ## Verification and release status
 
-The [architecture review and targeted verification](reports/architecture-evolution/VERIFICATION.md) cover the permanent capacity repair and its affected boundaries. Different-pair conversion and canonical NFT-chain relocation remain unimplemented designs; the accepted 3% aggregate migration budget is not current enforcement.
+The [architecture review and targeted verification](reports/architecture-evolution/VERIFICATION.md) record the earlier permanent capacity repair. The current [migration safety controls](docs/MIGRATION_SAFETY.md) add a 3% aggregate budget for atomic local move/resume and a reversible canonical preparation phase; their [verification and internal review](reports/migration-safety/VERIFICATION.md) retain exact source scopes. Different-pair conversion and complete canonical NFT-chain relocation remain unimplemented. Future successor activation requires verified finality, with no multisig-only override.
 
 The historical [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md) records **531 offline Solidity passes**, two expected fork-setup skips, **23 normal size gates** and an extended invariant run of **65,536 calls**. The report separates fresh checks from reused static/fork evidence and the broader local Python candidate. The [internal review](reports/nft-rights-audit/REVIEW.md) records findings and remaining risks; [historical reports](reports/README.md) retain their original source scope.
 

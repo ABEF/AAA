@@ -9,16 +9,17 @@
     "ZZZNFTMetadata",
     "ZZZClaimRouter",
     "ZZZActivationAssets",
-    "ZZZActivationEntry"
+    "ZZZActivationEntry",
+    "ZZZMigrationBudget"
   ],
   "source_files": [
     {
       "file": "src/base/ZZZModule.sol",
-      "lines": 51
+      "lines": 72
     },
     {
       "file": "src/interfaces/IZZZ.sol",
-      "lines": 204
+      "lines": 205
     },
     {
       "file": "src/libraries/BridgeAssets.sol",
@@ -38,7 +39,7 @@
     },
     {
       "file": "src/ZZZAccessController.sol",
-      "lines": 82
+      "lines": 127
     },
     {
       "file": "src/ZZZActivationAssets.sol",
@@ -50,7 +51,7 @@
     },
     {
       "file": "src/ZZZBridgeAdapter.sol",
-      "lines": 75
+      "lines": 77
     },
     {
       "file": "src/ZZZBridgeRouter.sol",
@@ -83,6 +84,10 @@
     {
       "file": "src/ZZZMigration.sol",
       "lines": 301
+    },
+    {
+      "file": "src/ZZZMigrationBudget.sol",
+      "lines": 105
     },
     {
       "file": "src/ZZZMigrationReceiver.sol",
@@ -126,7 +131,7 @@
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 502
+      "lines": 519
     }
   ],
   "external_imports": [

@@ -24,6 +24,11 @@ from zzz_ops.state import atomic_json, integer, process_lock, read_json
 ACCOUNTING_MODEL = 'shared-pools-v2'
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
+PREPARATION_BLOCKED_ACTIONS = frozenset((
+    ('vault','rebalance(uint256,uint128,uint256)'),
+    ('compounder','compound(uint256,uint128,uint256)'),
+    ('buyback','execute(address,uint256,bytes32,uint256)'),
+))
 
 def log(event: str, **fields: Any) -> None:
     print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
@@ -110,6 +115,7 @@ class Keeper:
         self.skipped_buckets = 0
         self.blocked_actions = 0
         self.strategy_paused = False
+        self.preparing = None
         self.stop_requested = lambda: False
         self.last_success_at = None
         self.confirmations = positive(config.get('confirmations',12),'confirmations')
@@ -209,6 +215,7 @@ class Keeper:
                 'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
                 'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
+                'preparation_active':self.preparing,
                 'pending_action':(self.state.get('pending') or {}).get('key'),
                 'pending_day':(self.state.get('pending') or {}).get('day'),
                 'duration_seconds':round(time.monotonic()-start,3),**extra})
@@ -240,6 +247,24 @@ class Keeper:
     def save(self) -> None: atomic_json(self.path,self.state)
     def view(self,name: str,signature: str,*args: int|str) -> int:
         return uint_result(self.rpc.eth_call(self.contracts[name],calldata(signature,*args)))
+
+    def preparation_active(self) -> bool:
+        """Current deployments must expose this strict ABI; no legacy fallback."""
+        try:
+            value = self.view('access','preparationActive()')
+        except ValueError as exc:
+            raise RpcError('Malformed canonical preparation flag') from exc
+        if value not in (0,1): raise RpcError('Noncanonical preparation flag')
+        active = bool(value)
+        if self.preparing is not active and (self.preparing is not None or active):
+            log('canonical_preparation_observed',active=active)
+        self.preparing = active
+        return active
+
+    def _defer_for_preparation(self, name: str, signature: str) -> bool:
+        # Read even for drain actions: unsupported deployments cannot silently
+        # inherit new-source compatibility. Reconciliation remains independent.
+        return self.preparation_active() and (name,signature) in PREPARATION_BLOCKED_ACTIONS
 
     def _validate_signer(self) -> None:
         self.cast = shutil.which(self.config.get('cast_binary','cast'))
@@ -393,6 +418,7 @@ class Keeper:
         if self.state.get('pending'): return False
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
+        if self._defer_for_preparation(name,signature): return False
         if self.live: self._validate_checkpoint()
         _,timestamp = self._head()
         retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
@@ -421,6 +447,7 @@ class Keeper:
             int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
             self.blocked_actions += 1
             log('cost_cap_exceeded',action=key); return False
+        if self._defer_for_preparation(name,signature): return False
         if not self.live:
             log('dry_run',action=key,to=to,calldata=data,estimated_cost_wei=str(cost))
             return False
@@ -438,6 +465,9 @@ class Keeper:
             raise RpcError('Keeper native balance is below the bounded transaction cost')
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
+        # A notice may become active during simulation, code/nonce or balance
+        # reads. The on-chain guard still covers later inclusion-time races.
+        if self._defer_for_preparation(name,signature): return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
         self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
@@ -773,6 +803,7 @@ class Keeper:
         if self.poll_pending(): return
         paused = self.view('access','paused()') != 0
         self.strategy_paused = paused
+        preparing = self.preparation_active()
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
         metadata_first = False
@@ -800,9 +831,9 @@ class Keeper:
                 if status == 1:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
-                    if self.view('strategy','needsRebalance(uint256)',bucket):
+                    if not preparing and self.view('strategy','needsRebalance(uint256)',bucket):
                         if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
-                    if item.get('compound',True):
+                    if not preparing and item.get('compound',True):
                         reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
                         threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
                         if max(reserves,default=0) >= threshold:
@@ -825,6 +856,7 @@ class Keeper:
         if self.metadata_enabled and not metadata_first and self._refresh_metadata(): return
         if paused:
             log('protocol_paused'); return
+        if preparing: return
         for task in self.config.get('buybacks',[]):
             token = address(task['token']); amount = positive(task['amount'],'amount')
             if self.view('fees','buybackBalance(address)',token) >= amount:

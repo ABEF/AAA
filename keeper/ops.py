@@ -43,6 +43,9 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
     if data.get('status') != expected or data.get('live') is not (not allow_dry_run): reasons.append('maintenance_not_healthy')
     for field in ('pending','strategy_paused'):
         if data.get(field) is not False: reasons.append(field)
+    # Preparation is an intentional restriction, not a failed keeper. Unknown
+    # legacy health records still cannot assert compatibility with this source.
+    if type(data.get('preparation_active')) is not bool: reasons.append('preparation_state_unknown')
     for field in ('skipped_buckets','blocked_actions','consecutive_failures'):
         if type(data.get(field)) is not int or data[field] != 0: reasons.append(field)
     if data.get('last_success_at') is None:
@@ -51,6 +54,7 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
         success_age = now-timestamp(data['last_success_at'])
         if success_age < -30 or success_age > max_age: reasons.append('last_success_stale_or_future')
     return {'ok':not reasons,'reasons':reasons,'heartbeat_age_seconds':round(age,3),
+            'preparation_active':data.get('preparation_active'),
             'scope':'health_file_only; use an off-host scheduler and alert receiver'}
 
 
@@ -71,6 +75,8 @@ def preflight(config, *, rpc=None):
     if keeper.view('access','isSealed()') != 1: reasons.append('protocol_not_sealed')
     if keeper.view('access','keepers(address)',keeper.sender) != 1: reasons.append('keeper_not_authorized')
     if keeper.view('access','paused()') != 0: reasons.append('protocol_paused')
+    preparing = keeper.preparation_active()
+    if preparing: reasons.append('canonical_preparation_active')
     expected = keeper.state.get('next_nonce')
     latest = rpc_quantity(keeper.rpc.call('eth_getTransactionCount',[keeper.sender,'latest']),'latest nonce')
     pending = rpc_quantity(keeper.rpc.call('eth_getTransactionCount',[keeper.sender,'pending']),'pending nonce')
@@ -81,7 +87,7 @@ def preflight(config, *, rpc=None):
         reasons.append('balance_below_transaction_budget')
     # Recheck the existing anchor after the RPC calls; this is still a point-in-time observation.
     keeper._validate_checkpoint()
-    return {'ok':not reasons,'reasons':reasons,'chain_id':keeper.chain,'head':head,
+    return {'ok':not reasons,'reasons':reasons,'chain_id':keeper.chain,'head':head,'preparation_active':preparing,
             'expected_nonce':expected,'latest_nonce':latest,'pending_nonce':pending,
             'scope':'read_only_point_in_time; not production approval or multi-host fencing'}
 

@@ -125,6 +125,12 @@ def fixture():
             'review_evidence':dict(proof(),independent=True,original_source_value_tested=True,
                 aggregate_loss_budget_tested=True,callback_owner_context_reviewed=True,
                 typed_routes_reviewed=True,complete_route_history_reviewed=True)}
+        budget_address=addr(base+706)
+        manifest['chains'][-1]['migration_budget']={'address':budget_address,'runtime_hash':HASH,'immutable':True,
+            'vault':modules['vault']['address'],'controller':controller,'observed_vault_helper':budget_address,
+            'observed_chain_id':cid,'observed_block_number':5000,'observed_block_hash':HASH,
+            'review_evidence':dict(proof(),independent=True,aggregate_loss_tested=True,
+                compound_not_subsidy_tested=True,callback_price_snapshot_tested=True,local_scope_reviewed=True)}
         if cid==1:manifest['chains'][-1]['nft_inventory']=nft_inventory(manifest['chains'][-1])
     origin=manifest['chains'][0]
     bucket=int(GATE.identity([(1,'uint256'),(origin['modules']['vault']['address'],'address'),
@@ -201,6 +207,7 @@ def onward_fixture():
     third['providers'][0]['integration_evidence']['chain_id']=3
     third['activation_assets']['observed_chain_id']=3
     third['activation_entry']['observed_chain_id']=3
+    third['migration_budget']['observed_chain_id']=3
     third['bucket_reservations'][0]['observed_chain_id']=3;manifest['chains'].append(third)
     for source,destination in ((2,3),(3,2),(3,1)):
         policy=copy.deepcopy(manifest['transport_policies'][0])
@@ -806,3 +813,58 @@ class ExternalRewardConfigTests(unittest.TestCase):
         satellite=copy.deepcopy(fixture()['chains'][1])
         satellite['external_rewards']=copy.deepcopy(self.config['chains'][0]['external_rewards'])
         self.config['chains'].append(satellite);self.blocked('reward.canonical')
+
+class MigrationBudgetConfigTests(unittest.TestCase):
+    def setUp(self): self.config=disabled_fixture()
+    def check_blocked(self, code):
+        result=GATE.validate(self.config, expected_commit=COMMIT, now=NOW)
+        self.assertFalse(result['ready'])
+        self.assertFalse(result['deployment_authorized'])
+        self.assertIn(code, [issue['code'] for issue in result['issues']])
+    def test_budget_required_even_when_bridging_disabled(self):
+        del self.config['chains'][0]['migration_budget']
+        self.check_blocked('migration_budget.binding')
+    def test_wrong_vault_controller_or_mutability_rejected(self):
+        for field,value in (('vault',addr(990)),('controller',addr(991)),('immutable',False)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture()
+                self.config['chains'][0]['migration_budget'][field]=value
+                self.check_blocked('migration_budget.binding')
+    def test_helper_observation_must_match_exact_inventory(self):
+        for field,value in (('observed_vault_helper',addr(990)),('observed_chain_id',2),
+            ('observed_block_number',4999),('observed_block_hash','0x'+'ab'*32)):
+            with self.subTest(field=field):
+                self.config=disabled_fixture()
+                self.config['chains'][0]['migration_budget'][field]=value
+                self.check_blocked('migration_budget.observation')
+    def test_omitted_independent_budget_review_is_rejected(self):
+        for field in ('independent','aggregate_loss_tested','compound_not_subsidy_tested',
+            'callback_price_snapshot_tested','local_scope_reviewed'):
+            with self.subTest(field=field):
+                self.config=disabled_fixture()
+                self.config['chains'][0]['migration_budget']['review_evidence'][field]=False
+                self.check_blocked('migration_budget.review')
+    def test_budget_cannot_alias_modules_entry_or_assets_helper(self):
+        for category in ('modules','activation_entry','activation_assets'):
+            with self.subTest(category=category):
+                self.config=disabled_fixture();chain=self.config['chains'][0]
+                other=chain['modules']['vault']['address'] if category=='modules' else chain[category]['address']
+                chain['migration_budget']['address']=other
+                self.check_blocked('migration_budget.binding')
+    def test_budget_cannot_receive_mint_proceeds(self):
+        chain=self.config['chains'][0]
+        chain['constructor']['mint_proceeds_recipient']=chain['migration_budget']['address']
+        self.check_blocked('mint.custody')
+    def test_budget_cannot_alias_nft_helper_or_creator_inbox(self):
+        chain=self.config['chains'][0]
+        chain['nft_inventory']['claim_router']['address']=chain['migration_budget']['address']
+        self.check_blocked('nft.helper')
+        self.config=external_fixture();chain=self.config['chains'][0]
+        chain['external_rewards']['receivers'][0]['address']=chain['migration_budget']['address']
+        self.check_blocked('reward.custody')
+    def test_budget_mixed_case_cannot_alias_creator_inbox(self):
+        self.config=external_fixture();chain=self.config['chains'][0]
+        receiver=chain['external_rewards']['receivers'][0]['address']
+        chain['migration_budget']['address']='0x'+receiver[2:].upper()
+        chain['migration_budget']['observed_vault_helper']=receiver.lower()
+        self.check_blocked('reward.custody')

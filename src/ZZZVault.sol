@@ -6,9 +6,10 @@ import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Recei
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
+import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
-import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZOracle, IZZZStrategy, IZZZLiquidity,
+import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZStrategy, IZZZLiquidity,
     IPositionManagerMinimal, IZZZRewards, IZZZMigration, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
 
 /// @notice Non-upgradeable custody. Principal has no owner/admin redemption path.
@@ -34,6 +35,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     uint256 public sequence;
     uint256 public immutable canonicalChainId;
     address payable public immutable mintProceedsRecipient;
+    ZZZMigrationBudget public immutable migrationBudget;
     uint256 public constant MINT_PRICE = 0.05 ether;
     uint256 private constant MIN_ACTIVATION_INPUT_USD = 100e18;
     uint256 private constant MAX_IDLE_BPS = 500; // At least 95% deployed by oracle value after LP updates.
@@ -52,6 +54,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (nftHomeChain == 0 || mintRecipient == address(0) || mintRecipient == address(this)) revert InvalidConfiguration();
         canonicalChainId = nftHomeChain;
         mintProceedsRecipient = mintRecipient;
+        migrationBudget = new ZZZMigrationBudget(controller);
     }
     /// @notice NFT lifecycle is separate from shared physical LP custody.
     function nftStatus(uint256 id) external view returns (PositionStatus) {
@@ -115,8 +118,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             _tokenBalance(c.key.currency1) < totalIdle[c.key.currency1]) revert InvalidState();
     }
     function _valuePair(PoolConfig memory c, uint256 amount0, uint256 amount1) private view returns (uint256) {
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        return oracle.value(c.key.currency0, amount0) + oracle.value(c.key.currency1, amount1);
+        return migrationBudget.valuePair(c.key.currency0, c.key.currency1, amount0, amount1);
     }
     function _put(uint256 id, bool create, uint128 minimumLiquidity, uint256 deadline) private returns (uint256 deployedValue) {
         Position storage p = positions[id];
@@ -156,7 +158,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     /// @notice Paid issuance creates no LP, collective membership or fee entitlement. Proceeds are
     /// forwarded separately and never enter the permanently locked principal ledger.
-    function mintDormant() external payable live nonReentrant returns (uint256 id) {
+    function mintDormant() external payable live operating nonReentrant returns (uint256 id) {
         // Satellite vaults can receive migrated positions, but never issue a second collection.
         if (block.chainid != canonicalChainId) revert InvalidState();
         if (msg.value != MINT_PRICE) revert InvalidAmount();
@@ -170,7 +172,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     /// @notice New NFTs join the sole shared position for this pool. No redeemable token is issued.
     function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
-        external live nonReentrant {
+        external live operating nonReentrant {
         _requireOwner(id);
         if (nftBucket[id] != 0 || !_nft().traitsReady(id)) revert InvalidState();
         uint256 bucket = poolBucket[poolId];
@@ -194,7 +196,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         emit Activated(id, _nft().ownerOf(id), poolId, amount0, amount1);
     }
     function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
-        external live nonReentrant {
+        external live operating nonReentrant {
         _requireOwner(id);
         uint256 bucket = nftBucket[id];
         if (bucket == 0) revert InvalidState();
@@ -318,7 +320,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _idle(id, p.idle0 + amount0, p.idle1 + amount1);
     }
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline)
-        external onlyModule(Ids.COMPOUNDER) live nonReentrant {
+        external onlyModule(Ids.COMPOUNDER) live operating nonReentrant {
         _deadline(deadline);
         _active(id);
         _harvest(id, deadline);
@@ -367,11 +369,15 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         Position storage p = positions[id];
         return _valuePair(c, p.idle0, p.idle1);
     }
-    function _unwind(uint256 id, uint256 deadline) private {
+    function _unwind(uint256 id, uint256 deadline, bool migrating) private {
         IZZZStrategy(_moduleStrategy()).validateExitPrice(positions[id].poolId);
         _harvest(id, deadline);
         _pullCompound(id);
+        if (migrating) _migrationCheckpoint(id, 1);
         _close(id, deadline);
+    }
+    function _migrationCheckpoint(uint256 id, uint8 phase) private {
+        migrationBudget.checkpoint(id, phase);
     }
     function _redeploy(uint256 id, uint128 minimumLiquidity, uint256 deadline) private {
         uint256 beforeValue = _idleValue(id);
@@ -379,23 +385,23 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (_idleValue(id) < Math.mulDiv(beforeValue, 10000 - _pool(id).maxSlippageBps, 10000)) revert Slippage();
         _put(id, true, minimumLiquidity, deadline);
     }
-    function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live nonReentrant {
+    function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live operating nonReentrant {
         _deadline(deadline);
         _active(id);
         if (minimumLiquidity == 0 || !IZZZStrategy(_moduleStrategy()).needsRebalance(id)) revert InvalidState();
         Position storage p = positions[id];
         uint256 oldId = p.lpTokenId;
-        _unwind(id, deadline);
+        _unwind(id, deadline, false);
         _redeploy(id, minimumLiquidity, deadline);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
     }
     function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
-        external onlyModule(Ids.MIGRATION) live nonReentrant returns (uint256 amount0, uint256 amount1) {
+        external onlyModule(Ids.MIGRATION) live operating nonReentrant returns (uint256 amount0, uint256 amount1) {
         _deadline(deadline);
         Position storage p = positions[id];
         if (!IZZZFees(_moduleFees()).remoteSettled(id)) revert InvalidState();
         if (p.status == PositionStatus.Parked) _pullCompound(id);
-        else { _active(id); _unwind(id, deadline); }
+        else { _active(id); _unwind(id, deadline, false); }
         PoolConfig memory c = _pool(id);
         amount0 = p.idle0;
         amount1 = p.idle1;
@@ -468,14 +474,14 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         emit PrincipalParked(id, oldLp);
     }
     function resume(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline)
-        external onlyModule(Ids.MIGRATION) live nonReentrant {
+        external onlyModule(Ids.MIGRATION) live operating nonReentrant {
         _deadline(deadline);
         if (positions[id].status != PositionStatus.Parked) revert InvalidState();
         _movePool(id, newPool, minimumLiquidity, deadline);
         positions[id].status = PositionStatus.Active;
     }
     function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline)
-        external onlyModule(Ids.MIGRATION) live nonReentrant {
+        external onlyModule(Ids.MIGRATION) live operating nonReentrant {
         _deadline(deadline);
         _active(id);
         if (positions[id].poolId == newPool) revert InvalidConfiguration();
@@ -489,10 +495,15 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             oldConfig.key.currency1 != nextConfig.key.currency1 || !nextConfig.operationsEnabled) revert InvalidConfiguration();
         _reserve(newPool, id);
         uint256 oldId = p.lpTokenId;
-        if (p.status == PositionStatus.Parked) _pullCompound(id);
-        else _unwind(id, deadline);
+        _migrationCheckpoint(id, 0);
+        if (p.status == PositionStatus.Parked) {
+            _pullCompound(id);
+            _migrationCheckpoint(id, 1);
+        }
+        else _unwind(id, deadline, true);
         p.poolId = newPool; // Both pool keys have the exact same ordered currencies.
         _redeploy(id, minimumLiquidity, deadline);
+        _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
     }
     function onERC721Received(address, address, uint256, bytes calldata) external view override returns (bytes4) {

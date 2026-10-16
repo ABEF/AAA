@@ -12,6 +12,7 @@ abstract contract ZZZModule {
     error InvalidAmount();
     error Slippage();
     error Expired();
+    error Preparing();
     constructor(address controller) {
         if (controller.code.length == 0) revert InvalidConfiguration();
         access = IZZZAccess(controller);
@@ -26,9 +27,29 @@ abstract contract ZZZModule {
     modifier onlyGovernance() {
         _checkGovernance();
         _;
+        _checkGovernance();
     }
     function _checkGovernance() private view {
         if (!access.canConfigure(msg.sender)) revert Unauthorized();
+    }
+    /// @dev Only the existing timelock may drain during preparation. This does
+    /// not grant a caller generic configuration or execution authority.
+    modifier onlyDrainGovernance() {
+        _checkDrainGovernance();
+        _;
+    }
+    function _checkDrainGovernance() private view {
+        if (msg.sender != address(access) && !access.canConfigure(msg.sender)) revert Unauthorized();
+    }
+    /// @dev Check again after callbacks: a matured timelock announcement cannot
+    /// be executed inside new work and let that work finish after preparation.
+    modifier operating() {
+        _checkOperating();
+        _;
+        _checkOperating();
+    }
+    function _checkOperating() internal view {
+        if (access.preparationActive()) revert Preparing();
     }
     modifier onlyKeeper() {
         _checkKeeper();

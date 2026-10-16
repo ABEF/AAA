@@ -23,6 +23,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
         transport = IZZZTransport(endpoint);
     }
     function send(BridgeMessage calldata message) external payable live nonReentrant returns (bytes32 transportId) {
+        if (message.kind == MessageKind.Principal) _checkOperating();
         bytes32 required = message.kind == MessageKind.Principal ? Ids.MIGRATION :
             message.kind == MessageKind.Reward ? Ids.FEES : Ids.RECEIVER;
         if (msg.sender != access.module(required) || message.nonce != 0) revert Unauthorized();
@@ -45,6 +46,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
             if (IERC20(tokens[i]).balanceOf(address(this)) != beforeBalances[i]) revert InvalidState();
         }
         emit Sent(transportId, m.routeId, m.nonce, uint8(m.kind));
+        if (message.kind == MessageKind.Principal) _checkOperating();
     }
     function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external nonReentrant {
         // Inbound settlement remains available during a local strategy pause.

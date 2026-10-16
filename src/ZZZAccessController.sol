@@ -13,10 +13,26 @@ contract ZZZAccessController is TimelockController {
     address public bootstrap;
     bool public isSealed;
     bool public paused;
+    bool public preparationActive;
+    uint256 public preparationNonce;
+    bytes32 public preparationHash;
+    uint256 public preparationStartedAt;
+    /// @dev Public notice only. These commitments do not authenticate a remote
+    /// deployment, approve a successor, freeze rights or authorize any export.
+    struct PreparationNotice {
+        uint256 destinationChain;
+        address successorController;
+        bytes32 deploymentCommitment;
+        bytes32 reviewHash;
+    }
+    PreparationNotice public preparationNotice;
     event ModuleBound(bytes32 indexed id, address indexed implementation);
     event SystemSealed();
     event PauseChanged(bool paused);
     event KeeperChanged(address indexed account, bool enabled);
+    event PreparationStarted(bytes32 indexed noticeHash, uint256 indexed nonce,
+        uint256 indexed destinationChain, address successorController, bytes32 deploymentCommitment, bytes32 reviewHash);
+    event PreparationCancelled(bytes32 indexed noticeHash);
     error Unauthorized();
     error InvalidConfiguration();
 
@@ -32,7 +48,33 @@ contract ZZZAccessController is TimelockController {
         guardians[initialGuardian] = true;
     }
     function canConfigure(address account) public view returns (bool) {
-        return account == address(this) || (!isSealed && account == bootstrap);
+        return !preparationActive && (account == address(this) || (!isSealed && account == bootstrap));
+    }
+    /// @notice Announce a cancellable preparation window through the existing
+    /// timelock. The source remains the sole canonical NFT and reward authority.
+    function startPreparation(PreparationNotice calldata notice) external {
+        if (msg.sender != address(this) || !isSealed || preparationActive) revert Unauthorized();
+        if (IZZZVault(module[Ids.VAULT]).canonicalChainId() != block.chainid ||
+            notice.destinationChain == 0 || notice.successorController == address(0) ||
+            (notice.destinationChain == block.chainid && notice.successorController == address(this)) ||
+            notice.deploymentCommitment == bytes32(0) || notice.reviewHash == bytes32(0)) revert InvalidConfiguration();
+        uint256 nonce = ++preparationNonce;
+        bytes32 noticeHash = keccak256(abi.encode("ZZZ_CANONICAL_PREPARATION_V1", block.chainid, address(this),
+            module[Ids.VAULT], module[Ids.NFT], nonce, notice));
+        preparationNotice = notice;
+        preparationHash = noticeHash;
+        preparationStartedAt = block.timestamp;
+        preparationActive = true;
+        emit PreparationStarted(noticeHash, nonce, notice.destinationChain, notice.successorController,
+            notice.deploymentCommitment, notice.reviewHash);
+    }
+    /// @notice No custody or rights leave during preparation, so cancellation
+    /// needs no remote proof. Exact notice binding prevents cancelling a later notice.
+    function cancelPreparation(bytes32 noticeHash) external {
+        if (msg.sender != address(this) || !preparationActive) revert Unauthorized();
+        if (noticeHash != preparationHash) revert InvalidConfiguration();
+        preparationActive = false;
+        emit PreparationCancelled(noticeHash);
     }
     function bind(bytes32 id, address implementation) external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
@@ -71,7 +113,10 @@ contract ZZZAccessController is TimelockController {
         guardians[who] = enabled;
     }
     function setPaused(bool state) external {
-        if (!canConfigure(msg.sender) && !(state && guardians[msg.sender])) revert Unauthorized();
+        // Pause control remains available to drain incoming custody and park it.
+        // Unpausing never bypasses the separate preparation guards.
+        if (msg.sender != address(this) && !(!isSealed && msg.sender == bootstrap) &&
+            !(state && guardians[msg.sender])) revert Unauthorized();
         paused = state;
         emit PauseChanged(state);
     }

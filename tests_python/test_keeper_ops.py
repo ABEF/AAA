@@ -25,12 +25,13 @@ class OpsTests(unittest.TestCase):
         self.k = Keeper(self.cfg,rpc=self.rpc);self.k.state['next_nonce'] = 0;self.k.save()
         self.now = int(time.time());stamp = dt.datetime.fromtimestamp(self.now,dt.timezone.utc).isoformat()
         self.health = {'time':stamp,'last_success_at':stamp,'chain_id':1,'sender':A,'status':'healthy','live':True,
-            'pending':False,'strategy_paused':False,'skipped_buckets':0,'blocked_actions':0,'consecutive_failures':0}
+            'pending':False,'strategy_paused':False,'preparation_active':False,
+            'skipped_buckets':0,'blocked_actions':0,'consecutive_failures':0}
         original = self.rpc.call
         def call(method,params):
             if method == 'eth_getTransactionCount': return '0x0'
             if method == 'eth_call':
-                value = params[0]['data'] != calldata('paused()')
+                value = params[0]['data'] not in (calldata('paused()'),calldata('preparationActive()'))
                 return '0x'+f'{int(value):064x}'
             return original(method,params)
         self.rpc.call = call

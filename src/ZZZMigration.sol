@@ -104,14 +104,14 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         activePlan[id] = migrationId;
         emit Scheduled(migrationId, id, routeId, earliest);
     }
-    function cancel(bytes32 migrationId) external onlyGovernance {
+    function cancel(bytes32 migrationId) external onlyDrainGovernance {
         Plan storage plan = plans[migrationId];
         if (plan.status != Status.Scheduled) revert InvalidState();
         plan.status = Status.Cancelled;
         delete activePlan[plan.bucketId];
         emit Cancelled(migrationId);
     }
-    function execute(bytes32 migrationId, uint256 deadline) external payable onlyKeeper live nonReentrant {
+    function execute(bytes32 migrationId, uint256 deadline) external payable onlyKeeper live operating nonReentrant {
         _deadline(deadline);
         Plan storage plan = plans[migrationId];
         if (plan.status != Status.Scheduled || block.timestamp < plan.earliest) revert InvalidState();
@@ -255,7 +255,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     /// @notice Close a paused local LP without consulting price or sequencer feeds.
     /// Guardian/governance pause freezes new capital and upkeep before the exact
     /// snapshot is scheduled through the normal governance timelock.
-    function park(ParkingRequest calldata request) external onlyGovernance nonReentrant {
+    function park(ParkingRequest calldata request) external onlyDrainGovernance nonReentrant {
         _deadline(request.deadline);
         IZZZVault vault = IZZZVault(_moduleVault());
         Position memory beforePosition = vault.group(request.bucketId);
@@ -281,7 +281,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         emit ParkingExecuted(keccak256(abi.encode(block.chainid, address(this), address(vault), request)),
             request.bucketId, request.nonce, principal0, principal1);
     }
-    function invalidateParking(uint256 id) external onlyGovernance {
+    function invalidateParking(uint256 id) external onlyDrainGovernance {
         ++parkingNonce[id];
         emit ParkingInvalidated(id, parkingNonce[id]);
     }

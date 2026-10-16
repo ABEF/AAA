@@ -6,6 +6,7 @@ interface IZZZAccess {
     function module(bytes32 key) external view returns (address);
     function isSealed() external view returns (bool);
     function paused() external view returns (bool);
+    function preparationActive() external view returns (bool);
     function keepers(address who) external view returns (bool);
     function canConfigure(address who) external view returns (bool);
 }

@@ -18,7 +18,7 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         zzz = zzzToken;
         maxTradeUSD = maximumTradeUSD;
     }
-    function execute(address token, uint256 amount, bytes32 poolId, uint256 deadline) external onlyKeeper live nonReentrant {
+    function execute(address token, uint256 amount, bytes32 poolId, uint256 deadline) external onlyKeeper live operating nonReentrant {
         _deadline(deadline);
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         if (amount == 0 || oracle.value(token, amount) > maxTradeUSD) revert InvalidAmount();

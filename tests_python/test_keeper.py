@@ -280,7 +280,7 @@ class KeeperTests(unittest.TestCase):
         self.k.maintenance={'minimum_liquidity':1,'harvest':True,'compound':True,
             'reward_routes':[{'token':B,'route_id':H,'minimum_units':1,'native_fee_wei':3}]}
         fields=[0]*15;fields[7]=status
-        reads={'paused()':0,'isSealed()':1,'keepers(address)':1,
+        reads={'paused()':0,'preparationActive()':0,'isSealed()':1,'keepers(address)':1,
             'bucketCount()':1,'bucketAt(uint256)':7,
             'rewardReceiver(uint256)':0,
             'remoteIndividual(uint256,address)':10,'remoteCollective(uint256,address)':6}
@@ -313,7 +313,7 @@ class PoolKeeperTests(unittest.TestCase):
         self.group_words=[int(self.pool,16),10,0,0,1000,1<<96,self.rpc.now,1,1,
             int(B,16),int(B,16),int(B,16),int(C,16),1,int(B,16)]
         self.rebalance=True
-        self.paused=False;self.inbox=0;self.inbox_pending=[0,0]
+        self.paused=False;self.preparing=False;self.inbox=0;self.inbox_pending=[0,0]
         self.inbox_fees=int(B,16);self.inbox_bucket=7
         self.reserves={B:0,C:0}
         self.accounting_words=None;self.native_wrapper=int(B,16)
@@ -328,7 +328,7 @@ class PoolKeeperTests(unittest.TestCase):
         selector=data[:10]
         args=[int(data[i:i+64],16) for i in range(10,len(data),64)]
         values={
-            'paused()':int(self.paused),'isSealed()':1,'keepers(address)':1,'bucketCount()':len(self.ids),
+            'paused()':int(self.paused),'preparationActive()':int(self.preparing),'isSealed()':1,'keepers(address)':1,'bucketCount()':len(self.ids),
             'rewardReceiver(uint256)':self.inbox,'fees()':self.inbox_fees,'bucketId()':self.inbox_bucket,
             'needsRebalance(uint256)':int(self.rebalance),'bucketTotalShares(uint256)':100,
             'remoteIndividual(uint256,address)':0,'remoteCollective(uint256,address)':0,

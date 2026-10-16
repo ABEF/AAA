@@ -1,0 +1,32 @@
+{
+  "scope": "Earlier console-only attempts, retained separately from the final source-bound result. Raw full output was not persisted during these attempts; excerpts below are copied from the tool-returned console, not a new test execution.",
+  "attempts": [
+    {
+      "command": "python -m unittest tests_python.test_keeper_preparation -v",
+      "tests_run": 14,
+      "failures": 0,
+      "errors": 1,
+      "runtime_skips": 0,
+      "cause": "New metadata test instantiated MetadataKeeperTests with nonexistent test_placeholder method; corrected to an existing fixture method.",
+      "console_excerpt": "test_metadata_refresh_remains_available_during_preparation (tests_python.test_keeper_preparation.KeeperPreparationTests.test_metadata_refresh_remains_available_during_preparation) ... ERROR\nAttributeError: 'MetadataKeeperTests' object has no attribute 'test_placeholder'\nValueError: no such test method in <class 'tests_python.test_metadata_keeper.MetadataKeeperTests'>: test_placeholder\nRan 14 tests in 1.804s\nFAILED (errors=1)"
+    },
+    {
+      "command": "python -m unittest tests_python.test_keeper_preparation tests_python.test_keeper tests_python.test_keeper_ops tests_python.test_keeper_recovery tests_python.test_metadata_keeper tests_python.test_keeper_reservations -q",
+      "tests_run": 186,
+      "failures": 0,
+      "errors": 6,
+      "runtime_skips": 2,
+      "cause": "Two existing reward-cycle tests had six subcases whose explicit mocked-view dictionary lacked preparationActive(); added canonical false. Skips were missing cast on child Python PATH and one existing POSIX-only case.",
+      "console_excerpt": "ERROR: test_legacy_rewards_delivered_after_principal_departure (tests_python.test_keeper.KeeperTests.test_legacy_rewards_delivered_after_principal_departure) (status=2)\nKeyError: 'preparationActive()'\nERROR: test_missing_and_dormant_groups_do_not_bridge_rewards (tests_python.test_keeper.KeeperTests.test_missing_and_dormant_groups_do_not_bridge_rewards) (status=0)\nKeyError: 'preparationActive()'\nRan 186 tests in 16.632s\nFAILED (errors=6, skipped=2)"
+    },
+    {
+      "command": "Same six modules, after mocked-view repair and shell PATH addition",
+      "tests_run": 186,
+      "failures": 0,
+      "errors": 0,
+      "runtime_skips": 2,
+      "cause": "All executed tests passed; bundled Python launcher still did not inherit Foundry shell PATH. Final runner sets PATH inside Python before test imports and explicitly excludes the POSIX-only test.",
+      "console_excerpt": "----------------------------------------------------------------------\nRan 186 tests in 13.739s\n\nOK (skipped=2)"
+    }
+  ]
+}

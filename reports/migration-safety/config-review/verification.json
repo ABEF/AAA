@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-16T23:02:43.883307+00:00",
+  "tests_run": 4,
+  "failures": 0,
+  "errors": 0,
+  "runtime_skips": 0,
+  "successful": true,
+  "test_ids": [
+    "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_mixed_case_cannot_alias_creator_inbox",
+    "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_alias_nft_helper_or_creator_inbox",
+    "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_alias_modules_entry_or_assets_helper",
+    "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_receive_mint_proceeds"
+  ],
+  "source_sha256_before": {
+    "scripts/validate-production-config.py": "e2d7fa20946ca4202c8648bdc21d2eba8ccdb02ae1606b315d2cf3d4abd51dda",
+    "tests_python/test_production_config.py": "6f4c795897f726eb3074a9362bb2454c7eade0f40edeef5465c4f2d30fad09ce",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "reports/migration-safety/config-review/run_scoped.py": "6e0e416418211ee69eb2068a393a916ff2d99f1c601558f684760ebd721274f9"
+  },
+  "source_sha256_after": {
+    "scripts/validate-production-config.py": "e2d7fa20946ca4202c8648bdc21d2eba8ccdb02ae1606b315d2cf3d4abd51dda",
+    "tests_python/test_production_config.py": "6f4c795897f726eb3074a9362bb2454c7eade0f40edeef5465c4f2d30fad09ce",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "reports/migration-safety/config-review/run_scoped.py": "6e0e416418211ee69eb2068a393a916ff2d99f1c601558f684760ebd721274f9"
+  },
+  "source_unchanged": true,
+  "scope": "New mixed-case alias rejection and directly affected helper/custody alias checks only; earlier complete production-validator execution remains separately scoped."
+}

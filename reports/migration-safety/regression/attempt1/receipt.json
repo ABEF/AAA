@@ -1,0 +1,3570 @@
+{
+  "mode": "regression",
+  "attempt": "attempt1",
+  "started_at_utc": "2026-10-16T23:03:18.936650+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--offline",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--out",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\migration-safety-20261017\\test-out",
+    "--cache-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\migration-safety-20261017\\test-cache",
+    "--ast",
+    "--build-info",
+    "--build-info-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\migration-safety-20261017\\test-out\\build-info",
+    "--json",
+    "--no-match-path",
+    "test/{MigrationExecutionBudget,MigrationBudgetAdversarial,CanonicalPreparation}.t.sol"
+  ],
+  "source_sha256_before": {
+    "foundry.toml": "7d0537454ed4fbd912ec355fee4f1ccf457e6ce1105855cf6f1844c552eb0f91",
+    "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+    "slither.config.json": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f",
+    "src/base/ZZZModule.sol": "bbb204d6f179830fe32b2ef75842fbe626a6f7050db061ec6d2f3c762c8d0dd8",
+    "src/interfaces/IZZZ.sol": "f76ba36847bdef2c81d3a89e99c98a06bb2990ba17665d81925d9dfd8dd891c2",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZTypes.sol": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+    "src/ZZZAccessController.sol": "648ef6233d77b041f8a2ea4edae8236cae4e12c50167d19bd43b4b0e3e0bac48",
+    "src/ZZZActivationAssets.sol": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+    "src/ZZZActivationEntry.sol": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+    "src/ZZZBridgeAdapter.sol": "a3aa70c89e9bee4b9dc284c628a796b02102469abd03d769d0285e702011b62d",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZFeeController.sol": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+    "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+    "src/ZZZMembership.sol": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+    "src/ZZZMigration.sol": "9cce0857c086248473bc674a578618ed10817fcefbf0358fa8421c8731d63afe",
+    "src/ZZZMigrationBudget.sol": "44e348b51d8873e7ed5d79bbfefa30794c3c6ee467cc5a43dddd7024fc7c1599",
+    "src/ZZZMigrationReceiver.sol": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+    "src/ZZZMigrationRegistry.sol": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+    "src/ZZZNFT.sol": "9d19639ec8061adae9fe8b18f58bffe881bed4a5c88dfd3fc9ce9ede23959132",
+    "src/ZZZNFTMetadata.sol": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+    "src/ZZZOracle.sol": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+    "src/ZZZPoolRegistry.sol": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "src/ZZZRewards.sol": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+    "src/ZZZRoyaltyRewards.sol": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+    "src/ZZZStrategy.sol": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+    "src/ZZZVault.sol": "c6bf9ae21b00f3ba0b14678be1241d18ab3734b0426c94ba039217da2bc314ef",
+    "test/AccessController.t.sol": "d427044df4952061bc2d19a205df66039f24e70f52cc1d5c3ca3f6cae19f633f",
+    "test/ActivationAssets.t.sol": "cb3a6ca8f769c5397e0fbaae51cfc26acf6ec78040f5823c2e25d3598f6ced24",
+    "test/ActivationEntry.t.sol": "c17417f1506574dd981e62cd55d20fb246d0ef96a89b58bac04ce6355ad3c20b",
+    "test/ApprovedProviderTrust.t.sol": "f10ec0df88f8d09ce030c06ad5a4f4032ab93fda7ef1fb2f52eb59f3b46cc43a",
+    "test/AtomicActivationIntegration.t.sol": "59618e3c7ffe09663b860680cf85909dc685443d0062ac4e693634d22e9ec8ac",
+    "test/BridgeRouterSecurity.t.sol": "f312b4eb14ea95ee712e7f3bdf6ba3260869db0b282926da8ce4d7e544e0445d",
+    "test/BridgeSecurity.t.sol": "d49e48af7177a650e3424ab5c47c2fe0594e83bc1f4daa84495cab23edd66880",
+    "test/BucketCapacity.t.sol": "3dd22cbb6e35ab3188648ad53faee6e009d37b7a12e945ecd03c2718927bf86a",
+    "test/BuybackExecution.t.sol": "bb00e8d439d50dd66c7bb009ba21f8fd440a0adb1e425a4ad41d5467d232863e",
+    "test/CanonicalPreparation.t.sol": "b5d4767d4c6a51ff2043087208c5a2c97ded14b211a74014a09f7dd9e63968d7",
+    "test/ClaimRouter.t.sol": "e04d5577e8f18169ed096d19dffe97a28fbb201cac0c6569831f13c338b7e2bf",
+    "test/CollectionScale.t.sol": "1cb34063247174616e690f11dcfe4dd29fb5479afb0936f6f498543336c3a13f",
+    "test/CombinedCapacityGas.t.sol": "f759790501ada3cc1ab43ca1c5576eb6e6da1e4baf9b8d5a9912f8d6637b631c",
+    "test/CustodyParking.t.sol": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+    "test/EntryExecutionBudget.t.sol": "b2850bee5ce23fa615d6b2d0e043845c1fe613275ad03a62984605765600c83a",
+    "test/ExternalRewards.t.sol": "9564944b9a0e2f231d01d0e242f1a41841c96eadd7995925df247f1b9a9dd855",
+    "test/FutureChainMigration.t.sol": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+    "test/GlobalMembershipDust.t.sol": "4ac8b2df7d9e9d75368f8025daf53278c6a8dd4d8303992471981e85875aebc4",
+    "test/LiquidityEncoding.t.sol": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+    "test/MigrationBudgetAdversarial.t.sol": "3f1df29c9b9aed8b8173d6e684b925bbb343e80a6b59835ffbb1db6bca142a7c",
+    "test/MigrationExecutionBudget.t.sol": "e6d3b309d3419d718131ce7c042ca63961305e2ea050815ae6871705729eeee0",
+    "test/mocks/Mocks.sol": "4da4686755a6d5e3b383c52f5bf8fd3e8e64773a13601ed6dc3f3dccb2f8a719",
+    "test/mocks/MockVRF.sol": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+    "test/mocks/RouterMocks.sol": "cf8bf1a7386f937255197cedc65e0033d3192911f5a9bd30787807cbe0915324",
+    "test/MultiHopMigration.t.sol": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+    "test/NativeLiquidity.t.sol": "ae18253e35b61a42b18bef69d35ee757ac1bf3696f55e52f66fe33ec0a7efb99",
+    "test/NativePoolFork.t.sol": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872",
+    "test/NativeWrapperPolicy.t.sol": "b4941ccb001214f63b9f9399f66bb0b35b03a9df82c64602c9ed2018a371bbb2",
+    "test/NFTMetadata.t.sol": "fca1307db2977c87fb34e37285b2d831e6d9d50594ceba5c3391773e03e25046",
+    "test/NFTOwnershipRights.t.sol": "12db5a9d56f09d03b51ee1f933c98c28ed944979c17657dc73e8e7963277809f",
+    "test/NFTRightsInvariants.t.sol": "ed422573965db317581a89026ffe1679a83944bf94dd29802c65c5c141816c4b",
+    "test/NFTRoyalties.t.sol": "3e8f3bc99639857bf8a19b0c43405b886f16c9dd32ae5b63fa2cde74382df3af",
+    "test/OracleAndTransfers.t.sol": "7bd955fe543fa9c9a81ba0deeeec2b42c275521b4852fb1185b9b80e3fa24bec",
+    "test/ParkedRewards.t.sol": "eb4b07a88fca80b1c1ee9951a399a5b6f8d74835017e0065113d7ffbd76cf5eb",
+    "test/PooledEntry.t.sol": "6551b2341d1037e8c24de75d85212774ab9fc622d120a86fe1f4aff9e64e2ea8",
+    "test/PooledRewards.t.sol": "bd9b9617163818a6cd0584d81192b65b14542508d734bfbed1ef36e5ea3bea84",
+    "test/PooledSecurity.t.sol": "368cda6344c503f01c8b84b72c007487d14ba279bf4f3bd732ed619043d09553",
+    "test/PoolSwitching.t.sol": "8a850038a6e35a055c4022b8b63b0cdc4ec6a296250f6aaa87646e5412ea12a1",
+    "test/ProductionGas.t.sol": "3413bfff8e45fe5b55ca95acbc77fd9c1c27196c15266bf1014da85bc1bf3eb2",
+    "test/ProductionInvariants.t.sol": "87ccc50a0a89aa818a3f5d251b68693f73394da637bdec2a86a8416dc65631aa",
+    "test/ReceiverAndRemoteFees.t.sol": "a9ab9389c19f7162f056ceee940e43a31697b4afb05fab9f6ac8122b7ebd4c0e",
+    "test/ReservationCapacity.t.sol": "e61f0aa51ff46f986851432dc7028e9b00d20fff302f1de0c0e06d38a73d346e",
+    "test/RewardsAndFees.t.sol": "e5971044fa62366c3194bb3173e0ac88cb24b62123588584d126a0def364ca13",
+    "test/SequencerPolicy.t.sol": "c4adfc89c0f6ba09b56081923820d141a50a70eccd75b1472798452080d69a1c",
+    "test/UniswapV4Fork.t.sol": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+    "test/VaultAccounting.t.sol": "137c91e5dc7b5464c75dc291487a79cc7f8e17257ef3f86e65db6de53a5166ac"
+  },
+  "tools": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+  },
+  "production_approved": false,
+  "public_transactions": false,
+  "independent_audit": false,
+  "exit_code": 0,
+  "seconds": 1430.328,
+  "finished_at_utc": "2026-10-16T23:27:09.503162+00:00",
+  "source_sha256_after": {
+    "foundry.toml": "7d0537454ed4fbd912ec355fee4f1ccf457e6ce1105855cf6f1844c552eb0f91",
+    "package-lock.json": "4f88f4ce04a06f93158e3def09b94414f2093745964e1996f207b180e8cc7a11",
+    "slither.config.json": "60d1763e090e182dca4a996b92770b9f9ff40ce0dfa8873fdb93fdf626eaee0f",
+    "src/base/ZZZModule.sol": "bbb204d6f179830fe32b2ef75842fbe626a6f7050db061ec6d2f3c762c8d0dd8",
+    "src/interfaces/IZZZ.sol": "f76ba36847bdef2c81d3a89e99c98a06bb2990ba17665d81925d9dfd8dd891c2",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZTypes.sol": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+    "src/ZZZAccessController.sol": "648ef6233d77b041f8a2ea4edae8236cae4e12c50167d19bd43b4b0e3e0bac48",
+    "src/ZZZActivationAssets.sol": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+    "src/ZZZActivationEntry.sol": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+    "src/ZZZBridgeAdapter.sol": "a3aa70c89e9bee4b9dc284c628a796b02102469abd03d769d0285e702011b62d",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZFeeController.sol": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+    "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+    "src/ZZZMembership.sol": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+    "src/ZZZMigration.sol": "9cce0857c086248473bc674a578618ed10817fcefbf0358fa8421c8731d63afe",
+    "src/ZZZMigrationBudget.sol": "44e348b51d8873e7ed5d79bbfefa30794c3c6ee467cc5a43dddd7024fc7c1599",
+    "src/ZZZMigrationReceiver.sol": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+    "src/ZZZMigrationRegistry.sol": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+    "src/ZZZNFT.sol": "9d19639ec8061adae9fe8b18f58bffe881bed4a5c88dfd3fc9ce9ede23959132",
+    "src/ZZZNFTMetadata.sol": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+    "src/ZZZOracle.sol": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+    "src/ZZZPoolRegistry.sol": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+    "src/ZZZRewardReceiver.sol": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+    "src/ZZZRewards.sol": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+    "src/ZZZRoyaltyRewards.sol": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+    "src/ZZZStrategy.sol": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+    "src/ZZZVault.sol": "c6bf9ae21b00f3ba0b14678be1241d18ab3734b0426c94ba039217da2bc314ef",
+    "test/AccessController.t.sol": "d427044df4952061bc2d19a205df66039f24e70f52cc1d5c3ca3f6cae19f633f",
+    "test/ActivationAssets.t.sol": "cb3a6ca8f769c5397e0fbaae51cfc26acf6ec78040f5823c2e25d3598f6ced24",
+    "test/ActivationEntry.t.sol": "c17417f1506574dd981e62cd55d20fb246d0ef96a89b58bac04ce6355ad3c20b",
+    "test/ApprovedProviderTrust.t.sol": "f10ec0df88f8d09ce030c06ad5a4f4032ab93fda7ef1fb2f52eb59f3b46cc43a",
+    "test/AtomicActivationIntegration.t.sol": "59618e3c7ffe09663b860680cf85909dc685443d0062ac4e693634d22e9ec8ac",
+    "test/BridgeRouterSecurity.t.sol": "f312b4eb14ea95ee712e7f3bdf6ba3260869db0b282926da8ce4d7e544e0445d",
+    "test/BridgeSecurity.t.sol": "d49e48af7177a650e3424ab5c47c2fe0594e83bc1f4daa84495cab23edd66880",
+    "test/BucketCapacity.t.sol": "3dd22cbb6e35ab3188648ad53faee6e009d37b7a12e945ecd03c2718927bf86a",
+    "test/BuybackExecution.t.sol": "bb00e8d439d50dd66c7bb009ba21f8fd440a0adb1e425a4ad41d5467d232863e",
+    "test/CanonicalPreparation.t.sol": "b5d4767d4c6a51ff2043087208c5a2c97ded14b211a74014a09f7dd9e63968d7",
+    "test/ClaimRouter.t.sol": "e04d5577e8f18169ed096d19dffe97a28fbb201cac0c6569831f13c338b7e2bf",
+    "test/CollectionScale.t.sol": "1cb34063247174616e690f11dcfe4dd29fb5479afb0936f6f498543336c3a13f",
+    "test/CombinedCapacityGas.t.sol": "f759790501ada3cc1ab43ca1c5576eb6e6da1e4baf9b8d5a9912f8d6637b631c",
+    "test/CustodyParking.t.sol": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+    "test/EntryExecutionBudget.t.sol": "b2850bee5ce23fa615d6b2d0e043845c1fe613275ad03a62984605765600c83a",
+    "test/ExternalRewards.t.sol": "9564944b9a0e2f231d01d0e242f1a41841c96eadd7995925df247f1b9a9dd855",
+    "test/FutureChainMigration.t.sol": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+    "test/GlobalMembershipDust.t.sol": "4ac8b2df7d9e9d75368f8025daf53278c6a8dd4d8303992471981e85875aebc4",
+    "test/LiquidityEncoding.t.sol": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+    "test/MigrationBudgetAdversarial.t.sol": "3f1df29c9b9aed8b8173d6e684b925bbb343e80a6b59835ffbb1db6bca142a7c",
+    "test/MigrationExecutionBudget.t.sol": "e6d3b309d3419d718131ce7c042ca63961305e2ea050815ae6871705729eeee0",
+    "test/mocks/Mocks.sol": "4da4686755a6d5e3b383c52f5bf8fd3e8e64773a13601ed6dc3f3dccb2f8a719",
+    "test/mocks/MockVRF.sol": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+    "test/mocks/RouterMocks.sol": "cf8bf1a7386f937255197cedc65e0033d3192911f5a9bd30787807cbe0915324",
+    "test/MultiHopMigration.t.sol": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+    "test/NativeLiquidity.t.sol": "ae18253e35b61a42b18bef69d35ee757ac1bf3696f55e52f66fe33ec0a7efb99",
+    "test/NativePoolFork.t.sol": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872",
+    "test/NativeWrapperPolicy.t.sol": "b4941ccb001214f63b9f9399f66bb0b35b03a9df82c64602c9ed2018a371bbb2",
+    "test/NFTMetadata.t.sol": "fca1307db2977c87fb34e37285b2d831e6d9d50594ceba5c3391773e03e25046",
+    "test/NFTOwnershipRights.t.sol": "12db5a9d56f09d03b51ee1f933c98c28ed944979c17657dc73e8e7963277809f",
+    "test/NFTRightsInvariants.t.sol": "ed422573965db317581a89026ffe1679a83944bf94dd29802c65c5c141816c4b",
+    "test/NFTRoyalties.t.sol": "3e8f3bc99639857bf8a19b0c43405b886f16c9dd32ae5b63fa2cde74382df3af",
+    "test/OracleAndTransfers.t.sol": "7bd955fe543fa9c9a81ba0deeeec2b42c275521b4852fb1185b9b80e3fa24bec",
+    "test/ParkedRewards.t.sol": "eb4b07a88fca80b1c1ee9951a399a5b6f8d74835017e0065113d7ffbd76cf5eb",
+    "test/PooledEntry.t.sol": "6551b2341d1037e8c24de75d85212774ab9fc622d120a86fe1f4aff9e64e2ea8",
+    "test/PooledRewards.t.sol": "bd9b9617163818a6cd0584d81192b65b14542508d734bfbed1ef36e5ea3bea84",
+    "test/PooledSecurity.t.sol": "368cda6344c503f01c8b84b72c007487d14ba279bf4f3bd732ed619043d09553",
+    "test/PoolSwitching.t.sol": "8a850038a6e35a055c4022b8b63b0cdc4ec6a296250f6aaa87646e5412ea12a1",
+    "test/ProductionGas.t.sol": "3413bfff8e45fe5b55ca95acbc77fd9c1c27196c15266bf1014da85bc1bf3eb2",
+    "test/ProductionInvariants.t.sol": "87ccc50a0a89aa818a3f5d251b68693f73394da637bdec2a86a8416dc65631aa",
+    "test/ReceiverAndRemoteFees.t.sol": "a9ab9389c19f7162f056ceee940e43a31697b4afb05fab9f6ac8122b7ebd4c0e",
+    "test/ReservationCapacity.t.sol": "e61f0aa51ff46f986851432dc7028e9b00d20fff302f1de0c0e06d38a73d346e",
+    "test/RewardsAndFees.t.sol": "e5971044fa62366c3194bb3173e0ac88cb24b62123588584d126a0def364ca13",
+    "test/SequencerPolicy.t.sol": "c4adfc89c0f6ba09b56081923820d141a50a70eccd75b1472798452080d69a1c",
+    "test/UniswapV4Fork.t.sol": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+    "test/VaultAccounting.t.sol": "137c91e5dc7b5464c75dc291487a79cc7f8e17257ef3f86e65db6de53a5166ac"
+  },
+  "sources_unchanged": true,
+  "outputs_sha256": {
+    "stdout.log": "3788d9a368f5fd64632d3eb7f48128e0ef269727589c74ada0b69e92e689303e",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "counts": {
+    "Success": 551,
+    "Skipped": 2
+  },
+  "suites": {
+    "test/AccessController.t.sol:AccessControllerTest": {
+      "tests": {
+        "testBootstrapCannotConfigureAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCannotReplaceModules()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalRandomnessMustBeConfiguredBeforeSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDelayCannotBeShortened()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGuardianCanPauseNotUnpause()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncompleteDeploymentCannotSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSealErasesBootstrap()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimelockedKeeperChange()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongControllerBindingRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "6d6e162088d0fff78a2f917a9d253eaf8799ac36bacfa923835017c449ab6b4d"
+    },
+    "test/ActivationAssets.t.sol:ActivationAssetsTest": {
+      "tests": {
+        "testAdmissionDoesNotBypassExistingExactTransferExecutionGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAdmissionNeverHoldsOrMovesFundsAndCannotSweepForcedAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBadMetadataAndOracleDecimalMismatchRejectNewSource()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedRuntimeRequiresNewExplicitGovernanceReviewBeforeContributing()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisableOneAssetLeavesAnotherSourceUsableAndDoesNotChangeOracleValuation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledBadTokenAndFailingPriceCanAlwaysBeRecorded()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGovernanceCannotBypassTwoDayTimelockAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGuardianPauseDoesNotGrantAssetConfigurationAuthority()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoryNeverOverwritesEvenWhenReturningToSameParameters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImmutableRegistryAndInitialReviewedAdmission()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMissingStaleOrZeroFeedCannotEnableOrAdmitNewSource()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyImmutableRegistryCanBootstrapPoolAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOracleDecimalReconfigurationInvalidatesOldAdmissionUntilReviewedAgain()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoolReconfigurationNeverReenablesDisabledPolicyOrUpdatesOldPin()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimelockedDisableSucceedsDespiteTokenAndOracleOutage()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimelockedEnableRequiresFreshFeedAndCorrectRuntimeAtExecution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownDisabledPolicyBlocksAutomaticPoolAdmissionWithoutDependencyReads()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroAddressUnreviewedOrIncorrectPinCannotEnable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroInputSkipsAllAssetAndOracleDependencies()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "0e6c3de6d5d177763ba42db69f020962e7e7fa3c94b6c8f94969f95137c39301"
+    },
+    "test/ActivationEntry.t.sol:ActivationEntryTest": {
+      "tests": {
+        "testActiveContextMismatchNeverFallsBackToPairValue()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActiveContextWrongVaultCallHashRevertsAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testApprovalCallbackSeesInactiveContextBeforeAnyVaultMutation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAttackerOrNFTApprovalCannotActivateAnotherOwnersNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBrokenWrapperOrWrongNativeAmountRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testContextCannotBeReadOrForgedByUntrustedCaller()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectPairInputAndTopUpKeepOwnerAndSourceValue()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledOriginalSourceDoesNotPullOrUseIntermediatePolicy()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExpiredBoundsMinimumAndUnexpectedNativeRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFabricatedRouterOutputCannotBecomeGrossOrLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalAllowanceResetClearsContextAndStillRejectsReentry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalAllowanceResetOwnershipChangeRollsBackCompletedVaultOperation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalVaultPullCallbackNFTTransferRollsBackEverything()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzSingleBudgetCannotBeResetAfterConversion(uint16,uint16)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeWrapUsesOnlyActualInputAndLeavesNoETHCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyGovernanceCanAdmitOrToggleRoutes()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseUnsealedAndNoncanonicalRegistryFailClosed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSealRouteAdmissionRequiresCompletedTwoDayTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPrefundsCannotBecomeContributionOrRouteOutput()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRejectsPlainETHArbitraryCallsAndThirdPartyConstructor()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoutePartialConsumptionCannotUsePrefunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoutedOriginalGrossBoundAndBothLegsUseOneBudget()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoutesAreImmutableAndDisableIgnoresBrokenDependency()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCallbackCannotReenterAtomicEntry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCallbackNFTTransferRollsBackEverything()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleOrUnavailableOriginalPriceRollsBackCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedOriginalInputCannotBeCreditedAsFullSource()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTwoIndividuallySmallLossesCannotCompoundBeyondOnePercent()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreviewedRouteMalformedRouteAndNonpairOutputRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVaultMustConsumeExactOutputAndApprovalIsNeverLeftLive()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "d732254fe0e9afa84dfd9d452b2a8a3236fce917bc2af2e27e54dc996f191124"
+    },
+    "test/ApprovedProviderTrust.t.sol:ApprovedProviderTrustTest": {
+      "tests": {
+        "testApprovedExactSourceConsumptionDoesNotProveDestinationCustody()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "7d6a119cc0ca63c2afe898af5d243e96caee11999deb2a90a4ef44dbe8e962a5"
+    },
+    "test/AtomicActivationIntegration.t.sol:AtomicActivationIntegrationTest": {
+      "tests": {
+        "testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "e76ab480c918fd6fb1ddb4206896dc6fda0a99574f1d3a522156e101625abe78"
+    },
+    "test/BridgeRouterSecurity.t.sol:BridgeRouterSecurityTest": {
+      "tests": {
+        "testActualTokenOrderAndAmountsCannotDifferFromEconomicRoute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAuthenticatedIncomingRetainsFundingWhileOutboundDisabled()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedConfigurationBlocksSendingWithoutRebinding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedDestinationCodeRejectedEvenForBoundProviderAddress()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedDestinationConfigurationRejectsIncomingWithoutConsumingNonce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedProviderCodeBlocksSending()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDestinationHandoffConfigurationMutationRollsBackFundingAndReplay()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDestinationPreexistingDonationsPreservedAcrossFundedReceipt()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEnvelopePolicyCannotReplaceTheRoutesImmutableBinding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExistingPolicyCannotBeReRegistered()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzIncomingExactFundingAndReplay(uint96,uint96,uint64)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncomingSurvivesStrategyPauseAndRouteDisable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidEnvelopeAndPayloadVersionsAndZeroNonceRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewProviderPolicyNeedsTimelockAndNewRouteIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOldPolicyReceiptWorksAfterNewProviderOnboardingAndReplayIsGlobal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyBoundBridgeCanSendThroughRouter()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyTimelockCanEnableAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutgoingFundingEnvelopeAndAllowanceResets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPrincipalCanContainOneZeroValuedTokenLeg()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderConfigurationMutationDuringSendRollsBackEntireDispatch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderPartialConsumptionRollsBackAllSourceFundsAndNonce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderReceiptCannotCoverPartialConsumptionWithDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderReentryCannotReceiveDuringSend()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverFailurePreservesFundingAndAllowsExactRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterRejectsExtraSenderTaxDespitePreexistingDonation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterRejectsRecipientTaxDespitePreexistingDonation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSealRejectsBridgeWhoseFixedEndpointIsAnotherRouter()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSealedRoutesStartOutboundDisabled()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourcePreexistingDonationsArePreservedAcrossSuccessfulDispatch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTypedRewardAndAcknowledgementChannelsUseOnlyDeclaredFunding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnderfundedIncomingCannotUseCustodyDonationsAndCanRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnderfundedSourceCannotUseCustodyDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfundedDestinationDeliveryCanRetryWithoutConsumedNonce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongAuthenticatedOriginChainOrRouterRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongLocalProviderRouterAndCodeHashCannotBeApproved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongProviderCallerRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroDomainAndMissingReviewCannotBeApproved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroReceiptRollsBackFunding()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "d3fddc53d86040cbfdf2dd6751d971ed7a85d531ffbf16efe29d2b4bc1890e6c"
+    },
+    "test/BridgeSecurity.t.sol:BridgeSecurityTest": {
+      "tests": {
+        "testAuthenticatedFundedDelivery()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectCallerCannotDeliver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInboundAllowedDuringPause()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncorrectAllocationRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutboundUnauthorized()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverFailureIsRetryable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReplayRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfundedMessageRevertsAndNonceNotConsumed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVersionMismatchRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongSourceRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "0245eb50a7d5d754f5feb5ce6895c622ac9061e2a4b3ca584f986a407ad13431"
+    },
+    "test/BucketCapacity.t.sol:BucketCapacityTest": {
+      "tests": {
+        "testFourHistoricalCanonicalBucketsRejectNewPoolButAllowExistingPoolNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoricalCapStillAllowsCanonicalCustodyReturnAndRepeatedDeparture()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMaximumFundedFourBucketEntryWorkload()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteImportHistoryHasTheSameFourBucketLimit()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "a36fc016d8af13cff712e48eb57b7d594db023916a496716666538a14503aa43"
+    },
+    "test/BuybackExecution.t.sol:BuybackExecutionTest": {
+      "tests": {
+        "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testApprovedWrongPairCannotDivertBuybackFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBelowMinimumSwapRollsBackAndCanRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExpiredAndOverlongDeadlineCannotReleaseReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzSplitBurnCannotConsumeIndividualOrCompoundReserve(uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testManipulatedSpotRejectedByRealStrategyGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoOpBurnRejectsAndRestoresEverythingBeforeRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPartialBurnRejectsAndRestoresEverythingBeforeRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPausedBuybackLeavesFundedClaimsAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSwapPriceDeviationRollsBackSettledSwapAndReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReserveTransferFailureRestoresAccountingAndCanRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertingBurnDoesNotBlockLPClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleFeedRejectsWithoutReleasingFundsAndRecoversAfterRefresh()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleOutputFeedRollsBackReleasedInputReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnapprovedRouteCannotReleaseReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedCallerAndDirectReserveReleaseRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVenueReentryCannotSpendASecondBudgetEvenWithKeeperRole()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroOverReserveAndOverTradeBudgetRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "837477ae762538fae827878f739f759d173343e09840183a5a9164a06799410c"
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest": {
+      "tests": {
+        "testAttackerAndNFTApprovalDoNotAuthorizeClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCallbackNativeRefundStaysPendingAndBackingRemainsIntact()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectOwnerClaimsRemainAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEmptyOversizedAndDuplicateBatchesRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96,uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImmutableEndpointsAndNoApprovalsOrCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMaximum32ColdOperationsAcross16NFTsUnder12MGas()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMissingLPDependencyDoesNotBlockRoyaltyOnlyBatch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMixedOwnerAndNonexistentNFTFailBeforePayouts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeReceiverRevertRollsBackWholeBatchThenERC20CanClaimSeparately()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseAndUnavailableValuationDoNotBlockClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterCannotBeRedeployedByThirdPartyForCanonicalNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterCannotRedirectToWrongOwnerAtLedger()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterRejectsETHAndArbitraryCalls()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedRoyaltyAssetAtomicallyRevertsOtherAssetPayouts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTransferredNFTClaimsBelongOnlyToNewOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedOrNoncanonicalBindingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsupportedAssetAtomicallyRollsBackEarlierLPAndRoyaltyClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroBalancesAndDormantNFTCannotClaimAnotherNFTRewards()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "ad01abddb23794bd575ee2202b12b14a25a3a07c81da720007cea57d6e87f5ae"
+    },
+    "test/CollectionScale.t.sol:CollectionScaleTest": {
+      "tests": {
+        "testAll1000NFTsPreserveIndependentRightsAndFundedConservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdOperationsAtOneAnd1000NFTsStayBounded()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "eba074b5d10e49d7170913be1dfb766f370cbbe31044ab2413513db449162a1f"
+    },
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest": {
+      "tests": {
+        "testColdActivationAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdActivationWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "4d55b53bf1f5ae6808982927fbd0c38415f700d267d9568767a4e19cc8ce1ed4"
+    },
+    "test/CustodyParking.t.sol:CustodyParkingTest": {
+      "tests": {
+        "testParkedMigrationNeedsRemoteLiabilityFundingButNotRecoveredOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedResumeRejectsChangedOrderedTokensAndDisabledDestination()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingCannotRaceScheduledMigrationAndResumeCannotRaceParkedMigration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingNonceInvalidationAndSuccessfulExecutionPreventReplay()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingOneSidedPositionAllowsOneZeroMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRebalanceInvalidatesScheduledLPTokenSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRejectsEveryStaleSnapshotAndInvalidAuthorizationField()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRejectsNonlocalCustodyEvenWithMatchingLPAndShareSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRequiresGovernancePausedSealedAndFixedMigrationModule()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingVenueFeesCannotSubsidizePrincipalMinimums()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "75e1ceb550dea224dd18c8ce2f040fcf27cf813e224fb2638b057f64ad5541f0"
+    },
+    "test/CustodyParking.t.sol:CustodyParkingTimelockTest": {
+      "tests": {
+        "testSealedGuardianPauseStillRequiresExactTwoDayTimelockedParkingCall()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "5e2ef14bfe69b777a73aabd121c0ef42d54ee1e98287e41c8adbcda7f551f85f"
+    },
+    "test/EntryExecutionBudget.t.sol:EntryExecutionBudgetTest": {
+      "tests": {
+        "testHundredGrossWithNinetyNineLPActivates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncumbentIdleCannotSubsidizeNewNFTsExecutionBudget()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLaterContributionsAlsoRequireNinetyNinePercentDeployed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLoosePoolSlippageCannotOverrideGlobalOnePercentLimit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoundingCannotDeployLessThanNinetyNinePercent()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "ab9d77ba3e6f752c9ab8af612a4f4772df6670ac1ff12f91fa8827dd8e47cb68"
+    },
+    "test/ExternalRewards.t.sol:ExternalFundingInvariantTest": {
+      "tests": {
+        "invariant_pendingExternalFundsPrincipalAndClaimsAreConserved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingFundingActivationTopUpAndPausedClaims()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "96fde67a70b661435df4b72b57702a912457760a3ab4602d7996378c96c8baba"
+    },
+    "test/ExternalRewards.t.sol:ExternalRewardsTest": {
+      "tests": {
+        "testBothPairTokensUseIndependentFundedAllocations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalRewardInboxContinuesAcrossOutboundRemoteAndInboundCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCollectingVenueFeesAlsoSynchronizesPendingExternalFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testConstructionPrefundingIsPermanentlyExcludedFromFutureRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantNFTCannotReceiveCurrentOrHistoricalExternalRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExternalPaymentDoesNotChangePrincipalSharesMembershipOrMintProceeds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExternalRewardsCannotMasqueradeAsOldRemoteSettlement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewMember()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalIncreaseCallbackCheckpointsTopUpAtItsPreviousShareWeight()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFourExternalReceiversFitBucketCapAndFifthActivationFails()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFutureReceiverCannotBeTheImmutableMintProceedsRecipient()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzExternalFundedClaimsAndAllReservesConserveActualIngress(uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGlobalMembershipBarrierCannotBeInvokedByOrdinaryCaller()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHugeLateCompoundCannotLeaveEntryAboveTheFivePercentIdleCap()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncorrectWrapperOutputRollsBackAllFundingAndLeavesNativePending()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateMintCallbackDuringRebalancePreservesFundedOwnerEntitlements()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateUndeployedCompoundDoesNotRaiseThe100GrossActivationMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferCarriesExternalEntitlementAndOnlyCurrentOwnerCanClaim()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeAndWrappedPaymentsCannotDoubleCount()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeLowGasPaymentAlsoSupportsSecondPairAsset()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePaymentWrapsOnlyActualNewFundsAndBecomesClaimableWETH()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOneImmutableReceiverPerBucketAndWrapperMustBePairAsset()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOwnerAllocationStaysInItsBucketAndCollectiveUsesGlobalMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPairAssetWithWrongDecimalsCannotBeNativeWrapper()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPairDonationToOtherCustodyContractsIsNotExternalRevenue()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPausedSystemCanPublishAlreadyFundedExternalRewardsAndClaim()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingMicroDustFromOtherPoolCannotRewardFutureCollectiveMember()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingPaymentSettlesBeforeSamePoolActivationAndPricesCompoundNAV()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingPaymentSettlesBeforeTopUpWithoutRewritingEitherNFTsFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingRewardFromOtherPoolSettlesBeforeNewCollectiveMember()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRawERC20PaymentIsFundedAndAllocatedExactlyOnce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverCannotAcceptNativePaymentWithoutExplicitWrapper()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverCreationRequiresSealedCanonicalActiveBucketAndGovernance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testScheduledMigrationFreezesMembershipButDoesNotPreventFundedClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSubTwentyPendingDustBelongsToIncumbentBeforeActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedForwardTransferIsRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownTokenIsNotAllocatedOrRescued()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnregisteredCallerCannotAllocateExternalFundsOrChooseAnotherBucket()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedControllerCannotCreateReceiverEvenForExistingShareLedger()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsyncedPaymentDuringFinalIncreaseSettlesBeforeSharesChange()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrappedAndNativeConstructionPrefundingRemainsQuarantined()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperCannotReenterSyncDuringWrapping()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "ca994040171ae0ba985cced479fc8c84bde525f5c98dd9ddb270ca87eeaa8914"
+    },
+    "test/FutureChainMigration.t.sol:FutureChainMigrationTest": {
+      "tests": {
+        "testEmptyRouterAllowsSealedDormantMintAndLocalPermanentActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoricalRemoteRewardsCanUseANewProviderAfterPrincipalMovesOnward()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewProviderPolicyCannotRedirectOrStrandAnOldPendingPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOneSidedPrincipalKeepsTwoLogicalMappingsThroughRealRouters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPolicyDisableBlocksProposalAndExecutionWithoutClosingTheLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSealRoutesSupportThreeChainsReturnHomeAndRevisitSatellite()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnThenNewMembershipAndSatelliteRevisitUsesFreshFrozenShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnedBucketWaitsForEveryFundedOldFeeBeforeAdmittingNewShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReversedCurrenciesPreserveUnequalPrincipalAndRejectedDeliveryRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testScheduledWholeBucketMoveFreezesContributionsUntilGovernanceCancels()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTwoNFTsShareOnePhysicalLPAndOneWholeBucketMigration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreservedDestinationRejectsThenRetriesTheSameFundedPacket()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "ed221a49917ef67ec7716f908820c4bb0ac21a048a5095b3713d6ff9e6755f4e"
+    },
+    "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest": {
+      "tests": {
+        "testCanonicalOutboundBucketDustAlsoSettlesBeforeNewMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGlobalSettlementOnlyFeesAndDustFlushOnlyAuthorizedModules()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMembershipCannotFlushForeignCustodyDust()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "a7fbe674d0026edf511fc7d7fd67ef0d90816420fcb8e71526ef94294c71b1c1"
+    },
+    "test/LiquidityEncoding.t.sol:LiquidityEncodingTest": {
+      "tests": {
+        "testApprovalsCleared()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCollectUsesZeroDecreaseAndVaultRecipient()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDonationsNotSweptToNextDepositor()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExpiredDeadlineRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncreasePreservesPositionID()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidTickSpacingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMinimumLiquidityEnforced()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintKeepsNFTInVaultAndRefundsExactUnused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedMintRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsolicitedCallbackRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "b1d18bd22ce85375f623b4d54dbc1d51e00a04bf624a217a5db7473afb6ca43d"
+    },
+    "test/MultiHopMigration.t.sol:MultiHopMigrationRegistryTest": {
+      "tests": {
+        "testFutureUnknownGraphEdgeRequiresCompletedTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGraphEdgesRemainAppendOnlyAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDecimalsChecksStillApplyToPostSealRoutes()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationAcceptsConfiguredPairInEitherOrder()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRejectsWrongPoolAssetPair()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRequiresEnabledPoolOperations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRequiresExistingConfiguredPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalEndpointChecksStillApplyToPostSealRoutes()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "e7bbd63f62073a7a0a06c74af3b78a6a1dcbc93e776e52d5df501d20d4a45a3a"
+    },
+    "test/MultiHopMigration.t.sol:MultiHopMigrationTest": {
+      "tests": {
+        "testAcknowledgementCannotChangeFrozenRemoteFeeTotals()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalReturnRequiresExistingSharesAndCorrectAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalReturnThenAnotherMigrationPreservesIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExactOldAckIsIdempotentAndAlteredOldAckRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForgedPreviousLocationAndCanonicalMappingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFrozenShareSupplyCannotChangeBetweenProposalAndExecution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateSourceCompletionCannotRegressNewerCanonicalLocation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledMessageRejectsOldNFTVersionAndAlteredBucketIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteToRemoteAckAdvancesHomeAndKeepsHistoricalRewardPaths()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReorderedLocationAckCanBeRetriedAfterEarlierAck()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteCanMigrateAndRevisitAfterSeveralAbsentEpochs()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCompletionRecordsCanonicalLocationAndClearsPlan()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceSnapshotChangedAfterScheduleCannotExecute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTransportFailureRestoresPrincipalEpochAndScheduledPlan()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReceiverCannotUpdateCustody()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "4ccf3ae3f45ab1bbe518030a9a7a69147f2ca5d9ee191187612088f15a3e0c70"
+    },
+    "test/NFTMetadata.t.sol:NFTMetadataTest": {
+      "tests": {
+        "testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCurrentNAVIncludesIdleAndCompoundAndAttributesOnlyNFTShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testERC2981UsesFivePercentSingleImmutableReceiverAndERC4906IsSupported()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFullSupplyConsumesExactQuotasAndCannotRequestMint1001()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzInitialRarityOddsAndIndependentArtwork(uint256,uint256)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInitialRarityBoundaries()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintRecipientCannotDivertMintProceedsIntoRoyaltyLedgerOrNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintRequiresFixedVRFAndRollbackLeavesNoRequest()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutOfOrderCallbackCannotReorderQuotaConsumption()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingTraitsCannotActivateAndTransferCannotReroll()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeAcceptsOneAndMaximumFifty()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeDoesNotCacheOrChangePriceDrivenEvolution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeEmitsActualHashedIDsInMintOrder()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeIgnoresPauseTransferAndUnavailableValuation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeRejectsEmptyZeroReversedAndUnmintedBoundsAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeRejectsFiftyOneBeforeAnyNotification()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleOracleDoesNotBreakURIOrRoyaltyClaimsOrFabricateDormantState()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTraitsStayFixedThroughActivationTopUpAndTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVRFConfigurationAndRequestTupleAreFixed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroWordsConsumeTheFullInventoryWithoutArtworkRerollsOrQuotaLoss()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "afd8e46cb12698155923f6d89239d27b457cfb71049259183ead7381804426b5"
+    },
+    "test/NFTOwnershipRights.t.sol:NFTOwnershipRightsTest": {
+      "tests": {
+        "testApprovedOperatorCanTransferButCannotClaimAnyLedger()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testClaimBeforeSaleTransfersOnlyRemainingUnclaimedRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverRejectAfterClaimsRollsBackAllRightsAndTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSafeTransferReceiverImmediatelyClaimsAsCurrentOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSaleBeforeClaimImmediatelyRevokesFormerOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSuccessiveTransfersCarryPendingCreatorReceiptsAndRoyalties()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnavailableAdmittedRoyaltyAssetBlocksEntryButHealthyClaimsRemain()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "094d29b33fa137f72a79309b3f46ecbd3b921edb0164bd323eac0f1cdcec1501"
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest": {
+      "tests": {
+        "invariant_rightsAndActualFundingConserved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiptActivationTransferPauseAndMixedClaimSequence()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "b244845dad0d7e2177af30b78d334515627ed77efd53f8957c0990186316c506"
+    },
+    "test/NFTRoyalties.t.sol:NFTRoyaltiesTest": {
+      "tests": {
+        "testAssetAdmissionBoundAndDuplicates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantNFTCannotReceiveRoyalties()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testERC20RoyaltyWeightsAndExactFunding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExplicitEmptyMembershipSyncAlsoQuarantines()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFractionsSurviveFrequentNativeAndTokenClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzClaimsNeverExceedActualFunding(uint128,uint128,uint128)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGlobalRoundingDustDoesNotBecomeNewEntrantWindfall()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImmutableNFTOnlyAndOneTimeBoundedWeights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidControllerAndMissingNFTCannotCreateWeights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferCarriesAllUnclaimedRightsAndFractions()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCallbackDonationRemainsPendingAndBacked()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeClaimRejectsReentryWithoutLosingEntitlement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePlainTransferWorksWith2300Gas()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeRoyaltyWeightsOneTwoThreeAllocateAllActualReceipts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNegativeRebaseFailsClosedAndCannotSpendOtherAssetBacking()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoEligibleReceiptQuarantinedWithoutExplicitSync()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOperatorsCannotClaimAndClaimsRemainAvailableWhilePaused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingBothAssetsBelongToExistingMembersBeforeActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPredictedConstructorNativePrefundNeverBecomesRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertedNativeClaimRollsBackAccounting()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedTokenFundingAndClaimsRevertAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsupportedPrefundedTokenQuarantinedOnAdmission()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "4901ca0906041eeba18a5792e5299f67ed18dafd20bce4bd53f472543f1a0a44"
+    },
+    "test/NativeLiquidity.t.sol:NativeLiquidityTest": {
+      "tests": {
+        "testNativeAmountsRemainUint128BoundedWithoutPermitApproval()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeBrokenDepositRollsBackCredits()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeBrokenWithdrawRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeDisabledPoolExitDoesNotReadUnavailableOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeForcedETHDuringTakeCannotBeClaimed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeIncorrectWrapperRejectedBeforePull()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeIncreaseReusesPositionAndClearsApprovals()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeInputSwapResetsDirtySyncAndUsesNetHookDelta()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeLiquidityCallbackHookMaskRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeMinOutIncludesHookFee()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeNonzeroCoreFeeRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeOutputSwapWrapsNetHookDeltaAndPreservesForcedETH()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePartialInputRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePlanBalancesPostHookAmountsWithinOnePercentBudget()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeRegistryAdmissionRejectsUnreviewedDependencies()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeUnexpectedSenderAndCallbackRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeWrapperReentryFailsWhileCreditStillSucceeds()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "3af211159fa39b72bfab85fddf9d81fa08f5543e4be50fd65e592b2839d02155"
+    },
+    "test/NativePoolFork.t.sol:NativePoolForkTest": {
+      "tests": {
+        "setUp()": {
+          "status": "Skipped",
+          "reason": "skipped: Opt-in selected-market fork suite; excluded from offline unit verification"
+        }
+      },
+      "artifact_sha256": "87097d126350e53034a47ff844a65f1e4d8db169f1c9c03dee4b83abbf21c44c"
+    },
+    "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest": {
+      "tests": {
+        "testWrapperPolicyActivationRechecksCurrentObservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyAfterSealRequiresBothTimelockedGovernanceActions()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyAppendOnlyAndHistoricalRecordSurvivesActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyMustMatchCurrentCodeOwnerAndReportedImplementation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyRejectsZeroOrEOAImplementationAndDoesNotAcceptNativeFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyRenouncedOwnerCanBeReviewedThroughTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyUnauthorizedApprovalAndActivationRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "9f33a5f2de2c506d7aae21c11c5c441ea73e33b8c0c7d6a548f302bcb5303184"
+    },
+    "test/OracleAndTransfers.t.sol:OracleAndTransfersTest": {
+      "tests": {
+        "testConventionalTokenAccepted()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDecimalNormalization()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExtraSenderTaxRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFutureTimestampRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzQuoteMonotonic(uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncompleteRoundRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNegativeRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSequencerDownRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSequencerGraceThenRecovery()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedTokenRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownFeedRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "4b5629ed4d0653a543f6ccbe1263457a26a48bb62da2b5c77f6841dbd80d8e27"
+    },
+    "test/ParkedRewards.t.sol:ParkedRewardsTest": {
+      "tests": {
+        "testParkedDoesNotAdmitOrdinaryVenueFeeAllocation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedDustStillRequiresAuthorizedSettler()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedGlobalDustSettlesBeforeAnotherNFTJoins()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedReceiverCreationFundingAndClaimsWorkWhilePaused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedReceiverCreationStillRequiresGovernance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedTransferCarriesLPAndRoyaltyClaimsWithUnavailableMark()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "1ce74d11dc0f1385d347fe5db99c4e27b38b8a58348cd759035b32a2329c40ca"
+    },
+    "test/ParkedRewards.t.sol:ParkedSatelliteRewardsTest": {
+      "tests": {
+        "testParkedSatelliteDustAndLegacyRewardsCanBridgeWithoutReopeningLP()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "5bb581744ae37398742e6ca7572ad7e17ff3b31f67fb50155bf4d4a587c5b16c"
+    },
+    "test/PoolSwitching.t.sol:PoolSwitchingTest": {
+      "tests": {
+        "testCancelledScheduledMigrationDoesNotReleaseReservedCapacity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedPairReversedOrderAndDisabledPoolRemainRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoolAlreadyAssignedToAnotherBucketCannotBeTakenBySwitch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRolePauseDeadlineMinimumAndSamePoolGuardsPreserveCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSamePairSwitchKeepsTwoNFTSharesFundedRewardsAndHomeIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVenueFailureRollsBackCloseFeesCompoundAndNewPoolReservation()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "b19023009afff63ed38de9ff13dda1828bcf7b37bf4e80ad4ca5bbad6c6fb773"
+    },
+    "test/PooledEntry.t.sol:PooledEntryTest": {
+      "tests": {
+        "testCompoundedNAVDoesNotBuyNewEntrantExtraShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDonationDoesNotReduceSharesPurchased()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEntrySwapRepricingBelongsToIncumbents()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeeDustSettlesToPreviousMembershipBeforeJoin()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "bd4b93631c5dcfe209427d621f3a711d31b708164165ca1b222c03aac7234713"
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest": {
+      "tests": {
+        "testAccountingImportRequiresAuthenticatedReceiver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBothCanonicalAssetsMustBeFundedBeforeBarrierClears()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCumulativeRemoteBaselinePreservesPastHopsWithoutDoubleCounting()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectDonationDoesNotPublishOwnerIndex()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHomeSnapshotCannotResetPreviousExpectedCounters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImportedAccountingRejectsWrongSharesBeforeUpdatingCounters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIndexDivisionRemainderCannotBeCapturedByNewShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewOwnerSharesCannotReceiveHistoricalOwnerFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoEligibleNFTCollectiveFundsRemainOrphanedForFutureParticipants()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOwnerFeesFollowSharesAndCollectiveIsEqualAcrossBuckets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOwnerFractionSurvivesClaimsAndShareIncrease()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteDustAddsToLifetimeOwnerCounterBeforeDeparture()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteSnapshotCannotEraseUnsentLiabilities()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnedBucketBarrierRequiresBothOwnerAndCollectiveFunding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReversedSnapshotTokenOrderingPreservesCanonicalCounterIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpCheckpointDoesNotRepriceOldOwnerFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsentRemoteReservesAreIncludedInDepartureCounters()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "6ad9a8b5fe207c16740f10e7313c99c336e968cef82d9657d024df9f27da1f8c"
+    },
+    "test/PooledSecurity.t.sol:PooledSecurityTest": {
+      "tests": {
+        "testCorrectCanonicalPreReservationCanActivateAndEnumeratesOnce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEntryAfterDrawdownUsesCurrentNAVRatherThanHistoricalContribution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzTopUpCannotRewriteEitherOwnersPreviouslyEarnedFees(uint64,uint16,uint16)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncumbentIdleCannotSatisfyNewNFTDeployedMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMismatchedReservationCannotCreateAnotherCanonicalGroup()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferPreservesEarnedOwnerFeesAndPermitsOnlyNewOwnerTopUp()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOrdinaryHolderCannotReserveOrReassignPools()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutstandingSharesWithZeroNAVCannotBeRecapitalizedByStealingNewDeposit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReservationCannotReassignOccupiedPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testShareCapFailureRollsBackCustodyAndLeavesPaidNFTDormant()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSubTwentyHistoricalFeeDustBelongsOnlyToIncumbents()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnattributedDonationsCannotDiluteIncumbentsOrInflateEntryPrice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnequalLPSharesKeepEqualCollectiveMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfundedHistoricalRemoteFeesBlockEntryTopUpAndMigrationWithoutBlockingClaims()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "6bc775aab8e39c0e61240b9827c7ef71a26e7f5d29c802f3bae7fb5c29d80c87"
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest": {
+      "tests": {
+        "testGasCollection1()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGasCollection100()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGasCollection1000()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGasMaximum32FundedRewardAssets()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "94feda08c5d75f7befd4ec642e46db107756ef8db60ae681f8d87f148b50f0f0"
+    },
+    "test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest": {
+      "tests": {
+        "invariant_pooledCustodyAndClaimsConserved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMembershipHistoryAndPausedClaims()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "642837aa9becfe9dda209a748c34a9530c9c95044a42ad1dc30a0c3a82fd8975"
+    },
+    "test/ReceiverAndRemoteFees.t.sol:MigrationReceiverSnapshotTest": {
+      "tests": {
+        "testConflictingRemoteMappingRollsBackReceiptAndEpoch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForeignSourceCompletionAckDelegatesToMigrationValidation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFundedRemoteRewardUsesFrozenCanonicalMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHomeAckCannotUsePreviousCustodyRoute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHomeAckHasSeparatePurposeAndCanonicalDestination()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnwardImportKeepsCanonicalIdentityAndReordersMappings()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledPrincipalRejectsAlteredInitialPoolOrBucketHash()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledPrincipalRejectsLegacyVersionAndZeroShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteRewardRejectsChangedSharesPoolContributionAndAsset()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturningHomeDoesNotRequireSelfChainHomeAck()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceAckRetainsFrozenSharesAndFeeCounters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceAckUsesAcceptedSnapshotAfterAnotherPositionChange()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfinalizedReceiptCannotAcknowledge()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVaultImportFailureRollsBackCanonicalBindings()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongCanonicalChainRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongPreviousCustodyRejectedBeforeImport()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongPrincipalRouteRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroEpochRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "4eeec78b2301853e74f18b5a0cdb8cfba11f50c6eb6f4a55a1c0421e51f51192"
+    },
+    "test/ReceiverAndRemoteFees.t.sol:RemoteFeeReserveTest": {
+      "tests": {
+        "testAllocationRejectsConflictingCanonicalMappingBeforeTakingFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBoundAssetCannotBeChangedByReceiver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantAndNoneCannotSendLegacyBudgets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLegacyBudgetUsesBoundCanonicalAssetAfterPoolReplacement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLegacyBudgetsBridgeInAllCustodyStates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMappingRequiresAuthenticatedReceiver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteDustStaysFundedUntilDeliveredHome()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRewardSendFailureRestoresBudgetsAndFunding()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "ccc9a550228caef067196ead7f0b6f144f95a474849284badf9e1cddc17839bc"
+    },
+    "test/ReservationCapacity.t.sol:ReservationCapacityTest": {
+      "tests": {
+        "testCanonicalActivationUsesItsReservedSlotAtFullCapacity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEarlierReservationImportsAfterAllRemainingSlotsAreOccupied()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForeignReservationCannotBeHijackedByLocalActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForeignReservationsThenLocalActivationShareOneCapacityLimit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFullCapacityDuplicatesAndPoolAliasesReuseTheSameSlot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidIdentityAndFailedPoolValidationNeverConsumeCapacity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateTokenFailureRollsBackImportButNotItsEarlierReservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalActivationThenForeignReservationsShareOneCapacityLimit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoneReservationsAreSkippedBeforeMembershipPoolAndPriceReads()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoolReassignmentRejectsWithoutConsumingAnotherSlot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReservationImmediatelyOwnsPermanentCapacityWithoutCustodyOrShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimeoutAndDisabledPoolDoNotReleaseOrReassignReservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreservedAndMalformedImportsPreserveReceiverFundsAndReservation()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "356b84d9080550f591d076976b29533ebc8377340693febbc3a9e663e16a3f70"
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest": {
+      "tests": {
+        "testClaimWorksWhilePaused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testClaimsCannotRepeat()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDustBeforeJoinCannotBeClaimedByEntrant()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDustOnMigrationGoesToIncumbentOwners()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeeSplitIsExactAndBacked()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFractionalClaimsRemainFunded()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzFeeChunkingPreservesTwentyUnitBaskets(uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzFeeConservation(uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMembershipCannotBeActivatedTwice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMissingNFTCannotBecomeEligible()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTSupportsStandardERC721()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferCarriesUnclaimedRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewActivatedNFTCannotClaimPublishedPastReward()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTinyFeesCannotManipulateSplitWithoutMembershipBoundary()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpDoesNotIncreaseEqualCollectiveShare()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedCollectiveCheckpoint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedCredit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedMembershipActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedOwnerCheckpoint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReserveRelease()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownBucketCannotReceiveFundedRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsafeReceiverRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "3763558f28869ba7795b4d22027338751647a88d6fa04c6e4277d4b924389ba4"
+    },
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest": {
+      "tests": {
+        "testActualSealedTimelockControlsReplacementAndCannotDisable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testConstructorAdmissionRetainsExplicitProvenance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDownReplacementDoesNotBypassUptimeGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFutureOrZeroStartedAndMalformedRoundsRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHealthyUnchangingUptimeDoesNotBecomeStale()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNonbinaryStatusBadTimestampsAndDecimalsRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOptionalConstructorZeroHasNoPolicyUntilConfigured()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoliciesAppendEvenWhenParametersRepeat()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertingOldDependencyDoesNotBlockRecovery()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRuntimeMutationFailsClosedAndReviewedReplacementRecovers()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReplacementRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroSourceReviewAndCodePinsRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "f5fae1cdb1c5ea519ca08f8435a7f2ba9cf46c81d3154dcbda88253fc0d5e90d"
+    },
+    "test/UniswapV4Fork.t.sol:UniswapV4ForkTest": {
+      "tests": {
+        "setUp()": {
+          "status": "Skipped",
+          "reason": "skipped: Opt-in real-network fork suite; excluded from offline unit verification"
+        }
+      },
+      "artifact_sha256": "da98b380095405249ee343600742a2f131c7cf43d9717a2be7b2bddd7c3d42ad"
+    },
+    "test/VaultAccounting.t.sol:VaultAccountingTest": {
+      "tests": {
+        "testActivationCannotCollectHistoricalSharedRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationHonorsStricterPoolMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationLeavesExactAttributedIdle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationRejects100InputWhenActualLPIsBelow99()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationRequiresAtLeast100USDInput()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCompoundingAddsOnlyDesignatedShare()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDonationNeverBecomesAnotherNFTPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantMintForwardsPriceWithoutLiquidityOrRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantTransferOnlyNewOwnerCanActivate()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExactly100ActualLPActivates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeesNotPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzMintRejectsAnyOverpayment(uint256)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzMintRejectsAnyUnderpayment(uint256)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMigrationReleaseOnlyGoesToBoundModule()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMostlyIdleActivationRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTUserCannotTransferUnderlyingLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoOwnerWithdrawalEntrypoint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOldDepositSelectorCannotBypassPaidMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyKeeperCanRebalance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseBlocksActivationKeepsDormantNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseBlocksMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRebalanceReplacesLPButPreservesEconomicNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverReentrancyCannotMintSecondNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRejectingNFTReceiverRollsBackMintAndPayment()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRejectingTreasuryRollsBackNFTAndPayment()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteCannotIssueAnotherCollection()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSelfProceedsRecipientRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpKeepsBothNFTsAndCheckpointsFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTreasuryReentrancyCannotMintSecondNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedSystemCannotMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongChainCannotActivateCanonicalDormantNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroProceedsRecipientRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      },
+      "artifact_sha256": "ae8ff14fe33f33ac2fc2f63528b5ee2854363df377fc5099b2fc16007142b358"
+    }
+  },
+  "compiler_source_bindings": {
+    "lib/forge-std/src/Base.sol": {
+      "sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "keccak256": "0x5ebf7cff3b5eda65103d6de4e8659430a74038367332898736bd54c1f89e0b24",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "29297a56d2b1692d4439545b93ed62890da7e9e1060c03005b43151af7984bf0",
+      "compiler_content_keccak256": "0xa3735a6618a3014e42bb4329ad143e3b2c59cd95094350202e4c4a06c9d585dd"
+    },
+    "lib/forge-std/src/StdAssertions.sol": {
+      "sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "keccak256": "0x11486a2095bf38739d219b04bcb8c11dca289cef73c1606973dcba8376ea5fe6",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "d4c89eec70d267dec6188461fbc74d3dc8c47e518d176a23417533a232ed9780",
+      "compiler_content_keccak256": "0x4584f551c3a875c26423c1e50a77179bc2f9c9c1ee6d0f0c6be0f89ca5ee8270"
+    },
+    "lib/forge-std/src/StdChains.sol": {
+      "sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "keccak256": "0xb20ceb4143471b7bc922ae005be2840b3306014e4c3fff91a2a6e01386f843c4",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "09a88ace5bc037f4a805c7ae071abf675ce802c8b36810287cd327b7d035fb81",
+      "compiler_content_keccak256": "0xd3edaf57db178f839d97ccee0009c2b7b20f78c2adca9028a6013acb8d5b4c5e"
+    },
+    "lib/forge-std/src/StdCheats.sol": {
+      "sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "keccak256": "0xc07512583c2c35867f7d285e756b16c9418b2e2d409a299fb14037a1441c8290",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "29af42f9d670fd22e9fc3ebe3c2da194471e93e210361c41d3d26ef04e9dca28",
+      "compiler_content_keccak256": "0x0fa6ec03602648b62cce41aab2096e6b7e052f2846075d967b6958dd586db746"
+    },
+    "lib/forge-std/src/StdConstants.sol": {
+      "sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "keccak256": "0x2de7cc713a244d8f4f1cea1983df9ba736878b4c50570a04c8a7ade4898dd6e0",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "6c785abd2fb9d42560f867d8e43e729c55f5bda2c06e5ddae27b17e301de4f04",
+      "compiler_content_keccak256": "0x319ccdabfa2c0b2428301445873270ffea20f0e039d4fd5e6eeba65158e4e534"
+    },
+    "lib/forge-std/src/StdError.sol": {
+      "sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "keccak256": "0xce23c8ef835f3e9163487858105ebef195f9d42de5ae79e56417cfe66914c701",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "82ca17e33a03775e95b4612bd604a8732c73b2982a0278d214e06c68a886dc11",
+      "compiler_content_keccak256": "0xbf477b11a42d7611696956546bcfaa29317d1166bf65e402344599c05943fc77"
+    },
+    "lib/forge-std/src/StdInvariant.sol": {
+      "sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "keccak256": "0x3529d83298a0ec30d0c3a25c71873d335cef9886386f6cce05b6432da50288d0",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "f572e991cfe874844b3b75a540e38e2161c29b5d9ab1635a3c4f1a16c548f987",
+      "compiler_content_keccak256": "0x4dab3021edfa9511bbdd80c48f060ef62eaf457f99eaf841f561fc2557d9a08d"
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "keccak256": "0x79db6ab921ed14c3cf3608576cb1f0b6347dae60c4236a87292983d2aed93b0f",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "0211b47e93dbeb6a7de6112470a77137038ed73b79b015847f013e49fcd7511f",
+      "compiler_content_keccak256": "0xbc0132abe1c2accc2867c0f03667afffdf92f3e95a581bb03c9557eaa38ea500"
+    },
+    "lib/forge-std/src/StdMath.sol": {
+      "sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "keccak256": "0x2937c68a288dbb54c9bb4209119817ea197ffbed21167c493f14dcbbc327c399",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "f04fc0616741563eb32d66c11af7fdca55a7202221e14282268c7be851fc63ab",
+      "compiler_content_keccak256": "0xd90ad4fd8aeaeb8929964e686e769fdedd5eded3fc3815df194a0ab9f91a3fb2"
+    },
+    "lib/forge-std/src/StdStorage.sol": {
+      "sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "keccak256": "0x629521c5fc837a5108c3921efe5f0e95af3ea11e1f7ee6868d9bf5e86938f81f",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "c6dbb05b29be5bcbfabf06ea46b64fe9fbdb7542681795614ca3dee248214215",
+      "compiler_content_keccak256": "0xb91ab24383a5872b894fc93325eef1add6cbbf981628f18e860068bf88bb7dcc"
+    },
+    "lib/forge-std/src/StdStyle.sol": {
+      "sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "keccak256": "0xe3e5d092bfcad345b1c25ea431473039295fbd9efde2b702881f1f4edc2c1417",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "324c2b0e100e88edbdb75f60f8a4c42f056f8d618ae5f56b1c404df64e8280a7",
+      "compiler_content_keccak256": "0x43e2a8a9b9c2574dabe74f11adf6f782df218f463540e3b5b563609fe108597d"
+    },
+    "lib/forge-std/src/StdToml.sol": {
+      "sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "keccak256": "0x52c7d9e45cf1ec21a26e33951b9b71c5d55e88a766ab7e2268b52904c481b311",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "de3fb35af79a1fd2a2de9bc4ca7866e4102f9d3fbf11f66f3fe82696412d47e2",
+      "compiler_content_keccak256": "0x58a72c765ed3f7ff6b105509689658795b8a3739b8931772a497155878381861"
+    },
+    "lib/forge-std/src/StdUtils.sol": {
+      "sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "keccak256": "0xe039b32762ebd22e37d965366e3591ed2a028d3fb23e9959fb42c0cf2a4ddf5a",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "c64a4d5023e6d46884734b8cb1b0f424bab26f0ccc920779b58d2f841c4506ae",
+      "compiler_content_keccak256": "0x7274081e11c05164fd8eadde4de8305c033e58a43008dea58065f3170ccf0737"
+    },
+    "lib/forge-std/src/Test.sol": {
+      "sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "keccak256": "0x7bdf2c552fb7fe5996ed31c79a792bfb79d95f4da6b9e772e4e65070c8c757e2",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "b1b48a4dfbd65fed186163326dc8870316679f64a195aa18050f83657d2df39c",
+      "compiler_content_keccak256": "0x3dda6083a83dfa3e8526e97bcc28e862ee2442dd58fe94d5c426d65b8e38f73c"
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "keccak256": "0x02e79b96af7e706fde505b118dfe19b2fdabf3f3171d479c4207076eac9493a2",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "9068805b59ac1d0ea03a8fa1f15ae49c094e0c6c852a2500e0dd112f264b2cb1",
+      "compiler_content_keccak256": "0xaae88142a348064677cf81169ea0ca706be3e99e2a0f13a01878ff8d52cf6b25"
+    },
+    "lib/forge-std/src/console.sol": {
+      "sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "keccak256": "0xe3a5b7058d5752c36d2b15c0a1c16f6e95275eab8b3846aa0e90850e0597d577",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "896c5a5a5c235cb11a39876d430e1fc2c621e7950c4637ca58251b84b053f178",
+      "compiler_content_keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5"
+    },
+    "lib/forge-std/src/console2.sol": {
+      "sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "keccak256": "0x925cc44754abdbec4f1bdb5d7679cccaf6880743266deba83c2dd02ccd007e2a",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "3bbe2e07ec53d8cf9c091667fe10234fcb3e2b45eab2c711002188806f46e779",
+      "compiler_content_keccak256": "0x3b8fe79f48f065a4e4d35362171304a33784c3a90febae5f2787805a438de12f"
+    },
+    "lib/forge-std/src/interfaces/IMulticall3.sol": {
+      "sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "keccak256": "0x1313e079d13b9f3a47177eff1d226c41b0b51c0802c248d47d038eb65a084307",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "6620d9c5ea2e2291440e1dcce5072f948b7ec4d65075876a0d0ac9267d3342e3",
+      "compiler_content_keccak256": "0x7aac1389150499a922d1f9ef5749c908cef127cb2075b92fa17e9cb611263d0a"
+    },
+    "lib/forge-std/src/safeconsole.sol": {
+      "sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "keccak256": "0x6a9316ec41296d09809d5cc56fb466de61b75d4d932396f425085836bfced22a",
+      "compiler_content_transformation": "vendored_dependency_CRLF_to_LF",
+      "compiler_content_sha256": "ed11aa2efc83fa8e575215a11dd7a9be385cf49dacbc379630168d7334899e46",
+      "compiler_content_keccak256": "0xbef9786cb49d3eade757bad87568c49c8c8f35721f0193c95ffb055d9e466e11"
+    },
+    "node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
+      "sha256": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "keccak256": "0x1a6b4f6b7798ab80929d491b89d5427a9b3338c0fd1acd0ba325f69c6f1646af",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "compiler_content_keccak256": "0x1a6b4f6b7798ab80929d491b89d5427a9b3338c0fd1acd0ba325f69c6f1646af"
+    },
+    "node_modules/@openzeppelin/contracts/access/IAccessControl.sol": {
+      "sha256": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "keccak256": "0xbff9f59c84e5337689161ce7641c0ef8e872d6a7536fbc1f5133f128887aba3c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "compiler_content_keccak256": "0xbff9f59c84e5337689161ce7641c0ef8e872d6a7536fbc1f5133f128887aba3c"
+    },
+    "node_modules/@openzeppelin/contracts/governance/TimelockController.sol": {
+      "sha256": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "keccak256": "0xa0b43a4e7f6c4e67c518c40e0e75ee66b38a1b077e5f315b0dc7a98d11e778b4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "compiler_content_keccak256": "0xa0b43a4e7f6c4e67c518c40e0e75ee66b38a1b077e5f315b0dc7a98d11e778b4"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+      "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "compiler_content_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+      "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "compiler_content_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "compiler_content_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "compiler_content_keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+      "sha256": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "keccak256": "0x6ec6d7fce29668ede560c7d2e10f9d10de3473f5298e431e70a5767db42fa620",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "compiler_content_keccak256": "0x6ec6d7fce29668ede560c7d2e10f9d10de3473f5298e431e70a5767db42fa620"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol": {
+      "sha256": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "keccak256": "0x845cd93ae5216fb91ab3085c632006cdff95460134dd83f3519c1b08cc3e1b4a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "compiler_content_keccak256": "0x845cd93ae5216fb91ab3085c632006cdff95460134dd83f3519c1b08cc3e1b4a"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "keccak256": "0x86b7b71a6aedefdad89b607378eeab1dcc5389b9ea7d17346d08af01d7190994",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "compiler_content_keccak256": "0x86b7b71a6aedefdad89b607378eeab1dcc5389b9ea7d17346d08af01d7190994"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "compiler_content_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "compiler_content_keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "compiler_content_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "compiler_content_keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "compiler_content_keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "compiler_content_keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "compiler_content_keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol": {
+      "sha256": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "keccak256": "0xaad20f8713b5cd98114278482d5d91b9758f9727048527d582e8e88fd4901fd8",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "compiler_content_keccak256": "0xaad20f8713b5cd98114278482d5d91b9758f9727048527d582e8e88fd4901fd8"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
+      "sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "compiler_content_keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "sha256": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "keccak256": "0x6d0ae6e206645341fd122d278c2cb643dea260c190531f2f3f6a0426e77b00c0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "compiler_content_keccak256": "0x6d0ae6e206645341fd122d278c2cb643dea260c190531f2f3f6a0426e77b00c0"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "compiler_content_keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Errors.sol": {
+      "sha256": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "compiler_content_keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "compiler_content_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "compiler_content_keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4"
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "compiler_content_keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e"
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "compiler_content_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "compiler_content_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "compiler_content_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "compiler_content_keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3"
+    },
+    "src/ZZZAccessController.sol": {
+      "sha256": "648ef6233d77b041f8a2ea4edae8236cae4e12c50167d19bd43b4b0e3e0bac48",
+      "keccak256": "0x88a3918eb171f80d11410b1cc4abde73dea43a288cf56bb028ea51d30ae225c9",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "648ef6233d77b041f8a2ea4edae8236cae4e12c50167d19bd43b4b0e3e0bac48",
+      "compiler_content_keccak256": "0x88a3918eb171f80d11410b1cc4abde73dea43a288cf56bb028ea51d30ae225c9"
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "f76ba36847bdef2c81d3a89e99c98a06bb2990ba17665d81925d9dfd8dd891c2",
+      "keccak256": "0x083cb7b244f04cf948506b916d4835e59c6a7ca634a9752e6ac06745dd0ca480",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f76ba36847bdef2c81d3a89e99c98a06bb2990ba17665d81925d9dfd8dd891c2",
+      "compiler_content_keccak256": "0x083cb7b244f04cf948506b916d4835e59c6a7ca634a9752e6ac06745dd0ca480"
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+      "keccak256": "0x31fbf35c4fc07f8cc57dc97fe2f51550440240e9704fd7d9a5bc4fd487c48974",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+      "compiler_content_keccak256": "0x31fbf35c4fc07f8cc57dc97fe2f51550440240e9704fd7d9a5bc4fd487c48974"
+    },
+    "test/AccessController.t.sol": {
+      "sha256": "d427044df4952061bc2d19a205df66039f24e70f52cc1d5c3ca3f6cae19f633f",
+      "keccak256": "0xa5ab1bf4e9fdc57d2e16295b080a17975fcaeb2eb4e15b5eec0caa9d04ff9ada",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "d427044df4952061bc2d19a205df66039f24e70f52cc1d5c3ca3f6cae19f633f",
+      "compiler_content_keccak256": "0xa5ab1bf4e9fdc57d2e16295b080a17975fcaeb2eb4e15b5eec0caa9d04ff9ada"
+    },
+    "test/mocks/Mocks.sol": {
+      "sha256": "4da4686755a6d5e3b383c52f5bf8fd3e8e64773a13601ed6dc3f3dccb2f8a719",
+      "keccak256": "0xc3e912874a6b901afd4e61cac9d4e7acb09e8235a6f9923f214f25261193f43f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "4da4686755a6d5e3b383c52f5bf8fd3e8e64773a13601ed6dc3f3dccb2f8a719",
+      "compiler_content_keccak256": "0xc3e912874a6b901afd4e61cac9d4e7acb09e8235a6f9923f214f25261193f43f"
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "keccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "compiler_content_keccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394"
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "keccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "compiler_content_keccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df"
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "bbb204d6f179830fe32b2ef75842fbe626a6f7050db061ec6d2f3c762c8d0dd8",
+      "keccak256": "0x49bbd869c207917bdd9011001526f636c9187b06fe18f3a4b723dcf441b1b283",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "bbb204d6f179830fe32b2ef75842fbe626a6f7050db061ec6d2f3c762c8d0dd8",
+      "compiler_content_keccak256": "0x49bbd869c207917bdd9011001526f636c9187b06fe18f3a4b723dcf441b1b283"
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "compiler_content_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e"
+    },
+    "test/ActivationAssets.t.sol": {
+      "sha256": "cb3a6ca8f769c5397e0fbaae51cfc26acf6ec78040f5823c2e25d3598f6ced24",
+      "keccak256": "0x9c83387d625e29e265b6e48e400146f8460b478b3bdf77222d98b7f3dc9f2758",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "cb3a6ca8f769c5397e0fbaae51cfc26acf6ec78040f5823c2e25d3598f6ced24",
+      "compiler_content_keccak256": "0x9c83387d625e29e265b6e48e400146f8460b478b3bdf77222d98b7f3dc9f2758"
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "compiler_content_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3"
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+      "keccak256": "0xd25fa46bb100319733b3d38a8fb41ffb7f3242640d733fa62d4950a067c5d964",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+      "compiler_content_keccak256": "0xd25fa46bb100319733b3d38a8fb41ffb7f3242640d733fa62d4950a067c5d964"
+    },
+    "test/ActivationEntry.t.sol": {
+      "sha256": "c17417f1506574dd981e62cd55d20fb246d0ef96a89b58bac04ce6355ad3c20b",
+      "keccak256": "0xbbec7f7d7d37052691de2d9a8f1636b01c90f9c7702689192251f8f09ab82dba",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c17417f1506574dd981e62cd55d20fb246d0ef96a89b58bac04ce6355ad3c20b",
+      "compiler_content_keccak256": "0xbbec7f7d7d37052691de2d9a8f1636b01c90f9c7702689192251f8f09ab82dba"
+    },
+    "src/ZZZBridgeAdapter.sol": {
+      "sha256": "a3aa70c89e9bee4b9dc284c628a796b02102469abd03d769d0285e702011b62d",
+      "keccak256": "0xda3e2ac31de3b8f9cc7340f1188d2b57f683c3142a565acc59d54fb54588d4a9",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a3aa70c89e9bee4b9dc284c628a796b02102469abd03d769d0285e702011b62d",
+      "compiler_content_keccak256": "0xda3e2ac31de3b8f9cc7340f1188d2b57f683c3142a565acc59d54fb54588d4a9"
+    },
+    "src/ZZZBridgeRouter.sol": {
+      "sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "keccak256": "0x96dfbe39cce0414741569b4cd7857a4fd0e0df58cb689b604ed504b0c9b93886",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "compiler_content_keccak256": "0x96dfbe39cce0414741569b4cd7857a4fd0e0df58cb689b604ed504b0c9b93886"
+    },
+    "src/ZZZMigrationRegistry.sol": {
+      "sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "keccak256": "0x5539ef9099f9306b6a6030872bde48e1a7a09f6503cc5160e34fabb2cdb55eb4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "compiler_content_keccak256": "0x5539ef9099f9306b6a6030872bde48e1a7a09f6503cc5160e34fabb2cdb55eb4"
+    },
+    "src/libraries/BridgeAssets.sol": {
+      "sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "keccak256": "0xfd768f445c7c9fba5f85e123838f69b5111c281798ec77f6ed4323f8cf56af29",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "compiler_content_keccak256": "0xfd768f445c7c9fba5f85e123838f69b5111c281798ec77f6ed4323f8cf56af29"
+    },
+    "test/ApprovedProviderTrust.t.sol": {
+      "sha256": "f10ec0df88f8d09ce030c06ad5a4f4032ab93fda7ef1fb2f52eb59f3b46cc43a",
+      "keccak256": "0xb7e5735dca7b1c183bb2cac2addae0675fa9c78135ffbce286064158c40c298d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f10ec0df88f8d09ce030c06ad5a4f4032ab93fda7ef1fb2f52eb59f3b46cc43a",
+      "compiler_content_keccak256": "0xb7e5735dca7b1c183bb2cac2addae0675fa9c78135ffbce286064158c40c298d"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Base64.sol": {
+      "sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "compiler_content_keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a"
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "compiler_content_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161"
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "keccak256": "0xe30f027478d9ce4bc4b5204de9a35bdf13793411fd0e770594ecb59ace4c3b81",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "compiler_content_keccak256": "0xe30f027478d9ce4bc4b5204de9a35bdf13793411fd0e770594ecb59ace4c3b81"
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+      "keccak256": "0xf96f10e890e8721c33db9584cb52984ad416860749b47a349ee22a40ae827040",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+      "compiler_content_keccak256": "0xf96f10e890e8721c33db9584cb52984ad416860749b47a349ee22a40ae827040"
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "keccak256": "0xfc3966192bcd85ba71f8f6ae3e14bc866f9ca8a176c22694b79d1eedf822452a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "compiler_content_keccak256": "0xfc3966192bcd85ba71f8f6ae3e14bc866f9ca8a176c22694b79d1eedf822452a"
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "44e348b51d8873e7ed5d79bbfefa30794c3c6ee467cc5a43dddd7024fc7c1599",
+      "keccak256": "0x4d0298922086479f392c8ae09ed2325fec936a197e17c34331ef646a3ddd2206",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "44e348b51d8873e7ed5d79bbfefa30794c3c6ee467cc5a43dddd7024fc7c1599",
+      "compiler_content_keccak256": "0x4d0298922086479f392c8ae09ed2325fec936a197e17c34331ef646a3ddd2206"
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "9d19639ec8061adae9fe8b18f58bffe881bed4a5c88dfd3fc9ce9ede23959132",
+      "keccak256": "0x87cadde79e38b637c2eb710c673780ce5664113394714f46c565a41aeae9d08a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9d19639ec8061adae9fe8b18f58bffe881bed4a5c88dfd3fc9ce9ede23959132",
+      "compiler_content_keccak256": "0x87cadde79e38b637c2eb710c673780ce5664113394714f46c565a41aeae9d08a"
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "keccak256": "0xf42209f28ee63f95880aef61a1f35223ddf58ae06d81b8aaac2be378c9f5fc8d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "compiler_content_keccak256": "0xf42209f28ee63f95880aef61a1f35223ddf58ae06d81b8aaac2be378c9f5fc8d"
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "keccak256": "0x45f9701265ee2c4413ef99edd2511f965649e2be37c78e1078cd43b7e93dff6a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "compiler_content_keccak256": "0x45f9701265ee2c4413ef99edd2511f965649e2be37c78e1078cd43b7e93dff6a"
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "keccak256": "0x6bebfb829c9e8c341e4759642012464a8e666faa18a85f5ac567b5c85b7bbb12",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "compiler_content_keccak256": "0x6bebfb829c9e8c341e4759642012464a8e666faa18a85f5ac567b5c85b7bbb12"
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "keccak256": "0xcdc2f89a39a12e478c797d17ebedf5ecc10a58ef71cdc860c4360f7e5c447914",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "compiler_content_keccak256": "0xcdc2f89a39a12e478c797d17ebedf5ecc10a58ef71cdc860c4360f7e5c447914"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "keccak256": "0x7526c0f724a23022ac0d58ee73caf40fc89cba37b89e8eac96627e29d6de85c5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "compiler_content_keccak256": "0x7526c0f724a23022ac0d58ee73caf40fc89cba37b89e8eac96627e29d6de85c5"
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "c6bf9ae21b00f3ba0b14678be1241d18ab3734b0426c94ba039217da2bc314ef",
+      "keccak256": "0x196b8d461837481b04f77e51a5167077d8204ebbfe12f0d91cf55e5b4502d1a0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c6bf9ae21b00f3ba0b14678be1241d18ab3734b0426c94ba039217da2bc314ef",
+      "compiler_content_keccak256": "0x196b8d461837481b04f77e51a5167077d8204ebbfe12f0d91cf55e5b4502d1a0"
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "compiler_content_keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8"
+    },
+    "test/AtomicActivationIntegration.t.sol": {
+      "sha256": "59618e3c7ffe09663b860680cf85909dc685443d0062ac4e693634d22e9ec8ac",
+      "keccak256": "0xd20f49220918229f9c47130616d3d60598ff85f8ef85e5886bf5b764349a3fb6",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "59618e3c7ffe09663b860680cf85909dc685443d0062ac4e693634d22e9ec8ac",
+      "compiler_content_keccak256": "0xd20f49220918229f9c47130616d3d60598ff85f8ef85e5886bf5b764349a3fb6"
+    },
+    "test/VaultAccounting.t.sol": {
+      "sha256": "137c91e5dc7b5464c75dc291487a79cc7f8e17257ef3f86e65db6de53a5166ac",
+      "keccak256": "0x60ffa3c5cc3e8152948e80ce70e09f2fb9c1e6a42289cdbc704ec1fc73331322",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "137c91e5dc7b5464c75dc291487a79cc7f8e17257ef3f86e65db6de53a5166ac",
+      "compiler_content_keccak256": "0x60ffa3c5cc3e8152948e80ce70e09f2fb9c1e6a42289cdbc704ec1fc73331322"
+    },
+    "test/mocks/MockVRF.sol": {
+      "sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "keccak256": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "compiler_content_keccak256": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0"
+    },
+    "test/BridgeRouterSecurity.t.sol": {
+      "sha256": "f312b4eb14ea95ee712e7f3bdf6ba3260869db0b282926da8ce4d7e544e0445d",
+      "keccak256": "0x2d225cc9eb0ecd48959cad93dcdbaa151869203bd3af60c644521e58e9db6bb2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f312b4eb14ea95ee712e7f3bdf6ba3260869db0b282926da8ce4d7e544e0445d",
+      "compiler_content_keccak256": "0x2d225cc9eb0ecd48959cad93dcdbaa151869203bd3af60c644521e58e9db6bb2"
+    },
+    "test/mocks/RouterMocks.sol": {
+      "sha256": "cf8bf1a7386f937255197cedc65e0033d3192911f5a9bd30787807cbe0915324",
+      "keccak256": "0x3a6a516eb99a9a56586689d3d5f6f4f92f61c64a2c420971edfea293dc17924b",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "cf8bf1a7386f937255197cedc65e0033d3192911f5a9bd30787807cbe0915324",
+      "compiler_content_keccak256": "0x3a6a516eb99a9a56586689d3d5f6f4f92f61c64a2c420971edfea293dc17924b"
+    },
+    "test/BridgeSecurity.t.sol": {
+      "sha256": "d49e48af7177a650e3424ab5c47c2fe0594e83bc1f4daa84495cab23edd66880",
+      "keccak256": "0x2383144bf5bf6e67bcf74b1bf6b840b1173b2a63721a96c1438ffa559da98716",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "d49e48af7177a650e3424ab5c47c2fe0594e83bc1f4daa84495cab23edd66880",
+      "compiler_content_keccak256": "0x2383144bf5bf6e67bcf74b1bf6b840b1173b2a63721a96c1438ffa559da98716"
+    },
+    "test/BucketCapacity.t.sol": {
+      "sha256": "3dd22cbb6e35ab3188648ad53faee6e009d37b7a12e945ecd03c2718927bf86a",
+      "keccak256": "0x1bb15d5aa01e7605a4a994a358a86bd87fcee14b2e6bf6fdaaa038788cb2f760",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3dd22cbb6e35ab3188648ad53faee6e009d37b7a12e945ecd03c2718927bf86a",
+      "compiler_content_keccak256": "0x1bb15d5aa01e7605a4a994a358a86bd87fcee14b2e6bf6fdaaa038788cb2f760"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": {
+      "sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "keccak256": "0x51b9be4f5c4fd3e80cbc9631a65244a2eb2be250b6b7f128a2035080e18aee8d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "compiler_content_keccak256": "0x51b9be4f5c4fd3e80cbc9631a65244a2eb2be250b6b7f128a2035080e18aee8d"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": {
+      "sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "keccak256": "0x111ed3031b6990c80a93ae35dde6b6ac0b7e6af471388fdd7461e91edda9b7de",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "compiler_content_keccak256": "0x111ed3031b6990c80a93ae35dde6b6ac0b7e6af471388fdd7461e91edda9b7de"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": {
+      "sha256": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "keccak256": "0xef5c3fd41aee26bb12aa1c32873cfee88e67eddfe7c2b32283786265ac669741",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "compiler_content_keccak256": "0xef5c3fd41aee26bb12aa1c32873cfee88e67eddfe7c2b32283786265ac669741"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": {
+      "sha256": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "keccak256": "0x4fc73a00817193fd3cac1cc03d8167d21af97d75f1815a070ee31a90c702b4c2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "compiler_content_keccak256": "0x4fc73a00817193fd3cac1cc03d8167d21af97d75f1815a070ee31a90c702b4c2"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": {
+      "sha256": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "keccak256": "0x42c4a24f996a14d358be397b71f7ec9d7daf666aaec78002c63315a6ee67aa86",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "compiler_content_keccak256": "0x42c4a24f996a14d358be397b71f7ec9d7daf666aaec78002c63315a6ee67aa86"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": {
+      "sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "keccak256": "0xf8079fe6e3460db495451d06b1705e18f1c4075c1af96a31ad313545f7082982",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "compiler_content_keccak256": "0xf8079fe6e3460db495451d06b1705e18f1c4075c1af96a31ad313545f7082982"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": {
+      "sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "keccak256": "0x4e1a11e154eb06106cb1c4598f06cca5f5ca16eaa33494ba2f0e74981123eca8",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "compiler_content_keccak256": "0x4e1a11e154eb06106cb1c4598f06cca5f5ca16eaa33494ba2f0e74981123eca8"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": {
+      "sha256": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "keccak256": "0xa6e55e0a43a15df2df471d9972cd48f613d07c663ecb8bbeaf7623f6f99bcce4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "compiler_content_keccak256": "0xa6e55e0a43a15df2df471d9972cd48f613d07c663ecb8bbeaf7623f6f99bcce4"
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": {
+      "sha256": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "keccak256": "0x8ea74b89831877ffe657f8461164a01a6f3c7e46f415410854fca8d28a8cab53",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "compiler_content_keccak256": "0x8ea74b89831877ffe657f8461164a01a6f3c7e46f415410854fca8d28a8cab53"
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "keccak256": "0xed4451238c35a104edcc690e1794e09b345754e4538fb899bfb835d37f0cff7d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "compiler_content_keccak256": "0xed4451238c35a104edcc690e1794e09b345754e4538fb899bfb835d37f0cff7d"
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "keccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "compiler_content_keccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7"
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "keccak256": "0x3337d0cbc0bbe44735521313a9c36e56d7aea4f2df3afbe98572a12b545ca099",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "compiler_content_keccak256": "0x3337d0cbc0bbe44735521313a9c36e56d7aea4f2df3afbe98572a12b545ca099"
+    },
+    "test/BuybackExecution.t.sol": {
+      "sha256": "bb00e8d439d50dd66c7bb009ba21f8fd440a0adb1e425a4ad41d5467d232863e",
+      "keccak256": "0x364d4d79762fc4acc8930e0616a0c80ab9e829cb023f2ec35d6437e44b4c1e5a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "bb00e8d439d50dd66c7bb009ba21f8fd440a0adb1e425a4ad41d5467d232863e",
+      "compiler_content_keccak256": "0x364d4d79762fc4acc8930e0616a0c80ab9e829cb023f2ec35d6437e44b4c1e5a"
+    },
+    "test/LiquidityEncoding.t.sol": {
+      "sha256": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+      "keccak256": "0xd931cebcee1a2e40b39205fbbc368bfed8a5eaa3cadfb7ef63f51dfbea2a65c0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+      "compiler_content_keccak256": "0xd931cebcee1a2e40b39205fbbc368bfed8a5eaa3cadfb7ef63f51dfbea2a65c0"
+    },
+    "test/RewardsAndFees.t.sol": {
+      "sha256": "e5971044fa62366c3194bb3173e0ac88cb24b62123588584d126a0def364ca13",
+      "keccak256": "0x589cf2d9e475e0b272764a245b74e3eddbd7bd33b8cedaceb470314bfae62455",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "e5971044fa62366c3194bb3173e0ac88cb24b62123588584d126a0def364ca13",
+      "compiler_content_keccak256": "0x589cf2d9e475e0b272764a245b74e3eddbd7bd33b8cedaceb470314bfae62455"
+    },
+    "test/ClaimRouter.t.sol": {
+      "sha256": "e04d5577e8f18169ed096d19dffe97a28fbb201cac0c6569831f13c338b7e2bf",
+      "keccak256": "0x199d52c6be183b19d0d2581fdee7036c8e834e9f2ba1c0c8586d9a66bd8498c3",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "e04d5577e8f18169ed096d19dffe97a28fbb201cac0c6569831f13c338b7e2bf",
+      "compiler_content_keccak256": "0x199d52c6be183b19d0d2581fdee7036c8e834e9f2ba1c0c8586d9a66bd8498c3"
+    },
+    "test/CollectionScale.t.sol": {
+      "sha256": "1cb34063247174616e690f11dcfe4dd29fb5479afb0936f6f498543336c3a13f",
+      "keccak256": "0xf2c300474d4aba371001511f5da9e902c2567d44a3aab88b6f44f2eaf5cc2091",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "1cb34063247174616e690f11dcfe4dd29fb5479afb0936f6f498543336c3a13f",
+      "compiler_content_keccak256": "0xf2c300474d4aba371001511f5da9e902c2567d44a3aab88b6f44f2eaf5cc2091"
+    },
+    "test/CombinedCapacityGas.t.sol": {
+      "sha256": "f759790501ada3cc1ab43ca1c5576eb6e6da1e4baf9b8d5a9912f8d6637b631c",
+      "keccak256": "0x0617e737d806ab3c99f8075b56eba6d08ea6e84e7da121b4cb7c618bc522c14d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f759790501ada3cc1ab43ca1c5576eb6e6da1e4baf9b8d5a9912f8d6637b631c",
+      "compiler_content_keccak256": "0x0617e737d806ab3c99f8075b56eba6d08ea6e84e7da121b4cb7c618bc522c14d"
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "9cce0857c086248473bc674a578618ed10817fcefbf0358fa8421c8731d63afe",
+      "keccak256": "0x7cafc0386edb79c747c4a1a55e1718bca853c5493c4a4d12f131c020d4bc41a3",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9cce0857c086248473bc674a578618ed10817fcefbf0358fa8421c8731d63afe",
+      "compiler_content_keccak256": "0x7cafc0386edb79c747c4a1a55e1718bca853c5493c4a4d12f131c020d4bc41a3"
+    },
+    "test/CustodyParking.t.sol": {
+      "sha256": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+      "keccak256": "0xbc72061f63b75686e21ab6f2ece78fa20a8689b3b3b51fcca787c0b8871374c0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+      "compiler_content_keccak256": "0xbc72061f63b75686e21ab6f2ece78fa20a8689b3b3b51fcca787c0b8871374c0"
+    },
+    "test/EntryExecutionBudget.t.sol": {
+      "sha256": "b2850bee5ce23fa615d6b2d0e043845c1fe613275ad03a62984605765600c83a",
+      "keccak256": "0x2f7de6897c0c6310dc01444b5eec59e2c227fc42a58c865bdda7b923ae8bb961",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "b2850bee5ce23fa615d6b2d0e043845c1fe613275ad03a62984605765600c83a",
+      "compiler_content_keccak256": "0x2f7de6897c0c6310dc01444b5eec59e2c227fc42a58c865bdda7b923ae8bb961"
+    },
+    "test/ExternalRewards.t.sol": {
+      "sha256": "9564944b9a0e2f231d01d0e242f1a41841c96eadd7995925df247f1b9a9dd855",
+      "keccak256": "0xc1613f1f5754e72f58080e57300c531c7715777e37fad7676d5758e6363cebdb",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9564944b9a0e2f231d01d0e242f1a41841c96eadd7995925df247f1b9a9dd855",
+      "compiler_content_keccak256": "0xc1613f1f5754e72f58080e57300c531c7715777e37fad7676d5758e6363cebdb"
+    },
+    "src/ZZZMigrationReceiver.sol": {
+      "sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "keccak256": "0x2aa61f62d9f907f6d2ba8af9366b2e36db47da98df9909643f9e8c0387220715",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "compiler_content_keccak256": "0x2aa61f62d9f907f6d2ba8af9366b2e36db47da98df9909643f9e8c0387220715"
+    },
+    "test/FutureChainMigration.t.sol": {
+      "sha256": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+      "keccak256": "0x001c65a8774d84697a130c027cc8ea08fcb8fe2c4165ce6dc2719dd7e9ceec83",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+      "compiler_content_keccak256": "0x001c65a8774d84697a130c027cc8ea08fcb8fe2c4165ce6dc2719dd7e9ceec83"
+    },
+    "test/GlobalMembershipDust.t.sol": {
+      "sha256": "4ac8b2df7d9e9d75368f8025daf53278c6a8dd4d8303992471981e85875aebc4",
+      "keccak256": "0xe70bf08bc67a38954fca5b175053371d5197ce07427e8c0c8274c7b96ae90571",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "4ac8b2df7d9e9d75368f8025daf53278c6a8dd4d8303992471981e85875aebc4",
+      "compiler_content_keccak256": "0xe70bf08bc67a38954fca5b175053371d5197ce07427e8c0c8274c7b96ae90571"
+    },
+    "test/MultiHopMigration.t.sol": {
+      "sha256": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+      "keccak256": "0x681fb4abf58aaf9034622758ebf398894492576c2b306efdb00cc6e7589fe44c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+      "compiler_content_keccak256": "0x681fb4abf58aaf9034622758ebf398894492576c2b306efdb00cc6e7589fe44c"
+    },
+    "test/NFTMetadata.t.sol": {
+      "sha256": "fca1307db2977c87fb34e37285b2d831e6d9d50594ceba5c3391773e03e25046",
+      "keccak256": "0x3ae749cd5b513144df65b48c4e806cd380b3589549db1b9b25472a727fe6decb",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "fca1307db2977c87fb34e37285b2d831e6d9d50594ceba5c3391773e03e25046",
+      "compiler_content_keccak256": "0x3ae749cd5b513144df65b48c4e806cd380b3589549db1b9b25472a727fe6decb"
+    },
+    "test/NFTOwnershipRights.t.sol": {
+      "sha256": "12db5a9d56f09d03b51ee1f933c98c28ed944979c17657dc73e8e7963277809f",
+      "keccak256": "0x4860f27969bd7acc974d0e276a77cd522733ad5ea75240c7528cf0a82e52c65a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "12db5a9d56f09d03b51ee1f933c98c28ed944979c17657dc73e8e7963277809f",
+      "compiler_content_keccak256": "0x4860f27969bd7acc974d0e276a77cd522733ad5ea75240c7528cf0a82e52c65a"
+    },
+    "test/NFTRightsInvariants.t.sol": {
+      "sha256": "ed422573965db317581a89026ffe1679a83944bf94dd29802c65c5c141816c4b",
+      "keccak256": "0x548ecc6f7b05c253dab0648c5f797f31acce688ec6e8fd4b1049bbf5334113ec",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ed422573965db317581a89026ffe1679a83944bf94dd29802c65c5c141816c4b",
+      "compiler_content_keccak256": "0x548ecc6f7b05c253dab0648c5f797f31acce688ec6e8fd4b1049bbf5334113ec"
+    },
+    "test/NFTRoyalties.t.sol": {
+      "sha256": "3e8f3bc99639857bf8a19b0c43405b886f16c9dd32ae5b63fa2cde74382df3af",
+      "keccak256": "0xc12f1a7bd357ce1051bee32afb2efa2f819d1c04037dcd8e16e8b4ab069979f5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3e8f3bc99639857bf8a19b0c43405b886f16c9dd32ae5b63fa2cde74382df3af",
+      "compiler_content_keccak256": "0xc12f1a7bd357ce1051bee32afb2efa2f819d1c04037dcd8e16e8b4ab069979f5"
+    },
+    "test/NativeLiquidity.t.sol": {
+      "sha256": "ae18253e35b61a42b18bef69d35ee757ac1bf3696f55e52f66fe33ec0a7efb99",
+      "keccak256": "0xa88088b792ef530e51884b3fe212dd6cabfeff46c6a3874dd76b1e03a7767d1c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ae18253e35b61a42b18bef69d35ee757ac1bf3696f55e52f66fe33ec0a7efb99",
+      "compiler_content_keccak256": "0xa88088b792ef530e51884b3fe212dd6cabfeff46c6a3874dd76b1e03a7767d1c"
+    },
+    "test/NativePoolFork.t.sol": {
+      "sha256": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872",
+      "keccak256": "0x94d0b6cfc7eec5c979b15aac76ce6d256c0e94fd07ee1dce20965231e28df318",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872",
+      "compiler_content_keccak256": "0x94d0b6cfc7eec5c979b15aac76ce6d256c0e94fd07ee1dce20965231e28df318"
+    },
+    "test/UniswapV4Fork.t.sol": {
+      "sha256": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+      "keccak256": "0xa8dfdb54b5a5ef2e8b27b44e58ac5b417f350528b37cd1db3af51d34611023f5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+      "compiler_content_keccak256": "0xa8dfdb54b5a5ef2e8b27b44e58ac5b417f350528b37cd1db3af51d34611023f5"
+    },
+    "test/NativeWrapperPolicy.t.sol": {
+      "sha256": "b4941ccb001214f63b9f9399f66bb0b35b03a9df82c64602c9ed2018a371bbb2",
+      "keccak256": "0x52958c9050799277bbdb34eb4ad86298678c3869fd02b19e4d221ec395c500f6",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "b4941ccb001214f63b9f9399f66bb0b35b03a9df82c64602c9ed2018a371bbb2",
+      "compiler_content_keccak256": "0x52958c9050799277bbdb34eb4ad86298678c3869fd02b19e4d221ec395c500f6"
+    },
+    "test/OracleAndTransfers.t.sol": {
+      "sha256": "7bd955fe543fa9c9a81ba0deeeec2b42c275521b4852fb1185b9b80e3fa24bec",
+      "keccak256": "0x54aa4a30fbb6cc4a50c51b6752d3466755a546b73efbf9eec5488ebbc83a38b9",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "7bd955fe543fa9c9a81ba0deeeec2b42c275521b4852fb1185b9b80e3fa24bec",
+      "compiler_content_keccak256": "0x54aa4a30fbb6cc4a50c51b6752d3466755a546b73efbf9eec5488ebbc83a38b9"
+    },
+    "test/ParkedRewards.t.sol": {
+      "sha256": "eb4b07a88fca80b1c1ee9951a399a5b6f8d74835017e0065113d7ffbd76cf5eb",
+      "keccak256": "0xcb70c7efacfba656682e04c0cf4b2ce35cceebb2d6f9bca33d5ca0bdfe7e35ed",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "eb4b07a88fca80b1c1ee9951a399a5b6f8d74835017e0065113d7ffbd76cf5eb",
+      "compiler_content_keccak256": "0xcb70c7efacfba656682e04c0cf4b2ce35cceebb2d6f9bca33d5ca0bdfe7e35ed"
+    },
+    "test/ReceiverAndRemoteFees.t.sol": {
+      "sha256": "a9ab9389c19f7162f056ceee940e43a31697b4afb05fab9f6ac8122b7ebd4c0e",
+      "keccak256": "0xc17a982a0b1d06706a5282a1b132ea1d809e91f30026bd2947ca7ce53d659ecb",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a9ab9389c19f7162f056ceee940e43a31697b4afb05fab9f6ac8122b7ebd4c0e",
+      "compiler_content_keccak256": "0xc17a982a0b1d06706a5282a1b132ea1d809e91f30026bd2947ca7ce53d659ecb"
+    },
+    "test/PoolSwitching.t.sol": {
+      "sha256": "8a850038a6e35a055c4022b8b63b0cdc4ec6a296250f6aaa87646e5412ea12a1",
+      "keccak256": "0xd5eb672b2e3ae20c1e9e5ba5bbf0c3ff1d44b0f25c758ec83d6ece123d1cd07a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "8a850038a6e35a055c4022b8b63b0cdc4ec6a296250f6aaa87646e5412ea12a1",
+      "compiler_content_keccak256": "0xd5eb672b2e3ae20c1e9e5ba5bbf0c3ff1d44b0f25c758ec83d6ece123d1cd07a"
+    },
+    "test/PooledEntry.t.sol": {
+      "sha256": "6551b2341d1037e8c24de75d85212774ab9fc622d120a86fe1f4aff9e64e2ea8",
+      "keccak256": "0x9ac8cfce5e050ad2ed5f733ab1181efaf41bbe89ef3afd2f4fa6ef78acc96cab",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "6551b2341d1037e8c24de75d85212774ab9fc622d120a86fe1f4aff9e64e2ea8",
+      "compiler_content_keccak256": "0x9ac8cfce5e050ad2ed5f733ab1181efaf41bbe89ef3afd2f4fa6ef78acc96cab"
+    },
+    "test/PooledRewards.t.sol": {
+      "sha256": "bd9b9617163818a6cd0584d81192b65b14542508d734bfbed1ef36e5ea3bea84",
+      "keccak256": "0xe5c7989305468e3e864120383d5a23fd85e46f6dd0d4d6491329e9cd5c5280e1",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "bd9b9617163818a6cd0584d81192b65b14542508d734bfbed1ef36e5ea3bea84",
+      "compiler_content_keccak256": "0xe5c7989305468e3e864120383d5a23fd85e46f6dd0d4d6491329e9cd5c5280e1"
+    },
+    "test/PooledSecurity.t.sol": {
+      "sha256": "368cda6344c503f01c8b84b72c007487d14ba279bf4f3bd732ed619043d09553",
+      "keccak256": "0x640cd5f173e1706a2ec4716e472859814594876a3239922570312a748225be97",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "368cda6344c503f01c8b84b72c007487d14ba279bf4f3bd732ed619043d09553",
+      "compiler_content_keccak256": "0x640cd5f173e1706a2ec4716e472859814594876a3239922570312a748225be97"
+    },
+    "test/ProductionGas.t.sol": {
+      "sha256": "3413bfff8e45fe5b55ca95acbc77fd9c1c27196c15266bf1014da85bc1bf3eb2",
+      "keccak256": "0x8abd7234848da50d1a83db4fce3102ccf75ac2738097515afa44daed028e9a3d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3413bfff8e45fe5b55ca95acbc77fd9c1c27196c15266bf1014da85bc1bf3eb2",
+      "compiler_content_keccak256": "0x8abd7234848da50d1a83db4fce3102ccf75ac2738097515afa44daed028e9a3d"
+    },
+    "test/ProductionInvariants.t.sol": {
+      "sha256": "87ccc50a0a89aa818a3f5d251b68693f73394da637bdec2a86a8416dc65631aa",
+      "keccak256": "0x51d8999e9956d0562199cd12e895ce7a6012b6a7b23277455f9b5e4c1b529bda",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "87ccc50a0a89aa818a3f5d251b68693f73394da637bdec2a86a8416dc65631aa",
+      "compiler_content_keccak256": "0x51d8999e9956d0562199cd12e895ce7a6012b6a7b23277455f9b5e4c1b529bda"
+    },
+    "test/ReservationCapacity.t.sol": {
+      "sha256": "e61f0aa51ff46f986851432dc7028e9b00d20fff302f1de0c0e06d38a73d346e",
+      "keccak256": "0x3f6744f1dd611b9422e4eaa67483d9108cc3544cca6f5a48a793246f3124cf17",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "e61f0aa51ff46f986851432dc7028e9b00d20fff302f1de0c0e06d38a73d346e",
+      "compiler_content_keccak256": "0x3f6744f1dd611b9422e4eaa67483d9108cc3544cca6f5a48a793246f3124cf17"
+    },
+    "test/SequencerPolicy.t.sol": {
+      "sha256": "c4adfc89c0f6ba09b56081923820d141a50a70eccd75b1472798452080d69a1c",
+      "keccak256": "0x61168d694ab578d4406918e7db807bb9a2811c5b3fecf5af4cced19cd88b5477",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c4adfc89c0f6ba09b56081923820d141a50a70eccd75b1472798452080d69a1c",
+      "compiler_content_keccak256": "0x61168d694ab578d4406918e7db807bb9a2811c5b3fecf5af4cced19cd88b5477"
+    }
+  },
+  "passed": true
+}

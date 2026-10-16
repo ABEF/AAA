@@ -1,0 +1,63 @@
+{
+  "new_review_sha256": "f43663a908ea810ba73bc86f6325ac2bbd5dcdcc4e578703772218d1912ef2a1",
+  "raw_report_sha256": "821a3079eb9c4bf3bce588bf2d3bee4857d018326631f5cadcb5cca991e927d7",
+  "target_current_finding_index": 98,
+  "mutations": [
+    {
+      "name": "changed helper expression",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 5c52fc806b5476ab4379c9ccf9ce302b5a6a2206ea79acf447fa5613e4867f90"
+    },
+    {
+      "name": "changed severity",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 8e6a295044a4742c5bbbe2e1c533aab26344fd81f3aad003dae3f8c42a57fcfa"
+    },
+    {
+      "name": "changed confidence",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 0f1ae0659cb0f4d67fd52770bf11da8333c90f41f05ca5953e3e1b2587b55d10"
+    },
+    {
+      "name": "missing helper finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Stale review entry: fd4209e2339b3dc3f1b69af96407343dfe5fc45ae68dbd43c913cf6a3759d852"
+    },
+    {
+      "name": "duplicate finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Duplicate analyzer fingerprints"
+    },
+    {
+      "name": "new finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unreviewed finding: 7bba0009ec9b2ea0ab1f16a2538cc2253615ad03a1e2a8cb676b47b3a7387b18"
+    },
+    {
+      "name": "unresolved disposition",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unresolved finding: fd4209e2339b3dc3f1b69af96407343dfe5fc45ae68dbd43c913cf6a3759d852"
+    },
+    {
+      "name": "missing rationale",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Missing rationale: fd4209e2339b3dc3f1b69af96407343dfe5fc45ae68dbd43c913cf6a3759d852"
+    },
+    {
+      "name": "new helper source binding drift",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Reviewed content changed: src/ZZZMigrationBudget.sol"
+    }
+  ],
+  "all_rejected": true,
+  "checker_changed": false
+}

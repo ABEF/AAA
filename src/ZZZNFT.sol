@@ -100,7 +100,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         emit RandomnessConfigured(coordinator, gasLane, subId, confirmations, gasLimit, payNative);
     }
 
-    function mint(address to, uint256 id) external onlyModule(Ids.VAULT) nonReentrant {
+    function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating nonReentrant {
         if (!randomnessConfigured) revert NotReady();
         if (mintedCount == MAX_SUPPLY) revert InvalidState();
         address recipient = IZZZVault(msg.sender).mintProceedsRecipient();
@@ -166,7 +166,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
 
     /// @notice Called after the Vault commits successful share issuance.
     /// Eligibility persists through market decreases and migration states.
-    function notifyContribution(uint256 id) external onlyModule(Ids.VAULT) {
+    function notifyContribution(uint256 id) external onlyModule(Ids.VAULT) operating {
         _requireOwned(id);
         if (!traitsReady[id] || IZZZVault(msg.sender).sharesOf(id) == 0) revert NotReady();
         if (royaltyRewards.weightOf(id) == 0) royaltyRewards.activate(id, uint256(rarityOf[id]) + 1);

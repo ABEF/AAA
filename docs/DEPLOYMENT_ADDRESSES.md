@@ -60,12 +60,13 @@ chain; `Ids.TRANSPORT` names the fixed router, not a selected bridge provider.
 | `routes` | `ZZZMigrationRegistry` — immutable economic route identities |
 | `transport` | `ZZZBridgeRouter` — immutable provider-policy routing |
 
-Five helpers are created automatically and must also be inventoried:
+Six helpers are created automatically and must also be inventoried:
 
 | Creator | Helper addresses and bindings |
 | --- | --- |
 | Pool registry constructor | `ZZZActivationAssets` and `ZZZActivationEntry`; verify registry/controller/helper relationships. |
 | NFT constructor | `ZZZRoyaltyRewards`, `ZZZClaimRouter` and `ZZZNFTMetadata`; verify NFT/controller/royalty bindings. |
+| Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
 
 The royalty receiver is **the NFT-created `ZZZRoyaltyRewards` contract**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to

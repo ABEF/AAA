@@ -161,7 +161,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         return c.grossUSD;
     }
 
-    function execute(Request calldata request) external payable live nonReentrant {
+    function execute(Request calldata request) external payable live operating nonReentrant {
         _deadline(request.deadline);
         address vault = _vault();
         if (request.amountIn == 0 || request.minimumLiquidity == 0 || _owner(request.nftId) != msg.sender) revert Unauthorized();

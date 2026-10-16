@@ -1,37 +1,51 @@
 # AAA / ZZZ PoPL project instructions
 
-## Architecture evolution review - 2026-10-17
+## Architecture evolution and migration preparation - 2026-10-17
 
-**User instruction, 2026-10-17: use `main` for this project.** Do not create a
-new review branch unless a later explicit user instruction asks for one. The
-architecture review began on `codex/architecture-evolution-review` from `37bf0d2`;
-the user then requested its integration into `main`. Check Git for exact current
-publication. Read
-[architecture evolution](docs/ARCHITECTURE_EVOLUTION.md), the
-[revised brief](reports/architecture-evolution/REVISED_PROMPT.md) and
-[review](reports/architecture-evolution/REVIEW.md). Preserve unrelated unpublished
-wallet/quote/process-runner/artwork work.
+**Use `main` for this project**, as explicitly requested by the user. The earlier
+review branch was integrated into main; check Git for exact publication. Preserve
+unrelated unpublished wallet/quote/process-runner/artwork changes.
 
-The user approved **3% aggregate execution loss per migration, gas separate**.
-Activation/top-ups remain **1%**. The 3% floor is a proposed implementation
-requirement, not current enforcement. Do not remove ordered-pair checks:
-different pairs need composition epochs, historical reward/intake handling and
-typed conversion. Keep 80/10/5/5 fixed. The user selected **controlled whole-protocol migration while the home chain
-still works**, deferring post-halt recovery. Read
-[the canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md). Current
-contracts cannot perform this and cannot gain it after sealing; implement and
-qualify explicit freeze/export/import and single-successor accounting first.
-No post-halt recovery authority or cross-chain proof provider is inferred.
-The [address inventory](docs/DEPLOYMENT_ADDRESSES.md) lists required wallets,
-deployed helpers and dependencies; production selections remain open.
+Read [migration safety](docs/MIGRATION_SAFETY.md), the
+[canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md),
+[current verification](reports/migration-safety/VERIFICATION.md) and the earlier
+[architecture review](reports/architecture-evolution/REVIEW.md).
+The user-approved **3% aggregate execution limit, gas separate**, is now enforced
+for atomic same-ordered-pair local `movePool` and parked `resume`. The immutable
+Vault-created helper snapshots prices/principal before harvest, adds released
+compound to the denominator and requires at least 97% retained LP plus attributed
+idle, with the existing 5% idle ceiling. It is not a 97% deployed-LP promise, a
+cross-chain budget or protection against repeated cumulative losses. Activation
+and top-ups keep their **1% marginal deployed-LP** rule. Keep 80/10/5/5 fixed.
+Do not remove ordered-pair guards: different pairs need composition epochs,
+historical reward/intake handling and typed conversion.
 
-Destination capacity is repaired with permanent idempotent registration;
-the resulting `bucketCount` includes unfunded reserved None identities. Source
-code still does not authenticate remote reservation proof. Consult the current
-[verification record](reports/architecture-evolution/VERIFICATION.md) rather than reusing old Vault/static/fork results for changed
-source. No website/server change, public transaction or deployment is authorized.
+The user selected **controlled whole-protocol migration while the home chain
+still works**, deferring post-halt recovery, and **verified source finality with
+no multisig-only override** for future replacement activation. No proof provider
+is inferred. Reversible timelocked preparation now stops new economic work and
+protocol configuration while claims, transfers and authenticated settlement/drain
+remain available. It does not freeze/export ledgers, retire the source, activate
+a successor or authenticate satellite shutdown. Complete funded freeze/export/
+import and single-successor accounting remain pre-seal requirements; sealed
+contracts cannot gain these missing capabilities later.
 
-Read `PROJECT_CONTEXT.md` when starting work on this project. It records the related website, accepted product decisions, and current development boundaries.
+Keeper preparation checks fail closed if the controller getter is unavailable.
+Receipt recovery and permitted drains continue; new rebalance/compound/buyback
+submissions stop. Existing isolated staging was not upgraded. Qualify keeper and
+controller/fixture interfaces together before deployment. See the
+[keeper evidence](reports/canonical-preparation/keeper/README.md).
+
+Destination capacity has permanent idempotent registration; `bucketCount`
+includes unfunded reserved None identities. Source code does not authenticate
+remote reservation proof. The [address inventory](docs/DEPLOYMENT_ADDRESSES.md)
+now includes the fixed migration-budget helper; production selections remain
+open. Current normal-build headroom is only 17 runtime bytes in Vault and 30 in
+Migration, requiring modular design for subsequent handoff work.
+
+Use current source-bound receipts, not older Vault/static/fork results, for these
+changes. Internal review is not an independent audit or production approval.
+No website/server change, public transaction or contract deployment is authorized.
 
 ## Current documentation rules - 2026-10-16
 

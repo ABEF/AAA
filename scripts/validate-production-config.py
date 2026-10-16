@@ -217,6 +217,24 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(all(er.get(key) is True for key in ('independent','original_source_value_tested','aggregate_loss_budget_tested',
             'callback_owner_context_reviewed','typed_routes_reviewed','complete_route_history_reviewed')),
             ep+'.review_evidence','entry.review','Independently review source custody/value, total loss, callback context and complete typed-route policy history')
+        bp=path+'.migration_budget';budget=g.obj(chain.get('migration_budget'),bp)
+        budget_address=g.hex(budget.get('address'),bp+'.address',20)
+        budget['address']=budget_address
+        g.hex(budget.get('runtime_hash'),bp+'.runtime_hash')
+        g.check(budget_address is not None and budget_address not in addresses and
+            budget_address not in (activation_address,entry_address) and budget.get('immutable') is True and
+            budget.get('vault')==modules['vault'].get('address') and
+            budget.get('controller')==modules['access'].get('address'),bp,'migration_budget.binding',
+            'The immutable budget helper must be created by and bound to this Vault and controller')
+        g.check(budget_address is not None and budget.get('observed_vault_helper')==budget_address and
+            type(budget.get('observed_chain_id')) is int and budget.get('observed_chain_id')==cid and
+            type(budget.get('observed_block_number')) is int and budget.get('observed_block_number')==observed.get('number') and
+            budget.get('observed_block_hash')==observed.get('hash'),bp,'migration_budget.observation',
+            'Observe Vault.migrationBudget, helper.vault/access and runtime at the exact inventory block')
+        br=g.proof(budget.get('review_evidence'),bp+'.review_evidence')
+        g.check(all(br.get(key) is True for key in ('independent','aggregate_loss_tested','compound_not_subsidy_tested',
+            'callback_price_snapshot_tested','local_scope_reviewed')),bp+'.review_evidence','migration_budget.review',
+            'Review the aggregate local move/resume budget and its exclusions; it is not an asynchronous bridge guarantee')
         governance=g.obj(chain.get('governance'),path+'.governance')
         gov=g.hex(governance.get('multisig'),path+'.governance.multisig',20)
         proposers=[g.hex(a,path+'.governance.proposers',20) for a in g.items(governance.get('proposers'),path+'.governance.proposers')]
@@ -248,8 +266,8 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         recipient=g.hex(constructor.get('mint_proceeds_recipient'),path+'.constructor.mint_proceeds_recipient',20)
         constructor['mint_proceeds_recipient']=recipient
         g.check(recipient not in addresses,path+'.constructor.mint_proceeds_recipient','mint.custody','Mint proceeds must stay outside protocol custody/reward modules')
-        g.check(recipient not in (activation_address,entry_address),path+'.constructor.mint_proceeds_recipient','mint.custody',
-            'Mint proceeds cannot be sent to noncustodial activation helpers')
+        g.check(recipient not in (activation_address,entry_address,budget_address),path+'.constructor.mint_proceeds_recipient','mint.custody',
+            'Mint proceeds cannot be sent to noncustodial helpers')
         g.proof(constructor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
         g.text(constructor.get('nft_base_uri'),path+'.constructor.nft_base_uri')
         if cid==home:
@@ -265,7 +283,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 helper_address=g.hex(helper.get('address'),hp+'.address',20);helper_addresses.append(helper_address)
                 g.hex(helper.get('runtime_hash'),hp+'.runtime_hash')
                 g.check(helper_address is not None and helper_address not in addresses and helper_address!=recipient and
-                    helper_address not in (activation_address,entry_address),
+                    helper_address not in (activation_address,entry_address,budget_address),
                     hp+'.address','nft.helper','NFT-owned helpers must be distinct from modules and the mint recipient')
                 g.check(helper.get('immutable') is True,hp+'.immutable','nft.helper','NFT helper addresses must be immutable constructor bindings')
                 review=g.proof(helper.get('review_evidence'),hp+'.review_evidence')
@@ -551,10 +569,11 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 (nft_inventory.get('royalty_rewards'),nft_inventory.get('metadata_renderer'),nft_inventory.get('claim_router')) if isinstance(helper_record,dict)]
             activation_record=chain.get('activation_assets') if isinstance(chain.get('activation_assets'),dict) else {}
             entry_record=chain.get('activation_entry') if isinstance(chain.get('activation_entry'),dict) else {}
+            budget_record=chain.get('migration_budget') if isinstance(chain.get('migration_budget'),dict) else {}
             g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and
                 receiver not in nft_helpers and receiver!=constructor.get('mint_proceeds_recipient') and
-                receiver not in (activation_record.get('address'),entry_record.get('address')),rp+'.address','reward.custody',
-                'Reward receivers must be separate from modules, NFT/activation helpers and the mint-proceeds recipient')
+                receiver not in (activation_record.get('address'),entry_record.get('address'),budget_record.get('address')),rp+'.address','reward.custody',
+                'Reward receivers must be separate from modules, immutable helpers and the mint-proceeds recipient')
             g.check(record.get('immutable_configuration') is True and record.get('upgradeable') is False,
                 rp,'reward.mutable','Receiver code and bucket/currency/wrapper bindings must be immutable and reviewed')
             g.check(type(record.get('observed_chain_id')) is int and record.get('observed_chain_id')==cid and

@@ -62,8 +62,11 @@ recovery. The current code cannot gain that capability after sealing.
 
 Different-pair conversion and canonical portability require pre-seal design,
 implementation and qualification; disabling bridges does not add those capabilities to sealed code. The
-accepted 3% migration execution budget is a design requirement, not existing
-enforcement. See [architecture evolution](ARCHITECTURE_EVOLUTION.md).
+accepted 3% migration execution budget is enforced only for supported atomic local
+move/resume in the current candidate; it is not an asynchronous bridge guarantee.
+Reversible preparation is implemented, but full canonical handoff remains absent.
+The selected finality policy forbids a multisig-only override. See
+[migration safety](MIGRATION_SAFETY.md) and [architecture evolution](ARCHITECTURE_EVOLUTION.md).
 
 ## Moved requirement links
 

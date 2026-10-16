@@ -1,0 +1,10 @@
+{
+  "original_name": "stdout.log",
+  "original_bytes": 31828549,
+  "original_sha256": "3788d9a368f5fd64632d3eb7f48128e0ef269727589c74ada0b69e92e689303e",
+  "archive": "stdout.log.gz",
+  "archive_bytes": 5409199,
+  "archive_sha256": "bc5d58d6b185034e5a3bd114a1185850b6ede0441f01960d15418852fcfce9de",
+  "lossless_roundtrip_verified": true,
+  "raw_local_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\migration-safety-20261017\\regression-stdout.log"
+}
