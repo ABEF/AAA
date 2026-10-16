@@ -1,4 +1,4 @@
-import json,os,shutil,tempfile,time,unittest,subprocess
+import copy,datetime as dt,json,os,shutil,tempfile,time,unittest,subprocess
 from pathlib import Path
 from unittest.mock import patch
 from keeper.monitor import Keeper,positive,ACCOUNTING_MODEL
@@ -10,13 +10,14 @@ class FakeRpc:
     def __init__(self):self.now=int(time.time());self.gas=100;self.gas_price=2;self.receipt=None;self.tx=None;self.error=False;self.calls=[]
     def call(self,method,params):
         self.calls.append((method,params))
-        if method=='eth_getBlockByNumber':return {'number':'0x64','timestamp':hex(self.now),'hash':H}
+        if method=='eth_getBlockByNumber':return {'number':'0x64' if params[0]=='latest' else params[0],'timestamp':hex(self.now),'hash':H}
         if method=='eth_call':
             if self.error:raise RpcError('simulation failed')
             return '0x'+'0'*64
         if method=='eth_estimateGas':return hex(self.gas)
         if method=='eth_gasPrice':return hex(self.gas_price)
         if method=='eth_getTransactionCount':return '0x7'
+        if method=='eth_getBalance':return hex(10**18)
         if method=='eth_getCode':return '0x6000'
         if method=='eth_getTransactionReceipt':return self.receipt
         if method=='eth_getTransactionByHash':return self.tx
@@ -31,6 +32,8 @@ class KeeperTests(unittest.TestCase):
         self.k=Keeper(self.cfg,rpc=self.rpc)
         self.quiet=patch('keeper.monitor.log');self.quiet.start();self.addCleanup(self.quiet.stop)
     def enable_test_signer(self):
+        self.k.state['next_nonce']=7
+        self.k.state['receipt_anchor']={'number':98,'hash':H,'timestamp':self.rpc.now,'nonce':6}
         self.k.live=True;self.k.cast='/mock/cast';self.k.keystore=Path('/mock/key');self.k.password=Path('/mock/pass')
         self.k._validate_code_hashes=lambda:None
     def pending(self):
@@ -40,8 +43,9 @@ class KeeperTests(unittest.TestCase):
     def receipt(self,success=True):
         p=self.pending()
         self.rpc.receipt={'transactionHash':H,'blockNumber':'0x63','blockHash':H,'status':hex(int(success)),
-            'gasUsed':'0x64','effectiveGasPrice':'0x2','l1Fee':'0x5'}
-        self.rpc.tx={'hash':H,'from':A,'to':B,'nonce':'0x7','input':p['data'],'value':hex(p['value'])}
+            'gasUsed':'0x64','effectiveGasPrice':'0x2','l1Fee':'0x5','from':A,'to':B,'transactionIndex':'0x0'}
+        self.rpc.tx={'hash':H,'from':A,'to':B,'nonce':'0x7','input':p['data'],'value':hex(p['value']),
+            'blockNumber':'0x63','blockHash':H,'transactionIndex':'0x0','gas':'0x100'}
     def test_default_dry_run_never_signs(self):
         with patch('subprocess.run') as run:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c'))
@@ -88,11 +92,20 @@ class KeeperTests(unittest.TestCase):
         self.pending();self.assertTrue(self.k.poll_pending());self.assertIsNotNone(self.k.state['pending'])
     def test_success_accounts_actual_cost(self):
         self.receipt();self.assertFalse(self.k.poll_pending())
-        self.assertEqual(self.k.state['spent']['2026-10-14'],215)
+        day=dt.datetime.fromtimestamp(self.rpc.now,dt.timezone.utc).date().isoformat()
+        self.assertEqual(self.k.state['spent'][day],215)
         self.assertEqual(self.k.state['last']['collect:1'],self.rpc.now)
     def test_failed_tx_not_marked_success(self):
         self.receipt(False);self.k.poll_pending()
-        self.assertEqual(self.k.state['spent']['2026-10-14'],205);self.assertNotIn('collect:1',self.k.state['last'])
+        day=dt.datetime.fromtimestamp(self.rpc.now,dt.timezone.utc).date().isoformat()
+        self.assertEqual(self.k.state['spent'][day],205);self.assertNotIn('collect:1',self.k.state['last'])
+        self.assertEqual(self.k.state['retry_after']['collect:1'],self.rpc.now+3600)
+    def test_reverted_action_cannot_immediately_spend_again(self):
+        self.receipt(False);self.k.poll_pending()
+        with patch('subprocess.run') as signer:
+            self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'collect:1'))
+            signer.assert_not_called()
+        self.assertEqual(self.k.blocked_actions,1)
     def test_wrong_sender_fails_closed(self):
         self.receipt();self.rpc.tx['from']=B
         with self.assertRaises(RpcError):self.k.poll_pending()
@@ -104,7 +117,7 @@ class KeeperTests(unittest.TestCase):
         self.receipt();self.rpc.tx['input']='0x'
         with self.assertRaises(RpcError):self.k.poll_pending()
     def test_receipt_reorg_not_confirmed(self):
-        self.receipt();self.rpc.receipt['blockHash']='0x'+'00'*32
+        self.receipt();self.rpc.receipt['blockHash']='0x'+'cd'*32
         self.assertTrue(self.k.poll_pending());self.assertIsNotNone(self.k.state['pending'])
     def test_insufficient_confirmations_waits(self):
         self.receipt();self.rpc.receipt['blockNumber']='0x64'
@@ -167,6 +180,102 @@ class KeeperTests(unittest.TestCase):
         self.receipt();self.rpc.receipt['transactionHash']='0x'+'cd'*32
         with self.assertRaises(RpcError):self.k.poll_pending()
         self.assertIsNotNone(self.k.state['pending'])
+    def assert_pending_unchanged(self,mutate):
+        self.receipt();self.k.save()
+        expected=copy.deepcopy(self.k.state);disk=self.k.path.read_text()
+        mutate()
+        with self.assertRaises(RpcError):self.k.poll_pending()
+        self.assertEqual(self.k.state,expected);self.assertEqual(self.k.path.read_text(),disk)
+    def test_incomplete_receipt_never_clears_pending_or_assumes_free_gas(self):
+        fields=('transactionHash','blockNumber','blockHash','transactionIndex','from','to','status','gasUsed','effectiveGasPrice')
+        for field in fields:
+            with self.subTest(field=field):
+                self.assert_pending_unchanged(lambda:self.rpc.receipt.pop(field))
+    def test_noncanonical_receipt_quantities_fail_closed(self):
+        for field in ('blockNumber','transactionIndex','status','gasUsed','effectiveGasPrice','l1Fee'):
+            for value in (None,True,1,-1,'-0x1','0x','0x00','0x01','0x-1','1','0x'+'1'*65):
+                with self.subTest(field=field,value=value):
+                    self.assert_pending_unchanged(lambda:self.rpc.receipt.update({field:value}))
+    def test_invalid_receipt_status_and_zero_gas_fail_closed(self):
+        for field,value in (('status','0x2'),('gasUsed','0x0')):
+            with self.subTest(field=field):
+                self.assert_pending_unchanged(lambda:self.rpc.receipt.update({field:value}))
+    def test_receipt_sender_target_and_hash_are_required_to_match(self):
+        for field,value in (('from',B),('to',A),('blockHash','0x'+'0'*64)):
+            with self.subTest(field=field):
+                self.assert_pending_unchanged(lambda:self.rpc.receipt.update({field:value}))
+    def test_pending_transaction_inclusion_and_gas_limit_match_receipt(self):
+        for field,value in (('blockNumber','0x62'),('blockHash','0x'+'cd'*32),('transactionIndex','0x1'),('gas','0x63')):
+            with self.subTest(field=field):
+                self.assert_pending_unchanged(lambda:self.rpc.tx.update({field:value}))
+    def test_missing_transaction_identity_and_inclusion_fields_fail_closed(self):
+        for field in ('hash','from','to','nonce','input','value','blockNumber','blockHash','transactionIndex','gas'):
+            with self.subTest(field=field):
+                self.assert_pending_unchanged(lambda:self.rpc.tx.pop(field))
+    def test_receipt_header_number_is_validated(self):
+        original=self.rpc.call
+        def call(method,params):
+            result=original(method,params)
+            if method=='eth_getBlockByNumber' and params[0]=='0x63':result['number']='0x62'
+            return result
+        self.rpc.call=call
+        self.assert_pending_unchanged(lambda:None)
+    def test_ordinary_receipt_reorg_after_transaction_read_retains_state(self):
+        original=self.rpc.call;changed=False
+        def call(method,params):
+            nonlocal changed
+            result=original(method,params)
+            if method=='eth_getTransactionByHash':changed=True
+            if changed and method=='eth_getBlockByNumber' and params[0]=='0x63':result['hash']='0x'+'cd'*32
+            return result
+        self.rpc.call=call
+        self.assert_pending_unchanged(lambda:None)
+    def test_head_retreat_below_confirmation_depth_preserves_pending(self):
+        self.receipt();self.k.save();before=copy.deepcopy(self.k.state);disk=self.k.path.read_text()
+        original=self.rpc.call;heads=0
+        def call(method,params):
+            nonlocal heads
+            result=original(method,params)
+            if method=='eth_getBlockByNumber' and params[0]=='latest':
+                heads+=1
+                if heads==2:result['number']='0x63'
+            return result
+        self.rpc.call=call
+        self.assertTrue(self.k.poll_pending());self.assertEqual(self.k.state,before)
+        self.assertEqual(self.k.path.read_text(),disk)
+    def test_inclusion_day_cost_blocks_new_day_budget_overspend(self):
+        self.receipt();self.rpc.now=int(dt.datetime(2026,10,16,0,0,10,tzinfo=dt.timezone.utc).timestamp())
+        self.k.state['pending']['day']='2026-10-15'
+        self.k.state['spent']={'2026-10-15':600,'2026-10-16':100}
+        self.cfg['max_daily_cost_wei']=500
+        with patch('keeper.monitor.time.time',return_value=self.rpc.now),patch('keeper.monitor.log') as logger:
+            self.assertFalse(self.k.poll_pending())
+            self.assertEqual(self.k.state['spent'],{'2026-10-15':600,'2026-10-16':315})
+            self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'next'))
+        self.assertEqual(logger.call_args.args[0],'cost_cap_exceeded')
+    def test_confirmed_cost_is_applied_exactly_once(self):
+        self.receipt();self.assertFalse(self.k.poll_pending())
+        after=copy.deepcopy(self.k.state)
+        self.assertFalse(self.k.poll_pending());self.assertEqual(self.k.state,after)
+        restarted=Keeper(self.cfg,rpc=self.rpc)
+        self.assertFalse(restarted.poll_pending());self.assertEqual(restarted.state,after)
+    def test_optional_l1_fee_absent_but_explicit_zero_effective_price_supported(self):
+        self.receipt();self.rpc.receipt.pop('l1Fee');self.rpc.receipt['effectiveGasPrice']='0x0'
+        self.assertFalse(self.k.poll_pending())
+        self.assertEqual(sum(self.k.state['spent'].values()),10)
+    def test_reviewed_separate_l1_fee_cannot_be_omitted(self):
+        self.receipt();self.k.fee_policy='separate_l1_fee';self.rpc.receipt.pop('l1Fee')
+        before=copy.deepcopy(self.k.state)
+        with self.assertRaises(RpcError):self.k.poll_pending()
+        self.assertEqual(self.k.state,before)
+    def test_included_policy_rejects_conflicting_extra_fee(self):
+        self.receipt();self.k.fee_policy='included'
+        with self.assertRaises(RpcError):self.k.poll_pending()
+    def test_failed_checkpoint_preserves_in_memory_pending_and_costs(self):
+        self.receipt();self.k.save();before=copy.deepcopy(self.k.state);disk=self.k.path.read_text()
+        with patch.object(self.k,'save',side_effect=OSError('disk full')):
+            with self.assertRaises(OSError):self.k.poll_pending()
+        self.assertEqual(self.k.state,before);self.assertEqual(self.k.path.read_text(),disk)
     def reward_cycle(self,status):
         self.k.maintenance={'minimum_liquidity':1,'harvest':True,'compound':True,
             'reward_routes':[{'token':B,'route_id':H,'minimum_units':1,'native_fee_wei':3}]}

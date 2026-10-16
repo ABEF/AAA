@@ -265,3 +265,11 @@ Final local verification for this gap-hardening snapshot: 488 offline Solidity p
 ## Git publication handoff - 2026-10-16
 
 The user explicitly requested committing and pushing the verified contract work, including project notes and todo/release checklists, to ABEF/AAA. Earlier uncommitted/local wording records the verification-time state before this publication. The source-bound receipts remain unchanged; current publication status and commit identity are established by Git HEAD and origin/main. No smart-contract deployment, signing, real asset movement or website/server change is authorized by this request. Exact-commit Ubuntu CI must be checked independently; local evidence is not a claim of a green published workflow or production approval.
+
+## Central Todo location - 2026-10-16
+
+The user cancelled the website Todo page before publication. The website was restored to its clean previously deployed revision. The central GitHub task list is now root `TODO.md`, generated from `docs/project-todo.json`; maintain it for every task/fix/decision/milestone and follow `docs/TODO_WORKFLOW.md`. Detailed implementation/release evidence stays in its existing documents. Keeper recovery hardening is a separate local candidate: missing-state and nonce guards, balance checks, health/log output and explicit unused-signer initialization; publication and operating rehearsals remain open.
+
+## Keeper security review follow-up - 2026-10-16
+
+Current keeper hardening adds explicit unused-signer bootstrap, strict live state/nonce/receipt anchors, qualified fee-policy gates, private runtime files, RPC validation, revert cooldowns, structured health/errors and bounded service restarts. No public transaction or contract deployment occurred. The local Python workspace passed 602 tests; five Unix cases remain separately scoped to Ubuntu verification. See `reports/keeper-recovery/REVIEW.md` for source-specific findings and open operating gates.

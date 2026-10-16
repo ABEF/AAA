@@ -5,6 +5,7 @@ key is accepted by this program. Ambiguous broadcasts stop further submissions.
 """
 from __future__ import annotations
 import argparse
+import copy
 import datetime as dt
 import json
 import os
@@ -27,8 +28,28 @@ MAX_METADATA_BATCH = 50
 def log(event: str, **fields: Any) -> None:
     print(json.dumps({'time':dt.datetime.now(dt.timezone.utc).isoformat(),'event':event,**fields},sort_keys=True),flush=True)
 
+def error_context(exc: Exception) -> dict[str,str]:
+    # Never log exception text, signer output, RPC URLs or the full traceback.
+    trace = exc.__traceback__
+    while trace and trace.tb_next: trace = trace.tb_next
+    return {'error_type':type(exc).__name__, 'error_site':
+        f'{Path(trace.tb_frame.f_code.co_filename).name}:{trace.tb_frame.f_code.co_name}:{trace.tb_lineno}' if trace else 'unknown'}
+
 def positive(value: Any, field: str, *, zero: bool = False) -> int:
     return integer(value,field,minimum=0 if zero else 1)
+
+def rpc_quantity(value: Any, field: str, *, minimum: int = 0) -> int:
+    """Require a complete canonical RPC quantity, without defaults/coercion."""
+    if not isinstance(value,str) or not re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]{0,63})',value):
+        raise RpcError(f'Malformed {field}')
+    number = int(value,16)
+    if number < minimum: raise RpcError(f'Invalid {field}')
+    return number
+
+def rpc_hash(value: Any, field: str) -> str:
+    if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',value) or int(value,16) == 0:
+        raise RpcError(f'Malformed {field}')
+    return value.lower()
 
 def signer_environment(rpc_url: str | None = None) -> dict[str,str]:
     """Keep host/runtime settings, excluding ambient Foundry wallet/tx overrides."""
@@ -66,8 +87,15 @@ class Keeper:
             if 'sync_external_rewards' in settings and type(settings['sync_external_rewards']) is not bool:
                 raise ValueError('sync_external_rewards must be an explicit boolean')
         self.path = Path(config.get('state_path','var/keeper.json'))
+        self.health_path = Path(config.get('health_path',str(self.path.with_suffix('.health.json'))))
+        paths = [self.path.resolve(),self.health_path.resolve(),Path(config.get('lock_path','var/keeper.lock')).resolve()]
+        paths.extend(Path(config[name]).resolve() for name in ('keystore','password_file') if config.get(name))
+        if len(set(paths)) != len(paths): raise ValueError('State, health and lock paths must be distinct')
+        if live and not self.path.is_file():
+            raise ValueError('Live state is missing; restore a verified backup or initialize an unused keeper')
         self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,
-            'bucket_cursor':0,'last':{},'spent':{},'pending':None})
+            'bucket_cursor':0,'last':{},'spent':{},'pending':None,'next_nonce':None,'receipt_anchor':None})
+        if not isinstance(self.state,dict): raise ValueError('Malformed persistent state')
         if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
             raise ValueError('Persistent state belongs to another chain or sender')
         if self.state.get('accounting_model') != ACCOUNTING_MODEL:
@@ -75,13 +103,139 @@ class Keeper:
         if self.state.get('contracts') != self.contracts:
             raise ValueError('Persistent keeper state belongs to another deployment')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
+        self._validate_state()
+        self.retry_cooldown = positive(config.get('revert_cooldown_seconds',3600),'revert_cooldown_seconds')
+        if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
+        self.cycle_failures = 0
+        self.skipped_buckets = 0
+        self.blocked_actions = 0
+        self.strategy_paused = False
+        self.stop_requested = lambda: False
+        self.last_success_at = None
         self.confirmations = positive(config.get('confirmations',12),'confirmations')
+        self.fee_policy = config.get('receipt_fee_policy','unverified')
+        if self.fee_policy not in ('unverified','included','separate_l1_fee'):
+            raise ValueError('Unsupported receipt fee policy')
         self._configure_metadata()
         if self.live:
             if config.get('reviewed_for_live_use') is not True:
                 raise ValueError('Live use requires an explicit reviewed deployment configuration')
+            if self.state.get('next_nonce') is None:
+                raise ValueError('Live state needs a reviewed nonce checkpoint; do not reset old recovery state')
+            if self.fee_policy == 'unverified': raise ValueError('Qualify network receipt fee accounting before live use')
+            if self.fee_policy == 'separate_l1_fee': positive(config.get('l1_fee_allowance_wei'),'l1_fee_allowance_wei')
+            self._validate_runtime_files()
             self._validate_signer()
             self._validate_code_hashes()
+            self._validate_checkpoint()
+
+    def _validate_state(self) -> None:
+        for field in ('last','spent','retry_after'):
+            values = self.state.get(field,{}) if field == 'retry_after' else self.state.get(field)
+            if not isinstance(values,dict): raise ValueError('Malformed keeper counters')
+            for key,value in values.items():
+                if not isinstance(key,str) or not key: raise ValueError('Malformed keeper counter key')
+                positive(value,field,zero=True)
+                if field == 'spent': dt.date.fromisoformat(key)
+        nonce = self.state.get('next_nonce')
+        if nonce is not None: positive(nonce,'next_nonce',zero=True)
+        anchor = self.state.get('receipt_anchor')
+        if anchor is not None:
+            if not isinstance(anchor,dict): raise ValueError('Malformed receipt checkpoint')
+            for field in ('number','nonce','timestamp'): positive(anchor.get(field),field,zero=True)
+            rpc_hash(anchor.get('hash'),'receipt checkpoint hash')
+            if nonce != anchor['nonce']+1: raise ValueError('Receipt checkpoint nonce mismatch')
+        pending = self.state.get('pending')
+        if pending is not None:
+            if not isinstance(pending,dict): raise ValueError('Malformed pending intent')
+            for field in ('nonce','value'): positive(pending.get(field),field,zero=True)
+            if nonce is not None and pending['nonce'] != nonce: raise ValueError('Pending nonce checkpoint mismatch')
+            address(pending.get('to'))
+            if not isinstance(pending.get('key'),str) or not pending['key']: raise ValueError('Missing action identity')
+            if not isinstance(pending.get('data'),str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2}){4,}',pending['data']):
+                raise ValueError('Malformed pending calldata')
+            dt.date.fromisoformat(pending['day'])
+            if pending.get('hash') is not None: rpc_hash(pending['hash'],'pending hash')
+
+    def _validate_runtime_files(self) -> None:
+        if os.name != 'posix': raise ValueError('Live keeper requires supported Unix ownership/locking')
+        for path in (self.path,self.health_path):
+            parent = path.parent.stat()
+            if parent.st_uid != os.getuid() or parent.st_mode & 0o022:
+                raise ValueError('Runtime directory must belong to keeper and not be writable by others')
+            if path.is_symlink(): raise ValueError('Runtime state/health symlinks are forbidden')
+            if path.exists():
+                st = path.stat()
+                if not stat.S_ISREG(st.st_mode) or st.st_uid != os.getuid() or st.st_mode & 0o077:
+                    raise ValueError('Runtime files must be private regular files owned by keeper')
+
+    def _validate_checkpoint(self) -> None:
+        anchor = self.state.get('receipt_anchor')
+        if anchor is None:
+            if self.live and self.state.get('next_nonce') != 0:
+                raise RpcError('Missing confirmed checkpoint for a used signer')
+            return
+        head,_ = self._head()
+        block = positive(anchor['number'],'receipt checkpoint block',zero=True)
+        header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if (head-block+1 < self.confirmations or not isinstance(header,dict) or
+                rpc_quantity(header.get('number'),'checkpoint header number') != block or
+                rpc_hash(header.get('hash'),'checkpoint header hash') != anchor['hash'] or
+                rpc_quantity(header.get('timestamp'),'checkpoint header timestamp') != anchor['timestamp']):
+            log('confirmed_checkpoint_invalidated',block_number=block)
+            raise RpcError('Confirmed receipt checkpoint changed; manual reorg reconciliation required')
+
+    def initialize_state(self) -> None:
+        """Explicit bootstrap only. Used signers require restoration, never reset."""
+        if self.live or self.path.exists(): raise ValueError('Initialization requires missing state in dry-run mode')
+        if self.config.get('reviewed_for_live_use') is not True: raise ValueError('Review configuration before initialization')
+        self._validate_code_hashes()
+        self._head()
+        for tag in ('latest','pending'):
+            if rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,tag]),'initial nonce') != 0:
+                raise ValueError('Used keeper requires restored/reconciled state or a fresh authorized signer')
+        self.state['next_nonce'] = 0
+        self.save()
+        log('state_initialized',sender=self.sender,chain_id=self.chain)
+
+    def run_cycle(self) -> bool:
+        """Write a heartbeat separately from durable transaction recovery state."""
+        start = time.monotonic()
+        self.skipped_buckets = 0
+        self.blocked_actions = 0
+        def health(status: str, **extra: Any) -> None:
+            atomic_json(self.health_path,{'time':dt.datetime.now(dt.timezone.utc).isoformat(),
+                'status':status,'live':self.live,'chain_id':self.chain,'sender':self.sender,
+                'last_success_at':self.last_success_at,'consecutive_failures':self.cycle_failures,
+                'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
+                'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
+                'pending_action':(self.state.get('pending') or {}).get('key'),
+                'pending_day':(self.state.get('pending') or {}).get('day'),
+                'duration_seconds':round(time.monotonic()-start,3),**extra})
+        health('running')  # A failed health write stops the cycle before signing.
+        try:
+            self.cycle()
+        except Exception as exc:
+            self.cycle_failures += 1
+            details = error_context(exc)
+            retryable = isinstance(exc,(RpcError,subprocess.TimeoutExpired))
+            health('error' if retryable else 'halted',**details)
+            log('cycle_failed',retryable=retryable,consecutive_failures=self.cycle_failures,**details)
+            if not retryable: raise
+            return False
+        pending = bool(self.state.get('pending'))
+        if self.skipped_buckets or self.blocked_actions:
+            self.cycle_failures += 1
+            status = 'degraded'
+        elif pending:
+            status = 'awaiting_receipt' if self.state['pending'].get('hash') else 'recovery_required'
+        else:
+            self.cycle_failures = 0
+            self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
+            status = 'healthy' if self.live else 'dry_run'
+        health(status)
+        log('cycle_completed',status=status,skipped_buckets=self.skipped_buckets,pending=pending)
+        return not (self.skipped_buckets or self.blocked_actions)
 
     def save(self) -> None: atomic_json(self.path,self.state)
     def view(self,name: str,signature: str,*args: int|str) -> int:
@@ -117,11 +271,15 @@ class Keeper:
 
     def _head(self) -> tuple[int,int]:
         head = self.rpc.call('eth_getBlockByNumber',['latest',False])
-        number,timestamp = int(head['number'],16),int(head['timestamp'],16)
+        if not isinstance(head,dict): raise RpcError('Missing RPC head')
+        number = rpc_quantity(head.get('number'),'head block number')
+        timestamp = rpc_quantity(head.get('timestamp'),'head timestamp',minimum=1)
+        rpc_hash(head.get('hash'),'head block hash')
         if abs(time.time()-timestamp) > 600: raise RpcError('RPC head timestamp is stale or implausible')
         return number,timestamp
 
     def poll_pending(self) -> bool:
+        self._validate_checkpoint()
         pending = self.state.get('pending')
         if not pending: return False
         tx_hash = pending.get('hash')
@@ -132,28 +290,81 @@ class Keeper:
         if receipt is None:
             log('pending',transaction=tx_hash)
             return True
-        head,_ = self._head()
-        block = int(receipt['blockNumber'],16)
+        if not isinstance(receipt,dict): raise RpcError('Malformed pending receipt')
+        if rpc_hash(receipt.get('transactionHash'),'receipt transaction hash') != rpc_hash(tx_hash,'pending transaction hash'):
+            raise RpcError('Pending receipt transaction hash mismatch')
+        try:
+            if address(receipt.get('from')) != self.sender or address(receipt.get('to')) != pending['to']:
+                raise ValueError('Receipt sender or target differs')
+        except (ValueError,TypeError,AttributeError) as exc:
+            raise RpcError('Pending receipt sender/target mismatch') from exc
+        block = rpc_quantity(receipt.get('blockNumber'),'receipt block number')
+        block_hash = rpc_hash(receipt.get('blockHash'),'receipt block hash')
+        transaction_index = rpc_quantity(receipt.get('transactionIndex'),'receipt transaction index')
+        status = rpc_quantity(receipt.get('status'),'receipt status')
+        if status not in (0,1): raise RpcError('Unsupported receipt status')
+        success = status == 1
+        gas_used = rpc_quantity(receipt.get('gasUsed'),'receipt gas used',minimum=1)
+        # A missing effective price is unavailable evidence, never free gas.
+        gas_price = rpc_quantity(receipt.get('effectiveGasPrice'),'receipt effective gas price')
+        # Optional chain-specific extension: production must qualify whether
+        # additional L1 cost is reported separately or included in gasUsed.
+        if self.fee_policy == 'separate_l1_fee' and 'l1Fee' not in receipt:
+            raise RpcError('Required separate L1 fee is missing')
+        l1_fee = rpc_quantity(receipt['l1Fee'],'receipt L1 fee') if 'l1Fee' in receipt else 0
+        if self.fee_policy == 'included' and l1_fee != 0:
+            raise RpcError('Separate L1 fee conflicts with reviewed inclusive accounting')
+        head,head_timestamp = self._head()
         if head-block+1 < self.confirmations: return True
         header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
-        if header is None or header['hash'].lower() != receipt['blockHash'].lower():
+        if header is None:
             log('receipt_reorged',transaction=tx_hash); return True
+        if not isinstance(header,dict) or rpc_quantity(header.get('number'),'receipt header number') != block:
+            raise RpcError('Receipt header has the wrong block number')
+        if rpc_hash(header.get('hash'),'receipt header hash') != block_hash:
+            log('receipt_reorged',transaction=tx_hash); return True
+        timestamp = rpc_quantity(header.get('timestamp'),'receipt header timestamp',minimum=1)
+        if timestamp > head_timestamp: raise RpcError('Receipt block timestamp exceeds the head')
+        try: day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
+        except (ValueError,OverflowError,OSError) as exc: raise RpcError('Invalid receipt inclusion date') from exc
         transaction = self.rpc.call('eth_getTransactionByHash',[tx_hash])
         self._validate_pending_transaction(transaction,pending,tx_hash)
-        if receipt.get('transactionHash','').lower() != tx_hash.lower():
-            raise RpcError('Pending receipt transaction hash mismatch')
-        success = int(receipt['status'],16) == 1
-        gas_price = int(receipt.get('effectiveGasPrice',transaction.get('gasPrice','0x0')),16)
-        cost = int(receipt['gasUsed'],16)*gas_price + (pending['value'] if success else 0)
-        l1_fee = receipt.get('l1Fee','0x0')
-        cost += int(l1_fee,16) if isinstance(l1_fee,str) and l1_fee.startswith('0x') else int(l1_fee)
-        day = pending['day']
+        if (rpc_quantity(transaction.get('blockNumber'),'transaction block number') != block or
+                rpc_hash(transaction.get('blockHash'),'transaction block hash') != block_hash or
+                rpc_quantity(transaction.get('transactionIndex'),'transaction index') != transaction_index):
+            raise RpcError('Transaction and receipt inclusion differ')
+        if gas_used > rpc_quantity(transaction.get('gas'),'transaction gas limit',minimum=1):
+            raise RpcError('Receipt gas exceeds the transaction limit')
+        cost = gas_used*gas_price + l1_fee + (pending['value'] if success else 0)
+        metadata_records = None
         if success and pending.get('metadata_observation') is not None:
-            self._confirm_metadata(pending,block,header['hash'],head)
-        self.state['spent'][day] = int(self.state['spent'].get(day,0)) + cost
+            metadata_records = self._confirm_metadata(pending,block,block_hash,head)
+        # RPC failover/reorgs can happen during transaction or metadata reads.
+        # Recheck depth and the exact header before changing ANY durable state.
+        final_head,final_timestamp = self._head()
+        if final_head-block+1 < self.confirmations: return True
+        final = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
+        if (not isinstance(final,dict) or rpc_quantity(final.get('number'),'final receipt header number') != block or
+                rpc_hash(final.get('hash'),'final receipt header hash') != block_hash or
+                rpc_quantity(final.get('timestamp'),'final receipt timestamp') != timestamp or timestamp > final_timestamp):
+            raise RpcError('Receipt block changed before checkpoint')
+        previous_state = self.state
+        updated = copy.deepcopy(previous_state)
+        updated['spent'][day] = positive(updated['spent'].get(day,0),'recorded daily spend',zero=True) + cost
         if success:
-            self.state['last'][pending['key']] = int(header['timestamp'],16)
-        self.state['pending'] = None; self.save()
+            updated['last'][pending['key']] = timestamp
+            updated.setdefault('retry_after',{}).pop(pending['key'],None)
+        else:
+            updated.setdefault('retry_after',{})[pending['key']] = timestamp+self.retry_cooldown
+        if metadata_records is not None: updated['metadata_refresh']['notified'] = metadata_records
+        updated['pending'] = None
+        updated['next_nonce'] = pending['nonce']+1
+        updated['receipt_anchor'] = {'number':block,'hash':block_hash,'timestamp':timestamp,'nonce':pending['nonce']}
+        self.state = updated
+        try: self.save()
+        except Exception:
+            self.state = previous_state
+            raise
         log('confirmed' if success else 'reverted',transaction=tx_hash,cost_wei=str(cost),action=pending['key'])
         return False
 
@@ -169,18 +380,26 @@ class Keeper:
 
     def _validate_pending_transaction(self,transaction: Any,pending: dict[str,Any],tx_hash: str) -> None:
         try:
-            valid = isinstance(transaction,dict) and transaction.get('hash','').lower() == tx_hash.lower() and \
-                address(transaction['from']) == self.sender and int(transaction['nonce'],16) == pending['nonce'] and \
+            valid = isinstance(transaction,dict) and rpc_hash(transaction.get('hash'),'transaction hash') == rpc_hash(tx_hash,'pending transaction hash') and \
+                address(transaction['from']) == self.sender and rpc_quantity(transaction.get('nonce'),'transaction nonce') == pending['nonce'] and \
                 address(transaction['to']) == pending['to'] and transaction['input'].lower() == pending['data'].lower() and \
-                int(transaction.get('value','0x0'),16) == pending['value']
-        except (KeyError,TypeError,ValueError,AttributeError):
+                rpc_quantity(transaction.get('value'),'transaction value') == pending['value']
+        except (KeyError,TypeError,ValueError,AttributeError,RpcError):
             valid = False
         if not valid: raise RpcError('Pending transaction identity mismatch')
 
     def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0,
                metadata_observation: dict[str,Any] | None = None) -> bool:
         if self.state.get('pending'): return False
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return False
+        if self.live: self._validate_checkpoint()
         _,timestamp = self._head()
+        retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
+        if timestamp < retry_after:
+            self.blocked_actions += 1
+            log('action_cooldown',action=key,retry_after=retry_after)
+            return False
         to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
         data = calldata(signature,*args)
         if metadata_observation is not None:
@@ -189,23 +408,36 @@ class Keeper:
                 'metadata_observation':metadata_observation})
         tx = {'from':self.sender,'to':to,'data':data,'value':hex(value)}
         self.rpc.call('eth_call',[tx,'latest'])
-        estimated = int(self.rpc.call('eth_estimateGas',[tx]),16)
+        estimated = rpc_quantity(self.rpc.call('eth_estimateGas',[tx]),'estimated gas',minimum=1)
         gas_limit = (estimated*125+99)//100
-        gas_price = int(self.rpc.call('eth_gasPrice',[]),16)
+        gas_price = rpc_quantity(self.rpc.call('eth_gasPrice',[]),'gas price')
         if gas_limit > positive(self.config['max_gas_limit'],'max_gas_limit') or \
             gas_price > positive(self.config['max_gas_price_wei'],'max_gas_price_wei'):
+            self.blocked_actions += 1
             log('gas_cap_exceeded',action=key); return False
         cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
         day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
             int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
+            self.blocked_actions += 1
             log('cost_cap_exceeded',action=key); return False
         if not self.live:
             log('dry_run',action=key,to=to,calldata=data,estimated_cost_wei=str(cost))
             return False
         # Revalidate code after simulation and before signing; stop on mutable deployments.
         self._validate_code_hashes()
-        nonce = int(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),16)
+        nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'pending']),'pending nonce')
+        latest_nonce = rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,'latest']),'latest nonce')
+        if nonce != latest_nonce or nonce != self.state.get('next_nonce'):
+            log('nonce_reconciliation_required',action=key,expected_nonce=self.state.get('next_nonce'),
+                latest_nonce=latest_nonce,pending_nonce=nonce)
+            raise RpcError('Unreconciled keeper nonce; stop other signers and restore/reconcile state')
+        balance = rpc_quantity(self.rpc.call('eth_getBalance',[self.sender,'latest']),'keeper balance')
+        if balance < cost:
+            log('keeper_balance_insufficient',action=key,balance_wei=str(balance),required_wei=str(cost))
+            raise RpcError('Keeper native balance is below the bounded transaction cost')
+        if self.stop_requested():
+            log('shutdown_before_submission',action=key); return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
         self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
@@ -432,7 +664,7 @@ class Keeper:
         return self.submit('nft','refreshMetadataRange(uint256,uint256)',(start,end),f'metadata:{start}:{end}',
             metadata_observation=payload)
 
-    def _confirm_metadata(self, pending: dict[str,Any], block: int, block_hash: str, head: int) -> None:
+    def _confirm_metadata(self, pending: dict[str,Any], block: int, block_hash: str, head: int) -> dict[str,Any]:
         payload = pending['metadata_observation']
         self._validate_metadata_payload(payload)
         self._metadata_transaction(pending)
@@ -446,16 +678,19 @@ class Keeper:
                 for record in payload['records']]
         if not self._metadata_anchor(block,block_hash.lower()):
             raise RpcError('Metadata confirmation block changed before checkpoint')
-        records = self.state['metadata_refresh']['notified']
+        # Return a candidate checkpoint. Receipt finality and the durable save
+        # must succeed before publishing it, including in-memory state.
+        records = dict(self.state['metadata_refresh']['notified'])
         if not observation_valid:
             # The event still happened, but its old trigger cannot describe the
             # cache state. Forget prior fingerprints so a retry is never hidden.
             for record in payload['records']: records.pop(str(record['ordinal']),None)
-            log('metadata_observation_invalidated',action=pending['key']); return
+            log('metadata_observation_invalidated',action=pending['key']); return records
         for record in execution_records:
             records[str(record['ordinal'])] = {**record,'observed_number':block,
                 'observed_hash':block_hash.lower(),'notification_number':block,
                 'notification_hash':self._metadata_hash(block_hash.lower())}
+        return records
 
     @staticmethod
     def _address_word(word: str) -> str:
@@ -537,6 +772,7 @@ class Keeper:
     def cycle(self) -> None:
         if self.poll_pending(): return
         paused = self.view('access','paused()') != 0
+        self.strategy_paused = paused
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
         metadata_first = False
@@ -583,7 +819,8 @@ class Keeper:
                         if self.submit('fees','bridgeRewards(uint256,address,bytes32)',(bucket,token,remote['route_id']),
                             f'bridge_rewards:{bucket}:{token}',value=positive(remote.get('native_fee_wei',0),'native_fee_wei',zero=True)): return
             except (ValueError,RpcError) as exc:
-                log('bucket_skipped',bucket_id=str(bucket),error_type=type(exc).__name__)
+                self.skipped_buckets += 1
+                log('bucket_skipped',bucket_id=str(bucket),**error_context(exc))
         if batch: self.save()
         if self.metadata_enabled and not metadata_first and self._refresh_metadata(): return
         if paused:
@@ -598,7 +835,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',required=True);parser.add_argument('--live',action='store_true')
     parser.add_argument('--once',action='store_true');parser.add_argument('--resolve-pending')
+    parser.add_argument('--initialize-state',action='store_true')
     args = parser.parse_args()
+    if args.initialize_state and (args.live or args.resolve_pending): parser.error('Initialization cannot sign or resolve a transaction')
     config = json.loads(Path(args.config).read_text())
     interval = positive(config.get('interval_seconds',600),'interval_seconds')
     if interval < 60: raise ValueError('Polling interval must be at least 60 seconds')
@@ -608,16 +847,22 @@ def main() -> None:
     signal.signal(signal.SIGINT,halt);signal.signal(signal.SIGTERM,halt)
     with process_lock(config.get('lock_path','var/keeper.lock')):
         keeper = Keeper(config,live=args.live)
+        keeper.stop_requested = lambda: stop
+        if args.initialize_state:
+            keeper.initialize_state();return
         if args.resolve_pending:
             keeper.resolve_pending(args.resolve_pending);return
         while not stop:
-            try: keeper.cycle()
-            except Exception as exc:
-                log('cycle_failed',error_type=type(exc).__name__)
-                if args.once: raise
+            success = keeper.run_cycle()
+            if args.once and not success: raise SystemExit(1)
             if args.once: break
-            for _ in range(interval):
+            delay = min(interval * 2**min(keeper.cycle_failures,3),max(interval,3600))
+            for _ in range(delay):
                 if stop: break
                 time.sleep(1)
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    try: main()
+    except Exception as exc:
+        log('keeper_halted',**error_context(exc))
+        raise SystemExit(1) from None

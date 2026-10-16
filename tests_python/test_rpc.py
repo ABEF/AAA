@@ -60,3 +60,24 @@ class RpcTests(unittest.TestCase):
         rpc=Rpc(['https://rpc.invalid'],1)
         with patch('urllib.request.urlopen',return_value=io.BytesIO(b'x'*(8*1024*1024+1))):
             with self.assertRaises(RpcError):rpc._post(rpc.active_url,'test',[])
+    def test_bounds_reject_invalid_transport_configuration(self):
+        for kwargs in ({'timeout':0},{'timeout':61},{'timeout':float('nan')},{'retries':True},{'retries':0},{'retries':11}):
+            with self.subTest(kwargs=kwargs),self.assertRaises(ValueError):Rpc(['https://rpc.invalid'],1,**kwargs)
+        with self.assertRaises(ValueError):Rpc(['https://rpc.invalid']*9,1)
+    @patch('zzz_ops.rpc.time.sleep')
+    def test_incomplete_http_body_falls_back(self,_):
+        import http.client
+        rpc=Rpc(['https://a.invalid','https://b.invalid'],1)
+        def respond(url,method,params):
+            if url.endswith('a.invalid'):raise http.client.IncompleteRead(b'broken')
+            return '0x1' if method=='eth_chainId' else '0xabc'
+        with patch.object(rpc,'_post',side_effect=respond):self.assertEqual(rpc.call('eth_blockNumber'),'0xabc')
+    def test_boolean_response_id_is_not_an_integer_id(self):
+        rpc=Rpc(['https://rpc.invalid'],1)
+        with patch('urllib.request.urlopen',return_value=io.BytesIO(b'{"id":true,"jsonrpc":"2.0","result":1}')):
+            with self.assertRaises(RpcError):rpc._post(rpc.active_url,'test',[])
+    def test_noninteger_error_code_is_not_reflected(self):
+        rpc=Rpc(['https://rpc.invalid'],1)
+        with patch('urllib.request.urlopen',return_value=io.BytesIO(b'{"id":1,"jsonrpc":"2.0","error":{"code":"SECRET"}}')):
+            with self.assertRaises(RpcError) as ctx:rpc._post(rpc.active_url,'test',[])
+            self.assertNotIn('SECRET',str(ctx.exception))

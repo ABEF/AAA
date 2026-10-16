@@ -87,3 +87,7 @@ An independently reviewed initial deployment can keep migration disabled with no
 - Earlier [Ubuntu CI for source revision 5febe70](https://github.com/ABEF/AAA/actions/runs/38793910449) passed **local-checks, static-analysis and robinhood-fork**. Check all three jobs for the new published revision separately; earlier green CI does not validate subsequent source changes or close production integration, configuration or audit gates.
 
 The detailed [component map](COMPONENT_STATUS.md) describes implementation boundaries. The [roadmap](ROADMAP.md) orders the remaining work; the [release checklist](RELEASE_CHECKLIST.md) records independent production qualification.
+
+## Keeper recovery follow-up
+
+Missing live state/nonce checkpoints and unqualified network fee policies now block startup; submissions check nonce continuity, canonical receipt anchors and signer balance. Structured health/error logs and bounded retry delays accompany the explicit unused-signer bootstrap. See [recovery runbook](KEEPER_RECOVERY.md). Full server-loss recovery, backups/alert routing, Linux deployment and multi-day outage rehearsals are still required. See [central Todo](../TODO.md).

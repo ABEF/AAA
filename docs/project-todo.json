@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "reviewed": "2026-10-16",
+  "areas": [
+    {
+      "id": "frontend",
+      "number": "01",
+      "title": "Frontend",
+      "caption": "What holders see and use.",
+      "tasks": [
+        {
+          "id": "preview",
+          "status": "done",
+          "title": "Collection, artwork & portfolio preview",
+          "text": "Browse designs, explore positions, and simulate minting, activation and both reward claims."
+        },
+        {
+          "id": "wallet",
+          "status": "todo",
+          "title": "Connect real wallet transactions",
+          "text": "Wire minting, activation, LP additions and claims to reviewed deployed contracts."
+        },
+        {
+          "id": "portfolio",
+          "status": "todo",
+          "title": "Show actual holdings & claimable fees",
+          "text": "Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances."
+        },
+        {
+          "id": "transaction-ui",
+          "status": "todo",
+          "title": "Handle the complete transaction journey",
+          "text": "Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes."
+        },
+        {
+          "id": "live-history-ui",
+          "status": "todo",
+          "title": "Connect live history & cumulative claims",
+          "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties."
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "number": "02",
+      "title": "Backend",
+      "caption": "The data and services behind the app.",
+      "tasks": [
+        {
+          "id": "read-api",
+          "status": "done",
+          "title": "Confirmed balances & ownership API",
+          "text": "Read NFT ownership and funded balances; reconstruct cumulative claims from complete confirmed history."
+        },
+        {
+          "id": "unsigned-actions",
+          "status": "done",
+          "title": "Prepare unsigned mint & claim requests",
+          "text": "Validate and simulate 0.05 ETH mints and up to 32 LP / royalty claim operations. Signing stays in the wallet."
+        },
+        {
+          "id": "activation-quotes",
+          "status": "progress",
+          "title": "Complete activation & top-up quotes",
+          "text": "Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately."
+        },
+        {
+          "id": "financial-history",
+          "status": "todo",
+          "title": "Build live fee history & USD values",
+          "text": "Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct."
+        },
+        {
+          "id": "host-services",
+          "status": "todo",
+          "title": "Host and monitor the API & indexer",
+          "text": "Qualify RPC providers, backfills, chain reorganizations, request limits, backups and service alerts."
+        }
+      ]
+    },
+    {
+      "id": "contracts",
+      "number": "03",
+      "title": "Smart contracts",
+      "caption": "Custody, ownership and reward accounting.",
+      "tasks": [
+        {
+          "id": "nft-lifecycle",
+          "status": "done",
+          "title": "Minting, activation & NFT ownership",
+          "text": "1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT."
+        },
+        {
+          "id": "reward-ledgers",
+          "status": "done",
+          "title": "LP fees & separate royalty shares",
+          "text": "80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ã—1 / Ã—2 / Ã—3."
+        },
+        {
+          "id": "shared-custody",
+          "status": "done",
+          "title": "Shared LP, maintenance & custody controls",
+          "text": "Pool-level upkeep, permanent NFT allocations, timelocked controls, paused parking and guarded resumption."
+        },
+        {
+          "id": "pons-qualification",
+          "status": "progress",
+          "title": "Qualify the selected Robinhood pool",
+          "text": "The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain."
+        },
+        {
+          "id": "activation-assets",
+          "status": "progress",
+          "title": "Qualify ETH, ZZZ, USDG & USDC inputs",
+          "text": "Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route."
+        },
+        {
+          "id": "fair-draw",
+          "status": "progress",
+          "title": "Fair random assignment at mint",
+          "text": "The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed."
+        }
+      ]
+    },
+    {
+      "id": "testing",
+      "number": "04",
+      "title": "Testing & security",
+      "caption": "Three required testing layers, then independent review.",
+      "tasks": [
+        {
+          "id": "local-verification",
+          "status": "done",
+          "title": "Local contract and integration tests",
+          "text": "Minting, activation, reward accounting, royalties, transfers and security cases have local checks. Each new change still needs fresh source-bound evidence."
+        },
+        {
+          "id": "mainnet-fork",
+          "status": "progress",
+          "title": "Robinhood mainnet-fork qualification",
+          "text": "Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates."
+        },
+        {
+          "id": "testnet-rehearsal",
+          "status": "todo",
+          "title": "Robinhood Testnet end-to-end rehearsal",
+          "text": "Exercise wallet flows, the website, keeper operations and deployment with explicit records of unavailable or mocked dependencies."
+        },
+        {
+          "id": "audit-release",
+          "status": "todo",
+          "title": "Independent audit and release approval",
+          "text": "Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds."
+        }
+      ]
+    },
+    {
+      "id": "launch",
+      "number": "05",
+      "title": "Launch & operations",
+      "caption": "Decisions and rehearsals before real funds.",
+      "tasks": [
+        {
+          "id": "authorities-prices",
+          "status": "todo",
+          "title": "Select authorities & price services",
+          "text": "Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies."
+        },
+        {
+          "id": "creator-terms",
+          "status": "todo",
+          "title": "Finalize creator revenue-sharing terms",
+          "text": "Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards."
+        },
+        {
+          "id": "metadata-ops",
+          "status": "progress",
+          "title": "Publish artwork & operate metadata refresh",
+          "text": "The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates."
+        },
+        {
+          "id": "keeper-guardrails",
+          "status": "progress",
+          "title": "Harden keeper recovery and monitoring",
+          "text": "State, nonce, receipt-reorg and gas-accounting guards, retry cooldowns and health logs have local regression coverage. Complete actual RPC/fee qualification, off-host alerts and recovery rehearsals; obtain independent review."
+        },
+        {
+          "id": "keeper-recovery",
+          "status": "todo",
+          "title": "Rehearse keeper outage & server recovery",
+          "text": "Test several days offline, restore backups on a new server, reconcile pending transactions and budgets, and rotate a lost keeper key safely."
+        }
+      ]
+    },
+    {
+      "id": "migration",
+      "number": "06",
+      "title": "Future migration",
+      "caption": "A separate phase. Disabled at initial launch.",
+      "later": true,
+      "tasks": [
+        {
+          "id": "migration-framework",
+          "status": "done",
+          "title": "Governed migration framework",
+          "text": "Timelocked approval can onboard reviewed future EVM chains and pools while preserving NFT allocations."
+        },
+        {
+          "id": "destination-slots",
+          "status": "todo",
+          "title": "Reserve destination capacity",
+          "text": "Reserve space before liquidity travels, including concurrent arrivals, returns and recovery if delivery is delayed."
+        },
+        {
+          "id": "bridge-operation",
+          "status": "todo",
+          "title": "Qualify bridges & remote compounding",
+          "text": "Review real transport providers, backing and repeated migrations; implement funded compounding when LP stays on another chain."
+        }
+      ]
+    }
+  ]
+}

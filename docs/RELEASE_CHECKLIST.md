@@ -89,3 +89,8 @@ The provider/delivery gates apply before enabling real migration. An explicitly 
 - [ ] Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
 
 The schema-4 production inventory must include current economics, NFT helper/randomness/asset observations and authentic release/staging evidence. Its blocked state is intentional; an offline consistency pass never authorizes deployment, sealing, signing or real funds.
+
+## Keeper recovery qualification
+
+- [ ] Stage [the keeper recovery runbook](KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.
+- [ ] Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.

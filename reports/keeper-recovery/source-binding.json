@@ -1,0 +1,13 @@
+{
+  "keeper/monitor.py": "64bfafea8859213edf0434147160c4f62bb329dc979356ef7ee7cd2014cc9f15",
+  "keeper/config.example.json": "26daa8e964efb922efd0d55561c010144a97978dab3754211236a7f78bce603e",
+  "keeper/zzz-keeper.service": "72e4edee1150077a8d8dd909ee3f595e61707c06f811d5c6c95718f610797f81",
+  "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+  "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+  "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+  "tests_python/test_keeper.py": "38b757e2ee34e0c6b32f2ed9a5631801b2e732b49e989d453a1c9ce9325640b2",
+  "tests_python/test_metadata_keeper.py": "ad0e752b8e54a7c66af30a9be865d8d79a2ccf7fa83b5e948d4194f9002dcee8",
+  "tests_python/test_keeper_recovery.py": "6bf1e29c639e4d1a2efbf0d80815ec3448604bc5054788e772dc24c12d2fcc1f",
+  "tests_python/test_rpc.py": "a48196297322323dda077f45923e9f9efee5494c704981afd40b07b548a2c7a0",
+  "tests_python/test_state.py": "1914f3c9b6f2e884833671b9ea54927e092ccba5e59135cbd633b35c52314858"
+}

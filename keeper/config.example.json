@@ -23,7 +23,10 @@
   "max_transaction_cost_wei": "10000000000000000",
   "max_daily_cost_wei": "50000000000000000",
   "l1_fee_allowance_wei": "0",
+  "receipt_fee_policy": "unverified",
+  "revert_cooldown_seconds": 3600,
   "state_path": "var/keeper.json",
+  "health_path": "var/keeper.health.json",
   "lock_path": "var/keeper.lock",
   "bucket_discovery": {
     "maximum_count": 10000,

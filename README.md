@@ -1,5 +1,9 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+**[Project Todo: frontend, backend, contracts, testing and operations](TODO.md)**
+
+Keeper: [recovery runbook](docs/KEEPER_RECOVERY.md) | [internal security review and open gates](reports/keeper-recovery/REVIEW.md).
+
 Development candidate for transferable NFT rights to permanently attached LP and funded rewards. **Undeployed; not approved for real funds.** The website is a separate simulation at [popldemo.0xwave.com](https://popldemo.0xwave.com).
 
 Start with the **[Implemented / Todo checklist](docs/IMPLEMENTATION_STATUS.md)** for current feature status, then the [component map](docs/COMPONENT_STATUS.md) for source boundaries and the separate [release checklist](docs/RELEASE_CHECKLIST.md) for production approval. The candidate includes the selected native/Pons adapter, atomic original-source activation, governed custody parking, bounded LP/royalty claims and read-only integration tools. Actual input routes, live services and independent production qualification remain open.

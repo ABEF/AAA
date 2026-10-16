@@ -60,6 +60,7 @@ class MetadataRpc:
         if method == 'eth_estimateGas': return '0x3e8'
         if method == 'eth_gasPrice': return '0x2'
         if method == 'eth_getTransactionCount': return '0x7'
+        if method == 'eth_getBalance': return hex(10**18)
         if method == 'eth_getTransactionReceipt': return self.receipt
         if method == 'eth_getTransactionByHash': return self.tx
         if method != 'eth_call': raise AssertionError(method)
@@ -112,6 +113,8 @@ class MetadataKeeperTests(unittest.TestCase):
 
     def live(self):
         self.keeper.live = True
+        self.keeper.state['next_nonce'] = 7
+        self.keeper.state['receipt_anchor'] = {'number':self.rpc.head-3,'hash':self.rpc.block_hash(self.rpc.head-3),'timestamp':self.rpc.now,'nonce':6}
         self.keeper.cast = '/mock/cast'
         self.keeper.keystore = Path('/mock/key')
         self.keeper.password = Path('/mock/password')
@@ -126,9 +129,11 @@ class MetadataKeeperTests(unittest.TestCase):
         pending = self.keeper.state['pending']
         self.rpc.head = block+1
         self.rpc.receipt = {'transactionHash':TX_HASH,'blockNumber':hex(block),'blockHash':self.rpc.block_hash(block),
-            'status':hex(int(success)),'gasUsed':'0x64','effectiveGasPrice':'0x2'}
+            'status':hex(int(success)),'gasUsed':'0x64','effectiveGasPrice':'0x2',
+            'from':SENDER,'to':pending['to'],'transactionIndex':'0x0'}
         self.rpc.tx = {'hash':TX_HASH,'from':SENDER,'to':pending['to'],'nonce':'0x7',
-            'input':pending['data'],'value':'0x0'}
+            'input':pending['data'],'value':'0x0','blockNumber':hex(block),
+            'blockHash':self.rpc.block_hash(block),'transactionIndex':'0x0','gas':'0x3e8'}
 
     def confirmed_baseline(self):
         self.submit()
@@ -450,6 +455,43 @@ class MetadataKeeperTests(unittest.TestCase):
         self.assertIsNotNone(self.keeper.state['pending'])
         self.assertEqual(self.keeper.state['metadata_refresh']['notified'],{})
         self.assertEqual(self.keeper.state['spent'],{})
+
+    def test_reorg_after_metadata_candidate_preserves_all_state(self):
+        self.submit();self.receipt()
+        before = copy.deepcopy(self.keeper.state)
+        disk = self.keeper.path.read_text()
+        original = self.keeper._confirm_metadata
+        def confirm(*args):
+            records = original(*args)
+            self.rpc.blocks[100] = '0x'+'99'*32
+            return records
+        with patch.object(self.keeper,'_confirm_metadata',side_effect=confirm):
+            with self.assertRaises(RpcError): self.keeper.poll_pending()
+        self.assertEqual(self.keeper.state,before)
+        self.assertEqual(self.keeper.path.read_text(),disk)
+
+    def test_confirmation_depth_lost_after_metadata_candidate_preserves_all_state(self):
+        self.submit();self.receipt()
+        before = copy.deepcopy(self.keeper.state)
+        disk = self.keeper.path.read_text()
+        original = self.keeper._confirm_metadata
+        def confirm(*args):
+            records = original(*args)
+            self.rpc.head = 100
+            return records
+        with patch.object(self.keeper,'_confirm_metadata',side_effect=confirm):
+            self.assertTrue(self.keeper.poll_pending())
+        self.assertEqual(self.keeper.state,before)
+        self.assertEqual(self.keeper.path.read_text(),disk)
+
+    def test_failed_metadata_checkpoint_retains_baseline_pending_and_costs(self):
+        self.submit();self.receipt()
+        before = copy.deepcopy(self.keeper.state)
+        disk = self.keeper.path.read_text()
+        with patch.object(self.keeper,'save',side_effect=OSError('disk full')):
+            with self.assertRaises(OSError): self.keeper.poll_pending()
+        self.assertEqual(self.keeper.state,before)
+        self.assertEqual(self.keeper.path.read_text(),disk)
 
     def test_observation_reorg_after_submission_does_not_apply_baseline(self):
         self.submit()

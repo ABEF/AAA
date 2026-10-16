@@ -51,3 +51,11 @@ Latest gap-hardening verification supersedes the old 430/478/22/28/210 snapshot:
 ## Git publication handoff - 2026-10-16
 
 The user explicitly requested committing and pushing the verified contract work, including project notes and todo/release checklists, to ABEF/AAA. Earlier uncommitted/local wording records the verification-time state before this publication. The source-bound receipts remain unchanged; current publication status and commit identity are established by Git HEAD and origin/main. No smart-contract deployment, signing, real asset movement or website/server change is authorized by this request. Exact-commit Ubuntu CI must be checked independently; local evidence is not a claim of a green published workflow or production approval.
+
+## Central Todo maintenance - 2026-10-16
+
+The user wants the central task list in this contract repository on GitHub, **not in the website frontend**. For every new task, fix, decision or completed milestone, update `docs/project-todo.json`, regenerate `TODO.md` with `python scripts/sync-project-todo.py`, run it again with `--check`, and reconcile affected implementation/release details. Commit/push the intended checklist changes and verify publication; report any unpublished work explicitly. See `docs/TODO_WORKFLOW.md`. Todo-only changes do not require a website deployment.
+
+## Keeper recovery hardening - 2026-10-16
+
+Read `docs/KEEPER_RECOVERY.md` and `reports/keeper-recovery/REVIEW.md` for keeper changes. Live startup requires restored/explicitly initialized state, nonce continuity, a canonical receipt anchor for used signers and a reviewed network fee accounting policy. Never delete ambiguous intent or reset budgets to recover. Use only one signer host; state loss, failed backup, role/key rotation and real Linux/RPC/fee operation require rehearsals. Local tests and internal review do not establish production readiness. Keep the central Todo/release gates current.

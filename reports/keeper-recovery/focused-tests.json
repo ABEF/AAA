@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-16T19:40:43.290179+00:00",
+  "inventory": 183,
+  "tests_run": 178,
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "unix_only_excluded": [
+    "tests_python.test_keeper_recovery.RecoveryTests.test_runtime_permissions_and_symlinks_fail_closed",
+    "tests_python.test_state.StateTests.test_atomic_roundtrip",
+    "tests_python.test_state.StateTests.test_concurrent_lock_rejected",
+    "tests_python.test_state.StateTests.test_lock_released",
+    "tests_python.test_state.StateTests.test_predictable_temp_symlink_cannot_overwrite_another_file"
+  ],
+  "source_unchanged_during_run": true,
+  "successful": true,
+  "solidity_executed": false,
+  "real_signing": false
+}
