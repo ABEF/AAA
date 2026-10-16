@@ -70,3 +70,35 @@ Keeper/Todo commit `3db782b087d5add2327f519030055d288d9d6512` is pushed. Exact-c
 The user authorized the existing website server for an isolated staging account. Current keeper operating source is published at 089d391c1689c2036db518c7a9705989896a14d8. Ubuntu run 38961988650 passed 209 tests without failures/skips plus all 14 real-process Anvil rehearsals. The website host now runs zzz-stage-anvil / zzz-stage-keeper as unprivileged zzz-stage, chain 31337 on loopback port 18545, with resource/filesystem/network restrictions. No public signing or real assets were used. Systemd crash/restart and controlled off-host snapshot round-trip restore passed; website HTML remains unchanged over HTTPS.
 
 Read docs/KEEPER_REHEARSALS.md and reports/keeper-rehearsal/ for exact source scopes. A forced-command zzz-stage-monitor SSH account exports only test health/recovery snapshots; no shell/forwarding/signing authority. zzz-stage-observer.timer refreshes every five minutes. Chat heartbeat popl-staging-health reads it every 30 minutes, stores off-host snapshots outside Git and reports meaningful changes; it depends on desktop availability. Never print private keys or treat a missing monitoring interval as uptime. The sustained soak is not yet a multi-day pass. Actual Robinhood Testnet, redundant production RPCs/fee qualification, live services/authorities, physically distinct host loss/key rotation and independent review remain gates. Preserve unrelated unpublished contract/frontend work.
+
+## NFT economic-rights audit handoff - 2026-10-16
+
+Read reports/nft-rights-audit/REVISED_PROMPT.md, REVIEW.md and VERIFICATION.md for
+the executed comprehensive review. Economic owner indexes are per bucket/asset,
+collective indexes per asset, and paid checkpoints/accruals/fractions per NFT;
+all unclaimed rights follow current ownership. Transfer approval alone cannot
+claim. Buyers receive then-unclaimed balances, not guaranteed listing snapshots.
+An escrow that becomes ownerOf is the holder. Already correct economics were
+preserved; new tests strengthen 1,000-NFT payouts, buyback and dual-ledger coverage.
+
+The current historical bucket cap is FOUR, not the old sixteen; all 1,000 NFTs
+can use one shared LP. The older combined16 workload exceeded the unchanged12M
+gas budget. Getter ordering in gas fixtures was corrected before final evidence.
+Production token/venue/Entry costs still need qualification. Real bridge capacity
+admission, token liveness/dust policy, live services, creator terms, authorities,
+operating rehearsals and independent audit remain open. No deployment is authorized.
+Current receipts are source-bound; unchanged-source old Slither/fork runs are
+explicitly reused, not rerun or renamed. Do not silently include remaining
+unpublished frontend/quote/process-runner/artwork changes in an audit publication.
+
+
+## Security audit workstreams - 2026-10-16
+
+The central Todo now tracks seven security workstreams with acceptance criteria
+in docs/SECURITY_AUDIT_PLAN.md: governance/sealing, shared accounting, ownership
+and allocations, oracle/keeper economics, dependencies/backing, whole-protocol
+recovery and cross-contract/infrastructure security. These are release work,
+not an assertion that independent audit is complete. The split is currently
+fixed; configurable percentages are only a risk/benefit question, not an approved
+change. Permanent home-chain loss has no canonical NFT/reward-ledger recovery;
+LP migration alone does not solve it. Decide this architecture before sealing.

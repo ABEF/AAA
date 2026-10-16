@@ -126,7 +126,7 @@
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 500
+      "lines": 502
     }
   ],
   "external_imports": [

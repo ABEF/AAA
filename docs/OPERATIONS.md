@@ -170,3 +170,22 @@ For an incident, preserve chain observations, logs and durable state first; stop
 ## Keeper restart and recovery gates
 
 Follow [KEEPER_RECOVERY.md](KEEPER_RECOVERY.md) and the [internal review](../reports/keeper-recovery/REVIEW.md) before operating this candidate. Live startup requires reviewed fee accounting and intact nonce/receipt checkpoints. Never delete pending state or budgets to recover; restore and reconcile, or use approved signer rotation. Health output is separate from transaction state, and off-host alerts/backups plus actual operating rehearsals remain required. The systemd example remains dry-run.
+
+## Economic-rights operating review - 2026-10-16
+
+Use the [internal review](../reports/nft-rights-audit/REVIEW.md) and its
+[executed tests](../reports/nft-rights-audit/VERIFICATION.md) with this runbook.
+Claims use current NFT ownership and actual funded balances. Approved transfer
+operators cannot claim merely through approval; escrow that becomes the owner
+has holder rights. Failed EVM transactions also revert their events: inspect
+receipts/errors and keeper logs, not just successful event streams.
+
+Review each admitted reward token's availability, upgrade and blacklist powers.
+A broken royalty asset can prevent new activations while healthy-asset claims
+remain available. Do not bypass incumbent settlement to mask that failure.
+Run maintenance per shared bucket; all 1,000 NFTs need no per-NFT rebalance loop.
+The current capacity is four historical buckets. Keep real bridging disabled
+until destination admission is safe against competing arrivals.
+
+This review does not start/alter keeper services or complete the sustained soak,
+production RPC/fee qualification, physical host-loss or key-rotation rehearsals.

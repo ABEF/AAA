@@ -1,0 +1,21 @@
+Solc 0.8.26 finished in 113.44s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to view
+   --> test/RewardsAndFees.t.sol:109:5:
+    |
+109 |     function testNFTSupportsStandardERC721() public { assertTrue(nft.supportsInterface(0x80ac58cd)); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Ran 1 test for test/BuybackExecution.t.sol:BuybackExecutionTest
+[FAIL: `testFail*` has been removed. Consider changing to test_Revert[If|When]_Condition and expecting a revert] Found 1 instances: testFailedSwapRollsBackThenClaimsAndRetryRemainAvailable (gas: 0)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 7.08ms (0.00ns CPU time)
+
+Ran 1 test suite in 16.43ms (7.08ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/BuybackExecution.t.sol:BuybackExecutionTest
+[FAIL: `testFail*` has been removed. Consider changing to test_Revert[If|When]_Condition and expecting a revert] Found 1 instances: testFailedSwapRollsBackThenClaimsAndRetryRemainAvailable (gas: 0)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+

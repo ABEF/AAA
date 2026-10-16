@@ -5,6 +5,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZActivationAssets} from "../src/ZZZActivationAssets.sol";
+import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZActivationEntry, IActivationV3Router} from "../src/ZZZActivationEntry.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed} from "./mocks/Mocks.sol";
@@ -101,11 +102,16 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
     function _execute(address owner, ZZZActivationEntry.Request memory request) private {
         vm.prank(owner); entry.execute(request);
     }
-    function _cleanContextAndApprovals() private {
+    function _cleanEntry() private {
         assertEq(stable.balanceOf(address(entry)), 0); assertEq(t0.balanceOf(address(entry)), 0);
+        assertEq(t1.balanceOf(address(entry)), 0);
         assertEq(stable.allowance(address(entry), address(router)), 0);
         assertEq(t0.allowance(address(entry), address(vault)), 0);
+        assertEq(t1.allowance(address(entry), address(vault)), 0);
         vm.prank(address(registry)); assertEq(entry.sourceValue(poolId, 99e18, 0), 0);
+    }
+    function _cleanContextAndApprovals() private {
+        _cleanEntry();
         vm.prank(address(vault)); assertEq(registry.contributionValue(poolId, 99e18, 0), 99e18);
     }
     function _assertDormantAndUnspent(uint256 id) private {
@@ -216,5 +222,90 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assertEq(oracle.value(address(stable), 100e6), 98e18);
         vm.expectRevert(); _execute(alice, _request(id, false));
         _assertDormantAndUnspent(id);
+    }
+    function testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition() public realIntegration {
+        uint256 active = _mint(alice); _execute(alice, _request(active, false));
+        uint256 dormant = _mint(alice); uint256 bucket = vault.nftBucket(active);
+        uint256 lp = vault.group(bucket).lpTokenId;
+        uint256 stableBefore = stable.balanceOf(alice); uint256 routeBefore = t0.balanceOf(address(router));
+        bytes32 disabled = assets.setAsset(address(stable), false, bytes32(0), REVIEW);
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()"))); _execute(alice, _request(dormant, false));
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()"))); _execute(alice, _request(active, true));
+        assertEq(stable.balanceOf(alice), stableBefore); assertEq(t0.balanceOf(address(router)), routeBefore);
+        assertEq(vault.sharesOf(active), 99e18); assertEq(vault.contributionUSD(active), 100e18);
+        assertEq(vault.group(bucket).lpTokenId, lp); assertEq(venue.a0(lp), 99e18);
+        assertEq(vault.nftBucket(dormant), 0); assertEq(vault.sharesOf(dormant), 0);
+        assertFalse(membership.eligible(dormant)); assertEq(nft.royaltyRewards().weightOf(dormant), 0);
+        assertEq(membership.totalEligible(), 1); assertEq(vault.bucketCount(), 1); _cleanContextAndApprovals();
+
+        // Removing one original input does not disable other admitted inputs.
+        ZZZActivationEntry.Request memory direct = _request(active, true);
+        direct.sourceAsset = address(t1); direct.amountIn = 100e18; direct.routeId = 0; direct.minimumOut = 0;
+        vm.prank(alice); t1.approve(address(entry), 100e18); _execute(alice, direct);
+        assertEq(vault.group(bucket).lpTokenId, lp); assertEq(venue.a1(lp), 100e18);
+        assertEq(vault.contributionUSD(active), 200e18); assertEq(membership.totalEligible(), 1);
+        assertEq(assets.activePolicy(address(stable)), disabled); _cleanContextAndApprovals();
+
+        bytes32 enabled = assets.setAsset(address(stable), true, address(stable).codehash, REVIEW);
+        assertTrue(enabled != disabled); (, bool oldEnabled,,,,) = assets.policies(disabled); assertFalse(oldEnabled);
+        _execute(alice, _request(dormant, false));
+        assertEq(vault.nftBucket(dormant), bucket); assertEq(vault.group(bucket).lpTokenId, lp);
+        assertEq(vault.contributionUSD(dormant), 100e18); assertEq(membership.totalEligible(), 2);
+        _cleanContextAndApprovals();
+    }
+    function testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory() public realIntegration {
+        bytes32 disabled = assets.setAsset(address(t0), false, bytes32(0), REVIEW);
+        uint256 count = assets.policyCount();
+        registry.configure(registry.get(poolId));
+        assertEq(assets.activePolicy(address(t0)), disabled); assertEq(assets.policyCount(), count);
+        (, bool enabled,,,,) = assets.policies(disabled); assertFalse(enabled);
+
+        uint256 active = _mint(alice); _execute(alice, _request(active, false));
+        _execute(alice, _request(active, true));
+        uint256 bucket = vault.nftBucket(active); uint256 lp = vault.group(bucket).lpTokenId;
+        assertEq(venue.a0(lp), 198e18); assertEq(vault.contributionUSD(active), 200e18);
+        uint256 dormant = _mint(alice); uint256 before = t0.balanceOf(alice);
+        vm.prank(alice); t0.approve(address(entry), 100e18);
+        ZZZActivationEntry.Request memory direct = _request(dormant, false);
+        direct.sourceAsset = address(t0); direct.amountIn = 100e18; direct.routeId = 0; direct.minimumOut = 0;
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()"))); _execute(alice, direct);
+        direct.nftId = active; direct.increase = true;
+        vm.expectRevert(bytes4(keccak256("InvalidConfiguration()"))); _execute(alice, direct);
+        vm.prank(alice); vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));
+        vault.activate(dormant, poolId, 100e18, 0, 1, block.timestamp + 100);
+        vm.prank(address(vault)); vm.expectRevert(bytes4(keccak256("InvalidConfiguration()")));
+        registry.contributionValue(poolId, 100e18, 0);
+        assertEq(t0.balanceOf(alice), before); assertEq(t0.allowance(alice, address(entry)), 100e18);
+        assertEq(vault.nftBucket(dormant), 0); assertFalse(membership.eligible(dormant));
+        assertEq(vault.sharesOf(active), 198e18); assertEq(venue.a0(lp), 198e18);
+        assertEq(membership.totalEligible(), 1); assertEq(vault.bucketCount(), 1); _cleanEntry();
+    }
+    function testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner() public realIntegration {
+        uint256 id = _mint(alice); _execute(alice, _request(id, false));
+        ZZZRoyaltyRewards royalties = nft.royaltyRewards();
+        uint256 bucket = vault.nftBucket(id); uint256 lp = vault.group(bucket).lpTokenId;
+        venue.setFees(100e18, 0); vault.collectFees(bucket, block.timestamp + 100);
+        uint256 owed = rewards.claimable(id, address(t0)); assertEq(owed, 90e18 - 1);
+        (bool paid,) = address(royalties).call{value: 1 ether}(""); assertTrue(paid);
+        uint256 royalty = royalties.claimable(id, address(0)); assertEq(royalty, 1 ether);
+        uint256 weight = royalties.weightOf(id);
+
+        assets.setAsset(address(stable), false, bytes32(0), REVIEW);
+        assets.setAsset(address(t0), false, bytes32(0), REVIEW);
+        assets.setAsset(address(t1), false, bytes32(0), REVIEW); entry.setRouteEnabled(routeId, false);
+        vm.prank(alice); nft.transferFrom(alice, bob, id);
+        assertTrue(membership.eligible(id)); assertEq(membership.totalEligible(), 1);
+        assertEq(royalties.weightOf(id), weight); assertEq(vault.sharesOf(id), 99e18);
+        assertEq(vault.group(bucket).lpTokenId, lp); assertEq(venue.ownerOf(lp), address(vault));
+        vm.prank(alice); vm.expectRevert(); rewards.claim(id, address(t0));
+        vm.prank(alice); vm.expectRevert(); royalties.claim(id, address(0));
+        uint256 tokenBefore = t0.balanceOf(bob); uint256 nativeBefore = bob.balance;
+        vm.prank(bob); assertEq(rewards.claim(id, address(t0)), owed);
+        vm.prank(bob); assertEq(royalties.claim(id, address(0)), royalty);
+        assertEq(t0.balanceOf(bob), tokenBefore + owed); assertEq(bob.balance, nativeBefore + royalty);
+        assertEq(rewards.claimable(id, address(t0)), 0); assertEq(royalties.claimable(id, address(0)), 0);
+        assertEq(rewards.liabilities(address(t0)), 1); assertEq(t0.balanceOf(address(rewards)), 1);
+        assertEq(royalties.liabilities(address(0)), 0);
+        assertEq(vault.contributionUSD(id), 100e18); assertEq(venue.a0(lp), 99e18); _cleanEntry();
     }
 }

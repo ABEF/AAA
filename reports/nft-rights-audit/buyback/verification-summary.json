@@ -1,0 +1,158 @@
+{
+  "scope": "Local fake-venue buyback integration; not live-market qualification or independent audit",
+  "production_source_changes": false,
+  "passed": 22,
+  "failed": 0,
+  "skipped": 0,
+  "fuzz_runs": 1000,
+  "compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "compiler_settings": {
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+      "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+      "forge-std/=lib/forge-std/src/",
+      "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+    ],
+    "optimizer": {
+      "runs": 1,
+      "details": {
+        "peephole": true,
+        "inliner": true,
+        "jumpdestRemover": true,
+        "orderLiterals": true,
+        "deduplicate": true,
+        "cse": true,
+        "constantOptimizer": true,
+        "yul": false,
+        "simpleCounterForLoopUncheckedIncrement": true
+      }
+    },
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "compilationTarget": {
+      "test/BuybackExecution.t.sol": "BuybackExecutionTest"
+    },
+    "evmVersion": "cancun",
+    "libraries": {},
+    "viaIR": true
+  },
+  "duration": "1s 623ms 315\u00b5s 300ns",
+  "exit_code": 0,
+  "result_file": "attempt2.json",
+  "result_sha256": "d1f1341851e2c999b721801b42497d81cac1d93d5bd06b2d7d4d70e85f75906c",
+  "artifact_sha256": "5b4c39da479d8ae1b06b8cdb218bde90b4f84c52e7eaa09c487c7587fec8af74",
+  "compiler_source_bindings": {
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "compiler_keccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394"
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "247502848ccb42c6a4d73632edeebff12b8c8993a3f160ee5b3c1f012f4199ed",
+      "compiler_keccak256": "0xfec6986607c3b2a111ff12de3c94887614376d975998e63fbc6bdbf818440b4d"
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+      "compiler_keccak256": "0x71d82c0b69e024537870d79dd9593236466d5bdcba071c43ff5dcb417a1f9bf5"
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "compiler_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161"
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+      "compiler_keccak256": "0xf96f10e890e8721c33db9584cb52984ad416860749b47a349ee22a40ae827040"
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "compiler_keccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7"
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "compiler_keccak256": "0xfc3966192bcd85ba71f8f6ae3e14bc866f9ca8a176c22694b79d1eedf822452a"
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+      "compiler_keccak256": "0x69dd53d7a9c601d6d106dd32cbaa5f532d38db9fa46e330a44a13e1a51db4b7c"
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "compiler_keccak256": "0xf42209f28ee63f95880aef61a1f35223ddf58ae06d81b8aaac2be378c9f5fc8d"
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "compiler_keccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df"
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "compiler_keccak256": "0x45f9701265ee2c4413ef99edd2511f965649e2be37c78e1078cd43b7e93dff6a"
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "compiler_keccak256": "0x6bebfb829c9e8c341e4759642012464a8e666faa18a85f5ac567b5c85b7bbb12"
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "compiler_keccak256": "0xcdc2f89a39a12e478c797d17ebedf5ecc10a58ef71cdc860c4360f7e5c447914"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "compiler_keccak256": "0x7526c0f724a23022ac0d58ee73caf40fc89cba37b89e8eac96627e29d6de85c5"
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "compiler_keccak256": "0x3337d0cbc0bbe44735521313a9c36e56d7aea4f2df3afbe98572a12b545ca099"
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+      "compiler_keccak256": "0x4687a92aa59af102486da2fe1cf001c9b1ae5b3ec8047e2ef51f10f465fe89a1"
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "0d23f02ba6c93d226070a6e28c379d3c0ee6ac0f38b82399a37f5fb278a78b9e",
+      "compiler_keccak256": "0xc3ff3d5483440bc85258af365be0055e4da23c6e35fecb84ae2e9f59a9f79f96"
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "compiler_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e"
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "compiler_keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8"
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+      "compiler_keccak256": "0x31fbf35c4fc07f8cc57dc97fe2f51550440240e9704fd7d9a5bc4fd487c48974"
+    },
+    "test/BuybackExecution.t.sol": {
+      "sha256": "bb00e8d439d50dd66c7bb009ba21f8fd440a0adb1e425a4ad41d5467d232863e",
+      "compiler_keccak256": "0x364d4d79762fc4acc8930e0616a0c80ab9e829cb023f2ec35d6437e44b4c1e5a"
+    },
+    "test/LiquidityEncoding.t.sol": {
+      "sha256": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+      "compiler_keccak256": "0xd931cebcee1a2e40b39205fbbc368bfed8a5eaa3cadfb7ef63f51dfbea2a65c0"
+    },
+    "test/RewardsAndFees.t.sol": {
+      "sha256": "e5971044fa62366c3194bb3173e0ac88cb24b62123588584d126a0def364ca13",
+      "compiler_keccak256": "0x589cf2d9e475e0b272764a245b74e3eddbd7bd33b8cedaceb470314bfae62455"
+    },
+    "test/mocks/MockVRF.sol": {
+      "sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "compiler_keccak256": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0"
+    },
+    "test/mocks/Mocks.sol": {
+      "sha256": "5ab54c2b11a6e1e99caeb4725f1fc6cb9434abe2d7c6e06ad1d74e3d204b6d33",
+      "compiler_keccak256": "0xf056a26f7594e3e43dda45c2f6344c25e1e019fae13c96d5ea15ecfa5f22efa7"
+    }
+  },
+  "earlier_failure": "attempt1.log: removed Foundry testFail* convention; renamed test methods, no production/assertion changes. Initial source later gained two failure regressions; outcomes not merged.",
+  "gas_limitations": "Reported whole-test gas includes funding/assertions and must not be presented as a transaction gas benchmark."
+}

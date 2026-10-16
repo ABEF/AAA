@@ -1,6 +1,6 @@
 # Maintaining the project Todo
 
-The user changed the requested location on 2026-10-16: **keep the central Todo in the contract repository on GitHub, not in the website frontend**. [TODO.md](../TODO.md) covers frontend, backend, contracts, testing, operations and future migration. The website has no Todo page or generated task data.
+The user changed the requested location on 2026-10-16: **keep the central Todo in the contract repository on GitHub, not in the website frontend**. [TODO.md](../TODO.md) covers frontend, backend, contracts, testing, security/audit, operations and future migration. The [security audit plan](SECURITY_AUDIT_PLAN.md) supplies acceptance criteria, not a second task-status ledger. The website has no Todo page or generated task data.
 
 For every feature, fix, resolved issue, new task or decision:
 

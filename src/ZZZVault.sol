@@ -25,7 +25,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     mapping(bytes32 => uint256) public poolBucket;
     uint256[] private buckets;
     uint256 private constant MAX_SHARES = 1e36;
-    uint256 public constant MAX_BUCKETS = 16;
+    // Bounds combined funded inbox/dust work, with all reward assets admitted.
+    // Existing-bucket returns and pool migrations reuse their historical slot.
+    uint256 public constant MAX_BUCKETS = 4;
     event PoolReserved(bytes32 indexed poolId, uint256 indexed bucketId);
     event SharesAdded(uint256 indexed nftId, uint256 indexed bucketId, uint256 shares, uint256 netUSD);
     mapping(address => uint256) public totalIdle;

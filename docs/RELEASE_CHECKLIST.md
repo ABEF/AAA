@@ -1,5 +1,28 @@
 # Release checklist - NOT APPROVED
 
+## NFT ownership/revenue review gate - 2026-10-16
+
+- [x] Challenge the supplied prompt against accepted product rules, then independently
+  review source, ownership/receipt boundaries and the final tests.
+- [x] Execute 1,000-NFT multi-owner/multi-stream accounting, current-owner transfer
+  and receiver-callback regressions, buyback failure/retry and dual-ledger invariants.
+  Exact results and source scopes are in the
+  [verification report](../reports/nft-rights-audit/VERIFICATION.md).
+- [x] Keep the four-bucket combined-workload bound and unchanged 12M local gas
+  ceiling. Actual Entry/venue/token costs remain a separate qualification.
+- [ ] Approve admitted-token outage/upgrade/blacklist behavior and economic value
+  of repeated sub-20-raw-unit incumbent dust settlements.
+- [ ] Verify marketplace payment and claims; do not advertise ERC2981 as enforced
+  royalties or a listing's claim balance as guaranteed at purchase.
+- [ ] Complete production services, creator terms, frozen-release independent audit
+  and operating rehearsals. Real bridging remains blocked by destination capacity
+  admission and provider/recovery qualification.
+
+- [ ] Complete the seven [security audit workstreams](SECURITY_AUDIT_PLAN.md), including a pre-seal decision on permanent home-chain loss and canonical NFT/reward-ledger recovery. LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
+
+Status remains **NOT APPROVED**. A local/source-bound internal review is not an
+independent audit or authorization for public deployment or real funds.
+
 Updated 2026-10-16. Checked development items identify implemented code and recorded internal evidence; they do not approve deployment or real funds. Unchecked production gates require actual integration, release-specific evidence and independent qualification. The [Implemented / Todo checklist](IMPLEMENTATION_STATUS.md) records feature status. Historical metadata and integration/recovery receipts retain their exact source scope; later Entry/parking source requires its own verification.
 
 ## Completed development work

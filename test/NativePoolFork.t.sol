@@ -5,6 +5,9 @@ import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
+import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
@@ -228,6 +231,144 @@ contract NativePoolForkTest is Test, IERC721Receiver {
     function _issue(SharedSystem memory s) private returns (uint256 id) {
         id = s.vault.mintDormant{value: 0.05 ether}();
         s.vrf.fulfill(s.nft.requestOf(id), 1, 1); s.nft.finalizeTraits(id);
+    }
+    event SourceContributed(address indexed owner, uint256 indexed nftId, bytes32 indexed poolId,
+        address sourceAsset, uint256 sourceAmount, uint256 grossUSD, address output, uint256 outputAmount, bool increase);
+
+    function _issueForEntry(SharedSystem memory s, address owner) private returns (uint256 id) {
+        // TEST ONLY owner balances and VRF fulfillment. All Entry, wrapper,
+        // balancing, hook and LP settlement calls execute their actual code.
+        vm.deal(owner, 2 ether); deal(ZZZ, owner, 1000 ether);
+        vm.prank(owner); id = s.vault.mintDormant{value: 0.05 ether}();
+        s.vrf.fulfill(s.nft.requestOf(id), 1, 1); s.nft.finalizeTraits(id);
+    }
+    function _entryRequest(uint256 id, address source, uint256 amount, bool increase)
+        private view returns (ZZZActivationEntry.Request memory) {
+        return ZZZActivationEntry.Request(id, POOL, source, amount, bytes32(0), 0, 1, block.timestamp + 100, increase);
+    }
+    function _hundredUSDNative() private view returns (uint256) {
+        uint256 price = oracle.price(WETH);
+        return (100 ether * 1 ether + price - 1) / price;
+    }
+    function _entryExecute(address owner, ZZZActivationEntry entry, ZZZActivationEntry.Request memory request) private {
+        if (request.sourceAsset != address(0)) {
+            vm.prank(owner); IERC20(request.sourceAsset).approve(address(entry), request.amountIn);
+        }
+        vm.prank(owner); entry.execute{value: request.sourceAsset == address(0) ? request.amountIn : 0}(request);
+    }
+    function _entryClean(SharedSystem memory s, ZZZActivationEntry entry, uint256 id) private {
+        assertEq(address(entry).balance, 0); assertEq(IERC20(WETH).balanceOf(address(entry)), 0);
+        assertEq(IERC20(ZZZ).balanceOf(address(entry)), 0);
+        assertEq(IERC20(WETH).allowance(address(entry), address(s.vault)), 0);
+        assertEq(IERC20(ZZZ).allowance(address(entry), address(s.vault)), 0);
+        assertEq(IERC20(WETH).allowance(address(s.vault), address(manager)), 0);
+        assertEq(IERC20(ZZZ).allowance(address(s.vault), address(manager)), 0);
+        vm.prank(address(pools)); assertEq(entry.sourceValue(POOL, 1, 2), 0);
+        vm.prank(address(s.vault)); vm.expectRevert(); entry.validateOwner(id, bytes32(0));
+        _assertApprovalsCleared();
+    }
+    function _markedLiquidityUSD(uint256 lp, uint128 liquidity) private view returns (uint256) {
+        // Independently mark the added liquidity at the final real pool price.
+        // Using the liquidity increment avoids counting incumbent repricing as
+        // new contribution value; these remain synthetic USD feed observations.
+        (int24 lower, int24 upper) = manager.ticks(lp);
+        uint160 price = manager.spot(POOL);
+        uint160 a = TickMath.getSqrtPriceAtTick(lower); uint160 b = TickMath.getSqrtPriceAtTick(upper);
+        uint256 amount0; uint256 amount1;
+        if (price <= a) amount0 = SqrtPriceMath.getAmount0Delta(a, b, liquidity, false);
+        else if (price >= b) amount1 = SqrtPriceMath.getAmount1Delta(a, b, liquidity, false);
+        else {
+            amount0 = SqrtPriceMath.getAmount0Delta(price, b, liquidity, false);
+            amount1 = SqrtPriceMath.getAmount1Delta(a, price, liquidity, false);
+        }
+        return oracle.value(WETH, amount0) + oracle.value(ZZZ, amount1);
+    }
+    function testSelectedNativeEntryETHActivationBindsOriginalOwnerAndGrossBudget() public {
+        SharedSystem memory s = _sharedSystem(); address owner = address(0xA11CE); uint256 id = _issueForEntry(s, owner);
+        ZZZActivationEntry entry = pools.activationEntry(); uint256 amount = _hundredUSDNative();
+        uint256 gross = oracle.value(WETH, amount); uint256 nativeBefore = owner.balance;
+        uint256 zzzBefore = IERC20(ZZZ).balanceOf(owner);
+        assertGe(gross, 100 ether); assertEq(s.nft.royaltyRewards().weightOf(id), 0);
+        vm.expectEmit(true, true, true, true, address(entry));
+        emit SourceContributed(owner, id, POOL, address(0), amount, gross, WETH, amount, false);
+        _entryExecute(owner, entry, _entryRequest(id, address(0), amount, false));
+        uint256 bucket = s.vault.nftBucket(id); Position memory p = s.vault.group(bucket);
+        assertEq(owner.balance, nativeBefore - amount); assertEq(IERC20(ZZZ).balanceOf(owner), zzzBefore);
+        assertEq(IERC20(WETH).balanceOf(owner), 0); assertEq(s.nft.ownerOf(id), owner);
+        assertEq(s.vault.contributionUSD(id), gross); assertEq(p.depositUSD, gross);
+        assertGe(_markedLiquidityUSD(p.lpTokenId, positions.getPositionLiquidity(p.lpTokenId)), gross - gross / 100);
+        assertEq(positions.ownerOf(p.lpTokenId), address(s.vault)); assertEq(s.vault.bucketCount(), 1);
+        assertEq(s.membership.totalEligible(), 1); assertGt(s.nft.royaltyRewards().weightOf(id), 0);
+        _entryClean(s, entry, id);
+    }
+    function testSelectedNativeEntryZZZActivationDeploysAtLeastNinetyNinePercent() public {
+        SharedSystem memory s = _sharedSystem(); address owner = address(0xA11CE); uint256 id = _issueForEntry(s, owner);
+        ZZZActivationEntry entry = pools.activationEntry(); uint256 amount = 100 ether;
+        uint256 gross = oracle.value(ZZZ, amount); uint256 zzzBefore = IERC20(ZZZ).balanceOf(owner);
+        uint256 nativeBefore = owner.balance;
+        // ERC20 approval is a separate owner transaction, before expecting the
+        // Entry operation's event; expectEmit checks the next external call.
+        vm.prank(owner); IERC20(ZZZ).approve(address(entry), amount);
+        vm.expectEmit(true, true, true, true, address(entry));
+        emit SourceContributed(owner, id, POOL, ZZZ, amount, gross, ZZZ, amount, false);
+        vm.prank(owner); entry.execute(_entryRequest(id, ZZZ, amount, false));
+        uint256 bucket = s.vault.nftBucket(id); Position memory p = s.vault.group(bucket);
+        assertEq(gross, 100 ether); assertEq(IERC20(ZZZ).balanceOf(owner), zzzBefore - amount);
+        assertEq(owner.balance, nativeBefore); assertEq(IERC20(ZZZ).allowance(owner, address(entry)), 0);
+        assertEq(s.nft.ownerOf(id), owner); assertEq(s.vault.contributionUSD(id), gross);
+        assertEq(p.depositUSD, gross); assertEq(positions.ownerOf(p.lpTokenId), address(s.vault));
+        assertGe(_markedLiquidityUSD(p.lpTokenId, positions.getPositionLiquidity(p.lpTokenId)), 99 ether);
+        assertEq(s.membership.totalEligible(), 1); assertGt(s.nft.royaltyRewards().weightOf(id), 0);
+        _entryClean(s, entry, id);
+    }
+    function testSelectedNativeEntryNativeAndZZZTopUpsPreserveOneLPAndMarginalBudget() public {
+        SharedSystem memory s = _sharedSystem(); address owner = address(0xA11CE); uint256 id = _issueForEntry(s, owner);
+        ZZZActivationEntry entry = pools.activationEntry(); uint256 nativeAmount = _hundredUSDNative();
+        uint256 totalGross = oracle.value(WETH, nativeAmount);
+        _entryExecute(owner, entry, _entryRequest(id, address(0), nativeAmount, false));
+        uint256 bucket = s.vault.nftBucket(id); uint256 lp = s.vault.group(bucket).lpTokenId;
+        uint256 next = positions.nextTokenId(); uint256 royaltyWeight = s.nft.royaltyRewards().weightOf(id);
+        for (uint256 i; i < 2; ++i) {
+            Position memory beforePosition = s.vault.group(bucket);
+            uint128 beforeLiquidity = positions.getPositionLiquidity(lp); uint256 beforeShares = s.vault.sharesOf(id);
+            address source = i == 0 ? ZZZ : address(0); uint256 amount = i == 0 ? 100 ether : nativeAmount;
+            uint256 gross = oracle.value(i == 0 ? ZZZ : WETH, amount);
+            uint256 oldIdle = oracle.value(WETH, beforePosition.idle0) + oracle.value(ZZZ, beforePosition.idle1);
+            _entryExecute(owner, entry, _entryRequest(id, source, amount, true)); totalGross += gross;
+            uint128 addedLiquidity = positions.getPositionLiquidity(lp) - beforeLiquidity;
+            assertGe(_markedLiquidityUSD(lp, addedLiquidity), oldIdle + gross - gross / 100);
+            assertEq(s.vault.group(bucket).lpTokenId, lp); assertEq(positions.nextTokenId(), next);
+            assertGt(s.vault.sharesOf(id), beforeShares); assertEq(s.vault.contributionUSD(id), totalGross);
+            assertEq(s.vault.group(bucket).depositUSD, totalGross); assertEq(s.vault.bucketCount(), 1);
+            assertEq(s.membership.totalEligible(), 1); assertEq(s.nft.royaltyRewards().weightOf(id), royaltyWeight);
+            assertEq(s.nft.ownerOf(id), owner); _entryClean(s, entry, id);
+        }
+    }
+    function testSelectedNativeEntryFailedLiquidityGuardRollsBackOwnerFundsAndVenue() public {
+        SharedSystem memory s = _sharedSystem(); address owner = address(0xA11CE); uint256 id = _issueForEntry(s, owner);
+        ZZZActivationEntry entry = pools.activationEntry(); uint256 amount = _hundredUSDNative();
+        ZZZActivationEntry.Request memory request = _entryRequest(id, address(0), amount, false);
+        request.minimumLiquidity = type(uint128).max;
+        uint256 nativeBefore = owner.balance; uint160 priceBefore = manager.spot(POOL); uint256 next = positions.nextTokenId();
+        vm.prank(owner); vm.expectRevert(bytes4(keccak256("Slippage()"))); entry.execute{value: amount}(request);
+        assertEq(owner.balance, nativeBefore); assertEq(manager.spot(POOL), priceBefore); assertEq(positions.nextTokenId(), next);
+        assertEq(s.vault.nftBucket(id), 0); assertEq(s.vault.bucketCount(), 0); assertEq(s.vault.sharesOf(id), 0);
+        assertEq(s.vault.contributionUSD(id), 0); assertEq(s.membership.totalEligible(), 0);
+        assertEq(s.nft.royaltyRewards().weightOf(id), 0); assertEq(s.nft.ownerOf(id), owner); _entryClean(s, entry, id);
+
+        request.minimumLiquidity = 1; _entryExecute(owner, entry, request);
+        uint256 bucket = s.vault.nftBucket(id); Position memory p = s.vault.group(bucket);
+        uint128 liquidityBefore = positions.getPositionLiquidity(p.lpTokenId); uint256 sharesBefore = s.vault.sharesOf(id);
+        uint256 contributionBefore = s.vault.contributionUSD(id); uint256 zzzBefore = IERC20(ZZZ).balanceOf(owner);
+        priceBefore = manager.spot(POOL); next = positions.nextTokenId();
+        request = _entryRequest(id, ZZZ, 100 ether, true); request.minimumLiquidity = type(uint128).max;
+        vm.prank(owner); IERC20(ZZZ).approve(address(entry), request.amountIn);
+        vm.prank(owner); vm.expectRevert(bytes4(keccak256("Slippage()"))); entry.execute(request);
+        assertEq(IERC20(ZZZ).balanceOf(owner), zzzBefore); assertEq(IERC20(ZZZ).allowance(owner, address(entry)), request.amountIn);
+        assertEq(manager.spot(POOL), priceBefore); assertEq(positions.nextTokenId(), next);
+        assertEq(positions.getPositionLiquidity(p.lpTokenId), liquidityBefore); assertEq(s.vault.sharesOf(id), sharesBefore);
+        assertEq(s.vault.contributionUSD(id), contributionBefore); assertEq(keccak256(abi.encode(s.vault.group(bucket))), keccak256(abi.encode(p)));
+        assertEq(s.membership.totalEligible(), 1); assertEq(s.nft.ownerOf(id), owner); _entryClean(s, entry, id);
     }
     function testSelectedNativeTwoNFTsShareOneLPAndFundedRewards() public {
         SharedSystem memory s = _sharedSystem(); uint256 first = _issue(s);

@@ -4,7 +4,7 @@
 
 The central task list for the whole PoPL project. There is no Todo page on the public website.
 
-**12 To do | 8 In progress | 8 Implemented locally**
+**15 To do | 14 In progress | 9 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -18,6 +18,7 @@ What holders see and use.
 - [ ] **Show actual holdings & claimable fees** - To do. Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.
 - [ ] **Handle the complete transaction journey** - To do. Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.
 - [ ] **Connect live history & cumulative claims** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
+- [ ] **Show execution-time rights when buying an NFT** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
 - [x] **Collection, artwork & portfolio preview** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
 
 ## Backend
@@ -38,17 +39,30 @@ Custody, ownership and reward accounting.
 - [ ] **Qualify ETH, ZZZ, USDG & USDC inputs** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
 - [ ] **Fair random assignment at mint** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
 - [x] **Minting, activation & NFT ownership** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
-- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ãƒâ€”1 / Ãƒâ€”2 / Ãƒâ€”3.
-- [x] **Shared LP, maintenance & custody controls** - Implemented. Pool-level upkeep, permanent NFT allocations, timelocked controls, paused parking and guarded resumption.
+- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares.
+- [x] **Shared LP, maintenance & custody controls** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented.
 
-## Testing & security
+## Testing & qualification
 
-Three required testing layers, then independent review.
+Three required testing layers, with source-bound evidence.
 
 - [ ] **Robinhood Testnet end-to-end rehearsal** - To do. Exercise wallet flows, the website, keeper operations and deployment with explicit records of unavailable or mocked dependencies.
 - [ ] **Independent audit and release approval** - To do. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.
 - [ ] **Robinhood mainnet-fork qualification** - In progress. Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates.
 - [x] **Local contract and integration tests** - Implemented. Minting, activation, reward accounting, royalties, transfers and security cases have local checks. Each new change still needs fresh source-bound evidence.
+- [x] **Verify NFT economic rights at full collection size** - Implemented. Internal ownership, 1,000-NFT payouts, buyback rollback and dual-ledger invariants verified: 531 offline Solidity passes, two intentional fork setup skips; extended rights invariants completed 65,536 calls. This closes the scoped local verification task, not independent audit or production qualification.
+
+## Security & audit
+
+Seven audit workstreams. Local checks are partial evidence; independent review and release sign-off remain open. See [the security audit plan](docs/SECURITY_AUDIT_PLAN.md) for acceptance criteria and priorities.
+
+- [ ] **Whole-protocol recovery & canonical chain loss** - To do. Decide before sealing how to handle permanent home-chain loss, lost governance keys and unusable critical contracts. LP migration alone leaves canonical NFT ownership and reward ledgers at home. A full identity/liability migration needs an audited snapshot/finality, duplicate-prevention, in-flight claims and old-chain resurrection policy; it is not implemented.
+- [ ] **Governance, permissions & sealing** - In progress. Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
+- [ ] **Shared LP accounting & economic manipulation** - In progress. Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues.
+- [ ] **Ownership, claims & allocation rules** - In progress. Verify all unclaimed balances and fractions follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized.
+- [ ] **Oracles, keepers, strategies & MEV** - In progress. Test compromised keepers, stale/manipulated prices, repeated rebalances, unfavorable swaps and sandwich/MEV costs. Qualify execution bounds, cooldowns, fee/gas budgets and outage policies with actual venues; access control alone does not prevent economic loss or impermanent loss.
+- [ ] **External dependencies & receipt backing** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
+- [ ] **Cross-contract & infrastructure audit** - In progress. Audit complete transaction paths and failure rollback across contracts, frontend, API/indexer, deployment, keys and keeper services. Rehearse reorgs, replay, stale or compromised data, wrong-chain signing, RPC failure, restore/rotation and monitoring. Independent review and operational sign-off remain open.
 
 ## Launch & operations
 
@@ -56,6 +70,7 @@ Decisions and rehearsals before real funds.
 
 - [ ] **Select authorities & price services** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
 - [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
+- [ ] **Approve reward-token liveness and dust economics** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. A broken royalty token can stop new activations; sub-20-raw-unit owner dust is bounded per settlement, not cumulatively. Qualify every asset before admission.
 - [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
 - [ ] **Harden keeper recovery and monitoring** - In progress. Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open.
 - [ ] **Rehearse keeper outage & server recovery** - In progress. 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
@@ -72,4 +87,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6ef519d798357c1d71b44380b10746050925dd8d3ff9b047f050254d277d7943`.
+Snapshot SHA-256: `c89391a8f06020ffc529331b04ab76de74d5f1d9a4f10475c40e4d1ccef5b8a4`.

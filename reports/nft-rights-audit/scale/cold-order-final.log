@@ -1,0 +1,103 @@
+Compiling 4 files with Solc 0.8.26
+Solc 0.8.26 finished in 145.14s
+Compiler run successful with warnings:
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:170:51:
+    |
+170 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+
+Ran 4 tests for test/BucketCapacity.t.sol:BucketCapacityTest
+[PASS] testFourHistoricalCanonicalBucketsRejectNewPoolButAllowExistingPoolNFT() (gas: 13996908)
+[PASS] testHistoricalCapStillAllowsCanonicalCustodyReturnAndRepeatedDeparture() (gas: 11885567)
+[PASS] testMaximumFundedFourBucketEntryWorkload() (gas: 14311008)
+Logs:
+  membership.4-distinct-funded-buckets.activation: 3507294
+
+[PASS] testSatelliteImportHistoryHasTheSameFourBucketLimit() (gas: 2815934)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 109.59ms (197.75ms CPU time)
+
+Ran 4 tests for test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest
+[PASS] testColdActivationAtCombinedBucketAssetAndReceiverCaps() (gas: 10017375)
+Logs:
+  combined.4-buckets.32-assets.4-inboxes.17-royalties.activation: 9048516
+
+[PASS] testColdActivationWithEveryHistoricalRewardIndexPopulated() (gas: 11765761)
+Logs:
+  combined.4-buckets.32-indexed-assets.activation: 9612107
+
+[PASS] testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps() (gas: 8028307)
+Logs:
+  combined.4-buckets.32-assets.4-inboxes.17-royalties.top-up: 6685211
+
+[PASS] testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated() (gas: 9751728)
+Logs:
+  combined.4-buckets.32-indexed-assets.top-up: 7596173
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 359.08ms (1.15s CPU time)
+
+Ran 4 tests for test/ProductionGas.t.sol:ProductionGasTest
+[PASS] testGasCollection1() (gas: 5895808)
+Logs:
+  collection.1.assets.2.mintDormant: 479320
+  collection.1.assets.2.activate: 1918629
+  collection.1.assets.2.topUpWithFeeCheckpoint: 2406426
+  collection.1.assets.2.harvest: 601865
+  collection.1.assets.2.sharedPoolRebalance: 955266
+  collection.1.assets.2.checkpointAll: 134007
+  collection.1.assets.2.claimOneAsset: 110988
+
+[PASS] testGasCollection100() (gas: 5512056)
+Logs:
+  collection.100.assets.2.mintDormant: 272883
+  collection.100.assets.2.activate: 1745050
+  collection.100.assets.2.topUpWithFeeCheckpoint: 2406426
+  collection.100.assets.2.harvest: 601865
+  collection.100.assets.2.sharedPoolRebalance: 955266
+  collection.100.assets.2.checkpointAll: 134007
+  collection.100.assets.2.claimOneAsset: 110988
+
+[PASS] testGasCollection1000() (gas: 5532871)
+Logs:
+  collection.1000.assets.2.mintDormant: 272883
+  collection.1000.assets.2.activate: 1745105
+  collection.1000.assets.2.topUpWithFeeCheckpoint: 2406448
+  collection.1000.assets.2.harvest: 601865
+  collection.1000.assets.2.sharedPoolRebalance: 955289
+  collection.1000.assets.2.checkpointAll: 134007
+  collection.1000.assets.2.claimOneAsset: 110988
+
+[PASS] testGasMaximum32FundedRewardAssets() (gas: 18660763)
+Logs:
+  collection.1000.assets.32.mintDormant: 272883
+  collection.1000.assets.32.activate: 2511724
+  collection.1000.assets.32.topUpWithFeeCheckpoint: 2844108
+  collection.1000.assets.32.harvest: 601865
+  collection.1000.assets.32.sharedPoolRebalance: 955277
+  collection.1000.assets.32.checkpointAll: 522966
+  collection.1000.assets.32.claimOneAsset: 110988
+  collection.1000.assets.32.funded.checkpointAll: 1910926
+  collection.1000.assets.32.funded.claim32BatchedCalls: 4790918
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 14.78s (27.78s CPU time)
+
+Ran 2 tests for test/CollectionScale.t.sol:CollectionScaleTest
+[PASS] testAll1000NFTsPreserveIndependentRightsAndFundedConservation() (gas: 4010)
+[PASS] testColdOperationsAtOneAnd1000NFTsStayBounded() (gas: 10730427)
+Logs:
+  collection.1.activation: 1953769
+  collection.1000.activation: 1780853
+  collection.1.claim-one-asset: 176661
+  collection.1000.claim-one-asset: 176793
+  collection.1.claim-five-mixed: 804409
+  collection.1000.claim-five-mixed: 806534
+  collection.1.shared-rebalance: 920217
+  collection.1000.shared-rebalance: 920483
+  collection.1.shared-compound: 732545
+  collection.1000.shared-compound: 732811
+  collection.1000.claim-32-mixed: 4333653
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 16.50s (28.94s CPU time)
+
+Ran 4 test suites in 16.54s (31.75s CPU time): 14 tests passed, 0 failed, 0 skipped (14 total tests)

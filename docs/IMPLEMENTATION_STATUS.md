@@ -1,5 +1,31 @@
 # Implemented and Todo
 
+## NFT economic-rights verification - 2026-10-16
+
+This entry supersedes older capacity statements: the candidate caps historical
+buckets at four, including imports; all 1,000 NFTs can share the initial LP.
+
+- [x] Internally review canonical NFT identity, current-owner claims, immutable
+  rarity, shared LP shares, 80/10/5/5 and separate actual-receipt royalties.
+- [x] Add executable full-collection payouts, successive/operator/contract
+  receiver transfers, atomic rollback, direct/swapped buyback failures and
+  combined LP/royalty stateful invariants. See the
+  [source-bound test report](../reports/nft-rights-audit/VERIFICATION.md).
+- [x] Preserve and verify the prior four-bucket gas safeguard with current
+  capacity tests and production config validation; do not restore the unsafe
+  combined 16-bucket workload or confuse bucket count with NFT count.
+- [ ] Qualify actual tokens, creator payment terms, input routes, feeds, VRF,
+  authorities, market/operating rehearsals, wallet integration and external audit.
+- [ ] Before real bridging, reserve destination capacity permanently and qualify
+  transport/backing/recovery and remote compounding. Identity reservation alone
+  does not protect a future import slot.
+
+- [ ] Complete the seven [security audit workstreams](SECURITY_AUDIT_PLAN.md), including a pre-seal decision on permanent home-chain loss and canonical NFT/reward-ledger recovery. LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
+
+The [component-by-component assessment](../reports/nft-rights-audit/IMPLEMENTATION.md)
+records what is implemented, tested and internally reviewed. No component receives
+unconditional production approval. Earlier snapshots retain their original scope.
+
 Updated 2026-10-16 for atomic original-source activation and governed custody parking. Earlier metadata and integration/recovery receipts retain their exact source scope. The separate website is the simulated release `8c0b93523d914644d440129d74745c9e12f8e08a`; no smart contracts are deployed.
 
 **Checked means implemented in the undeployed development candidate, with local test evidence. It does not mean deployed, independently audited or approved for real funds.** Unchecked items identify missing implementation, integration or production qualification. The separate [release checklist](RELEASE_CHECKLIST.md) remains NOT APPROVED.
@@ -9,7 +35,7 @@ Updated 2026-10-16 for atomic original-source activation and governed custody pa
 - [x] Exact **0.05 ETH dormant mint**, forwarded to the fixed mint recipient; minting adds no LP or reward eligibility. [Vault](../src/ZZZVault.sol).
 - [x] Owner activation with at least **$100 original gross source value** and **99% marginal actually deployed LP**, with the same 1% execution/undeployed limit for additions; gas is separate. The immutable [Entry](ACTIVATION_ENTRY.md) binds measured source value and the exact owner/Vault call across typed conversion; conversion and deployment share one loss budget. Principal is nonredeemable; attached shares and unclaimed/future reward rights follow NFT ownership.
 - [x] Registry-created, immutable activation Entry: admitted direct pair assets, exact native wrapping for the selected native pool, or append-only reviewed single-hop V3 routes into one accounting currency. Current owner only, exact balances/approvals, callback-safe short-lived context and atomic rollback. Real route liquidity, dependency authority and staging remain release gates; no usable USDC route is currently qualified.
-- [x] **One physical LP position per approved pool/strategy**, with individual NFT shares. Rebalance, harvest and compounding operate per shared bucket, rather than once per NFT. The intended initial collection uses one pool; the defensive cap is 16 historical buckets, including imports.
+- [x] **One physical LP position per approved pool/strategy**, with individual NFT shares. Rebalance, harvest and compounding operate per shared bucket, rather than once per NFT. The intended initial collection uses one pool; the defensive cap is 4 historical buckets, including imports.
 - [x] **80% individual / 10% collective / 5% compounding / 5% buyback and burn** funded allocation. The individual share follows LP shares; the collective share is equal per activated NFT. No Power or rarity multiplier changes LP rewards. [Fees](../src/ZZZFeeController.sol), [rewards](../src/ZZZRewards.sol).
 - [x] Immutable creator-payment receivers, funded processing and current-owner claims, with segregated reserves and incumbent entry settlement. The receiver accepts actual payments; it does not establish a creator's payment obligation. [Funding rules](EXTERNAL_REWARDS.md).
 - [x] Separate **5% ERC-2981 royalty request** and distribution of **100% of eligible royalty receipts** at activated Commun ×1 / Rare ×2 / Legendary ×3. Dormant NFTs have zero weight; pre-admission/prefund/no-member receipts remain quarantined. Marketplace payment is voluntary. [Royalty ledger](../src/ZZZRoyaltyRewards.sol).

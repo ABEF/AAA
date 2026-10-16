@@ -284,3 +284,38 @@ Keeper/Todo commit `3db782b087d5add2327f519030055d288d9d6512` is pushed. Exact-c
 The user selected the existing Ubuntu website host for isolated keeper rehearsals. The stage is running under zzz-stage in /opt/zzz-keeper-staging and /var/lib/zzz-keeper-staging, using only an isolated Anvil chain 31337 on 127.0.0.1:18545 and disposable test ETH. Runtime source 089d391c1689c2036db518c7a9705989896a14d8 passed 209 Ubuntu safety tests and 14 process rehearsals. Server process/crash/restart, off-host snapshot round-trip restore and forced-command monitoring tests have evidence in reports/keeper-rehearsal/. Website release/content is unchanged.
 
 A five-minute local observer exports snapshots and health through read-only SSH. The popl-staging-health chat heartbeat reads every 30 minutes and saves off-host copies; desktop downtime creates observation gaps, so this is not independently hosted 24/7 production monitoring. Credentials remain outside Git. Multi-day soak is underway, not passed. Keep actual Robinhood services, fee/RPC qualification, Testnet operation, independent audit and authority decisions open. See docs/KEEPER_REHEARSALS.md for the service boundaries and stop procedure.
+
+## NFT ownership/accounting audit handoff - 2026-10-16
+
+The user's comprehensive prompt was challenged, corrected and executed; see
+reports/nft-rights-audit/REVISED_PROMPT.md and REVIEW.md. Existing current-owner
+claims, shared LP identity, funded 80/10/5/5 and separate royalty weights were
+already implemented. New tests cover all 1,000 payouts, receiver/operator/sale
+ordering, buyback rollback/retry and stateful LP/royalty conservation. The
+VERIFICATION.md report distinguishes fresh evidence from unchanged-source prior
+Slither/fork receipts, and records first-attempt/test-harness corrections.
+
+The prior local four-bucket safeguard is retained: one initial shared LP still
+serves the whole collection. Cross-review corrected actor aliasing and cold-gas
+getter ordering in tests; it did not discover a new reward-theft exploit.
+Destination capacity reservations, admitted-token liveness/dust policy, actual
+routes/services/authorities/creator terms, sustained operating qualification,
+wallet integration and independent audit remain gates. No public transactions,
+website changes or keeper/staging changes are part of this audit.
+
+Publish only the reviewed Solidity/capacity/test/evidence and checklist scope.
+Pre-existing frontend/quote/process-runner and artwork work remains separate;
+preserve it. Git HEAD/origin establish publication; do not infer publication of
+all local Python changes from the broader local test count.
+
+
+## Security audit workstreams - 2026-10-16
+
+The central Todo now tracks seven security workstreams with acceptance criteria
+in docs/SECURITY_AUDIT_PLAN.md: governance/sealing, shared accounting, ownership
+and allocations, oracle/keeper economics, dependencies/backing, whole-protocol
+recovery and cross-contract/infrastructure security. These are release work,
+not an assertion that independent audit is complete. The split is currently
+fixed; configurable percentages are only a risk/benefit question, not an approved
+change. Permanent home-chain loss has no canonical NFT/reward-ledger recovery;
+LP migration alone does not solve it. Decide this architecture before sealing.

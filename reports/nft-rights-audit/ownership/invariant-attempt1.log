@@ -1,0 +1,83 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 152.68s
+Compiler run successful with warnings:
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:170:51:
+    |
+170 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+
+Ran 2 tests for test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest
+[PASS] invariant_rightsAndActualFundingConserved() (runs: 32, calls: 4096, reverts: 0)
+
+╭------------------+--------------------+-------+---------+----------╮
+| Contract         | Selector           | Calls | Reverts | Discards |
++====================================================================+
+| NFTRightsHandler | activate           | 364   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | claimLP            | 367   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | claimMixed         | 373   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | claimRoyalty       | 379   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | harvest            | 351   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | maintain           | 398   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | pause              | 371   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | receiveRoyalty     | 394   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | synchronizeRoyalty | 339   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | topUp              | 371   | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | transfer           | 389   | 0       | 0        |
+╰------------------+--------------------+-------+---------+----------╯
+
+Logs:
+  Bound result 13
+  Bound result 17
+  Bound result 500
+  Bound result 750
+  Bound result 1000
+  Bound result 524
+  Bound result 765
+  Bound result 543
+  Bound result 29
+  Bound result 826
+  Bound result 766588
+  Bound result 2567
+  Bound result 238
+  Bound result 64
+  Bound result 272305
+  Bound result 597766
+  Bound result 3228
+  Bound result 949
+  Bound result 87
+  Bound result 9067
+  Bound result 640162
+  Bound result 60849
+  Bound result 434953
+  Bound result 14967
+
+[PASS] testReceiptActivationTransferPauseAndMixedClaimSequence() (gas: 7723215)
+Logs:
+  Bound result 13
+  Bound result 17
+  Bound result 500
+  Bound result 750
+  Bound result 1000
+  Bound result 1001
+  Bound result 2003
+  Bound result 109
+  Bound result 217
+  Bound result 900
+  Bound result 33
+  Bound result 17
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 25.18s (25.18s CPU time)
+
+Ran 1 test suite in 25.19s (25.18s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

@@ -22,22 +22,22 @@ contract BucketCapacityTest is PooledVaultFixture {
         }
     }
 
-    function testSixteenHistoricalCanonicalBucketsRejectNewPoolButAllowExistingPoolNFT() public {
-        uint256[] memory ids = _canonicalBuckets(16);
-        assertEq(vault.MAX_BUCKETS(), 16); assertEq(vault.bucketCount(), 16);
-        uint256 entrant = _mint(bob); bytes32 extra = _poolAt(16);
+    function testFourHistoricalCanonicalBucketsRejectNewPoolButAllowExistingPoolNFT() public {
+        uint256[] memory ids = _canonicalBuckets(4);
+        assertEq(vault.MAX_BUCKETS(), 4); assertEq(vault.bucketCount(), 4);
+        uint256 entrant = _mint(bob); bytes32 extra = _poolAt(4);
         vm.prank(bob); vm.expectRevert(); vault.activate(entrant, extra, 1000, 1000, 1, block.timestamp + 100);
-        assertEq(vault.bucketCount(), 16); assertEq(vault.poolBucket(extra), 0); assertEq(vault.nftBucket(entrant), 0);
+        assertEq(vault.bucketCount(), 4); assertEq(vault.poolBucket(extra), 0); assertEq(vault.nftBucket(entrant), 0);
         assertFalse(membership.eligible(entrant));
         _activate(bob, entrant, 1000, 1000);
-        assertEq(vault.bucketCount(), 16); assertEq(vault.nftBucket(entrant), vault.nftBucket(ids[0]));
-        assertEq(membership.totalEligible(), 17);
+        assertEq(vault.bucketCount(), 4); assertEq(vault.nftBucket(entrant), vault.nftBucket(ids[0]));
+        assertEq(membership.totalEligible(), 5);
         vm.prank(alice); vault.increase(ids[0], 100, 100, 1, block.timestamp + 100);
-        assertEq(vault.bucketCount(), 16); assertEq(membership.totalEligible(), 17);
+        assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 5);
     }
 
     function testHistoricalCapStillAllowsCanonicalCustodyReturnAndRepeatedDeparture() public {
-        uint256[] memory ids = _canonicalBuckets(16); uint256 bucket = vault.nftBucket(ids[0]);
+        uint256[] memory ids = _canonicalBuckets(4); uint256 bucket = vault.nftBucket(ids[0]);
         Position memory original = vault.group(bucket); uint256 shares = vault.bucketTotalShares(bucket);
         for (uint256 i; i < 2; ++i) {
             vault.releaseForMigration(bucket, bytes32(i + 1), block.timestamp + 100);
@@ -47,11 +47,11 @@ contract BucketCapacityTest is PooledVaultFixture {
             t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
             vault.importPending(bucket, poolId, original, shares, poolId, 1000, 1000);
             vault.finalizeImport(bucket, 1, block.timestamp + 100); vm.stopPrank();
-            assertEq(vault.bucketCount(), 16); assertEq(vault.bucketTotalShares(bucket), shares);
+            assertEq(vault.bucketCount(), 4); assertEq(vault.bucketTotalShares(bucket), shares);
             assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Active));
         }
-        assertTrue(membership.eligible(ids[0])); assertEq(membership.totalEligible(), 16);
-        uint256 entrant = _mint(bob); bytes32 extra = _poolAt(16);
+        assertTrue(membership.eligible(ids[0])); assertEq(membership.totalEligible(), 4);
+        uint256 entrant = _mint(bob); bytes32 extra = _poolAt(4);
         vm.prank(bob); vm.expectRevert(); vault.activate(entrant, extra, 1000, 1000, 1, block.timestamp + 100);
     }
 
@@ -70,36 +70,38 @@ contract BucketCapacityTest is PooledVaultFixture {
         vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000); vm.stopPrank();
     }
 
-    function testSatelliteImportHistoryHasTheSameSixteenBucketLimit() public {
+    function testSatelliteImportHistoryHasTheSameFourBucketLimit() public {
         vm.chainId(block.chainid + 1);
-        for (uint256 i; i < 16; ++i) _importRemote(i);
-        assertEq(vault.bucketCount(), 16); assertEq(vault.totalIdle(address(t0)), 16000);
-        uint256 bucket; Position memory origin; (bucket, origin) = _remoteOrigin(16);
-        bytes32 destination = _poolAt(16); vault.reservePool(destination, bucket);
+        for (uint256 i; i < 4; ++i) _importRemote(i);
+        assertEq(vault.bucketCount(), 4); assertEq(vault.totalIdle(address(t0)), 4000);
+        uint256 bucket; Position memory origin; (bucket, origin) = _remoteOrigin(4);
+        bytes32 destination = _poolAt(4); vault.reservePool(destination, bucket);
         vm.prank(ac.module(Ids.RECEIVER)); vm.expectRevert();
         vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000);
-        assertEq(vault.bucketCount(), 16); assertEq(vault.totalIdle(address(t0)), 16000);
+        assertEq(vault.bucketCount(), 4); assertEq(vault.totalIdle(address(t0)), 4000);
         assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.None));
     }
 
-    function testMaximumFundedSixteenBucketEntryWorkload() public {
-        uint256[] memory ids = _canonicalBuckets(16);
-        for (uint256 i; i < 16; ++i) {
+    function testMaximumFundedFourBucketEntryWorkload() public {
+        uint256[] memory ids = _canonicalBuckets(4);
+        for (uint256 i; i < 4; ++i) {
             venue.setFees(19, 19); vault.collectFees(vault.nftBucket(ids[i]), block.timestamp + 100);
         }
-        assertEq(fees.accounted(address(t0)), 16 * 19); assertEq(rewards.liabilities(address(t0)), 0);
+        assertEq(fees.accounted(address(t0)), 4 * 19); assertEq(rewards.liabilities(address(t0)), 0);
         uint256 entrant = _mint(bob);
         vm.cool(address(vault)); vm.cool(address(fees)); vm.cool(address(membership)); vm.cool(address(rewards));
         vm.cool(address(t0)); vm.cool(address(t1)); vm.cool(address(venue)); vm.cool(address(pools));
-        vm.cool(address(oracle)); vm.cool(address(policy)); vm.cool(address(nft)); vm.cool(address(nft.royaltyRewards()));
+        vm.cool(address(oracle)); vm.cool(address(policy)); vm.cool(address(nft.royaltyRewards()));
+        // The royalty-ledger getter touches the NFT; cool it after that read.
+        vm.cool(address(nft));
         uint256 start = gasleft(); vm.prank(bob);
         vault.activate(entrant, poolId, 1000, 1000, 1, block.timestamp + 100);
-        uint256 used = start - gasleft(); emit log_named_uint("membership.16-distinct-funded-buckets.activation", used);
-        assertLt(used, 12_000_000, "16-bucket entry exceeds local reviewed workload budget");
-        assertEq(vault.bucketCount(), 16); assertEq(membership.totalEligible(), 17);
+        uint256 used = start - gasleft(); emit log_named_uint("membership.4-distinct-funded-buckets.activation", used);
+        assertLt(used, 12_000_000, "4-bucket entry exceeds local reviewed workload budget");
+        assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 5);
         assertEq(rewards.claimable(entrant, address(t0)), 0); assertEq(rewards.claimable(entrant, address(t1)), 0);
-        assertEq(rewards.liabilities(address(t0)), 16 * 19); assertEq(fees.accounted(address(t0)), 0);
-        for (uint256 i; i < 16; ++i) {
+        assertEq(rewards.liabilities(address(t0)), 4 * 19); assertEq(fees.accounted(address(t0)), 0);
+        for (uint256 i; i < 4; ++i) {
             assertEq(fees.dust(vault.nftBucket(ids[i]), address(t0)), 0);
             assertEq(rewards.claimable(ids[i], address(t0)), 19); assertEq(rewards.claimable(ids[i], address(t1)), 19);
         }

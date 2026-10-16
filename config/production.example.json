@@ -10,7 +10,7 @@
     "An initial migration-disabled launch may leave bucket_reservations empty; future funded routes must prove permanent pool reservations for the canonical bucket.",
     "Token admission must review the USD value of up to nineteen raw units settled to owners before membership changes and holder-triggered top-up frequency.",
     "External creator payments are funded revenue only; no creator percentage, payment promise or proportional Pons entitlement is assumed.",
-    "Inventory every immutable canonical reward receiver, exact getter/code observations and native wrapper review; max16 receivers. These are helpers, not new sealed modules.",
+    "Inventory every immutable canonical reward receiver, exact getter/code observations and native wrapper review; at most4 are reachable under the Vault historical-bucket cap (factory limit16). These are helpers, not new sealed modules.",
     "Collection supply is capped at 1000 with exact600Commun/300Rare/100Legendary quotas. Verified randomness assigns rarity in mint order without replacement; later odds follow remaining quotas, not fixed 60/30/10 chances.",
     "Eight base colors form 58 palettes and four patterns covering 2784 artwork states; reviewed immutable production publication remains pending. Metadata uses current attributed LP value; stale/remote valuation is unavailable.",
     "No verified randomness coordinator, subscription, key hash or staged fulfillment is supplied for Robinhood. Required randomness review and canonical NFT/helper observations remain pending.",

@@ -4,6 +4,13 @@ ZZZ Protocol is a compiled, tested development candidate with an internal source
 
 Permanent custody makes implementation and configuration mistakes particularly difficult to recover from. Publishing this repository does not close any release gate.
 
+The latest [NFT economic-rights review](reports/nft-rights-audit/REVIEW.md) and
+[executed checks](reports/nft-rights-audit/VERIFICATION.md) extend internal
+verification. The [seven-workstream audit plan](docs/SECURITY_AUDIT_PLAN.md)
+defines remaining security acceptance criteria, tracked in the central
+[Security & audit Todo](TODO.md#security--audit). Permanent home-chain loss has
+no implemented canonical NFT/ledger recovery; LP migration alone does not solve it.
+
 - [Security model and intended invariants](docs/SECURITY.md)
 - [Historical source-level self-review](docs/AUDIT.md)
 - [Current static-analysis findings and individual dispositions](reports/production/slither-review.json)

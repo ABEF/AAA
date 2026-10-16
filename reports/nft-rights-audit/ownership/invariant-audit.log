@@ -1,0 +1,125 @@
+No files changed, compilation skipped
+
+Ran 2 tests for test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest
+[PASS] invariant_rightsAndActualFundingConserved() (runs: 256, calls: 65536, reverts: 0)
+
+╭------------------+--------------------+-------+---------+----------╮
+| Contract         | Selector           | Calls | Reverts | Discards |
++====================================================================+
+| NFTRightsHandler | activate           | 5990  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | claimLP            | 5975  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | claimMixed         | 5782  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | claimRoyalty       | 5939  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | harvest            | 5944  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | maintain           | 6041  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | pause              | 6040  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | receiveRoyalty     | 6050  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | synchronizeRoyalty | 5928  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | topUp              | 5894  | 0       | 0        |
+|------------------+--------------------+-------+---------+----------|
+| NFTRightsHandler | transfer           | 5953  | 0       | 0        |
+╰------------------+--------------------+-------+---------+----------╯
+
+Logs:
+  Bound result 13
+  Bound result 17
+  Bound result 500
+  Bound result 750
+  Bound result 1000
+  Bound result 0
+  Bound result 741
+  Bound result 707
+  Bound result 17505
+  Bound result 332
+  Bound result 757
+  Bound result 6
+  Bound result 754
+  Bound result 567015
+  Bound result 791368
+  Bound result 296
+  Bound result 106
+  Bound result 935
+  Bound result 213380
+  Bound result 594
+  Bound result 3
+  Bound result 74342
+  Bound result 892416
+  Bound result 585828
+  Bound result 228
+  Bound result 873
+  Bound result 637
+  Bound result 69867
+  Bound result 876474
+  Bound result 708670
+  Bound result 703809
+  Bound result 5
+  Bound result 844791
+  Bound result 133012
+  Bound result 8132
+  Bound result 1000
+  Bound result 965
+  Bound result 3295
+  Bound result 891821
+  Bound result 880221
+  Bound result 889675
+  Bound result 251774
+  Bound result 513752
+  Bound result 191
+  Bound result 834
+  Bound result 12627
+  Bound result 851
+  Bound result 883
+  Bound result 373
+  Bound result 603292
+  Bound result 9198
+  Bound result 3627
+  Bound result 999997
+  Bound result 3
+  Bound result 411425
+  Bound result 14724
+  Bound result 22194
+  Bound result 990
+  Bound result 541
+  Bound result 862
+  Bound result 473
+  Bound result 321
+  Bound result 240
+  Bound result 14040
+  Bound result 2
+  Bound result 375
+  Bound result 323
+  Bound result 203623
+  Bound result 74165
+  Bound result 890
+  Bound result 48
+  Bound result 6928
+  Bound result 149
+  Bound result 182
+
+[PASS] testReceiptActivationTransferPauseAndMixedClaimSequence() (gas: 7723215)
+Logs:
+  Bound result 13
+  Bound result 17
+  Bound result 500
+  Bound result 750
+  Bound result 1000
+  Bound result 1001
+  Bound result 2003
+  Bound result 109
+  Bound result 217
+  Bound result 900
+  Bound result 33
+  Bound result 17
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 395.26s (395.26s CPU time)
+
+Ran 1 test suite in 395.30s (395.26s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

@@ -4,7 +4,7 @@ The creator can send payments directly to an immutable per-bucket `ZZZRewardRece
 
 ## Payment and allocation
 
-After sealing and activating a canonical bucket, governance creates its receiver through the timelock. One receiver permanently binds each bucket and its original admitted pair; at most16are registered. No redirection/replacement/admin sweep exists.
+After sealing and activating a canonical bucket, governance creates its receiver through the timelock. One receiver permanently binds each bucket and its original admitted pair. The current Vault admits four historical buckets, so at most four receivers are reachable; the factory retains its separate defensive ceiling of 16. No redirection, replacement or administrator sweep exists.
 
 Plain pair-ERC20 payments are accepted. Optionally, nativeETH is wrapped exactly one-for-one using a reviewed admitted18decimal pair wrapper. Anyone or the constrained keeper may sync receipts. Only actual processed funds enter80/10/5/5:80%pool-share owner,10%equal activated-NFT collective,5%permanent compounding,5%buyback/burn.
 
@@ -26,6 +26,6 @@ Canonical processing/claims continue during pause or while LP custody is away. H
 
 Only admitted exact-transfer, non-rebasing tokens and exactwrappers are supported. Constructor prefunds/unsupportedassets cannot be rescued. Without a wrapper ordinaryETHreceipt reverts, while forcedETH is excluded. Anyone may donate accepted funds; receipt does not authenticate creator identity.
 
-The19raw-unit dust exception must be economically valued for every token. An admitted token/wrapper outage can block global synchronization and new entries. The16receiver bound limits loops but does not eliminate availability risk. Inventory receiver code, immutable getters, currencies, wrapper behavior and actual staging in schema4production configuration.
+The 19-raw-unit dust exception must be economically valued for every token. An admitted token or wrapper outage can block global synchronization and new entries. The effective four-receiver bound limits global loops but does not eliminate availability risk. The stronger combined fixture exposed excessive gas at the old 16-bucket cap; actual Entry/venue costs still need qualification at four. Inventory receiver code, immutable getters, currencies, wrapper behavior and actual staging in the schema-4 production configuration.
 
 The selected Robinhood native-ETH/Pons-hook LP has a separate strictly pinned development adapter, pending production qualification. Its 0% core fee does not imply hook revenue entitlement. Payment intake alone never supplies qualified custody, production transport, approved valuation or an independent audit.

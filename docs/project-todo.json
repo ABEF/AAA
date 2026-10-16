@@ -37,6 +37,12 @@
           "status": "todo",
           "title": "Connect live history & cumulative claims",
           "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties."
+        },
+        {
+          "id": "purchase-rights",
+          "status": "todo",
+          "title": "Show execution-time rights when buying an NFT",
+          "text": "Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot."
         }
       ]
     },
@@ -94,13 +100,13 @@
           "id": "reward-ledgers",
           "status": "done",
           "title": "LP fees & separate royalty shares",
-          "text": "80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ãƒâ€”1 / Ãƒâ€”2 / Ãƒâ€”3."
+          "text": "80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares."
         },
         {
           "id": "shared-custody",
           "status": "done",
           "title": "Shared LP, maintenance & custody controls",
-          "text": "Pool-level upkeep, permanent NFT allocations, timelocked controls, paused parking and guarded resumption."
+          "text": "One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented."
         },
         {
           "id": "pons-qualification",
@@ -125,8 +131,8 @@
     {
       "id": "testing",
       "number": "04",
-      "title": "Testing & security",
-      "caption": "Three required testing layers, then independent review.",
+      "title": "Testing & qualification",
+      "caption": "Three required testing layers, with source-bound evidence.",
       "tasks": [
         {
           "id": "local-verification",
@@ -151,12 +157,68 @@
           "status": "todo",
           "title": "Independent audit and release approval",
           "text": "Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds."
+        },
+        {
+          "id": "economic-rights-audit",
+          "status": "done",
+          "title": "Verify NFT economic rights at full collection size",
+          "text": "Internal ownership, 1,000-NFT payouts, buyback rollback and dual-ledger invariants verified: 531 offline Solidity passes, two intentional fork setup skips; extended rights invariants completed 65,536 calls. This closes the scoped local verification task, not independent audit or production qualification."
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "number": "05",
+      "title": "Security & audit",
+      "caption": "Seven audit workstreams. Local checks are partial evidence; independent review and release sign-off remain open. See [the security audit plan](docs/SECURITY_AUDIT_PLAN.md) for acceptance criteria and priorities.",
+      "tasks": [
+        {
+          "id": "security-governance",
+          "status": "progress",
+          "title": "Governance, permissions & sealing",
+          "text": "Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers."
+        },
+        {
+          "id": "security-share-accounting",
+          "status": "progress",
+          "title": "Shared LP accounting & economic manipulation",
+          "text": "Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues."
+        },
+        {
+          "id": "security-ownership-rewards",
+          "status": "progress",
+          "title": "Ownership, claims & allocation rules",
+          "text": "Verify all unclaimed balances and fractions follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized."
+        },
+        {
+          "id": "security-strategy",
+          "status": "progress",
+          "title": "Oracles, keepers, strategies & MEV",
+          "text": "Test compromised keepers, stale/manipulated prices, repeated rebalances, unfavorable swaps and sandwich/MEV costs. Qualify execution bounds, cooldowns, fee/gas budgets and outage policies with actual venues; access control alone does not prevent economic loss or impermanent loss."
+        },
+        {
+          "id": "security-dependencies",
+          "status": "progress",
+          "title": "External dependencies & receipt backing",
+          "text": "Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change."
+        },
+        {
+          "id": "security-chain-recovery",
+          "status": "todo",
+          "title": "Whole-protocol recovery & canonical chain loss",
+          "text": "Decide before sealing how to handle permanent home-chain loss, lost governance keys and unusable critical contracts. LP migration alone leaves canonical NFT ownership and reward ledgers at home. A full identity/liability migration needs an audited snapshot/finality, duplicate-prevention, in-flight claims and old-chain resurrection policy; it is not implemented."
+        },
+        {
+          "id": "security-integration",
+          "status": "progress",
+          "title": "Cross-contract & infrastructure audit",
+          "text": "Audit complete transaction paths and failure rollback across contracts, frontend, API/indexer, deployment, keys and keeper services. Rehearse reorgs, replay, stale or compromised data, wrong-chain signing, RPC failure, restore/rotation and monitoring. Independent review and operational sign-off remain open."
         }
       ]
     },
     {
       "id": "launch",
-      "number": "05",
+      "number": "06",
       "title": "Launch & operations",
       "caption": "Decisions and rehearsals before real funds.",
       "tasks": [
@@ -189,12 +251,18 @@
           "status": "progress",
           "title": "Rehearse keeper outage & server recovery",
           "text": "209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open."
+        },
+        {
+          "id": "asset-liveness-dust",
+          "status": "todo",
+          "title": "Approve reward-token liveness and dust economics",
+          "text": "Review admitted token upgrade, blacklist, rebase and transfer behavior. A broken royalty token can stop new activations; sub-20-raw-unit owner dust is bounded per settlement, not cumulatively. Qualify every asset before admission."
         }
       ]
     },
     {
       "id": "migration",
-      "number": "06",
+      "number": "07",
       "title": "Future migration",
       "caption": "A separate phase. Disabled at initial launch.",
       "later": true,

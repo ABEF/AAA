@@ -45,6 +45,14 @@ contract EntryCallbackToken is MockToken {
     address public approvalProbe;
     address public approvalOwner;
     address public approvalSpender;
+    address public resetProbe;
+    address public resetOwner;
+    address public resetSpender;
+    address public resetTarget;
+    bytes public resetData;
+    bool public resetRequiresFailure;
+    bool public resetAttempted;
+    bytes4 public resetError;
     constructor() MockToken(18) {}
     function configure(address target, bytes calldata data, address from, address to, bool expectFailure) external {
         callbackTarget = target; callbackData = data; triggerFrom = from; triggerTo = to; requireFailure = expectFailure;
@@ -52,10 +60,20 @@ contract EntryCallbackToken is MockToken {
     function configureApproval(address probe, address from, address spender) external {
         approvalProbe=probe;approvalOwner=from;approvalSpender=spender;
     }
+    function configureReset(address probe, address from, address spender, address target, bytes calldata data, bool expectFailure) external {
+        resetProbe=probe;resetOwner=from;resetSpender=spender;resetTarget=target;resetData=data;resetRequiresFailure=expectFailure;
+    }
     function approve(address spender, uint256 amount) public override returns (bool) {
         bool result=super.approve(spender,amount);
         if(msg.sender==approvalOwner && spender==approvalSpender && amount!=0 && approvalProbe!=address(0)) {
             EntryVaultFixture(approvalProbe).inspectApprovalContext();
+        }
+        if(msg.sender==resetOwner && spender==resetSpender && amount==0 && resetProbe!=address(0)) {
+            EntryVaultFixture(resetProbe).inspectResetContext();
+            resetAttempted=true;
+            (bool ok, bytes memory callbackResult)=resetTarget.call(resetData);
+            require(ok != resetRequiresFailure,"unexpected reset callback result");
+            if(callbackResult.length>=4)resetError=bytes4(callbackResult);
         }
         return result;
     }
@@ -135,11 +153,22 @@ contract EntryVaultFixture {
     bool public partialConsumption;
     uint256 public approvalObservedValue;
     bool public approvalObserved;
+    bool public resetObserved;
+    bytes32 public lastCallHash;
     constructor(EntryRegistryFixture pools) { registry = pools; entry = pools.activationEntry(); }
     function inspectApprovalContext() external {
         approvalObserved=true;
         approvalObservedValue=registry.contributionValue(bytes32(uint256(42)),0,100e18);
         require(approvalObservedValue==0,"source context leaked into approval callback");
+    }
+    function inspectResetContext() external {
+        // The operation must already have completed. Use its exact arguments
+        // and hash, so a stale armed context cannot pass through a mismatch.
+        require(lastId!=0 && deployed!=0,"Vault has not completed");
+        require(registry.contributionValue(bytes32(uint256(42)),amount0,amount1)==0,"context survived reset");
+        (bool ok, bytes memory result)=address(entry).staticcall(abi.encodeCall(entry.validateOwner,(lastId,lastCallHash)));
+        require(!ok && result.length>=4 && bytes4(result)==bytes4(keccak256("Unauthorized()")),"stale owner authorization");
+        resetObserved=true;
     }
     function configure(uint256 loss, bool badHash, bool badAmounts, bool partial_) external {
         lossBps = loss; wrongHash = badHash; wrongAmounts = badAmounts; partialConsumption = partial_;
@@ -158,7 +187,7 @@ contract EntryVaultFixture {
         ExactToken.pull(c.key.currency1, msg.sender, partialConsumption && a1 > 0 ? a1 - 1 : a1);
         deployed = (a0 + a1) * (10000-lossBps) / 10000;
         require(deployed >= gross - gross/100, "end-to-end loss exceeds one percent");
-        amount0 = a0; amount1 = a1; lastId = id; increased = add;
+        amount0 = a0; amount1 = a1; lastId = id; increased = add; lastCallHash = keccak256(msg.data);
     }
 }
 
@@ -282,6 +311,30 @@ contract ActivationEntryTest is Test {
         second.configureApproval(address(vault),address(entry),address(vault));
         _execute(r);assertTrue(vault.approvalObserved());assertEq(vault.approvalObservedValue(),0);
         assertEq(vault.gross(),100e18);assertEq(second.allowance(address(entry),address(vault)),0);
+    }
+    function testFinalAllowanceResetClearsContextAndStillRejectsReentry() public {
+        ZZZActivationEntry.Request memory r=_request();r.sourceAsset=address(second);r.routeId=0;r.minimumOut=0;
+        second.configureReset(address(vault),address(entry),address(vault),address(entry),abi.encodeCall(entry.execute,(r)),true);
+        _execute(r);
+        assertTrue(vault.resetObserved());assertTrue(second.resetAttempted());
+        assertEq(second.resetError(),bytes4(keccak256("ReentrancyGuardReentrantCall()")));
+        assertEq(vault.lastId(),1);assertEq(vault.gross(),100e18);assertEq(vault.deployed(),99.6e18);
+        assertEq(second.balanceOf(address(vault)),100e18);assertEq(second.balanceOf(address(entry)),0);
+        assertEq(second.allowance(address(entry),address(vault)),0);assertEq(nft.ownerOf(1),ALICE);_assertClean();
+    }
+    function testFinalAllowanceResetOwnershipChangeRollsBackCompletedVaultOperation() public {
+        ZZZActivationEntry.Request memory r=_request();r.sourceAsset=address(second);r.routeId=0;r.minimumOut=0;
+        vm.prank(ALICE);nft.approve(address(second),1);
+        bytes memory transfer=abi.encodeCall(nft.transferFrom,(ALICE,ATTACKER,1));
+        second.configureReset(address(vault),address(entry),address(vault),address(nft),transfer,false);
+        vm.expectCall(address(vault),abi.encodeCall(vault.inspectResetContext,()));
+        vm.expectCall(address(nft),transfer);
+        vm.expectRevert(bytes4(keccak256("InvalidState()")));_execute(r);
+        assertEq(nft.ownerOf(1),ALICE);assertEq(nft.getApproved(1),address(second));
+        assertEq(vault.lastId(),0);assertEq(vault.gross(),0);assertEq(vault.deployed(),0);assertFalse(vault.resetObserved());
+        assertEq(second.balanceOf(ALICE),10000e18);assertEq(second.balanceOf(address(vault)),0);
+        assertEq(second.balanceOf(address(entry)),0);assertEq(second.allowance(address(entry),address(vault)),0);
+        assertEq(second.allowance(ALICE,address(entry)),10000e18);_assertClean();
     }
     function testTaxedOriginalInputCannotBeCreditedAsFullSource() public {
         TaxToken taxed=new TaxToken();taxed.mint(ALICE,1000e18);registry.admit(address(taxed));

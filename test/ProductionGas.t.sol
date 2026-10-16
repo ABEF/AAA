@@ -92,7 +92,6 @@ contract ProductionGasTest is Test {
         // Include every account reached by the workload, not merely the entrypoint.
         vm.cool(address(access));
         vm.cool(address(vault));
-        vm.cool(address(nft));
         vm.cool(address(nft.royaltyRewards()));
         vm.cool(address(nft.metadataRenderer()));
         vm.cool(address(vrf));
@@ -107,6 +106,8 @@ contract ProductionGasTest is Test {
         vm.cool(TREASURY);
         vm.cool(OWNER);
         for (uint256 i; i < tokens.length; ++i) vm.cool(address(tokens[i]));
+        // Helper getters above touch the NFT; cool it after those reads.
+        vm.cool(address(nft));
     }
 
     function _report(string memory prefix, string memory operation, uint256 spent) private {
@@ -224,8 +225,9 @@ contract ProductionGasTest is Test {
         for (uint256 i; i < tokens.length; ++i) rewards.claim(id, address(tokens[i]));
         spent = start - gasleft();
         vm.stopPrank();
-        // There is no production bulk-claim ABI. This is 32 calls in one local
-        // transaction; shared warm accesses make it cheaper than 32 transactions.
+        // This benchmark performs 32 raw calls, not the production claim router.
+        // Shared warm accesses make it cheaper than 32 separate transactions;
+        // ClaimRouter.t.sol independently measures its bounded 32-operation ABI.
         _report("collection.1000.assets.32.funded", "claim32BatchedCalls", spent);
         assertEq(rewards.assetCount(), 32);
     }

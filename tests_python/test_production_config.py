@@ -733,10 +733,15 @@ class ExternalRewardConfigTests(unittest.TestCase):
                 self.config=external_fixture();self.config['chains'][0]['external_rewards']=inventory
                 self.blocked('reward.inventory')
     def test_receiver_inventory_count_and_bound_must_match(self):
-        for count in (0,2,17,True):
+        for count in (0,2,5,17,True):
             with self.subTest(count=count):
                 self.config=external_fixture();self.config['chains'][0]['external_rewards']['receiver_count']=count
                 self.assertFalse(self.result()['ready'])
+    def test_receiver_count_cannot_exceed_four_bucket_capacity_even_with_matching_length(self):
+        external=self.config['chains'][0]['external_rewards']
+        external['receiver_count']=5
+        external['receivers']=[copy.deepcopy(self.inbox()) for _ in range(5)]
+        self.blocked('integer.invalid')
     def test_external_mode_preserves_selected_native_pons_pool_rejection(self):
         self.config['chains'][0]['pools'][0].update(currency0=GATE.ZERO,fee=0,hooks=addr(77))
         self.blocked('pool.hook');self.blocked('pool.assets')

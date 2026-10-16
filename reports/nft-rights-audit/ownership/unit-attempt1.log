@@ -1,0 +1,21 @@
+Compiling 92 files with Solc 0.8.26
+Solc 0.8.26 finished in 107.39s
+Compiler run successful with warnings:
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:170:51:
+    |
+170 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+
+Ran 7 tests for test/NFTOwnershipRights.t.sol:NFTOwnershipRightsTest
+[PASS] testApprovedOperatorCanTransferButCannotClaimAnyLedger() (gas: 3670167)
+[PASS] testClaimBeforeSaleTransfersOnlyRemainingUnclaimedRights() (gas: 4177660)
+[PASS] testReceiverRejectAfterClaimsRollsBackAllRightsAndTransfer() (gas: 4707775)
+[PASS] testSafeTransferReceiverImmediatelyClaimsAsCurrentOwner() (gas: 4271960)
+[PASS] testSaleBeforeClaimImmediatelyRevokesFormerOwner() (gas: 3742334)
+[PASS] testSuccessiveTransfersCarryPendingCreatorReceiptsAndRoyalties() (gas: 4440191)
+[PASS] testUnavailableAdmittedRoyaltyAssetBlocksEntryButHealthyClaimsRemain() (gas: 7872267)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 44.59ms (114.74ms CPU time)
+
+Ran 1 test suite in 54.99ms (44.59ms CPU time): 7 tests passed, 0 failed, 0 skipped (7 total tests)

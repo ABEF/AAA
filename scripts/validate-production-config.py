@@ -510,7 +510,9 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 g.check(False,path,'reward.inventory','External funding requires the canonical receiver inventory and exact-block observations')
             continue
         external=g.obj(external,path)
-        count=g.num(external.get('receiver_count'),path+'.receiver_count',0,16)
+        # One immutable receiver per home bucket; the Vault's combined-workload
+        # cap of four is tighter than the receiver factory's independent limit.
+        count=g.num(external.get('receiver_count'),path+'.receiver_count',0,4)
         records=g.items(external.get('receivers'),path+'.receivers',required=False)
         g.check(count==len(records),path,'reward.inventory','Count must match complete verified RewardReceiverCreated history and current receiver getters')
         g.proof(external.get('observation_evidence'),path+'.observation_evidence')

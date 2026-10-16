@@ -1,6 +1,11 @@
 # Shared permanent-liquidity architecture
 
-The initial collection is intended to use one shared pool, not one pool per NFT. Optional additional strategies use separate buckets. `ZZZVault.MAX_BUCKETS = 16` limits all historical bucket registrations on a vault, including imports; returning an existing bucket or migrating it to another reviewed pool does not allocate a new bucket. This bounds global funded-dust settlement before new membership. Actual target-chain gas limits and the maximum reviewed token/receiver workload still require staging verification.
+The initial collection is intended to use one shared pool, not one pool per NFT. Optional additional strategies use separate buckets. `ZZZVault.MAX_BUCKETS = 4` limits all historical bucket registrations on a vault, including imports; returning an existing bucket or migrating it to another reviewed pool does not allocate a new bucket. This bounds combined funded-dust and inbox settlement before new membership. The prior 16-bucket limit failed the combined distinct-asset/inbox workload; four retains local headroom without changing reward accounting or the 1,000-NFT cap. Actual Entry, venue, token and target-chain gas still require staging verification.
+
+Pool identity reservations currently do not reserve historical capacity. A future
+first import can lose its slot to other arrivals after reservation. Keep real
+bridging disabled until destination capacity admission/recovery is independently
+resolved; do not infer safe delivery from `poolBucket` alone.
 
 Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.05 ETH dormant mint; $100 original gross source activation with at least 99% marginal LP and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [implemented and todo checklist](IMPLEMENTATION_STATUS.md).
 
@@ -28,7 +33,7 @@ Twenty raw units split16owner/2collective/1compound/1buyback. Owner indexes are 
 
 At most32 admitted LP reward assets bound checkpoint loops. Fractions carry per NFT; global division dust stays reserved. Smaller receipts carry and the maximum19raw-unit membership dust exception requires asset-specific economic review. No administrator can withdraw reward, orphan, compound or principal balances outside their constrained purpose. Claims remain available during operational pause.
 
-Creator payments enter dedicated immutable per-bucket receivers. Actual processed funding uses the same allocation. Up to16inboxes are globally settled before entry. Receipt timing uses processing-time weights, without creator percentage or retrospective entitlement. Home external funding never pays authenticated remote obligations. [External rewards](EXTERNAL_REWARDS.md).
+Creator payments enter dedicated immutable per-bucket receivers. Actual processed funding uses the same allocation. At most four receivers are reachable under the current Vault capacity, and they are globally settled before entry; the factory retains a separate defensive ceiling of 16. Receipt timing uses processing-time weights, without a promised creator percentage or retrospective entitlement. Home external funding never pays authenticated remote obligations. [External rewards](EXTERNAL_REWARDS.md).
 
 ## NFT royalties and metadata
 

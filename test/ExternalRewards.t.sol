@@ -672,24 +672,25 @@ contract ExternalRewardsTest is PooledVaultFixture {
         assertEq(rewards.claimable(first, address(t0)), 36);
     }
 
-    function testSixteenExternalReceiversFitBucketCapAndSeventeenthActivationFails() public {
-        for (uint256 i; i < 16; ++i) {
+    function testFourExternalReceiversFitBucketCapAndFifthActivationFails() public {
+        assertEq(vault.MAX_BUCKETS(), 4);
+        for (uint256 i; i < 4; ++i) {
             _fundUser(alice); uint256 id = _mint(alice); bytes32 other = _anotherPool(uint24(500 + i));
             _activateOther(alice, id, other); address inbox = _receiver(id);
             assertGt(inbox.code.length, 0);
             assertEq(fees.rewardReceiver(vault.nftBucket(id)), inbox);
         }
-        assertEq(fees.rewardReceiverCount(), 16); assertEq(vault.bucketCount(), 16);
-        _fundUser(alice); uint256 seventeenth = _mint(alice); bytes32 newPool = _anotherPool(516);
+        assertEq(fees.rewardReceiverCount(), 4); assertEq(vault.bucketCount(), 4);
+        _fundUser(alice); uint256 fifth = _mint(alice); bytes32 newPool = _anotherPool(504);
         uint256 balance0 = t0.balanceOf(alice); uint256 balance1 = t1.balanceOf(alice);
-        // The historical Vault limit now rejects a seventeenth distinct bucket
+        // The historical Vault limit rejects a fifth distinct bucket
         // before it could reach the separate receiver factory's capacity guard.
         vm.expectRevert(bytes4(keccak256("InvalidState()")));
-        _activateOther(alice, seventeenth, newPool);
-        assertEq(vault.bucketCount(), 16); assertEq(vault.nftBucket(seventeenth), 0);
-        assertEq(uint256(vault.nftStatus(seventeenth)), uint256(PositionStatus.Dormant));
+        _activateOther(alice, fifth, newPool);
+        assertEq(vault.bucketCount(), 4); assertEq(vault.nftBucket(fifth), 0);
+        assertEq(uint256(vault.nftStatus(fifth)), uint256(PositionStatus.Dormant));
         assertEq(t0.balanceOf(alice), balance0); assertEq(t1.balanceOf(alice), balance1);
-        assertEq(fees.rewardReceiverCount(), 16);
+        assertEq(fees.rewardReceiverCount(), 4);
     }
 
     function testReceiverCannotAcceptNativePaymentWithoutExplicitWrapper() public {

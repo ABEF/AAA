@@ -17,7 +17,7 @@ import {ReceiverVaultFixture, CapturingBridgeFixture} from "./ReceiverAndRemoteF
 /// operation is evidence that a real LP was closed safely.
 contract ParkedRewardVaultFixture is RewardsVaultFixture {
     constructor(ZZZRewards rewards) RewardsVaultFixture(rewards) {}
-    function MAX_BUCKETS() external pure returns (uint256) { return 16; }
+    function MAX_BUCKETS() external pure returns (uint256) { return 4; }
     function bucketCount() external pure returns (uint256) { return 1; }
     function bucketAt(uint256 ordinal) external pure returns (uint256) { require(ordinal == 0); return 7; }
 }

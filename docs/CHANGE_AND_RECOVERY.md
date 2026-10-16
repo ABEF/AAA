@@ -25,6 +25,45 @@ following explicit configuration paths remain available after sealing.
 | Change keepers, guardians or strategy settings | Existing governed configuration and fixed timelock; guardian pause is not asset-withdrawal or upgrade authority. |
 | Change the Vault, reward ledgers or mint/trait rules after sealing | No generic implementation replacement exists. A new code version needs an explicit reviewed migration design; these configuration controls do not make arbitrary code changes safe or possible. |
 
+## Destination capacity: unresolved, proposed next implementation
+
+The current `reservePool` binds a pool identity but does not reserve a historical
+bucket slot. The [capacity regression](../test/ReservationCapacity.t.sol) reserves
+a destination, fills its four slots with other first imports, then shows that the
+original import reverts without accepting funds or changing incumbent custody.
+Atomic rejection protects accounting; it does not complete an in-flight delivery.
+Keep real bridging disabled until this admission gap is resolved and reviewed.
+
+The proposed implementation is a **permanent reservation of a bucket slot**.
+Reusing the bounded historical array with idempotent registration may avoid a
+new ledger: reserve first, then activate/import into that same slot. This is a
+design proposal, not implemented behavior. It must preserve these invariants:
+
+- Reserved plus previously registered distinct bucket identities never exceed four.
+- Repeating a reservation, reserving another pool for the same bucket, and
+  returning/revisiting an existing bucket consume no extra slot. Another bucket
+  cannot take a reserved pool or capacity slot.
+- Local entry and remote first arrivals share the same admission accounting.
+- A source cancellation, deadline or outbound route disable never releases the
+  destination slot: an old packet, retry or historical return may still need it.
+  Unused governance reservations therefore permanently consume capacity.
+- Reserved buckets in `None` state are handled explicitly by enumeration,
+  membership settlement, keeper discovery and read/indexer services.
+
+Required regressions include reserve-first concurrent arrivals, rejection of the
+fifth distinct reservation before departure, duplicates at capacity, local versus
+remote admission, full-cap returns, failed-import rollback with commitment retained,
+and source cancellation with retained capacity. Prove unchanged runtime/initcode
+and gas limits: the current Vault has only 520 runtime bytes of headroom.
+
+A newly deployed, independently reviewed destination can implement this while the
+initial source stays sealed, preserving the v3 message and accounting interfaces.
+The source's timelocked route registry already admits future remote Vault addresses.
+However, the source does not verify a remote capacity proof: final destination
+reservation must be verified during route admission and before departure. Returning
+to the original source reuses its existing slot. This cannot patch a sealed
+destination or enable same-chain replacement of a Vault.
+
 ## Edge cases that remain release considerations
 
 - **External custody failure:** a stopped chain, frozen asset, hostile wrapper

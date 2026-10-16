@@ -1,6 +1,6 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-**[Project Todo: frontend, backend, contracts, testing and operations](TODO.md)**
+**[Project Todo: frontend, backend, contracts, security and operations](TODO.md)**
 
 Keeper: [recovery runbook](docs/KEEPER_RECOVERY.md) | [internal security review and open gates](reports/keeper-recovery/REVIEW.md).
 
@@ -10,13 +10,27 @@ Start with the **[Implemented / Todo checklist](docs/IMPLEMENTATION_STATUS.md)**
 
 The [service decision record](docs/PRODUCTION_SERVICES.md) records randomness and pricing research plus the remaining provider choices. The [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md) explains post-seal configuration and custody limits.
 
+## Architecture overview
+
+- **1,000 transferable NFTs:** each activated NFT holds independently accounted, nonredeemable shares of a shared Uniswap v4 LP position. Many NFTs share one physical position per supported pool/strategy; minting alone adds no liquidity.
+- **Managed permanent liquidity:** holders cannot withdraw LP principal. The protocol can rebalance and compound it, and the migration framework supports reviewed pool/chain destinations. Real bridging remains disabled pending qualification.
+- **Two revenue ledgers:** funded LP/creator revenue follows the fixed **80% individual / 10% collective / 5% compounding / 5% ZZZ buyback and burn** split, subject to the raw-unit dust policy below. Individual rewards follow LP shares; collective rewards are equal per activated NFT. Separately, actual admitted NFT royalties use Commun x1 / Rare x2 / Legendary x3 weights.
+- **Rights follow the NFT:** its LP allocation, previously accrued but unclaimed balances and future fee rights belong to its current owner. A buyer inherits what remains unclaimed when the transfer executes.
+- **Bounded flexibility after sealing:** governance can admit supported pools, assets, routes and future destinations, and adjust supported strategy parameters. Sealed module/strategy code and local venue bindings remain fixed. New algorithms or unsupported venues need separately reviewed compatible deployments; there is no generic upgrade switch.
+
+**Recovery boundary:** moving LP to another chain does not move the canonical NFT,
+membership or reward ledgers off the home chain. Recovery from permanent loss of
+that chain is not implemented and requires a design decision before sealing.
+See the [Security & audit Todo](TODO.md#security--audit) and
+[acceptance plan](docs/SECURITY_AUDIT_PLAN.md).
+
 ## Current product rules
 
 - Exactly **1,000 NFTs maximum**, with **600 Commun, 300 Rare and 100 Legendary** when the full collection is minted and revealed.
 - A dormant mint costs exactly **0.05 ETH**, forwarded to the immutable mint-proceeds recipient. Minting adds no LP or reward eligibility.
 - The current owner activates the same NFT with at least **$100 in gross input value**, with **at least 99% actually deployed as new LP**. The same 1% execution/undeployed limit applies to additions. Network gas is separate; incumbent idle/compound funds cannot subsidize the minimum. The immutable Registry-created [activation entry](docs/ACTIVATION_ENTRY.md) binds the original source's measured USD value through a reviewed typed conversion into the Vault. Direct pair-token entry remains available; actual production routes and feeds need qualification.
 - NFTs in each approved pool share one physical LP position. Keeper upkeep and whole-pool migration operate per bucket, without holder loops.
-- The intended initial collection uses one shared pool. A vault can register at most 16 historical buckets, including imports, to bound global entry settlement; returns and future pool migrations of an existing bucket do not consume another slot.
+- The intended initial collection uses one shared pool. A vault can register at most 4 historical buckets, including imports, to bound combined funded entry settlement; returns and future pool migrations of an existing bucket do not consume another slot.
 - The owner allocation follows an NFT's LP shares. The collective allocation is **equal per activated NFT**, across pools. **Power has been removed**, replaced by one permanent membership per activated NFT. Top-ups never add collective memberships.
 - LP principal cannot be redeemed. Transfers carry the shares, unclaimed funded balances and future economic rights to the NFT's current owner.
 - Governance can add or disable contribution assets without disabling existing claims or LP exits. Reviewed wrapper policies and migration routes support controlled maintenance; sealed custody code is fixed. See [change and recovery boundaries](docs/CHANGE_AND_RECOVERY.md) for supported changes and external failure limits.
@@ -87,3 +101,16 @@ bash scripts/verify.sh
 ```
 
 See [development setup](docs/DEVELOPMENT.md), [roadmap](docs/ROADMAP.md), [security](SECURITY.md), and the [release checklist](docs/RELEASE_CHECKLIST.md). The compiler remains Solidity 0.8.26/Cancun, via IR with the existing optimizer profile. Dependencies and historical reviews remain pinned/preserved.
+
+## NFT economic-rights review - 2026-10-16
+
+The [corrected execution prompt](reports/nft-rights-audit/REVISED_PROMPT.md) and
+[internal review](reports/nft-rights-audit/REVIEW.md) distinguish existing code
+from new ownership/callback, 1,000-NFT payout, buyback and stateful tests.
+See [executed evidence](reports/nft-rights-audit/VERIFICATION.md),
+[functional coverage](reports/nft-rights-audit/COVERAGE.md) and
+[component status](reports/nft-rights-audit/IMPLEMENTATION.md).
+The four-historical-bucket safeguard bounds combined entry work; all 1,000 NFTs
+can still share one physical LP. Reward economics are unchanged. Unclaimed
+rights follow the NFT; buyers receive the balance remaining when transfer
+executes. Mainnet approval, production services and real bridging remain open.

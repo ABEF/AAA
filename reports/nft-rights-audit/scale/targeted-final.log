@@ -1,0 +1,29 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 81.32s
+Compiler run successful with warnings:
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:170:51:
+    |
+170 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+
+Ran 2 tests for test/CollectionScale.t.sol:CollectionScaleTest
+[PASS] testAll1000NFTsPreserveIndependentRightsAndFundedConservation() (gas: 4010)
+[PASS] testColdOperationsAtOneAnd1000NFTsStayBounded() (gas: 10730427)
+Logs:
+  collection.1.activation: 1953769
+  collection.1000.activation: 1780853
+  collection.1.claim-one-asset: 176661
+  collection.1000.claim-one-asset: 176793
+  collection.1.claim-five-mixed: 804409
+  collection.1000.claim-five-mixed: 806534
+  collection.1.shared-rebalance: 920217
+  collection.1000.shared-rebalance: 920483
+  collection.1.shared-compound: 732545
+  collection.1000.shared-compound: 732811
+  collection.1000.claim-32-mixed: 4333653
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 14.58s (24.91s CPU time)
+
+Ran 1 test suite in 14.61s (14.58s CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)
