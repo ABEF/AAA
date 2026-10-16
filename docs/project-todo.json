@@ -182,13 +182,13 @@
           "id": "keeper-guardrails",
           "status": "progress",
           "title": "Harden keeper recovery and monitoring",
-          "text": "Published recovery guards passed 183 Ubuntu checks. Read-only preflight, health evaluation and exclusive integrity-checked state snapshots are added; current process rehearsal evidence and remaining staging gates are documented in docs/KEEPER_REHEARSALS.md."
+          "text": "Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open."
         },
         {
           "id": "keeper-recovery",
           "status": "progress",
           "title": "Rehearse keeper outage & server recovery",
-          "text": "Fourteen isolated Ubuntu process rehearsals pass, including broadcast crashes, stale backups and host-directory restoration. The user selected the website server for an isolated staging account; sustained soak, off-host alerts and real governance key rotation remain open."
+          "text": "Fourteen process rehearsals pass on Ubuntu CI and the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open."
         }
       ]
     },

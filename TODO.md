@@ -57,8 +57,8 @@ Decisions and rehearsals before real funds.
 - [ ] **Select authorities & price services** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
 - [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
 - [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
-- [ ] **Harden keeper recovery and monitoring** - In progress. Published recovery guards passed 183 Ubuntu checks. Read-only preflight, health evaluation and exclusive integrity-checked state snapshots are added; current process rehearsal evidence and remaining staging gates are documented in docs/KEEPER_REHEARSALS.md.
-- [ ] **Rehearse keeper outage & server recovery** - In progress. Fourteen isolated Ubuntu process rehearsals pass, including broadcast crashes, stale backups and host-directory restoration. The user selected the website server for an isolated staging account; sustained soak, off-host alerts and real governance key rotation remain open.
+- [ ] **Harden keeper recovery and monitoring** - In progress. Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open.
+- [ ] **Rehearse keeper outage & server recovery** - In progress. Fourteen process rehearsals pass on Ubuntu CI and the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
 
 ## Future migration
 
@@ -72,4 +72,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `a4284cf6ad21daf298df1972e478c119656119537e51c51ac4ec3119b7cc3c4d`.
+Snapshot SHA-256: `dcdda7598093eb96e25db62dc358e05d18f015829c50e648cacc00182939fa6b`.

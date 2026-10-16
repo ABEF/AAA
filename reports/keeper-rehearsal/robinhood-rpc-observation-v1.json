@@ -1,0 +1,148 @@
+{
+  "chain_id": 4663,
+  "compatibility_checks_passed": false,
+  "created_at": "2026-10-16T20:02:51.560999+00:00",
+  "endpoints": [
+    {
+      "checks": [
+        {
+          "duration_ms": 78.0,
+          "error_site": "rpc.py:call:74",
+          "error_type": "RpcError",
+          "name": "fresh_head",
+          "ok": false
+        }
+      ],
+      "index": 0,
+      "receipts": []
+    },
+    {
+      "checks": [
+        {
+          "duration_ms": 657.0,
+          "name": "fresh_head",
+          "ok": true,
+          "value": {
+            "hash": "0x2e897c4cfbddfc28e67d34d410117244d50c50d0a5083a466fbd656760a1ac53",
+            "number": 90348593,
+            "timestamp": 1792180971
+          }
+        },
+        {
+          "duration_ms": 656.0,
+          "name": "common_block_hash",
+          "ok": true,
+          "value": "0x420be7f34dbc4a6e22407a9c7607236d49ea1f93d90f52b3abfdee17a2f5eb19"
+        },
+        {
+          "duration_ms": 656.0,
+          "name": "canonical_hash_eth_call",
+          "ok": true,
+          "value": {
+            "bytes": 32,
+            "sha256": "cdaf72b849dcbb239ffd2d8d69f0d9b4592b26a3140552face0c2347cf6007b4"
+          }
+        },
+        {
+          "duration_ms": 641.0,
+          "name": "canonical_hash_code",
+          "ok": true,
+          "value": {
+            "bytes": 3248,
+            "sha256": "ba6387efba110de98195f5c8db8af998bed9522ce5bb577ac307a7f83d9c0ab2"
+          }
+        },
+        {
+          "duration_ms": 641.0,
+          "name": "canonical_hash_storage",
+          "ok": true,
+          "value": {
+            "bytes": 32,
+            "sha256": "6aed34e6bddff5e1d872b5d7d5698a7b73abd6f3b33402732edc73ab9ffb9c70"
+          }
+        },
+        {
+          "duration_ms": 640.0,
+          "name": "gas_price_wei",
+          "ok": true,
+          "value": 20766000
+        },
+        {
+          "duration_ms": 656.0,
+          "name": "safe_tag",
+          "ok": true,
+          "value": {
+            "hash": "0x57c5e3e8230d891564ee108bc0de2ddd0dd97647d45f767f77a9f64a5114b9b8",
+            "number": 90343237
+          }
+        },
+        {
+          "duration_ms": 657.0,
+          "name": "finalized_tag",
+          "ok": true,
+          "value": {
+            "hash": "0x4d8cc4141c8c5743320887509f2b80aa3244cb86d3639792ca7b6551f76495b6",
+            "number": 90339278
+          }
+        },
+        {
+          "duration_ms": 5281.0,
+          "name": "ordinary_receipt_samples",
+          "ok": true,
+          "value": 3
+        },
+        {
+          "duration_ms": 672.0,
+          "name": "reference_still_canonical",
+          "ok": true,
+          "value": "0x420be7f34dbc4a6e22407a9c7607236d49ea1f93d90f52b3abfdee17a2f5eb19"
+        }
+      ],
+      "index": 1,
+      "receipts": [
+        {
+          "block": 90348581,
+          "effective_gas_price_wei": 20962000,
+          "gasUsedForL1": 0,
+          "gas_times_price_wei": "4114253664000",
+          "gas_used": 196272,
+          "l1Fee": null,
+          "l1GasUsed": null,
+          "status": 1,
+          "transaction": "0x0463ab9f3d736dbd6b74db9b289ac0dc7bd7debd1ed009816903f18869a62f5f"
+        },
+        {
+          "block": 90348581,
+          "effective_gas_price_wei": 20962000,
+          "gasUsedForL1": 0,
+          "gas_times_price_wei": "2886802792000",
+          "gas_used": 137716,
+          "l1Fee": null,
+          "l1GasUsed": null,
+          "status": 1,
+          "transaction": "0x49dce1b1bba5b16ff2c2cee0399a2cab900636118a49fb9ff1d66bc823f4802a"
+        },
+        {
+          "block": 90348581,
+          "effective_gas_price_wei": 20962000,
+          "gasUsedForL1": 0,
+          "gas_times_price_wei": "441501644000",
+          "gas_used": 21062,
+          "l1Fee": null,
+          "l1GasUsed": null,
+          "status": 1,
+          "transaction": "0xe478199b84557a9521a2e0146da375ff54373bd95f96dfe9b16c30b3de76a0a6"
+        }
+      ]
+    }
+  ],
+  "probe_address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+  "probe_calldata": "0x18160ddd",
+  "probe_source_sha256": "f51f91fd8a127f457193726d63caedec12e4117f661b60f7b4a8290f9612501b",
+  "production_approved": false,
+  "reference_block": {
+    "hash": "0x420be7f34dbc4a6e22407a9c7607236d49ea1f93d90f52b3abfdee17a2f5eb19",
+    "number": 90348581
+  },
+  "scope": "read_only_point_in_time_compatibility; not finality, uptime or fee-budget qualification"
+}

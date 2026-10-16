@@ -10,7 +10,7 @@ ssh-keygen -lf "$keyfile" >/dev/null
 if getent passwd zzz-stage-monitor >/dev/null; then echo 'Monitor account already exists; stop for review.' >&2; exit 1; fi
 useradd --system --user-group --home-dir /var/lib/zzz-stage-monitor --shell /bin/sh zzz-stage-monitor
 install -d -m 0755 /var/lib/zzz-stage-monitor
-install -d -m 0700 /var/lib/zzz-stage-monitor/.ssh
+install -d -m 0750 -o root -g zzz-stage-monitor /var/lib/zzz-stage-monitor/.ssh
 install -d -m 2750 -o zzz-stage -g zzz-stage-monitor /var/lib/zzz-stage-monitor/export
 install -d -m 0755 /usr/local/libexec
 cat > /usr/local/libexec/zzz-stage-monitor-read <<'READ'
@@ -19,7 +19,8 @@ exec /usr/bin/head -c 1048576 /var/lib/zzz-stage-monitor/export/status.json
 READ
 chmod 0755 /usr/local/libexec/zzz-stage-monitor-read
 printf 'restrict,command="/usr/local/libexec/zzz-stage-monitor-read" %s\n' "$(cat "$keyfile")" > /var/lib/zzz-stage-monitor/.ssh/authorized_keys
-chmod 0600 /var/lib/zzz-stage-monitor/.ssh/authorized_keys
+chown root:zzz-stage-monitor /var/lib/zzz-stage-monitor/.ssh/authorized_keys
+chmod 0640 /var/lib/zzz-stage-monitor/.ssh/authorized_keys
 cat > /etc/systemd/system/zzz-stage-observer.service <<'UNIT'
 [Unit]
 Description=PoPL staging health and recovery snapshot export

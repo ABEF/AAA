@@ -1,0 +1,5 @@
+{"name": "fresh_signer_read_only_preflight", "ok": true}
+{"bucket_id": "1", "error_site": "abi.py:address:40", "error_type": "ValueError", "event": "bucket_skipped", "time": "2026-10-16T20:00:19.109038+00:00"}
+{"event": "cycle_completed", "pending": false, "skipped_buckets": 1, "status": "degraded", "time": "2026-10-16T20:00:19.111216+00:00"}
+
+{"error_type": "AssertionError", "error_site": "rehearse-keeper.py:check:35", "assertion": "Keeper CLI exit differs"}

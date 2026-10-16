@@ -88,3 +88,59 @@ total-state-loss reconstruction tool.
 
 The central [Todo](../TODO.md), [release checklist](RELEASE_CHECKLIST.md) and
 [recovery runbook](KEEPER_RECOVERY.md) retain these gates.
+
+## Authorized staging host, 2026-10-16
+
+The user selected the existing website server for an isolated service account.
+The stage uses `/opt/zzz-keeper-staging`, `/var/lib/zzz-keeper-staging`, account
+`zzz-stage`, and `zzz-stage-anvil` / `zzz-stage-keeper` systemd services. The
+fixture chain is **31337**, listening only on `127.0.0.1:18545`. Both services
+deny non-loopback IP traffic and run with CPU, memory, task and filesystem limits.
+Only disposable locally created test ETH is used. Never promote this configuration,
+venue or signer to a public chain. Website files and nginx configuration are not
+part of this installation.
+
+`zzz-stage-observer.timer` exports health and a recovery snapshot every five minutes.
+Its account cannot access signing files and has no IP network access. Snapshot
+retention is bounded at 10,000 observer files: reaching that limit produces a
+backup failure requiring operator review, never silent evidence deletion.
+
+The `zzz-stage-monitor` SSH account is read-only and forced to return that export.
+The authorized key has `restrict` and no shell command choice, PTY or forwarding.
+Its public-key directory is root-owned and group-readable; the monitor cannot
+replace its own authorized key. The private transport key and pinned host key are
+outside Git on the operator's desktop; this is not a keeper wallet key. The
+`scripts/check-staging-monitor.py` client verifies age/chain/hash and stores
+off-host snapshots without overwriting them.
+
+A chat heartbeat checks this read-only export every 30 minutes and reports
+meaningful failures/recoveries. **It depends on the desktop being available**;
+it is not an independent always-on production alert service. Recorded observations
+must preserve gaps, not label them continuous uptime. Production still requires
+an independent monitor and chosen alert destination.
+
+Operational evidence, including the full process suite, actual systemd crash
+recovery, off-host snapshot round trip, access restrictions and website checks,
+is recorded in [the rehearsal report](../reports/keeper-rehearsal/README.md).
+The sustained soak has started; a multi-day pass cannot be claimed on its first day.
+
+To stop only this staging environment, an authorized operator can stop
+`zzz-stage-observer.timer`, `zzz-stage-keeper.service`, then
+`zzz-stage-anvil.service`. Preserve state and backups. Do not delete state to fix
+a nonce or checkpoint failure. Staging teardown must also revoke the monitor key
+and pause its chat heartbeat; the website services are separate.
+
+## Repeating the read-only RPC probe
+
+```sh
+python3 -m keeper.probe --config PRIVATE_RPC_CONFIG.json --address REVIEWED_TOKEN_ADDRESS --calldata 0x18160ddd --output var/rpc-observation.json
+```
+
+The private config contains `chain_id` and `rpc_urls`. The example calldata reads
+ERC20 total supply; select a reviewed contract that actually implements it. The
+probe records fresh heads, common block hashes, canonical-hash call/code/storage
+support, rejection of an unknown block hash, safe/finalized tags and a bounded
+ordinary-receipt sample. It cannot broadcast and does not write RPC URLs or secrets
+to its report. Each endpoint has a call/time budget. A failed required check leaves
+the compatibility result false. Even a complete pass is not uptime, Byzantine
+quorum, service-level, full fee-accounting or finality qualification.

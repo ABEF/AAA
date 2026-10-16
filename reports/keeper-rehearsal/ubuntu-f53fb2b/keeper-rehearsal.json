@@ -1,0 +1,79 @@
+{
+  "cases": [
+    {
+      "name": "fresh_signer_read_only_preflight",
+      "ok": true
+    },
+    {
+      "name": "encrypted_signer_receipt_exactly_once",
+      "ok": true
+    },
+    {
+      "name": "new_directory_restore_preserves_budget",
+      "ok": true
+    },
+    {
+      "name": "aged_maintenance_current_state_not_replay",
+      "ok": true
+    },
+    {
+      "name": "stale_backup_blocks_signing",
+      "ok": true
+    },
+    {
+      "name": "pause_and_role_revocation",
+      "ok": true
+    },
+    {
+      "name": "low_balance_blocks_broadcast",
+      "ok": true
+    },
+    {
+      "name": "actual_http_outage_wrong_chain_fallback",
+      "ok": true
+    },
+    {
+      "name": "concurrent_process_lock_and_restart",
+      "ok": true
+    },
+    {
+      "name": "missing_corrupt_state_blocks_start",
+      "ok": true
+    },
+    {
+      "name": "unwritable_runtime_blocks_signing",
+      "ok": true
+    },
+    {
+      "name": "process_kill_before_broadcast",
+      "ok": true
+    },
+    {
+      "name": "process_kill_after_broadcast",
+      "ok": true
+    },
+    {
+      "name": "confirmed_receipt_reorg_halts_restart",
+      "ok": true
+    }
+  ],
+  "created_at": "2026-10-16T20:01:28.513268+00:00",
+  "ok": true,
+  "production_approved": false,
+  "schema": 1,
+  "scope": "local Anvil / test-only venue; no public signing",
+  "source_hashes": {
+    "keeper/monitor.py": "64bfafea8859213edf0434147160c4f62bb329dc979356ef7ee7cd2014cc9f15",
+    "keeper/ops.py": "52a5f1dc261423d50f0c3dfffd8166ece9d30d3ba2882564521e501b61aa34ac",
+    "keeper/rehearsal/KeeperVenue.sol": "6e1fab0695e27ee10573c200e4afa94de26c26ee417958cb63227f9a6fdbc8c8",
+    "scripts/rehearse-keeper.py": "64cc3446c3df786dca1924c385ad00ea96dc9963df1f382c74b2b85462876812",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0"
+  },
+  "versions": {
+    "anvil": "anvil Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:50:28.714367747Z (1761839428)\nBuild Profile: maxperf",
+    "cast": "cast Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:50:28.714367747Z (1761839428)\nBuild Profile: maxperf",
+    "forge": "forge Version: 1.4.4-v1.4.4\nCommit SHA: 05794498bf47257b144e2e2789a1d5bf8566be0e\nBuild Timestamp: 2025-10-30T15:50:28.714367747Z (1761839428)\nBuild Profile: maxperf"
+  }
+}

@@ -6,6 +6,7 @@ local fixture configuration. Read access to its export gives no keeper authority
 import datetime as dt
 import json
 from pathlib import Path
+import subprocess
 import sys
 import time
 from keeper.monitor import error_context
@@ -24,6 +25,14 @@ def main():
     report={'created_at':dt.datetime.now(dt.timezone.utc).isoformat(),'staging_only':True,'chain_id':31337}
     try:report['health']=health_check(config,max_age=180)
     except Exception as exc:report['health']={'ok':False,'reasons':['health_unavailable'],**error_context(exc)}
+    for unit in ('zzz-stage-keeper.service','zzz-stage-anvil.service'):
+        try:
+            result=subprocess.run(['/usr/bin/systemctl','is-active',unit],capture_output=True,text=True,timeout=5)
+            active=result.returncode==0 and result.stdout.strip()=='active'
+        except (OSError,subprocess.TimeoutExpired):active=False
+        if not active:
+            report['health']['ok']=False
+            report['health'].setdefault('reasons',[]).append(unit+'_not_running')
     # Finite local retention budget. Never silently overwrite/delete old recovery evidence.
     if sum(1 for _ in BACKUPS.glob('observer-*.json'))>=10000:
         report['backup']={'ok':False,'reason':'retention_budget_requires_operator_review'}
