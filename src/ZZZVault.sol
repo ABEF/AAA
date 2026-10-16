@@ -62,18 +62,24 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function group(uint256 bucket) external view returns (Position memory) { return positions[bucket]; }
     function bucketCount() external view returns (uint256) { return buckets.length; }
     function bucketAt(uint256 index) external view returns (uint256) { return buckets[index]; }
-    /// @dev Historical slots never free up. Returning custody reuses its bucket.
+    /// @dev Reservations and historical custody share permanent slots. Reusing a
+    /// bucket (including through another pool alias) never consumes another slot.
     function _registerBucket(uint256 bucket) private {
+        for (uint256 i; i < buckets.length; ++i) {
+            if (buckets[i] == bucket) return;
+        }
         if (buckets.length == MAX_BUCKETS) revert InvalidState();
         buckets.push(bucket);
     }
-    /// @notice Reserve destinations before approving a route. Reservations cannot be reassigned.
+    /// @notice Permanently reserve capacity before approving a route. Pool
+    /// reservations cannot be reassigned or released on cancellation/timeout.
     function reservePool(bytes32 pool, uint256 bucket) external onlyGovernance { _reserve(pool, bucket); }
     function _reserve(bytes32 pool, uint256 bucket) private {
         if (pool == bytes32(0) || bucket == 0) revert InvalidConfiguration();
         IZZZPools(_modulePools()).get(pool);
         uint256 old = poolBucket[pool];
         if (old != 0 && old != bucket) revert InvalidState();
+        _registerBucket(bucket);
         poolBucket[pool] = bucket;
         emit PoolReserved(pool, bucket);
     }

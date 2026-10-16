@@ -1,0 +1,7 @@
+test_one_slot_scan_persists_progress_past_none_before_next_active_cycle (tests_python.test_keeper_reservations.KeeperReservationTests.test_one_slot_scan_persists_progress_past_none_before_next_active_cycle) ... ok
+test_reserved_none_before_active_is_skipped_without_degradation_or_starvation (tests_python.test_keeper_reservations.KeeperReservationTests.test_reserved_none_before_active_is_skipped_without_degradation_or_starvation) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.454s
+
+OK

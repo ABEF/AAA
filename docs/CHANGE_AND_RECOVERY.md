@@ -3,7 +3,9 @@
 The LP is nonredeemable by NFT holders. This must not be confused with an LP
 position that can never move: the migration framework can close the shared
 position and move its accounted principal through a separately approved route.
-No administrator can sweep that principal to a wallet.
+There is no direct local administrator sweep. Approved external providers and
+remote custody remain trust boundaries; exact source depletion does not prove
+honest delivery.
 
 The undeployed candidate uses fixed custody code and timelocked configuration.
 It is not a general proxy upgrade system. Sealing fixes module addresses; the
@@ -25,44 +27,35 @@ following explicit configuration paths remain available after sealing.
 | Change keepers, guardians or strategy settings | Existing governed configuration and fixed timelock; guardian pause is not asset-withdrawal or upgrade authority. |
 | Change the Vault, reward ledgers or mint/trait rules after sealing | No generic implementation replacement exists. A new code version needs an explicit reviewed migration design; these configuration controls do not make arbitrary code changes safe or possible. |
 
-## Destination capacity: unresolved, proposed next implementation
+<a id="destination-capacity-unresolved-proposed-next-implementation"></a>
+## Destination capacity: permanent admission
 
-The current `reservePool` binds a pool identity but does not reserve a historical
-bucket slot. The [capacity regression](../test/ReservationCapacity.t.sol) reserves
-a destination, fills its four slots with other first imports, then shows that the
-original import reverts without accepting funds or changing incumbent custody.
-Atomic rejection protects accounting; it does not complete an in-flight delivery.
-Keep real bridging disabled until this admission gap is resolved and reviewed.
+`reservePool` now registers a distinct bucket in the same permanent bounded set
+used for historical custody. At most four identities are admitted, including
+unfunded reservations. Duplicate reservations, pool aliases and returns reuse
+their slot even at capacity. Reassignment and a fifth identity reject before
+arrival. Cancellation, timeout, departure and disabled operations never free a
+slot that an old packet may still need.
 
-The proposed implementation is a **permanent reservation of a bucket slot**.
-Reusing the bounded historical array with idempotent registration may avoid a
-new ledger: reserve first, then activate/import into that same slot. This is a
-design proposal, not implemented behavior. It must preserve these invariants:
+Reserved buckets remain in `None` state with no shares or attributed principal.
+Membership and keeper discovery skip them before pool/price reads. The
+[capacity and switching regressions](../reports/architecture-evolution/VERIFICATION.md)
+cover admission, arrival, rollback, aliases, full-cap returns, identity/reward
+preservation and combined gas. An unfunded reservation is not TVL or an NFT.
 
-- Reserved plus previously registered distinct bucket identities never exceed four.
-- Repeating a reservation, reserving another pool for the same bucket, and
-  returning/revisiting an existing bucket consume no extra slot. Another bucket
-  cannot take a reserved pool or capacity slot.
-- Local entry and remote first arrivals share the same admission accounting.
-- A source cancellation, deadline or outbound route disable never releases the
-  destination slot: an old packet, retry or historical return may still need it.
-  Unused governance reservations therefore permanently consume capacity.
-- Reserved buckets in `None` state are handled explicitly by enumeration,
-  membership settlement, keeper discovery and read/indexer services.
+This repairs the earlier identity-only reservation defect. It does not prove an
+external provider delivers funds or authenticate destination capacity on the
+source chain. Governance must verify the exact destination implementation and
+confirmed admission before departure; arbitrary reservations can permanently
+exhaust the four slots. Real bridging remains disabled pending independent
+admission, provider/backing and operating qualification.
 
-Required regressions include reserve-first concurrent arrivals, rejection of the
-fifth distinct reservation before departure, duplicates at capacity, local versus
-remote admission, full-cap returns, failed-import rollback with commitment retained,
-and source cancellation with retained capacity. Prove unchanged runtime/initcode
-and gas limits: the current Vault has only 520 runtime bytes of headroom.
-
-A newly deployed, independently reviewed destination can implement this while the
-initial source stays sealed, preserving the v3 message and accounting interfaces.
-The source's timelocked route registry already admits future remote Vault addresses.
-However, the source does not verify a remote capacity proof: final destination
-reservation must be verified during route admission and before departure. Returning
-to the original source reuses its existing slot. This cannot patch a sealed
-destination or enable same-chain replacement of a Vault.
+A reviewed new remote destination can implement the repair while a source stays
+sealed. It cannot patch an already sealed old destination, rebind the canonical
+NFT/Rewards contracts or enable same-chain replacement of a Vault. Different-pair
+conversion and the proposed aggregate **3% migration execution budget** require
+the [composition-epoch architecture](ARCHITECTURE_EVOLUTION.md); they are not
+implemented by this capacity repair. Activation/top-ups retain **1%**.
 
 ## Edge cases that remain release considerations
 

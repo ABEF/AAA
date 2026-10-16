@@ -1,0 +1,570 @@
+{
+  "phase": "architecture permanent capacity",
+  "batch": "affected",
+  "attempt": "attempt1",
+  "started_at_utc": "2026-10-16T22:10:29.046918+00:00",
+  "cwd": "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--offline",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-path",
+    "test/{CombinedCapacityGas,FutureChainMigration,MultiHopMigration,CustodyParking}.t.sol",
+    "--out",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-evolution-20261016\\capacity-out",
+    "--cache-path",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-evolution-20261016\\capacity-cache",
+    "--json"
+  ],
+  "match_path": "test/{CombinedCapacityGas,FutureChainMigration,MultiHopMigration,CustodyParking}.t.sol",
+  "expected_test_files": [
+    "test/CombinedCapacityGas.t.sol",
+    "test/FutureChainMigration.t.sol",
+    "test/MultiHopMigration.t.sol",
+    "test/CustodyParking.t.sol"
+  ],
+  "tools": {
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe": {
+      "sha256": "8500da38f541a1ebd5b97a34c8c5b9b057eba5ad160c657a5224b4e1c8f8e101",
+      "bytes": 54242304
+    },
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe": {
+      "sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67",
+      "bytes": 9699328
+    }
+  },
+  "production_sources_before": {
+    "src/base/ZZZModule.sol": {
+      "sha256": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+      "bytes": 1537
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "0d23f02ba6c93d226070a6e28c379d3c0ee6ac0f38b82399a37f5fb278a78b9e",
+      "bytes": 12381
+    },
+    "src/libraries/BridgeAssets.sol": {
+      "sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "bytes": 1651
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "bytes": 1437
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "bytes": 5570
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+      "bytes": 4854
+    },
+    "src/ZZZAccessController.sol": {
+      "sha256": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+      "bytes": 4229
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "bytes": 5401
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "247502848ccb42c6a4d73632edeebff12b8c8993a3f160ee5b3c1f012f4199ed",
+      "bytes": 12843
+    },
+    "src/ZZZBridgeAdapter.sol": {
+      "sha256": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+      "bytes": 4827
+    },
+    "src/ZZZBridgeRouter.sol": {
+      "sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "bytes": 11162
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+      "bytes": 2691
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "bytes": 3490
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+      "bytes": 658
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+      "bytes": 18429
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "bytes": 19007
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "bytes": 2475
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "76da59cea8d77f77a5d6757b692541cf2ea87a50cada01b8ece745057bd24068",
+      "bytes": 20914
+    },
+    "src/ZZZMigrationReceiver.sol": {
+      "sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "bytes": 8952
+    },
+    "src/ZZZMigrationRegistry.sol": {
+      "sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "bytes": 4565
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+      "bytes": 13657
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "bytes": 7957
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "bytes": 7140
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "bytes": 12574
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "bytes": 4408
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "bytes": 7221
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "bytes": 9483
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "bytes": 7050
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "b021a3814c8694717cbe5b2ca8d0b29bc9a19d96abc4a3614be5af9082b519af",
+      "bytes": 30087
+    }
+  },
+  "selected_tests_before": {
+    "test/CombinedCapacityGas.t.sol": {
+      "sha256": "f759790501ada3cc1ab43ca1c5576eb6e6da1e4baf9b8d5a9912f8d6637b631c",
+      "bytes": 15711
+    },
+    "test/FutureChainMigration.t.sol": {
+      "sha256": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+      "bytes": 45976
+    },
+    "test/MultiHopMigration.t.sol": {
+      "sha256": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+      "bytes": 27519
+    },
+    "test/CustodyParking.t.sol": {
+      "sha256": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+      "bytes": 19298
+    }
+  },
+  "scope": "offline actual core modules with mocked venue/services/transport; not production approval",
+  "duration_seconds": 157.735,
+  "exit_code": 0,
+  "production_sources_after": {
+    "src/base/ZZZModule.sol": {
+      "sha256": "1d0e3a7882e73f9a0e37c898c770d7ee74906d5796080ec71e20ff97d8ec10f4",
+      "bytes": 1537
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "0d23f02ba6c93d226070a6e28c379d3c0ee6ac0f38b82399a37f5fb278a78b9e",
+      "bytes": 12381
+    },
+    "src/libraries/BridgeAssets.sol": {
+      "sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "bytes": 1651
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "bytes": 1437
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "bytes": 5570
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "4e0b2b01b1e72084add371c2dffd77f48f6df099bcffc6ded1eaf84d03a04eb3",
+      "bytes": 4854
+    },
+    "src/ZZZAccessController.sol": {
+      "sha256": "e00089751a63fe3a8ce671e143959e50d920e7d4395bc1ca878785260ff42927",
+      "bytes": 4229
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "bytes": 5401
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "247502848ccb42c6a4d73632edeebff12b8c8993a3f160ee5b3c1f012f4199ed",
+      "bytes": 12843
+    },
+    "src/ZZZBridgeAdapter.sol": {
+      "sha256": "ba42f2e5152862b8bf41d176842dd46dbb5fd6f10bf5125e40ea0b7ec53f9292",
+      "bytes": 4827
+    },
+    "src/ZZZBridgeRouter.sol": {
+      "sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "bytes": 11162
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "3d7ba93e21f9f09306add8ccd19d8f5106e4d8ec2f96f7c1b95fb020163d5879",
+      "bytes": 2691
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "bytes": 3490
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "0abdd8db6f4af3c7bd53aba6c9f634d21cf60b1fadc2dd606476c5d8b8a1696b",
+      "bytes": 658
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "95f75ccd8f9cb09ea4bc2547a3fb56bdb9534e98bcb7686554287409c71cfa20",
+      "bytes": 18429
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "bytes": 19007
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "bytes": 2475
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "76da59cea8d77f77a5d6757b692541cf2ea87a50cada01b8ece745057bd24068",
+      "bytes": 20914
+    },
+    "src/ZZZMigrationReceiver.sol": {
+      "sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "bytes": 8952
+    },
+    "src/ZZZMigrationRegistry.sol": {
+      "sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "bytes": 4565
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "bd9c06f349257df450824797c4b589727b85ee0db02dfefa9f27b21e58b498a4",
+      "bytes": 13657
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "4e2ac8d4d1dfea34aa1fe1c21959fa00dc193193cc29f1635f6daf43d295a07f",
+      "bytes": 7957
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "bytes": 7140
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "bytes": 12574
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "824330e5f1cbfcb703b8fdbd8ba526b5edb126f989d2da63d6c33c868fa25d3f",
+      "bytes": 4408
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "bd08d9ad81d2acbe9f5ba487d97eeae83d933a6374c554f16c9639dbc5adb138",
+      "bytes": 7221
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "94f16d878116caf7eda59b67ea93cdf9101561677b38143ddabcc794caac6e69",
+      "bytes": 9483
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "d87a9c4f321606e6eda0e74bc752ad9418fee5a83dffbfdce55ac997d70b24bf",
+      "bytes": 7050
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "b021a3814c8694717cbe5b2ca8d0b29bc9a19d96abc4a3614be5af9082b519af",
+      "bytes": 30087
+    }
+  },
+  "selected_tests_after": {
+    "test/CombinedCapacityGas.t.sol": {
+      "sha256": "f759790501ada3cc1ab43ca1c5576eb6e6da1e4baf9b8d5a9912f8d6637b631c",
+      "bytes": 15711
+    },
+    "test/FutureChainMigration.t.sol": {
+      "sha256": "bdfa44208dd906c888be2cfc77af1dbc36b1ef0d635c8e0cdd2d33cb30576b7e",
+      "bytes": 45976
+    },
+    "test/MultiHopMigration.t.sol": {
+      "sha256": "354a9ec1268273497893854c6192aad95c8e100cb7370e7ccc870c700b7dcc79",
+      "bytes": 27519
+    },
+    "test/CustodyParking.t.sol": {
+      "sha256": "5614c6aa011e76587bbee41387d9f56dd3ea3a022b38686087bdf03acc805db1",
+      "bytes": 19298
+    }
+  },
+  "sources_unchanged_during_run": true,
+  "tests_unchanged_during_run": true,
+  "suites": {
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest": {
+      "count": 4,
+      "outcomes": {
+        "testColdActivationAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdActivationWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CustodyParking.t.sol:CustodyParkingTest": {
+      "count": 13,
+      "outcomes": {
+        "testParkedMigrationNeedsRemoteLiabilityFundingButNotRecoveredOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedResumeRejectsChangedOrderedTokensAndDisabledDestination()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingCannotRaceScheduledMigrationAndResumeCannotRaceParkedMigration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingNonceInvalidationAndSuccessfulExecutionPreventReplay()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingOneSidedPositionAllowsOneZeroMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRebalanceInvalidatesScheduledLPTokenSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRejectsEveryStaleSnapshotAndInvalidAuthorizationField()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRejectsNonlocalCustodyEvenWithMatchingLPAndShareSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRequiresGovernancePausedSealedAndFixedMigrationModule()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingVenueFeesCannotSubsidizePrincipalMinimums()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CustodyParking.t.sol:CustodyParkingTimelockTest": {
+      "count": 1,
+      "outcomes": {
+        "testSealedGuardianPauseStillRequiresExactTwoDayTimelockedParkingCall()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/FutureChainMigration.t.sol:FutureChainMigrationTest": {
+      "count": 12,
+      "outcomes": {
+        "testEmptyRouterAllowsSealedDormantMintAndLocalPermanentActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoricalRemoteRewardsCanUseANewProviderAfterPrincipalMovesOnward()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewProviderPolicyCannotRedirectOrStrandAnOldPendingPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOneSidedPrincipalKeepsTwoLogicalMappingsThroughRealRouters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPolicyDisableBlocksProposalAndExecutionWithoutClosingTheLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSealRoutesSupportThreeChainsReturnHomeAndRevisitSatellite()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnThenNewMembershipAndSatelliteRevisitUsesFreshFrozenShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnedBucketWaitsForEveryFundedOldFeeBeforeAdmittingNewShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReversedCurrenciesPreserveUnequalPrincipalAndRejectedDeliveryRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testScheduledWholeBucketMoveFreezesContributionsUntilGovernanceCancels()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTwoNFTsShareOnePhysicalLPAndOneWholeBucketMigration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreservedDestinationRejectsThenRetriesTheSameFundedPacket()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MultiHopMigration.t.sol:MultiHopMigrationRegistryTest": {
+      "count": 8,
+      "outcomes": {
+        "testFutureUnknownGraphEdgeRequiresCompletedTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGraphEdgesRemainAppendOnlyAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDecimalsChecksStillApplyToPostSealRoutes()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationAcceptsConfiguredPairInEitherOrder()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRejectsWrongPoolAssetPair()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRequiresEnabledPoolOperations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRequiresExistingConfiguredPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalEndpointChecksStillApplyToPostSealRoutes()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MultiHopMigration.t.sol:MultiHopMigrationTest": {
+      "count": 15,
+      "outcomes": {
+        "testAcknowledgementCannotChangeFrozenRemoteFeeTotals()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalReturnRequiresExistingSharesAndCorrectAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalReturnThenAnotherMigrationPreservesIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExactOldAckIsIdempotentAndAlteredOldAckRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForgedPreviousLocationAndCanonicalMappingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFrozenShareSupplyCannotChangeBetweenProposalAndExecution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateSourceCompletionCannotRegressNewerCanonicalLocation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledMessageRejectsOldNFTVersionAndAlteredBucketIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteToRemoteAckAdvancesHomeAndKeepsHistoricalRewardPaths()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReorderedLocationAckCanBeRetriedAfterEarlierAck()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteCanMigrateAndRevisitAfterSeveralAbsentEpochs()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCompletionRecordsCanonicalLocationAndClearsPlan()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceSnapshotChangedAfterScheduleCannotExecute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTransportFailureRestoresPrincipalEpochAndScheduledPlan()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReceiverCannotUpdateCustody()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    }
+  },
+  "all_selected_files_executed": true,
+  "outputs": {
+    "forge.json": {
+      "sha256": "29a6b3ebda34b56460c94b1bc69b983a472edc6c0c99f1f134b72a348029f338",
+      "bytes": 15638
+    },
+    "forge.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

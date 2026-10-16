@@ -17,7 +17,7 @@ contract PooledSecurityTest is PooledVaultFixture {
     function testCorrectCanonicalPreReservationCanActivateAndEnumeratesOnce() public {
         uint256 bucket=uint256(keccak256(abi.encode(block.chainid,address(vault),poolId)));
         vault.reservePool(poolId,bucket);
-        assertEq(vault.bucketCount(),0);
+        assertEq(vault.bucketCount(),1); // Reservation already owns its permanent capacity slot.
         uint256 first=activatedPosition();uint256 second=_mint(bob);_activate(bob,second,1000,1000);
         assertEq(vault.nftBucket(first),bucket);assertEq(vault.nftBucket(second),bucket);
         assertEq(vault.bucketCount(),1);assertEq(vault.bucketAt(0),bucket);assertEq(venue.next(),2);
@@ -36,7 +36,7 @@ contract PooledSecurityTest is PooledVaultFixture {
         vault.reservePool(poolId,bucket+1);
         uint256 id=_mint(alice);
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
-        assertEq(t0.balanceOf(alice),100000);assertEq(vault.bucketCount(),0);
+        assertEq(t0.balanceOf(alice),100000);assertEq(vault.bucketCount(),1); // Failed activation cannot release the reservation.
         assertEq(vault.sharesOf(id),0);assertEq(vault.nftBucket(id),0);
         assertEq(uint256(vault.nftStatus(id)),uint256(PositionStatus.Dormant));
     }

@@ -1,0 +1,95 @@
+{
+  "recorded_at_utc": "2026-10-16T21:58:49.097041+00:00",
+  "scope": "Phase 1 read-only architecture prompt and infrastructure/frontend review; no tests, server access, production action or repository edits",
+  "contract_repository": {
+    "head": "37bf0d220344736e3fcab35c64ff3386a3d57bfa",
+    "cached_origin_main": "37bf0d220344736e3fcab35c64ff3386a3d57bfa",
+    "branch": "codex/architecture-evolution-review",
+    "status_porcelain": "M AGENTS.md\n M PROJECT_CONTEXT.md\n M docs/ACTIVATION_ENTRY.md\n M docs/ACTIVATION_ROUTING.md\n M docs/CHANGELOG.md\n M docs/CLAIM_ROUTER.md\n M docs/COMPONENT_STATUS.md\n M docs/DEVELOPMENT.md\n M docs/FRONTEND_API.md\n M docs/FRONTEND_HISTORY.md\n M docs/OPERATIONS.md\n M docs/PRODUCTION_SERVICES.md\n M docs/ROADMAP.md\n M frontend_api/server.py\n M frontend_api/service.py\n M scripts/run-fork-checks.py\n M tests_python/test_activation_route.py\n M tests_python/test_fork_runner.py\n M tests_python/test_frontend_api.py\n M tests_python/test_frontend_history.py\n M zzz_ops/activation_route.py\n?? design/nft-metadata/72-variants-prompts-v1.json\n?? design/nft-metadata/artwork-prompt-history.json\n?? design/nft-metadata/border-swap-prompts-v2.json\n?? design/nft-metadata/commun-enhanced-border-prompts-v5.json\n?? design/nft-metadata/concept-rules-v1.json\n?? design/nft-metadata/enhanced-differentiation-prompts-v3.json\n?? design/nft-metadata/enhanced-single-border-prompts-v4.json\n?? design/nft-metadata/rarity-evolution-concept-v1.png\n?? design/nft-metadata/rarity-evolution-prompt-v1.txt\n?? design/nft-metadata/website-preview-rules-v3.json\n?? design/nft-metadata/website-preview-rules-v4.json\n?? docs/FRONTEND_TRANSACTIONS.md\n?? frontend_api/transactions.py\n?? reports/frontend-transactions/\n?? reports/keeper-recovery/attempt1/\n?? reports/keeper-recovery/python-tests.json\n?? reports/keeper-recovery/python-tests.log\n?? reports/operations-hardening/README.md\n?? reports/operations-hardening/artifact-sha256.json\n?? reports/operations-hardening/fork-attempt1/\n?? reports/operations-hardening/fork-progress-excerpt.log\n?? reports/operations-hardening/fork-stderr.log\n?? reports/operations-hardening/fork-summary.json\n?? reports/operations-hardening/fork-tests.json\n?? reports/operations-hardening/gas/\n?? reports/operations-hardening/local-script-binding.json\n?? reports/operations-hardening/local-script-build.log\n?? reports/operations-hardening/production-build.log\n?? reports/operations-hardening/production-size-gates.json\n?? reports/operations-hardening/python-tests.json\n?? reports/operations-hardening/python-tests.log\n?? reports/operations-hardening/rpc-hash-selector-probe.json\n?? reports/operations-hardening/solidity-tests.log\n?? reports/operations-hardening/source-checks.json\n?? reports/operations-hardening/verification-summary.json\n?? tests_python/fixtures/\n?? tests_python/test_frontend_transaction_http.py\n?? tests_python/test_frontend_transactions.py",
+    "remote_freshness": "No fetch performed by this review; origin/main is the locally cached tracking ref."
+  },
+  "website_repository": {
+    "head": "14488b4e45eec5d82b42c7115fff100075054158",
+    "cached_origin_main": "14488b4e45eec5d82b42c7115fff100075054158",
+    "branch": "main",
+    "status_porcelain": "",
+    "remote_freshness": "No fetch performed by this review; origin/main is the locally cached tracking ref."
+  },
+  "website_source_sha256": {
+    "AGENTS.md": "a98eb30ae15b2a74ee80af905947d50ae960986fbc2186d13b9bb04d44a78c2d",
+    "README.md": "2b774c30b44812562561a0fddaaed7f28664fb53511073031ff9d01402f01875",
+    "PROJECT_CONTEXT.md": "7c6bc87e5415999bef86cc9531d95335a7ab0cdb30ce29d471749c62eee346df",
+    "wallet.js": "1c6b13d69a7d9d1377141031a3d91144f355916baa588843423b11403e677976",
+    "app.js": "3b78d4335a0a48d89c4bab2a3da10ef5e32c85f4eedb91337c4a54fd03d1f75c",
+    "domain.js": "c3128ae2c28d6267ed12c1d29dd928b58ba3fab775becbbd726f3c3f1f7eada8",
+    "package.json": "b17a75dea5006f89673247df92af3f725cc2e8232eca10ba4b7e07fb0b404208",
+    "index.html": "468e02ed4375e796d3034419b58b4e11eb0626215d314f4e89a5c4c72e60d50a",
+    "check.mjs": "0298f4acecea1f55b92f7b8cbb86208485a25650068350efaeef7cea2c3ea1e6",
+    "server.mjs": "18e0f810ea5f7d7ca267f090f7ac9d6c48732d0c41c5337ab4b30e992ef72468",
+    "deploy/install-release.sh": "d2ea3c6d3a5cc0cccbfcafac49da736f45859c29a51249121d3e40904c1a3977",
+    "deploy/enable-https.sh": "a7bb06ffe2d2d87a7cf14bf3d1bfc8df32023d549648e2ce4e93dd95ff932cde"
+  },
+  "evidence_hash_comparison": "phase1-evidence-reuse.json",
+  "observations": [
+    {
+      "id": "INFRA-01",
+      "kind": "integration_gate",
+      "files": [
+        "frontend_api/server.py:155",
+        "frontend_api/transactions.py:18",
+        "docs/FRONTEND_TRANSACTIONS.md:113"
+      ],
+      "finding": "Unsigned mint/claim preparation is local unpublished code; the public website does not wire it, and the backend is not a signer."
+    },
+    {
+      "id": "INFRA-02",
+      "kind": "future_integration_gate",
+      "files": [
+        "app.js:299",
+        "app.js:309",
+        "app.js:314",
+        "wallet.js:12"
+      ],
+      "finding": "Preview numeric IDs and optional chain information are valid only for simulation; live hashed uint256 IDs require exact strings and fail-closed chain/account/deployment checks."
+    },
+    {
+      "id": "INFRA-03",
+      "kind": "scope_mismatch",
+      "files": [
+        "app.js:215",
+        "README.md:41"
+      ],
+      "finding": "Published website copy still describes net-$100 activation, unlike the current gross-$100/99%-deployment policy. Record for website work; no website modification performed."
+    },
+    {
+      "id": "INFRA-04",
+      "kind": "external_qualification",
+      "files": [
+        "reports/keeper-rehearsal/README.md:48",
+        "reports/keeper-rehearsal/README.md:80"
+      ],
+      "finding": "One read-only provider failed locally; redundant RPC qualification, real fee accounting, sustained soak, independent alerting and physically distinct restore/rotation remain open."
+    },
+    {
+      "id": "INFRA-05",
+      "kind": "design_boundary",
+      "files": [
+        "reports/nft-rights-audit/REVIEW.md:152",
+        "docs/SECURITY_AUDIT_PLAN.md"
+      ],
+      "finding": "LP portability does not recover canonical NFT ownership or home reward state after catastrophic source-chain loss; any recovery architecture needs explicit trust and duplicate-canonical prevention."
+    },
+    {
+      "id": "INFRA-06",
+      "kind": "capacity_compatibility",
+      "files": [
+        "keeper/monitor.py:718",
+        "keeper/monitor.py:795",
+        "src/ZZZMembership.sol:22",
+        "frontend_api/service.py:328",
+        "indexer/monitor.py:113"
+      ],
+      "finding": "Existing off-chain readers and dust settlement skip reserved None groups; add a real ABI None-before-Active keeper regression when implementing permanent reservation capacity."
+    }
+  ]
+}

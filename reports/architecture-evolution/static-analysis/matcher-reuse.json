@@ -1,0 +1,13 @@
+{
+  "kind": "unchanged_matcher_receipt_reuse_not_new_test_run",
+  "tests_previously_passed": 43,
+  "current_source_sha256": {
+    "scripts/check-slither-review.py": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+    "tests_python/test_slither_review.py": "1149da43982a6dd9e425daa1c92af3deffd9f4e3a707eaa905794efb95901ca0"
+  },
+  "source_receipt": "reports\\operations-hardening\\python-tests.json",
+  "source_receipt_sha256": "0b4bdd1db7401436b25159b1b353a1b8c721aa687bf0e3c9ec031d3133dc41ef",
+  "previous_log": "reports\\operations-hardening\\static-analysis\\matcher-tests.log",
+  "previous_log_sha256": "a7dee2e457fc212102c5b322fc5e49b35258f7c20722f4f15c3416b9b4d6af14",
+  "exact_relevant_source_hashes_match": true
+}

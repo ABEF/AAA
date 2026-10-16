@@ -1,0 +1,231 @@
+{
+  "recorded_at_utc": "2026-10-16T22:27:33.802966+00:00",
+  "mode": "Final frozen documentation/candidate-tree and read-only inventory review; no test suite, network, signer, staging or Git mutation",
+  "baseline": "37bf0d220344736e3fcab35c64ff3386a3d57bfa",
+  "branch": "codex/architecture-evolution-review",
+  "publication_manifest": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-evolution-20261016\\publication-inventory.json",
+    "sha256_before_review_file_refresh": "11d82beab291dd81252f25ddd4ead96d32764f557a89b8580e4799cbee79748e",
+    "file_count_before_review_file_refresh": 60,
+    "scope_rule": "Manifest plus all root-authorized reports/architecture-evolution files; four scoped copies override dirty worktree, all other excluded targets use baseline bytes",
+    "pre_refresh_digest_mismatches": [
+      {
+        "path": "docs/IMPLEMENTATION_STATUS.md",
+        "manifest_sha256": "fd45e38fbbce391151c2b72184f311d708c6ed3d881462ec679986f093c68514",
+        "actual_sha256": "f059b453b1fe715ae63a129a9808ee2ca1966c97f12dbe9a43287f669e856069",
+        "expected_review_file_refresh": false,
+        "root_announced_late_document_update_before_freeze": true,
+        "note": "The root reported the final review-branch introduction change in docs-frozen. Actual frozen content was reviewed and hashed; planned manifest regeneration must record this digest."
+      },
+      {
+        "path": "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md",
+        "manifest_sha256": "60301166e51e2ba048204aefbe749e8401ee6818ad23d06d992cd808e019cd16",
+        "actual_sha256": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed",
+        "expected_review_file_refresh": true
+      }
+    ],
+    "unmanifested_authorized_report_files": [],
+    "root_will_regenerate_after_owned_review_files": true
+  },
+  "documents": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "TODO.md",
+    "docs/ARCHITECTURE.md",
+    "docs/ARCHITECTURE_EVOLUTION.md",
+    "docs/CANONICAL_MIGRATION_DESIGN.md",
+    "docs/CHANGE_AND_RECOVERY.md",
+    "docs/DEPLOYMENT_ADDRESSES.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/RELEASE_CHECKLIST.md",
+    "docs/ROADMAP.md",
+    "docs/SECURITY.md",
+    "docs/SECURITY_AUDIT_PLAN.md",
+    "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md",
+    "reports/architecture-evolution/REVIEW.md",
+    "reports/architecture-evolution/REVISED_PROMPT.md",
+    "reports/architecture-evolution/VERIFICATION.md",
+    "reports/architecture-evolution/capacity/README.md",
+    "reports/architecture-evolution/static-analysis/README.md"
+  ],
+  "candidate_document_sha256": {
+    "AGENTS.md": "3ee367daacdc3bba69e429311eca73001a656a48e8b0cf936e848d875bc85e85",
+    "PROJECT_CONTEXT.md": "17c7cdbabd869734bddc5ef29571345633d656f7f2ab3abc4032f5d9fda7c89c",
+    "README.md": "edcc6c61a35721d8f65435901050360470bf40034ec09626739158e46f289ef0",
+    "TODO.md": "14f79cd3f584d707a6e213632e411a3e5c1deed07483fd3dc957bdf236915013",
+    "docs/ARCHITECTURE.md": "a64ad1a1a7bafd556aecc3ba4c774ff3cc9ae834eebafaeb94509da47974ba99",
+    "docs/ARCHITECTURE_EVOLUTION.md": "609bd8e1125e3c234f8f3347450f552aed90aca7b48cf9ad8c75f9dec754bc8e",
+    "docs/CANONICAL_MIGRATION_DESIGN.md": "c1e702ab75f5fd48279176ffab8ffbe84984b8398ae5bac7a8e0dced85d30020",
+    "docs/CHANGE_AND_RECOVERY.md": "2cc678c4c2b1052be54fea25810d35a032d38e4832b9720aa39de7395adf8f68",
+    "docs/DEPLOYMENT_ADDRESSES.md": "b724e3147242007ee5af97bbe66db5d9ea52d845cc92928564f3bad46b082e1a",
+    "docs/IMPLEMENTATION_STATUS.md": "f059b453b1fe715ae63a129a9808ee2ca1966c97f12dbe9a43287f669e856069",
+    "docs/RELEASE_CHECKLIST.md": "0a64985491cc984d06099617725d7a7e0a4af01b87694ecd14709bc78f285b94",
+    "docs/ROADMAP.md": "c3823c74560f2137c4acc7ae86ef62377b0315b92872be97f9a0807fb9c2fb19",
+    "docs/SECURITY.md": "52aeeb744a16a0146aa646c3f8b65eca8b15018ba8528e88fe0d191e41227c8b",
+    "docs/SECURITY_AUDIT_PLAN.md": "317fc77e2effcc29ea7484afc3f01c771b2ca7cdff3cded7be56abb360dea89b",
+    "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed",
+    "reports/architecture-evolution/REVIEW.md": "b27e1df0e267d78a4a1f942aa13a24c04be1b2f85d8bbdb76458d3b80e082929",
+    "reports/architecture-evolution/REVISED_PROMPT.md": "ed87f10aeb69f44e9097fb62bfd5154788b8243eec2f0def2e76d78916c5a5db",
+    "reports/architecture-evolution/VERIFICATION.md": "b5a9ea339bfb5a2626dbde1bde6887daa472c3845c4db90a209077a81a03e35c",
+    "reports/architecture-evolution/capacity/README.md": "6957aa4663d46681ef18d617152da19f85fb00c50b19927aaba74f53e68f9128",
+    "reports/architecture-evolution/static-analysis/README.md": "c9e8dae9be9e3ff5efa4f571aded5d582aa8c51abc4e13ee11ae8711b87cbb50"
+  },
+  "candidate_documents_unchanged_during_check": true,
+  "local_links_checked": 290,
+  "introduced_local_links": 88,
+  "external_links_not_network_checked": 3,
+  "link_failures": [],
+  "excluded_target_links": [],
+  "new_links_to_excluded_frontend_work": [],
+  "ledger": {
+    "previous_count": 38,
+    "current_count": 39,
+    "added_ids": [
+      "custody-composition"
+    ],
+    "removed_ids": [],
+    "unique_ids": true,
+    "titles_changed": [],
+    "area_order": [
+      "contracts",
+      "backend",
+      "frontend",
+      "testing",
+      "security",
+      "launch",
+      "migration"
+    ],
+    "area_order_preserved": true,
+    "prior_task_areas_preserved": true,
+    "status_counts": {
+      "todo": 13,
+      "progress": 17,
+      "done": 9
+    },
+    "generated_todo_matches": true
+  },
+  "originally_dirty_scoped_documents": [
+    {
+      "path": "AGENTS.md",
+      "scoped_sha256": "3ee367daacdc3bba69e429311eca73001a656a48e8b0cf936e848d875bc85e85",
+      "worktree_sha256": "434b89f1dc2498bd2b95dbe21ae1b56de87e7073b988dcc2f1755def15eccef5",
+      "scoped_matches_worktree": false,
+      "scope_diff": "--- baseline/AGENTS.md\n+++ candidate/AGENTS.md\n@@ -1,4 +1,32 @@\n # AAA / ZZZ PoPL project instructions\n+\n+## Architecture evolution review - 2026-10-17\n+\n+This work uses the isolated `codex/architecture-evolution-review` branch from\n+`37bf0d2`; check Git for current publication. Read\n+[architecture evolution](docs/ARCHITECTURE_EVOLUTION.md), the\n+[revised brief](reports/architecture-evolution/REVISED_PROMPT.md) and\n+[review](reports/architecture-evolution/REVIEW.md). Preserve unrelated unpublished\n+wallet/quote/process-runner/artwork work.\n+\n+The user approved **3% aggregate execution loss per migration, gas separate**.\n+Activation/top-ups remain **1%**. The 3% floor is a proposed implementation\n+requirement, not current enforcement. Do not remove ordered-pair checks:\n+different pairs need composition epochs, historical reward/intake handling and\n+typed conversion. Keep 80/10/5/5 fixed. The user selected **controlled whole-protocol migration while the home chain\n+still works**, deferring post-halt recovery. Read\n+[the canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md). Current\n+contracts cannot perform this and cannot gain it after sealing; implement and\n+qualify explicit freeze/export/import and single-successor accounting first.\n+No post-halt recovery authority or cross-chain proof provider is inferred.\n+The [address inventory](docs/DEPLOYMENT_ADDRESSES.md) lists required wallets,\n+deployed helpers and dependencies; production selections remain open.\n+\n+Destination capacity is repaired with permanent idempotent registration;\n+the resulting `bucketCount` includes unfunded reserved None identities. Source\n+code still does not authenticate remote reservation proof. Consult the current\n+[verification record](reports/architecture-evolution/VERIFICATION.md) rather than reusing old Vault/static/fork results for changed\n+source. No website/server change, public transaction or deployment is authorized.\n \n Read `PROJECT_CONTEXT.md` when starting work on this project. It records the related website, accepted product decisions, and current development boundaries.\n ",
+      "measured_architecture_delta_matches": true,
+      "manual_scope_pass": true,
+      "scope_reason": "Exact handoff-only payload matches measured pre-work-to-worktree delta; unrelated existing material excluded."
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "scoped_sha256": "17c7cdbabd869734bddc5ef29571345633d656f7f2ab3abc4032f5d9fda7c89c",
+      "worktree_sha256": "024f213a30dc0173ab2b2b1376ab72c3411a44fcf7b19399f613850214d31c12",
+      "scoped_matches_worktree": false,
+      "scope_diff": "--- baseline/PROJECT_CONTEXT.md\n+++ candidate/PROJECT_CONTEXT.md\n@@ -1,4 +1,32 @@\n # AAA / ZZZ PoPL project context\n+\n+## Architecture evolution review - 2026-10-17\n+\n+This work uses the isolated `codex/architecture-evolution-review` branch from\n+`37bf0d2`; check Git for current publication. Read\n+[architecture evolution](docs/ARCHITECTURE_EVOLUTION.md), the\n+[revised brief](reports/architecture-evolution/REVISED_PROMPT.md) and\n+[review](reports/architecture-evolution/REVIEW.md). Preserve unrelated unpublished\n+wallet/quote/process-runner/artwork work.\n+\n+The user approved **3% aggregate execution loss per migration, gas separate**.\n+Activation/top-ups remain **1%**. The 3% floor is a proposed implementation\n+requirement, not current enforcement. Do not remove ordered-pair checks:\n+different pairs need composition epochs, historical reward/intake handling and\n+typed conversion. Keep 80/10/5/5 fixed. The user selected **controlled whole-protocol migration while the home chain\n+still works**, deferring post-halt recovery. Read\n+[the canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md). Current\n+contracts cannot perform this and cannot gain it after sealing; implement and\n+qualify explicit freeze/export/import and single-successor accounting first.\n+No post-halt recovery authority or cross-chain proof provider is inferred.\n+The [address inventory](docs/DEPLOYMENT_ADDRESSES.md) lists required wallets,\n+deployed helpers and dependencies; production selections remain open.\n+\n+Destination capacity is repaired with permanent idempotent registration;\n+the resulting `bucketCount` includes unfunded reserved None identities. Source\n+code still does not authenticate remote reservation proof. Consult the current\n+[verification record](reports/architecture-evolution/VERIFICATION.md) rather than reusing old Vault/static/fork results for changed\n+source. No website/server change, public transaction or deployment is authorized.\n \n Recorded on 2026-10-14 from decisions in the project conversation. Update this note when the user changes those decisions. This is durable project context for future work in these repositories.\n ",
+      "measured_architecture_delta_matches": true,
+      "manual_scope_pass": true,
+      "scope_reason": "Exact handoff-only payload matches measured pre-work-to-worktree delta; unrelated existing material excluded."
+    },
+    {
+      "path": "docs/CHANGE_AND_RECOVERY.md",
+      "scoped_sha256": "2cc678c4c2b1052be54fea25810d35a032d38e4832b9720aa39de7395adf8f68",
+      "worktree_sha256": "2cc678c4c2b1052be54fea25810d35a032d38e4832b9720aa39de7395adf8f68",
+      "scoped_matches_worktree": true,
+      "scope_diff": "--- baseline/docs/CHANGE_AND_RECOVERY.md\n+++ candidate/docs/CHANGE_AND_RECOVERY.md\n@@ -3,7 +3,9 @@\n The LP is nonredeemable by NFT holders. This must not be confused with an LP\n position that can never move: the migration framework can close the shared\n position and move its accounted principal through a separately approved route.\n-No administrator can sweep that principal to a wallet.\n+There is no direct local administrator sweep. Approved external providers and\n+remote custody remain trust boundaries; exact source depletion does not prove\n+honest delivery.\n \n The undeployed candidate uses fixed custody code and timelocked configuration.\n It is not a general proxy upgrade system. Sealing fixes module addresses; the\n@@ -25,44 +27,35 @@\n | Change keepers, guardians or strategy settings | Existing governed configuration and fixed timelock; guardian pause is not asset-withdrawal or upgrade authority. |\n | Change the Vault, reward ledgers or mint/trait rules after sealing | No generic implementation replacement exists. A new code version needs an explicit reviewed migration design; these configuration controls do not make arbitrary code changes safe or possible. |\n \n-## Destination capacity: unresolved, proposed next implementation\n+<a id=\"destination-capacity-unresolved-proposed-next-implementation\"></a>\n+## Destination capacity: permanent admission\n \n-The current `reservePool` binds a pool identity but does not reserve a historical\n-bucket slot. The [capacity regression](../test/ReservationCapacity.t.sol) reserves\n-a destination, fills its four slots with other first imports, then shows that the\n-original import reverts without accepting funds or changing incumbent custody.\n-Atomic rejection protects accounting; it does not complete an in-flight delivery.\n-Keep real bridging disabled until this admission gap is resolved and reviewed.\n+`reservePool` now registers a distinct bucket in the same permanent bounded set\n+used for historical custody. At most four identities are admitted, including\n+unfunded reservations. Duplicate reservations, pool aliases and returns reuse\n+their slot even at capacity. Reassignment and a fifth identity reject before\n+arrival. Cancellation, timeout, departure and disabled operations never free a\n+slot that an old packet may still need.\n \n-The proposed implementation is a **permanent reservation of a bucket slot**.\n-Reusing the bounded historical array with idempotent registration may avoid a\n-new ledger: reserve first, then activate/import into that same slot. This is a\n-design proposal, not implemented behavior. It must preserve these invariants:\n+Reserved buckets remain in `None` state with no shares or attributed principal.\n+Membership and keeper discovery skip them before pool/price reads. The\n+[capacity and switching regressions](../reports/architecture-evolution/VERIFICATION.md)\n+cover admission, arrival, rollback, aliases, full-cap returns, identity/reward\n+preservation and combined gas. An unfunded reservation is not TVL or an NFT.\n \n-- Reserved plus previously registered distinct bucket identities never exceed four.\n-- Repeating a reservation, reserving another pool for the same bucket, and\n-  returning/revisiting an existing bucket consume no extra slot. Another bucket\n-  cannot take a reserved pool or capacity slot.\n-- Local entry and remote first arrivals share the same admission accounting.\n-- A source cancellation, deadline or outbound route disable never releases the\n-  destination slot: an old packet, retry or historical return may still need it.\n-  Unused governance reservations therefore permanently consume capacity.\n-- Reserved buckets in `None` state are handled explicitly by enumeration,\n-  membership settlement, keeper discovery and read/indexer services.\n+This repairs the earlier identity-only reservation defect. It does not prove an\n+external provider delivers funds or authenticate destination capacity on the\n+source chain. Governance must verify the exact destination implementation and\n+confirmed admission before departure; arbitrary reservations can permanently\n+exhaust the four slots. Real bridging remains disabled pending independent\n+admission, provider/backing and operating qualification.\n \n-Required regressions include reserve-first concurrent arrivals, rejection of the\n-fifth distinct reservation before departure, duplicates at capacity, local versus\n-remote admission, full-cap returns, failed-import rollback with commitment retained,\n-and source cancellation with retained capacity. Prove unchanged runtime/initcode\n-and gas limits: the current Vault has only 520 runtime bytes of headroom.\n-\n-A newly deployed, independently reviewed destination can implement this while the\n-initial source stays sealed, preserving the v3 message and accounting interfaces.\n-The source's timelocked route registry already admits future remote Vault addresses.\n-However, the source does not verify a remote capacity proof: final destination\n-reservation must be verified during route admission and before departure. Returning\n-to the original source reuses its existing slot. This cannot patch a sealed\n-destination or enable same-chain replacement of a Vault.\n+A reviewed new remote destination can implement the repair while a source stays\n+sealed. It cannot patch an already sealed old destination, rebind the canonical\n+NFT/Rewards contracts or enable same-chain replacement of a Vault. Different-pair\n+conversion and the proposed aggregate **3% migration execution budget** require\n+the [composition-epoch architecture](ARCHITECTURE_EVOLUTION.md); they are not\n+implemented by this capacity repair. Activation/top-ups retain **1%**.\n \n ## Edge cases that remain release considerations\n ",
+      "prework_snapshot": "unavailable; manual scope assessment only",
+      "manual_scope_pass": true,
+      "scope_reason": "Manually reviewed baseline diff: only direct/external custody trust wording, permanent capacity section and canonical design boundary; no claim of an unavailable pre-work byte comparison."
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "scoped_sha256": "c3823c74560f2137c4acc7ae86ef62377b0315b92872be97f9a0807fb9c2fb19",
+      "worktree_sha256": "251b9fbfceae71196cd8b4f2dce1faa4a7334979d5656abdd0288a2ab548f978",
+      "scoped_matches_worktree": false,
+      "scope_diff": "--- baseline/docs/ROADMAP.md\n+++ candidate/docs/ROADMAP.md\n@@ -40,6 +40,8 @@\n \n The fixed router and append-only future-provider onboarding framework are implemented. Select and independently review bridge-specific `IZZZTransportProvider` wrappers, establish equivalent-token and supply semantics, and test canonical-to-satellite, satellite-to-satellite, canonical return, and revisited destinations against actual providers. Exercise authentication, backing, duplication, ordered home notifications, absent-hop epochs, delays, retries, legacy rewards after departure, pauses, and provider failures. Review every future destination's code and authorities before timelocked route onboarding. Exercise real signer/RPC behavior and indexer backfill/reorg recovery on a test network.\n \n+Before enabling a real bridge, independently qualify the implemented permanent destination capacity admission and real provider recovery. Reservations and historical custody share four permanent slots; aliases and returns reuse them. Source governance must still authenticate the reviewed destination and confirmed admission. The [architecture evolution design](ARCHITECTURE_EVOLUTION.md) separates different-pair conversion, fixed-home remote custody and canonical NFT/ledger relocation. Home-chain creator-funded 5% compound reserves still wait for custody to return unless a separately reviewed funded remote reinvestment design is added. Task status remains in the central Todo.\n+\n ## 6. Complete independent review before release\n \n Obtain an independent security audit, verify remediation, review deployment configuration, and satisfy the applicable [central release criteria](../TODO.md#task-audit-release) before recording final approval in the [release record](RELEASE_CHECKLIST.md).",
+      "prework_snapshot": "unavailable; manual scope assessment only",
+      "manual_scope_pass": true,
+      "scope_reason": "Exact baseline plus the final architecture paragraph before section 6; unrelated dirty operations-hardening paragraph excluded."
+    }
+  ],
+  "canonical_design_review": {
+    "sha256": "c1e702ab75f5fd48279176ffab8ffbe84984b8398ae5bac7a8e0dced85d30020",
+    "matches_root_freeze_hash": true,
+    "internal_review": "No blocking inconsistency identified; design only, no implementation/audit approval",
+    "accepted_scope": "Controlled planned migration while source executes; post-halt recovery deferred",
+    "reviewed_boundaries": [
+      "Current sealed source cannot retrofit terminal freeze/export/import",
+      "Protocol-wide lifecycle guard, proved pre-terminal abort and irreversible terminal commit",
+      "Finalized terminal source proof before one successor activates; proof/attestation authority remains unselected",
+      "Exact IDs/ordinals/traits/remaining inventory, shares and complete LP/royalty ledgers including fractions",
+      "Complete imported population denominators even with lazy asset rows",
+      "Atomic immutable raw-balance cutoff and one-time captured-delta settlement; no moving pending balances",
+      "Classified full backing; no principal budget haircut to funded liabilities",
+      "Legacy immutable royalty/creator receivers, tagged one-use forwarding and strictly increasing successor epochs",
+      "Actual finality, gas, contract-owner compatibility, service routes, data availability and independent audit remain gates"
+    ]
+  },
+  "static_archive_publication_check": {
+    "archive_in_manifest": true,
+    "replacement_in_manifest": true,
+    "archive_is_byte_exact_baseline_canonical": true,
+    "new_canonical_equals_review_copy": true
+  },
+  "production_enumeration_review": {
+    "mode": "Read-only working-source inspection, no tests or RPC calls; excluded frontend work is not published by this report",
+    "source_sha256": {
+      "scripts/validate-production-config.py": "adb8ba52b06c66a48e3aa156bb419e29ab1efd25fff49b0f9a58888050fa7313",
+      "zzz_ops/revenue_share.py": "e4198531ab3dabddae78583ad1e6b68ef7f30b9aca5a87871d350c51f01b6123",
+      "frontend_api/service.py": "f9dfd6e47e95efbb9b62255f2baaa0e01cb655e9eb94303e56519fc1fe590e6b",
+      "frontend_api/history.py": "09ca663bac28b4ac177cf240cb8be858707f90050aed6811676ae48457e3cbf3",
+      "indexer/monitor.py": "d74414e5dbf8247947100fd41517137d22afa8abb6e9166a8a3c633085d11de7",
+      "indexer/event_schema.json": "7b33f325ba0b01e0722eedb0a29bed1d3e1b184ed4e254d47f739b8c90c34ec2",
+      "src/ZZZMembership.sol": "2641d6b7ece6d4281af01ee8e6c6b4b78fa49992f8b98f48357204b73ea5add3",
+      "keeper/monitor.py": "64bfafea8859213edf0434147160c4f62bb329dc979356ef7ee7cd2014cc9f15"
+    },
+    "findings": [
+      {
+        "source": "scripts/validate-production-config.py:589-640",
+        "result": "compatible",
+        "detail": "Explicit reservation identities/assets/observed blocks and independent evidence; no funded-count or Active-state assumption. Offline manifest consistency is not remote delivery or live permanent capacity proof."
+      },
+      {
+        "source": "zzz_ops/revenue_share.py:366-373",
+        "result": "fail-closed compatible",
+        "detail": "An explicit bucket must match local pool and Active custody before valuation; None cannot generate sampled LP revenue."
+      },
+      {
+        "source": "frontend_api/service.py:330-362; frontend_api/history.py",
+        "result": "compatible",
+        "detail": "Canonical minted NFT identity, owner, shares and royalty eligibility drive NFT positions, not admitted bucket count."
+      },
+      {
+        "source": "indexer/event_schema.json:984; indexer/monitor.py",
+        "result": "compatible",
+        "detail": "PoolReserved is raw decoded metadata, not an NFT mint/ownership event."
+      },
+      {
+        "source": "src/ZZZMembership.sol:22-31; keeper/monitor.py:702-722",
+        "result": "compatible",
+        "detail": "Only production count/ordinal enumerators located; both skip None before financial reads. Existing separate two-case keeper receipt was not rerun."
+      }
+    ]
+  },
+  "limitations": [
+    "Internal documentation/design/source review is not independent audit or production approval.",
+    "Execution receipts are linked and scope-checked, not rerun by this reviewer.",
+    "External URLs and actual production dependencies were not network-tested.",
+    "A later document/candidate change requires refreshed matching hashes/link observations."
+  ],
+  "summary": {
+    "frozen_candidate_content_checks_passed": true,
+    "candidate_markdown_files": 20,
+    "local_links_and_anchors_checked": 290,
+    "local_link_failures": 0,
+    "central_task_ids_preserved": true,
+    "generated_todo_matches": true,
+    "four_scoped_documents_pass": true,
+    "canonical_design_freeze_hash_matches": true,
+    "intermediate_publication_manifest_current": false,
+    "publication_preflight_required": "Root explicitly regenerates the external manifest after final review files. The intermediate manifest predates the final feature-reference introduction and owned review-file updates; its differences are retained below."
+  }
+}

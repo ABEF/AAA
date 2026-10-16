@@ -1,0 +1,11 @@
+{
+  "original_attachment_sha256": "f320d927fdea654951f2b60ee0276b278385c60a6b91d343ade4beb53984475a",
+  "original_attachment_bytes": 52209,
+  "baseline_commit": "37bf0d220344736e3fcab35c64ff3386a3d57bfa",
+  "review_branch": "codex/architecture-evolution-review",
+  "subsequent_user_decision": "3% maximum aggregate migration execution loss; network gas separate; activation/topups remain1%",
+  "subsequent_user_request": "Inventory every authority and operating address; distinguish wallets, deployed helpers and existing dependencies",
+  "recorded_at_utc": "2026-10-16T22:08:56.672507+00:00",
+  "production_deployment_authorized": false,
+  "subsequent_canonical_decision": "Controlled whole-protocol migration while original chain still works; post-halt recovery deferred (2026-10-17)."
+}

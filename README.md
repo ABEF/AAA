@@ -10,7 +10,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 | --- | --- |
 | Progress and remaining work | **[Project Todo](TODO.md)** - the single task list, with expandable acceptance criteria |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
-| System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
+| System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Security and release | [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
@@ -21,7 +21,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 | **2. Backend and operations** | The keeper coordinates authorized LP maintenance. The indexer and API expose confirmed ownership, balances and claim history. These services need production deployment and operating qualification. | [Keeper](keeper/monitor.py), [indexer](indexer/monitor.py), [read API](docs/FRONTEND_API.md), [history](docs/FRONTEND_HISTORY.md) |
 | **3. Frontend** | The separate website presents minting, activation, portfolios and claims. Live wallet transactions and data integration remain pending. | [Website repository](https://github.com/ABEF/AAA-website), [integration tasks](TODO.md#frontend) |
 
-Many NFTs share one physical Uniswap v4 LP position per supported pool/strategy, with independent NFT share accounts. Maintenance operates on that shared position, without looping through every holder. The initial collection is intended to use one pool. The Vault permits **four historical custody buckets**, including imports; an existing bucket's migration or return reuses its slot. This bounds settlement work, not the number of NFTs. See the [architecture and capacity boundary](docs/ARCHITECTURE.md).
+Many NFTs share one physical Uniswap v4 LP position per supported pool/strategy, with independent NFT share accounts. Maintenance operates on that shared position, without looping through every holder. The initial collection is intended to use one pool. The Vault permits **four permanently admitted/historical custody buckets**, including unfunded reservations and imports; an existing bucket's migration or return reuses its slot. This bounds settlement work, not the number of NFTs. See the [architecture and capacity boundary](docs/ARCHITECTURE.md).
 
 ## NFT lifecycle
 
@@ -70,11 +70,11 @@ The [metadata specification](docs/NFT_METADATA.md) and [artwork catalogue](desig
 
 ## Governance, custody and recovery
 
-Governance is a deployment-selected multisig acting through a timelock, with separate guardian and keeper roles. Production addresses are not yet selected. **Sealing fixes module implementations and local venue bindings.** Supported assets, routes, feeds, destinations and strategy parameters remain configurable within explicit controls. New algorithms or unsupported venues require separately reviewed compatible deployments. See the [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md).
+Governance is a deployment-selected multisig acting through a timelock, with separate guardian and keeper roles. Production addresses are not yet selected; the [address inventory](docs/DEPLOYMENT_ADDRESSES.md) distinguishes wallets, deployed contracts and network dependencies. **Sealing fixes module implementations and local venue bindings.** Supported assets, routes, feeds, destinations and strategy parameters remain configurable within explicit controls. New algorithms or unsupported venues require separately reviewed compatible deployments. See the [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md).
 
 Timelocked governance can [park custody while globally paused](docs/CUSTODY_PARKING.md), closing into the Vault under an exact snapshot and raw output minimums without source prices or creator-inbox synchronization. Resume requires fresh deployment guards. Failed external tokens or venues can still prevent movement.
 
-**LP migration is not collection migration.** Canonical NFT ownership, membership and reward ledgers remain on the home chain. Recovery from permanent loss of that chain is unimplemented and needs a design decision before sealing. Real bridging remains disabled pending destination-capacity reservations, provider/backing review and multi-chain rehearsals. These risks are tracked in the [security audit plan](docs/SECURITY_AUDIT_PLAN.md).
+**LP migration is not collection migration.** Canonical NFT ownership, membership and reward ledgers currently remain on the home chain. The chosen direction is [controlled whole-protocol migration while the source still works](docs/CANONICAL_MIGRATION_DESIGN.md); it must be implemented and qualified before sealing. Post-halt recovery is deferred. Real bridging remains disabled pending independent destination-admission review, provider/backing review and multi-chain rehearsals. Local permanent capacity reservation is implemented; the source does not authenticate remote admission proof. These risks are tracked in the [security audit plan](docs/SECURITY_AUDIT_PLAN.md).
 
 ## Keeper and operating services
 
@@ -90,7 +90,9 @@ The keeper defaults to dry run. Its example ten-minute polling interval does not
 
 ## Verification and release status
 
-The latest [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md) records **531 offline Solidity passes**, two expected fork-setup skips, **23 normal size gates** and an extended invariant run of **65,536 calls**. The report separates fresh checks from reused static/fork evidence and the broader local Python candidate. The [internal review](reports/nft-rights-audit/REVIEW.md) records findings and remaining risks; [historical reports](reports/README.md) retain their original source scope.
+The [architecture review and targeted verification](reports/architecture-evolution/VERIFICATION.md) cover the permanent capacity repair and its affected boundaries. Different-pair conversion and canonical NFT-chain relocation remain unimplemented designs; the accepted 3% aggregate migration budget is not current enforcement.
+
+The historical [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md) records **531 offline Solidity passes**, two expected fork-setup skips, **23 normal size gates** and an extended invariant run of **65,536 calls**. The report separates fresh checks from reused static/fork evidence and the broader local Python candidate. The [internal review](reports/nft-rights-audit/REVIEW.md) records findings and remaining risks; [historical reports](reports/README.md) retain their original source scope.
 
 Production approval still requires qualified market/input routes, tokens and price feeds; supported VRF; authority addresses and creator terms; live frontend/backend integration; target-chain gas and operating rehearsals; and an independent audit with remediation. Track these in the [Project Todo](TODO.md); record final sign-off in the [release approval record](docs/RELEASE_CHECKLIST.md) with the [production inventory](config/production.example.json). Check [CI for the exact revision](https://github.com/ABEF/AAA/actions); local evidence does not imply a green published workflow.
 

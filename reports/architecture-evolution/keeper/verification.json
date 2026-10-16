@@ -1,0 +1,50 @@
+{
+  "finished_at_utc": "2026-10-16T22:04:38.425194+00:00",
+  "command": [
+    "python",
+    "reports/architecture-evolution/keeper/run_targeted.py"
+  ],
+  "python": "3.12.14",
+  "scope": "Targeted static-ABI mock RPC reserved-None discovery; not an on-chain or live operating rehearsal.",
+  "tests_run": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "source_hash_normalization": "Raw local bytes; before/after equality is exact.",
+  "source_sha256_before": {
+    "keeper/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "keeper/monitor.py": "64bfafea8859213edf0434147160c4f62bb329dc979356ef7ee7cd2014cc9f15",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "tests_python/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/test_keeper.py": "38b757e2ee34e0c6b32f2ed9a5631801b2e732b49e989d453a1c9ce9325640b2",
+    "tests_python/test_keeper_reservations.py": "ed31ef44de716607cb66e25d9aa7759c01f89f6d8e8ab755f02fdf66047bfd90",
+    "reports/architecture-evolution/keeper/run_targeted.py": "bfde5a0fcad51c4c4b8204b3bfe3da53b3cdbcd500b163e241431aefe3bf3fed"
+  },
+  "source_sha256_after": {
+    "keeper/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "keeper/monitor.py": "64bfafea8859213edf0434147160c4f62bb329dc979356ef7ee7cd2014cc9f15",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "tests_python/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/test_keeper.py": "38b757e2ee34e0c6b32f2ed9a5631801b2e732b49e989d453a1c9ce9325640b2",
+    "tests_python/test_keeper_reservations.py": "ed31ef44de716607cb66e25d9aa7759c01f89f6d8e8ab755f02fdf66047bfd90",
+    "reports/architecture-evolution/keeper/run_targeted.py": "bfde5a0fcad51c4c4b8204b3bfe3da53b3cdbcd500b163e241431aefe3bf3fed"
+  },
+  "source_unchanged": true,
+  "log_sha256": "eaaad629ed9741e8f2ce8a7c0eb3f238bfee3b00558cc3b0dacbf28aafd77574",
+  "keeper_source_changed": false,
+  "live_signing": false,
+  "public_transactions": false,
+  "production_approved": false,
+  "limitations": [
+    "Reserved state is a 15-word zero-valued Position ABI fixture; no contract deployment is executed.",
+    "Keeper view/group decoding, cursor persistence and health output are real; transaction submission is mocked.",
+    "Unix advisory locking, real venues, production services and full keeper suites are outside this run."
+  ]
+}

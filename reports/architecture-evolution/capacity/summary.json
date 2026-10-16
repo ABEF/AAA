@@ -1,0 +1,72 @@
+{
+  "created_at_utc": "2026-10-16T22:14:04.719221+00:00",
+  "scope": "Focused permanent capacity, same-pair local switching, combined mocked gas and compatible-asset migration regressions. No public-chain execution or independent audit.",
+  "batches": {
+    "targeted": {
+      "receipt": "reports/architecture-evolution/capacity/targeted/attempt1/receipt.json",
+      "duration_seconds": 162.969,
+      "totals": {
+        "Success": 38,
+        "Failure": 0,
+        "Skipped": 0
+      },
+      "suites": {
+        "test/BucketCapacity.t.sol:BucketCapacityTest": 4,
+        "test/PoolSwitching.t.sol:PoolSwitchingTest": 7,
+        "test/PooledSecurity.t.sol:PooledSecurityTest": 14,
+        "test/ReservationCapacity.t.sol:ReservationCapacityTest": 13
+      },
+      "receipt_identity": {
+        "sha256": "631fc2336c51219889739fc6d75a706c7f572ba6092b4ee7c3f3f8ecf7a8efb0",
+        "bytes": 18427
+      }
+    },
+    "affected": {
+      "receipt": "reports/architecture-evolution/capacity/affected/attempt1/receipt.json",
+      "duration_seconds": 157.735,
+      "totals": {
+        "Success": 53,
+        "Failure": 0,
+        "Skipped": 0
+      },
+      "suites": {
+        "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest": 4,
+        "test/CustodyParking.t.sol:CustodyParkingTest": 13,
+        "test/CustodyParking.t.sol:CustodyParkingTimelockTest": 1,
+        "test/FutureChainMigration.t.sol:FutureChainMigrationTest": 12,
+        "test/MultiHopMigration.t.sol:MultiHopMigrationRegistryTest": 8,
+        "test/MultiHopMigration.t.sol:MultiHopMigrationTest": 15
+      },
+      "receipt_identity": {
+        "sha256": "b39853c2faf03483f2d51620daea4cc5cc7b6e17996023370e23e52f1c573027",
+        "bytes": 20874
+      }
+    }
+  },
+  "gas_measurements": {},
+  "totals": {
+    "Success": 91,
+    "Failure": 0,
+    "Skipped": 0
+  },
+  "limits_unchanged": {
+    "historical_buckets": 4,
+    "combined_fixture_gas": 12000000,
+    "runtime_bytes": 24576,
+    "initcode_bytes": 49152
+  },
+  "targeted_vault_artifact": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-evolution-20261016\\capacity-out\\ZZZVault.sol\\ZZZVault.json",
+    "sha256": "365e727c88e810481ef1276cb72910b00f1c8154a34b79115292cd25422b7695",
+    "bytes": 213540,
+    "runtime_bytes": 24122,
+    "initcode_object_bytes": 24875,
+    "runtime_headroom_bytes": 454,
+    "constructor_arguments_included": false,
+    "scope": "Standalone Vault artifact from the normal-profile targeted compilation; not the complete all-object production size gate."
+  },
+  "compiled_bindings": {
+    "sha256": "905328d3dbaf3d1d9a7d96e453690f15ebcba2d15eaf0174f9d258f8eac3b33d",
+    "bytes": 245842
+  }
+}

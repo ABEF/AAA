@@ -1,0 +1,252 @@
+{
+  "created_at_utc": "2026-10-16T22:28:06.071924+00:00",
+  "baseline": "37bf0d220344736e3fcab35c64ff3386a3d57bfa",
+  "review_branch": "codex/architecture-evolution-review",
+  "scope": "Intended review-branch source/document/evidence files; four originally dirty docs use isolated HEAD-based publication copies. This manifest excludes itself. Verification scopes remain those in each receipt, not all files listed here.",
+  "source_scope": "Production change: ZZZVault.sol only. Unrelated pre-existing work remains excluded.",
+  "independent_audit": false,
+  "production_approved": false,
+  "public_transactions": false,
+  "files": {
+    "AGENTS.md": {
+      "raw_sha256": "3ee367daacdc3bba69e429311eca73001a656a48e8b0cf936e848d875bc85e85",
+      "lf_sha256": "3ee367daacdc3bba69e429311eca73001a656a48e8b0cf936e848d875bc85e85"
+    },
+    "PROJECT_CONTEXT.md": {
+      "raw_sha256": "17c7cdbabd869734bddc5ef29571345633d656f7f2ab3abc4032f5d9fda7c89c",
+      "lf_sha256": "17c7cdbabd869734bddc5ef29571345633d656f7f2ab3abc4032f5d9fda7c89c"
+    },
+    "README.md": {
+      "raw_sha256": "edcc6c61a35721d8f65435901050360470bf40034ec09626739158e46f289ef0",
+      "lf_sha256": "edcc6c61a35721d8f65435901050360470bf40034ec09626739158e46f289ef0"
+    },
+    "TODO.md": {
+      "raw_sha256": "14f79cd3f584d707a6e213632e411a3e5c1deed07483fd3dc957bdf236915013",
+      "lf_sha256": "14f79cd3f584d707a6e213632e411a3e5c1deed07483fd3dc957bdf236915013"
+    },
+    "docs/ARCHITECTURE.md": {
+      "raw_sha256": "a64ad1a1a7bafd556aecc3ba4c774ff3cc9ae834eebafaeb94509da47974ba99",
+      "lf_sha256": "a64ad1a1a7bafd556aecc3ba4c774ff3cc9ae834eebafaeb94509da47974ba99"
+    },
+    "docs/ARCHITECTURE_EVOLUTION.md": {
+      "raw_sha256": "609bd8e1125e3c234f8f3347450f552aed90aca7b48cf9ad8c75f9dec754bc8e",
+      "lf_sha256": "609bd8e1125e3c234f8f3347450f552aed90aca7b48cf9ad8c75f9dec754bc8e"
+    },
+    "docs/CANONICAL_MIGRATION_DESIGN.md": {
+      "raw_sha256": "c1e702ab75f5fd48279176ffab8ffbe84984b8398ae5bac7a8e0dced85d30020",
+      "lf_sha256": "c1e702ab75f5fd48279176ffab8ffbe84984b8398ae5bac7a8e0dced85d30020"
+    },
+    "docs/CHANGE_AND_RECOVERY.md": {
+      "raw_sha256": "2cc678c4c2b1052be54fea25810d35a032d38e4832b9720aa39de7395adf8f68",
+      "lf_sha256": "2cc678c4c2b1052be54fea25810d35a032d38e4832b9720aa39de7395adf8f68"
+    },
+    "docs/DEPLOYMENT_ADDRESSES.md": {
+      "raw_sha256": "b724e3147242007ee5af97bbe66db5d9ea52d845cc92928564f3bad46b082e1a",
+      "lf_sha256": "b724e3147242007ee5af97bbe66db5d9ea52d845cc92928564f3bad46b082e1a"
+    },
+    "docs/IMPLEMENTATION_STATUS.md": {
+      "raw_sha256": "f059b453b1fe715ae63a129a9808ee2ca1966c97f12dbe9a43287f669e856069",
+      "lf_sha256": "f059b453b1fe715ae63a129a9808ee2ca1966c97f12dbe9a43287f669e856069"
+    },
+    "docs/RELEASE_CHECKLIST.md": {
+      "raw_sha256": "0a64985491cc984d06099617725d7a7e0a4af01b87694ecd14709bc78f285b94",
+      "lf_sha256": "0a64985491cc984d06099617725d7a7e0a4af01b87694ecd14709bc78f285b94"
+    },
+    "docs/ROADMAP.md": {
+      "raw_sha256": "c3823c74560f2137c4acc7ae86ef62377b0315b92872be97f9a0807fb9c2fb19",
+      "lf_sha256": "c3823c74560f2137c4acc7ae86ef62377b0315b92872be97f9a0807fb9c2fb19"
+    },
+    "docs/SECURITY.md": {
+      "raw_sha256": "52aeeb744a16a0146aa646c3f8b65eca8b15018ba8528e88fe0d191e41227c8b",
+      "lf_sha256": "52aeeb744a16a0146aa646c3f8b65eca8b15018ba8528e88fe0d191e41227c8b"
+    },
+    "docs/SECURITY_AUDIT_PLAN.md": {
+      "raw_sha256": "317fc77e2effcc29ea7484afc3f01c771b2ca7cdff3cded7be56abb360dea89b",
+      "lf_sha256": "317fc77e2effcc29ea7484afc3f01c771b2ca7cdff3cded7be56abb360dea89b"
+    },
+    "docs/project-todo.json": {
+      "raw_sha256": "decdd5e9c386750bef3f582fea40b2d88305c69aa07e0b027e3f3656301c58ac",
+      "lf_sha256": "decdd5e9c386750bef3f582fea40b2d88305c69aa07e0b027e3f3656301c58ac"
+    },
+    "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md": {
+      "raw_sha256": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed",
+      "lf_sha256": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed"
+    },
+    "reports/architecture-evolution/REVIEW.md": {
+      "raw_sha256": "b27e1df0e267d78a4a1f942aa13a24c04be1b2f85d8bbdb76458d3b80e082929",
+      "lf_sha256": "b27e1df0e267d78a4a1f942aa13a24c04be1b2f85d8bbdb76458d3b80e082929"
+    },
+    "reports/architecture-evolution/REVISED_PROMPT.md": {
+      "raw_sha256": "ed87f10aeb69f44e9097fb62bfd5154788b8243eec2f0def2e76d78916c5a5db",
+      "lf_sha256": "ed87f10aeb69f44e9097fb62bfd5154788b8243eec2f0def2e76d78916c5a5db"
+    },
+    "reports/architecture-evolution/VERIFICATION.md": {
+      "raw_sha256": "b5a9ea339bfb5a2626dbde1bde6887daa472c3845c4db90a209077a81a03e35c",
+      "lf_sha256": "b5a9ea339bfb5a2626dbde1bde6887daa472c3845c4db90a209077a81a03e35c"
+    },
+    "reports/architecture-evolution/capacity/README.md": {
+      "raw_sha256": "6957aa4663d46681ef18d617152da19f85fb00c50b19927aaba74f53e68f9128",
+      "lf_sha256": "bec4090d3e52087794fd6ec5801c0c16e868c0c0e49c8e5791b0ecfd0498f85e"
+    },
+    "reports/architecture-evolution/capacity/affected/attempt1/forge.json": {
+      "raw_sha256": "29a6b3ebda34b56460c94b1bc69b983a472edc6c0c99f1f134b72a348029f338",
+      "lf_sha256": "29a6b3ebda34b56460c94b1bc69b983a472edc6c0c99f1f134b72a348029f338"
+    },
+    "reports/architecture-evolution/capacity/affected/attempt1/forge.stderr.log": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reports/architecture-evolution/capacity/affected/attempt1/receipt.json": {
+      "raw_sha256": "b39853c2faf03483f2d51620daea4cc5cc7b6e17996023370e23e52f1c573027",
+      "lf_sha256": "c862202bc353838576bac6940bbd09c037224fd8f1a3ee8e812aeced7e6281af"
+    },
+    "reports/architecture-evolution/capacity/compiled-bindings.json": {
+      "raw_sha256": "905328d3dbaf3d1d9a7d96e453690f15ebcba2d15eaf0174f9d258f8eac3b33d",
+      "lf_sha256": "0005f8e6a5041a36d5f20f3a4ece521176886d3e2d94b72dc90abfe014f5d845"
+    },
+    "reports/architecture-evolution/capacity/summary.json": {
+      "raw_sha256": "f92c2e82687cc9e24009758ca146d025eb01293844d9509602b4a6ce9454a4b0",
+      "lf_sha256": "d7c2cfcb06c0d0425a20325030076bf7748180b099579dcda567ae02cd511a2a"
+    },
+    "reports/architecture-evolution/capacity/targeted/attempt1/forge.json": {
+      "raw_sha256": "9d781f983654100b0d323a348a060ee4a83a9d0deb9ccc96c830b37846884eae",
+      "lf_sha256": "9d781f983654100b0d323a348a060ee4a83a9d0deb9ccc96c830b37846884eae"
+    },
+    "reports/architecture-evolution/capacity/targeted/attempt1/forge.stderr.log": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reports/architecture-evolution/capacity/targeted/attempt1/receipt.json": {
+      "raw_sha256": "631fc2336c51219889739fc6d75a706c7f572ba6092b4ee7c3f3f8ecf7a8efb0",
+      "lf_sha256": "bb75f974bc0cc08faf7bc370cd14705c71c17b9c03fdf546f297e0235358dee7"
+    },
+    "reports/architecture-evolution/capacity/tests.log": {
+      "raw_sha256": "abd7e848e11612d3967e717d413d5f970e947f53f0cdced47419d6167077121c",
+      "lf_sha256": "5f520426e31a78d710e6b50c85ba4134a9d6a3059dbf6ca7490fe4103d323d15"
+    },
+    "reports/architecture-evolution/docs-check.json": {
+      "raw_sha256": "dd3b134457a6ea303fa89504d081763f9b9ba377dc59fae85acb727bfbeb43f0",
+      "lf_sha256": "dd3b134457a6ea303fa89504d081763f9b9ba377dc59fae85acb727bfbeb43f0"
+    },
+    "reports/architecture-evolution/input-provenance.json": {
+      "raw_sha256": "f541eafd13a432ba148034d93b078d155896d47d6e0b38eac99e7e4bf6e19103",
+      "lf_sha256": "418ec65cf808000b790365feda2c0f791e63c052d36c72fddd9ef713e6f7270b"
+    },
+    "reports/architecture-evolution/keeper/run_targeted.py": {
+      "raw_sha256": "bfde5a0fcad51c4c4b8204b3bfe3da53b3cdbcd500b163e241431aefe3bf3fed",
+      "lf_sha256": "bfde5a0fcad51c4c4b8204b3bfe3da53b3cdbcd500b163e241431aefe3bf3fed"
+    },
+    "reports/architecture-evolution/keeper/tests.log": {
+      "raw_sha256": "eaaad629ed9741e8f2ce8a7c0eb3f238bfee3b00558cc3b0dacbf28aafd77574",
+      "lf_sha256": "eaaad629ed9741e8f2ce8a7c0eb3f238bfee3b00558cc3b0dacbf28aafd77574"
+    },
+    "reports/architecture-evolution/keeper/verification.json": {
+      "raw_sha256": "785f70897c062def70a7497fe1e60710cfb93b353bf99f265b4e972c94691b6c",
+      "lf_sha256": "785f70897c062def70a7497fe1e60710cfb93b353bf99f265b4e972c94691b6c"
+    },
+    "reports/architecture-evolution/phase1-evidence-reuse.json": {
+      "raw_sha256": "ef020a6d5ceed8c1ce834a7305402724cb1767e2197ed1b48c943621fce3f310",
+      "lf_sha256": "963b18c7207b620e5dbea733cb7afc4ff825d15d8189ec901ca4e15cefdd0430"
+    },
+    "reports/architecture-evolution/phase1-infrastructure-review.json": {
+      "raw_sha256": "2e1f8596bf0c7c36d0f1f63676d1e236931b6e2d1254b453d9e097440ff490f8",
+      "lf_sha256": "a5833c6d18895fbc31ef1014057d1b2591445e8940fbc43ce07457779477a083"
+    },
+    "reports/architecture-evolution/phase1-observation-scope.json": {
+      "raw_sha256": "90efabec8ac34aa728114b42064823c4053bb6282c81401a2b00dec3259b8ec3",
+      "lf_sha256": "91d120af084ac7378f4e0a1d21618f423646a1d9c806427fa302443f3f24fa30"
+    },
+    "reports/architecture-evolution/production/receipt.json": {
+      "raw_sha256": "03e617db4185b04c6c98372377efb08a4cfc5cd5b24649eb5ad5ef4e1b83fa71",
+      "lf_sha256": "03e617db4185b04c6c98372377efb08a4cfc5cd5b24649eb5ad5ef4e1b83fa71"
+    },
+    "reports/architecture-evolution/production/size-gates.json": {
+      "raw_sha256": "b4398a39734889ceb3fa9e2d58e36e58df6bb12362bf2514a82c7d2b5ce03a54",
+      "lf_sha256": "b4398a39734889ceb3fa9e2d58e36e58df6bb12362bf2514a82c7d2b5ce03a54"
+    },
+    "reports/architecture-evolution/production/stderr.log": {
+      "raw_sha256": "35673d6f1bbf35292550e3ba163ef293ba3b5d3430b50307b1ce906e32015669",
+      "lf_sha256": "35673d6f1bbf35292550e3ba163ef293ba3b5d3430b50307b1ce906e32015669"
+    },
+    "reports/architecture-evolution/production/stdout.log": {
+      "raw_sha256": "ae422c2598066ac24ba2122f86df1fe7ac3f611776c03c7e43b6b9c7c19ed254",
+      "lf_sha256": "ae422c2598066ac24ba2122f86df1fe7ac3f611776c03c7e43b6b9c7c19ed254"
+    },
+    "reports/architecture-evolution/provider/receipt.json": {
+      "raw_sha256": "106bf694d146670ff796ef375473e004747bb926a012e045c6e072a99bc19f13",
+      "lf_sha256": "106bf694d146670ff796ef375473e004747bb926a012e045c6e072a99bc19f13"
+    },
+    "reports/architecture-evolution/provider/stderr.log": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reports/architecture-evolution/provider/stdout.log": {
+      "raw_sha256": "2e4ba3f6cae1f3df642a2351759ac52239328610dd3404493e03ccd7d538eaf4",
+      "lf_sha256": "2e4ba3f6cae1f3df642a2351759ac52239328610dd3404493e03ccd7d538eaf4"
+    },
+    "reports/architecture-evolution/static-analysis/README.md": {
+      "raw_sha256": "c9e8dae9be9e3ff5efa4f571aded5d582aa8c51abc4e13ee11ae8711b87cbb50",
+      "lf_sha256": "c9e8dae9be9e3ff5efa4f571aded5d582aa8c51abc4e13ee11ae8711b87cbb50"
+    },
+    "reports/architecture-evolution/static-analysis/coverage.json": {
+      "raw_sha256": "f0f66a45f89bd3d76a12140046ea4e531da7f70c573d0665925b0ff6e1329b0e",
+      "lf_sha256": "f0f66a45f89bd3d76a12140046ea4e531da7f70c573d0665925b0ff6e1329b0e"
+    },
+    "reports/architecture-evolution/static-analysis/matcher-reuse.json": {
+      "raw_sha256": "6b4110610fabaa6e248f4ba0d984e52d2c7801476360cae9787ce69f04954ed5",
+      "lf_sha256": "6b4110610fabaa6e248f4ba0d984e52d2c7801476360cae9787ce69f04954ed5"
+    },
+    "reports/architecture-evolution/static-analysis/mutation-tests.json": {
+      "raw_sha256": "03687ec3b7d29ac4a6f54dabb37277693481366303fb3dc0ac6fd557f799e80d",
+      "lf_sha256": "03687ec3b7d29ac4a6f54dabb37277693481366303fb3dc0ac6fd557f799e80d"
+    },
+    "reports/architecture-evolution/static-analysis/run-summary.json": {
+      "raw_sha256": "42b7fa03f8c5970f2eb69b03d9eaaba42ada071330529b8b683210f4f3d71f36",
+      "lf_sha256": "42b7fa03f8c5970f2eb69b03d9eaaba42ada071330529b8b683210f4f3d71f36"
+    },
+    "reports/architecture-evolution/static-analysis/slither-review.json": {
+      "raw_sha256": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2",
+      "lf_sha256": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2"
+    },
+    "reports/architecture-evolution/static-analysis/triage-delta.json": {
+      "raw_sha256": "c8ad5cf1a08a01c26beb184797d8a541d48eff520ba86ddd370bec4a2eead835",
+      "lf_sha256": "c8ad5cf1a08a01c26beb184797d8a541d48eff520ba86ddd370bec4a2eead835"
+    },
+    "reports/history/slither-review-pre-architecture-evolution.json": {
+      "raw_sha256": "2232163d8049bd3e4356b499c2b711c3435e387d96bb6b73638edc53133d0a8b",
+      "lf_sha256": "2232163d8049bd3e4356b499c2b711c3435e387d96bb6b73638edc53133d0a8b"
+    },
+    "reports/production/slither-review.json": {
+      "raw_sha256": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2",
+      "lf_sha256": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2"
+    },
+    "src/ZZZVault.sol": {
+      "raw_sha256": "b021a3814c8694717cbe5b2ca8d0b29bc9a19d96abc4a3614be5af9082b519af",
+      "lf_sha256": "b021a3814c8694717cbe5b2ca8d0b29bc9a19d96abc4a3614be5af9082b519af"
+    },
+    "test/ApprovedProviderTrust.t.sol": {
+      "raw_sha256": "f10ec0df88f8d09ce030c06ad5a4f4032ab93fda7ef1fb2f52eb59f3b46cc43a",
+      "lf_sha256": "f10ec0df88f8d09ce030c06ad5a4f4032ab93fda7ef1fb2f52eb59f3b46cc43a"
+    },
+    "test/BucketCapacity.t.sol": {
+      "raw_sha256": "3dd22cbb6e35ab3188648ad53faee6e009d37b7a12e945ecd03c2718927bf86a",
+      "lf_sha256": "3dd22cbb6e35ab3188648ad53faee6e009d37b7a12e945ecd03c2718927bf86a"
+    },
+    "test/PoolSwitching.t.sol": {
+      "raw_sha256": "8a850038a6e35a055c4022b8b63b0cdc4ec6a296250f6aaa87646e5412ea12a1",
+      "lf_sha256": "8a850038a6e35a055c4022b8b63b0cdc4ec6a296250f6aaa87646e5412ea12a1"
+    },
+    "test/PooledSecurity.t.sol": {
+      "raw_sha256": "368cda6344c503f01c8b84b72c007487d14ba279bf4f3bd732ed619043d09553",
+      "lf_sha256": "368cda6344c503f01c8b84b72c007487d14ba279bf4f3bd732ed619043d09553"
+    },
+    "test/ReservationCapacity.t.sol": {
+      "raw_sha256": "e61f0aa51ff46f986851432dc7028e9b00d20fff302f1de0c0e06d38a73d346e",
+      "lf_sha256": "e61f0aa51ff46f986851432dc7028e9b00d20fff302f1de0c0e06d38a73d346e"
+    },
+    "tests_python/test_keeper_reservations.py": {
+      "raw_sha256": "ed31ef44de716607cb66e25d9aa7759c01f89f6d8e8ab755f02fdf66047bfd90",
+      "lf_sha256": "ed31ef44de716607cb66e25d9aa7759c01f89f6d8e8ab755f02fdf66047bfd90"
+    }
+  }
+}

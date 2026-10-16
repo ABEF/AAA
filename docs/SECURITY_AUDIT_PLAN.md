@@ -1,6 +1,6 @@
 # Security audit plan
 
-Reviewed 2026-10-16. **Undeployed candidate; not approved for real funds.**
+Reviewed 2026-10-17. **Undeployed candidate; not approved for real funds.**
 These seven workstreams define acceptance evidence, not completed audit claims.
 Status lives in the [central Todo](../TODO.md#security--audit) and
 [task ledger](project-todo.json); production approval stays in the
@@ -122,15 +122,21 @@ ordered accounting currencies. The current manager supports hookless ERC20 v4
 pools and the specifically pinned Robinhood native/Pons key, not arbitrary new
 DEXs/hooks. A future compatible destination needs separate code/dependency review.
 
-- Decide **before seal** how to address permanent home-chain loss, lost governance
-  quorum and unusable immutable contracts. LP migration leaves canonical NFTs,
-  per-NFT shares, membership and both claim ledgers at home; remote holder rewards
-  return there. Full canonical identity/ledger migration is **not implemented**.
-- If required, design and audit finality/snapshot authority, authentic owners,
-  traits/eligibility/shares, per-asset liabilities/fractions, in-flight receipts,
-  double-claim/NFT prevention and old-chain resurrection rules before deployment.
-- Before bridging, resolve capacity reservations and test delayed/concurrent
-  arrivals, returns, retries and remote compounding. Timeouts alone cannot authorize refunds.
+- The selected direction is [controlled whole-protocol migration while the source
+  still operates](CANONICAL_MIGRATION_DESIGN.md); post-halt recovery is deferred.
+  Implement and qualify this **before seal**. Current LP migration leaves canonical
+  NFTs, membership and both claim ledgers at home; canonical migration is **not
+  implemented** and cannot be retrofitted into the current sealed core.
+- Audit successor admissibility, finality/proof authority, authentic owners,
+  immutable traits, eligibility/shares, per-asset liabilities/fractions, pending
+  VRF and in-flight/late receipts. Prove single active ownership/claim rights,
+  a terminal source commit and no timeout resurrection. No 3% principal conversion
+  budget may haircut funded reward liabilities. Separately assess lost governance
+  quorum and unusable immutable contracts; this plan does not solve every outage.
+- Before bridging, independently qualify permanent reservations and test real
+  delayed/concurrent arrivals, returns, retries and remote compounding. Local
+  reservation regressions pass; remote admission proof remains absent. Timeouts
+  alone cannot authorize refunds.
 - Document unrecoverable external failure cases; backups cannot restart a stopped
   chain, thaw a token or upgrade sealed code. Do not promise universal recovery.
 

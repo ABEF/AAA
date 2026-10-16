@@ -1,7 +1,7 @@
 # Release approval record - NOT APPROVED
 
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
-funds is authorized by this document. Reviewed 2026-10-16.
+funds is authorized by this document. Reviewed 2026-10-17.
 
 Development tasks, progress and detailed acceptance criteria have one home:
 the [central Todo](../TODO.md), generated from [its ledger](project-todo.json).
@@ -55,8 +55,15 @@ counts, as specified in the
 [real bridge operation](../TODO.md#task-bridge-operation) remain open future
 activation gates; disabled migration is not evidence that they are implemented
 or safe. Enabling migration needs a separate approved configuration and review.
-The [canonical-chain-loss decision](../TODO.md#task-security-chain-recovery)
-remains a pre-seal architecture requirement even for a migration-disabled launch.
+The [canonical migration requirement](../TODO.md#task-security-chain-recovery)
+remains a pre-seal gate even for a migration-disabled launch: the user selected
+controlled whole-protocol migration while the source works, deferring post-halt
+recovery. The current code cannot gain that capability after sealing.
+
+Different-pair conversion and canonical portability require pre-seal design,
+implementation and qualification; disabling bridges does not add those capabilities to sealed code. The
+accepted 3% migration execution budget is a design requirement, not existing
+enforcement. See [architecture evolution](ARCHITECTURE_EVOLUTION.md).
 
 ## Moved requirement links
 

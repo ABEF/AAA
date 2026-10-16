@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-10-16 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-17 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**15 To do | 14 In progress | 9 Implemented locally**
+**13 To do | 17 In progress | 9 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -49,6 +49,21 @@ Custody, ownership and reward accounting.
   - Independently verify actual supported proof-verifying coordinator code/key/subscription/confirmations/gas and service availability on the deployment chain. An ABI or mock is not verification.
   - Stage real requests, out-of-order callbacks, strict mint-order reveal, subscription outages, reorg/finality and permanent early-request blocking recovery. No cancellation/reroll/admin bypass exists.
   - Verify canonical sealing rejects missing randomness configuration; verify content root and every artwork/metadata path against an independently reviewed immutable catalog.
+
+  </details>
+
+<a id="task-custody-composition"></a>
+
+- [ ] **[Design different-pair and future-venue custody evolution](docs/ARCHITECTURE_EVOLUTION.md#different-pair-migration-proposed-composition-epochs)** - In progress. Architecture reviewed; current same-chain migration still requires the same ordered pair and fixed v4 venue. Different pairs need typed conversion, bounded composition epochs and retained old-currency liabilities before sealing.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Preserve stable NFT/bucket/shares and all old owner/collective/royalty liabilities through ZZZ/WETH to ZZZ/USDC and subsequent moves. Token mapping is not conversion; do not remove current pair checks as a shortcut.
+  - Implement one aggregate maximum 3% migration execution-loss budget approved on 2026-10-16, with network gas separate. Activation/top-ups retain 1%. Define fresh common valuation, measured principal-only deltas, total conversion/venue/bridge cost, idle deployment limits and asynchronous market-movement treatment before asserting enforcement.
+  - Define bounded composition/message epochs, historical creator inboxes and reward paths, late old-currency compound/buyback reserves, pending remote funding, exact fixed recipients and temporary approvals. Repeated moves cannot erase or relabel obligations.
+  - Review immutable typed helpers and remote destination compatibility for future venue code without arbitrary calls, principal sweeps or generic upgrades. Same-chain replacement Vaults cannot silently rebind the fixed NFT/Rewards system.
+  - Measure aggregate and cumulative migration costs/frequency; repeated individually compliant 3% moves can substantially erode principal. A new cumulative hard cap or economic allocation change requires a separate policy decision.
 
   </details>
 
@@ -152,6 +167,7 @@ What holders see and use.
   - Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.
   - Independently review and pin deployments, the immutable 32-operation claim router runtime/bindings and exact calldata. Chunk larger portfolios; recheck owner/assets, simulate and estimate gas immediately before user confirmation. Handle account/network changes, stale drafts, rejection, replacement, failure and canonical receipt/reorg recovery.
   - Mint/claim drafts have client-enforced expiry, not an on-chain calldata deadline. Discard stale drafts and prepare again; do not describe unsigned backend preparation as signing or live wallet integration.
+  - Use exact decimal uint256 strings for production NFT IDs; never reuse Number-based demo identities. Correct the demo old net-$100 activation wording to gross $100 / 99% deployed before publishing that scoped website change.
 
   </details>
 
@@ -244,17 +260,6 @@ Three required testing layers, with source-bound evidence.
 
 Seven audit workstreams. Local checks are partial evidence; independent review and release sign-off remain open. See [the security audit plan](docs/SECURITY_AUDIT_PLAN.md) for acceptance criteria and priorities.
 
-<a id="task-security-chain-recovery"></a>
-
-- [ ] **[Whole-protocol recovery & canonical chain loss](docs/SECURITY_AUDIT_PLAN.md#6-protocol-availability-and-long-term-recoverability)** - To do. Decide before sealing how to handle permanent home-chain loss, lost governance keys and unusable critical contracts. LP migration alone leaves canonical NFT ownership and reward ledgers at home. A full identity/liability migration needs an audited snapshot/finality, duplicate-prevention, in-flight claims and old-chain resurrection policy; it is not implemented.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Make an explicit reviewed architecture decision before sealing for permanent home-chain loss, canonical NFT ownership and reward-ledger recovery. Moving LP alone does not restore those records or authorities; do not claim universal recovery.
-
-  </details>
-
 <a id="task-security-governance"></a>
 
 - [ ] **[Governance, permissions & sealing](docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing)** - In progress. Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
@@ -264,6 +269,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   - Review governed activation-source enable/disable, future token admission, wrapper implementation/admin changes and disabled-source exit rehearsals. Admitting a source token does not add its conversion route; removing it must not revoke existing LP/reward rights. Ordinary exits remain price-guarded; parked close uses separately approved raw-token bounds. Rehearse governed feed repair without claiming unconditional recovery from external wrapper/bridge failure.
   - Independently stage paused parking through the sealed timelock: missing/stale price feeds, failed creator inbox, exact share/LP/custody snapshot, close-only minimums excluding idle/compound/donations, one-sided principal, invalidation/replay/expiry, claims/transfers and fresh-oracle resume. Authenticate current-source evidence in the inventory's mandatory `parking_rehearsal` record.
+  - Review the malicious approved-provider trust demonstration and remote custody powers. Code/configuration hashes and timelocks do not prove honest destination funding or safe remote administrators. Keep fixed 80/10/5/5; no percentage setter or generic upgrade is authorized.
 
   </details>
 
@@ -301,12 +307,29 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   - Qualify gas for 1/100/1,000 NFTs and maximum actual assets/inboxes; prove upkeep scales by shared pool. Backtest range, trigger, cooldown, slippage, impermanent loss, MEV and operating cost. Production strategy parameters remain unset.
   - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
+  - Qualify the proposed aggregate 3% migration budget separately from activation, including common valuation, costs deducted from principal, MEV, repeated moves and governance-controlled oracle risk. No current 3% enforcement is claimed.
 
   </details>
 
 <a id="task-security-dependencies"></a>
 
 - [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
+
+<a id="task-security-chain-recovery"></a>
+
+- [ ] **[Whole-protocol recovery & canonical chain loss](docs/CANONICAL_MIGRATION_DESIGN.md)** - In progress. User chose controlled whole-protocol migration while the home chain works; post-halt recovery is deferred. Design and implement freeze/export/import, exactly one successor and all NFT/LP/royalty rights before sealing; current contracts cannot retrofit this capability.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Implement and independently qualify the accepted 2026-10-17 direction: planned whole-protocol migration while the source chain works. Preserve canonical NFT ownership and both funded ledgers, not just LP location. Post-halt recovery is deferred; no emergency recovery authority is authorized.
+  - For any canonical transfer, specify one successor epoch and source freeze, NFT ownership/traits/shares, LP and royalty accruals/fractions/backing, in-flight messages and old-chain restart/replay policy. A snapshot or remote LP location ACK does not revoke old ownership.
+  - Choose and independently qualify the cross-chain finality/proof model without assuming a new trusted recovery committee. Source terminal commitment must precede destination rights activation; cancellation cannot revive source rights after a valid successor can activate.
+  - Drain ordered VRF/reveal and resolve in-flight custody/reward messages before freeze, or design a separately reviewed carry protocol. Preserve exact IDs/traits, remaining supply/quota/inventory, owners and per-asset liabilities/fractions; do not recreate rounded balances from website data.
+  - Retain safe handling of late old creator/royalty receipts and historical marketplace receivers. No double claims, duplicated canonical NFTs, erased backed obligations, principal refunds or arbitrary administrator transfers.
+  - For principal conversion during relocation, enforce the agreed aggregate3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards.
+
+  </details>
 
 <a id="task-security-integration"></a>
 
@@ -319,7 +342,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-authorities-prices"></a>
 
-- [ ] **[Select authorities & price services](docs/PRODUCTION_SERVICES.md)** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
+- [ ] **[Select authorities & price services](docs/DEPLOYMENT_ADDRESSES.md)** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -327,6 +350,7 @@ Decisions and rehearsals before real funds.
   - Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.
   - Independently review and stage sequencer policy replacement through the actual sealed timelock, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
   - Select and verify multisig/keeper/guardian/mint-recipient authorities, fixed timelock and module bindings; prohibit mint/LP/royalty receiver collisions.
+  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and agreed creator payer; deployed17 modules, five fixed helpers, later creator inboxes and reviewed chain-specific dependencies. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
 
   </details>
 
@@ -399,18 +423,6 @@ Decisions and rehearsals before real funds.
 
 A separate phase. Disabled at initial launch.
 
-<a id="task-destination-slots"></a>
-
-- [ ] **[Reserve destination capacity](docs/CHANGE_AND_RECOVERY.md#destination-capacity-unresolved-proposed-next-implementation)** - To do. Reserve space before liquidity travels, including concurrent arrivals, returns and recovery if delivery is delayed.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Fix and independently review destination **capacity** reservation: the present pool-to-bucket reservation does not reserve a historical slot, so unrelated first arrivals can exhaust it before delivery. Test concurrent arrivals/local registrations, duplicate pool reservations for one bucket, returns and failure recovery. Keep real bridging disabled until this is resolved.
-  - Reserve durable historical capacity before delivery, not just pool identity. Reuse returning slots; test local/remote concurrency, duplicate/idempotent registration, reserved None-state enumeration and delayed/cancelled operations without freeing a reservation that an in-flight delivery may still need.
-
-  </details>
-
 <a id="task-bridge-operation"></a>
 
 - [ ] **[Qualify bridges & remote compounding](docs/CHANGE_AND_RECOVERY.md)** - To do. Review real transport providers, backing and repeated migrations; implement funded compounding when LP stays on another chain.
@@ -427,13 +439,26 @@ A separate phase. Disabled at initial launch.
 
   </details>
 
+<a id="task-destination-slots"></a>
+
+- [ ] **[Reserve destination capacity](docs/ARCHITECTURE_EVOLUTION.md#permanent-destination-capacity-bounded-repair)** - In progress. Permanent idempotent local admission is implemented with targeted capacity, switching, return and None-state regressions. Remote reservation authentication, independent review and real-provider qualification remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Implement and independently review permanent destination capacity admission before delivery. Verify the repaired reserved-arrival path, local/remote competition, aliases, duplicate registration, malformed-import rollback, None-state consumers and full-cap returns. Real bridging remains disabled pending independent admission/provider review.
+  - Reserve durable historical capacity before delivery, not just pool identity. Reuse returning slots; test local/remote concurrency, duplicate/idempotent registration, reserved None-state enumeration and delayed/cancelled operations without freeing a reservation that an in-flight delivery may still need.
+  - Authenticate confirmed destination admission before departure. The source does not verify a remote capacity proof; local idempotent reservation alone does not qualify an arbitrary provider or sealed old destination.
+
+  </details>
+
 <a id="task-migration-framework"></a>
 
-- [x] **[Governed migration framework](src/ZZZMigration.sol)** - Implemented. Timelocked approval can onboard reviewed future EVM chains and pools while preserving NFT allocations.
+- [x] **[Governed migration framework](src/ZZZMigration.sol)** - Implemented. Timelocked compatible-asset routes preserve fixed home identity and NFT allocations. Different-pair conversion, arbitrary local venues and canonical NFT-chain relocation are not implemented.
 
 
 ---
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `48ca1e431b674f71d558c751be95b10820f9a3bc0c8ecdbcba1ba2e31428d8ae`.
+Snapshot SHA-256: `53e52664b5a805ef38c626b55cf9d7c6ff31e855e194d77684620451c011fd1b`.

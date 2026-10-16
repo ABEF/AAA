@@ -1,5 +1,33 @@
 # AAA / ZZZ PoPL project instructions
 
+## Architecture evolution review - 2026-10-17
+
+This work uses the isolated `codex/architecture-evolution-review` branch from
+`37bf0d2`; check Git for current publication. Read
+[architecture evolution](docs/ARCHITECTURE_EVOLUTION.md), the
+[revised brief](reports/architecture-evolution/REVISED_PROMPT.md) and
+[review](reports/architecture-evolution/REVIEW.md). Preserve unrelated unpublished
+wallet/quote/process-runner/artwork work.
+
+The user approved **3% aggregate execution loss per migration, gas separate**.
+Activation/top-ups remain **1%**. The 3% floor is a proposed implementation
+requirement, not current enforcement. Do not remove ordered-pair checks:
+different pairs need composition epochs, historical reward/intake handling and
+typed conversion. Keep 80/10/5/5 fixed. The user selected **controlled whole-protocol migration while the home chain
+still works**, deferring post-halt recovery. Read
+[the canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md). Current
+contracts cannot perform this and cannot gain it after sealing; implement and
+qualify explicit freeze/export/import and single-successor accounting first.
+No post-halt recovery authority or cross-chain proof provider is inferred.
+The [address inventory](docs/DEPLOYMENT_ADDRESSES.md) lists required wallets,
+deployed helpers and dependencies; production selections remain open.
+
+Destination capacity is repaired with permanent idempotent registration;
+the resulting `bucketCount` includes unfunded reserved None identities. Source
+code still does not authenticate remote reservation proof. Consult the current
+[verification record](reports/architecture-evolution/VERIFICATION.md) rather than reusing old Vault/static/fork results for changed
+source. No website/server change, public transaction or deployment is authorized.
+
 Read `PROJECT_CONTEXT.md` when starting work on this project. It records the related website, accepted product decisions, and current development boundaries.
 
 ## Current documentation rules - 2026-10-16

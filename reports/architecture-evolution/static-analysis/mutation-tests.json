@@ -1,0 +1,62 @@
+{
+  "new_review_sha256": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2",
+  "raw_report_sha256": "0b3b24d32f9c44668fc0b380c3c83e0820f9679327da104756d249ed4feb2d51",
+  "mutations": [
+    {
+      "name": "changed expression",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: c80deb5c1abd20594af9dd7777ca2a42026e55205acc28745bf056dc52cc404c"
+    },
+    {
+      "name": "changed severity",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: c76ba05ffbd96c4a9b9014a170133f0f584e8ba5b64e0962ed78efb1a3337646"
+    },
+    {
+      "name": "changed confidence",
+      "rejected": true,
+      "error_count": 2,
+      "first_error": "Unreviewed finding: 86c619123097268d1fe0a53678867bd78b5b866cfcfd9e5a0e7cc394993542ab"
+    },
+    {
+      "name": "missing finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Stale review entry: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "duplicate finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Duplicate analyzer fingerprints"
+    },
+    {
+      "name": "new finding",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unreviewed finding: b0403d5d62befd2a93d6a8fc5279e4aa14e98e2606a2ac48308e5ca45c58fd36"
+    },
+    {
+      "name": "unresolved disposition",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Unresolved finding: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "missing rationale",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Missing rationale: 2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c"
+    },
+    {
+      "name": "source binding drift",
+      "rejected": true,
+      "error_count": 1,
+      "first_error": "Reviewed content changed: src/ZZZVault.sol"
+    }
+  ],
+  "all_rejected": true,
+  "checker_changed": false
+}

@@ -1,0 +1,1458 @@
+{
+  "kind": "semantic_delta_partition_not_approval",
+  "prior_review_sha256": "2232163d8049bd3e4356b499c2b711c3435e387d96bb6b73638edc53133d0a8b",
+  "raw_report_sha256": "0b3b24d32f9c44668fc0b380c3c83e0820f9679327da104756d249ed4feb2d51",
+  "prior_count": 220,
+  "current_count": 221,
+  "current_by_detector": {
+    "arbitrary-send-erc20": 1,
+    "arbitrary-send-eth": 2,
+    "reentrancy-balance": 37,
+    "divide-before-multiply": 8,
+    "incorrect-equality": 6,
+    "reentrancy-no-eth": 30,
+    "uninitialized-local": 7,
+    "unused-return": 22,
+    "events-maths": 1,
+    "calls-loop": 32,
+    "reentrancy-benign": 19,
+    "reentrancy-events": 7,
+    "timestamp": 10,
+    "assembly": 1,
+    "cyclomatic-complexity": 6,
+    "dead-code": 1,
+    "low-level-calls": 3,
+    "missing-inheritance": 15,
+    "naming-convention": 3,
+    "too-many-digits": 4,
+    "cache-array-length": 6
+  },
+  "source_changes": {
+    "src/ZZZVault.sol": {
+      "prior": "3e4fa328ac590509e843d44f7f5c6e110d2f427d6cf9438fb0655552699cdd02",
+      "current": "b021a3814c8694717cbe5b2ca8d0b29bc9a19d96abc4a3614be5af9082b519af"
+    }
+  },
+  "matched_ignoring_only_source_line_ranges": [
+    {
+      "index": 0,
+      "prior_index": 0,
+      "check": "arbitrary-send-erc20",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 1,
+      "prior_index": 1,
+      "check": "arbitrary-send-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 2,
+      "prior_index": 2,
+      "check": "arbitrary-send-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 3,
+      "prior_index": 3,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 4,
+      "prior_index": 4,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 5,
+      "prior_index": 6,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 6,
+      "prior_index": 7,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 7,
+      "prior_index": 8,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 8,
+      "prior_index": 10,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 9,
+      "prior_index": 11,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 10,
+      "prior_index": 12,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 11,
+      "prior_index": 13,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 12,
+      "prior_index": 14,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 13,
+      "prior_index": 15,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 14,
+      "prior_index": 16,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 15,
+      "prior_index": 18,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 16,
+      "prior_index": 33,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 17,
+      "prior_index": 19,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 18,
+      "prior_index": 20,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 19,
+      "prior_index": 21,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 20,
+      "prior_index": 22,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 21,
+      "prior_index": 5,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 22,
+      "prior_index": 25,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 23,
+      "prior_index": 17,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 24,
+      "prior_index": 23,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 25,
+      "prior_index": 26,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 26,
+      "prior_index": 27,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 27,
+      "prior_index": 28,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 28,
+      "prior_index": 29,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 29,
+      "prior_index": 30,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 30,
+      "prior_index": 31,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 31,
+      "prior_index": 32,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 32,
+      "prior_index": 24,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 33,
+      "prior_index": 34,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 34,
+      "prior_index": 35,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 35,
+      "prior_index": 36,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 36,
+      "prior_index": 37,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 37,
+      "prior_index": 9,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 38,
+      "prior_index": 38,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 39,
+      "prior_index": 39,
+      "check": "reentrancy-balance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 40,
+      "prior_index": 40,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 41,
+      "prior_index": 41,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 42,
+      "prior_index": 42,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 43,
+      "prior_index": 43,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 44,
+      "prior_index": 44,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 45,
+      "prior_index": 45,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 46,
+      "prior_index": 46,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 47,
+      "prior_index": 47,
+      "check": "divide-before-multiply",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 48,
+      "prior_index": 51,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 49,
+      "prior_index": 52,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 50,
+      "prior_index": 50,
+      "check": "incorrect-equality",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 51,
+      "prior_index": 48,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 52,
+      "prior_index": 49,
+      "check": "incorrect-equality",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 53,
+      "prior_index": 53,
+      "check": "incorrect-equality",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 54,
+      "prior_index": 69,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 55,
+      "prior_index": 65,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 56,
+      "prior_index": 76,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 57,
+      "prior_index": 75,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 58,
+      "prior_index": 58,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 59,
+      "prior_index": 72,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 60,
+      "prior_index": 59,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 61,
+      "prior_index": 80,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 62,
+      "prior_index": 77,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 63,
+      "prior_index": 60,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 64,
+      "prior_index": 64,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 65,
+      "prior_index": 55,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 66,
+      "prior_index": 71,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 67,
+      "prior_index": 82,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 68,
+      "prior_index": 70,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 69,
+      "prior_index": 67,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 70,
+      "prior_index": 61,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 71,
+      "prior_index": 74,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 72,
+      "prior_index": 63,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 73,
+      "prior_index": 57,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 74,
+      "prior_index": 78,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 75,
+      "prior_index": 56,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 76,
+      "prior_index": 73,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 77,
+      "prior_index": 81,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 78,
+      "prior_index": 79,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 79,
+      "prior_index": 68,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 80,
+      "prior_index": 54,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 81,
+      "prior_index": 62,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 82,
+      "prior_index": 66,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 83,
+      "prior_index": 83,
+      "check": "reentrancy-no-eth",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 84,
+      "prior_index": 84,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 85,
+      "prior_index": 85,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 86,
+      "prior_index": 86,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 87,
+      "prior_index": 87,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 88,
+      "prior_index": 88,
+      "check": "uninitialized-local",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 89,
+      "prior_index": 89,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 90,
+      "prior_index": 90,
+      "check": "uninitialized-local",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 91,
+      "prior_index": 91,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 92,
+      "prior_index": 92,
+      "check": "unused-return",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 93,
+      "prior_index": 94,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 94,
+      "prior_index": 95,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 95,
+      "prior_index": 96,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 96,
+      "prior_index": 97,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 97,
+      "prior_index": 98,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 98,
+      "prior_index": 99,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 99,
+      "prior_index": 100,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 100,
+      "prior_index": 101,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 101,
+      "prior_index": 102,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 102,
+      "prior_index": 103,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 103,
+      "prior_index": 104,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 104,
+      "prior_index": 105,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 105,
+      "prior_index": 106,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 106,
+      "prior_index": 107,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 107,
+      "prior_index": 108,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 108,
+      "prior_index": 109,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 109,
+      "prior_index": 110,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 110,
+      "prior_index": 111,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 111,
+      "prior_index": 93,
+      "check": "unused-return",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 112,
+      "prior_index": 112,
+      "check": "unused-return",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 113,
+      "prior_index": 113,
+      "check": "events-maths",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 114,
+      "prior_index": 114,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 115,
+      "prior_index": 115,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 116,
+      "prior_index": 116,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 117,
+      "prior_index": 117,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 118,
+      "prior_index": 118,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 119,
+      "prior_index": 119,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 120,
+      "prior_index": 120,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 121,
+      "prior_index": 121,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 122,
+      "prior_index": 122,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 123,
+      "prior_index": 123,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 124,
+      "prior_index": 124,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 125,
+      "prior_index": 125,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 126,
+      "prior_index": 126,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 127,
+      "prior_index": 127,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 128,
+      "prior_index": 128,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 129,
+      "prior_index": 129,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 130,
+      "prior_index": 130,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 131,
+      "prior_index": 131,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 132,
+      "prior_index": 132,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 133,
+      "prior_index": 133,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 134,
+      "prior_index": 134,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 135,
+      "prior_index": 135,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 136,
+      "prior_index": 136,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 137,
+      "prior_index": 137,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 138,
+      "prior_index": 138,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 139,
+      "prior_index": 139,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 140,
+      "prior_index": 140,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 141,
+      "prior_index": 141,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 142,
+      "prior_index": 142,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 143,
+      "prior_index": 143,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 144,
+      "prior_index": 144,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 145,
+      "prior_index": 145,
+      "check": "calls-loop",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 146,
+      "prior_index": 148,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 147,
+      "prior_index": 147,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 148,
+      "prior_index": 149,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 149,
+      "prior_index": 151,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 150,
+      "prior_index": 152,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 151,
+      "prior_index": 146,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 152,
+      "prior_index": 153,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 153,
+      "prior_index": 154,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 154,
+      "prior_index": 161,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 155,
+      "prior_index": 155,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 156,
+      "prior_index": 156,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 157,
+      "prior_index": 157,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 158,
+      "prior_index": 158,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 159,
+      "prior_index": 159,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 160,
+      "prior_index": 150,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 161,
+      "prior_index": 160,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 162,
+      "prior_index": 162,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 163,
+      "prior_index": 163,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 164,
+      "prior_index": 164,
+      "check": "reentrancy-benign",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 165,
+      "prior_index": 165,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 166,
+      "prior_index": 166,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 167,
+      "prior_index": 167,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 168,
+      "prior_index": 168,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 169,
+      "prior_index": 169,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 170,
+      "prior_index": 170,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 171,
+      "prior_index": 171,
+      "check": "reentrancy-events",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 172,
+      "prior_index": 172,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 173,
+      "prior_index": 179,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 174,
+      "prior_index": 174,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 175,
+      "prior_index": 173,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 176,
+      "prior_index": 175,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 177,
+      "prior_index": 176,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 178,
+      "prior_index": 177,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 179,
+      "prior_index": 180,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 180,
+      "prior_index": 178,
+      "check": "timestamp",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 181,
+      "prior_index": 181,
+      "check": "timestamp",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 182,
+      "prior_index": 182,
+      "check": "assembly",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 183,
+      "prior_index": 183,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 184,
+      "prior_index": 184,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 185,
+      "prior_index": 185,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 186,
+      "prior_index": 186,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 187,
+      "prior_index": 187,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 188,
+      "prior_index": 188,
+      "check": "cyclomatic-complexity",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 189,
+      "prior_index": 189,
+      "check": "dead-code",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 190,
+      "prior_index": 190,
+      "check": "low-level-calls",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 191,
+      "prior_index": 191,
+      "check": "low-level-calls",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 192,
+      "prior_index": 192,
+      "check": "low-level-calls",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 193,
+      "prior_index": 193,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 194,
+      "prior_index": 194,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 195,
+      "prior_index": 195,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 196,
+      "prior_index": 196,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 197,
+      "prior_index": 197,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 198,
+      "prior_index": 198,
+      "check": "missing-inheritance",
+      "exact_fingerprint": false
+    },
+    {
+      "index": 199,
+      "prior_index": 199,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 200,
+      "prior_index": 200,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 201,
+      "prior_index": 201,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 202,
+      "prior_index": 202,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 203,
+      "prior_index": 203,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 204,
+      "prior_index": 204,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 205,
+      "prior_index": 205,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 206,
+      "prior_index": 206,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 207,
+      "prior_index": 207,
+      "check": "missing-inheritance",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 208,
+      "prior_index": 208,
+      "check": "naming-convention",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 209,
+      "prior_index": 209,
+      "check": "naming-convention",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 210,
+      "prior_index": 210,
+      "check": "naming-convention",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 211,
+      "prior_index": 211,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 212,
+      "prior_index": 212,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 213,
+      "prior_index": 213,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 214,
+      "prior_index": 214,
+      "check": "too-many-digits",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 215,
+      "prior_index": 215,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 216,
+      "prior_index": 216,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 217,
+      "prior_index": 217,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 219,
+      "prior_index": 218,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    },
+    {
+      "index": 220,
+      "prior_index": 219,
+      "check": "cache-array-length",
+      "exact_fingerprint": true
+    }
+  ],
+  "fresh_or_changed": [
+    {
+      "index": 218,
+      "check": "cache-array-length",
+      "impact": "Optimization",
+      "confidence": "High",
+      "description": "Loop condition i < buckets.length (src/ZZZVault.sol#68) should use cached array length instead of referencing `length` member of the storage array.\n "
+    }
+  ],
+  "prior_unmatched": [],
+  "updated_rationales": [
+    {
+      "index": 39,
+      "prior_index": 39,
+      "check": "reentrancy-balance"
+    },
+    {
+      "index": 59,
+      "prior_index": 72,
+      "check": "reentrancy-no-eth"
+    },
+    {
+      "index": 93,
+      "prior_index": 94,
+      "check": "unused-return"
+    },
+    {
+      "index": 111,
+      "prior_index": 93,
+      "check": "unused-return"
+    },
+    {
+      "index": 115,
+      "prior_index": 115,
+      "check": "calls-loop"
+    },
+    {
+      "index": 117,
+      "prior_index": 117,
+      "check": "calls-loop"
+    },
+    {
+      "index": 118,
+      "prior_index": 118,
+      "check": "calls-loop"
+    },
+    {
+      "index": 120,
+      "prior_index": 120,
+      "check": "calls-loop"
+    },
+    {
+      "index": 127,
+      "prior_index": 127,
+      "check": "calls-loop"
+    },
+    {
+      "index": 130,
+      "prior_index": 130,
+      "check": "calls-loop"
+    },
+    {
+      "index": 134,
+      "prior_index": 134,
+      "check": "calls-loop"
+    },
+    {
+      "index": 145,
+      "prior_index": 145,
+      "check": "calls-loop"
+    },
+    {
+      "index": 156,
+      "prior_index": 156,
+      "check": "reentrancy-benign"
+    },
+    {
+      "index": 187,
+      "prior_index": 187,
+      "check": "cyclomatic-complexity"
+    }
+  ],
+  "new_finding_disposition": {
+    "index": 218,
+    "id": "4091340265ab17ea374ad33637694ccf2fdf01f3a2f6cf01b73d125a15ecc840",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < buckets.length (src/ZZZVault.sol#68) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "fingerprint": "a10032bca601b52a075b198ed30941e63d686edd44c8f62f25d03656b0cbfb02",
+    "disposition": "informational",
+    "rationale": "The idempotent registration loop reads the permanent buckets array, whose lifetime length is capped at four. It only compares identities and returns inside the loop; a new push occurs after the loop and capacity check. Repeated length reads are a bounded gas optimization suggestion, not an unbounded loop or custody bypass. Keep the minimal reviewed repair instead of adding an unrelated optimization; aliases and duplicates must be found before rejecting at full capacity.",
+    "evidence": [
+      "src/ZZZVault.sol:_registerBucket",
+      "test/ReservationCapacity.t.sol:testFullCapacityDuplicatesAndPoolAliasesReuseTheSameSlot",
+      "test/PoolSwitching.t.sol:testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot"
+    ],
+    "current_review_basis": "new bounded loop inspected with permanent-capacity invariants"
+  },
+  "scope": "Narrow semantic delta triage, not independent audit"
+}

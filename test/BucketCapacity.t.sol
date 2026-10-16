@@ -75,7 +75,11 @@ contract BucketCapacityTest is PooledVaultFixture {
         for (uint256 i; i < 4; ++i) _importRemote(i);
         assertEq(vault.bucketCount(), 4); assertEq(vault.totalIdle(address(t0)), 4000);
         uint256 bucket; Position memory origin; (bucket, origin) = _remoteOrigin(4);
-        bytes32 destination = _poolAt(4); vault.reservePool(destination, bucket);
+        bytes32 destination = _poolAt(4);
+        // Admission now rejects the fifth identity before any bridge delivery.
+        vm.expectRevert(); vault.reservePool(destination, bucket);
+        assertEq(vault.poolBucket(destination), 0);
+        // Unreserved delivery still rejects atomically rather than bypassing admission.
         vm.prank(ac.module(Ids.RECEIVER)); vm.expectRevert();
         vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000);
         assertEq(vault.bucketCount(), 4); assertEq(vault.totalIdle(address(t0)), 4000);

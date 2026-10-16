@@ -1,0 +1,18 @@
+{
+  "copied_at_utc": "2026-10-16T22:04:38.613952+00:00",
+  "scope": "Phase 1 historical observations before the capacity repair. These are not post-change test results; the original observation timestamps and copied receipt bytes are preserved.",
+  "branch_snapshot_note": "The 2026-10-16T21:58:49.097041+00:00 infrastructure snapshot records contract branch codex/architecture-evolution-review and website branch main. The earlier 2026-10-16T21:55:02.329893+00:00 evidence-reuse snapshot records contract HEAD but no branch field. Both record contract HEAD 37bf0d220344736e3fcab35c64ff3386a3d57bfa; do not infer an unrecorded branch or relabel either receipt as post-change evidence.",
+  "network_freshness": "Phase 1 used locally cached origin/main tracking refs, without fetching or contacting the server.",
+  "files": {
+    "phase1-evidence-reuse.json": {
+      "source_sha256": "ef020a6d5ceed8c1ce834a7305402724cb1767e2197ed1b48c943621fce3f310",
+      "copy_sha256": "ef020a6d5ceed8c1ce834a7305402724cb1767e2197ed1b48c943621fce3f310",
+      "byte_identical": true
+    },
+    "phase1-infrastructure-review.json": {
+      "source_sha256": "2e1f8596bf0c7c36d0f1f63676d1e236931b6e2d1254b453d9e097440ff490f8",
+      "copy_sha256": "2e1f8596bf0c7c36d0f1f63676d1e236931b6e2d1254b453d9e097440ff490f8",
+      "byte_identical": true
+    }
+  }
+}

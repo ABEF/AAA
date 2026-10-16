@@ -2,14 +2,15 @@
 
 The initial collection is intended to use one shared pool, not one pool per NFT. Optional additional strategies use separate buckets. `ZZZVault.MAX_BUCKETS = 4` limits all historical bucket registrations on a vault, including imports; returning an existing bucket or migrating it to another reviewed pool does not allocate a new bucket. This bounds combined funded-dust and inbox settlement before new membership. The prior 16-bucket limit failed the combined distinct-asset/inbox workload; four retains local headroom without changing reward accounting or the 1,000-NFT cap. Actual Entry, venue, token and target-chain gas still require staging verification.
 
-Pool identity reservations currently do not reserve historical capacity. A future
-first import can lose its slot to other arrivals after reservation. Keep real
-bridging disabled until destination capacity admission/recovery is independently
-resolved; do not infer safe delivery from `poolBucket` alone.
+Pool reservations now permanently admit a bucket into the same four-slot set.
+Aliases and returns reuse their slot; reserved None-state entries have no
+principal or shares and are skipped by maintenance. Local admission does not
+prove remote capacity or provider backing. See [evolution and trust boundaries](ARCHITECTURE_EVOLUTION.md)
+and [current targeted evidence](../reports/architecture-evolution/VERIFICATION.md).
 
 Current undeployed candidate: 1,000 NFTs; exact 600/300/100 random rarities; 0.05 ETH dormant mint; $100 original gross source activation with at least 99% marginal LP and gas separate; 80/10/5/5 LP allocation; equal activated collective membership; separate 5% marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
 
-Earlier [release-hardening evidence](../reports/release-hardening/README.md) records bounded metadata notifications and the source-specific metadata checks; it predates native custody, atomic Entry and parking. [Current receipts](../reports/gap-hardening/README.md) separately bind the new source, compiler outputs, tests, sizes and internal review. Historical CI remains scoped to its exact published revision. These checks do not establish production integration or an independent audit.
+Earlier [release-hardening evidence](../reports/release-hardening/README.md) records bounded metadata notifications and the source-specific metadata checks; it predates native custody, atomic Entry and parking. [Historical integration receipts](../reports/gap-hardening/README.md) retain their own source, compiler, test and review scope. The current capacity change has separate [targeted evidence](../reports/architecture-evolution/VERIFICATION.md). Historical CI remains scoped to its exact published revision. These checks do not establish production integration or an independent audit.
 
 ## Identity and custody
 

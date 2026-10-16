@@ -1,37 +1,47 @@
 # Feature and evidence reference
 
-Reviewed 2026-10-16 against published source `e35663c7edaef4bf66efa43d0c7e15d45ca2751b`.
+Reviewed 2026-10-17 on `codex/architecture-evolution-review`, based on `37bf0d2`.
+The capacity repair belongs to this review branch; it is not a claim of a merge
+into main. Check the current Git revision for publication identity.
 The contracts remain undeployed and the website remains a simulation.
 Implemented means the behavior exists in source; it does not mean production
 services, deployment or independent audit are approved.
 
 **All task status, remaining work and acceptance criteria live in the
-[central Todo](../TODO.md).** This page describes published capabilities and their
+[central Todo](../TODO.md).** This page describes candidate capabilities and their
 evidence. The [release approval record](RELEASE_CHECKLIST.md) records the final
 decision for an exact release, not development progress.
 
-## Published capabilities
+## Current candidate capabilities
 
-| Area | Behavior available in published source | Reference |
+| Area | Behavior available in this source candidate | Reference |
 |---|---|---|
 | Mint and identity | Dormant mint costs exactly 0.05 ETH and adds no LP. The fixed 1,000 supply uses canonical hashed token IDs, separate mint ordinals and exact eventual 600 Commun / 300 Rare / 100 Legendary quotas. Ordered VRF draws select existing artwork without replacement; no administrator reroll exists. | [NFT metadata](NFT_METADATA.md), [Vault](../src/ZZZVault.sol) |
 | Activation and additions | Immutable Registry-created Entry binds the original source value, current owner and exact Vault call. Activation starts at $100 gross value; conversion and marginal LP deployment share a 1% execution/undeployed budget, with network gas separate. Governed asset and route admission does not itself qualify a live route or price feed. | [Activation Entry](ACTIVATION_ENTRY.md), [asset policies](../src/ZZZActivationAssets.sol) |
-| Shared LP custody | Many NFTs own nonredeemable shares of one physical LP per pool/strategy. Maintenance acts on the shared bucket. The cap is four historical local buckets, including imports; all 1,000 NFTs can share the initial pool. | [Architecture](ARCHITECTURE.md), [scale/capacity verification](../reports/nft-rights-audit/VERIFICATION.md#execution-gas-and-capacity) |
+| Shared LP custody | Many NFTs own nonredeemable shares of one physical LP per pool/strategy. Maintenance acts on the shared bucket. The cap is four permanently admitted/historical local identities, including unfunded reservations and imports; all 1,000 NFTs can share the initial pool. | [Architecture](ARCHITECTURE.md), [scale/capacity verification](../reports/nft-rights-audit/VERIFICATION.md#execution-gas-and-capacity) |
 | LP revenue | Actual admitted receipts allocate 80% by LP shares, 10% equally among activated NFTs, 5% to the earning bucket's compounding reserve and 5% to buyback/burn. Rarity does not affect LP rewards. Documented raw-unit dust and receipt-time membership rules apply. Creator inboxes receive funds; they cannot enforce a creator's payment obligation. | [Economics](ECONOMICS.md), [external funding](EXTERNAL_REWARDS.md) |
 | Royalties and claims | ERC-2981 requests 5%; actual eligible receipts use a separate immutable ledger at activated rarity weights x1/x2/x3. Current owners claim; unpaid balances follow the NFT. Direct ledger claims and an immutable 1-32-operation mixed claim router exist. Marketplace payment is not enforced. | [Claim router](CLAIM_ROUTER.md), [ownership review](../reports/nft-rights-audit/REVIEW.md#identity-and-ownership) |
 | Artwork and metadata | Eight colors, 58 palettes and four patterns produce 2,784 evolution states for the fixed inventory. Current marked LP value selects the stage; a market decline can lower it without removing activation rights. Bounded ERC-4906 notifications and an optional keeper watcher exist. The prepared artwork bundle is not a published immutable CID. | [Metadata](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md) |
 | Venue and recovery boundaries | The selected native-ETH/Pons adapter separates venue keys from WETH accounting and rejects unrelated native/hooks. Pause, timelocked asset/wrapper/sequencer policies, close-only custody parking and guarded resumption exist. They do not guarantee recovery from every external dependency failure. | [Selected market](ROBINHOOD_POOL.md), [parking](CUSTODY_PARKING.md), [recovery model](CHANGE_AND_RECOVERY.md) |
 | Read services and measurements | The confirmed read API exposes NFT ownership and funded LP/royalty balances. Optional complete indexed history supplies wallet inventory and cumulative raw claims. Route/revenue measurement tools exist. Gross generated-fee/USD history and hosted live website transactions are not supplied by those balances. | [Read API](FRONTEND_API.md), [history](FRONTEND_HISTORY.md), [revenue measurement](REVENUE_SHARE.md) |
 | Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. Isolated Anvil/systemd rehearsals are recorded; production signing and target-chain qualification are separate. | [Recovery runbook](KEEPER_RECOVERY.md), [rehearsals](KEEPER_REHEARSALS.md) |
-| Future migration | Timelocked routes and whole-bucket migration/parking preserve canonical NFT rights and funded-liability barriers. Identity reservation does not reserve destination capacity. Canonical NFTs and claim ledgers do not automatically migrate with LP custody. | [Migration source](../src/ZZZMigration.sol), [recovery model](CHANGE_AND_RECOVERY.md) |
+| Future migration | Timelocked routes and whole-bucket migration/parking preserve canonical NFT rights and funded-liability barriers. Reservations now permanently admit capacity; aliases/returns are idempotent and None-state consumers skip unfunded entries. Remote admission proof and real provider qualification remain separate. Canonical NFTs and claim ledgers do not automatically migrate with LP custody. | [Migration source](../src/ZZZMigration.sol), [recovery model](CHANGE_AND_RECOVERY.md) |
 
 The [component assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) gives
 module-level boundaries. All remaining qualification, implementation and decision
 requirements are maintained once in the [Todo](../TODO.md), including the
 [migration gate](../TODO.md#task-destination-slots) and
-[canonical-chain recovery decision](../TODO.md#task-security-chain-recovery).
+[canonical migration requirement](../TODO.md#task-security-chain-recovery).
 
 ## Evidence and its limits
+
+The [architecture review verification](../reports/architecture-evolution/VERIFICATION.md)
+records the current targeted reservation/switching, keeper, trust-boundary and
+size/static checks. The Vault changed; older whole-Vault/static/fork receipts
+below remain historical and are not fresh verification of this revision.
+Different-pair conversion, canonical portability and a 3% aggregate migration
+execution floor are designs, not implemented capabilities.
+
 
 - The [NFT-rights verification](../reports/nft-rights-audit/VERIFICATION.md)
   records 531 offline Solidity passes, zero failures and two intentional fork
