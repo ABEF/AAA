@@ -3,46 +3,46 @@
   "reviewed": "2026-10-16",
   "areas": [
     {
-      "id": "frontend",
+      "id": "contracts",
       "number": "01",
-      "title": "Frontend",
-      "caption": "What holders see and use.",
+      "title": "Smart contracts",
+      "caption": "Custody, ownership and reward accounting.",
       "tasks": [
         {
-          "id": "preview",
+          "id": "nft-lifecycle",
           "status": "done",
-          "title": "Collection, artwork & portfolio preview",
-          "text": "Browse designs, explore positions, and simulate minting, activation and both reward claims."
+          "title": "Minting, activation & NFT ownership",
+          "text": "1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT."
         },
         {
-          "id": "wallet",
-          "status": "todo",
-          "title": "Connect real wallet transactions",
-          "text": "Wire minting, activation, LP additions and claims to reviewed deployed contracts."
+          "id": "reward-ledgers",
+          "status": "done",
+          "title": "LP fees & separate royalty shares",
+          "text": "80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares."
         },
         {
-          "id": "portfolio",
-          "status": "todo",
-          "title": "Show actual holdings & claimable fees",
-          "text": "Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances."
+          "id": "shared-custody",
+          "status": "done",
+          "title": "Shared LP, maintenance & custody controls",
+          "text": "One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented."
         },
         {
-          "id": "transaction-ui",
-          "status": "todo",
-          "title": "Handle the complete transaction journey",
-          "text": "Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes."
+          "id": "pons-qualification",
+          "status": "progress",
+          "title": "Qualify the selected Robinhood pool",
+          "text": "The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain."
         },
         {
-          "id": "live-history-ui",
-          "status": "todo",
-          "title": "Connect live history & cumulative claims",
-          "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties."
+          "id": "activation-assets",
+          "status": "progress",
+          "title": "Qualify ETH, ZZZ, USDG & USDC inputs",
+          "text": "Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route."
         },
         {
-          "id": "purchase-rights",
-          "status": "todo",
-          "title": "Show execution-time rights when buying an NFT",
-          "text": "Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot."
+          "id": "fair-draw",
+          "status": "progress",
+          "title": "Fair random assignment at mint",
+          "text": "The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed."
         }
       ]
     },
@@ -85,46 +85,46 @@
       ]
     },
     {
-      "id": "contracts",
+      "id": "frontend",
       "number": "03",
-      "title": "Smart contracts",
-      "caption": "Custody, ownership and reward accounting.",
+      "title": "Frontend",
+      "caption": "What holders see and use.",
       "tasks": [
         {
-          "id": "nft-lifecycle",
+          "id": "preview",
           "status": "done",
-          "title": "Minting, activation & NFT ownership",
-          "text": "1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT."
+          "title": "Collection, artwork & portfolio preview",
+          "text": "Browse designs, explore positions, and simulate minting, activation and both reward claims."
         },
         {
-          "id": "reward-ledgers",
-          "status": "done",
-          "title": "LP fees & separate royalty shares",
-          "text": "80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares."
+          "id": "wallet",
+          "status": "todo",
+          "title": "Connect real wallet transactions",
+          "text": "Wire minting, activation, LP additions and claims to reviewed deployed contracts."
         },
         {
-          "id": "shared-custody",
-          "status": "done",
-          "title": "Shared LP, maintenance & custody controls",
-          "text": "One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented."
+          "id": "portfolio",
+          "status": "todo",
+          "title": "Show actual holdings & claimable fees",
+          "text": "Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances."
         },
         {
-          "id": "pons-qualification",
-          "status": "progress",
-          "title": "Qualify the selected Robinhood pool",
-          "text": "The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain."
+          "id": "transaction-ui",
+          "status": "todo",
+          "title": "Handle the complete transaction journey",
+          "text": "Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes."
         },
         {
-          "id": "activation-assets",
-          "status": "progress",
-          "title": "Qualify ETH, ZZZ, USDG & USDC inputs",
-          "text": "Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route."
+          "id": "live-history-ui",
+          "status": "todo",
+          "title": "Connect live history & cumulative claims",
+          "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties."
         },
         {
-          "id": "fair-draw",
-          "status": "progress",
-          "title": "Fair random assignment at mint",
-          "text": "The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed."
+          "id": "purchase-rights",
+          "status": "todo",
+          "title": "Show execution-time rights when buying an NFT",
+          "text": "Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot."
         }
       ]
     },

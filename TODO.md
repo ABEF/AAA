@@ -10,16 +10,16 @@ Implemented means built and locally checked, not deployed or independently audit
 
 [Detailed implementation and evidence](docs/IMPLEMENTATION_STATUS.md) | [Production release gates](docs/RELEASE_CHECKLIST.md) | [Update procedure](docs/TODO_WORKFLOW.md)
 
-## Frontend
+## Smart contracts
 
-What holders see and use.
+Custody, ownership and reward accounting.
 
-- [ ] **Connect real wallet transactions** - To do. Wire minting, activation, LP additions and claims to reviewed deployed contracts.
-- [ ] **Show actual holdings & claimable fees** - To do. Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.
-- [ ] **Handle the complete transaction journey** - To do. Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.
-- [ ] **Connect live history & cumulative claims** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
-- [ ] **Show execution-time rights when buying an NFT** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
-- [x] **Collection, artwork & portfolio preview** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
+- [ ] **Qualify the selected Robinhood pool** - In progress. The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.
+- [ ] **Qualify ETH, ZZZ, USDG & USDC inputs** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
+- [ ] **Fair random assignment at mint** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
+- [x] **Minting, activation & NFT ownership** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
+- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares.
+- [x] **Shared LP, maintenance & custody controls** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented.
 
 ## Backend
 
@@ -31,16 +31,16 @@ The data and services behind the app.
 - [x] **Confirmed balances & ownership API** - Implemented. Read NFT ownership and funded balances; reconstruct cumulative claims from complete confirmed history.
 - [x] **Prepare unsigned mint & claim requests** - Implemented. Validate and simulate 0.05 ETH mints and up to 32 LP / royalty claim operations. Signing stays in the wallet.
 
-## Smart contracts
+## Frontend
 
-Custody, ownership and reward accounting.
+What holders see and use.
 
-- [ ] **Qualify the selected Robinhood pool** - In progress. The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.
-- [ ] **Qualify ETH, ZZZ, USDG & USDC inputs** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
-- [ ] **Fair random assignment at mint** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
-- [x] **Minting, activation & NFT ownership** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
-- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares.
-- [x] **Shared LP, maintenance & custody controls** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented.
+- [ ] **Connect real wallet transactions** - To do. Wire minting, activation, LP additions and claims to reviewed deployed contracts.
+- [ ] **Show actual holdings & claimable fees** - To do. Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.
+- [ ] **Handle the complete transaction journey** - To do. Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.
+- [ ] **Connect live history & cumulative claims** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
+- [ ] **Show execution-time rights when buying an NFT** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
+- [x] **Collection, artwork & portfolio preview** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
 
 ## Testing & qualification
 
@@ -87,4 +87,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c89391a8f06020ffc529331b04ab76de74d5f1d9a4f10475c40e4d1ccef5b8a4`.
+Snapshot SHA-256: `88ad8cf07514548847e5d51402b7db3d4c214a6f0269b7f70e8d4f9a064c1afd`.
