@@ -273,3 +273,7 @@ The user cancelled the website Todo page before publication. The website was res
 ## Keeper security review follow-up - 2026-10-16
 
 Current keeper hardening adds explicit unused-signer bootstrap, strict live state/nonce/receipt anchors, qualified fee-policy gates, private runtime files, RPC validation, revert cooldowns, structured health/errors and bounded service restarts. No public transaction or contract deployment occurred. The local Python workspace passed 602 tests; five Unix cases remain separately scoped to Ubuntu verification. See `reports/keeper-recovery/REVIEW.md` for source-specific findings and open operating gates.
+
+## Published keeper verification - 2026-10-16
+
+Keeper/Todo commit `3db782b087d5add2327f519030055d288d9d6512` is pushed. Exact-commit Ubuntu keeper verification (run 38956992156) passed 183 tests with zero failures/skips and systemd unit validation; Todo consistency run 38956992065 passed. The local broader workspace passed 602 Python tests with five Unix cases separately covered by Ubuntu. The keeper changes are published; other pre-existing Solidity/frontend development remains uncommitted and must not be silently discarded or included. The website is clean at its previous deployed revision, with no Todo page. Read `reports/keeper-recovery/REVIEW.md`; production operating gates remain open.

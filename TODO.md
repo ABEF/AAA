@@ -38,7 +38,7 @@ Custody, ownership and reward accounting.
 - [ ] **Qualify ETH, ZZZ, USDG & USDC inputs** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
 - [ ] **Fair random assignment at mint** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
 - [x] **Minting, activation & NFT ownership** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
-- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ã—1 / Ã—2 / Ã—3.
+- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ãƒâ€”1 / Ãƒâ€”2 / Ãƒâ€”3.
 - [x] **Shared LP, maintenance & custody controls** - Implemented. Pool-level upkeep, permanent NFT allocations, timelocked controls, paused parking and guarded resumption.
 
 ## Testing & security
@@ -58,7 +58,7 @@ Decisions and rehearsals before real funds.
 - [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
 - [ ] **Rehearse keeper outage & server recovery** - To do. Test several days offline, restore backups on a new server, reconcile pending transactions and budgets, and rotate a lost keeper key safely.
 - [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
-- [ ] **Harden keeper recovery and monitoring** - In progress. State, nonce, receipt-reorg and gas-accounting guards, retry cooldowns and health logs have local regression coverage. Complete actual RPC/fee qualification, off-host alerts and recovery rehearsals; obtain independent review.
+- [ ] **Harden keeper recovery and monitoring** - In progress. Recovery guards, retry cooldowns and health logs are published; 183 keeper/RPC/state tests and service validation pass on Ubuntu. Real RPC/fee qualification, off-host alerts, recovery rehearsals and independent review remain.
 
 ## Future migration
 
@@ -72,4 +72,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `67cf08526203b180c80f38ea4d503461f64436c8d40c79d89202afb628b5d7f4`.
+Snapshot SHA-256: `692d530f11637bbe64330a2237581dbe509058b4e3b2021abaaf312d2df9f7bf`.

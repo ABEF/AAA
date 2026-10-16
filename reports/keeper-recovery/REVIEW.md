@@ -30,6 +30,10 @@ Prior receipt-hardening work was included in this scoped publication rather than
 - No Solidity, live venue, mainnet/testnet signing, real server-loss or multi-day outage rehearsal was executed as part of this scoped review. Earlier contract/fork receipts retain their original source scope.
 - An earlier local full-suite attempt had one CLI-parser skip because the bundled Python launcher did not retain the shell PATH change. That result was not counted as final evidence. The final run set the pinned Foundry path inside Python and had no runtime skips.
 
+## Published Ubuntu result
+
+Commit `3db782b087d5add2327f519030055d288d9d6512` passed [Keeper safety regression](https://github.com/ABEF/AAA/actions/runs/38956992156): **183 tests, zero failures and zero skips**, including all Unix cases. The actual CI artifact was read and checked. The systemd unit validation and [Todo consistency job](https://github.com/ABEF/AAA/actions/runs/38956992065) also passed. See [the receipt](ubuntu-verification.json) and [test log](ubuntu-tests.log). This follow-up changes documentation only; the source hashes in `source-binding.json` still bind the checked implementation. General contract CI is separately scoped and is not implied by this keeper result.
+
 ## Production gates still open
 
 1. **Real service configuration:** approved deployment/runtime pins, supported RPC behavior and confirmation policy, actual Robinhood L1/L2 receipt accounting, appropriate gas allowances and funded least-privilege keeper address. Provider failover is not Byzantine quorum verification; compromised providers remain a trust boundary.

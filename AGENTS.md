@@ -59,3 +59,7 @@ The user wants the central task list in this contract repository on GitHub, **no
 ## Keeper recovery hardening - 2026-10-16
 
 Read `docs/KEEPER_RECOVERY.md` and `reports/keeper-recovery/REVIEW.md` for keeper changes. Live startup requires restored/explicitly initialized state, nonce continuity, a canonical receipt anchor for used signers and a reviewed network fee accounting policy. Never delete ambiguous intent or reset budgets to recover. Use only one signer host; state loss, failed backup, role/key rotation and real Linux/RPC/fee operation require rehearsals. Local tests and internal review do not establish production readiness. Keep the central Todo/release gates current.
+
+## Published keeper verification - 2026-10-16
+
+Keeper/Todo commit `3db782b087d5add2327f519030055d288d9d6512` is pushed. Exact-commit Ubuntu keeper verification (run 38956992156) passed 183 tests with zero failures/skips and systemd unit validation; Todo consistency run 38956992065 passed. The local broader workspace passed 602 Python tests with five Unix cases separately covered by Ubuntu. The keeper changes are published; other pre-existing Solidity/frontend development remains uncommitted and must not be silently discarded or included. The website is clean at its previous deployed revision, with no Todo page. Read `reports/keeper-recovery/REVIEW.md`; production operating gates remain open.

@@ -94,7 +94,7 @@
           "id": "reward-ledgers",
           "status": "done",
           "title": "LP fees & separate royalty shares",
-          "text": "80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ã—1 / Ã—2 / Ã—3."
+          "text": "80 / 10 / 5 / 5 LP allocation; equal collective shares. Actual royalties go to active NFTs at Ãƒâ€”1 / Ãƒâ€”2 / Ãƒâ€”3."
         },
         {
           "id": "shared-custody",
@@ -182,7 +182,7 @@
           "id": "keeper-guardrails",
           "status": "progress",
           "title": "Harden keeper recovery and monitoring",
-          "text": "State, nonce, receipt-reorg and gas-accounting guards, retry cooldowns and health logs have local regression coverage. Complete actual RPC/fee qualification, off-host alerts and recovery rehearsals; obtain independent review."
+          "text": "Recovery guards, retry cooldowns and health logs are published; 183 keeper/RPC/state tests and service validation pass on Ubuntu. Real RPC/fee qualification, off-host alerts, recovery rehearsals and independent review remain."
         },
         {
           "id": "keeper-recovery",
