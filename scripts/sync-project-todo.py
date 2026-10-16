@@ -17,6 +17,10 @@ def render():
         ids.add(area['id'])
         for task in area['tasks']:
             if task['id'] in ids or task['status'] not in STATUSES or not task['title'] or not task['text']:raise ValueError('Invalid task')
+            href=task.get('href')
+            if not isinstance(href,str) or not href or any(c in href for c in '\n\r()<>'):raise ValueError('Task requires a related-file link')
+            target=(ROOT/href.split('#',1)[0]).resolve()
+            if not target.is_relative_to(ROOT) or not target.is_file():raise ValueError('Task link must resolve to a repository file')
             ids.add(task['id']);tasks.append(task)
     digest=hashlib.sha256(json.dumps(data,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
     counts={key:sum(t['status']==key for t in tasks) for key in STATUSES}
@@ -28,7 +32,7 @@ def render():
     for area in data['areas']:
         md+=f"## {area['title']}\n\n{area['caption']}\n\n"
         for task in sorted(area['tasks'],key=lambda t:('todo','progress','done').index(t['status'])):
-            md+=f"- [{'x' if task['status']=='done' else ' '}] **{task['title']}** - {STATUSES[task['status']]}. {task['text']}\n"
+            md+=f"- [{'x' if task['status']=='done' else ' '}] **[{task['title']}]({task['href']})** - {STATUSES[task['status']]}. {task['text']}\n"
         md+='\n'
     md+='---\n\nGenerated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.\n\n'
     md+=f'Snapshot SHA-256: `{digest}`.\n'

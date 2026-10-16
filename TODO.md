@@ -14,77 +14,77 @@ Implemented means built and locally checked, not deployed or independently audit
 
 Custody, ownership and reward accounting.
 
-- [ ] **Qualify the selected Robinhood pool** - In progress. The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.
-- [ ] **Qualify ETH, ZZZ, USDG & USDC inputs** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
-- [ ] **Fair random assignment at mint** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
-- [x] **Minting, activation & NFT ownership** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
-- [x] **LP fees & separate royalty shares** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares.
-- [x] **Shared LP, maintenance & custody controls** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented.
+- [ ] **[Qualify the selected Robinhood pool](docs/ROBINHOOD_POOL.md#popl-lp-integration-and-creator-payments)** - In progress. The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.
+- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
+- [ ] **[Fair random assignment at mint](docs/NFT_METADATA.md#random-reveal)** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
+- [x] **[Minting, activation & NFT ownership](src/ZZZVault.sol)** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
+- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares.
+- [x] **[Shared LP, maintenance & custody controls](docs/ARCHITECTURE.md)** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented.
 
 ## Backend
 
 The data and services behind the app.
 
-- [ ] **Build live fee history & USD values** - To do. Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct.
-- [ ] **Host and monitor the API & indexer** - To do. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts.
-- [ ] **Complete activation & top-up quotes** - In progress. Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately.
-- [x] **Confirmed balances & ownership API** - Implemented. Read NFT ownership and funded balances; reconstruct cumulative claims from complete confirmed history.
-- [x] **Prepare unsigned mint & claim requests** - Implemented. Validate and simulate 0.05 ETH mints and up to 32 LP / royalty claim operations. Signing stays in the wallet.
+- [ ] **[Build live fee history & USD values](docs/FRONTEND_HISTORY.md#verification-and-remaining-scope)** - To do. Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct.
+- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - To do. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts.
+- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_ROUTING.md#atomic-entry-candidate-and-remaining-qualification)** - In progress. Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately.
+- [x] **[Confirmed balances & ownership API](docs/FRONTEND_API.md#implemented-endpoint)** - Implemented. Read NFT ownership and funded balances; reconstruct cumulative claims from complete confirmed history.
+- [x] **[Prepare unsigned mint & claim requests](docs/IMPLEMENTATION_STATUS.md#todo-to-turn-the-website-flows-into-real-transactions)** - Implemented. Validate and simulate 0.05 ETH mints and up to 32 LP / royalty claim operations. Signing stays in the wallet.
 
 ## Frontend
 
 What holders see and use.
 
-- [ ] **Connect real wallet transactions** - To do. Wire minting, activation, LP additions and claims to reviewed deployed contracts.
-- [ ] **Show actual holdings & claimable fees** - To do. Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.
-- [ ] **Handle the complete transaction journey** - To do. Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.
-- [ ] **Connect live history & cumulative claims** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
-- [ ] **Show execution-time rights when buying an NFT** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
-- [x] **Collection, artwork & portfolio preview** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
+- [ ] **[Connect real wallet transactions](docs/IMPLEMENTATION_STATUS.md#todo-to-turn-the-website-flows-into-real-transactions)** - To do. Wire minting, activation, LP additions and claims to reviewed deployed contracts.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - To do. Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.
+- [ ] **[Handle the complete transaction journey](docs/RELEASE_CHECKLIST.md#market-valuation-and-operating-integration)** - To do. Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.
+- [ ] **[Connect live history & cumulative claims](docs/FRONTEND_HISTORY.md#api-behavior)** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
+- [ ] **[Show execution-time rights when buying an NFT](reports/nft-rights-audit/REVIEW.md#identity-and-ownership)** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
+- [x] **[Collection, artwork & portfolio preview](docs/NFT_METADATA.md#fixed-visual-inventory)** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
 
 ## Testing & qualification
 
 Three required testing layers, with source-bound evidence.
 
-- [ ] **Robinhood Testnet end-to-end rehearsal** - To do. Exercise wallet flows, the website, keeper operations and deployment with explicit records of unavailable or mocked dependencies.
-- [ ] **Independent audit and release approval** - To do. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.
-- [ ] **Robinhood mainnet-fork qualification** - In progress. Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates.
-- [x] **Local contract and integration tests** - Implemented. Minting, activation, reward accounting, royalties, transfers and security cases have local checks. Each new change still needs fresh source-bound evidence.
-- [x] **Verify NFT economic rights at full collection size** - Implemented. Internal ownership, 1,000-NFT payouts, buyback rollback and dual-ledger invariants verified: 531 offline Solidity passes, two intentional fork setup skips; extended rights invariants completed 65,536 calls. This closes the scoped local verification task, not independent audit or production qualification.
+- [ ] **[Robinhood Testnet end-to-end rehearsal](docs/RELEASE_CHECKLIST.md#required-testing-layers)** - To do. Exercise wallet flows, the website, keeper operations and deployment with explicit records of unavailable or mocked dependencies.
+- [ ] **[Independent audit and release approval](docs/RELEASE_CHECKLIST.md)** - To do. Complete an external audit, remediation, gas/strategy review and final operating/configuration sign-off before any real funds.
+- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates.
+- [x] **[Local contract and integration tests](reports/nft-rights-audit/VERIFICATION.md)** - Implemented. Minting, activation, reward accounting, royalties, transfers and security cases have local checks. Each new change still needs fresh source-bound evidence.
+- [x] **[Verify NFT economic rights at full collection size](reports/nft-rights-audit/VERIFICATION.md#integrated-collection-and-stateful-assertions)** - Implemented. Internal ownership, 1,000-NFT payouts, buyback rollback and dual-ledger invariants verified: 531 offline Solidity passes, two intentional fork setup skips; extended rights invariants completed 65,536 calls. This closes the scoped local verification task, not independent audit or production qualification.
 
 ## Security & audit
 
 Seven audit workstreams. Local checks are partial evidence; independent review and release sign-off remain open. See [the security audit plan](docs/SECURITY_AUDIT_PLAN.md) for acceptance criteria and priorities.
 
-- [ ] **Whole-protocol recovery & canonical chain loss** - To do. Decide before sealing how to handle permanent home-chain loss, lost governance keys and unusable critical contracts. LP migration alone leaves canonical NFT ownership and reward ledgers at home. A full identity/liability migration needs an audited snapshot/finality, duplicate-prevention, in-flight claims and old-chain resurrection policy; it is not implemented.
-- [ ] **Governance, permissions & sealing** - In progress. Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
-- [ ] **Shared LP accounting & economic manipulation** - In progress. Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues.
-- [ ] **Ownership, claims & allocation rules** - In progress. Verify all unclaimed balances and fractions follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized.
-- [ ] **Oracles, keepers, strategies & MEV** - In progress. Test compromised keepers, stale/manipulated prices, repeated rebalances, unfavorable swaps and sandwich/MEV costs. Qualify execution bounds, cooldowns, fee/gas budgets and outage policies with actual venues; access control alone does not prevent economic loss or impermanent loss.
-- [ ] **External dependencies & receipt backing** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
-- [ ] **Cross-contract & infrastructure audit** - In progress. Audit complete transaction paths and failure rollback across contracts, frontend, API/indexer, deployment, keys and keeper services. Rehearse reorgs, replay, stale or compromised data, wrong-chain signing, RPC failure, restore/rotation and monitoring. Independent review and operational sign-off remain open.
+- [ ] **[Whole-protocol recovery & canonical chain loss](docs/SECURITY_AUDIT_PLAN.md#6-protocol-availability-and-long-term-recoverability)** - To do. Decide before sealing how to handle permanent home-chain loss, lost governance keys and unusable critical contracts. LP migration alone leaves canonical NFT ownership and reward ledgers at home. A full identity/liability migration needs an audited snapshot/finality, duplicate-prevention, in-flight claims and old-chain resurrection policy; it is not implemented.
+- [ ] **[Governance, permissions & sealing](docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing)** - In progress. Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
+- [ ] **[Shared LP accounting & economic manipulation](docs/SECURITY_AUDIT_PLAN.md#2-shared-lp-accounting-and-economic-manipulation)** - In progress. Verify 1,000 independent NFT share accounts through deposits, top-ups, compounding, rebalancing and migrations. Extend local conservation and gas evidence with adversarial prices, donation/front-running, dilution, rounding and multi-asset economic tests on qualified venues.
+- [ ] **[Ownership, claims & allocation rules](docs/SECURITY_AUDIT_PLAN.md#3-nft-ownership-and-reward-distribution)** - In progress. Verify all unclaimed balances and fractions follow the NFT, including transfer/claim ordering, callbacks, operators and pending receipt synchronization. Preserve fixed 80/10/5/5 with documented dust and separate funded rarity royalties. Assess configurable splits against practical benefit and added governance risk before any proposal; no percentage setter is implemented or authorized.
+- [ ] **[Oracles, keepers, strategies & MEV](docs/SECURITY_AUDIT_PLAN.md#4-oracle-keeper-and-strategy-vulnerabilities)** - In progress. Test compromised keepers, stale/manipulated prices, repeated rebalances, unfavorable swaps and sandwich/MEV costs. Qualify execution bounds, cooldowns, fee/gas budgets and outage policies with actual venues; access control alone does not prevent economic loss or impermanent loss.
+- [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
+- [ ] **[Cross-contract & infrastructure audit](docs/SECURITY_AUDIT_PLAN.md#7-cross-contract-and-infrastructure-vulnerabilities)** - In progress. Audit complete transaction paths and failure rollback across contracts, frontend, API/indexer, deployment, keys and keeper services. Rehearse reorgs, replay, stale or compromised data, wrong-chain signing, RPC failure, restore/rotation and monitoring. Independent review and operational sign-off remain open.
 
 ## Launch & operations
 
 Decisions and rehearsals before real funds.
 
-- [ ] **Select authorities & price services** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
-- [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
-- [ ] **Approve reward-token liveness and dust economics** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. A broken royalty token can stop new activations; sub-20-raw-unit owner dust is bounded per settlement, not cumulatively. Qualify every asset before admission.
-- [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
-- [ ] **Harden keeper recovery and monitoring** - In progress. Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open.
-- [ ] **Rehearse keeper outage & server recovery** - In progress. 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
+- [ ] **[Select authorities & price services](docs/PRODUCTION_SERVICES.md)** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
+- [ ] **[Finalize creator revenue-sharing terms](docs/REVENUE_SHARE.md)** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
+- [ ] **[Approve reward-token liveness and dust economics](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. A broken royalty token can stop new activations; sub-20-raw-unit owner dust is bounded per settlement, not cumulatively. Qualify every asset before admission.
+- [ ] **[Publish artwork & operate metadata refresh](docs/ARTWORK_PUBLICATION.md)** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
+- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery guards, read-only preflight/health checks and exclusive snapshots are implemented. Isolated server staging and read-only off-host monitoring are operating; desktop availability limits that monitor. Production RPC/fees, independent alerts and review remain open.
+- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
 
 ## Future migration
 
 A separate phase. Disabled at initial launch.
 
-- [ ] **Reserve destination capacity** - To do. Reserve space before liquidity travels, including concurrent arrivals, returns and recovery if delivery is delayed.
-- [ ] **Qualify bridges & remote compounding** - To do. Review real transport providers, backing and repeated migrations; implement funded compounding when LP stays on another chain.
-- [x] **Governed migration framework** - Implemented. Timelocked approval can onboard reviewed future EVM chains and pools while preserving NFT allocations.
+- [ ] **[Reserve destination capacity](docs/CHANGE_AND_RECOVERY.md#destination-capacity-unresolved-proposed-next-implementation)** - To do. Reserve space before liquidity travels, including concurrent arrivals, returns and recovery if delivery is delayed.
+- [ ] **[Qualify bridges & remote compounding](docs/IMPLEMENTATION_STATUS.md#todo-before-enabling-real-bridging)** - To do. Review real transport providers, backing and repeated migrations; implement funded compounding when LP stays on another chain.
+- [x] **[Governed migration framework](src/ZZZMigration.sol)** - Implemented. Timelocked approval can onboard reviewed future EVM chains and pools while preserving NFT allocations.
 
 ---
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `88ad8cf07514548847e5d51402b7db3d4c214a6f0269b7f70e8d4f9a064c1afd`.
+Snapshot SHA-256: `8008561aad2d06405625100db38f737bd5d05b3757239001b507ad9fdae088e1`.
