@@ -45,8 +45,11 @@ def health_check(config, *, max_age=1800, allow_dry_run=False, now=None):
         if data.get(field) is not False: reasons.append(field)
     for field in ('skipped_buckets','blocked_actions','consecutive_failures'):
         if type(data.get(field)) is not int or data[field] != 0: reasons.append(field)
-    success_age = now-timestamp(data.get('last_success_at'))
-    if success_age < -30 or success_age > max_age: reasons.append('last_success_stale_or_future')
+    if data.get('last_success_at') is None:
+        reasons.append('no_successful_cycle_yet')
+    else:
+        success_age = now-timestamp(data['last_success_at'])
+        if success_age < -30 or success_age > max_age: reasons.append('last_success_stale_or_future')
     return {'ok':not reasons,'reasons':reasons,'heartbeat_age_seconds':round(age,3),
             'scope':'health_file_only; use an off-host scheduler and alert receiver'}
 

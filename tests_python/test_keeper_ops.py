@@ -62,6 +62,12 @@ class OpsTests(unittest.TestCase):
         Path(self.cfg['health_path']).write_text('broken')
         with self.assertRaises(ValueError):health_check(self.cfg)
 
+    def test_first_pending_cycle_has_actionable_health_reasons(self):
+        self.health.update(status='awaiting_receipt',pending=True,last_success_at=None)
+        result=self.check_health()
+        self.assertFalse(result['ok']);self.assertIn('pending',result['reasons'])
+        self.assertIn('no_successful_cycle_yet',result['reasons'])
+
     def test_snapshot_preserves_pending_budget_and_omits_secrets(self):
         self.k.state.update(spent={'2026-10-16':42},pending={'nonce':0,'to':B,'data':calldata('collectFees(uint256,uint256)',1,123),
             'value':0,'day':'2026-10-16','key':'harvest:1','hash':None});self.k.save()
