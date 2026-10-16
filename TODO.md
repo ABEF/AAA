@@ -229,9 +229,10 @@ Three required testing layers, with source-bound evidence.
   - Independently review the final source-bound Slither triage and accepted risks, refreshing analysis if source changes. Completed internal triage does not close the external audit gate.
   - Complete an independent external security audit, remediation verification and separate deployment/configuration review, then limited staging with approved limits.
   - Complete production services, creator terms, frozen-release independent audit and operating rehearsals. Real bridging remains blocked by destination capacity admission and provider/recovery qualification.
-  - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including a pre-seal decision on permanent home-chain loss and canonical NFT/reward-ledger recovery. LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
+  - Complete the seven [security audit workstreams](docs/SECURITY_AUDIT_PLAN.md), including pre-seal implementation and qualification of the selected controlled whole-protocol migration while the source works. Post-halt recovery is deferred; LP migration alone is insufficient. Allocation percentages remain fixed; evaluate any proposed configurability separately.
   - Fill and independently authenticate the schema-4 production inventory: release-specific source/configuration, code and helper bindings, assets, randomness, parking rehearsal and operating evidence. Its current blocked state is intentional; offline consistency never authorizes deployment, sealing or real funds.
   - Preserve complete exact-release local/Ubuntu, actual Robinhood mainnet-fork and Robinhood Testnet evidence. Partial/cancelled fork runs and older source snapshots do not qualify the final release; test timeouts must retain partial evidence without counting as a pass.
+  - Keep test-inventory assertions aligned with published fork cases and preserve standard assertion failure reporting. The [CI fixture correction](reports/architecture-evolution-ci/README.md) covers stale expectations for the existing 24 native/Pons plus nine hookless tests; it does not qualify production dependencies.
 
   </details>
 
@@ -461,4 +462,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `53e52664b5a805ef38c626b55cf9d7c6ff31e855e194d77684620451c011fd1b`.
+Snapshot SHA-256: `40bcd9d13ad618a3e0071de96241d72176b0966ef6018fe002aaf9ec44d653ca`.

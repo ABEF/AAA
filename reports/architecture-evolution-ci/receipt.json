@@ -1,0 +1,120 @@
+{
+  "started_at_utc": "2026-10-16T22:33:33.132587+00:00",
+  "baseline_commit": "4fbd4c0bb6e0c066a92af76213708958e4e438e8",
+  "mode": "Isolated mirror; only the 28 existing fork-runner Python unit tests; no real fork or Forge execution",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests_python",
+    "-p",
+    "test_fork_runner.py",
+    "-v"
+  ],
+  "mirror": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-evolution-20261016\\ci-fix\\mirror-4fbd4c0",
+  "elapsed_seconds": 0.48400000000037835,
+  "exit_code": 0,
+  "tests_run": 28,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "original_ci": {
+    "run_id": 38976039899,
+    "job_id": 117225610456,
+    "sanitized_log_sha256": "ef3652196a6ad92e29c2d49bdfbea2f740e0ba12a1d93e4a8ed2d406d467829a",
+    "full_run_tests": 568,
+    "failures": 2,
+    "errors": 1,
+    "affected_module_tests": 28,
+    "causes": [
+      "Native source inventory is already 24 but the published expectation is 20",
+      "Total source inventory is already 33 but two published expectations are 29",
+      "ForkProcessTests self.fail boolean masks unittest.TestCase.fail on assertion error"
+    ],
+    "not_claimed": "No fresh broad 568-test run or green follow-up Ubuntu CI is asserted"
+  },
+  "scoped_copy": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-evolution-20261016\\ci-fix\\tests_python\\test_fork_runner.py",
+  "scoped_sha256": "bde5b1faa33eee809aa5d92525ea422d30d5ed41cee553a5784300ba552df736",
+  "original_committed_sha256": {
+    "tests_python/test_fork_runner.py": "6043699351708f0a2c07cf3e083b1f25f14c625aa9f48441ecdee93f5d8de826",
+    "scripts/run-fork-checks.py": "8e6d3049646bed2fe4d41700d1b7e128ce53ccd2568aeff1774a6c56014266b2",
+    "test/UniswapV4Fork.t.sol": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+    "test/NativePoolFork.t.sol": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872"
+  },
+  "mirror_before_sha256": {
+    "tests_python/test_fork_runner.py": "bde5b1faa33eee809aa5d92525ea422d30d5ed41cee553a5784300ba552df736",
+    "scripts/run-fork-checks.py": "8e6d3049646bed2fe4d41700d1b7e128ce53ccd2568aeff1774a6c56014266b2",
+    "test/UniswapV4Fork.t.sol": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+    "test/NativePoolFork.t.sol": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872"
+  },
+  "mirror_after_sha256": {
+    "tests_python/test_fork_runner.py": "bde5b1faa33eee809aa5d92525ea422d30d5ed41cee553a5784300ba552df736",
+    "scripts/run-fork-checks.py": "8e6d3049646bed2fe4d41700d1b7e128ce53ccd2568aeff1774a6c56014266b2",
+    "test/UniswapV4Fork.t.sol": "3c34738c29384dcbb77e942b8613264ac886ec2156ce9677256a02701fd764e0",
+    "test/NativePoolFork.t.sol": "994fde79a70b073d21fa40fd3948e834292d9ac07e29ee401c25fc154bbcd872"
+  },
+  "mirror_sources_unchanged": true,
+  "exact_source_and_destination_copies": {
+    "baseline": "sources/baseline",
+    "fixed_test": "sources/scoped/tests_python/test_fork_runner.py"
+  },
+  "working_files_before_sha256": {
+    "tests_python/test_fork_runner.py": "6e21876813f529f7a7d5736af87382225a9baa98cb92156df5ad93643a9554ea",
+    "scripts/run-fork-checks.py": "44b7c5701a55535bae3f9454415a9dd04fd6f17b1dc5a25cbec8b5036cbd376c"
+  },
+  "working_files_after_sha256": {
+    "tests_python/test_fork_runner.py": "6e21876813f529f7a7d5736af87382225a9baa98cb92156df5ad93643a9554ea",
+    "scripts/run-fork-checks.py": "44b7c5701a55535bae3f9454415a9dd04fd6f17b1dc5a25cbec8b5036cbd376c"
+  },
+  "dirty_working_files_preserved": true,
+  "frozen_architecture_bundle_unchanged": true,
+  "frozen_bundle_sha256": {
+    "reports/architecture-evolution/artifact-manifest.json": "68a4417ca795a98963fdb00101a44375c2e8f7357de925546135858520216a9d",
+    "reports/architecture-evolution/docs-check.json": "dd3b134457a6ea303fa89504d081763f9b9ba377dc59fae85acb727bfbeb43f0",
+    "reports/architecture-evolution/input-provenance.json": "f541eafd13a432ba148034d93b078d155896d47d6e0b38eac99e7e4bf6e19103",
+    "reports/architecture-evolution/INTERNAL_DOC_REVIEW.md": "8af31423cc6c3494ca5b0084d2a357a597c0c42fae40fdcb32b39e88b8b3c0ed",
+    "reports/architecture-evolution/phase1-evidence-reuse.json": "ef020a6d5ceed8c1ce834a7305402724cb1767e2197ed1b48c943621fce3f310",
+    "reports/architecture-evolution/phase1-infrastructure-review.json": "2e1f8596bf0c7c36d0f1f63676d1e236931b6e2d1254b453d9e097440ff490f8",
+    "reports/architecture-evolution/phase1-observation-scope.json": "90efabec8ac34aa728114b42064823c4053bb6282c81401a2b00dec3259b8ec3",
+    "reports/architecture-evolution/REVIEW.md": "b27e1df0e267d78a4a1f942aa13a24c04be1b2f85d8bbdb76458d3b80e082929",
+    "reports/architecture-evolution/REVISED_PROMPT.md": "ed87f10aeb69f44e9097fb62bfd5154788b8243eec2f0def2e76d78916c5a5db",
+    "reports/architecture-evolution/VERIFICATION.md": "b5a9ea339bfb5a2626dbde1bde6887daa472c3845c4db90a209077a81a03e35c",
+    "reports/architecture-evolution/capacity/compiled-bindings.json": "905328d3dbaf3d1d9a7d96e453690f15ebcba2d15eaf0174f9d258f8eac3b33d",
+    "reports/architecture-evolution/capacity/README.md": "6957aa4663d46681ef18d617152da19f85fb00c50b19927aaba74f53e68f9128",
+    "reports/architecture-evolution/capacity/summary.json": "f92c2e82687cc9e24009758ca146d025eb01293844d9509602b4a6ce9454a4b0",
+    "reports/architecture-evolution/capacity/tests.log": "abd7e848e11612d3967e717d413d5f970e947f53f0cdced47419d6167077121c",
+    "reports/architecture-evolution/keeper/run_targeted.py": "bfde5a0fcad51c4c4b8204b3bfe3da53b3cdbcd500b163e241431aefe3bf3fed",
+    "reports/architecture-evolution/keeper/tests.log": "eaaad629ed9741e8f2ce8a7c0eb3f238bfee3b00558cc3b0dacbf28aafd77574",
+    "reports/architecture-evolution/keeper/verification.json": "785f70897c062def70a7497fe1e60710cfb93b353bf99f265b4e972c94691b6c",
+    "reports/architecture-evolution/production/receipt.json": "03e617db4185b04c6c98372377efb08a4cfc5cd5b24649eb5ad5ef4e1b83fa71",
+    "reports/architecture-evolution/production/size-gates.json": "b4398a39734889ceb3fa9e2d58e36e58df6bb12362bf2514a82c7d2b5ce03a54",
+    "reports/architecture-evolution/production/stderr.log": "35673d6f1bbf35292550e3ba163ef293ba3b5d3430b50307b1ce906e32015669",
+    "reports/architecture-evolution/production/stdout.log": "ae422c2598066ac24ba2122f86df1fe7ac3f611776c03c7e43b6b9c7c19ed254",
+    "reports/architecture-evolution/provider/receipt.json": "106bf694d146670ff796ef375473e004747bb926a012e045c6e072a99bc19f13",
+    "reports/architecture-evolution/provider/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/architecture-evolution/provider/stdout.log": "2e4ba3f6cae1f3df642a2351759ac52239328610dd3404493e03ccd7d538eaf4",
+    "reports/architecture-evolution/static-analysis/coverage.json": "f0f66a45f89bd3d76a12140046ea4e531da7f70c573d0665925b0ff6e1329b0e",
+    "reports/architecture-evolution/static-analysis/matcher-reuse.json": "6b4110610fabaa6e248f4ba0d984e52d2c7801476360cae9787ce69f04954ed5",
+    "reports/architecture-evolution/static-analysis/mutation-tests.json": "03687ec3b7d29ac4a6f54dabb37277693481366303fb3dc0ac6fd557f799e80d",
+    "reports/architecture-evolution/static-analysis/README.md": "c9e8dae9be9e3ff5efa4f571aded5d582aa8c51abc4e13ee11ae8711b87cbb50",
+    "reports/architecture-evolution/static-analysis/run-summary.json": "42b7fa03f8c5970f2eb69b03d9eaaba42ada071330529b8b683210f4f3d71f36",
+    "reports/architecture-evolution/static-analysis/slither-review.json": "6bcbf71e60e5c9f727fc18b074ffc743301d5eacfe94b5eb945064eba94122d2",
+    "reports/architecture-evolution/static-analysis/triage-delta.json": "c8ad5cf1a08a01c26beb184797d8a541d48eff520ba86ddd370bec4a2eead835",
+    "reports/architecture-evolution/capacity/affected/attempt1/forge.json": "29a6b3ebda34b56460c94b1bc69b983a472edc6c0c99f1f134b72a348029f338",
+    "reports/architecture-evolution/capacity/affected/attempt1/forge.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/architecture-evolution/capacity/affected/attempt1/receipt.json": "b39853c2faf03483f2d51620daea4cc5cc7b6e17996023370e23e52f1c573027",
+    "reports/architecture-evolution/capacity/targeted/attempt1/forge.json": "9d781f983654100b0d323a348a060ee4a83a9d0deb9ccc96c830b37846884eae",
+    "reports/architecture-evolution/capacity/targeted/attempt1/forge.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/architecture-evolution/capacity/targeted/attempt1/receipt.json": "631fc2336c51219889739fc6d75a706c7f572ba6092b4ee7c3f3f8ecf7a8efb0"
+  },
+  "driver_sha256": "920567f25106100a4a4e7622dc32df13f8bdf5baa9ad427d7b644f172e379817",
+  "limitations": [
+    "Synthetic RPC/subprocess/server fixtures only; Solidity files are inventory text inputs",
+    "Does not qualify the unpublished process runner or its additional tests",
+    "No production Solidity/source edit, staging, commit, push or real asset operation"
+  ]
+}

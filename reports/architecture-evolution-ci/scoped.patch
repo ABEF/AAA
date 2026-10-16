@@ -1,0 +1,53 @@
+--- 4fbd4c0bb6e0c066a92af76213708958e4e438e8/tests_python/test_fork_runner.py
++++ scoped/tests_python/test_fork_runner.py
+@@ -95,7 +95,7 @@
+ 
+ class ForkProcessTests(unittest.TestCase):
+     def setUp(self):
+-        self.servers=[];self.commands=[];self.fail=False
++        self.servers=[];self.commands=[];self.spawn_failure=False
+         self.code=9;self.output='';self.stderr=''
+     def server(self,relay):
+         outer=self
+@@ -109,7 +109,7 @@
+         self.commands.append((command,kwargs))
+         if '--version' in command:
+             return subprocess.CompletedProcess(command,0,'forge Version: 1.4.4-v1.4.4\nCommit SHA: '+RUNNER.FORGE_COMMIT+'\n','')
+-        if self.fail:raise OSError('upstream secret must not enter runner logs')
++        if self.spawn_failure:raise OSError('upstream secret must not enter runner logs')
+         return subprocess.CompletedProcess(command,self.code,self.output,self.stderr)
+     def test_exit_code_and_loopback_fork_environment_are_forwarded_then_closed(self):
+         code=RUNNER.run_fork(UPSTREAM,forge='/reviewed/forge',run=self.spawn,server_factory=self.server)
+@@ -125,7 +125,7 @@
+         with patch.object(sys,'stdout',stdout),patch.object(sys,'stderr',stderr):
+             code=RUNNER.run_fork(UPSTREAM,run=self.spawn,server_factory=self.server)
+         self.assertEqual(code,0);self.assertTrue(self.servers[0].closed)
+-        self.assertIn(self.output,stdout.getvalue());self.assertIn('29 successful source tests, zero skips',stdout.getvalue())
++        self.assertIn(self.output,stdout.getvalue());self.assertIn('33 successful source tests, zero skips',stdout.getvalue())
+         self.assertEqual(stderr.getvalue(),self.stderr)
+     def test_filtered_green_run_is_rejected_and_relay_closed(self):
+         self.code=0;results=complete_results();results[RUNNER.FORK_SUITES[1]]['test_results'].popitem()
+@@ -139,7 +139,7 @@
+         for name in ('ROBINHOOD_ARCHIVE_RPC_URL','ETH_RPC_URL','ETH_RPC_HEADERS','ETH_RPC_JWT_SECRET'):
+             self.assertNotIn(name,environment)
+     def test_subprocess_failure_always_closes_relay(self):
+-        self.fail=True
++        self.spawn_failure=True
+         with self.assertRaises(OSError):RUNNER.run_fork(UPSTREAM,run=self.spawn,server_factory=self.server)
+         self.assertTrue(self.servers[0].closed)
+     def test_unpinned_forge_never_starts_relay(self):
+@@ -163,12 +163,12 @@
+ class ForkCoverageTests(unittest.TestCase):
+     def test_current_source_inventories_include_both_actual_fork_classes(self):
+         old=RUNNER.expected_tests('test/UniswapV4Fork.t.sol');native=RUNNER.expected_tests('test/NativePoolFork.t.sol')
+-        self.assertEqual(len(old),9);self.assertEqual(len(native),20)
++        self.assertEqual(len(old),9);self.assertEqual(len(native),24)
+         self.assertIn('testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares',old)
+         self.assertIn('testSelectedNativeReviewedRenouncedWrapperAdminRestoresCustody',native)
+     def test_complete_unskipped_exact_suites_succeed_with_windows_paths(self):
+         results={key.replace('/','\\'):value for key,value in complete_results().items()}
+-        self.assertEqual(RUNNER.verify_fork_results(json.dumps(results)),29)
++        self.assertEqual(RUNNER.verify_fork_results(json.dumps(results)),33)
+     def test_missing_or_similarly_named_native_suite_cannot_pass(self):
+         for replacement in (None,'test/NativePoolFork.t.sol:NativePoolForkTestDisabled'):
+             with self.subTest(replacement=replacement),self.assertRaises(ValueError):

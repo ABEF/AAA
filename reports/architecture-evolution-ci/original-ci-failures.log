@@ -1,0 +1,31 @@
+2026-10-16T22:29:59.1585926Z ERROR: test_successful_complete_run_forwards_both_streams_and_checks_inventory (test_fork_runner.ForkProcessTests.test_successful_complete_run_forwards_both_streams_and_checks_inventory)
+2026-10-16T22:29:59.1586962Z ----------------------------------------------------------------------
+2026-10-16T22:29:59.1587517Z Traceback (most recent call last):
+2026-10-16T22:29:59.1588426Z   File "/home/runner/work/AAA/AAA/tests_python/test_fork_runner.py", line 128, in test_successful_complete_run_forwards_both_streams_and_checks_inventory
+2026-10-16T22:29:59.1589515Z     self.assertIn(self.output,stdout.getvalue());self.assertIn('29 successful source tests, zero skips',stdout.getvalue())
+2026-10-16T22:29:59.1590304Z                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T22:29:59.1591056Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/unittest/case.py", line 1140, in assertIn
+2026-10-16T22:29:59.1591715Z     self.fail(self._formatMessage(msg, standardMsg))
+2026-10-16T22:29:59.1592211Z TypeError: 'bool' object is not callable
+2026-10-16T22:29:59.1592464Z 
+2026-10-16T22:29:59.1592711Z ======================================================================
+2026-10-16T22:29:59.1593783Z FAIL: test_complete_unskipped_exact_suites_succeed_with_windows_paths (test_fork_runner.ForkCoverageTests.test_complete_unskipped_exact_suites_succeed_with_windows_paths)
+2026-10-16T22:29:59.1594741Z ----------------------------------------------------------------------
+2026-10-16T22:29:59.1595248Z Traceback (most recent call last):
+2026-10-16T22:29:59.1596202Z   File "/home/runner/work/AAA/AAA/tests_python/test_fork_runner.py", line 171, in test_complete_unskipped_exact_suites_succeed_with_windows_paths
+2026-10-16T22:29:59.1597101Z     self.assertEqual(RUNNER.verify_fork_results(json.dumps(results)),29)
+2026-10-16T22:29:59.1597657Z AssertionError: 33 != 29
+2026-10-16T22:29:59.1597871Z 
+2026-10-16T22:29:59.1598141Z ======================================================================
+2026-10-16T22:29:59.1599163Z FAIL: test_current_source_inventories_include_both_actual_fork_classes (test_fork_runner.ForkCoverageTests.test_current_source_inventories_include_both_actual_fork_classes)
+2026-10-16T22:29:59.1600101Z ----------------------------------------------------------------------
+2026-10-16T22:29:59.1600614Z Traceback (most recent call last):
+2026-10-16T22:29:59.1601420Z   File "/home/runner/work/AAA/AAA/tests_python/test_fork_runner.py", line 166, in test_current_source_inventories_include_both_actual_fork_classes
+2026-10-16T22:29:59.1602386Z     self.assertEqual(len(old),9);self.assertEqual(len(native),20)
+2026-10-16T22:29:59.1602925Z                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-16T22:29:59.1603379Z AssertionError: 24 != 20
+2026-10-16T22:29:59.1603593Z 
+2026-10-16T22:29:59.1603863Z ----------------------------------------------------------------------
+2026-10-16T22:29:59.1604317Z Ran 568 tests in 22.563s
+2026-10-16T22:29:59.1604517Z 
+2026-10-16T22:29:59.1604713Z FAILED (failures=2, errors=1)

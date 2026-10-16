@@ -1,8 +1,8 @@
 # Feature and evidence reference
 
-Reviewed 2026-10-17 on `codex/architecture-evolution-review`, based on `37bf0d2`.
-The capacity repair belongs to this review branch; it is not a claim of a merge
-into main. Check the current Git revision for publication identity.
+Reviewed 2026-10-17; the architecture repair and evidence were first recorded in
+`4fbd4c0`. The user subsequently requested integration into `main` and use of
+`main` for future work. Check the current Git revision for publication identity.
 The contracts remain undeployed and the website remains a simulation.
 Implemented means the behavior exists in source; it does not mean production
 services, deployment or independent audit are approved.

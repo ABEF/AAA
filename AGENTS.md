@@ -2,8 +2,11 @@
 
 ## Architecture evolution review - 2026-10-17
 
-This work uses the isolated `codex/architecture-evolution-review` branch from
-`37bf0d2`; check Git for current publication. Read
+**User instruction, 2026-10-17: use `main` for this project.** Do not create a
+new review branch unless a later explicit user instruction asks for one. The
+architecture review began on `codex/architecture-evolution-review` from `37bf0d2`;
+the user then requested its integration into `main`. Check Git for exact current
+publication. Read
 [architecture evolution](docs/ARCHITECTURE_EVOLUTION.md), the
 [revised brief](reports/architecture-evolution/REVISED_PROMPT.md) and
 [review](reports/architecture-evolution/REVIEW.md). Preserve unrelated unpublished
