@@ -36,6 +36,8 @@ contract KeeperVenue {
     function group(uint256 bucket) external view returns (uint256[15] memory g) {
         require(bucket == 1);
         g[0] = uint256(poolId()); g[1] = 1; g[7] = 1; g[8] = block.chainid;
+        g[9] = uint160(address(this)); g[10] = uint160(address(this));
+        g[11] = uint160(address(this)); g[12] = uint160(address(this));
         g[13] = block.chainid; g[14] = uint160(address(this));
     }
     function rewardReceiver(uint256) external pure returns (address) { return address(0); }
