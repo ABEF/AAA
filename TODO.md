@@ -25,7 +25,7 @@ What holders see and use.
 The data and services behind the app.
 
 - [ ] **Build live fee history & USD values** - To do. Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct.
-- [ ] **Host and monitor the API & indexer** - To do. Qualify RPC providers, backfills, chain reorganizations, request limits, backups and service alerts.
+- [ ] **Host and monitor the API & indexer** - To do. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts.
 - [ ] **Complete activation & top-up quotes** - In progress. Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately.
 - [x] **Confirmed balances & ownership API** - Implemented. Read NFT ownership and funded balances; reconstruct cumulative claims from complete confirmed history.
 - [x] **Prepare unsigned mint & claim requests** - Implemented. Validate and simulate 0.05 ETH mints and up to 32 LP / royalty claim operations. Signing stays in the wallet.
@@ -58,7 +58,7 @@ Decisions and rehearsals before real funds.
 - [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
 - [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
 - [ ] **Harden keeper recovery and monitoring** - In progress. Published recovery guards passed 183 Ubuntu checks. Read-only preflight, health evaluation and exclusive integrity-checked state snapshots are added; current process rehearsal evidence and remaining staging gates are documented in docs/KEEPER_REHEARSALS.md.
-- [ ] **Rehearse keeper outage & server recovery** - In progress. An isolated Anvil process-crash and host-directory restoration rehearsal is being qualified. Actual multi-day staging, off-host backups/alerts, server fencing and governance key rotation remain open.
+- [ ] **Rehearse keeper outage & server recovery** - In progress. Fourteen isolated Ubuntu process rehearsals pass, including broadcast crashes, stale backups and host-directory restoration. The user selected the website server for an isolated staging account; sustained soak, off-host alerts and real governance key rotation remain open.
 
 ## Future migration
 
@@ -72,4 +72,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `7d4b0f852c0b7ee94327ff340476cbdf565d46d13873e551d8955cd62a98dc06`.
+Snapshot SHA-256: `a4284cf6ad21daf298df1972e478c119656119537e51c51ac4ec3119b7cc3c4d`.

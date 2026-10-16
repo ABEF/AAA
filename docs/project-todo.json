@@ -74,7 +74,7 @@
           "id": "host-services",
           "status": "todo",
           "title": "Host and monitor the API & indexer",
-          "text": "Qualify RPC providers, backfills, chain reorganizations, request limits, backups and service alerts."
+          "text": "A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts."
         }
       ]
     },
@@ -188,7 +188,7 @@
           "id": "keeper-recovery",
           "status": "progress",
           "title": "Rehearse keeper outage & server recovery",
-          "text": "An isolated Anvil process-crash and host-directory restoration rehearsal is being qualified. Actual multi-day staging, off-host backups/alerts, server fencing and governance key rotation remain open."
+          "text": "Fourteen isolated Ubuntu process rehearsals pass, including broadcast crashes, stale backups and host-directory restoration. The user selected the website server for an isolated staging account; sustained soak, off-host alerts and real governance key rotation remain open."
         }
       ]
     },
