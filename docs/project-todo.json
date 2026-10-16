@@ -182,13 +182,13 @@
           "id": "keeper-guardrails",
           "status": "progress",
           "title": "Harden keeper recovery and monitoring",
-          "text": "Recovery guards, retry cooldowns and health logs are published; 183 keeper/RPC/state tests and service validation pass on Ubuntu. Real RPC/fee qualification, off-host alerts, recovery rehearsals and independent review remain."
+          "text": "Published recovery guards passed 183 Ubuntu checks. Read-only preflight, health evaluation and exclusive integrity-checked state snapshots are added; current process rehearsal evidence and remaining staging gates are documented in docs/KEEPER_REHEARSALS.md."
         },
         {
           "id": "keeper-recovery",
-          "status": "todo",
+          "status": "progress",
           "title": "Rehearse keeper outage & server recovery",
-          "text": "Test several days offline, restore backups on a new server, reconcile pending transactions and budgets, and rotate a lost keeper key safely."
+          "text": "An isolated Anvil process-crash and host-directory restoration rehearsal is being qualified. Actual multi-day staging, off-host backups/alerts, server fencing and governance key rotation remain open."
         }
       ]
     },

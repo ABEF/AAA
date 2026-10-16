@@ -4,7 +4,7 @@
 
 The central task list for the whole PoPL project. There is no Todo page on the public website.
 
-**13 To do | 7 In progress | 8 Implemented locally**
+**12 To do | 8 In progress | 8 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -56,9 +56,9 @@ Decisions and rehearsals before real funds.
 
 - [ ] **Select authorities & price services** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
 - [ ] **Finalize creator revenue-sharing terms** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
-- [ ] **Rehearse keeper outage & server recovery** - To do. Test several days offline, restore backups on a new server, reconcile pending transactions and budgets, and rotate a lost keeper key safely.
 - [ ] **Publish artwork & operate metadata refresh** - In progress. The IPFS upload bundle and refresh watcher are prepared. Pin the files, verify the CID and test marketplace updates.
-- [ ] **Harden keeper recovery and monitoring** - In progress. Recovery guards, retry cooldowns and health logs are published; 183 keeper/RPC/state tests and service validation pass on Ubuntu. Real RPC/fee qualification, off-host alerts, recovery rehearsals and independent review remain.
+- [ ] **Harden keeper recovery and monitoring** - In progress. Published recovery guards passed 183 Ubuntu checks. Read-only preflight, health evaluation and exclusive integrity-checked state snapshots are added; current process rehearsal evidence and remaining staging gates are documented in docs/KEEPER_REHEARSALS.md.
+- [ ] **Rehearse keeper outage & server recovery** - In progress. An isolated Anvil process-crash and host-directory restoration rehearsal is being qualified. Actual multi-day staging, off-host backups/alerts, server fencing and governance key rotation remain open.
 
 ## Future migration
 
@@ -72,4 +72,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `692d530f11637bbe64330a2237581dbe509058b4e3b2021abaaf312d2df9f7bf`.
+Snapshot SHA-256: `7d4b0f852c0b7ee94327ff340476cbdf565d46d13873e551d8955cd62a98dc06`.

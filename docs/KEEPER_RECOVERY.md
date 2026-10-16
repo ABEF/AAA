@@ -2,6 +2,10 @@
 
 Hardened keeper candidate. See [the internal review](../reports/keeper-recovery/REVIEW.md). Staging and independent approval remain required before funded operation.
 
+See [service qualification and rehearsal](KEEPER_REHEARSALS.md) for the isolated
+process-crash suite and read-only health, preflight and recovery-snapshot commands.
+Actual execution evidence is kept separately from the historical internal review.
+
 ## Restart and custody
 
 LP stays on chain. The keeper discovers the Vault's shared buckets and reads current state. A restart reconciles a pending transaction before evaluating current maintenance with fresh prices, deadlines, simulations and budgets. It does not replay missed rebalances or restore missed earnings; LP may remain out of range while offline.

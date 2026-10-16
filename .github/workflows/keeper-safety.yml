@@ -1,9 +1,9 @@
 name: Keeper safety regression
 on:
   push:
-    paths: ['keeper/**', 'zzz_ops/**', 'tests_python/**', '.github/workflows/keeper-safety.yml']
+    paths: ['keeper/**', 'zzz_ops/**', 'tests_python/**', 'scripts/rehearse-keeper.py', '.github/workflows/keeper-safety.yml']
   pull_request:
-    paths: ['keeper/**', 'zzz_ops/**', 'tests_python/**', '.github/workflows/keeper-safety.yml']
+    paths: ['keeper/**', 'zzz_ops/**', 'tests_python/**', 'scripts/rehearse-keeper.py', '.github/workflows/keeper-safety.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,7 +21,7 @@ jobs:
           cache: false
       - name: Keeper, metadata, RPC and Unix recovery regressions
         shell: bash
-        run: python3 -m unittest -v tests_python.test_keeper tests_python.test_metadata_keeper tests_python.test_keeper_recovery tests_python.test_rpc tests_python.test_state 2>&1 | tee keeper-checks.log
+        run: python3 -m unittest -v tests_python.test_keeper tests_python.test_metadata_keeper tests_python.test_keeper_recovery tests_python.test_keeper_ops tests_python.test_rpc tests_python.test_state 2>&1 | tee keeper-checks.log
       - name: Validate the dry-run systemd unit
         run: systemd-analyze verify keeper/zzz-keeper.service
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -29,3 +29,24 @@ jobs:
         with:
           name: keeper-safety-evidence
           path: keeper-checks.log
+  process-rehearsal:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09
+        with:
+          version: v1.4.4
+          cache: false
+      - name: Real process crashes, encrypted signing and restoration on isolated Anvil
+        shell: bash
+        run: python3 scripts/rehearse-keeper.py --output keeper-rehearsal.json 2>&1 | tee keeper-rehearsal.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: keeper-process-rehearsal
+          path: |
+            keeper-rehearsal.json
+            keeper-rehearsal.log
