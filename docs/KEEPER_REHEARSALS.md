@@ -68,26 +68,29 @@ snapshot. Never clear a pending record or reset spend/nonce to make a check pass
 There is no automatic backup deletion, state restore, transaction replacement or
 total-state-loss reconstruction tool.
 
-## Gates requiring the actual staging environment
+<a id="gates-requiring-the-actual-staging-environment"></a>
 
-- [ ] Record reviewed release/configuration/binary hashes and single-host fencing.
-- [ ] Qualify at least two independent RPCs, head/receipt/archive behavior,
+## Staging qualification scenarios
+
+Current progress belongs to [keeper recovery](../TODO.md#task-keeper-recovery), [operating guardrails](../TODO.md#task-keeper-guardrails) and [Robinhood Testnet](../TODO.md#task-testnet-rehearsal). The scenarios below describe required operating evidence; completed isolated Anvil checks do not qualify production dependencies.
+
+- Record reviewed release/configuration/binary hashes and single-host fencing.
+- Qualify at least two independent RPCs, head/receipt/archive behavior,
   confirmations and actual Robinhood fee accounting under real service limits.
-- [ ] Run the selected service through systemd start/stop/restart and signer-child
+- Run the selected service through systemd start/stop/restart and signer-child
   termination on the intended Ubuntu image with restrictive users/directories.
-- [ ] Run a multi-day soak with current prices and strategy settings, then an outage
+- Run a multi-day soak with current prices and strategy settings, then an outage
   and recovery. Record unavailable/mocked dependencies explicitly.
-- [ ] Deliver off-host alarms for dead service/host, RPC outage, stale head,
+- Deliver off-host alarms for dead service/host, RPC outage, stale head,
   pending/ambiguous transactions, low funds, reverts, failed backups and stale backups.
-- [ ] Restore a trusted off-host backup on another server, prove the previous signer
+- Restore a trusted off-host backup on another server, prove the previous signer
   is fenced, reconcile nonces/costs and test governance key revocation/replacement.
-- [ ] Exercise disk exhaustion, full host loss and an undiscoverable transaction
+- Exercise disk exhaustion, full host loss and an undiscoverable transaction
   hash. Demonstrate the stop/escalation path; no blind resubmission is permitted.
-- [ ] Complete Robinhood Testnet wallet/API/keeper/deployment rehearsal and an
+- Complete Robinhood Testnet wallet/API/keeper/deployment rehearsal and an
   independent review of contracts, operations and configuration before real funds.
 
-The central [Todo](../TODO.md), [release checklist](RELEASE_CHECKLIST.md) and
-[recovery runbook](KEEPER_RECOVERY.md) retain these gates.
+The [recovery runbook](KEEPER_RECOVERY.md) supplies recovery procedures. The [release approval record](RELEASE_CHECKLIST.md) records the final decision after the applicable central tasks are qualified.
 
 ## Authorized staging host, 2026-10-16
 

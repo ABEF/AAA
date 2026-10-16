@@ -44,4 +44,4 @@ The transport boundary is not a production bridge. Equivalent-asset migration pr
 
 Keep production keys, access tokens and passwords outside source, documentation and Git. Keeper signing uses an external encrypted `cast` keystore and private password file, a dedicated minimally funded keeper account and reviewed transaction limits. RPC observations and confirmations are not cryptographic protection against a malicious RPC.
 
-Do not expose test coordinators, bridge mocks, bootstrap configuration or simulation RPCs to users. The local deployment script rejects public-chain IDs and does not seal the system. Read [operations](OPERATIONS.md), [NFT rules](NFT_METADATA.md) and the [release checklist](RELEASE_CHECKLIST.md) before preparing a deployment.
+Do not expose test coordinators, bridge mocks, bootstrap configuration or simulation RPCs to users. The local deployment script rejects public-chain IDs and does not seal the system. Read [operations](OPERATIONS.md), [NFT rules](NFT_METADATA.md) and the [release approval record](RELEASE_CHECKLIST.md) before preparing a deployment.

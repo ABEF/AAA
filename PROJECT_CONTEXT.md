@@ -2,7 +2,25 @@
 
 Recorded on 2026-10-14 from decisions in the project conversation. Update this note when the user changes those decisions. This is durable project context for future work in these repositories.
 
-## Current accepted decisions — 2026-10-15, locally verified candidate
+
+## Current handoff and documentation map - 2026-10-16
+
+This handoff supersedes older dated implementation/publication statements below.
+The [README](README.md) and [feature/evidence reference](docs/IMPLEMENTATION_STATUS.md)
+summarize the current published candidate. The atomic original-source Activation
+Entry, 1-32-operation mixed claim router and four-historical-bucket cap are
+implemented; actual input routes, services and production qualification remain open.
+
+- **Progress:** [Project Todo](TODO.md) is the only task-status list, generated from [project-todo.json](docs/project-todo.json). All 38 task IDs/statuses and the detailed release requirements were preserved in consolidation commit `ce5851b`. Keep Contracts / Backend / Frontend ordering and clickable file links.
+- **Evidence:** [Implementation reference](docs/IMPLEMENTATION_STATUS.md) distinguishes published features, historical source-bound checks and local unpublished candidates. Reports keep their original scope.
+- **Approval:** [Release record](docs/RELEASE_CHECKLIST.md) remains NOT APPROVED. Runbooks and the roadmap supply procedures and sequencing, not separate task status. Use [TODO_WORKFLOW.md](docs/TODO_WORKFLOW.md) for updates.
+- **Publication:** the NFT-rights audit/tests and keeper hardening are published. Pre-existing wallet preparation, final read freshness, activation-quote and fork-runner changes, plus artwork working files, remain outside that publication. Check Git HEAD/origin and the actual diff rather than interpreting an older 'current/uncommitted' paragraph as today's state.
+- **Boundaries:** contracts remain undeployed; the website is a simulation. Isolated Anvil keeper evidence is not Robinhood production qualification. No public deployment, signing or real asset movement is authorized.
+
+These files are durable repository memory for future sessions, not an assurance
+of global ChatGPT personal memory or automatic cross-repository synchronization.
+
+## Accepted decisions snapshot - 2026-10-15, locally verified candidate
 
 This section supersedes conflicting earlier decisions in the historical entries below. Preserve those entries as evidence of prior scope and checks; do not treat their older $500 minimum, 50/30/10/10 split, Power accounting or implementation boundaries as the current specification. This note does not claim global personal memory is enabled.
 

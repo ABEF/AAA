@@ -32,13 +32,17 @@ An unused signer can explicitly bootstrap using `python -m keeper.monitor --conf
 - Storage failures and unexpected program errors stop the loop. A failed initial health write prevents signing. The systemd unit limits restart storms and stops the keeper plus signer child processes together. Shutdown detected before intent persistence prevents a new submission; a submission already underway must finish or be reconciled from durable state. Invalid state/configuration still needs intervention.
 - Monitor stale/missing heartbeats, sustained errors, long-pending/ambiguous transactions, stale heads, low balance, backup age and role/code changes from a separate host. A dead server cannot alert about itself. Configure journal retention/rotation and alert routing before launch.
 
-## Rehearsals still required
+<a id="rehearsals-still-required"></a>
 
-- [ ] Several days offline, current-state restart and claims/metadata behavior.
-- [ ] Crashes around intent persistence, broadcast, receipt confirmation and final state write, with no duplicate submission.
-- [ ] RPC failover, wrong chain, stale heads, malformed receipts, reorgs and incomplete fee reporting.
-- [ ] Disk full, permission errors, corrupt state, stale backup and total state loss.
-- [ ] New-host restoration, old-host isolation, nonce/budget reconciliation and key rotation.
-- [ ] Actual Linux systemd, locking, off-host backups, monitoring and operator alert delivery.
+## Recovery rehearsal scenarios
+
+Track qualification in the [keeper recovery task](../TODO.md#task-keeper-recovery) and [guardrail task](../TODO.md#task-keeper-guardrails). These scenarios define evidence to collect; they do not reset the scoped tests and isolated rehearsals already recorded.
+
+- Several days offline, current-state restart and claims/metadata behavior.
+- Crashes around intent persistence, broadcast, receipt confirmation and final state write, with no duplicate submission.
+- RPC failover, wrong chain, stale heads, malformed receipts, reorgs and incomplete fee reporting.
+- Disk full, permission errors, corrupt state, stale backup and total state loss.
+- New-host restoration, old-host isolation, nonce/budget reconciliation and key rotation.
+- Actual Linux systemd, locking, off-host backups, monitoring and operator alert delivery.
 
 Local tests do not establish universal recovery or production readiness.

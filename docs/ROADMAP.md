@@ -1,8 +1,8 @@
 # Engineering roadmap
 
-> Updated 2026-10-16: $100 original gross source value activates only if at least 99% becomes marginal deployed LP; network gas is separate. Atomic source entry and governed paused parking join the native adapter, bounded claims and read API as implemented candidates. Other accepted economics/NFT rules are unchanged. Actual routes/services, staging and independent audit remain open. See the [Implemented / Todo checklist](IMPLEMENTATION_STATUS.md). Historical evidence retains its source scope.
+> Updated 2026-10-16: $100 original gross source value activates only if at least 99% becomes marginal deployed LP; network gas is separate. Atomic source entry and governed paused parking join the native adapter, bounded claims and read API as implemented candidates. Other accepted economics/NFT rules are unchanged. Actual routes/services, staging and independent audit remain open. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md). Historical evidence retains its source scope.
 
-The development candidate implements paid dormant mint/activation, shared LP per pool with nonredeemable NFT shares, pool-level upkeep, repeated whole-bucket custody migration with timelocked future-route onboarding, immutable creator-payment intake, equal membership, quota-based VRF reveal, dynamic metadata and a separate funded royalty receiver. The [reward-funding verification](../reports/reward-funding/README.md) predates the current alignment changes. The [shared-pool review](../reports/pooled/README.md) and [earlier implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) remain scoped to their own revisions; they do not validate the changed reward entrypoints. This roadmap orders the remaining release work; it does not assign dates or claim release approval.
+The development candidate implements paid dormant mint/activation, shared LP per pool with nonredeemable NFT shares, pool-level upkeep, repeated whole-bucket custody migration with timelocked future-route onboarding, immutable creator-payment intake, equal membership, quota-based VRF reveal, dynamic metadata and a separate funded royalty receiver. The [reward-funding verification](../reports/reward-funding/README.md) predates the current alignment changes. The [shared-pool review](../reports/pooled/README.md) and [earlier implementation evidence](../reports/IMPLEMENTATION_UPDATE.md) remain scoped to their own revisions; they do not validate the changed reward entrypoints. This roadmap explains engineering sequence and dependencies. All task status and acceptance criteria live in the [central Todo](../TODO.md); this page does not maintain another progress list or assign dates.
 
 The [2026-10-14 readiness pass](../reports/PRODUCTION_READINESS.md) adds immutable dependency/action pins, working keeper calldata submission, pending-state and file-write hardening, stateful EVM accounting, full Slither triage, six real dependency fork checks, collection/asset gas workloads and an offline production inventory gate. These earlier development milestones do not close the current alignment, verifiable-randomness availability, live transport, oracle, staging and independent-review work.
 
@@ -36,11 +36,13 @@ The [confirmed API](FRONTEND_API.md) reads real NFT state and both funded ledger
 
 ## 5. Implement production transport and operations
 
+Real bridge transport is a later activation phase, not a requirement to enable at initial launch. An independently approved [migration-disabled launch](OPERATIONS.md#migration-disabled-initial-launch) retains the other security and operating requirements; current progress stays in the [migration tasks](../TODO.md#future-migration).
+
 The fixed router and append-only future-provider onboarding framework are implemented. Select and independently review bridge-specific `IZZZTransportProvider` wrappers, establish equivalent-token and supply semantics, and test canonical-to-satellite, satellite-to-satellite, canonical return, and revisited destinations against actual providers. Exercise authentication, backing, duplication, ordered home notifications, absent-hop epochs, delays, retries, legacy rewards after departure, pauses, and provider failures. Review every future destination's code and authorities before timelocked route onboarding. Exercise real signer/RPC behavior and indexer backfill/reorg recovery on a test network.
 
 ## 6. Complete independent review before release
 
-Obtain an independent security audit, verify remediation, review deployment configuration, and satisfy every item in the [release checklist](RELEASE_CHECKLIST.md) before funded use.
+Obtain an independent security audit, verify remediation, review deployment configuration, and satisfy the applicable [central release criteria](../TODO.md#task-audit-release) before recording final approval in the [release record](RELEASE_CHECKLIST.md).
 
 ## Later product work
 

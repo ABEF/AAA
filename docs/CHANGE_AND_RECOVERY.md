@@ -89,7 +89,7 @@ destination or enable same-chain replacement of a Vault.
   freezes, rebases or transfer taxes. Admission needs dependency/authority review,
   and exact-transfer execution guards remain mandatory.
 
-See the [release checklist](RELEASE_CHECKLIST.md) for outstanding qualification.
+See the [central Todo](../TODO.md) for outstanding qualification and the [release record](RELEASE_CHECKLIST.md) for final approval.
 The [activation routing research](ACTIVATION_ROUTING.md) remains a historical
 read-only venue/provenance snapshot, distinct from the implemented Entry and its
 still-open production route qualification. [Custody parking](CUSTODY_PARKING.md)

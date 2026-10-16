@@ -84,7 +84,7 @@ duplicate/size bounds, direct claim compatibility, funded conservation and a
 32-operation gas workload. These checks do not establish production token safety,
 target-chain gas headroom, real VRF support or independent audit approval. Record
 fresh compilation/size, full regression, source-bound static analysis and staged
-operating evidence in the release checklist before deployment.
+operating evidence under the [transaction integration task](../TODO.md#task-transaction-ui) before deployment approval.
 
 The initial scoped local run on 2026-10-15 passed all **22 router tests**, including
 **1,000 fuzz cases**. A cold-account workload with 16 NFTs, each claiming one LP

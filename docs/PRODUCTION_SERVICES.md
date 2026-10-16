@@ -62,5 +62,4 @@ alone do not pin proxy implementations. See
 - Production RPC, indexer/API hosting, confirmations, rate limits, monitoring,
   signer recovery and target-chain keeper rehearsals remain unqualified.
 
-The [release checklist](RELEASE_CHECKLIST.md) and
-[change/recovery matrix](CHANGE_AND_RECOVERY.md) retain these gates.
+The [central Todo](../TODO.md#launch--operations) tracks these decisions and rehearsals. The [change/recovery matrix](CHANGE_AND_RECOVERY.md) explains the boundaries; the [release record](RELEASE_CHECKLIST.md) records final approval.

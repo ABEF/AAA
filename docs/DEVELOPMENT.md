@@ -1,6 +1,6 @@
 # Development setup and verification
 
-> Updated 2026-10-16: undeployed candidate; $100 original gross source value with at least 99% marginal deployed LP, gas separate; atomic source entry and paused custody parking. Accepted 80/10/5/5, equal membership, 1,000-NFT quotas, VRF and separate royalties remain unchanged. See the [checklist](IMPLEMENTATION_STATUS.md). Earlier receipts retain their source scope; actual routes/services, staging and independent audit remain open.
+> Updated 2026-10-16: undeployed candidate; $100 original gross source value with at least 99% marginal deployed LP, gas separate; atomic source entry and paused custody parking. Accepted 80/10/5/5, equal membership, 1,000-NFT quotas, VRF and separate royalties remain unchanged. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md). Earlier receipts retain their source scope; actual routes/services, staging and independent audit remain open.
 
 ## Supported environment
 
@@ -92,4 +92,4 @@ Complete the three required release layers: local mint/activation/reward/royalty
 
 The initial documentation/publication pass preserved all implementation and test sources. The later CI repair changed dependency/build configuration and one test function name, without changing contract logic or test assertions. Subsequent paid-mint and future-migration work changes implementation, interfaces, event schemas and tests; it is separate evidence and requires fresh security review. [Original README](../reports/history/README.v0.2.md) and [original manifest](../reports/history/MANIFEST.v0.2.sha256) preserve the initial presentation and hashes. The root manifest describes its committed Git snapshot; regenerate it for a completed release rather than presenting an earlier manifest as a hash inventory for uncommitted edits.
 
-Start implementation work from the [implemented and todo checklist](IMPLEMENTATION_STATUS.md), [component status](COMPONENT_STATUS.md), [current local verification](../reports/release-hardening/README.md), [earlier internal review](../reports/PRODUCTION_READINESS.md), historical [source-level audit](AUDIT.md), and [release checklist](RELEASE_CHECKLIST.md). Internal review never closes the independent audit gate.
+Start implementation work from the [central Todo](../TODO.md), [feature and evidence reference](IMPLEMENTATION_STATUS.md), [component status](COMPONENT_STATUS.md), [current local verification](../reports/release-hardening/README.md), [earlier internal review](../reports/PRODUCTION_READINESS.md), historical [source-level audit](AUDIT.md), and [release approval record](RELEASE_CHECKLIST.md). Internal review never closes the independent audit gate.

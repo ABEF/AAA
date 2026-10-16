@@ -167,5 +167,5 @@ admitted and qualified. No ticker substitution or assumed stable peg is authoriz
 Reader regressions use explicit mocks; Entry unit tests and real Registry/Vault
 integration tests have separate scope. The actual native/Pons custody fork suite
 does not by itself prove V3 source conversion. Keep these evidence boundaries
-separate in the [release checklist](RELEASE_CHECKLIST.md). This documentation
+separate in the [activation tasks](../TODO.md#task-activation-assets). This documentation
 authorizes no deployment, signature or real transaction.
