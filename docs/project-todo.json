@@ -88,11 +88,11 @@
           "id": "read-api",
           "status": "progress",
           "title": "Confirmed balances & ownership API",
-          "text": "Confirmed ownership, funded balances and cumulative claim history exist. Add canonical lifecycle and successor-aware history for handoff deployments.",
-          "href": "docs/FRONTEND_API.md#implemented-endpoint",
+          "text": "Schema-2 lifecycle guards and a protocol-status endpoint now expose the pinned origin/peer commitments and block locked NFT/wallet projections. Successor lifetime claims are unavailable rather than reset. Complete verified predecessor replay and live integration remain open.",
+          "href": "docs/FRONTEND_LIFECYCLE.md",
           "acceptance": [
-            "Expose strict canonical state and immutable successor lineage at the same confirmed block as balances. Frozen/importing/retired sources must not appear as active spendable positions; missing lifecycle getters fail closed. Retired royalty balances can be unavailable after backing has moved.",
-            "Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation."
+            "Independently qualify the implemented schema-2 lifecycle/origin boundary and integrate it with consumers. Eight runtime/address pins, controller/helper ownership and strict phase/state checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled projections fail closed; status stays readable without reward/price calls. Peer addresses are source commitments, not reviewed successor deployments or cross-chain finality proofs.",
+            "Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation. The current guard returns unavailable lifetime totals for imported successors; it does not yet replay predecessors."
           ]
         },
         {

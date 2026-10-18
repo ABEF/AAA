@@ -9,6 +9,7 @@ It has not been deployed or operated against a production PoPL deployment.
 ## Implemented endpoint
 
 ```text
+GET /v1/protocol
 GET /v1/nfts/{canonical-decimal-token-id}
 GET /v1/wallets/{nonzero-Ethereum-address}/nfts
 ```
@@ -17,9 +18,16 @@ Token IDs are the actual uint256 identities, not mint ordinals or website
 example numbers. JSON returns large token-unit integers as decimal **strings**;
 never convert them to JavaScript `Number` for accounting.
 
+Configuration and read responses use **schema 2**. The [lifecycle boundary](FRONTEND_LIFECYCLE.md)
+requires two additional canonical helper pins. Locked deployments refuse NFT
+and wallet projections; `/v1/protocol` remains available for verified lifecycle
+and source-committed successor information without reading reward balances.
+
 The response contains:
 
 - Current owner, actual mint ordinal, reveal status and revealed rarity/palette/pattern.
+- Strict canonical lifecycle, pause/preparation state, original identity and
+  predecessor/successor information at the same confirmed hash.
 - Canonical vault state, shared-bucket identity, nonredeemable shares and persistent
   activation/royalty eligibility.
 - Explicit `parked` custody (appended on-chain status 6), authenticated local
@@ -52,6 +60,10 @@ individual/collective breakdown remain unavailable. Claimable and lifetime
 claimed amounts are not lifetime gross revenue. No assumed historical token
 price or current-balance subtraction is substituted.
 
+For imported successors, `previously_claimed` is explicitly unavailable until
+complete verified predecessor history is supported. Current-deployment claims
+must never be presented as the NFT's lifetime total.
+
 These endpoints are an unhosted integration foundation. The existing `indexer/`
 remains unchanged; the new read-only history consumer validates its exact
 confirmed snapshot and replays both ledgers. Complete gross fee attribution,
@@ -71,7 +83,7 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
 
 ```json
 {
-  "schema": 1,
+  "schema": 2,
   "chain_id": 46630,
   "rpc_urls": ["https://<reviewed-provider>"],
   "deployment_block": 123,
@@ -84,7 +96,9 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
     "vault": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
     "rewards": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
     "royalties": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
-    "claim_router": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"}
+    "claim_router": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
+    "handoff": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"},
+    "vault_canonical": {"address": "0x<40 hex digits>", "code_hash": "0x<64 hex digits>"}
   },
   "assets": [
     {"address": "0x0000000000000000000000000000000000000000", "decimals": 18, "symbol": "ETH", "code_hash": null},
@@ -93,7 +107,7 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
 }
 ```
 
-Choose `deployment_block` at or after all six contracts and immutable helpers
+Choose `deployment_block` at or after all eight pinned contracts and immutable helpers
 exist and the access controller is sealed. Pin its independently checked block
 hash. Chain 46630 is Robinhood Testnet; chain 4663 is Robinhood mainnet. Network
 choice, twelve confirmations and 120 seconds above are examples requiring a
@@ -122,10 +136,13 @@ deployment anchor and header age, and uses EIP-1898
 `eth_getCode`. Providers that do not support hash-pinned calls fail closed; no
 fallback to `latest` or a number-only call is used.
 
-Every request verifies six runtime pins; sealed canonical NFT/Vault/Rewards
-bindings; their common controller; the Vault's home chain; NFT/royalty/helper
-immutable backlinks; the full admitted asset inventory; and asset code/decimals.
-It checks the selected block and deployment anchor again before releasing a
+Every request verifies eight runtime pins; sealed module bindings; their common
+controller; the Vault's home chain; NFT/royalty/helper ownership; and canonical
+lifecycle/origin. NFT and wallet requests additionally verify the full admitted
+asset inventory and asset code/decimals. The status endpoint omits those asset
+reads so moved backing or token outages do not hide the deployment's lifecycle.
+It checks the selected block's full identity/timestamp and deployment anchor,
+current confirmation depth and final freshness again before releasing a
 successful result. Provider failover onto a competing fork, an anchor mismatch,
 stale/future headers, ABI failures, wrong bindings, unknown asset admission or
 changed runtime code produce an unavailable response. There is **no cache** to
@@ -141,11 +158,11 @@ HTTP status behavior:
 
 | Status | Meaning |
 | --- | --- |
-| 200 | Complete verified NFT snapshot, or history-backed wallet inventory |
+| 200 | Verified protocol status, NFT snapshot, or history-backed wallet inventory |
 | 400 | Invalid Host, request body or out-of-range token ID |
 | 404 | Unknown endpoint/noncanonical path, or NFT without a mint ordinal |
 | 405 | Method other than GET |
-| 503 | Confirmed projection unavailable; do not substitute demo/zero values |
+| 503 | Locked deployment or unavailable confirmed projection; do not substitute demo/zero values |
 
 Errors do not disclose RPC URLs, upstream error messages or credentials.
 Responses use `Cache-Control: no-store` and no cross-origin grants. The server

@@ -1,5 +1,21 @@
 # AAA / ZZZ PoPL project context
 
+## Frontend lifecycle checkpoint - 2026-10-18
+
+The [schema-2 read API](docs/FRONTEND_LIFECYCLE.md) now uses eight runtime pins,
+strict canonical lifecycle/origin checks and a read-only `/v1/protocol` endpoint.
+Frozen/importing/retired/cancelled deployments cannot serve apparently spendable
+NFT/wallet projections. Importing origins and incomplete successor lifetime-claim
+totals are unavailable, not zero. Source-committed peer addresses are not independently
+verified deployments; complete predecessor replay remains open in the Todo.
+
+[Verification](reports/frontend-lifecycle/VERIFICATION.md) records 74 passing tests
+against the exact publication snapshot and 15 ABI checks against matching existing
+contract artifacts. Production Solidity is unchanged. Saved final snapshot freshness
+checks are included; optional wallet POST, quote/process-runner and artwork drafts
+remain separate. Check Git for publication; no website, server, monitor or public
+deployment/transaction changed.
+
 ## Verified handoff checkpoint - 2026-10-18
 
 The saved bridge fixtures and cold-helper gas changes are verified: 582 offline

@@ -1,5 +1,22 @@
 # AAA / ZZZ PoPL project instructions
 
+## Frontend lifecycle checkpoint - 2026-10-18
+
+Read [the schema-2 API boundary](docs/FRONTEND_LIFECYCLE.md) and its
+[verification](reports/frontend-lifecycle/VERIFICATION.md). The pinned read API
+now checks canonical phase/state, pause/preparation and original identity using
+eight runtime pins. Locked NFT/wallet projections fail closed; `/v1/protocol`
+reports status without reward/price reads. Peer addresses are source commitments,
+not independently verified destinations. Importing/cancelled origins and imported
+successor lifetime-claim totals are unavailable; complete predecessor replay and
+website integration remain open in the central Todo.
+
+This scope promotes the saved final snapshot freshness/depth checks, with the
+matching tests, but keeps optional POST/unsigned wallet, quote/process-runner and
+artwork drafts separate. Verify publication using Git HEAD/origin/main. Production
+Solidity is unchanged; do not rerun its unchanged tests for this Python work.
+No website/server update, monitor restart or public transaction is authorized.
+
 ## Verified handoff checkpoint - 2026-10-18
 
 The saved bridge fixtures and cold-helper gas changes are verified: 582 offline

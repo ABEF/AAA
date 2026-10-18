@@ -13,12 +13,13 @@ import time
 from typing import Any, Callable
 
 from frontend_api.history import History, HistoryError
+from frontend_api.lifecycle import read_lifecycle
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import integer
 
 ZERO = '0x' + '0' * 40
-ROLES = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router')
+ROLES = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router', 'handoff', 'vault_canonical')
 STATUS = ('none', 'active', 'outbound', 'remote', 'inbound', 'dormant', 'parked')
 EVOLUTION = ('dormant', 'activated', 'enhanced', 'singularity')
 UNAVAILABLE = {
@@ -115,7 +116,7 @@ class Projection:
         if isinstance(config, dict) and 'history' in config:
             expected.add('history')
         _keys(config, expected, 'configuration')
-        if type(config['schema']) is not int or config['schema'] != 1:
+        if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
         self.chain = integer(config['chain_id'], 'chain_id', minimum=1)
         self.start = integer(config['deployment_block'], 'deployment_block')
@@ -208,7 +209,7 @@ class Projection:
         if '0x' + keccak256(bytes.fromhex(result[2:])).hex() != expected:
             raise ProjectionError('Runtime code differs from deployment pin')
 
-    def _verify_deployment(self, block: dict[str, Any]) -> None:
+    def _verify_deployment(self, block: dict[str, Any], *, allow_locked: bool = False) -> dict[str, Any]:
         for item in self.contracts.values():
             self._code(item.address, item.code_hash, block)
         access = self.contracts['access'].address
@@ -229,6 +230,24 @@ class Projection:
         for role, method, expected in bindings:
             if self._addr(role, method, block=block) != self.contracts[expected].address:
                 raise ProjectionError('Immutable NFT/helper binding differs from deployment pins')
+        lifecycle = read_lifecycle(self, block)
+        if not allow_locked and lifecycle['state'] != 'operating':
+            raise ProjectionError('Canonical deployment is locked; use the protocol status endpoint')
+        return lifecycle
+
+    def protocol(self) -> dict[str, Any]:
+        """Lifecycle remains readable without touching frozen reward ledgers."""
+        header, head, block = self._snapshot()
+        lifecycle = self._verify_deployment(block, allow_locked=True)
+        self._finish(header)
+        return {'schema': 2, 'chain_id': self.chain, 'lifecycle': lifecycle,
+                'contracts': {role: item.address for role, item in self.contracts.items()},
+                'provenance': {'block_number': header['number'], 'block_hash': header['hash'],
+                               'block_timestamp': header['timestamp'], 'observed_head': head,
+                               'confirmations': self.confirmations, 'protocol_finalized': False,
+                               'finality': 'confirmation_depth_only', 'eip1898_require_canonical': True,
+                               'deployment_block': self.start, 'deployment_block_hash': self.start_hash,
+                               'configuration_sha256': self.identity}}
 
     def _admitted(self, block: dict[str, Any]) -> tuple[list[str], list[str]]:
         admitted = []
@@ -269,17 +288,29 @@ class Projection:
         header = self._header(hex(safe))
         if header['number'] != safe:
             raise ProjectionError('Confirmed header has the wrong block number')
-        now = self.clock()
-        if header['timestamp'] > now + 30 or now - header['timestamp'] > self.max_age:
-            raise ProjectionError('Confirmed header timestamp is stale or in the future')
+        self._fresh(header)
         block = {'blockHash': header['hash'], 'requireCanonical': True}
         return header, head, block
 
+    def _fresh(self, header):
+        now = self.clock()
+        if header['timestamp'] > now + 30 or now - header['timestamp'] > self.max_age:
+            raise ProjectionError('Confirmed header timestamp is stale or in the future')
+
     def _finish(self, header):
-        if self._header(hex(header['number']))['hash'] != header['hash'] or self._header(hex(self.start))['hash'] != self.start_hash:
+        # Long asset/history reads must not release an expired snapshot. A
+        # provider failover can also retain this block while dropping enough
+        # descendants that the configured confirmation depth is no longer met.
+        head = _quantity(self.rpc.call('eth_blockNumber', []))
+        if head < header['number'] + self.confirmations - 1:
+            raise ProjectionError('Confirmed projection lost its required confirmation depth')
+        if self._header(hex(header['number'])) != header or self._header(hex(self.start))['hash'] != self.start_hash:
             raise ProjectionError('Canonical chain changed during the projection')
         if self.rpc.call('eth_chainId', []) != self.chain:
             raise ProjectionError('RPC chain changed during the projection')
+        # Check after the final network response, not before a potentially slow
+        # retry or history replay. No partial result is returned on expiry.
+        self._fresh(header)
 
     def _history_snapshot(self, header, block, lp_assets, royalty_assets):
         if self.history is None:
@@ -317,7 +348,7 @@ class Projection:
         nft_id = token_id(identifier)
         header, head, block = self._snapshot()
         safe = header['number']
-        self._verify_deployment(block)
+        lifecycle = self._verify_deployment(block)
         lp_assets, royalty_assets = self._admitted(block)
         ordinal = self._uint('nft', 'mintOrdinalOf(uint256)', nft_id, block=block)
         if ordinal == 0:
@@ -367,7 +398,8 @@ class Projection:
         # value read. Activation eligibility persists independently of its mark.
         stage = 0 if weight == 0 else 3 if available and raw_usd >= 10000 * 10**18 else 2 if available and raw_usd >= 1000 * 10**18 else 1
         result = {
-            'schema': 1, 'chain_id': self.chain, 'token_id': str(nft_id), 'mint_ordinal': ordinal,
+            'schema': 2, 'chain_id': self.chain, 'token_id': str(nft_id), 'mint_ordinal': ordinal,
+            'lifecycle': lifecycle,
             'owner': owner, 'traits_ready': ready, 'traits': traits,
             'position': {'status': STATUS[status], 'bucket_id': str(bucket), 'shares_raw': str(shares),
                          'activated': weight != 0, 'royalty_weight': weight, 'current_lp_value': lp_value,
@@ -389,10 +421,16 @@ class Projection:
         if history is not None:
             if history.owners.get(nft_id) != owner:
                 raise HistoryError('Indexed NFT owner differs from canonical ownerOf')
-            result['unavailable_metrics'].pop('previously_claimed')
+            if lifecycle['predecessor_controller'] is None:
+                result['unavailable_metrics'].pop('previously_claimed')
             result['unavailable_metrics'].pop('wallet_inventory')
             result['wallet_inventory_endpoint'] = f'/v1/wallets/{owner}/nfts'
-        result['previously_claimed'] = self._claimed(history, nft_id)
+        if lifecycle['predecessor_controller'] is not None:
+            reason = 'Complete verified predecessor claim history is not configured; lifetime totals are unavailable.'
+            result['previously_claimed'] = {'available': False, 'assets': None, 'reason': reason}
+            result['unavailable_metrics']['previously_claimed'] = reason
+        else:
+            result['previously_claimed'] = self._claimed(history, nft_id)
         # No partial response is released if ancestry/chain changes during the
         # serial reads, including provider failover to a competing fork.
         self._finish(header)
@@ -403,7 +441,7 @@ class Projection:
         if self.history is None:
             raise HistoryError('Confirmed wallet inventory requires configured history')
         header, head, block = self._snapshot()
-        self._verify_deployment(block)
+        lifecycle = self._verify_deployment(block)
         lp_assets, royalty_assets = self._admitted(block)
         history = self._history_snapshot(header, block, lp_assets, royalty_assets)
         identifiers = sorted(nft_id for nft_id, owner in history.owners.items() if owner == wallet)
@@ -414,7 +452,8 @@ class Projection:
             if self._addr('nft', 'ownerOf(uint256)', nft_id, block=block) != wallet:
                 raise HistoryError('Indexed wallet token is not owned by the canonical wallet')
         self._finish(header)
-        return {'schema': 1, 'chain_id': self.chain, 'wallet': wallet, 'available': True,
+        return {'schema': 2, 'chain_id': self.chain, 'wallet': wallet, 'available': True,
+                'lifecycle': lifecycle,
                 'count': len(identifiers), 'token_ids': [str(nft_id) for nft_id in identifiers],
                 'nft_contract': self.contracts['nft'].address,
                 'provenance': {'block_number': header['number'], 'block_hash': header['hash'],

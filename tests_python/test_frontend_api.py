@@ -24,9 +24,9 @@ def native_claim_data(nft_id):
 
 
 def configuration():
-    roles = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router')
+    roles = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router', 'handoff', 'vault_canonical')
     return {
-        'schema': 1, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'],
+        'schema': 2, 'chain_id': 31337, 'rpc_urls': ['http://127.0.0.1:8545'],
         'deployment_block': 10, 'deployment_block_hash': '0x' + 'a' * 64,
         'confirmations': 12, 'max_block_age_seconds': 120,
         'contracts': {role: {'address': addr(n), 'code_hash': '0x' + keccak256(bytes([0x60, n, 0])).hex()}
@@ -51,7 +51,7 @@ class MockRPC:
         self.header_timestamp = 990
         self.calls = []
         self.responses = {}
-        self.codes = {addr(n): '0x' + bytes([0x60, n, 0]).hex() for n in range(1, 7)}
+        self.codes = {addr(n): '0x' + bytes([0x60, n, 0]).hex() for n in range(1, 9)}
         self.codes.update({addr(20): '0x' + b'ZZZ'.hex(), addr(21): '0x' + b'USDC'.hex()})
         self.fail_hash_pin = False
         self.reorg_after_calls = False
@@ -64,6 +64,18 @@ class MockRPC:
 
     def configure(self):
         self.put(addr(1), 'isSealed()', values=(1,))
+        for signature in ('canonicalState()', 'preparationActive()', 'paused()', 'canonicalSettling()'):
+            self.put(addr(1), signature)
+        for n, label in ((7, 'ZZZCanonicalHandoff'), (8, 'ZZZVaultCanonical')):
+            self.put(addr(1), 'module(bytes32)', ('0x' + keccak256(label.encode()).hex(),), (addr(n),))
+            self.put(addr(n), 'access()', values=(addr(1),))
+        self.put(addr(1), 'canonicalHandoff()', values=(addr(7),))
+        self.put(addr(3), 'canonicalModule()', values=(addr(8),))
+        self.put(addr(8), 'vault()', values=(addr(3),))
+        self.put(addr(8), 'originChain()', values=(31337,))
+        self.put(addr(8), 'originVault()', values=(addr(3),))
+        for signature in ('phase()', 'incomingSource()', 'destinationController()'):
+            self.put(addr(7), signature)
         for role, label, n in (('nft', 'ZZZNFT', 2), ('vault', 'ZZZVault', 3), ('rewards', 'ZZZRewards', 4)):
             self.put(addr(1), 'module(bytes32)', ('0x' + keccak256(label.encode()).hex(),), (addr(n),))
             self.put(addr(n), 'access()', values=(addr(1),))
@@ -358,6 +370,61 @@ class FrontendProjectionTests(unittest.TestCase):
                 self.read()
         self.rpc.head = 20
         with self.assertRaisesRegex(ProjectionError, 'confirmation'):
+            self.read()
+
+    def test_snapshot_expiring_during_final_rpc_is_not_returned(self):
+        now = [1000]
+        self.projection.clock = lambda: now[0]
+        original = self.rpc.call
+        chain_reads = 0
+        def delayed_final_chain(method, params):
+            nonlocal chain_reads
+            result = original(method, params)
+            if method == 'eth_chainId':
+                chain_reads += 1
+                if chain_reads == 2:
+                    now[0] = 1111  # 121 seconds since the selected block.
+            return result
+        self.rpc.call = delayed_final_chain
+        with self.assertRaisesRegex(ProjectionError, 'timestamp'):
+            self.read()
+        self.assertEqual(chain_reads, 2)
+
+    def test_final_freshness_boundary_and_clock_rollback(self):
+        for final_time, succeeds in ((1110, True), (959, False)):
+            with self.subTest(final_time=final_time):
+                times = iter((1000, final_time))
+                self.projection.clock = lambda: next(times)
+                if succeeds:
+                    self.assertEqual(self.read()['provenance']['block_timestamp'], 990)
+                else:
+                    with self.assertRaisesRegex(ProjectionError, 'timestamp'):
+                        self.read()
+
+    def test_retained_block_with_reduced_confirmation_depth_is_rejected(self):
+        original = self.rpc.call
+        reads = 0
+        def rollback_head(method, params):
+            nonlocal reads
+            result = original(method, params)
+            if method == 'eth_blockNumber':
+                reads += 1
+                if reads == 2:
+                    return hex(109)  # Block 99 still exists, but has only 11 confirmations.
+            return result
+        self.rpc.call = rollback_head
+        with self.assertRaisesRegex(ProjectionError, 'confirmation depth'):
+            self.read()
+
+    def test_inconsistent_timestamp_for_same_final_header_hash_is_rejected(self):
+        original = self.rpc.call
+        def inconsistent_header(method, params):
+            result = original(method, params)
+            if method == 'eth_getBlockByNumber' and params[0] == hex(99) and self.rpc.header_reads > 2:
+                result['timestamp'] = hex(991)
+            return result
+        self.rpc.call = inconsistent_header
+        with self.assertRaisesRegex(ProjectionError, 'changed'):
             self.read()
 
     def test_configuration_is_strict_and_cannot_override_deployment(self):

@@ -5,6 +5,13 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The subsequent [frontend lifecycle checkpoint](FRONTEND_LIFECYCLE.md) adds a
+schema-2 protocol status endpoint, eight deployment pins, locked NFT/wallet
+guards and explicit unavailable successor lifetime totals. See its
+[separate verification](../reports/frontend-lifecycle/VERIFICATION.md). It does
+not change production Solidity, upgrade staging or complete predecessor replay.
+The optional wallet POST drafts remain outside this scoped publication.
+
 The saved bridge-fixture fixes and final cold-gas checks are verified. The current
 regression passes **582 cases with zero failures and two intentional fork setup
 skips** across 49 suites. The unchanged 34-case focused handoff run is reused after

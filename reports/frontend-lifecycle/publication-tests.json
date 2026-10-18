@@ -1,0 +1,52 @@
+{
+  "scope": "Exact intended published Python sources; no optional transaction draft",
+  "base_commit": "c96265a1e976ac9ccee71ef5b24801d713e89eff",
+  "command": [
+    "-m",
+    "unittest",
+    "tests_python.test_frontend_lifecycle",
+    "tests_python.test_frontend_api",
+    "tests_python.test_frontend_history",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 11.28,
+  "file_sha256": {
+    "frontend_api/history.py": "09ca663bac28b4ac177cf240cb8be858707f90050aed6811676ae48457e3cbf3",
+    "frontend_api/lifecycle.py": "bdf8785971b409602f079377aaa6c24c2e3887666c9528da780143670765f93e",
+    "frontend_api/server.py": "d6e35692d54a57e742f0c2bfcf723f5151f40527b07782c2948be7beb74cc2d4",
+    "frontend_api/service.py": "cdf0daf557ea86cd1613c7f4d0c81771df0c9c9c3f43e8d8c5e0f05712c28815",
+    "frontend_api/__init__.py": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "indexer/monitor.py": "d74414e5dbf8247947100fd41517137d22afa8abb6e9166a8a3c633085d11de7",
+    "indexer/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/activation_route.py": "df8c52f71db49667bf1f643aec3d05a01702ba1aa4028851c318f0bbae8d6dc4",
+    "zzz_ops/revenue_share.py": "e4198531ab3dabddae78583ad1e6b68ef7f30b9aca5a87871d350c51f01b6123",
+    "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/test_frontend_lifecycle.py": "040f9ce071cae8ed395df81d74fcdc092a87fb106bffe264601cfce098c3e320",
+    "tests_python/test_frontend_api.py": "065416c4716b4b035c5d4e50329f4312284b4d6bb78e19ac2185ece088bb1d09",
+    "tests_python/test_frontend_history.py": "a6f26a26ec1a9af23e0f47197c95987097c698f97731e86ddded37a10de01312"
+  },
+  "source_after": {
+    "frontend_api/history.py": "09ca663bac28b4ac177cf240cb8be858707f90050aed6811676ae48457e3cbf3",
+    "frontend_api/lifecycle.py": "bdf8785971b409602f079377aaa6c24c2e3887666c9528da780143670765f93e",
+    "frontend_api/server.py": "d6e35692d54a57e742f0c2bfcf723f5151f40527b07782c2948be7beb74cc2d4",
+    "frontend_api/service.py": "cdf0daf557ea86cd1613c7f4d0c81771df0c9c9c3f43e8d8c5e0f05712c28815",
+    "frontend_api/__init__.py": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "indexer/monitor.py": "d74414e5dbf8247947100fd41517137d22afa8abb6e9166a8a3c633085d11de7",
+    "indexer/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/activation_route.py": "df8c52f71db49667bf1f643aec3d05a01702ba1aa4028851c318f0bbae8d6dc4",
+    "zzz_ops/revenue_share.py": "e4198531ab3dabddae78583ad1e6b68ef7f30b9aca5a87871d350c51f01b6123",
+    "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/test_frontend_lifecycle.py": "040f9ce071cae8ed395df81d74fcdc092a87fb106bffe264601cfce098c3e320",
+    "tests_python/test_frontend_api.py": "065416c4716b4b035c5d4e50329f4312284b4d6bb78e19ac2185ece088bb1d09",
+    "tests_python/test_frontend_history.py": "a6f26a26ec1a9af23e0f47197c95987097c698f97731e86ddded37a10de01312"
+  }
+}

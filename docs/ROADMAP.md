@@ -50,7 +50,7 @@ Before paid minting, establish actual supported-chain VRF, subscription backing 
 
 The [confirmed API](FRONTEND_API.md) reads real NFT state and both funded ledgers. Its optional [history extension](FRONTEND_HISTORY.md) now provides wallet inventory and all-time per-NFT/asset LP-plus-royalty claims from exact confirmed raw-log replay, with canonical ownership/count checks. Host and rehearse it, independently reconcile ingestion completeness, and finish gross lifetime/24h fee attribution/USD projections. Replace website simulations only after a reviewed deployment exists.
 
-Add strict canonical lifecycle and successor-aware history to the API and wallet flows. Frozen/importing/retired positions must not look spendable; missing lifecycle information must fail closed. Lifetime LP and royalty claims must include verified predecessors, and imported NFTs must not be counted as new paid mints or marketplace sales. Show execution-time rights when buying an NFT, since a seller can claim before transfer. Local unpublished unsigned-preparation work is not a deployed signing service.
+Integrate the [implemented strict API lifecycle boundary](FRONTEND_LIFECYCLE.md) into wallet flows and complete successor-aware history. Locked deployments already refuse NFT/wallet projections and imported successor lifetime totals remain explicitly unavailable. Lifetime LP and royalty claims must include verified predecessors, and imported NFTs must not be counted as new paid mints or marketplace sales. Show execution-time rights when buying an NFT, since a seller can claim before transfer. Local unpublished unsigned-preparation work is not a deployed signing service.
 
 ## 5. Rehearse operations and qualify later transport
 

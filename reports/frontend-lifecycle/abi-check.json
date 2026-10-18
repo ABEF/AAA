@@ -1,0 +1,36 @@
+{
+  "abi_methods": [
+    "ZZZAccessController.canonicalState()",
+    "ZZZAccessController.preparationActive()",
+    "ZZZAccessController.paused()",
+    "ZZZAccessController.canonicalSettling()",
+    "ZZZAccessController.canonicalHandoff()",
+    "ZZZAccessController.module(bytes32)",
+    "ZZZCanonicalHandoff.access()",
+    "ZZZCanonicalHandoff.phase()",
+    "ZZZCanonicalHandoff.incomingSource()",
+    "ZZZCanonicalHandoff.destinationController()",
+    "ZZZVaultCanonical.access()",
+    "ZZZVaultCanonical.vault()",
+    "ZZZVaultCanonical.originChain()",
+    "ZZZVaultCanonical.originVault()",
+    "ZZZVault.canonicalModule()"
+  ],
+  "method_count": 15,
+  "production_source_sha256": {
+    "src/ZZZAccessController.sol": "0e31948f918e1020ba3c56839c82ca9b4b40b7bf0f62e929e67cbb1d8f0dc95d",
+    "src/ZZZCanonicalHandoff.sol": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "9359e0ad3dbf18ef7fb5f52cad5f2329c70e5c7a048b86fd2d0984f55e2f838d",
+    "src/base/ZZZCanonicalLedger.sol": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+    "src/interfaces/IZZZ.sol": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+    "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZTypes.sol": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+    "src/ZZZVaultCanonical.sol": "df16dc50f2523d40b1adb249331450b95bfa9ad92f80c9b4db0f4b9c363545b8",
+    "src/ZZZMigrationBudget.sol": "968df0e2154b153cbc599c927a8e7f6449a1715277d2bfe22f9f0a559e6bba0d",
+    "src/ZZZVault.sol": "f840abf4218c4390d9ac33553ff54bbe5d32dbfe454ced00855fc7b78d063dc5",
+    "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712"
+  },
+  "qualification": "Existing normal-build ABI matches current source; no compilation or Solidity test rerun."
+}

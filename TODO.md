@@ -110,13 +110,13 @@ The data and services behind the app.
 
 <a id="task-read-api"></a>
 
-- [ ] **[Confirmed balances & ownership API](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Confirmed ownership, funded balances and cumulative claim history exist. Add canonical lifecycle and successor-aware history for handoff deployments.
+- [ ] **[Confirmed balances & ownership API](docs/FRONTEND_LIFECYCLE.md)** - In progress. Schema-2 lifecycle guards and a protocol-status endpoint now expose the pinned origin/peer commitments and block locked NFT/wallet projections. Successor lifetime claims are unavailable rather than reset. Complete verified predecessor replay and live integration remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Expose strict canonical state and immutable successor lineage at the same confirmed block as balances. Frozen/importing/retired sources must not appear as active spendable positions; missing lifecycle getters fail closed. Retired royalty balances can be unavailable after backing has moved.
-  - Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation.
+  - Independently qualify the implemented schema-2 lifecycle/origin boundary and integrate it with consumers. Eight runtime/address pins, controller/helper ownership and strict phase/state checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled projections fail closed; status stays readable without reward/price calls. Peer addresses are source commitments, not reviewed successor deployments or cross-chain finality proofs.
+  - Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation. The current guard returns unavailable lifetime totals for imported successors; it does not yet replay predecessors.
 
   </details>
 
@@ -477,4 +477,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `d0310d38f392af042f69002281eb3cd00428a90ff0e29b813ce76701b660d017`.
+Snapshot SHA-256: `411ae9893208a8e536aa2458942bc85f0f0bc28a495308fbb4cb88d40aadc90f`.

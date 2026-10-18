@@ -40,16 +40,17 @@ def handler(projection: Projection) -> type[BaseHTTPRequestHandler]:
                 return
             match = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})', self.path)
             wallet = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/nfts', self.path)
-            if not match and not wallet:
+            protocol = self.path == '/v1/protocol'
+            if not match and not wallet and not protocol:
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             try:
-                identifier = token_id(match[1]) if match else address(wallet[1])
+                identifier = token_id(match[1]) if match else address(wallet[1]) if wallet else None
             except ValueError:
                 self._json(400, {'error': 'invalid_token_id' if match else 'invalid_wallet_address'})
                 return
             try:
-                result = projection.nft(identifier) if match else projection.wallet(identifier)
+                result = projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
             except UnknownNFT:
                 self._json(404, {'error': 'nft_not_minted'})
             except (RpcError, ValueError, KeyError, TypeError, OverflowError):
