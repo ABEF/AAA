@@ -251,7 +251,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. Historical selected-pool cases pass for their recorded sources and blocks. The current offline regression intentionally skips fork setup. Qualify the release source, production feeds, full input routes and real services; synthetic calibration and mock authorities do not close those gates.
+- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. The latest targeted ordinary-rebalance case passes against the pinned selected native/Pons venue with current source bindings. Broader historical fork suites retain their recorded sources and blocks. Production feeds, full input routes, gas/strategy settings and services remain unqualified; synthetic prices and mocked authorities/VRF do not close those gates.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -263,7 +263,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-verification"></a>
 
-- [x] **[Local contract and integration tests](reports/canonical-handoff/VERIFICATION.md)** - Implemented. Current source-bound offline regression and same-chain handoff checks pass, with matching prior evidence reused. This does not include a new selected-market fork run or operating rehearsal; changed dependencies require affected checks again.
+- [x] **[Local contract and integration tests](reports/canonical-handoff/VERIFICATION.md)** - Implemented. Latest dynamic-liquidity checks pass: 119 affected Solidity cases, 138 isolated backend cases, normal size/source gates and a fresh internal static review. The earlier 582-case full regression retains its original source scope; it is not a full regression of the latest delta. Reuse unchanged evidence and rerun only affected checks unless a release qualification requires broader coverage.
 
 <a id="task-economic-rights-audit"></a>
 
@@ -325,6 +325,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
   - Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.
   - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
+  - Specify a controlled way to apply a timelocked range-policy change when price movement has not triggered normal rebalancing. Configuration remains adjustable after sealing, but existing LP ticks do not change automatically. Bind the intended bucket, configuration and current position; retain cooldown/frequency, oracle, minimum-output, 3% aggregate and idle safeguards, with gas separate, unchanged NFT rights and rollback. Governance/execution semantics require an explicit design decision before adding any force-rebalance authority. See [range-change behavior](docs/DYNAMIC_LIQUIDITY.md#changing-the-range-after-sealing).
 
   </details>
 
@@ -349,7 +350,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
   - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted timelocked governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
   - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding.
-  - Current-source offline qualification now passes 582 regression cases plus 34 unchanged-source focused handoff cases; only the two opt-in fork setup skips remain. The repaired bridge fixtures and all three final cold-gas suites pass under unchanged limits. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
+  - Historical canonical-handoff qualification recorded 582 regression cases plus 34 focused handoff cases, two opt-in fork setup skips, repaired bridge fixtures and three cold-gas suites. These retain their original source scope. The latest Vault/metadata changes have separate [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md), not a new complete handoff regression. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
 
   </details>
 
@@ -486,4 +487,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `eea0f5607818fd70fd4b99cecc637a3b5414635cc413226a7c96f6f053b74d6b`.
+Snapshot SHA-256: `f4063a6d9a37ead064b080a099263c3d80a6005f5fedb2796cd5e8554b7f547c`.

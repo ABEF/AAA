@@ -93,6 +93,22 @@ The selected Pons pool has zero conventional LP fees and separate externally
 funded revenue. The warning describes inactive swap liquidity without promising
 creator payments or revoking already funded claims/royalty eligibility.
 
+## Changing the range after sealing
+
+Governance can update the existing pool configuration through the fixed timelock.
+`rangeBps` is a half-width: 1,000 means approximately +/-10% of the reference
+pool price before outward tick rounding. The registry permits 100-5,000 basis
+points; trigger and spot-deviation settings must remain inside their own bounds
+and below the half-width. These are parameter changes, not code upgrades.
+
+Updating this setting does not resize the current physical LP or independently
+satisfy `Strategy.needsRebalance`: the ordinary price trigger and cooldown still
+apply. The next eligible replacement uses the new target. Governed paused
+parking/resumption is a separate custody-recovery process, not an automatic
+routine range update. A dedicated controlled policy-application path is proposed
+under [strategy security](../TODO.md#task-security-strategy); it is not implemented
+or an authorization for an unrestricted forced rebalance.
+
 ## Aggregate rebalance budget
 
 The user approved a fixed **3% aggregate execution-loss cap for ordinary
