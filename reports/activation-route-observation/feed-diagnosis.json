@@ -1,0 +1,129 @@
+{
+  "time_utc": "2026-10-18T21:11:24.834185+00:00",
+  "scope": "read-only provider/feed diagnosis; no wallet transaction",
+  "block": 92078313,
+  "block_hash": "0x0717a35ef6ac71795862e49c7c60f0a7a8424d17c13a1743a5c340f74d9fefb5",
+  "block_timestamp": 1792357885,
+  "feeds": {
+    "USDG": {
+      "address": "0x61b7e5650328764b076a108eff5fa7282a1b9ad2",
+      "runtime_keccak": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2",
+      "runtime_matches": true,
+      "decimals()": [
+        "8"
+      ],
+      "latestRoundData()": [
+        "18446744073709551752",
+        "99997977",
+        "1792338233",
+        "1792338245",
+        "18446744073709551752"
+      ],
+      "status": "read"
+    },
+    "ETH": {
+      "address": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "runtime_keccak": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2",
+      "runtime_matches": true,
+      "decimals()": [
+        "8"
+      ],
+      "latestRoundData()": [
+        "18446744073709554401",
+        "234550519761",
+        "1792355147",
+        "1792355160",
+        "18446744073709554401"
+      ],
+      "status": "read"
+    }
+  },
+  "snapshot_canonical": true,
+  "snapshot_age_seconds": 23,
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_blockNumber",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_call",
+      "target": "0x61b7e5650328764b076a108eff5fa7282a1b9ad2",
+      "selector": "0x313ce567",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_call",
+      "target": "0x61b7e5650328764b076a108eff5fa7282a1b9ad2",
+      "selector": "0xfeaf968c",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_call",
+      "target": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "selector": "0x313ce567",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_call",
+      "target": "0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "selector": "0xfeaf968c",
+      "status": "ok"
+    },
+    {
+      "method": "eth_chainId",
+      "status": "ok"
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok"
+    }
+  ]
+}

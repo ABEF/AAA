@@ -1,0 +1,83 @@
+{
+  "time_utc": "2026-10-18T21:12:36.194821+00:00",
+  "scope": "read-only one-dollar conversion leg; NOT activation, LP execution or gas quote",
+  "source_sha256": {
+    "zzz_ops/rpc.py": "34ab65904edb597dc49746b2d92681496e2b7875936a46a107ff8c16267f3571",
+    "zzz_ops/activation_route.py": "7c45157b284feff04b1ed0e5ddf4e82976ff415fe93474974d78e7a6427e3f83",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209"
+  },
+  "chain_id": 4663,
+  "block": 92079017,
+  "block_hash": "0x2dbc27f76a61f811732d62a93f817064eb4c828ad99245b3f0dc1d1f69306ef3",
+  "block_timestamp": 1792357957,
+  "identities": [
+    {
+      "symbol": "USDG",
+      "token": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+      "decimals": 6,
+      "provenance": "Paxos/Robinhood official native USDG address"
+    },
+    {
+      "symbol": "ETH",
+      "token": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "decimals": 18
+    }
+  ],
+  "usd_prices_18": {
+    "USDG": "999979770000000000",
+    "ETH": "2345505197610000000000"
+  },
+  "input_raw": "1000021",
+  "gross_usd_18": "1000000769575170000",
+  "routes": [
+    {
+      "fee": 100,
+      "pool": "0x52e65b17fb6e5ba00ed806f37afcd2daa50271ca",
+      "runtime_keccak": "0x3298b5dd4e6f115074c526a55ad05a36fd73a0034ac22ec6cbaab32cc9c1e8d2",
+      "liquidity": "1032125336442431701",
+      "status": "quoted",
+      "weth_out_raw": "424684518407120",
+      "output_usd_18": "996099745268399678",
+      "conversion_loss_bps": 39,
+      "quoter_internal_gas": 91470
+    },
+    {
+      "fee": 500,
+      "pool": "0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+      "runtime_keccak": "0x74a16c3b1b4ac8903c54a9edad666d4c87512cb78ed0723538acd84d1b56c5b5",
+      "liquidity": "675813525973132201",
+      "status": "quoted",
+      "weth_out_raw": "424647426205884",
+      "output_usd_18": "996012745317609843",
+      "conversion_loss_bps": 39,
+      "quoter_internal_gas": 91481
+    },
+    {
+      "fee": 3000,
+      "pool": "0xa9188730fe85be88ad499d7d52b099e800fb0334",
+      "runtime_keccak": "0x0fc31cfc533a5922261eaa33ff62c43ffd3839dc5204fb6dbbe6effd7bd9d63d",
+      "liquidity": "297548419235164253",
+      "status": "quoted",
+      "weth_out_raw": "424619948091104",
+      "output_usd_18": "995948295256572829",
+      "conversion_loss_bps": 40,
+      "quoter_internal_gas": 91463
+    },
+    {
+      "fee": 10000,
+      "pool": "0x5f009e071f07e92b6c624e83f52f17bbda34680d",
+      "runtime_keccak": "0xe20600974a722992eb4622b85b2a77ccac5e4aaa2f781bd93cae4334ca18d686",
+      "liquidity": "13494360085148341",
+      "status": "quoted",
+      "weth_out_raw": "421280332939905",
+      "output_usd_18": "988115210561418469",
+      "conversion_loss_bps": 118,
+      "quoter_internal_gas": 91513
+    }
+  ],
+  "status": "read-only conversion observations complete",
+  "snapshot_age_seconds": 193,
+  "activation_ready": false,
+  "public_transactions": 0,
+  "rpc_requests": 150
+}

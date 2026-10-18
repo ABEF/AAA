@@ -5,6 +5,12 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The [read-only route campaign](INTEGRATION_CAMPAIGN.md) now records a successful
+paced USDG/ETH feed and four-route conversion observation. This is not complete
+activation, a public transaction or a new fork/test pass. See [its scope](../reports/activation-route-observation/VERIFICATION.md).
+Actual PoPL deployment, qualified services and operator-run transactions remain
+open; the private key was not accessed. Earlier HTTP failures remain preserved.
+
 The [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) is separately implemented and
 verified (10 Solidity / four Python). Production $100 activation / 0.05 ETH mint rules
 are unchanged; no public transaction or website/API deployment was made. Read

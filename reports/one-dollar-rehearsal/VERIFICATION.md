@@ -49,3 +49,7 @@ must be corrected in production and verified through targeted regressions. This
 record does not authorize copying the $1 override into production, live funds,
 deployment, website/server changes or restarting the paused monitor. Release
 remains **NOT APPROVED**.
+
+A later [paced read-only probe](../activation-route-observation/VERIFICATION.md)
+succeeded for feed reads and conversion quotes. It does not replace the two earlier
+failed attempts or qualify complete LP execution; their original scope is preserved.

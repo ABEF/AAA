@@ -1,3 +1,20 @@
+## Read-only route campaign checkpoint - 2026-10-18
+
+Read [the campaign brief](docs/INTEGRATION_CAMPAIGN.md) and
+[observations](reports/activation-route-observation/VERIFICATION.md). A subsequent
+paced probe succeeded for USDG/ETH feeds and four USDG-to-WETH quotes at block
+92,079,017. Three conversion-only quotes were within 1% at observed oracle marks;
+the 1% fee tier already exceeded it. Complete source-to-Pons LP execution remains
+unqualified; gas and later LP costs are not included. No production code changed
+and unchanged tests were not rerun. The earlier HTTP failure cause is unconfirmed.
+The user requested a real-wallet campaign; no key was accessed, public transaction
+submitted or contract deployed. The assistant cannot execute real-asset signing/
+broadcasting; this is independent of wallet access. No signing script was supplied.
+PoPL remains undeployed; the $1 variant remains local only and production mint is
+0.05 ETH. Todo and feature references retain the open live qualification gates.
+Preserve unrelated drafts, use main, and verify Git for publication. Website,
+server and paused monitoring are unchanged.
+
 ## Local $1 rehearsal checkpoint - 2026-10-18
 
 The user authorized $1 activation for testing and requested that any real bugs

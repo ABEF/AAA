@@ -45,6 +45,13 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 
 ## Evidence and its limits
 
+A subsequent [read-only USDG route observation](../reports/activation-route-observation/VERIFICATION.md)
+verified actual feed/token/router reads and four conversion quotes at one pinned
+block. It does not qualify complete activation, production price policies, RPC
+reliability or gas. The [integration campaign](INTEGRATION_CAMPAIGN.md) distinguishes
+read-only observations, local forks and operator-run public transactions; no public
+transaction campaign has run. Production source and prior test receipts are unchanged.
+
 The separate [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) generates a new build
 outside the repository and changes the copied Entry/budget activation floors only,
 with local-chain constructor guards. Production source, $100 activation, 0.05 ETH

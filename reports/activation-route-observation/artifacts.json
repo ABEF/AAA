@@ -1,0 +1,58 @@
+{
+  "baseline_commit": "a580003f25887417408144c32a440df5e2cdbc6d",
+  "records_sha256": {
+    "conversion-observation.json": "eb777bc15e18607aaf2ed642cfd8094303bd6cd15576cececa40201871b34d63",
+    "feed-diagnosis.json": "8e0ead13806db4731d06ec3ce5531c221211b2839f38b59c06901a95e0f63067"
+  },
+  "external_scripts_sha256": {
+    "diagnose_feeds.py": "d7a7792d8085eb29251f89621db9432fb4af970b676bea49ff08037914683e50",
+    "read_conversion.py": "46da71b2e6c53af0603e7097e0de8a92e181c5f1054d11e90946693aa9487d95"
+  },
+  "production_sources_sha256": {
+    "src/base/ZZZCanonicalLedger.sol": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+    "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+    "src/interfaces/IZZZ.sol": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+    "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/libraries/BridgeAssets.sol": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZTypes.sol": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+    "src/ZZZAccessController.sol": "0e31948f918e1020ba3c56839c82ca9b4b40b7bf0f62e929e67cbb1d8f0dc95d",
+    "src/ZZZActivationAssets.sol": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+    "src/ZZZActivationEntry.sol": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+    "src/ZZZBridgeAdapter.sol": "bea3ce35351c5f3fb58bbfe9a3ceb28b29bb6fb280f3895c36f0b371b2771088",
+    "src/ZZZBridgeRouter.sol": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+    "src/ZZZBuyback.sol": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+    "src/ZZZCanonicalHandoff.sol": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZFeeController.sol": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+    "src/ZZZFeesCanonical.sol": "3e65cc82dcb3095f7160f730a5e2c293d4349548f09405da6718fa46d4f6b261",
+    "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+    "src/ZZZMembership.sol": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+    "src/ZZZMigration.sol": "9cce0857c086248473bc674a578618ed10817fcefbf0358fa8421c8731d63afe",
+    "src/ZZZMigrationBudget.sol": "e79ce6a8097e8d236b338562fc2fd8cc93f63da77a16dab8473d15b4608fbe9e",
+    "src/ZZZMigrationReceiver.sol": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+    "src/ZZZMigrationRegistry.sol": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+    "src/ZZZNFT.sol": "ddf74a233749593b494144d9488fc47277246179fa9e17232393ee562c63c8e8",
+    "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+    "src/ZZZNFTMetadata.sol": "c310bc855c9c0326f019a2d94fbd3e2497574bf40ad6be4b11dff8799219d967",
+    "src/ZZZOracle.sol": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+    "src/ZZZPoolRegistry.sol": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+    "src/ZZZRewardReceiver.sol": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+    "src/ZZZRewardReceiverFactory.sol": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+    "src/ZZZRewards.sol": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "9359e0ad3dbf18ef7fb5f52cad5f2329c70e5c7a048b86fd2d0984f55e2f838d",
+    "src/ZZZStrategy.sol": "532755dc12a76c7059843bdee7520af03f1d1b78e033c2f7e613f66196c6428a",
+    "src/ZZZVault.sol": "b2586ace9c56e141f10e5f8d4801a980e9c891e8d4d0d1bf7dc8ff36b2aa6572",
+    "src/ZZZVaultCanonical.sol": "df16dc50f2523d40b1adb249331450b95bfa9ad92f80c9b4db0f4b9c363545b8"
+  },
+  "scope": "read-only observation; no new production code or test execution",
+  "external_records_sha256": {
+    "conversion-observation.json": "64cf2687d61b850a14964bbf3a41282626b186eb820818e8b1182df450ba0b73",
+    "feed-diagnosis.json": "559fb3c8dd3d600346c03ac7411b450a01049fbf424e729b0fb44fe5bf2a0fbf"
+  },
+  "publication_normalization": "CRLF to LF only; external raw record hashes retained"
+}

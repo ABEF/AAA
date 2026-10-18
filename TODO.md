@@ -29,19 +29,20 @@ Custody, ownership and reward accounting.
 
 <a id="task-activation-assets"></a>
 
-- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset controls and entry logic exist. Verify actual routes and feeds; USDC still needs a reviewed, funded route.
+- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset controls and entry logic exist. A paced read-only USDG/WETH observation verified four conversion quotes; complete source-to-Pons LP execution and production feeds remain unqualified. USDC still needs a reviewed, funded route.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Independently verify $100 original source value with at least 99% marginal actually deployed LP, separate network gas, incumbent NAV pricing, all conversion-leg costs, callbacks, pending/dust barriers, top-ups and nonredeemability. Review the immutable Entry's exact owner/calldata context, inactive approval window, Registry-only valuation and callback cleanup; a post-conversion pair value cannot replace original source value.
   - Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native ingress is restricted to the actual native-pool wrapper. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution.
+  - Use the [integration campaign](docs/INTEGRATION_CAMPAIGN.md) and [read-only observations](reports/activation-route-observation/VERIFICATION.md): one $1 conversion snapshot is not $100 activation qualification. Include subsequent LP costs in the same 1% limit, separate gas, qualified ZZZ pricing and complete operation simulation. Public transaction testing has not run; the isolated $1 build remains local only.
 
   </details>
 
 <a id="task-fair-draw"></a>
 
-- [ ] **[Fair random assignment at mint](docs/NFT_METADATA.md#random-reveal)** - In progress. The fixed artwork draw is implemented. Connect and qualify live verifiable randomness; no new images are needed.
+- [ ] **[Fair assignment of prepared NFT designs](docs/NFT_METADATA.md#random-reveal)** - In progress. The fixed 1,000-entry artwork inventory and draw without replacement are implemented. Verifiable randomness assigns a remaining prepared design; it does not generate images or reroll assigned rarity, palette or pattern. Qualify the live randomness service.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -106,6 +107,7 @@ The data and services behind the app.
   - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
   - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
   - Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.
+  - Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.
 
   </details>
 
@@ -492,4 +494,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `d91380dd0b8e3345e7429b77fb6d2ac416923ccd6bb03ac45f7b5cd02113e1fc`.
+Snapshot SHA-256: `3b343ae72da2b799789b62e878a1d89f08bea3fe51d87095d6de0f93b4637bcc`.
