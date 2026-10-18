@@ -1,3 +1,13 @@
+# Local $1 activation rehearsal - 2026-10-18
+
+Added a separate, generated local-only build and focused fixtures. Production
+contracts remain unchanged at $100 activation and 0.05 ETH mint. Ten Solidity and
+four Python cases pass, including the 99% deployed-LP rule and both funded claim
+streams following the NFT. No production defect or live deployment is claimed.
+See [guide](ONE_DOLLAR_REHEARSAL.md) and [evidence](../reports/one-dollar-rehearsal/VERIFICATION.md).
+README architecture is reorganized by layer and component, with source links and
+the activation flow; no backend/website runtime was changed by that documentation.
+
 # Range-policy application - 2026-10-18
 
 Timelocked range-width changes now make ordinary keeper rebalance eligible after

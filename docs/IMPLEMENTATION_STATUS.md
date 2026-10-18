@@ -45,6 +45,16 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 
 ## Evidence and its limits
 
+The separate [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) generates a new build
+outside the repository and changes the copied Entry/budget activation floors only,
+with local-chain constructor guards. Production source, $100 activation, 0.05 ETH
+mint, production transaction preparation and the website remain unchanged.
+[Rehearsal evidence](../reports/one-dollar-rehearsal/VERIFICATION.md) identifies
+the exact generated source and focused results. These are mock-venue local tests,
+not a deployed contract or qualification of real $1 Pons execution. Defects exposed
+by rehearsal must be fixed and regression-tested in production where applicable;
+the reduced test minimum must never be promoted as such a fix.
+
 The latest [range-policy verification](../reports/range-policy/VERIFICATION.md)
 binds the new stateless Strategy trigger and backend cause/eligibility fields.
 Approved width changes no longer have to wait for price movement; cooldown and

@@ -1,3 +1,24 @@
+## Local $1 rehearsal checkpoint - 2026-10-18
+
+The user authorized $1 activation for testing and requested that any real bugs
+found be fixed in production. Read [the isolated build guide](docs/ONE_DOLLAR_REHEARSAL.md)
+and [scoped evidence](reports/one-dollar-rehearsal/VERIFICATION.md). The generator
+copies sources outside the repository, changes the copied Entry/budget floors and
+adds local-chain constructor guards. Ten Solidity and four Python cases pass;
+the initial fixture's zero minimum-output mistake was corrected and preserved in
+the evidence. No production defect was found. All production source remains
+unchanged: $100 activation, 0.05 ETH mint and 1% execution loss with gas separate.
+The website and production API still use $100; no live $1 integration is supplied.
+Fix future production defects with focused regressions, without copying the test
+override into production. Central Todo and feature/evidence references are updated.
+README now separates Contracts / Backend / Frontend into component responsibility
+tables with source links and an activation flow. It distinguishes live integration
+targets from the current simulated website; no website source was changed.
+Read-only public-wallet balance/token checks ran; price/route probing failed on
+RPC HTTP errors, so no complete quote is claimed. No private key was used/saved,
+no public transaction/deployment occurred, services and paused monitor are unchanged.
+Use main and Git HEAD/origin to verify publication; preserve unrelated drafts.
+
 ## Range-policy application checkpoint - 2026-10-18
 
 Read [range policy](docs/RANGE_POLICY_UPDATES.md) and [current evidence](reports/range-policy/VERIFICATION.md).

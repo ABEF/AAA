@@ -1,0 +1,47 @@
+{
+  "exit_code": 1,
+  "seconds": 222.25,
+  "tests": {
+    "test/DollarActivation.t.sol:DollarActivationRehearsalTest": {
+      "testDollarActivationDeploysNinetyNineCentsAndSetsEligibility()": {
+        "status": "Failure",
+        "reason": "InvalidConfiguration()"
+      },
+      "testDollarBelowMinimumEntryRollsBack()": {
+        "status": "Success",
+        "reason": null
+      },
+      "testDollarCombinedConversionAndDeploymentCannotExceedOnePercent()": {
+        "status": "Success",
+        "reason": null
+      },
+      "testDollarConstructorGuardRejectsRobinhoodMainnet()": {
+        "status": "Success",
+        "reason": null
+      },
+      "testDollarDirectFloorSurvivesLowerPoolMinimum()": {
+        "status": "Success",
+        "reason": null
+      },
+      "testDollarStableValueUsesOracleAndCeilingRawAmount()": {
+        "status": "Failure",
+        "reason": "InvalidConfiguration()"
+      },
+      "testDollarTopUpKeepsSameSharedLPAndDoesNotAddMembership()": {
+        "status": "Failure",
+        "reason": "InvalidConfiguration()"
+      },
+      "testDollarTransferPreservesAccruedLPAndRoyaltyRights()": {
+        "status": "Failure",
+        "reason": "InvalidConfiguration()"
+      },
+      "testDollarWrongOwnerAndPauseStillReject()": {
+        "status": "Success",
+        "reason": null
+      }
+    }
+  },
+  "receipt_sha256": "6465c21774aca9687fe5a465c647b1be3b4d5f0fae2b5b5005db05603739e2a8",
+  "trace_sha256": "96a7e07b49f88517f28ad1d9ee6401d30ead1387d9c34a18c9669ea1df62faf9",
+  "result": "Invalid test requests set minimumOut to zero. Contract correctly rejected them before execution. Corrected the test request, asserted exact errors and added an explicit zero-minimum test. No production fix. Do not combine the initial passes with the final result."
+}

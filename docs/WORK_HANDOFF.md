@@ -5,6 +5,13 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) is separately implemented and
+verified (10 Solidity / four Python). Production $100 activation / 0.05 ETH mint rules
+are unchanged; no public transaction or website/API deployment was made. Read
+[its evidence](../reports/one-dollar-rehearsal/VERIFICATION.md) for the original
+fixture failure and successful corrected run. Real defects found in later tests
+must be fixed in production with targeted evidence; the $1 override stays isolated.
+
 The latest [range-policy path](RANGE_POLICY_UPDATES.md) is implemented. After a
 timelocked range update, ordinary keeper rebalance becomes eligible once cooldown
 passes even at a flat price. It compares current LP ticks at the recorded center,

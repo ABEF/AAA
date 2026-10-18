@@ -246,7 +246,8 @@
           "acceptance": [
             "**Robinhood Testnet:** wallet flows, website integration, keeper operations and deployment rehearsals, with actual supported services and explicit records of any mocked or unavailable dependencies.",
             "Complete actual Robinhood Testnet end-to-end operation, physical host-loss/key-rotation rehearsal and independent audit/configuration approval.",
-            "Exercise actual entry, top-ups, fee funding/claims, royalties, transfers, rebalances, live keeper signing/recovery, indexer backfill/reorgs and alerts. Record mock or unavailable dependencies; Sepolia and local Anvil supplement but do not replace Robinhood-specific qualification."
+            "Exercise actual entry, top-ups, fee funding/claims, royalties, transfers, rebalances, live keeper signing/recovery, indexer backfill/reorgs and alerts. Record mock or unavailable dependencies; Sepolia and local Anvil supplement but do not replace Robinhood-specific qualification.",
+            "Treat the local $1 variant as separate test evidence. A public testnet wallet flow still needs a reviewed deployment, services and frontend configuration; do not promote the reduced minimum into production. Any real production defect exposed by rehearsals requires a production fix, focused regression and refreshed source-bound evidence."
           ]
         },
         {
@@ -274,6 +275,13 @@
           "title": "Verify NFT economic rights at full collection size",
           "text": "Internal ownership, 1,000-NFT payouts, buyback rollback and dual-ledger invariants verified: 531 offline Solidity passes, two intentional fork setup skips; extended rights invariants completed 65,536 calls. This closes the scoped local verification task, not independent audit or production qualification.",
           "href": "reports/nft-rights-audit/VERIFICATION.md#integrated-collection-and-stateful-assertions"
+        },
+        {
+          "id": "local-dollar-rehearsal",
+          "status": "done",
+          "title": "Isolated $1 activation rehearsal",
+          "text": "A separate local-only build allows $1 gross activation with the unchanged 99% marginal-LP limit and 0.05 ETH mint price. Ten focused Solidity and four generator checks pass. Production source/API/website stay at $100; no public deployment or funds used.",
+          "href": "docs/ONE_DOLLAR_REHEARSAL.md"
         }
       ]
     },

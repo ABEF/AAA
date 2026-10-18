@@ -17,13 +17,68 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 ## Architecture overview
 
-| Layer | Responsibility | Code and documentation |
+| Layer | Owns this responsibility | Explore |
 | --- | --- | --- |
-| **1. Smart contracts** | NFT ownership, shared LP custody, per-NFT shares, funded reward accounting and authorization. Entry routes contributions into the Vault; separate ledgers account for LP fees and royalties. | [Vault source](src/ZZZVault.sol), [Activation Entry](docs/ACTIVATION_ENTRY.md), [economics](docs/ECONOMICS.md) |
-| **2. Backend and operations** | The keeper coordinates authorized LP maintenance. The schema-2 API checks canonical lifecycle before serving ownership/balances and can combine complete pinned same-chain predecessor LP/royalty claim history. An opt-in backend prepares complete activation/top-up transactions with marginal LP measurement and separate gas. Services still need hosting and operating qualification. | [Keeper](keeper/monitor.py), [indexer](indexer/monitor.py), [read API](docs/FRONTEND_API.md), [lifecycle boundary](docs/FRONTEND_LIFECYCLE.md), [lifetime claims](docs/FRONTEND_LINEAGE.md), [activation preparation](docs/ACTIVATION_PREPARATION.md) |
-| **3. Frontend** | The separate website presents minting, activation, portfolios and claims. Live wallet transactions and data integration remain pending. | [Website repository](https://github.com/ABEF/AAA-website), [integration tasks](TODO.md#frontend) |
+| **1. Smart contracts** | Enforce ownership, LP custody, accounting and permissions on-chain. | [Contract components](#contract-components) |
+| **2. Backend and operations** | Read confirmed state, prepare unsigned user transactions and operate authorized maintenance. | [Services and data flow](#backend-components) |
+| **3. Frontend** | Explain the product and present NFT positions and wallet actions. Currently a simulation. | [Website components](#frontend-components) |
 
-Many NFTs share one physical Uniswap v4 LP position per supported pool/strategy, with independent NFT share accounts. Maintenance operates on that shared position, without looping through every holder. The initial collection is intended to use one pool. The Vault permits **four permanently admitted/historical custody buckets**, including unfunded reservations and imports; an existing bucket's migration or return reuses its slot. This bounds settlement work, not the number of NFTs. See the [architecture and capacity boundary](docs/ARCHITECTURE.md).
+<a id="contract-components"></a>
+
+### 1. Smart contracts
+
+The main activation path separates contribution routing, share accounting and venue execution:
+
+```mermaid
+flowchart LR
+    Entry[Activation Entry] --> Vault[Vault: NFT share accounts]
+    Vault --> Manager[Liquidity Manager]
+    Manager --> Pool[Uniswap v4: shared LP]
+```
+
+| Component group | Responsibility and relationship | Source / design |
+| --- | --- | --- |
+| **NFT identity and artwork** | Records the current owner and immutable revealed traits. Metadata reads the NFT's current attached LP value to select its evolution. | [NFT](src/ZZZNFT.sol), [metadata](src/ZZZNFTMetadata.sol), [trait/reveal design](docs/NFT_METADATA.md) |
+| **Activation and admission** | Entry authenticates the owner, checks admitted assets/routes, converts the contribution and binds its original value to the exact Vault call. The registry defines approved pools and policies. | [Entry](src/ZZZActivationEntry.sol), [asset policies](src/ZZZActivationAssets.sol), [pool registry](src/ZZZPoolRegistry.sol) |
+| **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
+| **LP revenue accounting** | Creator inboxes and venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol), [creator intake](docs/EXTERNAL_REWARDS.md) |
+| **Royalties and claims** | RoyaltyRewards accounts for received marketplace royalties separately. Current owners claim through either ledger or the bounded ClaimRouter; unclaimed balances follow the NFT. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [claim flow](docs/CLAIM_ROUTER.md) |
+| **Valuation and maintenance** | Oracle supplies guarded values; Strategy defines ranges and eligibility. Keeper calls execute through Vault, Compounder or Buyback within on-chain limits. | [Oracle](src/ZZZOracle.sol), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
+| **Governance and permissions** | AccessController binds modules and enforces timelocked configuration, guardian pause and keeper authorization. Sealing fixes module bindings; constrained configuration remains available. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
+| **Recovery and migration** | Migration coordinates approved LP parking/moves. A separate canonical handoff coordinates ownership, ledgers and backing when replacing a whole deployment. Future-chain completion remains open. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
+
+Many NFTs share **one physical LP per pool/strategy**, with independent share accounts. Maintenance operates on the shared position. The initial collection is intended to use one pool; the Vault allows four permanently admitted/historical custody buckets, including reservations and imports. An existing bucket's migration or return reuses its slot. See the [detailed interactions](docs/ARCHITECTURE.md) and [complete module/helper map](docs/COMPONENT_STATUS.md).
+
+<a id="backend-components"></a>
+
+### 2. Backend and operations
+
+Read services serve confirmed chain state. Transaction preparation returns an unsigned request for the user's wallet. The keeper uses a separate operator signer for authorized maintenance; it does not sign user activations.
+
+| Service | Responsibility and relationship | Code / operating reference |
+| --- | --- | --- |
+| **Event indexer** | Reads confirmed contract logs into SQLite, detects bounded reorgs and supplies replay history for ownership and claims. | [Indexer](indexer/monitor.py), [event schema](indexer/event_schema.json), [history requirements](docs/FRONTEND_HISTORY.md) |
+| **Read API** | Verifies deployment/lifecycle at a confirmed block, then reads current owners, LP values and funded balances. Optional pinned predecessor replay combines lifetime LP/royalty claims across same-chain handoffs. | [Service](frontend_api/service.py), [lifecycle](frontend_api/lifecycle.py), [lineage replay](frontend_api/lineage.py), [API contract](docs/FRONTEND_API.md) |
+| **Activation preparation** | Checks asset/route/feed bindings, simulates the complete Entry call, measures new LP, and returns exact unsigned calldata and separate gas. Missing approval produces an approval step before re-quoting. | [Preparation](frontend_api/activation.py), [opt-in endpoint](frontend_api/activation_server.py), [integration sequence](docs/ACTIVATION_PREPARATION.md) |
+| **Keeper** | Discovers shared buckets, checks eligibility, simulates and submits authorized upkeep. Persists intents, receipts and budgets for recovery; optional metadata watching uses the same bounded transaction path. | [Monitor](keeper/monitor.py), [execution](keeper/ops.py), [recovery runbook](docs/KEEPER_RECOVERY.md) |
+| **Revenue measurement** | Calculates proposed active-liquidity shares for creator-payment reconciliation. Measurements do not collect money or create claimable rewards. | [Measurement tool](zzz_ops/revenue_share.py), [agreement and calculation model](docs/REVENUE_SHARE.md) |
+
+These services require qualified RPC/archive providers, feeds, configuration and operating procedures. Hosting and live integration remain open. The API does not hold user keys; the contracts still enforce transaction permissions and accounting.
+
+<a id="frontend-components"></a>
+
+### 3. Frontend
+
+The website is maintained in [AAA-website](https://github.com/ABEF/AAA-website). Its current components are:
+
+| Component | Current responsibility | Website source |
+| --- | --- | --- |
+| **Pages and interactions** | Navigation, collection/portfolio cards, dialogs, contribution and claim interfaces. | [app.js](https://github.com/ABEF/AAA-website/blob/main/app.js) |
+| **Demo data and accounting** | Example NFTs, balances, contribution events and simulated claims. This model must be replaced by confirmed API data for live use. | [domain.js](https://github.com/ABEF/AAA-website/blob/main/domain.js) |
+| **Wallet connection** | Connects a browser wallet and handles account/chain changes. Live transaction validation, signing requests and receipt handling remain to be integrated. | [wallet.js](https://github.com/ABEF/AAA-website/blob/main/wallet.js) |
+| **Artwork catalogue** | Resolves palette, pattern, rarity and evolution assets for display. On-chain metadata remains authoritative for a real NFT. | [artworks.js](https://github.com/ABEF/AAA-website/blob/main/artworks.js), [palette-system.js](https://github.com/ABEF/AAA-website/blob/main/palette-system.js) |
+
+The target live flow is **website -> read/preparation API -> user wallet confirmation -> contracts -> confirmed receipt/indexer/API refresh**. The current website still simulates minting, LP contributions and claims; see the [frontend integration tasks](TODO.md#frontend).
 
 ## NFT lifecycle
 
@@ -109,5 +164,7 @@ python3 scripts/sync-project-todo.py --check
 ```
 
 The verifier runs the Python/source checks, normal build/size checks and offline Solidity tests. Solidity is pinned to **0.8.26/Cancun** with the existing via-IR optimizer profile. Explicit fork and static-analysis commands are in the development guide. Deployment scaffolding is local-only; these commands do not deploy public contracts.
+
+For small-value experiments, the separate [local $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md) generates an isolated test build. It preserves the 1% execution-loss limit and 0.05 ETH mint price; production activation remains $100. It does not enable live wallet transactions.
 
 When work progresses, update the [task ledger](docs/project-todo.json) and its linked evidence using the [Todo maintenance procedure](docs/TODO_WORKFLOW.md). Keep unfinished local candidates, published code, test evidence and deployment status distinct.

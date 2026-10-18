@@ -3,6 +3,11 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-18.
 
+The [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) is a separate generated test
+artifact with mocked venue/services and local-chain guards. It does not change
+the production $100 minimum or this approval decision. Its evidence cannot stand
+in for the production binary, actual route/gas qualification or live operations.
+
 Development tasks, progress and detailed acceptance criteria have one home:
 the [central Todo](../TODO.md), generated from [its ledger](project-todo.json).
 The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes source and

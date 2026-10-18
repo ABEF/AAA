@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 17 In progress | 9 Implemented locally**
+**13 To do | 17 In progress | 10 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -226,6 +226,7 @@ Three required testing layers, with source-bound evidence.
   - **Robinhood Testnet:** wallet flows, website integration, keeper operations and deployment rehearsals, with actual supported services and explicit records of any mocked or unavailable dependencies.
   - Complete actual Robinhood Testnet end-to-end operation, physical host-loss/key-rotation rehearsal and independent audit/configuration approval.
   - Exercise actual entry, top-ups, fee funding/claims, royalties, transfers, rebalances, live keeper signing/recovery, indexer backfill/reorgs and alerts. Record mock or unavailable dependencies; Sepolia and local Anvil supplement but do not replace Robinhood-specific qualification.
+  - Treat the local $1 variant as separate test evidence. A public testnet wallet flow still needs a reviewed deployment, services and frontend configuration; do not promote the reduced minimum into production. Any real production defect exposed by rehearsals requires a production fix, focused regression and refreshed source-bound evidence.
 
   </details>
 
@@ -268,6 +269,10 @@ Three required testing layers, with source-bound evidence.
 <a id="task-economic-rights-audit"></a>
 
 - [x] **[Verify NFT economic rights at full collection size](reports/nft-rights-audit/VERIFICATION.md#integrated-collection-and-stateful-assertions)** - Implemented. Internal ownership, 1,000-NFT payouts, buyback rollback and dual-ledger invariants verified: 531 offline Solidity passes, two intentional fork setup skips; extended rights invariants completed 65,536 calls. This closes the scoped local verification task, not independent audit or production qualification.
+
+<a id="task-local-dollar-rehearsal"></a>
+
+- [x] **[Isolated $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md)** - Implemented. A separate local-only build allows $1 gross activation with the unchanged 99% marginal-LP limit and 0.05 ETH mint price. Ten focused Solidity and four generator checks pass. Production source/API/website stay at $100; no public deployment or funds used.
 
 
 ## Security & audit
@@ -487,4 +492,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `dff25d058a95264847407c0b8fbee0d40e59b0868f10a3d13c06a6b73b0162fe`.
+Snapshot SHA-256: `d91380dd0b8e3345e7429b77fb6d2ac416923ccd6bb03ac45f7b5cd02113e1fc`.
