@@ -246,7 +246,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-mainnet-fork"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates.
+- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. Historical selected-pool cases pass for their recorded sources and blocks. The current offline regression intentionally skips fork setup. Qualify the release source, production feeds, full input routes and real services; synthetic calibration and mock authorities do not close those gates.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -258,7 +258,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-verification"></a>
 
-- [x] **[Local contract and integration tests](reports/nft-rights-audit/VERIFICATION.md)** - Implemented. Minting, activation, reward accounting, royalties, transfers and security cases have local checks. Each new change still needs fresh source-bound evidence.
+- [x] **[Local contract and integration tests](reports/canonical-handoff/VERIFICATION.md)** - Implemented. Current source-bound offline regression and same-chain handoff checks pass, with matching prior evidence reused. This does not include a new selected-market fork run or operating rehearsal; changed dependencies require affected checks again.
 
 <a id="task-economic-rights-audit"></a>
 
@@ -409,7 +409,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-keeper-guardrails"></a>
 
-- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery, preparation and strict canonical lifecycle guards are implemented locally. Locked canonical states stop all new submissions while receipt recovery continues. The existing isolated staging deployment is unchanged; exact controller/fixture compatibility, RPC/fees, alerts and operating review remain open.
+- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery, preparation and strict canonical lifecycle guards are implemented in the published candidate. Locked canonical states stop all new submissions while receipt recovery continues. Existing staging is unchanged; exact deployment compatibility, RPC/fees, alerts and operating review remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -477,4 +477,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ca6ddfc9c94d54526098e7e9189312c6290a602e362edf589367ff5b3064f707`.
+Snapshot SHA-256: `d0310d38f392af042f69002281eb3cd00428a90ff0e29b813ce76701b660d017`.

@@ -218,14 +218,14 @@
           "id": "local-verification",
           "status": "done",
           "title": "Local contract and integration tests",
-          "text": "Minting, activation, reward accounting, royalties, transfers and security cases have local checks. Each new change still needs fresh source-bound evidence.",
-          "href": "reports/nft-rights-audit/VERIFICATION.md"
+          "text": "Current source-bound offline regression and same-chain handoff checks pass, with matching prior evidence reused. This does not include a new selected-market fork run or operating rehearsal; changed dependencies require affected checks again.",
+          "href": "reports/canonical-handoff/VERIFICATION.md"
         },
         {
           "id": "mainnet-fork",
           "status": "progress",
           "title": "Robinhood mainnet-fork qualification",
-          "text": "Actual selected-pool cases pass. Qualify production price feeds, full activation routes and real-service assumptions; synthetic calibration and mock authorities do not close those gates.",
+          "text": "Historical selected-pool cases pass for their recorded sources and blocks. The current offline regression intentionally skips fork setup. Qualify the release source, production feeds, full input routes and real services; synthetic calibration and mock authorities do not close those gates.",
           "href": "test/NativePoolFork.t.sol",
           "acceptance": [
             "**Robinhood mainnet fork:** compatibility with the actual ZZZ pool, hook and deployed dependencies. The existing separate hookless-pool tests do not close this gate.",
@@ -408,7 +408,7 @@
           "id": "keeper-guardrails",
           "status": "progress",
           "title": "Harden keeper recovery and monitoring",
-          "text": "Recovery, preparation and strict canonical lifecycle guards are implemented locally. Locked canonical states stop all new submissions while receipt recovery continues. The existing isolated staging deployment is unchanged; exact controller/fixture compatibility, RPC/fees, alerts and operating review remain open.",
+          "text": "Recovery, preparation and strict canonical lifecycle guards are implemented in the published candidate. Locked canonical states stop all new submissions while receipt recovery continues. Existing staging is unchanged; exact deployment compatibility, RPC/fees, alerts and operating review remain open.",
           "href": "docs/KEEPER_RECOVERY.md",
           "acceptance": [
             "Stage keeper keystore isolation, nonce/receipt recovery, RPC failover, budgets, indexer backfill/reorgs, alerts and Unix state locking. The supplied systemd unit defaults to dry run.",
