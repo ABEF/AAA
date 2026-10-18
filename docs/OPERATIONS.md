@@ -1,5 +1,7 @@
 # Development and operating procedures
 
+Start with the [operator manual](OPERATOR_MANUAL.md) for management decisions, exact calls, stop/restart and recovery. Keep it synchronized under [the maintenance rules](TODO_WORKFLOW.md).
+
 > Updated 2026-10-16: undeployed candidate; $100 original gross source activation requires at least 99% marginal deployed LP, gas separate. Immutable atomic Entry and paused governance-approved custody parking are implemented candidates. LP allocation remains 80/10/5/5, collective membership equal, supply/rarity quotas 1,000 and 600/300/100, marketplace royalties a separate 5% request. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md), [economics](ECONOMICS.md) and [NFT rules](NFT_METADATA.md). Historical receipts retain their source scope; actual services/routes, staging and independent audit remain open.
 
 **No mainnet launch or funded deployment is approved.** The [earlier readiness review](../reports/PRODUCTION_READINESS.md) includes real Uniswap dependency fork checks and internal hardening. It does not establish a production bridge, approved payment policy, authentic deployment configuration or independent audit.

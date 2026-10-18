@@ -41,7 +41,8 @@ def handler(projection: Projection) -> type[BaseHTTPRequestHandler]:
             match = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})', self.path)
             wallet = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/nfts', self.path)
             protocol = self.path == '/v1/protocol'
-            if not match and not wallet and not protocol:
+            readiness = self.path == '/v1/mint-readiness'
+            if not match and not wallet and not protocol and not readiness:
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             try:
@@ -50,7 +51,7 @@ def handler(projection: Projection) -> type[BaseHTTPRequestHandler]:
                 self._json(400, {'error': 'invalid_token_id' if match else 'invalid_wallet_address'})
                 return
             try:
-                result = projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
+                result = projection.mint_readiness() if readiness else projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
             except UnknownNFT:
                 self._json(404, {'error': 'nft_not_minted'})
             except (RpcError, ValueError, KeyError, TypeError, OverflowError):
@@ -90,7 +91,8 @@ def main() -> None:
     if not 1024 <= args.port <= 65535:
         parser.error('port must be between 1024 and 65535')
     config = json.loads(Path(args.config).read_text(encoding='utf-8'))
-    projection = Projection(config)
+    from frontend_api.worker import WorkerClient
+    projection = WorkerClient(config)
     with ReadServer(('127.0.0.1', args.port), handler(projection)) as server:
         print(json.dumps({'event': 'frontend_read_api_started', 'port': args.port,
                           'chain_id': projection.chain}), flush=True)

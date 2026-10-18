@@ -253,6 +253,7 @@ class ConfirmedHistoryTests(unittest.TestCase):
                         writer.execute('INSERT INTO logs VALUES(?,?,?,?,?,?,?,?,?)',
                             (31337, 80, good['blockHash'], good['transactionHash'], 0, addr(4), None, None, json.dumps(good)))
                 return cursor
+            def set_progress_handler(inner, callback, count): inner.db.set_progress_handler(callback, count)
             def rollback(inner): inner.db.rollback()
             def close(inner): inner.db.close()
         with patch('frontend_api.history.sqlite3.connect', side_effect=lambda *a, **k: SnapshotConnection(connect(*a, **k))):

@@ -17,6 +17,7 @@ from frontend_api.lifecycle import read_lifecycle
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import integer
+from zzz_ops.work_budget import BudgetedRPC, bounded_request, expire_at
 
 ZERO = '0x' + '0' * 40
 ROLES = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router', 'handoff', 'vault_canonical')
@@ -131,7 +132,8 @@ class Projection:
         if not isinstance(urls, list) or not 1 <= len(urls) <= 4 or any(not isinstance(x, str) for x in urls):
             raise ValueError('One to four fixed RPC URLs are required')
         validated_rpc = Rpc(urls, self.chain, timeout=5, retries=2)
-        self.rpc = rpc or validated_rpc
+        chosen_rpc = rpc or validated_rpc
+        self.rpc = chosen_rpc if isinstance(chosen_rpc, BudgetedRPC) else BudgetedRPC(chosen_rpc)
         self.clock = clock
         _keys(config['contracts'], set(ROLES), 'contracts')
         self.contracts = {}
@@ -241,6 +243,12 @@ class Projection:
             raise ProjectionError('Canonical deployment is locked; use the protocol status endpoint')
         return lifecycle
 
+    @bounded_request
+    def mint_readiness(self) -> dict[str, Any]:
+        from frontend_api.mint_readiness import inspect
+        return inspect(self)
+
+    @bounded_request
     def protocol(self) -> dict[str, Any]:
         """Lifecycle remains readable without touching frozen reward ledgers."""
         header, head, block = self._snapshot()
@@ -295,6 +303,7 @@ class Projection:
         if header['number'] != safe:
             raise ProjectionError('Confirmed header has the wrong block number')
         self._fresh(header)
+        expire_at(header['timestamp'] + self.max_age, self.clock)
         block = {'blockHash': header['hash'], 'requireCanonical': True}
         return header, head, block
 
@@ -350,6 +359,7 @@ class Projection:
         return {'available': True, 'assets': assets, 'scope': 'All-time NFT claims, including LP and royalties paid to every past/current owner.',
                 'provenance': dict(history.provenance)}
 
+    @bounded_request
     def nft(self, identifier: Any) -> dict[str, Any]:
         nft_id = token_id(identifier)
         header, head, block = self._snapshot()
@@ -457,6 +467,7 @@ class Projection:
         self._finish(header)
         return result
 
+    @bounded_request
     def wallet(self, wallet_address: Any) -> dict[str, Any]:
         wallet = address(wallet_address)
         if self.history is None:

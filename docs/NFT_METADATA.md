@@ -41,3 +41,12 @@ marking actual current LP amounts. Operations-disabled pools may retain honest
 valuation. Divergent spot/stale or unavailable dependencies return an unavailable
 mark; ownership, activated royalty eligibility and claims persist. See
 [dynamic liquidity](DYNAMIC_LIQUIDITY.md) and its scoped verification.
+
+## Operator reveal-drain policy
+
+See [the operator manual](OPERATOR_MANUAL.md#mint-and-metadata). Qualify/fund and
+monitor the original randomness service; for planned collection replacement stop
+new mints through the supported lifecycle control and finalize all existing draws.
+No request carry, reroll, admin trait choice or post-seal coordinator switch exists.
+The confirmed mint-readiness endpoint is an observation, not provider/recovery
+qualification. A permanently unanswered request remains a replacement blocker.

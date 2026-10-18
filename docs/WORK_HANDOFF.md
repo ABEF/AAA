@@ -5,6 +5,17 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The October 19 continuation adds [the operator manual](OPERATOR_MANUAL.md) with
+mandatory same-change maintenance in repository instructions/Todo workflow, API
+request-wide work limits and supervised workers, plus confirmed mint readiness.
+Read [scoped verification](../reports/api-work-limits/VERIFICATION.md) for results
+and source bindings. Solidity is unchanged; do not repeat unchanged suites.
+Randomness policy is qualified/funded service plus draining original requests
+before replacement; no reroll/carry. Keep the 3% cap per operation only. Production,
+provider/escrow/hosting qualification remain open; main publication is established
+by Git. Website/server/paused monitor and unrelated drafts remain unchanged.
+
+
 The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
 was completed October 19 against 13 commits through `485a089`. No production
 code changed. Existing build/source hashes matched; unchanged suites were not

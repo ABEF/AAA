@@ -1,0 +1,114 @@
+======================================================================
+ERROR: test_host_framing_media_and_size (tests_python.test_frontend_activation_http.ActivationHTTPTests.test_host_framing_media_and_size) (headers={'Content-Type': 'application/json', 'Content-Length': '20000'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_activation_http.py", line 47, in test_host_framing_media_and_size
+    with self.subTest(headers=headers):self.assertEqual(self.request('{}',headers)[0],status)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_activation_http.py", line 29, in request
+    response=c.getresponse();result=response.status,json.loads(response.read()),dict(response.getheaders());c.close()
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 1478, in getresponse
+    response.begin()
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 343, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 304, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionAbortedError: [WinError 10053] Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte
+
+======================================================================
+ERROR: test_final_freshness_boundary_and_clock_rollback (tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback) (final_time=1110)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 402, in test_final_freshness_boundary_and_clock_rollback
+    self.assertEqual(self.read()['provenance']['block_timestamp'], 990)
+                     ^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 147, in read
+    return self.projection.nft(str(self.rpc.nft_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 360, in nft
+    header, head, block = self._snapshot()
+                          ^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 301, in _snapshot
+    expire_at(header['timestamp'] + self.max_age, self.clock)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 67, in expire_at
+    budget.expire_at(expiry, clock)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 42, in expire_at
+    raise WorkLimit('snapshot_expired')
+zzz_ops.errors.WorkLimit: Request work limit: snapshot_expired
+
+======================================================================
+ERROR: test_final_freshness_boundary_and_clock_rollback (tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback) (final_time=959)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 26, in <genexpr>
+    if any(clock() >= expiry for expiry, clock in self.expiries):
+           ^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 400, in <lambda>
+    self.projection.clock = lambda: next(times)
+                                    ^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 405, in test_final_freshness_boundary_and_clock_rollback
+    self.read()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 147, in read
+    return self.projection.nft(str(self.rpc.nft_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 360, in nft
+    header, head, block = self._snapshot()
+                          ^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 301, in _snapshot
+    expire_at(header['timestamp'] + self.max_age, self.clock)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 67, in expire_at
+    budget.expire_at(expiry, clock)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 47, in expire_at
+    self.check()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 26, in check
+    if any(clock() >= expiry for expiry, clock in self.expiries):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: generator raised StopIteration
+
+======================================================================
+ERROR: test_snapshot_expiring_during_final_rpc_is_not_returned (tests_python.test_frontend_api.FrontendProjectionTests.test_snapshot_expiring_during_final_rpc_is_not_returned)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 393, in test_snapshot_expiring_during_final_rpc_is_not_returned
+    self.read()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 147, in read
+    return self.projection.nft(str(self.rpc.nft_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 462, in nft
+    self._finish(header)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 319, in _finish
+    if self.rpc.call('eth_chainId', []) != self.chain:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 105, in call
+    checkpoint()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 55, in checkpoint
+    return budget.check() if budget else None
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 27, in check
+    raise WorkLimit('snapshot_expired')
+zzz_ops.errors.WorkLimit: Request work limit: snapshot_expired
+
+----------------------------------------------------------------------
+Ran 140 tests in 49.105s
+
+FAILED (errors=4)

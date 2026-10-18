@@ -1,3 +1,29 @@
+## Operator procedures and maintenance - 2026-10-19
+
+Read [the operator manual](docs/OPERATOR_MANUAL.md) before changing management
+behavior. The user requires it to stay complete: every operator-facing function,
+permission, parameter/default, lifecycle, service command, failure or recovery
+change must update its applicable procedure in the same change, or explicitly
+record why no operator procedure changes. Include authority, exact call/config,
+preconditions, verification, stop/restart, rollback and irreversible limits.
+Reconcile central Todo and feature/evidence documentation; never create a parallel
+status checklist in the manual. Validate links and exact selectors/semantics.
+
+The user selected reliable qualified/funded randomness plus stopping new minting
+and draining original requests before whole-collection replacement. Retain the
+fully-revealed handoff gate; no pending-request carry, reroll or admin-selected
+traits. Unfulfilled VRF can still block replacement, not ordinary LP pool moves.
+Keep only the existing 3% per-operation maintenance cap; no cumulative breaker.
+Immediate governance remains accepted. Service/provider qualification and escrow
+compatibility remain open. The manual distinguishes configure/pause/park/resume
+from immutable implementations and unsupported future-chain recovery.
+
+Request-wide API budgets, supervised read-only HTTP workers and a confirmed
+mint-readiness endpoint are added in this workstream. See current scoped evidence
+in reports/api-work-limits/VERIFICATION.md; these are not live hosting/VRF approval.
+No Solidity, website, server, signer or paused-monitor change. Preserve unrelated
+local drafts; use main and verify Git for publication.
+
 ## Review of October 18 changes - completed 2026-10-19
 
 Read [the daily security review](reports/daily-security-20261018/REVIEW.md).

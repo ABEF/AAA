@@ -9,6 +9,7 @@ from frontend_api.server import ReadServer, handler
 from frontend_api.service import Projection, ProjectionError, UnknownNFT, ZERO, token_id
 from zzz_ops.abi import calldata, keccak256
 from zzz_ops.rpc import RpcError
+from zzz_ops.errors import WorkLimit
 
 
 def addr(n):
@@ -389,19 +390,21 @@ class FrontendProjectionTests(unittest.TestCase):
                     now[0] = 1111  # 121 seconds since the selected block.
             return result
         self.rpc.call = delayed_final_chain
-        with self.assertRaisesRegex(ProjectionError, 'timestamp'):
+        with self.assertRaisesRegex(WorkLimit, 'snapshot_expired'):
             self.read()
         self.assertEqual(chain_reads, 2)
 
     def test_final_freshness_boundary_and_clock_rollback(self):
-        for final_time, succeeds in ((1110, True), (959, False)):
+        # Exactly at expiry there is no time left to safely start more work.
+        for final_time, succeeds in ((1109, True), (1110, False), (959, False)):
             with self.subTest(final_time=final_time):
                 times = iter((1000, final_time))
-                self.projection.clock = lambda: next(times)
+                self.projection.clock = lambda: next(times, final_time)
                 if succeeds:
                     self.assertEqual(self.read()['provenance']['block_timestamp'], 990)
                 else:
-                    with self.assertRaisesRegex(ProjectionError, 'timestamp'):
+                    error = WorkLimit if final_time == 1110 else ProjectionError
+                    with self.assertRaises(error):
                         self.read()
 
     def test_retained_block_with_reduced_confirmation_depth_is_rejected(self):

@@ -16,6 +16,7 @@ from typing import Any
 
 from zzz_ops.abi import address, decode_words, keccak256
 from zzz_ops.rpc import RpcError
+from zzz_ops.work_budget import checkpoint, WorkLimit
 from zzz_ops.state import integer
 
 ZERO = '0x' + '0' * 40
@@ -100,6 +101,13 @@ class History:
             try:
                 connection.execute('PRAGMA query_only=ON')
                 connection.execute('PRAGMA trusted_schema=OFF')
+                def interrupted():
+                    try:
+                        checkpoint()
+                        return 0
+                    except WorkLimit:
+                        return 1
+                connection.set_progress_handler(interrupted, 1000)
                 connection.execute('BEGIN')
                 result = self._read(connection, block_number, target_hash, block_timestamp,
                                     minted_count, lp_assets, royalty_assets)
@@ -145,6 +153,7 @@ class History:
         examined = 0
         claim_events = 0
         for number, block_hash, transaction_hash, log_index, emitter, raw, stored_hash in rows:
+            checkpoint()
             examined += 1
             if examined > self.max_events:
                 raise HistoryError('History event bound exceeded; no truncated projection is served')

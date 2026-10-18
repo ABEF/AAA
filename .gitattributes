@@ -16,3 +16,6 @@ reports/nft-rights-audit/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-e
 # Preserve the exact migration/preparation receipts and native diagnostics.
 reports/migration-safety/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 reports/canonical-preparation/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact API test receipts and native Windows diagnostic bytes.
+reports/api-work-limits/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

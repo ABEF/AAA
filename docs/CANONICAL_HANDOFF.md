@@ -61,7 +61,7 @@ does not authorize a finality, backing or source-retirement override.
 | Settle cutoffs | Phase 8 keeps all rights frozen. Six ordered, permissionless `settle(slot)` calls finalize only the captured amounts; retries cannot repeat a domain. Only completion changes the source to exportable phase 1. | Remains inert; no import or funding can proceed yet. |
 | Export/import | `exportRows` commits complete settled domains in batches of at most eight. | `importRows` verifies each exact source record and builds the same rolling roots. Imported ownership and claims remain disabled. |
 | Fund | Each one-use leg sends the exact captured asset amount to its fixed peer module. Principal and each reward/reserve class stay separate. | Measured receipt plus module acceptance; prefunds cannot replace authenticated funding. |
-| Commit | Timelock checks all legs and roots, permanently retires the source. | In the same transaction, validates complete records/backing and activates once. Any failure rolls back both transitions. |
+| Commit | Governance checks all legs and roots, permanently retires the source. | In the same transaction, validates complete records/backing and activates once. Any failure rolls back both transitions. |
 
 Exports include zero rows and the complete finite domain, rather than a relay's
 chosen Merkle snapshot. Existing IDs, mint ordinals, owners, traits, quota/draw
@@ -127,3 +127,14 @@ callbacks. An escrow hardcoded to the old collection may be unable to release
 the replacement NFT even on the same chain. Contract-owner compatibility and
 marketplace escrow cutover therefore require review before approving a handoff;
 preserving an address alone does not prove recoverable ownership.
+
+## Operator policy for pending reveals
+
+The selected policy is qualified/funded provider operations plus stopping new
+minting and finalizing every existing draw before freeze. Use [the operator
+manual](OPERATOR_MANUAL.md#whole-collection-replacement) and the read-only
+`/v1/mint-readiness` observation. No pending-request carry/reroll path is selected.
+An unanswered original request still blocks this replacement; postpone/cancel
+preparation and resolve it with the original provider. Ordinary LP pool migration
+has no reveal-completion requirement. Escrow compatibility requires separate
+rehearsal before freeze; no owner rewrite is authorized.

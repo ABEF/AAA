@@ -70,8 +70,10 @@ def main():
     args=parser.parse_args()
     if not 1024<=args.port<=65535:parser.error('port must be between 1024 and 65535')
     try:
-        p=Projection(json.loads(Path(args.config).read_text(encoding='utf-8')))
-        preparer=ActivationTransactions(p,json.loads(Path(args.activation_config).read_text(encoding='utf-8')))
+        from frontend_api.worker import WorkerClient
+        p=WorkerClient(json.loads(Path(args.config).read_text(encoding='utf-8')),
+                       json.loads(Path(args.activation_config).read_text(encoding='utf-8')))
+        preparer=p
     except Exception:parser.exit(1,'Invalid reviewed deployment/activation configuration.\n')
     with ReadServer(('127.0.0.1',args.port),handler(p,preparer)) as server:
         print(json.dumps({'event':'activation_preparation_started','port':args.port,'chain_id':p.chain}),flush=True)

@@ -196,3 +196,27 @@ value downgrades, unavailability without loss of claims, strict deployment and
 asset checks, reorg rejection, unsupported EIP-1898, malformed ABI/input, and real
 loopback HTTP error/no-cache behavior. They are offline integration evidence,
 not a deployment, live-chain service rehearsal or independent audit.
+
+## Request limits and mint-readiness observation
+
+The read and activation command-line HTTP servers use supervised spawned read-only
+request workers. Shared projection/preparation work has a 25-second monotonic
+budget, 1,024 logical RPC calls and 2,048 physical RPC POSTs (including retry and
+chain-check work). Snapshot/quote expiry shortens the deadline; nested history,
+lineage and trace work cannot reset it. SQLite queries use a progress callback.
+The parent stops a request at 30 seconds including startup, with terminate/kill
+cleanup waits of up to one second each; an unreaped worker blocks further work.
+Direct library users share cooperative limits but do not get the process supervisor
+unless they use WorkerClient. DNS/body stalls require that supervisor.
+
+Timeouts/work exhaustion return unavailable, never partial history or an expired
+transaction. Logs contain only sanitized outcome/elapsed fields. Public ingress,
+queue/rate/connection limits and actual Linux/RPC operating qualification remain
+required; these local controls are not hosted-service approval.
+
+`GET /v1/mint-readiness` returns a confirmed consistent mint/reveal inventory and
+oldest unfinished request/epoch (awaiting randomness or ordered finalization).
+The reveal condition alone does not approve handoff. Provider funding/liveness,
+pending duration and other handoff requirements remain explicitly unverified.
+It performs no signing or finalization and deploys no watcher. See [the operator
+procedure](OPERATOR_MANUAL.md#mint-and-metadata) and [evidence](../reports/api-work-limits/VERIFICATION.md).

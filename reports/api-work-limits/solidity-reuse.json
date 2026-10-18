@@ -1,0 +1,475 @@
+{
+  "source": "reports/daily-security-20261018/source-binding-check.json",
+  "checked": 78,
+  "production_sources": 39,
+  "bindings": [
+    {
+      "path": "node_modules/@openzeppelin/contracts/access/AccessControl.sol",
+      "expected": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "actual": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/access/IAccessControl.sol",
+      "expected": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "actual": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/governance/TimelockController.sol",
+      "expected": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "actual": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "expected": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "actual": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+      "expected": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "actual": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "expected": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "actual": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol",
+      "expected": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "actual": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol",
+      "expected": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "actual": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "expected": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "actual": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "expected": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "actual": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "expected": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "actual": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
+      "expected": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "actual": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Address.sol",
+      "expected": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "actual": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "expected": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "actual": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Errors.sol",
+      "expected": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "actual": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "expected": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "actual": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "expected": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "actual": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "expected": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "actual": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "expected": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "actual": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "expected": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "actual": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "expected": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "actual": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZAccessController.sol",
+      "expected": "c1fd0c4268ddad685c88df6c89266acf0d9c446a2c082feb2545fa6129bde069",
+      "actual": "c1fd0c4268ddad685c88df6c89266acf0d9c446a2c082feb2545fa6129bde069",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "expected": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+      "actual": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "expected": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "actual": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "expected": "9359e0ad3dbf18ef7fb5f52cad5f2329c70e5c7a048b86fd2d0984f55e2f838d",
+      "actual": "9359e0ad3dbf18ef7fb5f52cad5f2329c70e5c7a048b86fd2d0984f55e2f838d",
+      "matches": true
+    },
+    {
+      "path": "src/base/ZZZCanonicalLedger.sol",
+      "expected": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+      "actual": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZ.sol",
+      "expected": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+      "actual": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZCanonical.sol",
+      "expected": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "actual": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "expected": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "actual": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "expected": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+      "actual": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "expected": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "actual": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "expected": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "actual": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "matches": true
+    },
+    {
+      "path": "src/base/ZZZModule.sol",
+      "expected": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "actual": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "expected": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+      "actual": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZBridgeAdapter.sol",
+      "expected": "bea3ce35351c5f3fb58bbfe9a3ceb28b29bb6fb280f3895c36f0b371b2771088",
+      "actual": "bea3ce35351c5f3fb58bbfe9a3ceb28b29bb6fb280f3895c36f0b371b2771088",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/BridgeAssets.sol",
+      "expected": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "actual": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZBridgeRouter.sol",
+      "expected": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "actual": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "expected": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "actual": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "expected": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "actual": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "expected": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "actual": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "expected": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+      "actual": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRewardReceiver.sol",
+      "expected": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+      "actual": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRewardReceiverFactory.sol",
+      "expected": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+      "actual": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "expected": "3e65cc82dcb3095f7160f730a5e2c293d4349548f09405da6718fa46d4f6b261",
+      "actual": "3e65cc82dcb3095f7160f730a5e2c293d4349548f09405da6718fa46d4f6b261",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+      "expected": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "actual": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+      "expected": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "actual": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol",
+      "expected": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "actual": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+      "expected": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "actual": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol",
+      "expected": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "actual": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+      "expected": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "actual": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+      "expected": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "actual": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol",
+      "expected": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "actual": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol",
+      "expected": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "actual": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "expected": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "actual": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "expected": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+      "actual": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "expected": "10b09c5cb68fed2fe0aac8a8ce68a843734a15806c7e24ff9629a2b7f48616d3",
+      "actual": "10b09c5cb68fed2fe0aac8a8ce68a843734a15806c7e24ff9629a2b7f48616d3",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "expected": "e79ce6a8097e8d236b338562fc2fd8cc93f63da77a16dab8473d15b4608fbe9e",
+      "actual": "e79ce6a8097e8d236b338562fc2fd8cc93f63da77a16dab8473d15b4608fbe9e",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMigrationReceiver.sol",
+      "expected": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "actual": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZMigrationRegistry.sol",
+      "expected": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "actual": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "expected": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "actual": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "expected": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "actual": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "expected": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "actual": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "expected": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "actual": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "expected": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "actual": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Base64.sol",
+      "expected": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "actual": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "expected": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "actual": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "matches": true
+    },
+    {
+      "path": "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "expected": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "actual": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "expected": "ddf74a233749593b494144d9488fc47277246179fa9e17232393ee562c63c8e8",
+      "actual": "ddf74a233749593b494144d9488fc47277246179fa9e17232393ee562c63c8e8",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "expected": "c310bc855c9c0326f019a2d94fbd3e2497574bf40ad6be4b11dff8799219d967",
+      "actual": "c310bc855c9c0326f019a2d94fbd3e2497574bf40ad6be4b11dff8799219d967",
+      "matches": true
+    },
+    {
+      "path": "src/interfaces/IZZZNFTCanonical.sol",
+      "expected": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "actual": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "matches": true
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "expected": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "actual": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "expected": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "actual": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "expected": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "actual": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "expected": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "actual": "8b283e26dd408f2330a270bf230cda2ee8eac0322abb1ed2d25d5130ddbebbee",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "expected": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+      "actual": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "expected": "532755dc12a76c7059843bdee7520af03f1d1b78e033c2f7e613f66196c6428a",
+      "actual": "532755dc12a76c7059843bdee7520af03f1d1b78e033c2f7e613f66196c6428a",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "expected": "b2586ace9c56e141f10e5f8d4801a980e9c891e8d4d0d1bf7dc8ff36b2aa6572",
+      "actual": "b2586ace9c56e141f10e5f8d4801a980e9c891e8d4d0d1bf7dc8ff36b2aa6572",
+      "matches": true
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "expected": "df16dc50f2523d40b1adb249331450b95bfa9ad92f80c9b4db0f4b9c363545b8",
+      "actual": "df16dc50f2523d40b1adb249331450b95bfa9ad92f80c9b4db0f4b9c363545b8",
+      "matches": true
+    }
+  ]
+}

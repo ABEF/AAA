@@ -8,6 +8,7 @@ from frontend_api.activation_trace import EXECUTE, RESULT, MINT, INCREASE, SOURC
 from frontend_api.service import Projection, ProjectionError, ZERO
 from zzz_ops.abi import calldata, decode_words, keccak256
 from zzz_ops.rpc import RpcError, Rpc
+from zzz_ops.errors import WorkLimit
 from tests_python.test_frontend_api import MockRPC, configuration, addr, words
 
 USD=10**18
@@ -237,7 +238,8 @@ class ActivationPreparationTests(unittest.TestCase):
             if mode=='reorg':self.rpc.reorg_after_calls=True
             if mode=='expiry':self.p.clock=lambda:1000 if self.rpc.trace_count<2 else 1061
             if mode=='chain':self.rpc.chain=4663
-            with self.subTest(mode=mode),self.assertRaises(ProjectionError):svc.prepare(self.rpc.request)
+            expected = WorkLimit if mode == 'expiry' else ProjectionError
+            with self.subTest(mode=mode),self.assertRaises(expected):svc.prepare(self.rpc.request)
 
     def test_rpc_capability_failure_has_no_fallback(self):
         for failed in ('debug_traceCall','eth_estimateGas','eth_gasPrice'):

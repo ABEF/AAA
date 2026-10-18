@@ -8,6 +8,7 @@ from frontend_api.activation_trace import measure, request_data
 from frontend_api.liquidity_context import contribution_context
 from frontend_api.service import ProjectionError, UnknownNFT, ZERO, _address_word, _bool, _hash, _keys, _quantity, token_id
 from zzz_ops.abi import address, calldata, decode_words, keccak256
+from zzz_ops.work_budget import bounded_request, expire_at
 
 GAS_CAP = 12_000_000
 SNAPSHOT_AGE = 120
@@ -110,11 +111,13 @@ class ActivationTransactions:
             {'tracer':'callTracer','timeout':'5s','tracerConfig':{'withLog':True}}])
         return measure(raw,{**tx,'gas':hex(GAS_CAP)},pins,req,gross,max_slippage)
 
+    @bounded_request
     def prepare(self, payload):
         req=parse(payload); p=self.p; cfg=self.config
         if (req['pool'],req['source']) not in cfg.sources:
             raise ActivationInputError('No explicitly reviewed route for this source and pool')
         header,head,block=p._snapshot(); now=self._fresh(header)
+        expire_at(min(now+DRAFT_SECONDS,header['timestamp']+SNAPSHOT_AGE),p.clock)
         life=p._verify_deployment(block)
         if life['paused'] or life['preparation_active']:
             raise ActivationInputError('New contributions are paused or canonical preparation is active')

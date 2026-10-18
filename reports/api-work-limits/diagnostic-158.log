@@ -1,0 +1,19 @@
+======================================================================
+ERROR: test_consistent_sqlite_transaction_ignores_concurrent_later_commit (tests_python.test_frontend_history.ConfirmedHistoryTests.test_consistent_sqlite_transaction_ignores_concurrent_later_commit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\security-hardening-20261019\candidate\tests_python\test_frontend_history.py", line 259, in test_consistent_sqlite_transaction_ignores_concurrent_later_commit
+    self.assertEqual(self.read().claims[self.rpc.nft_id, addr(20)], (30, 0))
+                     ^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\security-hardening-20261019\candidate\tests_python\test_frontend_history.py", line 111, in read
+    return self.history.read(block_number=99, block_hash=self.rpc.hash, block_timestamp=990,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\security-hardening-20261019\candidate\frontend_api\history.py", line 110, in read
+    connection.set_progress_handler(interrupted, 1000)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnapshotConnection' object has no attribute 'set_progress_handler'
+
+----------------------------------------------------------------------
+Ran 158 tests in 50.649s
+
+FAILED (errors=1)

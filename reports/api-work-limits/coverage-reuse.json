@@ -1,0 +1,13 @@
+{
+  "initial_passes": 164,
+  "final_worker_readiness_passes": 24,
+  "superseded_cases": 22,
+  "retained_unchanged_cases": 142,
+  "distinct_covered_cases": 166,
+  "changed_between_runs": [
+    "frontend_api/worker.py",
+    "tests_python/test_mint_readiness.py",
+    "tests_python/test_request_limits.py"
+  ],
+  "scope": "142 unchanged non-worker/readiness cases retained; 24 current worker/readiness checks. Not a single new 166-case run."
+}

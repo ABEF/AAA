@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 17 In progress | 11 Implemented locally**
+**12 To do | 18 In progress | 11 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -50,7 +50,7 @@ Custody, ownership and reward accounting.
   - Independently verify actual supported proof-verifying coordinator code/key/subscription/confirmations/gas and service availability on the deployment chain. An ABI or mock is not verification.
   - Stage real requests, out-of-order callbacks, strict mint-order reveal, subscription outages, reorg/finality and permanent early-request blocking recovery. No cancellation/reroll/admin bypass exists.
   - Verify canonical sealing rejects missing randomness configuration; verify content root and every artwork/metadata path against an independently reviewed immutable catalog.
-  - [Daily review AUD18-02](reports/daily-security-20261018/REVIEW.md#aud18-02---high-availability-impact-randomness-failure-also-blocks-handoff): an unfulfilled early request blocks later reveals AND the current whole-collection handoff, which requires every mint revealed. Before sealing, qualify permanent-request recovery or a separately reviewed proof-preserving pending-request handoff; no admin reroll, timeout trait selection or assumed provider switch.
+  - [AUD18-02](reports/daily-security-20261018/REVIEW.md): user selected qualified/funded reliable provider plus stopping new minting and draining original ordered draws before collection replacement. A confirmed readiness endpoint is implemented; qualify actual funding, request latency, alerts and original-provider outage resolution. No reroll/pending-request carry/provider-swap path; a permanently unanswered request still blocks whole-collection replacement, not ordinary LP migration. See [operator policy](docs/OPERATOR_MANUAL.md#mint-and-metadata).
 
   </details>
 
@@ -109,21 +109,6 @@ The data and services behind the app.
 
   </details>
 
-<a id="task-host-services"></a>
-
-- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - To do. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
-  - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
-  - Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.
-  - Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.
-  - [AUD18-03](reports/daily-security-20261018/REVIEW.md#aud18-03---medium-availability-gap-preparation-lacks-a-total-work-deadline): implement request-wide monotonic deadlines/cancellation and RPC-work budgets before public hosting, including retry time and long history reads. The synthetic expired-quote reproduction continued through 134 RPC calls and two traces before rejecting; no draft escaped. Qualify queue/admission/rate limits and sanitized timeout monitoring; a proxy timeout alone does not cancel backend work.
-
-  </details>
-
 <a id="task-activation-quotes"></a>
 
 - [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot.
@@ -136,7 +121,22 @@ The data and services behind the app.
   - Verify intended RPC providers support canonical-hash callTracer with logs and complete gas estimation. Approve network fee accounting (including every applicable data/L1 component), source/proxy/storage pins and actual gas/latency bounds. No latest/state-override fallback on unsupported/stale/future/reorg responses.
   - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
   - Qualify range/timing output against real StateView ticks and current physical LP IDs. Show cooldown end or eligible-now/waiting state; unknown/stale keeper next-check and execution times must remain unavailable. Reprepare after LP/range/policy changes; Entry calldata has economic minima/deadline, not an LP-version lock. See [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md).
-  - Close the request-wide deadline/work-budget gap under [host-services](TODO.md#task-host-services) before public preparation service approval. Keep final canonicality and on-chain deadline checks; per-RPC timeouts and rejecting an expired result do not bound total backend work. Evidence: [AUD18-03](reports/daily-security-20261018/REVIEW.md#aud18-03---medium-availability-gap-preparation-lacks-a-total-work-deadline).
+  - Implemented request-wide monotonic/expiry/RPC budgets and supervised HTTP workers; [scoped remediation](reports/api-work-limits/VERIFICATION.md) addresses AUD18-03. Qualify actual Linux/RPC/trace workloads and ingress limits under [host-services](TODO.md#task-host-services); keep final canonicality and on-chain deadlines.
+
+  </details>
+
+<a id="task-host-services"></a>
+
+- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts. Request-wide deadlines/RPC budgets, SQLite checkpoints and killable serial HTTP workers are implemented; deployment and operating qualification remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
+  - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
+  - Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.
+  - Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.
+  - [AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.
 
   </details>
 
@@ -348,6 +348,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.
   - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
   - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
+  - User decision 2026-10-19: keep the 3% per-operation cap only, no rolling/cumulative loss breaker. Monitor cumulative turnover/MEV/gas costs and rehearse operator pause/parameter recovery; see [range management](docs/OPERATOR_MANUAL.md#range-and-strategy).
 
   </details>
 
@@ -365,7 +366,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Implement and independently qualify the accepted 2026-10-17 direction: planned whole-protocol migration while the source chain works. Preserve canonical NFT ownership and both funded ledgers, not just LP location. Post-halt recovery is deferred; no emergency recovery authority is authorized.
   - For any canonical transfer, specify one successor epoch and source freeze, NFT ownership/traits/shares, LP and royalty accruals/fractions/backing, in-flight messages and old-chain restart/replay policy. A snapshot or remote LP location ACK does not revoke old ownership.
   - Implement the selected verified-finality requirement: destination activation must authenticate finalized source retirement through an independently qualified chain-specific proof mechanism. No multisig/manual override, timeout activation or signer-attestation fallback is authorized. The concrete verifier/provider and finality configuration remain unselected; source terminal commitment must precede successor rights and cannot be reversed afterward.
-  - Drain ordered VRF/reveal and resolve in-flight custody/reward messages before freeze, or design a separately reviewed carry protocol. Preserve exact IDs/traits, remaining supply/quota/inventory, owners and per-asset liabilities/fractions; do not recreate rounded balances from website data.
+  - Drain original ordered VRF/reveal and resolve in-flight custody/reward messages before freeze. The user selected provider qualification plus reveal drain; no pending-request carry is being added. Preserve exact IDs/traits, remaining supply/quota/inventory, owners and per-asset liabilities/fractions; never recreate balances from website data.
   - Retain safe handling of late old creator/royalty receipts and historical marketplace receivers. No double claims, duplicated canonical NFTs, erased backed obligations, principal refunds or arbitrary administrator transfers.
   - For principal conversion during relocation, enforce the agreed aggregate 3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards. The implemented atomic local same-pair budget does not yet supply cross-chain aggregate enforcement.
   - Independently qualify the implemented same-chain cutoff, bounded exact export/import, classified backing, single-successor retirement, full/partial abort and late-forwarding paths. Benchmark atomic cutoff capture, ordered per-domain settlement, eight-row batches, each funding leg and final activation across 1,000 NFTs, four historical buckets, 32 LP assets, reachable funded inboxes and 17 royalty slots under unchanged limits.
@@ -373,7 +374,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
   - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding.
   - Historical canonical-handoff qualification recorded 582 regression cases plus 34 focused handoff cases, two opt-in fork setup skips, repaired bridge fixtures and three cold-gas suites. These retain their original source scope. The latest Vault/metadata changes have separate [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md), not a new complete handoff regression. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
-  - Resolve the VRF-to-handoff liveness dependency documented in [AUD18-02](reports/daily-security-20261018/REVIEW.md#aud18-02---high-availability-impact-randomness-failure-also-blocks-handoff). Pausing new mints does not clear an already unfulfilled request; a successor cannot import it under the present fully-revealed-only rule. Keep provider recovery and any required pre-seal design change linked to fair-draw.
+  - Qualify the selected [provider-and-drain operator policy](docs/OPERATOR_MANUAL.md#whole-collection-replacement) against AUD18-02: no new mints during preparation, all original draws finalized before freeze. An unfulfilled request can still block replacement; document postponement/cancellation and provider escalation. No reroll/admin override/pending-request carry is authorized.
 
   </details>
 
@@ -471,6 +472,7 @@ Decisions and rehearsals before real funds.
   - Stage [the keeper recovery runbook](docs/KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.
   - Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.
   - Finish and review sustained multi-day staging; preserve observation gaps. The 30-minute desktop-dependent chat health monitor was paused at the user's request on 2026-10-17. It supplies no subsequent observations; do not restart it without authorization. The isolated server service was not stopped by pausing the monitor.
+  - Rehearse [operator manual](docs/OPERATOR_MANUAL.md) scenarios with exact production roles/configuration: asset/pool stops, range changes, dependency outage/parking/resume, host/key recovery, reveal drain and whole-collection abort. Manual updates are required for every management behavior change under [maintenance rules](docs/TODO_WORKFLOW.md); a written runbook is not rehearsal evidence.
 
   </details>
 
@@ -517,4 +519,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `d35a1e800f72d89cde31662dad90307ca85f319aceb5fc64a3d729662691a48e`.
+Snapshot SHA-256: `e39cdab0d532aa3345074f48f1524345b2f6b008eccea57a605b11f8dc727ae2`.

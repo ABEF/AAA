@@ -43,6 +43,21 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 [migration gate](../TODO.md#task-destination-slots) and
 [canonical migration requirement](../TODO.md#task-security-chain-recovery).
 
+## Operator procedures and service safety
+
+The [operator manual](OPERATOR_MANUAL.md) covers source-backed management calls,
+roles, range and asset changes, pool retirement, emergency containment, restart,
+recovery and immutable boundaries. [Maintenance rules](TODO_WORKFLOW.md) require
+updates whenever management behavior changes; it is not another Todo.
+
+The API now bounds request-wide RPC/history/preparation work and uses supervised
+read-only child workers in its HTTP entry points. A confirmed mint-readiness view
+separates original provider fulfillment from ordered finalization. Neither this
+observation nor the manual qualifies a live provider, hosted service or successor.
+The selected randomness policy is provider qualification plus draining existing
+draws before replacement, with no reroll/carry mechanism. The 3% maintenance cap
+remains per operation; no cumulative cap was added. See [scoped verification](../reports/api-work-limits/VERIFICATION.md).
+
 ## Evidence and its limits
 
 The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md),
@@ -52,7 +67,7 @@ not production approval or a guarantee of no vulnerabilities. It records the
 ordered-VRF/handoff dependency, successor escrow compatibility, immediate
 governance trust and per-operation loss limits. A new synthetic expiry
 reproduction demonstrates continued API work after expiry with safe final
-rejection. Request-wide work limits remain required before hosting. Existing
+rejection. The subsequent [API work-limit remediation](../reports/api-work-limits/VERIFICATION.md) adds shared deadlines/RPC budgets and supervised request termination; live hosting qualification remains open. Existing
 78 build/source bindings matched; unchanged suites were not rerun.
 
 [Immediate governance](GOVERNANCE.md) supersedes earlier delayed-operation
