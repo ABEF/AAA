@@ -20,7 +20,7 @@ interface INativeVenueBindings {
     );
 }
 
-/// @notice Append-only pool identities; bounded strategy parameters are timelocked.
+/// @notice Append-only pool identities; bounded strategy parameters are governed.
 /// Native support is restricted to one runtime-pinned, separately admitted market.
 /// get() preserves the real venue key; accounting() normalizes native slot zero to WETH.
 contract ZZZPoolRegistry is ZZZModule {
@@ -51,6 +51,7 @@ contract ZZZPoolRegistry is ZZZModule {
     mapping(bytes32 => bool) public wrapperPolicyExists;
     bytes32 public activeWrapperPolicy;
     event PoolConfigured(bytes32 indexed poolId, address indexed token0, address indexed token1);
+    event PoolDisabled(bytes32 indexed poolId, bool depositsEnabled, bool operationsEnabled);
     event WrapperPolicyApproved(bytes32 indexed policyId, address indexed admin, address indexed implementation,
         address adminOwner, bytes32 adminCodeHash, bytes32 implementationCodeHash);
     event WrapperPolicyActivated(bytes32 indexed previousPolicy, bytes32 indexed activePolicy);
@@ -115,6 +116,16 @@ contract ZZZPoolRegistry is ZZZModule {
         (uint160 price,,, uint24 lpFee) = IStateViewMinimal(STATE).getSlot0(SELECTED_NATIVE_POOL);
         if (price == 0 || lpFee != 0) revert InvalidConfiguration();
         return _configure(config, WETH, ZZZ);
+    }
+    /// @notice Restrict an admitted pool without reading tokens, prices or venue
+    /// dependencies. True flags DISABLE the respective capability; false keeps
+    /// its current state. Re-enabling requires full configure/configureNative.
+    function disablePool(bytes32 poolId, bool disableDeposits, bool disableOperations) external onlyGovernance {
+        if (!exists[poolId] || (!disableDeposits && !disableOperations)) revert InvalidConfiguration();
+        PoolConfig storage config = pools[poolId];
+        if (disableDeposits) config.depositsEnabled = false;
+        if (disableOperations) config.operationsEnabled = false;
+        emit PoolDisabled(poolId, config.depositsEnabled, config.operationsEnabled);
     }
     function _configure(PoolConfig calldata config, address token0, address token1) private returns (bytes32 poolId) {
         PoolKey memory k = config.key;

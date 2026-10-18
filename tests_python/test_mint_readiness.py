@@ -64,6 +64,23 @@ class MintReadinessTests(unittest.TestCase):
         self.assertTrue(r['new_minting_stopped_by_lifecycle'])
         self.assertEqual(r['unfinished_draws'], 1)
 
+    def test_independent_mint_pause_does_not_report_all_economic_work_stopped(self):
+        self.rpc.put(addr(2), 'mintPaused()', values=(1,))
+        r = self.p.mint_readiness()
+        self.assertTrue(r['mint_paused'])
+        self.assertTrue(r['new_minting_stopped'])
+        self.assertFalse(r['new_minting_stopped_by_lifecycle'])
+        protocol = self.p.protocol()
+        self.assertEqual(protocol['minting'], {'paused': True, 'available_by_controls': False})
+        self.assertTrue(protocol['lifecycle']['new_economic_work_available_by_lifecycle'])
+        self.rpc.put(addr(2), 'mintPaused()', values=(0,))
+        self.assertTrue(self.p.protocol()['minting']['available_by_controls'])
+
+    def test_malformed_mint_control_is_not_assumed_open(self):
+        self.rpc.put(addr(2), 'mintPaused()', values=(2,))
+        for read in (self.p.protocol, self.p.mint_readiness):
+            with self.assertRaises(ProjectionError): read()
+
     def test_bad_inventory_and_provenance_fail_closed(self):
         cases = [('mintedCount()', (), (1001,)), ('nextToFinalize()', (), (0,)),
                  ('remainingToReveal()', (), (998,)), ('rarityRemaining(uint256)', (0,), (600,)),

@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**12 To do | 18 In progress | 11 Implemented locally**
+**12 To do | 18 In progress | 12 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -51,6 +51,7 @@ Custody, ownership and reward accounting.
   - Stage real requests, out-of-order callbacks, strict mint-order reveal, subscription outages, reorg/finality and permanent early-request blocking recovery. No cancellation/reroll/admin bypass exists.
   - Verify canonical sealing rejects missing randomness configuration; verify content root and every artwork/metadata path against an independently reviewed immutable catalog.
   - [AUD18-02](reports/daily-security-20261018/REVIEW.md): user selected qualified/funded reliable provider plus stopping new minting and draining original ordered draws before collection replacement. A confirmed readiness endpoint is implemented; qualify actual funding, request latency, alerts and original-provider outage resolution. No reroll/pending-request carry/provider-swap path; a permanently unanswered request still blocks whole-collection replacement, not ordinary LP migration. See [operator policy](docs/OPERATOR_MANUAL.md#mint-and-metadata).
+  - The independent mint-only governance pause and confirmed pause status are implemented; rehearse provider outage, original fulfillment, ordered reveal and deliberate resume. No reroll/provider swap. See [operator controls](reports/operator-controls/VERIFICATION.md).
 
   </details>
 
@@ -77,6 +78,17 @@ Custody, ownership and reward accounting.
   <summary>Acceptance criteria</summary>
 
   - [Scoped evidence](reports/immediate-governance/VERIFICATION.md): 228 distinct affected Solidity passes, 142 configuration passes, 30 size gates and fresh internal static review. No deployment or independent approval; there is no advance warning window for governance changes.
+
+  </details>
+
+<a id="task-operator-stop-controls"></a>
+
+- [x] **[Independent mint and pool stop controls](docs/OPERATOR_MANUAL.md#stop-controls)** - Implemented. Governance can pause new NFT mints independently and disable pool deposits/operations without token, price or venue calls. Reopening still requires full pool validation; existing rights and lifecycle guards remain. The confirmed API reports mint pause separately.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification and internal review](reports/operator-controls/VERIFICATION.md) cover authority, outage/reopen, callback rollback and economic continuity. Production service/authority rehearsals and independent audit remain required; no retroactive change to sealed contracts.
 
   </details>
 
@@ -307,6 +319,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently stage paused parking through the sealed governance controller: missing/stale price feeds, failed creator inbox, exact share/LP/custody snapshot, close-only minimums excluding idle/compound/donations, one-sided principal, invalidation/replay/expiry, claims/transfers and fresh-oracle resume. Authenticate current-source evidence in the inventory's mandatory `parking_rehearsal` record.
   - Review the malicious approved-provider trust demonstration and remote custody powers. Code/configuration hashes and governance approvals do not prove honest destination funding or safe remote administrators. Keep fixed 80/10/5/5; no percentage setter or generic upgrade is authorized.
   - Independently review the implemented canonical preparation notice: existing controller-only start/cancel, exact notice binding, blocked new economic work and protocol configuration, trailing callback guards, and fixed parking/plan-cancellation drains. Guardian pause and governance controller unpause remain; inherited governance controller roles and scheduling keep their existing rules. The notice grants no successor authority and cannot freeze or export canonical rights.
+  - Independently review/rehearse [mint/pool stop controls](reports/operator-controls/REVIEW.md): disable-only flags, full reopening validation, callback rollback, unchanged roles/canonical locks, obsolete approved operations and explicitly reviewed successor mint-pause state.
 
   </details>
 
@@ -355,6 +368,13 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 <a id="task-security-dependencies"></a>
 
 - [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Review royalty-token outage isolation: activation synchronizes every admitted royalty asset, so a reverting balanceOf can block new activation and syncAll. Single-asset healthy claims are separate. Any remediation must preserve old receipt ownership, exact liabilities and eligibility checkpoints; blindly skipping failed assets can redistribute past receipts to new entrants. The mint/pool stop controls do not repair this separate accounting/liveness boundary.
+
+  </details>
 
 <a id="task-security-chain-recovery"></a>
 
@@ -519,4 +539,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e39cdab0d532aa3345074f48f1524345b2f6b008eccea57a605b11f8dc727ae2`.
+Snapshot SHA-256: `b47c7cbd971821f56e5b718e8881548d0c8e8502f28fb948879f782d6ed1b4a0`.

@@ -49,6 +49,12 @@ operations, absence of advance notice, custody guards, runtime identities and
 current operating procedures. [Scoped evidence](../reports/immediate-governance/VERIFICATION.md)
 is internal development verification; this release remains NOT APPROVED.
 
+The [independent stop-controls candidate](../reports/operator-controls/VERIFICATION.md)
+changes NFT/Registry runtimes and the read API. Production inventories, authority
+operation rehearsals, provider outage/restart and successor mint-state review
+must use these exact implementations. Scoped local verification does not close
+the independent audit, live services or deployment approval gates.
+
 ## Release identity
 
 | Approval field | Recorded value |

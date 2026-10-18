@@ -5,6 +5,17 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The October 19 operator-controls continuation adds dependency-independent,
+disable-only `PoolRegistry.disablePool` and governed `NFT.setMintPaused`.
+Pending original reveals and existing economic rights retain their own guards;
+mint callbacks cannot commit after setting the mint pause. Reopen pools through
+full validation. The confirmed API reports mint-only pause separately.
+Read [current evidence](../reports/operator-controls/VERIFICATION.md) and the
+[updated operator manual](OPERATOR_MANUAL.md). Prior full/static evidence retains
+its original scope; no website/server/deployment/monitor action is included.
+Unrelated unpublished drafts remain preserved. Use main and Git for publication.
+
+
 The October 19 continuation adds [the operator manual](OPERATOR_MANUAL.md) with
 mandatory same-change maintenance in repository instructions/Todo workflow, API
 request-wide work limits and supervised workers, plus confirmed mint readiness.

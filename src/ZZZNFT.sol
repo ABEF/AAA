@@ -75,6 +75,8 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     mapping(bytes32 => RandomnessResult) private randomness;
     mapping(uint256 => uint256) public requestEpochOf;
     uint256 public randomnessEpoch;
+    bool public mintPaused;
+    event MintPauseChanged(bool paused);
     event MetadataBaseChanged(string newBase);
     event RandomnessConfigured(address indexed coordinator, bytes32 keyHash, uint256 subscriptionId,
         uint16 confirmations, uint32 callbackGasLimit, bool nativePayment);
@@ -109,7 +111,15 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         emit RandomnessConfigured(coordinator, gasLane, subId, confirmations, gasLimit, payNative);
     }
 
+    /// @notice Stop new requests/mints independently of existing NFT rights and
+    /// LP work. Governance can resume; global pause/lifecycle guards still apply.
+    function setMintPaused(bool state) external onlyGovernance {
+        mintPaused = state;
+        emit MintPauseChanged(state);
+    }
+
     function mint(address to, uint256 id) external onlyModule(Ids.VAULT) operating nonReentrant {
+        if (mintPaused) revert Paused();
         if (!randomnessConfigured) revert NotReady();
         if (mintedCount == MAX_SUPPLY) revert InvalidState();
         address recipient = IZZZVault(msg.sender).mintProceedsRecipient();
@@ -127,6 +137,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         requestEpochOf[id] = randomnessEpoch;
         requestOf[id] = requestId;
         _safeMint(to, id);
+        if (mintPaused) revert Paused();
         emit RandomnessRequested(id, requestId, ordinal);
     }
 

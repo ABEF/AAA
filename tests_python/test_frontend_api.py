@@ -64,6 +64,7 @@ class MockRPC:
         self.responses[(target, data)] = words(*values)
 
     def configure(self):
+        self.put(addr(2), 'mintPaused()', values=(0,))
         self.put(addr(1), 'isSealed()', values=(1,))
         for signature in ('canonicalState()', 'preparationActive()', 'paused()', 'canonicalSettling()'):
             self.put(addr(1), signature)

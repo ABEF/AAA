@@ -19,3 +19,6 @@ reports/canonical-preparation/** -text whitespace=cr-at-eol,-blank-at-eol,-blank
 
 # Preserve exact API test receipts and native Windows diagnostic bytes.
 reports/api-work-limits/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact operator-control verification and diagnostic bytes.
+reports/operator-controls/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

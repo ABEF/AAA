@@ -1,5 +1,25 @@
 ## Operator procedures and maintenance - 2026-10-19
 
+## Independent operator controls - 2026-10-19
+
+The current candidate adds governed `PoolRegistry.disablePool(poolId,stopDeposits,
+stopOperations)` (only clears existing flags, no token/price/venue reads) and
+`NFT.setMintPaused(bool)` (new mints only; trailing callback guard). Full
+configure/configureNative validation is still required to reopen pools. Pending
+original reveal, existing activation, transfers, claims and LP work retain their
+independent guards. Same immediate governance and preparation/canonical locks;
+no new keeper/guardian authority, delay, reroll or provider substitution.
+The read API exposes the mint switch separately. Successor mint-pause state is
+reviewed operational configuration, not imported economic rights.
+
+Read [current verification](reports/operator-controls/VERIFICATION.md) and the
+[updated manual](docs/OPERATOR_MANUAL.md). Central Todo/features/release records
+are reconciled; release remains NOT APPROVED. Use Git to establish publication.
+No website/server/public transaction/deployment or monitor restart is included.
+Preserve unrelated local drafts; main only. Historical source-bound evidence is
+not a fresh full regression of these changes.
+
+
 Read [the operator manual](docs/OPERATOR_MANUAL.md) before changing management
 behavior. The user requires it to stay complete: every operator-facing function,
 permission, parameter/default, lifecycle, service command, failure or recovery

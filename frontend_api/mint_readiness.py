@@ -18,6 +18,7 @@ def inspect(projection):
     if sum(quotas) != remaining or any(n > cap for n, cap in zip(quotas, (600, 300, 100))):
         raise ProjectionError('Inconsistent remaining rarity quotas')
     configured = _bool(p._call(nft, 'randomnessConfigured()', block=block)[0])
+    mint_paused = _bool(p._call(nft, 'mintPaused()', block=block)[0])
     if not configured:
         raise ProjectionError('Sealed NFT randomness is not configured')
     coordinator = p._addr('nft', 'randomnessCoordinator()', block=block)
@@ -41,6 +42,8 @@ def inspect(projection):
     return {'schema': 2, 'chain_id': p.chain, 'lifecycle': lifecycle,
             'nft': nft, 'coordinator': coordinator, 'minted': minted,
             'revealed': next_ordinal-1, 'unfinished_draws': pending, 'oldest_unfinished': oldest,
+            'mint_paused': mint_paused,
+            'new_minting_stopped': mint_paused or not lifecycle['new_economic_work_available_by_lifecycle'],
             'new_minting_stopped_by_lifecycle': not lifecycle['new_economic_work_available_by_lifecycle'],
             'collection_replacement_reveal_condition_met': pending == 0,
             'other_handoff_requirements_verified': False,

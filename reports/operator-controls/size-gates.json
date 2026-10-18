@@ -1,0 +1,2324 @@
+{
+  "contracts": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZAccessController.sol\\ZZZAccessController.json",
+        "sha256": "47c214b9b2dbf8eccf5588d90277824ccf6ead284dd0adb159b16210593649ab",
+        "bytes": 486098
+      },
+      "runtime_bytes": 14614,
+      "initcode_object_bytes": 33267,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZAccessController.sol": "ZZZAccessController"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 9962,
+      "initcode_object_margin_bytes": 15885
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZActivationAssets.sol\\ZZZActivationAssets.json",
+        "sha256": "546983a7ba4852b5ba475864e4dad80c0832e227d4587701fe1b9a6fcf6a21b6",
+        "bytes": 168988
+      },
+      "runtime_bytes": 4819,
+      "initcode_object_bytes": 5314,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZActivationAssets.sol": "ZZZActivationAssets"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 19757,
+      "initcode_object_margin_bytes": 43838
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZActivationEntry.sol\\ZZZActivationEntry.json",
+        "sha256": "41a06844d0a6cac83d57c4f5402ed8310f3bcc15a812f2a86faf5adb427640f8",
+        "bytes": 484676
+      },
+      "runtime_bytes": 13537,
+      "initcode_object_bytes": 14589,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZActivationEntry.sol": "ZZZActivationEntry"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 11039,
+      "initcode_object_margin_bytes": 34563
+    },
+    {
+      "source": "src/ZZZBridgeAdapter.sol",
+      "contract": "ZZZBridgeAdapter",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZBridgeAdapter.sol\\ZZZBridgeAdapter.json",
+        "sha256": "431b12cf7206a022a239edcaec613bf9d9b3cf971d1d55868e1048758a75d324",
+        "bytes": 262619
+      },
+      "runtime_bytes": 10347,
+      "initcode_object_bytes": 10921,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZBridgeAdapter.sol": "ZZZBridgeAdapter"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 14229,
+      "initcode_object_margin_bytes": 38231
+    },
+    {
+      "source": "src/ZZZBridgeRouter.sol",
+      "contract": "ZZZBridgeRouter",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZBridgeRouter.sol\\ZZZBridgeRouter.json",
+        "sha256": "bba6f6010eb9c10ae778b953cf86a24c7c568cab4e1205319af76d7e9893eafd",
+        "bytes": 473411
+      },
+      "runtime_bytes": 15290,
+      "initcode_object_bytes": 15795,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZBridgeRouter.sol": "ZZZBridgeRouter"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 9286,
+      "initcode_object_margin_bytes": 33357
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZBuyback.sol\\ZZZBuyback.json",
+        "sha256": "2cbb13a0b207b82b0e3c852528eea25039ccafd5a9c8ae6ca6d646a387b1848a",
+        "bytes": 137127
+      },
+      "runtime_bytes": 6160,
+      "initcode_object_bytes": 6824,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZBuyback.sol": "ZZZBuyback"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 18416,
+      "initcode_object_margin_bytes": 42328
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZCanonicalHandoff.sol\\ZZZCanonicalHandoff.json",
+        "sha256": "487d914f0c444dbe9cfa1c49ef76d9157c29c3638d7c80efa7734ecb660fced6",
+        "bytes": 747037
+      },
+      "runtime_bytes": 21029,
+      "initcode_object_bytes": 21666,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZCanonicalHandoff.sol": "ZZZCanonicalHandoff"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 3547,
+      "initcode_object_margin_bytes": 27486
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZClaimRouter.sol\\ZZZClaimRouter.json",
+        "sha256": "a93d1f12e76712be5a3e36ffdcb2b575fe1d706126f22f43581e2b9409feb8b1",
+        "bytes": 101414
+      },
+      "runtime_bytes": 2885,
+      "initcode_object_bytes": 3443,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZClaimRouter.sol": "ZZZClaimRouter"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 21691,
+      "initcode_object_margin_bytes": 45709
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZCompounder.sol\\ZZZCompounder.json",
+        "sha256": "2e14f98c4ae824dc7b1af4f36b1c201b318d9aba9e07b4705c8e35bd8e102844",
+        "bytes": 34406
+      },
+      "runtime_bytes": 2017,
+      "initcode_object_bytes": 2402,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZCompounder.sol": "ZZZCompounder"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 22559,
+      "initcode_object_margin_bytes": 46750
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZFeeController.sol\\ZZZFeeController.json",
+        "sha256": "1890771d0085fd464d2547ba1f0e11a6985ff3f6c50be24619cb74c0800b5468",
+        "bytes": 989067
+      },
+      "runtime_bytes": 23303,
+      "initcode_object_bytes": 40079,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZFeeController.sol": "ZZZFeeController"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 1273,
+      "initcode_object_margin_bytes": 9073
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZFeesCanonical.sol\\ZZZFeesCanonical.json",
+        "sha256": "d9c634100018f2cff1e223e850ff9eba5793d10e746e93798563e48fbc370269",
+        "bytes": 399004
+      },
+      "runtime_bytes": 13083,
+      "initcode_object_bytes": 14026,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZFeesCanonical.sol": "ZZZFeesCanonical"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 11493,
+      "initcode_object_margin_bytes": 35126
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZLiquidityManager.sol\\ZZZLiquidityManager.json",
+        "sha256": "6fa4e3ce3abbeba4e1f7e6d8e1598e2d32c77e4b79f1f3fb58d73b8c2850cf02",
+        "bytes": 814667
+      },
+      "runtime_bytes": 21993,
+      "initcode_object_bytes": 23461,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZLiquidityManager.sol": "ZZZLiquidityManager"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 2583,
+      "initcode_object_margin_bytes": 25691
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZMembership.sol\\ZZZMembership.json",
+        "sha256": "d009097a33593bc5ab86368dfd961312386473ba9169022a5da1d5c7af12ccb5",
+        "bytes": 194445
+      },
+      "runtime_bytes": 9332,
+      "initcode_object_bytes": 9743,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZMembership.sol": "ZZZMembership"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 15244,
+      "initcode_object_margin_bytes": 39409
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZMigration.sol\\ZZZMigration.json",
+        "sha256": "5491fb39d7661fe5f4257aaaaf4e78083bd7b0169e99363c114f7201ca1651af",
+        "bytes": 895153
+      },
+      "runtime_bytes": 24515,
+      "initcode_object_bytes": 25041,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZMigration.sol": "ZZZMigration"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 61,
+      "initcode_object_margin_bytes": 24111
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZMigrationBudget.sol\\ZZZMigrationBudget.json",
+        "sha256": "f7bab04c725501406cf50d6e0fe7e9e39ebafc197a990a2afaf49f8782dba54b",
+        "bytes": 532416
+      },
+      "runtime_bytes": 15128,
+      "initcode_object_bytes": 15724,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZMigrationBudget.sol": "ZZZMigrationBudget"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 9448,
+      "initcode_object_margin_bytes": 33428
+    },
+    {
+      "source": "src/ZZZMigrationReceiver.sol",
+      "contract": "ZZZMigrationReceiver",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZMigrationReceiver.sol\\ZZZMigrationReceiver.json",
+        "sha256": "d6e812a4add0f9b349a22fba547d32e0d40872b2c95c45c0011e39937439e3da",
+        "bytes": 427917
+      },
+      "runtime_bytes": 15959,
+      "initcode_object_bytes": 16506,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZMigrationReceiver.sol": "ZZZMigrationReceiver"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 8617,
+      "initcode_object_margin_bytes": 32646
+    },
+    {
+      "source": "src/ZZZMigrationRegistry.sol",
+      "contract": "ZZZMigrationRegistry",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZMigrationRegistry.sol\\ZZZMigrationRegistry.json",
+        "sha256": "3e972977c8b19bed86963e91cf7eb5541326837f9e74d45dd02c1eaa5fdcafa7",
+        "bytes": 217960
+      },
+      "runtime_bytes": 7513,
+      "initcode_object_bytes": 7934,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZMigrationRegistry.sol": "ZZZMigrationRegistry"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 17063,
+      "initcode_object_margin_bytes": 41218
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZNFT.sol\\ZZZNFT.json",
+        "sha256": "f148b7b7514f2eb16dee86d524d8f91d814a7e1fc41f0f9ac6731a37f283054e",
+        "bytes": 729941
+      },
+      "runtime_bytes": 23502,
+      "initcode_object_bytes": 43281,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZNFT.sol": "ZZZNFT"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 1074,
+      "initcode_object_margin_bytes": 5871
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZNFTCanonical.sol\\ZZZNFTCanonical.json",
+        "sha256": "41e01e0bf25eef39440e86b27dcb6b9b6a5c3de7bf23077838d637b7eb2cde55",
+        "bytes": 264593
+      },
+      "runtime_bytes": 10671,
+      "initcode_object_bytes": 11584,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZNFTCanonical.sol": "ZZZNFTCanonical"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 13905,
+      "initcode_object_margin_bytes": 37568
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZNFTMetadata.sol\\ZZZNFTMetadata.json",
+        "sha256": "1086b206f194c1c5dbbf98f7e4ae0d4f17b14265f008b2dc6f6dea8af179978a",
+        "bytes": 307824
+      },
+      "runtime_bytes": 12442,
+      "initcode_object_bytes": 12766,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZNFTMetadata.sol": "ZZZNFTMetadata"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 12134,
+      "initcode_object_margin_bytes": 36386
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZOracle.sol\\ZZZOracle.json",
+        "sha256": "08cdcbf1be8835656cefb285db5d3ed24cfb6722c51ecafd35b66cf58ac1f391",
+        "bytes": 265082
+      },
+      "runtime_bytes": 7221,
+      "initcode_object_bytes": 9589,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZOracle.sol": "ZZZOracle"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 17355,
+      "initcode_object_margin_bytes": 39563
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZPoolRegistry.sol\\ZZZPoolRegistry.json",
+        "sha256": "991d02ee85f6f7d1900696c7a8ae2c8067c1df43e0d2aa94f0ebee2801679f54",
+        "bytes": 474473
+      },
+      "runtime_bytes": 12292,
+      "initcode_object_bytes": 33898,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZPoolRegistry.sol": "ZZZPoolRegistry"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 12284,
+      "initcode_object_margin_bytes": 15254
+    },
+    {
+      "source": "src/ZZZRewardReceiver.sol",
+      "contract": "ZZZRewardReceiver",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZRewardReceiver.sol\\ZZZRewardReceiver.json",
+        "sha256": "5b916a283aa13682d9912ddfc325305c7383d670a760f7a9cb834bffc8e019d7",
+        "bytes": 308061
+      },
+      "runtime_bytes": 8035,
+      "initcode_object_bytes": 9700,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZRewardReceiver.sol": "ZZZRewardReceiver"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 16541,
+      "initcode_object_margin_bytes": 39452
+    },
+    {
+      "source": "src/ZZZRewardReceiverFactory.sol",
+      "contract": "ZZZRewardReceiverFactory",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZRewardReceiverFactory.sol\\ZZZRewardReceiverFactory.json",
+        "sha256": "3371c78d428b520ecad15c9bf723551fe06f55fccd98d1c7faed254f67b62eb8",
+        "bytes": 234037
+      },
+      "runtime_bytes": 15812,
+      "initcode_object_bytes": 16086,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZRewardReceiverFactory.sol": "ZZZRewardReceiverFactory"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 8764,
+      "initcode_object_margin_bytes": 33066
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZRewards.sol\\ZZZRewards.json",
+        "sha256": "04448efa3e028a29db400060de0f39d8908b75f7e946e59ffee9bdf54cbdb5e1",
+        "bytes": 562671
+      },
+      "runtime_bytes": 16288,
+      "initcode_object_bytes": 16846,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZRewards.sol": "ZZZRewards"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 8288,
+      "initcode_object_margin_bytes": 32306
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZRoyaltyFactory.sol\\ZZZRoyaltyFactory.json",
+        "sha256": "8d5b2313d6732962a8ba7fb719c8cb1f8b9a65349dccffe136e70098a7ec6c34",
+        "bytes": 91251
+      },
+      "runtime_bytes": 16836,
+      "initcode_object_bytes": 16889,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZRoyaltyFactory.sol": "ZZZRoyaltyFactory"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 7740,
+      "initcode_object_margin_bytes": 32263
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZRoyaltyRewards.sol\\ZZZRoyaltyRewards.json",
+        "sha256": "a97d1871eb53925d8a90b0944d2f1dca9a304ac2b643842d47273b4531700c2d",
+        "bytes": 621453
+      },
+      "runtime_bytes": 15296,
+      "initcode_object_bytes": 16226,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZRoyaltyRewards.sol": "ZZZRoyaltyRewards"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 9280,
+      "initcode_object_margin_bytes": 32926
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZStrategy.sol\\ZZZStrategy.json",
+        "sha256": "31dfe373c92422c2f2dbca1be9645223700fcd36903c3f2cbb051ebc80cd4de4",
+        "bytes": 364351
+      },
+      "runtime_bytes": 12186,
+      "initcode_object_bytes": 12635,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZStrategy.sol": "ZZZStrategy"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 12390,
+      "initcode_object_margin_bytes": 36517
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZVault.sol\\ZZZVault.json",
+        "sha256": "49cc81d53957e67581d074894333552fcd0889523894bc68bf1da3bce3a04568",
+        "bytes": 1043585
+      },
+      "runtime_bytes": 24557,
+      "initcode_object_bytes": 41269,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZVault.sol": "ZZZVault"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 19,
+      "initcode_object_margin_bytes": 7883
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "artifact": {
+        "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\ZZZVaultCanonical.sol\\ZZZVaultCanonical.json",
+        "sha256": "5d69a692d079521cfa9e2abc5623b6af01d05bcf1866f7c239dec52f32bf4841",
+        "bytes": 484979
+      },
+      "runtime_bytes": 15884,
+      "initcode_object_bytes": 17175,
+      "compiler_version": "0.8.26+commit.8a97fa7a",
+      "compiler_settings": {
+        "compilationTarget": {
+          "src/ZZZVaultCanonical.sol": "ZZZVaultCanonical"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "optimizer": {
+          "details": {
+            "constantOptimizer": true,
+            "cse": true,
+            "deduplicate": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "peephole": true,
+            "simpleCounterForLoopUncheckedIncrement": true,
+            "yul": false
+          },
+          "runs": 1
+        },
+        "remappings": [
+          ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+          ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+          ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+          ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+          ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+          ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+          ":forge-std/=lib/forge-std/src/",
+          ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+          ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+          ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+          ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+        ],
+        "viaIR": true
+      },
+      "matching_build_info": [
+        {
+          "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\operator-controls-20261019\\production-out\\build-info\\e5813d4e65e07db0.json",
+          "sha256": "3d6e5e63e895596e716870ab4abf8109aebc1f724ab170878b0f0bab0e2ab270",
+          "bytes": 18882338
+        }
+      ],
+      "runtime_margin_bytes": 8692,
+      "initcode_object_margin_bytes": 31977
+    }
+  ],
+  "bindings": {
+    "node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
+      "sha256": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "keccak256": "0x1a6b4f6b7798ab80929d491b89d5427a9b3338c0fd1acd0ba325f69c6f1646af",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "compiler_content_keccak256": "0x1a6b4f6b7798ab80929d491b89d5427a9b3338c0fd1acd0ba325f69c6f1646af"
+    },
+    "node_modules/@openzeppelin/contracts/access/IAccessControl.sol": {
+      "sha256": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "keccak256": "0xbff9f59c84e5337689161ce7641c0ef8e872d6a7536fbc1f5133f128887aba3c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "compiler_content_keccak256": "0xbff9f59c84e5337689161ce7641c0ef8e872d6a7536fbc1f5133f128887aba3c"
+    },
+    "node_modules/@openzeppelin/contracts/governance/TimelockController.sol": {
+      "sha256": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "keccak256": "0xa0b43a4e7f6c4e67c518c40e0e75ee66b38a1b077e5f315b0dc7a98d11e778b4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "compiler_content_keccak256": "0xa0b43a4e7f6c4e67c518c40e0e75ee66b38a1b077e5f315b0dc7a98d11e778b4"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+      "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "compiler_content_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+      "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "compiler_content_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "compiler_content_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+      "sha256": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "keccak256": "0x6ec6d7fce29668ede560c7d2e10f9d10de3473f5298e431e70a5767db42fa620",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "compiler_content_keccak256": "0x6ec6d7fce29668ede560c7d2e10f9d10de3473f5298e431e70a5767db42fa620"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol": {
+      "sha256": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "keccak256": "0x845cd93ae5216fb91ab3085c632006cdff95460134dd83f3519c1b08cc3e1b4a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "compiler_content_keccak256": "0x845cd93ae5216fb91ab3085c632006cdff95460134dd83f3519c1b08cc3e1b4a"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "compiler_content_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "compiler_content_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "compiler_content_keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol": {
+      "sha256": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "keccak256": "0xaad20f8713b5cd98114278482d5d91b9758f9727048527d582e8e88fd4901fd8",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "compiler_content_keccak256": "0xaad20f8713b5cd98114278482d5d91b9758f9727048527d582e8e88fd4901fd8"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "sha256": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "keccak256": "0x6d0ae6e206645341fd122d278c2cb643dea260c190531f2f3f6a0426e77b00c0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "compiler_content_keccak256": "0x6d0ae6e206645341fd122d278c2cb643dea260c190531f2f3f6a0426e77b00c0"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "compiler_content_keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Errors.sol": {
+      "sha256": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "compiler_content_keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "compiler_content_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a"
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "compiler_content_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3"
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "compiler_content_keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e"
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "compiler_content_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "compiler_content_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "compiler_content_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54"
+    },
+    "src/ZZZAccessController.sol": {
+      "sha256": "c1fd0c4268ddad685c88df6c89266acf0d9c446a2c082feb2545fa6129bde069",
+      "keccak256": "0xd0bd5c86261fd9b69d53929ec6bbdc897e0f2d603c50c1bb10cdc23f9a61af20",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c1fd0c4268ddad685c88df6c89266acf0d9c446a2c082feb2545fa6129bde069",
+      "compiler_content_keccak256": "0xd0bd5c86261fd9b69d53929ec6bbdc897e0f2d603c50c1bb10cdc23f9a61af20"
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "sha256": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+      "keccak256": "0x498d04072c1b3ec0b1eb41466f860d3c282da2981d90c43e6567c2e04e54d9c1",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+      "compiler_content_keccak256": "0x498d04072c1b3ec0b1eb41466f860d3c282da2981d90c43e6567c2e04e54d9c1"
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "keccak256": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "compiler_content_keccak256": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "9359e0ad3dbf18ef7fb5f52cad5f2329c70e5c7a048b86fd2d0984f55e2f838d",
+      "keccak256": "0x715d005ef4fd5957918776ac2f89f17c72286a1c531ec4247cec0622427e7971",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9359e0ad3dbf18ef7fb5f52cad5f2329c70e5c7a048b86fd2d0984f55e2f838d",
+      "compiler_content_keccak256": "0x715d005ef4fd5957918776ac2f89f17c72286a1c531ec4247cec0622427e7971"
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "sha256": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+      "keccak256": "0xcc714b693897cc676523aac7e1c13c7efe6d3cc675502ee1ccbc10fe0f06ce30",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+      "compiler_content_keccak256": "0xcc714b693897cc676523aac7e1c13c7efe6d3cc675502ee1ccbc10fe0f06ce30"
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+      "keccak256": "0x00adbe401faf8a496a642c70be27a4ac10a36462d46d49bdebf1f13653ebce6e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+      "compiler_content_keccak256": "0x00adbe401faf8a496a642c70be27a4ac10a36462d46d49bdebf1f13653ebce6e"
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "sha256": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "keccak256": "0x9c5cdcadf153f743668ce09c6040f2bc7469167c6d87cccfadb871fee1606703",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "compiler_content_keccak256": "0x9c5cdcadf153f743668ce09c6040f2bc7469167c6d87cccfadb871fee1606703"
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "compiler_content_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e"
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+      "keccak256": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+      "compiler_content_keccak256": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "compiler_content_keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f"
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "keccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "compiler_content_keccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394"
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "keccak256": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "compiler_content_keccak256": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f"
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+      "keccak256": "0xd25fa46bb100319733b3d38a8fb41ffb7f3242640d733fa62d4950a067c5d964",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2f5d6fe1e8654a750c59419efcb2e43b3dd1979c49fc450995bee500dfc70cb4",
+      "compiler_content_keccak256": "0xd25fa46bb100319733b3d38a8fb41ffb7f3242640d733fa62d4950a067c5d964"
+    },
+    "src/ZZZBridgeAdapter.sol": {
+      "sha256": "bea3ce35351c5f3fb58bbfe9a3ceb28b29bb6fb280f3895c36f0b371b2771088",
+      "keccak256": "0xc25e1774b091a681be1aae268a939da8c5b3d6c482f6a1530a94527210183379",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "bea3ce35351c5f3fb58bbfe9a3ceb28b29bb6fb280f3895c36f0b371b2771088",
+      "compiler_content_keccak256": "0xc25e1774b091a681be1aae268a939da8c5b3d6c482f6a1530a94527210183379"
+    },
+    "src/libraries/BridgeAssets.sol": {
+      "sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "keccak256": "0xfd768f445c7c9fba5f85e123838f69b5111c281798ec77f6ed4323f8cf56af29",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "compiler_content_keccak256": "0xfd768f445c7c9fba5f85e123838f69b5111c281798ec77f6ed4323f8cf56af29"
+    },
+    "src/ZZZBridgeRouter.sol": {
+      "sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "keccak256": "0x96dfbe39cce0414741569b4cd7857a4fd0e0df58cb689b604ed504b0c9b93886",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "compiler_content_keccak256": "0x96dfbe39cce0414741569b4cd7857a4fd0e0df58cb689b604ed504b0c9b93886"
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "keccak256": "0xed4451238c35a104edcc690e1794e09b345754e4538fb899bfb835d37f0cff7d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "compiler_content_keccak256": "0xed4451238c35a104edcc690e1794e09b345754e4538fb899bfb835d37f0cff7d"
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "compiler_content_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161"
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "keccak256": "0xe30f027478d9ce4bc4b5204de9a35bdf13793411fd0e770594ecb59ace4c3b81",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "compiler_content_keccak256": "0xe30f027478d9ce4bc4b5204de9a35bdf13793411fd0e770594ecb59ace4c3b81"
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+      "keccak256": "0x97896b98531883e814adf2977495feb74e10babe2c201bd791b304bbac500214",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+      "compiler_content_keccak256": "0x97896b98531883e814adf2977495feb74e10babe2c201bd791b304bbac500214"
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+      "keccak256": "0x06abf84e70a843c89f3459fa9d511d416ec3757a4c348fa4f498d1279be61e41",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+      "compiler_content_keccak256": "0x06abf84e70a843c89f3459fa9d511d416ec3757a4c348fa4f498d1279be61e41"
+    },
+    "src/ZZZRewardReceiverFactory.sol": {
+      "sha256": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+      "keccak256": "0x0d634c4527ec73b3304473d2be0a39a9d6aa6c2189dfc21845dee434e5ea5f5b",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+      "compiler_content_keccak256": "0x0d634c4527ec73b3304473d2be0a39a9d6aa6c2189dfc21845dee434e5ea5f5b"
+    },
+    "src/ZZZFeesCanonical.sol": {
+      "sha256": "3e65cc82dcb3095f7160f730a5e2c293d4349548f09405da6718fa46d4f6b261",
+      "keccak256": "0x4daf717595a0ac8c8c0b9e3bbe4a7820260f7ac0b03aed81e3f65165684494a2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3e65cc82dcb3095f7160f730a5e2c293d4349548f09405da6718fa46d4f6b261",
+      "compiler_content_keccak256": "0x4daf717595a0ac8c8c0b9e3bbe4a7820260f7ac0b03aed81e3f65165684494a2"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol": {
+      "sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "keccak256": "0x51b9be4f5c4fd3e80cbc9631a65244a2eb2be250b6b7f128a2035080e18aee8d",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "e8a45eb3d57f9427fc47bbb2543c1a6a5f394113b378123ac7ca9f113a7502b4",
+      "compiler_content_keccak256": "0x51b9be4f5c4fd3e80cbc9631a65244a2eb2be250b6b7f128a2035080e18aee8d"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol": {
+      "sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "keccak256": "0x111ed3031b6990c80a93ae35dde6b6ac0b7e6af471388fdd7461e91edda9b7de",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "9d3dbe6b742cb1ac30f57df89d879ade9649389de1165fc637114bd062d39fca",
+      "compiler_content_keccak256": "0x111ed3031b6990c80a93ae35dde6b6ac0b7e6af471388fdd7461e91edda9b7de"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol": {
+      "sha256": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "keccak256": "0xef5c3fd41aee26bb12aa1c32873cfee88e67eddfe7c2b32283786265ac669741",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "66ee26d4fb3ac639124bdfa27d3256d196970997fa127c09e9bf7154e30d4590",
+      "compiler_content_keccak256": "0xef5c3fd41aee26bb12aa1c32873cfee88e67eddfe7c2b32283786265ac669741"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": {
+      "sha256": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "keccak256": "0x4fc73a00817193fd3cac1cc03d8167d21af97d75f1815a070ee31a90c702b4c2",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "compiler_content_keccak256": "0x4fc73a00817193fd3cac1cc03d8167d21af97d75f1815a070ee31a90c702b4c2"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol": {
+      "sha256": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "keccak256": "0x42c4a24f996a14d358be397b71f7ec9d7daf666aaec78002c63315a6ee67aa86",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c1a815a41607be5b4c86ca588a951f368156da8ee21bdfc18b5d51b58a0f27be",
+      "compiler_content_keccak256": "0x42c4a24f996a14d358be397b71f7ec9d7daf666aaec78002c63315a6ee67aa86"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": {
+      "sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "keccak256": "0xf8079fe6e3460db495451d06b1705e18f1c4075c1af96a31ad313545f7082982",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "compiler_content_keccak256": "0xf8079fe6e3460db495451d06b1705e18f1c4075c1af96a31ad313545f7082982"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": {
+      "sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "keccak256": "0x4e1a11e154eb06106cb1c4598f06cca5f5ca16eaa33494ba2f0e74981123eca8",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "compiler_content_keccak256": "0x4e1a11e154eb06106cb1c4598f06cca5f5ca16eaa33494ba2f0e74981123eca8"
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol": {
+      "sha256": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "keccak256": "0xa6e55e0a43a15df2df471d9972cd48f613d07c663ecb8bbeaf7623f6f99bcce4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2de236e7ca0b9572a6b0184557565b6fd54e177224e202c727fe248785ede427",
+      "compiler_content_keccak256": "0xa6e55e0a43a15df2df471d9972cd48f613d07c663ecb8bbeaf7623f6f99bcce4"
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": {
+      "sha256": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "keccak256": "0x8ea74b89831877ffe657f8461164a01a6f3c7e46f415410854fca8d28a8cab53",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "compiler_content_keccak256": "0x8ea74b89831877ffe657f8461164a01a6f3c7e46f415410854fca8d28a8cab53"
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "keccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "compiler_content_keccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7"
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+      "keccak256": "0x99d72373efe3bc278276bc9e003db889346202208e59e2b5f0252451af8be68f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+      "compiler_content_keccak256": "0x99d72373efe3bc278276bc9e003db889346202208e59e2b5f0252451af8be68f"
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "10b09c5cb68fed2fe0aac8a8ce68a843734a15806c7e24ff9629a2b7f48616d3",
+      "keccak256": "0xfd8686e0135b4c450c511a96ef3cb32370d6e7aa496c4c3a47a5ca8898900d81",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "10b09c5cb68fed2fe0aac8a8ce68a843734a15806c7e24ff9629a2b7f48616d3",
+      "compiler_content_keccak256": "0xfd8686e0135b4c450c511a96ef3cb32370d6e7aa496c4c3a47a5ca8898900d81"
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "e79ce6a8097e8d236b338562fc2fd8cc93f63da77a16dab8473d15b4608fbe9e",
+      "keccak256": "0x531b7737314ba7292ed5de14ea8cdf99ec3b008bed478feb94b0458e5ee4e0b5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "e79ce6a8097e8d236b338562fc2fd8cc93f63da77a16dab8473d15b4608fbe9e",
+      "compiler_content_keccak256": "0x531b7737314ba7292ed5de14ea8cdf99ec3b008bed478feb94b0458e5ee4e0b5"
+    },
+    "src/ZZZMigrationReceiver.sol": {
+      "sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "keccak256": "0x2aa61f62d9f907f6d2ba8af9366b2e36db47da98df9909643f9e8c0387220715",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "compiler_content_keccak256": "0x2aa61f62d9f907f6d2ba8af9366b2e36db47da98df9909643f9e8c0387220715"
+    },
+    "src/ZZZMigrationRegistry.sol": {
+      "sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "keccak256": "0x5539ef9099f9306b6a6030872bde48e1a7a09f6503cc5160e34fabb2cdb55eb4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "compiler_content_keccak256": "0x5539ef9099f9306b6a6030872bde48e1a7a09f6503cc5160e34fabb2cdb55eb4"
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "compiler_content_keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "compiler_content_keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "compiler_content_keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "compiler_content_keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76"
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": {
+      "sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "compiler_content_keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Base64.sol": {
+      "sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "compiler_content_keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a"
+    },
+    "node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "compiler_content_keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4"
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "compiler_content_keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3"
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "a5e8b2f14bd45a00db9d4ce31c0b984826751fa45b64f84ea67c10fa32908d49",
+      "keccak256": "0x748cf524b7ba70af7c60879c19dc5b7a5b99942083273d08dc06b1293e7c54b7",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a5e8b2f14bd45a00db9d4ce31c0b984826751fa45b64f84ea67c10fa32908d49",
+      "compiler_content_keccak256": "0x748cf524b7ba70af7c60879c19dc5b7a5b99942083273d08dc06b1293e7c54b7"
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "c310bc855c9c0326f019a2d94fbd3e2497574bf40ad6be4b11dff8799219d967",
+      "keccak256": "0xec39d663ef08d127eca5e71a79486eb18fbf268942699096fdfb8ee8402db3bf",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "c310bc855c9c0326f019a2d94fbd3e2497574bf40ad6be4b11dff8799219d967",
+      "compiler_content_keccak256": "0xec39d663ef08d127eca5e71a79486eb18fbf268942699096fdfb8ee8402db3bf"
+    },
+    "src/interfaces/IZZZNFTCanonical.sol": {
+      "sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "keccak256": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "compiler_content_keccak256": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b"
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "compiler_content_keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8"
+    },
+    "src/ZZZNFTCanonical.sol": {
+      "sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "keccak256": "0xc51bbe0f1e57b71995c14799a5cba751d90b4d15d2afe6d668bbc8e959319bea",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "compiler_content_keccak256": "0xc51bbe0f1e57b71995c14799a5cba751d90b4d15d2afe6d668bbc8e959319bea"
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "keccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "compiler_content_keccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df"
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "2815b200c188d9469ebc9963eb552b082232e20eebde6d137541fed46878002f",
+      "keccak256": "0x824018e7513dab9470c749a5f1fe1df673149a0cb9f59c80bfaca0f814f12b32",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "2815b200c188d9469ebc9963eb552b082232e20eebde6d137541fed46878002f",
+      "compiler_content_keccak256": "0x824018e7513dab9470c749a5f1fe1df673149a0cb9f59c80bfaca0f814f12b32"
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+      "keccak256": "0x8061ce88310d979d072a8d88d800a20f1b222308cf9e9839ad5a73092858c658",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+      "compiler_content_keccak256": "0x8061ce88310d979d072a8d88d800a20f1b222308cf9e9839ad5a73092858c658"
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "532755dc12a76c7059843bdee7520af03f1d1b78e033c2f7e613f66196c6428a",
+      "keccak256": "0x459cf9087147ea6d17e9dcac6dcb20f719247c95fe3a9e0c27900a38ba5e4606",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "532755dc12a76c7059843bdee7520af03f1d1b78e033c2f7e613f66196c6428a",
+      "compiler_content_keccak256": "0x459cf9087147ea6d17e9dcac6dcb20f719247c95fe3a9e0c27900a38ba5e4606"
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "b2586ace9c56e141f10e5f8d4801a980e9c891e8d4d0d1bf7dc8ff36b2aa6572",
+      "keccak256": "0x6711962365b71937f20096888d35154b31eb15fa748131122962ab1d5ac36fb0",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "b2586ace9c56e141f10e5f8d4801a980e9c891e8d4d0d1bf7dc8ff36b2aa6572",
+      "compiler_content_keccak256": "0x6711962365b71937f20096888d35154b31eb15fa748131122962ab1d5ac36fb0"
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "df16dc50f2523d40b1adb249331450b95bfa9ad92f80c9b4db0f4b9c363545b8",
+      "keccak256": "0x0e61eacf9a7bb8c5085dc5750ab8b0ff594f8b1f3d107e1e23bb636606c73b55",
+      "compiler_content_transformation": "none",
+      "compiler_content_sha256": "df16dc50f2523d40b1adb249331450b95bfa9ad92f80c9b4db0f4b9c363545b8",
+      "compiler_content_keccak256": "0x0e61eacf9a7bb8c5085dc5750ab8b0ff594f8b1f3d107e1e23bb636606c73b55"
+    }
+  },
+  "passed": true,
+  "constructor_arguments_not_included": true
+}

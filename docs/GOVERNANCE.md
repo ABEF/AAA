@@ -34,7 +34,8 @@ Bootstrap is erased and fixed module bindings cannot be replaced.
 | Select an existing enabled activation route | The transaction/quote selects it; no new governance action is needed. |
 | Add/disable activation assets, routes or supported pools | Exact governance operation; no waiting period. Token, factory, code, price and venue checks still apply. |
 | Change feeds, wrapper policies, operators or strategy parameters | Exact governance operation; no waiting period. Existing parameter and binding restrictions remain. |
-| Pause | Guardian or governance, immediately. Only governance can unpause. |
+| Global pause | Guardian or governance, immediately. Only governance can unpause. |
+| Stop a pool / pause only NFT minting | Governance `PoolRegistry.disablePool` clears flags without dependency reads; `NFT.setMintPaused` controls new mints. No waiting period or new role. Reopening a pool uses full validation; resuming minting does not override global/lifecycle controls. |
 | Propose LP migration | Governance authorizes the exact plan. `MIGRATION_DELAY()` is zero. |
 | Execute an approved LP migration | Authorized keeper, immediately if every execution/custody/route check passes. No autonomous choice of destination. |
 | Preparation, parking, handoff or successor approval | Governance, with no time delay; required state transitions, exact backing and source retirement remain mandatory. |

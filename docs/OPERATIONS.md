@@ -191,3 +191,14 @@ until destination admission is safe against competing arrivals.
 
 This review does not start/alter keeper services or complete the sustained soak,
 production RPC/fee qualification, physical host-loss or key-rotation rehearsals.
+
+## Independent emergency controls
+
+Use governed `PoolRegistry.disablePool(poolId,stopDeposits,stopOperations)` to
+restrict a pool without depending on healthy prices/tokens/venue. It can only
+clear flags; full configure/configureNative validation is required to reopen.
+Use governed `NFT.setMintPaused(true)` for an isolated mint/provider incident;
+existing reveals and NFT/LP rights keep their independent guards. Both operations
+respect preparation/canonical configuration locks and add no governance delay.
+Follow the [operator manual](OPERATOR_MANUAL.md#stop-controls) for exact calls,
+receipts, callback rollback, successor-state review and deliberate restart.

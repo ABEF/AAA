@@ -220,3 +220,18 @@ The reveal condition alone does not approve handoff. Provider funding/liveness,
 pending duration and other handoff requirements remain explicitly unverified.
 It performs no signing or finalization and deploys no watcher. See [the operator
 procedure](OPERATOR_MANUAL.md#mint-and-metadata) and [evidence](../reports/api-work-limits/VERIFICATION.md).
+
+## Independent mint control
+
+The confirmed `/v1/protocol` response includes `minting.paused` and
+`minting.available_by_controls`. `/v1/mint-readiness` includes `mint_paused` and
+`new_minting_stopped`, which combines mint-only pause with the existing global /
+canonical / preparation lifecycle restriction. `new_minting_stopped_by_lifecycle`
+keeps its original narrower meaning. These fields do not prove provider funding,
+fulfillment, remaining supply or successful execution. LP contribution availability
+is not turned off merely because minting is paused.
+
+All reads use the same confirmed hash and final canonicality check; missing or
+malformed getters fail rather than assuming minting is open. Deployment pins must
+match this NFT implementation. Existing deployments without `mintPaused()` need
+a compatible service version. See [controls evidence](../reports/operator-controls/VERIFICATION.md).

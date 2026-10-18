@@ -140,11 +140,16 @@ Production addresses are not selected. The [address inventory](docs/DEPLOYMENT_A
 
 **Sealing fixes module implementations and local venue bindings.** Governance can still configure supported assets, routes, feeds, destinations and strategy parameters within existing controls. New algorithms or unsupported venues need separately reviewed compatible deployments, rather than an in-place code update. The [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md) details these boundaries.
 
+The [operator manual](docs/OPERATOR_MANUAL.md#stop-controls) includes a governed
+mint-only pause and disable-only pool controls that work without healthy pool
+dependencies. Re-enabling a pool still requires full validation; existing rights
+retain their independent guards. See [scoped verification](reports/operator-controls/VERIFICATION.md).
+
 ### Recovery paths
 
 | Situation | Supported path and limits | Reference |
 | --- | --- | --- |
-| **Pause and park LP** | Governance-approved governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads and creator-inbox synchronization; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
+| **Pause and park LP** | Governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads and creator-inbox synchronization; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
 | **Move LP between local pools** | Approved moves preserve the bucket's NFT shares and liabilities. Current moves require the same ordered accounting currencies; different-pair conversion remains unfinished. Moving LP alone does not relocate NFT ownership or reward ledgers. | [Migration safety](docs/MIGRATION_SAFETY.md) |
 | **Replace the whole deployment on the same chain** | The handoff candidate freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement. Retirement/activation is atomic, with a restored funded abort path before retirement. Reviewed replacement code is an accepted governance trust boundary. | [Canonical handoff](docs/CANONICAL_HANDOFF.md) |
 | **Relocate the collection to another chain** | Verified source finality, authenticated channel closure, new lineage/message semantics and reviewed transport remain pre-seal work. There is no multisig-only activation override. Recovery after a permanent source-chain halt is deferred. | [Canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md) |

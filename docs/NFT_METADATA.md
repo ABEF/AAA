@@ -50,3 +50,10 @@ new mints through the supported lifecycle control and finalize all existing draw
 No request carry, reroll, admin trait choice or post-seal coordinator switch exists.
 The confirmed mint-readiness endpoint is an observation, not provider/recovery
 qualification. A permanently unanswered request remains a replacement blocker.
+
+Governance can pause new draws with `NFT.setMintPaused(true)` while the original
+coordinator fulfills existing requests and ordered finalization continues.
+Resume with `false` after provider checks; other lifecycle/global controls still
+apply. The switch does not select, cancel or reroll traits. See the
+[operator procedure](OPERATOR_MANUAL.md#mint-and-metadata) and
+[scoped control verification](../reports/operator-controls/VERIFICATION.md).

@@ -43,6 +43,18 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 [migration gate](../TODO.md#task-destination-slots) and
 [canonical migration requirement](../TODO.md#task-security-chain-recovery).
 
+## Independent pool and mint controls
+
+`PoolRegistry.disablePool` restricts an admitted pool without token/price/venue
+reads; flags can only be cleared. Reopening retains full admission checks.
+`NFT.setMintPaused` independently blocks new mint/request creation, including
+callback-time pause rollback, while existing rights and pending reveals retain
+their own guards. Governance controls both with no delay; lifecycle locks remain.
+The API reports the separate mint switch at its confirmed snapshot. See
+[operator procedures](OPERATOR_MANUAL.md) and [scoped evidence](../reports/operator-controls/VERIFICATION.md).
+These candidate features require updated deployment/runtime review; they do not
+retrofit sealed binaries or qualify actual operating services.
+
 ## Operator procedures and service safety
 
 The [operator manual](OPERATOR_MANUAL.md) covers source-backed management calls,

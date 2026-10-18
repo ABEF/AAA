@@ -1,0 +1,18 @@
+{
+  "total_findings": 378,
+  "dispositions": {
+    "false_positive": 157,
+    "accepted_risk": 75,
+    "informational": 146
+  },
+  "matched_expression_reviews": 378,
+  "coverage_pass": true,
+  "mutation_rejections": {
+    "missing_finding": true,
+    "unreviewed": true,
+    "wrong_expression": true,
+    "stale_nft": true,
+    "stale_registry": true
+  },
+  "independent_audit": false
+}

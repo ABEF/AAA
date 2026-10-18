@@ -253,8 +253,11 @@ class Projection:
         """Lifecycle remains readable without touching frozen reward ledgers."""
         header, head, block = self._snapshot()
         lifecycle = self._verify_deployment(block, allow_locked=True)
+        mint_paused = _bool(self._call(self.contracts['nft'].address, 'mintPaused()', block=block)[0])
         self._finish(header)
         return {'schema': 2, 'chain_id': self.chain, 'lifecycle': lifecycle,
+                'minting': {'paused': mint_paused,
+                            'available_by_controls': not mint_paused and lifecycle['new_economic_work_available_by_lifecycle']},
                 'contracts': {role: item.address for role, item in self.contracts.items()},
                 'provenance': {'block_number': header['number'], 'block_hash': header['hash'],
                                'block_timestamp': header['timestamp'], 'observed_head': head,
