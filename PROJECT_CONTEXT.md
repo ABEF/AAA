@@ -1,3 +1,29 @@
+## Activation preparation checkpoint - 2026-10-18
+
+Complete typed activation/top-up preparation is now in `frontend_api/activation.py`,
+with strict operator pins, bounded built-in call traces and an opt-in loopback
+endpoint. Read [the integration guide](docs/ACTIVATION_PREPARATION.md) and
+[scoped verification](reports/activation-preparation/VERIFICATION.md). There are
+38 passing focused backend tests on the exact publication snapshot, 63 verified
+ABI getter layouts and a local Anvil trace/gas probe with the actual budget helper.
+No production Solidity changed; unchanged broad contract checks were not repeated.
+
+Per-NFT displayed value must come from confirmed `NFT.currentLPValue`: marked
+deployed LP plus attributed idle/compound, separately from rewards and the new
+contribution's marginal LP. The user pays network gas separately; one Entry call
+covers conversion/balancing/LP addition, with ERC20 approval/reset transactions
+separate when required. Conversion/slippage/undeployed input share the 1% limit.
+Missing allowance produces only an exact approval step, never a fake ready LP
+quote. Full preparation checks original-source value, actual budget/share/LP
+results and resimulates exact final calldata with bounded minima/deadline.
+
+This milestone is published on main with Todo/features/evidence; verify Git for
+the exact commit. Actual route/feed manifests, provider callTracer/hash/gas support,
+complete network-fee accounting, browser wallet/hosting and independent production
+qualification remain open. Release NOT APPROVED; website/server unchanged. Preserve
+the separate unpublished mint/claim, conversion-only quote, process-runner and
+artwork drafts. The user-paused staging monitor remains paused.
+
 # AAA / ZZZ PoPL project context
 
 ## Claim-history continuity checkpoint - 2026-10-18

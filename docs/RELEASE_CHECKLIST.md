@@ -12,7 +12,10 @@ it is not another task checklist.
 The [2026-10-18 development verification](WORK_HANDOFF.md) closes the saved
 bridge-fixture and cold-gas regression reruns. It does not approve independent
 audit, current operating rehearsals, real dependencies or cross-chain migration.
-Exact-commit Ubuntu CI remains separate from local evidence.
+Exact-commit Ubuntu CI remains separate from local evidence. The separately
+verified [activation preparation](../reports/activation-preparation/VERIFICATION.md)
+adds 38 focused backend checks and a local trace/budget probe; it does not qualify
+production activation routes, oracles, RPC providers, network fees or wallet UX.
 
 ## Release identity
 

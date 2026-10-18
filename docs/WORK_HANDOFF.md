@@ -5,6 +5,19 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+Complete activation/top-up preparation is implemented separately from the old
+mint/claim and conversion-only drafts. Read [the integration contract](ACTIVATION_PREPARATION.md)
+and [scoped evidence](../reports/activation-preparation/VERIFICATION.md): 38 focused
+checks passed on the exact publication snapshot; 63 ABI getter layouts and local
+Anvil trace/gas/budget mechanics were verified using source-matched artifacts.
+The backend returns the current NFT on-chain marked value separately from the
+new marginal LP contribution, an exact unsigned Entry call and separate gas.
+Insufficient approval returns only an approval/reset step and requires re-quoting
+after confirmation. Production manifests/routes/feeds/RPC fee semantics and the
+wallet/hosted-service integration remain open; no website/server changes occurred.
+Source/evidence/docs are published together on main; use Git for exact identity.
+
+
 The latest [claim-lineage checkpoint](FRONTEND_LINEAGE.md) extends the schema-2
 lifecycle API with complete explicitly configured same-chain predecessor replay.
 It verifies both handoff directions, canonical retirement/activation receipts and

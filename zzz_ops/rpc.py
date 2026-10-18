@@ -17,7 +17,7 @@ class Rpc:
         'eth_chainId','eth_blockNumber','eth_call','eth_estimateGas','eth_gasPrice',
         'eth_getBlockByNumber','eth_getBlockByHash','eth_getLogs','eth_getCode','eth_getStorageAt',
         'eth_getTransactionByHash','eth_getTransactionReceipt','eth_getTransactionCount',
-        'eth_getBalance','eth_feeHistory','eth_maxPriorityFeePerGas','web3_clientVersion',
+        'eth_getBalance','eth_feeHistory','eth_maxPriorityFeePerGas','web3_clientVersion','debug_traceCall',
     })
     def __init__(self, urls: list[str], chain_id: int, *, timeout: float = 10, retries: int = 3):
         if not isinstance(urls,list) or not 1 <= len(urls) <= 8 or type(chain_id) is not int or chain_id <= 0:

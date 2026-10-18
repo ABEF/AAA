@@ -20,6 +20,7 @@ decision for an exact release, not development progress.
 |---|---|---|
 | Mint and identity | Dormant mint costs exactly 0.05 ETH and adds no LP. The fixed 1,000 supply uses canonical hashed token IDs, separate mint ordinals and exact eventual 600 Commun / 300 Rare / 100 Legendary quotas. Ordered VRF draws select existing artwork without replacement; no administrator reroll exists. | [NFT metadata](NFT_METADATA.md), [Vault](../src/ZZZVault.sol) |
 | Activation and additions | Immutable Registry-created Entry binds the original source value, current owner and exact Vault call. Activation starts at $100 gross value; conversion and marginal LP deployment share a 1% execution/undeployed budget, with network gas separate. Governed asset and route admission does not itself qualify a live route or price feed. | [Activation Entry](ACTIVATION_ENTRY.md), [asset policies](../src/ZZZActivationAssets.sol) |
+| Activation transaction preparation | Typed owner/source requests verify sealed bindings, assets/routes/feeds and simulate the full Entry call at one canonical hash. Actual budget/share/LP results enforce the 1% floor; exact final calldata, short on-chain deadline and separate reviewed network-gas estimate are returned unsigned. Missing allowance yields only an approval/reset step until confirmed. Current NFT value comes from currentLPValue and stays separate from new LP. | [Preparation](ACTIVATION_PREPARATION.md), [38 focused checks and runtime evidence](../reports/activation-preparation/VERIFICATION.md) |
 | Shared LP custody | Many NFTs own nonredeemable shares of one physical LP per pool/strategy. Maintenance acts on the shared bucket. The cap is four permanently admitted/historical local identities, including unfunded reservations and imports; all 1,000 NFTs can share the initial pool. | [Architecture](ARCHITECTURE.md), [scale/capacity verification](../reports/nft-rights-audit/VERIFICATION.md#execution-gas-and-capacity) |
 | LP revenue | Actual admitted receipts allocate 80% by LP shares, 10% equally among activated NFTs, 5% to the earning bucket's compounding reserve and 5% to buyback/burn. Rarity does not affect LP rewards. Documented raw-unit dust and receipt-time membership rules apply. Creator inboxes receive funds; they cannot enforce a creator's payment obligation. | [Economics](ECONOMICS.md), [external funding](EXTERNAL_REWARDS.md) |
 | Royalties and claims | ERC-2981 requests 5%; actual eligible receipts use a separate immutable ledger at activated rarity weights x1/x2/x3. Current owners claim; unpaid balances follow the NFT. Direct ledger claims and an immutable 1-32-operation mixed claim router exist. Marketplace payment is not enforced. | [Claim router](CLAIM_ROUTER.md), [ownership review](../reports/nft-rights-audit/REVIEW.md#identity-and-ownership) |
@@ -119,7 +120,9 @@ maintained as additional task lists.
 
 The local working tree also contains unsigned 0.05 ETH mint and 1-32-operation
 mixed LP/royalty claim preparation, optional HTTP handling, canonical-hash
-activation quote hardening, and bounded fork-runner process/timeout cleanup.
+older conversion-only quote hardening, and bounded fork-runner process/timeout cleanup.
+The complete [activation/top-up preparation](ACTIVATION_PREPARATION.md) is now a
+separate published backend capability; it does not depend on those saved drafts.
 These remain distinct from the published read API and contract claim router.
 Final read freshness/depth checks have been published with the lifecycle API;
 they are no longer an unpublished draft. This page does not link to unpublished

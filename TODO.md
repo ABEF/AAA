@@ -111,14 +111,15 @@ The data and services behind the app.
 
 <a id="task-activation-quotes"></a>
 
-- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_ROUTING.md#atomic-entry-candidate-and-remaining-qualification)** - In progress. Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately.
+- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Quote and test $100 source value with no more than 1% total execution/undeployed cost and gas separate. Reject quotes or revert when the limit cannot be met; do not promise zero gas loss on reverts.
-  - Build a complete original-source-to-LP quote against actual reviewed routes and feeds, including the Pons deployment leg. Authenticate Entry/Registry/Oracle/helper bindings and append-only route policy history; conversion-only quotes are not signable activation preparation.
-  - Pin all call/code/storage reads to one canonical block hash; verify provider support and final snapshot freshness, rejecting stale/future observations and unsupported selectors without fallback. Rehearse every target input with separate gas estimates.
+  - Implemented: typed owner request, exact source admission/route/feed/runtime/module pins, one confirmed canonical hash, two full Entry simulations, contract-budget/share/event/LP reconciliation and tighter final conversion/liquidity minima. Missing allowance produces only an exact approval/reset draft and requires re-preparation after confirmation; no state overrides, signer or broadcast.
+  - Qualify actual ETH/ZZZ/USDG/USDC original-source-to-Pons paths and reviewed feeds at $100 gross value, with at least 99% new marginal LP and gas separate. Current local fixtures and trace/budget probe do not constitute a complete live-route rehearsal. Reject or revert when the limit cannot be met; reverted transactions can still spend gas.
+  - Verify intended RPC providers support canonical-hash callTracer with logs and complete gas estimation. Approve network fee accounting (including every applicable data/L1 component), source/proxy/storage pins and actual gas/latency bounds. No latest/state-override fallback on unsupported/stale/future/reorg responses.
+  - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
 
   </details>
 
@@ -479,4 +480,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `f812aa5f03386edcab6f0e1bae758625f3a1c8f9aca94d9ee4d7fe5b6c1f0e8b`.
+Snapshot SHA-256: `a31b33e5670fbb5cdc4e0a67f622ea6fbc82ab335b9b4dd1c13e252a68dd726e`.

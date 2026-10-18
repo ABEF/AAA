@@ -1,0 +1,165 @@
+"""Decode only the reviewed Entry/Vault/manager call path from a bounded trace.
+
+RPC traces are observations, not execution proofs. Never infer new LP from a
+before/after bucket NAV: repricing and incumbent compound would contaminate it.
+"""
+from __future__ import annotations
+
+from frontend_api.service import ProjectionError, ZERO, _address_word, _quantity
+from zzz_ops.abi import address, calldata, decode_words, keccak256
+
+EXECUTE = 'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))'
+RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
+MINT = 'mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)'
+INCREASE = 'increase(bytes32,uint256,uint256,uint256,uint128,uint256)'
+SOURCE = '0x' + keccak256(b'SourceContributed(address,uint256,bytes32,address,uint256,uint256,address,uint256,bool)').hex()
+SHARES = '0x' + keccak256(b'SharesAdded(uint256,uint256,uint256,uint256)').hex()
+MAX_FRAMES = 8192
+
+
+def selector(signature):
+    return '0x' + keccak256(signature.encode()).hex()[:8]
+
+
+def words(raw, length):
+    result = decode_words(raw)
+    if len(result) != length:
+        raise ProjectionError('Unexpected activation ABI length')
+    return result
+
+
+def request_data(identifier, pool, source, amount, route, minimum_out, minimum_lp, deadline, increase):
+    # One STATIC tuple has no dynamic offset. Zero source is native ETH.
+    values = (identifier, int(pool, 16), int(source, 16), amount, int(route, 16),
+              minimum_out, minimum_lp, deadline, int(increase))
+    if any(type(x) is not int or not 0 <= x < 2**256 for x in values) or not 0 < minimum_lp < 2**128:
+        raise ValueError('Invalid Entry tuple')
+    return selector(EXECUTE) + ''.join(f'{x:064x}' for x in values)
+
+
+def successful(frame):
+    if not isinstance(frame, dict) or frame.get('error') or frame.get('revertReason'):
+        raise ProjectionError('Activation simulation reverted or has an invalid frame')
+    return frame
+
+
+def child(frame, caller, target, signature, kind):
+    matches = [x for x in frame.get('calls', []) if x.get('from', '').lower() == caller and
+               x.get('to', '').lower() == target and x.get('input', '').lower().startswith(selector(signature))]
+    if len(matches) != 1 or matches[0].get('type') != kind:
+        raise ProjectionError('Missing or ambiguous reviewed activation call')
+    return successful(matches[0])
+
+
+def event(frame, emitter, topic, indexed, count):
+    found = [x for x in frame.get('logs', []) if x.get('address', '').lower() == emitter and
+             x.get('topics', [None])[:1] == [topic]]
+    if len(found) != 1:
+        raise ProjectionError('Missing or ambiguous contribution event')
+    item = found[0]
+    if item.get('removed', False) is not False or item.get('topics') != [topic] + indexed:
+        raise ProjectionError('Contribution event identity mismatch')
+    return words(item.get('data'), count)
+
+
+def measure(trace, tx, pins, request, gross, max_slippage):
+    """Return contract-checked marginal deployment, share issuance and LP units."""
+    root = successful(trace)
+    stack = [(root, 0)]; count = 0
+    while stack:
+        frame, depth = stack.pop(); count += 1
+        if not isinstance(frame, dict) or depth > 64 or count > MAX_FRAMES:
+            raise ProjectionError('Activation trace exceeds its bound')
+        children = frame.get('calls', [])
+        logs = frame.get('logs', [])
+        if not isinstance(children, list) or not isinstance(logs, list) or len(logs) > 4096:
+            raise ProjectionError('Malformed activation trace')
+        if any(not isinstance(x, dict) for x in children + logs):
+            raise ProjectionError('Malformed activation trace item')
+        for key in ('from', 'to', 'input', 'output', 'type'):
+            if key in frame and not isinstance(frame[key], str):
+                raise ProjectionError('Malformed activation trace field')
+        for log in logs:
+            if (not isinstance(log.get('address'), str) or not isinstance(log.get('topics'), list) or
+                    any(not isinstance(t, str) for t in log['topics'])):
+                raise ProjectionError('Malformed activation trace log')
+        stack.extend((x, depth + 1) for x in children)
+    if (root.get('type') != 'CALL' or root.get('from', '').lower() != tx['from'] or
+            root.get('to', '').lower() != tx['to'] or root.get('input', '').lower() != tx['data'] or
+            _quantity(root.get('value', '0x0')) != int(tx['value'], 16) or root.get('output', '0x') != '0x'):
+        raise ProjectionError('Trace is not the exact unsigned Entry operation')
+    gas_used = _quantity(root.get('gasUsed'))
+    if not 0 < gas_used <= int(tx['gas'], 16):
+        raise ProjectionError('Invalid simulated gas use')
+    req = request
+    topic_word = lambda n: '0x' + f'{n:064x}'
+    source = event(root, pins['entry'], SOURCE,
+                   [topic_word(int(tx['from'], 16)), topic_word(req['id']), req['pool']], 6)
+    if (_address_word(source[0], native=True) != req['source'] or int(source[1], 16) != req['amount'] or
+            int(source[2], 16) != gross or _address_word(source[3]) != req['output'] or
+            int(source[5], 16) != int(req['increase'])):
+        raise ProjectionError('Source event differs from authenticated original input')
+    acquired = int(source[4], 16)
+    if acquired == 0 or acquired < req['minimum_out']:
+        raise ProjectionError('Invalid converted output')
+    if req['route'] == '0x' + '0' * 64 and acquired != req['amount']:
+        raise ProjectionError('Direct input did not preserve its exact amount')
+    a0, a1 = (acquired, 0) if req['output'] == req['token0'] else (0, acquired)
+    signature = ('increase(uint256,uint256,uint256,uint128,uint256)' if req['increase'] else
+                 'activate(uint256,bytes32,uint256,uint256,uint128,uint256)')
+    args = ((req['id'], a0, a1, req['minimum_lp'], req['deadline']) if req['increase'] else
+            (req['id'], req['pool'], a0, a1, req['minimum_lp'], req['deadline']))
+    vault = child(root, pins['entry'], pins['vault'], signature, 'CALL')
+    if vault['input'].lower() != calldata(signature, *args) or vault.get('output', '0x') != '0x':
+        raise ProjectionError('Vault did not receive the exact owner contribution')
+    check = child(vault, pins['vault'], pins['budget'], RESULT, 'STATICCALL')
+    input_usd, supply, incumbent_nav, incumbent_deployed, deployed, idle, slippage = [
+        int(x, 16) for x in words('0x' + check['input'][10:], 7)]
+    issued, net = [int(x, 16) for x in words(check.get('output'), 2)]
+    floor = gross - gross // 100
+    if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= 200 or
+            deployed < incumbent_deployed + floor or net != deployed + idle - incumbent_nav or
+            net < floor or net < gross * (10000 - slippage) // 10000 or
+            idle > (deployed + idle) * 500 // 10000 or deployed == 0 or
+            supply and incumbent_nav == 0):
+        raise ProjectionError('Simulated contribution violates its original-source 1% budget')
+    expected_shares = supply * net // incumbent_nav if supply else net
+    if issued != expected_shares or issued == 0 or issued + supply > 10**36:
+        raise ProjectionError('Invalid contribution share issuance')
+    share_event = event(vault, pins['vault'], SHARES,
+                        [topic_word(req['id']), topic_word(req['bucket'])], 2)
+    if [int(x, 16) for x in share_event] != [issued, net]:
+        raise ProjectionError('Share event differs from contract accounting')
+    # The one mint/increase performed by _put has its own isolated PosM reads.
+    # Reads made by harvest/NAV elsewhere in Vault must never be used here.
+    create = req['old_lp_id'] == 0
+    method = MINT if create else INCREASE
+    mint = child(vault, pins['vault'], pins['liquidity'], method, 'CALL')
+    params = words('0x' + mint['input'][10:], 7 if create else 6)
+    if (params[0] != req['pool'][2:] or int(params[-2], 16) != req['minimum_lp'] or
+            int(params[-1], 16) != req['deadline'] or not create and int(params[1], 16) != req['old_lp_id']):
+        raise ProjectionError('LP mint/increase parameters differ from the Entry request')
+    output = words(mint.get('output'), 3 if create else 2)
+    lp_id = int(output[0], 16) if create else req['old_lp_id']
+    target_call = calldata('getPositionLiquidity(uint256)', lp_id)
+    readings = [x for x in mint.get('calls', []) if x.get('from', '').lower() == pins['liquidity'] and
+                x.get('to', '').lower() == pins['position_manager'] and x.get('input', '').lower() == target_call]
+    if lp_id == 0 or len(readings) != (1 if create else 2):
+        raise ProjectionError('LP liquidity delta is missing or ambiguous')
+    values = []
+    for x in readings:
+        successful(x)
+        if x.get('type') != 'STATICCALL':
+            raise ProjectionError('Invalid LP measurement call')
+        value = int(words(x.get('output'), 1)[0], 16)
+        if value >= 2**128:
+            raise ProjectionError('LP units exceed uint128')
+        values.append(value)
+    added = values[-1] - (0 if create else values[0])
+    if added < req['minimum_lp'] or added <= 0:
+        raise ProjectionError('LP units do not meet the requested minimum')
+    return {'source_usd_18': gross, 'required_deployed_usd_18': floor,
+            'marginal_deployed_usd_18': deployed - incumbent_deployed,
+            'net_contribution_usd_18': net, 'shares_added_raw': issued,
+            'lp_liquidity_added_raw': added, 'lp_token_id': lp_id,
+            'converted_amount_raw': acquired, 'simulation_gas_used': gas_used}
