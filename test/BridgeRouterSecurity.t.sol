@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
@@ -79,6 +80,7 @@ contract BridgeRouterSecurityTest is Test {
         incomingPolicy = router.registerPolicy(_policy(false, address(provider), keccak256("provider-v1")));
         outgoing = registry.add(_route(true), outgoingPolicy);
         incoming = registry.add(_route(false), incomingPolicy);
+        CanonicalFixture.bind(address(controller));
         controller.seal();
     }
 
@@ -191,6 +193,7 @@ contract BridgeRouterSecurityTest is Test {
                 ? address(expected) : address(new BoundDummy(address(isolated)));
             isolated.bind(ids[i], implementation);
         }
+        CanonicalFixture.bind(address(isolated));
         vm.expectRevert(); isolated.seal(); assertFalse(isolated.isSealed());
     }
 

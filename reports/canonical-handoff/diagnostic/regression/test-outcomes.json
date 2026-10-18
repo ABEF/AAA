@@ -1,0 +1,2538 @@
+{
+  "raw_log_sha256": "ac973bff9f3136f2857687160736850aefd5222f2bad9b88eb7e8f64944b9031",
+  "raw_log_retained_at": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\handoff-20261017\\regression\\attempt1\\stdout.log",
+  "suites": {
+    "test/AccessController.t.sol:AccessControllerTest": {
+      "tests": {
+        "testAllCoreModulesWithoutCanonicalCompanionsCannotSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBootstrapCannotConfigureAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCannotReplaceModules()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalRandomnessMustBeConfiguredBeforeSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDelayCannotBeShortened()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeeCompanionMustBelongToBoundFeeController()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGuardianCanPauseNotUnpause()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncompleteDeploymentCannotSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTCompanionMustBelongToBoundCollection()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSealErasesBootstrap()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimelockedKeeperChange()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongControllerBindingRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ActivationAssets.t.sol:ActivationAssetsTest": {
+      "tests": {
+        "testAdmissionDoesNotBypassExistingExactTransferExecutionGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAdmissionNeverHoldsOrMovesFundsAndCannotSweepForcedAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBadMetadataAndOracleDecimalMismatchRejectNewSource()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedRuntimeRequiresNewExplicitGovernanceReviewBeforeContributing()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisableOneAssetLeavesAnotherSourceUsableAndDoesNotChangeOracleValuation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledBadTokenAndFailingPriceCanAlwaysBeRecorded()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGovernanceCannotBypassTwoDayTimelockAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGuardianPauseDoesNotGrantAssetConfigurationAuthority()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoryNeverOverwritesEvenWhenReturningToSameParameters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImmutableRegistryAndInitialReviewedAdmission()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMissingStaleOrZeroFeedCannotEnableOrAdmitNewSource()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyImmutableRegistryCanBootstrapPoolAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOracleDecimalReconfigurationInvalidatesOldAdmissionUntilReviewedAgain()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoolReconfigurationNeverReenablesDisabledPolicyOrUpdatesOldPin()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimelockedDisableSucceedsDespiteTokenAndOracleOutage()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimelockedEnableRequiresFreshFeedAndCorrectRuntimeAtExecution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownDisabledPolicyBlocksAutomaticPoolAdmissionWithoutDependencyReads()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroAddressUnreviewedOrIncorrectPinCannotEnable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroInputSkipsAllAssetAndOracleDependencies()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ActivationEntry.t.sol:ActivationEntryTest": {
+      "tests": {
+        "testActiveContextMismatchNeverFallsBackToPairValue()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActiveContextWrongVaultCallHashRevertsAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testApprovalCallbackSeesInactiveContextBeforeAnyVaultMutation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAttackerOrNFTApprovalCannotActivateAnotherOwnersNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBrokenWrapperOrWrongNativeAmountRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testContextCannotBeReadOrForgedByUntrustedCaller()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectPairInputAndTopUpKeepOwnerAndSourceValue()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledOriginalSourceDoesNotPullOrUseIntermediatePolicy()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExpiredBoundsMinimumAndUnexpectedNativeRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFabricatedRouterOutputCannotBecomeGrossOrLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalAllowanceResetClearsContextAndStillRejectsReentry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalAllowanceResetOwnershipChangeRollsBackCompletedVaultOperation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalVaultPullCallbackNFTTransferRollsBackEverything()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzSingleBudgetCannotBeResetAfterConversion(uint16,uint16)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeWrapUsesOnlyActualInputAndLeavesNoETHCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyGovernanceCanAdmitOrToggleRoutes()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseUnsealedAndNoncanonicalRegistryFailClosed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSealRouteAdmissionRequiresCompletedTwoDayTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPrefundsCannotBecomeContributionOrRouteOutput()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRejectsPlainETHArbitraryCallsAndThirdPartyConstructor()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoutePartialConsumptionCannotUsePrefunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoutedOriginalGrossBoundAndBothLegsUseOneBudget()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoutesAreImmutableAndDisableIgnoresBrokenDependency()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCallbackCannotReenterAtomicEntry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCallbackNFTTransferRollsBackEverything()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleOrUnavailableOriginalPriceRollsBackCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedOriginalInputCannotBeCreditedAsFullSource()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTwoIndividuallySmallLossesCannotCompoundBeyondOnePercent()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreviewedRouteMalformedRouteAndNonpairOutputRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVaultMustConsumeExactOutputAndApprovalIsNeverLeftLive()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ApprovedProviderTrust.t.sol:ApprovedProviderTrustTest": {
+      "tests": {
+        "testApprovedExactSourceConsumptionDoesNotProveDestinationCustody()": {
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        }
+      }
+    },
+    "test/AtomicActivationIntegration.t.sol:AtomicActivationIntegrationTest": {
+      "tests": {
+        "testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/BridgeRouterSecurity.t.sol:BridgeRouterSecurityTest": {
+      "tests": {
+        "testActualTokenOrderAndAmountsCannotDifferFromEconomicRoute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAuthenticatedIncomingRetainsFundingWhileOutboundDisabled()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedConfigurationBlocksSendingWithoutRebinding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedDestinationCodeRejectedEvenForBoundProviderAddress()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedDestinationConfigurationRejectsIncomingWithoutConsumingNonce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedProviderCodeBlocksSending()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDestinationHandoffConfigurationMutationRollsBackFundingAndReplay()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDestinationPreexistingDonationsPreservedAcrossFundedReceipt()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEnvelopePolicyCannotReplaceTheRoutesImmutableBinding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExistingPolicyCannotBeReRegistered()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzIncomingExactFundingAndReplay(uint96,uint96,uint64)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncomingSurvivesStrategyPauseAndRouteDisable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidEnvelopeAndPayloadVersionsAndZeroNonceRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewProviderPolicyNeedsTimelockAndNewRouteIdentity()": {
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        "testOldPolicyReceiptWorksAfterNewProviderOnboardingAndReplayIsGlobal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyBoundBridgeCanSendThroughRouter()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyTimelockCanEnableAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutgoingFundingEnvelopeAndAllowanceResets()": {
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        "testPrincipalCanContainOneZeroValuedTokenLeg()": {
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        "testProviderConfigurationMutationDuringSendRollsBackEntireDispatch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderPartialConsumptionRollsBackAllSourceFundsAndNonce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderReceiptCannotCoverPartialConsumptionWithDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testProviderReentryCannotReceiveDuringSend()": {
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        "testReceiverFailurePreservesFundingAndAllowsExactRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterRejectsExtraSenderTaxDespitePreexistingDonation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterRejectsRecipientTaxDespitePreexistingDonation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSealRejectsBridgeWhoseFixedEndpointIsAnotherRouter()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSealedRoutesStartOutboundDisabled()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourcePreexistingDonationsArePreservedAcrossSuccessfulDispatch()": {
+          "status": "Failure",
+          "reason": "EvmError: Revert"
+        },
+        "testTypedRewardAndAcknowledgementChannelsUseOnlyDeclaredFunding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnderfundedIncomingCannotUseCustodyDonationsAndCanRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnderfundedSourceCannotUseCustodyDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfundedDestinationDeliveryCanRetryWithoutConsumedNonce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongAuthenticatedOriginChainOrRouterRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongLocalProviderRouterAndCodeHashCannotBeApproved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongProviderCallerRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroDomainAndMissingReviewCannotBeApproved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroReceiptRollsBackFunding()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/BridgeSecurity.t.sol:BridgeSecurityTest": {
+      "tests": {
+        "testAuthenticatedFundedDelivery()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectCallerCannotDeliver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInboundAllowedDuringPause()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncorrectAllocationRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutboundUnauthorized()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverFailureIsRetryable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReplayRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfundedMessageRevertsAndNonceNotConsumed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVersionMismatchRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongSourceRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/BucketCapacity.t.sol:BucketCapacityTest": {
+      "tests": {
+        "testFourHistoricalCanonicalBucketsRejectNewPoolButAllowExistingPoolNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoricalCapStillAllowsCanonicalCustodyReturnAndRepeatedDeparture()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMaximumFundedFourBucketEntryWorkload()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteImportHistoryHasTheSameFourBucketLimit()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/BuybackExecution.t.sol:BuybackExecutionTest": {
+      "tests": {
+        "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testApprovedWrongPairCannotDivertBuybackFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBelowMinimumSwapRollsBackAndCanRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExpiredAndOverlongDeadlineCannotReleaseReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzSplitBurnCannotConsumeIndividualOrCompoundReserve(uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testManipulatedSpotRejectedByRealStrategyGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoOpBurnRejectsAndRestoresEverythingBeforeRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPartialBurnRejectsAndRestoresEverythingBeforeRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPausedBuybackLeavesFundedClaimsAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSwapPriceDeviationRollsBackSettledSwapAndReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReserveTransferFailureRestoresAccountingAndCanRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertingBurnDoesNotBlockLPClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleFeedRejectsWithoutReleasingFundsAndRecoversAfterRefresh()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleOutputFeedRollsBackReleasedInputReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnapprovedRouteCannotReleaseReserve()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedCallerAndDirectReserveReleaseRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVenueReentryCannotSpendASecondBudgetEvenWithKeeperRole()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroOverReserveAndOverTradeBudgetRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CanonicalPreparation.t.sol:CanonicalPreparationTest": {
+      "tests": {
+        "testAdapterPreservesFundedInboundRewardDrainAndAcknowledgements()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testAnnouncementAndCancellationRequireActualTimelockAndExactNotice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testClaimsTransfersPendingRevealAndReceiptSettlementStayAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHarvestAndTimelockedParkingRemainAvailableWithoutSourcePrice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMaturedAnnouncementInFinalTreasuryCallbackCannotBypassVaultEndGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMaturedAnnouncementInNFTCallbackRollsBackTheEntireMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewEconomicWorkStopsAndCancellationRestoresIt()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPreparationIsCanonicalOnlyAndDoesNotAcceptAnEmptyNotice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testQueuedConfigurationCannotBypassPreparationButPauseControlRemains()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testScheduledPrincipalPlanCanBeCancelledThroughTimelockDuringPreparation()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest": {
+      "tests": {
+        "testAttackerAndNFTApprovalDoNotAuthorizeClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCallbackNativeRefundStaysPendingAndBackingRemainsIntact()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectOwnerClaimsRemainAvailable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEmptyOversizedAndDuplicateBatchesRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96,uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImmutableEndpointsAndNoApprovalsOrCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMaximum32ColdOperationsAcross16NFTsUnder12MGas()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMissingLPDependencyDoesNotBlockRoyaltyOnlyBatch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMixedOwnerAndNonexistentNFTFailBeforePayouts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeReceiverRevertRollsBackWholeBatchThenERC20CanClaimSeparately()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseAndUnavailableValuationDoNotBlockClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterCannotBeRedeployedByThirdPartyForCanonicalNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterCannotRedirectToWrongOwnerAtLedger()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRouterRejectsETHAndArbitraryCalls()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedRoyaltyAssetAtomicallyRevertsOtherAssetPayouts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTransferredNFTClaimsBelongOnlyToNewOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedOrNoncanonicalBindingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsupportedAssetAtomicallyRollsBackEarlierLPAndRoyaltyClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroBalancesAndDormantNFTCannotClaimAnotherNFTRewards()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CollectionScale.t.sol:CollectionScaleTest": {
+      "tests": {
+        "testAll1000NFTsPreserveIndependentRightsAndFundedConservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdOperationsAtOneAnd1000NFTsStayBounded()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest": {
+      "tests": {
+        "testColdActivationAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdActivationWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CustodyParking.t.sol:CustodyParkingTest": {
+      "tests": {
+        "testParkedMigrationNeedsRemoteLiabilityFundingButNotRecoveredOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedResumeRejectsChangedOrderedTokensAndDisabledDestination()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingCannotRaceScheduledMigrationAndResumeCannotRaceParkedMigration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingNonceInvalidationAndSuccessfulExecutionPreventReplay()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingOneSidedPositionAllowsOneZeroMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRebalanceInvalidatesScheduledLPTokenSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRejectsEveryStaleSnapshotAndInvalidAuthorizationField()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRejectsNonlocalCustodyEvenWithMatchingLPAndShareSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingRequiresGovernancePausedSealedAndFixedMigrationModule()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkingVenueFeesCannotSubsidizePrincipalMinimums()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/CustodyParking.t.sol:CustodyParkingTimelockTest": {
+      "tests": {
+        "testSealedGuardianPauseStillRequiresExactTwoDayTimelockedParkingCall()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/EntryExecutionBudget.t.sol:EntryExecutionBudgetTest": {
+      "tests": {
+        "testHundredGrossWithNinetyNineLPActivates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncumbentIdleCannotSubsidizeNewNFTsExecutionBudget()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLaterContributionsAlsoRequireNinetyNinePercentDeployed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLoosePoolSlippageCannotOverrideGlobalOnePercentLimit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRoundingCannotDeployLessThanNinetyNinePercent()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ExternalRewards.t.sol:ExternalFundingInvariantTest": {
+      "tests": {
+        "invariant_pendingExternalFundsPrincipalAndClaimsAreConserved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingFundingActivationTopUpAndPausedClaims()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ExternalRewards.t.sol:ExternalRewardsTest": {
+      "tests": {
+        "testBothPairTokensUseIndependentFundedAllocations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalRewardInboxContinuesAcrossOutboundRemoteAndInboundCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCollectingVenueFeesAlsoSynchronizesPendingExternalFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testConstructionPrefundingIsPermanentlyExcludedFromFutureRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantNFTCannotReceiveCurrentOrHistoricalExternalRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExternalPaymentDoesNotChangePrincipalSharesMembershipOrMintProceeds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExternalRewardsCannotMasqueradeAsOldRemoteSettlement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewMember()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFinalIncreaseCallbackCheckpointsTopUpAtItsPreviousShareWeight()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFourExternalReceiversFitBucketCapAndFifthActivationFails()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFutureReceiverCannotBeTheImmutableMintProceedsRecipient()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzExternalFundedClaimsAndAllReservesConserveActualIngress(uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGlobalMembershipBarrierCannotBeInvokedByOrdinaryCaller()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHugeLateCompoundCannotLeaveEntryAboveTheFivePercentIdleCap()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncorrectWrapperOutputRollsBackAllFundingAndLeavesNativePending()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateMintCallbackDuringRebalancePreservesFundedOwnerEntitlements()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateUndeployedCompoundDoesNotRaiseThe100GrossActivationMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferCarriesExternalEntitlementAndOnlyCurrentOwnerCanClaim()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeAndWrappedPaymentsCannotDoubleCount()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeLowGasPaymentAlsoSupportsSecondPairAsset()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePaymentWrapsOnlyActualNewFundsAndBecomesClaimableWETH()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOneImmutableReceiverPerBucketAndWrapperMustBePairAsset()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOwnerAllocationStaysInItsBucketAndCollectiveUsesGlobalMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPairAssetWithWrongDecimalsCannotBeNativeWrapper()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPairDonationToOtherCustodyContractsIsNotExternalRevenue()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPausedSystemCanPublishAlreadyFundedExternalRewardsAndClaim()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingMicroDustFromOtherPoolCannotRewardFutureCollectiveMember()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingPaymentSettlesBeforeSamePoolActivationAndPricesCompoundNAV()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingPaymentSettlesBeforeTopUpWithoutRewritingEitherNFTsFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingRewardFromOtherPoolSettlesBeforeNewCollectiveMember()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRawERC20PaymentIsFundedAndAllocatedExactlyOnce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverCannotAcceptNativePaymentWithoutExplicitWrapper()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverCreationRequiresSealedCanonicalActiveBucketAndGovernance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testScheduledMigrationFreezesMembershipButDoesNotPreventFundedClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSubTwentyPendingDustBelongsToIncumbentBeforeActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedForwardTransferIsRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownTokenIsNotAllocatedOrRescued()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnregisteredCallerCannotAllocateExternalFundsOrChooseAnotherBucket()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedControllerCannotCreateReceiverEvenForExistingShareLedger()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsyncedPaymentDuringFinalIncreaseSettlesBeforeSharesChange()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrappedAndNativeConstructionPrefundingRemainsQuarantined()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperCannotReenterSyncDuringWrapping()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/FutureChainMigration.t.sol:FutureChainMigrationTest": {
+      "tests": {
+        "testEmptyRouterAllowsSealedDormantMintAndLocalPermanentActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHistoricalRemoteRewardsCanUseANewProviderAfterPrincipalMovesOnward()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewProviderPolicyCannotRedirectOrStrandAnOldPendingPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOneSidedPrincipalKeepsTwoLogicalMappingsThroughRealRouters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPolicyDisableBlocksProposalAndExecutionWithoutClosingTheLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPostSealRoutesSupportThreeChainsReturnHomeAndRevisitSatellite()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnThenNewMembershipAndSatelliteRevisitUsesFreshFrozenShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnedBucketWaitsForEveryFundedOldFeeBeforeAdmittingNewShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReversedCurrenciesPreserveUnequalPrincipalAndRejectedDeliveryRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testScheduledWholeBucketMoveFreezesContributionsUntilGovernanceCancels()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTwoNFTsShareOnePhysicalLPAndOneWholeBucketMigration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreservedDestinationRejectsThenRetriesTheSameFundedPacket()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest": {
+      "tests": {
+        "testCanonicalOutboundBucketDustAlsoSettlesBeforeNewMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGlobalSettlementOnlyFeesAndDustFlushOnlyAuthorizedModules()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMembershipCannotFlushForeignCustodyDust()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/LiquidityEncoding.t.sol:LiquidityEncodingTest": {
+      "tests": {
+        "testApprovalsCleared()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCollectUsesZeroDecreaseAndVaultRecipient()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDonationsNotSweptToNextDepositor()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExpiredDeadlineRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncreasePreservesPositionID()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidTickSpacingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMinimumLiquidityEnforced()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintKeepsNFTInVaultAndRefundsExactUnused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedMintRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsolicitedCallbackRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest": {
+      "tests": {
+        "testBudgetCannotBeArmedOrFinalizedByAnotherCaller()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetCountsAttributedIdleAndAllowsExactFivePercentIdle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetMigrationBlocksCloseCallbackReentry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetRetainsFinalLPCustodyCheck()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFreshHarvestCompoundEntersDenominatorInsteadOfMaskingCloseLoss()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFundedRewardBuybackAndPriorDonationsCannotSubsidizePrincipalLoss()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHarvestCallbackPrincipalLossAndPriceChangeCannotPrecedeStartingSnapshot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintCallbackPriceChangeCannotHideExcessAttributedIdle()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MigrationExecutionBudget.t.sol:MigrationBudgetScaleTest": {
+      "tests": {
+        "testMixedDecimalsAndUnequalPricesAcceptExactlyThreePercentAggregateLoss()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMixedDecimalsRejectOneStableBaseUnitPastFloorDespiteHigherLiveFeed()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest": {
+      "tests": {
+        "testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRepeatedMovesStartFreshSnapshotsIncludingAttributedIdle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleBaselineFeedRejectsBeforeHarvestAndPreservesCustody()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MultiHopMigration.t.sol:MultiHopMigrationRegistryTest": {
+      "tests": {
+        "testFutureUnknownGraphEdgeRequiresCompletedTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGraphEdgesRemainAppendOnlyAfterSeal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDecimalsChecksStillApplyToPostSealRoutes()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationAcceptsConfiguredPairInEitherOrder()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRejectsWrongPoolAssetPair()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRequiresEnabledPoolOperations()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalDestinationRequiresExistingConfiguredPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalEndpointChecksStillApplyToPostSealRoutes()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/MultiHopMigration.t.sol:MultiHopMigrationTest": {
+      "tests": {
+        "testAcknowledgementCannotChangeFrozenRemoteFeeTotals()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalReturnRequiresExistingSharesAndCorrectAssets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCanonicalReturnThenAnotherMigrationPreservesIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExactOldAckIsIdempotentAndAlteredOldAckRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForgedPreviousLocationAndCanonicalMappingRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFrozenShareSupplyCannotChangeBetweenProposalAndExecution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateSourceCompletionCannotRegressNewerCanonicalLocation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledMessageRejectsOldNFTVersionAndAlteredBucketIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteToRemoteAckAdvancesHomeAndKeepsHistoricalRewardPaths()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReorderedLocationAckCanBeRetriedAfterEarlierAck()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteCanMigrateAndRevisitAfterSeveralAbsentEpochs()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceCompletionRecordsCanonicalLocationAndClearsPlan()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceSnapshotChangedAfterScheduleCannotExecute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTransportFailureRestoresPrincipalEpochAndScheduledPlan()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReceiverCannotUpdateCustody()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/NFTMetadata.t.sol:NFTMetadataTest": {
+      "tests": {
+        "testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCurrentNAVIncludesIdleAndCompoundAndAttributesOnlyNFTShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testERC2981UsesFivePercentSingleImmutableReceiverAndERC4906IsSupported()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFullSupplyConsumesExactQuotasAndCannotRequestMint1001()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzInitialRarityOddsAndIndependentArtwork(uint256,uint256)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInitialRarityBoundaries()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintRecipientCannotDivertMintProceedsIntoRoyaltyLedgerOrNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMintRequiresFixedVRFAndRollbackLeavesNoRequest()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutOfOrderCallbackCannotReorderQuotaConsumption()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingTraitsCannotActivateAndTransferCannotReroll()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeAcceptsOneAndMaximumFifty()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeDoesNotCacheOrChangePriceDrivenEvolution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeEmitsActualHashedIDsInMintOrder()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeIgnoresPauseTransferAndUnavailableValuation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeRejectsEmptyZeroReversedAndUnmintedBoundsAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRefreshMetadataRangeRejectsFiftyOneBeforeAnyNotification()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleOracleDoesNotBreakURIOrRoyaltyClaimsOrFabricateDormantState()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTraitsStayFixedThroughActivationTopUpAndTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVRFConfigurationAndRequestTupleAreFixed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroWordsConsumeTheFullInventoryWithoutArtworkRerollsOrQuotaLoss()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/NFTOwnershipRights.t.sol:NFTOwnershipRightsTest": {
+      "tests": {
+        "testApprovedOperatorCanTransferButCannotClaimAnyLedger()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testClaimBeforeSaleTransfersOnlyRemainingUnclaimedRights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverRejectAfterClaimsRollsBackAllRightsAndTransfer()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSafeTransferReceiverImmediatelyClaimsAsCurrentOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSaleBeforeClaimImmediatelyRevokesFormerOwner()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSuccessiveTransfersCarryPendingCreatorReceiptsAndRoyalties()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnavailableAdmittedRoyaltyAssetBlocksEntryButHealthyClaimsRemain()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsInvariantTest": {
+      "tests": {
+        "invariant_rightsAndActualFundingConserved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiptActivationTransferPauseAndMixedClaimSequence()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/NFTRoyalties.t.sol:NFTRoyaltiesTest": {
+      "tests": {
+        "testAssetAdmissionBoundAndDuplicates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantNFTCannotReceiveRoyalties()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testERC20RoyaltyWeightsAndExactFunding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExplicitEmptyMembershipSyncAlsoQuarantines()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFractionsSurviveFrequentNativeAndTokenClaims()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzClaimsNeverExceedActualFunding(uint128,uint128,uint128)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGlobalRoundingDustDoesNotBecomeNewEntrantWindfall()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImmutableNFTOnlyAndOneTimeBoundedWeights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidControllerAndMissingNFTCannotCreateWeights()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferCarriesAllUnclaimedRightsAndFractions()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCallbackDonationRemainsPendingAndBacked()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeClaimRejectsReentryWithoutLosingEntitlement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePlainTransferWorksWith2300Gas()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeRoyaltyWeightsOneTwoThreeAllocateAllActualReceipts()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNegativeRebaseFailsClosedAndCannotSpendOtherAssetBacking()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoEligibleReceiptQuarantinedWithoutExplicitSync()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOperatorsCannotClaimAndClaimsRemainAvailableWhilePaused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPendingBothAssetsBelongToExistingMembersBeforeActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPredictedConstructorNativePrefundNeverBecomesRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertedNativeClaimRollsBackAccounting()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedTokenFundingAndClaimsRevertAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsupportedPrefundedTokenQuarantinedOnAdmission()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/NativeLiquidity.t.sol:NativeLiquidityTest": {
+      "tests": {
+        "testNativeAmountsRemainUint128BoundedWithoutPermitApproval()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeBrokenDepositRollsBackCredits()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeBrokenWithdrawRollsBack()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeDisabledPoolExitDoesNotReadUnavailableOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeForcedETHDuringTakeCannotBeClaimed()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeIncorrectWrapperRejectedBeforePull()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeIncreaseReusesPositionAndClearsApprovals()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeInputSwapResetsDirtySyncAndUsesNetHookDelta()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeLiquidityCallbackHookMaskRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeMinOutIncludesHookFee()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeNonzeroCoreFeeRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeOutputSwapWrapsNetHookDeltaAndPreservesForcedETH()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePartialInputRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativePlanBalancesPostHookAmountsWithinOnePercentBudget()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeRegistryAdmissionRejectsUnreviewedDependencies()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeUnexpectedSenderAndCallbackRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNativeWrapperReentryFailsWhileCreditStillSucceeds()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/NativePoolFork.t.sol:NativePoolForkTest": {
+      "tests": {
+        "setUp()": {
+          "status": "Skipped",
+          "reason": "skipped: Opt-in selected-market fork suite; excluded from offline unit verification"
+        }
+      }
+    },
+    "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest": {
+      "tests": {
+        "testWrapperPolicyActivationRechecksCurrentObservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyAfterSealRequiresBothTimelockedGovernanceActions()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyAppendOnlyAndHistoricalRecordSurvivesActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyMustMatchCurrentCodeOwnerAndReportedImplementation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyRejectsZeroOrEOAImplementationAndDoesNotAcceptNativeFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyRenouncedOwnerCanBeReviewedThroughTimelock()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrapperPolicyUnauthorizedApprovalAndActivationRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/OracleAndTransfers.t.sol:OracleAndTransfersTest": {
+      "tests": {
+        "testConventionalTokenAccepted()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDecimalNormalization()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExtraSenderTaxRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFutureTimestampRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzQuoteMonotonic(uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncompleteRoundRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNegativeRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSequencerDownRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSequencerGraceThenRecovery()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testStaleRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTaxedTokenRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownFeedRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ParkedRewards.t.sol:ParkedRewardsTest": {
+      "tests": {
+        "testParkedDoesNotAdmitOrdinaryVenueFeeAllocation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedDustStillRequiresAuthorizedSettler()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedGlobalDustSettlesBeforeAnotherNFTJoins()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedReceiverCreationFundingAndClaimsWorkWhilePaused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedReceiverCreationStillRequiresGovernance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testParkedTransferCarriesLPAndRoyaltyClaimsWithUnavailableMark()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ParkedRewards.t.sol:ParkedSatelliteRewardsTest": {
+      "tests": {
+        "testParkedSatelliteDustAndLegacyRewardsCanBridgeWithoutReopeningLP()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/PoolSwitching.t.sol:PoolSwitchingTest": {
+      "tests": {
+        "testCancelledScheduledMigrationDoesNotReleaseReservedCapacity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testChangedPairReversedOrderAndDisabledPoolRemainRejectedAtomically()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoolAlreadyAssignedToAnotherBucketCannotBeTakenBySwitch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRolePauseDeadlineMinimumAndSamePoolGuardsPreserveCustody()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSamePairSwitchKeepsTwoNFTSharesFundedRewardsAndHomeIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVenueFailureRollsBackCloseFeesCompoundAndNewPoolReservation()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/PooledEntry.t.sol:PooledEntryTest": {
+      "tests": {
+        "testCompoundedNAVDoesNotBuyNewEntrantExtraShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDonationDoesNotReduceSharesPurchased()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEntrySwapRepricingBelongsToIncumbents()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeeDustSettlesToPreviousMembershipBeforeJoin()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest": {
+      "tests": {
+        "testAccountingImportRequiresAuthenticatedReceiver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBothCanonicalAssetsMustBeFundedBeforeBarrierClears()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCumulativeRemoteBaselinePreservesPastHopsWithoutDoubleCounting()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDirectDonationDoesNotPublishOwnerIndex()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHomeSnapshotCannotResetPreviousExpectedCounters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testImportedAccountingRejectsWrongSharesBeforeUpdatingCounters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIndexDivisionRemainderCannotBeCapturedByNewShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewOwnerSharesCannotReceiveHistoricalOwnerFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoEligibleNFTCollectiveFundsRemainOrphanedForFutureParticipants()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOwnerFeesFollowSharesAndCollectiveIsEqualAcrossBuckets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOwnerFractionSurvivesClaimsAndShareIncrease()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteDustAddsToLifetimeOwnerCounterBeforeDeparture()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteSnapshotCannotEraseUnsentLiabilities()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturnedBucketBarrierRequiresBothOwnerAndCollectiveFunding()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReversedSnapshotTokenOrderingPreservesCanonicalCounterIdentity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpCheckpointDoesNotRepriceOldOwnerFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsentRemoteReservesAreIncludedInDepartureCounters()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/PooledSecurity.t.sol:PooledSecurityTest": {
+      "tests": {
+        "testCorrectCanonicalPreReservationCanActivateAndEnumeratesOnce()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEntryAfterDrawdownUsesCurrentNAVRatherThanHistoricalContribution()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzTopUpCannotRewriteEitherOwnersPreviouslyEarnedFees(uint64,uint16,uint16)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testIncumbentIdleCannotSatisfyNewNFTDeployedMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMismatchedReservationCannotCreateAnotherCanonicalGroup()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferPreservesEarnedOwnerFeesAndPermitsOnlyNewOwnerTopUp()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOrdinaryHolderCannotReserveOrReassignPools()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOutstandingSharesWithZeroNAVCannotBeRecapitalizedByStealingNewDeposit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReservationCannotReassignOccupiedPool()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testShareCapFailureRollsBackCustodyAndLeavesPaidNFTDormant()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSubTwentyHistoricalFeeDustBelongsOnlyToIncumbents()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnattributedDonationsCannotDiluteIncumbentsOrInflateEntryPrice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnequalLPSharesKeepEqualCollectiveMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfundedHistoricalRemoteFeesBlockEntryTopUpAndMigrationWithoutBlockingClaims()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest": {
+      "tests": {
+        "testGasCollection1()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGasCollection100()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGasCollection1000()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testGasMaximum32FundedRewardAssets()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ProductionInvariants.t.sol:ProductionAccountingInvariantTest": {
+      "tests": {
+        "invariant_pooledCustodyAndClaimsConserved()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMembershipHistoryAndPausedClaims()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ReceiverAndRemoteFees.t.sol:MigrationReceiverSnapshotTest": {
+      "tests": {
+        "testConflictingRemoteMappingRollsBackReceiptAndEpoch()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForeignSourceCompletionAckDelegatesToMigrationValidation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFundedRemoteRewardUsesFrozenCanonicalMembership()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHomeAckCannotUsePreviousCustodyRoute()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHomeAckHasSeparatePurposeAndCanonicalDestination()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnwardImportKeepsCanonicalIdentityAndReordersMappings()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledPrincipalRejectsAlteredInitialPoolOrBucketHash()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPooledPrincipalRejectsLegacyVersionAndZeroShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteRewardRejectsChangedSharesPoolContributionAndAsset()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReturningHomeDoesNotRequireSelfChainHomeAck()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceAckRetainsFrozenSharesAndFeeCounters()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSourceAckUsesAcceptedSnapshotAfterAnotherPositionChange()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnfinalizedReceiptCannotAcknowledge()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVaultImportFailureRollsBackCanonicalBindings()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongCanonicalChainRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongPreviousCustodyRejectedBeforeImport()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongPrincipalRouteRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroEpochRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ReceiverAndRemoteFees.t.sol:RemoteFeeReserveTest": {
+      "tests": {
+        "testAllocationRejectsConflictingCanonicalMappingBeforeTakingFunds()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testBoundAssetCannotBeChangedByReceiver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantAndNoneCannotSendLegacyBudgets()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLegacyBudgetUsesBoundCanonicalAssetAfterPoolReplacement()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLegacyBudgetsBridgeInAllCustodyStates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMappingRequiresAuthenticatedReceiver()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRemoteDustStaysFundedUntilDeliveredHome()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRewardSendFailureRestoresBudgetsAndFunding()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/ReservationCapacity.t.sol:ReservationCapacityTest": {
+      "tests": {
+        "testCanonicalActivationUsesItsReservedSlotAtFullCapacity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testEarlierReservationImportsAfterAllRemainingSlotsAreOccupied()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForeignReservationCannotBeHijackedByLocalActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testForeignReservationsThenLocalActivationShareOneCapacityLimit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFullCapacityDuplicatesAndPoolAliasesReuseTheSameSlot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testInvalidIdentityAndFailedPoolValidationNeverConsumeCapacity()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLateTokenFailureRollsBackImportButNotItsEarlierReservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testLocalActivationThenForeignReservationsShareOneCapacityLimit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoneReservationsAreSkippedBeforeMembershipPoolAndPriceReads()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoolReassignmentRejectsWithoutConsumingAnotherSlot()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReservationImmediatelyOwnsPermanentCapacityWithoutCustodyOrShares()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTimeoutAndDisabledPoolDoNotReleaseOrReassignReservation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnreservedAndMalformedImportsPreserveReceiverFundsAndReservation()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest": {
+      "tests": {
+        "testClaimWorksWhilePaused()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testClaimsCannotRepeat()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDustBeforeJoinCannotBeClaimedByEntrant()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDustOnMigrationGoesToIncumbentOwners()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeeSplitIsExactAndBacked()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFractionalClaimsRemainFunded()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzFeeChunkingPreservesTwentyUnitBaskets(uint96,uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzFeeConservation(uint96)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMembershipCannotBeActivatedTwice()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMissingNFTCannotBecomeEligible()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTSupportsStandardERC721()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTTransferCarriesUnclaimedRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNewActivatedNFTCannotClaimPublishedPastReward()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTinyFeesCannotManipulateSplitWithoutMembershipBoundary()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpDoesNotIncreaseEqualCollectiveShare()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedCollectiveCheckpoint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedCredit()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedMembershipActivation()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedOwnerCheckpoint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReserveRelease()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnknownBucketCannotReceiveFundedRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsafeReceiverRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest": {
+      "tests": {
+        "testActualSealedTimelockControlsReplacementAndCannotDisable()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testConstructorAdmissionRetainsExplicitProvenance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDownReplacementDoesNotBypassUptimeGuard()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFutureOrZeroStartedAndMalformedRoundsRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testHealthyUnchangingUptimeDoesNotBecomeStale()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNonbinaryStatusBadTimestampsAndDecimalsRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOptionalConstructorZeroHasNoPolicyUntilConfigured()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPoliciesAppendEvenWhenParametersRepeat()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRevertingOldDependencyDoesNotBlockRecovery()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRuntimeMutationFailsClosedAndReviewedReplacementRecovers()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnauthorizedReplacementRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroSourceReviewAndCodePinsRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    },
+    "test/UniswapV4Fork.t.sol:UniswapV4ForkTest": {
+      "tests": {
+        "setUp()": {
+          "status": "Skipped",
+          "reason": "skipped: Opt-in real-network fork suite; excluded from offline unit verification"
+        }
+      }
+    },
+    "test/VaultAccounting.t.sol:VaultAccountingTest": {
+      "tests": {
+        "testActivationCannotCollectHistoricalSharedRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationHonorsStricterPoolMinimum()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationLeavesExactAttributedIdle()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationRejects100InputWhenActualLPIsBelow99()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testActivationRequiresAtLeast100USDInput()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testCompoundingAddsOnlyDesignatedShare()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDonationNeverBecomesAnotherNFTPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantMintForwardsPriceWithoutLiquidityOrRewards()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testDormantTransferOnlyNewOwnerCanActivate()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testExactly100ActualLPActivates()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFeesNotPrincipal()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzMintRejectsAnyOverpayment(uint256)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testFuzzMintRejectsAnyUnderpayment(uint256)": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMigrationReleaseOnlyGoesToBoundModule()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testMostlyIdleActivationRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNFTUserCannotTransferUnderlyingLP()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testNoOwnerWithdrawalEntrypoint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOldDepositSelectorCannotBypassPaidMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testOnlyKeeperCanRebalance()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseBlocksActivationKeepsDormantNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testPauseBlocksMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRebalanceReplacesLPButPreservesEconomicNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testReceiverReentrancyCannotMintSecondNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRejectingNFTReceiverRollsBackMintAndPayment()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testRejectingTreasuryRollsBackNFTAndPayment()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSatelliteCannotIssueAnotherCollection()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testSelfProceedsRecipientRejected()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTopUpKeepsBothNFTsAndCheckpointsFees()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testTreasuryReentrancyCannotMintSecondNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testUnsealedSystemCannotMint()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testVenueFailureRollsBackActivationKeepsPaidDormantNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testWrongChainCannotActivateCanonicalDormantNFT()": {
+          "status": "Success",
+          "reason": null
+        },
+        "testZeroProceedsRecipientRejected()": {
+          "status": "Success",
+          "reason": null
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -225,6 +226,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         access.bind(Ids.REWARDS, address(s.rewards)); access.bind(Ids.FEES, address(s.fees));
         access.bind(Ids.MEMBERSHIP, address(s.membership)); access.bind(Ids.MIGRATION, address(this));
         access.bind(Ids.RECEIVER, address(this)); access.bind(Ids.COMPOUNDER, address(this)); access.bind(Ids.BUYBACK, address(this));
+        CanonicalFixture.bind(address(access));
         access.setKeeper(address(this), true); s.rewards.addAsset(WETH); s.rewards.addAsset(ZZZ);
         IERC20(WETH).approve(address(s.vault), type(uint256).max); IERC20(ZZZ).approve(address(s.vault), type(uint256).max);
     }

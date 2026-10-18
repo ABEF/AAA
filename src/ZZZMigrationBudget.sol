@@ -1,8 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
-import {Ids, Position, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity} from "./interfaces/IZZZ.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IZZZFees, IZZZMigration, IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
+
+interface IMigrationContribution { function contributionUSD(uint256 id) external view returns (uint256); }
 
 /// @notice Fixed execution budget for atomic, same-ordered-pair custody moves.
 /// Created by its only caller, Vault. No token custody, configuration or executor.
@@ -23,6 +26,8 @@ contract ZZZMigrationBudget {
     bool private compoundIncluded;
     error Unauthorized();
     error InvalidState();
+    error InvalidAmount();
+    error InvalidConfiguration();
     error Slippage();
     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
 
@@ -101,5 +106,105 @@ contract ZZZMigrationBudget {
     function valuePair(address token0, address token1, uint256 amount0, uint256 amount1) external view returns (uint256) {
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         return oracle.value(token0, amount0) + oracle.value(token1, amount1);
+    }
+    /// @dev Read-only validation extracted from custody; all writes and exact
+    /// token movement remain in the immutable caller Vault.
+    function validateImport(uint256 id, bytes32 poolId, Position calldata origin, uint256 shares, bytes32 homePool)
+        external view onlyVault returns (bool returning) {
+        IZZZVault v = IZZZVault(vault);
+        if (id != uint256(keccak256(abi.encode(origin.homeChain, origin.homeVault, homePool))) ||
+            shares == 0 || shares > 1e36 || v.poolBucket(poolId) != id) revert InvalidState();
+        Position memory p = v.group(id);
+        returning = p.status == PositionStatus.Remote;
+        if ((!returning && p.status != PositionStatus.None) || origin.homeChain != v.canonicalChainId() ||
+            origin.homeVault == address(0) || origin.homeReceiver == address(0)) revert InvalidState();
+        if (returning && (p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0 || p.homeChain != origin.homeChain ||
+            p.homeVault != origin.homeVault || p.homeReceiver != origin.homeReceiver || v.homePoolId(id) != homePool)) revert InvalidState();
+        if (origin.homeChain == block.chainid && (!returning || origin.homeVault != vault)) revert InvalidState();
+        if (origin.homeChain == block.chainid &&
+            (v.bucketTotalShares(id) != shares || p.depositUSD != origin.depositUSD)) revert InvalidState();
+    }
+    function nav(uint256 id) public view returns (uint256 deployed, uint256 idle) {
+        Position memory p = IZZZVault(vault).group(id);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
+        if (p.lpTokenId != 0) {
+            (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
+            deployed = oracle.value(c.key.currency0, a0) + oracle.value(c.key.currency1, a1);
+        }
+        idle = oracle.value(c.key.currency0, p.idle0) + oracle.value(c.key.currency1, p.idle1);
+    }
+    function assertDeployed(uint256 id) external view {
+        (uint256 deployed, uint256 idle) = nav(id);
+        if (deployed == 0 || idle > Math.mulDiv(deployed + idle, 500, 10000)) revert Slippage();
+    }
+    function assertPut(uint256 id, uint256 a0, uint256 a1, uint256 spent0, uint256 spent1,
+        uint256 before0, uint256 before1) external view onlyVault {
+        Position memory p = IZZZVault(vault).group(id);
+        (address token0, address token1) = poolTokens(p.poolId);
+        address manager = IZZZLiquidity(access.module(Ids.LIQUIDITY)).positionManager();
+        if (spent0 > a0 || spent1 > a1 || IERC20(token0).balanceOf(vault) + spent0 != before0 ||
+            IERC20(token1).balanceOf(vault) + spent1 != before1 ||
+            IPositionManagerMinimal(manager).ownerOf(p.lpTokenId) != vault) revert InvalidState();
+    }
+    function validateLPReceiver(address sender) external view onlyVault {
+        address manager = access.module(Ids.LIQUIDITY);
+        if (manager == address(0) || sender != IZZZLiquidity(manager).positionManager()) revert Unauthorized();
+    }
+    function balancePlan(uint256 id, bool existingRange)
+        external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) {
+        Position memory p = IZZZVault(vault).group(id);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
+        if (existingRange) (zeroForOne, amountIn, minimumOut) = strategy.compoundPlan(id, p.idle0, p.idle1);
+        else (zeroForOne, amountIn, minimumOut) = strategy.swapPlan(p.poolId, p.idle0, p.idle1);
+        input = zeroForOne ? c.key.currency0 : c.key.currency1;
+    }
+    function poolTokens(bytes32 poolId) public view returns (address token0, address token1) {
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        return (c.key.currency0, c.key.currency1);
+    }
+    function validateReservation(bytes32 poolId) external view onlyVault {
+        IZZZPools(access.module(Ids.POOLS)).get(poolId);
+    }
+    function validateMove(uint256 id, bytes32 nextPool, uint128 minimumLiquidity) external view onlyVault {
+        PoolConfig memory oldConfig = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
+        PoolConfig memory nextConfig = IZZZPools(access.module(Ids.POOLS)).accounting(nextPool);
+        if (minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
+            oldConfig.key.currency1 != nextConfig.key.currency1 || !nextConfig.operationsEnabled) revert InvalidConfiguration();
+    }
+    function idleValue(uint256 id) public view returns (uint256) {
+        Position memory p = IZZZVault(vault).group(id);
+        (address token0, address token1) = poolTokens(p.poolId);
+        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
+        return oracle.value(token0, p.idle0) + oracle.value(token1, p.idle1);
+    }
+    function assertIdleLoss(uint256 id, uint256 beforeValue) external view onlyVault {
+        uint16 slippage = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId).maxSlippageBps;
+        if (idleValue(id) < Math.mulDiv(beforeValue, 10000 - slippage, 10000)) revert Slippage();
+    }
+    function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
+        uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint16 maxSlippageBps) {
+        Position memory p = IZZZVault(vault).group(bucket);
+        if (p.homeChain != block.chainid || p.homeVault != vault ||
+            !IZZZFees(access.module(Ids.FEES)).remoteSettled(bucket) ||
+            IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
+            (activation && inputUSD < 100e18) || inputUSD < c.minDepositUSD ||
+            IMigrationContribution(vault).contributionUSD(id) + inputUSD > c.maxPositionUSD) revert InvalidAmount();
+        return (c.key.currency0, c.key.currency1, c.maxSlippageBps);
+    }
+    function contributionResult(uint256 inputUSD, uint256 supply, uint256 incumbentNAV,
+        uint256 incumbentDeployed, uint256 deployed, uint256 idle, uint16 maxSlippageBps)
+        external pure returns (uint256 issued, uint256 netUSD) {
+        if (deployed == 0 || idle > Math.mulDiv(deployed + idle, 500, 10000)) revert Slippage();
+        if (deployed + idle <= incumbentNAV) revert InvalidAmount();
+        netUSD = deployed + idle - incumbentNAV;
+        if (netUSD < Math.mulDiv(inputUSD, 10000 - maxSlippageBps, 10000)) revert Slippage();
+        uint256 minimumNet = inputUSD - inputUSD / 100;
+        if (netUSD < minimumNet || deployed < incumbentDeployed + minimumNet) revert Slippage();
+        issued = supply == 0 ? netUSD : Math.mulDiv(supply, netUSD, incumbentNAV);
+        if (issued == 0 || supply + issued > 1e36) revert InvalidAmount();
     }
 }

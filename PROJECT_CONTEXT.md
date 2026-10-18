@@ -1,5 +1,96 @@
 # AAA / ZZZ PoPL project context
 
+## Verified handoff checkpoint - 2026-10-18
+
+The saved bridge fixtures and cold-helper gas changes are verified: 582 offline
+regression passes, zero failures, two expected opt-in fork setup skips, across
+49 compiler-bound suites. Reuse the unchanged 34 focused handoff passes only with
+[the dependency check](reports/canonical-handoff/reuse-verification.json): together
+these cover 616 successful cases, not one newly executed 616-case run. The 30
+normal object gates/39 production source bindings, 141 configuration checks,
+88 focused keeper checks and 374-finding internal review remain source-matched.
+123 additional keeper cases pass; one Unix permissions case awaits Ubuntu.
+Current runtime margins remain Vault 33 bytes and Migration 58 bytes.
+
+This checkpoint accompanies scoped publication on main. Verify Git HEAD and
+origin/main before naming the published commit or reporting CI; older uncommitted
+statements below describe historical saves. Preserve unrelated unpublished
+wallet/API, quote/process-runner and artwork drafts. Follow
+[the resume handoff](docs/WORK_HANDOFF.md) and [verification](reports/canonical-handoff/VERIFICATION.md).
+No production source changed during the resumed regression. Release is NOT
+APPROVED; cross-chain finality/closure/lineage/transport remain pre-seal work.
+No website/server update or public deployment/transaction is authorized.
+
+The user paused the chat staging-health monitor on 2026-10-17. Do not resume it
+without authorization. The isolated server service was not stopped by that pause;
+subsequent intervals have no chat-monitor coverage. Existing staging has not been
+upgraded to this keeper/controller lifecycle. Exact-commit CI and new operating
+rehearsals remain separate from local evidence.
+
+## Saved continuation checkpoint - 2026-10-17
+
+Historical snapshot, superseded by the verified 2026-10-18 checkpoint above.
+
+The user requested a durable save before credits run out. Read
+[the resume handoff](docs/WORK_HANDOFF.md) and the
+[current evidence](reports/canonical-handoff/VERIFICATION.md) before continuing.
+The same-chain candidate and these notes are LOCAL, UNCOMMITTED and UNPUSHED
+at this checkpoint; baseline main is `79f205a7933107f61f26892109f14ee52821700e`.
+Do not confuse saved files with GitHub publication or production approval.
+
+Completed scoped evidence: 34 focused handoff tests, 30 normal object size gates,
+39 production source bindings, 141 configuration tests and 88 keeper tests.
+Internal Slither review covers 374 findings (153 false positives, 75 accepted
+risks, 146 informational), with coverage and 10 mutation rejections passing.
+The broader diagnostic run returned 576 passes, six failures and two intentional
+fork skips; its compiled snapshot also predates the final coordinator changes.
+Six bridge failures exposed mocks lacking the lineage interface. Mock fixes are
+saved but NOT rerun. Gas diagnostic attempt1 returned ten successes, but source
+binding rejected its stale fixtures; the final cold-helper fixture changes also
+need a fresh run. Do not report a complete current-source regression pass.
+
+Preserve unrelated wallet/quote/process-runner/artwork drafts. Do not repeat
+unchanged focused/static checks without a source-binding reason. Keep release
+NOT APPROVED, future-chain requirements open, and website/server unchanged.
+
+## Canonical handoff candidate - 2026-10-17
+
+Read [the same-chain handoff reference](docs/CANONICAL_HANDOFF.md) and
+[current verification](reports/canonical-handoff/VERIFICATION.md). Continue using
+`main`. Preserve unrelated unpublished wallet/quote/process-runner/artwork work.
+
+The new local candidate adds six-domain complete export/import, immutable receipt
+cutoffs, ownership/accounting freeze, ordered per-domain settlement, exact classified backing transfers, restored
+abort, atomic source retirement/single-successor activation and one-hop late
+creator/royalty forwarding. Four separately deployed modules are sealed:
+CanonicalHandoff, NFTCanonical, VaultCanonical and FeesCanonical; owner bindings
+are verified. Royalty and creator receiver factories are immutable automatic
+children. Inventory is controller plus 20 modules and eight fixed helpers/factories.
+
+This executable path is SAME-CHAIN ONLY: all mints revealed, local buckets
+Parked/None, no active plans and no historical legacy bridge sends/receipts.
+The original identity/inventory and exact reward fractions persist; source
+approvals are not imported. Imported successors cannot initiate v3 principal
+bridging because its lineage/current-home model is incompatible. Cross-chain
+finality, authenticated channel closure, a new lineage/message version and exact
+transport/backing remain pre-seal work. Do not say full future-chain migration is
+complete or that sealed code can acquire it later. No post-halt recovery is supplied.
+
+The user explicitly chose reviewed replacement code through timelocked governance
+on 2026-10-17, accepting that a malicious approved replacement could divert LP.
+Do not add an identical-code requirement or describe governance as unable to alter
+successor economics. Independent code/admission review remains mandatory; this
+decision does not waive verified finality, exact backing or single-successor
+retirement, and adds no multisig/timeout activation override.
+
+Keeper requires strict canonicalState plus preparationActive; locked states stop
+all new submissions while pending receipt recovery continues. Existing isolated
+staging is unchanged. API/website lifecycle, predecessor claim-history continuity,
+marketplace collection cutover and contract-owner/escrow compatibility remain
+tracked in the central Todo. Keep the current feature/evidence and release scope
+distinct from historical receipts. No website/server change, public transaction
+or contract deployment is authorized.
+
 ## Architecture evolution and migration preparation - 2026-10-17
 
 **Use `main` for this project**, as explicitly requested by the user. The earlier

@@ -124,9 +124,11 @@ DEXs/hooks. A future compatible destination needs separate code/dependency revie
 
 - The selected direction is [controlled whole-protocol migration while the source
   still operates](CANONICAL_MIGRATION_DESIGN.md); post-halt recovery is deferred.
-  Implement and qualify this **before seal**. Current LP migration leaves canonical
-  NFTs, membership and both claim ledgers at home; canonical migration is **not
-  implemented** and cannot be retrofitted into the current sealed core.
+  Implement and qualify this **before seal**. LP migration alone leaves canonical
+  NFTs, membership and both claim ledgers at home. The new
+  [same-chain handoff](CANONICAL_HANDOFF.md) carries those rights and exact backing;
+  cross-chain channel/finality/transport support remains unimplemented and cannot
+  be retrofitted into the sealed core.
 - Audit successor admissibility, finality/proof authority, authentic owners,
   immutable traits, eligibility/shares, per-asset liabilities/fractions, pending
   VRF and in-flight/late receipts. Prove single active ownership/claim rights,

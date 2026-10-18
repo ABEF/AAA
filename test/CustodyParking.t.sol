@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -245,6 +246,7 @@ contract CustodyParkingTimelockTest is Test {
                 ids[i] == Ids.POOLS ? address(pools) : address(new BoundDummy(address(controller)));
             controller.bind(ids[i], implementation);
         }
+        CanonicalFixture.bind(address(controller));
         controller.seal(); controller.setPaused(true);
         ZZZMigration.ParkingRequest memory r; r.bucketId = 7; r.poolId = bytes32(uint256(7)); r.lpTokenId = 99;
         r.totalShares = 200e18; r.depositUSD = 200e18; r.token0 = address(0x111); r.token1 = address(0x222);

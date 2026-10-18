@@ -109,6 +109,7 @@ Proof support must be qualified for the chosen destination; until then that
 handoff remains unavailable. Read the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md)
 for cutoff capture, complete ledgers/inventory, backing and abort requirements.
 
-The original system is not migration-capable merely because preparation exists.
-The complete freeze/export/import and single-successor protocol remain a
-pre-seal requirement. Post-halt recovery remains deferred.
+Preparation alone does not make the original system migration-capable. The new
+[same-chain handoff](CANONICAL_HANDOFF.md) supplies exact freeze/export/import,
+backing transfer and atomic retirement/activation. Cross-chain finality, channel
+closure and transport remain pre-seal requirements. Post-halt recovery stays deferred.

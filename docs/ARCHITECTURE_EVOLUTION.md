@@ -142,9 +142,10 @@ cumulative hard cap is not inferred from approval of a per-move limit.
 
 **Decision, 2026-10-17:** the user selected controlled whole-protocol migration
 while the original chain still works. Post-halt recovery is deferred. The
-[canonical migration design](CANONICAL_MIGRATION_DESIGN.md) specifies the proposed
-transition; current contracts do not implement it. This support must be built
-and qualified before sealing, not treated as a later bridge-provider setting.
+[canonical migration design](CANONICAL_MIGRATION_DESIGN.md) specifies the full
+transition. A [same-chain handoff](CANONICAL_HANDOFF.md) is now implemented as a
+development candidate; cross-chain support must still be built and qualified
+before sealing, not treated as a later bridge-provider setting.
 The cross-chain proof/finality model remains an explicit qualification decision.
 
 The alternatives considered were:
@@ -154,7 +155,8 @@ The alternatives considered were:
 2. Planned canonical transfer while the source operates: requires a purpose-built
    freeze/export protocol for ownership, immutable traits, shares, both ledgers,
    fractions, backed reserves and in-flight obligations; one finalized successor
-   epoch, disabled source rights and replay prevention. Not implemented.
+   epoch, disabled source rights and replay prevention. Direct same-chain support
+   exists; cross-chain canonical relocation remains unimplemented.
 3. Recovery after irreversible halt: needs an explicit checkpoint/finality or
    recovery authority. A snapshot cannot prove the old chain will never resume,
    and a second NFT collection does not revoke the first. Not implemented.

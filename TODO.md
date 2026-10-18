@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-10-17 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-18 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 17 In progress | 9 Implemented locally**
+**13 To do | 18 In progress | 8 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -108,6 +108,18 @@ The data and services behind the app.
 
   </details>
 
+<a id="task-read-api"></a>
+
+- [ ] **[Confirmed balances & ownership API](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Confirmed ownership, funded balances and cumulative claim history exist. Add canonical lifecycle and successor-aware history for handoff deployments.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Expose strict canonical state and immutable successor lineage at the same confirmed block as balances. Frozen/importing/retired sources must not appear as active spendable positions; missing lifecycle getters fail closed. Retired royalty balances can be unavailable after backing has moved.
+  - Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation.
+
+  </details>
+
 <a id="task-activation-quotes"></a>
 
 - [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_ROUTING.md#atomic-entry-candidate-and-remaining-qualification)** - In progress. Conversion quoting exists. Finish the full route into LP with one 1% execution-loss limit and gas shown separately.
@@ -120,10 +132,6 @@ The data and services behind the app.
   - Pin all call/code/storage reads to one canonical block hash; verify provider support and final snapshot freshness, rejecting stale/future observations and unsupported selectors without fallback. Rehearse every target input with separate gas estimates.
 
   </details>
-
-<a id="task-read-api"></a>
-
-- [x] **[Confirmed balances & ownership API](docs/FRONTEND_API.md#implemented-endpoint)** - Implemented. Read NFT ownership and funded balances; reconstruct cumulative claims from complete confirmed history.
 
 <a id="task-unsigned-actions"></a>
 
@@ -178,7 +186,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners, not just the last claim.
+  - Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.
   - Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.
 
   </details>
@@ -319,7 +327,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-security-chain-recovery"></a>
 
-- [ ] **[Whole-protocol recovery & canonical chain loss](docs/CANONICAL_MIGRATION_DESIGN.md)** - In progress. Cancellable canonical preparation is implemented locally; ownership, claims and safe drains continue while new work stops. The user requires verified source finality with no multisig override. Full freeze/export/import, irreversible retirement, one funded successor and late receipts remain pre-seal implementation work; post-halt recovery stays deferred.
+- [ ] **[Whole-protocol recovery & canonical chain loss](docs/CANONICAL_HANDOFF.md)** - In progress. Same-chain handoff candidate now carries complete ownership, inventory, shares, both reward ledgers and exact backing, with atomic retirement/activation, restored abort and late forwarding. Qualify it and complete cross-chain finality, channel closure and lineage/transport before sealing; post-halt recovery stays deferred.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -330,7 +338,11 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Drain ordered VRF/reveal and resolve in-flight custody/reward messages before freeze, or design a separately reviewed carry protocol. Preserve exact IDs/traits, remaining supply/quota/inventory, owners and per-asset liabilities/fractions; do not recreate rounded balances from website data.
   - Retain safe handling of late old creator/royalty receipts and historical marketplace receivers. No double claims, duplicated canonical NFTs, erased backed obligations, principal refunds or arbitrary administrator transfers.
   - For principal conversion during relocation, enforce the agreed aggregate 3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards. The implemented atomic local same-pair budget does not yet supply cross-chain aggregate enforcement.
-  - Complete immutable bounded receipt-cutoff capture/settlement, exact enumerable state export/import, classified full backing, one-successor terminal accounting and permanent late-receipt forwarding before initial sealing. Preparation alone is neither a freeze nor readiness proof, does not authenticate satellite shutdown, and cannot retrofit these missing capabilities into a sealed deployment.
+  - Independently qualify the implemented same-chain cutoff, bounded exact export/import, classified backing, single-successor retirement, full/partial abort and late-forwarding paths. Benchmark atomic cutoff capture, ordered per-domain settlement, eight-row batches, each funding leg and final activation across 1,000 NFTs, four historical buckets, 32 LP assets, reachable funded inboxes and 17 royalty slots under unchanged limits.
+  - Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
+  - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted timelocked governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
+  - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding.
+  - Current-source offline qualification now passes 582 regression cases plus 34 unchanged-source focused handoff cases; only the two opt-in fork setup skips remain. The repaired bridge fixtures and all three final cold-gas suites pass under unchanged limits. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
 
   </details>
 
@@ -353,7 +365,7 @@ Decisions and rehearsals before real funds.
   - Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.
   - Independently review and stage sequencer policy replacement through the actual sealed timelock, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
   - Select and verify multisig/keeper/guardian/mint-recipient authorities, fixed timelock and module bindings; prohibit mint/LP/royalty receiver collisions.
-  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and agreed creator payer; 17 required modules, six fixed helpers including Vault.migrationBudget(), later creator inboxes and reviewed chain-specific dependencies. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
+  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and agreed creator payer; 21 fixed core contracts (controller plus 20 sealed modules), eight automatically created helpers/factories, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
 
   </details>
 
@@ -397,7 +409,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-keeper-guardrails"></a>
 
-- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery guards, health checks and exclusive snapshots are implemented. Local preparation-aware handling passed 185 scoped portable tests: it defers rebalance/compound/buyback and preserves recovery and drains. The existing isolated staging deployment is unchanged; production interface compatibility, RPC/fees, alerts and review remain open.
+- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery, preparation and strict canonical lifecycle guards are implemented locally. Locked canonical states stop all new submissions while receipt recovery continues. The existing isolated staging deployment is unchanged; exact controller/fixture compatibility, RPC/fees, alerts and operating review remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -405,20 +417,20 @@ Decisions and rehearsals before real funds.
   - Stage keeper keystore isolation, nonce/receipt recovery, RPC failover, budgets, indexer backfill/reorgs, alerts and Unix state locking. The supplied systemd unit defaults to dry run.
   - Qualify canonical-hash RPC selectors for every activation state read, stale-snapshot rejection, strict receipt recovery across midnight/reorgs, and the chain's complete L2/L1 fee reporting. Offline mocks do not establish provider support or complete real network costs.
   - Qualify independent production alerts/backups/retention, redundant RPCs and complete real fee accounting.
-  - Qualify the required preparationActive() ABI against the exact deployment and keeper. Missing, malformed or reverted getters fail closed; no legacy default-false path exists. The 185-test local receipt has one explicit POSIX-only exclusion and does not update the older staging fixture/keeper or replace a new operating rehearsal.
+  - Qualify preparationActive() and canonicalState() against the exact deployment and keeper. Missing/malformed/reverted getters fail closed. Frozen/importing/retired/cancelled states block all new maintenance/drain/metadata submissions; canonical receipt recovery continues. Recheck state before simulation, after gas estimation and before intent persistence. The local 88-case targeted receipt does not update the older staging fixture/keeper or replace a new operating rehearsal.
 
   </details>
 
 <a id="task-keeper-recovery"></a>
 
-- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open.
+- [ ] **[Rehearse keeper outage & server recovery](docs/KEEPER_REHEARSALS.md)** - In progress. Historical 2026-10-16 evidence: 209 Ubuntu safety tests and 14 process rehearsals pass; the same 14 scenarios pass under the isolated server account. Actual systemd crash/restart and off-host snapshot round-trip restore passed. Sustained soak, physical host loss and governance key rotation remain open. These receipts do not qualify the new canonical lifecycle candidate.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Stage [the keeper recovery runbook](docs/KEEPER_RECOVERY.md): multi-day outage, lost server, stale/missing state, nonce/budget reconciliation, old-host fencing and key rotation.
   - Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.
-  - Finish and review sustained multi-day staging; preserve observation gaps. The current 30-minute chat heartbeat depends on desktop availability.
+  - Finish and review sustained multi-day staging; preserve observation gaps. The 30-minute desktop-dependent chat health monitor was paused at the user's request on 2026-10-17. It supplies no subsequent observations; do not restart it without authorization. The isolated server service was not stopped by pausing the monitor.
 
   </details>
 
@@ -458,11 +470,11 @@ A separate phase. Disabled at initial launch.
 
 <a id="task-migration-framework"></a>
 
-- [x] **[Governed migration framework](src/ZZZMigration.sol)** - Implemented. Timelocked compatible-asset routes preserve fixed home identity and NFT allocations. Local same-pair move/resume now has a 3% aggregate loss cap, and a cancellable canonical preparation notice stops new work while rights and drains remain available. Different-pair conversion, arbitrary local venues and complete canonical relocation remain unimplemented.
+- [x] **[Governed migration framework](src/ZZZMigration.sol)** - Implemented. Timelocked compatible-asset routes preserve fixed home identity and NFT allocations. Local same-pair move/resume now has a 3% aggregate loss cap, and a cancellable canonical preparation notice stops new work while rights and drains remain available. The same-chain canonical handoff candidate now carries ownership and accounting. Different-pair conversion, arbitrary local venues and cross-chain canonical relocation remain unimplemented.
 
 
 ---
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e341c5568c30f4515d29f5845a8496b25b059c8e31d225bfa8afc66414bda021`.
+Snapshot SHA-256: `ca6ddfc9c94d54526098e7e9189312c6290a602e362edf589367ff5b3064f707`.

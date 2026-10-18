@@ -1,11 +1,11 @@
 # Feature and evidence reference
 
-Reviewed 2026-10-17; the architecture repair and evidence were first recorded in
+Reviewed 2026-10-18; the architecture repair and evidence were first recorded in
 `4fbd4c0`. The user subsequently requested integration into `main` and use of
 `main` for future work. Check the current Git revision for publication identity.
 The contracts remain undeployed and the website remains a simulation.
-This candidate includes canonical-preparation, local migration-budget and keeper
-changes. Exact publication is established by Git HEAD and origin/main.
+This candidate includes same-chain canonical handoff, local migration-budget and
+keeper lifecycle changes. Exact publication is established by Git HEAD and origin/main.
 Implemented means the behavior exists in source; it does not mean production
 services, deployment or independent audit are approved.
 
@@ -26,10 +26,11 @@ decision for an exact release, not development progress.
 | Artwork and metadata | Eight colors, 58 palettes and four patterns produce 2,784 evolution states for the fixed inventory. Current marked LP value selects the stage; a market decline can lower it without removing activation rights. Bounded ERC-4906 notifications and an optional keeper watcher exist. The prepared artwork bundle is not a published immutable CID. | [Metadata](NFT_METADATA.md), [artwork publication](ARTWORK_PUBLICATION.md) |
 | Venue and recovery boundaries | The selected native-ETH/Pons adapter separates venue keys from WETH accounting and rejects unrelated native/hooks. Pause, timelocked asset/wrapper/sequencer policies, close-only custody parking and guarded resumption exist. They do not guarantee recovery from every external dependency failure. | [Selected market](ROBINHOOD_POOL.md), [parking](CUSTODY_PARKING.md), [recovery model](CHANGE_AND_RECOVERY.md) |
 | Read services and measurements | The confirmed read API exposes NFT ownership and funded LP/royalty balances. Optional complete indexed history supplies wallet inventory and cumulative raw claims. Route/revenue measurement tools exist. Gross generated-fee/USD history and hosted live website transactions are not supplied by those balances. | [Read API](FRONTEND_API.md), [history](FRONTEND_HISTORY.md), [revenue measurement](REVENUE_SHARE.md) |
-| Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. The local keeper strictly reads preparationActive(), defers rebalance/compound/buyback and retains receipt recovery, harvest, funded inbox/reward delivery and metadata work. Older deployed staging code is unchanged and does not establish compatibility with this new required getter. | [Recovery runbook](KEEPER_RECOVERY.md), [preparation keeper evidence](../reports/canonical-preparation/keeper/README.md) |
+| Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. Preparation defers new rebalance/compound/buyback work while permitting drains. A separate strict canonicalState getter blocks every new submission during frozen/importing/retired/cancelled states; receipt recovery continues. Older deployed staging code is unchanged. | [Recovery runbook](KEEPER_RECOVERY.md), [handoff evidence](../reports/canonical-handoff/VERIFICATION.md) |
 | Future migration | Timelocked routes and whole-bucket migration/parking preserve canonical NFT rights and funded-liability barriers. Reservations now permanently admit capacity; aliases/returns are idempotent and None-state consumers skip unfunded entries. Remote admission proof and real provider qualification remain separate. Canonical NFTs and claim ledgers do not automatically migrate with LP custody. | [Migration source](../src/ZZZMigration.sol), [recovery model](CHANGE_AND_RECOVERY.md) |
 | Local migration execution budget | Atomic same-ordered-pair movePool/resume uses an immutable Vault-created helper. It values principal/attributed idle before harvest, adds only exact released compound, and applies the same initial fresh price/decimal vector after close, balance and mint. Retained LP plus attributed idle must be at least 97%, with the existing 5% idle ceiling under that vector. Gas is separate; activation/top-ups retain 1%. Different-pair and asynchronous bridge enforcement is not supplied. | [Budget helper](../src/ZZZMigrationBudget.sol), [Vault](../src/ZZZVault.sol) |
 | Canonical preparation | The existing timelock can announce and cancel an exact notice on the canonical controller. New economic work and protocol configuration stop; transfers, direct/batch claims, ordered reveal, fee settlement, incoming delivery, funded Reward/ACK sends and exact parking/plan-cancellation drains remain available. Trailing guards roll back new work if a callback starts preparation. Guardian pause and timelock unpause remain distinct. The notice grants no successor authority and does not freeze/export/import rights or prove satellite shutdown. | [Controller](../src/ZZZAccessController.sol), [canonical design](CANONICAL_MIGRATION_DESIGN.md) |
+| Same-chain canonical handoff | Separate fixed coordinator/companions capture receipts, freeze ownership and accounting, export/import complete exact domains, move classified backing, and atomically retire the source/activate one successor. Bounded relay operations, fully restored abort and immediate-successor late forwarding exist. All mints must be revealed, local buckets parked and legacy bridge history unused. Imported successors cannot initiate legacy v3 principal bridging. | [Implemented boundary](CANONICAL_HANDOFF.md), [coordinator](../src/ZZZCanonicalHandoff.sol) |
 
 The [component assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) gives
 module-level boundaries. All remaining qualification, implementation and decision
@@ -38,6 +39,17 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 [canonical migration requirement](../TODO.md#task-security-chain-recovery).
 
 ## Evidence and its limits
+
+The [current handoff verification record](../reports/canonical-handoff/VERIFICATION.md)
+records 582 passing regression cases with two explicit opt-in fork setup skips.
+The fixed bridge fixtures and all three cold-gas suites pass on unchanged source.
+The 34 focused handoff passes, 30 object gates, 141 configuration checks and
+374-finding internal review are reused only after exact dependency/hash checks.
+The [continuation record](WORK_HANDOFF.md) describes remaining integration and
+release work. Check Git HEAD and origin/main for publication. Earlier evidence remains historical and
+does not verify its new lifecycle guards, helpers, codecs or custody extraction.
+No existing staging service was upgraded. The read API/indexer/website still
+need canonical lifecycle and complete predecessor claim-history integration.
 
 The new preparation foundation and local same-pair execution budget change
 production source. Development preparation tests passed ten cases with the real
@@ -54,15 +66,17 @@ pass. Fresh internal Slither review classifies 229 entries as 138 false positive
 Coverage and nine targeted review/source mutation checks pass. The manifest
 review also corrected a mixed-case helper/inbox alias, verified by four targeted
 regressions after the earlier 126-test validator run. Vault and Migration have
-only 17 and 30 runtime bytes free; subsequent handoff work needs modularization.
+only 17 and 30 runtime bytes free in that earlier snapshot; the new candidate
+uses separate fixed companions and fresh normal size checks.
 These receipts do not establish fresh target-chain fork, operating or audit approval.
 
 The user selected verified source finality for cross-chain canonical activation,
 with no multisig/manual override or signer-attestation fallback. Concrete
-chain-specific verification remains unselected. Full immutable receipt cutoffs,
-freeze/export/import, classified backing, irreversible one-successor retirement
-and late-receipt forwarding remain unimplemented pre-seal requirements.
-Preparation cannot add them after sealing. Post-halt recovery remains deferred.
+chain-specific verification remains unselected. The candidate supplies direct
+same-chain receipt cutoffs, exact state/backing transfer, irreversible retirement
+and late forwarding. Cross-chain authenticated readiness/finality, channel closure,
+lineage/messages and transport remain pre-seal requirements; these cannot be
+added to fixed code after sealing. Post-halt recovery remains deferred.
 
 The [architecture review verification](../reports/architecture-evolution/VERIFICATION.md)
 retains its earlier targeted reservation/switching, keeper, trust-boundary and

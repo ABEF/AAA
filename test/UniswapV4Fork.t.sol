@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {Vm} from "forge-std/Vm.sol";
@@ -291,6 +292,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         access.bind(Ids.FEES, address(s.fees)); access.bind(Ids.MIGRATION, address(this));
         access.bind(Ids.RECEIVER, address(this)); access.bind(Ids.BUYBACK, address(this));
         access.bind(Ids.COMPOUNDER, address(this)); access.setKeeper(address(this), true);
+        CanonicalFixture.bind(address(access));
         s.rewards.addAsset(WETH); s.rewards.addAsset(ZZZ);
         PoolConfig memory config = _testConfig();
         config.triggerBps = 100; config.maxSpotDeviationBps = 200; config.maxSlippageBps = 200;

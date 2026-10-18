@@ -7,7 +7,13 @@ interface IZZZAccess {
     function isSealed() external view returns (bool);
     function paused() external view returns (bool);
     function preparationActive() external view returns (bool);
+    function canonicalHandoff() external view returns (address);
+    function royaltyFactory() external view returns (address);
+    function canonicalState() external view returns (uint8);
+    function canonicalSettling() external view returns (bool);
     function keepers(address who) external view returns (bool);
+    function moduleAuthorized(bytes32 id, address caller) external view returns (bool);
+    function keeperAuthorized(address caller) external view returns (bool);
     function canConfigure(address who) external view returns (bool);
 }
 interface IZZZBound { function access() external view returns (IZZZAccess); }

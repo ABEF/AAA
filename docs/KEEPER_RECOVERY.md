@@ -6,6 +6,11 @@ See [service qualification and rehearsal](KEEPER_REHEARSALS.md) for the isolated
 process-crash suite and read-only health, preflight and recovery-snapshot commands.
 Actual execution evidence is kept separately from the historical internal review.
 
+The desktop chat health monitor was **paused at the user's request on 2026-10-17**.
+Existing observations remain historical; the interval after pausing has no chat
+monitoring coverage. Pausing that monitor did not stop the isolated server service.
+Do not resume the monitor without authorization.
+
 ## Restart and custody
 
 LP stays on chain. The keeper discovers the Vault's shared buckets and reads current state. A restart reconciles a pending transaction before evaluating current maintenance with fresh prices, deadlines, simulations and budgets. It does not replay missed rebalances or restore missed earnings; LP may remain out of range while offline.
@@ -23,6 +28,16 @@ The state file preserves deployment identity, next nonce, pending intent/hash, d
 An unused signer can explicitly bootstrap using `python -m keeper.monitor --config REVIEWED_CONFIG --initialize-state`. This never signs; it requires reviewed deployment pins, a fresh head and zero latest/pending nonces, and refuses existing state. Legacy state without a nonce checkpoint requires reviewed migration, never deletion or a blind nonce insertion.
 
 ## Logs, health and fallback
+
+The current keeper requires both `preparationActive()` and `canonicalState()` on
+the exact controller. Missing, malformed or unknown states fail closed. State0
+can operate under ordinary preparation/pause rules; Frozen1, Importing2, Retired3
+and Cancelled4 stop **all new** keeper submissions, including drains and metadata.
+Receipt recovery runs first and remains available. State is checked before
+simulation, after gas estimation and before recording a new intent. Health reports
+`canonical_locked` for an intentional lifecycle stop. Do not interpret it as
+successful maintenance or delete pending state to bypass it. The existing staging
+deployment has not been upgraded; qualify controller, fixture and keeper together.
 
 - JSON logs identify action, bucket and transaction where available. Errors include type and source location; raw error bodies, signer output, credentials and full tracebacks are excluded.
 - Separate `health_path` defaults to the state filename with `.health.json`. It reports heartbeat time, last success, pending flag, skipped buckets and failure count. `running`, `awaiting_receipt`, `recovery_required`, `degraded`, `error` and `halted` are not successful maintenance. Dry-run success is explicitly labelled.

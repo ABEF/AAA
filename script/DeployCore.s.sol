@@ -19,6 +19,10 @@ import {ZZZMigrationReceiver} from "../src/ZZZMigrationReceiver.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZMigrationRegistry} from "../src/ZZZMigrationRegistry.sol";
+import {ZZZCanonicalHandoff} from "../src/ZZZCanonicalHandoff.sol";
+import {ZZZNFTCanonical} from "../src/ZZZNFTCanonical.sol";
+import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
+import {ZZZFeesCanonical} from "../src/ZZZFeesCanonical.sol";
 /// @notice LOCAL DEVELOPMENT ONLY. This script cannot deploy on public-chain IDs.
 /// Requires reviewed local Uniswap dependencies. Bridge policies start empty.
 contract DeployCore is Script {
@@ -58,6 +62,10 @@ contract DeployCore is Script {
         a.bind(Ids.ORACLE,address(new ZZZOracle(controller,vm.envAddress("SEQUENCER_FEED"))));
         a.bind(Ids.POOLS,address(new ZZZPoolRegistry(controller)));
         a.bind(Ids.ROUTES,address(new ZZZMigrationRegistry(controller)));
+        a.bind(Ids.CANONICAL,address(new ZZZCanonicalHandoff(controller)));
+        a.bind(Ids.NFT_CANONICAL,address(new ZZZNFTCanonical(controller,address(nft))));
+        a.bind(Ids.VAULT_CANONICAL,address(new ZZZVaultCanonical(controller,a.module(Ids.VAULT),home)));
+        a.bind(Ids.FEES_CANONICAL,address(new ZZZFeesCanonical(controller,a.module(Ids.FEES))));
         vm.stopBroadcast();
         vm.createDir("deployments",true);
         vm.serializeAddress("local-deployment","controller",controller);

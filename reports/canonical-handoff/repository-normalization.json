@@ -1,0 +1,37 @@
+{
+  "docs/project-todo.json": {
+    "original_sha256": "49de3417c0cd5b3fbb3ed9114c47bc75599891338a79a1b4bf458f34f0e26d39",
+    "repository_sha256": "11df42a2ab3ec02e1ef2aeb97d35f553703bbab62fa5324c79548d0088e41038",
+    "json_value_identical": true
+  },
+  "reports/production/slither-review.json": {
+    "original_sha256": "d94594d34bd561fdb8932aaf123a56d80a0751a9020bc8706d6f2032e56ea6d5",
+    "repository_sha256": "7fc7be3c991e70870e1c074afff20b2d1526ddf029547703cb7e48108411785b",
+    "json_value_identical": true
+  },
+  "reports/canonical-handoff/config-verification.json": {
+    "original_sha256": "74e4ca11a48eade6bff175ec07db3918e520a1870bd23902053edec0a26825ac",
+    "repository_sha256": "636ecab1e583519f7017a7f47d319f81842910de683483b9605edcbc78b9db4e",
+    "json_value_identical": true
+  },
+  "reports/canonical-handoff/evidence-manifest.json": {
+    "original_sha256": "7ba6ee1e85624432e73ab0010e2b56324af1c62e46148c288dbee7569ddd5051",
+    "repository_sha256": "58d7c8c6a684e732ef65cddd258625c068102fe475967b7434c1476d9c2f725e",
+    "json_value_identical": true
+  },
+  "reports/canonical-handoff/keeper/verification.json": {
+    "original_sha256": "8da49bfe861761a4739870e87ac00a6e1cdc74d29136ac6cbaa3599d268fb8eb",
+    "repository_sha256": "424f723b70be9da13156e0816ee4ab650fd29b092e6c1634cae6695281d3af4b",
+    "json_value_identical": true
+  },
+  "reports/canonical-handoff/static/coverage-mutations.json": {
+    "original_sha256": "aaa23f544b39b619ad23273cd36d8a02c6ec9610bdfa6be87d33ac62c4259d6f",
+    "repository_sha256": "a17e354ad8827a43f60bab4f6851c895aee54b8c8625a5f3c55497128eacd872",
+    "json_value_identical": true
+  },
+  "reports/canonical-handoff/static/slither-review.json": {
+    "original_sha256": "d94594d34bd561fdb8932aaf123a56d80a0751a9020bc8706d6f2032e56ea6d5",
+    "repository_sha256": "7fc7be3c991e70870e1c074afff20b2d1526ddf029547703cb7e48108411785b",
+    "json_value_identical": true
+  }
+}

@@ -18,6 +18,10 @@ library Ids {
     bytes32 internal constant POOLS = keccak256("ZZZPoolRegistry");
     bytes32 internal constant ROUTES = keccak256("ZZZMigrationRegistry");
     bytes32 internal constant TRANSPORT = keccak256("ZZZBridgeRouter");
+    bytes32 internal constant CANONICAL = keccak256("ZZZCanonicalHandoff");
+    bytes32 internal constant NFT_CANONICAL = keccak256("ZZZNFTCanonical");
+    bytes32 internal constant VAULT_CANONICAL = keccak256("ZZZVaultCanonical");
+    bytes32 internal constant FEES_CANONICAL = keccak256("ZZZFeesCanonical");
 }
 
 // ABI-compatible with the canonical Uniswap v4 PoolKey. ERC20 currencies only.

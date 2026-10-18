@@ -1,5 +1,14 @@
 # Component implementation status
 
+**2026-10-17 handoff candidate:** the current source adds the six-domain
+[same-chain canonical handoff](CANONICAL_HANDOFF.md), including atomic cutoff
+capture, bounded ordered settlement, exact state/backing import, restored abort
+and atomic source retirement/replacement activation. The controller seals 20
+modules; eight helpers/factories are created automatically. Current verification
+is recorded [separately](../reports/canonical-handoff/VERIFICATION.md); the dated
+receipts below do not verify these changes. Cross-chain closure, finalized proof,
+lineage/transport and independent qualification remain open. No deployment is approved.
+
 **2026-10-16 candidate update; undeployed and not production approved.** Activation accepts at least **$100 original gross source value** and requires at least **99% as genuinely marginal deployed LP**, excluding incumbent principal/idle/compound assets; network gas is separate. The immutable Entry binds that source budget through typed conversion into the Vault. Governed paused parking adds a source-oracle-independent close into Vault custody. Other rules remain 80/10/5/5 LP revenue, equal activated-NFT collective shares, 1,000 NFTs with exact 600 Commun / 300 Rare / 100 Legendary quotas, VRF reveal, current-value evolution and separate 5% requested marketplace royalties. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md).
 
 The earlier [release-hardening verification](../reports/release-hardening/README.md) covers bounded metadata notifications and the optional watcher: 342 offline Solidity passes, one expected fork setup skip and 20 size gates. Its [static analysis](../reports/release-hardening/static-analysis/README.md) reviewed 179 findings internally. These counts and size margins predate the new native adapter, claim router and 1% entry policy; they are not fresh verification of this candidate. Targeted selected-market fork tests have been added, but complete current-source tests, size/gas checks, static review and exact-revision CI must be checked separately. No internal pass replaces an independent audit.
@@ -12,6 +21,9 @@ The [website-alignment evidence](../reports/website-alignment/README.md), [rewar
 
 | Component | Current candidate implementation | Remaining qualification |
 |---|---|---|
+| `ZZZCanonicalHandoff.sol` | Six-domain captured cutoffs, ordered settlement, eight-row export/import, exact classified funding, restored abort and one atomic successor | Worst-case gas, interruption/callback review, successor admission, canonical cross-chain finality and independent audit |
+| `ZZZNFTCanonical.sol` / `ZZZVaultCanonical.sol` / `ZZZFeesCanonical.sol` | Sealed owner-bound codecs and typed import/custody hooks; exact traits, shares, fractions and original identity | Complete source-bound accounting verification, contract-owner compatibility and operational relaying |
+| `ZZZRoyaltyFactory.sol` / `ZZZRewardReceiverFactory.sol` | Immutable automatic factories for the NFT royalty ledger and classified creator inboxes | Deployment/owner bindings, native and token dependency behavior and successor receipt continuity |
 | `ZZZVault.sol` | Exact 0.05 ETH Dormant mint; $100 source-bound activation with at least 99% marginal LP; same limit on additions; nonredeemable shares; oracle-independent paused close into Parked custody and guarded resume | Independent accounting review, target-venue gas and staged recovery; no guarantee against failed external assets or venues |
 | `ZZZNFT.sol` | ERC-721/2981/4906; 1,000 cap; ordered quota/inventory VRF draws; immutable traits and royalty/metadata/claim helpers | Actual proof-verifying coordinator, funded subscription, callback/failure rehearsal and independently reviewed permanent artwork root |
 | `ZZZNFTMetadata.sol` | Read-only current marked principal/idle/compound NAV by NFT share; four evolution states; price-driven downgrades; explicit unavailable valuation; 58 palettes and four patterns selecting 2,784 supported artwork states | Permanent asset publication, live pricing and marketplace cache integration; bounded notifications and watcher are implemented but need staged operation |

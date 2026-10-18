@@ -131,6 +131,21 @@ def fixture():
             'observed_chain_id':cid,'observed_block_number':5000,'observed_block_hash':HASH,
             'review_evidence':dict(proof(),independent=True,aggregate_loss_tested=True,
                 compound_not_subsidy_tested=True,callback_price_snapshot_tested=True,local_scope_reviewed=True)}
+        bindings={name:modules[name]['address'] for name in ('canonical','nft_canonical','vault_canonical','fees_canonical')}
+        bindings.update({name+'_owner':modules[owner]['address'] for name,owner in
+            (('nft_canonical','nft'),('vault_canonical','vault'),('fees_canonical','fees'))})
+        bindings.update(origin_chain_id=1,origin_vault=modules['vault']['address'])
+        canonical={'transport':'same_chain_only','remote_activation_enabled':False,'state':0,'settling':False,
+            'preparation_active':False,'phase':0,'incoming_source':GATE.ZERO,'observed_chain_id':cid,
+            'origin_chain_id':1,'origin_vault':modules['vault']['address'],
+            'observed_block_number':5000,'observed_block_hash':HASH,'observed_bindings':bindings,
+            'review_evidence':dict(proof(),independent=True,complete_accounting_tested=True,exact_backing_tested=True,
+                abort_restoration_tested=True,single_successor_tested=True,late_receipts_tested=True,onward_migration_tested=True)}
+        for offset,(name,owner) in enumerate((('royalty_factory','access'),('reward_receiver_factory','fees'))):
+            factory_address=addr(base+707+offset);bindings[name]=factory_address
+            canonical[name]={'address':factory_address,'runtime_hash':HASH,'immutable':True,
+                'owner':modules[owner]['address'],'controller':controller}
+        manifest['chains'][-1]['canonical_handoff']=canonical
         if cid==1:manifest['chains'][-1]['nft_inventory']=nft_inventory(manifest['chains'][-1])
     origin=manifest['chains'][0]
     bucket=int(GATE.identity([(1,'uint256'),(origin['modules']['vault']['address'],'address'),
@@ -208,6 +223,7 @@ def onward_fixture():
     third['activation_assets']['observed_chain_id']=3
     third['activation_entry']['observed_chain_id']=3
     third['migration_budget']['observed_chain_id']=3
+    third['canonical_handoff']['observed_chain_id']=3
     third['bucket_reservations'][0]['observed_chain_id']=3;manifest['chains'].append(third)
     for source,destination in ((2,3),(3,2),(3,1)):
         policy=copy.deepcopy(manifest['transport_policies'][0])
@@ -234,6 +250,81 @@ def onward_fixture():
         chain['bridge_router'].update(registered_policy_ids=listed,policy_count=len(listed),
             outbound_policy_count=sum(p['sourceChain']==cid and p['outbound_enabled'] for p in manifest['transport_policies'] if p['policy_id'] in listed))
     return manifest
+
+class CanonicalHandoffConfigTests(unittest.TestCase):
+    def setUp(self):self.config=disabled_fixture()
+    def blocked(self,code):
+        result=GATE.validate(self.config,expected_commit=COMMIT,now=NOW)
+        self.assertFalse(result['ready']);self.assertFalse(result['deployment_authorized'])
+        self.assertIn(code,[issue['code'] for issue in result['issues']])
+    def test_missing_canonical_inventory_is_rejected(self):
+        del self.config['chains'][0]['canonical_handoff'];self.blocked('canonical.transport')
+    def test_frozen_importing_retired_cancelled_and_boolean_states_are_rejected(self):
+        for state in (1,2,3,4,False):
+            with self.subTest(state=state):
+                self.config=disabled_fixture();self.config['chains'][0]['canonical_handoff']['state']=state
+                self.blocked('canonical.lifecycle')
+    def test_remote_override_is_rejected(self):
+        self.config['chains'][0]['canonical_handoff']['remote_activation_enabled']=True
+        self.blocked('canonical.transport')
+    def test_wrong_owner_or_bound_helper_is_rejected(self):
+        for field in ('canonical','nft_canonical','nft_canonical_owner','vault_canonical_owner','fees_canonical_owner'):
+            with self.subTest(field=field):
+                self.config=disabled_fixture();self.config['chains'][0]['canonical_handoff']['observed_bindings'][field]=addr(99999)
+                self.blocked('canonical.binding')
+    def test_stale_canonical_observation_is_rejected(self):
+        self.config['chains'][0]['canonical_handoff']['observed_block_number']=4999
+        self.blocked('canonical.observation')
+    def test_internal_review_cannot_replace_independent_review(self):
+        self.config['chains'][0]['canonical_handoff']['review_evidence']['independent']=False
+        self.blocked('canonical.review')
+    def test_missing_onward_and_abort_evidence_are_rejected(self):
+        for key in ('abort_restoration_tested','onward_migration_tested','exact_backing_tested'):
+            with self.subTest(key=key):
+                self.config=disabled_fixture();del self.config['chains'][0]['canonical_handoff']['review_evidence'][key]
+                self.blocked('canonical.review')
+    def test_factory_cannot_alias_module_or_mint_recipient(self):
+        chain=self.config['chains'][0];factory=chain['canonical_handoff']['royalty_factory']
+        chain['constructor']['mint_proceeds_recipient']=factory['address'];self.blocked('canonical.factory')
+        self.config=disabled_fixture();chain=self.config['chains'][0]
+        chain['canonical_handoff']['royalty_factory']['address']=chain['modules']['vault']['address']
+        self.blocked('canonical.factory')
+    def test_genesis_cannot_have_previous_source(self):
+        self.config['chains'][0]['canonical_handoff']['incoming_source']=addr(99999);self.blocked('canonical.origin')
+    def test_successor_requires_retired_source_and_backing_evidence(self):
+        canonical=self.config['chains'][0]['canonical_handoff'];canonical.update(phase=5,incoming_source=addr(99999))
+        self.blocked('canonical.activation')
+        canonical['activation_evidence']=dict(proof(),kind='atomic_same_chain_canonical_activation',
+            source_permanently_retired=True,all_backing_verified=True,
+            origin_chain_id=canonical['origin_chain_id'],origin_vault=canonical['origin_vault'])
+        result=GATE.validate(self.config,expected_commit=COMMIT,now=NOW)
+        self.assertEqual(result['issues'],[]);self.assertFalse(result['deployment_authorized'])
+    def test_successor_creator_bucket_uses_preserved_origin_vault(self):
+        self.config=external_fixture();chain=self.config['chains'][0];canonical=chain['canonical_handoff']
+        canonical.update(phase=5,incoming_source=addr(99999),origin_vault=addr(88888))
+        canonical['observed_bindings']['origin_vault']=canonical['origin_vault']
+        canonical['activation_evidence']=dict(proof(),kind='atomic_same_chain_canonical_activation',
+            source_permanently_retired=True,all_backing_verified=True,origin_chain_id=1,origin_vault=addr(88888))
+        receiver=chain['external_rewards']['receivers'][0]
+        bucket=int(GATE.identity([(1,'uint256'),(addr(88888),'address'),(receiver['home_pool_id'],'bytes32')]),16)
+        receiver['bucket_id']=str(bucket);receiver['observed_bindings']['bucket_id']=str(bucket)
+        self.assertEqual(GATE.validate(self.config,expected_commit=COMMIT,now=NOW)['issues'],[])
+        canonical['observed_bindings']['origin_vault']=chain['modules']['vault']['address']
+        self.blocked('canonical.lineage')
+    def test_malformed_lineage_and_missing_inventory_fail_without_exception(self):
+        for value in (None,[],{'origin_chain_id':-1,'origin_vault':'bad'}):
+            with self.subTest(value=value):
+                self.config=external_fixture();self.config['chains'][0]['canonical_handoff']=value
+                self.blocked('canonical.transport')
+    def test_boolean_observed_origin_chain_is_rejected(self):
+        self.config['chains'][0]['canonical_handoff']['observed_bindings']['origin_chain_id']=True
+        self.blocked('canonical.lineage')
+    def test_factory_cannot_alias_creator_receiver_even_with_mixed_case(self):
+        self.config=external_fixture();chain=self.config['chains'][0]
+        address=chain['external_rewards']['receivers'][0]['address']
+        chain['canonical_handoff']['royalty_factory']['address']='0x'+address[2:].upper()
+        chain['canonical_handoff']['observed_bindings']['royalty_factory']=address.lower()
+        self.blocked('reward.custody')
 
 class ProductionConfigTests(unittest.TestCase):
     def setUp(self):self.config=fixture()

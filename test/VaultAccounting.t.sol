@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 // Integration of real vault/rewards/NFT/Membership contracts, with a FAKE liquidity venue.
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -117,7 +118,8 @@ abstract contract PooledVaultFixture is Test {
         vrf=new MockVRF();nft.configureRandomness(address(vrf),bytes32(uint256(1)),1,3,500000,false);
         rewards.addAsset(address(t0));rewards.addAsset(address(t1));
         PoolConfig memory c;c.key=PoolKey(address(t0),address(t1),3000,60,address(0));c.operationsEnabled=true;c.depositsEnabled=true;
-        c.minDepositUSD=1e18;c.maxPositionUSD=1e30;c.maxSlippageBps=100;poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);ac.seal();
+        c.minDepositUSD=1e18;c.maxPositionUSD=1e30;c.maxSlippageBps=100;poolId=keccak256(abi.encode(c.key));pools.set(poolId,c);
+        CanonicalFixture.bind(address(ac));ac.seal();
         _fundUser(alice);_fundUser(bob);vm.deal(address(this),10 ether);
     }
     function _fundUser(address owner) internal {

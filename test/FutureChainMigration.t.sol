@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 // Real custody, accounting, timelocks and message validation; FAKE LP venue and
 // burn/mint transport. This demonstrates state-machine integration, not real
@@ -261,6 +262,7 @@ contract FutureChainMigrationTest is Test {
         config.minDepositUSD = 1e18;
         config.maxPositionUSD = 1e30;
         bundle.poolId = pools.configure(config);
+        CanonicalFixture.bind(address(bundle.access));
         bundle.access.seal();
     }
     function _govern(Bundle storage bundle, address target, bytes memory data) private {

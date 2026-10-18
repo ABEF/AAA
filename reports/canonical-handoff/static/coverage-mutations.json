@@ -1,0 +1,50 @@
+{
+  "actual_report_sha256": "fe4adef2f1fbcb91e66cb2eddf486053affb49e1dfa1c8d348679b5c4bb56864",
+  "actual_review_sha256": "72d19bf5740dc78c6f48476d668b20be1d2d837dd0a7eca1a4a7865fdb373b74",
+  "checker_sha256": "1b7c16b321563a23c7e2c1a49aa7409783b4dd0243e1bfc078532ca34a09fedd",
+  "baseline_coverage_pass": true,
+  "mutations": {
+    "missing-finding": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "duplicate-finding": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "missing-review": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "duplicate-review": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "unresolved": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "empty-rationale": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "source-drift": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "detector-severity": {
+      "rejected": true,
+      "error_count": 2
+    },
+    "analyzer-error": {
+      "rejected": true,
+      "error_count": 1
+    },
+    "settlement-description": {
+      "rejected": true,
+      "error_count": 2
+    }
+  },
+  "production_approved": false,
+  "independent_audit": false
+}

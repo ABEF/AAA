@@ -5,11 +5,17 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
-import {IZZZVault} from "./interfaces/IZZZ.sol";
+import {IZZZVault, IZZZAccess} from "./interfaces/IZZZ.sol";
 import {ZZZRoyaltyRewards} from "./ZZZRoyaltyRewards.sol";
 import {ZZZClaimRouter} from "./ZZZClaimRouter.sol";
 import {ZZZNFTMetadata, NFTMetadataInput} from "./ZZZNFTMetadata.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
+import {ZZZRoyaltyFactory} from "./ZZZRoyaltyFactory.sol";
+import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
+import {CanonicalNFTRecord} from "./interfaces/IZZZNFTCanonical.sol";
+interface IZZZNFTSuccessor {
+    function destinationController() external view returns (address);
+}
 
 /// @dev Minimal official VRF v2.5 subscription ABI. A matching selector does not
 /// prove a coordinator verifies VRF proofs; actual network support, coordinator,
@@ -66,7 +72,9 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         bool requested;
         bool fulfilled;
     }
-    mapping(uint256 => RandomnessResult) private randomness;
+    mapping(bytes32 => RandomnessResult) private randomness;
+    mapping(uint256 => uint256) public requestEpochOf;
+    uint256 public randomnessEpoch;
     event MetadataBaseChanged(string newBase);
     event RandomnessConfigured(address indexed coordinator, bytes32 keyHash, uint256 subscriptionId,
         uint16 confirmations, uint32 callbackGasLimit, bool nativePayment);
@@ -82,7 +90,8 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         _validateBaseURI(baseURI);
         metadataBase = baseURI;
         metadataConfigured = bytes(baseURI).length != 0;
-        royaltyRewards = new ZZZRoyaltyRewards(address(this));
+        royaltyRewards = ZZZRoyaltyFactory(access.royaltyFactory()).create();
+        if (royaltyRewards.canonicalController() != controller || royaltyRewards.nft() != address(this)) revert InvalidConfiguration();
         claimRouter = new ZZZClaimRouter(controller, address(this), address(royaltyRewards));
         metadataRenderer = new ZZZNFTMetadata(controller);
     }
@@ -112,8 +121,10 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         uint256 requestId = IZZZVRFCoordinator(randomnessCoordinator).requestRandomWords(
             IZZZVRFCoordinator.RandomWordsRequest(keyHash, subscriptionId, requestConfirmations,
                 callbackGasLimit, 2, abi.encodeWithSelector(bytes4(keccak256("VRF ExtraArgsV1")), nativePayment)));
-        if (requestId == 0 || randomness[requestId].requested) revert InvalidState();
-        randomness[requestId].nftId = id; randomness[requestId].requested = true;
+        bytes32 requestKey = _requestKey(randomnessEpoch, requestId);
+        if (requestId == 0 || randomness[requestKey].requested) revert InvalidState();
+        randomness[requestKey].nftId = id; randomness[requestKey].requested = true;
+        requestEpochOf[id] = randomnessEpoch;
         requestOf[id] = requestId;
         _safeMint(to, id);
         emit RandomnessRequested(id, requestId, ordinal);
@@ -123,7 +134,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     /// neither consume its gas nor turn a fulfilled request into another draw.
     function rawFulfillRandomWords(uint256 requestId, uint256[] calldata words) external {
         if (msg.sender != randomnessCoordinator) revert Unauthorized();
-        RandomnessResult storage result = randomness[requestId];
+        RandomnessResult storage result = randomness[_requestKey(randomnessEpoch, requestId)];
         if (!result.requested || result.fulfilled || words.length != 2) revert InvalidState();
         result.fulfilled = true; result.rarityWord = words[0]; result.colorWord = words[1];
         emit RandomnessReceived(requestId);
@@ -132,9 +143,9 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     /// @notice Draw without replacement, strictly in mint order: exactly 600
     /// Commun, 300 Rare and 100 Legendary when all 1,000 NFTs are revealed.
     /// Missing earlier fulfillment blocks later reveals; no fallback or reroll.
-    function finalizeTraits(uint256 id) external nonReentrant {
+    function finalizeTraits(uint256 id) external nonReentrant canonicalAccounting {
         _requireOwned(id);
-        RandomnessResult storage result = randomness[requestOf[id]];
+        RandomnessResult storage result = randomness[_requestKey(requestEpochOf[id], requestOf[id])];
         if (!result.fulfilled || traitsReady[id] || mintOrdinalOf[id] != nextToFinalize || result.nftId != id) {
             revert NotReady();
         }
@@ -247,5 +258,61 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         if (!ipfs && !arweave) revert InvalidConfiguration();
     }
     function _baseURI() internal view override returns (string memory) { return metadataBase; }
+    function _requestKey(uint256 epoch, uint256 requestId) private pure returns (bytes32) {
+        return keccak256(abi.encode(epoch, requestId));
+    }
+    function transferFrom(address from, address to, uint256 tokenId) public override canonicalAccounting {
+        super.transferFrom(from, to, tokenId);
+    }
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data)
+        public override canonicalAccounting {
+        super.safeTransferFrom(from, to, tokenId, data);
+    }
+    /// @dev Imports deliberately mint inert ownership without receiver callbacks;
+    /// ordinary transfers/mints cannot execute while either deployment is frozen.
+    function _update(address to, uint256 tokenId, address auth) internal override returns (address) {
+        uint8 state = IZZZCanonicalAccess(address(access)).canonicalState();
+        if (state != 0 && !(state == 2 && canonicalImporting && msg.sender == canonicalModule())) revert InvalidState();
+        return super._update(to, tokenId, auth);
+    }
+
+    bool private canonicalImporting;
+    function canonicalModule() public view returns (address) { return access.module(Ids.NFT_CANONICAL); }
+    modifier onlyCanonicalWriter() {
+        if (msg.sender != canonicalModule() || !access.isSealed() || access.canonicalState() != 2) revert Unauthorized();
+        _;
+    }
+    function canonicalRandomness(uint256 id) external view returns (uint256,uint256,uint256,bool,bool) {
+        RandomnessResult storage result = randomness[_requestKey(requestEpochOf[id], requestOf[id])];
+        return (result.nftId,result.rarityWord,result.colorWord,result.requested,result.fulfilled);
+    }
+    function canonicalArtwork(uint8 rarity, uint256 item) external view returns (uint16) { return artworkDraw[rarity][item]; }
+    function canonicalWriteHeader(uint256 count, uint256 next, uint256 remaining, uint16[3] calldata quotas, uint256 epoch)
+        external onlyCanonicalWriter {
+        mintedCount = count; nextToFinalize = next; remainingToReveal = remaining;
+        rarityRemaining = quotas; randomnessEpoch = epoch;
+    }
+    function canonicalWriteRecord(uint256 row, CanonicalNFTRecord calldata value) external onlyCanonicalWriter {
+        bytes32 key = _requestKey(value.requestEpoch, value.requestId);
+        if (randomness[key].requested) revert InvalidState();
+        randomness[key] = RandomnessResult(value.id, value.rarityWord, value.colorWord, true, true);
+        requestOf[value.id] = value.requestId; requestEpochOf[value.id] = value.requestEpoch;
+        mintOrdinalOf[value.id] = row; tokenAtOrdinal[row] = value.id;
+        rarityOf[value.id] = value.rarity; colorOf[value.id] = value.color;
+        paletteOf[value.id] = value.palette; patternOf[value.id] = value.pattern; traitsReady[value.id] = true;
+        canonicalImporting = true; _mint(value.owner, value.id); canonicalImporting = false;
+    }
+    function canonicalWriteArtwork(uint8 rarity, uint256 item, uint16 value) external onlyCanonicalWriter {
+        artworkDraw[rarity][item] = value;
+    }
+    function canonicalSuccessor() external view returns (address controller, address replacementNFT) {
+        if (access.canonicalState() != 3) return (address(0), address(0));
+        controller = IZZZNFTSuccessor(access.canonicalHandoff()).destinationController();
+        replacementNFT = IZZZAccess(controller).module(Ids.NFT);
+    }
+    function canonicalRetire() external onlyHandoff {
+        if (access.canonicalState() != 3) revert InvalidState();
+        emit BatchMetadataUpdate(0, type(uint256).max);
+    }
     // No burn or principal-redemption entrypoint. Standard ERC721 safe transfers.
 }

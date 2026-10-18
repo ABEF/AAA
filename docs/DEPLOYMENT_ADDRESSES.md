@@ -37,7 +37,7 @@ The LP allocation remains 80/10/5/5 with no automatic governance/keeper salary.
 
 ## PoPL contracts produced by deployment
 
-The fixed core consists of 17 contracts. These are recorded per participating
+The fixed core consists of 21 contracts (controller plus 20 sealed modules). These are recorded per participating
 chain; `Ids.TRANSPORT` names the fixed router, not a selected bridge provider.
 
 | Manifest name | Contract |
@@ -59,21 +59,27 @@ chain; `Ids.TRANSPORT` names the fixed router, not a selected bridge provider.
 | `pools` | `ZZZPoolRegistry` — eligible pools, wrapper and input helpers |
 | `routes` | `ZZZMigrationRegistry` — immutable economic route identities |
 | `transport` | `ZZZBridgeRouter` — immutable provider-policy routing |
+| `canonical` | `ZZZCanonicalHandoff` - fixed canonical lifecycle and exact handoff coordinator |
+| `nft_canonical` | `ZZZNFTCanonical` - NFT inventory/ownership codec bound to the NFT |
+| `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
+| `fees_canonical` | `ZZZFeesCanonical` - reserves/inboxes codec bound to Fees |
 
-Six helpers are created automatically and must also be inventoried:
+Eight fixed helpers/factories are created automatically and must also be inventoried:
 
 | Creator | Helper addresses and bindings |
 | --- | --- |
 | Pool registry constructor | `ZZZActivationAssets` and `ZZZActivationEntry`; verify registry/controller/helper relationships. |
-| NFT constructor | `ZZZRoyaltyRewards`, `ZZZClaimRouter` and `ZZZNFTMetadata`; verify NFT/controller/royalty bindings. |
+| Controller constructor | `ZZZRoyaltyFactory`; only its atomic creation/binding path supplies the NFT's royalty ledger. Verify factory controller and observed NFT ledger. |
+| NFT constructor | `ZZZRoyaltyRewards` through the controller's fixed factory, plus `ZZZClaimRouter` and `ZZZNFTMetadata`; verify NFT/controller/royalty bindings. |
 | Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
+| FeeController constructor | `ZZZRewardReceiverFactory`; verify immutable Fees/controller bindings and `Fees.receiverFactory`. It creates exact bound inboxes and supplies read-only validation/encoding helpers. |
 
-The royalty receiver is **the NFT-created `ZZZRoyaltyRewards` contract**, not an
+The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
 eligible holders under the separate 1/2/3 rarity-weighted ledger.
 
 Later governance may create immutable per-bucket `ZZZRewardReceiver` creator
-payment inboxes through the fee controller. Record every inbox and its fixed
+payment inboxes through the fee controller's fixed factory. Record every inbox and its fixed
 fee-controller, bucket, token-pair and optional native-wrapper bindings. They are
 not interchangeable with the royalty ledger, mint recipient or bridge receiver.
 These additional inboxes are not new sealed module IDs.

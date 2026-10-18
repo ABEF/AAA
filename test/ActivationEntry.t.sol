@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -379,6 +380,7 @@ contract ActivationEntryTest is Test {
         bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,
             Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
         for(uint256 i;i<ids.length;++i)governed.bind(ids[i],address(new BoundDummy(address(governed))));
+        CanonicalFixture.bind(address(governed));
         governed.seal();ZZZActivationEntry.RoutePolicy memory policy=_policy(address(source),address(wrapped));
         vm.expectRevert();governedEntry.addRoute(policy);
         bytes memory payload=abi.encodeCall(governedEntry.addRoute,(policy));bytes32 salt=keccak256("entry route governance");

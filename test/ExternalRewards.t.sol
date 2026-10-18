@@ -581,7 +581,8 @@ contract ExternalRewardsTest is PooledVaultFixture {
 
     function testConstructionPrefundingIsPermanentlyExcludedFromFutureRewards() public {
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id);
-        address predicted = vm.computeCreateAddress(address(fees), vm.getNonce(address(fees)));
+        address factory = address(fees.receiverFactory());
+        address predicted = vm.computeCreateAddress(factory, vm.getNonce(factory));
         t0.mint(predicted, 111); t1.mint(predicted, 222); vm.deal(predicted, 333);
         address inbox = _receiver(id); assertEq(inbox, predicted);
         assertEq(ExternalRewardInbox(inbox).protected0(), 111);
@@ -617,13 +618,15 @@ contract ExternalRewardsTest is PooledVaultFixture {
         // constructor-configuration scenario exercises an address which can be
         // predicted before the contract has code, rather than a module address.
         address predictedFees = vm.computeCreateAddress(address(this), vm.getNonce(address(this)) + 10);
-        address predictedInbox = vm.computeCreateAddress(predictedFees, 1);
+        address predictedFactory = vm.computeCreateAddress(predictedFees, 1);
+        address predictedInbox = vm.computeCreateAddress(predictedFactory, 1);
         _fixture(payable(predictedInbox)); assertEq(address(fees), predictedFees);
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id);
         assertEq(predictedInbox.balance, 0.05 ether);
         vm.expectRevert(); fees.createRewardReceiver(bucket, address(0));
         assertEq(fees.rewardReceiverCount(), 0); assertEq(fees.rewardReceiver(bucket), address(0));
-        assertEq(predictedInbox.code.length, 0); assertEq(vm.getNonce(address(fees)), 1);
+        assertEq(predictedInbox.code.length, 0); assertEq(vm.getNonce(address(fees)), 2);
+        assertEq(address(fees.receiverFactory()), predictedFactory); assertEq(vm.getNonce(predictedFactory), 1);
         assertEq(predictedInbox.balance, 0.05 ether);
     }
 
@@ -734,7 +737,8 @@ contract ExternalRewardsTest is PooledVaultFixture {
     function testWrappedAndNativeConstructionPrefundingRemainsQuarantined() public {
         ExternalRewardWETH wrapper = new ExternalRewardWETH(); _replaceFirstToken(wrapper);
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id);
-        address predicted = vm.computeCreateAddress(address(fees), vm.getNonce(address(fees)));
+        address factory = address(fees.receiverFactory());
+        address predicted = vm.computeCreateAddress(factory, vm.getNonce(factory));
         wrapper.mint(predicted, 3 ether); vm.deal(predicted, 7 ether);
         address inbox = fees.createRewardReceiver(bucket, address(wrapper)); assertEq(inbox, predicted);
         vm.deal(inbox, 8 ether); ExternalRewardInbox(inbox).sync();

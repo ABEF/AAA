@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
+import {ZZZNFTCanonical} from "../src/ZZZNFTCanonical.sol";
+import {ZZZFeesCanonical} from "../src/ZZZFeesCanonical.sol";
 import {Ids} from "../src/libraries/ZZZTypes.sol";
 import {BoundDummy} from "./mocks/Mocks.sol";
 contract AccessControllerTest is Test {
@@ -10,11 +13,33 @@ contract AccessControllerTest is Test {
         address[] memory a=new address[](1);a[0]=address(this);ac=new ZZZAccessController(1 days,a,a,keeper,guardian);
     }
     function fill() private {
+        fillCore();
+        CanonicalFixture.bind(address(ac));
+    }
+    function fillCore() private {
         bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
             Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
         for(uint256 i;i<ids.length;i++)ac.bind(ids[i],address(new BoundDummy(address(ac))));
     }
     function testIncompleteDeploymentCannotSeal() public {vm.expectRevert();ac.seal();}
+    function testAllCoreModulesWithoutCanonicalCompanionsCannotSeal() public {
+        fillCore(); vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector); ac.seal();
+        assertFalse(ac.isSealed()); assertEq(ac.bootstrap(), address(this));
+    }
+    function testNFTCompanionMustBelongToBoundCollection() public {
+        fillCore(); address other = address(new BoundDummy(address(ac)));
+        ac.bind(Ids.NFT_CANONICAL, address(new ZZZNFTCanonical(address(ac), other)));
+        CanonicalFixture.bind(address(ac));
+        vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector); ac.seal();
+        assertFalse(ac.isSealed());
+    }
+    function testFeeCompanionMustBelongToBoundFeeController() public {
+        fillCore(); address other = address(new BoundDummy(address(ac)));
+        ac.bind(Ids.FEES_CANONICAL, address(new ZZZFeesCanonical(address(ac), other)));
+        CanonicalFixture.bind(address(ac));
+        vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector); ac.seal();
+        assertFalse(ac.isSealed());
+    }
     function testCanonicalRandomnessMustBeConfiguredBeforeSeal() public {
         fill();BoundDummy nft=BoundDummy(ac.module(Ids.NFT));nft.setRandomnessConfigured(false);
         vm.expectRevert();ac.seal();assertFalse(ac.isSealed());assertEq(ac.bootstrap(),address(this));

@@ -41,12 +41,13 @@ class MetadataRpc:
         self.tx = self.receipt = None
         self.paused = True
         self.preparing = False
+        self.canonical_state = 0
         self.simulation_error = False
         self.after_evolution = None
         self.signatures = ('access()','module(bytes32)','canonicalChainId()','MAX_SUPPLY()',
             'MAX_METADATA_REFRESH_BATCH()','mintedCount()','tokenAtOrdinal(uint256)',
             'mintOrdinalOf(uint256)','traitsReady(uint256)','evolution(uint256)',
-            'paused()','preparationActive()','isSealed()','keepers(address)','bucketCount()')
+            'paused()','preparationActive()','canonicalState()','isSealed()','keepers(address)','bucketCount()')
         self.selectors = {'0x'+keccak256(signature.encode()).hex()[:8]:signature for signature in self.signatures}
 
     def block_hash(self,number):
@@ -89,7 +90,7 @@ class MetadataRpc:
             result = words(*self.stages[args[0]])
             if self.after_evolution: self.after_evolution()
             return result
-        return words({'paused()':int(self.paused),'preparationActive()':int(self.preparing),'isSealed()':1,'keepers(address)':1,'bucketCount()':0}[signature])
+        return words({'paused()':int(self.paused),'preparationActive()':int(self.preparing),'canonicalState()':self.canonical_state,'isSealed()':1,'keepers(address)':1,'bucketCount()':0}[signature])
 
     def eth_call(self,to,data):
         return self.call('eth_call',[{'to':to,'data':data},'latest'])

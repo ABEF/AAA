@@ -24,6 +24,7 @@ from zzz_ops.state import atomic_json, integer, process_lock, read_json
 ACCOUNTING_MODEL = 'shared-pools-v2'
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
+CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
 PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('vault','rebalance(uint256,uint128,uint256)'),
     ('compounder','compound(uint256,uint128,uint256)'),
@@ -116,6 +117,7 @@ class Keeper:
         self.blocked_actions = 0
         self.strategy_paused = False
         self.preparing = None
+        self.canonical_lifecycle = None
         self.stop_requested = lambda: False
         self.last_success_at = None
         self.confirmations = positive(config.get('confirmations',12),'confirmations')
@@ -216,6 +218,7 @@ class Keeper:
                 'skipped_buckets':self.skipped_buckets,'pending':bool(self.state.get('pending')),
                 'blocked_actions':self.blocked_actions,'strategy_paused':self.strategy_paused,
                 'preparation_active':self.preparing,
+                'canonical_state':self.canonical_lifecycle,
                 'pending_action':(self.state.get('pending') or {}).get('key'),
                 'pending_day':(self.state.get('pending') or {}).get('day'),
                 'duration_seconds':round(time.monotonic()-start,3),**extra})
@@ -236,6 +239,10 @@ class Keeper:
             status = 'degraded'
         elif pending:
             status = 'awaiting_receipt' if self.state['pending'].get('hash') else 'recovery_required'
+        elif self.canonical_lifecycle not in (None,0):
+            self.cycle_failures = 0
+            self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
+            status = 'canonical_locked'
         else:
             self.cycle_failures = 0
             self.last_success_at = dt.datetime.now(dt.timezone.utc).isoformat()
@@ -261,7 +268,25 @@ class Keeper:
         self.preparing = active
         return active
 
-    def _defer_for_preparation(self, name: str, signature: str) -> bool:
+    def canonical_state(self) -> int:
+        """Fail closed on absent/old/malformed controller interfaces, never infer operating."""
+        previous = self.canonical_lifecycle
+        self.canonical_lifecycle = None
+        try:
+            state = self.view('access','canonicalState()')
+        except ValueError as exc:
+            raise RpcError('Malformed canonical lifecycle state') from exc
+        if type(state) is not int or not 0 <= state < len(CANONICAL_STATES):
+            raise RpcError('Unknown canonical lifecycle state')
+        if previous != state and (previous is not None or state != 0):
+            log('canonical_lifecycle_observed',state=state,name=CANONICAL_STATES[state])
+        self.canonical_lifecycle = state
+        return state
+
+    def _defer_for_lifecycle(self, name: str, signature: str) -> bool:
+        # All newly submitted transactions stop while ownership/accounting is
+        # frozen or inert. Receipt reconciliation runs before these observations.
+        if self.canonical_state() != 0: return True
         # Read even for drain actions: unsupported deployments cannot silently
         # inherit new-source compatibility. Reconciliation remains independent.
         return self.preparation_active() and (name,signature) in PREPARATION_BLOCKED_ACTIONS
@@ -418,7 +443,7 @@ class Keeper:
         if self.state.get('pending'): return False
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
-        if self._defer_for_preparation(name,signature): return False
+        if self._defer_for_lifecycle(name,signature): return False
         if self.live: self._validate_checkpoint()
         _,timestamp = self._head()
         retry_after = positive(self.state.get('retry_after',{}).get(key,0),'retry_after',zero=True)
@@ -447,7 +472,7 @@ class Keeper:
             int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
             self.blocked_actions += 1
             log('cost_cap_exceeded',action=key); return False
-        if self._defer_for_preparation(name,signature): return False
+        if self._defer_for_lifecycle(name,signature): return False
         if not self.live:
             log('dry_run',action=key,to=to,calldata=data,estimated_cost_wei=str(cost))
             return False
@@ -467,7 +492,7 @@ class Keeper:
             log('shutdown_before_submission',action=key); return False
         # A notice may become active during simulation, code/nonce or balance
         # reads. The on-chain guard still covers later inclusion-time races.
-        if self._defer_for_preparation(name,signature): return False
+        if self._defer_for_lifecycle(name,signature): return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
         if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
         self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
@@ -801,6 +826,7 @@ class Keeper:
 
     def cycle(self) -> None:
         if self.poll_pending(): return
+        if self.canonical_state() != 0: return
         paused = self.view('access','paused()') != 0
         self.strategy_paused = paused
         preparing = self.preparation_active()

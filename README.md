@@ -4,6 +4,8 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
+**Development verification (2026-10-18):** the same-chain handoff candidate has 582 passing regression tests, plus 34 unchanged-source focused handoff passes. The two opt-in fork setup skips are recorded separately. This is an undeployed development candidate, not production approval. See the [resume handoff](docs/WORK_HANDOFF.md) and [scoped verification](reports/canonical-handoff/VERIFICATION.md).
+
 ## Project navigation
 
 | Purpose | Start here |
@@ -74,7 +76,7 @@ Governance is a deployment-selected multisig acting through a timelock, with sep
 
 Timelocked governance can [park custody while globally paused](docs/CUSTODY_PARKING.md), closing into the Vault under an exact snapshot and raw output minimums without source prices or creator-inbox synchronization. Resume requires fresh deployment guards. Failed external tokens or venues can still prevent movement.
 
-**LP migration is not collection migration.** Canonical NFT ownership, membership and reward ledgers currently remain on the home chain. The chosen direction is [controlled whole-protocol migration while the source still works](docs/CANONICAL_MIGRATION_DESIGN.md); it must be implemented and qualified before sealing. Post-halt recovery is deferred. Real bridging remains disabled pending independent destination-admission review, provider/backing review and multi-chain rehearsals. Local permanent capacity reservation is implemented; the source does not authenticate remote admission proof. These risks are tracked in the [security audit plan](docs/SECURITY_AUDIT_PLAN.md).
+**LP migration is not collection migration.** The new [same-chain handoff candidate](docs/CANONICAL_HANDOFF.md) freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement, with atomic retirement/activation and a fully funded abort path. Cross-chain canonical relocation still needs verified finality, authenticated channel closure, a new lineage/message boundary and reviewed transport before sealing. Post-halt recovery is deferred. Real bridging remains disabled pending independent destination-admission review, provider/backing review and multi-chain rehearsals. Local permanent capacity reservation is implemented; the source does not authenticate remote admission proof. These risks are tracked in the [security audit plan](docs/SECURITY_AUDIT_PLAN.md).
 
 ## Keeper and operating services
 
@@ -90,7 +92,7 @@ The keeper defaults to dry run. Its example ten-minute polling interval does not
 
 ## Verification and release status
 
-The [architecture review and targeted verification](reports/architecture-evolution/VERIFICATION.md) record the earlier permanent capacity repair. The current [migration safety controls](docs/MIGRATION_SAFETY.md) add a 3% aggregate budget for atomic local move/resume and a reversible canonical preparation phase; their [verification and internal review](reports/migration-safety/VERIFICATION.md) retain exact source scopes. Different-pair conversion and complete canonical NFT-chain relocation remain unimplemented. Future successor activation requires verified finality, with no multisig-only override.
+The [handoff verification record](reports/canonical-handoff/VERIFICATION.md) covers the current candidate and its limits. Earlier [architecture verification](reports/architecture-evolution/VERIFICATION.md) and [migration safety evidence](reports/migration-safety/VERIFICATION.md) retain their original source scope; they do not verify later handoff changes. Different-pair conversion and cross-chain canonical relocation remain open. Future cross-chain successor activation requires verified finality, with no multisig-only override.
 
 The historical [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md) records **531 offline Solidity passes**, two expected fork-setup skips, **23 normal size gates** and an extended invariant run of **65,536 calls**. The report separates fresh checks from reused static/fork evidence and the broader local Python candidate. The [internal review](reports/nft-rights-audit/REVIEW.md) records findings and remaining risks; [historical reports](reports/README.md) retain their original source scope.
 

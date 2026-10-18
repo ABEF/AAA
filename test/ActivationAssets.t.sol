@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -65,6 +66,7 @@ contract ActivationAssetsTest is Test {
         for (uint256 i; i < ids.length; ++i) {
             if (access.module(ids[i]) == address(0)) access.bind(ids[i], address(new BoundDummy(address(access))));
         }
+        CanonicalFixture.bind(address(access));
         access.seal();
     }
 

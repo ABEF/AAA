@@ -2,7 +2,7 @@
   "kind": "source_consistency_only",
   "solidity_compiled": false,
   "security_audit_pass": false,
-  "modules": 17,
+  "modules": 21,
   "standalone_helpers": [
     "ZZZRewardReceiver",
     "ZZZRoyaltyRewards",
@@ -10,16 +10,30 @@
     "ZZZClaimRouter",
     "ZZZActivationAssets",
     "ZZZActivationEntry",
-    "ZZZMigrationBudget"
+    "ZZZMigrationBudget",
+    "ZZZRoyaltyFactory",
+    "ZZZRewardReceiverFactory"
   ],
   "source_files": [
     {
+      "file": "src/base/ZZZCanonicalLedger.sol",
+      "lines": 81
+    },
+    {
       "file": "src/base/ZZZModule.sol",
-      "lines": 72
+      "lines": 88
     },
     {
       "file": "src/interfaces/IZZZ.sol",
-      "lines": 205
+      "lines": 211
+    },
+    {
+      "file": "src/interfaces/IZZZCanonical.sol",
+      "lines": 34
+    },
+    {
+      "file": "src/interfaces/IZZZNFTCanonical.sol",
+      "lines": 32
     },
     {
       "file": "src/libraries/BridgeAssets.sol",
@@ -35,11 +49,11 @@
     },
     {
       "file": "src/libraries/ZZZTypes.sol",
-      "lines": 146
+      "lines": 150
     },
     {
       "file": "src/ZZZAccessController.sol",
-      "lines": 127
+      "lines": 174
     },
     {
       "file": "src/ZZZActivationAssets.sol",
@@ -51,7 +65,7 @@
     },
     {
       "file": "src/ZZZBridgeAdapter.sol",
-      "lines": 77
+      "lines": 91
     },
     {
       "file": "src/ZZZBridgeRouter.sol",
@@ -60,6 +74,10 @@
     {
       "file": "src/ZZZBuyback.sol",
       "lines": 45
+    },
+    {
+      "file": "src/ZZZCanonicalHandoff.sol",
+      "lines": 344
     },
     {
       "file": "src/ZZZClaimRouter.sol",
@@ -71,7 +89,11 @@
     },
     {
       "file": "src/ZZZFeeController.sol",
-      "lines": 314
+      "lines": 399
+    },
+    {
+      "file": "src/ZZZFeesCanonical.sol",
+      "lines": 155
     },
     {
       "file": "src/ZZZLiquidityManager.sol",
@@ -79,7 +101,7 @@
     },
     {
       "file": "src/ZZZMembership.sol",
-      "lines": 44
+      "lines": 81
     },
     {
       "file": "src/ZZZMigration.sol",
@@ -87,7 +109,7 @@
     },
     {
       "file": "src/ZZZMigrationBudget.sol",
-      "lines": 105
+      "lines": 210
     },
     {
       "file": "src/ZZZMigrationReceiver.sol",
@@ -99,7 +121,11 @@
     },
     {
       "file": "src/ZZZNFT.sol",
-      "lines": 251
+      "lines": 318
+    },
+    {
+      "file": "src/ZZZNFTCanonical.sol",
+      "lines": 84
     },
     {
       "file": "src/ZZZNFTMetadata.sol",
@@ -115,15 +141,23 @@
     },
     {
       "file": "src/ZZZRewardReceiver.sol",
-      "lines": 85
+      "lines": 153
+    },
+    {
+      "file": "src/ZZZRewardReceiverFactory.sol",
+      "lines": 72
     },
     {
       "file": "src/ZZZRewards.sol",
-      "lines": 125
+      "lines": 228
+    },
+    {
+      "file": "src/ZZZRoyaltyFactory.sol",
+      "lines": 14
     },
     {
       "file": "src/ZZZRoyaltyRewards.sol",
-      "lines": 206
+      "lines": 345
     },
     {
       "file": "src/ZZZStrategy.sol",
@@ -131,7 +165,11 @@
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 519
+      "lines": 497
+    },
+    {
+      "file": "src/ZZZVaultCanonical.sol",
+      "lines": 208
     }
   ],
   "external_imports": [

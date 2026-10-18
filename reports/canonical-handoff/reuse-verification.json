@@ -1,0 +1,49 @@
+{
+  "recorded_at_utc": "2026-10-18T17:40:06.384811+00:00",
+  "scope": "Reused scoped evidence only after exact compiled dependency/configuration hashes; no claim that older whole-workspace snapshots were rerun.",
+  "reused": [
+    {
+      "report": "focused/verification.json",
+      "receipt_sha256": "bf57c9d735935d03bde97fa0ab5e5bfbde7b112ea990ad563c153cdceabf1472",
+      "matched_dependencies": 87,
+      "source_hashes_unchanged": true
+    },
+    {
+      "report": "build/size-gates.json",
+      "receipt_sha256": "4a4161678699317c1ce4e807e9027116bd4827f086f38392b50b954ea83f0d61",
+      "matched_dependencies": 78,
+      "source_hashes_unchanged": true
+    },
+    {
+      "report": "config-verification.json",
+      "receipt_sha256": "636ecab1e583519f7017a7f47d319f81842910de683483b9605edcbc78b9db4e",
+      "matched_dependencies": 3,
+      "source_hashes_unchanged": true
+    },
+    {
+      "report": "keeper/verification.json",
+      "receipt_sha256": "424f723b70be9da13156e0816ee4ab650fd29b092e6c1634cae6695281d3af4b",
+      "matched_dependencies": 11,
+      "source_hashes_unchanged": true
+    },
+    {
+      "report": "static/slither-review.json",
+      "receipt_sha256": "72d19bf5740dc78c6f48476d668b20be1d2d837dd0a7eca1a4a7865fdb373b74",
+      "matched_dependencies": 42,
+      "lf_source_hashes_unchanged": true
+    }
+  ],
+  "current_regression_counts": {
+    "Success": 582,
+    "Skipped": 2
+  },
+  "current_regression_suite_count": 49,
+  "required_fixed_and_cold_gas_suites": [
+    "ApprovedProviderTrust",
+    "BridgeRouterSecurity",
+    "CollectionScale",
+    "CombinedCapacityGas",
+    "ProductionGas"
+  ],
+  "production_approved": false
+}

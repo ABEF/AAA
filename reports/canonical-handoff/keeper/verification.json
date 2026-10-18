@@ -1,0 +1,36 @@
+{
+  "recorded_at_utc": "2026-10-16T23:59:54.024788+00:00",
+  "command": "python -m unittest tests_python.test_keeper_canonical tests_python.test_keeper_preparation tests_python.test_metadata_keeper tests_python.test_keeper_ops -q",
+  "passed": 88,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "per_module": {
+    "canonical_lifecycle": 14,
+    "preparation": 14,
+    "metadata": 48,
+    "operations": 12
+  },
+  "elapsed_test_seconds": 7.947,
+  "exit_code": 0,
+  "evidence_provenance": "Log copied verbatim from captured successful tool output; source hashes recorded afterward. No listed source was edited between that run and this receipt. No unchanged tests were rerun to create this receipt.",
+  "source_sha256": {
+    "keeper/monitor.py": "e8fb42acbbebd6712b496e4aff4be4351d19c10819ff068468a43f9c0379ffd2",
+    "keeper/ops.py": "b03baa27b95e2525645e068cb4b74c1ffde1669a09380799b9f98711b3152c06",
+    "keeper/rehearsal/KeeperVenue.sol": "f8746d9b9c1aa0a6ae921dae3aa3a496a6656f7a427ee89af10459b677d37ba7",
+    "tests_python/test_keeper_canonical.py": "0784d85cb37a9198f5eda4d3eba825e887f00c7c59d88a34a28a65ed7af28b1d",
+    "tests_python/test_keeper_preparation.py": "9fd86e1986725d1d4c3a02bbc0f15e18f3caf11fb6465c9bf7e09696651b79c6",
+    "tests_python/test_metadata_keeper.py": "fb238b5fb12324f8208980810aa7bb8e7d18ce779e473a280b22934c8157735b",
+    "tests_python/test_keeper_ops.py": "5cbeef402332b5ff5cb18159364a6bd614cb5a845e5b25348662ed57a693d875",
+    "tests_python/test_keeper.py": "b14e568a62b683f0cfe18852d5660c812d4707bd9337a1dc924ce47975435779",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "75365d4ad8c11e49a63644e8c597abd6999fa83cafce4e04e512c7a0ba3fce89",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0"
+  },
+  "limitations": [
+    "Focused Python tests only, not a full keeper or repository suite.",
+    "Rehearsal Solidity fixture updated but not compiled/deployed or exercised in real processes by this test run.",
+    "Existing isolated server staging unchanged; new keeper/controller interface requires qualification together.",
+    "No production readiness or uninterrupted uptime claim."
+  ]
+}

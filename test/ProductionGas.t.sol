@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
@@ -78,6 +79,7 @@ contract ProductionGasTest is Test {
         c.maxSlippageBps = 100;
         poolId = keccak256(abi.encode(c.key));
         pools.set(poolId, c);
+        CanonicalFixture.bind(address(access));
         access.seal();
         vm.deal(OWNER, 100 ether);
         tokens[0].mint(OWNER, 10_000_000);
@@ -90,6 +92,7 @@ contract ProductionGasTest is Test {
 
     function _cool() private {
         // Include every account reached by the workload, not merely the entrypoint.
+        vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
         vm.cool(address(access));
         vm.cool(address(vault));
         vm.cool(address(nft.royaltyRewards()));
@@ -108,6 +111,10 @@ contract ProductionGasTest is Test {
         for (uint256 i; i < tokens.length; ++i) vm.cool(address(tokens[i]));
         // Helper getters above touch the NFT; cool it after those reads.
         vm.cool(address(nft));
+        vm.cool(access.module(Ids.CANONICAL)); vm.cool(access.module(Ids.NFT_CANONICAL));
+        vm.cool(access.module(Ids.VAULT_CANONICAL)); vm.cool(access.module(Ids.FEES_CANONICAL));
+        // Reading companion bindings warms the controller; cool it last.
+        vm.cool(address(access));
     }
 
     function _report(string memory prefix, string memory operation, uint256 spent) private {

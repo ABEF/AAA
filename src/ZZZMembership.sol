@@ -3,19 +3,25 @@ pragma solidity 0.8.26;
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {IZZZRewards, IZZZNFT, IZZZVault, IZZZFees, IZZZPools} from "./interfaces/IZZZ.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
+import {ZZZCanonicalLedger} from "./base/ZZZCanonicalLedger.sol";
+interface IZZZMembershipOrdinals {
+    function mintedCount() external view returns (uint256);
+    function tokenAtOrdinal(uint256) external view returns (uint256);
+}
 
 /// @notice Each activated canonical NFT has one equal collective-reward share.
 /// Eligibility belongs to the NFT, persists through transfers and LP migration,
 /// and never increases when its attached LP receives an additional contribution.
-contract ZZZMembership is ZZZModule {
+contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
     mapping(uint256 => bool) public eligible;
     uint256 public totalEligible;
     event MembershipActivated(uint256 indexed nftId);
     constructor(address controller) ZZZModule(controller) {}
+    function _canonicalAccess() internal view override returns (address) { return address(access); }
     /// @notice Settle funded fee dust in every canonical bucket before an entry.
     /// The Vault caps all historical local buckets, including imported custody.
     /// Unharvested fees and undelivered remote rewards retain receipt-time policy.
-    function settleDust() external onlyModule(Ids.FEES) {
+    function settleDust() external onlyModule(Ids.FEES) economic {
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
         IZZZFees fees = IZZZFees(msg.sender);
         IZZZPools pools = IZZZPools(access.module(Ids.POOLS));
@@ -32,7 +38,7 @@ contract ZZZMembership is ZZZModule {
             fees.flushDust(bucket, config.key.currency1);
         }
     }
-    function activate(uint256 id) external onlyModule(Ids.VAULT) {
+    function activate(uint256 id) external onlyModule(Ids.VAULT) economic {
         if (eligible[id] || IZZZNFT(access.module(Ids.NFT)).ownerOf(id) == address(0)) revert InvalidState();
         // The inactive NFT checkpoints at the current index before its one
         // collective share exists, excluding every previously published reward.
@@ -40,5 +46,36 @@ contract ZZZMembership is ZZZModule {
         eligible[id] = true;
         ++totalEligible;
         emit MembershipActivated(id);
+    }
+    uint256 private canonicalNFTs;
+    uint256 private canonicalEligible;
+    function canonicalCapture() external canonicalOnly {
+        _canonicalBeginCapture();
+        canonicalNFTs = IZZZMembershipOrdinals(access.module(Ids.NFT)).mintedCount();
+        canonicalEligible = totalEligible;
+    }
+    function canonicalSettle() external canonicalOnly {}
+    function canonicalCount() public view returns (uint256) { return canonicalNFTs + 1; }
+    function canonicalExport(uint256 row) external view returns (bytes memory) {
+        if ((_state() != 1 && _state() != 3) || row > canonicalNFTs) revert CanonicalState();
+        if (row == 0) return abi.encode(canonicalNFTs, totalEligible);
+        uint256 id = IZZZMembershipOrdinals(access.module(Ids.NFT)).tokenAtOrdinal(row);
+        return abi.encode(id, eligible[id]);
+    }
+    function canonicalImport(uint256 row, bytes calldata record) external canonicalOnly {
+        _canonicalNext(row);
+        if (row == 0) {
+            if (totalEligible != 0) revert CanonicalState();
+            (canonicalNFTs, canonicalEligible) = abi.decode(record, (uint256,uint256));
+            if (canonicalNFTs > 1000 || canonicalEligible > canonicalNFTs) revert CanonicalState();
+            return;
+        }
+        (uint256 id, bool active) = abi.decode(record, (uint256,bool));
+        if (row > canonicalNFTs || id != IZZZMembershipOrdinals(access.module(Ids.NFT)).tokenAtOrdinal(row)) revert CanonicalState();
+        eligible[id] = active;
+        if (active) ++totalEligible;
+    }
+    function canonicalValidate() external view {
+        if (_state() == 2 && (canonicalCursor != canonicalCount() || totalEligible != canonicalEligible)) revert CanonicalState();
     }
 }

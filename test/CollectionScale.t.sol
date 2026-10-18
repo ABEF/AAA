@@ -268,6 +268,7 @@ contract CollectionScaleTest is PooledVaultFixture {
     }
 
     function _cool(address owner) private {
+        vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
         (address feed,,,) = oracle.feeds(address(t0));
         vm.cool(address(ac)); vm.cool(address(vault)); vm.cool(address(membership));
         vm.cool(address(rewards)); vm.cool(address(fees)); vm.cool(address(compounder)); vm.cool(address(oracle));
@@ -277,6 +278,10 @@ contract CollectionScaleTest is PooledVaultFixture {
         vm.cool(owner); vm.cool(treasury);
         // Helper getters above touch the NFT; cool it after those reads.
         vm.cool(address(nft));
+        vm.cool(ac.module(Ids.CANONICAL)); vm.cool(ac.module(Ids.NFT_CANONICAL));
+        vm.cool(ac.module(Ids.VAULT_CANONICAL)); vm.cool(ac.module(Ids.FEES_CANONICAL));
+        // Reading companion bindings warms the controller; cool it last.
+        vm.cool(address(ac));
     }
 
     function _measureAt(uint256 size) private returns (GasMeasurements memory result) {

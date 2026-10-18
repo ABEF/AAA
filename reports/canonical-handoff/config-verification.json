@@ -1,0 +1,17 @@
+{
+  "recorded_at_utc": "2026-10-17T00:43:33.812897+00:00",
+  "command": "python -m unittest tests_python.test_production_config -q",
+  "passed": 141,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "seconds": 22.722,
+  "exit_code": 0,
+  "provenance": "Successful captured tool output (session 40697). Hashes recorded afterward; listed files were not edited between execution and this receipt. Tests were not rerun solely to produce a file.",
+  "source_sha256": {
+    "scripts/validate-production-config.py": "f342ce77fea4d048c286b33a7b61a0236fc06e0552a5c22caccd61df97546653",
+    "tests_python/test_production_config.py": "63c32cb4ed11520cde3a93bd6b2bb5f8612f820077ecef99f228a4628bfd956c",
+    "config/production.example.json": "591e0f2427f92e38cc2b0a855a0563d28f63368a949f30b26eb50270e00657a0"
+  },
+  "production_approved": false
+}

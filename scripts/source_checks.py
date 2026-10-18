@@ -4,9 +4,10 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZMembership','ZZZFeeController','ZZZStrategy',
 'ZZZCompounder','ZZZBuyback','ZZZMigration','ZZZBridgeAdapter','ZZZMigrationReceiver','ZZZAccessController',
-'ZZZOracle','ZZZPoolRegistry','ZZZMigrationRegistry','ZZZBridgeRouter']
+'ZZZOracle','ZZZPoolRegistry','ZZZMigrationRegistry','ZZZBridgeRouter',
+'ZZZCanonicalHandoff','ZZZNFTCanonical','ZZZVaultCanonical','ZZZFeesCanonical']
 HELPERS=['ZZZRewardReceiver','ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
-'ZZZMigrationBudget']
+'ZZZMigrationBudget','ZZZRoyaltyFactory','ZZZRewardReceiverFactory']
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
         lambda m:'\n'*m.group(0).count('\n')+' '*len(m.group(0)),text)

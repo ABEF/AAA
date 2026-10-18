@@ -9,12 +9,16 @@ import {BridgeAssets} from "./libraries/BridgeAssets.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {IZZZRoutes, IZZZTransport, IZZZReceiver} from "./interfaces/IZZZ.sol";
 
+interface IBridgeCanonicalVault { function canonicalModule() external view returns (address); }
+interface IBridgeCanonicalOrigin { function originVault() external view returns (address); }
+
 /// @notice Fully specified transport boundary, NOT a universal live bridge.
 /// The sealed deployment pins this endpoint to the fixed ZZZBridgeRouter.
 contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     IZZZTransport public immutable transport;
     uint256 public nonce;
+    uint256 public receivedCount;
     mapping(bytes32 => bool) public processed;
     event Sent(bytes32 indexed transportId, bytes32 indexed routeId, uint256 indexed nonce, uint8 kind);
     event Received(bytes32 indexed deliveryId, bytes32 indexed routeId, uint256 indexed bucketId, uint8 kind);
@@ -22,8 +26,17 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
         if (endpoint.code.length == 0) revert InvalidConfiguration();
         transport = IZZZTransport(endpoint);
     }
-    function send(BridgeMessage calldata message) external payable live nonReentrant returns (bytes32 transportId) {
-        if (message.kind == MessageKind.Principal) _checkOperating();
+    function send(BridgeMessage calldata message) external payable live canonicalAccounting nonReentrant returns (bytes32 transportId) {
+        if (message.kind == MessageKind.Principal) {
+            _checkOperating();
+            address vault = access.module(Ids.VAULT);
+            // v3 binds genesis lineage and current home routing into one field.
+            // An imported canonical deployment must not send ambiguous v3
+            // principal packets. A separately qualified epoch-aware transport
+            // is required; retaining these guards prevents silent relabelling.
+            if (IBridgeCanonicalOrigin(IBridgeCanonicalVault(vault).canonicalModule()).originVault() != vault)
+                revert InvalidConfiguration();
+        }
         bytes32 required = message.kind == MessageKind.Principal ? Ids.MIGRATION :
             message.kind == MessageKind.Reward ? Ids.FEES : Ids.RECEIVER;
         if (msg.sender != access.module(required) || message.nonce != 0) revert Unauthorized();
@@ -48,7 +61,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
         emit Sent(transportId, m.routeId, m.nonce, uint8(m.kind));
         if (message.kind == MessageKind.Principal) _checkOperating();
     }
-    function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external nonReentrant {
+    function onMessage(uint256 sourceChain, address sourceAdapter, bytes calldata payload) external canonicalAccounting nonReentrant {
         // Inbound settlement remains available during a local strategy pause.
         if (!access.isSealed() || msg.sender != address(transport)) revert Unauthorized();
         BridgeMessage memory m = abi.decode(payload, (BridgeMessage));
@@ -59,6 +72,7 @@ contract ZZZBridgeAdapter is ZZZModule, ReentrancyGuard {
         bytes32 deliveryId = keccak256(abi.encode(sourceChain, sourceAdapter, m.nonce));
         if (processed[deliveryId]) revert InvalidState();
         processed[deliveryId] = true;
+        ++receivedCount;
         (address[] memory tokens, uint256[] memory amounts) = BridgeAssets.assets(r, m, true);
         address receiver = access.module(Ids.RECEIVER);
         uint256[] memory beforeBalances = new uint256[](tokens.length);

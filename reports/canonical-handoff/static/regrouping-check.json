@@ -1,0 +1,9 @@
+{
+  "review_sha256": "72d19bf5740dc78c6f48476d668b20be1d2d837dd0a7eca1a4a7865fdb373b74",
+  "supported_review_entries": 20,
+  "regrouped_findings": 390,
+  "same_write_multiset_accepted": true,
+  "missing_write_rejected": true,
+  "matcher_changed": false,
+  "independent_audit": false
+}

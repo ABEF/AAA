@@ -8,6 +8,7 @@ contract KeeperVenue {
     mapping(address => bool) public keepers;
     bool public paused;
     bool public preparationActive;
+    uint8 public canonicalState;
     bool public requested;
     bool public rejectExecution;
     uint256 public harvests;
@@ -19,6 +20,7 @@ contract KeeperVenue {
     function authorize(address who, bool allowed) external onlyAdmin { keepers[who] = allowed; }
     function setPaused(bool value) external onlyAdmin { paused = value; }
     function setPreparation(bool value) external onlyAdmin { preparationActive = value; }
+    function setCanonicalState(uint8 value) external onlyAdmin { require(value <= 4); canonicalState = value; }
     function requestRebalance() external onlyAdmin { requested = true; }
     function setReject(bool value) external onlyAdmin { rejectExecution = value; }
     function isSealed() external pure returns (bool) { return true; }
@@ -45,11 +47,11 @@ contract KeeperVenue {
     function rewardReceiver(uint256) external pure returns (address) { return address(0); }
     function needsRebalance(uint256) external view returns (bool) { return requested && block.timestamp >= lastRebalance + 600; }
     function collectFees(uint256 bucket, uint256 deadline) external {
-        require(keepers[msg.sender] && !paused && !rejectExecution && bucket == 1 && block.timestamp <= deadline);
+        require(keepers[msg.sender] && canonicalState == 0 && !paused && !rejectExecution && bucket == 1 && block.timestamp <= deadline);
         ++harvests;
     }
     function rebalance(uint256 bucket, uint128 minimum, uint256 deadline) external {
-        require(keepers[msg.sender] && !paused && !preparationActive && !rejectExecution && requested && bucket == 1 && minimum > 0);
+        require(keepers[msg.sender] && canonicalState == 0 && !paused && !preparationActive && !rejectExecution && requested && bucket == 1 && minimum > 0);
         require(block.timestamp <= deadline && block.timestamp >= lastRebalance + 600);
         ++rebalances; requested = false; lastRebalance = block.timestamp;
     }

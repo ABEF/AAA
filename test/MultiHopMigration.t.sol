@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 // Focused protocol tests use instrumented custody/transport mocks, not a live bridge.
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -266,6 +267,7 @@ contract MultiHopMigrationRegistryTest is Test {
             address implementation=ids[i]==Ids.VAULT?address(vault):ids[i]==Ids.ROUTES?address(registry):
                 ids[i]==Ids.TRANSPORT?address(router):ids[i]==Ids.ORACLE?address(oracle):ids[i]==Ids.POOLS?address(pools):address(new BoundDummy(address(ac)));ac.bind(ids[i],implementation);
         }
+        CanonicalFixture.bind(address(ac));
         ac.seal();
     }
     function _edge() private pure returns(Route memory r){

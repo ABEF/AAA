@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -10,6 +11,7 @@ import {ZZZMigrationRegistry} from "../src/ZZZMigrationRegistry.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {Ids, Route, BridgeMessage, MessageKind, TransportPolicy} from "../src/libraries/ZZZTypes.sol";
 import {MockToken, MockFeed, BoundDummy} from "./mocks/Mocks.sol";
+import {RouterVaultStub} from "./mocks/RouterMocks.sol";
 
 /// @dev DELIBERATELY MALICIOUS TEST PROVIDER. Its immutable code/getters match
 /// every approved pin, but exact source consumption is theft, not settlement.
@@ -105,11 +107,14 @@ contract ApprovedProviderTrustTest is Test {
             Ids.MEMBERSHIP, Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK,
             Ids.MIGRATION, Ids.RECEIVER, Ids.POOLS];
         for (uint256 i; i < remaining.length; ++i) {
-            controller.bind(remaining[i], address(new BoundDummy(address(controller))));
+            controller.bind(remaining[i], remaining[i] == Ids.VAULT
+                ? address(new RouterVaultStub(address(controller), block.chainid))
+                : address(new BoundDummy(address(controller))));
         }
         vault = controller.module(Ids.VAULT);
         migration = controller.module(Ids.MIGRATION);
         receiver = controller.module(Ids.RECEIVER);
+        CanonicalFixture.bind(address(controller));
         controller.seal();
     }
 

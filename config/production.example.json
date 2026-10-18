@@ -98,7 +98,28 @@
       "oracle": {"address": null, "runtime_hash": null, "controller": null},
       "pools": {"address": null, "runtime_hash": null, "controller": null},
       "routes": {"address": null, "runtime_hash": null, "controller": null},
-      "transport": {"address": null, "runtime_hash": null, "controller": null}
+      "transport": {"address": null, "runtime_hash": null, "controller": null},
+      "canonical": {"address": null, "runtime_hash": null, "controller": null},
+      "nft_canonical": {"address": null, "runtime_hash": null, "controller": null},
+      "vault_canonical": {"address": null, "runtime_hash": null, "controller": null},
+      "fees_canonical": {"address": null, "runtime_hash": null, "controller": null}
+    },
+    "canonical_handoff": {
+      "transport": "same_chain_only", "remote_activation_enabled": false,
+      "state": null, "phase": null, "settling": false, "preparation_active": false,
+      "incoming_source": null, "observed_chain_id": 4663, "observed_block_number": null,
+      "origin_chain_id": 4663, "origin_vault": null,
+      "observed_block_hash": null,
+      "observed_bindings": {
+        "canonical": null, "origin_chain_id": 4663, "origin_vault": null,
+        "nft_canonical": null, "nft_canonical_owner": null,
+        "vault_canonical": null, "vault_canonical_owner": null,
+        "fees_canonical": null, "fees_canonical_owner": null,
+        "royalty_factory": null, "reward_receiver_factory": null
+      },
+      "royalty_factory": {"address": null, "runtime_hash": null, "immutable": true, "owner": null, "controller": null},
+      "reward_receiver_factory": {"address": null, "runtime_hash": null, "immutable": true, "owner": null, "controller": null},
+      "review_evidence": null, "activation_evidence": null
     },
     "activation_assets": {
       "address": null, "runtime_hash": null, "immutable": true, "registry": null, "controller": null,

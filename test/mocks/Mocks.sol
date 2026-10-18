@@ -7,13 +7,24 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Ids,PoolKey,PoolConfig,Position,Route,BridgeMessage} from "../../src/libraries/ZZZTypes.sol";
 import {IZZZAccess,IZZZTransportReceiver,IZZZOracle} from "../../src/interfaces/IZZZ.sol";
+import {ZZZRoyaltyFactory} from "../../src/ZZZRoyaltyFactory.sol";
 interface IMockCallerAccess { function access() external view returns (address); }
 contract MockAccess {
     mapping(bytes32=>address) public module;
     mapping(address=>bool) public keepers;
     bool public isSealed; bool public paused; bool public preparationActive;
+    uint8 public canonicalState;
+    bool public canonicalSettling;
+    address public immutable royaltyFactory;
     address public governor;
-    constructor(){governor=msg.sender;}
+    constructor(){governor=msg.sender;royaltyFactory=address(new ZZZRoyaltyFactory());}
+    function canonicalHandoff() external view returns(address){return module[Ids.CANONICAL];}
+    function moduleAuthorized(bytes32 id,address caller) external view returns(bool){
+        return isSealed && canonicalState==0 && caller==module[id];
+    }
+    function keeperAuthorized(address caller) external view returns(bool){
+        return isSealed && canonicalState==0 && keepers[caller];
+    }
     function canConfigure(address a) external view returns(bool){return !preparationActive && a==governor;}
     function setPreparation(bool active) external {preparationActive=active;}
     function bind(bytes32 id,address a) external {module[id]=a;}

@@ -13,6 +13,7 @@ abstract contract ZZZModule {
     error Slippage();
     error Expired();
     error Preparing();
+    error CanonicalLocked();
     constructor(address controller) {
         if (controller.code.length == 0) revert InvalidConfiguration();
         access = IZZZAccess(controller);
@@ -22,7 +23,7 @@ abstract contract ZZZModule {
         _;
     }
     function _checkModule(bytes32 id) private view {
-        if (!access.isSealed() || msg.sender != access.module(id)) revert Unauthorized();
+        if (!access.moduleAuthorized(id, msg.sender)) revert Unauthorized();
     }
     modifier onlyGovernance() {
         _checkGovernance();
@@ -39,6 +40,7 @@ abstract contract ZZZModule {
         _;
     }
     function _checkDrainGovernance() private view {
+        _checkAccounting();
         if (msg.sender != address(access) && !access.canConfigure(msg.sender)) revert Unauthorized();
     }
     /// @dev Check again after callbacks: a matured timelock announcement cannot
@@ -50,19 +52,33 @@ abstract contract ZZZModule {
     }
     function _checkOperating() internal view {
         if (access.preparationActive()) revert Preparing();
+        _checkAccounting();
+    }
+    modifier onlyHandoff() {
+        if (msg.sender != access.canonicalHandoff()) revert Unauthorized();
+        _;
+    }
+    modifier canonicalAccounting() {
+        _checkAccounting();
+        _;
+        _checkAccounting();
+    }
+    function _checkAccounting() internal view {
+        if (access.canonicalState() != 0) revert CanonicalLocked();
     }
     modifier onlyKeeper() {
         _checkKeeper();
         _;
     }
     function _checkKeeper() private view {
-        if (!access.isSealed() || !access.keepers(msg.sender)) revert Unauthorized();
+        if (!access.keeperAuthorized(msg.sender)) revert Unauthorized();
     }
     modifier live() {
         _checkLive();
         _;
     }
     function _checkLive() private view {
+        _checkAccounting();
         if (!access.isSealed()) revert NotReady();
         if (access.paused()) revert Paused();
     }

@@ -1,8 +1,11 @@
-# Planned whole-protocol canonical migration
+# Whole-protocol canonical migration design
 
-Design direction recorded 2026-10-17. **Export/import, terminal freeze and successor
-activation remain unimplemented.** A reversible, timelocked preparation phase is
-implemented separately; see its [scope and permitted draining](MIGRATION_SAFETY.md).
+Design direction recorded 2026-10-17. The current candidate implements a
+[same-chain handoff](CANONICAL_HANDOFF.md): freeze, complete bounded export/import,
+exact backing, cancellation and atomic single-successor activation. **Cross-chain
+canonical handoff remains unimplemented.** This document retains its wider design
+requirements; proposed proof/transport mechanisms below are not current functions.
+Reversible timelocked preparation has its own [scope and permitted draining](MIGRATION_SAFETY.md).
 The [central Todo](../TODO.md) owns implementation progress; the
 [architecture review](ARCHITECTURE_EVOLUTION.md) records the wider decisions.
 The release decision remains **NOT APPROVED**.
@@ -40,24 +43,26 @@ No principal redemption, administrator NFT transfer or arbitrary call is added.
 An approved arbitrary successor could still implement malicious economics.
 Code hashes and timelocks identify and delay that choice; they do not prove that
 new code honors these rights. Admissible implementation templates and the
-verification/admission policy must be decided and reviewed before deployment.
+verification/admission policy must be reviewed before deployment. On2026-10-17,
+the user explicitly allowed governance to approve different reviewed replacement
+code through the timelock, accepting that trust instead of an identical-code rule.
 This is a constrained protocol-evolution authority, not an immutability guarantee
 under unrestricted governance replacement.
 
-## Current source cannot acquire this after sealing
+## Capabilities must exist before sealing
 
 The current [controller](../src/ZZZAccessController.sol) permanently fixes module
-addresses at `seal`. [NFT](../src/ZZZNFT.sol) creates immutable royalty and claim
-helpers; the [LP ledger](../src/ZZZRewards.sol) and
-[royalty ledger](../src/ZZZRoyaltyRewards.sol) have no state-export/import or
-terminal claim-disable mechanism. NFT transfers have no migration freeze.
-Operational pause deliberately leaves claims available, so pause is insufficient.
-The [Vault](../src/ZZZVault.sol) has no canonical-ledger handoff and fixes its
-canonical chain; the current v3 bridge protocol preserves the original home
-identity. It cannot carry the canonical migration specified here.
+addresses at `seal`. The NFT, LP and royalty ledgers now enforce canonical lifecycle
+guards and fixed export/import interfaces. The same-chain coordinator carries
+their complete state and classified backing. Operational pause still deliberately
+leaves claims available; the separate canonical freeze disables them until exact
+restoration or replacement activation. The current v3 bridge protocol preserves
+the original home identity and cannot carry cross-chain canonical migration.
+The supported path therefore rejects historic bridge activity and prevents an
+imported successor from initiating legacy v3 principal sends.
 
-The required state machines, bounded exporters/importers, terminal controls and
-late-receipt compatibility must therefore be designed, implemented and audited
+The remaining cross-chain state machine, verified-finality/transport boundaries,
+lineage version and late-receipt compatibility must be implemented and audited
 **before the initial deployment is sealed**. A future compatible LP destination
 does not retrofit these abilities into the original NFT or ledgers.
 
@@ -114,11 +119,12 @@ policy would be a separate decision, not an emergency permission invented here.
 The pre-freeze settlement cannot prevent later plain transfers into old inboxes.
 Those are handled through the explicit post-cutoff mechanism below, not ignored.
 
-## Proposed bounded state machine
+## Bounded state machine and cross-chain requirements
 
-The Announced preparation controls now exist within the scope described above.
-Frozen/exporting and later states below remain design requirements, not current
-functions. Preparation is local and does not itself authenticate satellite drain.
+Announced preparation and the same-chain Frozen/exporting, staged, terminal and
+active states are implemented in the candidate. The table describes the broader
+cross-chain requirements too: source retirement and destination activation there
+need separate finalized proofs. Preparation does not authenticate satellite drain.
 
 | State | Source authority and permitted work | Destination state |
 | --- | --- | --- |
@@ -336,7 +342,8 @@ successor late-funding mode** before initial sealing. They accept plain transfer
 where the old interface already accepts them, quarantine protected/unsupported
 amounts, and allow permissionless exact typed forwarding of only authenticated
 post-cutoff amounts to the committed successor. No source ownership claim or new
-legacy reward index is activated. The current immutable modules lack that mode.
+legacy reward index is activated. The candidate supplies direct same-chain late
+forwarding; cross-chain envelopes, transport and finalized receipts remain open.
 
 Distinguish unsplit new gross revenue from already allocated old liabilities in
 separate envelopes. Never apply 80/10/5/5 twice. Pre-cutoff synchronized receipts

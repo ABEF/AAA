@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
@@ -139,6 +140,7 @@ contract CanonicalPreparationTest is Test {
         PoolConfig memory c; c.key = PoolKey(address(t0), address(t1), 3000, 60, address(0));
         c.operationsEnabled = true; c.depositsEnabled = true; c.minDepositUSD = 1e18;
         c.maxPositionUSD = 1e30; c.maxSlippageBps = 100; poolId = keccak256(abi.encode(c.key)); pools.set(poolId, c);
+        CanonicalFixture.bind(address(ac));
         ac.seal();
         vm.deal(ALICE, 10 ether); vm.deal(address(this), 10 ether);
         t0.mint(ALICE, 100000); t1.mint(ALICE, 100000);

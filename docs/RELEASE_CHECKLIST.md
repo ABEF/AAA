@@ -1,13 +1,18 @@
 # Release approval record - NOT APPROVED
 
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
-funds is authorized by this document. Reviewed 2026-10-17.
+funds is authorized by this document. Reviewed 2026-10-18.
 
 Development tasks, progress and detailed acceptance criteria have one home:
 the [central Todo](../TODO.md), generated from [its ledger](project-todo.json).
 The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes source and
 evidence. This file records the final go/no-go decision for one frozen release;
 it is not another task checklist.
+
+The [2026-10-18 development verification](WORK_HANDOFF.md) closes the saved
+bridge-fixture and cold-gas regression reruns. It does not approve independent
+audit, current operating rehearsals, real dependencies or cross-chain migration.
+Exact-commit Ubuntu CI remains separate from local evidence.
 
 ## Release identity
 
@@ -64,7 +69,11 @@ Different-pair conversion and canonical portability require pre-seal design,
 implementation and qualification; disabling bridges does not add those capabilities to sealed code. The
 accepted 3% migration execution budget is enforced only for supported atomic local
 move/resume in the current candidate; it is not an asynchronous bridge guarantee.
-Reversible preparation is implemented, but full canonical handoff remains absent.
+Reversible preparation and a same-chain handoff candidate are implemented. Full
+cross-chain canonical handoff remains absent: same-chain atomic activation is not
+a proof/transport implementation for another chain. Historic bridge channels,
+v3 lineage, successor template admission and escrow/marketplace compatibility
+require explicit review. See [the implemented boundary](CANONICAL_HANDOFF.md).
 The selected finality policy forbids a multisig-only override. See
 [migration safety](MIGRATION_SAFETY.md) and [architecture evolution](ARCHITECTURE_EVOLUTION.md).
 

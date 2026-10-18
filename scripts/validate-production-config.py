@@ -21,7 +21,8 @@ from zzz_ops.state import integer
 
 ZERO = '0x'+'00'*20
 MODULES = ('access','vault','nft','liquidity','rewards','membership','fees','strategy',
-    'compounder','buyback','migration','bridge','receiver','oracle','pools','routes','transport')
+    'compounder','buyback','migration','bridge','receiver','oracle','pools','routes','transport',
+    'canonical','nft_canonical','vault_canonical','fees_canonical')
 EVIDENCE = ('toolchain','static_analysis','invariants','uniswap_fork',
     'staging','operations_recovery','gas_benchmarks','deployment_review','economic_approval',
     'independent_audit','remediation')
@@ -183,6 +184,60 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 g.check(controller is not None and controller==modules['access'].get('address'),
                     path+'.modules.'+name+'.controller','binding.controller','Every module must bind the configured access controller')
         g.check(len(set(addresses))==len(addresses),path+'.modules','binding.duplicate','Module implementations must be distinct')
+        cp=path+'.canonical_handoff';canonical=g.obj(chain.get('canonical_handoff'),cp)
+        chain['canonical_handoff']=canonical
+        g.check(canonical.get('transport')=='same_chain_only' and canonical.get('remote_activation_enabled') is False,
+            cp,'canonical.transport','This candidate has no qualified cross-chain canonical handoff or multisig override')
+        g.check(type(canonical.get('state')) is int and canonical.get('state')==0 and
+            canonical.get('settling') is False and canonical.get('preparation_active') is False and
+            type(canonical.get('phase')) is int and canonical.get('phase') in (0,5),
+            cp,'canonical.lifecycle','Funded operation requires an active canonical deployment, not a frozen, importing or retired one')
+        g.check(type(canonical.get('observed_chain_id')) is int and canonical.get('observed_chain_id')==cid and
+            type(canonical.get('observed_block_number')) is int and canonical.get('observed_block_number')==observed.get('number') and
+            canonical.get('observed_block_hash')==observed.get('hash'),cp,'canonical.observation',
+            'Observe lifecycle, bound modules, helper owners and factories at the exact inventory block')
+        bindings=g.obj(canonical.get('observed_bindings'),cp+'.observed_bindings')
+        origin_chain=g.num(canonical.get('origin_chain_id'),cp+'.origin_chain_id',1)
+        origin_vault=g.hex(canonical.get('origin_vault'),cp+'.origin_vault',20)
+        canonical['origin_chain_id']=origin_chain
+        canonical['origin_vault']=origin_vault
+        g.check(type(bindings.get('origin_chain_id')) is int and bindings.get('origin_chain_id')==origin_chain and origin_chain is not None and
+            bindings.get('origin_vault')==origin_vault and origin_vault is not None,
+            cp+'.observed_bindings','canonical.lineage','Observe the Vault companion origin domain without replacing it by current custody')
+        for name,owner in (('nft_canonical','nft'),('vault_canonical','vault'),('fees_canonical','fees')):
+            g.check(bindings.get(name)==modules[name].get('address') and bindings.get(name+'_owner')==modules[owner].get('address'),
+                cp+'.observed_bindings.'+name,'canonical.binding','Each sealed companion must bind its exact custody/ledger owner')
+        g.check(bindings.get('canonical')==modules['canonical'].get('address'),cp+'.observed_bindings.canonical',
+            'canonical.binding','Access.canonicalHandoff must match the sealed coordinator')
+        canonical_factories=[]
+        for name,owner in (('royalty_factory','access'),('reward_receiver_factory','fees')):
+            fp=cp+'.'+name;factory=g.obj(canonical.get(name),fp)
+            factory_address=g.hex(factory.get('address'),fp+'.address',20);canonical_factories.append(factory_address)
+            factory['address']=factory_address
+            g.hex(factory.get('runtime_hash'),fp+'.runtime_hash')
+            g.check(factory_address is not None and factory_address not in addresses and
+                factory.get('immutable') is True and factory.get('owner')==modules[owner].get('address') and
+                factory.get('controller')==modules['access'].get('address') and
+                bindings.get(name)==factory_address,fp,'canonical.factory','Immutable factories must match their observed controller/Fees bindings')
+        g.check(len(set(canonical_factories))==2,cp,'canonical.factory','The two factory addresses must be distinct')
+        cr=g.proof(canonical.get('review_evidence'),cp+'.review_evidence')
+        g.check(all(cr.get(key) is True for key in ('independent','complete_accounting_tested','exact_backing_tested',
+            'abort_restoration_tested','single_successor_tested','late_receipts_tested','onward_migration_tested')),
+            cp+'.review_evidence','canonical.review','Require independent review of exact rights, backing, cancellation and onward lifecycle')
+        if canonical.get('phase')==0:
+            g.check(canonical.get('incoming_source')==ZERO,cp+'.incoming_source','canonical.origin','An unused coordinator has no source')
+            g.check(origin_chain==home and origin_vault==modules['vault'].get('address'),cp,'canonical.lineage',
+                'An original deployment starts with its configured canonical chain and own Vault origin')
+        elif canonical.get('phase')==5:
+            g.hex(canonical.get('incoming_source'),cp+'.incoming_source',20)
+            g.check(cid==home and origin_chain==home and migration_enabled is False,cp,'canonical.transport',
+                'The same-chain successor is canonical locally; legacy v3 bridging must remain disabled')
+            ar=g.proof(canonical.get('activation_evidence'),cp+'.activation_evidence')
+            g.check(ar.get('kind')=='atomic_same_chain_canonical_activation' and
+                ar.get('source_permanently_retired') is True and ar.get('all_backing_verified') is True and
+                type(ar.get('origin_chain_id')) is int and ar.get('origin_chain_id')==origin_chain and ar.get('origin_vault')==origin_vault and
+                origin_vault is not None,
+                cp+'.activation_evidence','canonical.activation','A replacement needs exact finalized retirement/activation and backing evidence')
         ap=path+'.activation_assets';activation=g.obj(chain.get('activation_assets'),ap)
         activation_address=g.hex(activation.get('address'),ap+'.address',20)
         g.hex(activation.get('runtime_hash'),ap+'.runtime_hash')
@@ -265,6 +320,8 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             path+'.constructor.canonical_chain_id','canonical.mismatch','Every vault must share the canonical chain ID')
         recipient=g.hex(constructor.get('mint_proceeds_recipient'),path+'.constructor.mint_proceeds_recipient',20)
         constructor['mint_proceeds_recipient']=recipient
+        g.check(not set(canonical_factories).intersection((activation_address,entry_address,budget_address,recipient)),
+            cp,'canonical.factory','Factories cannot alias other helpers or the mint recipient')
         g.check(recipient not in addresses,path+'.constructor.mint_proceeds_recipient','mint.custody','Mint proceeds must stay outside protocol custody/reward modules')
         g.check(recipient not in (activation_address,entry_address,budget_address),path+'.constructor.mint_proceeds_recipient','mint.custody',
             'Mint proceeds cannot be sent to noncustodial helpers')
@@ -300,6 +357,8 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                         type(helper.get('max_claims')) is int and helper.get('max_claims')==32,
                         hp,'nft.binding','Claim router must bind the canonical access/royalty ledger and the 32-operation bound')
             g.check(len(set(helper_addresses))==len(helper_addresses),np,'nft.helper','NFT helper implementations must be distinct')
+            g.check(not set(canonical_factories).intersection(helper_addresses),np,'canonical.factory',
+                'Factory implementations cannot alias NFT-owned ledgers, renderer or router')
             g.check(type(nft.get('observed_chain_id')) is int and nft.get('observed_chain_id')==cid and
                 type(nft.get('observed_block_number')) is int and nft.get('observed_block_number')==observed.get('number') and
                 nft.get('observed_block_hash')==observed.get('hash'),np,'nft.observation',
@@ -557,7 +616,10 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             g.check(bool(pool) and (token0,token1)==(pool.get('currency0'),pool.get('currency1')),
                 rp,'reward.assets','Immutable receiver currencies must match the original canonical pool and admitted assets')
             computed=None
-            if None not in (home,vault,origin):computed=int(identity([(home,'uint256'),(vault,'address'),(origin,'bytes32')]),16)
+            lineage=chain.get('canonical_handoff') if isinstance(chain.get('canonical_handoff'),dict) else {}
+            origin_chain=lineage.get('origin_chain_id');origin_vault=lineage.get('origin_vault')
+            if type(origin_chain) is int and origin_vault is not None and origin is not None:
+                computed=int(identity([(origin_chain,'uint256'),(origin_vault,'address'),(origin,'bytes32')]),16)
             g.check(bucket is not None and computed==bucket,rp+'.bucket_id','reward.bucket',
                 'Receiver bucket must hash canonical chain, vault and permanent original home pool')
             g.check(receiver not in seen_receivers and bucket not in seen_buckets,rp,'reward.duplicate',
@@ -570,9 +632,12 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             activation_record=chain.get('activation_assets') if isinstance(chain.get('activation_assets'),dict) else {}
             entry_record=chain.get('activation_entry') if isinstance(chain.get('activation_entry'),dict) else {}
             budget_record=chain.get('migration_budget') if isinstance(chain.get('migration_budget'),dict) else {}
+            factories=[lineage.get(name,{}).get('address') for name in ('royalty_factory','reward_receiver_factory')
+                if isinstance(lineage.get(name),dict)]
             g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and
                 receiver not in nft_helpers and receiver!=constructor.get('mint_proceeds_recipient') and
-                receiver not in (activation_record.get('address'),entry_record.get('address'),budget_record.get('address')),rp+'.address','reward.custody',
+                receiver not in (activation_record.get('address'),entry_record.get('address'),budget_record.get('address')) and
+                receiver not in factories,rp+'.address','reward.custody',
                 'Reward receivers must be separate from modules, immutable helpers and the mint-proceeds recipient')
             g.check(record.get('immutable_configuration') is True and record.get('upgradeable') is False,
                 rp,'reward.mutable','Receiver code and bucket/currency/wrapper bindings must be immutable and reviewed')
@@ -618,7 +683,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             origin_chain=g.num(record.get('home_chain_id'),rp+'.home_chain_id',1)
             origin_vault=g.hex(record.get('home_vault'),rp+'.home_vault',20)
             origin_pool=g.hex(record.get('home_pool_id'),rp+'.home_pool_id')
-            canonical_vault=chains.get(home,{}).get('modules',{}).get('vault',{}).get('address')
+            canonical_vault=chains.get(home,{}).get('canonical_handoff',{}).get('origin_vault')
             g.check(origin_chain==home and origin_vault is not None and origin_vault==canonical_vault,
                 rp,'reservation.origin','Bucket origin must identify the inventoried canonical vault and chain')
             local_pool=pool_ids.get(cid,{}).get(pool_id,{})

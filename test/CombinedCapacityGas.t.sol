@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -137,6 +138,7 @@ contract CombinedCapacityGasTest is Test {
             vm.prank(OWNER); token.approve(address(vault), type(uint256).max);
             vm.prank(ENTRANT); token.approve(address(vault), type(uint256).max);
         }
+        CanonicalFixture.bind(address(access));
         access.seal();
         vm.deal(OWNER, 10 ether);
         vm.deal(ENTRANT, 1 ether);
@@ -179,6 +181,7 @@ contract CombinedCapacityGasTest is Test {
     }
 
     function _cool() private {
+        vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
         vm.cool(address(access)); vm.cool(address(pools)); vm.cool(address(feed));
         vm.cool(address(vrf)); vm.cool(address(policy)); vm.cool(address(venue));
         vm.cool(address(vault)); vm.cool(address(royalties));
@@ -189,6 +192,10 @@ contract CombinedCapacityGasTest is Test {
         for (uint256 i; i < inboxes.length; ++i) vm.cool(inboxes[i]);
         // Helper getters above touch the NFT; cool it after those reads.
         vm.cool(address(nft));
+        vm.cool(access.module(Ids.CANONICAL)); vm.cool(access.module(Ids.NFT_CANONICAL));
+        vm.cool(access.module(Ids.VAULT_CANONICAL)); vm.cool(access.module(Ids.FEES_CANONICAL));
+        // Reading companion bindings warms the controller; cool it last.
+        vm.cool(address(access));
     }
 
     function _assertHistoricalFundingExcluded() private view {

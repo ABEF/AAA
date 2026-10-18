@@ -5,7 +5,7 @@ pragma solidity 0.8.26;
 // It models the router boundary, never a live bridge's authentication or backing.
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IZZZAccess} from "../../src/interfaces/IZZZ.sol";
-import {PoolConfig, BridgeMessage, Route} from "../../src/libraries/ZZZTypes.sol";
+import {Ids, PoolConfig, BridgeMessage, Route} from "../../src/libraries/ZZZTypes.sol";
 
 interface IRouterCallbackFixture {
     function onProviderMessage(uint256 sourceChain, address sourceRouter,
@@ -67,6 +67,7 @@ contract RouterVaultStub {
     constructor(address controller, uint256 canonicalChain) {
         access = IZZZAccess(controller); canonicalChainId = canonicalChain;
     }
+    function canonicalModule() external view returns (address) { return access.module(Ids.VAULT_CANONICAL); }
 }
 
 contract RouterPoolsStub {

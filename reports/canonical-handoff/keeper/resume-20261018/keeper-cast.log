@@ -1,0 +1,6 @@
+test_cast_cli_accepts_generated_command_without_signing (tests_python.test_keeper.KeeperTests.test_cast_cli_accepts_generated_command_without_signing) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.989s
+
+OK

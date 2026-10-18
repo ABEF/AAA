@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
@@ -158,6 +159,7 @@ contract SequencerPolicyTest is Test {
         for (uint256 i; i < ids.length; ++i) {
             controller.bind(ids[i], ids[i] == Ids.ORACLE ? address(governed) : address(new BoundDummy(address(controller))));
         }
+        CanonicalFixture.bind(address(controller));
         controller.seal();
         oldSource.setFail(true);
         MockFeed next = _healthy();
