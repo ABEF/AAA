@@ -1,0 +1,39 @@
+{
+  "published_head": "485a089a6a06f0010c13b222ad84881123c28812",
+  "scenario": "Synthetic clock expires after first pinned code read; published preparer with synthetic RPC fixture",
+  "returned_unsigned_transaction": false,
+  "final_error": "Confirmed header timestamp is stale or in the future",
+  "rpc_calls_after_expiry": 134,
+  "methods_after_expiry": {
+    "eth_getCode": 32,
+    "eth_call": 93,
+    "debug_traceCall": 2,
+    "eth_estimateGas": 1,
+    "eth_gasPrice": 1,
+    "eth_getBalance": 1,
+    "eth_blockNumber": 1,
+    "eth_getBlockByNumber": 2,
+    "eth_chainId": 1
+  },
+  "trace_calls": 2,
+  "limitations": "No network delay, HTTP load test or public service exercised. Demonstrates late detection and continued work after expiry only.",
+  "loaded_repository_modules": {
+    "frontend_api/__init__.py": "84dfbbce2ecec1853e266c6c8c35dfaa433ef98918b1e2186d93362d08170ba9",
+    "frontend_api/activation.py": "aacea5c3214a0e9996579d1ae5fbcb5f53dfa025124bb9d568c21980362b6bbb",
+    "frontend_api/activation_config.py": "dec2340b7c0e94681849caf10c07d36de958dda37bf3fb64dac1bfc694a975f3",
+    "frontend_api/activation_trace.py": "7374795fe914a2e59464adb80fde0264520c0369b9eccaaf33b1fcf08d659230",
+    "frontend_api/history.py": "09ca663bac28b4ac177cf240cb8be858707f90050aed6811676ae48457e3cbf3",
+    "frontend_api/lifecycle.py": "bdf8785971b409602f079377aaa6c24c2e3887666c9528da780143670765f93e",
+    "frontend_api/liquidity_context.py": "bdf06552090f9e73f8bcbf24d80c34a9a8f8d059b992733aee1be86947c9edbc",
+    "frontend_api/server.py": "d6e35692d54a57e742f0c2bfcf723f5151f40527b07782c2948be7beb74cc2d4",
+    "frontend_api/service.py": "9aef29d67c877770f16330990de686fa02f1edefc1a278e5d647e877646cb8fd",
+    "tests_python/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/test_frontend_activation.py": "4e16d065abb2a1248cb8d66cb09a7838c3f36260ddd0c28f50545eafae237255",
+    "tests_python/test_frontend_api.py": "6e557c2e57f5e241bfd965ffc59d07271381e12b67e50b7b6340fc15fa319878",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/rpc.py": "34ab65904edb597dc49746b2d92681496e2b7875936a46a107ff8c16267f3571",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0"
+  },
+  "reproducer_sha256": "ea42862a6863952d352f2f2718ac1a6ccc368ec885bfd36ee5acc62156107590"
+}

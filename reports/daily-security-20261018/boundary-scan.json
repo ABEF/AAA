@@ -1,0 +1,17 @@
+{
+  "scope_counts": {
+    "config": 1,
+    "frontend_api": 9,
+    "keeper": 3,
+    "script": 1,
+    "scripts": 4,
+    "src": 25,
+    "test": 28,
+    "tests_python": 12,
+    "zzz_ops": 1
+  },
+  "credential_pattern_hits": [],
+  "new_high_risk_opcode_or_tx_origin_lines": [],
+  "new_literal_20_byte_addresses_in_production_diff_count": 0,
+  "limits": "Pattern review is not a proof of secret absence or safety; existing dependencies and old constants separately retain trust assumptions."
+}

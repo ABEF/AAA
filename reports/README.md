@@ -2,6 +2,12 @@
 
 ## Current development review
 
+The [review of October 18 changes](daily-security-20261018/REVIEW.md), completed
+October 19, assesses all 13 published commits through `485a089` and separates
+unpublished local drafts. It includes a new synthetic API availability
+reproduction and source-hash checks, not a fresh broad regression or independent
+audit. Material risks are linked to the central Todo.
+
 Current handoff work is recorded in [canonical handoff verification](canonical-handoff/VERIFICATION.md), its [internal review](canonical-handoff/REVIEW.md) and [static-analysis scope](canonical-handoff/static/README.md). Each receipt identifies its exact source and whether checks have completed; this index is not a passing test or independent audit. See the [feature and evidence reference](../docs/IMPLEMENTATION_STATUS.md), [central Todo](../TODO.md) and exact-commit Ubuntu CI separately.
 
 Earlier [migration safety](migration-safety/VERIFICATION.md), [architecture evolution](architecture-evolution/VERIFICATION.md), [release hardening](release-hardening/README.md), [artwork test/size verification](artwork-palettes/README.md) and [artwork static review](artwork-palette/README.md) retain their own source scope. Archived review bytes remain alongside those reports; replacing the canonical `production/slither-review.json` does not refresh historical execution evidence.

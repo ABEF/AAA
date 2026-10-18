@@ -1,7 +1,14 @@
 # Release approval record - NOT APPROVED
 
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
-funds is authorized by this document. Reviewed 2026-10-18.
+funds is authorized by this document. Reviewed 2026-10-19.
+
+The [internal review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
+leaves this decision unchanged. Resolve the VRF/handoff liveness dependency and
+contract-holder successor compatibility before qualifying recovery; bound total
+API preparation work before public hosting. Immediate governance trust and
+per-operation rather than cumulative loss protection require explicit release
+review. No independent audit or complete current-source regression is claimed.
 
 The [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) is a separate generated test
 artifact with mocked venue/services and local-chain guards. It does not change

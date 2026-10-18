@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-18 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-19 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -50,6 +50,7 @@ Custody, ownership and reward accounting.
   - Independently verify actual supported proof-verifying coordinator code/key/subscription/confirmations/gas and service availability on the deployment chain. An ABI or mock is not verification.
   - Stage real requests, out-of-order callbacks, strict mint-order reveal, subscription outages, reorg/finality and permanent early-request blocking recovery. No cancellation/reroll/admin bypass exists.
   - Verify canonical sealing rejects missing randomness configuration; verify content root and every artwork/metadata path against an independently reviewed immutable catalog.
+  - [Daily review AUD18-02](reports/daily-security-20261018/REVIEW.md#aud18-02---high-availability-impact-randomness-failure-also-blocks-handoff): an unfulfilled early request blocks later reveals AND the current whole-collection handoff, which requires every mint revealed. Before sealing, qualify permanent-request recovery or a separately reviewed proof-preserving pending-request handoff; no admin reroll, timeout trait selection or assumed provider switch.
 
   </details>
 
@@ -119,6 +120,7 @@ The data and services behind the app.
   - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
   - Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.
   - Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.
+  - [AUD18-03](reports/daily-security-20261018/REVIEW.md#aud18-03---medium-availability-gap-preparation-lacks-a-total-work-deadline): implement request-wide monotonic deadlines/cancellation and RPC-work budgets before public hosting, including retry time and long history reads. The synthetic expired-quote reproduction continued through 134 RPC calls and two traces before rejecting; no draft escaped. Qualify queue/admission/rate limits and sanitized timeout monitoring; a proxy timeout alone does not cancel backend work.
 
   </details>
 
@@ -134,6 +136,7 @@ The data and services behind the app.
   - Verify intended RPC providers support canonical-hash callTracer with logs and complete gas estimation. Approve network fee accounting (including every applicable data/L1 component), source/proxy/storage pins and actual gas/latency bounds. No latest/state-override fallback on unsupported/stale/future/reorg responses.
   - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
   - Qualify range/timing output against real StateView ticks and current physical LP IDs. Show cooldown end or eligible-now/waiting state; unknown/stale keeper next-check and execution times must remain unavailable. Reprepare after LP/range/policy changes; Entry calldata has economic minima/deadline, not an LP-version lock. See [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md).
+  - Close the request-wide deadline/work-budget gap under [host-services](TODO.md#task-host-services) before public preparation service approval. Keep final canonicality and on-chain deadline checks; per-RPC timeouts and rejecting an expired result do not bound total backend work. Evidence: [AUD18-03](reports/daily-security-20261018/REVIEW.md#aud18-03---medium-availability-gap-preparation-lacks-a-total-work-deadline).
 
   </details>
 
@@ -367,15 +370,23 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - For principal conversion during relocation, enforce the agreed aggregate 3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards. The implemented atomic local same-pair budget does not yet supply cross-chain aggregate enforcement.
   - Independently qualify the implemented same-chain cutoff, bounded exact export/import, classified backing, single-successor retirement, full/partial abort and late-forwarding paths. Benchmark atomic cutoff capture, ordered per-domain settlement, eight-row batches, each funding leg and final activation across 1,000 NFTs, four historical buckets, 32 LP assets, reachable funded inboxes and 17 royalty slots under unchanged limits.
   - Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
-  - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance-approved governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
+  - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
   - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding.
   - Historical canonical-handoff qualification recorded 582 regression cases plus 34 focused handoff cases, two opt-in fork setup skips, repaired bridge fixtures and three cold-gas suites. These retain their original source scope. The latest Vault/metadata changes have separate [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md), not a new complete handoff regression. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
+  - Resolve the VRF-to-handoff liveness dependency documented in [AUD18-02](reports/daily-security-20261018/REVIEW.md#aud18-02---high-availability-impact-randomness-failure-also-blocks-handoff). Pausing new mints does not clear an already unfulfilled request; a successor cannot import it under the present fully-revealed-only rule. Keep provider recovery and any required pre-seal design change linked to fair-draw.
 
   </details>
 
 <a id="task-security-integration"></a>
 
 - [ ] **[Cross-contract & infrastructure audit](docs/SECURITY_AUDIT_PLAN.md#7-cross-contract-and-infrastructure-vulnerabilities)** - In progress. Audit complete transaction paths and failure rollback across contracts, frontend, API/indexer, deployment, keys and keeper services. Rehearse reorgs, replay, stale or compromised data, wrong-chain signing, RPC failure, restore/rotation and monitoring. Independent review and operational sign-off remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - The [review of all October 18 changes](reports/daily-security-20261018/REVIEW.md) records source inspection, exact evidence hashes, one new availability reproduction, and accepted governance/economic plus VRF/escrow recovery risks. It identifies no new unauthorized withdrawal path but does not close independent audit, service qualification or final-release testing. Resolve findings under their owning tasks without silently adding governance delays.
+
+  </details>
 
 
 ## Launch & operations
@@ -506,4 +517,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `7b6d564a0372913cd8d5dcf212002d18385349c7a8ec2fd3c3be0683f4dd9662`.
+Snapshot SHA-256: `d35a1e800f72d89cde31662dad90307ca85f319aceb5fc64a3d729662691a48e`.

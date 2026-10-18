@@ -1,6 +1,6 @@
 # Security audit plan
 
-Reviewed 2026-10-17. **Undeployed candidate; not approved for real funds.**
+Reviewed 2026-10-19. **Undeployed candidate; not approved for real funds.**
 These seven workstreams define acceptance evidence, not completed audit claims.
 Status lives in the [central Todo](../TODO.md#security--audit) and
 [task ledger](project-todo.json); production approval stays in the
@@ -10,6 +10,11 @@ The current [internal NFT-rights review](../reports/nft-rights-audit/REVIEW.md),
 [implementation assessment](../reports/nft-rights-audit/IMPLEMENTATION.md) and
 [coverage map](../reports/nft-rights-audit/COVERAGE.md) distinguish actual source,
 executed tests and mocked dependencies. They do not replace an independent audit.
+
+The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
+adds a cross-change assessment and an API availability reproduction. Its VRF/
+handoff, escrow, governance and operating findings are owned by existing central
+Todo tasks; it does not close these workstreams or authorize production.
 
 ## Priorities and evidence
 

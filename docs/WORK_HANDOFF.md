@@ -5,6 +5,16 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
+was completed October 19 against 13 commits through `485a089`. No production
+code changed. Existing build/source hashes matched; unchanged suites were not
+rerun. A new synthetic expiry check reproduced continued API work before safe
+rejection. Request-wide deadlines and RPC-work limits belong to host-services;
+the unfulfilled-VRF/handoff dependency belongs to fair-draw and canonical recovery.
+Successor escrow compatibility, immediate governance trust and cumulative
+maintenance costs remain recorded risks. The central Todo contains acceptance
+criteria. Release stays NOT APPROVED; preserved local drafts remain unpublished.
+
 Governance now has **no mandatory waiting period**, including the additional LP
 migration delay. The user explicitly superseded the earlier delayed policy and
 proposed route-only exception. Read [authority semantics](GOVERNANCE.md) and
@@ -29,7 +39,7 @@ fixture failure and successful corrected run. Real defects found in later tests
 must be fixed in production with targeted evidence; the $1 override stays isolated.
 
 The latest [range-policy path](RANGE_POLICY_UPDATES.md) is implemented. After a
-timelocked range update, ordinary keeper rebalance becomes eligible once cooldown
+governance-approved range update, ordinary keeper rebalance becomes eligible once cooldown
 passes even at a flat price. It compares current LP ticks at the recorded center,
 preserves existing Vault guards and clears the mismatch on success. No forced
 execution role/state was added. Backend context now reports the pending range

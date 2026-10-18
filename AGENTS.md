@@ -1,3 +1,21 @@
+## Review of October 18 changes - completed 2026-10-19
+
+Read [the daily security review](reports/daily-security-20261018/REVIEW.md).
+Reviewed 13 published commits from 79f205a through 485a089 plus a separate local
+draft inspection. No new unauthorized principal withdrawal, hidden recipient or
+reproducible double claim was identified; this is not a no-vulnerability guarantee.
+Production remains NOT APPROVED. Immediate governance trust is accepted and must
+not be silently replaced with a timelock. An unfulfilled ordered VRF request also
+blocks whole-collection handoff; the fully-revealed-only requirement remains.
+A new synthetic-clock reproduction observed 134 RPC calls including two traces
+after expiry before safe rejection; no unsigned draft was returned. Request-wide
+monotonic deadline/cancellation and work budgets are required before hosting.
+Escrow/successor compatibility and cumulative maintenance losses remain risks.
+All findings are linked to owning central Todo tasks. Existing 78 build/source
+bindings, including 39 production sources, matched; unchanged test suites/static
+analysis were not rerun. No production code, service, website, key, transaction
+or monitor change occurred. Preserve unpublished drafts; check Git for publication.
+
 ## Immediate governance decision - 2026-10-18
 
 Verification: 228 distinct affected Solidity passes (177 retained exact-bound

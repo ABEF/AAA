@@ -45,6 +45,16 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 
 ## Evidence and its limits
 
+The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md),
+completed October 19, covers 13 published commits through `485a089`. No new
+unauthorized principal withdrawal or hidden recipient was identified; this is
+not production approval or a guarantee of no vulnerabilities. It records the
+ordered-VRF/handoff dependency, successor escrow compatibility, immediate
+governance trust and per-operation loss limits. A new synthetic expiry
+reproduction demonstrates continued API work after expiry with safe final
+rejection. Request-wide work limits remain required before hosting. Existing
+78 build/source bindings matched; unchanged suites were not rerun.
+
 [Immediate governance](GOVERNANCE.md) supersedes earlier delayed-operation
 behavior: zero constructor/single/batch scheduling delay and no additional migration
 wait. Existing roles, exact-call/replay checks and all target safety checks remain.
