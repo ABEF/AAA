@@ -33,3 +33,11 @@ The optional keeper watcher observes confirmed-block evolution, valuation availa
 Native ETH is admitted automatically. Reviewed ERC20 assets can be appended through NFT governance; prefunds at admission are quarantined. Pending receipts are checkpointed before a new NFT joins, preserving incumbent rights. Zero-eligibility and constructor prefunds stay orphaned. Current owners claim, and unclaimed funds follow transfers. No admin rescue or redirected claim exists. Read [economic rules](ECONOMICS.md) for dust, token admission and liveness boundaries.
 
 Primary references: [ERC-2981](https://eips.ethereum.org/EIPS/eip-2981), [ERC-4906](https://eips.ethereum.org/EIPS/eip-4906), [Chainlink VRF security](https://docs.chain.link/vrf/v2-5/security), [VRF request ABI](https://docs.chain.link/vrf/v2-5/subscription/get-a-random-number). Actual coordinator/network review remains open.
+
+## Current marked value guard
+
+The renderer now checks the strategy's exit-price freshness/deviation guard before
+marking actual current LP amounts. Operations-disabled pools may retain honest
+valuation. Divergent spot/stale or unavailable dependencies return an unavailable
+mark; ownership, activated royalty eligibility and claims persist. See
+[dynamic liquidity](DYNAMIC_LIQUIDITY.md) and its scoped verification.

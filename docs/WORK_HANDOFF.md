@@ -5,6 +5,16 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The [dynamic-liquidity review](DYNAMIC_LIQUIDITY.md) adds the user-approved
+out-of-range warning with honest eligibility timing, the 3% aggregate ordinary
+rebalance budget, guarded current NFT valuation and current-LP API context.
+[Verification](../reports/dynamic-liquidity/VERIFICATION.md) binds affected
+checks to these changes; the earlier full handoff regression below is historical
+for its source snapshot and must not be presented as a new full regression.
+Vault has 19 runtime bytes of headroom. Use the central Todo for live range/
+strategy qualification, next-check telemetry, wallet integration and audit.
+No website/server or monitoring service changes are included.
+
 Complete activation/top-up preparation is implemented separately from the old
 mint/claim and conversion-only drafts. Read [the integration contract](ACTIVATION_PREPARATION.md)
 and [scoped evidence](../reports/activation-preparation/VERIFICATION.md): 38 focused

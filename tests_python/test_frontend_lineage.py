@@ -74,6 +74,10 @@ class LineageRPC:
             for signature, result in (('nftStatus(uint256)', 1), ('nftBucket(uint256)', 5), ('sharesOf(uint256)', 10**36)):
                 self.put(get('vault'), signature, result, self.nft_id)
             self.put(get('royalties'), 'weightOf(uint256)', 2, self.nft_id)
+            # Integer status words must not be mistaken for translated addresses.
+            # Imported local custody uses the successor Vault, not originVault.
+            self.responses[(get('vault'), calldata('group(uint256)', 5))] = words(
+                444,9,0,0,2000*10**18,2**96,990,1,31337,get('vault'),get('handoff'),addr(20),addr(21),31337,get('vault'))
             self.responses[(get('nft'), calldata('currentLPValue(uint256)', self.nft_id))] = words(1, 1432 * 10**18)
             for target, assets in ((get('rewards'), [addr(20), addr(21)]), (get('royalties'), [ZERO, addr(21)])):
                 self.put(target, 'assetCount()', len(assets))

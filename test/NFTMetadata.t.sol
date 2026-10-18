@@ -42,6 +42,13 @@ contract MetadataFeesMock {
     function set(address token, uint256 amount) external { compoundBalance[1][token] = amount; }
 }
 
+// Price-policy plumbing only. DynamicRange.t.sol exercises the real guard.
+contract MetadataPricePolicyMock {
+    bool public fail;
+    function setFail(bool value) external {fail=value;}
+    function validateExitPrice(bytes32) external view returns(uint160) {require(!fail);return uint160(1<<96);}
+}
+
 /// @notice NFT trait/reveal/valuation security with explicitly mocked coordinator
 /// and LP custody. These tests do not establish deployed VRF or venue support.
 contract NFTMetadataTest is Test {
@@ -51,6 +58,7 @@ contract NFTMetadataTest is Test {
     MetadataVaultMock private vault;
     MetadataVenueMock private venue;
     MetadataFeesMock private fees;
+    MetadataPricePolicyMock private pricePolicy;
     MockPools private pools;
     ZZZOracle private oracle;
     MockToken private token0; MockToken private token1;
@@ -71,6 +79,7 @@ contract NFTMetadataTest is Test {
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.LIQUIDITY, address(venue)); access.bind(Ids.FEES, address(fees));
         access.bind(Ids.POOLS, address(pools)); access.bind(Ids.ORACLE, address(oracle));
+        pricePolicy = new MetadataPricePolicyMock(); access.bind(Ids.STRATEGY, address(pricePolicy));
         PoolConfig memory config; config.key = PoolKey(address(token0), address(token1), 3000, 60, address(0));
         home.poolId = keccak256(abi.encode(config.key)); home.lpTokenId = 1; home.status = PositionStatus.Active;
         home.homeChain = block.chainid; home.homeVault = address(vault);
@@ -88,6 +97,18 @@ contract NFTMetadataTest is Test {
     }
     function _stage(uint256 id, uint8 expected) private view {
         (bool available, uint8 actual) = nft.evolution(id); assertTrue(available); assertEq(actual, expected);
+    }
+
+    function testPriceGuardFailureReportsUnavailableAndPreservesOwnershipAndRoyaltyEligibility() public {
+        _active(444, 0, 0); uint256 weight=nft.royaltyRewards().weightOf(444);
+        pricePolicy.setFail(true);
+        (bool available,uint256 value)=nft.currentLPValue(444);
+        assertFalse(available);assertEq(value,0);assertEq(nft.ownerOf(444),ALICE);
+        assertEq(nft.royaltyRewards().weightOf(444),weight);
+        assertGt(bytes(nft.tokenURI(444)).length,0);
+        vm.prank(ALICE);nft.transferFrom(ALICE,BOB,444);assertEq(nft.ownerOf(444),BOB);
+        pricePolicy.setFail(false);(available,value)=nft.currentLPValue(444);
+        assertTrue(available);assertEq(value,2000e18);
     }
 
     function testMintRequiresFixedVRFAndRollbackLeavesNoRequest() public {

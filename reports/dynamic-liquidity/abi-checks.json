@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "contract": "ZZZLiquidityManager",
+      "getter": "ticks",
+      "inputs": [
+        "uint256"
+      ],
+      "outputs": [
+        "int24",
+        "int24"
+      ],
+      "artifact_sha256": "f59cca62278d5129ca8dc054e9a07e496ea39eda9719f7f8090870c5e4f59394"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "getter": "validatePrice",
+      "inputs": [
+        "bytes32"
+      ],
+      "outputs": [
+        "uint160"
+      ],
+      "artifact_sha256": "a1504e78d0b987118e8028671f611f842261f3d9f642f590fa6273fa304b80fd"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "getter": "target",
+      "inputs": [
+        "bytes32"
+      ],
+      "outputs": [
+        "int24",
+        "int24",
+        "uint160"
+      ],
+      "artifact_sha256": "a1504e78d0b987118e8028671f611f842261f3d9f642f590fa6273fa304b80fd"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "getter": "needsRebalance",
+      "inputs": [
+        "uint256"
+      ],
+      "outputs": [
+        "bool"
+      ],
+      "artifact_sha256": "a1504e78d0b987118e8028671f611f842261f3d9f642f590fa6273fa304b80fd"
+    },
+    {
+      "contract": "ZZZOracle",
+      "getter": "referenceX96",
+      "inputs": [
+        "address",
+        "address"
+      ],
+      "outputs": [
+        "uint160"
+      ],
+      "artifact_sha256": "d838cfb8a904cfcf052adc408a10f6370f27f2b2e6b5b7606807ac381a9fe456"
+    },
+    {
+      "contract": "IStateViewMinimal",
+      "getter": "getSlot0",
+      "inputs": [
+        "bytes32"
+      ],
+      "outputs": [
+        "uint160",
+        "int24",
+        "uint24",
+        "uint24"
+      ],
+      "artifact_sha256": "169119fdbcc7ec4485f289b1835299e88bc1430808a6b6d2ec5b71321aa4d8ed"
+    }
+  ]
+}

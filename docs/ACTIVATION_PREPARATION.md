@@ -2,7 +2,7 @@
 
 The backend prepares an **unsigned, fully simulated Entry transaction** for a
 reviewed deployment. It does not sign, broadcast, approve a deployment or connect
-the public website. The production contracts are unchanged. Qualification of
+the public website. The associated current-NAV guard and rebalance budget are described in [dynamic liquidity](DYNAMIC_LIQUIDITY.md). Qualification of
 actual Robinhood routes, feeds, trace providers and network fees remains in
 [the central task](../TODO.md#task-activation-quotes).
 
@@ -109,6 +109,24 @@ policy, route, implementation, feed or fee model requires fresh review and confi
 Unsupported fee models need another reviewed estimator, not a fabricated zero
 for L1/data fees. The backend does not infer Robinhood support from generic EVM
 compatibility. Suggested gas cost is an estimate, not a maximum final receipt fee.
+
+## Confirmed range and timing context
+
+`liquidity_context` accompanies both approval and full Entry drafts. It contains
+current/proposed ticks, current physical LP ID, active-range status and the
+strategy's confirmed rebalance eligibility. `earliest_eligible_at` is the cooldown
+end, not a promised execution. The warning includes this timestamp or "eligible
+now"/"waiting for price trigger"; `next_keeper_check_at` and
+`expected_execution_at` remain null without qualified operating telemetry.
+No fabricated 10-minute countdown is emitted. See [timing rules](DYNAMIC_LIQUIDITY.md#admission-and-rebalance-timing).
+
+Outside-range and rebalance-due contributions remain allowed under the existing
+price/cost/custody guards. Before signing, reprepare after a physical position,
+range or relevant policy change; the transaction has economic minima/deadline,
+not an on-chain physical-LP version lock. The schema-2 read response additionally
+returns `position.local_custody` (current pool/LP ID and share denominator) and
+`cumulative_gross_contribution_usd_18`; neither historical input nor pending fees
+may replace `current_lp_value`. Unavailable marks stay null.
 
 ## Wallet and operating boundary
 

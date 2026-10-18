@@ -118,8 +118,9 @@ Activation/top-ups retain the **1%** original-input budget. The current candidat
 enforces the 3% floor for atomic same-ordered-pair `movePool` and parked `resume`,
 using one pre-callback price vector and exact designated compounding. The floor
 covers retained LP plus attributed idle, with the existing 5% idle cap. It does
-not yet cover arbitrary conversion, asynchronous bridging, rebalancing or an
-earlier parking close. See [implemented scope](MIGRATION_SAFETY.md).
+not yet cover arbitrary conversion, asynchronous bridging or an
+earlier parking close. On 2026-10-18 the user approved the same aggregate cap for
+ordinary rebalancing; the candidate now uses the same helper checkpoints there. See [implemented scope](MIGRATION_SAFETY.md).
 
 For an atomic move, compare attributed principal before/after using one fresh
 trusted price vector. Conversion fees, slippage, bridge charges deducted from

@@ -1,5 +1,12 @@
 # Product alignment candidate — 2026-10-15
 
+## 2026-10-18 - Dynamic liquidity and rebalance budget
+
+Added the explicitly approved 3% aggregate ordinary-rebalance cap, a metadata
+spot/oracle guard, current-LP/share-denominator API context and out-of-range
+contribution warnings with honest eligibility timing. Original-source 1%, gas
+separation and reward economics remain. See [review/evidence](../reports/dynamic-liquidity/VERIFICATION.md).
+
 Undeployed breaking development changes, with verification and release gates recorded in [the alignment review](../reports/website-alignment/README.md). This is not an upgrade of deployed contracts.
 
 - $100 net-deployed activation; 80/10/5/5 funded LP allocation; equal activated-NFT collective membership replaces Power.

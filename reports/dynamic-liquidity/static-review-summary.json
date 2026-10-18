@@ -1,0 +1,23 @@
+{
+  "total_findings": 376,
+  "dispositions": {
+    "false_positive": 155,
+    "accepted_risk": 75,
+    "informational": 146
+  },
+  "retained_expression_reviews": 373,
+  "changed_finding_indexes": [
+    66,
+    69,
+    121
+  ],
+  "coverage_pass": true,
+  "mutation_rejections": {
+    "missing_new_guard": true,
+    "changed_disposition": true,
+    "changed_guard_description": true,
+    "missing_rebalance_review": true,
+    "stale_vault_source": true
+  },
+  "independent_audit": false
+}

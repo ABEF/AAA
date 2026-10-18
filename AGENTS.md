@@ -1,3 +1,30 @@
+## Dynamic liquidity checkpoint - 2026-10-18
+
+Read [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md) and its
+[scoped verification](reports/dynamic-liquidity/VERIFICATION.md) before continuing.
+The user explicitly approved out-of-range activation/top-ups with a warning,
+including cooldown end/current eligibility; a 600-second polling example is not
+a guaranteed next rebalance. Without fresh authenticated keeper telemetry, next
+check/execution time stays unavailable. The same original-source 99% marginal
+deployed-LP rule and separate network gas remain enforced.
+
+The user also explicitly approved a 3% aggregate execution-loss cap on ordinary
+rebalance. Vault now reuses the immutable budget checkpoints before harvest,
+after exact compound release and after redeployment. Fixed initial prices,
+97% LP-plus-idle retention and 5% idle remain; existing per-step guards are kept.
+This is not a 97%-deployed guarantee, an IL hedge, a cumulative erosion cap or a
+cross-chain guarantee. Metadata now applies the real strategy's exit-price
+deviation/freshness guard and reports unavailable on failure without losing rights.
+The API resolves current LP identity/total shares separately from historical
+gross contributions, and prepared transactions include confirmed range/timing.
+
+Current size gates leave Vault 19 runtime bytes and Migration 58. Read the scoped
+receipts instead of relabelling old full regressions/fork/static evidence. Main
+is the only branch; use Git HEAD/origin for exact publication. Keep unrelated
+wallet/process-runner/artwork drafts intact. Release is NOT APPROVED; website and
+server remain unchanged, monitor remains paused, no public transaction authorized.
+Repository context is durable local project memory, not global personal memory.
+
 ## Activation preparation checkpoint - 2026-10-18
 
 Complete typed activation/top-up preparation is now in `frontend_api/activation.py`,

@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Development verification (2026-10-18):** the same-chain handoff candidate has 582 passing regression tests, plus 34 unchanged-source focused handoff passes. The two opt-in fork setup skips are recorded separately. This is an undeployed development candidate, not production approval. See the [resume handoff](docs/WORK_HANDOFF.md) and [scoped verification](reports/canonical-handoff/VERIFICATION.md).
+**Current development work (2026-10-18):** dynamic contribution/range context, current NFT valuation safeguards and the approved 3% aggregate rebalance cap. See [accounting and integration](docs/DYNAMIC_LIQUIDITY.md), [scoped verification](reports/dynamic-liquidity/VERIFICATION.md) and the [resume handoff](docs/WORK_HANDOFF.md). Earlier full regression receipts retain their original source scope; release remains NOT APPROVED.
 
 ## Project navigation
 

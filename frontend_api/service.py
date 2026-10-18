@@ -381,19 +381,29 @@ class Projection:
             raise ProjectionError('Inconsistent activation/royalty/share state')
         if weight > 0 and (not ready or weight != rarity + 1) or (status == 5) != (shares == 0):
             raise ProjectionError('Activation differs from the canonical revealed NFT state')
-        if status == 6:
+        custody = None
+        if status in (1, 6):
             group = self._call(self.contracts['vault'].address, 'group(uint256)', bucket, block=block, words=15)
             supply = self._uint('vault', 'bucketTotalShares(uint256)', bucket, block=block)
-            if (int(group[0], 16) == 0 or int(group[1], 16) != 0 or int(group[7], 16) != 6 or
+            if (int(group[0], 16) == 0 or (int(group[1], 16) == 0) != (status == 6) or int(group[7], 16) != status or
                     int(group[8], 16) != self.chain or _address_word(group[9]) != self.contracts['vault'].address or
                     int(group[13], 16) != self.chain or _address_word(group[14]) != self.contracts['vault'].address or
                     supply < shares):
-                raise ProjectionError('Parked principal differs from its canonical custody state')
+                raise ProjectionError('Local principal differs from its canonical custody state')
+            custody = {'pool_id': '0x' + group[0],
+                       'lp_token_id': str(int(group[1], 16)) if status == 1 else None,
+                       'bucket_total_shares_raw': str(supply),
+                       'share_numerator_raw': str(shares), 'share_denominator_raw': str(supply),
+                       'last_rebalance_at': int(group[6], 16),
+                       'identity_source': 'Vault.group at the confirmed snapshot'}
+        contribution = self._uint('vault', 'contributionUSD(uint256)', nft_id, block=block)
         value = self._call(self.contracts['nft'].address, 'currentLPValue(uint256)', nft_id, block=block, words=2)
         available = _bool(value[0])
         raw_usd = int(value[1], 16)
-        if status == 6 and available:
-            raise ProjectionError('Parked principal cannot report an active LP valuation')
+        if status not in (1, 5) and available:
+            raise ProjectionError('Unavailable custody cannot report an active LP valuation')
+        if status == 5 and (not available or raw_usd != 0 or contribution != 0):
+            raise ProjectionError('Dormant NFT must have verified zero LP and contributions')
         if not available and raw_usd != 0:
             raise ProjectionError('Unavailable valuation contains a fabricated amount')
         lp_value = {'available': available, 'raw': str(raw_usd) if available else None, 'decimals': 18,
@@ -408,6 +418,8 @@ class Projection:
             'lifecycle': lifecycle,
             'owner': owner, 'traits_ready': ready, 'traits': traits,
             'position': {'status': STATUS[status], 'bucket_id': str(bucket), 'shares_raw': str(shares),
+                         'local_custody': custody,
+                         'cumulative_gross_contribution_usd_18': str(contribution),
                          'activated': weight != 0, 'royalty_weight': weight, 'current_lp_value': lp_value,
                          'evolution': EVOLUTION[stage], 'evolution_value_available': available,
                          'principal_redeemable': False},

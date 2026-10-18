@@ -83,7 +83,13 @@ class ActivationRPC(MockRPC):
         self.put(addr(3),'contributionUSD(uint256)',(self.nft_id,),(100*USD if increase else 0,))
         self.put(addr(3),'poolBucket(bytes32)',(self.pool,),(0 if new_pool else self.bucket,))
         self.put(addr(8),'bucketIdentity(bytes32)',(self.pool,),(self.bucket,))
-        self.put(addr(3),'group(uint256)',(self.bucket,),(self.pool,self.lp_id,0,0,1000*USD,1,1,1,31337,addr(3),addr(68),addr(20),addr(21),31337,addr(3)))
+        self.put(addr(3),'group(uint256)',(self.bucket,),(self.pool,self.lp_id,0,0,1000*USD,2**96,1,1,31337,addr(3),addr(68),addr(20),addr(21),31337,addr(3)))
+        self.put(self.pins['state_view'],'getSlot0(bytes32)',(self.pool,),(2**96,0,0,0))
+        self.put(self.pins['strategy'],'validatePrice(bytes32)',(self.pool,),(2**96,))
+        self.put(self.pins['strategy'],'target(bytes32)',(self.pool,),((1<<256)-120,120,2**96))
+        self.put(self.pins['liquidity'],'ticks(uint256)',(self.lp_id,),((1<<256)-120,120))
+        self.put(self.pins['strategy'],'needsRebalance(uint256)',(self.bucket,),(0,))
+        self.put(self.pins['oracle'],'referenceX96(address,address)',(addr(20),addr(21)),(2**96,))
 
     def digest(self,target):return '0x'+keccak256(bytes.fromhex(self.codes[target][2:])).hex()
 

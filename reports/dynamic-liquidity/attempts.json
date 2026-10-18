@@ -1,0 +1,58 @@
+[
+  {
+    "started": "2026-10-18T19:11:38.398483+00:00",
+    "counts": {
+      "Success": 4,
+      "Failure": 1
+    },
+    "exit_code": 1,
+    "seconds": 85.19,
+    "unchanged": true,
+    "failures": [
+      {
+        "suite": "test/DynamicRange.t.sol:DynamicRangeTest",
+        "test": "testMetadataRejectsManipulatedSpotEvenWithFreshUsdFeeds()",
+        "reason": "next call did not revert as expected",
+        "logs": []
+      }
+    ],
+    "folder": "before-guard",
+    "receipt_sha256": "e635701d1304bdfb712878cff8ddb35e0fe4c62372098c085c21528f52bafbed"
+  },
+  {
+    "started": "2026-10-18T19:14:03.190300+00:00",
+    "counts": {
+      "Success": 93,
+      "Failure": 1
+    },
+    "exit_code": 1,
+    "seconds": 268.91,
+    "unchanged": true,
+    "failures": [
+      {
+        "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+        "test": "testRepeatedReplacementTransferRoyaltiesAndFailedRebalanceRollback()",
+        "reason": "Unauthorized()",
+        "logs": []
+      }
+    ],
+    "folder": "affected-attempt1",
+    "receipt_sha256": "d73d3dcac39c2b781a6e3c8a7376ace63d85396af57cdcc263f4a2d92cc5d82b"
+  },
+  {
+    "started": "2026-10-18T19:20:59.342920+00:00",
+    "exit_code": 1,
+    "seconds": 60.99,
+    "unchanged": true,
+    "folder": "normal-size-attempt1",
+    "receipt_sha256": "e46158619eb387ca60fbd1dcc35284128b1aeb564eb9b611ab8c0f0775f15c27"
+  },
+  {
+    "started": "2026-10-18T19:22:52.121617+00:00",
+    "exit_code": 0,
+    "seconds": 1.53,
+    "unchanged": true,
+    "folder": "normal-size-cached",
+    "receipt_sha256": "320f0a9f13e5273230b59be15248c28112757ef6de38d769549c7507e796a761"
+  }
+]

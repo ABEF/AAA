@@ -5,6 +5,7 @@ import re
 
 from frontend_api.activation_config import ActivationConfig, ZERO_HASH
 from frontend_api.activation_trace import measure, request_data
+from frontend_api.liquidity_context import contribution_context
 from frontend_api.service import ProjectionError, UnknownNFT, ZERO, _address_word, _bool, _hash, _keys, _quantity, token_id
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 
@@ -153,6 +154,7 @@ class ActivationTransactions:
         if req['increase'] and p._uint('vault','nftBucket(uint256)',req['id'],block=block)!=bucket:
             raise ActivationInputError('Top-up must use the NFT existing pool')
         req['old_lp_id']=0
+        position=None
         if bucket:
             position=p._call(pins['vault'],'group(uint256)',bucket,block=block,words=15)
             if int(position[7],16) not in (0,1): raise ActivationInputError('Shared custody is unavailable for contributions')
@@ -163,6 +165,7 @@ class ActivationTransactions:
             if req['increase']: raise ProjectionError('Active NFT has no shared bucket')
             bucket=int(p._call(pins['vault_canonical'],'bucketIdentity(bytes32)',req['pool'],block=block)[0],16)
         req['bucket']=bucket
+        liquidity_context=contribution_context(p,pins,req['pool'],bucket,position,account,header,block)
         current=p._call(pins['nft'],'currentLPValue(uint256)',req['id'],block=block,words=2)
         available=_bool(current[0]);current_value=int(current[1],16)
         if not available and current_value: raise ProjectionError('Unavailable current NFT valuation contains a value')
@@ -213,6 +216,7 @@ class ActivationTransactions:
                 'transaction':{**transaction,'chainId':hex(p.chain)},'approval_steps':approvals,
                 'source':{'asset':req['source'],'amount_raw':str(req['amount']),'value_usd_18':str(gross)},
                 'current_attached_value':current_value,
+                'liquidity_context':liquidity_context,
                 'contribution':None if result is None else {k:str(v) for k,v in result.items()},
                 'execution_limit_bps':100,'minimum_deployed_usd_18':str(gross-gross//100),
                 'minimum_liquidity_raw':str(req['minimum_lp']) if result else None,

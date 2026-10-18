@@ -10,7 +10,7 @@ The Vault creates an immutable [migration budget helper](../src/ZZZMigrationBudg
 Only that Vault can advance its checkpoints. It cannot hold or transfer tokens,
 choose an executor, change a budget or call arbitrary destinations.
 
-For `movePool` and a parked position's `resume`:
+For ordinary `rebalance` (explicitly approved 2026-10-18), `movePool` and a parked position's `resume`:
 
 1. Capture a fresh Oracle price/decimal vector and the bucket's actual LP amounts
    plus attributed idle, before fee collection or token callbacks.
@@ -37,7 +37,7 @@ Network gas is separate from both budgets.
 
 This control covers the current supported **same ordered asset pair** and fixed
 venue. It does not enforce a common execution budget over asynchronous bridging,
-arbitrary conversion, ordinary keeper rebalancing or the earlier transaction
+arbitrary conversion or the earlier transaction
 that parked principal. A parked resume starts from the then-held idle assets.
 Different-pair checks remain enforced. Admitted Oracle, venue and token behavior
 remain trust dependencies; a cached vector cannot prove an initially dishonest

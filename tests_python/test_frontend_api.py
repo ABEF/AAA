@@ -102,6 +102,9 @@ class MockRPC:
         for signature, value in (('nftStatus(uint256)', 1), ('nftBucket(uint256)', 5), ('sharesOf(uint256)', 10**36)):
             self.put(addr(3), signature, (i,), (value,))
         self.put(addr(5), 'weightOf(uint256)', (i,), (2,))
+        self.put(addr(3), 'contributionUSD(uint256)', (i,), (0,))
+        self.put(addr(3), 'bucketTotalShares(uint256)', (5,), (20*10**36,))
+        self.put(addr(3), 'group(uint256)', (5,), (444,9,0,0,2000*10**18,2**96,990,1,31337,addr(3),addr(7),addr(20),addr(21),31337,addr(3)))
         self.put(addr(2), 'currentLPValue(uint256)', (i,), (1, 1432 * 10**18))
         self.put(addr(4), 'claimable(uint256,address)', (i, addr(20)), (5 * 10**18 + 17,))
         self.put(addr(4), 'claimable(uint256,address)', (i, addr(21)), (1234567,))
@@ -307,7 +310,7 @@ class FrontendProjectionTests(unittest.TestCase):
     def test_parked_cannot_report_an_active_lp_mark(self):
         self.parked()
         self.rpc.put(addr(2), 'currentLPValue(uint256)', (self.rpc.nft_id,), (1, 1432 * 10**18))
-        with self.assertRaisesRegex(ProjectionError, 'Parked'):
+        with self.assertRaisesRegex(ProjectionError, 'Unavailable custody'):
             self.read()
 
     def test_current_value_can_downgrade_evolution_without_losing_royalty_weight(self):

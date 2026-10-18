@@ -7,7 +7,7 @@ import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrateg
 
 interface IMigrationContribution { function contributionUSD(uint256 id) external view returns (uint256); }
 
-/// @notice Fixed execution budget for atomic, same-ordered-pair custody moves.
+/// @notice Fixed execution budget for atomic rebalances and same-pair custody moves.
 /// Created by its only caller, Vault. No token custody, configuration or executor.
 contract ZZZMigrationBudget {
     address public immutable vault;

@@ -352,8 +352,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         if (minimumLiquidity == 0 || !IZZZStrategy(_moduleStrategy()).needsRebalance(id)) revert InvalidState();
         Position storage p = positions[id];
         uint256 oldId = p.lpTokenId;
-        _unwind(id, deadline, false);
+        _migrationCheckpoint(id, 0);
+        _unwind(id, deadline, true);
         _redeploy(id, minimumLiquidity, deadline);
+        _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
     }
     function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)

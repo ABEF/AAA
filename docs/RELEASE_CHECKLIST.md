@@ -17,6 +17,12 @@ verified [activation preparation](../reports/activation-preparation/VERIFICATION
 adds 38 focused backend checks and a local trace/budget probe; it does not qualify
 production activation routes, oracles, RPC providers, network fees or wallet UX.
 
+The [dynamic-liquidity delta](../reports/dynamic-liquidity/VERIFICATION.md)
+changes production Vault/metadata code and backend projections. Its scoped tests,
+normal sizes and internal review do not approve live services, operating parameters,
+independent audit or funds. Prior full-regression receipts are not current-source
+qualification of this delta.
+
 ## Release identity
 
 | Approval field | Recorded value |
@@ -71,7 +77,7 @@ recovery. The current code cannot gain that capability after sealing.
 Different-pair conversion and canonical portability require pre-seal design,
 implementation and qualification; disabling bridges does not add those capabilities to sealed code. The
 accepted 3% migration execution budget is enforced only for supported atomic local
-move/resume in the current candidate; it is not an asynchronous bridge guarantee.
+move/resume and ordinary rebalance in the current candidate; it is not an asynchronous bridge guarantee.
 Reversible preparation and a same-chain handoff candidate are implemented. Full
 cross-chain canonical handoff remains absent: same-chain atomic activation is not
 a proof/transport implementation for another chain. Historic bridge channels,

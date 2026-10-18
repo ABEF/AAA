@@ -4,7 +4,7 @@ import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IZZZFees} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IZZZFees, IZZZStrategy} from "./interfaces/IZZZ.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
 
 struct NFTMetadataInput {
@@ -38,6 +38,10 @@ contract ZZZNFTMetadata {
             position.locationChain != block.chainid || position.locationVault != address(vault) ||
             position.lpTokenId == 0) revert ValuationUnavailable();
         PoolConfig memory config = IZZZPools(access.module(Ids.POOLS)).accounting(position.poolId);
+        // Mark actual concentrated-liquidity amounts only when their spot price
+        // agrees with fresh oracle prices. Disabled operations do not invalidate
+        // an otherwise honest mark; this view never changes rights or custody.
+        IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId);
         (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(position.lpTokenId);
         IZZZFees fees = IZZZFees(access.module(Ids.FEES));
         a0 += position.idle0 + fees.compoundBalance(bucket, config.key.currency0);

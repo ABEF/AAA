@@ -34,6 +34,9 @@ contract VaultLiquidityMock is ERC721 {
     MockToken public t0;MockToken public t1;uint256 public next=1;bool public failMint;uint256 public spendBps=10000;
     uint256 public fee0;uint256 public fee1;
     uint256 public repricingLP;uint256 public repricingGain;
+    uint256 public closeLossBps;
+    // TEST ONLY: inject total close execution loss, not a Uniswap fee model.
+    function setCloseLossBps(uint256 value) external {require(value<=10000);closeLossBps=value;}
     mapping(uint256=>uint256) public a0;mapping(uint256=>uint256) public a1;
     constructor(address x,address y)ERC721("Mock venue","MV"){t0=MockToken(x);t1=MockToken(y);}
     function positionManager() external view returns(address){return address(this);}
@@ -59,7 +62,7 @@ contract VaultLiquidityMock is ERC721 {
         a0[id]+=s0;a1[id]+=s1;
     }
     function collect(bytes32,uint256,uint256) external {uint256 x=fee0;uint256 y=fee1;fee0=0;fee1=0;t0.mint(msg.sender,x);t1.mint(msg.sender,y);}
-    function close(bytes32,uint256 id,uint256) external {uint256 x=a0[id];uint256 y=a1[id];delete a0[id];delete a1[id];_burn(id);require(t0.transfer(msg.sender,x));require(t1.transfer(msg.sender,y));}
+    function close(bytes32,uint256 id,uint256) external {uint256 x=a0[id]*(10000-closeLossBps)/10000;uint256 y=a1[id]*(10000-closeLossBps)/10000;delete a0[id];delete a1[id];_burn(id);require(t0.transfer(msg.sender,x));require(t1.transfer(msg.sender,y));}
 }
 contract RejectingMintReceiver {
     function mint(ZZZVault target) external payable returns(uint256) {return target.mintDormant{value:msg.value}();}
