@@ -1,0 +1,17 @@
+{
+  "getter_selectors": [
+    "handoffId()",
+    "stateRoot()"
+  ],
+  "event_layouts": [
+    "Retired(bytes32,address,bytes32)",
+    "Activated(bytes32,address,bytes32)"
+  ],
+  "production_source_sha256": {
+    "src/ZZZCanonicalHandoff.sol": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+    "src/interfaces/IZZZ.sol": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+    "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+    "src/libraries/ZZZTypes.sol": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80"
+  },
+  "scope": "Reused matching normal compiler ABI; no production Solidity changes or reruns."
+}

@@ -115,6 +115,8 @@ class Projection:
                     'deployment_block_hash', 'confirmations', 'max_block_age_seconds', 'contracts', 'assets'}
         if isinstance(config, dict) and 'history' in config:
             expected.add('history')
+        if isinstance(config, dict) and 'predecessors' in config:
+            expected.add('predecessors')
         _keys(config, expected, 'configuration')
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
@@ -165,6 +167,10 @@ class Projection:
                 raise ValueError('History must start no later than the deployment anchor')
         self.identity = hashlib.sha256(json.dumps({k: v for k, v in config.items() if k != 'rpc_urls'},
                                                   sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        self.lineage = None
+        if 'predecessors' in config:
+            from frontend_api.lineage import Lineage
+            self.lineage = Lineage(config['predecessors'], self, config)
 
     def _header(self, tag: str) -> dict[str, Any]:
         raw = self.rpc.call('eth_getBlockByNumber', [tag, False])
@@ -425,7 +431,10 @@ class Projection:
                 result['unavailable_metrics'].pop('previously_claimed')
             result['unavailable_metrics'].pop('wallet_inventory')
             result['wallet_inventory_endpoint'] = f'/v1/wallets/{owner}/nfts'
-        if lifecycle['predecessor_controller'] is not None:
+        if self.lineage is not None:
+            result['previously_claimed'] = self.lineage.claimed(self, header, block, lifecycle, history, nft_id, ordinal)
+            result['unavailable_metrics'].pop('previously_claimed', None)
+        elif lifecycle['predecessor_controller'] is not None:
             reason = 'Complete verified predecessor claim history is not configured; lifetime totals are unavailable.'
             result['previously_claimed'] = {'available': False, 'assets': None, 'reason': reason}
             result['unavailable_metrics']['previously_claimed'] = reason

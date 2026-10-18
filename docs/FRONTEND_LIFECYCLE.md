@@ -53,15 +53,15 @@ exists, and all HTTP error bodies remain sanitized.
 
 An operating successor can expose its funded balances and independently checked
 current ownership. Its local history alone cannot prove lifetime claims across
-previous deployments. Whenever `predecessor_controller` is present, the NFT
-response returns `previously_claimed.available: false`, `assets: null` and an
-explicit reason, even if the current deployment's index contains nonzero claims.
-Zero and partial totals must not be substituted. Wallet inventory describes
-current ownership only; it does not classify imported mint events as paid sales.
+previous deployments. With the optional [complete predecessor configuration](FRONTEND_LINEAGE.md),
+the API now verifies same-chain retirement/activation links and replays all prior
+LP/royalty claims. Without it, imported successor lifetime totals remain
+unavailable, even if current history contains nonzero claims. Invalid configured
+lineage fails closed; zero and partial totals are never substituted.
 
-Complete predecessor-chain authentication, claim replay across deployments,
-duplicate/reorg handling and marketplace collection cutover remain in the
-[central Todo](../TODO.md#task-read-api). This guard does not implement that replay.
+Wallet inventory describes current ownership only and does not classify imported
+transfers as paid sales. Cross-chain history, marketplace cutover and operating
+qualification remain in the [central Todo](../TODO.md).
 
 ## Verification and operational scope
 

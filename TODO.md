@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 18 In progress | 8 Implemented locally**
+**13 To do | 17 In progress | 9 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -105,18 +105,7 @@ The data and services behind the app.
 
   - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
   - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
-
-  </details>
-
-<a id="task-read-api"></a>
-
-- [ ] **[Confirmed balances & ownership API](docs/FRONTEND_LIFECYCLE.md)** - In progress. Schema-2 lifecycle guards and a protocol-status endpoint now expose the pinned origin/peer commitments and block locked NFT/wallet projections. Successor lifetime claims are unavailable rather than reset. Complete verified predecessor replay and live integration remain open.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Independently qualify the implemented schema-2 lifecycle/origin boundary and integrate it with consumers. Eight runtime/address pins, controller/helper ownership and strict phase/state checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled projections fail closed; status stays readable without reward/price calls. Peer addresses are source commitments, not reviewed successor deployments or cross-chain finality proofs.
-  - Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation. The current guard returns unavailable lifetime totals for imported successors; it does not yet replay predecessors.
+  - Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.
 
   </details>
 
@@ -130,6 +119,19 @@ The data and services behind the app.
   - Quote and test $100 source value with no more than 1% total execution/undeployed cost and gas separate. Reject quotes or revert when the limit cannot be met; do not promise zero gas loss on reverts.
   - Build a complete original-source-to-LP quote against actual reviewed routes and feeds, including the Pons deployment leg. Authenticate Entry/Registry/Oracle/helper bindings and append-only route policy history; conversion-only quotes are not signable activation preparation.
   - Pin all call/code/storage reads to one canonical block hash; verify provider support and final snapshot freshness, rejecting stale/future observations and unsupported selectors without fallback. Rehearse every target input with separate gas estimates.
+
+  </details>
+
+<a id="task-read-api"></a>
+
+- [x] **[Confirmed balances & ownership API](docs/FRONTEND_LINEAGE.md)** - Implemented. Confirmed balances, lifecycle guards and complete configured same-chain predecessor claim history are implemented. Lifetime totals include LP fees, royalties and past owners. Hosting, frontend integration and cross-chain history remain separate gates.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Eight runtime/address pins, controller/helper bindings and strict lifecycle checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled NFT and wallet projections fail closed; protocol status stays readable without reward/price calls. Operating qualification and consumer integration remain under hosted services and frontend tasks.
+  - Complete explicitly pinned same-chain predecessor history preserves original NFT IDs and lifetime LP plus royalty claims. Verify both handoff directions, canonical matching activation/retirement receipts, terminal roots, historical assets and full creation-to-retirement ingestion. Missing configuration returns unavailable totals; inconsistent configured lineage fails closed. Import transfers are ownership reconstruction, not paid mints or marketplace sales.
+  - Enforce at most eight predecessors and one million configured maximum replay events across current and prior histories. RPC observations and operator ingestion remain the trust model; this backend does not prove consensus finality or implement cross-chain history.
 
   </details>
 
@@ -477,4 +479,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `411ae9893208a8e536aa2458942bc85f0f0bc28a495308fbb4cb88d40aadc90f`.
+Snapshot SHA-256: `f812aa5f03386edcab6f0e1bae758625f3a1c8f9aca94d9ee4d7fe5b6c1f0e8b`.

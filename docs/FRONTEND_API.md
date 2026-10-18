@@ -60,9 +60,10 @@ individual/collective breakdown remain unavailable. Claimable and lifetime
 claimed amounts are not lifetime gross revenue. No assumed historical token
 price or current-balance subtraction is substituted.
 
-For imported successors, `previously_claimed` is explicitly unavailable until
-complete verified predecessor history is supported. Current-deployment claims
-must never be presented as the NFT's lifetime total.
+For imported successors, the optional [predecessor history](FRONTEND_LINEAGE.md)
+configuration verifies and combines the complete same-chain LP/royalty claim
+lineage. Without it, `previously_claimed` remains explicitly unavailable.
+Current-deployment claims must never be presented as the NFT's lifetime total.
 
 These endpoints are an unhosted integration foundation. The existing `indexer/`
 remains unchanged; the new read-only history consumer validates its exact

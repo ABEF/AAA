@@ -5,11 +5,17 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
-The subsequent [frontend lifecycle checkpoint](FRONTEND_LIFECYCLE.md) adds a
-schema-2 protocol status endpoint, eight deployment pins, locked NFT/wallet
-guards and explicit unavailable successor lifetime totals. See its
-[separate verification](../reports/frontend-lifecycle/VERIFICATION.md). It does
-not change production Solidity, upgrade staging or complete predecessor replay.
+The latest [claim-lineage checkpoint](FRONTEND_LINEAGE.md) extends the schema-2
+lifecycle API with complete explicitly configured same-chain predecessor replay.
+It verifies both handoff directions, canonical retirement/activation receipts and
+terminal source commitments, then includes all prior LP/royalty claims and owners.
+Old indexes may stop at retirement; historical-only assets remain visible.
+Missing configuration stays unavailable; invalid lineage fails closed.
+[Scoped verification](../reports/frontend-lineage/VERIFICATION.md): 91 passing
+API/lifecycle/history cases on the exact publication snapshot, plus two getter and
+two event layouts checked against source-matching existing compiler artifacts.
+Production Solidity is unchanged and its tests were not repeated. Live archive
+services, independent peer review and website integration remain open.
 The optional wallet POST drafts remain outside this scoped publication.
 
 The saved bridge-fixture fixes and final cold-gas checks are verified. The current
@@ -65,7 +71,7 @@ constructor arguments still need deployment allowance.
 ## Next work boundaries
 
 Follow the owning tasks in the central Todo for exact-commit Ubuntu CI, keeper
-operating qualification, successor-aware API/indexer and lifetime claim history,
+operating qualification, live API/indexer and same-chain history integration,
 marketplace/contract-owner cutover, qualified live services and independent audit.
 The cross-chain requirements remain implementation work, not completed by the
 same-chain tests. The initial release still requires migration disabled.

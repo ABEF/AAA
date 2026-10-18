@@ -86,13 +86,14 @@
       "tasks": [
         {
           "id": "read-api",
-          "status": "progress",
+          "status": "done",
           "title": "Confirmed balances & ownership API",
-          "text": "Schema-2 lifecycle guards and a protocol-status endpoint now expose the pinned origin/peer commitments and block locked NFT/wallet projections. Successor lifetime claims are unavailable rather than reset. Complete verified predecessor replay and live integration remain open.",
-          "href": "docs/FRONTEND_LIFECYCLE.md",
+          "text": "Confirmed balances, lifecycle guards and complete configured same-chain predecessor claim history are implemented. Lifetime totals include LP fees, royalties and past owners. Hosting, frontend integration and cross-chain history remain separate gates.",
+          "href": "docs/FRONTEND_LINEAGE.md",
           "acceptance": [
-            "Independently qualify the implemented schema-2 lifecycle/origin boundary and integrate it with consumers. Eight runtime/address pins, controller/helper ownership and strict phase/state checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled projections fail closed; status stays readable without reward/price calls. Peer addresses are source commitments, not reviewed successor deployments or cross-chain finality proofs.",
-            "Reconstruct lifetime LP and royalty claims across every verified predecessor deployment, preserving original NFT IDs. Imported Transfer events are ownership reconstruction, not new paid mints or marketplace sales; never reset previously claimed at replacement activation. The current guard returns unavailable lifetime totals for imported successors; it does not yet replay predecessors."
+            "Eight runtime/address pins, controller/helper bindings and strict lifecycle checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled NFT and wallet projections fail closed; protocol status stays readable without reward/price calls. Operating qualification and consumer integration remain under hosted services and frontend tasks.",
+            "Complete explicitly pinned same-chain predecessor history preserves original NFT IDs and lifetime LP plus royalty claims. Verify both handoff directions, canonical matching activation/retirement receipts, terminal roots, historical assets and full creation-to-retirement ingestion. Missing configuration returns unavailable totals; inconsistent configured lineage fails closed. Import transfers are ownership reconstruction, not paid mints or marketplace sales.",
+            "Enforce at most eight predecessors and one million configured maximum replay events across current and prior histories. RPC observations and operator ingestion remain the trust model; this backend does not prove consensus finality or implement cross-chain history."
           ]
         },
         {
@@ -133,7 +134,8 @@
           "href": "docs/FRONTEND_API.md#local-operation-and-verification",
           "acceptance": [
             "Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.",
-            "Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API."
+            "Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.",
+            "Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery."
           ]
         }
       ]

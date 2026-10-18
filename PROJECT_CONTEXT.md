@@ -1,5 +1,32 @@
 # AAA / ZZZ PoPL project context
 
+## Claim-history continuity checkpoint - 2026-10-18
+
+Read [the predecessor history reference](docs/FRONTEND_LINEAGE.md) and its
+[verification](reports/frontend-lineage/VERIFICATION.md). The schema-2 API now
+combines lifetime LP and royalty claims across the complete explicitly pinned
+same-chain predecessor lineage, including past owners and historical-only assets.
+Each source must be retired with matching origin, bidirectional peer links,
+canonical activation/retirement receipt and terminal root. Replays end at each
+source retirement; current claimable balances are unchanged. Missing lineage
+configuration stays unavailable; invalid configured history fails closed.
+Bounds are eight predecessors and one million configured replay events in total.
+These checks rely on reviewed RPC/indexer ingestion, not consensus finality proofs.
+
+The exact publication snapshot passed 91 API/lifecycle/history tests, including
+17 new lineage cases. Existing compiler artifacts authenticate two getters and
+two event layouts; production Solidity is unchanged and was not retested.
+The central read-API task is implemented locally. Hosted archive qualification,
+independent peer-code review, live frontend integration and cross-chain history
+remain separate open tasks. Keep release NOT APPROVED. Do not mistake these
+same-chain receipt checks for the missing cross-chain finality mechanism.
+
+Use main and verify publication with Git HEAD/origin/main. Preserve unrelated
+optional wallet POST, quote/process-runner and artwork drafts. No website/server
+change, monitor restart, deployment or public transaction was authorized.
+Older dated checkpoints below retain their original scope; this entry supersedes
+the earlier statement that same-chain predecessor replay was unimplemented.
+
 ## Frontend lifecycle checkpoint - 2026-10-18
 
 The [schema-2 read API](docs/FRONTEND_LIFECYCLE.md) now uses eight runtime pins,
