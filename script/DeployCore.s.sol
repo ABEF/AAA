@@ -33,7 +33,7 @@ contract DeployCore is Script {
         address[] memory proposers=new address[](1);proposers[0]=vm.envAddress("GOVERNANCE_MULTISIG");
         address[] memory executors=new address[](1);executors[0]=address(0);
         vm.startBroadcast();
-        ZZZAccessController a=new ZZZAccessController(2 days,proposers,executors,
+        ZZZAccessController a=new ZZZAccessController(0,proposers,executors,
             vm.envAddress("KEEPER_ADDRESS"),vm.envAddress("GUARDIAN_ADDRESS"));
         address controller=address(a);
         a.bind(Ids.VAULT,address(new ZZZVault(controller,home,payable(vm.envAddress("MINT_PROCEEDS_RECIPIENT")))));

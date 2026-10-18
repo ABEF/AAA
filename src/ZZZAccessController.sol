@@ -12,8 +12,9 @@ interface ICanonicalOwnerBinding {
     function fees() external view returns (address);
 }
 
-/// @notice Timelocked configuration; module addresses become immutable at seal().
-/// The timelock cannot replace the vault or execute calls as the vault.
+/// @notice Immediate role-authorized governance; module bindings are fixed at seal().
+/// OpenZeppelin's operation hashes, roles, replay and predecessor checks remain,
+/// but scheduling has no waiting period. This controller cannot act as the Vault.
 contract ZZZAccessController is TimelockController {
     mapping(bytes32 => address) public module;
     mapping(address => bool) public keepers;
@@ -50,7 +51,7 @@ contract ZZZAccessController is TimelockController {
 
     constructor(uint256 delay, address[] memory proposers, address[] memory executors, address initialKeeper,
         address initialGuardian) TimelockController(delay, proposers, executors, address(0)) {
-        if (delay < 1 days || proposers.length == 0 || executors.length == 0 ||
+        if (delay != 0 || proposers.length == 0 || executors.length == 0 ||
             initialKeeper == address(0) || initialGuardian == address(0)) revert InvalidConfiguration();
         for (uint256 i; i < proposers.length; ++i) {
             if (proposers[i] == address(0)) revert InvalidConfiguration();
@@ -59,6 +60,19 @@ contract ZZZAccessController is TimelockController {
         royaltyFactory = address(new ZZZRoyaltyFactory());
         keepers[initialKeeper] = true;
         guardians[initialGuardian] = true;
+    }
+    /// @notice Exact authorized operations are ready immediately. Retain the
+    /// audited scheduling/execution primitives without permitting delayed calls.
+    function schedule(address target, uint256 value, bytes calldata data,
+        bytes32 predecessor, bytes32 salt, uint256 delay) public override {
+        // OZ reserves timestamp 1 for completed operations, and 0 for unset.
+        if (delay != 0 || block.timestamp <= 1) revert InvalidConfiguration();
+        super.schedule(target, value, data, predecessor, salt, 0);
+    }
+    function scheduleBatch(address[] calldata targets, uint256[] calldata values,
+        bytes[] calldata payloads, bytes32 predecessor, bytes32 salt, uint256 delay) public override {
+        if (delay != 0 || block.timestamp <= 1) revert InvalidConfiguration();
+        super.scheduleBatch(targets, values, payloads, predecessor, salt, 0);
     }
     function canConfigure(address account) public view returns (bool) {
         return !preparationActive && ((canonicalState == 0 && account == address(this)) ||
@@ -82,7 +96,7 @@ contract ZZZAccessController is TimelockController {
         if (clearPreparation) preparationActive = false;
     }
     /// @notice Announce a cancellable preparation window through the existing
-    /// timelock. The source remains the sole canonical NFT and reward authority.
+    /// controller, without a waiting period. The source remains the sole canonical authority.
     function startPreparation(PreparationNotice calldata notice) external {
         if (msg.sender != address(this) || !isSealed || preparationActive || canonicalState != 0) revert Unauthorized();
         if (IZZZVault(module[Ids.VAULT]).canonicalChainId() != block.chainid ||
@@ -167,7 +181,7 @@ contract ZZZAccessController is TimelockController {
         paused = state;
         emit PauseChanged(state);
     }
-    /// @notice The governance delay is fixed for the lifetime of this deployment.
+    /// @notice Zero governance delay is fixed for this deployment's lifetime.
     function updateDelay(uint256) external pure override {
         revert InvalidConfiguration();
     }

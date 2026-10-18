@@ -83,11 +83,12 @@ contract ApprovedProviderTrustTest is Test {
     bytes32 private constant POOL = keccak256("test-only economic pool");
 
     function setUp() public {
+        if (block.timestamp < 2) vm.warp(1000000);
         vm.chainId(1);
         vm.warp(1_000_000);
         address[] memory governance = new address[](1);
         governance[0] = address(this);
-        controller = new ZZZAccessController(1 days, governance, governance, address(this), address(this));
+        controller = new ZZZAccessController(0, governance, governance, address(this), address(this));
         router = new ZZZBridgeRouter(address(controller));
         bridge = new ZZZBridgeAdapter(address(controller), address(router));
         registry = new ZZZMigrationRegistry(address(controller));
@@ -121,9 +122,6 @@ contract ApprovedProviderTrustTest is Test {
     function _govern(address target, bytes memory data) private {
         bytes32 salt = keccak256(abi.encode(++governanceSequence, target, data));
         controller.schedule(target, 0, data, bytes32(0), salt, controller.getMinDelay());
-        vm.expectRevert();
-        controller.execute(target, 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + controller.getMinDelay());
         controller.execute(target, 0, data, bytes32(0), salt);
     }
 

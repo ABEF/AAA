@@ -7,7 +7,7 @@ There is no direct local administrator sweep. Approved external providers and
 remote custody remain trust boundaries; exact source depletion does not prove
 honest delivery.
 
-The undeployed candidate uses fixed custody code and timelocked configuration.
+The undeployed candidate uses fixed custody code and immediate governance-approved configuration.
 It is not a general proxy upgrade system. Sealing fixes module addresses; the
 following explicit configuration paths remain available after sealing.
 
@@ -17,14 +17,14 @@ following explicit configuration paths remain available after sealing.
 | Reconfigure a pool after disabling a currency | Initial pool admission never overwrites a known asset policy. Reconfiguration cannot silently re-enable it. A zero amount on a disabled side does not block contribution of the enabled side. |
 | Accept an asset outside the LP pair | The Registry's immutable [Entry child](ACTIVATION_ENTRY.md) implements owner-authenticated source custody, exact native wrapping or an admitted typed single-hop V3 conversion, and one original-source 99% deployed-LP floor. Governance appends pinned route policies; asset admission alone does not enable a route. Actual USDC routing and production route/feed/authority qualification remain open. |
 | Replace a retired token-price feed | Existing governed `ZZZOracle.setFeed` configuration; the replacement must retain valid decimals, freshness and price checks. No caller-supplied price or automatic spot-price fallback. |
-| Replace a failed sequencer-status feed | `ZZZOracle.setSequencerFeed` appends a reviewed nonzero source/code policy through the timelock without querying the failed old source. Uptime and recovery grace remain mandatory; a configured safeguard cannot be removed by setting zero. |
-| Maintain the canonical native wrapper | Append and activate a reviewed wrapper policy through the timelock, checking the real proxy administrator, implementation, owner and code hashes. A reviewed renounced zero-owner state is allowed. The wrapper address and PoolKey stay fixed. |
+| Replace a failed sequencer-status feed | `ZZZOracle.setSequencerFeed` appends a reviewed nonzero source/code policy through the governance controller without querying the failed old source. Uptime and recovery grace remain mandatory; a configured safeguard cannot be removed by setting zero. |
+| Maintain the canonical native wrapper | Append and activate a reviewed wrapper policy through the governance controller, checking the real proxy administrator, implementation, owner and code hashes. A reviewed renounced zero-owner state is allowed. The wrapper address and PoolKey stay fixed. |
 | Disable new strategy operations in a pool | Mint, increase and swaps stop; typed collect/close remain available under custody, wrapper and real-key checks. Ordinary Vault exit validation ignores the source operations flag but still requires a valid oracle and acceptable spot deviation. Separately reviewed paused parking has raw-token authorization instead of a source USD read. |
 | Move LP to another supported local pool | Governed `ZZZMigration.movePool` closes and redeploys the whole bucket through the Vault. Both pools must have the same ordered accounting currencies; the destination must be admitted and enabled. NFT shares and historical liabilities remain attached to the bucket. |
-| Park a paused shared LP during a source-price outage | Sealed, paused `ZZZMigration.park` requires the exact timelocked LP/share/deposit/location/epoch/nonce snapshot, ordered currencies, reviewed close-only raw minima and a current deadline. It collects venue fees separately, closes the LP and keeps all principal attributed inside Vault. Old idle, donations and compound reserves cannot satisfy the close minimums. USD/sequencer reads and creator-inbox synchronization are omitted; native-wrapper and venue pins remain mandatory. |
-| Resume or migrate parked principal | After unpause, governed `resume` requires valid valuation and normal enabled-destination, ordered-currency, swap/slippage, liquidity and idle guards. A proposed parked migration retains approved transport, delay, snapshot, exact-transfer and historical remote-liability funding barriers; already closed source principal needs no recovered source USD feed. Destination services and real bridge backing remain independent requirements. |
+| Park a paused shared LP during a source-price outage | Sealed, paused `ZZZMigration.park` requires the exact governance-approved LP/share/deposit/location/epoch/nonce snapshot, ordered currencies, reviewed close-only raw minima and a current deadline. It collects venue fees separately, closes the LP and keeps all principal attributed inside Vault. Old idle, donations and compound reserves cannot satisfy the close minimums. USD/sequencer reads and creator-inbox synchronization are omitted; native-wrapper and venue pins remain mandatory. |
+| Resume or migrate parked principal | After unpause, governed `resume` requires valid valuation and normal enabled-destination, ordered-currency, swap/slippage, liquidity and idle guards. A proposed parked migration retains approved transport, snapshot, exact-transfer and historical remote-liability funding barriers; already closed source principal needs no recovered source USD feed. Destination services and real bridge backing remain independent requirements. |
 | Add a future chain, equivalent-asset pool or bridge provider | Register new immutable transport policies and routes, deploy and independently review the destination system, then approve the economic migration. Disabling outbound policies does not cancel historical inbound settlement. Actual bridge wrappers are not supplied by this framework. |
-| Change keepers, guardians or strategy settings | Existing governed configuration and fixed timelock; guardian pause is not asset-withdrawal or upgrade authority. |
+| Change keepers, guardians or strategy settings | Existing governed configuration and zero-delay controller; guardian pause is not asset-withdrawal or upgrade authority. |
 | Change the Vault, reward ledgers or mint/trait rules after sealing | No generic implementation replacement exists. A new code version needs an explicit reviewed migration design; these configuration controls do not make arbitrary code changes safe or possible. |
 
 <a id="destination-capacity-unresolved-proposed-next-implementation"></a>
@@ -65,7 +65,7 @@ implemented by this capacity repair. Activation/top-ups retain **1%**.
 - **Oracle outage:** ordinary upkeep and active-LP migration retain valuation
   checks. Governed token/sequencer feed replacement remains available. The
   [paused custody-parking path](CUSTODY_PARKING.md) now permits an exact,
-  timelocked close into Vault-held currencies without source USD or sequencer
+  governance-approved close into Vault-held currencies without source USD or sequencer
   reads. Governance must review raw per-asset close minimums and a fresh custody
   snapshot; this cannot bypass a failed venue, frozen token or incompatible
   native wrapper. Resume requires recovered valuation. Migration of already
@@ -87,7 +87,7 @@ The [activation routing research](ACTIVATION_ROUTING.md) remains a historical
 read-only venue/provenance snapshot, distinct from the implemented Entry and its
 still-open production route qualification. [Custody parking](CUSTODY_PARKING.md)
 documents exact authorization, close accounting, guarded resumption and retained
-claim rights. Focused mocks and real-timelock tests, actual pool forks, testnet
+claim rights. Focused mocks and real-controller tests, actual pool forks, testnet
 operating rehearsals and independent audit are separate evidence layers.
 These are development capabilities and limitations, not a deployment approval
 or a guarantee that principal can be recovered in every failure scenario.

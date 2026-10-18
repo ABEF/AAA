@@ -212,7 +212,7 @@ contract FutureChainMigrationTest is Test {
         bundle.asset1 = reverseAssets ? bundle.token0 : bundle.token1;
         address[] memory governors = new address[](1);
         governors[0] = address(this);
-        bundle.access = new ZZZAccessController(1 days, governors, governors, address(this), address(this));
+        bundle.access = new ZZZAccessController(0, governors, governors, address(this), address(this));
         address controller = address(bundle.access);
         bundle.vault = new ZZZVault(controller, HOME_CHAIN, TREASURY);
         bundle.nft = new ZZZNFT(controller, "");
@@ -270,9 +270,6 @@ contract FutureChainMigrationTest is Test {
         bytes32 salt = bytes32(++governanceSequence);
         uint256 delay = bundle.access.getMinDelay();
         bundle.access.schedule(target, 0, data, bytes32(0), salt, delay);
-        vm.expectRevert();
-        bundle.access.execute(target, 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + delay);
         feed.set(1e8, block.timestamp, block.timestamp);
         bundle.access.execute(target, 0, data, bytes32(0), salt);
     }
@@ -441,9 +438,7 @@ contract FutureChainMigrationTest is Test {
         _govern(source, address(source.migration), abi.encodeCall(ZZZMigration.propose, (bucketId, principalRoute)));
         bytes32 migrationId = source.migration.activePlan(bucketId);
         assertTrue(migrationId != bytes32(0));
-        vm.expectRevert();
-        source.migration.execute(migrationId, block.timestamp + 100);
-        vm.warp(block.timestamp + source.migration.MIGRATION_DELAY());
+        assertEq(source.migration.MIGRATION_DELAY(), 0);
         feed.set(1e8, block.timestamp, block.timestamp);
         source.migration.execute(migrationId, block.timestamp + 100);
         bytes32 principalPacket = transport.latest();

@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-18):** timelocked range changes can now make the existing keeper rebalance eligible at a flat price, with cooldown, price/minimum-output guards and the 3% aggregate cap retained. See [range policy](docs/RANGE_POLICY_UPDATES.md), [scoped verification](reports/range-policy/VERIFICATION.md), [dynamic accounting](docs/DYNAMIC_LIQUIDITY.md) and the [resume handoff](docs/WORK_HANDOFF.md). Earlier regression receipts retain their own source scope; release remains NOT APPROVED.
+**Current development work (2026-10-18):** governance operations and approved LP migrations now have no mandatory waiting period. Authorization, sealing, execution-loss limits and custody checks remain. See [immediate governance](docs/GOVERNANCE.md), [scoped verification](reports/immediate-governance/VERIFICATION.md) and the [resume handoff](docs/WORK_HANDOFF.md). Release remains NOT APPROVED.
 
 ## Project navigation
 
@@ -44,7 +44,7 @@ flowchart LR
 | **LP revenue accounting** | Creator inboxes and venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol), [creator intake](docs/EXTERNAL_REWARDS.md) |
 | **Royalties and claims** | RoyaltyRewards accounts for received marketplace royalties separately. Current owners claim through either ledger or the bounded ClaimRouter; unclaimed balances follow the NFT. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [claim flow](docs/CLAIM_ROUTER.md) |
 | **Valuation and maintenance** | Oracle supplies guarded values; Strategy defines ranges and eligibility. Keeper calls execute through Vault, Compounder or Buyback within on-chain limits. | [Oracle](src/ZZZOracle.sol), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
-| **Governance and permissions** | AccessController binds modules and enforces timelocked configuration, guardian pause and keeper authorization. Sealing fixes module bindings; constrained configuration remains available. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
+| **Governance and permissions** | AccessController binds modules and enforces immediate authorized configuration, guardian pause and keeper authorization. Sealing fixes module bindings; constrained configuration remains available. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
 | **Recovery and migration** | Migration coordinates approved LP parking/moves. A separate canonical handoff coordinates ownership, ledgers and backing when replacing a whole deployment. Future-chain completion remains open. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
 
 Many NFTs share **one physical LP per pool/strategy**, with independent share accounts. Maintenance operates on the shared position. The initial collection is intended to use one pool; the Vault allows four permanently admitted/historical custody buckets, including reservations and imports. An existing bucket's migration or return reuses its slot. See the [detailed interactions](docs/ARCHITECTURE.md) and [complete module/helper map](docs/COMPONENT_STATUS.md).
@@ -131,7 +131,7 @@ The [metadata specification](docs/NFT_METADATA.md) and [artwork catalogue](desig
 
 | Role | Authority | Boundary |
 | --- | --- | --- |
-| **Governance multisig** | Approves configuration and supported recovery operations through the timelock. | Approved modules, destinations and replacement code require security review; governance remains a trust dependency. |
+| **Governance multisig** | Approves configuration and supported recovery operations through the zero-delay governance controller. | Approved modules, destinations and replacement code require security review; governance remains a trust dependency. |
 | **Guardian** | Pauses operations during an incident. | Cannot unpause or withdraw principal; unpause belongs to governance. |
 | **Keeper** | Executes eligible maintenance within contract permissions and economic limits. | Cannot change governance policy or bypass execution guards. |
 
@@ -143,7 +143,7 @@ Production addresses are not selected. The [address inventory](docs/DEPLOYMENT_A
 
 | Situation | Supported path and limits | Reference |
 | --- | --- | --- |
-| **Pause and park LP** | Timelocked governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads and creator-inbox synchronization; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
+| **Pause and park LP** | Governance-approved governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads and creator-inbox synchronization; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
 | **Move LP between local pools** | Approved moves preserve the bucket's NFT shares and liabilities. Current moves require the same ordered accounting currencies; different-pair conversion remains unfinished. Moving LP alone does not relocate NFT ownership or reward ledgers. | [Migration safety](docs/MIGRATION_SAFETY.md) |
 | **Replace the whole deployment on the same chain** | The handoff candidate freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement. Retirement/activation is atomic, with a restored funded abort path before retirement. Reviewed replacement code is an accepted governance trust boundary. | [Canonical handoff](docs/CANONICAL_HANDOFF.md) |
 | **Relocate the collection to another chain** | Verified source finality, authenticated channel closure, new lineage/message semantics and reviewed transport remain pre-seal work. There is no multisig-only activation override. Recovery after a permanent source-chain halt is deferred. | [Canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md) |

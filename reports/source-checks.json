@@ -53,7 +53,7 @@
     },
     {
       "file": "src/ZZZAccessController.sol",
-      "lines": 174
+      "lines": 188
     },
     {
       "file": "src/ZZZActivationAssets.sol",
@@ -105,7 +105,7 @@
     },
     {
       "file": "src/ZZZMigration.sol",
-      "lines": 301
+      "lines": 303
     },
     {
       "file": "src/ZZZMigrationBudget.sol",
@@ -129,7 +129,7 @@
     },
     {
       "file": "src/ZZZNFTMetadata.sol",
-      "lines": 132
+      "lines": 136
     },
     {
       "file": "src/ZZZOracle.sol",
@@ -161,11 +161,11 @@
     },
     {
       "file": "src/ZZZStrategy.sol",
-      "lines": 108
+      "lines": 125
     },
     {
       "file": "src/ZZZVault.sol",
-      "lines": 497
+      "lines": 499
     },
     {
       "file": "src/ZZZVaultCanonical.sol",

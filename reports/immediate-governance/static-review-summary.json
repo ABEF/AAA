@@ -1,0 +1,19 @@
+{
+  "total_findings": 378,
+  "dispositions": {
+    "false_positive": 157,
+    "accepted_risk": 75,
+    "informational": 146
+  },
+  "matched_expressions_reviewed": 376,
+  "new_expressions_reviewed": 2,
+  "coverage_pass": true,
+  "mutation_rejections": {
+    "missing_finding": true,
+    "unreviewed": true,
+    "changed_expression": true,
+    "stale_controller": true,
+    "stale_migration": true
+  },
+  "independent_audit": false
+}

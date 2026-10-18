@@ -28,10 +28,10 @@ registry creates the helper from its own constructor. The registry address and
 access controller are immutable. No extra replaceable sealed module is added.
 
 `setAsset` uses the existing `onlyGovernance` boundary. Bootstrap governance can
-configure before sealing; after sealing the controller's fixed timelock must
+configure before sealing; after sealing the controller's zero-delay controller must
 execute the exact operation. A production governance multisig, guardian, keeper,
-NFT operator or holder cannot bypass that delay by calling the helper directly.
-The unit fixture uses an actual **two-day** controller delay. Guardian pause does
+NFT operator or holder cannot bypass authorization by calling the helper directly.
+Authorized controller operations execute immediately. Guardian pause does
 not grant asset configuration powers.
 
 `admitPoolAsset` is callable only by the immutable registry. The registry's
@@ -109,10 +109,10 @@ and cannot be recovered through policy updates.
 
 ## Verification scope
 
-The helper's unit suite uses the real access controller, its timelock and the real
+The helper's unit suite uses the real access controller with zero delay and the real
 oracle with explicit test tokens/feeds and a test-only registry factory. Tests
 cover initial admission, wrong callers, immutable history, code/decimal/feed
-changes, failed-token/feed disabling, zero-side contributions, two-day enable and
+changes, failed-token/feed disabling, zero-side contributions, immediate enable and
 disable operations, guardian limits, no custody and preservation of the existing
 exact-transfer execution guard. These tests do not substitute for the canonical
 registry/Vault integration, actual token routing, target-chain operating tests or

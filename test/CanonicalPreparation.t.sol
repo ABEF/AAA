@@ -111,7 +111,7 @@ contract CanonicalPreparationTest is Test {
         vm.warp(1_000_000);
         address[] memory proposers = new address[](1); proposers[0] = address(this);
         address[] memory executors = new address[](1); executors[0] = address(0);
-        ac = new ZZZAccessController(1 days, proposers, executors, address(this), GUARDIAN);
+        ac = new ZZZAccessController(0, proposers, executors, address(this), GUARDIAN);
         t0 = new MockToken(0); t1 = new MockToken(0);
         pools = new PreparationPools(address(ac));
         venue = new PreparationVenue(address(ac), address(t0), address(t1));
@@ -151,7 +151,7 @@ contract CanonicalPreparationTest is Test {
             keccak256("notice-only deployment commitment"), keccak256("review material"));
     }
     function _schedule(address target, bytes memory data) private returns (bytes32 salt) {
-        salt = bytes32(++governanceNonce); ac.schedule(target, 0, data, bytes32(0), salt, 1 days);
+        salt = bytes32(++governanceNonce); ac.schedule(target, 0, data, bytes32(0), salt, 0);
     }
     function _govern(address target, bytes memory data) private {
         bytes32 salt = _schedule(target, data); vm.warp(block.timestamp + 1 days);
@@ -167,12 +167,11 @@ contract CanonicalPreparationTest is Test {
         id = _mint(true); vm.prank(ALICE); vault.activate(id, poolId, 1000, 1000, 1, block.timestamp + 100);
     }
 
-    function testAnnouncementAndCancellationRequireActualTimelockAndExactNotice() public {
+    function testImmediatePreparationAndCancellationRequireGovernanceAndExactNotice() public {
         vm.expectRevert(ZZZAccessController.Unauthorized.selector); ac.startPreparation(_notice());
         vm.prank(GUARDIAN); vm.expectRevert(ZZZAccessController.Unauthorized.selector); ac.startPreparation(_notice());
         bytes memory data = abi.encodeCall(ac.startPreparation, (_notice())); bytes32 salt = _schedule(address(ac), data);
-        vm.expectRevert(); ac.execute(address(ac), 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + 1 days); ac.execute(address(ac), 0, data, bytes32(0), salt);
+        ac.execute(address(ac), 0, data, bytes32(0), salt);
         bytes32 first = ac.preparationHash(); assertTrue(ac.preparationActive()); assertEq(ac.preparationNonce(), 1);
         assertEq(first, keccak256(abi.encode("ZZZ_CANONICAL_PREPARATION_V1", block.chainid, address(ac),
             address(vault), address(nft), uint256(1), _notice())));

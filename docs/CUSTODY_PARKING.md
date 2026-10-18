@@ -13,11 +13,10 @@ to that bucket's Vault idle ledger. No new LP fees are earned from a closed LP.
 ## Authority and exact authorization
 
 The system must be sealed and paused. A guardian can pause quickly, but cannot
-close an LP or receive its assets. After sealing, the existing controller timelock
+close an LP or receive its assets. After sealing, the existing governance controller
 must execute the exact `ZZZMigration.park(ParkingRequest)` call. The focused
-governance test uses a two-day controller delay; actual operating delay is the
-controller's immutable configured delay. Parking adds no instant emergency-admin
-withdrawal mechanism.
+governance test uses immediate exact-call authorization with zero waiting period.
+Parking adds no administrator withdrawal mechanism.
 
 The request binds:
 
@@ -28,8 +27,7 @@ The request binds:
 
 At least one currency minimum must be nonzero, allowing a genuine one-sided LP.
 The runtime deadline must be current and no more than ten minutes ahead. When
-scheduling through the timelock, choose a narrow execution window after the
-operation becomes ready; an expired request cannot execute. The review hash is
+authorizing through the controller, use a current narrow execution window; an expired request cannot execute. The review hash is
 provenance supplied by governance, not automatic proof of an independent audit.
 
 A pending migration plan prevents parking. A rebalanced LP, changed share supply,
@@ -38,8 +36,8 @@ invalidates an old snapshot. The parking nonce is consumed before external calls
 and failure rolls back the nonce, all custody changes and fee accounting.
 
 Governance can call `invalidateParking(bucket)` to advance the nonce and invalidate
-older request data. After sealing, that call follows the same timelock. Pending
-timelock operations may also be cancelled through the controller's authorized
+older request data. After sealing, that call follows the same governance controller. Pending
+governance operations may also be cancelled through the controller's authorized
 canceller role. Cancellation does not produce an alternative execution or payout
 path. A successfully executed request cannot be replayed.
 
@@ -71,7 +69,7 @@ Governance has two paths after the system is unpaused:
 | Path | Required protections |
 | --- | --- |
 | `Migration.resume` | No pending migration plan; reviewed enabled destination pool with the same ordered currencies; recovered valid valuation; normal swap/slippage, minimum-liquidity and idle checks. The original pool may be reused. |
-| Proposed migration of a parked bucket | Approved route/transport and frozen custody snapshot; normal proposal/execution delay; funded historical remote liabilities; exact token provenance, custody transfers, nonce/epoch and receipt checks. No old source LP exists to close, so source USD recovery is unnecessary. |
+| Proposed migration of a parked bucket | Approved route/transport and frozen custody snapshot; immediate proposal/execution eligibility; funded historical remote liabilities; exact token provenance, custody transfers, nonce/epoch and receipt checks. No old source LP exists to close, so source USD recovery is unnecessary. |
 
 Resume brings designated compound reserves into the bucket and redeploys the
 principal under current oracle and strategy guards. It cannot bypass a stale or
@@ -109,7 +107,7 @@ can restore compatible dependencies, but incompatible immutable venue failure,
 issuer blacklisting, token confiscation and bridge insolvency remain real risks.
 There is no universal recovery guarantee or hidden rescue wallet.
 
-Focused custody, timelock, parked-reward and native-pool tests are recorded
+Earlier scoped custody, delayed-governance, parked-reward and native-pool tests are recorded
 separately from the final full regression and current-source static review.
 Actual operating requests need freshly reviewed raw minima and snapshots,
 authority review, staging, realistic gas/strategy qualification and independent

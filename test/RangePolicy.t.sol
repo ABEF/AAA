@@ -132,9 +132,9 @@ contract RangePolicyTest is Test {
         assertFalse(strategy.rangeUpdatePending(BUCKET)); vm.warp(block.timestamp + 600);
         assertFalse(strategy.needsRebalance(BUCKET));
     }
-    function testRealSealedTimelockAloneCanApproveTheRangeChange() public {
+    function testRealSealedGovernanceCanImmediatelyApproveRangeChange() public {
         address[] memory roles = new address[](1); roles[0] = address(this);
-        ZZZAccessController access = new ZZZAccessController(1 days, roles, roles, address(0x20), address(0x21));
+        ZZZAccessController access = new ZZZAccessController(0, roles, roles, address(0x20), address(0x21));
         _system(address(access));
         bytes32[10] memory rest = [Ids.NFT, Ids.MEMBERSHIP, Ids.FEES, Ids.COMPOUNDER, Ids.BUYBACK,
             Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER, Ids.ROUTES, Ids.TRANSPORT];
@@ -144,12 +144,14 @@ contract RangePolicyTest is Test {
         vm.expectRevert(); registry.configure(config); // Bootstrap has been revoked.
         vm.prank(address(0x20)); vm.expectRevert(); registry.configure(config); // Keeper has no configuration power.
         bytes memory data = abi.encodeCall(registry.configure, (config)); bytes32 salt = keccak256("range 10 percent");
-        access.schedule(address(registry), 0, data, bytes32(0), salt, 1 days);
-        vm.expectRevert(); access.execute(address(registry), 0, data, bytes32(0), salt);
+        access.schedule(address(registry), 0, data, bytes32(0), salt, 0);
         assertFalse(strategy.rangeUpdatePending(BUCKET));
-        vm.warp(block.timestamp + 1 days); _price(1e8);
+        _price(1e8);
         access.execute(address(registry), 0, data, bytes32(0), salt);
-        assertTrue(strategy.rangeUpdatePending(BUCKET)); assertTrue(strategy.needsRebalance(BUCKET));
+        assertTrue(strategy.rangeUpdatePending(BUCKET));
+        // Immediate governance does not bypass the unchanged maintenance cooldown.
+        assertFalse(strategy.needsRebalance(BUCKET));
+        vm.warp(block.timestamp + 600); _price(1e8); assertTrue(strategy.needsRebalance(BUCKET));
         _replace(); vm.warp(block.timestamp + 600); assertFalse(strategy.needsRebalance(BUCKET));
     }
 }

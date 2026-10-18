@@ -139,8 +139,8 @@
     "governance": {
       "multisig": null, "proposers": [], "executors": [], "signers": [], "threshold": null,
       "keeper": null, "guardian": null, "overlap_review": null,
-      "timelock_seconds": null, "delay_fixed": true, "migration_delay_seconds": 172800,
-      "post_seal_routes_timelocked": true, "sealed": false, "bootstrap": null,
+      "timelock_seconds": 0, "delay_fixed": true, "migration_delay_seconds": 0,
+      "post_seal_routes_timelocked": false, "sealed": false, "bootstrap": null,
       "roles_and_seal_evidence": null, "parking_rehearsal": null
     },
     "constructor": {

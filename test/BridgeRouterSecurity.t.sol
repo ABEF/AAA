@@ -44,10 +44,11 @@ contract BridgeRouterSecurityTest is Test {
     bytes32 private constant POOL = keccak256("local destination fixture pool");
 
     function setUp() public {
+        if (block.timestamp < 2) vm.warp(1000000);
         vm.chainId(1);
         vm.warp(1_000_000);
         address[] memory actors = new address[](1); actors[0] = address(this);
-        controller = new ZZZAccessController(1 days, actors, actors, address(this), address(this));
+        controller = new ZZZAccessController(0, actors, actors, address(this), address(this));
         token0 = new MockToken(18); token1 = new MockToken(18);
         vault = new RouterVaultStub(address(controller), block.chainid);
         receiver = new RouterReceiverStub(address(controller));
@@ -181,7 +182,7 @@ contract BridgeRouterSecurityTest is Test {
 
     function testSealRejectsBridgeWhoseFixedEndpointIsAnotherRouter() public {
         address[] memory actors = new address[](1); actors[0] = address(this);
-        ZZZAccessController isolated = new ZZZAccessController(1 days, actors, actors, address(this), address(this));
+        ZZZAccessController isolated = new ZZZAccessController(0, actors, actors, address(this), address(this));
         ZZZBridgeRouter expected = new ZZZBridgeRouter(address(isolated));
         ZZZBridgeRouter different = new ZZZBridgeRouter(address(isolated));
         ZZZBridgeAdapter mismatch = new ZZZBridgeAdapter(address(isolated), address(different));
@@ -197,18 +198,17 @@ contract BridgeRouterSecurityTest is Test {
         vm.expectRevert(); isolated.seal(); assertFalse(isolated.isSealed());
     }
 
-    function testOnlyTimelockCanEnableAfterSeal() public {
+    function testOnlyGovernanceCanEnableImmediatelyAfterSeal() public {
         vm.expectRevert(); router.setOutboundEnabled(outgoingPolicy, true);
         bytes memory data = abi.encodeCall(router.setOutboundEnabled, (outgoingPolicy, true));
         bytes32 salt = keccak256("enable after notice");
-        controller.schedule(address(router), 0, data, bytes32(0), salt, 1 days);
-        vm.expectRevert(); controller.execute(address(router), 0, data, bytes32(0), salt);
+        controller.schedule(address(router), 0, data, bytes32(0), salt, 0);
         assertFalse(router.canSend(outgoing));
         vm.warp(block.timestamp + 1 days); controller.execute(address(router), 0, data, bytes32(0), salt);
         assertTrue(router.canSend(outgoing));
     }
 
-    function testNewProviderPolicyNeedsTimelockAndNewRouteIdentity() public {
+    function testNewProviderPolicyNeedsGovernanceAndNewRouteIdentity() public {
         RouterProviderMock second = new RouterProviderMock(address(router), CONFIG);
         TransportPolicy memory p = _policy(true, address(second), keccak256("provider-v2"));
         bytes32 id = keccak256(abi.encode(p));
@@ -228,7 +228,7 @@ contract BridgeRouterSecurityTest is Test {
     function testExistingPolicyCannotBeReRegistered() public {
         TransportPolicy memory p = _policy(true, address(provider), keccak256("provider-v1"));
         bytes memory data = abi.encodeCall(router.registerPolicy, (p)); bytes32 salt = keccak256("duplicate");
-        controller.schedule(address(router), 0, data, bytes32(0), salt, 1 days);
+        controller.schedule(address(router), 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
         vm.expectRevert(); controller.execute(address(router), 0, data, bytes32(0), salt);
         assertEq(registry.transportPolicyId(outgoing), outgoingPolicy);
@@ -237,7 +237,7 @@ contract BridgeRouterSecurityTest is Test {
     function _rejectedPolicy(TransportPolicy memory p) private {
         bytes memory data = abi.encodeCall(router.registerPolicy, (p));
         bytes32 salt = keccak256(abi.encode(++governanceSequence, data));
-        controller.schedule(address(router), 0, data, bytes32(0), salt, 1 days);
+        controller.schedule(address(router), 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
         vm.expectRevert(); controller.execute(address(router), 0, data, bytes32(0), salt);
         assertFalse(router.policyExists(keccak256(abi.encode(p))));

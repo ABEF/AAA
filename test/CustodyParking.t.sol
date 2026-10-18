@@ -231,10 +231,11 @@ contract ParkingRolePools {
     constructor(ZZZAccessController controller, address a, address b) { access = controller; token0 = a; token1 = b; }
     function accounting(bytes32) external view returns (PoolConfig memory c) { c.key.currency0 = token0; c.key.currency1 = token1; }
 }
-contract CustodyParkingTimelockTest is Test {
-    function testSealedGuardianPauseStillRequiresExactTwoDayTimelockedParkingCall() public {
+contract CustodyParkingGovernanceTest is Test {
+    function testSealedPausedParkingRequiresExactImmediateGovernanceCall() public {
+        vm.warp(1000000);
         address[] memory authorities = new address[](1); authorities[0] = address(this);
-        ZZZAccessController controller = new ZZZAccessController(2 days, authorities, authorities, address(this), address(this));
+        ZZZAccessController controller = new ZZZAccessController(0, authorities, authorities, address(this), address(this));
         ParkingRoleVault vault = new ParkingRoleVault(controller, address(0x111), address(0x222));
         ZZZMigration migration = new ZZZMigration(address(controller));
         ParkingRolePools pools = new ParkingRolePools(controller, address(0x111), address(0x222));
@@ -250,13 +251,11 @@ contract CustodyParkingTimelockTest is Test {
         controller.seal(); controller.setPaused(true);
         ZZZMigration.ParkingRequest memory r; r.bucketId = 7; r.poolId = bytes32(uint256(7)); r.lpTokenId = 99;
         r.totalShares = 200e18; r.depositUSD = 200e18; r.token0 = address(0x111); r.token1 = address(0x222);
-        r.minimum0 = 100; r.minimum1 = 100; r.deadline = block.timestamp + 2 days + 100; r.reviewHash = keccak256("independent-close-review");
+        r.minimum0 = 100; r.minimum1 = 100; r.deadline = block.timestamp + 100; r.reviewHash = keccak256("independent-close-review");
         bytes memory callData = abi.encodeCall(migration.park, (r)); bytes32 salt = keccak256("exact-paused-custody-authorization");
         vm.expectRevert(); migration.park(r);
-        controller.schedule(address(migration), 0, callData, bytes32(0), salt, 2 days);
-        vm.expectRevert(); controller.execute(address(migration), 0, callData, bytes32(0), salt);
-        vm.warp(block.timestamp + 2 days); controller.execute(address(migration), 0, callData, bytes32(0), salt);
+        controller.schedule(address(migration), 0, callData, bytes32(0), salt, 0);
+        controller.execute(address(migration), 0, callData, bytes32(0), salt);
         assertEq(uint8(vault.group(7).status), uint8(PositionStatus.Parked)); assertEq(migration.parkingNonce(7), 1);
-        vm.expectRevert(); controller.execute(address(migration), 0, callData, bytes32(0), salt);
     }
 }

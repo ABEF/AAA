@@ -21,10 +21,10 @@ An address alone does not establish the right chain, code or authority.
 | VRF subscription owner/funder | Identify the selected service's subscription ownership, authorized consumers and funding arrangements. These depend on the qualified coordinator, not a PoPL administrator setter. |
 | External creator payer | Record the agreed payer or payment-authorizing identity and terms. The creator sends actual funds to the immutable protocol inbox; a calculator cannot authorize payments. |
 
-The **timelock is a deployed contract**, `ZZZAccessController`, rather than another
+The **governance controller is a deployed contract**, `ZZZAccessController`, rather than another
 wallet to create. The local template sets `GOVERNANCE_MULTISIG` as proposer and
 `address(0)` as executor, meaning anyone can execute only the exact already
-approved mature operation. A dedicated executor wallet is unnecessary for that
+approved operation, immediately. A dedicated executor wallet is unnecessary for that
 configuration. Initial proposers also receive the canceller role. Additional
 role memberships must appear in the reviewed manifest and complete role history.
 Multisig members, guardian and keeper may have external wallet administration
@@ -42,7 +42,7 @@ chain; `Ids.TRANSPORT` names the fixed router, not a selected bridge provider.
 
 | Manifest name | Contract |
 | --- | --- |
-| `access` | `ZZZAccessController` — timelock and sealed module bindings |
+| `access` | `ZZZAccessController` — zero-delay governance and sealed module bindings |
 | `vault` | `ZZZVault` — permanent principal custody and NFT share ledger |
 | `nft` | `ZZZNFT` — canonical ownership, fixed trait draw and royalty request |
 | `liquidity` | `ZZZLiquidityManager` — fixed venue settlement |
@@ -127,7 +127,7 @@ custody or token backing. No production provider is selected by this reference.
 ## Configuration that is not a wallet address
 
 Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities;
-multisig threshold; timelock and migration delays; VRF key hash, subscription ID,
+multisig threshold; zero governance and migration delays; VRF key hash, subscription ID,
 confirmations and callback budget; pool keys/IDs and strategy bounds; provider
 channel/policy/route IDs; content CIDs and metadata URI; RPC URLs; API/indexer
 origins; keeper monitoring, backup and alert endpoints. Secrets and private keys

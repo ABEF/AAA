@@ -1,0 +1,30 @@
+{
+  "command": "python -m unittest tests_python.test_production_config -q",
+  "result": "passed",
+  "tests": 142,
+  "seconds": 15.026,
+  "exit_code": 0,
+  "recorded_at": "2026-10-18T21:34:10.718185+00:00",
+  "source_sha256": {
+    "scripts/validate-production-config.py": "a81df71237521c04608e315b962fd79592d29d376ff91ab2a0bf614f717bf120",
+    "tests_python/test_production_config.py": "90cd74d9887d88b844965600c04e7e460400e76c05a9a4ad15cd2b1df561d839",
+    "config/production.example.json": "d87e1fbfdd353fab4eda227d4e5cb784ce66cd1f1ccc07f78416ef171918f526"
+  },
+  "scope": "Offline synthetic configuration acceptance/rejection; no deployed manifest approval.",
+  "post_test_message_only_delta": {
+    "path": "scripts/validate-production-config.py",
+    "replacements": [
+      [
+        "must be a timelock proposer",
+        "must be a governance-controller proposer"
+      ],
+      [
+        "Review timelocked failed-source replacement",
+        "Review immediate governance-authorized failed-source replacement"
+      ]
+    ],
+    "current_sha256": "689c1269c4f8ad0e24221197bbfdb614662d65d37b64b23ed11dfe9092aeedc2",
+    "behavior_changed": false,
+    "tests_not_repeated": "Only the two diagnostic strings changed; exact replacement comparison retained."
+  }
+}

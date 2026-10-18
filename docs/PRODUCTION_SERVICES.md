@@ -44,7 +44,7 @@ historical observations, manipulation/liquidity bounds, reference sources and
 outage behavior. Do not use the same instantaneous pool price as an independent
 USD guard. See the [Uniswap v4 whitepaper](https://app.uniswap.org/whitepaper-v4.pdf).
 
-The Oracle candidate now supports timelocked replacement of a reviewed nonzero
+The Oracle candidate now supports governance-approved replacement of a reviewed nonzero
 sequencer-status source, retaining status and recovery-grace checks. It does not
 create a supported feed on Robinhood. Select a genuine supported source or
 independently justify the initial no-feed policy for that chain. Runtime hashes

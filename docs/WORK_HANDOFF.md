@@ -5,6 +5,16 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+Governance now has **no mandatory waiting period**, including the additional LP
+migration delay. The user explicitly superseded the earlier delayed policy and
+proposed route-only exception. Read [authority semantics](GOVERNANCE.md) and
+[scoped evidence](../reports/immediate-governance/VERIFICATION.md). Target safety
+checks, sealing and finality remain; there is no advance warning window. Update
+production authority/runtime records and operating procedures before approval.
+No deployment or website/server change occurred; monitor stays paused. The
+randomness provider decision remains open and unchanged. Use Git for publication.
+
+
 The [read-only route campaign](INTEGRATION_CAMPAIGN.md) now records a successful
 paced USDG/ETH feed and four-route conversion observation. This is not complete
 activation, a public transaction or a new fork/test pass. See [its scope](../reports/activation-route-observation/VERIFICATION.md).

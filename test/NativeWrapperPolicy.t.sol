@@ -29,6 +29,7 @@ contract NativeWrapperPolicyTest is Test {
     PolicyImplementationTwo private second;
     PolicyAdminFixture private admin;
     function setUp() public {
+        if (block.timestamp < 2) vm.warp(1000000);
         access = new MockAccess(); registry = new ZZZPoolRegistry(address(access));
         first = new PolicyImplementationOne(); second = new PolicyImplementationTwo();
         admin = new PolicyAdminFixture(address(first), address(this));
@@ -72,9 +73,9 @@ contract NativeWrapperPolicyTest is Test {
         vm.expectRevert(); registry.approveWrapperPolicy(p);
         vm.deal(address(this), 1); (bool ok,) = address(registry).call{value: 1}(""); assertFalse(ok);
     }
-    function testWrapperPolicyAfterSealRequiresBothTimelockedGovernanceActions() public {
+    function testWrapperPolicyAfterSealRequiresBothImmediateGovernanceActions() public {
         address[] memory authorities = new address[](1); authorities[0] = address(this);
-        ZZZAccessController controller = new ZZZAccessController(2 days, authorities, authorities, address(0x123), address(0x456));
+        ZZZAccessController controller = new ZZZAccessController(0, authorities, authorities, address(0x123), address(0x456));
         ZZZPoolRegistry governed = new ZZZPoolRegistry(address(controller));
         bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP, Ids.FEES,
             Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER,
@@ -87,20 +88,18 @@ contract NativeWrapperPolicyTest is Test {
         bytes32 id = keccak256(abi.encode(p)); bytes memory data = abi.encodeCall(governed.approveWrapperPolicy, (p));
         vm.expectRevert(); governed.approveWrapperPolicy(p);
         bytes32 salt = keccak256("review-wrapper-implementation");
-        controller.schedule(address(governed), 0, data, bytes32(0), salt, 2 days);
-        vm.expectRevert(); controller.execute(address(governed), 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + 2 days); controller.execute(address(governed), 0, data, bytes32(0), salt);
+        controller.schedule(address(governed), 0, data, bytes32(0), salt, 0);
+        controller.execute(address(governed), 0, data, bytes32(0), salt);
         assertTrue(governed.wrapperPolicyExists(id)); assertTrue(governed.activeWrapperPolicy() != id);
         data = abi.encodeCall(governed.activateWrapperPolicy, (id)); salt = keccak256("activate-reviewed-wrapper");
         vm.expectRevert(); governed.activateWrapperPolicy(id);
-        controller.schedule(address(governed), 0, data, bytes32(0), salt, 2 days);
-        vm.expectRevert(); controller.execute(address(governed), 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + 2 days); controller.execute(address(governed), 0, data, bytes32(0), salt);
-        assertEq(governed.activeWrapperPolicy(), id); assertEq(controller.getMinDelay(), 2 days);
+        controller.schedule(address(governed), 0, data, bytes32(0), salt, 0);
+        controller.execute(address(governed), 0, data, bytes32(0), salt);
+        assertEq(governed.activeWrapperPolicy(), id); assertEq(controller.getMinDelay(), 0);
     }
-    function testWrapperPolicyRenouncedOwnerCanBeReviewedThroughTimelock() public {
+    function testWrapperPolicyRenouncedOwnerCanBeReviewedThroughImmediateGovernance() public {
         address[] memory authorities = new address[](1); authorities[0] = address(this);
-        ZZZAccessController controller = new ZZZAccessController(2 days, authorities, authorities, address(0x123), address(0x456));
+        ZZZAccessController controller = new ZZZAccessController(0, authorities, authorities, address(0x123), address(0x456));
         ZZZPoolRegistry governed = new ZZZPoolRegistry(address(controller));
         bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP, Ids.FEES,
             Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER,
@@ -116,14 +115,12 @@ contract NativeWrapperPolicyTest is Test {
         bytes32 id = keccak256(abi.encode(renounced));
         vm.expectRevert(); governed.approveWrapperPolicy(renounced);
         bytes memory data = abi.encodeCall(governed.approveWrapperPolicy, (renounced)); bytes32 salt = keccak256("review-renounced-wrapper-admin");
-        controller.schedule(address(governed), 0, data, bytes32(0), salt, 2 days);
-        vm.expectRevert(); controller.execute(address(governed), 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + 2 days); controller.execute(address(governed), 0, data, bytes32(0), salt);
+        controller.schedule(address(governed), 0, data, bytes32(0), salt, 0);
+        controller.execute(address(governed), 0, data, bytes32(0), salt);
         assertEq(governed.activeWrapperPolicy(), previousId); assertTrue(governed.wrapperPolicyExists(previousId));
         data = abi.encodeCall(governed.activateWrapperPolicy, (id)); salt = keccak256("activate-renounced-wrapper-admin");
-        controller.schedule(address(governed), 0, data, bytes32(0), salt, 2 days);
-        vm.expectRevert(); controller.execute(address(governed), 0, data, bytes32(0), salt);
-        vm.warp(block.timestamp + 2 days); controller.execute(address(governed), 0, data, bytes32(0), salt);
+        controller.schedule(address(governed), 0, data, bytes32(0), salt, 0);
+        controller.execute(address(governed), 0, data, bytes32(0), salt);
         assertEq(governed.activeWrapperPolicy(), id);
         (,, address reviewedOwner,,) = governed.wrapperPolicies(id); assertEq(reviewedOwner, address(0));
         (,, address historicalOwner,,) = governed.wrapperPolicies(previousId); assertEq(historicalOwner, address(this));

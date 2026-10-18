@@ -1,6 +1,6 @@
 # Applying range settings after sealing
 
-Governance can change the admitted pool's range through the existing timelock.
+Governance can change the admitted pool's range through the existing governance controller.
 The keeper can then apply it through the ordinary `Vault.rebalance` path even
 if the price has not moved far enough to satisfy the price trigger. No new
 force-rebalance authority or separately queued keeper request is introduced.
@@ -10,7 +10,7 @@ force-rebalance authority or separately queued keeper request is introduced.
 1. Governance reviews the complete pool configuration and schedules the exact
    `PoolRegistry.configure` or selected-pool `configureNative` call. Bootstrap
    and keeper addresses cannot change it after sealing.
-2. After the timelock executes, `Strategy.rangeUpdatePending(bucket)` compares
+2. After governance executes, `Strategy.rangeUpdatePending(bucket)` compares
    the current physical LP's ticks with the configured target calculated at
    the bucket's **recorded creation/rebalance center**. Using today's price for
    this comparison would cause needless repeated replacements as prices drift.

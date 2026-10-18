@@ -372,9 +372,9 @@ contract ActivationEntryTest is Test {
         vm.startPrank(ATTACKER);vm.expectRevert();entry.addRoute(_policy(address(source),address(wrapped)));
         vm.expectRevert();entry.setRouteEnabled(routeId,false);vm.stopPrank();
     }
-    function testPostSealRouteAdmissionRequiresCompletedTwoDayTimelock() public {
+    function testPostSealRouteAdmissionExecutesImmediatelyThroughGovernance() public {
         address[] memory auth=new address[](1);auth[0]=address(this);
-        ZZZAccessController governed=new ZZZAccessController(2 days,auth,auth,address(0xBEEF),address(0x600D));
+        ZZZAccessController governed=new ZZZAccessController(0,auth,auth,address(0xBEEF),address(0x600D));
         EntryRegistryFixture childFactory=new EntryRegistryFixture(address(governed));
         ZZZActivationEntry governedEntry=childFactory.activationEntry();
         bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,
@@ -384,9 +384,9 @@ contract ActivationEntryTest is Test {
         governed.seal();ZZZActivationEntry.RoutePolicy memory policy=_policy(address(source),address(wrapped));
         vm.expectRevert();governedEntry.addRoute(policy);
         bytes memory payload=abi.encodeCall(governedEntry.addRoute,(policy));bytes32 salt=keccak256("entry route governance");
-        governed.schedule(address(governedEntry),0,payload,bytes32(0),salt,2 days);
-        vm.expectRevert();governed.execute(address(governedEntry),0,payload,bytes32(0),salt);
-        vm.warp(block.timestamp+2 days);governed.execute(address(governedEntry),0,payload,bytes32(0),salt);
+        governed.schedule(address(governedEntry),0,payload,bytes32(0),salt,0);
+
+        governed.execute(address(governedEntry),0,payload,bytes32(0),salt);
         assertTrue(governedEntry.routeEnabled(keccak256(abi.encode(policy))));
     }
     function testPauseUnsealedAndNoncanonicalRegistryFailClosed() public {

@@ -51,7 +51,7 @@ contract ActivationAssetsTest is Test {
     function setUp() public {
         vm.warp(1000000);
         address[] memory auth = new address[](1); auth[0] = address(this);
-        access = new ZZZAccessController(2 days, auth, auth, address(0xBEEF), GUARDIAN);
+        access = new ZZZAccessController(0, auth, auth, address(0xBEEF), GUARDIAN);
         oracle = new ZZZOracle(address(access), address(0));
         registry = new ActivationRegistryFixture(address(access)); assets = registry.assets();
         access.bind(Ids.ORACLE, address(oracle)); access.bind(Ids.POOLS, address(registry));
@@ -71,9 +71,7 @@ contract ActivationAssetsTest is Test {
     }
 
     function _execute(bytes memory payload, bytes32 salt) private {
-        access.schedule(address(assets), 0, payload, bytes32(0), salt, 2 days);
-        vm.expectRevert(); access.execute(address(assets), 0, payload, bytes32(0), salt);
-        vm.warp(block.timestamp + 2 days);
+        access.schedule(address(assets), 0, payload, bytes32(0), salt, 0);
         feed.set(1e8, block.timestamp, block.timestamp);
         access.execute(address(assets), 0, payload, bytes32(0), salt);
     }
@@ -199,7 +197,7 @@ contract ActivationAssetsTest is Test {
         assertEq(assets.value(address(changed), 1e6), 1e18);
     }
 
-    function testGovernanceCannotBypassTwoDayTimelockAfterSeal() public {
+    function testImmediateGovernanceStillRequiresControllerAfterSeal() public {
         registry.admit(address(token)); _seal();
         bytes memory payload = abi.encodeCall(assets.setAsset, (address(token), false, address(token).codehash, REVIEW));
         vm.expectRevert(); assets.setAsset(address(token), false, address(token).codehash, REVIEW);
@@ -209,10 +207,10 @@ contract ActivationAssetsTest is Test {
         vm.expectRevert(); assets.value(address(token), 1e6);
     }
 
-    function testTimelockedEnableRequiresFreshFeedAndCorrectRuntimeAtExecution() public {
+    function testGovernanceEnableRequiresFreshFeedAndCorrectRuntimeAtExecution() public {
         _seal(); bytes memory payload = abi.encodeCall(assets.setAsset, (address(token), true, address(token).codehash, REVIEW));
         bytes32 salt = keccak256("enable token");
-        access.schedule(address(assets), 0, payload, bytes32(0), salt, 2 days);
+        access.schedule(address(assets), 0, payload, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 2 days);
         vm.expectRevert(); access.execute(address(assets), 0, payload, bytes32(0), salt);
         assertEq(assets.policyCount(), 0); feed.set(1e8, block.timestamp, block.timestamp);
@@ -220,7 +218,7 @@ contract ActivationAssetsTest is Test {
         assertEq(assets.value(address(token), 100e6), 100e18);
     }
 
-    function testTimelockedDisableSucceedsDespiteTokenAndOracleOutage() public {
+    function testGovernanceDisableSucceedsDespiteTokenAndOracleOutage() public {
         bytes32 pin = address(token).codehash; registry.admit(address(token)); _seal();
         vm.etch(address(token), hex"fe"); vm.etch(address(oracle), hex"fe");
         _execute(abi.encodeCall(assets.setAsset, (address(token), false, pin, REVIEW)), keccak256("outage disable"));

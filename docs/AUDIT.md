@@ -88,7 +88,7 @@ There may be syntax/type/import/ABI mismatches, stack/code-size issues, test err
 
 ### O-03 — High trust/economic risk: governance, oracles and approved tokens
 
-Governance retains timelocked oracle/eligibility/operator configuration. A bad oracle or malicious governance-approved configuration can cause unfavorable swaps and economic extraction without calling a principal withdrawal function. Thin/manipulable markets, token upgrades, blacklisting, transfer restrictions, rebases and chain failures can strand or destroy value. Neither spot checks nor a timelock guarantee honest external data.
+Governance retains immediate oracle/eligibility/operator configuration through its zero-delay controller. A bad oracle or malicious governance-approved configuration can cause unfavorable swaps and economic extraction without calling a principal withdrawal function. Thin/manipulable markets, token upgrades, blacklisting, transfer restrictions, rebases and chain failures can strand or destroy value. Neither spot checks nor a timelock guarantee honest external data.
 
 ### O-04 — Economic policy requires explicit approval
 

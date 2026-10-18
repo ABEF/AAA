@@ -138,7 +138,7 @@ contract CanonicalHandoffTest is Test {
     function _deploySystemWithChain(bool sealNow, bool admitAssets, uint256 homeChain) private returns (System memory s) {
         address[] memory proposers = new address[](1); proposers[0] = address(this);
         address[] memory executors = new address[](1); executors[0] = address(0);
-        s.ac = new ZZZAccessController(1 days, proposers, executors, address(this), GUARDIAN);
+        s.ac = new ZZZAccessController(0, proposers, executors, address(this), GUARDIAN);
         s.pools = new PreparationPools(address(s.ac));
         s.venue = new PreparationVenue(address(s.ac), address(token0), address(token1));
         s.vault = new ZZZVault(address(s.ac), homeChain, TREASURY);
@@ -187,7 +187,7 @@ contract CanonicalHandoffTest is Test {
     }
     function _govern(System memory s, address target, bytes memory data) private {
         bytes32 salt = bytes32(++governanceNonce);
-        s.ac.schedule(target, 0, data, bytes32(0), salt, 1 days);
+        s.ac.schedule(target, 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
         _fresh();
         uint256 beforeGas = gasleft();
@@ -201,7 +201,7 @@ contract CanonicalHandoffTest is Test {
     }
     function _governReject(System memory s, address target, bytes memory data) private {
         bytes32 salt = bytes32(++governanceNonce);
-        s.ac.schedule(target, 0, data, bytes32(0), salt, 1 days);
+        s.ac.schedule(target, 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
         vm.expectRevert(); s.ac.execute(target, 0, data, bytes32(0), salt);
     }
@@ -324,7 +324,7 @@ contract CanonicalHandoffTest is Test {
     }
     function _governColdHandoff(bytes memory data) private returns (uint256 used) {
         bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 1 days);
+        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days); feed.set(1e8, block.timestamp, block.timestamp);
         _coolSystem(source); _coolSystem(destination);
         uint256 beforeGas = gasleft();
@@ -472,7 +472,7 @@ contract CanonicalHandoffTest is Test {
         // Governance may keep incident pause tooling, but cannot regain ownership authority.
         bytes memory unpause = abi.encodeCall(source.ac.setPaused, (false));
         bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.ac), 0, unpause, bytes32(0), salt, 1 days); vm.warp(block.timestamp + 1 days);
+        source.ac.schedule(address(source.ac), 0, unpause, bytes32(0), salt, 0); vm.warp(block.timestamp + 1 days);
         try source.ac.execute(address(source.ac), 0, unpause, bytes32(0), salt) {} catch {}
         assertEq(source.ac.canonicalState(), 3);
         vm.prank(ALICE); vm.expectRevert(); source.nft.transferFrom(ALICE, BOB, first);
@@ -658,7 +658,7 @@ contract CanonicalHandoffTest is Test {
         destination.handoff.prepareImport(address(source.ac)); destination.ac.seal();
         _prepare();
         bytes memory data = abi.encodeCall(source.handoff.freeze, ()); bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 1 days);
+        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
         HandoffTransitionToken(address(token0)).arm(source.ac, address(source.handoff), data, salt,
             address(retired.fees), address(source.fees));
@@ -762,7 +762,7 @@ contract CanonicalHandoffTest is Test {
     function testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() public {
         (uint256 first,,) = _seed(); _freeze(first); _exportAll(); _importAll();
         bytes memory data = abi.encodeCall(source.handoff.abort, ()); bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 1 days);
+        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
         uint256 principal = token0.balanceOf(address(source.vault));
         HandoffTransitionToken(address(token0)).arm(source.ac, address(source.handoff), data, salt,

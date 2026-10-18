@@ -6,9 +6,9 @@
 
 The Vault controls shared physical LP positions and attributed idle principal. Each NFT holds nonredeemable shares of one canonical bucket. Fees holds collected revenue and segregated compound, buyback and remote-reward budgets; Rewards holds funded LP claim liabilities. Immutable per-bucket inboxes hold pending creator payments separately. The NFT owns a distinct immutable royalty receiver and read-only metadata renderer. Royalties and mint proceeds are separate from LP fees and principal.
 
-Governance selects pools, feeds, operators and routes through the configured timelock. Sealing fixes module bindings and the transport endpoint. New append-only bridge policies/routes and bounded operating parameters remain governance trust powers. Guardians can pause strategy operations, not unpause or redeem principal. Keepers maintain approved buckets and have no redemption right. The NFT's coordinator and artwork base cannot be replaced after sealing; governance may admit bounded royalty assets through its NFT wrapper, subject to independent token review.
+Governance selects pools, feeds, operators and routes through the zero-delay controller. Sealing fixes module bindings and the transport endpoint. New append-only bridge policies/routes and bounded operating parameters remain governance trust powers. Guardians can pause strategy operations, not unpause or redeem principal. Keepers maintain approved buckets and have no redemption right. The NFT's coordinator and artwork base cannot be replaced after sealing; governance may admit bounded royalty assets through its NFT wrapper, subject to independent token review.
 
-Future destinations require review of custody code, upgrade/proxy powers, assets and provider semantics. A timelock provides notice rather than proof that remote custody preserves principal. Fixed local modules cannot make an unsafe approved destination safe.
+Future destinations require review of custody code, upgrade/proxy powers, assets and provider semantics. Immediate governance supplies neither advance notice nor proof that remote custody preserves principal. Fixed local modules cannot make an unsafe approved destination safe.
 
 ## Intended invariants
 

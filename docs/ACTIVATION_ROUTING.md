@@ -145,7 +145,7 @@ Registry. It does not add a replaceable seventeenth module or take NFT custody.
 The current NFT owner can supply an admitted pair asset, exact native ETH wrapping,
 or an admitted source with a governance-reviewed single-hop V3 route. Route records
 pin router, factory, pool, ordered tokens, fee and runtime hashes; governance
-appends policies and controls their enabled flag through the existing timelock.
+appends policies and controls their enabled flag through the existing governance controller.
 
 Entry measures exact original input and values it through the governed asset
 helper before conversion. Its temporary context is armed only immediately before

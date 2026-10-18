@@ -34,6 +34,13 @@ Vault code change. Its timelock/cooldown/rollback and accounting checks do not
 qualify chosen production widths, repeated-operation costs, live prices or keeper
 operation. Exact-release module runtime pins must include this Strategy version.
 
+The [immediate-governance change](GOVERNANCE.md) removes both mandatory controller
+and migration waiting periods. Earlier delayed-operation evidence does not qualify
+this authority policy. Exact-release approval must review zero-delay roles and
+operations, absence of advance notice, custody guards, runtime identities and
+current operating procedures. [Scoped evidence](../reports/immediate-governance/VERIFICATION.md)
+is internal development verification; this release remains NOT APPROVED.
+
 ## Release identity
 
 | Approval field | Recorded value |

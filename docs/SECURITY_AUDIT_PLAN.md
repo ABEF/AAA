@@ -29,12 +29,13 @@ green run qualifies a different release. Do not relax gas, size or security gate
 
 **Current controls:** sealing fixes module addresses. The local Strategy and
 LiquidityManager implementations and venue bindings cannot be replaced.
-Timelocked governance still controls supported feeds, assets, routes, destinations
+Immediate governance controls supported feeds, assets, routes, destinations
 and bounded strategy settings. Guardians can pause; keepers have no redemption
-function. The governance delay cannot be shortened after deployment.
+function. Governance and migration delays are fixed at zero; there is no advance notice window.
 
+- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify zero constructor/single/batch/migration delays and rejection of delay updates.
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
-  compromised keepers/guardians, timelock operations and forbidden module rebinding.
+  compromised keepers/guardians, governance operations and forbidden module rebinding.
 - Verify all post-seal changes preserve custody and historical liabilities. Audit
   destination/provider admission: an unsafe approved destination or malicious feed
   can lose funds despite the absence of a wallet-sweep function.

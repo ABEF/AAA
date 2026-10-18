@@ -1,3 +1,27 @@
+## Immediate governance decision - 2026-10-18
+
+Verification: 228 distinct affected Solidity passes (177 retained exact-bound
+passes plus 51 corrected-fixture passes), 142 configuration passes, 30 normal
+size gates / 39 production bindings, and 378 internally reviewed Slither findings.
+See [current evidence](reports/immediate-governance/VERIFICATION.md). Not a full
+new regression, live qualification or independent audit; release NOT APPROVED.
+
+The user explicitly requested NO governance timelock at any point, superseding
+both the old two-day template and the briefly proposed narrow fast-route role.
+Read [immediate governance](docs/GOVERNANCE.md). AccessController now requires zero
+constructor and single/batch scheduling delay and rejects delay updates; approved
+Migration plans have MIGRATION_DELAY=0. Existing proposer/executor/canceller roles,
+exact-operation hashes, replay/predecessor checks, sealing, canonical locks,
+keeper cooldowns, oracle safety/finality, 1% contribution and 3% supported local
+execution limits remain. No route-manager role or generic upgrade was added.
+Governance can approve harmful dependencies or successor code immediately;
+there is no advance warning window. Production addresses and independent approval
+remain open. No deployment, public transaction, website/server update or restart
+of the user-paused monitor occurred. Read scoped evidence and Git for verification
+and publication; do not reuse older delayed-operation receipts as current proof.
+Randomness-service qualification is still open; no provider was selected and no
+randomness or artwork behavior changed in this workstream. Preserve other drafts.
+
 ## Read-only route campaign checkpoint - 2026-10-18
 
 Read [the campaign brief](docs/INTEGRATION_CAMPAIGN.md) and

@@ -101,10 +101,10 @@ def fixture():
             'maximum_snapshot_age_seconds':3600,'modules':modules,
             'governance':{'multisig':addr(base+400),'proposers':[addr(base+400)],'executors':[GATE.ZERO],
                 'signers':[addr(base+401),addr(base+402)],'threshold':2,'keeper':addr(base+403),'guardian':addr(base+404),
-                'timelock_seconds':172800,'delay_fixed':True,'post_seal_routes_timelocked':True,
-                'migration_delay_seconds':172800,'sealed':True,'bootstrap':GATE.ZERO,'roles_and_seal_evidence':proof(),
+                'timelock_seconds':0,'delay_fixed':True,'post_seal_routes_timelocked':False,
+                'migration_delay_seconds':0,'sealed':True,'bootstrap':GATE.ZERO,'roles_and_seal_evidence':dict(proof(),zero_delay_governance_tested=True,immediate_migration_tested=True,no_notice_risk_accepted=True),
                 'parking_rehearsal':dict(proof(),independent=True,oracle_independent_close_tested=True,
-                    close_only_minimums_tested=True,timelock_pause_nonce_tested=True,
+                    close_only_minimums_tested=True,governance_pause_nonce_tested=True,
                     oracle_guarded_resume_tested=True,parked_rewards_and_migration_tested=True)},
             'constructor':{'canonical_chain_id':1,'mint_proceeds_recipient':addr(base+405),'nft_base_uri':ARTWORK_BASE,
                 'maximum_buyback_usd18':str(1000*10**18),'recipient_payment_evidence':proof(),'adapter_transport':modules['transport']['address']},
@@ -371,7 +371,7 @@ class ProductionConfigTests(unittest.TestCase):
                 self.blocked('entry.review')
     def test_recovery_requires_complete_independent_parking_resume_and_claim_rehearsal(self):
         for field in ('independent','oracle_independent_close_tested','close_only_minimums_tested',
-                'timelock_pause_nonce_tested','oracle_guarded_resume_tested','parked_rewards_and_migration_tested'):
+                'governance_pause_nonce_tested','oracle_guarded_resume_tested','parked_rewards_and_migration_tested'):
             with self.subTest(field=field):
                 self.config=fixture();self.config['chains'][0]['governance']['parking_rehearsal'][field]=False
                 self.blocked('recovery.review')
@@ -519,10 +519,21 @@ class ProductionConfigTests(unittest.TestCase):
         governance=self.config['chains'][0]['governance'];governance['guardian']=governance['multisig'];self.blocked('decision.pending')
         governance['overlap_review']='Synthetic fixture explicitly reviewed combined pause/governance authority'
         self.assertTrue(self.result()['ready'])
-    def test_short_timelock_mutable_delay_or_unsealed_bootstrap_blocks(self):
+    def test_nonzero_delay_mutable_delay_or_unsealed_bootstrap_blocks(self):
         governance=self.config['chains'][0]['governance'];governance['timelock_seconds']=86399;self.blocked('integer.invalid')
-        governance.update(timelock_seconds=172800,delay_fixed=False);self.blocked('timelock.mutable')
+        governance.update(timelock_seconds=0,delay_fixed=False);self.blocked('timelock.mutable')
         governance.update(delay_fixed=True,sealed=False,bootstrap=addr(99));self.blocked('seal.incomplete')
+    def test_zero_delay_manifest_requires_strict_values_and_current_review(self):
+        governance=self.config['chains'][0]['governance']
+        for key,bad,code in [('timelock_seconds',True,'integer.invalid'),('timelock_seconds',0.0,'integer.invalid'),
+                ('post_seal_routes_timelocked',True,'timelock.routes'),('migration_delay_seconds',False,'migration.delay'),
+                ('migration_delay_seconds',172800,'migration.delay')]:
+            with self.subTest(key=key,bad=bad):
+                old=governance[key];governance[key]=bad;self.blocked(code);governance[key]=old
+        for key in ('zero_delay_governance_tested','immediate_migration_tested','no_notice_risk_accepted'):
+            review=governance['roles_and_seal_evidence'];review[key]=False
+            self.blocked('governance.immediate_review');review[key]=True
+        self.assertTrue(self.result()['ready'])
     def test_mint_recipient_cannot_be_protocol_custody(self):
         chain=self.config['chains'][0];chain['constructor']['mint_proceeds_recipient']=chain['modules']['vault']['address'];self.blocked('mint.custody')
     def test_float_boolean_integer_fields_are_not_truncated(self):

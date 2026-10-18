@@ -5,7 +5,7 @@ Design direction recorded 2026-10-17. The current candidate implements a
 exact backing, cancellation and atomic single-successor activation. **Cross-chain
 canonical handoff remains unimplemented.** This document retains its wider design
 requirements; proposed proof/transport mechanisms below are not current functions.
-Reversible timelocked preparation has its own [scope and permitted draining](MIGRATION_SAFETY.md).
+Reversible governance-approved preparation has its own [scope and permitted draining](MIGRATION_SAFETY.md).
 The [central Todo](../TODO.md) owns implementation progress; the
 [architecture review](ARCHITECTURE_EVOLUTION.md) records the wider decisions.
 The release decision remains **NOT APPROVED**.
@@ -41,11 +41,11 @@ membership, 5% requested marketplace royalties and royalty weights 1/2/3.
 No principal redemption, administrator NFT transfer or arbitrary call is added.
 
 An approved arbitrary successor could still implement malicious economics.
-Code hashes and timelocks identify and delay that choice; they do not prove that
+Code hashes and governance approvals identify that choice without delaying it; they do not prove that
 new code honors these rights. Admissible implementation templates and the
 verification/admission policy must be reviewed before deployment. On2026-10-17,
 the user explicitly allowed governance to approve different reviewed replacement
-code through the timelock, accepting that trust instead of an identical-code rule.
+code through the governance controller, accepting that trust instead of an identical-code rule.
 This is a constrained protocol-evolution authority, not an immutability guarantee
 under unrestricted governance replacement.
 
@@ -138,7 +138,7 @@ need separate finalized proofs. Preparation does not authenticate satellite drai
 The freeze is a protocol-wide lifecycle control separate from the guardian pause
 bit. It is reversible only through the proved pre-terminal abort path below;
 terminal commit is irreversible. Neither ordinary unpausing, rotating a keeper
-nor executing an old queued timelock call may bypass it. Direct claims, router claims, transfer variants, callbacks,
+nor executing an previously authorized governance call may bypass it. Direct claims, router claims, transfer variants, callbacks,
 permissionless sync and all accounting entrypoints must enforce it consistently.
 No user-controlled recipient, USD assertion, raw call or rescue selector is part
 of export or funding. Exact code/configuration pins and fixed typed destinations

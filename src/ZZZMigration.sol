@@ -7,13 +7,14 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind, AckPurpose} from "./libraries/ZZZTypes.sol";
 import {IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge, IZZZBridgeRouter, IZZZFees} from "./interfaces/IZZZ.sol";
 
-/// @notice Repeated, timelocked custody moves. NFT shares and membership remain canonical; custody moves whole buckets without NFT loops.
+/// @notice Repeated, governance-approved custody moves without a time delay.
+/// NFT shares and membership remain canonical; custody moves whole buckets without NFT loops.
 contract ZZZMigration is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
     enum Status { None, Scheduled, Cancelled, Bridged, Completed }
     struct Plan { uint256 bucketId; bytes32 routeId; uint64 earliest; Status status; uint64 epoch; bytes32 poolId; bytes32 snapshot; }
     struct Location { uint64 epoch; uint256 chainId; address vault; }
-    /// @dev Exact timelocked close authorization, denominated in raw tokens.
+    /// @dev Exact governance close authorization, denominated in raw tokens.
     /// The operation keeps all assets in Vault; it does not bridge or withdraw.
     struct ParkingRequest {
         uint256 bucketId;
@@ -40,7 +41,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     mapping(bytes32 => bool) private remotes;
     mapping(bytes32 => bool) private rewardPaths;
     uint256 public sequence;
-    uint256 public constant MIGRATION_DELAY = 2 days;
+    // Preserve the public getter/plan layout; approved plans are immediately eligible.
+    uint256 public constant MIGRATION_DELAY = 0;
     event Scheduled(bytes32 indexed migrationId, uint256 indexed bucketId, bytes32 indexed routeId, uint64 earliest);
     event Cancelled(bytes32 indexed migrationId);
     event Bridged(bytes32 indexed migrationId, bytes32 transportId);
@@ -254,7 +256,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     /// @notice Close a paused local LP without consulting price or sequencer feeds.
     /// Guardian/governance pause freezes new capital and upkeep before the exact
-    /// snapshot is scheduled through the normal governance timelock.
+    /// snapshot is authorized through the governance controller without a delay.
     function park(ParkingRequest calldata request) external onlyDrainGovernance nonReentrant {
         _deadline(request.deadline);
         IZZZVault vault = IZZZVault(_moduleVault());

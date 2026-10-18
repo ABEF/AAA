@@ -44,8 +44,8 @@ transaction and restore the source funds and NFT ownership.
 fee, exact runtime hashes and a nonzero review reference. The factory's pool
 mapping, pool token ordering, pool factory/fee and router factory must all agree.
 Every execution rechecks those observations. Only the controller's governance can
-record a route or change its enabled flag; after sealing, that means the existing
-timelock. Policy identity and contents are append-only. Disabling does not call a
+record a route or change its enabled flag; after sealing, that means the zero-delay
+governance controller. Policy identity and contents are append-only. Disabling does not call a
 potentially broken dependency. Re-enabling validates it again.
 
 Only SwapRouter02's typed seven-field `exactInputSingle` tuple is emitted: the

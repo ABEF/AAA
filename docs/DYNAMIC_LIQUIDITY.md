@@ -95,7 +95,7 @@ creator payments or revoking already funded claims/royalty eligibility.
 
 ## Changing the range after sealing
 
-Governance can update the existing pool configuration through the fixed timelock.
+Governance can update the existing pool configuration through the zero-delay controller.
 `rangeBps` is a half-width: 1,000 means approximately +/-10% of the reference
 pool price before outward tick rounding. The registry permits 100-5,000 basis
 points; trigger and spot-deviation settings must remain inside their own bounds

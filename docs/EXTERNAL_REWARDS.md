@@ -4,7 +4,7 @@ The creator can send payments directly to an immutable per-bucket `ZZZRewardRece
 
 ## Payment and allocation
 
-After sealing and activating a canonical bucket, governance creates its receiver through the timelock. One receiver permanently binds each bucket and its original admitted pair. The current Vault admits four historical buckets, so at most four receivers are reachable; the factory retains its separate defensive ceiling of 16. No redirection, replacement or administrator sweep exists.
+After sealing and activating a canonical bucket, governance creates its receiver through immediate governance. One receiver permanently binds each bucket and its original admitted pair. The current Vault admits four historical buckets, so at most four receivers are reachable; the factory retains its separate defensive ceiling of 16. No redirection, replacement or administrator sweep exists.
 
 Plain pair-ERC20 payments are accepted. Optionally, nativeETH is wrapped exactly one-for-one using a reviewed admitted18decimal pair wrapper. Anyone or the constrained keeper may sync receipts. Only actual processed funds enter80/10/5/5:80%pool-share owner,10%equal activated-NFT collective,5%permanent compounding,5%buyback/burn.
 

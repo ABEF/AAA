@@ -34,7 +34,7 @@ and checked against their owners at sealing. They keep codecs outside the
 custody contracts to meet normal EVM code-size limits. They have no configurable
 executor, delegatecall, general withdrawal or arbitrary call facility.
 
-The existing timelock authorizes preparation, freeze, commit, abort and reopening
+The existing governance controller authorizes preparation, freeze, commit, abort and reopening
 after a fully restored abort. Anyone can settle the next captured domain, relay the bounded records or advance an
 exact funding leg. Relay callers cannot choose owners, balances or recipients.
 The guardian pause is separate; unpausing cannot reopen a frozen or retired
@@ -56,8 +56,8 @@ does not authorize a finality, backing or source-retirement override.
 | Step | Source | Replacement |
 | --- | --- | --- |
 | Prepare destination | Still operates. | Bootstrap binds modules, calls `prepareImport(sourceController)`, configures dependencies and seals. Importer remains inert. |
-| Announce | Timelocked `startPreparation` names the already sealed importer and exact deployment/review commitments. New work stops; claims, transfers, reveal and permitted drains remain. | Bound to this source only. |
-| Drain and freeze | Reveal all existing mints, resolve plans, return/park custody, then timelocked `freeze`. Global state changes before any balance observations. | Receives the source handoff identity and domain sizes. |
+| Announce | Governance-approved `startPreparation` names the already sealed importer and exact deployment/review commitments. New work stops; claims, transfers, reveal and permitted drains remain. | Bound to this source only. |
+| Drain and freeze | Reveal all existing mints, resolve plans, return/park custody, then governance-approved `freeze`. Global state changes before any balance observations. | Receives the source handoff identity and domain sizes. |
 | Settle cutoffs | Phase 8 keeps all rights frozen. Six ordered, permissionless `settle(slot)` calls finalize only the captured amounts; retries cannot repeat a domain. Only completion changes the source to exportable phase 1. | Remains inert; no import or funding can proceed yet. |
 | Export/import | `exportRows` commits complete settled domains in batches of at most eight. | `importRows` verifies each exact source record and builds the same rolling roots. Imported ownership and claims remain disabled. |
 | Fund | Each one-use leg sends the exact captured asset amount to its fixed peer module. Principal and each reward/reserve class stay separate. | Measured receipt plus module acceptance; prefunds cannot replace authenticated funding. |

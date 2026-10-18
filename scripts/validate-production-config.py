@@ -293,7 +293,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         governance=g.obj(chain.get('governance'),path+'.governance')
         gov=g.hex(governance.get('multisig'),path+'.governance.multisig',20)
         proposers=[g.hex(a,path+'.governance.proposers',20) for a in g.items(governance.get('proposers'),path+'.governance.proposers')]
-        g.check(gov in proposers and gov is not None,path+'.governance.proposers','governance.proposer','The reviewed governance multisig must be a timelock proposer')
+        g.check(gov in proposers and gov is not None,path+'.governance.proposers','governance.proposer','The reviewed governance multisig must be a governance-controller proposer')
         for a in g.items(governance.get('executors'),path+'.governance.executors'):g.hex(a,path+'.governance.executors',20,zero=True)
         signers=[g.hex(a,path+'.governance.signers',20) for a in g.items(governance.get('signers'),path+'.governance.signers')]
         g.check(len(set(signers))==len(signers),path+'.governance.signers','governance.duplicate','Multisig signers must be unique')
@@ -302,19 +302,23 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         guardian=g.hex(governance.get('guardian'),path+'.governance.guardian',20)
         g.check(keeper not in proposers and keeper!=gov,path+'.governance.keeper','role.keeper','Use a dedicated keeper account, not the governance wallet')
         if guardian==gov or guardian==keeper:g.text(governance.get('overlap_review'),path+'.governance.overlap_review')
-        g.num(governance.get('timelock_seconds'),path+'.governance.timelock_seconds',86400)
+        g.num(governance.get('timelock_seconds'),path+'.governance.timelock_seconds',0,0)
         g.check(governance.get('delay_fixed') is True,path+'.governance.delay_fixed','timelock.mutable','The current controller rejects delay updates')
-        g.check(governance.get('post_seal_routes_timelocked') is True,path+'.governance.post_seal_routes_timelocked','timelock.routes','Post-seal route onboarding must pass through the fixed governance timelock')
-        g.check(governance.get('migration_delay_seconds')==172800 and type(governance.get('migration_delay_seconds')) is int,
-            path+'.governance.migration_delay_seconds','migration.delay','The implemented additional migration delay is two days')
+        g.check(governance.get('post_seal_routes_timelocked') is False,path+'.governance.post_seal_routes_timelocked','timelock.routes','Post-seal onboarding is governance-authorized without a waiting period')
+        g.check(governance.get('migration_delay_seconds')==0 and type(governance.get('migration_delay_seconds')) is int,
+            path+'.governance.migration_delay_seconds','migration.delay','Approved migrations have no additional time delay')
         g.check(governance.get('sealed') is True and governance.get('bootstrap')==ZERO,
             path+'.governance','seal.incomplete','Before funded operation, sealing must revoke bootstrap and fix all bindings')
-        g.proof(governance.get('roles_and_seal_evidence'),path+'.governance.roles_and_seal_evidence')
+        authority_review=g.proof(governance.get('roles_and_seal_evidence'),path+'.governance.roles_and_seal_evidence')
+        g.check(all(authority_review.get(key) is True for key in (
+            'zero_delay_governance_tested','immediate_migration_tested','no_notice_risk_accepted')),
+            path+'.governance.roles_and_seal_evidence','governance.immediate_review',
+            'Verify immediate exact-call authorization and migrations, and explicitly accept no governance notice window')
         recovery=g.proof(governance.get('parking_rehearsal'),path+'.governance.parking_rehearsal')
         g.check(all(recovery.get(key) is True for key in ('independent','oracle_independent_close_tested',
-            'close_only_minimums_tested','timelock_pause_nonce_tested','oracle_guarded_resume_tested',
+            'close_only_minimums_tested','governance_pause_nonce_tested','oracle_guarded_resume_tested',
             'parked_rewards_and_migration_tested')),path+'.governance.parking_rehearsal','recovery.review',
-            'Require independent current-source parking/resume rehearsal: exact raw close bounds, pause/timelock/snapshot/nonce, preserved claims and migration')
+            'Require independent current-source parking/resume rehearsal: exact raw close bounds, immediate governance/pause/snapshot/nonce, preserved claims and migration')
         constructor=g.obj(chain.get('constructor'),path+'.constructor')
         g.check(constructor.get('canonical_chain_id')==home and type(constructor.get('canonical_chain_id')) is int,
             path+'.constructor.canonical_chain_id','canonical.mismatch','Every vault must share the canonical chain ID')
@@ -546,7 +550,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             replacement=g.proof(sequencer.get('replacement_review'),path+'.sequencer.replacement_review')
             g.check(replacement.get('independent') is True and replacement.get('failed_source_replacement_tested') is True and
                 replacement.get('zero_bypass_disabled') is True,path+'.sequencer.replacement_review','sequencer.recovery',
-                'Review timelocked failed-source replacement, retained uptime/grace checks and forbidden zero-feed bypass')
+                'Review immediate governance-authorized failed-source replacement, retained uptime/grace checks and forbidden zero-feed bypass')
         else:g.check(sequencer.get('address')==ZERO and sequencer.get('active_policy_id')=='0x'+'00'*32 and
             type(sequencer.get('policy_count')) is int and sequencer.get('policy_count')==0,
             path+'.sequencer.address','sequencer.address','No-feed mode requires the initial zero-source state with no admitted policy')

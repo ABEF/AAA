@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 17 In progress | 10 Implemented locally**
+**13 To do | 17 In progress | 11 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -68,6 +68,17 @@ Custody, ownership and reward accounting.
 
   </details>
 
+<a id="task-immediate-governance"></a>
+
+- [x] **[Immediate governance without timelocks](docs/GOVERNANCE.md)** - Implemented. Zero controller delay and no additional LP migration wait are implemented and locally verified. Roles, exact operations, sealing and execution/custody safeguards remain. Independent review, authority selection and live qualification remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped evidence](reports/immediate-governance/VERIFICATION.md): 228 distinct affected Solidity passes, 142 configuration passes, 30 size gates and fresh internal static review. No deployment or independent approval; there is no advance warning window for governance changes.
+
+  </details>
+
 <a id="task-nft-lifecycle"></a>
 
 - [x] **[Minting, activation & NFT ownership](src/ZZZVault.sol)** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
@@ -78,7 +89,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-shared-custody"></a>
 
-- [x] **[Shared LP, maintenance & custody controls](docs/ARCHITECTURE.md)** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate. Approved range changes can now trigger the ordinary keeper rebalance at a flat price after cooldown; successful application clears the mismatch.
+- [x] **[Shared LP, maintenance & custody controls](docs/ARCHITECTURE.md)** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, governance approvals, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate. Approved range changes can now trigger the ordinary keeper rebalance at a flat price after cooldown; successful application clears the mismatch.
 
 
 ## Backend
@@ -283,15 +294,16 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-security-governance"></a>
 
-- [ ] **[Governance, permissions & sealing](docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing)** - In progress. Audit every role, timelock, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
+- [ ] **[Governance, permissions & sealing](docs/SECURITY_AUDIT_PLAN.md#1-governance-permissions-and-sealing)** - In progress. Audit every role, governance controller, configuration and external-module trust boundary for a path around nonredeemable custody. Prove sealed bindings stay fixed and supported asset/feed/route/parameter changes remain bounded; review malicious destinations, lost keys and emergency powers.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Independently audit [immediate governance](docs/GOVERNANCE.md): no advance notice window, zero single/batch and migration delays, unchanged proposer/executor permissions, exact-calldata/replay/predecessor checks, canonical locks and guardian/keeper separation. An approved malicious feed, route, provider or successor can act immediately; review multisig security and acknowledge that trust explicitly.
   - Review governed activation-source enable/disable, future token admission, wrapper implementation/admin changes and disabled-source exit rehearsals. Admitting a source token does not add its conversion route; removing it must not revoke existing LP/reward rights. Ordinary exits remain price-guarded; parked close uses separately approved raw-token bounds. Rehearse governed feed repair without claiming unconditional recovery from external wrapper/bridge failure.
-  - Independently stage paused parking through the sealed timelock: missing/stale price feeds, failed creator inbox, exact share/LP/custody snapshot, close-only minimums excluding idle/compound/donations, one-sided principal, invalidation/replay/expiry, claims/transfers and fresh-oracle resume. Authenticate current-source evidence in the inventory's mandatory `parking_rehearsal` record.
-  - Review the malicious approved-provider trust demonstration and remote custody powers. Code/configuration hashes and timelocks do not prove honest destination funding or safe remote administrators. Keep fixed 80/10/5/5; no percentage setter or generic upgrade is authorized.
-  - Independently review the implemented canonical preparation notice: existing timelock-only start/cancel, exact notice binding, blocked new economic work and protocol configuration, trailing callback guards, and fixed parking/plan-cancellation drains. Guardian pause and timelock unpause remain; inherited timelock roles and scheduling keep their existing rules. The notice grants no successor authority and cannot freeze or export canonical rights.
+  - Independently stage paused parking through the sealed governance controller: missing/stale price feeds, failed creator inbox, exact share/LP/custody snapshot, close-only minimums excluding idle/compound/donations, one-sided principal, invalidation/replay/expiry, claims/transfers and fresh-oracle resume. Authenticate current-source evidence in the inventory's mandatory `parking_rehearsal` record.
+  - Review the malicious approved-provider trust demonstration and remote custody powers. Code/configuration hashes and governance approvals do not prove honest destination funding or safe remote administrators. Keep fixed 80/10/5/5; no percentage setter or generic upgrade is authorized.
+  - Independently review the implemented canonical preparation notice: existing controller-only start/cancel, exact notice binding, blocked new economic work and protocol configuration, trailing callback guards, and fixed parking/plan-cancellation drains. Guardian pause and governance controller unpause remain; inherited governance controller roles and scheduling keep their existing rules. The notice grants no successor authority and cannot freeze or export canonical rights.
 
   </details>
 
@@ -332,7 +344,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
   - Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.
   - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
-  - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the timelocked pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
+  - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
 
   </details>
 
@@ -355,7 +367,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - For principal conversion during relocation, enforce the agreed aggregate 3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards. The implemented atomic local same-pair budget does not yet supply cross-chain aggregate enforcement.
   - Independently qualify the implemented same-chain cutoff, bounded exact export/import, classified backing, single-successor retirement, full/partial abort and late-forwarding paths. Benchmark atomic cutoff capture, ordered per-domain settlement, eight-row batches, each funding leg and final activation across 1,000 NFTs, four historical buckets, 32 LP assets, reachable funded inboxes and 17 royalty slots under unchanged limits.
   - Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
-  - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted timelocked governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
+  - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance-approved governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
   - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding.
   - Historical canonical-handoff qualification recorded 582 regression cases plus 34 focused handoff cases, two opt-in fork setup skips, repaired bridge fixtures and three cold-gas suites. These retain their original source scope. The latest Vault/metadata changes have separate [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md), not a new complete handoff regression. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
 
@@ -378,8 +390,8 @@ Decisions and rehearsals before real funds.
   <summary>Acceptance criteria</summary>
 
   - Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.
-  - Independently review and stage sequencer policy replacement through the actual sealed timelock, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
-  - Select and verify multisig/keeper/guardian/mint-recipient authorities, fixed timelock and module bindings; prohibit mint/LP/royalty receiver collisions.
+  - Independently review and stage sequencer policy replacement through the actual sealed governance controller, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
+  - Select and verify multisig/keeper/guardian/mint-recipient authorities, zero-delay governance controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
   - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and agreed creator payer; 21 fixed core contracts (controller plus 20 sealed modules), eight automatically created helpers/factories, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
 
   </details>
@@ -467,7 +479,7 @@ A separate phase. Disabled at initial launch.
   - Stage canonical -> satellite -> satellite -> home -> revisit with actual providers, duplicate/reordered/forged/underfunded receipts, ACK epochs, pauses, old-policy and historical reward paths.
   - Verify destination reservations, frozen canonical shares/membership, no remint/principal refund, legacy liability barriers, and governance trust for every new destination.
   - Rehearse source-oracle-independent departure of an already Parked bucket with designated compound reserves, retained `remoteSettled` barrier, exact attributed transfers, destination valuation and reviewed provider recovery. Parking does not waive bridge backing or enable arbitrary conversion.
-  - Review each future destination and onboard its immutable policy/routes through the timelock before economic migration. Authenticate provider SDKs, delivery fees, delayed receipts, failure/recovery and retained historical routes; future chains, arbitrary conversions and satellite top-ups are not automatically supported.
+  - Review each future destination and onboard its immutable policy/routes through the governance controller before economic migration. Authenticate provider SDKs, delivery fees, delayed receipts, failure/recovery and retained historical routes; future chains, arbitrary conversions and satellite top-ups are not automatically supported.
   - Resolve permanent-relocation compounding: the canonical creator receiver reserves its 5% compounding share at home while principal is remote. Remote reinvestment needs a separately reviewed funded bridge/top-up design; the current path waits for return.
 
   </details>
@@ -494,4 +506,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `3b343ae72da2b799789b62e878a1d89f08bea3fe51d87095d6de0f93b4637bcc`.
+Snapshot SHA-256: `7b6d564a0372913cd8d5dcf212002d18385349c7a8ec2fd3c3be0683f4dd9662`.

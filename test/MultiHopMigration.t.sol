@@ -77,7 +77,8 @@ contract MultiHopMigrationTest is Test {
     address private receiver=address(0xF001);
     MockAccess private ac;MockToken private t0;MockToken private t1;MockPools private pools;MockRoutes private routes;
     HopVault private vault;HopNFT private nft;HopBridge private bridge;ZZZMigration private migration;bytes32 private poolId;
-    function setUp() public {_fixture(HOME);}
+    function setUp() public {
+        if (block.timestamp < 2) vm.warp(1000000);_fixture(HOME);}
     function _fixture(uint256 chain) private {
         vm.chainId(chain);vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(0);t1=new MockToken(0);
         pools=new MockPools();routes=new MockRoutes();vault=new HopVault(address(ac),HOME,pools);nft=new HopNFT();
@@ -103,7 +104,8 @@ contract MultiHopMigrationTest is Test {
     }
     function _store(Route memory r) private returns(bytes32 id){id=keccak256(abi.encode(r));routes.set(id,r);}
     function _execute(bytes32 routeId) private returns(BridgeMessage memory m){
-        bytes32 id=migration.propose(ID,routeId);vm.warp(block.timestamp+2 days);
+        bytes32 id=migration.propose(ID,routeId);
+        assertEq(migration.MIGRATION_DELAY(),0);
         migration.execute(id,block.timestamp+100);return bridge.message();
     }
     function _first() private returns(BridgeMessage memory){
@@ -189,7 +191,8 @@ contract MultiHopMigrationTest is Test {
     }
     function testTransportFailureRestoresPrincipalEpochAndScheduledPlan() public {
         bytes32 routeId=_store(_route(HOME,address(vault),receiver,address(t0),address(t1),B,BV,BR,BT0,BT1));
-        bytes32 id=migration.propose(ID,routeId);vm.warp(block.timestamp+2 days);bridge.setFail(true);
+        bytes32 id=migration.propose(ID,routeId);
+        assertEq(migration.MIGRATION_DELAY(),0);bridge.setFail(true);
         vm.expectRevert();migration.execute(id,block.timestamp+100);
         assertEq(migration.custodyEpoch(ID),0);assertEq(uint256(vault.position(ID).status),uint256(PositionStatus.Active));
         assertEq(t0.balanceOf(address(vault)),1000);assertEq(t0.balanceOf(address(migration)),0);
@@ -253,8 +256,9 @@ contract MultiHopMigrationRegistryTest is Test {
     HopBoundPools private pools;bytes32 private localPool;
     ZZZBridgeRouter private router;RouterProviderMock private provider;bytes32 private lastPolicy;
     function setUp() public {
+        if (block.timestamp < 2) vm.warp(1000000);
         vm.chainId(1);vm.warp(1_000_000);address[] memory actors=new address[](1);actors[0]=address(this);
-        ac=new ZZZAccessController(1 days,actors,actors,address(this),address(this));pools=new HopBoundPools(address(ac));
+        ac=new ZZZAccessController(0,actors,actors,address(this),address(this));pools=new HopBoundPools(address(ac));
         vault=new HopVault(address(ac),block.chainid,pools);registry=new ZZZMigrationRegistry(address(ac));
         router=new ZZZBridgeRouter(address(ac));provider=new RouterProviderMock(address(router),keccak256("test channel"));
         token0=new MockToken(6);token1=new MockToken(18);ZZZOracle oracle=new ZZZOracle(address(ac),address(0));
@@ -290,16 +294,15 @@ contract MultiHopMigrationRegistryTest is Test {
         lastPolicy=keccak256(abi.encode(p));
         if(!router.policyExists(lastPolicy)){
             bytes memory policyData=abi.encodeCall(router.registerPolicy,(p));bytes32 policySalt=keccak256(abi.encode(salt,"policy"));
-            ac.schedule(address(router),0,policyData,bytes32(0),policySalt,1 days);vm.warp(block.timestamp+1 days);
+            ac.schedule(address(router),0,policyData,bytes32(0),policySalt,0);vm.warp(block.timestamp+1 days);
             ac.execute(address(router),0,policyData,bytes32(0),policySalt);
         }
-        data=abi.encodeCall(ZZZMigrationRegistry.add,(r,lastPolicy));ac.schedule(address(registry),0,data,bytes32(0),salt,1 days);
+        data=abi.encodeCall(ZZZMigrationRegistry.add,(r,lastPolicy));ac.schedule(address(registry),0,data,bytes32(0),salt,0);
     }
-    function testFutureUnknownGraphEdgeRequiresCompletedTimelock() public {
+    function testFutureUnknownGraphEdgeRequiresImmediateGovernance() public {
         Route memory r=_edge();vm.expectRevert();registry.add(r,bytes32(0));
         bytes32 salt=keccak256("future edge");bytes memory data=_schedule(r,salt);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);
-        vm.warp(block.timestamp+1 days);ac.execute(address(registry),0,data,bytes32(0),salt);
+        ac.execute(address(registry),0,data,bytes32(0),salt);
         bytes32 id=keccak256(abi.encode(r,lastPolicy));assertTrue(registry.exists(id));assertTrue(registry.enabled(id));
         (Route memory stored,)=registry.get(id);assertEq(stored.destinationChain,3);assertEq(stored.destinationVault,r.destinationVault);
     }

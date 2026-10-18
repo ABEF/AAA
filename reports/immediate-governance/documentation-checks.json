@@ -1,0 +1,27 @@
+{
+  "relative_links_checked": 569,
+  "broken_links": [],
+  "unrelated_drafts_unchanged": [
+    "docs/CHANGELOG.md",
+    "docs/CLAIM_ROUTER.md",
+    "docs/FRONTEND_API.md",
+    "docs/FRONTEND_HISTORY.md",
+    "frontend_api/server.py",
+    "scripts/run-fork-checks.py",
+    "tests_python/test_activation_route.py",
+    "tests_python/test_fork_runner.py",
+    "tests_python/test_frontend_history.py",
+    "zzz_ops/activation_route.py"
+  ],
+  "mixed_docs_use_head_derived_publication": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "docs/ACTIVATION_ENTRY.md",
+    "docs/ACTIVATION_ROUTING.md",
+    "docs/COMPONENT_STATUS.md",
+    "docs/DEVELOPMENT.md",
+    "docs/OPERATIONS.md",
+    "docs/PRODUCTION_SERVICES.md"
+  ],
+  "intended_paths": 63
+}

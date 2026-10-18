@@ -47,7 +47,7 @@ not bound the cumulative loss of repeated migrations.
 ## Reversible preparation before a canonical handoff
 
 The [access controller](../src/ZZZAccessController.sol) accepts an exact
-`PreparationNotice` only through its existing timelock, after sealing, on the
+`PreparationNotice` only through its existing governance controller, after sealing, on the
 current canonical chain. The notice commits to a destination chain/controller,
 deployment commitment and review hash, with a source-domain hash and increasing
 nonce. This is an announcement, not proof that the successor is safe or ready.
@@ -61,14 +61,14 @@ nonce. This is an announcement, not proof that the successor is safe or ready.
 | Pending VRF fulfillment and ordered reveal | Remain available; no reroll or fallback is added |
 | Harvest, inbox synchronization, incoming principal/rewards and finalization | Remain available under their existing guards |
 | Funded reward delivery and acknowledgements | Remain available to settle outstanding obligations |
-| Guardian pause and timelocked unpause | Retained; unpause does not bypass preparation |
-| Timelocked parking, parking invalidation and cancellation of scheduled moves | Retained for orderly draining |
+| Guardian pause and governance-approved unpause | Retained; unpause does not bypass preparation |
+| Governance-approved parking, parking invalidation and cancellation of scheduled moves | Retained for orderly draining |
 
 New work and ordinary configuration check their guards again after external
-callbacks. A matured announcement cannot execute inside one of those operations
+callbacks. An authorized announcement cannot execute inside one of those operations
 and let the operation finish despite the preparation restriction.
 
-Only the timelock can cancel preparation, and cancellation must identify the
+Only the governance controller can cancel preparation, and cancellation must identify the
 exact current notice. Old queued cancellation data cannot cancel a later notice.
 No custody or canonical rights leave in this phase, so cancellation needs no
 cross-chain proof. No terminal freeze, export, import or successor activation
@@ -77,12 +77,12 @@ entrypoint is exposed by these changes.
 Preparation applies to this canonical controller. It does not authenticate a
 stop instruction to satellites or prove that remote channels have drained.
 That coordinated readiness protocol is still required before a full handoff.
-Inherited timelock role administration, scheduling and cancellation keep their
+Inherited controller role administration, scheduling and cancellation keep their
 existing authority rules; preparation does not freeze every governance datum.
-The configured timelock delay remains immutable (`updateDelay` always reverts).
+The governance delay is fixed at zero (`updateDelay` always reverts).
 
 Missing return routes, failed dependencies or role changes that require new
-configuration must be addressed before announcing, or after timelocked
+configuration must be addressed before announcing, or after governance-approved
 cancellation. Preparation is not an emergency replacement mechanism.
 
 ## Keeper behavior during preparation
