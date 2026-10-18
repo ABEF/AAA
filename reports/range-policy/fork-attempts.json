@@ -1,0 +1,20 @@
+[
+  {
+    "folder": "selected-fork-attempt1",
+    "receipt_sha256": "1f3005d7ee763f44bb6d7c72ad508841d063018ecd6ee67c194a3e8fdae54035",
+    "exit_code": 1,
+    "passed": false,
+    "seconds": 397.89,
+    "reason": "Native claim recipient was the nonpayable test harness; test fixture corrected to transfer NFT and claim to a normal owner wallet.",
+    "production_source_unchanged": true
+  },
+  {
+    "folder": "selected-fork-interrupted",
+    "receipt_sha256": "c213a5ff492ba03f67c17d5225f6b5b3de3e305827eb6bad20ac5a50cdef9879",
+    "exit_code": 4294967295,
+    "passed": false,
+    "seconds": 36.92,
+    "reason": "Stopped local fork process during compilation to use persistent buyer impersonation across the royalty getter and claim.",
+    "production_source_unchanged": true
+  }
+]

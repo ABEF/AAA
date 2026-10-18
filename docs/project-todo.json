@@ -26,7 +26,7 @@
           "id": "shared-custody",
           "status": "done",
           "title": "Shared LP, maintenance & custody controls",
-          "text": "One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate.",
+          "text": "One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate. Approved range changes can now trigger the ordinary keeper rebalance at a flat price after cooldown; successful application clears the mismatch.",
           "href": "docs/ARCHITECTURE.md"
         },
         {
@@ -107,7 +107,7 @@
           "id": "activation-quotes",
           "status": "progress",
           "title": "Complete activation & top-up quotes",
-          "text": "Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards.",
+          "text": "Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot.",
           "href": "docs/ACTIVATION_PREPARATION.md",
           "acceptance": [
             "Implemented: typed owner request, exact source admission/route/feed/runtime/module pins, one confirmed canonical hash, two full Entry simulations, contract-budget/share/event/LP reconciliation and tighter final conversion/liquidity minima. Missing allowance produces only an exact approval/reset draft and requires re-preparation after confirmation; no state overrides, signer or broadcast.",
@@ -223,8 +223,8 @@
           "id": "local-verification",
           "status": "done",
           "title": "Local contract and integration tests",
-          "text": "Latest dynamic-liquidity checks pass: 119 affected Solidity cases, 138 isolated backend cases, normal size/source gates and a fresh internal static review. The earlier 582-case full regression retains its original source scope; it is not a full regression of the latest delta. Reuse unchanged evidence and rerun only affected checks unless a release qualification requires broader coverage.",
-          "href": "reports/canonical-handoff/VERIFICATION.md"
+          "text": "Latest range-policy scope passes 37 Solidity and 38 isolated Python cases, normal size/source gates and fresh internal static review. The preceding dynamic-liquidity and earlier full-regression receipts retain their own source scope; no new full regression is claimed. Reuse unchanged evidence and rerun only affected checks unless release qualification requires broader coverage.",
+          "href": "reports/range-policy/VERIFICATION.md"
         },
         {
           "id": "mainnet-fork",
@@ -331,7 +331,7 @@
             "Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.",
             "Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.",
             "The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.",
-            "Specify a controlled way to apply a timelocked range-policy change when price movement has not triggered normal rebalancing. Configuration remains adjustable after sealing, but existing LP ticks do not change automatically. Bind the intended bucket, configuration and current position; retain cooldown/frequency, oracle, minimum-output, 3% aggregate and idle safeguards, with gas separate, unchanged NFT rights and rollback. Governance/execution semantics require an explicit design decision before adding any force-rebalance authority. See [range-change behavior](docs/DYNAMIC_LIQUIDITY.md#changing-the-range-after-sealing)."
+            "Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the timelocked pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification."
           ]
         },
         {

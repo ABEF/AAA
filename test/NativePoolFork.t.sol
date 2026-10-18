@@ -410,6 +410,49 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         assertEq(s.vault.sharesOf(second), shares1); assertEq(s.vault.bucketTotalShares(bucket), shares0 + shares1);
         vm.expectRevert(); positions.ownerOf(lp); _assertApprovalsCleared();
     }
+    function testSelectedNativeApprovedRangeUpdateUsesRealTriggerAndPreservesClaims() public {
+        SharedSystem memory s = _sharedSystem(); PoolConfig memory c = pools.get(POOL);
+        c.rangeBps = 5000; pools.configureNative(c);
+        uint256 first = _issue(s); s.vault.activate(first, POOL, 0, 200 ether, 1, block.timestamp + 100);
+        uint256 second = _issue(s); s.vault.activate(second, POOL, 0, 200 ether, 1, block.timestamp + 100);
+        uint256 bucket = s.vault.nftBucket(first); Position memory old = s.vault.group(bucket);
+        uint256 share0 = s.vault.sharesOf(first); uint256 share1 = s.vault.sharesOf(second);
+        address inbox = s.fees.createRewardReceiver(bucket, WETH);
+        (bool funded,) = inbox.call{value: 0.001 ether}(""); assertTrue(funded);
+        s.fees.syncExternal(bucket);
+        (bool royaltyFunded,) = address(s.nft.royaltyRewards()).call{value: 0.01 ether}(""); assertTrue(royaltyFunded);
+        uint256 owed = s.rewards.claimable(first, WETH);
+        uint256 royalty = s.nft.royaltyRewards().claimable(first, address(0));
+        assertGt(owed, 0); assertGt(royalty, 0);
+        c.rangeBps = 1000; pools.configureNative(c);
+        assertTrue(strategy.rangeUpdatePending(bucket)); assertFalse(strategy.needsRebalance(bucket));
+        vm.expectRevert(); s.vault.rebalance(bucket, 1, block.timestamp + 100);
+        vm.warp(block.timestamp + 600); assertTrue(strategy.needsRebalance(bucket));
+        // A failed mint must leave the old range/rights and pending policy intact.
+        vm.expectRevert(); s.vault.rebalance(bucket, type(uint128).max, block.timestamp + 100);
+        assertEq(s.vault.group(bucket).lpTokenId, old.lpTokenId); assertEq(s.rewards.claimable(first, WETH), owed);
+        assertTrue(strategy.rangeUpdatePending(bucket));
+        s.vault.rebalance(bucket, 1, block.timestamp + 100);
+        Position memory current = s.vault.group(bucket); assertTrue(current.lpTokenId != old.lpTokenId);
+        (int24 lower, int24 upper) = manager.ticks(current.lpTokenId);
+        (int24 expectedLower, int24 expectedUpper,) = strategy.target(POOL);
+        assertEq(lower, expectedLower); assertEq(upper, expectedUpper);
+        assertEq(s.vault.sharesOf(first), share0); assertEq(s.vault.sharesOf(second), share1);
+        assertEq(s.vault.bucketTotalShares(bucket), share0 + share1);
+        assertEq(s.rewards.claimable(first, WETH), owed); assertEq(s.nft.royaltyRewards().claimable(first, address(0)), royalty);
+        assertFalse(strategy.rangeUpdatePending(bucket)); vm.warp(block.timestamp + 600);
+        assertFalse(strategy.needsRebalance(bucket)); vm.expectRevert(); s.vault.rebalance(bucket, 1, block.timestamp + 100);
+        // A normal wallet receives both accrued rights; the test harness has no ETH receiver.
+        address buyer = address(0xB0B); s.nft.transferFrom(address(this), buyer, first);
+        uint256 beforeToken = IERC20(WETH).balanceOf(buyer); uint256 beforeNative = buyer.balance;
+        vm.startPrank(buyer);
+        assertEq(s.rewards.claim(first, WETH), owed);
+        assertEq(s.nft.royaltyRewards().claim(first, address(0)), royalty);
+        vm.stopPrank();
+        assertEq(IERC20(WETH).balanceOf(buyer) - beforeToken, owed); assertEq(buyer.balance - beforeNative, royalty);
+        assertEq(s.rewards.claimable(first, WETH), 0); assertEq(s.nft.royaltyRewards().claimable(first, address(0)), 0);
+        assertEq(positions.ownerOf(current.lpTokenId), address(s.vault)); _assertApprovalsCleared();
+    }
     function testSelectedNativeDisabledSourceVaultMigrationRetainsPriceGuard() public {
         SharedSystem memory s = _sharedSystem(); uint256 first = _issue(s);
         s.vault.activate(first, POOL, 0, 200 ether, 1, block.timestamp + 100);

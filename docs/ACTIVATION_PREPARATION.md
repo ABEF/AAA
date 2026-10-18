@@ -120,6 +120,13 @@ now"/"waiting for price trigger"; `next_keeper_check_at` and
 `expected_execution_at` remain null without qualified operating telemetry.
 No fabricated 10-minute countdown is emitted. See [timing rules](DYNAMIC_LIQUIDITY.md#admission-and-rebalance-timing).
 
+`rebalance.range_update_pending` also reports a governed range mismatch.
+`eligibility_reason` is `range_update`, `price_trigger`, `price_and_range` or null;
+it describes the observed trigger even during cooldown. Eligibility is checked
+against both triggers and cooldown at the same canonical hash. The pinned
+Strategy must expose the matching `rangeUpdatePending(uint256)` getter; invalid
+or missing responses fail closed. See [range updates](RANGE_POLICY_UPDATES.md).
+
 Outside-range and rebalance-due contributions remain allowed under the existing
 price/cost/custody guards. Before signing, reprepare after a physical position,
 range or relevant policy change; the transaction has economic minima/deadline,

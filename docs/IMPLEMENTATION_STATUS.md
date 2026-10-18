@@ -32,6 +32,7 @@ decision for an exact release, not development progress.
 | Website preview | The separate website demonstrates artwork, portfolios, minting, activation and LP/royalty claims with example data. These are simulated flows; live wallet transactions and backend integration remain separate tasks. | [Preview](https://popldemo.0xwave.com/), [frontend tasks](../TODO.md#frontend) |
 | Keeper and operating tools | Bucket discovery, guarded maintenance, serial budgets, durable pending recovery, confirmed receipt/nonce checks, metadata watching, health checks and exclusive recovery snapshots exist. Preparation defers new rebalance/compound/buyback work while permitting drains. A separate strict canonicalState getter blocks every new submission during frozen/importing/retired/cancelled states; receipt recovery continues. Older deployed staging code is unchanged. | [Recovery runbook](KEEPER_RECOVERY.md), [handoff evidence](../reports/canonical-handoff/VERIFICATION.md) |
 | Future migration | Timelocked routes and whole-bucket migration/parking preserve canonical NFT rights and funded-liability barriers. Reservations now permanently admit capacity; aliases/returns are idempotent and None-state consumers skip unfunded entries. Remote admission proof and real provider qualification remain separate. Canonical NFTs and claim ledgers do not automatically migrate with LP custody. | [Migration source](../src/ZZZMigration.sol), [recovery model](CHANGE_AND_RECOVERY.md) |
+| Governed range application | A timelocked width change that differs from deployed ticks at the recorded center can trigger ordinary rebalance at a flat price. Cooldown, fresh prices, execution minima, aggregate budget and idle cap remain. Successful replacement clears the mismatch; small price drift or identical rounded ticks do not cause policy churn. Backend context distinguishes price and range triggers. | [Range policy](RANGE_POLICY_UPDATES.md), [verification](../reports/range-policy/VERIFICATION.md) |
 | Local execution budget | Ordinary rebalance and atomic same-ordered-pair movePool/resume uses an immutable Vault-created helper. It values principal/attributed idle before harvest, adds only exact released compound, and applies the same initial fresh price/decimal vector after close, balance and mint. Retained LP plus attributed idle must be at least 97%, with the existing 5% idle ceiling under that vector. Gas is separate; activation/top-ups retain 1%. Different-pair and asynchronous bridge enforcement is not supplied. | [Budget helper](../src/ZZZMigrationBudget.sol), [Vault](../src/ZZZVault.sol) |
 | Canonical preparation | The existing timelock can announce and cancel an exact notice on the canonical controller. New economic work and protocol configuration stop; transfers, direct/batch claims, ordered reveal, fee settlement, incoming delivery, funded Reward/ACK sends and exact parking/plan-cancellation drains remain available. Trailing guards roll back new work if a callback starts preparation. Guardian pause and timelock unpause remain distinct. The notice grants no successor authority and does not freeze/export/import rights or prove satellite shutdown. | [Controller](../src/ZZZAccessController.sol), [canonical design](CANONICAL_MIGRATION_DESIGN.md) |
 | Same-chain canonical handoff | Separate fixed coordinator/companions capture receipts, freeze ownership and accounting, export/import complete exact domains, move classified backing, and atomically retire the source/activate one successor. Bounded relay operations, fully restored abort and immediate-successor late forwarding exist. All mints must be revealed, local buckets parked and legacy bridge history unused. Imported successors cannot initiate legacy v3 principal bridging. | [Implemented boundary](CANONICAL_HANDOFF.md), [coordinator](../src/ZZZCanonicalHandoff.sol) |
@@ -44,7 +45,14 @@ requirements are maintained once in the [Todo](../TODO.md), including the
 
 ## Evidence and its limits
 
-The latest [dynamic-liquidity verification](../reports/dynamic-liquidity/VERIFICATION.md)
+The latest [range-policy verification](../reports/range-policy/VERIFICATION.md)
+binds the new stateless Strategy trigger and backend cause/eligibility fields.
+Approved width changes no longer have to wait for price movement; cooldown and
+all ordinary execution guards still apply. This is scoped verification, not a
+new full regression or production approval. The [design](RANGE_POLICY_UPDATES.md)
+states authorization, current-position/configuration semantics and limitations.
+
+The preceding [dynamic-liquidity verification](../reports/dynamic-liquidity/VERIFICATION.md)
 covers the current metadata price guard and ordinary-rebalance aggregate cap,
 current-physical-LP API identity, original contribution separation and range/
 eligibility warnings. Read [the accounting reference](DYNAMIC_LIQUIDITY.md) for
@@ -56,8 +64,8 @@ The [historical handoff verification record](../reports/canonical-handoff/VERIFI
 records 582 passing regression cases with two explicit opt-in fork setup skips,
 fixed bridge fixtures and three cold-gas suites for its earlier source snapshot.
 Its 34 focused handoff passes, 30 object gates, 141 configuration checks and
-374-finding internal review retain that scope. The current changed paths use the
-dynamic-liquidity evidence above; no full current-source regression is claimed.
+374-finding internal review retain that scope. The changed paths use the separate
+dynamic-liquidity and range-policy evidence above; no full current-source regression is claimed.
 The [continuation record](WORK_HANDOFF.md) describes remaining integration and
 release work. Check Git HEAD and origin/main for publication. Earlier evidence remains historical and
 does not verify its new lifecycle guards, helpers, codecs or custody extraction.

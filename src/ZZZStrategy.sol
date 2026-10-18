@@ -19,6 +19,9 @@ contract ZZZStrategy is ZZZModule {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         if (!c.operationsEnabled) revert InvalidState();
         referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
+        (lower, upper) = _range(c, referenceX96);
+    }
+    function _range(PoolConfig memory c, uint160 referenceX96) private pure returns (int24 lower, int24 upper) {
         uint256 lowerRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 - c.rangeBps) * 1e28), 1e16);
         uint256 upperRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 + c.rangeBps) * 1e28), 1e16);
         if (lowerRoot <= TickMath.MIN_SQRT_PRICE || upperRoot >= TickMath.MAX_SQRT_PRICE) revert InvalidConfiguration();
@@ -48,14 +51,28 @@ contract ZZZStrategy is ZZZModule {
     }
     function needsRebalance(uint256 id) external view returns (bool) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
-        if (p.status != PositionStatus.Active || p.centerX96 == 0) return false;
+        if (p.status != PositionStatus.Active || p.centerX96 == 0 || p.lpTokenId == 0) return false;
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
         uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
         uint256 rootRatio = Math.mulDiv(ref, 1e18, p.centerX96);
         uint256 priceRatio = Math.mulDiv(rootRatio, rootRatio, 1e18);
         uint256 delta = priceRatio > 1e18 ? priceRatio - 1e18 : 1e18 - priceRatio;
-        return delta >= uint256(c.triggerBps) * 1e14;
+        return delta >= uint256(c.triggerBps) * 1e14 || _rangeUpdatePending(p, c);
+    }
+    /// @notice A timelocked width change can require replacement even at a flat price.
+    /// Pending is not execution eligibility: cooldown, operations and all Vault
+    /// guards still apply. Comparing at the recorded center avoids price-drift churn.
+    function rangeUpdatePending(uint256 id) external view returns (bool) {
+        Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
+        if (p.status != PositionStatus.Active || p.centerX96 == 0 || p.lpTokenId == 0) return false;
+        return _rangeUpdatePending(p, IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId));
+    }
+    function _rangeUpdatePending(Position memory p, PoolConfig memory c) private view returns (bool) {
+        (int24 expectedLower, int24 expectedUpper) = _range(c, p.centerX96);
+        (int24 lower, int24 upper) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).ticks(p.lpTokenId);
+        if (lower >= upper) revert InvalidState();
+        return lower != expectedLower || upper != expectedUpper;
     }
     function swapPlan(bytes32 poolId, uint256 amount0, uint256 amount1)
         external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut) {

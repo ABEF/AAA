@@ -1,0 +1,17 @@
+{
+  "total_findings": 376,
+  "dispositions": {
+    "false_positive": 155,
+    "accepted_risk": 75,
+    "informational": 146
+  },
+  "matched_expression_reviews": 376,
+  "coverage_pass": true,
+  "mutation_rejections": {
+    "missing_finding": true,
+    "unreviewed": true,
+    "wrong_expression": true,
+    "stale_strategy": true
+  },
+  "independent_audit": false
+}

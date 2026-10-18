@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "getter": {
+    "type": "function",
+    "name": "rangeUpdatePending",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  "artifact_sha256": "cf9a512d5a0a68185ba71d7ed00b7b537c1c2e8751918cdd013902b99bcde02a"
+}

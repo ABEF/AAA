@@ -5,6 +5,17 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The latest [range-policy path](RANGE_POLICY_UPDATES.md) is implemented. After a
+timelocked range update, ordinary keeper rebalance becomes eligible once cooldown
+passes even at a flat price. It compares current LP ticks at the recorded center,
+preserves existing Vault guards and clears the mismatch on success. No forced
+execution role/state was added. Backend context now reports the pending range
+cause and checks both triggers. Read [current evidence](../reports/range-policy/VERIFICATION.md).
+Only Strategy production Solidity changed; broad unchanged suites were not
+repeated. Vault still has 19 runtime bytes of headroom. Runtime manifests, real
+range/MEV/gas qualification, services and independent review remain open. The
+website/server and paused monitoring are unchanged. Check Git for publication.
+
 The [dynamic-liquidity review](DYNAMIC_LIQUIDITY.md) adds the user-approved
 out-of-range warning with honest eligibility timing, the 3% aggregate ordinary
 rebalance budget, guarded current NFT valuation and current-LP API context.
@@ -41,8 +52,8 @@ Production Solidity is unchanged and its tests were not repeated. Live archive
 services, independent peer review and website integration remain open.
 The optional wallet POST drafts remain outside this scoped publication.
 
-The saved bridge-fixture fixes and final cold-gas checks are verified. The current
-regression passes **582 cases with zero failures and two intentional fork setup
+The earlier handoff's saved bridge-fixture fixes and final cold-gas checks were
+verified. That regression passed **582 cases with zero failures and two intentional fork setup
 skips** across 49 suites. The unchanged 34-case focused handoff run is reused after
 checking all compiled dependencies, giving 616 successful cases in combined scope.
 These are separate source-matched runs, not one new 616-case execution.

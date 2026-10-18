@@ -64,7 +64,7 @@ from swap impact, market losses, MEV, dishonest feeds or admitted venue failures
 
 The user chose to allow new activations/top-ups outside the current range, with
 an explicit warning and all ordinary custody, oracle, route and 1% checks retained.
-A pending price-triggered rebalance alone does not block a contribution. There is
+A pending price- or range-triggered rebalance alone does not block a contribution. There is
 no deposit queue, automatic user-triggered rebalance or arbitrary near-edge band.
 If costs cannot meet the 99% floor, the atomic transaction still reverts.
 
@@ -76,9 +76,9 @@ enough to classify the active tick.
 
 | Warning state | Meaning shown to the holder |
 | --- | --- |
-| Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. The price trigger and execution checks must still pass. |
-| Eligible now | Cooldown and price trigger pass at the confirmed snapshot. Execution awaits a keeper and successful safety checks. |
-| Waiting for price trigger | Cooldown has ended; no scheduled execution time can be inferred. |
+| Cooldown | Earliest eligibility is `lastRebalance + minRebalanceInterval`, shown as a UTC timestamp. A price trigger or pending approved range update and execution checks must still pass. |
+| Eligible now | Cooldown and either trigger pass at the confirmed snapshot; the cause is reported. Execution awaits a keeper and successful safety checks. |
+| Waiting for price trigger | Cooldown has ended and no approved range mismatch exists; no scheduled execution time can be inferred. |
 | Keeper timing unavailable | `next_keeper_check_at` and `expected_execution_at` are null. Never fabricate a countdown from the 600-second example polling setting. |
 
 A wide range and frequent polling reduce the chance/time out of range; they do
@@ -101,13 +101,14 @@ pool price before outward tick rounding. The registry permits 100-5,000 basis
 points; trigger and spot-deviation settings must remain inside their own bounds
 and below the half-width. These are parameter changes, not code upgrades.
 
-Updating this setting does not resize the current physical LP or independently
-satisfy `Strategy.needsRebalance`: the ordinary price trigger and cooldown still
-apply. The next eligible replacement uses the new target. Governed paused
-parking/resumption is a separate custody-recovery process, not an automatic
-routine range update. A dedicated controlled policy-application path is proposed
-under [strategy security](../TODO.md#task-security-strategy); it is not implemented
-or an authorization for an unrestricted forced rebalance.
+Updating this setting does not instantly resize the current physical LP. The
+implemented [range-policy path](RANGE_POLICY_UPDATES.md) compares deployed ticks
+with the configured target at the recorded LP center. A mismatch can satisfy
+the existing rebalance trigger even at a flat price, after the normal cooldown.
+The keeper uses ordinary rebalance with all price, minimum-output, 3% aggregate
+and idle guards retained. Successful replacement clears the mismatch. No new
+force-rebalance authority is added; governed parking remains a separate recovery
+process. Production strategy qualification remains in the central Todo.
 
 ## Aggregate rebalance budget
 

@@ -77,7 +77,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-shared-custody"></a>
 
-- [x] **[Shared LP, maintenance & custody controls](docs/ARCHITECTURE.md)** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate.
+- [x] **[Shared LP, maintenance & custody controls](docs/ARCHITECTURE.md)** - Implemented. One shared LP per pool/strategy serves many NFTs. The local four-historical-bucket safety bound, permanent allocations, pool-level upkeep, timelocks, parking and guarded resumption are implemented. Ordinary rebalances now also enforce the user-approved 3% aggregate fixed-start-price cap, retaining existing guards and 5% idle; gas is separate. Approved range changes can now trigger the ordinary keeper rebalance at a flat price after cooldown; successful application clears the mismatch.
 
 
 ## Backend
@@ -111,7 +111,7 @@ The data and services behind the app.
 
 <a id="task-activation-quotes"></a>
 
-- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards.
+- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -263,7 +263,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-verification"></a>
 
-- [x] **[Local contract and integration tests](reports/canonical-handoff/VERIFICATION.md)** - Implemented. Latest dynamic-liquidity checks pass: 119 affected Solidity cases, 138 isolated backend cases, normal size/source gates and a fresh internal static review. The earlier 582-case full regression retains its original source scope; it is not a full regression of the latest delta. Reuse unchanged evidence and rerun only affected checks unless a release qualification requires broader coverage.
+- [x] **[Local contract and integration tests](reports/range-policy/VERIFICATION.md)** - Implemented. Latest range-policy scope passes 37 Solidity and 38 isolated Python cases, normal size/source gates and fresh internal static review. The preceding dynamic-liquidity and earlier full-regression receipts retain their own source scope; no new full regression is claimed. Reuse unchanged evidence and rerun only affected checks unless release qualification requires broader coverage.
 
 <a id="task-economic-rights-audit"></a>
 
@@ -325,7 +325,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
   - Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.
   - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
-  - Specify a controlled way to apply a timelocked range-policy change when price movement has not triggered normal rebalancing. Configuration remains adjustable after sealing, but existing LP ticks do not change automatically. Bind the intended bucket, configuration and current position; retain cooldown/frequency, oracle, minimum-output, 3% aggregate and idle safeguards, with gas separate, unchanged NFT rights and rollback. Governance/execution semantics require an explicit design decision before adding any force-rebalance authority. See [range-change behavior](docs/DYNAMIC_LIQUIDITY.md#changing-the-range-after-sealing).
+  - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the timelocked pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
 
   </details>
 
@@ -487,4 +487,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `f4063a6d9a37ead064b080a099263c3d80a6005f5fedb2796cd5e8554b7f547c`.
+Snapshot SHA-256: `dff25d058a95264847407c0b8fbee0d40e59b0868f10a3d13c06a6b73b0162fe`.

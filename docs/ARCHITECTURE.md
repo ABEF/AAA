@@ -46,7 +46,7 @@ The renderer selects among 2,784 supported palette/pattern/rarity/evolution SVG 
 
 ## Maintenance and migration
 
-Keeper collect/rebalance/compound operations run once per bucket, with no NFT-holder loop. They retain trigger, cooldown, oracle/spot, range, swap, minimum-liquidity and deadline guards. Pooling does not remove impermanent loss, swap costs or MEV; real strategy/gas economics remain unapproved.
+Keeper collect/rebalance/compound operations run once per bucket, with no NFT-holder loop. They retain trigger, cooldown, oracle/spot, range, swap, minimum-liquidity and deadline guards. [Approved range changes](RANGE_POLICY_UPDATES.md) can trigger ordinary rebalance at a flat price after cooldown; comparison at the recorded center prevents price-drift churn. Pooling does not remove impermanent loss, swap costs or MEV; real strategy/gas economics remain unapproved.
 
 Source custody follows Active -> Outbound -> Remote and destination custody None/Remote -> Inbound -> Active. Canonical NFT shares and memberships stay home. Governance approves immutable equivalent-asset routes through a timelock; principal movement adds a two-day delay. New membership/share entry freezes while scheduled/away. No timeout principal refund exists.
 

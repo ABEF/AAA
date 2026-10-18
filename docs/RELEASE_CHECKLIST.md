@@ -23,6 +23,12 @@ normal sizes and internal review do not approve live services, operating paramet
 independent audit or funds. Prior full-regression receipts are not current-source
 qualification of this delta.
 
+The subsequent [range-policy delta](../reports/range-policy/VERIFICATION.md)
+changes Strategy eligibility and confirmed API context. It adds no force role or
+Vault code change. Its timelock/cooldown/rollback and accounting checks do not
+qualify chosen production widths, repeated-operation costs, live prices or keeper
+operation. Exact-release module runtime pins must include this Strategy version.
+
 ## Release identity
 
 | Approval field | Recorded value |

@@ -52,6 +52,11 @@ The [confirmed API](FRONTEND_API.md) reads real NFT state and both funded ledger
 
 Integrate the [implemented strict API lifecycle boundary](FRONTEND_LIFECYCLE.md) and [complete configured same-chain claim lineage](FRONTEND_LINEAGE.md) into wallet flows. Qualify historical archive reads, complete ingestion, retirement-cutoff retention and bounded request latency. Locked deployments refuse NFT/wallet projections; missing lineage stays unavailable and invalid configured lineage fails closed. Lifetime LP and royalty claims include verified predecessors and past owners; imported NFTs are not new paid mints or marketplace sales. Cross-chain history remains part of future canonical migration. Show execution-time rights when buying an NFT, since a seller can claim before transfer. Local unpublished unsigned-preparation work is not a deployed signing service.
 
+The implemented [range-policy application](RANGE_POLICY_UPDATES.md) uses the
+existing timelock and ordinary keeper path. Qualify production widths/cooldowns,
+runtime pins and change/resimulation procedures in the operating rehearsal; an
+eligible range update is not a promised keeper execution time.
+
 ## 5. Rehearse operations and qualify later transport
 
 Owning tasks: [authorities and prices](../TODO.md#task-authorities-prices), [keeper guards](../TODO.md#task-keeper-guardrails), [keeper recovery](../TODO.md#task-keeper-recovery), [hosted services](../TODO.md#task-host-services), [testnet rehearsal](../TODO.md#task-testnet-rehearsal), [destination capacity](../TODO.md#task-destination-slots), [bridge operation](../TODO.md#task-bridge-operation).

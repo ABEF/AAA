@@ -1,3 +1,12 @@
+# Range-policy application - 2026-10-18
+
+Timelocked range-width changes now make ordinary keeper rebalance eligible after
+cooldown without requiring price movement. Current physical ticks are compared
+at the stored center, avoiding drift churn. Existing Vault safeguards, shares and
+reward ledgers remain unchanged. Confirmed backend context exposes both trigger
+causes. See [design](RANGE_POLICY_UPDATES.md) and [scoped verification](../reports/range-policy/VERIFICATION.md).
+Production parameters/services and independent qualification remain open.
+
 # Product alignment candidate — 2026-10-15
 
 ## 2026-10-18 - Dynamic liquidity and rebalance budget

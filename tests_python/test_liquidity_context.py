@@ -78,6 +78,55 @@ class LiquidityContextTests(unittest.TestCase):
         self.assertEqual(second['lower_tick'],-600);self.assertEqual(second['rebalance']['earliest_eligible_at'],4590)
         self.assertTrue(second['reprepare_on_position_or_range_change'])
 
+    def test_approved_range_update_can_be_due_at_flat_price(self):
+        for allowance in (0, 10**30):
+            svc=self.setup_service(increase=True);self.rpc.allowance=allowance
+            self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(1,))
+            waiting=svc.prepare(self.rpc.request)['liquidity_context']['rebalance']
+            self.assertEqual(waiting['status'],'cooldown')
+            self.assertFalse(waiting['price_trigger_met'])
+            self.assertTrue(waiting['range_update_pending'])
+            self.assertIn('approved range update is pending',waiting['explanation'])
+            config=[addr(20)]+self.rpc.pool_values[1:];config[11]=600
+            for getter in ('get(bytes32)','accounting(bytes32)'):
+                self.rpc.put(self.rpc.pins['pools'],getter,(self.rpc.pool,),config)
+            self.rpc.put(self.rpc.pins['strategy'],'needsRebalance(uint256)',(5,),(1,))
+            result=svc.prepare(self.rpc.request);r=result['liquidity_context']['rebalance']
+            self.assertEqual(r['status'],'eligible_now');self.assertEqual(r['eligibility_reason'],'range_update')
+            self.assertFalse(r['price_trigger_met']);self.assertIsNone(r['expected_execution_at'])
+            self.assertEqual(result['activation_ready'],allowance!=0)
+
+    def test_both_causes_reported_and_applied_range_clears_pending(self):
+        svc=self.setup_service();config=[addr(20)]+self.rpc.pool_values[1:];config[11]=600
+        for getter in ('get(bytes32)','accounting(bytes32)'):
+            self.rpc.put(self.rpc.pins['pools'],getter,(self.rpc.pool,),config)
+        self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(1,))
+        self.rpc.put(self.rpc.pins['strategy'],'needsRebalance(uint256)',(5,),(1,))
+        self.rpc.put(self.rpc.pins['oracle'],'referenceX96(address,address)',(addr(20),addr(21)),(2**96*11//10,))
+        self.assertEqual(svc.prepare(self.rpc.request)['liquidity_context']['rebalance']['eligibility_reason'],'price_and_range')
+        self.rpc.put(self.rpc.pins['oracle'],'referenceX96(address,address)',(addr(20),addr(21)),(2**96,))
+        for getter in ('rangeUpdatePending(uint256)','needsRebalance(uint256)'):
+            self.rpc.put(self.rpc.pins['strategy'],getter,(5,),(0,))
+        r=svc.prepare(self.rpc.request)['liquidity_context']['rebalance']
+        self.assertFalse(r['range_update_pending']);self.assertIsNone(r['eligibility_reason'])
+        self.assertEqual(r['status'],'waiting_for_price_trigger')
+
+    def test_invalid_range_flag_and_inconsistent_eligibility_fail_closed(self):
+        svc=self.setup_service()
+        self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(2,))
+        with self.assertRaises(ProjectionError):svc.prepare(self.rpc.request)
+        self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(1,))
+        config=[addr(20)]+self.rpc.pool_values[1:];config[11]=600
+        for getter in ('get(bytes32)','accounting(bytes32)'):
+            self.rpc.put(self.rpc.pins['pools'],getter,(self.rpc.pool,),config)
+        with self.assertRaisesRegex(ProjectionError,'eligibility disagrees'):svc.prepare(self.rpc.request)
+
+    def test_new_position_does_not_inherit_existing_range_update_flag(self):
+        svc=self.setup_service(new_pool=True)
+        self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(1,))
+        r=svc.prepare(self.rpc.request)['liquidity_context']['rebalance']
+        self.assertFalse(r['range_update_pending']);self.assertIsNone(r['eligibility_reason'])
+
 
 class CurrentPositionTests(unittest.TestCase):
     def test_replacement_id_denominator_and_current_mark_are_independent_of_historical_input(self):

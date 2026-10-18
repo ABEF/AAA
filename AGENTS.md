@@ -1,3 +1,20 @@
+## Range-policy application checkpoint - 2026-10-18
+
+Read [range policy](docs/RANGE_POLICY_UPDATES.md) and [current evidence](reports/range-policy/VERIFICATION.md).
+Timelocked width changes now trigger ordinary rebalance at flat prices after
+cooldown. The stateless comparison uses current physical ticks and stored center;
+successful replacement clears it. No new force role/request/Vault state exists.
+Fresh prices, pause/lifecycle, minima, 3% aggregate and 5% idle guards persist.
+Backend reports range_update_pending and price/range eligibility reason at the
+confirmed hash; next keeper timing remains unknown without qualified telemetry.
+Execution uses current approved configuration, not a signed historical config
+hash. Scope: 37 Solidity / 38 isolated Python checks, fresh normal sizes and
+internal review; refer to the evidence for the selected-pool fork result. This is
+not a full regression, independent audit or production approval. Only Strategy
+production source changed; Vault headroom stays 19 bytes. Preserve unrelated
+drafts. Use main; verify Git publication. No website/server change, public
+transaction or restart of the paused monitor is authorized.
+
 ## Dynamic liquidity checkpoint - 2026-10-18
 
 Read [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md) and its

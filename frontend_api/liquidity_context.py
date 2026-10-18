@@ -38,6 +38,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
             raise ProjectionError('Invalid shared-position rebalance checkpoint')
         earliest = last + cooldown
         eligible = _bool(read('strategy', 'needsRebalance(uint256)', bucket)[0])
+        range_pending = _bool(read('strategy', 'rangeUpdatePending(uint256)', bucket)[0])
         ref = int(read('oracle', 'referenceX96(address,address)',
                        _address_word(config[0]), _address_word(config[1]))[0], 16)
         if not 0 < ref < 2**160:
@@ -45,13 +46,15 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
         root_ratio = ref * 10**18 // center
         movement = abs(root_ratio * root_ratio // 10**18 - 10**18)
         trigger = movement >= int(config[8], 16) * 10**14
-        if eligible != (header['timestamp'] >= earliest and trigger):
+        if eligible != (header['timestamp'] >= earliest and (trigger or range_pending)):
             raise ProjectionError('Rebalance eligibility disagrees with its confirmed conditions')
         status = 'eligible_now' if eligible else 'cooldown' if header['timestamp'] < earliest else 'waiting_for_price_trigger'
+        reason = 'price_and_range' if trigger and range_pending else 'range_update' if range_pending else 'price_trigger' if trigger else None
     else:
         target = read('strategy', 'target(bytes32)', pool, count=3)
         lower, upper = map(signed_tick, target[:2])
         lp, last, earliest, trigger, eligible, status = None, None, None, None, False, 'new_position'
+        range_pending, reason = False, None
     spacing = int(config[3], 16)
     if spacing <= 0 or lower >= upper or lower % spacing or upper % spacing:
         raise ProjectionError('Invalid current/target LP range')
@@ -60,9 +63,10 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
     in_range = lower <= tick < upper
     utc = None if earliest is None else datetime.fromtimestamp(earliest, timezone.utc).isoformat()
     if status == 'eligible_now':
-        timing = 'Rebalance eligible now; execution awaits a keeper check and successful safety checks.'
+        timing = ('Rebalance eligible now for an approved range update; ' if range_pending else 'Rebalance eligible now; ') + 'execution awaits a keeper check and successful safety checks.'
     elif status == 'cooldown':
-        timing = f'Earliest rebalance eligibility: {utc}; the price trigger and safety checks must also pass.'
+        timing = (f'Earliest rebalance eligibility: {utc}; an approved range update is pending and safety checks must also pass.'
+                  if range_pending else f'Earliest rebalance eligibility: {utc}; the price trigger and safety checks must also pass.')
     elif status == 'waiting_for_price_trigger':
         timing = 'Cooldown complete; the next rebalance awaits the configured price trigger and safety checks.'
     else:
@@ -85,6 +89,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
                           'last_rebalance_at': last, 'cooldown_seconds': cooldown,
                           'earliest_eligible_at': earliest, 'earliest_eligible_utc': utc,
                           'price_trigger_met': trigger, 'trigger_bps': int(config[8], 16),
+                          'range_update_pending': range_pending, 'eligibility_reason': reason,
                           'next_keeper_check_at': None, 'expected_execution_at': None,
                           'schedule_source': 'unavailable', 'explanation': timing},
             'warnings': warnings, 'reprepare_on_position_or_range_change': True}
