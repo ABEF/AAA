@@ -127,44 +127,105 @@ The [metadata specification](docs/NFT_METADATA.md) and [artwork catalogue](desig
 
 ## Governance, custody and recovery
 
-Governance is a deployment-selected multisig acting through a timelock, with separate guardian and keeper roles. Production addresses are not yet selected; the [address inventory](docs/DEPLOYMENT_ADDRESSES.md) distinguishes wallets, deployed contracts and network dependencies. **Sealing fixes module implementations and local venue bindings.** Supported assets, routes, feeds, destinations and strategy parameters remain configurable within explicit controls. New algorithms or unsupported venues require separately reviewed compatible deployments. See the [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md).
+### Authority and configuration
 
-Timelocked governance can [park custody while globally paused](docs/CUSTODY_PARKING.md), closing into the Vault under an exact snapshot and raw output minimums without source prices or creator-inbox synchronization. Resume requires fresh deployment guards. Failed external tokens or venues can still prevent movement.
+| Role | Authority | Boundary |
+| --- | --- | --- |
+| **Governance multisig** | Approves configuration and supported recovery operations through the timelock. | Approved modules, destinations and replacement code require security review; governance remains a trust dependency. |
+| **Guardian** | Pauses operations during an incident. | Cannot unpause or withdraw principal; unpause belongs to governance. |
+| **Keeper** | Executes eligible maintenance within contract permissions and economic limits. | Cannot change governance policy or bypass execution guards. |
 
-**LP migration is not collection migration.** The new [same-chain handoff candidate](docs/CANONICAL_HANDOFF.md) freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement, with atomic retirement/activation and a fully funded abort path. Cross-chain canonical relocation still needs verified finality, authenticated channel closure, a new lineage/message boundary and reviewed transport before sealing. Post-halt recovery is deferred. Real bridging remains disabled pending independent destination-admission review, provider/backing review and multi-chain rehearsals. Local permanent capacity reservation is implemented; the source does not authenticate remote admission proof. These risks are tracked in the [security audit plan](docs/SECURITY_AUDIT_PLAN.md).
+Production addresses are not selected. The [address inventory](docs/DEPLOYMENT_ADDRESSES.md) separates authority wallets, deployed contracts and network dependencies.
+
+**Sealing fixes module implementations and local venue bindings.** Governance can still configure supported assets, routes, feeds, destinations and strategy parameters within existing controls. New algorithms or unsupported venues need separately reviewed compatible deployments, rather than an in-place code update. The [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md) details these boundaries.
+
+### Recovery paths
+
+| Situation | Supported path and limits | Reference |
+| --- | --- | --- |
+| **Pause and park LP** | Timelocked governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads and creator-inbox synchronization; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
+| **Move LP between local pools** | Approved moves preserve the bucket's NFT shares and liabilities. Current moves require the same ordered accounting currencies; different-pair conversion remains unfinished. Moving LP alone does not relocate NFT ownership or reward ledgers. | [Migration safety](docs/MIGRATION_SAFETY.md) |
+| **Replace the whole deployment on the same chain** | The handoff candidate freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement. Retirement/activation is atomic, with a restored funded abort path before retirement. Reviewed replacement code is an accepted governance trust boundary. | [Canonical handoff](docs/CANONICAL_HANDOFF.md) |
+| **Relocate the collection to another chain** | Verified source finality, authenticated channel closure, new lineage/message semantics and reviewed transport remain pre-seal work. There is no multisig-only activation override. Recovery after a permanent source-chain halt is deferred. | [Canonical migration design](docs/CANONICAL_MIGRATION_DESIGN.md) |
+
+**Real bridging remains disabled** pending independent destination-admission review, provider/backing review and multi-chain rehearsals. Local permanent capacity reservation is implemented; the source does not authenticate remote admission proof. The [security audit plan](docs/SECURITY_AUDIT_PLAN.md) covers these cross-contract and external-dependency risks.
 
 ## Keeper and operating services
 
-The keeper defaults to dry run. Its example ten-minute polling interval does not force rebalancing: price movement, cooldown and execution guards must pass. The optional metadata watcher is disabled by default and uses the same bounded transaction path. Full keeper/state-lock operation requires Linux/Unix and Python 3.11+.
+The keeper **defaults to dry run**. Full keeper/state-lock operation requires **Linux/Unix and Python 3.11+**.
 
-| Need | Documentation |
+- **Polling:** the example checks every ten minutes; this is not a guaranteed execution schedule.
+- **Rebalancing:** price movement or an approved range change must make the position eligible. Cooldown, fresh prices and execution guards still apply. See [range-policy behavior](docs/RANGE_POLICY_UPDATES.md).
+- **Metadata:** the optional watcher is disabled by default and uses the same bounded transaction path.
+
+| Operating task | Start here |
 | --- | --- |
-| Configure maintenance and services | [Operations](docs/OPERATIONS.md) |
-| Recover from outages or server loss | [Keeper recovery runbook](docs/KEEPER_RECOVERY.md) |
-| Inspect staging and monitoring evidence | [Operating rehearsals](docs/KEEPER_REHEARSALS.md) |
-| Review remaining keeper risks | [Internal keeper review](reports/keeper-recovery/REVIEW.md) |
-| Choose randomness, pricing and other dependencies | [Production service decisions](docs/PRODUCTION_SERVICES.md) |
+| Select RPC, pricing, randomness and other dependencies | [Production service decisions](docs/PRODUCTION_SERVICES.md) |
+| Configure and run maintenance | [Operations guide](docs/OPERATIONS.md) |
+| Recover after an outage, lost state or server loss | [Recovery runbook](docs/KEEPER_RECOVERY.md) |
+| Rehearse failures and assess operating evidence | [Keeper rehearsals](docs/KEEPER_REHEARSALS.md) |
+| Assess remaining security and availability risks | [Internal keeper review](reports/keeper-recovery/REVIEW.md) |
 
 ## Verification and release status
 
-The [handoff verification record](reports/canonical-handoff/VERIFICATION.md) covers the current candidate and its limits. Earlier [architecture verification](reports/architecture-evolution/VERIFICATION.md) and [migration safety evidence](reports/migration-safety/VERIFICATION.md) retain their original source scope; they do not verify later handoff changes. Different-pair conversion and cross-chain canonical relocation remain open. Future cross-chain successor activation requires verified finality, with no multisig-only override.
+**Release decision: NOT APPROVED.** Local verification, published CI and independent release approval are separate requirements. Each report applies only to its recorded source, configuration and test scope; no full current-source regression is claimed by combining historical counts.
 
-The historical [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md) records **531 offline Solidity passes**, two expected fork-setup skips, **23 normal size gates** and an extended invariant run of **65,536 calls**. The report separates fresh checks from reused static/fork evidence and the broader local Python candidate. The [internal review](reports/nft-rights-audit/REVIEW.md) records findings and remaining risks; [historical reports](reports/README.md) retain their original source scope.
+### Find the relevant evidence
 
-Production approval still requires qualified market/input routes, tokens and price feeds; supported VRF; authority addresses and creator terms; live frontend/backend integration; target-chain gas and operating rehearsals; and an independent audit with remediation. Track these in the [Project Todo](TODO.md); record final sign-off in the [release approval record](docs/RELEASE_CHECKLIST.md) with the [production inventory](config/production.example.json). Check [CI for the exact revision](https://github.com/ABEF/AAA/actions); local evidence does not imply a green published workflow.
+| Area | Evidence | Scope |
+| --- | --- | --- |
+| **LP accounting and maintenance** | [Dynamic liquidity](reports/dynamic-liquidity/VERIFICATION.md), [range-policy updates](reports/range-policy/VERIFICATION.md) | Contribution/valuation guards, aggregate rebalance budget, range-change eligibility and targeted venue/backend checks. |
+| **Backend integration** | [Activation preparation](reports/activation-preparation/VERIFICATION.md), [API lifecycle](reports/frontend-lifecycle/VERIFICATION.md), [claim-history lineage](reports/frontend-lineage/VERIFICATION.md) | Scoped transaction preparation and confirmed reads; not hosted-service or live website qualification. |
+| **Same-chain replacement** | [Canonical handoff](reports/canonical-handoff/VERIFICATION.md) | Handoff accounting and regression evidence for its recorded snapshot. Later changed paths use the separate reports above. |
+| **Local $1 test build** | [Rehearsal verification](reports/one-dollar-rehearsal/VERIFICATION.md) | Separate generated copy with mock services; not the production binary or live Pons execution. |
+| **Published revision** | [GitHub Actions](https://github.com/ABEF/AAA/actions) | Check the exact commit and required jobs. Local results do not establish a green published workflow. |
+
+<details>
+<summary>Earlier verification and review history</summary>
+
+- [NFT economic-rights verification](reports/nft-rights-audit/VERIFICATION.md): its historical 531 Solidity passes, two expected fork skips, 23 size gates and 65,536-call invariant run retain their original scope. The accompanying [internal review](reports/nft-rights-audit/REVIEW.md) records findings and risks.
+- [Architecture evolution](reports/architecture-evolution/VERIFICATION.md) and [migration safety](reports/migration-safety/VERIFICATION.md): earlier source-specific evidence; neither verifies later handoff or maintenance changes.
+- [Report index](reports/README.md): remaining historical receipts and their context.
+
+</details>
+
+### Production approval
+
+Remaining work is tracked only in the [Project Todo](TODO.md). It includes:
+
+- **Dependencies and configuration:** qualified market/input routes, tokens, feeds and VRF; authority addresses and creator-payment terms.
+- **Integration and operations:** live frontend/backend flows, target-chain gas/strategy qualification and operating rehearsals.
+- **Independent assurance:** external audit, remediation and final configuration/release review.
+
+The [production inventory](config/production.example.json) records the exact deployment configuration and evidence. The [release approval record](docs/RELEASE_CHECKLIST.md) records the final go/no-go decision. Internal reviews and local passes do not replace either.
 
 ## Development
 
-From the repository root, in the [supported development environment](docs/DEVELOPMENT.md):
+### Setup and verification
+
+Use the [supported development environment](docs/DEVELOPMENT.md), including Linux/Unix or WSL for complete off-chain verification. From the repository root:
 
 ```sh
+# Install pinned dependencies when setting up the checkout.
 bash scripts/install-deps.sh
+
+# Run full verification when the change or release requires it.
 bash scripts/verify.sh
+```
+
+The verifier runs Python/source checks, normal build/size checks and offline Solidity tests. The toolchain uses **Solidity 0.8.26, Cancun and the configured via-IR optimizer profile**. During iteration, run checks for the affected behavior and reuse unchanged source-bound evidence. The development guide provides explicit fork and static-analysis commands. These commands do not deploy public contracts.
+
+### Small-value experiments
+
+The [local $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md) generates an isolated test build. It retains the **1% execution-loss limit** and **0.05 ETH mint price**; production activation remains **$100**. It does not enable live wallet transactions.
+
+### Keep project records consistent
+
+When implementation or evidence changes, follow the [Todo maintenance procedure](docs/TODO_WORKFLOW.md): update the [task ledger](docs/project-todo.json), reconcile the [feature/evidence reference](docs/IMPLEMENTATION_STATUS.md), then regenerate and check the task list:
+
+```sh
+python3 scripts/sync-project-todo.py
 python3 scripts/sync-project-todo.py --check
 ```
 
-The verifier runs the Python/source checks, normal build/size checks and offline Solidity tests. Solidity is pinned to **0.8.26/Cancun** with the existing via-IR optimizer profile. Explicit fork and static-analysis commands are in the development guide. Deployment scaffolding is local-only; these commands do not deploy public contracts.
-
-For small-value experiments, the separate [local $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md) generates an isolated test build. It preserves the 1% execution-loss limit and 0.05 ETH mint price; production activation remains $100. It does not enable live wallet transactions.
-
-When work progresses, update the [task ledger](docs/project-todo.json) and its linked evidence using the [Todo maintenance procedure](docs/TODO_WORKFLOW.md). Keep unfinished local candidates, published code, test evidence and deployment status distinct.
+Keep local work, GitHub publication, test evidence and deployment status explicit. The central Todo owns task status; feature references and release records have their separate purposes.
