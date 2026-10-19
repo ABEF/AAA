@@ -16,7 +16,7 @@ MAX_RESULT = 1024 * 1024
 HARD_SECONDS = 30
 
 
-def _run(output, config, activation_config, action, payload):
+def _run(output, config, activation_config, action, payload, transaction_config=None):
     # Catch/sanitize failures inside the child: multiprocessing must never print
     # upstream exception strings or configured credentials in a traceback.
     try:
@@ -35,11 +35,9 @@ def _run(output, config, activation_config, action, payload):
                 result = p.earnings(payload)
             elif action == 'activation' and activation_config is not None:
                 result = ActivationTransactions(p, activation_config).prepare(payload)
-            elif action == 'transactions':
-                # Optional local adapter; the published read server exposes no
-                # mint/claim POST. No signer/broadcast capability exists here.
+            elif action == 'transactions' and transaction_config is not None:
                 from frontend_api.transactions import Transactions
-                result = Transactions(p).prepare(payload)
+                result = Transactions(p, transaction_config).prepare(payload)
             else:
                 raise ValueError('Unsupported operation')
         envelope = {'ok': result}
@@ -50,7 +48,9 @@ def _run(output, config, activation_config, action, payload):
     except BaseException as exc:
         # Map only the exact known input exception; no names or messages leak.
         from frontend_api.activation import ActivationInputError
-        envelope = {'error': 'invalid_activation' if isinstance(exc, ActivationInputError) else 'unavailable'}
+        from frontend_api.transactions import TransactionInputError
+        envelope = {'error': 'invalid_activation' if isinstance(exc, ActivationInputError) else
+                    'invalid_transaction' if isinstance(exc, TransactionInputError) else 'unavailable'}
     try:
         encoded = json.dumps(envelope, separators=(',', ':'), allow_nan=False).encode()
         if len(encoded) > MAX_RESULT:
@@ -69,20 +69,27 @@ class WorkerClient:
     Reverse-proxy admission/rate limiting remains an operating requirement.
     """
 
-    def __init__(self, config, activation_config=None):
+    def __init__(self, config, activation_config=None, *, transaction_config=None):
         # Validate before accepting requests, without network calls.
         self.config = json.loads(json.dumps(config))
         self.activation_config = json.loads(json.dumps(activation_config))
+        self.transaction_config = json.loads(json.dumps(transaction_config))
+        if activation_config is not None and transaction_config is not None:
+            raise ValueError('Use separate listeners for activation and mint/claim preparation')
         p = Projection(self.config)
         self.chain = p.chain
         if activation_config is not None:
             from frontend_api.activation import ActivationTransactions
             ActivationTransactions(p, self.activation_config)
+        if transaction_config is not None:
+            from frontend_api.transactions import Transactions
+            Transactions(p, self.transaction_config)
         self._lock = threading.Lock()
         self._unreaped = None
 
     def _request(self, action, payload=None):
         from frontend_api.activation import ActivationInputError
+        from frontend_api.transactions import TransactionInputError
         if self._unreaped is not None or not self._lock.acquire(blocking=False):
             raise RpcError('Request worker unavailable')
         started = time.monotonic()
@@ -92,8 +99,10 @@ class WorkerClient:
         try:
             directory = tempfile.TemporaryDirectory(prefix='popl-read-')
             output = Path(directory.name) / 'result.json'
-            process = multiprocessing.get_context('spawn').Process(
-                target=_run, args=(str(output), self.config, self.activation_config, action, payload), daemon=True)
+            arguments = (str(output), self.config, self.activation_config, action, payload)
+            if self.transaction_config is not None:
+                arguments += (self.transaction_config,)
+            process = multiprocessing.get_context('spawn').Process(target=_run, args=arguments, daemon=True)
             process.start()
             process.join(max(0, HARD_SECONDS - (time.monotonic() - started)))
             if process.is_alive():
@@ -117,6 +126,8 @@ class WorkerClient:
                 if code == 'invalid_activation':
                     from frontend_api.activation import ActivationInputError
                     raise ActivationInputError('Invalid activation request')
+                if code == 'invalid_transaction':
+                    raise TransactionInputError('Invalid transaction request')
                 raise RpcError('Request worker unavailable')
             if set(envelope) != {'ok'} or not isinstance(envelope['ok'], dict):
                 raise RpcError('Invalid request result')
@@ -132,7 +143,7 @@ class WorkerClient:
                     raise WorkLimit('snapshot_expired')
             event = 'ok'
             return result
-        except (WorkLimit, UnknownNFT, ActivationInputError):
+        except (WorkLimit, UnknownNFT, ActivationInputError, TransactionInputError):
             raise
         except Exception:
             raise RpcError('Request worker unavailable') from None
@@ -195,4 +206,6 @@ class WorkerClient:
         return self._request('earnings', identifier)
 
     def prepare(self, payload):
+        if self.activation_config is None and self.transaction_config is None:
+            raise RpcError('Transaction preparation is disabled')
         return self._request('activation' if self.activation_config is not None else 'transactions', payload)

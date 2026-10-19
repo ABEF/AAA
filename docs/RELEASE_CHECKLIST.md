@@ -3,6 +3,13 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-19.
 
+The [unsigned wallet preparer](FRONTEND_TRANSACTIONS.md) now has current lifecycle,
+selected-currency checks, bounded work and separately reviewed fee estimation.
+[Scoped evidence](../reports/wallet-preparation/VERIFICATION.md) is internal backend
+verification; deployment manifests, provider fee/hash support, VRF, public ingress,
+browser authorization/receipts and independent audit remain unqualified. No
+Solidity, website, server, public transaction or monitor change occurred.
+
 The [earnings extension](EARNINGS_HISTORY.md) implements read-only processed
 all-time/24h LP and royalty history, complete configured same-chain continuity and
 optional current-price USD marks. [Scoped evidence](../reports/earnings-history/VERIFICATION.md)

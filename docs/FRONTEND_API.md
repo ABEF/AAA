@@ -31,7 +31,9 @@ implementation; processed earnings/current-price USD now have their own
 The `frontend_api` package is a working read-only Python 3.11+ service for
 **individual canonical NFTs and confirmed wallet inventories**. It reads deployed contracts, rather than using
 website demo balances. It has no private keys, signer, transaction broadcast,
-administrator write endpoint, simulation balances or external dependencies.
+administrator write endpoint, invented balances or external dependencies. An
+explicit opt-in [unsigned mint/claim preparation endpoint](FRONTEND_TRANSACTIONS.md)
+can construct and simulate typed transaction drafts; default operation stays GET-only.
 It has not been deployed or operated against a production PoPL deployment.
 
 ## Implemented endpoint
@@ -73,7 +75,7 @@ The response contains:
   admitted receipts at current membership weights. LP and royalties are separate
   arrays; amounts in different currencies are not summed.
 - Verified canonical NFT/helper contract addresses, including `claim_router`.
-  The API does not request approval, construct a signature or submit a claim.
+  The API never requests approval, constructs a signature or submits a claim.
 - Block number/hash/timestamp, observed head, confirmation depth, deployment
   anchor and configuration identity. `protocol_finalized` is **false**: configured
   confirmation depth is not a proof of L1 settlement or protocol finality.
@@ -96,7 +98,7 @@ Current-deployment claims must never be presented as the NFT's lifetime total.
 
 These endpoints are an unhosted integration foundation. The existing `indexer/`
 remains unchanged; the new read-only history consumer validates its exact
-confirmed snapshot and replays both ledgers. Actual price/ingestion qualification, transaction preparation, live website integration and
+confirmed snapshot and replays both ledgers. Actual price/ingestion qualification, live website integration and
 operating rehearsals remain release work. Native contract batched claims are a separate `ZZZClaimRouter`
 capability; this read service neither invokes it nor guarantees execution at a
 later block. The wallet must recheck owner/network and simulate immediately
@@ -190,12 +192,17 @@ HTTP status behavior:
 | 200 | Verified protocol status, NFT snapshot, or history-backed wallet inventory |
 | 400 | Invalid Host, request body or out-of-range token ID |
 | 404 | Unknown endpoint/noncanonical path, or NFT without a mint ordinal |
-| 405 | Method other than GET |
+| 405 | Method other than GET when optional unsigned preparation is disabled |
 | 503 | Locked deployment or unavailable confirmed projection; do not substitute demo/zero values |
 
 Errors do not disclose RPC URLs, upstream error messages or credentials.
 Responses use `Cache-Control: no-store` and no cross-origin grants. The server
 does not log request paths/query strings.
+
+With `--transaction-config /operator/path/wallet-policy.json`, only `POST /v1/transactions/prepare` is additionally
+enabled. It uses strict 16 KiB JSON input and returns unsigned, expiring simulated
+mint/claim drafts with separate reviewed gas estimates. See its [separate request and wallet rules](FRONTEND_TRANSACTIONS.md);
+this does not turn on any signing or broadcast capability.
 
 ## Local operation and verification
 

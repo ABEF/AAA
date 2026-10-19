@@ -149,8 +149,13 @@
           "id": "unsigned-actions",
           "status": "done",
           "title": "Prepare unsigned mint & claim requests",
-          "text": "Local, unpublished preparation validates and simulates 0.05 ETH mints and up to 32 LP / royalty claims. Signing stays in the wallet; this task is not live integration.",
-          "href": "docs/IMPLEMENTATION_STATUS.md#local-unpublished-candidates"
+          "text": "Typed 0.05 ETH mint and up to 32 LP/royalty claim drafts now use current lifecycle/mint controls, exact canonical-hash simulation, scoped currency isolation, bounded workers and separate reviewed gas estimates. Signing stays in the wallet; live service/browser qualification remains open.",
+          "href": "docs/FRONTEND_TRANSACTIONS.md",
+          "acceptance": [
+            "Implemented: exact typed intent/owner/ledger checks, no arbitrary target or overrides, mint-only/global/preparation gates, canonical lock rejection, selected-asset verification, short client expiry, shared work budgets and supervised opt-in HTTP. Default GET-only; no signer/broadcast.",
+            "A required operator fee policy binds the reviewed read configuration and fee evidence, gas-price and total network-fee ceilings. Missing complete fee accounting or canonical gas estimation fails closed. Native value and gas are separate; future claims cannot fund upfront gas.",
+            "[Current scoped verification](reports/wallet-preparation/VERIFICATION.md) records focused Python/HTTP/worker cases and reusable compiler ABI evidence. No Solidity change or repeated contract suite. Actual deployment/VRF/RPC/fee manifests, ingress/load and wallet signing/receipt rehearsals remain with the service and frontend tasks."
+          ]
         },
         {
           "id": "activation-quotes",

@@ -198,7 +198,16 @@ The data and services behind the app.
 
 <a id="task-unsigned-actions"></a>
 
-- [x] **[Prepare unsigned mint & claim requests](docs/IMPLEMENTATION_STATUS.md#local-unpublished-candidates)** - Implemented. Local, unpublished preparation validates and simulates 0.05 ETH mints and up to 32 LP / royalty claims. Signing stays in the wallet; this task is not live integration.
+- [x] **[Prepare unsigned mint & claim requests](docs/FRONTEND_TRANSACTIONS.md)** - Implemented. Typed 0.05 ETH mint and up to 32 LP/royalty claim drafts now use current lifecycle/mint controls, exact canonical-hash simulation, scoped currency isolation, bounded workers and separate reviewed gas estimates. Signing stays in the wallet; live service/browser qualification remains open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Implemented: exact typed intent/owner/ledger checks, no arbitrary target or overrides, mint-only/global/preparation gates, canonical lock rejection, selected-asset verification, short client expiry, shared work budgets and supervised opt-in HTTP. Default GET-only; no signer/broadcast.
+  - A required operator fee policy binds the reviewed read configuration and fee evidence, gas-price and total network-fee ceilings. Missing complete fee accounting or canonical gas estimation fails closed. Native value and gas are separate; future claims cannot fund upfront gas.
+  - [Current scoped verification](reports/wallet-preparation/VERIFICATION.md) records focused Python/HTTP/worker cases and reusable compiler ABI evidence. No Solidity change or repeated contract suite. Actual deployment/VRF/RPC/fee manifests, ingress/load and wallet signing/receipt rehearsals remain with the service and frontend tasks.
+
+  </details>
 
 <a id="task-holder-preflight"></a>
 
@@ -585,4 +594,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `85290fefd9a440da26f74d7575147849d06859798dfed0ce4fe97e7a7c5bd059`.
+Snapshot SHA-256: `16ec1377f9a86e5bf8e33716e8cd06349c24b3f5c040c3aca1e275df8e824264`.

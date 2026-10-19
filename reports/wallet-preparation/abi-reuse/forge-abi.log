@@ -1,0 +1,11 @@
+Compiling 5 files with Solc 0.8.26
+Solc 0.8.26 finished in 244.55ms
+Compiler run successful!
+
+Ran 3 tests for test/WalletCalldata.t.sol:WalletCalldataTest
+[PASS] testMaximum32MatchesSolidityAbiEncodeCall() (gas: 19858)
+[PASS] testMixedThreeMatchesSolidityAbiEncodeCall() (gas: 2440)
+[PASS] testOneClaimMatchesSolidityAbiEncodeCall() (gas: 1323)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 1.46ms (984.00µs CPU time)
+
+Ran 1 test suite in 5.19ms (1.46ms CPU time): 3 tests passed, 0 failed, 0 skipped (3 total tests)

@@ -351,6 +351,39 @@ For contract reverts, decode using the exact release ABI. `Unauthorized` means i
 
 Record the cause, affected block/time/object, containment and exact state; verify recovered authority and dependencies; reconcile every in-flight transaction and classified balance; resimulate fresh intended work; restore the narrowest controls in order; execute a monitored bounded operation; verify finalized receipts, user claims and off-host health. Only then reopen normal UI/keeper work. Do not treat a green process status as economic/accounting recovery. Update the incident evidence, task ledger and this procedure if the incident revealed a missing case.
 
+### Unsigned mint and claim service
+
+**Authority:** the service operator enables an unhosted read-only adapter; no
+governance permission or private key is needed. Wallet signatures and contracts
+authorize eventual payments/claims. Review the exact chain, anchor, eight core
+runtime/helper pins and admitted assets first. Bind the separate fee policy to
+`Projection.identity`; document full network-fee semantics, gas-price ceiling
+and maximum suggested-limit cost. Placeholder reviews are not qualification.
+
+Run `python -m frontend_api.server --config /operator/path/frontend-read.json
+--transaction-config /operator/path/wallet-policy.json --port 8787` as one command.
+The [configuration and response guide](FRONTEND_TRANSACTIONS.md) defines every
+field. The flag enables only typed `POST /v1/transactions/prepare`; GET-only is
+the default. Use a separate listener for activation preparation. Keep TLS,
+ingress/rate limits and logs under review. No arbitrary calls/signing are added.
+
+Verify independently decoded target/value/calldata, snapshot and policy hashes,
+separate estimated gas and draft expiry. The wallet must refresh gas/state and
+confirm account/chain before signing. Mint checks the global/mint switches and
+preparation; claims retain their independent availability. Selected currency
+faults reject a batch; unselected faults do not excuse missing core/inventory
+checks. Choose smaller claim batches when necessary. Claims do not fund their
+own upfront gas. Missing canonical estimation or omitted fee components means
+unavailable, never a latest-state or zero-cost fallback.
+
+**Stop/recover:** stop the listener or restart without `--transaction-config` to
+return to GET-only. Inspect sanitized error/deadline/cleanup outcomes and review
+runtime/configuration/provider/control changes. Reconcile already submitted
+wallet transactions; do not resend payments automatically. Re-enable only after
+fresh validation with a compatible reviewed policy. A configuration/code change
+requires old drafts to be discarded; mined transactions cannot be rolled back.
+This service is not installed on the server by this change.
+
 ## Fixed boundaries
 
 | Desired future change | Current boundary |

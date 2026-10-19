@@ -1,3 +1,24 @@
+## Unsigned wallet preparation continuation - 2026-10-19
+
+The saved mint/claim draft is now hardened for the current lifecycle and promoted
+with [operator instructions](docs/FRONTEND_TRANSACTIONS.md) and
+[scoped evidence](reports/wallet-preparation/VERIFICATION.md). Typed 0.05 ETH mint
+and 1-32 mixed LP/royalty claims simulate at a confirmed canonical hash. Mint-only
+pause and preparation block mint; eligible claims remain available. Unselected
+currency faults can be isolated, while selected assets, inventory/core mismatches,
+canonical locks, expiry and work budgets fail closed. A required reviewed policy
+binds the read configuration and separately bounds/estimates gas; no signer or
+broadcast exists. Default GET-only; explicit transaction config enables POST in
+a supervised serial worker. Browser integration and live fee/RPC qualification
+remain open. The 149-test affected inventory has passing evidence across two
+scoped runs; the initial reorg fixture correction is recorded. All 40 Solidity
+source bindings and six compiled ABIs match reusable artifacts; no contract rerun.
+
+Use main and Git to establish publication. Preserve unrelated route/process-runner,
+history-test and artwork drafts. No website/server/deployment/public transaction
+or paused-monitor change. Update central Todo, features and operator manual with
+future changes; release remains NOT APPROVED.
+
 ## Confirmed earnings continuation - 2026-10-19
 
 The user selected **current (today's) prices** for all-time and 24-hour earnings.
