@@ -1,3 +1,22 @@
+## Creator coordination continuation - 2026-10-19
+
+The user requested a dedicated **Creator tasks / ZZZ team** section in the
+[central Todo](TODO.md#creator-tasks--zzz-team). Keep every question requiring
+the token/pool team's answer there: fee basis/percentage, active-liquidity
+measurement, payment delivery/reconciliation, independent ZZZ pricing,
+token/pool controls, input liquidity and future-market/incident continuity.
+The existing `creator-terms` task ID is preserved; technical qualification stays
+under its linked Contracts/Backend tasks. Record dated answers and evidence,
+never infer a payment agreement, provider choice or permission from silence.
+
+The ZZZ-feed question is deferred to that section, not answered. No production
+price source or complete ETH-to-LP qualification is established. Current selected
+pool adapter support is distinguished from historical market observations.
+This is documentation/coordination only: no contract, API, website, server,
+public transaction or paused-monitor change; release remains NOT APPROVED.
+Use main, preserve unrelated drafts and verify Git for publication. Update this
+creator section whenever later development raises a team-dependent decision.
+
 ## Unsigned wallet preparation continuation - 2026-10-19
 
 The saved mint/claim draft is now hardened for the current lifecycle and promoted

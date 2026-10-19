@@ -4,13 +4,13 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**11 To do | 20 In progress | 14 Implemented locally**
+**17 To do | 20 In progress | 14 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
 [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) | [Release approval record](docs/RELEASE_CHECKLIST.md) | [Update procedure](docs/TODO_WORKFLOW.md)
 
-[Smart contracts](#smart-contracts) | [Backend](#backend) | [Frontend](#frontend) | [Testing](#testing--qualification) | [Security](#security--audit) | [Operations](#launch--operations) | [Future migration](#future-migration)
+[Smart contracts](#smart-contracts) | [Backend](#backend) | [Frontend](#frontend) | [Creator tasks](#creator-tasks--zzz-team) | [Testing](#testing--qualification) | [Security](#security--audit) | [Operations](#launch--operations) | [Future migration](#future-migration)
 
 ## Smart contracts
 
@@ -53,6 +53,7 @@ Custody, ownership and reward accounting.
   - Independently verify $100 original source value with at least 99% marginal actually deployed LP, separate network gas, incumbent NAV pricing, all conversion-leg costs, callbacks, pending/dust barriers, top-ups and nonredeemability. Review the immutable Entry's exact owner/calldata context, inactive approval window, Registry-only valuation and callback cleanup; a post-conversion pair value cannot replace original source value.
   - Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native ingress is restricted to the actual native-pool wrapper. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution.
   - Use the [integration campaign](docs/INTEGRATION_CAMPAIGN.md) and [read-only observations](reports/activation-route-observation/VERIFICATION.md): one $1 conversion snapshot is not $100 activation qualification. Include subsequent LP costs in the same 1% limit, separate gas, qualified ZZZ pricing and complete operation simulation. Public transaction testing has not run; the isolated $1 build remains local only.
+  - Track team-dependent feed, market and liquidity questions in [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team). Team responses do not replace independent route/feed qualification.
 
   </details>
 
@@ -294,6 +295,104 @@ What holders see and use.
 - [x] **[Collection, artwork & portfolio preview](docs/NFT_METADATA.md#fixed-visual-inventory)** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
 
 
+## Creator tasks / ZZZ team
+
+Questions and decisions to resolve with the ZZZ token/pool creator. Answers are not yet confirmed; technical implementation stays under its linked task. Record dated answers, responsible contacts and supporting evidence here.
+
+<a id="task-creator-terms"></a>
+
+- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Ask the creator: what fraction is shared, and is its base total hook revenue, the creator payout after Pons deductions, or another explicitly defined net amount? Are conversion costs, buybacks, refunds or other deductions included? Record the formula with a worked example and an effective start date.
+  - Confirm current hook fees, protocol/creator splits, buyback settings and actual creator payout control using dated on-chain evidence. The historical 1% hook / 70% creator observation is not a current payment guarantee. PoPL liquidity alone does not confer hook revenue rights.
+  - Record written confirmation from the authorized party, the agreement version and how amendments, suspension or termination are handled. This external agreement does not change PoPL's fixed 80/10/5/5 allocation or create unfunded claims.
+  - Resolve the linked [measurement](TODO.md#task-creator-measurement), [payments](TODO.md#task-creator-payments) and [continuity](TODO.md#task-creator-continuity) questions before treating the funding path as qualified. Stage actual receipt-to-allocation-to-holder-claim under [operating rehearsals](TODO.md#task-testnet-rehearsal).
+
+  </details>
+
+<a id="task-creator-measurement"></a>
+
+- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Ask whether fee-weighted sampled active-liquidity share or time-weighted active-liquidity share is accepted. Define the numerator/denominator, treatment of out-of-range LP, parked periods, deposits/top-ups, compounding, rebalances and moves between pools; total USD TVL is not automatically active-liquidity share.
+  - Agree epoch length, sample frequency, maximum gaps, confirmation/finality depth, intra-block/tick-crossing approximation, complete raw hook-fee events, per-asset calculation, conversion basis and rounding/carry. Agree what happens if data is incomplete; do not silently impute missing fee history.
+  - Name who produces, independently checks and resolves disputes over each report. The current calculator and collector propose amounts only; they do not authenticate creator acceptance, reconstruct exact intra-swap attribution or authorize payment. Technical event/backfill qualification remains under [hosted services](TODO.md#task-host-services) and [dependency review](TODO.md#task-security-dependencies).
+
+  </details>
+
+<a id="task-creator-payments"></a>
+
+- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Ask which wallet or contract controls payment/configuration, whether payment is manual or automated, its frequency/minimum amount and its currency/network. Confirm control without requesting a private key. There is no deployed PoPL receiver address to send to yet.
+  - After deployment and review, verify the canonical per-bucket RewardReceiver, its immutable bucket/pair and optional native wrapper. Do not use the mint recipient or NFT-sale royalty receiver. Current intake supports only its admitted pair assets and an exact reviewed native wrapper; any other payout asset needs explicit technical qualification.
+  - Agree invoice/report IDs, transaction/receipt references, period reconciliation, late/partial/duplicate payments, shortfalls and unpaid residuals. Receipt acceptance does not authenticate the sender; the receiver is permissionless and cannot debit the creator or enforce an off-chain promise.
+  - Explain and obtain agreement on processing-time allocation: a payment received after an NFT activation can benefit that entrant even when the creator earned it earlier. The existing intake does not reconstruct historical per-NFT swap entitlements. Requested historical allocation requires a separately scoped design, not a bookkeeping assumption.
+  - Rehearse the complete report-to-payment-to-80/10/5/5-allocation-to-current-holder-claim cycle, with funded backing and separate gas. Creator hook funding and 5% NFT-marketplace royalties remain distinct streams.
+
+  </details>
+
+<a id="task-creator-zzz-price"></a>
+
+- [ ] **[Identify an independent ZZZ USD price source](docs/PRODUCTION_SERVICES.md#usd-prices-and-sequencer-status)** - To do. Ask the ZZZ team for any existing feed/provider or oracle work. No feed is selected; full $100 activation and 1% execution-loss qualification remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Ask whether an independent on-chain ZZZ/USD feed exists: provider, target chain, public contract address, denomination/decimals, underlying markets, update/heartbeat/deviation policy, history, admins/upgrades and outage support. Record a confirmed absence as an answer instead of assuming a feed.
+  - If none exists, discuss a supportable independent pricing design/provider and who maintains it; team approval alone is not a security review. Do not substitute the same instantaneous selected-pool price or an assumed stablecoin peg for an independent USD guard.
+  - PoPL engineering must independently qualify the chosen source, failure policy and actual activation/valuation paths under [prices and authorities](TODO.md#task-authorities-prices), [activation inputs](TODO.md#task-activation-assets) and [oracle security](TODO.md#task-security-strategy). Continue read-only dependency research while the answer is pending; do not mark the live route ready.
+
+  </details>
+
+<a id="task-creator-market-controls"></a>
+
+- [ ] **[Confirm ZZZ, pool and hook controls](docs/ROBINHOOD_POOL.md#network-and-pool-identity)** - To do. Obtain the team's authoritative market references and identify who can alter tokens, hook fees, payout recipients or dependencies.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Confirm intended chain/token/pool/hook identities, published verified sources, deployment provenance and current market plan. Distinguish observations from team commitments; independently match the physical PoolKey and deployed code.
+  - Identify the actual controllers for token mint/transfer restrictions or taxes, hook configuration, creator payout, buybacks and upgradeable dependencies, where such capabilities exist. Request exact owner/admin and implementation references plus disclosure of planned changes. Do not assume the ZZZ creator controls Pons, Uniswap, wrappers or oracle providers.
+  - Obtain technical contacts for external controllers when required. Team-provided addresses are inputs to [selected-pool qualification](TODO.md#task-pons-qualification) and [external-dependency review](TODO.md#task-security-dependencies), not automatic permission to admit arbitrary hooks or grant PoPL authority.
+
+  </details>
+
+<a id="task-creator-input-liquidity"></a>
+
+- [ ] **[Confirm activation liquidity and token references](docs/ACTIVATION_ENTRY.md)** - To do. Ask which funded markets and official asset references the team recommends for ETH/ZZZ/USDG/USDC activation, including the unresolved USDC route.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Request exact supported-chain token/wrapper and swap-pool references, any planned liquidity moves, minimum viable liquidity and known token restrictions. Ask whether a usable funded USDC route exists or is planned; do not infer support from the symbol or a pool address alone.
+  - The ZZZ team may point to markets but does not choose PoPL governance or waive guards. Engineers verify provenance, code/approvals, feeds and full $100-to-LP execution within the 1% limit, gas separate, under [activation qualification](TODO.md#task-activation-assets) and [complete quote preparation](TODO.md#task-activation-quotes). Disable unsupported inputs rather than assume a route remains liquid.
+
+  </details>
+
+<a id="task-creator-continuity"></a>
+
+- [ ] **[Agree pool-change, incident and payment continuity](docs/EXTERNAL_REWARDS.md#entry-timing-and-remote-custody)** - To do. Define contacts and the funding process if markets, chains, payout control or the creator agreement change, including settlement of old periods.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Ask how sharing continues when liquidity moves to another pool/chain or PoPL changes its canonical deployment. Agree effective cutoffs, measurement across old/new pools, settlement of old periods, late payment destinations and verification of replacement receivers. Compatibility still requires reviewed protocol support; a commercial agreement cannot add missing migration code.
+  - Name the operational/incident contact and backup contact; agree notification for hook, recipient, token, oracle or liquidity changes, payment delays and service failure. Define an escalation and reconciliation process without promising an unagreed response time.
+  - For incident or termination, preserve already funded holder rights and reconcile unpaid periods under the agreement. Do not assume refunds, principal withdrawals, arbitrary receiver redirection or continued future revenue. Use [operator controls](docs/OPERATOR_MANUAL.md#stop-controls) and the separately tracked [migration work](TODO.md#future-migration).
+
+  </details>
+
+
 ## Testing & qualification
 
 Three required testing layers, with source-bound evidence.
@@ -480,18 +579,7 @@ Decisions and rehearsals before real funds.
   - Independently review and stage sequencer policy replacement through the actual sealed governance controller, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
   - Select and verify multisig/keeper/guardian/mint-recipient authorities, zero-delay governance controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
   - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and agreed creator payer; 21 fixed core contracts (controller plus 20 sealed modules), eight automatically created helpers/factories, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
-
-  </details>
-
-<a id="task-creator-terms"></a>
-
-- [ ] **[Finalize creator revenue-sharing terms](docs/REVENUE_SHARE.md)** - To do. Agree the fee basis, liquidity-share measurement, payout asset, frequency and authorized payer. Only actual receipts fund rewards.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Confirm terms with the pool creator: percentage and calculation basis, payout asset/network, payment frequency, authorized payer/configurer and actual PoPL receiver. Terms were explicitly deferred on 2026-10-15; receipt-driven implementation must not imply guaranteed revenue. Stage a payment through allocation and holder claim.
-  - Agree and qualify the proposed active-liquidity measurement policy: fee-weighted or time-weighted, epoch length, snapshot frequency/gap limits, finality, complete fee events, tick-crossing approximation, cross-asset payout conversion, rounding and independent receipt reconciliation. Rehearse the complete data-to-payment-to-holder-claim cycle. The implemented calculator has no payout authority and does not prove creator acceptance.
+  - Record the unresolved independent ZZZ price-feed question and the team's evidence under [creator pricing](TODO.md#task-creator-zzz-price); keep PoPL authority selection under this task.
 
   </details>
 
@@ -594,4 +682,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `16ec1377f9a86e5bf8e33716e8cd06349c24b3f5c040c3aca1e275df8e824264`.
+Snapshot SHA-256: `4b368628b92b58dcb633d10b0b35f9c818590ce3ad7c4e6ae348fb1a1bc4097c`.

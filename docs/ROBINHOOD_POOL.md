@@ -1,6 +1,6 @@
 # Requested Robinhood ETH / ZZZ pool
 
-The user selected this market for future PoPL liquidity. Its identity and fee policy were checked on **2026-10-14** with read-only public RPC requests and verified source. No transactions were sent. The current PoPL contracts do not support this native-ETH, hooked LP pool. The later creator-payment receiver is a separate funding path; it does not change the read-time market verification below.
+The user selected this market for future PoPL liquidity. Its identity and fee policy were checked on **2026-10-14** with read-only public RPC requests and verified source. No transactions were sent. That read predates the selected native-ETH/Pons adapter now implemented in the candidate. [Scoped selected-pool fork evidence](../reports/range-policy/VERIFICATION.md) covers settlement mechanics with synthetic pricing; it does not qualify a production ZZZ feed or complete live activation. The market addresses and fee settings below retain their historical observation date, not a new live verification.
 
 ## Network and pool identity
 
@@ -49,7 +49,7 @@ The hook charges 1% of the swap's **unspecified currency**: the output for an ex
 
 ## PoPL LP integration and creator payments
 
-The current PoPL registry and liquidity adapter reject native currencies and nonzero hooks. Registering a pool ID does not add native settlement, hook handling, or revenue entitlement. Conventional ERC20/ERC20, hookless static-fee pools remain the supported candidate boundary.
+The current candidate has a strictly pinned selected native-ETH/Pons adapter, alongside the hookless ERC20/ERC20 path. It preserves the physical native PoolKey and normalizes accounting through the reviewed WETH wrapper. This is not generic native/hook support, production qualification or a right to hook revenue; see [activation mechanics](ACTIVATION_ENTRY.md) and the [selected-market qualification task](../TODO.md#task-pons-qualification).
 
 The current PoPL 80/10/5/5 allocation applies only to fees actually collected and funded through its supported accounting path, replacing the earlier 50/30/10/10 candidate. It is distinct from Pons's creator/protocol split. No checked source establishes PoPL ownership of the creator payout or an automatic proportional share of hook revenue. On 2026-10-15, the user reported that the creator would send payments directly to a PoPL contract. Dedicated immutable per-bucket receivers accept and process those actual payments through the internal allocation. This user-reported intention is separate from the verified pool policy; no creator percentage or payment guarantee is assumed. See [creator-funded rewards](EXTERNAL_REWARDS.md).
 

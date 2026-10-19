@@ -7,6 +7,8 @@ the creator, prove an agreed percentage, or create an NFT-holder claim before
 PoPL receives and processes real funds. Creator agreement and production
 measurement/source review remain open.
 
+Creator decisions and unanswered questions are maintained in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team), including the original [fee-sharing task](../TODO.md#task-creator-terms). This guide describes calculation mechanics; it is not an agreed payment contract.
+
 ## Proposed baseline
 
 Prefer **fee-weighted sampled active-liquidity share** when complete, verifiable

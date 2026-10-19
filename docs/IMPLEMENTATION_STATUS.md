@@ -12,7 +12,9 @@ services, deployment or independent audit are approved.
 **All task status, remaining work and acceptance criteria live in the
 [central Todo](../TODO.md).** This page describes candidate capabilities and their
 evidence. The [release approval record](RELEASE_CHECKLIST.md) records the final
-decision for an exact release, not development progress.
+decision for an exact release, not development progress. Creator-dependent questions
+are grouped in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team);
+recording them does not implement a feed, payment agreement or live route.
 
 ## Current candidate capabilities
 

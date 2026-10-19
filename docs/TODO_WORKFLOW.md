@@ -1,6 +1,6 @@
 # Maintaining the project Todo
 
-**[TODO.md](../TODO.md) is the only task-status checklist.** It is ordered with Smart contracts first, Backend second and Frontend third, followed by testing, security/audit, operations and future migration. Expand a task's acceptance criteria for its detailed release requirements. The website has no Todo page or generated task data.
+**[TODO.md](../TODO.md) is the only task-status checklist.** It is ordered with Smart contracts first, Backend second and Frontend third, followed by Creator tasks / ZZZ team, testing, security/audit, operations and future migration. Expand a task's acceptance criteria for its detailed release requirements. The website has no Todo page or generated task data.
 
 | Document | Purpose | Update when |
 | --- | --- | --- |
@@ -11,6 +11,8 @@
 | [Engineering roadmap](ROADMAP.md) | Work sequence and dependencies, linked to the owning Todo tasks | Sequencing, prerequisites or pre-seal boundaries change |
 
 The [security audit plan](SECURITY_AUDIT_PLAN.md) explains threat models and review criteria. It does not carry a separate task status. The old implementation/release filenames remain stable for existing links; neither is another Todo.
+
+Questions requiring the token/pool creator belong in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team). Record the dated answer, responsible party and evidence there; keep implementation and independent qualification in the linked technical task. An answer does not close its technical release gate. Preserve stable IDs when moving a task between sections.
 
 For every feature, fix, resolved issue, new task or decision:
 

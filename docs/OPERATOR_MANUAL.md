@@ -184,6 +184,14 @@ Pause generally preserves claims and transfers while canonical state is operatin
 
 Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Change creator commercial terms off-chain and reconcile payments, while royalty-only conversion uses the separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. See [external revenue](EXTERNAL_REWARDS.md), [royalty/claim behavior](CLAIM_ROUTER.md) and [measurement proposals](REVENUE_SHARE.md).
 
+### Coordinate the creator agreement
+
+Use [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) as the meeting agenda and decision record. For each answer, record its date, authorized contact, precise terms or public addresses, effective period and supporting evidence. Keep unresolved answers open. Request public identifiers and proof of control where relevant; never request a signing key.
+
+Commercial agreement alone performs no contract call. Before accepting funding, independently verify the current canonical per-bucket receiver, admitted pair/wrapper and payer instructions using [external funding](EXTERNAL_REWARDS.md). Explain processing-time allocation and keep the marketplace royalty receiver separate. A proposed invoice or missing payment must not become a funded claim.
+
+Changes to the agreement require reconciliation of old/new periods and verified payment destinations. Stop an unqualified new configuration, retain existing funded liabilities and use the applicable pool/asset/incident procedure; do not sweep or redirect a fixed receiver. Reopen only after the changed dependency and payment flow are reviewed. This coordination procedure adds no authority, setter, timelock or automatic payout.
+
 ### Marketplace currency and ETH payouts
 
 The [settlement and conversion runbook](ROYALTY_SETTLEMENT.md) specifies the exact

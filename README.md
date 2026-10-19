@@ -11,6 +11,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 | Purpose | Start here |
 | --- | --- |
 | Progress and remaining work | **[Project Todo](TODO.md)** - the single task list, with expandable acceptance criteria |
+| Questions for the token/pool creator | [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team) - fee sharing, pricing, payments and market continuity |
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
