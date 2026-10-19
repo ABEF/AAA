@@ -258,6 +258,8 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Local display correction: show the revealed rarity multiplier (Commun ×1, Rare ×2, Legendary ×3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.
+  - Local dormant NFT details hide the claim action and retain activation/transfer controls. Active claim controls still require funded balances and fresh state.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.
   - Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.
@@ -700,4 +702,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `d4af4245b96e0013f8313139728b014563dcf80e6a929603a4059c43227fa93c`.
+Snapshot SHA-256: `6d8e16cf88944ebf5fb879988fc30d908f94812238f9299eca95fd8bf3d86d4b`.

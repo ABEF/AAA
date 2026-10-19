@@ -1,3 +1,12 @@
+## Local royalty badge correction - 2026-10-19
+
+Display the fixed revealed rarity multiplier (Commun ×1, Rare ×2, Legendary ×3)
+on local NFT cards, gray while dormant. Do not display effective accounting weight
+zero as the rarity multiplier. Unrevealed stays unknown. UI-only correction;
+eligibility, claims, contracts and public services remain unchanged.
+Dormant NFT details hide the claim action; activation/transfer stay available.
+Active claims keep their existing balance and freshness checks.
+
 ## Local website integration checkpoint - 2026-10-19
 
 Read [the website local-mode guide](docs/LOCAL_WEBSITE.md) and

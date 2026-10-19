@@ -44,8 +44,11 @@ fees and exercising a local rebalance. Never expose this server to the Internet.
 | Collection fees | Actual processed collection revenue, before the 80/10/5/5 allocation. No synthetic seven-day chart or assumed trading volume. |
 | LP fees to claim | Exact combined contract claimable balance, per currency. It is not a guessed split of unsettled individual and collective components. |
 | Royalties earned / claimable | Separate raw currency amounts. ETH has no reviewed USD feed in this fixture and is not assigned an invented USD value. |
+| Royalty weight badge | Fixed revealed rarity multiplier: Commun ×1, Rare ×2, Legendary ×3. Grayed while dormant; Unrevealed before traits are known. This is separate from effective accounting weight, which remains zero before activation. |
 | Previously claimed | All actual LP and royalty payouts in the configured lifetime history. Transfers, conversions and claims do not count again as earnings. |
 
+The claim action is omitted entirely from dormant NFT details. Activation and
+transfer remain available; active claims retain funding and fresh-state guards.
 An API failure clears financial projections and disables new confirmations;
 example holdings are never substituted. The default public demo remains separate
 and retains its v7 simulation storage. The local read scope still inherits the

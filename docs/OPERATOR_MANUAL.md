@@ -422,6 +422,13 @@ failed read. The operator's root panel still funds/rebalances the fixture. Stop,
 restart and evidence retention follow the same procedure above. No new authority,
 production endpoint or contract configuration is introduced.
 
+For local UI verification, a revealed dormant NFT retains its rarity multiplier
+(Commun ×1, Rare ×2, Legendary ×3) in gray. Its effective royalty accounting
+weight remains zero until activation. Unrevealed NFTs have no assumed multiplier.
+This label correction requires no operator call, service restart or contract update.
+Dormant detail views omit claims; active views retain the existing balance and
+confirmed-state guards. Activation and transfer controls are unchanged.
+
 ## Fixed boundaries
 
 | Desired future change | Current boundary |

@@ -27,6 +27,11 @@ records the scoped client/server and local transaction checks. This uses the
 launcher's disposable accounts, not production browser-wallet signing; the public
 website remains a simulation. No Solidity or public services changed.
 
+Local NFT cards retain their revealed rarity multiplier (×1/×2/×3) while dormant,
+with gray styling until activated. The display no longer substitutes effective
+accounting weight zero for the fixed rarity trait; unrevealed traits stay unknown.
+Dormant detail views omit the claim action while preserving activation and transfer.
+
 The [local stack](LOCAL_TEST_STACK.md) deploys the unchanged core to an owned Anvil
 process and exercises confirmed reads, finite NFT mint/reveal, Entry activation,
 top-ups, funded LP/royalty accounting, governed rebalancing, transfers and combined

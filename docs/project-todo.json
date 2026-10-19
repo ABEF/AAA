@@ -246,6 +246,8 @@
           "text": "The existing website local mode reads confirmed ownership, current LP, per-currency LP/royalty balances and actual revealed artwork. Production hosting, lifecycle/remote/outage qualification remain open.",
           "href": "docs/FRONTEND_API.md#implemented-endpoint",
           "acceptance": [
+            "Local display correction: show the revealed rarity multiplier (Commun ×1, Rare ×2, Legendary ×3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.",
+            "Local dormant NFT details hide the claim action and retain activation/transfer controls. Active claim controls still require funded balances and fresh state.",
             "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
             "Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.",
             "Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.",

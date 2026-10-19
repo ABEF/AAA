@@ -8,6 +8,22 @@ no public transactions, production key reads, Solidity changes or monitor restar
 
 ## Executed checks
 
+### Presentation follow-up, 2026-10-19
+
+The local card now shows the fixed revealed rarity multiplier, gray while dormant,
+and dormant details omit the claim action. JavaScript syntax and diff checks pass.
+Browser inspection at local block 109 verified the dormant Rare card's ×2 in
+RGB(139,147,161), active Commun ×1 / Rare ×2 in RGB(59,215,235), no dormant claim
+button with activation/transfer retained, and an active claim button still disabled
+when there are no funds. Unrevealed labels are explicitly unknown. No transaction
+was submitted for these checks; no accounting, API or contract code changed.
+Unchanged test suites were not rerun. The source-binding file below describes
+the original integration snapshot, not these later website presentation changes.
+Todo, feature reference, local guide, operator notes and project context are aligned.
+No operator call/restart or public deployment is required for this local UI fix.
+
+### Original integration campaign
+
 - **33 integration assertions passed** using the new confirmation API and actual
   local receipts: exact approval separate from Entry; approval leaves the NFT
   dormant; $100 activation and top-up add at least $99 LP; no retroactive fees;
