@@ -34,6 +34,14 @@ the `nft-tier-reveal` animation and dialog scrollTop zero only after completion.
 No browser errors were observed. Bicolor gallery inspection confirmed one row
 and individually colored names; dormant multiplier remained dim.
 
+Compatibility correction: existing local servers allow `artworks.js` but not
+`ui-state.js`. Shared effect functions therefore live in the former; no new
+server resource permission or chain restart is required. After this relocation,
+all 26 UI-state cases passed again. A new read-only browser tab on the existing
+8893 deployment loaded all eight confirmed NFTs at block 197, with no console
+errors and no pool column. No local transaction was submitted by that check.
+Website implementation is published on main at `75de6a3` (following `fa4e0b6`).
+
 Operator impact: no contract call, authority, route or service configuration
 changed. Demo funding persistence and reset behavior are documented in the
 [operator manual](../../docs/OPERATOR_MANUAL.md#main-website-pending-action-and-storage-recovery).
