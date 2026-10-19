@@ -231,6 +231,29 @@ if needed. Runtime drift requires review, not automatic acceptance of new pins.
 Actual hosting/consumer qualification remains open; no service is started by this
 code change. See the [scoped verification](../reports/royalty-reporting/VERIFICATION.md).
 
+### Serve processed earnings and current-price values
+
+Enable the optional `earnings_history` profile only after reviewing the
+[exact configuration and backfill procedure](EARNINGS_HISTORY.md). It requires
+all seven financial emitters from creation for each predecessor/current epoch;
+changing an indexer address list without rebuilding complete coverage is invalid.
+Use `/v1/earnings` and `/v1/nfts/<decimal-token-id>/earnings` for processed
+all-time/24h earnings. NFT history follows the NFT across owners.
+
+The accepted USD policy marks originally earned currencies at **today's confirmed
+prices**. Show this label and snapshot time; do not add conversion credits as
+income or confuse earned amounts with current claimable or lifetime paid amounts.
+Missing prices are null, not zero. Pending/unprocessed revenue is excluded.
+
+Remove the optional profile and restart the read service to stop these views;
+no contract action, keeper stop or claim restriction is needed. Preserve/backfill
+history into a separate database after an outage. Reconcile against pinned
+indexes/denominators and known NFT claims before reopening. Review changed
+runtimes/feed policies instead of automatically accepting them. Real provider,
+large-history/load and UI qualification remain open; source changes do not start
+a service. The strict earnings endpoint may be unavailable during ledger/currency
+faults even when the separate healthy-currency balance view still works.
+
 ## Mint and metadata
 
 Before sealing, qualify the actual randomness coordinator/network/subscription, funding asset, gas lane, confirmations and callback budget. `NFT.configureRandomness(...)` is **one-time before seal**; coordinator, request settings and subscription ID cannot be changed afterward. Funding/service management uses that provider's reviewed procedures, not an invented PoPL retry function. Do not seal against an unavailable/unqualified provider.

@@ -40,7 +40,7 @@ class Lineage:
                          'history', 'retirement_transaction_hash'}, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting')}
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history')}
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
             previous = Projection(previous_config, current.rpc, clock=current.clock)
             addresses = {c.address for c in previous.contracts.values()}
@@ -122,7 +122,7 @@ class Lineage:
     def claimed(self, current, header, block, lifecycle, local_history, nft_id, ordinal):
         return self.financial(current, header, block, lifecycle, local_history, nft_id, ordinal)['previously_claimed']
 
-    def financial(self, current, header, block, lifecycle, local_history, nft_id, ordinal):
+    def financial(self, current, header, block, lifecycle, local_history, nft_id, ordinal, *, verified_epochs=None):
         from frontend_api.service import _hash
 
         if local_history is None or lifecycle['predecessor_controller'] is None:
@@ -150,12 +150,16 @@ class Lineage:
         merge_conversions(conversions, local_history.conversions, nft_id)
         receipts = []
         previous_order = None
+        epochs = []
+        lower = None
         for index, entry in enumerate(self.entries):
             source, destination = projections[index:index + 2]
             if (lives[index]['successor_controller'] != destination.contracts['access'].address or
                     lives[index + 1]['predecessor_controller'] != source.contracts['access'].address):
                 raise HistoryError('Predecessor order does not match both sealed handoff directions')
             cutoff, order, handoff_id, state_root = self._receipt(current, entry, destination, header)
+            epochs.append((source, cutoff, lower))
+            lower = (cutoff['number'], entry.transaction, handoff_id, state_root)
             if previous_order is not None and order <= previous_order:
                 raise HistoryError('Retirement chronology is reversed or duplicated')
             previous_order = order
@@ -173,13 +177,14 @@ class Lineage:
             lp_assets, royalty_assets = source._admitted(at_cutoff)
             history = source._history_snapshot(cutoff, at_cutoff, lp_assets, royalty_assets)
             merge_conversions(conversions, history.conversions, nft_id)
-            old_ordinal = source._uint('nft', 'mintOrdinalOf(uint256)', nft_id, block=at_cutoff)
-            if old_ordinal:
-                if (old_ordinal != ordinal or nft_id not in history.owners or
-                        source._uint('nft', 'tokenAtOrdinal(uint256)', ordinal, block=at_cutoff) != nft_id):
-                    raise HistoryError('Historical NFT identity differs from the successor')
-            elif nft_id in history.owners or ordinal <= history.provenance['minted_count']:
-                raise HistoryError('Historical NFT absence contradicts the mint inventory')
+            if nft_id is not None:
+                old_ordinal = source._uint('nft', 'mintOrdinalOf(uint256)', nft_id, block=at_cutoff)
+                if old_ordinal:
+                    if (old_ordinal != ordinal or nft_id not in history.owners or
+                            source._uint('nft', 'tokenAtOrdinal(uint256)', ordinal, block=at_cutoff) != nft_id):
+                        raise HistoryError('Historical NFT identity differs from the successor')
+                elif nft_id in history.owners or ordinal <= history.provenance['minted_count']:
+                    raise HistoryError('Historical NFT absence contradicts the mint inventory')
             for (identifier, asset), (lp, royalties) in history.claims.items():
                 if identifier == nft_id:
                     old_lp, old_royalties = totals.get(asset, (0, 0))
@@ -204,6 +209,8 @@ class Lineage:
         for number, expected in anchors:
             if current._header(hex(number)) != expected:
                 raise HistoryError('Historical lineage anchor changed during replay')
+        if verified_epochs is not None:
+            verified_epochs.extend(epochs + [(current, header, lower)])
         assets = []
         for asset, descriptor in sorted(self.descriptors.items()):
             lp, royalties = totals.get(asset, (0, 0))

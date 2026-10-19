@@ -120,7 +120,8 @@ class History:
             raise ValueError('History must track the three distinct pinned NFT/reward emitters')
 
     def read(self, *, block_number: int, block_hash: str, block_timestamp: int,
-             minted_count: int, lp_assets: set[str], royalty_assets: set[str]) -> HistorySnapshot:
+             minted_count: int, lp_assets: set[str], royalty_assets: set[str], consumer=None,
+             extra_emitters=()) -> HistorySnapshot:
         if type(block_number) is not int or not self.start <= block_number < 1 << 63:
             raise HistoryError('Confirmed history target precedes coverage or exceeds SQLite bounds')
         if type(minted_count) is not int or not 0 <= minted_count <= 1000:
@@ -128,6 +129,9 @@ class History:
         if len(lp_assets) > 32 or len(royalty_assets) > 17 or ZERO in lp_assets or ZERO not in royalty_assets:
             raise HistoryError('Unsupported history reward asset inventory')
         target_hash = _hash(block_hash)
+        emitters = sorted({self.nft, self.rewards, self.royalties, *(address(a) for a in extra_emitters)})
+        if not set(emitters) <= set(self.contracts) or len(emitters) > 8:
+            raise HistoryError('Financial replay requires complete reviewed emitter coverage')
         # mode=ro never creates a missing database. Do not use immutable=1:
         # a live WAL database must still participate in ordinary snapshot locks.
         try:
@@ -144,7 +148,7 @@ class History:
                 connection.set_progress_handler(interrupted, 1000)
                 connection.execute('BEGIN')
                 result = self._read(connection, block_number, target_hash, block_timestamp,
-                                    minted_count, lp_assets, royalty_assets)
+                                    minted_count, lp_assets, royalty_assets, consumer, emitters)
                 connection.rollback()
                 return result
             finally:
@@ -152,7 +156,7 @@ class History:
         except (sqlite3.Error, OSError, ValueError, KeyError, TypeError) as exc:
             raise HistoryError('Confirmed indexer history is unavailable or malformed') from exc
 
-    def _read(self, db, target, target_hash, target_timestamp, minted_count, lp_assets, royalty_assets):
+    def _read(self, db, target, target_hash, target_timestamp, minted_count, lp_assets, royalty_assets, consumer, emitters):
         row = db.execute('SELECT next_block,config FROM cursors WHERE chain=?', (self.chain,)).fetchone()
         if row is None or type(row[0]) is not int or row[0] <= target:
             raise HistoryError('Indexer has not completely processed the confirmed target block')
@@ -177,9 +181,9 @@ class History:
         # indexer's optional decoded event label: that could hide a real event.
         rows = db.execute('''SELECT l.block_number,l.block_hash,l.transaction_hash,l.log_index,l.address,l.raw,b.hash,b.timestamp
             FROM logs l JOIN blocks b ON b.chain=l.chain AND b.number=l.block_number
-            WHERE l.chain=? AND l.block_number>=? AND l.block_number<=? AND l.address IN (?,?,?)
-            ORDER BY l.block_number,l.log_index LIMIT ?''',
-                          (self.chain, self.start, target, self.nft, self.rewards, self.royalties, self.max_events + 1))
+            WHERE l.chain=? AND l.block_number>=? AND l.block_number<=? AND l.address IN ('''
+            + ','.join('?' for _ in emitters) + ') ORDER BY l.block_number,l.log_index LIMIT ?',
+                          (self.chain, self.start, target, *emitters, self.max_events + 1))
         owners = {}
         claims = {}
         conversions = {}
@@ -212,6 +216,11 @@ class History:
                 raise HistoryError('Malformed fixed event topics')
             if not topics:
                 continue
+            if type(timestamp) is not int or not 0 <= timestamp <= target_timestamp:
+                raise HistoryError('Invalid financial-event timestamp')
+            if consumer is not None:
+                consumer(emitter, topics, item.get('data'), number, block_hash, timestamp,
+                         transaction_hash, log_index)
             topic = topics[0].lower()
             if emitter == self.nft and topic == TRANSFER:
                 if len(topics) != 4 or item.get('data') != '0x':

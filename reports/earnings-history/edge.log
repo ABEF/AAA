@@ -1,0 +1,7 @@
+test_collection_before_first_mint_is_zero_not_an_indexer_error (tests_python.test_earnings.EarningsAPITests.test_collection_before_first_mint_is_zero_not_an_indexer_error) ... ok
+test_supervised_worker_dispatches_read_only_earnings (tests_python.test_earnings.EarningsAPITests.test_supervised_worker_dispatches_read_only_earnings) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.489s
+
+OK

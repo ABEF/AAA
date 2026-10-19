@@ -1,0 +1,31 @@
+{
+  "attempt1": {
+    "run": 20,
+    "passed": 19,
+    "failures": [
+      [
+        "test_read_only_http_endpoints_and_invalid_ids (tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids)",
+        "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt1\\published-tree\\tests_python\\test_earnings.py\", line 272, in test_read_only_http_endpoints_and_invalid_ids\n    r=c.getresponse();r.read();self.assertEqual(r.status,status);c.close()\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 404 != 400\n"
+      ]
+    ],
+    "errors": [],
+    "skips": []
+  },
+  "attempt2": {
+    "run": 25,
+    "passed": 23,
+    "failures": [
+      [
+        "test_final_snapshot_expiry_rejects_even_successful_replay (tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay)",
+        "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\tests_python\\test_earnings.py\", line 338, in test_final_snapshot_expiry_rejects_even_successful_replay\n    with self.assertRaises(RpcError):Projection(self.cfg,self.rpc,clock=lambda:times.pop(0) if times else 1100).earnings()\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RpcError not raised\n"
+      ]
+    ],
+    "errors": [
+      [
+        "test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts (tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts)",
+        "Traceback (most recent call last):\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\tests_python\\test_earnings.py\", line 333, in test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts\n    result=self.read(str(i))\n           ^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\tests_python\\test_earnings.py\", line 216, in read\n    def read(self,identifier=None):return Projection(self.cfg,self.rpc,clock=lambda:1000).earnings(identifier)\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\zzz_ops\\work_budget.py\", line 93, in bounded\n    return function(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\frontend_api\\service.py\", line 398, in earnings\n    return self.earnings_history.read(None if identifier is None else token_id(identifier))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\frontend_api\\earnings.py\", line 92, in read\n    ordinal=p._uint('nft','mintOrdinalOf(uint256)',identifier,block=block)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\frontend_api\\service.py\", line 224, in _uint\n    return int(self._call(self.contracts[role].address, signature, *args, block=block)[0], 16)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\frontend_api\\service.py\", line 214, in _call\n    raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\zzz_ops\\work_budget.py\", line 104, in call\n    result = self.inner.call(method, params)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\tests_python\\test_frontend_history.py\", line 85, in call\n    return super().call(method, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\earnings-history-20261019\\attempt2\\published-tree\\tests_python\\test_frontend_api.py\", line 138, in call\n    return self.responses[(tx['to'], tx['data'])]\n           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: ('0x0000000000000000000000000000000000000002', '0xaa439cf7ea6f53b185cb51295437571a6e68bd556f4bcff716add62df6a477635b610920')\n"
+      ]
+    ],
+    "skips": []
+  }
+}

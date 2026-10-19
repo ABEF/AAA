@@ -1,3 +1,12 @@
+## Processed earnings and current USD - 2026-10-19
+
+The separate [earnings endpoint](EARNINGS_HISTORY.md) now uses this raw-log
+consumer for share/index/cohort accounting, verified same-chain epochs and
+all-time/24-hour processed income. All seven reviewed emitters need complete
+creation-to-cutoff coverage. Claims/conversions below retain their distinct
+meanings. USD uses today's confirmed prices of the originally earned currencies;
+missing prices are unavailable. Read [scoped evidence](../reports/earnings-history/VERIFICATION.md).
+
 ## Royalty conversion history extension - 2026-10-19
 
 Raw replay now recognizes the exact `RoyaltyConverted` event from the pinned
@@ -11,8 +20,8 @@ decoder labelled an event unknown.
 
 Read [the integration and recovery guide](ROYALTY_REPORTING.md) and
 [scoped verification](../reports/royalty-reporting/VERIFICATION.md). Conversion is
-not new earned revenue; verified gross 24h/all-time fees and USD pricing remain
-separate unfinished work. Native claimable balances already include remaining
+not new earned revenue. The [earnings extension](EARNINGS_HISTORY.md) adds
+processed 24h/all-time amounts and current-price USD marks. Native claimable balances already include remaining
 conversion credits, so consumers must not add lifetime credited ETH to them.
 
 # Confirmed wallet inventory and lifetime claims
@@ -176,8 +185,9 @@ malformed/duplicate logs, bounded replay, actual loopback wallet HTTP and
 post-history RPC reorg rejection. These are offline tests, not a live deployment
 or independently audited history pipeline.
 
-All-time/last-24h **gross generated fee attribution**, reward USD conversions,
+The [earnings extension](EARNINGS_HISTORY.md) implements processed all-time/24h
+attribution and optional current-price USD. Actual price-provider qualification,
 production hosting/proxy/load/finality/recovery rehearsals and live website
-transactions remain open. Past claim totals are not gross revenue or a yield
+integration remain open. Past claim totals are not gross revenue or a yield
 forecast. No public service, contract, signature or real transaction is created
 by this implementation.

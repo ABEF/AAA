@@ -169,14 +169,15 @@
         },
         {
           "id": "financial-history",
-          "status": "todo",
-          "title": "Build live fee history & USD values",
-          "text": "Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct.",
-          "href": "docs/FRONTEND_HISTORY.md#verification-and-remaining-scope",
+          "status": "progress",
+          "title": "Qualify processed earnings & current-price USD",
+          "text": "Backend collection/NFT 24h and all-time earnings replay is implemented, with separate LP/collective/royalty amounts and optional current-price USD. Qualify actual feeds, complete ingestion, large histories and frontend display.",
+          "href": "docs/EARNINGS_HISTORY.md",
           "acceptance": [
-            "Index gross earned revenue, actual receipts, allocations and claims as distinct events, with complete deployment-to-present coverage, canonical/reorg reconciliation and unavailable responses when coverage is incomplete.",
-            "Define reviewed per-asset USD pricing and 24-hour/all-time valuation. Cumulative raw claimed totals, including claims by previous NFT owners, must not be presented as gross revenue; the selected Pons pool has 0% conventional fees, not the demo's assumed 0.30%.",
-            "Use the implemented [conversion history](docs/ROYALTY_REPORTING.md) as a separate denomination record. Never add ETH conversion credits to already-counted source earnings or current ETH claimable. Complete claimed/conversion history does not establish gross earned fees or historical USD value."
+            "Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.",
+            "User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.",
+            "Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.",
+            "Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui)."
           ]
         },
         {
@@ -260,11 +261,12 @@
           "status": "todo",
           "title": "Connect live history & cumulative claims",
           "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.",
-          "href": "docs/FRONTEND_HISTORY.md#api-behavior",
+          "href": "docs/EARNINGS_HISTORY.md",
           "acceptance": [
             "Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.",
             "Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.",
-            "Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals."
+            "Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals.",
+            "Consume the implemented earnings endpoints and label both periods as earnings at current prices, with confirmed snapshot time. They count processed allocations, not unpaid/unharvested revenue. Show raw source amounts when a price is unavailable; never sum source earnings with conversion credits."
           ]
         },
         {

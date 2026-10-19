@@ -31,6 +31,8 @@ def _run(output, config, activation_config, action, payload):
                 result = p.nft(payload)
             elif action == 'wallet':
                 result = p.wallet(payload)
+            elif action == 'earnings':
+                result = p.earnings(payload)
             elif action == 'activation' and activation_config is not None:
                 result = ActivationTransactions(p, activation_config).prepare(payload)
             elif action == 'transactions':
@@ -188,6 +190,9 @@ class WorkerClient:
 
     def wallet(self, owner):
         return self._request('wallet', owner)
+
+    def earnings(self, identifier=None):
+        return self._request('earnings', identifier)
 
     def prepare(self, payload):
         return self._request('activation' if self.activation_config is not None else 'transactions', payload)

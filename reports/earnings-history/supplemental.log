@@ -1,0 +1,23 @@
+test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts (tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts) ... ok
+test_activation_call_budget_is_terminal_and_next_request_gets_fresh_budget (tests_python.test_request_limits.RequestBudgetTests.test_activation_call_budget_is_terminal_and_next_request_gets_fresh_budget) ... ok
+test_expired_call_result_is_discarded_without_starting_another_call (tests_python.test_request_limits.RequestBudgetTests.test_expired_call_result_is_discarded_without_starting_another_call) ... ok
+test_expiry_after_first_trace_prevents_second_trace (tests_python.test_request_limits.RequestBudgetTests.test_expiry_after_first_trace_prevents_second_trace) ... ok
+test_limits_reject_nonfinite_boolean_and_unbounded_configuration (tests_python.test_request_limits.RequestBudgetTests.test_limits_reject_nonfinite_boolean_and_unbounded_configuration) ... ok
+test_monotonic_limit_does_not_depend_on_wall_clock (tests_python.test_request_limits.RequestBudgetTests.test_monotonic_limit_does_not_depend_on_wall_clock) ... ok
+test_nested_scope_cannot_reset_budget_and_cleanup_restores_context (tests_python.test_request_limits.RequestBudgetTests.test_nested_scope_cannot_reset_budget_and_cleanup_restores_context) ... ok
+test_post_budget_includes_chain_checks_and_retries (tests_python.test_request_limits.RequestBudgetTests.test_post_budget_includes_chain_checks_and_retries) ... ok
+test_shared_rpc_does_not_double_wrap_for_predecessors (tests_python.test_request_limits.RequestBudgetTests.test_shared_rpc_does_not_double_wrap_for_predecessors) ... ok
+test_terminal_work_limit_never_fails_over (tests_python.test_request_limits.RequestBudgetTests.test_terminal_work_limit_never_fails_over) ... ok
+test_timeout_and_backoff_use_only_remaining_budget (tests_python.test_request_limits.RequestBudgetTests.test_timeout_and_backoff_use_only_remaining_budget) ... ok
+test_wall_clock_jump_expires_before_monotonic_limit (tests_python.test_request_limits.RequestBudgetTests.test_wall_clock_jump_expires_before_monotonic_limit) ... ok
+test_actual_spawn_returns_bounded_result_and_reaps (tests_python.test_request_limits.WorkerTests.test_actual_spawn_returns_bounded_result_and_reaps) ... ok
+test_blocked_worker_is_terminated_and_next_request_can_succeed (tests_python.test_request_limits.WorkerTests.test_blocked_worker_is_terminated_and_next_request_can_succeed) ... ok
+test_busy_worker_rejects_instead_of_starting_parallel_upstream_work (tests_python.test_request_limits.WorkerTests.test_busy_worker_rejects_instead_of_starting_parallel_upstream_work) ... ok
+test_cleanup_failure_is_sanitized_and_releases_lock (tests_python.test_request_limits.WorkerTests.test_cleanup_failure_is_sanitized_and_releases_lock) ... ok
+test_partial_oversized_and_expired_results_fail_closed (tests_python.test_request_limits.WorkerTests.test_partial_oversized_and_expired_results_fail_closed) ... ok
+test_temp_creation_failure_releases_admission_lock (tests_python.test_request_limits.WorkerTests.test_temp_creation_failure_releases_admission_lock) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 5.271s
+
+OK

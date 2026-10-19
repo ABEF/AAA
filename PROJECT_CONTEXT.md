@@ -1,3 +1,22 @@
+## Confirmed earnings continuation - 2026-10-19
+
+The user selected **current (today's) prices** for all-time and 24-hour earnings.
+Read [the earnings guide](docs/EARNINGS_HISTORY.md) and
+[scoped verification](reports/earnings-history/VERIFICATION.md). Optional read-only
+collection/NFT endpoints replay actual processed allocations and royalty receipts,
+including complete configured same-chain predecessors. Shares, equal collective
+membership, rarity cohorts and carried fractions are separate. Transfers, claims,
+conversion credits and imported balances are not new earnings. Unprocessed funds
+are excluded. Missing prices produce null USD, never an assumed stablecoin peg.
+
+The 186-test affected inventory has passing current-body evidence across three
+scoped runs, with fixture/runner corrections explicitly recorded. Forty unchanged
+Solidity source/build bindings and compiled ABIs were reused; no contract rerun.
+Live feeds, complete ingestion/load rehearsals and frontend integration remain
+open. Release NOT APPROVED. Use main; check Git for publication. Preserve unrelated
+drafts. No website/server, paused monitor or public-chain changes. Update the
+central Todo, feature/evidence reference and operator manual with future changes.
+
 ## Current continuation: royalty reporting - 2026-10-19
 
 Backend royalty reporting now distinguishes claimable ETH, unconverted source

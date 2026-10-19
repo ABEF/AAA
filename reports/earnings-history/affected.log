@@ -1,0 +1,220 @@
+test_actual_claim_and_conversion_reconcile_without_new_income (tests_python.test_earnings.EarningsAPITests.test_actual_claim_and_conversion_reconcile_without_new_income) ... ok
+test_collection_and_nft_reconcile_exact_confirmed_history (tests_python.test_earnings.EarningsAPITests.test_collection_and_nft_reconcile_exact_confirmed_history) ... ok
+test_conversion_and_later_native_claim_preserve_original_earned_currency (tests_python.test_earnings.EarningsAPITests.test_conversion_and_later_native_claim_preserve_original_earned_currency) ... ok
+test_current_price_changes_usd_without_changing_earned_tokens (tests_python.test_earnings.EarningsAPITests.test_current_price_changes_usd_without_changing_earned_tokens) ... ok
+test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts (tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts) ... ERROR
+test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget (tests_python.test_earnings.EarningsAPITests.test_failed_or_changed_price_preserves_raw_history_and_does_not_swallow_budget) ... ok
+test_final_snapshot_expiry_rejects_even_successful_replay (tests_python.test_earnings.EarningsAPITests.test_final_snapshot_expiry_rejects_even_successful_replay) ... ok
+test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income (tests_python.test_earnings.EarningsAPITests.test_index_or_share_drift_and_missing_logs_do_not_return_fabricated_income) ... ok
+test_missing_profile_coverage_and_unminted_nft_are_explicit (tests_python.test_earnings.EarningsAPITests.test_missing_profile_coverage_and_unminted_nft_are_explicit) ... ok
+test_pending_royalties_do_not_enter_processed_earnings (tests_python.test_earnings.EarningsAPITests.test_pending_royalties_do_not_enter_processed_earnings) ... ok
+test_price_alias_and_module_policy_cannot_be_silently_changed (tests_python.test_earnings.EarningsAPITests.test_price_alias_and_module_policy_cannot_be_silently_changed) ... ok
+test_read_only_http_endpoints_and_invalid_ids (tests_python.test_earnings.EarningsAPITests.test_read_only_http_endpoints_and_invalid_ids) ... ok
+test_runtime_drift_and_history_gaps_fail_closed (tests_python.test_earnings.EarningsAPITests.test_runtime_drift_and_history_gaps_fail_closed) ... ok
+test_real_receipt_and_two_databases_preserve_both_epochs_without_import_income (tests_python.test_earnings.EarningsLineageTests.test_real_receipt_and_two_databases_preserve_both_epochs_without_import_income) ... ok
+test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort (tests_python.test_earnings.EarningsReplayTests.test_canonical_recovery_reverse_event_order_still_protects_earlier_cohort) ... ok
+test_collection_gross_dust_and_allocations_do_not_double_count (tests_python.test_earnings.EarningsReplayTests.test_collection_gross_dust_and_allocations_do_not_double_count) ... ok
+test_individual_collective_royalties_and_topup_have_independent_weights (tests_python.test_earnings.EarningsReplayTests.test_individual_collective_royalties_and_topup_have_independent_weights) ... ok
+test_invalid_recovery_activation_shares_and_rounding_fail_closed (tests_python.test_earnings.EarningsReplayTests.test_invalid_recovery_activation_shares_and_rounding_fail_closed) ... ok
+test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings (tests_python.test_earnings.EarningsReplayTests.test_prior_fees_exclude_new_entrant_and_transfers_do_not_reset_earnings) ... ok
+test_recovery_assigns_old_receipts_before_new_members_join (tests_python.test_earnings.EarningsReplayTests.test_recovery_assigns_old_receipts_before_new_members_join) ... ok
+test_same_chain_epoch_carries_rights_and_skips_import_transfers (tests_python.test_earnings.EarningsReplayTests.test_same_chain_epoch_carries_rights_and_skips_import_transfers) ... ok
+test_thousand_nfts_share_one_pool_without_thousand_reward_reads (tests_python.test_earnings.EarningsReplayTests.test_thousand_nfts_share_one_pool_without_thousand_reward_reads) ... ok
+test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings (tests_python.test_earnings.EarningsReplayTests.test_uneligible_receipts_and_admission_prefunds_are_not_nft_earnings) ... ok
+test_unknown_emitter_claim_and_conversion_events_are_not_income (tests_python.test_earnings.EarningsReplayTests.test_unknown_emitter_claim_and_conversion_events_are_not_income) ... ok
+test_window_boundary_and_fraction_carry_are_exact (tests_python.test_earnings.EarningsReplayTests.test_window_boundary_and_fraction_carry_are_exact) ... ok
+test_work_budget_and_malformed_layout_stop_replay (tests_python.test_earnings.EarningsReplayTests.test_work_budget_and_malformed_layout_stop_replay) ... ok
+test_conversion_separate_from_claims_income_and_other_nfts (tests_python.test_royalty_reporting.ConversionHistoryTests.test_conversion_separate_from_claims_income_and_other_nfts) ... ok
+test_invalid_currency_id_topics_amounts_rejected (tests_python.test_royalty_reporting.ConversionHistoryTests.test_invalid_currency_id_topics_amounts_rejected) ... ok
+test_missing_coverage_is_unavailable_not_zero_conversion (tests_python.test_royalty_reporting.ConversionHistoryTests.test_missing_coverage_is_unavailable_not_zero_conversion) ... ok
+test_only_actual_later_claim_increases_previously_claimed (tests_python.test_royalty_reporting.ConversionHistoryTests.test_only_actual_later_claim_increases_previously_claimed) ... ok
+test_wrong_emitter_cannot_create_conversion_credit (tests_python.test_royalty_reporting.ConversionHistoryTests.test_wrong_emitter_cannot_create_conversion_credit) ... ok
+test_zero_rounding_credits_are_valid_not_additional_income (tests_python.test_royalty_reporting.ConversionHistoryTests.test_zero_rounding_credits_are_valid_not_additional_income) ... ok
+test_old_conversion_currency_survives_absence_from_current_assets (tests_python.test_royalty_reporting.ConversionLineageTests.test_old_conversion_currency_survives_absence_from_current_assets) ... ok
+test_two_handoffs_preserve_conversions_without_duplication_or_inherited_profile (tests_python.test_royalty_reporting.ConversionLineageTests.test_two_handoffs_preserve_conversions_without_duplication_or_inherited_profile) ... ok
+test_bad_token_pin_or_decimals_hides_only_that_currency (tests_python.test_royalty_reporting.ReportingTests.test_bad_token_pin_or_decimals_hides_only_that_currency) ... ok
+test_broken_core_identity_or_eligibility_is_not_a_partial_success (tests_python.test_royalty_reporting.ReportingTests.test_broken_core_identity_or_eligibility_is_not_a_partial_success) ... ok
+test_converter_missing_disabled_drift_never_promises_conversion (tests_python.test_royalty_reporting.ReportingTests.test_converter_missing_disabled_drift_never_promises_conversion) ... ok
+test_deferred_currency_eligibility_is_distinct_from_activation (tests_python.test_royalty_reporting.ReportingTests.test_deferred_currency_eligibility_is_distinct_from_activation) ... ok
+test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement (tests_python.test_royalty_reporting.ReportingTests.test_dormant_nft_is_inactive_without_fabricated_royalty_entitlement) ... ok
+test_faulty_balance_returns_null_without_losing_healthy_rewards (tests_python.test_royalty_reporting.ReportingTests.test_faulty_balance_returns_null_without_losing_healthy_rewards) ... ok
+test_native_eth_and_unconverted_currency_are_not_summed_or_promised (tests_python.test_royalty_reporting.ReportingTests.test_native_eth_and_unconverted_currency_are_not_summed_or_promised) ... ok
+test_old_profile_keeps_strict_fail_closed_asset_validation (tests_python.test_royalty_reporting.ReportingTests.test_old_profile_keeps_strict_fail_closed_asset_validation) ... ok
+test_reorg_and_expiry_discard_even_currency_isolated_results (tests_python.test_royalty_reporting.ReportingTests.test_reorg_and_expiry_discard_even_currency_isolated_results) ... ok
+test_reporting_config_strict_and_no_implicit_old_abi_probe (tests_python.test_royalty_reporting.ReportingTests.test_reporting_config_strict_and_no_implicit_old_abi_probe) ... ok
+test_same_snapshot_ownership_change_preserves_unclaimed_rights (tests_python.test_royalty_reporting.ReportingTests.test_same_snapshot_ownership_change_preserves_unclaimed_rights) ... ok
+test_work_limits_are_not_swallowed_as_currency_or_converter_failures (tests_python.test_royalty_reporting.ReportingTests.test_work_limits_are_not_swallowed_as_currency_or_converter_failures) ... ok
+test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc (tests_python.test_frontend_api.FrontendHTTPTests.test_host_queries_post_and_arbitrary_proxy_are_rejected_without_rpc) ... ok
+test_http_read_is_exact_json_and_not_cacheable (tests_python.test_frontend_api.FrontendHTTPTests.test_http_read_is_exact_json_and_not_cacheable) ... ok
+test_unavailable_response_does_not_leak_provider_error (tests_python.test_frontend_api.FrontendHTTPTests.test_unavailable_response_does_not_leak_provider_error) ... ok
+test_unknown_nft_is_not_a_zero_balance_position (tests_python.test_frontend_api.FrontendHTTPTests.test_unknown_nft_is_not_a_zero_balance_position) ... ok
+test_asset_count_and_duplicates_bounded (tests_python.test_frontend_api.FrontendProjectionTests.test_asset_count_and_duplicates_bounded) ... ok
+test_changed_deployment_anchor_rejected_before_contract_reads (tests_python.test_frontend_api.FrontendProjectionTests.test_changed_deployment_anchor_rejected_before_contract_reads) ... ok
+test_configuration_identity_excludes_private_rpc_endpoint (tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_identity_excludes_private_rpc_endpoint) ... ok
+test_configuration_is_strict_and_cannot_override_deployment (tests_python.test_frontend_api.FrontendProjectionTests.test_configuration_is_strict_and_cannot_override_deployment) ... ok
+test_current_value_can_downgrade_evolution_without_losing_royalty_weight (tests_python.test_frontend_api.FrontendProjectionTests.test_current_value_can_downgrade_evolution_without_losing_royalty_weight) ... ok
+test_decimals_and_new_asset_admission_fail_closed (tests_python.test_frontend_api.FrontendProjectionTests.test_decimals_and_new_asset_admission_fail_closed) ... ok
+test_dormant_unrevealed_traits_are_not_invented (tests_python.test_frontend_api.FrontendProjectionTests.test_dormant_unrevealed_traits_are_not_invented) ... ok
+test_every_contract_read_hash_pinned_no_write_rpc (tests_python.test_frontend_api.FrontendProjectionTests.test_every_contract_read_hash_pinned_no_write_rpc) ... ok
+test_exact_asset_units_native_royalties_and_real_value (tests_python.test_frontend_api.FrontendProjectionTests.test_exact_asset_units_native_royalties_and_real_value) ... ok
+test_final_freshness_boundary_and_clock_rollback (tests_python.test_frontend_api.FrontendProjectionTests.test_final_freshness_boundary_and_clock_rollback) ... ok
+test_inconsistent_timestamp_for_same_final_header_hash_is_rejected (tests_python.test_frontend_api.FrontendProjectionTests.test_inconsistent_timestamp_for_same_final_header_hash_is_rejected) ... ok
+test_invalid_token_ids_are_rejected_without_rpc (tests_python.test_frontend_api.FrontendProjectionTests.test_invalid_token_ids_are_rejected_without_rpc) ... ok
+test_malformed_abi_short_reply_rejected (tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_abi_short_reply_rejected) ... ok
+test_malformed_boolean_address_and_value_rejected (tests_python.test_frontend_api.FrontendProjectionTests.test_malformed_boolean_address_and_value_rejected) ... ok
+test_missing_ordinal_and_inconsistent_hashed_identity (tests_python.test_frontend_api.FrontendProjectionTests.test_missing_ordinal_and_inconsistent_hashed_identity) ... ok
+test_native_cannot_be_an_lp_asset (tests_python.test_frontend_api.FrontendProjectionTests.test_native_cannot_be_an_lp_asset) ... ok
+test_no_invented_history_usd_or_wallet_inventory (tests_python.test_frontend_api.FrontendProjectionTests.test_no_invented_history_usd_or_wallet_inventory) ... ok
+test_ownership_changes_are_not_cached (tests_python.test_frontend_api.FrontendProjectionTests.test_ownership_changes_are_not_cached) ... ok
+test_parked_cannot_report_an_active_lp_mark (tests_python.test_frontend_api.FrontendProjectionTests.test_parked_cannot_report_an_active_lp_mark) ... ok
+test_parked_custody_lp_status_and_provenance_mismatch_fail_closed (tests_python.test_frontend_api.FrontendProjectionTests.test_parked_custody_lp_status_and_provenance_mismatch_fail_closed) ... ok
+test_parked_principal_keeps_claims_and_eligibility_with_honest_unavailable_value (tests_python.test_frontend_api.FrontendProjectionTests.test_parked_principal_keeps_claims_and_eligibility_with_honest_unavailable_value) ... ok
+test_provider_without_eip1898_never_falls_back_to_latest (tests_python.test_frontend_api.FrontendProjectionTests.test_provider_without_eip1898_never_falls_back_to_latest) ... ok
+test_reorg_during_reads_discards_all_results (tests_python.test_frontend_api.FrontendProjectionTests.test_reorg_during_reads_discards_all_results) ... ok
+test_retained_block_with_reduced_confirmation_depth_is_rejected (tests_python.test_frontend_api.FrontendProjectionTests.test_retained_block_with_reduced_confirmation_depth_is_rejected) ... ok
+test_runtime_mismatch_rejected_for_module_and_asset (tests_python.test_frontend_api.FrontendProjectionTests.test_runtime_mismatch_rejected_for_module_and_asset) ... ok
+test_snapshot_expiring_during_final_rpc_is_not_returned (tests_python.test_frontend_api.FrontendProjectionTests.test_snapshot_expiring_during_final_rpc_is_not_returned) ... ok
+test_stale_future_or_insufficiently_confirmed_chain_rejected (tests_python.test_frontend_api.FrontendProjectionTests.test_stale_future_or_insufficiently_confirmed_chain_rejected) ... ok
+test_unavailable_current_value_does_not_hide_claims_or_revoke_activation (tests_python.test_frontend_api.FrontendProjectionTests.test_unavailable_current_value_does_not_hide_claims_or_revoke_activation) ... ok
+test_unsealed_or_unrelated_modules_rejected (tests_python.test_frontend_api.FrontendProjectionTests.test_unsealed_or_unrelated_modules_rejected) ... ok
+test_wrong_chain_rejected_before_calls (tests_python.test_frontend_api.FrontendProjectionTests.test_wrong_chain_rejected_before_calls) ... ok
+test_consistent_sqlite_transaction_ignores_concurrent_later_commit (tests_python.test_frontend_history.ConfirmedHistoryTests.test_consistent_sqlite_transaction_ignores_concurrent_later_commit) ... ok
+test_creation_coverage_anchor_and_code_before_creation_are_checked (tests_python.test_frontend_history.ConfirmedHistoryTests.test_creation_coverage_anchor_and_code_before_creation_are_checked) ... ok
+test_decoded_labels_and_json_caches_are_never_trusted (tests_python.test_frontend_history.ConfirmedHistoryTests.test_decoded_labels_and_json_caches_are_never_trusted) ... ok
+test_duplicate_block_log_index_and_event_bound_fail_closed (tests_python.test_frontend_history.ConfirmedHistoryTests.test_duplicate_block_log_index_and_event_bound_fail_closed) ... ok
+test_fixed_topic_data_layout_asset_and_raw_provenance_checked (tests_python.test_frontend_history.ConfirmedHistoryTests.test_fixed_topic_data_layout_asset_and_raw_provenance_checked) ... ok
+test_http_wallet_route_and_stale_history_return_explicit_success_or_503 (tests_python.test_frontend_history.ConfirmedHistoryTests.test_http_wallet_route_and_stale_history_return_explicit_success_or_503) ... ok
+test_lp_and_royalties_same_asset_are_summed_without_cross_currency_sum (tests_python.test_frontend_history.ConfirmedHistoryTests.test_lp_and_royalties_same_asset_are_summed_without_cross_currency_sum) ... ok
+test_missing_block_wrong_tip_timestamp_and_broken_ancestry_rejected (tests_python.test_frontend_history.ConfirmedHistoryTests.test_missing_block_wrong_tip_timestamp_and_broken_ancestry_rejected) ... ok
+test_missing_cursor_or_incomplete_target_is_not_zero_history (tests_python.test_frontend_history.ConfirmedHistoryTests.test_missing_cursor_or_incomplete_target_is_not_zero_history) ... ok
+test_missing_mint_or_transfer_owner_is_not_accepted (tests_python.test_frontend_history.ConfirmedHistoryTests.test_missing_mint_or_transfer_owner_is_not_accepted) ... ok
+test_nft_api_exposes_all_time_ledger_totals_with_exact_decimals (tests_python.test_frontend_history.ConfirmedHistoryTests.test_nft_api_exposes_all_time_ledger_totals_with_exact_decimals) ... ok
+test_no_hidden_burn_or_duplicate_mint (tests_python.test_frontend_history.ConfirmedHistoryTests.test_no_hidden_burn_or_duplicate_mint) ... ok
+test_optional_history_never_implies_zero_and_invalid_config_is_rejected (tests_python.test_frontend_history.ConfirmedHistoryTests.test_optional_history_never_implies_zero_and_invalid_config_is_rejected) ... ok
+test_readonly_missing_database_never_creates_one (tests_python.test_frontend_history.ConfirmedHistoryTests.test_readonly_missing_database_never_creates_one) ... ok
+test_reorg_after_history_read_cannot_release_a_successful_nft_snapshot (tests_python.test_frontend_history.ConfirmedHistoryTests.test_reorg_after_history_read_cannot_release_a_successful_nft_snapshot) ... ok
+test_transfer_replay_and_lifetime_claims_across_past_owners (tests_python.test_frontend_history.ConfirmedHistoryTests.test_transfer_replay_and_lifetime_claims_across_past_owners) ... ok
+test_wallet_complete_inventory_rechecked_against_balance_and_owner (tests_python.test_frontend_history.ConfirmedHistoryTests.test_wallet_complete_inventory_rechecked_against_balance_and_owner) ... ok
+test_wrong_cursor_address_start_or_anchor_identity_rejected (tests_python.test_frontend_history.ConfirmedHistoryTests.test_wrong_cursor_address_start_or_anchor_identity_rejected) ... ok
+test_current_source_commitment_and_successor_binding_are_required (tests_python.test_frontend_lineage.ClaimLineageTests.test_current_source_commitment_and_successor_binding_are_required) ... ok
+test_duplicate_retirement_or_activation_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_retirement_or_activation_is_rejected) ... ok
+test_duplicate_unknown_and_unbounded_configuration_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_duplicate_unknown_and_unbounded_configuration_is_rejected) ... ok
+test_final_historical_anchor_change_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_final_historical_anchor_change_is_rejected) ... ok
+test_history_totals_do_not_change_claimable_balances (tests_python.test_frontend_lineage.ClaimLineageTests.test_history_totals_do_not_change_claimable_balances) ... ok
+test_inconsistent_asset_units_are_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_inconsistent_asset_units_are_rejected) ... ok
+test_mismatched_roots_peers_and_receipt_log_identity_are_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_mismatched_roots_peers_and_receipt_log_identity_are_rejected) ... ok
+test_missing_or_unsuccessful_or_orphaned_receipt_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_or_unsuccessful_or_orphaned_receipt_is_rejected) ... ok
+test_missing_predecessor_ingestion_fails_without_partial_total (tests_python.test_frontend_lineage.ClaimLineageTests.test_missing_predecessor_ingestion_fails_without_partial_total) ... ok
+test_nft_minted_after_handoff_has_no_fabricated_predecessor_claims (tests_python.test_frontend_lineage.ClaimLineageTests.test_nft_minted_after_handoff_has_no_fabricated_predecessor_claims) ... ok
+test_no_configuration_preserves_explicit_unavailable_balance (tests_python.test_frontend_lineage.ClaimLineageTests.test_no_configuration_preserves_explicit_unavailable_balance) ... ok
+test_nonretired_source_and_wrong_origin_are_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_nonretired_source_and_wrong_origin_are_rejected) ... ok
+test_old_claim_asset_is_retained_even_when_not_in_current_admission (tests_python.test_frontend_lineage.ClaimLineageTests.test_old_claim_asset_is_retained_even_when_not_in_current_admission) ... ok
+test_old_ordinal_mismatch_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_old_ordinal_mismatch_is_rejected) ... ok
+test_omitted_original_or_reordered_predecessor_is_rejected (tests_python.test_frontend_lineage.ClaimLineageTests.test_omitted_original_or_reordered_predecessor_is_rejected) ... ok
+test_two_handoffs_sum_both_ledgers_and_all_past_owners (tests_python.test_frontend_lineage.ClaimLineageTests.test_two_handoffs_sum_both_ledgers_and_all_past_owners) ... ok
+test_wrong_archival_code_or_unavailable_archive_fails_closed (tests_python.test_frontend_lineage.ClaimLineageTests.test_wrong_archival_code_or_unavailable_archive_fails_closed) ... ok
+test_missing_getter_is_sanitized_not_fallback_to_operating (tests_python.test_frontend_lifecycle.CanonicalHTTPTests.test_missing_getter_is_sanitized_not_fallback_to_operating) ... ok
+test_retired_status_is_readable_but_positions_are_unavailable (tests_python.test_frontend_lifecycle.CanonicalHTTPTests.test_retired_status_is_readable_but_positions_are_unavailable) ... ok
+test_status_rejects_query_or_trailing_path (tests_python.test_frontend_lifecycle.CanonicalHTTPTests.test_status_rejects_query_or_trailing_path) ... ok
+test_locked_wallet_does_not_return_stale_indexed_ownership (tests_python.test_frontend_lifecycle.CanonicalHistoryTests.test_locked_wallet_does_not_return_stale_indexed_ownership) ... ok
+test_real_replayed_claims_are_never_relabelled_as_successor_lifetime_totals (tests_python.test_frontend_lifecycle.CanonicalHistoryTests.test_real_replayed_claims_are_never_relabelled_as_successor_lifetime_totals) ... ok
+test_every_locked_phase_refuses_positions_before_ownership_or_balance_reads (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_every_locked_phase_refuses_positions_before_ownership_or_balance_reads) ... ok
+test_imported_successor_serves_funded_balances_but_not_partial_lifetime_claims (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_imported_successor_serves_funded_balances_but_not_partial_lifetime_claims) ... ok
+test_inconsistent_origins_and_peer_addresses_fail_closed (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_inconsistent_origins_and_peer_addresses_fail_closed) ... ok
+test_legacy_config_and_missing_new_runtime_pins_are_rejected (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_legacy_config_and_missing_new_runtime_pins_are_rejected) ... ok
+test_missing_or_malformed_lifecycle_getters_fail_closed (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_missing_or_malformed_lifecycle_getters_fail_closed) ... ok
+test_missing_required_source_or_destination_is_rejected (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_missing_required_source_or_destination_is_rejected) ... ok
+test_original_nft_exposes_exact_origin_and_operating_permissions (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_original_nft_exposes_exact_origin_and_operating_permissions) ... ok
+test_preparation_and_pause_keep_funded_claims_and_transfers (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_preparation_and_pause_keep_funded_claims_and_transfers) ... ok
+test_protocol_remains_readable_for_every_locked_phase_without_balances (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_protocol_remains_readable_for_every_locked_phase_without_balances) ... ok
+test_restored_abort_never_advertises_stale_destination_as_successor (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_restored_abort_never_advertises_stale_destination_as_successor) ... ok
+test_retired_protocol_status_does_not_depend_on_moved_funds_or_prices (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_retired_protocol_status_does_not_depend_on_moved_funds_or_prices) ... ok
+test_status_and_nft_all_reads_share_the_confirmed_hash (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_status_and_nft_all_reads_share_the_confirmed_hash) ... ok
+test_status_reorg_or_lost_depth_is_not_published (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_status_reorg_or_lost_depth_is_not_published) ... ok
+test_unknown_states_phases_and_noncanonical_booleans_fail_closed (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_unknown_states_phases_and_noncanonical_booleans_fail_closed) ... ok
+test_wallet_locked_before_history_replay (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_wallet_locked_before_history_replay) ... ok
+test_wrong_code_and_helper_owner_binding_fail_closed (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_wrong_code_and_helper_owner_binding_fail_closed) ... ok
+test_wrong_sealed_canonical_module_registration_fails_closed (tests_python.test_frontend_lifecycle.CanonicalProjectionTests.test_wrong_sealed_canonical_module_registration_fails_closed) ... ok
+test_burn_removes_current_owner (tests_python.test_indexer.IndexerTests.test_burn_removes_current_owner) ... ok
+test_changed_contracts_rejected (tests_python.test_indexer.IndexerTests.test_changed_contracts_rejected) ... ok
+test_confirmed_only (tests_python.test_indexer.IndexerTests.test_confirmed_only) ... ok
+test_decimal_string_configuration_remains_supported (tests_python.test_indexer.IndexerTests.test_decimal_string_configuration_remains_supported) ... ok
+test_duplicate_log_atomic_failure (tests_python.test_indexer.IndexerTests.test_duplicate_log_atomic_failure) ... ok
+test_empty_blocks_preserved (tests_python.test_indexer.IndexerTests.test_empty_blocks_preserved) ... ok
+test_integer_configuration_rejects_floats_and_booleans (tests_python.test_indexer.IndexerTests.test_integer_configuration_rejects_floats_and_booleans) ... ok
+test_multiple_collections_do_not_mix (tests_python.test_indexer.IndexerTests.test_multiple_collections_do_not_mix) ... ok
+test_poll_interval_must_be_positive (tests_python.test_indexer.IndexerTests.test_poll_interval_must_be_positive) ... ok
+test_reduce_rpc_range (tests_python.test_indexer.IndexerTests.test_reduce_rpc_range) ... ok
+test_removed_log_rejected (tests_python.test_indexer.IndexerTests.test_removed_log_rejected) ... ok
+test_reorg_bound_fails_closed (tests_python.test_indexer.IndexerTests.test_reorg_bound_fails_closed) ... ok
+test_reorg_rolls_back_owner (tests_python.test_indexer.IndexerTests.test_reorg_rolls_back_owner) ... ok
+test_repeat_no_duplicates (tests_python.test_indexer.IndexerTests.test_repeat_no_duplicates) ... ok
+test_resume_database (tests_python.test_indexer.IndexerTests.test_resume_database) ... ok
+test_unrequested_contract_rejected (tests_python.test_indexer.IndexerTests.test_unrequested_contract_rejected) ... ok
+test_wrong_log_block_no_commit (tests_python.test_indexer.IndexerTests.test_wrong_log_block_no_commit) ... ok
+test_wrong_parent_no_commit (tests_python.test_indexer.IndexerTests.test_wrong_parent_no_commit) ... ok
+test_dynamic_metadata_and_obsolete_power_logs_remain_raw (tests_python.test_event_schema.EventSchemaTests.test_dynamic_metadata_and_obsolete_power_logs_remain_raw) ... ok
+test_equal_abi_alias_keeps_first_canonical_field_names (tests_python.test_event_schema.EventSchemaTests.test_equal_abi_alias_keeps_first_canonical_field_names) ... ok
+test_erc4906_metadata_events_have_unindexed_data_arguments (tests_python.test_event_schema.EventSchemaTests.test_erc4906_metadata_events_have_unindexed_data_arguments) ... ok
+test_finalized_traits_decode_narrow_integer_fields (tests_python.test_event_schema.EventSchemaTests.test_finalized_traits_decode_narrow_integer_fields) ... ok
+test_generated_artifact_matches_current_contract_sources (tests_python.test_event_schema.EventSchemaTests.test_generated_artifact_matches_current_contract_sources) ... ok
+test_lp_and_royalty_claim_logs_preserve_existing_decoder_names (tests_python.test_event_schema.EventSchemaTests.test_lp_and_royalty_claim_logs_preserve_existing_decoder_names) ... ok
+test_membership_and_royalty_activation_logs_are_distinct (tests_python.test_event_schema.EventSchemaTests.test_membership_and_royalty_activation_logs_are_distinct) ... ok
+test_native_and_token_royalty_receipts_include_eligibility (tests_python.test_event_schema.EventSchemaTests.test_native_and_token_royalty_receipts_include_eligibility) ... ok
+test_overloaded_asset_admissions_keep_both_distinct_abis (tests_python.test_event_schema.EventSchemaTests.test_overloaded_asset_admissions_keep_both_distinct_abis) ... ok
+test_same_topic_indexed_layout_conflict_fails_closed (tests_python.test_event_schema.EventSchemaTests.test_same_topic_indexed_layout_conflict_fails_closed) ... ok
+test_topic_collision_with_different_types_or_signature_fails_closed (tests_python.test_event_schema.EventSchemaTests.test_topic_collision_with_different_types_or_signature_fails_closed) ... ok
+test_vrf_configuration_and_ordered_request_logs (tests_python.test_event_schema.EventSchemaTests.test_vrf_configuration_and_ordered_request_logs) ... ok
+test_api_work_limits (unittest.loader._FailedTest.test_api_work_limits) ... ERROR
+
+======================================================================
+ERROR: test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts (tests_python.test_earnings.EarningsAPITests.test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\tests_python\test_earnings.py", line 345, in test_dormant_nft_has_zero_earned_income_without_sharing_old_receipts
+    result=self.read(str(i))
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\tests_python\test_earnings.py", line 227, in read
+    def read(self,identifier=None):return Projection(self.cfg,self.rpc,clock=lambda:1000).earnings(identifier)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\frontend_api\service.py", line 398, in earnings
+    return self.earnings_history.read(None if identifier is None else token_id(identifier))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\frontend_api\earnings.py", line 94, in read
+    p._uint('nft','tokenAtOrdinal(uint256)',ordinal,block=block)==identifier, 'Earnings NFT identity differs')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\frontend_api\service.py", line 224, in _uint
+    return int(self._call(self.contracts[role].address, signature, *args, block=block)[0], 16)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\frontend_api\service.py", line 214, in _call
+    raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\zzz_ops\work_budget.py", line 104, in call
+    result = self.inner.call(method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\tests_python\test_frontend_history.py", line 85, in call
+    return super().call(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.codex\visualizations\2026\10\14\01a13899-2be7-76f2-a5d0-72e4804c67b9\earnings-history-20261019\verified\published-tree\tests_python\test_frontend_api.py", line 138, in call
+    return self.responses[(tx['to'], tx['data'])]
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: ('0x0000000000000000000000000000000000000002', '0x64d406ce0000000000000000000000000000000000000000000000000000000000000002')
+
+======================================================================
+ERROR: test_api_work_limits (unittest.loader._FailedTest.test_api_work_limits)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_api_work_limits
+Traceback (most recent call last):
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'tests_python.test_api_work_limits'
+
+
+----------------------------------------------------------------------
+Ran 168 tests in 30.269s
+
+FAILED (errors=2)

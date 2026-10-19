@@ -121,6 +121,8 @@ class Projection:
             expected.add('predecessors')
         if isinstance(config, dict) and 'royalty_reporting' in config:
             expected.add('royalty_reporting')
+        if isinstance(config, dict) and 'earnings_history' in config:
+            expected.add('earnings_history')
         _keys(config, expected, 'configuration')
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
@@ -180,6 +182,10 @@ class Projection:
         if 'predecessors' in config:
             from frontend_api.lineage import Lineage
             self.lineage = Lineage(config['predecessors'], self, config)
+        self.earnings_history = None
+        if 'earnings_history' in config:
+            from frontend_api.earnings import Earnings
+            self.earnings_history = Earnings(config['earnings_history'], self)
 
     def _header(self, tag: str) -> dict[str, Any]:
         raw = self.rpc.call('eth_getBlockByNumber', [tag, False])
@@ -201,7 +207,7 @@ class Projection:
         native_methods = {'claimable(uint256,address)', 'eligibleFor(uint256,address)'}
         if signature in native_methods and len(args) == 2 and args[1] == ZERO:
             data = calldata(signature, args[0], '0x' + '0' * 39 + '1')[:-64] + '0' * 64
-        elif signature == 'eligibleCount(address)' and args == (ZERO,):
+        elif signature in {'eligibleCount(address)', 'eligibleWeight(address)', 'index(address)', 'pending(address)'} and args == (ZERO,):
             data = calldata(signature, '0x' + '0' * 39 + '1')[:-64] + '0' * 64
         else:
             data = calldata(signature, *args)
@@ -352,7 +358,7 @@ class Projection:
         # retry or history replay. No partial result is returned on expiry.
         self._fresh(header)
 
-    def _history_snapshot(self, header, block, lp_assets, royalty_assets):
+    def _history_snapshot(self, header, block, lp_assets, royalty_assets, *, consumer=None, extra_emitters=()):
         if self.history is None:
             return None
         # The reviewed coverage start is the NFT's actual creation block, not
@@ -369,7 +375,8 @@ class Projection:
         count = self._uint('nft', 'mintedCount()', block=block)
         history = self.history.read(block_number=header['number'], block_hash=header['hash'],
                                     block_timestamp=header['timestamp'], minted_count=count,
-                                    lp_assets=set(lp_assets), royalty_assets=set(royalty_assets))
+                                    lp_assets=set(lp_assets), royalty_assets=set(royalty_assets),
+                                    consumer=consumer, extra_emitters=extra_emitters)
         if history.provenance['start_block_hash'] != created['hash']:
             raise HistoryError('Indexed creation block differs from its canonical RPC anchor')
         return history
@@ -383,6 +390,12 @@ class Projection:
             item.update(symbol=descriptor.symbol, decimals=descriptor.decimals)
         return {'available': True, 'assets': assets, 'scope': 'All-time NFT claims, including LP and royalties paid to every past/current owner.',
                 'provenance': dict(history.provenance)}
+
+    @bounded_request
+    def earnings(self, identifier=None):
+        if self.earnings_history is None:
+            raise HistoryError('Reviewed earnings-history profile is not configured')
+        return self.earnings_history.read(None if identifier is None else token_id(identifier))
 
     @bounded_request
     def nft(self, identifier: Any) -> dict[str, Any]:

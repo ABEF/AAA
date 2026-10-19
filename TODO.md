@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**12 To do | 19 In progress | 14 Implemented locally**
+**11 To do | 20 In progress | 14 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -125,19 +125,6 @@ Custody, ownership and reward accounting.
 
 The data and services behind the app.
 
-<a id="task-financial-history"></a>
-
-- [ ] **[Build live fee history & USD values](docs/FRONTEND_HISTORY.md#verification-and-remaining-scope)** - To do. Index earned fees and reviewed token prices. Keep revenue received, available rewards and past claims distinct.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Index gross earned revenue, actual receipts, allocations and claims as distinct events, with complete deployment-to-present coverage, canonical/reorg reconciliation and unavailable responses when coverage is incomplete.
-  - Define reviewed per-asset USD pricing and 24-hour/all-time valuation. Cumulative raw claimed totals, including claims by previous NFT owners, must not be presented as gross revenue; the selected Pons pool has 0% conventional fees, not the demo's assumed 0.30%.
-  - Use the implemented [conversion history](docs/ROYALTY_REPORTING.md) as a separate denomination record. Never add ETH conversion credits to already-counted source earnings or current ETH claimable. Complete claimed/conversion history does not establish gross earned fees or historical USD value.
-
-  </details>
-
 <a id="task-activation-quotes"></a>
 
 - [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot.
@@ -151,6 +138,20 @@ The data and services behind the app.
   - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
   - Qualify range/timing output against real StateView ticks and current physical LP IDs. Show cooldown end or eligible-now/waiting state; unknown/stale keeper next-check and execution times must remain unavailable. Reprepare after LP/range/policy changes; Entry calldata has economic minima/deadline, not an LP-version lock. See [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md).
   - Implemented request-wide monotonic/expiry/RPC budgets and supervised HTTP workers; [scoped remediation](reports/api-work-limits/VERIFICATION.md) addresses AUD18-03. Qualify actual Linux/RPC/trace workloads and ingress limits under [host-services](TODO.md#task-host-services); keep final canonicality and on-chain deadlines.
+
+  </details>
+
+<a id="task-financial-history"></a>
+
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Backend collection/NFT 24h and all-time earnings replay is implemented, with separate LP/collective/royalty amounts and optional current-price USD. Qualify actual feeds, complete ingestion, large histories and frontend display.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.
+  - User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.
+  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.
+  - Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).
 
   </details>
 
@@ -256,7 +257,7 @@ What holders see and use.
 
 <a id="task-live-history-ui"></a>
 
-- [ ] **[Connect live history & cumulative claims](docs/FRONTEND_HISTORY.md#api-behavior)** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
+- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -264,6 +265,7 @@ What holders see and use.
   - Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.
   - Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.
   - Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals.
+  - Consume the implemented earnings endpoints and label both periods as earnings at current prices, with confirmed snapshot time. They count processed allocations, not unpaid/unharvested revenue. Show raw source amounts when a price is unavailable; never sum source earnings with conversion credits.
 
   </details>
 
@@ -583,4 +585,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `0298d8104da4206cf58efb0eede4869fec6d3a9c7b0eba20b6f7d8ae8e2c4b6a`.
+Snapshot SHA-256: `85290fefd9a440da26f74d7575147849d06859798dfed0ce4fe97e7a7c5bd059`.

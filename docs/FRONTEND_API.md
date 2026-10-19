@@ -1,3 +1,15 @@
+## Processed earnings extension - 2026-10-19
+
+Optional `earnings_history` adds read-only `GET /v1/earnings` and
+`GET /v1/nfts/<decimal-token-id>/earnings`. They reconstruct separate processed
+LP/collective/royalty earnings for all time and the last 24 hours. The user's USD
+policy is **current confirmed prices**, not historical dollars. Claims and
+conversion credits are separate. Review all seven emitters from creation, full
+predecessor coverage and price pins before enabling. See [configuration and
+recovery](EARNINGS_HISTORY.md) and [evidence](../reports/earnings-history/VERIFICATION.md).
+Existing position responses do not silently fetch this additional history.
+Live deployment and frontend integration remain open.
+
 ## Current royalty reporting extension - 2026-10-19
 
 The optional [royalty reporting profile](ROYALTY_REPORTING.md) adds verified
@@ -11,7 +23,8 @@ and financial-action validation retain their existing strict paths.
 Complete history now also returns `royalty_conversions`, separately from actual
 lifetime `previously_claimed`. See [field semantics and operator recovery](ROYALTY_REPORTING.md)
 and [scoped evidence](../reports/royalty-reporting/VERIFICATION.md). This is backend
-implementation, not a deployed service, live UI or gross earnings/USD history.
+implementation; processed earnings/current-price USD now have their own
+[optional profile](EARNINGS_HISTORY.md). Neither is a deployed service or live UI.
 
 # Confirmed frontend read API
 
@@ -70,8 +83,9 @@ and cumulative `previously_claimed` LP-plus-royalty amounts are now implemented.
 They require exact creation-to-target coverage and raw-log replay; current
 ownership additionally agrees with on-chain counts/owners. Without that
 configuration, NFT history is explicitly unavailable and wallet requests fail
-503. All-time/24h **gross generated fees**, reward USD conversion and unsettled
-individual/collective breakdown remain unavailable. Claimable and lifetime
+503. These position endpoints do not reconstruct earned history. Use the
+separate [earnings endpoints](EARNINGS_HISTORY.md) for processed all-time/24h
+LP/collective/royalty earnings and optional current-price USD values. Claimable and lifetime
 claimed amounts are not lifetime gross revenue. No assumed historical token
 price or current-balance subtraction is substituted.
 
@@ -82,8 +96,7 @@ Current-deployment claims must never be presented as the NFT's lifetime total.
 
 These endpoints are an unhosted integration foundation. The existing `indexer/`
 remains unchanged; the new read-only history consumer validates its exact
-confirmed snapshot and replays both ledgers. Complete gross fee attribution,
-reviewed USD prices, transaction preparation, live website integration and
+confirmed snapshot and replays both ledgers. Actual price/ingestion qualification, transaction preparation, live website integration and
 operating rehearsals remain release work. Native contract batched claims are a separate `ZZZClaimRouter`
 capability; this read service neither invokes it nor guarantees execution at a
 later block. The wallet must recheck owner/network and simulate immediately

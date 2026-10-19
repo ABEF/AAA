@@ -5,6 +5,19 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+Implemented [processed earnings and today-price USD](EARNINGS_HISTORY.md).
+The user chose current prices for both all-time and 24h earned source amounts.
+Read [the 186-test scoped evidence](../reports/earnings-history/VERIFICATION.md)
+for exact reuse/corrections; no Solidity rebuild/tests repeated. Per-NFT payouts,
+conversions, fractions, deferred royalty cohorts and same-chain imports reconcile.
+The current profile requires all seven emitters from creation; preserve old
+indexes when backfilling. Missing prices are null, not assumed stablecoin pegs.
+Next qualify actual providers/feed pins, complete ingestion/load/reorg operation
+and the live frontend consumer. Keep this reporting separate from claimable and
+previously-claimed fields. Main publication is established by Git; unrelated drafts
+remain local. Website/server/paused monitor and public-chain state are unchanged.
+
+
 The [royalty reporting profile](ROYALTY_REPORTING.md) now exposes confirmed
 ETH/source balances, per-currency deferred eligibility and pinned converter enable
 control. Exact conversion replay and same-chain predecessors preserve conversion
@@ -14,8 +27,9 @@ already includes unclaimed converted amounts. Read [scoped evidence](../reports/
 Solidity bindings reused, ten getter ABIs and 26 added schema events verified.
 The test trees exclude unrelated unpublished wallet/server/route/history-test drafts.
 
-Next integration work remains gross earned 24h/all-time history with reviewed USD
-prices, live frontend wallet/data behavior and actual service/route qualification.
+That reporting milestone is now followed by the processed earnings profile above.
+Remaining integration work is actual price/ingestion qualification, live frontend
+wallet/data behavior and actual service/route qualification.
 Use the central Todo and keep operator procedures in sync. No website/server,
 paused monitor, deployment or public transaction changed. Use main; Git establishes
 publication. Preserve unrelated drafts and reuse unchanged contract evidence.

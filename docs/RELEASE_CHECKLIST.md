@@ -3,13 +3,20 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-19.
 
+The [earnings extension](EARNINGS_HISTORY.md) implements read-only processed
+all-time/24h LP and royalty history, complete configured same-chain continuity and
+optional current-price USD marks. [Scoped evidence](../reports/earnings-history/VERIFICATION.md)
+covers 186 affected tests across recorded runs, with unchanged contract evidence
+reused. Actual feeds, backfill completeness, archival/load/reorg operation and
+frontend labels/availability remain unqualified. This does not approve production.
+
 The [royalty reporting extension](ROYALTY_REPORTING.md) adds explicit optional
 ABI/configuration and partial currency-availability semantics to single-NFT reads,
 plus complete same-chain conversion history separated from claims. Review actual
 runtime pins, archive ingestion, client null/eligibility behavior and deployment
 compatibility before hosting or enabling UI actions. Local backend tests and
-unchanged contract evidence do not qualify live services or gross earned/USD
-history. No website/server or deployment change occurred.
+unchanged contract evidence do not qualify live services; earned/USD reporting
+has its own profile and operating requirements above. No website/server or deployment change occurred.
 
 The [royalty conversion candidate](ROYALTY_SETTLEMENT.md) adds a fixed pre-seal
 converter binding, batch ETH accounting, optional-token failure isolation and an
