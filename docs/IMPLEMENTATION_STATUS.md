@@ -68,6 +68,12 @@ passes; normal Registry object sizes pass. No deployment or independent approval
 
 ## NFT position presentation
 
+The [gallery/reward-feedback follow-up](../reports/website-polish/VERIFICATION.md)
+adds single-row artwork traits, removes redundant pool UI, and supplies one
+idempotent sample reward receipt for demo claim testing. Confirmed higher-tier
+contributions get a brief sparkle; local mode waits for receipt and fresh LP.
+These features do not implement live revenue funding or new contract operations.
+
 Fixed royalty weight now appears as an artwork trait. Cards retain attached LP and active cards show a single
 claimable LP-plus-royalty total; the breakdown separates liquidity, current
 reward components, earnings history and lifetime claims. The local adapter sums

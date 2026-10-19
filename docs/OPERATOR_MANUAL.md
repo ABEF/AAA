@@ -541,6 +541,14 @@ no service restart, contract call, public deployment or governance change is nee
 
 ## Main website pending-action and storage recovery
 
+The public simulation adds one `claim-testing-20261020` receipt after existing
+saved actions. It preserves LP, NFT traits and cumulative claims; refreshing does
+not refill a claimed receipt. Reset demo intentionally restores the starting
+portfolio/history and a later page load can reinitialize that sample receipt.
+The local contract adapter never uses this sample funding. Upgrade sparkle/sound
+requires a confirmed higher tier and increased LP, not an approval. No operator
+contract call, service restart, signer permission or production economics changed.
+
 The main website tracks activation/top-up/claim work per NFT and mint separately.
 A conflicting action on the same NFT or overlapping claim batch is rejected;
 other NFTs can continue. Only a changed target artwork animates. Wallet/network

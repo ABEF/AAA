@@ -1,0 +1,15 @@
+{
+  "website_files": {
+    "app.js": "6675a5693e827ec099930984e6f4e34155aef03e88be3950cf50fb5064bb9210",
+    "domain.js": "934a69deaf3b4bd20e6d2565b15c84c2d553e4d1fe063a97faf5e681ced00fe1",
+    "index.html": "458587036341f966ea890bb82d6286deb80e6296dab45ab4a1345ed26d4ee9b8",
+    "local-view.js": "a70dbd48e12095032518adc30a727e5fffc27d86704576a17fa8aa246a31c430",
+    "preview-store.js": "b1a248221835231560ca8b2095a99a79e5db0309a737f542075599b6fb497b46",
+    "styles.css": "44ae292b395fc632d8d7cc53c15bc3e392a1ff2a8741e6ba0e1bf526837ab307",
+    "ui-state.js": "721b79aedae818d4644ecfa8b346c447ccc2e30d6ae492309239470b171de661",
+    "tests/ui-state.test.mjs": "656c7ffd1f73ddc2a996a8bafe5b602ddf152b6cb48c90c450d1f4d21b88c6d7",
+    "tests/domain.test.mjs": "6e60ce079fd4720f1168661ab2911ea0c2e89f7046d9e7c2663a5d713ebd001f",
+    "tests/contribution-flow.test.mjs": "af1847ebdc307c2645b53e04343e82c4f2abbd36e94bb088ddbeef12bc59edcb",
+    "tests/reward-display-audit.test.mjs": "e9452ae94ec9d30de10aa17c815d66b0bc4af2fb63989c8fe62a4f0e01721491"
+  }
+}
