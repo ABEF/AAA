@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**12 To do | 19 In progress | 12 Implemented locally**
+**12 To do | 19 In progress | 13 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -185,6 +185,17 @@ The data and services behind the app.
 
 - [x] **[Prepare unsigned mint & claim requests](docs/IMPLEMENTATION_STATUS.md#local-unpublished-candidates)** - Implemented. Local, unpublished preparation validates and simulates 0.05 ETH mints and up to 32 LP / royalty claims. Signing stays in the wallet; this task is not live integration.
 
+<a id="task-holder-preflight"></a>
+
+- [x] **[Inventory NFT holders before replacement](docs/HOLDER_PREFLIGHT.md)** - Implemented. Confirmed owner/code inventory, bounded pages and complete coverage checks flag contracts and delegated accounts for review. The procedure requires a frozen rescan and exact escrow release/claim evidence; actual compatibility qualification remains under canonical recovery.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification](reports/holder-preflight/VERIFICATION.md): pinned reads, 1,000-NFT coverage, missing/duplicate/mixed snapshots, reorgs, code/binding drift and limits. Read-only implementation; no actual deployed escrow or marketplace approved.
+
+  </details>
+
 
 ## Frontend
 
@@ -308,7 +319,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-verification"></a>
 
-- [x] **[Local contract and integration tests](reports/range-policy/VERIFICATION.md)** - Implemented. Latest range-policy scope passes 37 Solidity and 38 isolated Python cases, normal size/source gates and fresh internal static review. The preceding dynamic-liquidity and earlier full-regression receipts retain their own source scope; no new full regression is claimed. Reuse unchanged evidence and rerun only affected checks unless release qualification requires broader coverage.
+- [x] **[Local contract and integration tests](reports/royalty-conversion/VERIFICATION.md)** - Implemented. Latest royalty scope passes 135 affected Solidity cases, 195 distinct scoped Python cases, 31 size gates and 40 production bindings with fresh internal static review. Read-only holder preflight adds 12 targeted Python passes including complete 1,000-NFT coverage. Historical full-regression/fork evidence keeps its source scope; unchanged Solidity was not rerun for the inventory tool.
 
 <a id="task-economic-rights-audit"></a>
 
@@ -388,7 +399,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Review royalty-token outage isolation: activation synchronizes every admitted royalty asset, so a reverting balanceOf can block new activation and syncAll. Single-asset healthy claims are separate. Any remediation must preserve old receipt ownership, exact liabilities and eligibility checkpoints; blindly skipping failed assets can redistribute past receipts to new entrants. The mint/pool stop controls do not repair this separate accounting/liveness boundary.
+  - Independently qualify implemented royalty-token outage isolation: failed optional balance reads defer only new membership for that currency. Recovery protects the earlier cohort and exact liabilities. Single-asset healthy claims continue, while syncAll and exact unreadable canonical backing can still fail. Do not blindly skip old receipt/eligibility checkpoints.
   - The [royalty conversion and outage candidate](docs/ROYALTY_SETTLEMENT.md) isolates optional-token activation failures and preserves earned balances. Actual token/wrapper/route behavior, runtime inventory, eligibility UI and live recovery still require qualification; native ETH has no external ERC20 balance query.
 
   </details>
@@ -409,7 +420,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently qualify the implemented same-chain cutoff, bounded exact export/import, classified backing, single-successor retirement, full/partial abort and late-forwarding paths. Benchmark atomic cutoff capture, ordered per-domain settlement, eight-row batches, each funding leg and final activation across 1,000 NFTs, four historical buckets, 32 LP assets, reachable funded inboxes and 17 royalty slots under unchanged limits.
   - Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
   - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
-  - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding.
+  - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding. The [read-only preflight](docs/HOLDER_PREFLIGHT.md) now inventories pinned ownership/code and flags unresolved holders. Repeat after freeze; incomplete coverage or unreviewed escrow release behavior prevents operational sign-off.
   - Historical canonical-handoff qualification recorded 582 regression cases plus 34 focused handoff cases, two opt-in fork setup skips, repaired bridge fixtures and three cold-gas suites. These retain their original source scope. The latest Vault/metadata changes have separate [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md), not a new complete handoff regression. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
   - Qualify the selected [provider-and-drain operator policy](docs/OPERATOR_MANUAL.md#whole-collection-replacement) against AUD18-02: no new mints during preparation, all original draws finalized before freeze. An unfulfilled request can still block replacement; document postponement/cancellation and provider escalation. No reroll/admin override/pending-request carry is authorized.
 
@@ -556,4 +567,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `cb7adf3624b72426053af39c60db03fe919d88584de7f3e032598e5b7c0c6682`.
+Snapshot SHA-256: `b1c776aca7334b2e794c25d216cdf71d12563865dbd129164395952fc689bcb9`.

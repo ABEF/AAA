@@ -1,3 +1,17 @@
+## Replacement NFT holder preflight - 2026-10-19
+
+Read [the holder inventory and cutover procedure](docs/HOLDER_PREFLIGHT.md) and
+[scoped evidence](reports/holder-preflight/VERIFICATION.md). The read-only tool
+inventories up to 1,000 NFT owners at an explicit confirmed canonical block,
+flags contract/delegated owners, rejects mixed/duplicate/incomplete coverage and
+never authorizes migration. Resolve exact replacement release/claim compatibility
+before freeze; rescan after freeze and recheck before commit. Incompatible escrow
+after freeze requires the supported fully funded abort before holder withdrawal;
+no owner rewrite or retirement override. Actual marketplace/escrow qualification
+remains open. Royalty conversion/outage work is published in 74c5f3e; no Solidity
+changed in this inventory follow-up. Main only, preserve drafts; website/server,
+public transactions and paused monitoring remain unchanged. Check Git for publication.
+
 ## Royalty batch conversion and outage recovery - 2026-10-19
 
 The user approved automated batch ETH conversion, a maximum 1% execution loss

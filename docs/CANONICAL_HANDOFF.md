@@ -126,7 +126,10 @@ Import preserves a contract owner's address without calling ERC721 receiver
 callbacks. An escrow hardcoded to the old collection may be unable to release
 the replacement NFT even on the same chain. Contract-owner compatibility and
 marketplace escrow cutover therefore require review before approving a handoff;
-preserving an address alone does not prove recoverable ownership.
+preserving an address alone does not prove recoverable ownership. Use the implemented
+[confirmed holder inventory](HOLDER_PREFLIGHT.md), resolve flagged contracts before
+freeze, and rescan frozen ownership before final review. It reports gaps and never
+automatically approves release compatibility.
 
 ## Operator policy for pending reveals
 

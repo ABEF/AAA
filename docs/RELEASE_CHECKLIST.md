@@ -138,3 +138,7 @@ Market, wallet and operating acceptance is maintained under
 [activation assets](../TODO.md#task-activation-assets),
 [transaction journey](../TODO.md#task-transaction-ui) and
 [keeper recovery](../TODO.md#task-keeper-recovery).
+
+The [holder preflight](HOLDER_PREFLIGHT.md) supplies a pinned ownership/code inventory,
+not escrow or replacement approval. Include complete frozen coverage plus exact
+contract-holder release/claim and marketplace cutover evidence in release review.

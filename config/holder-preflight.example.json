@@ -1,0 +1,13 @@
+{
+  "chain_id": null,
+  "block_number": null,
+  "block_hash": null,
+  "minimum_confirmations": null,
+  "source": {
+    "controller": null,
+    "nft": null,
+    "controller_code_hash": null,
+    "nft_code_hash": null
+  },
+  "destination": null
+}

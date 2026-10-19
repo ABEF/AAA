@@ -5,6 +5,12 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+The read-only [replacement holder preflight](HOLDER_PREFLIGHT.md) now inventories
+confirmed ownership/code, flags unresolved escrows/delegated accounts and detects
+incomplete/mixed pages. Actual release/claim rehearsals remain open. See
+[scoped evidence](../reports/holder-preflight/VERIFICATION.md); no Solidity changed
+in this follow-up, so the royalty verification was reused without rerunning it.
+
 The royalty conversion continuation implements guarded batches, per-currency
 outage recovery and optional keeper automation. Read [the runbook](ROYALTY_SETTLEMENT.md)
 and [source-bound verification](../reports/royalty-conversion/VERIFICATION.md).

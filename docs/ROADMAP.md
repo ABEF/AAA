@@ -86,3 +86,8 @@ Obtain an independent security audit, verify remediation, review deployment conf
 ## Later product work
 
 Actual input routes, live projections, production VRF/feeds/authorities, immutable artwork publication, testnet operating rehearsals and independent audit remain initial release work. Use all three release-test layers: local security/accounting, actual selected-pool Robinhood mainnet fork and Robinhood Testnet operation; Sepolia is supplementary. Multi-hop buybacks and satellite deposits remain later extensions. Only compatible provider/route onboarding can be deferred through existing governance-approved interfaces; absent conversion, lineage or canonical transport capabilities cannot be added to sealed contracts by configuration.
+
+Before committing a collection replacement, resolve the code-bearing holders from
+[the inventory procedure](HOLDER_PREFLIGHT.md) while transfers still work, then
+reconcile a fresh frozen snapshot. Actual escrow/marketplace rehearsals remain under
+[canonical recovery](../TODO.md#task-security-chain-recovery).
