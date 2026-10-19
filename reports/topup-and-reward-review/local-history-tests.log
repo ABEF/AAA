@@ -1,0 +1,14 @@
+test_cache_is_disabled_between_aggregates (tests_python.test_local_stack.LocalReadTests.test_cache_is_disabled_between_aggregates) ... ok
+test_code_cache_does_not_cache_address_or_skip_reads (tests_python.test_local_stack.LocalReadTests.test_code_cache_does_not_cache_address_or_skip_reads) ... ok
+test_external_account_rejected_before_simulation (tests_python.test_local_stack.LocalReadTests.test_external_account_rejected_before_simulation) ... ok
+test_local_identity_guard_checks_owned_process (tests_python.test_local_stack.LocalReadTests.test_local_identity_guard_checks_owned_process) ... ok
+test_local_value_cap (tests_python.test_local_stack.LocalReadTests.test_local_value_cap) ... ok
+test_missing_and_unbounded_runtime_rejected (tests_python.test_local_stack.LocalReadTests.test_missing_and_unbounded_runtime_rejected) ... ok
+test_only_exact_hash_bound_reads_are_deduplicated (tests_python.test_local_stack.LocalReadTests.test_only_exact_hash_bound_reads_are_deduplicated) ... ok
+test_optional_history_failure_is_unavailable_not_zero_or_a_portfolio_failure (tests_python.test_local_stack.LocalReadTests.test_optional_history_failure_is_unavailable_not_zero_or_a_portfolio_failure) ... ok
+test_optional_history_success_is_not_rewritten (tests_python.test_local_stack.LocalReadTests.test_optional_history_success_is_not_rewritten) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.003s
+
+OK

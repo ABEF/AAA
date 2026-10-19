@@ -262,6 +262,16 @@ contract ActivationEntryTest is Test {
         ZZZActivationEntry.Request memory r=_request();r.sourceAsset=address(0);r.routeId=0;r.minimumOut=0;
         vm.prank(ALICE);entry.execute{value:100 ether}(r);assertEq(vault.gross(),100e18);assertEq(address(entry).balance,0);_assertClean();
     }
+    function testNativeTopUpUsesFiveDollarValueFloor() public {
+        registry.configure(address(wrapped),address(second),true);
+        ZZZActivationEntry.Request memory r=_request();r.sourceAsset=address(0);r.routeId=0;r.minimumOut=0;r.increase=true;
+        r.amountIn=5 ether-1;
+        uint256 balance=ALICE.balance;
+        vm.prank(ALICE);vm.expectRevert();entry.execute{value:r.amountIn}(r);
+        assertEq(ALICE.balance,balance);_assertClean();
+        r.amountIn=5 ether;vm.prank(ALICE);entry.execute{value:r.amountIn}(r);
+        assertEq(vault.gross(),5e18);assertTrue(vault.increased());_assertClean();
+    }
     function testPrefundsCannotBecomeContributionOrRouteOutput() public {
         source.mint(address(entry),17e18);wrapped.mint(address(entry),23e18);vm.deal(address(entry),5 ether);
         _execute(_request());assertEq(vault.gross(),100e18);assertEq(source.balanceOf(address(entry)),17e18);

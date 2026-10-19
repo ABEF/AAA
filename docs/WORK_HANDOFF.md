@@ -1,3 +1,30 @@
+## Contribution floor and NFT earnings checkpoint - 2026-10-19
+
+The user requires $5 minimum LP increases; initial activation remains $100.
+Entry and the fixed Vault budget helper enforce both, including direct Vault
+calls and higher pool minima. The original-source 99% new-LP requirement and
+separate gas remain. Backend preparation and new website actions agree; legacy
+v7 preview events are preserved rather than resetting saved holdings.
+
+Read [minimums](CONTRIBUTION_MINIMUMS.md), [scoped verification](../reports/topup-and-reward-review/VERIFICATION.md)
+and [internal review](../reports/topup-and-reward-review/REVIEW.md). Fresh evidence:
+91 Solidity passes, 32 normal compiler-object gates (Vault 19 runtime bytes spare),
+74 distinct Python and 102 distinct JS cases across documented scoped runs.
+No full fresh regression, independent audit or public-chain qualification.
+
+Cards/details use NFT net earned individual+collective+royalty totals. The fee
+labels and regular-weight values share one compact line below centered LP attached;
+Rewards to claim is separately centered. No gross fees on NFT cards. Original
+demo 24h net history is unavailable; local totals require exact snapshot identity
+and all price components. Optional local history failures retain core balances;
+terminal budgets/core errors remain fatal, dormant reads skip history.
+
+Main only, preserve unrelated drafts and establish publication through Git. No
+public server update, public transaction or monitor restart. Existing local
+8892 contracts were not replaced: start a separate source-matched disposable
+fixture to test the new binary without deleting the current session. Central
+Todo, feature/evidence and operator procedures are updated together.
+
 ## Local website integration checkpoint - 2026-10-19
 
 Read [the website local-mode guide](LOCAL_WEBSITE.md) and
@@ -326,3 +353,13 @@ canonical/preparation keeper tests; that timeout does not relax gas assertions.
 For every change, update `docs/project-todo.json`, regenerate `TODO.md`, run the
 sync tool with `--check`, and reconcile affected evidence/release references.
 This is durable repository context, not a claim of global personal memory.
+
+Latest user clarification: holder LP rewards must also settle in ETH. The
+[audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) finds LP conversion
+and unwrap absent; royalty-only conversion is not sufficient. The local read-only
+claim trace confirms source ERC20 plus native royalties and leaves claims intact.
+Track implementation before sealing; no new LP conversion-loss policy is assumed.
+The current local input balance was replenished without restarting the chain.
+Palette names now use their own text colors in both website modes, without pills.
+
+Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.

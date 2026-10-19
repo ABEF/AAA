@@ -78,10 +78,30 @@ Before execution, restoring the old configuration may clear the width mismatch; 
 | `minRebalanceInterval` | 600 seconds-7 days | Minimum time between rebalances; a safety cooldown, not a governance delay. |
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
 | `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected native/Pons admission additionally requires greater than 100. This venue guard does **not** weaken the 1% complete contribution-loss ceiling. |
-| `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed production activation floor. Check existing NFT contributions/top-ups. |
+| `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed $100 activation / $5 top-up floors. The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
 | `depositsEnabled`, `operationsEnabled` | Full configure for enabling; `disablePool` can only clear flags | Different controls; see below. |
 
 Ordinary rebalance and supported local move/resume must retain at least **97% of starting principal plus released compound**, measured at the same starting prices, in LP plus attributed idle; idle has its own 5% ceiling. Contributions must deploy at least **99% of gross original source value as new LP**. Network gas is separate. The user retained **per-operation limits only**: repeated permitted operations can accumulate losses. Monitor total turnover/costs and stop harmful activity; no rolling loss breaker or guarantee against impermanent loss exists.
+
+### Contribution minimums
+
+For normal $5 increases, governance configures `minDepositUSD=5e18` through the
+appropriate full `configure`/`configureNative` call. Activation still requires
+$100; each action must deploy 99% of its original value, gas separate. No per-user
+override or new role exists. A higher pool minimum intentionally blocks smaller
+increases. Follow [the exact procedure](CONTRIBUTION_MINIMUMS.md#operator-procedure)
+for authority, simulation, verified getters/receipts, dependency-free stop,
+validated restart and rollback. The floors are implementation changes, not a way
+to modify sealed deployed bytecode. This candidate is undeployed publicly.
+
+Local launcher source now uses the $5 pool minimum. Existing running fixtures
+remain unchanged: build source-matched artifacts and launch a separate fresh
+disposable session; do not silently erase holdings or reuse stale ABI/runtime pins.
+Optional history failures now retain core confirmed balances with unavailable
+history and a sanitized `local_earnings_unavailable` event. Inspect indexer/RPC
+coverage before retrying a refresh; work-budget failures are terminal, core reads
+still fail closed and refresh never repeats financial operations. Dormant NFTs
+skip irrelevant history replay. See [local setup](LOCAL_TEST_STACK.md).
 
 ## Activation assets and routes
 
@@ -572,3 +592,31 @@ and wall time plus chain/account/revision before submission. Refresh and prepare
 again on expiry; recover unresolved submissions using the existing operation ID.
 Only a page reload is needed for these website code changes. No economics, local
 signer permissions, on-chain configuration or automatic transaction retry changed.
+
+## Holder payout currencies
+
+The current LP reward ledger pays its admitted source ERC20 directly. It has no
+LP conversion/unwrap function. Creator ETH intake is wrapped into the accounting
+asset; `RoyaltyRewards.convertBatch(...)` handles royalty balances only. There is
+no operator call or keeper flag that turns current LP claims into native ETH.
+Do not configure arbitrary approvals or send ledger assets to the royalty
+converter. See [the audited boundaries](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md).
+
+Before enabling an ETH-only user flow, complete and review the linked pre-seal
+implementation. Verify actual receipt currencies, converter bindings and output
+backing, not token labels. Until then preserve source-asset balances and explicit
+unavailability/pending status. Existing controls can stop new maintenance or
+conversions within their own documented scope; they do not add missing payout
+functionality. No new authority, operator procedure or economic code is introduced
+by this audit; qualification remains in the [central task](../TODO.md#task-lp-eth-settlement).
+
+Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.
+
+Contribution incidents: distinguish a rejected/preparation failure, pending/unknown
+receipt, reverted receipt and confirmed LP with a failed read. Never ask for a new
+submission while the original result is unknown. Recover the same operation ID and
+receipt first. A reverted Entry preserves input tokens but costs gas and can leave
+an earlier allowance. A successful Entry creates nonredeemable LP even when the
+API subsequently fails. Separately wrapped local ETH remains wallet-owned WETH
+if contribution fails; public native Entry wrapping is atomic. See the
+[failure evidence](../reports/topup-and-reward-review/contribution-rollback.json).

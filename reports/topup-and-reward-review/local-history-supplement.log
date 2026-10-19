@@ -1,0 +1,6 @@
+test_state_skips_dormant_history_without_weakening_core_failure (tests_python.test_local_stack.LocalReadTests.test_state_skips_dormant_history_without_weakening_core_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

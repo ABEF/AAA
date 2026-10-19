@@ -91,7 +91,7 @@ The target live flow is **website -> read/preparation API -> user wallet confirm
 | --- | --- |
 | **Mint** | Pay exactly **0.05 ETH** to the immutable mint recipient for a dormant NFT. Minting adds supply, not liquidity or reward eligibility. |
 | **Activate** | After traits are revealed, contribute at least **$100 in original gross input value**. At least **99% must become new LP**; conversion costs, slippage and undeployed input share one 1% limit. Network gas is separate. |
-| **Add liquidity** | Further contributions grow the same NFT's LP allocation under the same execution limit. Existing holders' assets cannot subsidize that limit; a top-up creates no extra collective membership. |
+| **Add liquidity** | Contributions from **$5 in original gross input value** grow the same NFT's LP allocation under the same 1% execution limit; gas is separate. A higher configured pool minimum still applies. Existing holders' assets cannot subsidize that limit; a top-up creates no extra collective membership. |
 | **Hold or transfer** | The current owner can claim its funded balances. Transfers carry the LP allocation, remaining unclaimed balances and future fee rights. A seller can claim before a transfer, so an earlier listing balance is not guaranteed to the buyer. |
 
 **LP principal cannot be redeemed by holders.** It remains managed by the protocol for rebalancing, compounding and approved migration. A right to future funded fees has no expiry, but does not guarantee future revenue or capital value.
@@ -250,3 +250,13 @@ python3 scripts/sync-project-todo.py --check
 ```
 
 Keep local work, GitHub publication, test evidence and deployment status explicit. The central Todo owns task status; feature references and release records have their separate purposes.
+
+### Holder payout currency
+
+The product requires rewards claimable in ETH. The current candidate still pays
+LP rewards in their source ERC20 currency; the implemented ETH converter handles
+marketplace royalties only. This is an open pre-seal requirement, documented in
+the [payout audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) and
+[central Todo](TODO.md#task-lp-eth-settlement).
+
+Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. The [named local rehearsal](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal) uses separate disposable fixtures; public route/ETH payout qualification stays open.

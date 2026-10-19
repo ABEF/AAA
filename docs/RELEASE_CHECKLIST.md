@@ -3,6 +3,13 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-19.
 
+The [$5 contribution-floor and NFT reward display candidate](CONTRIBUTION_MINIMUMS.md)
+has [scoped verification and an internal daily review](../reports/topup-and-reward-review/VERIFICATION.md).
+These change the reviewed source candidate, not this NOT APPROVED decision.
+Qualify exact $5 routes under the unchanged 1% limit, final runtime/constructor
+sizes, real priced history, concurrent services and independent audit. Public
+services and existing disposable deployments were not upgraded.
+
 The [unsigned wallet preparer](FRONTEND_TRANSACTIONS.md) now has current lifecycle,
 selected-currency checks, bounded work and separately reviewed fee estimation.
 [Scoped evidence](../reports/wallet-preparation/VERIFICATION.md) is internal backend
@@ -164,3 +171,8 @@ Market, wallet and operating acceptance is maintained under
 The [holder preflight](HOLDER_PREFLIGHT.md) supplies a pinned ownership/code inventory,
 not escrow or replacement approval. Include complete frozen coverage plus exact
 contract-holder release/claim and marketplace cutover evidence in release review.
+
+The 2026-10-19 payout audit also identifies missing native-ETH LP settlement.
+Current source-currency claims do not satisfy the user's ETH-only payout rule;
+the royalty converter does not close this gap. See [audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
+and [owning task](../TODO.md#task-lp-eth-settlement). Approval remains NOT APPROVED.

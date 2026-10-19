@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 24 In progress | 15 Implemented locally**
+**14 To do | 24 In progress | 15 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,6 +15,22 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
+
+<a id="task-lp-eth-settlement"></a>
+
+- [ ] **[Settle holder LP rewards in ETH](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)** - To do. Required product behavior; not implemented. Current LP claims pay source ERC20s, including ZZZ/WETH. Royalty conversion does not cover LP balances. Implement guarded source-to-ETH settlement and an explicit claim/outage policy before sealing.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Preserve the fixed 80/10/5/5 allocation. Convert only the already-earned individual and collective holder balances; never spend principal, compounding/buyback reserves, quarantines or another NFT backing. Preserve each NFT entitlement before conversion, not current shares/membership at conversion time.
+  - Unwrap reviewed WETH exactly; swap ZZZ or other admitted LP reward assets through pinned routes with fresh independent prices, exact deltas/approvals, minimum output/deadline and a separately approved execution-loss policy. A proposed 1% limit with gas separate is not yet selected for LP conversion.
+  - Bind the converter/custody path before sealing. Add bounded keeper execution, ETH ledger/claim support, current-owner checks and reentrancy/lifecycle guards. The existing royalty-only converter and passive ClaimRouter cannot supply this by configuration.
+  - Define ETH-only default claim behavior and explicit source-currency outage recovery. Failed conversion must leave original backed entitlements intact; never display an unconverted token balance as ETH. Preserve dust/fractions, transfer rights, complete handoff/abort/backing and historical claims.
+  - Update read APIs, wallet preparation and today-price earnings replay without counting conversion as new income or a payout. Qualify traces/receipts for ZZZ conversion, WETH unwrap, mixed LP-plus-royalty claims, simultaneous ownership/claim changes and stalled/restarted keepers.
+  - The read-only [local claim trace](reports/topup-and-reward-review/claim-currency-trace.json) confirms source-token LP plus ETH royalty payout, with no claim broadcast or balance consumed. Internal source audit only; real routes/feeds and independent review remain open.
+
+  </details>
 
 <a id="task-royalty-eth-settlement"></a>
 
@@ -29,6 +45,7 @@ Custody, ownership and reward accounting.
   - Approved and implemented: activation survives optional royalty-token failures; unseen receipts at recovery go to the earlier cohort, then waiting NFTs join future receipts. Expose eligibleFor and deferred/recovered status accurately. Exact unreadable backing still blocks canonical handoff.
   - Review [scoped tests and internal findings](reports/royalty-conversion/VERIFICATION.md). Rehearse automatic dry/live keeper conversion, gas economics, failed currency/route recovery, mixed claims and successor configuration on the target network; do not infer production readiness from local mocks.
   - Implemented [backend conversion and currency-eligibility reporting](docs/ROYALTY_REPORTING.md), verified across owners and complete pinned same-chain predecessors. Integrate the website and qualify live ingestion/availability recovery. RoyaltyConverted is not Claimed or new earnings; only actual payouts increase lifetime paid totals. Independent audit/remediation remains required.
+  - This converter applies only to royalties. It neither converts the LP ledger nor guarantees native ETH for all claims; direct source-currency claims remain supported. See [LP ETH settlement](TODO.md#task-lp-eth-settlement).
 
   </details>
 
@@ -54,6 +71,7 @@ Custody, ownership and reward accounting.
   - Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native ingress is restricted to the actual native-pool wrapper. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution.
   - Use the [integration campaign](docs/INTEGRATION_CAMPAIGN.md) and [read-only observations](reports/activation-route-observation/VERIFICATION.md): one $1 conversion snapshot is not $100 activation qualification. Include subsequent LP costs in the same 1% limit, separate gas, qualified ZZZ pricing and complete operation simulation. Public transaction testing has not run; the isolated $1 build remains local only.
   - Track team-dependent feed, market and liquidity questions in [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team). Team responses do not replace independent route/feed qualification.
+  - Implemented: fixed $100 activation / $5 increase floors in original-source Entry and the direct Vault helper, with higher pool minima retained. Qualify complete $5 routes at 99% marginal LP and separate gas, including real token units, depegs and execution costs. See [minimums and operator controls](docs/CONTRIBUTION_MINIMUMS.md).
 
   </details>
 
@@ -115,7 +133,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-reward-ledgers"></a>
 
-- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares.
+- [x] **[LP fees & separate royalty shares](docs/ECONOMICS.md)** - Implemented. 80 / 10 / 5 / 5 funded LP allocation with documented raw-unit dust settlement; equal collective shares. Actual royalties go to active NFTs at x1 / x2 / x3, separately from LP shares. These ledgers currently preserve payout currencies; ETH-only LP settlement is a separate open task.
 
 <a id="task-shared-custody"></a>
 
@@ -146,6 +164,7 @@ The data and services behind the app.
   - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
   - Qualify range/timing output against real StateView ticks and current physical LP IDs. Show cooldown end or eligible-now/waiting state; unknown/stale keeper next-check and execution times must remain unavailable. Reprepare after LP/range/policy changes; Entry calldata has economic minima/deadline, not an LP-version lock. See [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md).
   - Implemented request-wide monotonic/expiry/RPC budgets and supervised HTTP workers; [scoped remediation](reports/api-work-limits/VERIFICATION.md) addresses AUD18-03. Qualify actual Linux/RPC/trace workloads and ingress limits under [host-services](TODO.md#task-host-services); keep final canonicality and on-chain deadlines.
+  - Preparation now checks the $5 top-up / $100 activation floor and any higher pool minimum before approvals or traces. [Focused evidence](reports/topup-and-reward-review/VERIFICATION.md) covers exact/below limits and units. Actual route/feed/fee qualification remains open.
 
   </details>
 
@@ -161,6 +180,8 @@ The data and services behind the app.
   - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.
   - Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).
   - Implemented the read-only [history audit](docs/HISTORY_AUDIT.md): per configured current/predecessor epoch, compare exact raw logs and headers in windows of up to 128 blocks/10,000 logs, with shared work budgets and no database repair. [Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected cases via new runs and exact-body reuse. Reconcile all contiguous windows through reviewed epoch cutoffs; a partial matched window or agreeing providers is not a completeness/finality proof.
+  - NFT card totals now combine individual LP, equal collective and royalties; they exclude gross pool income and require complete same-snapshot priced components. Saved demo 24h net history remains unavailable. [Scoped evidence](reports/topup-and-reward-review/VERIFICATION.md) does not qualify live ingestion or prices.
+  - The [NFT calculation audit](reports/topup-and-reward-review/REWARD_CALCULATION.md) traces individual LP + equal collective + royalties, distinguishes earned from unpaid totals and guards invalid aggregates. Six focused display cases and 37 affected client cases pass; real ingestion/pricing qualification remains open.
 
   </details>
 
@@ -297,6 +318,9 @@ What holders see and use.
   - Main website implementation: per-NFT/mint resources, atomic overlapping batch rejection, latest-state commits under Web Locks, bounded cross-tab waits, reset epochs and explicit persistence failures. Seventeen new focused cases plus affected domain/wallet cases and two-tab browser activation/claim checks are recorded in [scoped evidence](reports/frontend-state/VERIFICATION.md). No claim of distributed production safety or public deployment.
   - [Website/backend resilience evidence](reports/concurrent-services/VERIFICATION.md): 47 scoped Python and 90 JS passes, including source isolation, overload, cleanup, storage invalidation, nonfinite expiry, wallet/context changes and duplicate confirmation. Main-site browser/read checks and static build passed. Simulation/browser locks and the serial local signer do not establish concurrent production wallet safety.
   - NFT card presentation: fixed royalty weight follows the pattern; cards retain attached LP and active cards show combined Rewards to claim, with liquidity, components, history and lifetime claims in the breakdown. Exact currencies and unavailable values are preserved. [Scoped UI verification](reports/position-summary/VERIFICATION.md); production integration remains open.
+  - New $5 increases and $100 activation are aligned in preview, local client, preparation and contracts. Preserve historical smaller preview events without permitting new ones. Earned totals sit on one line below attached LP, separate from claimable. Existing local sessions/public services are not upgraded; qualify production browser transactions and multi-user operation.
+  - Match the accepted ETH-only holder payout requirement to actual on-chain conversion before displaying ETH. The older TEST-1/TEST-2 session is preserved; separate named ZZZ/WETH/USDC/USDG fixtures now exercise wrapping, decimals and mock routes. Balance/faucet UX and source-to-ETH payout qualification remain open. Do not cosmetically rename generic balances or silently reset current NFTs.
+  - Four visible contribution inputs: ZZZ, USDG, USDC, ETH; WETH internal only. Contribution-only dialogs and scoped confirmed refresh are implemented. Named local fixtures exercise exact approvals and mock conversion separately from public route qualification; see [local setup](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal).
 
   </details>
 
@@ -363,6 +387,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   - Agree invoice/report IDs, transaction/receipt references, period reconciliation, late/partial/duplicate payments, shortfalls and unpaid residuals. Receipt acceptance does not authenticate the sender; the receiver is permissionless and cannot debit the creator or enforce an off-chain promise.
   - Explain and obtain agreement on processing-time allocation: a payment received after an NFT activation can benefit that entrant even when the creator earned it earlier. The existing intake does not reconstruct historical per-NFT swap entitlements. Requested historical allocation requires a separately scoped design, not a bookkeeping assumption.
   - Rehearse the complete report-to-payment-to-80/10/5/5-allocation-to-current-holder-claim cycle, with funded backing and separate gas. Creator hook funding and 5% NFT-marketplace royalties remain distinct streams.
+  - Native creator ETH is currently wrapped before LP allocation, so paying the inbox in ETH does not implement native holder claims. Coordinate payout currency with [LP ETH settlement](TODO.md#task-lp-eth-settlement); keep creator intake and holder payout policies distinct.
 
   </details>
 
@@ -597,6 +622,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   <summary>Acceptance criteria</summary>
 
   - The [review of all October 18 changes](reports/daily-security-20261018/REVIEW.md) records source inspection, exact evidence hashes, one new availability reproduction, and accepted governance/economic plus VRF/escrow recovery risks. It identifies no new unauthorized withdrawal path but does not close independent audit, service qualification or final-release testing. Resolve findings under their owning tasks without silently adding governance delays.
+  - The [October 19 internal review](reports/topup-and-reward-review/REVIEW.md) covers contribution floors, current contract changes and request/display boundaries. Optional local history failure no longer hides confirmed balances; work-limit/core failures remain fatal and dormant reads skip history. Live concurrent load, exact deployment inventory and independent audit remain required.
 
   </details>
 
@@ -719,4 +745,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `5e8a08a6f6df6d98df283d9145e216fa6eac37cb4e7a0a644743bbe233825a8e`.
+Snapshot SHA-256: `e822495e52e5b269d4e51a85f774f14ecadcaacab111a601a32df2d0da90dedf`.

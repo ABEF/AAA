@@ -1,0 +1,33 @@
+{
+  "scope": "Focused source identity comparison for unchanged earning math; not a rerun of the complete historical service/contract dependency snapshot.",
+  "files": {
+    "frontend_api/earnings.py": {
+      "sha256": "99efd7f9e378868f13e32f99bb7c880745bc869f536f31190129619193fe306a",
+      "matches_earlier_earnings_review": true
+    },
+    "frontend_api/earnings_replay.py": {
+      "sha256": "907847527904556ee863fe4b92e73e130ccff414d3efb8de88172f40b4d617e6",
+      "matches_earlier_earnings_review": true
+    },
+    "frontend_api/earnings_prices.py": {
+      "sha256": "0f6906912b7a0b0cbf20d4f5f5f5e3a1721b00b5da0855acd414f8f00bc7695f",
+      "matches_earlier_earnings_review": true
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+      "matches_earlier_earnings_review": true
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+      "matches_earlier_earnings_review": true
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+      "matches_earlier_earnings_review": true
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "c958e694cbb41b2d28cab7fee29fb2697a8b8fd5d0946df63a48b0bde5b2b9c7",
+      "matches_earlier_earnings_review": true
+    }
+  }
+}

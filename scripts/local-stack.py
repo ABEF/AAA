@@ -29,10 +29,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from zzz_ops.abi import keccak256, decode_words
 from zzz_ops.rpc import Rpc
+from zzz_ops.errors import RpcError, WorkLimit
 from indexer.monitor import Indexer
 from frontend_api.service import Projection, ProjectionError, ZERO
 from frontend_api.transactions import Transactions
 from scripts.local_wallet import LocalWallet
+from scripts.local_inputs import deploy_inputs, configure_inputs, input_for, input_tx
 
 CHAIN = 31337
 UNIT = 10**18
@@ -72,12 +74,19 @@ def validate_action(payload, accounts):
     fields={'mint':set(),'fund':set(),'rebalance':set(),'activate':{'id','amount'},
             'increase':{'id','amount'},'claim':{'id'},'claim_all':set(),'transfer':{'id'},'execute':{'draft_id'}}
     if not isinstance(action,str) or action not in fields: raise ValueError('Unsupported local action')
-    if set(payload)!={'action','account'}|fields[action]: raise ValueError('Unexpected or missing action fields')
+    expected={'action','account'}|fields[action]
+    if action in ('activate','increase') and 'asset' in payload:
+        expected.add('asset')
+        if payload['asset'] not in ('ZZZ','USDG','USDC','ETH','TEST-1'):raise ValueError('Unsupported input asset')
+    if set(payload)!=expected: raise ValueError('Unexpected or missing action fields')
     if not isinstance(payload['account'],str) or payload['account'] not in accounts: raise ValueError('Choose a disposable local test account')
     if 'id' in fields[action] and (not isinstance(payload['id'],str) or not re.fullmatch(r'[1-9][0-9]{0,77}',payload['id']) or int(payload['id'])>=2**256):
         raise ValueError('Expected a canonical uint256 NFT ID string')
-    if 'amount' in fields[action] and (not isinstance(payload['amount'],str) or not re.fullmatch(r'[1-9][0-9]{2,4}',payload['amount'])):
-        raise ValueError('Use a whole test-token amount from 100 to 99,999')
+    if 'amount' in fields[action]:
+        minimum = 5 if action == 'increase' else 100
+        if (not isinstance(payload['amount'],str) or not re.fullmatch(r'[1-9][0-9]{0,4}',payload['amount']) or
+                not minimum <= int(payload['amount']) <= 99999):
+            raise ValueError(f'Use a whole test-token amount from {minimum} to 99,999')
     if 'draft_id' in fields[action] and (not isinstance(payload['draft_id'],str) or not re.fullmatch(r'[a-f0-9]{32}',payload['draft_id'])):
         raise ValueError('Invalid confirmation ID')
 
@@ -184,7 +193,8 @@ class Lab:
     def simulate(self, tx):
         self.guard()
         if tx['from'] not in self.accounts: raise ValueError('Only disposable local accounts are permitted')
-        if int(tx.get('value','0x0'),16)>UNIT: raise ValueError('Local value limit exceeded')
+        wrap_limit=(4_000_000*UNIT if tx['from']==self.accounts[0] else 99_999*UNIT) if getattr(self,'weth',None)==tx.get('to') and tx.get('data')=='0xd0e30db0' else UNIT
+        if int(tx.get('value','0x0'),16)>wrap_limit: raise ValueError('Local value limit exceeded')
         self.rpc('eth_call',[tx,'latest'])
         gas=int(self.rpc('eth_estimateGas',[tx]),16)
         if gas>29_000_000: raise ValueError('Local gas limit exceeded')
@@ -225,7 +235,8 @@ class Lab:
     def call(self, role, signature, *args, sender=None, value=0):
         return self.send({'from':sender or self.accounts[0],'to':self.contracts.get(role,role),'data':self.encode(signature,*args),'value':hex(value)},signature)
     def deploy(self, name, signature='constructor()', args=(), *, local=False):
-        path=Path(self.args.fixture_artifacts if local else self.args.artifacts)/(('LocalDemoVenue.sol' if name.startswith('Local') else name+'.sol') if name!='MockVRF' else 'MockVRF.sol')/(name+'.json')
+        source='LocalInputFixtures.sol' if name.startswith('LocalInput') else (('LocalDemoVenue.sol' if name.startswith('Local') else name+'.sol') if name!='MockVRF' else 'MockVRF.sol')
+        path=Path(self.args.fixture_artifacts if local else self.args.artifacts)/source/(name+'.json')
         artifact=json.loads(path.read_text(encoding='utf-8'))
         metadata=artifact.get('metadata') or json.loads(artifact['rawMetadata'])
         # Authenticate source content, including dependencies, before reuse.
@@ -248,7 +259,9 @@ class Lab:
     def start(self):
         self.artifacts=[]
         self.log=(self.home/'anvil.log').open('w',encoding='utf-8')
-        self.process=subprocess.Popen([self.args.anvil,'--host','127.0.0.1','--port',str(self.rpc_port),'--chain-id',str(CHAIN),'--silent'],stdout=self.log,stderr=subprocess.STDOUT)
+        command=[self.args.anvil,'--host','127.0.0.1','--port',str(self.rpc_port),'--chain-id',str(CHAIN),'--silent']
+        if getattr(self.args,'named_assets',False):command+=['--balance','10000000']
+        self.process=subprocess.Popen(command,stdout=self.log,stderr=subprocess.STDOUT)
         for _ in range(100):
             try: self.guard();break
             except (OSError,RuntimeError): time.sleep(.1)
@@ -258,9 +271,11 @@ class Lab:
         admin,alice,bob=self.accounts
         print('Deploying isolated PoPL core; local fixture boundaries only.',flush=True)
         self.contracts['access']=self.deploy('ZZZAccessController','constructor(uint256,address[],address[],address,address)',(0,'['+admin+']','['+admin+']',admin,admin))
-        first=self.deploy('LocalToken','constructor(string)',('TEST-A',),local=True)
-        second=self.deploy('LocalToken','constructor(string)',('TEST-B',),local=True)
-        self.tokens=sorted([first,second])
+        if getattr(self.args,'named_assets',False):deploy_inputs(self)
+        else:
+            first=self.deploy('LocalToken','constructor(string)',('TEST-A',),local=True)
+            second=self.deploy('LocalToken','constructor(string)',('TEST-B',),local=True)
+            self.tokens=sorted([first,second])
         self.feed=self.deploy('LocalFeed',local=True)
         self.vrf=self.deploy('MockVRF',local=True)
         ac=self.contracts['access']
@@ -282,10 +297,13 @@ class Lab:
         for token in self.tokens:
             self.call('oracle','setFeed(address,address,uint32)',token,self.feed,3600)
             self.call('rewards','addAsset(address)',token)
-            for account in self.accounts: self.call(token,'mint(address,uint256)',account,100000*UNIT)
-            self.call(token,'mint(address,uint256)',self.contracts['liquidity'],1000000*UNIT)
+            for account in self.accounts:
+                if token==getattr(self,'weth',None):self.call(token,'transfer(address,uint256)',account,100000*UNIT)
+                else:self.call(token,'mint(address,uint256)',account,100000*UNIT)
+            self.call(token,'transfer(address,uint256)' if token==getattr(self,'weth',None) else 'mint(address,uint256)',self.contracts['liquidity'],1000000*UNIT)
             self.call(token,'approve(address,uint256)',self.contracts['liquidity'],100000*UNIT)
         self.configure_pool(1000)
+        if getattr(self.args,'named_assets',False):configure_inputs(self)
         self.call('access','seal()')
         self.setup_api()
         for value in (0,1432,2000,12000):
@@ -299,7 +317,7 @@ class Lab:
         print('Local deployment and confirmed API ready.',flush=True)
     def configure_pool(self, width):
         sig='configure(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))'
-        value=f'(({self.tokens[0]},{self.tokens[1]},3000,60,{ZERO}),true,true,{width},300,100,100,600,{100*UNIT},{10**30})'
+        value=f'(({self.tokens[0]},{self.tokens[1]},3000,60,{ZERO}),true,true,{width},300,100,100,600,{5*UNIT},{10**30})'
         self.pool='0x'+keccak256(bytes.fromhex(self.encode('key(address,address,uint24,int24,address)',*self.tokens,3000,60,ZERO,constructor=True)[2:])).hex()
         if self.uint('access','isSealed()'):
             data=self.encode(sig,value);salt='0x'+secrets.token_hex(32);empty='0x'+'00'*32
@@ -314,6 +332,10 @@ class Lab:
         # Native ETH intentionally has no USD mark. Test tokens use the pinned
         # mock feed; no production stablecoin peg or native price is invented.
         config['earnings_history']['prices']={'oracle':self.pin(c['oracle']),'sequencer':None,'feeds':[{'asset':a,'priced_token':a,'token_code_hash':self.pin(a)['code_hash'],'source':self.feed,'source_code_hash':self.pin(self.feed)['code_hash'],'max_age':3600,'feed_decimals':8} for a in self.tokens]}
+        if getattr(self,'input_assets',None):
+            zzz=input_for(self,'ZZZ')['address']
+            for a in config['assets']:
+                if a['address']!=ZERO:a['symbol']='ZZZ' if a['address']==zzz else 'WETH'
         config['deployment_block']=self.nft_block
         config['deployment_block_hash']=self.rpc('eth_getBlockByNumber',[hex(self.nft_block),False])['hash']
         config['history']['start_block']=self.nft_block
@@ -341,15 +363,17 @@ class Lab:
     def contribution_tx(self, owner, identifier, amount, increase):
         # Original source is already a pool asset; no unqualified V3 route is
         # pretended here. Real Strategy balances it in the test-only venue.
-        return {'from':owner,'to':self.contracts['entry'],'value':'0x0','data':self.encode('execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))',f'({identifier},{self.pool},{self.tokens[0]},{amount},0x'+('00'*32)+f',0,1,{self.clock()+120},{str(increase).lower()})')}
+        return input_tx(self,owner,identifier,amount//UNIT,increase)
     def contribute(self, owner, identifier, amount, increase):
         # Cheap shape, lifecycle and balance checks precede approval. Entry is
         # simulated after approval; a later failure can still leave allowance.
         active=bool(self.uint('vault','nftBucket(uint256)',identifier))
         if active!=increase:raise ValueError('Activate a dormant NFT or add LP to an already active NFT')
-        if not 100*UNIT<=amount<=99999*UNIT:raise ValueError('Local contribution outside 100..99,999')
-        if self.uint(self.tokens[0],'balanceOf(address)',owner)<amount:raise ValueError('Insufficient TEST-1 balance')
-        self.call(self.tokens[0],'approve(address,uint256)',self.contracts['entry'],amount,sender=owner)
+        minimum = 5 if increase else 100
+        if not minimum*UNIT<=amount<=99999*UNIT:raise ValueError(f'Local contribution outside {minimum}..99,999')
+        token=input_for(self)['address']
+        if self.uint(token,'balanceOf(address)',owner)<amount:raise ValueError('Insufficient local input balance')
+        self.call(token,'approve(address,uint256)',self.contracts['entry'],amount,sender=owner)
         self.send(self.contribution_tx(owner,identifier,amount,increase),'increase' if increase else 'activate')
     def fund(self):
         active=[i for i in self.ids() if self.uint('vault','nftBucket(uint256)',i)]
@@ -360,16 +384,31 @@ class Lab:
         self.send({'from':self.accounts[0],'to':self.contracts['royalties'],'value':hex(UNIT//100),'data':'0x'},'fund local ETH royalties')
         self.call('royalties','sync(address)',ZERO)
     def ids(self): return [str(self.uint('nft','tokenAtOrdinal(uint256)',n)) for n in range(1,self.uint('nft','mintedCount()')+1)]
+    def optional_earnings(self, identifier=None):
+        # Optional history must not erase independently confirmed balances.
+        # Exhausted budgets remain terminal; never retry or fabricate zero USD.
+        try:
+            return self.api.earnings(identifier)
+        except WorkLimit:
+            raise
+        except RpcError:
+            print(json.dumps({'event':'local_earnings_unavailable','scope':'collection' if identifier is None else 'nft'}),flush=True)
+            return {'available':False,'reason':'earnings_unavailable'}
     def state(self):
         self.sync()
         self.read_rpc.memo={};self.read_rpc.aggregation=True
         try:
             positions=[self.api.nft(i) for i in self.ids()]
-            for position in positions: position['earnings']=self.api.earnings(position['token_id'])
-            return {'mode':'LOCAL ANVIL TEST ONLY','revision':self.operations.revision,'uncertain':self.uncertain,'chain_id':CHAIN,'accounts':self.accounts[1:],'contracts':self.contracts,'pool':self.pool,'tokens':self.tokens,'protocol':self.api.protocol(),'nfts':positions,'earnings':self.api.earnings(),'transactions':[{'label':r['label'],'hash':r['receipt']['transactionHash'],'block':int(r['receipt']['blockNumber'],16),'gas_used':int(r['receipt']['gasUsed'],16)} for r in self.receipts[-12:]]}
+            for position in positions:
+                position['earnings']=(self.optional_earnings(position['token_id']) if position['position']['activated']
+                                      else {'available':False,'reason':'not_activated'})
+            inputs=getattr(self,'input_assets',None)
+            return {'mode':'LOCAL ANVIL TEST ONLY','revision':self.operations.revision,'uncertain':self.uncertain,'chain_id':CHAIN,'accounts':self.accounts[1:],'contracts':self.contracts,'pool':self.pool,'tokens':self.tokens,'input_assets':inputs,'protocol':self.api.protocol(),'nfts':positions,'earnings':self.optional_earnings(),'transactions':[{'label':r['label'],'hash':r['receipt']['transactionHash'],'block':int(r['receipt']['blockNumber'],16),'gas_used':int(r['receipt']['gasUsed'],16)} for r in self.receipts[-12:]]}
         finally:self.read_rpc.aggregation=False;self.read_rpc.memo={}
     def action(self, payload):
         validate_action(payload,self.accounts[1:])
+        if payload.get('asset') is not None:
+            raise ValueError('Named input contributions require the explicit prepare/execute confirmation flow')
         action=payload.get('action');owner=payload.get('account')
         if owner not in self.accounts[1:]: raise ValueError('Choose a disposable local test account')
         self.sync()
@@ -520,6 +559,7 @@ def main():
     for name in ('anvil','cast','artifacts','fixture-artifacts','state'):parser.add_argument('--'+name,required=True)
     parser.add_argument('--website',required=True);parser.add_argument('--port',type=int,default=8890)
     parser.add_argument('--verify-only',action='store_true')
+    parser.add_argument('--named-assets',action='store_true',help='Disposable ZZZ/USDG/USDC/ETH UI fixtures; not public routes')
     args=parser.parse_args()
     if not (Path(args.website)/'palette-system.js').is_file() or not (Path(args.website)/'assets/nfts').is_dir():
         parser.error('--website must contain the existing palette-system.js and assets/nfts')

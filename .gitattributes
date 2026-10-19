@@ -22,3 +22,6 @@ reports/api-work-limits/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eo
 
 # Preserve exact operator-control verification and diagnostic bytes.
 reports/operator-controls/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact scoped top-up/reward review receipts and native diagnostics.
+reports/topup-and-reward-review/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,0 +1,37 @@
+{
+  "time_utc": "2026-10-19T21:13:13.954660+00:00",
+  "scope": "Read-only debug_traceCall on existing disposable Anvil. No claim transaction submitted.",
+  "chain_id": 31337,
+  "block": "0x8e",
+  "block_hash": "0x70b13f3b3c6f03fc663c03b648877a4cd0007a48ef511efa9b4ed1d6d472b1dd",
+  "nft_id": "58932080118992273071252182343791858853996025184362608349168958703103724629557",
+  "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+  "lp_source_raw": "17575258928655673749",
+  "native_royalty_raw": "4166666666666666",
+  "erc20_payouts": [
+    {
+      "token": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+      "recipient": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "raw": "17575258928655673749"
+    }
+  ],
+  "native_payouts": [
+    {
+      "from": "0x8ff3801288a85ea261e4277d44e1131ea736f77b",
+      "recipient": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "raw": "4166666666666666"
+    }
+  ],
+  "claimable_unchanged": true,
+  "source_sha256": {
+    "src/ZZZRewards.sol": "ecbc8103e935228311b6dd7f9d3c1c3a45f5d8d66f8264b72492112da517b9f0",
+    "src/ZZZFeeController.sol": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZRoyaltyRewards.sol": "c958e694cbb41b2d28cab7fee29fb2697a8b8fd5d0946df63a48b0bde5b2b9c7",
+    "src/ZZZRoyaltyConverter.sol": "17201bec44787e3e9145422474ac6d4a9cd37f5294f4e7b7884320461ae8b6b1",
+    "src/ZZZRewardReceiver.sol": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+    "src/ZZZLiquidityManager.sol": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+    "keeper/monitor.py": "c78bd104e8af7cc25b148d6b34f6ceb0b55ce9e8ce525ed55d204bc791a6507b",
+    "keeper/royalties.py": "720dc2511bf37a47cefe1162b071b3f1050cb0e67288c2b92190331ddcf0f6e9"
+  }
+}

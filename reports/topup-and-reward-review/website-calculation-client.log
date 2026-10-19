@@ -1,0 +1,45 @@
+✔ malformed or unbounded draft lifetimes never reach confirmation (6.4084ms)
+✔ preparation time is part of expiry; slow drafts fail before confirmation (0.5615ms)
+✔ nonfinite expiry, changed chain/revision and missing state never submit (0.9724ms)
+✔ monotonic deadline still expires after wall clock moves backwards (0.5166ms)
+✔ request extras cannot override the selected wallet or operation (0.4839ms)
+✔ overlapping confirmations submit one operation; refresh invalidates old drafts (0.8483ms)
+✔ local adapter requires exact loopback mount; never query or production hostname (0.2266ms)
+✔ uint256 IDs remain exact, malformed and overflowing values rejected (0.5049ms)
+✔ prices are null-aware and large balances use bigint precision (22.38ms)
+✔ claim currencies are summed by address, never assumed equal (0.6333ms)
+✔ wrong chain, duplicate wallet and excessive collection fail closed (0.2892ms)
+✔ refresh failure clears old balances instead of returning stale demo data (0.3022ms)
+✔ account change during preparation invalidates the result (0.2288ms)
+✔ expired and wrong-account confirmations never submit (0.207ms)
+✔ storage failure blocks transaction submission (0.2208ms)
+✔ lost response recovers the identical operation, then reads confirmed state (0.3698ms)
+✔ changed session drops old intent and wallet without replaying (0.4156ms)
+✔ uncertain submission keeps recovery record and blocks a second intent (0.3193ms)
+✔ failed receipt result is terminal, not retried as a fresh transaction (0.3857ms)
+✔ only explicit busy state reads retry, with bounded backoff (1.0572ms)
+✔ persistent busy reads stop after 13 attempts and keep state unavailable (0.4702ms)
+✔ writes and non-busy state errors are never automatically retried (0.3366ms)
+✔ overlapping refresh requests share one confirmed read (13.0933ms)
+✔ confirmed action is not resubmitted when balance reads are busy (0.7539ms)
+✔ cancelled read backoff fails closed without a further request (0.2022ms)
+✔ dormant cards omit finances and dormant details never read reward payloads (0.4049ms)
+✔ active cards combine only claimable amounts while detail retains unavailable history (0.2643ms)
+✔ claim total combines ETH exactly and keeps different currencies distinct (0.5322ms)
+✔ royalty trait keeps revealed rarity weight while dormant, unknown draws stay unknown (0.2406ms)
+✔ fast session enables wallet selection before slow portfolio completes (2.1065ms)
+✔ wallet selection survives reload, explicit disconnect persists, new session resets it (0.5865ms)
+✔ malformed cached selections and changed session account inventory never authorize a wallet (0.4067ms)
+✔ pending identity cards never read financial payloads or render cached balances (0.148ms)
+✔ contribution review exposes invalid amounts and missing acknowledgement (0.1864ms)
+✔ approval acknowledgement stays bound to the exact deployment wallet NFT and amount (0.1264ms)
+✔ top-up review accepts five test dollars but activation still needs one hundred (0.0911ms)
+✔ NFT income totals sum net individual collective and royalty USD at the same snapshot (0.2648ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 176.6887

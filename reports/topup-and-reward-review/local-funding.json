@@ -1,0 +1,512 @@
+{
+  "time_utc": "2026-10-19T21:03:30.196384+00:00",
+  "chain_id": 31337,
+  "url": "http://127.0.0.1:8892",
+  "operation_id": "61d3f8e300ea887e3544dd006d807c21",
+  "before_revision": 8,
+  "before": [
+    {
+      "id": "103482822869943219641368527813231882802988734231480394320626644546593885715958",
+      "ordinal": 1,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": false,
+      "lp_value": {
+        "available": true,
+        "raw": "0",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "0"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "58932080118992273071252182343791858853996025184362608349168958703103724629557",
+      "ordinal": 2,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "1432463970969414204251",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "10756868843960601347"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "2500000000000000"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "5910225168674040242244014069041728081594110151188329516108033600916397002867",
+      "ordinal": 3,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "2000648004147226542250",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "13701399688958009330"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "2500000000000000"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "16567170870743533455707283036555567077167548403012587515761761953465980215665",
+      "ordinal": 4,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "12003888024883359253500",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "65541731467081389320"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "5000000000000000"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "74443603871742470691586988459939348705633073886741395550148891998823647003670",
+      "ordinal": 5,
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "11099999999999999999998",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "0"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    }
+  ],
+  "requested_funding": {
+    "LP_fees_TEST_1": "100",
+    "royalties_test_ETH": "0.01"
+  },
+  "status": "confirmed",
+  "result": {
+    "operation_id": "61d3f8e300ea887e3544dd006d807c21",
+    "status": "confirmed",
+    "revision": 9,
+    "transactions": [
+      "0x71ebd4cfd94e150aab9272df6c554b9c1c6021a3b490595cb6e375f314473218",
+      "0x303b21dee89ac69b7e29855cfd117b1c41e09e4ee642c339071a7e6a0ca9428d",
+      "0x92bf15e59d796783a3964205cd5eaa97dbddacaf42593b71d2d338fc1e9c318f",
+      "0x130da7b531483a0c57a267b5278a078512dbc428ca76b4454e27e9ec8c05bd6c"
+    ],
+    "uncertain": false
+  },
+  "after_revision": 9,
+  "after": [
+    {
+      "id": "103482822869943219641368527813231882802988734231480394320626644546593885715958",
+      "ordinal": 1,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": false,
+      "lp_value": {
+        "available": true,
+        "raw": "0",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "0"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "58932080118992273071252182343791858853996025184362608349168958703103724629557",
+      "ordinal": 2,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "1432733870349707646276",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "17575258928655673749"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "4166666666666666"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "5910225168674040242244014069041728081594110151188329516108033600916397002867",
+      "ordinal": 3,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "2001024958588977159603",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "22232670756967886987"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "4166666666666666"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "16567170870743533455707283036555567077167548403012587515761761953465980215665",
+      "ordinal": 4,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "12006149751533862957621",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "104229357875140655261"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "8333333333333333"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "id": "74443603871742470691586988459939348705633073886741395550148891998823647003670",
+      "ordinal": 5,
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "active": true,
+      "lp_value": {
+        "available": true,
+        "raw": "11102091419527452236498",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "35962712439235783999"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "3333333333333333"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    }
+  ],
+  "transactions": [
+    {
+      "label": "finalizeTraits(uint256)",
+      "hash": "0x16ee737648c4c60a5c1794f2915fc5d1653336607011a50bc076e4beb68d2c67",
+      "block": 94,
+      "gas_used": 221462
+    },
+    {
+      "label": "website approve",
+      "hash": "0x543bdfc630e4eb860bc720ae19481ea7061d05262958af95fcbe551ef2eae91a",
+      "block": 98,
+      "gas_used": 47702
+    },
+    {
+      "label": "website activate",
+      "hash": "0xc7f0a476c8e9befda460a0757f9c5b7a7479cb8a76abfeb0f1b490063a7146f4",
+      "block": 102,
+      "gas_used": 2483834
+    },
+    {
+      "label": "website approve",
+      "hash": "0x1e70bb28affb2bf337964b6ce25df9c2eb8b8095ee8acebf23a555838c966c22",
+      "block": 106,
+      "gas_used": 47702
+    },
+    {
+      "label": "website increase",
+      "hash": "0xece3adf0f1b6d9aceead97140b8ded5d0e1c9b5cd1f840e08440a66af7626e91",
+      "block": 110,
+      "gas_used": 2142083
+    },
+    {
+      "label": "website approve",
+      "hash": "0x20ac8eb8e04cbd275c3d5bf4380fe180b4af8da908a10e206e21c2252b677c13",
+      "block": 114,
+      "gas_used": 47714
+    },
+    {
+      "label": "website increase",
+      "hash": "0x1f1e798bdd4cd72a884dbb0a4532d9491854f5d9e187fffb89adc0188f3b110e",
+      "block": 118,
+      "gas_used": 2142095
+    },
+    {
+      "label": "website approve",
+      "hash": "0x0d9c01f7d3161fe4b7e64a65d7b14828b56e8815401a0c0c33261e723266d41f",
+      "block": 127,
+      "gas_used": 47714
+    },
+    {
+      "label": "fundFees(uint256,uint256)",
+      "hash": "0x71ebd4cfd94e150aab9272df6c554b9c1c6021a3b490595cb6e375f314473218",
+      "block": 134,
+      "gas_used": 91194
+    },
+    {
+      "label": "collectFees(uint256,uint256)",
+      "hash": "0x303b21dee89ac69b7e29855cfd117b1c41e09e4ee642c339071a7e6a0ca9428d",
+      "block": 135,
+      "gas_used": 400035
+    },
+    {
+      "label": "fund local ETH royalties",
+      "hash": "0x92bf15e59d796783a3964205cd5eaa97dbddacaf42593b71d2d338fc1e9c318f",
+      "block": 136,
+      "gas_used": 21062
+    },
+    {
+      "label": "sync(address)",
+      "hash": "0x130da7b531483a0c57a267b5278a078512dbc428ca76b4454e27e9ec8c05bd6c",
+      "block": 137,
+      "gas_used": 67495
+    }
+  ],
+  "assertions": {
+    "ownership_activation_preserved": true,
+    "dormant_claimable_zero": true,
+    "active_count": 4,
+    "LP_claimable_increment_TEST1_raw": "89999999999999999999",
+    "royalty_claimable_increment_ETH_raw": "9999999999999998",
+    "allocation_rounding_bound_raw_units": 4,
+    "claimed_by_agent": false
+  }
+}

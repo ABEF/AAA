@@ -100,3 +100,11 @@ Before committing a collection replacement, resolve the code-bearing holders fro
 [the inventory procedure](HOLDER_PREFLIGHT.md) while transfers still work, then
 reconcile a fresh frozen snapshot. Actual escrow/marketplace rehearsals remain under
 [canonical recovery](../TODO.md#task-security-chain-recovery).
+
+## ETH-only holder payout dependency
+
+Complete [LP ETH settlement](../TODO.md#task-lp-eth-settlement) before final claim
+UI qualification and sealing. The royalty converter is a separate path. Preserve
+already-earned individual/collective entitlements, backing and conversion history,
+then qualify exact WETH unwrap and ZZZ swaps, keeper recovery and combined claims.
+The current generic local tokens demonstrate accounting, not named-asset routing.

@@ -123,6 +123,62 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assertEq(nft.ownerOf(id), alice); _cleanContextAndApprovals();
     }
 
+    function testFiveDollarConvertedTopUpRetainsNinetyNinePercentFloor() public realIntegration {
+        uint256 id = _mint(alice); _execute(alice, _request(id, false));
+        uint256 bucket = vault.nftBucket(id); uint256 lp = vault.group(bucket).lpTokenId;
+        uint256 shares = vault.sharesOf(id); uint256 deployed = venue.a0(lp);
+        ZZZActivationEntry.Request memory r = _request(id, true);
+        r.amountIn = 5e6; r.minimumOut = 1;
+        _execute(alice, r);
+        assertEq(vault.contributionUSD(id), 105e18);
+        assertEq(venue.a0(lp) - deployed, 4.95e18);
+        assertGt(vault.sharesOf(id), shares); _cleanEntry();
+        shares = vault.sharesOf(id); deployed = venue.a0(lp);
+        uint256 balance = stable.balanceOf(alice);
+        router.setOutputBps(9899);
+        vm.prank(alice); vm.expectRevert(); entry.execute(r);
+        assertEq(vault.sharesOf(id), shares); assertEq(venue.a0(lp), deployed);
+        assertEq(stable.balanceOf(alice), balance); assertEq(vault.contributionUSD(id), 105e18);
+    }
+
+    function testTopUpFloorUsesSourceUSDNotTokenCountOrStablePeg() public realIntegration {
+        uint256 id = _mint(alice); _execute(alice, _request(id, false));
+        ZZZActivationEntry.Request memory r = _request(id, true);
+        r.minimumOut = 1; r.amountIn = 5e6 - 1;
+        uint256 balance = stable.balanceOf(alice); uint256 shares = vault.sharesOf(id);
+        vm.prank(alice); vm.expectRevert(); entry.execute(r);
+        assertEq(stable.balanceOf(alice), balance); assertEq(vault.sharesOf(id), shares);
+        stableFeed.set(5e7, block.timestamp, block.timestamp);
+        r.amountIn = 5e6;
+        vm.prank(alice); vm.expectRevert(); entry.execute(r);
+        r.amountIn = 10e6; router.setOutputBps(4950);
+        _execute(alice, r);
+        assertEq(vault.contributionUSD(id), 105e18); _cleanEntry();
+    }
+
+    function testDirectVaultTopUpCannotBypassFiveDollarMinimum() public realIntegration {
+        uint256 id = _mint(alice); _execute(alice, _request(id, false));
+        uint256 balance = t0.balanceOf(alice); uint256 shares = vault.sharesOf(id);
+        vm.prank(alice); vm.expectRevert(); vault.increase(id, 5e18 - 1, 0, 1, block.timestamp + 100);
+        assertEq(t0.balanceOf(alice), balance); assertEq(vault.sharesOf(id), shares);
+        vm.prank(alice); vault.increase(id, 5e18, 0, 1, block.timestamp + 100);
+        assertEq(vault.contributionUSD(id), 105e18); assertGt(vault.sharesOf(id), shares);
+    }
+
+    function testGovernedPoolFloorCanTightenButCannotRelaxTopUpFloor() public realIntegration {
+        uint256 id = _mint(alice); _execute(alice, _request(id, false));
+        PoolConfig memory c = registry.get(poolId); c.minDepositUSD = 6e18; registry.configure(c);
+        ZZZActivationEntry.Request memory r = _request(id, true); r.amountIn = 5e6; r.minimumOut = 1;
+        vm.prank(alice); vm.expectRevert(); entry.execute(r);
+        c.minDepositUSD = 1; registry.configure(c);
+        r.amountIn = 5e6 - 1;
+        vm.prank(alice); vm.expectRevert(); entry.execute(r);
+        r.amountIn = 5e6; _execute(alice, r);
+        uint256 dormant = _mint(alice); r.nftId = dormant; r.increase = false;
+        vm.prank(alice); vm.expectRevert(); entry.execute(r);
+        assertEq(vault.nftBucket(dormant), 0); assertEq(vault.contributionUSD(id), 105e18);
+    }
+
     function testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent() public realIntegration {
         uint256 id = _mint(alice);
         vm.expectEmit(true, true, true, true, address(vault)); emit Activated(id, alice, poolId, 99e18, 0);

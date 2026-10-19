@@ -2,12 +2,45 @@
 import importlib.util
 from pathlib import Path
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
+from types import SimpleNamespace
 
 spec=importlib.util.spec_from_file_location('popl_local_stack',Path(__file__).resolve().parents[1]/'scripts/local-stack.py')
 lab=importlib.util.module_from_spec(spec);spec.loader.exec_module(lab)
 
 class LocalReadTests(unittest.TestCase):
+    def test_optional_history_failure_is_unavailable_not_zero_or_a_portfolio_failure(self):
+        p=object.__new__(lab.Lab)
+        p.api=SimpleNamespace(earnings=Mock(side_effect=lab.RpcError('secret endpoint detail')))
+        with patch('builtins.print') as log:
+            self.assertEqual(p.optional_earnings('1'),{'available':False,'reason':'earnings_unavailable'})
+            self.assertNotIn('secret',str(log.call_args))
+        p.api.earnings.assert_called_once_with('1')
+        p.api.earnings=Mock(side_effect=lab.WorkLimit('deadline'))
+        with self.assertRaises(lab.WorkLimit):p.optional_earnings('1')
+        p.api.earnings.assert_called_once_with('1')
+
+    def test_optional_history_success_is_not_rewritten(self):
+        p=object.__new__(lab.Lab);result={'available':True,'all_time_usd_at_current_price_18':{'royalties':None}}
+        p.api=SimpleNamespace(earnings=Mock(return_value=result))
+        self.assertIs(p.optional_earnings('2'),result)
+
+    def test_state_skips_dormant_history_without_weakening_core_failure(self):
+        p=object.__new__(lab.Lab);p.sync=Mock();p.read_rpc=SimpleNamespace(memo={},aggregation=False)
+        p.ids=lambda:['1','2'];p.operations=SimpleNamespace(revision=0);p.uncertain=False
+        p.accounts=['operator','alice','bob'];p.contracts={};p.pool='pool';p.tokens=[];p.receipts=[]
+        positions=[{'token_id':'1','position':{'activated':True},'claimable':{'lp':['confirmed']}},
+                   {'token_id':'2','position':{'activated':False}}]
+        p.api=SimpleNamespace(nft=Mock(side_effect=positions),protocol=Mock(return_value={'confirmed':True}),
+                             earnings=Mock(side_effect=[lab.RpcError('history only'),{'available':True}]))
+        with patch('builtins.print'):result=p.state()
+        self.assertEqual(result['nfts'][0]['claimable']['lp'],['confirmed'])
+        self.assertFalse(result['nfts'][0]['earnings']['available'])
+        self.assertEqual([call.args for call in p.api.earnings.call_args_list],[('1',),(None,)])
+        self.assertFalse(p.read_rpc.aggregation);self.assertEqual(p.read_rpc.memo,{})
+        p.api.nft=Mock(side_effect=lab.ProjectionError('core failure'))
+        with self.assertRaises(lab.ProjectionError):p.state()
+        self.assertFalse(p.read_rpc.aggregation)
     def test_only_exact_hash_bound_reads_are_deduplicated(self):
         rpc=lab.LocalReadRPC(['http://127.0.0.1:1234'],31337);rpc.aggregation=True;rpc.memo={}
         block={'blockHash':'0x'+'11'*32,'requireCanonical':True}

@@ -21,11 +21,19 @@ wallet signing and deployment qualification remain separate work.
 | Timing | Rebalance advances local time by 601 seconds and changes the range through immediate governance. API freshness uses that same test-chain clock. No production keeper runs. |
 
 Activation and top-ups use TEST-1, an admitted member of the local pair. The pool
-has a $100 contribution floor; the Entry enforces the original-source 99% deployed
+now configures a $5 contribution floor; fixed contract guards separately require
+$100 activation and $5 increases. The Entry enforces the original-source 99% deployed
 LP rule. Exact token approval and the Entry transaction are separate receipts.
 Network gas is separate in test ETH. No USDG/USDC/ZZZ public conversion route is
 claimed. The browser fixture caps new minting at 20 for bounded interactive reads;
 the actual NFT contract still has its 1,000 cap and 0.05 ETH mint price.
+
+Optional earnings RPC errors are reported as unavailable history without dropping
+otherwise confirmed core balances. Sanitized logs identify the affected scope;
+terminal work budgets and core/lifecycle failures still fail closed. Dormant NFT
+reads skip earnings replay. The source update does not patch an existing running
+session or its contracts. Preserve wanted receipts, build matching artifacts and
+start a separate fresh fixture to test the new [$5 guards](CONTRIBUTION_MINIMUMS.md).
 
 ## Start
 
@@ -63,7 +71,8 @@ and shuts down its child instead of serving the panel.
 
 Only typed actions are exposed. The host, same-origin header, JSON size and
 per-session nonce are checked; there is no arbitrary RPC relay or recipient.
-Action shapes are exact: canonical string IDs, whole 100..99,999 TEST-1 amounts
+Action shapes are exact: canonical string IDs, whole 100..99,999 TEST-1 activation
+amounts or 5..99,999 increases in the updated source,
 and only the two local accounts. Wrong lifecycle, balance or owner is rejected
 before approval. Later Entry checks can still fail after a successful approval.
 All operations are serialized, including indexer writes. Concurrent economic
@@ -122,3 +131,42 @@ loss; evidence remains readable, but the next run deliberately starts fresh.
 
 No public-chain contracts, production services, public website/server or the
 user-paused staging monitor are changed. Production release remains NOT APPROVED.
+
+The current 8892 session uses generic TEST-1/TEST-2 and native ETH royalties.
+These labels are not production assets. Its token LP claims do not test ETH-only
+payouts; see [the payout audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md).
+Wallet A received 100,000 additional disposable input tokens on 2026-10-19 after
+reporting insufficient funds, with its existing NFTs and rewards preserved.
+Named asset fixtures, balance/faucet UX and complete source-to-ETH payout tests
+remain under the central integration/settlement tasks.
+
+## Named-input local rehearsal
+
+Use `--named-assets` when starting a **separate fresh** launcher session. Compile
+`test/local/LocalInputFixtures.sol` alongside the existing local venue and VRF.
+Keep wanted older sessions running; do not reset their holdings or impersonate
+public assets by relabeling TEST-1. The website selector shows ZZZ, USDG, USDC,
+ETH. The four locally deployed symbols use disclosed $1 mock marks, not live
+prices. USDG/USDC exercise six-decimal source admission and pinned typed mock
+conversion. The local shared pair is ZZZ/WETH.
+
+The named local ETH scenario has an explicit wrapping receipt, then exact WETH
+approval and Entry receipts. Wrapping/approval do not add LP or activate the NFT.
+It does **not** exercise production's atomic native-ETH selected-pool branch:
+the real Registry restricts that branch to the reviewed Robinhood deployment.
+Every ETH value is disposable Anvil ETH; the local launcher has no public RPC/key
+option. The UI hides WETH as an input choice, retaining it internally. A legacy
+session without an input manifest continues to identify its actual TEST-1 token
+and cannot pretend to execute named routes.
+
+Initial activation is $100; later additions are $5. Verify the exact selected
+source, decimals, spender and allowance in the confirmation, then verify confirmed
+on-chain LP increase. A smaller nonzero allowance is reset before exact approval;
+a sufficient existing allowance is reused. Local wrappers retain ETH backing.
+Successful conversion is not proof of public market liquidity, pricing, native
+pool support or the still-open ETH-only LP payout path.
+
+Stop a named session using its normal launcher stop procedure. Its chain is
+disposable; starting again creates a new deployment/session and invalidates old
+confirmations. There is no production operator/authority change in this UI/local
+fixture work. No server update or paused-monitor restart is included.

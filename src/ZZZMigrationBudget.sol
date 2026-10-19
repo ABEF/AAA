@@ -191,7 +191,7 @@ contract ZZZMigrationBudget {
             IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
-            (activation && inputUSD < 100e18) || inputUSD < c.minDepositUSD ||
+            (activation && inputUSD < 100e18) || (!activation && inputUSD < 5e18) || inputUSD < c.minDepositUSD ||
             IMigrationContribution(vault).contributionUSD(id) + inputUSD > c.maxPositionUSD) revert InvalidAmount();
         return (c.key.currency0, c.key.currency1, c.maxSlippageBps);
     }

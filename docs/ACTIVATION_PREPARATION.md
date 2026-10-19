@@ -16,7 +16,14 @@ actual Robinhood routes, feeds, trace providers and network fees remains in
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
 | Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the 1% execution limit. |
 
-For a $100 original contribution, at least $99 must be added as marginal deployed
+Activation requires at least $100 original input value; increases require at least
+$5. The backend rejects below-floor requests before preparing approvals/traces.
+The effective minimum also respects any higher pool `minDepositUSD`. Entry and
+the fixed Vault helper enforce the same floors, including direct Vault calls.
+See [contribution minimums](CONTRIBUTION_MINIMUMS.md) for configuration and evidence.
+
+For a $5 top-up, at least $4.95 must become new LP. For a $100 original contribution,
+at least $99 must be added as marginal deployed
 LP. The floor rounds up in raw USD units, as in the contract. Idle input is not
 counted as deployed LP. The NFT's existing marked value can change with prices;
 do not calculate its new total by adding the contribution to lifetime deposits.

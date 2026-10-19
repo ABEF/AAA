@@ -1,0 +1,735 @@
+{
+  "scope": "Named local assets only; real core, mock $1 marks and typed 1:1 conversion. ETH wraps separately, not the production native path.",
+  "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+  "results": [
+    {
+      "requested": "mint",
+      "extras": {},
+      "actual": "mint",
+      "asset": null,
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+        "data": "0x21bf772d",
+        "value": "0xb1a2bc2ec50000",
+        "gas": "0x6bc0f",
+        "gasPrice": "0x3b9acff5"
+      },
+      "outcome": {
+        "operation_id": "05c0471c5d510b86748520ae211c8ad3",
+        "status": "confirmed",
+        "revision": 1,
+        "transactions": [
+          "0x6c6a859b4eb93ac98e4dc1707d40720f555e892b61ed018ab3f0ae505b32d200",
+          "0xc469c72d6393aa417da600e3e27e1b98bf4bcd7be71a1845b18a486bcd13289c",
+          "0x650f8fafafd539900a38f612cbee441f26d9da3e0e227295a5ed72206c2d8c80"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "78752823807429155610473847193443861783810837893404358873946923881965605416579",
+        "amount": "100",
+        "asset": "ZZZ"
+      },
+      "actual": "approve",
+      "asset": "ZZZ",
+      "approval_raw": "100000000000000000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c90000000000000000000000000000000000000000000000056bc75e2d63100000",
+        "gas": "0xdf9b",
+        "gasPrice": "0x3b9accb4"
+      },
+      "outcome": {
+        "operation_id": "bc2b86da92e3a83d9705115c4920aa88",
+        "status": "confirmed",
+        "revision": 2,
+        "transactions": [
+          "0xc703b29684e4cff805dfbdedaba29d8e1c4f0e9aafc3ed179df55b0fe0a48c14"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "78752823807429155610473847193443861783810837893404358873946923881965605416579",
+        "amount": "100",
+        "asset": "ZZZ"
+      },
+      "actual": "activate",
+      "asset": "ZZZ",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b87ae1c84c8815424426f78c764b68fb5fb77b68854ddfe76d6c41519c5fb74ee83e3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc000000000000000000000000e7f1725e7734ce288f8367e1bb143e90bb3f05120000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68d1b0000000000000000000000000000000000000000000000000000000000000000",
+        "gas": "0x351cb3",
+        "gasPrice": "0x3b9acbd1"
+      },
+      "outcome": {
+        "operation_id": "79b7ea7ead898a7107d9ce40b9e9948d",
+        "status": "confirmed",
+        "revision": 3,
+        "transactions": [
+          "0xd8e3dce4a1ef57693c9c1ead1ae004e34ee65afa3785330dc57ada34392f971d"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "0",
+      "confirmed_lp_after": "99999999999999999999",
+      "confirmed_block": {
+        "block_number": 120,
+        "block_hash": "0xbbf605da2242a67ed6dcd40bc6834b433372e121fc44c73b6cc6db77e4cefab9",
+        "block_timestamp": 1792445604,
+        "observed_head": 120,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "78752823807429155610473847193443861783810837893404358873946923881965605416579",
+        "amount": "5",
+        "asset": "ZZZ"
+      },
+      "actual": "approve",
+      "asset": "ZZZ",
+      "approval_raw": "5000000000000000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c90000000000000000000000000000000000000000000000004563918244f40000",
+        "gas": "0xdf8c",
+        "gasPrice": "0x3b9acb18"
+      },
+      "outcome": {
+        "operation_id": "408ffbe8412de3b4aaec79e329fbaa8e",
+        "status": "confirmed",
+        "revision": 4,
+        "transactions": [
+          "0xb751197cf35dde4042003c1f0174634c904c8e392189dded5ef8a14469216516"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "78752823807429155610473847193443861783810837893404358873946923881965605416579",
+        "amount": "5",
+        "asset": "ZZZ"
+      },
+      "actual": "increase",
+      "asset": "ZZZ",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b87ae1c84c8815424426f78c764b68fb5fb77b68854ddfe76d6c41519c5fb74ee83e3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc000000000000000000000000e7f1725e7734ce288f8367e1bb143e90bb3f05120000000000000000000000000000000000000000000000004563918244f40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68d310000000000000000000000000000000000000000000000000000000000000001",
+        "gas": "0x2e9eb7",
+        "gasPrice": "0x3b9acabd"
+      },
+      "outcome": {
+        "operation_id": "1057d85cf5995339bdfb2a816b409697",
+        "status": "confirmed",
+        "revision": 5,
+        "transactions": [
+          "0x84f2e3ab89a644b62116ee66017ad579ddb7a7485696b5bd778e26f869261230"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "99999999999999999999",
+      "confirmed_lp_after": "104999999999999999999",
+      "confirmed_block": {
+        "block_number": 127,
+        "block_hash": "0xdccb00a984e777e5091529785418cdeeceddd7a980bbfd36d09af4cdeaec1bb8",
+        "block_timestamp": 1792445628,
+        "observed_head": 127,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "mint",
+      "extras": {},
+      "actual": "mint",
+      "asset": null,
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+        "data": "0x21bf772d",
+        "value": "0xb1a2bc2ec50000",
+        "gas": "0x66be7",
+        "gasPrice": "0x3b9aca73"
+      },
+      "outcome": {
+        "operation_id": "e823466ebf4dd3a3fec2c4641c202afe",
+        "status": "confirmed",
+        "revision": 6,
+        "transactions": [
+          "0x49f6a0206a6c586006cc49b56f93cc9cfd91e35a1a043b66f968918503f4745a",
+          "0x788f3d28e7c566bad09b435ab942ce0ea92d423c24514b07f2724a717812f73d",
+          "0x5c5a1d0e4c65f7212e51dcac241423ce8b31960b317e5267c916b286e7ed2d44"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "56432437017948080113362958843610343401530394301043528090526719656287555657171",
+        "amount": "100",
+        "asset": "USDG"
+      },
+      "actual": "approve",
+      "asset": "USDG",
+      "approval_raw": "100000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c90000000000000000000000000000000000000000000000000000000005f5e100",
+        "gas": "0xdf61",
+        "gasPrice": "0x3b9aca36"
+      },
+      "outcome": {
+        "operation_id": "fa3f5cc3a2f82beb6e6d4ebe12720810",
+        "status": "confirmed",
+        "revision": 7,
+        "transactions": [
+          "0x653d3248b21dc4219d9d0064625d890bbb1fc4c35119c7e7e1003a923d74f6fa"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "56432437017948080113362958843610343401530394301043528090526719656287555657171",
+        "amount": "100",
+        "asset": "USDG"
+      },
+      "actual": "activate",
+      "asset": "USDG",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b877cc3a0a0da3fc316ca1a07fd7a3a9f3e5d24c2c6b408f2e009b1d00f1fd99dd3e3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c90000000000000000000000000000000000000000000000000000000005f5e1007c0882adfe25e1767f0d58c3de4b7094bd054c7ceb3e9fdd863c55d551d1041b0000000000000000000000000000000000000000000000055de6a779bbac00000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68d620000000000000000000000000000000000000000000000000000000000000000",
+        "gas": "0x37cfe3",
+        "gasPrice": "0x3b9aca26"
+      },
+      "outcome": {
+        "operation_id": "91364231ff7b828209e5b6405269fc62",
+        "status": "confirmed",
+        "revision": 8,
+        "transactions": [
+          "0x3521d877c9aeffd63f724207bde40803325556784805b1daeafbc21670177caa"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "0",
+      "confirmed_lp_after": "99999999999999999999",
+      "confirmed_block": {
+        "block_number": 140,
+        "block_hash": "0x306eaec2f149607b949419165f1eac29eb7ad4b0260682ff83ed8f474f0bb0e5",
+        "block_timestamp": 1792445676,
+        "observed_head": 140,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "56432437017948080113362958843610343401530394301043528090526719656287555657171",
+        "amount": "5",
+        "asset": "USDG"
+      },
+      "actual": "approve",
+      "asset": "USDG",
+      "approval_raw": "5000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c900000000000000000000000000000000000000000000000000000000004c4b40",
+        "gas": "0xdf61",
+        "gasPrice": "0x3b9aca19"
+      },
+      "outcome": {
+        "operation_id": "769a3b38c838bedb13bb2200d8cb6d41",
+        "status": "confirmed",
+        "revision": 9,
+        "transactions": [
+          "0x0630ae5ea5a566a8f4529591edd5b041c6f2e0e6da7a05ff7840929a55b2bad3"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "56432437017948080113362958843610343401530394301043528090526719656287555657171",
+        "amount": "5",
+        "asset": "USDG"
+      },
+      "actual": "increase",
+      "asset": "USDG",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b877cc3a0a0da3fc316ca1a07fd7a3a9f3e5d24c2c6b408f2e009b1d00f1fd99dd3e3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c900000000000000000000000000000000000000000000000000000000004c4b407c0882adfe25e1767f0d58c3de4b7094bd054c7ceb3e9fdd863c55d551d1041b00000000000000000000000000000000000000000000000044b1eec6162f00000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68d7d0000000000000000000000000000000000000000000000000000000000000001",
+        "gas": "0x317366",
+        "gasPrice": "0x3b9aca12"
+      },
+      "outcome": {
+        "operation_id": "a715cd29ccef2da33d12c722fcf5ac35",
+        "status": "confirmed",
+        "revision": 10,
+        "transactions": [
+          "0x84ac5c2fdc8e3e60c613067478cf23f7f8ff12b6427eed3444ff2551529764ff"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "99999999999999999999",
+      "confirmed_lp_after": "104999999999999999999",
+      "confirmed_block": {
+        "block_number": 147,
+        "block_hash": "0x171103d1a192cda0989c89a5200178b03d7ca8bd43b16af272bbf3a665195b5f",
+        "block_timestamp": 1792445703,
+        "observed_head": 147,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "mint",
+      "extras": {},
+      "actual": "mint",
+      "asset": null,
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+        "data": "0x21bf772d",
+        "value": "0xb1a2bc2ec50000",
+        "gas": "0x66be7",
+        "gasPrice": "0x3b9aca0d"
+      },
+      "outcome": {
+        "operation_id": "fa16845cd9a0d0ca009b9c950307c55f",
+        "status": "confirmed",
+        "revision": 11,
+        "transactions": [
+          "0x29599219f86af3c2d3b2d9571abd887bb9468c3098fdd8b09c68838b3398e1d8",
+          "0x8eb74b4ad1f19aaa08618955c16c552c39f914a9b644813d9bfc8992f5b38d79",
+          "0xe77557754ce4076f3aeeb38ce9b2897d1a500e4ce1e85464682c86bf34764cbf"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "32927181872662540058523776922310477892898981930303914738303985215542102455539",
+        "amount": "100",
+        "asset": "USDC"
+      },
+      "actual": "approve",
+      "asset": "USDC",
+      "approval_raw": "100000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c90000000000000000000000000000000000000000000000000000000005f5e100",
+        "gas": "0xdf61",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "6e11be908ad4a3240ea4f2409ec62a79",
+        "status": "confirmed",
+        "revision": 12,
+        "transactions": [
+          "0x60f3d83ce4ba3d688a5963a816e33308b3873c874704ca1392ea931a3293c9f3"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "32927181872662540058523776922310477892898981930303914738303985215542102455539",
+        "amount": "100",
+        "asset": "USDC"
+      },
+      "actual": "activate",
+      "asset": "USDC",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b8748cc1fdf44d2368183394016942faf60198f8a6a2e96e4ae8d47ee4da0d1f4f3e3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc90000000000000000000000000000000000000000000000000000000005f5e1007063daa2f94694b2b391eca03bdc111e813c79e21df76e335c5c9016968590b30000000000000000000000000000000000000000000000055de6a779bbac00000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68dad0000000000000000000000000000000000000000000000000000000000000000",
+        "gas": "0x37cff1",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "7619bc9332f2974a67c4ff7837fd8374",
+        "status": "confirmed",
+        "revision": 13,
+        "transactions": [
+          "0x5d7d871c3f70f9bf803dd841675bb223605707594e1dcbcfa6232dba762d1fe1"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "0",
+      "confirmed_lp_after": "99999999999999999999",
+      "confirmed_block": {
+        "block_number": 160,
+        "block_hash": "0xb18e020a2ec8ae3d657dd8eb8392c4dc68efb41674ee8501cf38cd041602f9bf",
+        "block_timestamp": 1792445751,
+        "observed_head": 160,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "32927181872662540058523776922310477892898981930303914738303985215542102455539",
+        "amount": "5",
+        "asset": "USDC"
+      },
+      "actual": "approve",
+      "asset": "USDC",
+      "approval_raw": "5000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c900000000000000000000000000000000000000000000000000000000004c4b40",
+        "gas": "0xdf61",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "2db452f5271cff3d477c02ef7f5547f4",
+        "status": "confirmed",
+        "revision": 14,
+        "transactions": [
+          "0x423e4023257c7f8f98e34c5b9044ac00832bf26fde2a99b2005a9b70dbc6aa35"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "32927181872662540058523776922310477892898981930303914738303985215542102455539",
+        "amount": "5",
+        "asset": "USDC"
+      },
+      "actual": "increase",
+      "asset": "USDC",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b8748cc1fdf44d2368183394016942faf60198f8a6a2e96e4ae8d47ee4da0d1f4f3e3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc900000000000000000000000000000000000000000000000000000000004c4b407063daa2f94694b2b391eca03bdc111e813c79e21df76e335c5c9016968590b300000000000000000000000000000000000000000000000044b1eec6162f00000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68dc70000000000000000000000000000000000000000000000000000000000000001",
+        "gas": "0x317374",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "47ea73bad69bc1eeebd988f65eb45bce",
+        "status": "confirmed",
+        "revision": 15,
+        "transactions": [
+          "0x8a46a4556c6a0ae63112493f1780cca9a01e4697f7ec29735847f788a6a17eb2"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "99999999999999999999",
+      "confirmed_lp_after": "104999999999999999999",
+      "confirmed_block": {
+        "block_number": 167,
+        "block_hash": "0x12395bf3efc21781ead374529e2e289efcf1f1aa2d553f745ae41c8e4a9d5c7c",
+        "block_timestamp": 1792445777,
+        "observed_head": 167,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "mint",
+      "extras": {},
+      "actual": "mint",
+      "asset": null,
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+        "data": "0x21bf772d",
+        "value": "0xb1a2bc2ec50000",
+        "gas": "0x66be7",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "fd1506f447215d7af2fb33277bc26c6a",
+        "status": "confirmed",
+        "revision": 16,
+        "transactions": [
+          "0x670191af0d07c3dc9e4be9fd02b227bc799f54fd2352aa1572a78acddbee3c32",
+          "0xd8703abe2e34008d2c6ef1426ec26bca561e8295963481c6d7870ab232d6ccba",
+          "0x99476772256dbc215a31cec2d596115f6a4ce73e1f00c72ef24a6f80abfffa96"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "80421863671813063888667909617512766508992135304307858928172543035686549129546",
+        "amount": "100",
+        "asset": "ETH"
+      },
+      "actual": "wrap",
+      "asset": "ETH",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+        "value": "0x56bc75e2d63100000",
+        "data": "0xd0e30db0",
+        "gas": "0xa5c5",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "0f30fb57145f37e7f459d47a2142e896",
+        "status": "confirmed",
+        "revision": 17,
+        "transactions": [
+          "0x3e4b2715dfe5c4622d2e926d770ac2ba7a403bcf4b68e7edc4adce0e027e579b"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "80421863671813063888667909617512766508992135304307858928172543035686549129546",
+        "amount": "100",
+        "asset": "ETH"
+      },
+      "actual": "approve",
+      "asset": "ETH",
+      "approval_raw": "100000000000000000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c90000000000000000000000000000000000000000000000056bc75e2d63100000",
+        "gas": "0xdf9b",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "07a3f95fd8d64fea88dfbe91955e9236",
+        "status": "confirmed",
+        "revision": 18,
+        "transactions": [
+          "0x3914c74aa1522ad03cd2a2682e46cb76c19812733db24ec12b2a7d7a1102496c"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "activate",
+      "extras": {
+        "id": "80421863671813063888667909617512766508992135304307858928172543035686549129546",
+        "amount": "100",
+        "asset": "ETH"
+      },
+      "actual": "activate",
+      "asset": "ETH",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b87b1cd2969cff5b72f23dcdbc0f836b65b507107070c28ed5d0f194ff9ba4f094ae3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e00000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68e070000000000000000000000000000000000000000000000000000000000000000",
+        "gas": "0x34a8bf",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "4ca9c836e97f9a902a99c8ff6b9b58c5",
+        "status": "confirmed",
+        "revision": 19,
+        "transactions": [
+          "0xa854731fd64125a0ec525fd18c2536f4a1798c3cc44c40ef4ea19e95dd651abd"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "0",
+      "confirmed_lp_after": "99999999999999999999",
+      "confirmed_block": {
+        "block_number": 183,
+        "block_hash": "0x3e320c51deccacf6b696517ccaa450d620f84b5e74a3856188cc0291ab334fe0",
+        "block_timestamp": 1792445841,
+        "observed_head": 183,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "80421863671813063888667909617512766508992135304307858928172543035686549129546",
+        "amount": "5",
+        "asset": "ETH"
+      },
+      "actual": "wrap",
+      "asset": "ETH",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+        "value": "0x4563918244f40000",
+        "data": "0xd0e30db0",
+        "gas": "0xa5c5",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "2659c9480d256debec8c51402cb9c901",
+        "status": "confirmed",
+        "revision": 20,
+        "transactions": [
+          "0xdadd0a18da74abe91f3460fcea9bb95990c996f74a9327bbb207c91da80dfc3f"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "80421863671813063888667909617512766508992135304307858928172543035686549129546",
+        "amount": "5",
+        "asset": "ETH"
+      },
+      "actual": "approve",
+      "asset": "ETH",
+      "approval_raw": "5000000000000000000",
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+        "value": "0x0",
+        "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c90000000000000000000000000000000000000000000000004563918244f40000",
+        "gas": "0xdf8c",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "186c4f53376be5bba89dc3c9879e1cc1",
+        "status": "confirmed",
+        "revision": 21,
+        "transactions": [
+          "0xfc2c0c00978aef6dc2e46a366abaa45870697bdf50094c90156dac5486f0fb1c"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "requested": "increase",
+      "extras": {
+        "id": "80421863671813063888667909617512766508992135304307858928172543035686549129546",
+        "amount": "5",
+        "asset": "ETH"
+      },
+      "actual": "increase",
+      "asset": "ETH",
+      "approval_raw": null,
+      "transaction": {
+        "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+        "value": "0x0",
+        "data": "0x35b13b87b1cd2969cff5b72f23dcdbc0f836b65b507107070c28ed5d0f194ff9ba4f094ae3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e00000000000000000000000000000000000000000000000004563918244f40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000006ad68e260000000000000000000000000000000000000000000000000000000000000001",
+        "gas": "0x2e9c6b",
+        "gasPrice": "0x3b9aca07"
+      },
+      "outcome": {
+        "operation_id": "0f4c0a9df17a0292e0ce19261649aeac",
+        "status": "confirmed",
+        "revision": 22,
+        "transactions": [
+          "0x83c205f5f1d2c5c72eedb48eb7c3a260774bfebfe52022e63f5a380c5a9dea9e"
+        ],
+        "uncertain": false
+      },
+      "confirmed_lp_before": "99999999999999999999",
+      "confirmed_lp_after": "104999999999999999999",
+      "confirmed_block": {
+        "block_number": 193,
+        "block_hash": "0xdc9ef61cbaf92c5f763e49cfde94f95ee7c89b25c24872a804e535a07b51106d",
+        "block_timestamp": 1792445872,
+        "observed_head": 193,
+        "confirmations": 1,
+        "protocol_finalized": false,
+        "finality": "confirmation_depth_only",
+        "eip1898_require_canonical": true,
+        "deployment_block": 11,
+        "deployment_block_hash": "0xe30b34d087aaefd288058aaa61da4d125a97f7270caf05eeb52f7c0d4a0a5e48",
+        "configuration_sha256": "b071a753284535cbc0c34d0c255cb86332de3a576566894a369904feca389eb5"
+      }
+    }
+  ],
+  "passed": true
+}

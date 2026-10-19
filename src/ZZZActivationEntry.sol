@@ -201,7 +201,8 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         // Values the real original amount; an assumed stable peg or supplied USD
         // claim cannot relax the Vault's single 99% end-to-end execution budget.
         uint256 grossUSD = activationAssets.value(source, request.amountIn);
-        if (grossUSD == 0 || (!request.increase && grossUSD < 100e18)) revert InvalidAmount();
+        if (grossUSD == 0 || (!request.increase && grossUSD < 100e18) ||
+            (request.increase && grossUSD < 5e18)) revert InvalidAmount();
         uint256 acquired = request.amountIn;
         if (request.routeId != bytes32(0)) {
             IERC20(source).forceApprove(policy.router, request.amountIn);

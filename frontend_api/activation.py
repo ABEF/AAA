@@ -151,7 +151,8 @@ class ActivationTransactions:
         measured=int(p._call(pins['activation_assets'],'value(address,uint256)',source,req['amount'],block=block)[0],16)
         if measured!=gross: raise ProjectionError('Original-source valuation mismatch')
         contributed=p._uint('vault','contributionUSD(uint256)',req['id'],block=block)
-        if gross<int(account[12],16) or not req['increase'] and gross<100*10**18 or contributed+gross>int(account[13],16):
+        minimum_usd = (5 if req['increase'] else 100)*10**18
+        if gross<max(int(account[12],16),minimum_usd) or contributed+gross>int(account[13],16):
             raise ActivationInputError('Contribution is outside the original-source value limits')
         bucket=p._uint('vault','poolBucket(bytes32)',req['pool'],block=block)
         if req['increase'] and p._uint('vault','nftBucket(uint256)',req['id'],block=block)!=bucket:

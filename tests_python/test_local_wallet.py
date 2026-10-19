@@ -13,6 +13,8 @@ class WalletTests(unittest.TestCase):
         self.lab.uncertain=False
         self.lab.accounts=['operator',A,B]
         self.lab.tokens=['token']
+        self.lab.input_assets=None
+        self.lab.pool='pool'
         self.lab.contracts={'entry':'entry','nft':'nft'}
         self.lab.operations=SimpleNamespace(revision=4)
         self.lab.ids.return_value=['1']

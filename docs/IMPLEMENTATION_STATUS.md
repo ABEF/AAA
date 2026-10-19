@@ -16,6 +16,30 @@ decision for an exact release, not development progress. Creator-dependent quest
 are grouped in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team);
 recording them does not implement a feed, payment agreement or live route.
 
+## $5 top-ups and NFT-owned earned totals
+
+Entry and the immutable Vault helper enforce $100 activation / $5 increases in
+original oracle-valued input, retaining any higher configured pool minimum, the
+99% marginal deployed-LP requirement and separate gas. Backend and new preview
+actions use the same floors; legacy saved preview history is preserved. See
+[configuration](CONTRIBUTION_MINIMUMS.md) and [operator procedure](OPERATOR_MANUAL.md#contribution-minimums).
+
+NFT cards/details show own earned 24h/all-time totals (individual LP + equal
+collective allocation + royalties), separate from remaining claimable. The [calculation audit](../reports/topup-and-reward-review/REWARD_CALCULATION.md) traces all three streams, claims, conversions and missing-price/overflow handling. The compact
+regular-weight row is below centered attached LP; gross fees are removed from NFT
+cards. Current-price local totals require matching NFT/chain/block and all priced
+components. Missing history/prices remain unavailable. The original saved demo
+has no dated net series, so its 24h total is unavailable rather than fabricated.
+Optional local history failure no longer hides healthy core balances; terminal
+work limits/core failures retain their guards, and dormant reads skip history.
+
+[Scoped verification](../reports/topup-and-reward-review/VERIFICATION.md) records
+91 fresh Solidity passes, 74 distinct Python and 102 distinct JS cases across
+documented runs, plus normal compiler sizes and browser checks. The
+[internal daily review](../reports/topup-and-reward-review/REVIEW.md) is not an
+independent audit or live qualification. Existing local deployments and public
+services were not upgraded; actual routes/feeds/load qualification remain open.
+
 ## Bounded concurrent API and website resilience
 
 Read and unsigned preparation listeners now admit independent spawned requests
@@ -332,3 +356,15 @@ Local contribution review now exposes validation/progress/errors inside the dial
 and retains the acknowledgement across a confirmed approval only for the exact
 same contribution. Entry still needs separate confirmation. Artwork pending badges
 are scoped to the activated/topped-up NFT; financial snapshot guards remain global.
+
+## Payout-currency audit boundary
+
+[The claim-currency audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
+finds that LP claims remain source-token payouts. Royalty batch ETH conversion
+does not cover LP rewards; native creator receipts are wrapped before allocation.
+A read-only Anvil claim trace pays the original mock ERC20 plus ETH royalties and
+leaves balances untouched. ETH-only holder payout is therefore a separately
+tracked pre-seal implementation gap, not an implemented feature. No unchanged
+Solidity suite was rerun for this audit.
+
+Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.

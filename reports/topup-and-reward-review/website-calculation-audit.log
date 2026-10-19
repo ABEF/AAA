@@ -1,0 +1,14 @@
+✔ demo 444 total is exactly individual plus collective plus royalties, paid once (12.2195ms)
+✔ top-up and gross display figures cannot increase NFT earned history (7.8101ms)
+✔ NFT total uses its equal collective allocation, not 90 percent of its own gross share (0.4263ms)
+✔ conversion credits, principal, reserves and past payouts are not added to earned totals (18.0386ms)
+✔ sum current-price components exactly before display rounding (0.2106ms)
+✔ missing price and aggregate integer overflow produce unavailable, never partial totals or a render crash (0.2741ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.9449

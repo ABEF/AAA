@@ -1,3 +1,67 @@
+## Contribution flow and accepted inputs - 2026-10-19
+
+Latest user clarification: show ZZZ, USDG, USDC and ETH in the contribution
+selector. WETH remains a supported accounting/wrapping asset, not a separate
+selector choice. Never silently substitute TEST-1 for a named input.
+
+Grow/Activate opens a contribution-only dialog; image/details opens the reward
+breakdown. Only the contributed NFT's LP/artwork receives an updating marker.
+Claims refresh claimed reward balances without marking artwork or unrelated NFTs.
+Evolution selection waits for successful execution and confirmed current on-chain
+LP reads. Preloading four fixed-identity states never selects evolution from input.
+Rarity is bold; palette words retain individual colors. The local session on 8892
+is preserved. A separate --named-assets fixture on 8893 has real disposable named
+tokens, six-decimal stables and mock typed conversion; ETH wraps in a separate
+explicit wallet step before exact WETH approval/Entry. This is not qualification
+of production native-ETH/Pons execution. ETH-only LP payouts remain unimplemented.
+
+## ETH-only payout gap and palette labels - 2026-10-19
+
+The user requires native-ETH holder payouts, including LP rewards. Current
+Rewards/ClaimRouter still pay source ERC20; royalty conversion is separate and
+cannot spend LP assets. Creator ETH intake wraps to WETH. Read [the audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
+and the new central lp-eth-settlement task before sealing or advertising ETH-only
+claims. No LP conversion code or new slippage policy was added; do not mislabel
+unconverted funds. A read-only local claim trace confirmed both source-token LP
+and ETH royalties without consuming claims. Wallet A was replenished with 100,000
+disposable TEST-1; its receipt balance was 184,568. Local fixture remains generic
+tokens, not named production-asset routing, and its old deployment is preserved.
+Palette traits use individual color text without highlighting in both site modes.
+
+## Contribution floor and NFT earnings checkpoint - 2026-10-19
+
+The user requires $5 minimum LP increases; initial activation remains $100.
+Entry and the fixed Vault budget helper enforce both, including direct Vault
+calls and higher pool minima. The original-source 99% new-LP requirement and
+separate gas remain. Backend preparation and new website actions agree; legacy
+v7 preview events are preserved rather than resetting saved holdings.
+
+Read [minimums](docs/CONTRIBUTION_MINIMUMS.md), [scoped verification](reports/topup-and-reward-review/VERIFICATION.md)
+and [internal review](reports/topup-and-reward-review/REVIEW.md). Fresh evidence:
+91 Solidity passes, 32 normal compiler-object gates (Vault 19 runtime bytes spare),
+74 distinct Python and 102 distinct JS cases across documented scoped runs.
+No full fresh regression, independent audit or public-chain qualification.
+
+Cards/details use NFT net earned individual+collective+royalty totals. The fee
+labels and regular-weight values share one compact line below centered LP attached;
+Rewards to claim is separately centered. No gross fees on NFT cards. Original
+demo 24h net history is unavailable; local totals require exact snapshot identity
+and all price components. Optional local history failures retain core balances;
+terminal budgets/core errors remain fatal, dormant reads skip history.
+
+The final trait row spans full width and omits the pattern name; metadata/artwork
+retain it. Exact approval review confirms no newly requested unlimited allowance;
+sufficient pre-existing allowance is reused, and cancelled contributions can leave
+allowance. The user authorized funding the existing local 8892 lab: 100 TEST-1
+LP fees + 0.01 test ETH royalties, four confirmed local receipts, no claim/reset.
+This does not deploy the new $5 binary or qualify public wallet integration.
+
+Main only, preserve unrelated drafts and establish publication through Git. No
+public server update, public transaction or monitor restart. Existing local
+8892 contracts were not replaced: start a separate source-matched disposable
+fixture to test the new binary without deleting the current session. Central
+Todo, feature/evidence and operator procedures are updated together.
+
 ## NFT card traits and reward summary - 2026-10-19
 
 My NFTs places the fixed Royalty weight below the artwork pattern using

@@ -148,6 +148,34 @@ class ActivationPreparationTests(unittest.TestCase):
         self.rpc=rpc or ActivationRPC();self.p=Projection(configuration(),self.rpc,clock=lambda:1000)
         return ActivationTransactions(self.p,self.rpc.config)
 
+    def small_contribution(self, *, value, increase=True, pool_minimum=USD, **options):
+        rpc=ActivationRPC(increase=increase, **options)
+        rpc.pool_values[12]=pool_minimum
+        rpc.put(rpc.pins['pools'],'get(bytes32)',(rpc.pool,),rpc.pool_values)
+        rpc.put(rpc.pins['pools'],'accounting(bytes32)',(rpc.pool,),[addr(20)]+rpc.pool_values[1:])
+        amount=value*10**rpc.source_decimals//USD
+        rpc.request['amount_in']=str(amount)
+        source=addr(20) if rpc.native else rpc.source
+        rpc.put(rpc.pins['activation_assets'],'value(address,uint256)',(source,amount),(value,))
+        floor=value-value//100
+        rpc.economics=(value,1000*USD,1000*USD,1000*USD,1000*USD+floor,0,200)
+        return rpc
+
+    def test_five_dollar_topup_direct_native_and_six_decimal_conversion(self):
+        for options in ({},{'native':True},{'conversion':True,'source_decimals':6}):
+            rpc=self.small_contribution(value=5*USD, **options)
+            result=self.service(rpc).prepare(rpc.request)
+            self.assertTrue(result['activation_ready'])
+            self.assertEqual(result['minimum_deployed_usd_18'],str(495*USD//100))
+            self.assertFalse(result['network_gas']['included_in_execution_loss'])
+
+    def test_topup_floor_and_higher_pool_minimum_reject_before_approval_or_trace(self):
+        for kw in ({'value':5*USD-1},{'value':5*USD,'pool_minimum':6*USD},
+                   {'value':100*USD-1,'increase':False}):
+            rpc=self.small_contribution(**kw);rpc.allowance=0
+            with self.assertRaises(ActivationInputError):self.service(rpc).prepare(rpc.request)
+            self.assertEqual(rpc.trace_count,0)
+
     def test_complete_direct_native_conversion_new_and_existing_pool(self):
         for options in ({},{'native':True},{'conversion':True},{'conversion':True,'source_decimals':6},
                         {'increase':True},{'native':True,'increase':True},{'new_pool':True}):

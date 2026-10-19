@@ -44,6 +44,11 @@ class OperationTests(unittest.TestCase):
     def test_limits_accept_canonical_boundary_values(self):
         for amount in ['100','99999']:
             lab.validate_action(dict(action='activate',account=ALICE,id=str(2**256-1),amount=amount),[ALICE])
+        for amount in ['5','99','100','99999']:
+            lab.validate_action(dict(action='increase',account=ALICE,id='1',amount=amount),[ALICE])
+        for amount in ['4','0','05','5.0','5e0',' 5','5\n',5,True,None]:
+            with self.subTest(amount=amount),self.assertRaises(ValueError):
+                lab.validate_action(dict(action='increase',account=ALICE,id='1',amount=amount),[ALICE])
     def test_duplicate_and_nonfinite_json_rejected(self):
         for raw in [b'{"action":"mint","action":"fund"}',b'{"n":NaN}',b'{"n":Infinity}',b'{"x":{"x":1,"x":2}}',b'\xff',b'{']:
             with self.subTest(raw=raw),self.assertRaises((ValueError,UnicodeError)):lab.parse_payload(raw)
@@ -128,7 +133,7 @@ class OperationTests(unittest.TestCase):
         self.assertEqual(self.p.calls,0)
     def test_wrong_mode_amount_and_balance_do_not_approve(self):
         p=object.__new__(lab.Lab);p.tokens=['token'];p.call=Mock()
-        for active,amount,balance,increase in [(1,100,1000,False),(0,100,1000,True),(0,99,1000,False),(0,100,99,False)]:
+        for active,amount,balance,increase in [(1,100,1000,False),(0,100,1000,True),(0,99,1000,False),(0,100,99,False),(1,4,1000,True)]:
             p.uint=lambda role,sig,*args:active if role=='vault' else balance*lab.UNIT
             with self.assertRaises(ValueError):p.contribute(ALICE,'1',amount*lab.UNIT,increase)
         p.call.assert_not_called()
