@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-19):** confirmed earnings reporting now has a companion unsigned mint/claim preparer with current lifecycle checks, bounded work and separate gas estimates. See [wallet preparation](docs/FRONTEND_TRANSACTIONS.md), [scoped evidence](reports/wallet-preparation/VERIFICATION.md) and the [resume handoff](docs/WORK_HANDOFF.md). The browser remains simulated; live service qualification and release approval remain open.
+**Current development work (2026-10-19):** earnings reporting and unsigned mint/claim preparation are implemented. A new [read-only history audit](docs/HISTORY_AUDIT.md) compares indexed events with an independently reviewed RPC; [scoped evidence](reports/history-audit/VERIFICATION.md) records its checks and limits. See the [resume handoff](docs/WORK_HANDOFF.md). The browser remains simulated; live pricing, complete ingestion, service qualification and release approval remain open.
 
 ## Project navigation
 

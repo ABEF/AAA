@@ -253,6 +253,8 @@ prices**. Show this label and snapshot time; do not add conversion credits as
 income or confuse earned amounts with current claimable or lifetime paid amounts.
 Missing prices are null, not zero. Pending/unprocessed revenue is excluded.
 
+Before live cutover, use [independent-provider history comparison](HISTORY_AUDIT.md) over contiguous windows for every configured epoch, with the exact retirement/current cutoffs. Preserve both providers' evidence on mismatch; backfill a separate database and rerun economic reconciliation before reopening. The audit never repairs data or signs. The indexer's new ordered block/log index is created on restart, requiring disk space, a WAL-consistent backup and a reviewed maintenance window for large databases. No live restart is performed by this change.
+
 Remove the optional profile and restart the read service to stop these views;
 no contract action, keeper stop or claim restriction is needed. Preserve/backfill
 history into a separate database after an outage. Reconcile against pinned

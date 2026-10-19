@@ -144,7 +144,7 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Backend collection/NFT 24h and all-time earnings replay is implemented, with separate LP/collective/royalty amounts and optional current-price USD. Qualify actual feeds, complete ingestion, large histories and frontend display.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Collection/NFT processed 24h and all-time earnings with separate LP/collective/royalty amounts and current-price USD are implemented. A bounded independent-RPC history comparison and ordered SQLite index now support ingestion checks. Qualify actual feeds, complete coverage, live providers/load and frontend display.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -153,6 +153,7 @@ The data and services behind the app.
   - User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.
   - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.
   - Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).
+  - Implemented the read-only [history audit](docs/HISTORY_AUDIT.md): per configured current/predecessor epoch, compare exact raw logs and headers in windows of up to 128 blocks/10,000 logs, with shared work budgets and no database repair. [Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected cases via new runs and exact-body reuse. Reconcile all contiguous windows through reviewed epoch cutoffs; a partial matched window or agreeing providers is not a completeness/finality proof.
 
   </details>
 
@@ -169,6 +170,7 @@ The data and services behind the app.
   - Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.
   - [AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.
   - Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance.
+  - Use the [history comparison procedure](docs/HISTORY_AUDIT.md) with a reviewed separate RPC operator. Qualify the first block_log_lookup index build on the actual database, disk/backup/restart behavior, complete backfills and provider/reorg/load conditions. No server restart or provider approval is implied by local evidence.
 
   </details>
 
@@ -682,4 +684,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `4b368628b92b58dcb633d10b0b35f9c818590ce3ad7c4e6ae348fb1a1bc4097c`.
+Snapshot SHA-256: `57c5001f432a0d0c82d5261d7e460c877aabf837f45f8c2f52e6f834a4d8ab3f`.

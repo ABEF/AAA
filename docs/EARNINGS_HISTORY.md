@@ -64,6 +64,8 @@ reason. Raw earnings remain available when only pricing fails. An aggregate is
 `null` if any nonzero component lacks a price. No stablecoin is assumed to equal
 $1; zero raw earnings can be valued at zero without a feed.
 
+Use the [read-only independent-provider audit](HISTORY_AUDIT.md) to compare indexed raw logs and block ancestry before enabling live reports. It produces bounded window evidence and detects omissions/conflicts; it does not replace the accounting/lineage checks below or prove full history by itself.
+
 ## Configuration and operating procedure
 
 Use a reviewed [schema-2 API configuration](FRONTEND_API.md). The opt-in block is:

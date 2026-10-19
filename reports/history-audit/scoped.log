@@ -1,0 +1,26 @@
+test_burn_removes_current_owner (tests_python.test_indexer.IndexerTests.test_burn_removes_current_owner) ... ok
+test_changed_contracts_rejected (tests_python.test_indexer.IndexerTests.test_changed_contracts_rejected) ... ok
+test_confirmed_only (tests_python.test_indexer.IndexerTests.test_confirmed_only) ... ok
+test_decimal_string_configuration_remains_supported (tests_python.test_indexer.IndexerTests.test_decimal_string_configuration_remains_supported) ... ok
+test_duplicate_log_atomic_failure (tests_python.test_indexer.IndexerTests.test_duplicate_log_atomic_failure) ... ok
+test_empty_blocks_preserved (tests_python.test_indexer.IndexerTests.test_empty_blocks_preserved) ... ok
+test_integer_configuration_rejects_floats_and_booleans (tests_python.test_indexer.IndexerTests.test_integer_configuration_rejects_floats_and_booleans) ... ok
+test_multiple_collections_do_not_mix (tests_python.test_indexer.IndexerTests.test_multiple_collections_do_not_mix) ... ok
+test_poll_interval_must_be_positive (tests_python.test_indexer.IndexerTests.test_poll_interval_must_be_positive) ... ok
+test_reduce_rpc_range (tests_python.test_indexer.IndexerTests.test_reduce_rpc_range) ... ok
+test_removed_log_rejected (tests_python.test_indexer.IndexerTests.test_removed_log_rejected) ... ok
+test_reorg_bound_fails_closed (tests_python.test_indexer.IndexerTests.test_reorg_bound_fails_closed) ... ok
+test_reorg_rolls_back_owner (tests_python.test_indexer.IndexerTests.test_reorg_rolls_back_owner) ... ok
+test_repeat_no_duplicates (tests_python.test_indexer.IndexerTests.test_repeat_no_duplicates) ... ok
+test_resume_database (tests_python.test_indexer.IndexerTests.test_resume_database) ... ok
+test_unrequested_contract_rejected (tests_python.test_indexer.IndexerTests.test_unrequested_contract_rejected) ... ok
+test_wrong_log_block_no_commit (tests_python.test_indexer.IndexerTests.test_wrong_log_block_no_commit) ... ok
+test_wrong_parent_no_commit (tests_python.test_indexer.IndexerTests.test_wrong_parent_no_commit) ... ok
+test_cli_sanitizes_error_and_does_not_overwrite (tests_python.test_history_audit.HistoryAuditTests.test_cli_sanitizes_error_and_does_not_overwrite) ... ok
+test_cli_protects_database_sidecars_before_rpc (tests_python.test_history_audit.HistoryAuditTests.test_cli_protects_database_sidecars_before_rpc) ... ok
+test_cli_matched_and_mismatch_receipts_have_distinct_exit_codes (tests_python.test_history_audit.HistoryAuditTests.test_cli_matched_and_mismatch_receipts_have_distinct_exit_codes) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.517s
+
+OK

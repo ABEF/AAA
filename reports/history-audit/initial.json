@@ -1,0 +1,14 @@
+{
+  "kind": "initial focused run observed in tool output",
+  "command": "python -X utf8 -m unittest tests_python.test_history_audit -v",
+  "passes": 21,
+  "failures": 0,
+  "skips": 0,
+  "elapsed_seconds": 3.555,
+  "source_sha256": {
+    "frontend_api/history_audit.py": "a79f59bce93ec352d5b43a360e5a564584726b9895a12d67a50f05da5a0e15a1",
+    "indexer/monitor.py": "f2e4a1cbd970e33f898655c755ca00a1a1a42c8459c64c270b85020d5e64f53d",
+    "tests_python/test_history_audit.py": "d26981607963d85bf2c6c548f379831f40c4c692f4362b9f006525fcb118a892",
+    "tests_python/test_frontend_api.py": "1a808bb3a0e426c0f8e16eec8744d3784560e083220a13fc1fc2d77843e5ca62"
+  }
+}

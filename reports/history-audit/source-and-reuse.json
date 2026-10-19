@@ -1,0 +1,48 @@
+{
+  "unique_affected_passing_cases": 41,
+  "retained_non_cli_cases": [
+    "test_conflicting_amount_or_topics_detected",
+    "test_duplicate_removed_unrequested_and_invalid_rpc_logs",
+    "test_empty_window_and_no_price_profile_do_not_invent_usd",
+    "test_existing_indexer_database_reopen_adds_index_without_cursor_reset",
+    "test_gaps_identity_and_cursor_coverage",
+    "test_matched_raw_history_read_only_and_index_used",
+    "test_maximum_log_window_and_chunked_empty_blocks",
+    "test_missing_database_never_created",
+    "test_omitted_index_fee_detected",
+    "test_partial_window_is_labelled_not_complete_history",
+    "test_predecessor_profile_selects_its_own_database",
+    "test_provider_omission_is_not_claimed_as_proof_of_index_corruption",
+    "test_raw_column_disagreement_fails_closed",
+    "test_reorg_after_logs_or_lost_depth_fails",
+    "test_same_provider_or_missing_review_rejected",
+    "test_seven_emitters_required_and_unknown_controller_rejected",
+    "test_timeout_uses_shared_budget",
+    "test_unordered_rpc_and_hex_case_are_normalized",
+    "test_window_and_event_and_byte_bounds",
+    "test_wrong_chain_and_insufficient_depth_rejected"
+  ],
+  "source_sha256": {
+    "frontend_api/history_audit.py": "a6572fa3815222710fe6c8ba3a6265ee65ec1cd0fcd43cb79cac3f0240c4dcba",
+    "indexer/monitor.py": "f2e4a1cbd970e33f898655c755ca00a1a1a42c8459c64c270b85020d5e64f53d",
+    "tests_python/test_history_audit.py": "878964b1c210bda93e1b6e7b281d2827ff3a08c63e8a718d71de281b71f8d767"
+  },
+  "unchanged_dependencies_sha256": {
+    "frontend_api/service.py": "e61b6168a8ad3802b197c7f7b96ff3971c80beed3d1d711bd33df8c76e864f7c",
+    "frontend_api/history.py": "d0289d2a1e4d6a720dc11f7fc4ddd78b3217f074f2eabdaabfb6865e1677b620",
+    "frontend_api/earnings.py": "99efd7f9e378868f13e32f99bb7c880745bc869f536f31190129619193fe306a",
+    "frontend_api/earnings_replay.py": "907847527904556ee863fe4b92e73e130ccff414d3efb8de88172f40b4d617e6",
+    "frontend_api/earnings_prices.py": "0f6906912b7a0b0cbf20d4f5f5f5e3a1721b00b5da0855acd414f8f00bc7695f",
+    "frontend_api/lineage.py": "a6d38c01b869a29277c2930aa3d11be349dbff34469d6a359b9dd252a0571148",
+    "zzz_ops/rpc.py": "be409fb4af243ecaefc78a70c56d7052c953e9e60897be08cfebb289da76bb1e",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "tests_python/test_frontend_api.py": "1a808bb3a0e426c0f8e16eec8744d3784560e083220a13fc1fc2d77843e5ca62",
+    "tests_python/test_indexer.py": "e94b4f1deceba7d34adcd5a4378eb2c61b067d323aa22d6615b6177bbe40c8f5"
+  },
+  "initial_run_sha256": "5189bfa908ebd2511a9f207f2f5409adc7a6095c952ff6c270b1e7cab96ee628",
+  "final_run_sha256": "445b8e1b0967b9a47cf6cfbc20086b70b25fc0732be68eec665e7ec53934d070",
+  "reuse": "Only audit CLI main changed after the initial run. Every initial test/helper AST body is unchanged. Final run repeats the affected original CLI case, adds two CLI protection/status cases and runs the 18-case indexer suite.",
+  "contract_source_changed": false,
+  "financial_replay_changed": false,
+  "live_provider_qualification": false
+}

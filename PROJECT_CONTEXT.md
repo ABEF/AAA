@@ -1,3 +1,23 @@
+## Earnings ingestion audit continuation - 2026-10-19
+
+The earnings backend and unsigned mint/claim preparation are already published;
+do not reimplement the older quoted plan. This follow-up adds a read-only
+[history audit](docs/HISTORY_AUDIT.md) comparing one configured current/predecessor
+epoch window with a separately reviewed RPC. It requires all seven emitters,
+exact cursor/header/log identity, confirmed ancestry and bounded work. Missing,
+conflicting or unavailable data never yields a matched window. The indexer adds
+one ordered block/log SQLite index; no economic replay or contract code changes.
+
+[Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected
+cases across new execution and exact-body reuse, including 10,000 logs/128 blocks
+and protected CLI output paths. No unchanged Solidity or earnings suites rerun.
+Actual independent providers, full backfills, reviewed prices, large-history/load
+qualification and website integration remain open. Provider agreement and a
+partial window report are not completeness/finality proofs. Follow the linked
+operator procedure; no server, website, public-chain or paused-monitor change.
+Use main, preserve unrelated drafts and check Git for publication. Keep creator
+questions in their central section; release remains NOT APPROVED.
+
 ## Creator coordination continuation - 2026-10-19
 
 The user requested a dedicated **Creator tasks / ZZZ team** section in the

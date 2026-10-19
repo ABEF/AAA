@@ -36,6 +36,7 @@ class Indexer:
           address TEXT,event TEXT,decoded TEXT,raw TEXT NOT NULL,PRIMARY KEY(chain,transaction_hash,log_index),
           FOREIGN KEY(chain,block_number) REFERENCES blocks(chain,number) ON DELETE CASCADE);
         CREATE INDEX IF NOT EXISTS event_lookup ON logs(chain,address,event,block_number);
+        CREATE INDEX IF NOT EXISTS block_log_lookup ON logs(chain,block_number,log_index);
         ''')
         identity=json.dumps({'contracts':sorted(self.contracts),'start':self.start,
             'parent_hash':config.get('start_parent_hash')},sort_keys=True)

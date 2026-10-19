@@ -177,13 +177,14 @@
           "id": "financial-history",
           "status": "progress",
           "title": "Qualify processed earnings & current-price USD",
-          "text": "Backend collection/NFT 24h and all-time earnings replay is implemented, with separate LP/collective/royalty amounts and optional current-price USD. Qualify actual feeds, complete ingestion, large histories and frontend display.",
+          "text": "Collection/NFT processed 24h and all-time earnings with separate LP/collective/royalty amounts and current-price USD are implemented. A bounded independent-RPC history comparison and ordered SQLite index now support ingestion checks. Qualify actual feeds, complete coverage, live providers/load and frontend display.",
           "href": "docs/EARNINGS_HISTORY.md",
           "acceptance": [
             "Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.",
             "User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.",
             "Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.",
-            "Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui)."
+            "Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).",
+            "Implemented the read-only [history audit](docs/HISTORY_AUDIT.md): per configured current/predecessor epoch, compare exact raw logs and headers in windows of up to 128 blocks/10,000 logs, with shared work budgets and no database repair. [Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected cases via new runs and exact-body reuse. Reconcile all contiguous windows through reviewed epoch cutoffs; a partial matched window or agreeing providers is not a completeness/finality proof."
           ]
         },
         {
@@ -198,7 +199,8 @@
             "Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.",
             "Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.",
             "[AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.",
-            "Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance."
+            "Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance.",
+            "Use the [history comparison procedure](docs/HISTORY_AUDIT.md) with a reviewed separate RPC operator. Qualify the first block_log_lookup index build on the actual database, disk/backup/restart behavior, complete backfills and provider/reorg/load conditions. No server restart or provider approval is implied by local evidence."
           ]
         },
         {
