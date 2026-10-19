@@ -1,7 +1,12 @@
 # Release approval record - NOT APPROVED
 
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
-funds is authorized by this document. Reviewed 2026-10-19.
+funds is authorized by this document. Reviewed 2026-10-20.
+
+The [client admission and proxy candidate](API_INGRESS.md) has local
+[scoped verification](../reports/api-admission/VERIFICATION.md). It does not close
+Linux/TLS/host policy, live RPC budgets, distributed ingress or alert/recovery
+qualification. No public service was changed; the release decision remains unchanged.
 
 The [$5 contribution-floor and NFT reward display candidate](CONTRIBUTION_MINIMUMS.md)
 has [scoped verification and an internal daily review](../reports/topup-and-reward-review/VERIFICATION.md).

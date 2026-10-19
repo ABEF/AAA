@@ -9,6 +9,7 @@ import re
 from frontend_api.activation import ActivationTransactions, ActivationInputError
 from frontend_api.server import ReadServer, handler as read_handler
 from frontend_api.http_runtime import ServiceBusy
+from frontend_api.admission import AdmissionRejected, ClientAdmission, add_arguments
 from frontend_api.service import Projection, UnknownNFT
 
 
@@ -56,6 +57,7 @@ def handler(projection, preparer):
             try:
                 self.begin_work()
                 result=preparer.prepare(payload)
+            except AdmissionRejected as exc:self.admission_rejected(exc)
             except ServiceBusy:self._json(503,{'error':'service_busy'})
             except ActivationInputError:self._json(400,{'error':'invalid_activation_request'})
             except UnknownNFT:self._json(404,{'error':'nft_not_minted'})
@@ -73,6 +75,7 @@ def main():
     parser.add_argument('--port',type=int,default=8788)
     parser.add_argument('--workers',type=int,default=4,choices=range(1,9))
     parser.add_argument('--max-connections',type=int,default=8,choices=range(1,33))
+    add_arguments(parser)
     args=parser.parse_args()
     if not 1024<=args.port<=65535:parser.error('port must be between 1024 and 65535')
     try:
@@ -81,8 +84,10 @@ def main():
                        json.loads(Path(args.activation_config).read_text(encoding='utf-8')),workers=args.workers)
         preparer=p
     except Exception:parser.exit(1,'Invalid reviewed deployment/activation configuration.\n')
-    with ReadServer(('127.0.0.1',args.port),handler(p,preparer),max_connections=args.max_connections) as server:
-        print(json.dumps({'event':'activation_preparation_started','port':args.port,'chain_id':p.chain,'workers':args.workers,'max_connections':args.max_connections}),flush=True)
+    with ReadServer(('127.0.0.1',args.port),handler(p,preparer),max_connections=args.max_connections,
+                    admission=ClientAdmission(max_active=args.per_client_active),proxy_origin=args.proxy_origin) as server:
+        print(json.dumps({'event':'activation_preparation_started','port':args.port,'chain_id':p.chain,'workers':args.workers,'max_connections':args.max_connections,
+                          'per_client_active':args.per_client_active,'proxy_identity':args.proxy_origin is not None}),flush=True)
         try:server.serve_forever(poll_interval=.5)
         except KeyboardInterrupt:pass
 

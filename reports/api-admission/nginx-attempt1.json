@@ -1,0 +1,19 @@
+{
+  "approved_for_production": false,
+  "transport": "local HTTP only; production TLS/host configuration not rehearsed",
+  "source_sha256": {
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/server.py": "b02a97aa89f55b50a35b226a19049535b62be6f048a6fc5568ca9af345bf4943",
+    "frontend_api/activation_server.py": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+    "scripts/rehearse-api-ingress.py": "8635a46a5ad5c79c8416b066196dc9cf1485e5de7cc3275e78e5b0b43f9a052c",
+    "config/nginx/popl-api-http.conf": "d68ff54ab9bf3ed43fa85df14e2a5ec54708c419f523ef486d36b0d10fd80097",
+    "config/nginx/popl-api-common.conf": "24fb7a7de3e717934a1092645b02189a88123755a1716b91176ce8ac1e9e7e9f",
+    "config/nginx/popl-api-locations.conf": "7aac8c158c6655bb97c78f1f6c27a0b7e5ca39bcf9232176b4aa1568fa6867f3"
+  },
+  "checks": [],
+  "nginx_sha256": "fb41500aa2508f3d9f791e0888c75cacdbf21cd904826ae42a577e762e5858f5",
+  "passed": false,
+  "failure_type": "AssertionError",
+  "check_count": 0
+}

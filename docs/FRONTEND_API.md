@@ -187,6 +187,12 @@ upstream request and refuses signing/broadcast methods.
 
 HTTP status behavior:
 
+CLI services additionally enforce [client admission](API_INGRESS.md): 429
+`client_busy` / `client_rate_limited`, 503 `admission_capacity_unavailable`, and
+400/403 for invalid explicit proxy identity/origin. Respect `Retry-After` with
+bounded read retries; none of these responses is a zero balance or a transaction
+submission. Public proxy errors may have a non-JSON body; check status first.
+
 | Status | Meaning |
 | --- | --- |
 | 200 | Verified protocol status, NFT snapshot, or history-backed wallet inventory |

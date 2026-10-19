@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-10-19 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-20 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**14 To do | 24 In progress | 15 Implemented locally**
+**14 To do | 24 In progress | 16 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -187,7 +187,7 @@ The data and services behind the app.
 
 <a id="task-host-services"></a>
 
-- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts. Request-wide deadlines/RPC budgets, SQLite checkpoints and bounded parallel isolated HTTP workers and connection/ingress limits are implemented; deployment and operating qualification remain open.
+- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Qualify Linux/TLS hosting, redundant RPCs, complete backfills/reorg recovery, provider quotas and off-host alerts. Initial Pinax compatibility checks passed; the documented public endpoint returned HTTP 403 from this environment.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -200,6 +200,7 @@ The data and services behind the app.
   - Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance.
   - Use the [history comparison procedure](docs/HISTORY_AUDIT.md) with a reviewed separate RPC operator. Qualify the first block_log_lookup index build on the actual database, disk/backup/restart behavior, complete backfills and provider/reorg/load conditions. No server restart or provider approval is implied by local evidence.
   - [Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace peak load, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added.
+  - Implemented [per-client admission and proxy operation](docs/API_INGRESS.md), with 50 distinct affected Python cases across two scoped runs and 22 real Nginx/loopback assertions. Qualify actual Linux/TLS/default-host/CDN policy, shared-NAT client behavior, aggregate provider quotas, log retention and bounded frontend retries before opening public ingress. Local HTTP evidence does not approve hosting.
 
   </details>
 
@@ -238,6 +239,18 @@ The data and services behind the app.
   - Implemented: exact typed intent/owner/ledger checks, no arbitrary target or overrides, mint-only/global/preparation gates, canonical lock rejection, selected-asset verification, short client expiry, shared work budgets and supervised opt-in HTTP. Default GET-only; no signer/broadcast.
   - A required operator fee policy binds the reviewed read configuration and fee evidence, gas-price and total network-fee ceilings. Missing complete fee accounting or canonical gas estimation fails closed. Native value and gas are separate; future claims cannot fund upfront gas.
   - [Current scoped verification](reports/wallet-preparation/VERIFICATION.md) records focused Python/HTTP/worker cases and reusable compiler ABI evidence. No Solidity change or repeated contract suite. Actual deployment/VRF/RPC/fee manifests, ingress/load and wallet signing/receipt rehearsals remain with the service and frontend tasks.
+
+  </details>
+
+<a id="task-api-client-admission"></a>
+
+- [x] **[Bound per-client API work and validate proxy identity](docs/API_INGRESS.md)** - Implemented. Both CLI services now separate read/preparation rate budgets, cap concurrent work per client and bound client state. An explicit local-proxy/HTTPS-origin boundary and restricted Nginx profile are locally verified. Actual public hosting remains under the service task.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification](reports/api-admission/VERIFICATION.md): 47 affected Python cases plus three supplemental cases, and 22 actual Nginx/loopback assertions. Spoofed forwarding/origin, overload, full-table, disconnection and upstream failure cases preserve isolation; no extra worker/RPC work starts on rejected admission.
+  - Maintain proxy/service identity policy together, with exact same-origin POST, no signer/cache/replay, bounded logs and documented stop/restart/rollback. Per-IP budgets are not authenticated users or a distributed/DDoS guarantee; production qualification stays under [host services](TODO.md#task-host-services).
 
   </details>
 
@@ -747,4 +760,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `572143fc16b09595cef12e9dfa8765eab78d8ca6038fa01fe6e3fbed9679200a`.
+Snapshot SHA-256: `0f87820ab1b677bee02aa05b27300ee3c6e0a205ea710595a77aafebb0c3acbd`.

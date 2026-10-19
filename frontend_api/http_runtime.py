@@ -9,6 +9,7 @@ import threading
 import time
 
 from zzz_ops.errors import RpcError
+from frontend_api.admission import AdmissionRejected, client_key, public_origin
 
 INGRESS_SECONDS = 5
 CONNECTION_SECONDS = 45  # Includes ingress, 30s worker budget, cleanup and output.
@@ -46,6 +47,7 @@ class BoundedHandler(BaseHTTPRequestHandler):
 
     def setup(self):
         super().setup()
+        self._admission_release = None
         self.rfile = HeaderReader(self.rfile)
         self._expired = threading.Event()
         self._ingress_end = time.monotonic() + INGRESS_SECONDS
@@ -68,6 +70,19 @@ class BoundedHandler(BaseHTTPRequestHandler):
         self._ingress.cancel()
         if self._expired.is_set() or time.monotonic() >= self._ingress_end:
             raise TimeoutError('Request ingress deadline exceeded')
+        admission = getattr(self.server, 'admission', None)
+        if admission is not None:
+            if self._admission_release is not None:
+                raise RuntimeError('Request work already admitted')
+            key = client_key(self, self.server.proxy_origin)
+            self._admission_release = admission.acquire(key, preparation=self.command == 'POST')
+
+    def admission_rejected(self, error):
+        self._retry_after = error.retry_after
+        self._json(error.status, {'error': error.code})
+        # Fixed labels only: no IP, path, body, wallet, upstream or exception.
+        print(json.dumps({'event': 'api_admission_rejected', 'status': error.status,
+                          'reason': error.code}), flush=True)
 
     def handle_one_request(self):
         try:
@@ -92,6 +107,10 @@ class BoundedHandler(BaseHTTPRequestHandler):
             super().finish()
         except OSError:
             pass
+        finally:
+            release = getattr(self, '_admission_release', None)
+            if release is not None:
+                release()
 
 
 class BoundedHTTPServer(ThreadingMixIn, HTTPServer):
@@ -101,10 +120,14 @@ class BoundedHTTPServer(ThreadingMixIn, HTTPServer):
     block_on_close = True
     request_queue_size = 16
 
-    def __init__(self, *args, max_connections=8, **kwargs):
+    def __init__(self, *args, max_connections=8, admission=None, proxy_origin=None, **kwargs):
         if type(max_connections) is not int or not 1 <= max_connections <= 32:
             raise ValueError('max_connections must be between 1 and 32')
         self._connections = threading.BoundedSemaphore(max_connections)
+        self.proxy_origin = public_origin(proxy_origin)
+        if self.proxy_origin is not None and admission is None:
+            raise ValueError('proxy mode requires client admission')
+        self.admission = admission
         super().__init__(*args, **kwargs)
 
     def get_request(self):

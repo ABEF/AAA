@@ -16,6 +16,23 @@ decision for an exact release, not development progress. Creator-dependent quest
 are grouped in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team);
 recording them does not implement a feed, payment agreement or live route.
 
+## Per-client API capacity and proxy boundary
+
+Both read/unsigned-preparation CLI services now enforce concurrent and separate
+read/preparation rate budgets per client IP, with a bounded table and fail-closed
+proxy identity/origin validation. A client cannot occupy all four default workers;
+disconnects retain their lease until started work finishes. No new signer, result
+cache or economic behavior is introduced. The reviewed Nginx candidate overwrites
+client identity, strips arbitrary headers, limits aggregate ingress and exposes
+only the intended read/preparation routes without retries.
+
+[Scoped evidence](../reports/api-admission/VERIFICATION.md): 50 affected Python
+cases across an initial 47-case run and three supplemental cases, plus 22 actual
+Nginx/loopback assertions and sanitized-log verification. These are local tests,
+not a new full regression or Linux/TLS/provider qualification. Shared NATs and
+multiple hosts require explicit capacity planning. See [operator procedures](API_INGRESS.md)
+and the [central hosting task](../TODO.md#task-host-services).
+
 ## $5 top-ups and NFT-owned earned totals
 
 Entry and the immutable Vault helper enforce $100 activation / $5 increases in

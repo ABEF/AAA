@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 from http.server import BaseHTTPRequestHandler
 from frontend_api.http_runtime import BoundedHandler, BoundedHTTPServer, ServiceBusy
+from frontend_api.admission import AdmissionRejected, ClientAdmission, add_arguments
 import json
 from pathlib import Path
 import re
@@ -58,6 +59,8 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
                 self.send_header('Connection', 'close')
                 if value.get('error') == 'service_busy':
                     self.send_header('Retry-After', '1')
+                elif getattr(self, '_retry_after', None) is not None:
+                    self.send_header('Retry-After', str(self._retry_after))
                 self.end_headers()
                 self.wfile.write(body)
             except OSError:
@@ -94,6 +97,8 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
                 result = projection.earnings(identifier) if earned or collection_earnings else projection.mint_readiness() if readiness else projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
             except UnknownNFT:
                 self._json(404, {'error': 'nft_not_minted'})
+            except AdmissionRejected as exc:
+                self.admission_rejected(exc)
             except ServiceBusy:
                 self._json(503, {'error': 'service_busy'})
             except Exception:
@@ -147,6 +152,8 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             try:
                 self.begin_work()
                 result = preparer.prepare(payload)
+            except AdmissionRejected as exc:
+                self.admission_rejected(exc)
             except ServiceBusy:
                 self._json(503, {'error': 'service_busy'})
             except TransactionInputError:
@@ -185,6 +192,7 @@ def main() -> None:
     parser.add_argument('--max-connections', type=int, default=8, choices=range(1, 33), help='Bounded HTTP connections (1-32)')
     parser.add_argument('--transaction-config',
                         help='Reviewed fee policy for opt-in unsigned mint/claim preparation; no signing')
+    add_arguments(parser)
     args = parser.parse_args()
     if not 1024 <= args.port <= 65535:
         parser.error('port must be between 1024 and 65535')
@@ -198,9 +206,12 @@ def main() -> None:
     preparer = None
     if transaction_config is not None:
         preparer = projection
-    with ReadServer(('127.0.0.1', args.port), handler(projection, preparer), max_connections=args.max_connections) as server:
+    with ReadServer(('127.0.0.1', args.port), handler(projection, preparer), max_connections=args.max_connections,
+                    admission=ClientAdmission(max_active=args.per_client_active), proxy_origin=args.proxy_origin) as server:
         print(json.dumps({'event': 'frontend_read_api_started', 'port': args.port,
-                          'chain_id': projection.chain, 'workers': args.workers, 'max_connections': args.max_connections, 'transaction_preparation_enabled': preparer is not None}), flush=True)
+                          'chain_id': projection.chain, 'workers': args.workers, 'max_connections': args.max_connections,
+                          'per_client_active': args.per_client_active, 'proxy_identity': args.proxy_origin is not None,
+                          'transaction_preparation_enabled': preparer is not None}), flush=True)
         try:
             server.serve_forever(poll_interval=.5)
         except KeyboardInterrupt:

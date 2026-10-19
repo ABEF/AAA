@@ -410,6 +410,27 @@ The API has a shared 25-second work budget, finite RPC counts and expiry checks;
 
 Watch independent heartbeat/backup age, stale heads, long-pending transactions, nonce drift, RPC failures, disk/permissions, gas balance, budget exhaustion, feed freshness, keeper authorization, range exposure, cumulative execution cost, randomness funding/latency and unexpected dependency changes. Record observation gaps honestly. The desktop chat monitor remains paused; finishing this manual does not restart it.
 
+### Client admission and public API ingress
+
+The infrastructure operator sets `--per-client-active` (default 2, range 1-4)
+below the worker count and, only behind the reviewed local proxy, supplies
+`--proxy-origin https://EXACT-WEBSITE-HOST` to both CLI services. Read and unsigned
+preparation budgets are separate; 429/503 admission errors start no upstream work.
+The proxy must overwrite `X-PoPL-Client-IP` from its TCP peer, strip other forwarding
+and credential headers, and preserve the exact loopback Host. POST Origin must
+match. Shared NAT users share the IP budget; no wallet authentication is inferred.
+
+Follow [the complete procedure](API_INGRESS.md) for the Nginx includes, exact
+commands/defaults, TLS/host prerequisites, log rotation, status/retry behavior and
+local rehearsal. Validate the full configuration before reload; verify fresh
+protocol state and unsigned preparation through the edge. For overload or a bad
+release, disable public ingress, drain bounded work, stop the reviewed process
+group, inspect provider/worker/limit evidence, then restart and reopen only after
+verification. Restart resets in-memory client quotas; it cannot undo a transaction
+or recover a failed claim. Roll back proxy and service policy together, never
+bypass origin/identity checks to restore availability. No contract authority,
+website deployment or paused-monitor restart is part of this procedure update.
+
 ## Incident recovery
 
 | Symptom | First response | Safe return to service |

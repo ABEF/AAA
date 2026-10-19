@@ -1,3 +1,17 @@
+## API client admission checkpoint - 2026-10-20
+
+Both read/unsigned-preparation CLI services now install bounded per-client
+concurrency, separate read/preparation budgets and a finite identity table.
+Explicit proxy mode requires a local peer, overwritten validated client IP and
+exact HTTPS Origin for POST; arbitrary forwarding headers never choose a budget.
+Read [operator procedures](docs/API_INGRESS.md) and [scoped evidence](reports/api-admission/VERIFICATION.md).
+Fifty distinct affected Python cases pass across 47+3 runs; 22 actual local Nginx
+assertions and sanitized-log verification pass. No unchanged contract suites rerun.
+The proxy rehearsal used fake data and HTTP on Windows; Linux/TLS/provider/NAT/
+distributed quotas and alerts remain hosting gates. No website/server, public
+transaction or paused-monitor change. Use main, preserve unrelated drafts and
+check Git for publication. Keep Todo/features/operator procedures consistent.
+
 ## Approved Twin circuit routes artwork - 2026-10-20
 
 The user explicitly chose Vertical ribs (not Orbital rings) for replacement by

@@ -25,6 +25,7 @@ listener. Both bind only to 127.0.0.1; no public endpoint is created by this wor
 | Limit | Default and behavior |
 | --- | --- |
 | Concurrent expensive requests | `--workers 4`, accepted integer range 1-8, per service process. No waiting work queue; a full pool returns HTTP 503 `service_busy` and `Retry-After: 1`. |
+| Per-client admission | Both CLI services now limit each IP to two active requests, reads at 1/s (burst 12) and preparation at 6/min (burst 2). Optional reviewed proxy identity and exact-origin policy; see [ingress operation](API_INGRESS.md). |
 | Active HTTP connections | `--max-connections 8`, accepted integer range 1-32. Admission occurs before a handler thread is created. Excess connections receive the same bounded busy response. The TCP listen backlog is 16. |
 | Request headers | At most 8 KiB per line and 32 KiB total including the request line; oversized input returns 431. Duplicate Host/length and ambiguous framing are rejected before RPC work. |
 | Request ingress | Five seconds from handler start, including all headers and the complete POST body; periodic trickle input does not reset this deadline. POST body limit remains 16 KiB. |
@@ -79,8 +80,11 @@ rollback recovers or changes a user's signed blockchain transaction.
 Keep a separately reviewed HTTPS reverse proxy in front of these loopback
 listeners. It must set the exact loopback Host/port, strip untrusted forwarding
 headers, enforce origin policy and rate/connection/queue/time/response limits,
-and monitor provider and worker failures off-host. A single caller can occupy a
-finite pool; this code does not implement cross-host fairness or DDoS protection.
+and monitor provider and worker failures off-host. The implemented
+[client admission and proxy profile](API_INGRESS.md) prevents one IP from leasing
+all four default workers. Shared NATs share a budget; this is not cross-host
+fairness, unique-user identification or DDoS protection. Actual deployment remains
+subject to hosting qualification.
 
 [Scoped evidence](../reports/concurrent-services/VERIFICATION.md) covers Windows
 loopback burst/admission, spawned-process isolation, timeout recovery and website

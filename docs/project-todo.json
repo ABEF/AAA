@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed": "2026-10-19",
+  "reviewed": "2026-10-20",
   "areas": [
     {
       "id": "contracts",
@@ -211,10 +211,21 @@
           ]
         },
         {
+          "id": "api-client-admission",
+          "status": "done",
+          "title": "Bound per-client API work and validate proxy identity",
+          "text": "Both CLI services now separate read/preparation rate budgets, cap concurrent work per client and bound client state. An explicit local-proxy/HTTPS-origin boundary and restricted Nginx profile are locally verified. Actual public hosting remains under the service task.",
+          "href": "docs/API_INGRESS.md",
+          "acceptance": [
+            "[Scoped verification](reports/api-admission/VERIFICATION.md): 47 affected Python cases plus three supplemental cases, and 22 actual Nginx/loopback assertions. Spoofed forwarding/origin, overload, full-table, disconnection and upstream failure cases preserve isolation; no extra worker/RPC work starts on rejected admission.",
+            "Maintain proxy/service identity policy together, with exact same-origin POST, no signer/cache/replay, bounded logs and documented stop/restart/rollback. Per-IP budgets are not authenticated users or a distributed/DDoS guarantee; production qualification stays under [host services](TODO.md#task-host-services)."
+          ]
+        },
+        {
           "id": "host-services",
           "status": "progress",
           "title": "Host and monitor the API & indexer",
-          "text": "A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts. Request-wide deadlines/RPC budgets, SQLite checkpoints and bounded parallel isolated HTTP workers and connection/ingress limits are implemented; deployment and operating qualification remain open.",
+          "text": "Bounded workers, request budgets, per-client admission and a guarded proxy profile are implemented and locally verified. Qualify Linux/TLS hosting, redundant RPCs, complete backfills/reorg recovery, provider quotas and off-host alerts. Initial Pinax compatibility checks passed; the documented public endpoint returned HTTP 403 from this environment.",
           "href": "docs/FRONTEND_API.md#local-operation-and-verification",
           "acceptance": [
             "Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.",
@@ -224,7 +235,8 @@
             "[AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.",
             "Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance.",
             "Use the [history comparison procedure](docs/HISTORY_AUDIT.md) with a reviewed separate RPC operator. Qualify the first block_log_lookup index build on the actual database, disk/backup/restart behavior, complete backfills and provider/reorg/load conditions. No server restart or provider approval is implied by local evidence.",
-            "[Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace peak load, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added."
+            "[Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace peak load, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added.",
+            "Implemented [per-client admission and proxy operation](docs/API_INGRESS.md), with 50 distinct affected Python cases across two scoped runs and 22 real Nginx/loopback assertions. Qualify actual Linux/TLS/default-host/CDN policy, shared-NAT client behavior, aggregate provider quotas, log retention and bounded frontend retries before opening public ingress. Local HTTP evidence does not approve hosting."
           ]
         },
         {

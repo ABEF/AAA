@@ -1,0 +1,18 @@
+{
+  "reviewed": "2026-10-20",
+  "sha256": {
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/server.py": "b02a97aa89f55b50a35b226a19049535b62be6f048a6fc5568ca9af345bf4943",
+    "frontend_api/activation_server.py": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+    "frontend_api/worker.py": "6ff71abe770c6278812bb5b820c43ecf4e3c865423cb498df0436b908c80d941",
+    "tests_python/test_client_admission.py": "aa1d88f4b760804a752c4b52042633c3329da9f0124a12d4192d2ea009ef0cb2",
+    "tests_python/test_http_concurrency.py": "f1a08829e6f52880ba39d0782705fd881b82f31addb7d5499aef7a7aaf8c9e35",
+    "tests_python/test_frontend_transaction_http.py": "9c6a0a1698d32ee06406cdb0641f27f5b1573c35a0ade8af86c3ad840aca5f37",
+    "tests_python/test_frontend_activation_http.py": "53dc4f6656ef18bf1fcc27a6271ef2b41525d92539c27435df520c2688f68156",
+    "scripts/rehearse-api-ingress.py": "e91857bc250c4b3220490c1156296c09d0227fe66e4698a621f363238ecf93bf",
+    "config/nginx/popl-api-http.conf": "d68ff54ab9bf3ed43fa85df14e2a5ec54708c419f523ef486d36b0d10fd80097",
+    "config/nginx/popl-api-common.conf": "24fb7a7de3e717934a1092645b02189a88123755a1716b91176ce8ac1e9e7e9f",
+    "config/nginx/popl-api-locations.conf": "7aac8c158c6655bb97c78f1f6c27a0b7e5ca39bcf9232176b4aa1568fa6867f3"
+  }
+}

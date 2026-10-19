@@ -1,3 +1,21 @@
+# Client admission continuation - 2026-10-20
+
+The current change closes the local per-client admission implementation gap in
+host services: bounded IP concurrency/state, separate read/preparation rate
+budgets, explicit local-proxy identity and exact-origin validation, and restricted
+Nginx includes. Read [the operator procedure](API_INGRESS.md) and
+[scoped verification](../reports/api-admission/VERIFICATION.md): 47+3 distinct
+Python passes, 22 actual local Nginx assertions, sanitized logs and matching hashes.
+The first Nginx harness attempt lacked a temporary directory; the corrected
+isolated run passes without a policy change. No unchanged contract tests rerun.
+
+Linux/TLS/default-host/CDN policy, real RPC/provider load, multi-host quotas and
+off-host alerts remain open under the central service task. The test uses local
+HTTP and fake projections, not real transactions. No public website/server,
+contract deployment, Anvil user-state reset or paused-monitor restart. Use main;
+check Git HEAD/origin for publication. Older unrelated drafts remain separate.
+
+
 ## Contribution floor and NFT earnings checkpoint - 2026-10-19
 
 The user requires $5 minimum LP increases; initial activation remains $100.
