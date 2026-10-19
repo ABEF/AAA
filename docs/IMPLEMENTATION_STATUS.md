@@ -16,6 +16,18 @@ decision for an exact release, not development progress. Creator-dependent quest
 are grouped in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team);
 recording them does not implement a feed, payment agreement or live route.
 
+## Main website interaction state
+
+The default website now has per-NFT/mint action tracking, overlapping-batch guards,
+atomic latest-state preview updates across tabs, wallet context cancellation and
+session-only connection restoration. Dormant reward/claim sections are hidden;
+active cards separate Claim and Grow attached LP. Inline form feedback and loaded
+artwork continuity incorporate the lessons from local testing. These changes are
+in the main website source, not just the Anvil adapter. [Scoped verification](../reports/frontend-state/VERIFICATION.md)
+records 53 affected JavaScript passes and two-tab browser checks. The default
+website still simulates financial actions; production wallet/receipt recovery and
+multi-device service qualification are not supplied by these UI locks.
+
 ## Disposable local browser integration
 
 The [original website now has a local contract mode](LOCAL_WEBSITE.md): confirmed

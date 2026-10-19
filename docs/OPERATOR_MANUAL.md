@@ -475,3 +475,27 @@ sends Entry. A busy form cannot submit twice; failures remain visible in the dia
 Only the NFT receiving activation/top-up has an artwork updating badge; global
 stale balance guards remain. Reload the local page to load this UI-only change;
 no service restart, contract call, public deployment or governance change is needed.
+
+## Main website pending-action and storage recovery
+
+The main website tracks activation/top-up/claim work per NFT and mint separately.
+A conflicting action on the same NFT or overlapping claim batch is rejected;
+other NFTs can continue. Only a changed target artwork animates. Wallet/network
+changes cancel unsent previews, and reconnecting to the old address does not
+revive them. Default browser-wallet reconnection uses public-account reads only;
+Disconnect clears its tab session selection. No new operator role or contract call.
+
+Same-origin demo tabs use Web Locks for latest-state event commits and resource
+conflicts. HTTPS/localhost plus a supported browser is required; unsupported locks,
+failed storage, malformed history, a full 1,000-event log or a 10-second lock wait
+produce explicit errors. Do not disable these checks. Refresh reads saved state
+without replaying an intent. Reset demo invalidates pending work through a reset
+epoch; preserve example history first if needed. It never affects on-chain funds.
+
+Build/release the main static site through the normal approved deployment process;
+reload JS after deployment. This local change does not restart the Anvil service,
+production server or paused monitor. The prior release may contain lost-update
+behavior; prefer a reviewed forward fix over rollback. See [evidence](../reports/frontend-state/VERIFICATION.md).
+Production recovery still requires persisted transaction hashes and canonical
+receipt/replacement/reorg reconciliation; browser/demo locks are not distributed
+wallet authorization or a production multi-user capacity guarantee.

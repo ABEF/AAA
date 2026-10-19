@@ -1,0 +1,20 @@
+{
+  "scope": "Main website state, preview persistence, connection and presentation; no contract/backend modification",
+  "website_sha256": {
+    "app.js": "f044c126654e73342daae298cfe0a968b6722391cc32204d162b7479dd2912ba",
+    "wallet.js": "a41826166cfa69ead5d1d5927cdda2b8383b16c432f718bbe1ddec8bafa5a1d0",
+    "ui-state.js": "04476dcfe447c8b2d8de4575bae3c47141919f44f12e18e5f13f9e6ee5a8e7a8",
+    "preview-store.js": "16c09d19a03852aae2cdc61a26a108884d337f5d963bbc96c55aec8a17ea2a19",
+    "styles.css": "b98637294c76571a7f7b598e56fced24b8d027665fd76d90e741dafdc9dee1e9",
+    "build.mjs": "f5f8f0c2a3ba2f3533be637b276935cad6597afc156b4078917463ee0bda4846",
+    "server.mjs": "8dc4dc3d6dfa5f1c12f4ea50dbd4c53a827447c9b6e57b0c0079a5e265030174",
+    "package.json": "1bc380d0b73a392ca6e55541a5c942a3c870f457e367c60af00dc7816a7744a4",
+    "tests/ui-state.test.mjs": "c1d1cab5f91f102053e9b409c7dfacf3aa395052a4f29117b54937274140108c",
+    "tests/domain.test.mjs": "75b56603c03697061fbbdebeb533c6ed4ba63851a423803cbdd56211527ca262"
+  },
+  "focused_passes": 53,
+  "new_cases": 17,
+  "build_files": 5588,
+  "public_deployment": false,
+  "website_commit": "6a65a5822990b0464de9564be8931fcb41ac911a"
+}

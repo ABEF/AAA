@@ -249,6 +249,7 @@ What holders see and use.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Integrate actual wallet transactions and the implemented confirmed API/history/unsigned-preparation service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review deployments and calldata; discard drafts on account/chain changes or expiry; freshly simulate/estimate gas, confirm with the user and handle canonical receipts/replacements/reorgs. Bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them.
   - Local fast session handshake supplies wallets before full portfolio reads; selection survives soft reload/navigation within that disposable deployment. New sessions require selection again. This is not public-wallet persistence or signer hosting.
+  - Main static website now preserves wallet selection in tab session storage and restores browser accounts without prompts/signing. Account/network changes invalidate unsent previews. This is public-account connection continuity, not live financial transaction integration. See [main website evidence](reports/frontend-state/VERIFICATION.md).
 
   </details>
 
@@ -266,12 +267,13 @@ What holders see and use.
   - Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.
   - Integrate current physical LP/share-denominator context, marked NAV vs cumulative input and price-guard unavailable states. Render out-of-range warning plus earliest rebalance eligibility; only fresh authenticated telemetry may supply an estimated next keeper check. The public website is still simulated and was not changed by the backend delta.
   - Consume [royalty-reporting fields](docs/ROYALTY_REPORTING.md): separate claimable ETH/source currencies, deferred eligibility and unavailable amounts. Converter enabled is not a route quote or scheduled execution. Do not offer signing based solely on a read-only balance response.
+  - Main website now also hides dormant fee/claim sections, shows fixed dormant rarity multipliers, separates Claim/Grow controls and preserves artwork through unrelated refreshes. Only its target NFT shows activation/top-up progress. Default data remains a simulation; local and live adapter boundaries remain explicit.
 
   </details>
 
 <a id="task-transaction-ui"></a>
 
-- [ ] **[Handle the complete transaction journey](docs/CLAIM_ROUTER.md)** - In progress. Local website shows exact approval and Entry as separate steps, gas separately, expiring confirmations, account/revision checks and same-operation recovery. Production wallet rejection/replacement/reorg qualification remains open.
+- [ ] **[Handle the complete transaction journey](docs/CLAIM_ROUTER.md)** - In progress. Main website now uses per-NFT action tracking, safe cross-tab preview commits, wallet-change cancellation and inline feedback. Local contract mode retains exact confirmations/recovery. Production signing, receipts/reorgs and multi-device load qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -284,6 +286,7 @@ What holders see and use.
   - Local refresh is single-flight, retries only the explicit busy read response with bounded backoff, and distinguishes confirmed writes from failed balance refreshes. Writes are never automatically repeated as a new operation.
   - Qualify multiple independent devices/wallets activating, topping up and claiming concurrently: shared-pool quote movement, same-NFT transfer/claim races, account/chain changes, nonce/replacement recovery, isolated sessions and peak-load limits. Preserve exact transaction validation and confirmed-only artwork/financial state; a two-account serial Anvil fixture is not production concurrency qualification.
   - Local contribution review shows validation, progress and errors inside the dialog. Exact-contribution acknowledgement survives confirmed approval, while Entry retains a separate explicit confirmation. Only the activated/topped-up NFT shows the artwork Updating badge; stale portfolio finances/actions remain guarded.
+  - Main website implementation: per-NFT/mint resources, atomic overlapping batch rejection, latest-state commits under Web Locks, bounded cross-tab waits, reset epochs and explicit persistence failures. Seventeen new focused cases plus affected domain/wallet cases and two-tab browser activation/claim checks are recorded in [scoped evidence](reports/frontend-state/VERIFICATION.md). No claim of distributed production safety or public deployment.
 
   </details>
 
@@ -706,4 +709,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8dc9de2aeb6f7343e0667f4568ad6fa548d5b7b4e36d8e28152dd2800f541ca1`.
+Snapshot SHA-256: `149621f503d5436e12b34fba6bab37260b424750131e819cd1365f3e201671a6`.

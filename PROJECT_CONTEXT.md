@@ -1,3 +1,15 @@
+## Main website interaction hardening - 2026-10-19
+
+The user requested improvements in the actual website, not just its local test
+harness. Default app.js now tracks independent per-NFT actions, rejects overlap,
+uses locked latest-state commits across tabs, and invalidates pending work on
+reset or wallet/network changes. Wallet selection restores silently across reload;
+dormant financial controls are hidden, royalty traits remain visible, and changed
+artwork crossfades. See the website FRONTEND_STATE.md and reports/frontend-state/VERIFICATION.md.
+Default mode is still a simulation; the local adapter/server remains unchanged.
+Production wallet/receipt recovery, multi-device signing and service/load approval
+remain open. No public deployment or paused-monitor restart. Main only.
+
 ## Local activation-review follow-up - 2026-10-19
 
 The review form shows validation/progress/errors inside the NFT dialog. Confirmed
