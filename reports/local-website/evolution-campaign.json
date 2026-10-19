@@ -1,0 +1,371 @@
+{
+  "scope": "Disposable Anvil 31337 only; actual core with mock dependencies",
+  "events": [
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 55
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 16782
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 5592
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 630
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 2
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 17538
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 3020
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 146
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 2
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 22185
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 2851
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 326
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 2
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 20080
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 1897
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 117
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 2
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 23727
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 1273
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 274
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 1
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 19222
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 872
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 230
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 1
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 23998
+    },
+    {
+      "path": "/prepare",
+      "status": 200,
+      "elapsed_ms": 2180
+    },
+    {
+      "path": "/action",
+      "status": 200,
+      "elapsed_ms": 309
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "elapsed_ms": 2
+    },
+    {
+      "path": "/state",
+      "status": 200,
+      "elapsed_ms": 14471
+    }
+  ],
+  "stages": [
+    {
+      "action": "mint",
+      "transactions": [
+        "0x848550c39d79c34233f034f5e506ba8e8b10f2f0396bc47fdce1c552243ff865",
+        "0x05c6a14cc1e45a37bca3df98b95e9a81ebbaf67192f68c6373dceef153caf1c7",
+        "0x16ee737648c4c60a5c1794f2915fc5d1653336607011a50bc076e4beb68d2c67"
+      ]
+    },
+    {
+      "action": "approve",
+      "transactions": [
+        "0x543bdfc630e4eb860bc720ae19481ea7061d05262958af95fcbe551ef2eae91a"
+      ]
+    },
+    {
+      "action": "activate",
+      "transactions": [
+        "0xc7f0a476c8e9befda460a0757f9c5b7a7479cb8a76abfeb0f1b490063a7146f4"
+      ],
+      "position": {
+        "status": "active",
+        "bucket_id": "81490514848183091638327629150261873095211529999605186026982710879423574904775",
+        "shares_raw": "99967610286972857420",
+        "local_custody": {
+          "pool_id": "0xe3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc",
+          "lp_token_id": "1",
+          "bucket_total_shares_raw": "15531967610286972857420",
+          "share_numerator_raw": "99967610286972857420",
+          "share_denominator_raw": "15531967610286972857420",
+          "last_rebalance_at": 1792435437,
+          "identity_source": "Vault.group at the confirmed snapshot"
+        },
+        "cumulative_gross_contribution_usd_18": "100000000000000000000",
+        "activated": true,
+        "royalty_weight": 2,
+        "current_lp_value": {
+          "available": true,
+          "raw": "99999999999999999999",
+          "decimals": 18,
+          "unit": "USD",
+          "source": "NFT.currentLPValue",
+          "reason": null
+        },
+        "evolution": "activated",
+        "evolution_value_available": true,
+        "principal_redeemable": false
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "0"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "action": "approve",
+      "transactions": [
+        "0x1e70bb28affb2bf337964b6ce25df9c2eb8b8095ee8acebf23a555838c966c22"
+      ]
+    },
+    {
+      "action": "increase",
+      "transactions": [
+        "0xece3adf0f1b6d9aceead97140b8ded5d0e1c9b5cd1f840e08440a66af7626e91"
+      ],
+      "position": {
+        "status": "active",
+        "bucket_id": "81490514848183091638327629150261873095211529999605186026982710879423574904775",
+        "shares_raw": "1099643713156701431624",
+        "local_custody": {
+          "pool_id": "0xe3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc",
+          "lp_token_id": "1",
+          "bucket_total_shares_raw": "16531643713156701431624",
+          "share_numerator_raw": "1099643713156701431624",
+          "share_denominator_raw": "16531643713156701431624",
+          "last_rebalance_at": 1792435437,
+          "identity_source": "Vault.group at the confirmed snapshot"
+        },
+        "cumulative_gross_contribution_usd_18": "1100000000000000000000",
+        "activated": true,
+        "royalty_weight": 2,
+        "current_lp_value": {
+          "available": true,
+          "raw": "1099999999999999999998",
+          "decimals": 18,
+          "unit": "USD",
+          "source": "NFT.currentLPValue",
+          "reason": null
+        },
+        "evolution": "enhanced",
+        "evolution_value_available": true,
+        "principal_redeemable": false
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "0"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    },
+    {
+      "action": "approve",
+      "transactions": [
+        "0x20ac8eb8e04cbd275c3d5bf4380fe180b4af8da908a10e206e21c2252b677c13"
+      ]
+    },
+    {
+      "action": "increase",
+      "transactions": [
+        "0x1f1e798bdd4cd72a884dbb0a4532d9491854f5d9e187fffb89adc0188f3b110e"
+      ],
+      "position": {
+        "status": "active",
+        "bucket_id": "81490514848183091638327629150261873095211529999605186026982710879423574904775",
+        "shares_raw": "11096404741853987173671",
+        "local_custody": {
+          "pool_id": "0xe3d7ee21f8b93d9886274a67620d9cb9a542d3074f6c348288b266be1dac41bc",
+          "lp_token_id": "1",
+          "bucket_total_shares_raw": "26528404741853987173671",
+          "share_numerator_raw": "11096404741853987173671",
+          "share_denominator_raw": "26528404741853987173671",
+          "last_rebalance_at": 1792435437,
+          "identity_source": "Vault.group at the confirmed snapshot"
+        },
+        "cumulative_gross_contribution_usd_18": "11100000000000000000000",
+        "activated": true,
+        "royalty_weight": 2,
+        "current_lp_value": {
+          "available": true,
+          "raw": "11099999999999999999998",
+          "decimals": 18,
+          "unit": "USD",
+          "source": "NFT.currentLPValue",
+          "reason": null
+        },
+        "evolution": "singularity",
+        "evolution_value_available": true,
+        "principal_redeemable": false
+      },
+      "claimable": {
+        "lp": [
+          {
+            "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "symbol": "TEST-1",
+            "decimals": 18,
+            "raw": "0"
+          },
+          {
+            "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            "symbol": "TEST-2",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "royalties": [
+          {
+            "asset": "0x0000000000000000000000000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "raw": "0"
+          }
+        ],
+        "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+        "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+      }
+    }
+  ],
+  "nft_id": "74443603871742470691586988459939348705633073886741395550148891998823647003670",
+  "ordinal": 5,
+  "traits": {
+    "rarity": "Rare",
+    "palette": 17,
+    "pattern": 2
+  },
+  "result": "pass"
+}

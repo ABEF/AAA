@@ -449,11 +449,11 @@ def make_server(lab):
             try:
                 style="'self' 'unsafe-inline'" if self.path.startswith('/app/') else "'self'"
                 self.send_response(status);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Content-Security-Policy',f"default-src 'self'; script-src 'self'; style-src {style}; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'none'");self.end_headers();self.wfile.write(raw)
-            except (BrokenPipeError,ConnectionResetError,TimeoutError):pass # Outcome already saved; never resubmit.
+            except (BrokenPipeError,ConnectionResetError,ConnectionAbortedError,TimeoutError):pass # Outcome already saved; never resubmit.
         def do_GET(self):
             if not self.valid(): return self.output(403,{'error':'Invalid local host'})
             try:
-                if self.path=='/session': return self.output(200,{'token':lab.token,'mode':'LOCAL ANVIL TEST ONLY','chain_id':CHAIN})
+                if self.path=='/session': return self.output(200,{'token':lab.token,'mode':'LOCAL ANVIL TEST ONLY','chain_id':CHAIN,'accounts':lab.accounts[1:]})
                 if self.path=='/state':
                     if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
                     try:result=lab.state()

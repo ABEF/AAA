@@ -166,6 +166,22 @@ class HTTPTests(unittest.TestCase):
         headers={'Origin':f'http://127.0.0.1:{self.port}','X-Local-Token':self.p.token,'Content-Type':'application/json'}
         if extra:headers.update(extra)
         c.request(method,path,raw,headers);r=c.getresponse();data=r.read();c.close();return r.status,json.loads(data)
+    def test_wallet_session_does_not_wait_for_portfolio_or_mutation_lock(self):
+        self.p.state=Mock(side_effect=AssertionError('Session must not read balances'))
+        with self.p.lock:
+            status,data=self.request(method='GET',path='/session')
+        self.assertEqual(status,200)
+        self.assertEqual(data['accounts'],[ALICE,BOB])
+        self.assertEqual(data['chain_id'],31337)
+        self.p.state.assert_not_called()
+        self.assertEqual(self.p.calls,0)
+    def test_disconnected_browser_does_not_trigger_second_error_response(self):
+        handler=object.__new__(self.server.RequestHandlerClass)
+        handler.path='/state'
+        handler.send_response=Mock();handler.send_header=Mock();handler.end_headers=Mock()
+        handler.wfile=Mock();handler.wfile.write.side_effect=ConnectionAbortedError('browser closed')
+        handler.output(200,{'confirmed':True})
+        handler.send_response.assert_called_once_with(200)
     def test_strange_wire_inputs_have_no_side_effect(self):
         for raw in ['[]','null','true','42','{}','{"action":"mint","action":"fund"}','{"x":NaN}','[ '*700, '\ufffd']:
             with self.subTest(raw=raw[:40]):self.assertEqual(self.request(raw.encode())[0],400)

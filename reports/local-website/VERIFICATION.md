@@ -81,6 +81,56 @@ Full IDs remain strings; ordinal labels do not change custody identity.
 
 ## Reuse and limits
 
+### Refresh and evolution follow-up - 2026-10-19
+
+The reported activation succeeded on-chain; a read of the original session returned
+all four positions available. Its full state read took 20.8 seconds. The UI had
+cleared every card during that read, while busy responses could terminate refresh.
+Wallet selection also unnecessarily depended on the same complete portfolio.
+
+The follow-up adds fast session wallet inventory, deployment-scoped selection
+persistence, single-flight/bounded busy-read retry, dormant financial-row removal,
+separate Claim/Grow buttons, and labeled artwork continuity with fresh-data guards.
+Artwork crossfades only for a confirmed changed image after loading, respecting
+reduced motion. No economic/accounting or production Solidity change occurred.
+
+- **25 affected JavaScript tests pass**, including refresh contention bounds,
+  no automatic write retry, confirmed-write/read-failure separation, aborts,
+  fast wallet selection, reload/disconnect/session changes, bad inventories and
+  dormant/pending presentation. This includes the prior 13 client cases; counts
+  are not additive to the initial campaign above.
+- **Nine affected HTTP cases pass**, including two new regressions proving that
+  session account reads do not wait on the mutation/portfolio lock and an aborted
+  browser does not produce a second error response. Retained result on unchanged
+  Python bodies; no broad Python or Solidity rerun.
+- Syntax/static/artwork checks and the **5,586-file static build pass**. An initial
+  check invocation used the wrong `scripts/check.mjs` path; the actual root
+  `check.mjs` was then run successfully. No source defect resulted from that typo.
+- The [follow-up local campaign](evolution-campaign.json) minted NFT #5 using
+  Test wallet B, then executed three exact approvals and activation/top-ups of
+  100 / 1,000 / 10,000 TEST-1. All seven typed operations confirmed. Confirmed
+  artwork progressed Activated / Enhanced / Singularity, preserving rarity,
+  palette and pattern, with zero retroactive LP or royalty claimable balances.
+  HTTP timings observed the wallet handshake at 1–55 ms and complete portfolio
+  reads at 14.5–24 seconds; these are local observations, not a performance SLA.
+- Browser checks verified wallet selection before portfolio completion and after
+  reload, dormant rows, distinct active buttons, the growth form, all four cards
+  retained during refresh with masked money/disabled actions, and restoration
+  after confirmed reads. Crossfade/reduced-motion logic was reviewed; no
+  frame-by-frame animation recording or production load test is claimed.
+
+[Follow-up bindings](refresh-bindings.json) identify the final affected sources.
+All 40 production Solidity source bindings match the original artifact evidence.
+The disposable service was restarted to apply the session endpoint; old receipts
+and a raw chain dump were retained externally, not promoted to qualified recovery.
+Test wallet A's original four seeded NFTs were not altered by the follow-up
+transaction campaign. A/B transfers are ownership tests, not marketplace sales.
+Public services, the website deployment and paused monitoring are unchanged.
+
+Independent-device/shared-pool concurrency, stale quotes/ownership races, browser
+signing/nonces, provider failures and production load remain central Todo gates.
+The two-account local service retains its serial lock and must stay loopback-only.
+
 [Source bindings](source-bindings.json) record the current local implementation,
 website files and 40 unchanged production Solidity sources. The launcher verified
 every reused artifact's source metadata. No unchanged Solidity suites or full

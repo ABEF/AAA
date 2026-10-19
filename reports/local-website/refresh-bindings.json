@@ -1,0 +1,35 @@
+{
+  "scope": "Local refresh, session persistence and confirmed artwork evolution; not production concurrency qualification",
+  "source_sha256": {
+    "scripts/local-stack.py": "910bce3389251f7f6c8a24cd187ddba17055c81bc5cea84f4330e8b4b74654fb",
+    "scripts/local_wallet.py": "1ed2e73e286ea311769bb31647c0a81b698fefb082e709d6565b75f84fc0c619",
+    "tests_python/test_local_stack_edges.py": "851dd7bfd67a5682a23461a7ae035a98d95451410a4ad54be438b90ffee11a43"
+  },
+  "website_sha256": {
+    "local-client.js": "3f0c29f2f8a01d7cf0ed5ea2be8abffa0f37203619bd459fda5f28658a0d6dab",
+    "local-view.js": "d687b7fccc071eb70108ee0efe245ddb00de169e3aba6ec62954fa7d953d50e3",
+    "local-view.css": "0fb6c767f27f70fc1f187babad49b73b1ca39588fa065b5be4be7c6c8d1ac511",
+    "tests/local-client.test.mjs": "10e69d63500b004f152f19283c848de08ea696bf57a5f84dcc6506e96ea77f41"
+  },
+  "unchanged_production_bindings": 40,
+  "checks": {
+    "javascript_affected_passes": 25,
+    "http_affected_passes": 9,
+    "static_build_files": 5586,
+    "unchanged_solidity_rerun": false
+  },
+  "campaign_sha256": "8ddb6362456bd47a335b67a53b382d272da51ec8c54b7ec6b33dc2640908648e",
+  "browser_observations": [
+    "Fast A/B selection available while portfolio pending",
+    "Selected wallet restored after soft reload",
+    "Dormant card has attached LP only, no fee/claim/history rows",
+    "Active cards have separate Claim and Grow attached LP; latter opens contribution form",
+    "Refresh preserves four artwork cards, labels last-confirmed identity, masks money and disables actions",
+    "Confirmed refresh reenables current actions"
+  ],
+  "limits": [
+    "Crossfade implementation reviewed; reduced motion uses no transition. No frame-by-frame animation capture.",
+    "Actual campaign used independent client against local Anvil with seven typed writes; not simultaneous production wallet signing.",
+    "The service remains deliberately serial. Large concurrent-user/load/nonce/marketplace qualification remains open."
+  ]
+}

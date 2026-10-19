@@ -429,6 +429,28 @@ This label correction requires no operator call, service restart or contract upd
 Dormant detail views omit claims; active views retain the existing balance and
 confirmed-state guards. Activation and transfer controls are unchanged.
 
+Local wallet selection now comes from `GET /session` before the slow portfolio
+read and persists through reloads in session storage, bound to that deployment.
+After a launcher restart, choose the wallet again. Updating the session endpoint
+requires restarting this disposable service using the procedure above; preserve
+its external receipts first. A restart creates a new fixture, not a restored
+persistent deployment. The public server and paused monitor are unaffected.
+
+Refresh keeps labeled last-confirmed artwork, masks stale amounts and disables
+financial actions. Dormant NFTs omit reward/history sections; active cards expose
+Claim and Grow attached LP separately. Only confirmed market-value evolution
+changes animate, and reduced-motion users get the same state without animation.
+If a transaction confirms but reading fails, refresh balances; do not resubmit.
+Busy state reads retry up to 13 attempts inside a 90-second request deadline;
+writes never automatically retry as new intent. Persistent busy/error states
+require inspecting the local operation/error logs. Interrupted HTTP readers no
+longer trigger a second error response. These are local UI/service procedures;
+no new contract permission, economic parameter or production operator call exists.
+
+Keep the local serial lock. For public services, qualify independent per-user
+wallet signing and concurrent shared-pool contributions/claims with stale quote,
+ownership, nonce and load controls under the central frontend/service tasks.
+
 ## Fixed boundaries
 
 | Desired future change | Current boundary |

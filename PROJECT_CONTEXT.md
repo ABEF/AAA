@@ -1,3 +1,26 @@
+## Local confirmation and evolution continuity - 2026-10-19
+
+Read docs/LOCAL_WEBSITE.md and reports/local-website/VERIFICATION.md. The local
+session handshake returns wallet addresses without waiting for portfolio reads;
+selection survives soft refresh/navigation within that disposable session.
+Pending refresh keeps labeled last-confirmed artwork, hides stale financial
+values and disables actions. Confirmed evolution crossfades after image load;
+reduced motion is respected. Dormant cards/details omit fee/history sections;
+activated cards have separate Claim and Grow attached LP controls. Sticky
+activation, not the current artwork tier, determines eligibility.
+
+Only explicit busy GET state responses retry with finite bounds; never retry a
+write as new intent after confirmation/read failure. Local service still serializes
+indexer/mutations. Production multi-device concurrency/load, actual browser-wallet
+signing and service qualification remain open in the central Todo. The website is
+not a marketplace: secondary sales happen on OpenSea. Local wallet labels are A/B;
+their transfer action is only an ownership-accounting rehearsal.
+
+The disposable 8892 service was restarted for the fast session endpoint. Original
+receipts and a raw chain dump were preserved externally, not qualified restoration.
+Public server, production contracts and paused monitoring are unchanged. Use main,
+preserve unrelated drafts and verify exact Git publication; no Solidity rerun.
+
 ## Local royalty badge correction - 2026-10-19
 
 Display the fixed revealed rarity multiplier (Commun ×1, Rare ×2, Legendary ×3)

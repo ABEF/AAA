@@ -32,6 +32,15 @@ with gray styling until activated. The display no longer substitutes effective
 accounting weight zero for the fixed rarity trait; unrevealed traits stay unknown.
 Dormant detail views omit the claim action while preserving activation and transfer.
 
+The local UI now omits all inapplicable dormant reward/history rows, separates
+Claim from Grow attached LP, and preserves labeled artwork while refreshed
+financial data is pending. Confirmed evolution changes crossfade only after the
+new artwork loads, with reduced-motion support. Wallet selection is delivered
+by the fast session handshake and persists within the same disposable session.
+Single-flight refresh and bounded explicit-busy read retries preserve write
+idempotency. This improves local concurrent access, not production load capacity;
+multi-user wallet/service qualification remains open.
+
 The [local stack](LOCAL_TEST_STACK.md) deploys the unchanged core to an owned Anvil
 process and exercises confirmed reads, finite NFT mint/reveal, Entry activation,
 top-ups, funded LP/royalty accounting, governed rebalancing, transfers and combined
