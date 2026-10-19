@@ -30,6 +30,28 @@ Python and 90 JavaScript passes plus a source build/browser check. These are loc
 admission/isolation checks, not production load or multi-device signing approval.
 The [operating procedure](CONCURRENT_SERVICES.md) covers capacity and recovery.
 
+## Single contribution-pool policy
+
+The registry enforces at most one `depositsEnabled` pool. Its getter/event expose
+the selection; dependency-free deposit stops clear it, full validated config
+selects a replacement, and an atomic governance batch rolls back on failure.
+Historical pools, maintenance and migration are preserved. Initial production
+target remains reviewed ZZZ/ETH, not an arbitrary admitted venue. This is source
+implementation, not a deployed restriction; see [scoped evidence](../reports/position-summary/VERIFICATION.md)
+and [operator procedure](OPERATOR_MANUAL.md#one-contribution-pool-at-a-time).
+Verification retains 97 source-matched affected passes plus 14 corrected-suite
+passes; normal Registry object sizes pass. No deployment or independent approval.
+
+## NFT position presentation
+
+Fixed royalty weight now appears as an artwork trait. Cards retain attached LP and active cards show a single
+claimable LP-plus-royalty total; the breakdown separates liquidity, current
+reward components, earnings history and lifetime claims. The local adapter sums
+matching currencies exactly and preserves unavailable values. Dormant reward
+sections remain hidden. [Scoped verification](../reports/position-summary/VERIFICATION.md)
+records 35 focused JS passes and a static build/browser check. No backend,
+contract, transaction behavior or operator procedure changed.
+
 ## Main website interaction state
 
 The default website now has per-NFT/mint action tracking, overlapping-batch guards,

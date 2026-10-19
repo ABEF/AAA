@@ -50,8 +50,12 @@ contract ZZZPoolRegistry is ZZZModule {
     mapping(bytes32 => WrapperPolicy) public wrapperPolicies;
     mapping(bytes32 => bool) public wrapperPolicyExists;
     bytes32 public activeWrapperPolicy;
+    /// @notice Zero means contributions are stopped. Historical/maintenance
+    /// pools remain admitted, but at most one pool can enable new contributions.
+    bytes32 public contributionPool;
     event PoolConfigured(bytes32 indexed poolId, address indexed token0, address indexed token1);
     event PoolDisabled(bytes32 indexed poolId, bool depositsEnabled, bool operationsEnabled);
+    event ContributionPoolChanged(bytes32 indexed previousPool, bytes32 indexed currentPool);
     event WrapperPolicyApproved(bytes32 indexed policyId, address indexed admin, address indexed implementation,
         address adminOwner, bytes32 adminCodeHash, bytes32 implementationCodeHash);
     event WrapperPolicyActivated(bytes32 indexed previousPolicy, bytes32 indexed activePolicy);
@@ -123,12 +127,18 @@ contract ZZZPoolRegistry is ZZZModule {
     function disablePool(bytes32 poolId, bool disableDeposits, bool disableOperations) external onlyGovernance {
         if (!exists[poolId] || (!disableDeposits && !disableOperations)) revert InvalidConfiguration();
         PoolConfig storage config = pools[poolId];
-        if (disableDeposits) config.depositsEnabled = false;
+        if (disableDeposits) {
+            config.depositsEnabled = false;
+            if (contributionPool == poolId) _setContributionPool(bytes32(0));
+        }
         if (disableOperations) config.operationsEnabled = false;
         emit PoolDisabled(poolId, config.depositsEnabled, config.operationsEnabled);
     }
     function _configure(PoolConfig calldata config, address token0, address token1) private returns (bytes32 poolId) {
         PoolKey memory k = config.key;
+        poolId = keccak256(abi.encode(k));
+        if (poolId == bytes32(0) || (config.depositsEnabled && contributionPool != bytes32(0) &&
+            contributionPool != poolId)) revert InvalidConfiguration();
         if (k.tickSpacing <= 0 || k.tickSpacing > 32767 || k.fee > 100000 ||
             config.rangeBps < 100 || config.rangeBps > 5000 || config.triggerBps < 100 ||
             config.triggerBps >= config.rangeBps || config.maxSpotDeviationBps == 0 ||
@@ -142,10 +152,17 @@ contract ZZZPoolRegistry is ZZZModule {
         if (!rewards.isAsset(token0) || !rewards.isAsset(token1)) revert InvalidConfiguration();
         activationAssets.admitPoolAsset(token0);
         activationAssets.admitPoolAsset(token1);
-        poolId = keccak256(abi.encode(k));
         pools[poolId] = config;
         exists[poolId] = true;
+        if (config.depositsEnabled) _setContributionPool(poolId);
+        else if (contributionPool == poolId) _setContributionPool(bytes32(0));
         emit PoolConfigured(poolId, k.currency0, k.currency1);
+    }
+    function _setContributionPool(bytes32 poolId) private {
+        bytes32 previous = contributionPool;
+        if (previous == poolId) return;
+        contributionPool = poolId;
+        emit ContributionPoolChanged(previous, poolId);
     }
     function get(bytes32 poolId) external view returns (PoolConfig memory) {
         if (!exists[poolId]) revert InvalidConfiguration();

@@ -1,0 +1,13 @@
+{
+  "website": {
+    "app.js": "4f65f9d732b875b6e4c3c869ef171c317dfa3d672434a97cffa6cac10cc9fc72",
+    "local-view.js": "363b7624355c221dabdd2df38e573a48988a7b9a48234bfffcf47f3b3ad70205",
+    "styles.css": "14f00fb2cc17c30c2d0b9ffa33eaaabd813894a6d12a0c4d05e642c78116d937",
+    "tests/local-client.test.mjs": "3d4eaba1648f2acef354569b3a4f2e3a89e085de5bbcc325cb31a05854ffbc64"
+  },
+  "contract": {
+    "src/ZZZPoolRegistry.sol": "1fa10b45a02ceac8f155ad82d43efcd4922a7840ff77f47dea3eb55e87c1a1d6",
+    "test/ContributionPool.t.sol": "3d7f22ba62132658562f448febd3f616036e99c0cd3d41eb74c5e56ea1080520",
+    "test/BuybackExecution.t.sol": "52ba5f703f55831dd4cfd266b1aebf49860c1639745ddf63277c46f8682af7a6"
+  }
+}

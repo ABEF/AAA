@@ -1,3 +1,25 @@
+## NFT card traits and reward summary - 2026-10-19
+
+My NFTs places the fixed Royalty weight below the artwork pattern using
+the same trait typography; dormant weights remain gray. Cards show LP attached; active cards also show one
+Rewards to claim total (LP plus royalties). Combined LP rewards, separate royalties,
+earnings history and cumulative claims are grouped in the detail breakdown.
+The local adapter sums exact balances only within the same currency; no assumed
+ETH conversion or USD price. Dormant NFTs have no reward section. Saved holdings,
+transaction handling and backend are unchanged. Thirty-five focused
+JS tests, syntax/build and main-site browser checks pass. Public server unchanged;
+production integration remains open. Use main and Git for publication status.
+
+The user explicitly selected one contribution pool at a time, preserving future
+migration. PoolRegistry.contributionPool tracks the sole deposits-enabled pool;
+disable old deposits before full validated admission of a replacement. Existing
+maintenance/history/claims remain, zero means stopped. Initial target is selected
+Robinhood ZZZ/ETH. Do not delete migration code or historical pool identities.
+See the operator manual and reports/position-summary/VERIFICATION.md for current
+verification and publication scope. Registry verification: 97 retained affected
+passes plus 14 corrected-suite passes, complete source bindings and normal Registry
+size limits. No deployed contract or public service changed.
+
 ## Concurrent website/API resilience - 2026-10-19
 
 Read docs/CONCURRENT_SERVICES.md and reports/concurrent-services/VERIFICATION.md.

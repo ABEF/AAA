@@ -106,6 +106,49 @@ To stop an input immediately, use `ActivationAssets.setAsset(token,false,expecte
 
 For a supported new LP venue, first qualify tokens, feeds, reward-asset admission (`Rewards.addAsset(token)`), the exact venue key/manager and strategy. Then governance calls `configure` or the narrowly supported `configureNative`. Not every Uniswap v4 hook/native pair is supported. The selected native/Pons constants and immutable adapter bindings are not arbitrary venue plug-ins.
 
+### One contribution pool at a time
+
+`PoolRegistry.contributionPool()` is the only pool whose `depositsEnabled` flag
+can be true; zero means new activations/top-ups are stopped. Initial production
+configuration must select the reviewed Robinhood ZZZ/ETH native/Pons pool
+`0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f`.
+The policy is per registry, not a permanent chain/pair restriction. A second
+enabled pool is rejected even through governance; comments/UI restrictions are
+not the enforcement boundary. Disabling only operations retains its selection.
+
+To switch contributions after sealing:
+
+1. Review the supported destination and full config. It may be admitted with
+   `depositsEnabled=false` for preparation/maintenance; this does not select it.
+2. Governance disables the current pool with `disablePool(oldId,true,false)`,
+   then fully validates/enables the new config through `configure` or
+   `configureNative`. When moving an existing shared bucket, **move it before
+   enabling destination deposits**: admit the target with deposits=false and
+   operations=true, disable source deposits, execute the guarded same-pair
+   `Migration.movePool(bucket,target,minLiquidity,deadline)`, then enable target
+   deposits. The existing move guard requires target operations, not deposits.
+   An exact `scheduleBatch(...,0)` / `executeBatch(...)` can include this ordered
+   sequence; failure rolls it all back. Enabling first lets another activation
+   occupy the destination bucket and block the intended move. If intentionally
+   stopping first in a separate transaction, a failed enable leaves deposits
+   stopped; retry only after resolving validation failures.
+3. Verify `ContributionPoolChanged`, the getter, old flag=false and new flag=true
+   at a confirmed block. Update the API's reviewed target/runtime pins and UI;
+   discard old quotes and simulate fresh ones. Cancel obsolete governance calls.
+4. A selection-only switch does not move LP. Existing NFTs in the old pool cannot top up until their shared bucket is moved
+   to the selected destination, or governance switches contributions back. The
+   selection alone does not move liquidity. Use the guarded migration/parking
+   procedure; old claims, historical accounting and permitted maintenance remain.
+
+For incidents, dependency-free `disablePool` clears the selection only when
+stopping that pool's deposits. Repeated stops of a historical pool cannot clear
+the new selection. Full `configure` with deposits=false also clears selection,
+but still requires healthy dependencies. Roll back a selection using the same
+validated switch; mined contributions cannot be undone. A canonical replacement
+must explicitly configure its own selection; this is not imported economic state.
+No new role or governance delay is introduced, and an already sealed old registry
+cannot gain this rule through a configuration call.
+
 The Vault has **four historical local bucket slots**, including permanent reservations/imports. `Vault.reservePool(poolId,bucketId)` is governance-controlled and consumes permanent identity/capacity; repeated matching reservation is idempotent. An unfunded reservation cannot simply be deleted to recover capacity. Check occupancy/history before admitting or reserving a new bucket. Existing bucket moves/returns reuse their identity, subject to pool occupancy; NFTs cannot be arbitrarily split/merged by an admin operation.
 
 | Desired effect | Action | What remains |

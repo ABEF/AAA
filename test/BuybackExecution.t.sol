@@ -307,7 +307,10 @@ contract BuybackExecutionTest is Test {
     function testApprovedWrongPairCannotDivertBuybackFunds() public {
         _fund(address(input), GROSS); MockToken third = new MockToken(18);
         oracle.setFeed(address(third), address(inputFeed), 3600); rewards.addAsset(address(third));
-        bytes32 wrongPool = pools.configure(_configuration(address(input), address(third)));
+        PoolConfig memory wrongConfig = _configuration(address(input), address(third));
+        // Alternate swap/maintenance routes are not additional contribution pools.
+        wrongConfig.depositsEnabled = false;
+        bytes32 wrongPool = pools.configure(wrongConfig);
         bytes32 beforeState = _ledger(address(input)); vm.expectRevert(INVALID_CONFIGURATION);
         buyback.execute(address(input), RESERVE, wrongPool, block.timestamp);
         assertEq(_ledger(address(input)), beforeState);
