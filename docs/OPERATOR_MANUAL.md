@@ -409,6 +409,19 @@ submission/receipt records, then restart the disposable chain. Requests have
 strict input bounds, no queued concurrent mutations, revision checks and a
 256-operation session ceiling. This does not install or qualify a production keeper.
 
+The [existing website mode](LOCAL_WEBSITE.md) runs at `/app/` on this same origin.
+Choose a local account, review exact approval and Entry separately, and inspect
+current LP/earnings/claims after confirmation. The typed `/prepare` endpoint has
+32 outstanding drafts and a 60-second expiry; `/action` executes the bound draft
+with fresh ownership/simulation/gas checks. Claims batch at most ten NFTs and 32
+currency operations per confirmation. Cancel sends nothing; approval may remain
+if the later contribution is cancelled. Use Refresh to recover the same pending
+operation after a lost response. New sessions clear the old intent without
+resubmission. Missing prices remain unavailable, and no demo balance replaces a
+failed read. The operator's root panel still funds/rebalances the fixture. Stop,
+restart and evidence retention follow the same procedure above. No new authority,
+production endpoint or contract configuration is introduced.
+
 ## Fixed boundaries
 
 | Desired future change | Current boundary |

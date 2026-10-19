@@ -212,7 +212,10 @@ The [production inventory](config/production.example.json) records the exact dep
 ## Try the local browser test
 
 The [local setup guide](docs/LOCAL_TEST_STACK.md) starts an isolated Anvil deployment,
-confirmed API/indexer and browser panel with disposable test wallets. Mint, activate,
+confirmed API/indexer and browser panel with disposable test wallets. The
+[existing website integration](docs/LOCAL_WEBSITE.md) is available at `/app/`
+on the same local origin, with actual holdings, history and explicit transaction
+confirmations. Mint, activate,
 add LP, fund fees/royalties, rebalance, transfer and claim without public funds.
 The venue, prices and randomness are test substitutes; the public website is unchanged.
 

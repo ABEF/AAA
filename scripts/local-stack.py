@@ -32,6 +32,7 @@ from zzz_ops.rpc import Rpc
 from indexer.monitor import Indexer
 from frontend_api.service import Projection, ProjectionError, ZERO
 from frontend_api.transactions import Transactions
+from scripts.local_wallet import LocalWallet
 
 CHAIN = 31337
 UNIT = 10**18
@@ -69,7 +70,7 @@ def validate_action(payload, accounts):
     if not isinstance(payload,dict): raise ValueError('Expected an action object')
     action=payload.get('action')
     fields={'mint':set(),'fund':set(),'rebalance':set(),'activate':{'id','amount'},
-            'increase':{'id','amount'},'claim':{'id'},'transfer':{'id'}}
+            'increase':{'id','amount'},'claim':{'id'},'claim_all':set(),'transfer':{'id'},'execute':{'draft_id'}}
     if not isinstance(action,str) or action not in fields: raise ValueError('Unsupported local action')
     if set(payload)!={'action','account'}|fields[action]: raise ValueError('Unexpected or missing action fields')
     if not isinstance(payload['account'],str) or payload['account'] not in accounts: raise ValueError('Choose a disposable local test account')
@@ -77,6 +78,8 @@ def validate_action(payload, accounts):
         raise ValueError('Expected a canonical uint256 NFT ID string')
     if 'amount' in fields[action] and (not isinstance(payload['amount'],str) or not re.fullmatch(r'[1-9][0-9]{2,4}',payload['amount'])):
         raise ValueError('Use a whole test-token amount from 100 to 99,999')
+    if 'draft_id' in fields[action] and (not isinstance(payload['draft_id'],str) or not re.fullmatch(r'[a-f0-9]{32}',payload['draft_id'])):
+        raise ValueError('Invalid confirmation ID')
 
 class LocalConflict(ValueError): pass
 
@@ -151,6 +154,7 @@ class Lab:
         self.home=Path(args.state).resolve()/('run-'+time.strftime('%Y%m%d-%H%M%S')+'-'+secrets.token_hex(3))
         self.home.mkdir(parents=True, exist_ok=False)
         self.operations=OperationLedger(self.home/'operations.json');self.uncertain=False;self.submissions=[]
+        self.wallet=LocalWallet(self)
         self.process=None; self.indexer=None; self.started=time.time(); self.token=secrets.token_hex(32)
         self.api=None; self.preparer=None; self.genesis=None; self.server=None; self.rpc_port=free_port();self.lock=threading.RLock()
         self.rpc_url=f'http://127.0.0.1:{self.rpc_port}'
@@ -188,8 +192,13 @@ class Lab:
         limit=min(30_000_000,(gas*120+99)//100)
         if int(self.rpc('eth_getBalance',[tx['from'],'latest']),16)<int(tx.get('value','0x0'),16)+limit*price: raise ValueError('Insufficient local balance')
         return {**tx,'gas':hex(limit),'gasPrice':hex(price)}, {'estimate':str(gas),'gas_price_wei':str(price),'max_cost_wei':str(limit*price)}
-    def send(self, tx, label):
-        tx, gas=self.simulate(tx)
+    def send(self, tx, label, approved=False):
+        fresh, gas=self.simulate({k:v for k,v in tx.items() if k not in ('gas','gasPrice')})
+        if approved:
+            if int(fresh['gas'],16)>int(tx['gas'],16) or int(fresh['gasPrice'],16)>int(tx['gasPrice'],16):
+                raise ValueError('Gas requirement increased; prepare a new confirmation')
+            self.rpc('eth_call',[tx,'latest'])
+        else:tx=fresh
         before=self.rpc('eth_getBalance',[tx['from'],'latest'])
         submission={'label':label,'transaction':tx,'status':'submitting'}
         self.submissions.append(submission);save(self.home/'submissions.json',self.submissions)
@@ -364,6 +373,7 @@ class Lab:
         action=payload.get('action');owner=payload.get('account')
         if owner not in self.accounts[1:]: raise ValueError('Choose a disposable local test account')
         self.sync()
+        if action=='execute':return self.wallet.execute(payload)
         if action=='mint':
             if self.uint('nft','mintedCount()')>=20: raise ValueError('Local browser fixture capped at 20 NFTs')
             # Exercise published unsigned preparation before submitting locally.
@@ -398,6 +408,8 @@ class Lab:
                 self.send({k:v for k,v in draft['transaction'].items() if k!='chainId'},'prepared combined claim')
         else: raise ValueError('Unsupported local action')
         # Outcome is saved before optional, fallible UI/API refresh.
+    def validate_wallet_action(self,payload):
+        validate_action(payload,self.accounts[1:])
     def close(self):
         if self.indexer: self.indexer.db.close()
         if self.process and self.process.poll() is None:
@@ -435,19 +447,29 @@ def make_server(lab):
         def output(self, status, data, mime='application/json'):
             raw=json.dumps(data).encode() if mime=='application/json' else data
             try:
-                self.send_response(status);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'none'");self.end_headers();self.wfile.write(raw)
+                style="'self' 'unsafe-inline'" if self.path.startswith('/app/') else "'self'"
+                self.send_response(status);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Content-Security-Policy',f"default-src 'self'; script-src 'self'; style-src {style}; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'none'");self.end_headers();self.wfile.write(raw)
             except (BrokenPipeError,ConnectionResetError,TimeoutError):pass # Outcome already saved; never resubmit.
         def do_GET(self):
             if not self.valid(): return self.output(403,{'error':'Invalid local host'})
             try:
-                if self.path=='/session': return self.output(200,{'token':lab.token})
+                if self.path=='/session': return self.output(200,{'token':lab.token,'mode':'LOCAL ANVIL TEST ONLY','chain_id':CHAIN})
                 if self.path=='/state':
                     if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
                     try:result=lab.state()
                     finally:lab.lock.release()
                     return self.output(200,result)
                 local={'/':'index.html','/local.js':'local.js','/local.css':'local.css'}
-                if self.path in local: path=ROOT/'tools/local-ui'/local[self.path]
+                if website and self.path.startswith('/app/'):
+                    name=self.path[5:] or 'index.html'
+                    allowed={'index.html','app.js','domain.js','wallet.js','artworks.js','palette-system.js','styles.css','local-client.js','local-view.js','local-view.css'}
+                    if name not in allowed and not re.fullmatch(r'assets/[a-zA-Z0-9/_\-.]+\.(svg|png|jpg|jpeg|webp|json|mp4)',name):
+                        return self.output(404,{'error':'Unknown website resource'})
+                    if '..' in Path(name).parts:return self.output(404,{})
+                    path=(website/name).resolve()
+                    if not path.is_relative_to(website):return self.output(404,{})
+                    if name.startswith('assets/') and not path.is_relative_to(website/'assets'):return self.output(404,{})
+                elif self.path in local: path=ROOT/'tools/local-ui'/local[self.path]
                 elif website and self.path=='/palette-system.js': path=website/'palette-system.js'
                 elif website and self.path.startswith('/assets/nfts/') and re.fullmatch(r'/assets/nfts/[a-zA-Z0-9/_\-.]+\.(svg|png)',self.path):
                     path=(website/self.path[1:]).resolve()
@@ -461,11 +483,16 @@ def make_server(lab):
             if not self.valid(True): return self.output(403,{'error':'Local origin/session required'})
             length=self.headers.get_all('Content-Length',[])
             if len(length)!=1 or not re.fullmatch(r'[1-9][0-9]{0,3}',length[0]) or int(length[0])>2048:return self.output(400,{'error':'Invalid bounded request'})
-            if self.path!='/action':return self.output(404,{})
+            if self.path not in ('/action','/prepare'):return self.output(404,{})
             try:
                 raw=self.rfile.read(int(length[0]))
                 if len(raw)!=int(length[0]):raise ValueError('Incomplete request body')
                 payload=parse_payload(raw)
+                if self.path=='/prepare':
+                    if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
+                    try:result=lab.wallet.prepare(payload)
+                    finally:lab.lock.release()
+                    return self.output(200,result)
                 if payload=={'action':'stop'}:
                     if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Wait for the active operation before stopping'})
                     # Keep the lock held: no transaction can race shutdown.

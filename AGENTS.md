@@ -1,3 +1,20 @@
+## Local website integration checkpoint - 2026-10-19
+
+Read [the website local-mode guide](docs/LOCAL_WEBSITE.md) and
+[scoped verification](reports/local-website/VERIFICATION.md). The existing website
+can run at the local launcher's /app/ mount with confirmed contract ownership,
+current LP, earnings, royalties and lifetime claims. Explicit confirmations cover
+mint, exact approval, Entry/top-up, transfer and bounded combined claims. Failure
+clears projections; identical operation IDs recover lost responses. Source assets,
+public demo behavior and v7 storage remain separate.
+
+The user accepted local integration before public deployment. Only disposable
+launcher-owned Anvil accounts are used; production EIP1193 signing is still open.
+No production Solidity, public transaction, server deployment or paused-monitor
+restart occurred. The four frontend tasks are in progress, not production complete.
+Keep main only, preserve unrelated drafts, update Todo/features/operator procedures,
+and verify Git publication. Repository context is durable local memory only.
+
 ## Local browser stack continuation - 2026-10-19
 
 The user requested that we set up and run the local test environment. Read

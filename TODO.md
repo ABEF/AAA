@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**17 To do | 20 In progress | 15 Implemented locally**
+**13 To do | 24 In progress | 15 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -228,24 +228,37 @@ The data and services behind the app.
 
 What holders see and use.
 
-<a id="task-wallet"></a>
+<a id="task-purchase-rights"></a>
 
-- [ ] **[Connect real wallet transactions](docs/FRONTEND_API.md)** - To do. Wire minting, activation, LP additions and claims to reviewed deployed contracts.
+- [ ] **[Show execution-time rights when buying an NFT](reports/nft-rights-audit/REVIEW.md#identity-and-ownership)** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Verify marketplace payment and claims; do not advertise ERC2981 as enforced royalties or a listing's claim balance as guaranteed at purchase.
+
+  </details>
+
+<a id="task-wallet"></a>
+
+- [ ] **[Connect real wallet transactions](docs/FRONTEND_API.md)** - In progress. Local website mint/approval/Entry/top-up/transfer/claims now use disposable Anvil contracts with explicit confirmations. Production extension-wallet signing, deployment pins and actual routes remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Integrate actual wallet transactions and the implemented confirmed API/history/unsigned-preparation service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review deployments and calldata; discard drafts on account/chain changes or expiry; freshly simulate/estimate gas, confirm with the user and handle canonical receipts/replacements/reorgs. Bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them.
 
   </details>
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - To do. Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. The existing website local mode reads confirmed ownership, current LP, per-currency LP/royalty balances and actual revealed artwork. Production hosting, lifecycle/remote/outage qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.
   - Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.
   - Integrate current physical LP/share-denominator context, marked NAV vs cumulative input and price-guard unavailable states. Render out-of-range warning plus earliest rebalance eligibility; only fresh authenticated telemetry may supply an estimated next keeper check. The public website is still simulated and was not changed by the backend delta.
@@ -255,40 +268,31 @@ What holders see and use.
 
 <a id="task-transaction-ui"></a>
 
-- [ ] **[Handle the complete transaction journey](docs/CLAIM_ROUTER.md)** - To do. Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.
+- [ ] **[Handle the complete transaction journey](docs/CLAIM_ROUTER.md)** - In progress. Local website shows exact approval and Entry as separate steps, gas separately, expiring confirmations, account/revision checks and same-operation recovery. Production wallet rejection/replacement/reorg qualification remains open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.
   - Independently review and pin deployments, the immutable 32-operation claim router runtime/bindings and exact calldata. Chunk larger portfolios; recheck owner/assets, simulate and estimate gas immediately before user confirmation. Handle account/network changes, stale drafts, rejection, replacement, failure and canonical receipt/reorg recovery.
   - Mint/claim drafts have client-enforced expiry, not an on-chain calldata deadline. Discard stale drafts and prepare again; do not describe unsigned backend preparation as signing or live wallet integration.
-  - Use exact decimal uint256 strings for production NFT IDs; never reuse Number-based demo identities. Correct the demo old net-$100 activation wording to gross $100 / 99% deployed before publishing that scoped website change.
+  - Use exact decimal uint256 strings for production NFT IDs; never reuse Number-based demo identities. The local website wording now uses gross $100 / 99% deployed, with gas separate; the public server is unchanged.
 
   </details>
 
 <a id="task-live-history-ui"></a>
 
-- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - To do. Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.
+- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - In progress. Local website displays processed 24h/all-time individual/collective earnings at current prices, raw royalties and lifetime claims. Missing ETH USD price stays unavailable. Production ingestion, predecessor and conversion/UI qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.
   - Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.
   - Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals.
   - Consume the implemented earnings endpoints and label both periods as earnings at current prices, with confirmed snapshot time. They count processed allocations, not unpaid/unharvested revenue. Show raw source amounts when a price is unavailable; never sum source earnings with conversion credits.
-
-  </details>
-
-<a id="task-purchase-rights"></a>
-
-- [ ] **[Show execution-time rights when buying an NFT](reports/nft-rights-audit/REVIEW.md#identity-and-ownership)** - To do. Refresh accrued balances and explain that the buyer receives what remains unclaimed at transfer. A seller can claim before the sale; do not promise a minimum balance from an earlier listing snapshot.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Verify marketplace payment and claims; do not advertise ERC2981 as enforced royalties or a listing's claim balance as guaranteed at purchase.
 
   </details>
 
@@ -696,4 +700,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `5443ce0181678e2dcc13b1b598f5b282d8b617ce0fd2fbe44f3f93a877131cfa`.
+Snapshot SHA-256: `d4af4245b96e0013f8313139728b014563dcf80e6a929603a4059c43227fa93c`.

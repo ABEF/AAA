@@ -18,6 +18,15 @@ recording them does not implement a feed, payment agreement or live route.
 
 ## Disposable local browser integration
 
+The [original website now has a local contract mode](LOCAL_WEBSITE.md): confirmed
+ownership, current LP, individual/collective earnings, raw royalties and lifetime
+claims, plus mint/approval/Entry/top-up/transfer/bounded combined-claim confirmations.
+It retains the artwork and layout. Missing prices/data do not become zero or demo
+holdings. [Website integration evidence](../reports/local-website/VERIFICATION.md)
+records the scoped client/server and local transaction checks. This uses the
+launcher's disposable accounts, not production browser-wallet signing; the public
+website remains a simulation. No Solidity or public services changed.
+
 The [local stack](LOCAL_TEST_STACK.md) deploys the unchanged core to an owned Anvil
 process and exercises confirmed reads, finite NFT mint/reveal, Entry activation,
 top-ups, funded LP/royalty accounting, governed rebalancing, transfers and combined

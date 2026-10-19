@@ -230,21 +230,23 @@
         },
         {
           "id": "wallet",
-          "status": "todo",
+          "status": "progress",
           "title": "Connect real wallet transactions",
-          "text": "Wire minting, activation, LP additions and claims to reviewed deployed contracts.",
+          "text": "Local website mint/approval/Entry/top-up/transfer/claims now use disposable Anvil contracts with explicit confirmations. Production extension-wallet signing, deployment pins and actual routes remain open.",
           "href": "docs/FRONTEND_API.md",
           "acceptance": [
+            "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
             "Integrate actual wallet transactions and the implemented confirmed API/history/unsigned-preparation service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review deployments and calldata; discard drafts on account/chain changes or expiry; freshly simulate/estimate gas, confirm with the user and handle canonical receipts/replacements/reorgs. Bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them."
           ]
         },
         {
           "id": "portfolio",
-          "status": "todo",
+          "status": "progress",
           "title": "Show actual holdings & claimable fees",
-          "text": "Replace sample positions with wallet ownership, attached LP and separate LP / royalty balances.",
+          "text": "The existing website local mode reads confirmed ownership, current LP, per-currency LP/royalty balances and actual revealed artwork. Production hosting, lifecycle/remote/outage qualification remain open.",
           "href": "docs/FRONTEND_API.md#implemented-endpoint",
           "acceptance": [
+            "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
             "Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.",
             "Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.",
             "Integrate current physical LP/share-denominator context, marked NAV vs cumulative input and price-guard unavailable states. Render out-of-range warning plus earliest rebalance eligibility; only fresh authenticated telemetry may supply an estimated next keeper check. The public website is still simulated and was not changed by the backend delta.",
@@ -253,24 +255,26 @@
         },
         {
           "id": "transaction-ui",
-          "status": "todo",
+          "status": "progress",
           "title": "Handle the complete transaction journey",
-          "text": "Show gas, approvals, confirmation, rejection and recovery when an account, network or receipt changes.",
+          "text": "Local website shows exact approval and Entry as separate steps, gas separately, expiring confirmations, account/revision checks and same-operation recovery. Production wallet rejection/replacement/reorg qualification remains open.",
           "href": "docs/CLAIM_ROUTER.md",
           "acceptance": [
+            "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
             "Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.",
             "Independently review and pin deployments, the immutable 32-operation claim router runtime/bindings and exact calldata. Chunk larger portfolios; recheck owner/assets, simulate and estimate gas immediately before user confirmation. Handle account/network changes, stale drafts, rejection, replacement, failure and canonical receipt/reorg recovery.",
             "Mint/claim drafts have client-enforced expiry, not an on-chain calldata deadline. Discard stale drafts and prepare again; do not describe unsigned backend preparation as signing or live wallet integration.",
-            "Use exact decimal uint256 strings for production NFT IDs; never reuse Number-based demo identities. Correct the demo old net-$100 activation wording to gross $100 / 99% deployed before publishing that scoped website change."
+            "Use exact decimal uint256 strings for production NFT IDs; never reuse Number-based demo identities. The local website wording now uses gross $100 / 99% deployed, with gas separate; the public server is unchanged."
           ]
         },
         {
           "id": "live-history-ui",
-          "status": "todo",
+          "status": "progress",
           "title": "Connect live history & cumulative claims",
-          "text": "Display verified 24-hour / all-time fees and lifetime claimed totals, including royalties.",
+          "text": "Local website displays processed 24h/all-time individual/collective earnings at current prices, raw royalties and lifetime claims. Missing ETH USD price stays unavailable. Production ingestion, predecessor and conversion/UI qualification remain open.",
           "href": "docs/EARNINGS_HISTORY.md",
           "acceptance": [
+            "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
             "Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.",
             "Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.",
             "Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals.",

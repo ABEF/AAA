@@ -6,6 +6,12 @@ The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes the can
 
 Work proceeds through contract safety, qualified dependencies, backend/frontend integration and operating rehearsals, then independent release approval. Service research and tooling can run alongside contract work, but sealing must wait for the accepted pre-seal capabilities. Initially disabled bridges defer provider activation, not missing contract functionality.
 
+The [website local integration](LOCAL_WEBSITE.md) now exercises confirmed data and
+holder transactions through disposable Anvil accounts. Continue from this boundary
+to production wallet-provider/deployment/route qualification; do not rebuild the
+simulation or treat the local signer as a production service. Frontend progress
+remains owned by the central wallet, portfolio, transaction-UI and history tasks.
+
 Resolve [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) alongside dependency research: pricing and actual markets feed activation qualification; revenue terms, measurement and payment operations feed funding qualification. An unanswered ZZZ-feed question does not establish a live price source. Team answers require independent technical checks before enabling real flows.
 
 ## 1. Establish a reproducible build

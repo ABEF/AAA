@@ -3,8 +3,10 @@
 The [launcher](../scripts/local-stack.py) starts its own loopback Anvil chain,
 deploys and seals the current PoPL core, seeds four NFTs, and connects the
 confirmed read/earnings API and SQLite indexer to a separate local browser panel.
-It does not modify or deploy the public website. The panel borrows the website's
-existing artwork; the production website wallet adapter is still separate work.
+It does not deploy the public website. The panel borrows the website's existing
+artwork. The [website itself](LOCAL_WEBSITE.md) is also mounted at `/app/`, using
+confirmed local data and explicit per-step confirmations. Production extension
+wallet signing and deployment qualification remain separate work.
 
 ## What is real and what is substituted
 
