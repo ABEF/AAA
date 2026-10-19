@@ -118,7 +118,7 @@ contract ZZZNFTMetadata {
         return abi.encodePacked(attributes, ',{"trait_type":"Circuit pattern","value":"', _pattern(input.pattern), '"}');
     }
     function _pattern(uint8 value) private pure returns (string memory) {
-        string[4] memory labels = ["Flowing arcs", "Segmented panels", "Orbital rings", "Vertical ribs"];
+        string[4] memory labels = ["Flowing arcs", "Segmented panels", "Orbital rings", "Twin circuit routes"];
         return labels[value];
     }
     function _patternFile(uint8 value) private pure returns (string memory) {

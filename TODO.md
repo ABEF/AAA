@@ -342,7 +342,7 @@ What holders see and use.
 
 <a id="task-preview"></a>
 
-- [x] **[Collection, artwork & portfolio preview](docs/NFT_METADATA.md#fixed-visual-inventory)** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims.
+- [x] **[Collection, artwork & portfolio preview](docs/NFT_METADATA.md#fixed-visual-inventory)** - Implemented. Browse designs, explore positions, and simulate minting, activation and both reward claims. Twin circuit routes replaces Vertical ribs in its existing slot; all 1,000 NFT assignments remain unchanged.
 
 
 ## Creator tasks / ZZZ team
@@ -671,6 +671,7 @@ Decisions and rehearsals before real funds.
   - Stage the implemented watcher with actual feeds, reviewed NFT runtime pins, RPC limits, confirmation recovery and gas budgets. Publish/pin the complete 2,784-state artwork manifest and independently verify its root, every path and actual marketplace rendering/ERC-4906 cache refresh.
   - Select an IPFS pinning provider and publish the verified complete artwork bundle; independently verify the resulting CID, all renderer paths and ongoing pin availability. Provider selection and publication were deferred; preparing a bundle alone does not establish hosting.
   - Exercise the added real strategy price guard, unavailable/recovery notifications and disabled-operations honest valuation in a live watcher/marketplace rehearsal; the local metadata suite does not establish cache behavior.
+  - The approved 2026-10-20 Twin circuit routes artwork supersedes Vertical ribs in stable slot ribs/3. Use the regenerated 2,784-state bundle and matching metadata renderer; older prepared bundles are historical. Inventory/paths and other patterns are unchanged. See [scoped evidence](reports/twin-circuits/VERIFICATION.md).
 
   </details>
 
@@ -746,4 +747,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `45b6366b602cbf40048650fec78bbadbf2b778ac57042e7f7befc6a9a1d5fdbf`.
+Snapshot SHA-256: `572143fc16b09595cef12e9dfa8765eab78d8ca6038fa01fe6e3fbed9679200a`.

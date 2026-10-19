@@ -440,7 +440,7 @@ contract NFTMetadataTest is Test {
         assertEq(_stringAttribute(json, "Color 2"), "Crimson");
         assertEq(_stringAttribute(json, "Color 3"), "Ivory");
         assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/violet-crimson-ivory-ribs-commun-dormant.svg");
-        assertEq(_stringAttribute(json, "Circuit pattern"), "Vertical ribs");
+        assertEq(_stringAttribute(json, "Circuit pattern"), "Twin circuit routes");
         vault.contribute(1, 100, 200); vault.contribute(2, 100, 200);
         assertEq(nft.royaltyRewards().weightOf(1), 1); assertEq(nft.royaltyRewards().weightOf(2), 1);
         assertEq(nft.royaltyRewards().totalWeight(), 2);

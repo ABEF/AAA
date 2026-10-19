@@ -26,7 +26,7 @@ export const PATTERNS = Object.freeze([
   {id:'arcs', label:'Flowing arcs'},
   {id:'panels', label:'Segmented panels'},
   {id:'orbits', label:'Orbital rings'},
-  {id:'ribs', label:'Vertical ribs'},
+  {id:'ribs', label:'Twin circuit routes'},
 ].map(Object.freeze));
 export const RARITIES = Object.freeze([
   {id:'commun', label:'Commun', royaltyMultiplier:1, supply:600},

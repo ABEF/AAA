@@ -341,6 +341,16 @@ To restart, qualify provider funding/liveness and reconcile pending requests; go
 
 There is **no coordinator swap, reroll, administrator-selected trait or pending-request transfer**. Ordinary LP pool migration/rebalance has no reveal-completion requirement. Global pause remains the wider incident control; hiding the Mint button alone does not stop callers. A permanently unanswered draw still blocks whole-collection replacement.
 
+The current artwork revision replaces Vertical ribs with **Twin circuit routes**
+in the existing `ribs` filename/slot 3. Do not rename or reorder the packed inventory.
+Before first production deployment, regenerate and verify the complete content
+bundle from the matching website revision, review the new root and metadata
+renderer bytecode, and qualify marketplace retrieval. A previously prepared bundle
+has the old appearance. Roll back the complete website release if needed, keeping
+its matching manifest; do not mix old metadata/renderer labels with a new root.
+This pre-deployment visual change adds no operator function or authority and does
+not make sealed artwork mutable. See [verification](../reports/twin-circuits/VERIFICATION.md).
+
 Artwork URI is fixed once configured: `setBaseURI` can populate an initially empty base only once before sealing. Keep the same IPFS/Arweave content available with redundant pinning; a gateway UI change does not change canonical metadata. Permissionless `refreshMetadata(tokenId)` or `refreshMetadataRange(firstOrdinal,lastOrdinal)` (maximum 50 inclusive ordinals) emits ERC4906 notifications. The optional keeper watcher can request refreshes, but marketplace caches choose when to refetch. Current LP valuation drives evolution and can fall; activation eligibility does not disappear just because artwork downgrades. Never replace unavailable prices with zero or lifetime deposits.
 
 ## Whole-collection replacement

@@ -1,0 +1,13 @@
+{
+  "archive": "popl-artwork-ipfs.tar.gz",
+  "archive_files_verified": 5571,
+  "archive_sha256": "2100edb3cc76e611bcb05a43c5f8dc3052a0844a4aaccee80e9d9bf8d8f62a10",
+  "artwork_states": 2784,
+  "catalog_sha256": "101611eecf8a36d8140b5e7276d1b957114ce11d578a5bbc2bc0c37ddda423fb",
+  "next": "Choose a pinning provider, import the content directory with explicit UnixFS settings, verify its CID and every renderer image path before configuring the immutable NFT base URI.",
+  "pinned": false,
+  "root_cid": null,
+  "schema": 1,
+  "source_manifest_sha256": "fcd95d4d87f7d18eb6d548b9b19432056f982e6e66f3def9dd0ead076af692de",
+  "uploaded": false
+}

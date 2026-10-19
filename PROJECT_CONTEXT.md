@@ -1,3 +1,17 @@
+## Approved Twin circuit routes artwork - 2026-10-20
+
+The user explicitly chose Vertical ribs (not Orbital rings) for replacement by
+two static groups of four continuous circuit traces. Display name: Twin circuit
+routes. Preserve stable ID ribs / numeric slot 3, image paths, the fixed 1,000
+inventory entries, rarity/palette assignments and economics. All 696 matching
+SVGs/reference JSONs are regenerated; the original embedded textures and 2,088
+other pattern states are byte-identical. The on-chain metadata candidate changes
+only its display label, not its URI path or economic logic. Read
+[scoped evidence](reports/twin-circuits/VERIFICATION.md). Refresh the artwork upload
+bundle before initial immutable publication; older bundles are historical.
+Use main, preserve unrelated drafts, and check Git/server receipts for publication.
+No public contract transaction or paused-monitor restart is part of this change.
+
 ## Contribution flow and accepted inputs - 2026-10-19
 
 Latest user clarification: show ZZZ, USDG, USDC and ETH in the contribution

@@ -1,0 +1,31 @@
+{
+  "changed_artwork_states": 696,
+  "unchanged_artwork_states": 2088,
+  "two_groups_of_four_continuous_static_traces": true,
+  "original_embedded_texture_unchanged": true,
+  "inventory_and_packed_draw_byte_identical": true,
+  "stable_pattern_id": "ribs",
+  "pattern_index": 3,
+  "label": "Twin circuit routes",
+  "contracts_changed": [
+    "src/ZZZNFTMetadata.sol: display label only"
+  ],
+  "website_source_hashes": {
+    "generate-artworks.mjs": "049a05bd0ff24c54b81f0ffea044ceebfc7de5e69223eaa956290a28e36f1260",
+    "palette-system.js": "9f0d0ca89cf7c968fc967b372270406504d5d67da8c0fd202466b8ebc8b7add7",
+    "index.html": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+    "assets/nfts/manifest.json": "fcd95d4d87f7d18eb6d548b9b19432056f982e6e66f3def9dd0ead076af692de"
+  },
+  "metadata_source_sha256": "f17bb397d3b4e4aba09d0220351008433287769bd5b5b6032f24a8dfe2bba9ac",
+  "website_commit": "21d6117328dacf9e434765f2a1d159f3641a915a",
+  "normal_profile_sizes": {
+    "ZZZNFTMetadata": {
+      "runtime": 12448,
+      "initcode_object": 12772
+    },
+    "ZZZNFT": {
+      "runtime": 23502,
+      "initcode_object": 43287
+    }
+  }
+}

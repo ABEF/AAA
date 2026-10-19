@@ -22,6 +22,16 @@ on chain; these reference JSONs are not fixed per-token balances or fee history.
 
 <a id="remaining-publication-steps"></a>
 
+## Current artwork revision
+
+The 2026-10-20 Twin circuit routes revision replaces Vertical ribs in stable slot
+`ribs` (index 3), preserving inventory and image paths. Any bundle prepared before
+this revision contains the older artwork and must not be selected for the new
+release. Prepare/verify the full bundle from the matching website commit, obtain
+a new content root when publishing, and bind that root before sealing. Existing
+historical bundles remain evidence for their original bytes, not this revision.
+See [current artwork verification](../reports/twin-circuits/VERIFICATION.md).
+
 ## Publication procedure
 
 Track completion in the [metadata task](../TODO.md#task-metadata-ops). These are procedural instructions, not a second task-status list.
