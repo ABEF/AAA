@@ -463,3 +463,15 @@ ownership, nonce and load controls under the central frontend/service tasks.
 | Add arbitrary pair conversion, hooks, chains, cross-chain canonical replacement or post-halt recovery | Not made functional just by adding an address. Complete missing design, source support, independent review and rehearsals before relying on it. |
 
 Future changes must preserve this distinction: what can be configured now, what requires new compatible code, what has actually been qualified, and what cannot be recovered. Do not describe a possible new deployment as a repair guaranteed to work with every already sealed predecessor.
+
+
+### Local contribution form troubleshooting
+
+The NFT dialog now shows validation, preparation and error feedback next to Review.
+If acknowledgement is missing, tick the displayed checkbox; if approval just
+confirmed, the same deployment/wallet/NFT/amount carries that acknowledgement to
+the separate LP review. Changing the amount clears it. No approval automatically
+sends Entry. A busy form cannot submit twice; failures remain visible in the dialog.
+Only the NFT receiving activation/top-up has an artwork updating badge; global
+stale balance guards remain. Reload the local page to load this UI-only change;
+no service restart, contract call, public deployment or governance change is needed.

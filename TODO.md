@@ -283,6 +283,7 @@ What holders see and use.
   - Use exact decimal uint256 strings for production NFT IDs; never reuse Number-based demo identities. The local website wording now uses gross $100 / 99% deployed, with gas separate; the public server is unchanged.
   - Local refresh is single-flight, retries only the explicit busy read response with bounded backoff, and distinguishes confirmed writes from failed balance refreshes. Writes are never automatically repeated as a new operation.
   - Qualify multiple independent devices/wallets activating, topping up and claiming concurrently: shared-pool quote movement, same-NFT transfer/claim races, account/chain changes, nonce/replacement recovery, isolated sessions and peak-load limits. Preserve exact transaction validation and confirmed-only artwork/financial state; a two-account serial Anvil fixture is not production concurrency qualification.
+  - Local contribution review shows validation, progress and errors inside the dialog. Exact-contribution acknowledgement survives confirmed approval, while Entry retains a separate explicit confirmation. Only the activated/topped-up NFT shows the artwork Updating badge; stale portfolio finances/actions remain guarded.
 
   </details>
 
@@ -705,4 +706,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `bd0617d036e29aaf057d6d22fcc6775edbce15bcd3a6103d739052d182204901`.
+Snapshot SHA-256: `8dc9de2aeb6f7343e0667f4568ad6fa548d5b7b4e36d8e28152dd2800f541ca1`.

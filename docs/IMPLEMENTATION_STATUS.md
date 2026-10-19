@@ -278,3 +278,9 @@ Future bridge work is now maintained in
 <a id="todo-before-a-funded-initial-launch"></a>
 Initial-launch acceptance and final approval are tracked in
 [audit and release](../TODO.md#task-audit-release).
+
+
+Local contribution review now exposes validation/progress/errors inside the dialog
+and retains the acknowledgement across a confirmed approval only for the exact
+same contribution. Entry still needs separate confirmation. Artwork pending badges
+are scoped to the activated/topped-up NFT; financial snapshot guards remain global.

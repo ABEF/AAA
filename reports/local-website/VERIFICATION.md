@@ -81,6 +81,29 @@ Full IDs remain strings; ordinal labels do not change custody identity.
 
 ## Reuse and limits
 
+### Review-button follow-up - 2026-10-19
+
+The user's token approval was confirmed, but reopening the contribution form
+reset its acknowledgement checkbox. Preparation/error messages also appeared
+behind the modal. The UI now explains validation failures inside the form,
+disables it while preparing, and shows progress/errors beside the review button.
+An approved contribution's acknowledgement carries only for its exact session,
+wallet, NFT and amount; a changed amount clears it. Approval does not submit Entry.
+
+The artwork Updating badge now belongs only to the NFT whose activation/top-up
+confirmed and whose state is being refreshed. Plain refreshes and token approvals
+do not mark all artwork as changing. Global stale financial/action guards remain.
+
+**27 focused JavaScript cases pass** (the prior 25 plus amount/acknowledgement
+validation and exact contribution-context binding). Browser verification showed
+an explicit missing-checkbox message, disabled Preparing transaction controls,
+then the actual activation confirmation with its $99 floor for 100 TEST-1 and
+separate gas. The confirmation was cancelled; no transaction was submitted by
+this review check. Syntax and static packaging were checked. No Solidity/backend
+change, service restart, new public-chain test or broad unchanged-suite rerun.
+The targeted badge condition was inspected; no additional contribution was sent
+solely to retest unchanged accounting. See [the follow-up source hashes](review-feedback-bindings.json).
+
 ### Refresh and evolution follow-up - 2026-10-19
 
 The reported activation succeeded on-chain; a read of the original session returned

@@ -138,3 +138,18 @@ reorg behavior, full production activation routing, hosted services and independ
 review remain open. The local adapter must never be reused as a public signer.
 Stopping/restarting follows the local-stack runbook; it creates a new deployment,
 not a persistent chain recovery. No contract or governance configuration changed.
+
+
+### Activation review feedback and targeted artwork status
+
+Contribution validation, preparation progress and errors appear beside the review
+button inside the NFT dialog. Invalid amounts or missing acknowledgement explain
+what to fix; preparation disables the form and labels the button as preparing.
+After a confirmed approval, the acknowledgement carries to the LP step only for
+the same deployment, wallet, NFT and exact amount. Changing the amount clears it.
+Approval and Entry still require separate explicit transaction confirmations.
+
+Only the NFT receiving a confirmed activation/top-up shows the artwork Updating
+badge during balance refresh. Other artwork stays visible without that badge;
+stale financial values/actions still wait for the confirmed portfolio snapshot.
+A plain refresh or token approval does not label every artwork as changing.

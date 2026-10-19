@@ -1,0 +1,11 @@
+{
+  "scope": "UI-only review feedback and targeted artwork updating indicator",
+  "website_sha256": {
+    "local-view.js": "17a7dd8c0328063477af89f06b6c5d60b2460d87e2b3cfc4751bd605f585cc79",
+    "local-view.css": "4463c994305e25b1509cfddffd1d606f39ffa385e90cf3d7952cbbed66872252",
+    "tests/local-client.test.mjs": "85b657d2e11bb9d6cfccda406d6047ec29e827c151428bae12192afb964146f4"
+  },
+  "focused_js_passes": 27,
+  "browser": "Missing-consent message, disabled preparation state, actual activation draft reached and cancelled. No transaction submitted by this check.",
+  "backend_or_solidity_changed": false
+}
