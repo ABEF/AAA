@@ -28,6 +28,7 @@ decision for an exact release, not development progress.
 | Venue and recovery boundaries | The selected native-ETH/Pons adapter separates venue keys from WETH accounting and rejects unrelated native/hooks. Pause, governance-approved asset/wrapper/sequencer policies, close-only custody parking and guarded resumption exist. They do not guarantee recovery from every external dependency failure. | [Selected market](ROBINHOOD_POOL.md), [parking](CUSTODY_PARKING.md), [recovery model](CHANGE_AND_RECOVERY.md) |
 | Confirmed read API | Schema-2 deployment pins, canonical lifecycle checks, protocol status, current NFT ownership and funded LP/royalty balances. Current local pool/LP identity and share denominator are verified; cumulative gross contribution is separate from current marked NAV. Locked NFT/wallet projections fail closed. Final canonicality, confirmation-depth and freshness checks are published. | [Read API](FRONTEND_API.md), [current-value integration](DYNAMIC_LIQUIDITY.md), [lifecycle](FRONTEND_LIFECYCLE.md) |
 | Wallet inventory and lifetime claims | Indexed ownership and lifetime LP/royalty claims across complete configured same-chain predecessors, including past owners and historical assets. Matching retirement/activation records authenticate each handoff. Incomplete or invalid lineage never produces partial lifetime sums; current claimable funds are unchanged. | [History](FRONTEND_HISTORY.md), [predecessor claims](FRONTEND_LINEAGE.md) |
+| Royalty reporting and conversion history | Opt-in reviewed-ledger profile exposes ETH/source claimable balances, per-currency eligibility and pinned converter enable control. Failed currency reads are unavailable; core/lifecycle/history/freshness and request limits remain strict. Exact conversion events and complete configured same-chain predecessors preserve conversion credits separately from actual lifetime claims. No gross earned/USD history or live consumer is implied. | [API/operator guide](ROYALTY_REPORTING.md), [scoped evidence](../reports/royalty-reporting/VERIFICATION.md) |
 | Replacement holder preflight | Read-only confirmed-block owner/code inventory with bounded pages, complete ordinal coverage checks and explicit contract/delegated-account review flags. A frozen rescan and exact escrow release/claim rehearsals remain operator requirements; the tool never authorizes migration. | [Procedure](HOLDER_PREFLIGHT.md), [evidence](../reports/holder-preflight/VERIFICATION.md) |
 | Revenue measurement tools | Exact time-weighted and fee-weighted sampled active-liquidity proposals and receipt/dust reporting exist. Creator approval, complete hook observations and live gross fee/USD projections remain separate requirements. Measurement cannot create unfunded claimable rewards. | [Revenue measurement](REVENUE_SHARE.md) |
 | Website preview | The separate website demonstrates artwork, portfolios, minting, activation and LP/royalty claims with example data. These are simulated flows; live wallet transactions and backend integration remain separate tasks. | [Preview](https://popldemo.0xwave.com/), [frontend tasks](../TODO.md#frontend) |
@@ -72,6 +73,14 @@ draws before replacement, with no reroll/carry mechanism. The 3% maintenance cap
 remains per operation; no cumulative cap was added. See [scoped verification](../reports/api-work-limits/VERIFICATION.md).
 
 ## Evidence and its limits
+
+[Royalty reporting verification](../reports/royalty-reporting/VERIFICATION.md)
+records 138 affected Python passes and a separate 20-case supplemental run.
+Earlier new test bodies and production backend changes were unchanged between
+runs. Forty current Solidity source hashes match the prior royalty build;
+ten getter ABIs and all 26 added schema entries match its compiler artifacts.
+No unchanged Solidity regression/build was repeated. Live API/website operation,
+full revenue/USD reporting and independent audit remain unqualified.
 
 The [review of October 18 changes](../reports/daily-security-20261018/REVIEW.md),
 completed October 19, covers 13 published commits through `485a089`. No new

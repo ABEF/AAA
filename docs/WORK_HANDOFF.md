@@ -1,9 +1,24 @@
-# Resume handoff - 2026-10-18
+# Resume handoff - 2026-10-19
 
 This is a continuation record, not another task list. Remaining work and acceptance
 criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
+
+The [royalty reporting profile](ROYALTY_REPORTING.md) now exposes confirmed
+ETH/source balances, per-currency deferred eligibility and pinned converter enable
+control. Exact conversion replay and same-chain predecessors preserve conversion
+credits separately from actual lifetime LP/royalty claims. Current ETH claimable
+already includes unclaimed converted amounts. Read [scoped evidence](../reports/royalty-reporting/VERIFICATION.md):
+138 affected Python passes followed by 20 supplemental passes, 40 unchanged
+Solidity bindings reused, ten getter ABIs and 26 added schema events verified.
+The test trees exclude unrelated unpublished wallet/server/route/history-test drafts.
+
+Next integration work remains gross earned 24h/all-time history with reviewed USD
+prices, live frontend wallet/data behavior and actual service/route qualification.
+Use the central Todo and keep operator procedures in sync. No website/server,
+paused monitor, deployment or public transaction changed. Use main; Git establishes
+publication. Preserve unrelated drafts and reuse unchanged contract evidence.
 
 The read-only [replacement holder preflight](HOLDER_PREFLIGHT.md) now inventories
 confirmed ownership/code, flags unresolved escrows/delegated accounts and detects

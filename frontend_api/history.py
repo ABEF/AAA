@@ -22,6 +22,7 @@ from zzz_ops.state import integer
 ZERO = '0x' + '0' * 40
 TRANSFER = '0x' + keccak256(b'Transfer(address,address,uint256)').hex()
 CLAIMED = '0x' + keccak256(b'Claimed(uint256,address,address,uint256)').hex()
+ROYALTY_CONVERTED = '0x' + keccak256(b'RoyaltyConverted(uint256,address,uint256,uint256)').hex()
 
 
 class HistoryError(RpcError):
@@ -52,6 +53,9 @@ class HistorySnapshot:
     # (nft_id, asset) -> (lifetime LP claims, lifetime royalty claims)
     claims: Any
     provenance: Any
+    # (nft_id, source asset) -> source spent, ETH credited, count, last event.
+    # This is denomination conversion, never payment or newly earned revenue.
+    conversions: Any
 
     def claimed(self, nft_id: int, assets: set[str]) -> list[dict[str, str]]:
         records = []
@@ -60,6 +64,36 @@ class HistorySnapshot:
             records.append({'asset': asset, 'lp_raw': str(lp), 'royalties_raw': str(royalties),
                             'total_raw': str(lp + royalties)})
         return records
+
+
+def merge_conversions(destination, incoming, nft_id):
+    for (identifier, asset), value in incoming.items():
+        if identifier != nft_id:
+            continue
+        previous = destination.get((identifier, asset))
+        if previous is None:
+            destination[identifier, asset] = value
+        else:
+            last = max((previous[3], value[3]), key=lambda e: (e['block_number'], e['log_index']))
+            destination[identifier, asset] = (previous[0] + value[0], previous[1] + value[1], previous[2] + value[2], last)
+
+
+def conversion_report(conversions, nft_id, descriptors, provenance):
+    if conversions is None:
+        return {'available': False, 'assets': None, 'total_eth_credited_raw': None,
+                'reason': 'Complete confirmed conversion history is unavailable; zero is not inferred.'}
+    assets = []
+    for (identifier, asset), (source, native, count, last) in sorted(conversions.items()):
+        if identifier != nft_id:
+            continue
+        descriptor = descriptors[asset]
+        assets.append({'asset': asset, 'symbol': descriptor.symbol, 'decimals': descriptor.decimals,
+                       'source_converted_raw': str(source), 'eth_credited_raw': str(native),
+                       'event_count': count, 'last_event': dict(last)})
+    return {'available': True, 'assets': assets,
+            'total_eth_credited_raw': str(sum(int(item['eth_credited_raw']) for item in assets)),
+            'eth_decimals': 18, 'provenance': provenance,
+            'scope': 'Lifetime NFT conversion credits across the complete configured same-chain lineage. Not claims, new revenue, or the remaining claimable balance.'}
 
 
 class History:
@@ -141,18 +175,20 @@ class History:
             raise HistoryError('Indexer stored block ancestry is discontinuous')
         # Raw event/emitter filters are enforced below. Do not filter by the
         # indexer's optional decoded event label: that could hide a real event.
-        rows = db.execute('''SELECT l.block_number,l.block_hash,l.transaction_hash,l.log_index,l.address,l.raw,b.hash
+        rows = db.execute('''SELECT l.block_number,l.block_hash,l.transaction_hash,l.log_index,l.address,l.raw,b.hash,b.timestamp
             FROM logs l JOIN blocks b ON b.chain=l.chain AND b.number=l.block_number
             WHERE l.chain=? AND l.block_number>=? AND l.block_number<=? AND l.address IN (?,?,?)
             ORDER BY l.block_number,l.log_index LIMIT ?''',
                           (self.chain, self.start, target, self.nft, self.rewards, self.royalties, self.max_events + 1))
         owners = {}
         claims = {}
+        conversions = {}
         seen_logs = set()
         transaction_blocks = {}
         examined = 0
         claim_events = 0
-        for number, block_hash, transaction_hash, log_index, emitter, raw, stored_hash in rows:
+        conversion_events = 0
+        for number, block_hash, transaction_hash, log_index, emitter, raw, stored_hash, timestamp in rows:
             checkpoint()
             examined += 1
             if examined > self.max_events:
@@ -208,11 +244,29 @@ class History:
                 amount = int(data[0], 16)
                 claims[nft_id, asset] = (lp + amount, royalty) if emitter == self.rewards else (lp, royalty + amount)
                 claim_events += 1
+            elif emitter == self.royalties and topic == ROYALTY_CONVERTED:
+                if len(topics) != 3:
+                    raise HistoryError('Noncanonical royalty conversion topics')
+                data = decode_words(item.get('data'))
+                if len(data) != 2:
+                    raise HistoryError('Royalty conversion must contain two amounts')
+                nft_id = int(topics[1], 16)
+                asset = _topic_address(topics[2])
+                source, native = map(lambda value: int(value, 16), data)
+                if nft_id not in owners or asset == ZERO or asset not in royalty_assets or (source == 0 and native != 0):
+                    raise HistoryError('Royalty conversion is not bound to a minted NFT and source currency')
+                if type(timestamp) is not int or not 0 <= timestamp <= target_timestamp:
+                    raise HistoryError('Invalid conversion block timestamp')
+                before_source, before_native, count, _ = conversions.get((nft_id, asset), (0, 0, 0, None))
+                last = MappingProxyType({'ledger': emitter, 'block_number': number, 'block_hash': block_hash,
+                    'timestamp': timestamp, 'transaction_hash': transaction_hash, 'log_index': log_index})
+                conversions[nft_id, asset] = (before_source + source, before_native + native, count + 1, last)
+                conversion_events += 1
         if len(owners) != minted_count:
             raise HistoryError('Transfer mint inventory differs from canonical mintedCount')
         provenance = {'available': True, 'from_block': self.start, 'start_block_hash': first[0], 'start_parent_hash': self.parent,
                       'through_block': target, 'block_hash': target_hash, 'indexer_next_block': row[0],
-                      'logs_examined': examined, 'claim_events': claim_events, 'minted_count': minted_count,
+                      'logs_examined': examined, 'claim_events': claim_events, 'royalty_conversion_events': conversion_events, 'minted_count': minted_count,
                       'scope': 'All owners and all prior claims through the exact confirmed block, per NFT and asset.',
                       'completeness': 'Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof.'}
-        return HistorySnapshot(MappingProxyType(owners), MappingProxyType(claims), MappingProxyType(provenance))
+        return HistorySnapshot(MappingProxyType(owners), MappingProxyType(claims), MappingProxyType(provenance), MappingProxyType(conversions))

@@ -1,3 +1,20 @@
+## Royalty conversion history extension - 2026-10-19
+
+Raw replay now recognizes the exact `RoyaltyConverted` event from the pinned
+royalty ledger. The API exposes lifetime source amounts converted and ETH credited
+as `royalty_conversions`; only actual `Claimed` events affect `previously_claimed`.
+Complete configured same-chain predecessor replay carries both histories through
+retirement cutoffs, preserving historical currencies and all past owners.
+Missing history/lineage remains unavailable; invalid coverage never yields a
+partial lifetime total. Existing raw logs need no reset solely because an older
+decoder labelled an event unknown.
+
+Read [the integration and recovery guide](ROYALTY_REPORTING.md) and
+[scoped verification](../reports/royalty-reporting/VERIFICATION.md). Conversion is
+not new earned revenue; verified gross 24h/all-time fees and USD pricing remain
+separate unfinished work. Native claimable balances already include remaining
+conversion credits, so consumers must not add lifetime credited ETH to them.
+
 # Confirmed wallet inventory and lifetime claims
 
 Updated 2026-10-15. `frontend_api/history.py` extends the unhosted

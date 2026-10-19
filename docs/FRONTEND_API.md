@@ -1,3 +1,18 @@
+## Current royalty reporting extension - 2026-10-19
+
+The optional [royalty reporting profile](ROYALTY_REPORTING.md) adds verified
+per-currency eligibility, explicit unavailable balance fields and pinned converter
+enable status to the single-NFT read. ETH balances include unclaimed conversion
+credits; source balances are not promised ETH payments. Core deployment/lifecycle,
+complete-history and final snapshot checks stay strict. Legacy all-or-nothing
+currency behavior below applies when this profile is absent; wallet inventory
+and financial-action validation retain their existing strict paths.
+
+Complete history now also returns `royalty_conversions`, separately from actual
+lifetime `previously_claimed`. See [field semantics and operator recovery](ROYALTY_REPORTING.md)
+and [scoped evidence](../reports/royalty-reporting/VERIFICATION.md). This is backend
+implementation, not a deployed service, live UI or gross earnings/USD history.
+
 # Confirmed frontend read API
 
 The `frontend_api` package is a working read-only Python 3.11+ service for

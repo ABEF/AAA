@@ -9,7 +9,7 @@ from dataclasses import dataclass
 import re
 from typing import Any
 
-from frontend_api.history import HistoryError
+from frontend_api.history import HistoryError, merge_conversions, conversion_report
 from zzz_ops.abi import address, decode_words, keccak256
 
 MAX_PREDECESSORS = 8
@@ -38,7 +38,9 @@ class Lineage:
         for item in items:
             _keys(item, {'deployment_block', 'deployment_block_hash', 'contracts', 'assets',
                          'history', 'retirement_transaction_hash'}, 'predecessor')
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history')}
+            # Do not inherit a successor's new ledger ABI/profile or converter
+            # into an older deployment. Historical event replay needs no new getters.
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting')}
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
             previous = Projection(previous_config, current.rpc, clock=current.clock)
             addresses = {c.address for c in previous.contracts.values()}
@@ -118,6 +120,9 @@ class Lineage:
         return cutoff, (number, tx_index, retired[2]), retired[0], retired[1]
 
     def claimed(self, current, header, block, lifecycle, local_history, nft_id, ordinal):
+        return self.financial(current, header, block, lifecycle, local_history, nft_id, ordinal)['previously_claimed']
+
+    def financial(self, current, header, block, lifecycle, local_history, nft_id, ordinal):
         from frontend_api.service import _hash
 
         if local_history is None or lifecycle['predecessor_controller'] is None:
@@ -141,6 +146,8 @@ class Lineage:
 
         totals = {asset: amounts for (identifier, asset), amounts in local_history.claims.items()
                   if identifier == nft_id}
+        conversions = {}
+        merge_conversions(conversions, local_history.conversions, nft_id)
         receipts = []
         previous_order = None
         for index, entry in enumerate(self.entries):
@@ -165,6 +172,7 @@ class Lineage:
                     peer._code(contract.address, contract.code_hash, at_cutoff)
             lp_assets, royalty_assets = source._admitted(at_cutoff)
             history = source._history_snapshot(cutoff, at_cutoff, lp_assets, royalty_assets)
+            merge_conversions(conversions, history.conversions, nft_id)
             old_ordinal = source._uint('nft', 'mintOrdinalOf(uint256)', nft_id, block=at_cutoff)
             if old_ordinal:
                 if (old_ordinal != ordinal or nft_id not in history.owners or
@@ -201,9 +209,11 @@ class Lineage:
             lp, royalties = totals.get(asset, (0, 0))
             assets.append({'asset': asset, 'symbol': descriptor.symbol, 'decimals': descriptor.decimals,
                            'lp_raw': str(lp), 'royalties_raw': str(royalties), 'total_raw': str(lp + royalties)})
-        return {'available': True, 'assets': assets,
+        claimed = {'available': True, 'assets': assets,
                 'scope': 'Lifetime NFT claims across the complete pinned same-chain deployment lineage, '
                          'including LP and royalties paid to every past/current owner.',
                 'provenance': {'current_history': dict(local_history.provenance), 'predecessors': receipts,
                                'lineage_complete': True, 'verification': 'Pinned code, canonical RPC receipts and indexed history; not a consensus proof.',
                                'protocol_finalized': False}}
+        return {'previously_claimed': claimed,
+                'royalty_conversions': conversion_report(conversions, nft_id, self.descriptors, claimed['provenance'])}

@@ -2,6 +2,12 @@
 
 ## Current development review
 
+The [royalty reporting continuation](royalty-reporting/VERIFICATION.md) records
+138 affected Python passes plus 20 supplemental cases, exact reuse of unchanged
+contract bindings and compiler ABI checks. Currency eligibility and conversion
+history are backend features; live services and full earned/USD history remain
+open. Its [internal review](royalty-reporting/REVIEW.md) is not an independent audit.
+
 The [review of October 18 changes](daily-security-20261018/REVIEW.md), completed
 October 19, assesses all 13 published commits through `485a089` and separates
 unpublished local drafts. It includes a new synthetic API availability

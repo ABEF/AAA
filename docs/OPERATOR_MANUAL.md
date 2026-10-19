@@ -208,6 +208,29 @@ currency claims remain a fallback. No LP principal, orphaned funds or other NFT'
 entitlement is swept into a conversion. Local implementation is not live-service
 approval; use the [central settlement task](../TODO.md#task-royalty-eth-settlement).
 
+### Read royalty status and conversion history
+
+The [reporting guide](ROYALTY_REPORTING.md) gives exact configuration and field
+semantics. In a reviewed schema-2 API configuration, opt in with
+`"royalty_reporting": {"schema": 1, "converter": null}`; supply the exact bound
+converter address/runtime hash only after reviewing them. This changes read
+behavior, not contracts, keeper scheduling or transaction permissions.
+
+Verify dormant/eligible/deferred cases at a confirmed block. A currency failure
+must show an unavailable amount, while healthy balances remain visible. Unknown
+core state, stale snapshots and work limits reject the request. Disabled or
+unverified converter status is not an ETH execution promise. Original-currency
+claims and synchronization retain their separate on-chain controls.
+
+Use actual lifetime `previously_claimed` payouts for the NFT, including past
+owners. Keep `royalty_conversions` separate: current ETH claimable already includes
+unclaimed converted amounts. After an API/indexer outage, restore/backfill complete
+history and retirement cutoffs; never reset them to show zero totals. Roll back
+to a compatible reviewed configuration/release and disable unsupported UI fields
+if needed. Runtime drift requires review, not automatic acceptance of new pins.
+Actual hosting/consumer qualification remains open; no service is started by this
+code change. See the [scoped verification](../reports/royalty-reporting/VERIFICATION.md).
+
 ## Mint and metadata
 
 Before sealing, qualify the actual randomness coordinator/network/subscription, funding asset, gas lane, confirmations and callback budget. `NFT.configureRandomness(...)` is **one-time before seal**; coordinator, request settings and subscription ID cannot be changed afterward. Funding/service management uses that provider's reviewed procedures, not an invented PoPL retry function. Do not seal against an unavailable/unqualified provider.

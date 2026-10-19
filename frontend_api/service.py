@@ -18,6 +18,7 @@ from zzz_ops.abi import address, calldata, decode_words, keccak256
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import integer
 from zzz_ops.work_budget import BudgetedRPC, bounded_request, expire_at
+from zzz_ops.errors import WorkLimit
 
 ZERO = '0x' + '0' * 40
 ROLES = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router', 'handoff', 'vault_canonical')
@@ -118,6 +119,8 @@ class Projection:
             expected.add('history')
         if isinstance(config, dict) and 'predecessors' in config:
             expected.add('predecessors')
+        if isinstance(config, dict) and 'royalty_reporting' in config:
+            expected.add('royalty_reporting')
         _keys(config, expected, 'configuration')
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
@@ -160,6 +163,10 @@ class Projection:
             if addr in self.assets or addr in {x.address for x in self.contracts.values()}:
                 raise ValueError('Repeated asset or asset/contract collision')
             self.assets[addr] = Asset(addr, decimals, item['symbol'], code_hash)
+        self.royalty_reporting = None
+        if 'royalty_reporting' in config:
+            from frontend_api.royalty_reporting import Reporting
+            self.royalty_reporting = Reporting(config['royalty_reporting'], self)
         self.history = None
         if 'history' in config:
             self.history = History(config['history'], chain_id=self.chain,
@@ -191,8 +198,11 @@ class Projection:
         # The common ABI helper intentionally rejects zero addresses for most
         # operations. Here zero is a legitimate *native royalty asset*, never a
         # target. Keep its selector/uint validation and replace only that word.
-        if signature == 'claimable(uint256,address)' and len(args) == 2 and args[1] == ZERO:
+        native_methods = {'claimable(uint256,address)', 'eligibleFor(uint256,address)'}
+        if signature in native_methods and len(args) == 2 and args[1] == ZERO:
             data = calldata(signature, args[0], '0x' + '0' * 39 + '1')[:-64] + '0' * 64
+        elif signature == 'eligibleCount(address)' and args == (ZERO,):
+            data = calldata(signature, '0x' + '0' * 39 + '1')[:-64] + '0' * 64
         else:
             data = calldata(signature, *args)
         raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])
@@ -266,7 +276,7 @@ class Projection:
                                'deployment_block': self.start, 'deployment_block_hash': self.start_hash,
                                'configuration_sha256': self.identity}}
 
-    def _admitted(self, block: dict[str, Any]) -> tuple[list[str], list[str]]:
+    def _admitted(self, block: dict[str, Any], *, asset_health=None) -> tuple[list[str], list[str]]:
         admitted = []
         for role, maximum in (('rewards', 32), ('royalties', 17)):
             count = self._uint(role, 'assetCount()', block=block)
@@ -281,11 +291,23 @@ class Projection:
             raise ProjectionError('Admitted assets differ from the reviewed descriptor allowlist')
         for item in self.assets.values():
             if item.address == ZERO:
+                if asset_health is not None:
+                    asset_health[item.address] = True
                 continue
-            self._code(item.address, item.code_hash, block)
-            decimals = int(self._call(item.address, 'decimals()', block=block)[0], 16)
-            if decimals != item.decimals:
-                raise ProjectionError('Asset decimals differ from the reviewed descriptor')
+            try:
+                self._code(item.address, item.code_hash, block)
+                decimals = int(self._call(item.address, 'decimals()', block=block)[0], 16)
+                if decimals != item.decimals:
+                    raise ProjectionError('Asset decimals differ from the reviewed descriptor')
+            except WorkLimit:
+                raise
+            except RpcError:
+                if asset_health is None:
+                    raise
+                asset_health[item.address] = False
+            else:
+                if asset_health is not None:
+                    asset_health[item.address] = True
         return admitted[0], admitted[1]
 
     def _balance(self, role: str, nft_id: int, asset: str, block: dict[str, Any]) -> dict[str, Any]:
@@ -368,7 +390,8 @@ class Projection:
         header, head, block = self._snapshot()
         safe = header['number']
         lifecycle = self._verify_deployment(block)
-        lp_assets, royalty_assets = self._admitted(block)
+        health = {} if self.royalty_reporting is not None else None
+        lp_assets, royalty_assets = self._admitted(block, asset_health=health)
         ordinal = self._uint('nft', 'mintOrdinalOf(uint256)', nft_id, block=block)
         if ordinal == 0:
             raise UnknownNFT('NFT has no canonical mint ordinal')
@@ -426,6 +449,14 @@ class Projection:
         # Derive precisely the same four-state display from the single current
         # value read. Activation eligibility persists independently of its mark.
         stage = 0 if weight == 0 else 3 if available and raw_usd >= 10000 * 10**18 else 2 if available and raw_usd >= 1000 * 10**18 else 1
+        settlement = None
+        if self.royalty_reporting is not None:
+            settlement = self.royalty_reporting.read(nft_id, weight, royalty_assets, health, block)
+            lp_balances = [self.royalty_reporting.balance('rewards', nft_id, a, health, block) for a in lp_assets]
+            royalty_balances = settlement.pop('balances')
+        else:
+            lp_balances = [self._balance('rewards', nft_id, a, block) for a in lp_assets]
+            royalty_balances = [self._balance('royalties', nft_id, a, block) for a in royalty_assets]
         result = {
             'schema': 2, 'chain_id': self.chain, 'token_id': str(nft_id), 'mint_ordinal': ordinal,
             'lifecycle': lifecycle,
@@ -436,10 +467,12 @@ class Projection:
                          'activated': weight != 0, 'royalty_weight': weight, 'current_lp_value': lp_value,
                          'evolution': EVOLUTION[stage], 'evolution_value_available': available,
                          'principal_redeemable': False},
-            'claimable': {'lp': [self._balance('rewards', nft_id, a, block) for a in lp_assets],
-                          'royalties': [self._balance('royalties', nft_id, a, block) for a in royalty_assets],
+            'claimable': {'lp': lp_balances,
+                          'royalties': royalty_balances,
                           'lp_scope': 'Already allocated funded rewards; pending creator inbox receipts are not simulated.',
-                          'royalty_scope': 'Contract view includes pending admitted receipts at current membership weights.'},
+                          'royalty_scope': 'Contract view includes pending admitted receipts at this currency\'s eligible membership weights. ETH also includes unclaimed conversion credits.'},
+            'royalty_reporting': settlement or {'available': False,
+                'reason': 'Current royalty-ledger reporting profile is not configured; no per-currency eligibility or conversion status is inferred.'},
             'unavailable_metrics': dict(UNAVAILABLE),
             'contracts': {role: item.address for role, item in self.contracts.items()},
             'provenance': {'block_number': safe, 'block_hash': header['hash'], 'block_timestamp': header['timestamp'],
@@ -457,14 +490,18 @@ class Projection:
             result['unavailable_metrics'].pop('wallet_inventory')
             result['wallet_inventory_endpoint'] = f'/v1/wallets/{owner}/nfts'
         if self.lineage is not None:
-            result['previously_claimed'] = self.lineage.claimed(self, header, block, lifecycle, history, nft_id, ordinal)
+            result.update(self.lineage.financial(self, header, block, lifecycle, history, nft_id, ordinal))
             result['unavailable_metrics'].pop('previously_claimed', None)
         elif lifecycle['predecessor_controller'] is not None:
             reason = 'Complete verified predecessor claim history is not configured; lifetime totals are unavailable.'
             result['previously_claimed'] = {'available': False, 'assets': None, 'reason': reason}
+            result['royalty_conversions'] = {'available': False, 'assets': None, 'total_eth_credited_raw': None, 'reason': reason}
             result['unavailable_metrics']['previously_claimed'] = reason
         else:
             result['previously_claimed'] = self._claimed(history, nft_id)
+            from frontend_api.history import conversion_report
+            result['royalty_conversions'] = conversion_report(history.conversions if history else None,
+                nft_id, self.assets, dict(history.provenance) if history else None)
         # No partial response is released if ancestry/chain changes during the
         # serial reads, including provider failover to a competing fork.
         self._finish(header)

@@ -54,7 +54,7 @@
             "Implemented: one guarded conversion for up to 32 NFTs' earned balances, proportional ETH credit to those same NFTs, exact WETH unwrap, at least 99% oracle-valued stablecoin output, strict minimum/deadline, approvals/delta checks and separate keeper gas. Original claims/fractions/quarantines remain intact.",
             "Approved and implemented: activation survives optional royalty-token failures; unseen receipts at recovery go to the earlier cohort, then waiting NFTs join future receipts. Expose eligibleFor and deferred/recovered status accurately. Exact unreadable backing still blocks canonical handoff.",
             "Review [scoped tests and internal findings](reports/royalty-conversion/VERIFICATION.md). Rehearse automatic dry/live keeper conversion, gas economics, failed currency/route recovery, mixed claims and successor configuration on the target network; do not infer production readiness from local mocks.",
-            "Integrate conversion event projections and per-currency eligibility in API/frontend. RoyaltyConverted is not Claimed; lifetime paid history increases only on actual claims. Verify converted and raw balances across ownership changes and predecessor handoffs. Independent audit/remediation remains required."
+            "Implemented [backend conversion and currency-eligibility reporting](docs/ROYALTY_REPORTING.md), verified across owners and complete pinned same-chain predecessors. Integrate the website and qualify live ingestion/availability recovery. RoyaltyConverted is not Claimed or new earnings; only actual payouts increase lifetime paid totals. Independent audit/remediation remains required."
           ]
         },
         {
@@ -135,6 +135,17 @@
           ]
         },
         {
+          "id": "royalty-reporting",
+          "status": "done",
+          "title": "Report royalty eligibility & conversion history",
+          "text": "Opt-in confirmed ETH/source balances, deferred currency eligibility and pinned converter enable status are implemented. Complete same-chain event replay separates conversion credits from actual lifetime claims. Missing values stay unavailable; UI, gross earned/USD history and live service qualification remain separate tasks.",
+          "href": "docs/ROYALTY_REPORTING.md",
+          "acceptance": [
+            "[Scoped verification](reports/royalty-reporting/VERIFICATION.md): 138 affected Python cases and 20 supplemental cases pass. Forty unchanged Solidity source bindings are reused; ten getter ABIs and 26 added indexer schemas match existing compiler artifacts. No Solidity rerun, public transaction, service deployment or website change.",
+            "The profile is explicit and pin-reviewed; legacy contracts do not inherit it. Currency failures do not bypass core identity, lifecycle, canonical freshness, full history coverage or request budgets. Conversion is neither a claim nor new revenue, and native claimable already includes remaining conversion credits."
+          ]
+        },
+        {
           "id": "unsigned-actions",
           "status": "done",
           "title": "Prepare unsigned mint & claim requests",
@@ -164,7 +175,8 @@
           "href": "docs/FRONTEND_HISTORY.md#verification-and-remaining-scope",
           "acceptance": [
             "Index gross earned revenue, actual receipts, allocations and claims as distinct events, with complete deployment-to-present coverage, canonical/reorg reconciliation and unavailable responses when coverage is incomplete.",
-            "Define reviewed per-asset USD pricing and 24-hour/all-time valuation. Cumulative raw claimed totals, including claims by previous NFT owners, must not be presented as gross revenue; the selected Pons pool has 0% conventional fees, not the demo's assumed 0.30%."
+            "Define reviewed per-asset USD pricing and 24-hour/all-time valuation. Cumulative raw claimed totals, including claims by previous NFT owners, must not be presented as gross revenue; the selected Pons pool has 0% conventional fees, not the demo's assumed 0.30%.",
+            "Use the implemented [conversion history](docs/ROYALTY_REPORTING.md) as a separate denomination record. Never add ETH conversion credits to already-counted source earnings or current ETH claimable. Complete claimed/conversion history does not establish gross earned fees or historical USD value."
           ]
         },
         {
@@ -178,7 +190,8 @@
             "Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.",
             "Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.",
             "Investigate the intermittent RPC HTTP failure observed during price reads. The subsequent paced feed/route observation succeeded but does not prove its cause or provider reliability; qualify bounded retry/failover and snapshot freshness without weakening fail-closed behavior.",
-            "[AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results."
+            "[AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.",
+            "Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance."
           ]
         },
         {
@@ -225,7 +238,8 @@
           "acceptance": [
             "Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.",
             "Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.",
-            "Integrate current physical LP/share-denominator context, marked NAV vs cumulative input and price-guard unavailable states. Render out-of-range warning plus earliest rebalance eligibility; only fresh authenticated telemetry may supply an estimated next keeper check. The public website is still simulated and was not changed by the backend delta."
+            "Integrate current physical LP/share-denominator context, marked NAV vs cumulative input and price-guard unavailable states. Render out-of-range warning plus earliest rebalance eligibility; only fresh authenticated telemetry may supply an estimated next keeper check. The public website is still simulated and was not changed by the backend delta.",
+            "Consume [royalty-reporting fields](docs/ROYALTY_REPORTING.md): separate claimable ETH/source currencies, deferred eligibility and unavailable amounts. Converter enabled is not a route quote or scheduled execution. Do not offer signing based solely on a read-only balance response."
           ]
         },
         {
@@ -249,7 +263,8 @@
           "href": "docs/FRONTEND_HISTORY.md#api-behavior",
           "acceptance": [
             "Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.",
-            "Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing."
+            "Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.",
+            "Keep royalty_conversions as conversion history only; previously_claimed includes actual lifetime LP and royalty payouts across owners and complete configured predecessors. Do not add credited ETH again to claimable or earned totals."
           ]
         },
         {
@@ -274,8 +289,8 @@
           "id": "local-verification",
           "status": "done",
           "title": "Local contract and integration tests",
-          "text": "Latest royalty scope passes 135 affected Solidity cases, 195 distinct scoped Python cases, 31 size gates and 40 production bindings with fresh internal static review. Read-only holder preflight adds 12 targeted Python passes including complete 1,000-NFT coverage. Historical full-regression/fork evidence keeps its source scope; unchanged Solidity was not rerun for the inventory tool.",
-          "href": "reports/royalty-conversion/VERIFICATION.md"
+          "text": "Royalty reporting adds 138 affected Python passes plus 20 supplemental passes, with unchanged Solidity evidence reused and ten getter/26 added-event ABIs checked. Prior royalty scope has 135 affected Solidity cases, 195 scoped Python cases, 31 size gates and 40 source bindings; holder preflight adds 12 cases. These scoped receipts are not a new full regression or production approval.",
+          "href": "reports/royalty-reporting/VERIFICATION.md"
         },
         {
           "id": "mainnet-fork",
@@ -514,7 +529,7 @@
           "id": "asset-liveness-dust",
           "status": "todo",
           "title": "Approve reward-token liveness and dust economics",
-          "text": "Review admitted token upgrade, blacklist, rebase and transfer behavior. A broken royalty token can stop new activations; sub-20-raw-unit owner dust is bounded per settlement, not cumulatively. Qualify every asset before admission.",
+          "text": "Review admitted token upgrade, blacklist, rebase and transfer behavior. Optional royalty-token read failures now defer only new eligibility for that currency, while exact unreadable backing can still block handoff. Sub-20-raw-unit owner dust is bounded per settlement, not cumulatively; qualify every asset before admission.",
           "href": "docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting",
           "acceptance": [
             "Review the economic value of at most 19 raw units settled before membership changes, asset decimals and holder-triggerable entry frequency.",

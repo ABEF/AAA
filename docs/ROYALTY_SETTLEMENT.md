@@ -200,7 +200,11 @@ network. No new private-key storage, external notification or monitor is added.
 ## Qualification boundary
 
 Read [scoped verification and internal review](../reports/royalty-conversion/VERIFICATION.md).
-No real route, wrapper, OpenSea settlement, live keeper, website/API integration
-or public transaction has been qualified by local mocks. Final runtime inventory,
-outage/recovery UI and conversion-event projections, target gas and independent
-audit remain in the [central task](../TODO.md#task-royalty-eth-settlement).
+The [backend reporting extension](ROYALTY_REPORTING.md) now exposes per-currency
+eligibility, explicit unavailable balances and separately indexed conversion
+credits, including complete configured same-chain predecessors. Only actual
+claims increase lifetime paid totals. Its local checks do not qualify a live API
+or consumer. No real route, wrapper, OpenSea settlement, live keeper, website
+integration or public transaction has been qualified by local mocks. Final runtime
+inventory, outage/recovery UI, target gas and independent audit remain in the
+[central task](../TODO.md#task-royalty-eth-settlement).

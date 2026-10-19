@@ -1,3 +1,21 @@
+## Current continuation: royalty reporting - 2026-10-19
+
+Backend royalty reporting now distinguishes claimable ETH, unconverted source
+balances and deferred currency eligibility through an explicit reviewed-ledger
+profile. Converter status is a pinned enable-control observation, not an execution
+ETA or qualified quote. Raw replay records conversions separately from claims and
+preserves lifetime NFT history through validated same-chain replacements.
+Unavailable values never become zero, and no currency fallback bypasses core
+identity, canonical freshness or request work budgets.
+
+Read [the operator/integration guide](docs/ROYALTY_REPORTING.md) and
+[verification](reports/royalty-reporting/VERIFICATION.md): 138 affected Python
+passes plus 20 supplemental passes, unchanged 40 Solidity source bindings reused,
+ten getter ABIs and 26 added indexer events checked against compiler artifacts.
+Gross earned fees/USD history and live website/service qualification remain open.
+Website/server/paused monitor are unchanged. Publication is determined by main
+and origin/main; unrelated local drafts are deliberately preserved.
+
 ## Replacement NFT holder preflight - 2026-10-19
 
 Read [the holder inventory and cutover procedure](docs/HOLDER_PREFLIGHT.md) and

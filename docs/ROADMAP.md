@@ -43,9 +43,10 @@ Rehearse [custody parking](CUSTODY_PARKING.md) through the sealed zero-delay con
 Qualify [marketplace settlement currencies](../TODO.md#task-royalty-eth-settlement)
 before expanding the royalty asset set. Start with ETH pricing and verified ETH/WETH
 receipts; distinguish buyer checkout funds from actual royalty transfers. The candidate now implements guarded batch ETH conversion and optional-currency
-outage isolation. Qualify actual wrapper/routes/feeds, conversion-event projections,
-recovery UI and keeper operating behavior before live activation. Direct-currency
-claims remain a fallback; historical balances retain their original owners. See the
+outage isolation. The [API conversion/eligibility projections](ROYALTY_REPORTING.md)
+are implemented; qualify their real ingestion and consumers alongside actual
+wrapper/routes/feeds, recovery UI and keeper behavior before live activation. Direct-currency
+claims remain a fallback; balances stay attached to the same NFTs. See the
 [decision and procedure](ROYALTY_SETTLEMENT.md).
 
 Owning tasks: [creator terms](../TODO.md#task-creator-terms), [random assignment](../TODO.md#task-fair-draw), [metadata operations](../TODO.md#task-metadata-ops), [dependency security](../TODO.md#task-security-dependencies), [asset liveness/dust](../TODO.md#task-asset-liveness-dust), [backend integration](../TODO.md#backend), [frontend integration](../TODO.md#frontend).

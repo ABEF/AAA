@@ -3,6 +3,14 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-19.
 
+The [royalty reporting extension](ROYALTY_REPORTING.md) adds explicit optional
+ABI/configuration and partial currency-availability semantics to single-NFT reads,
+plus complete same-chain conversion history separated from claims. Review actual
+runtime pins, archive ingestion, client null/eligibility behavior and deployment
+compatibility before hosting or enabling UI actions. Local backend tests and
+unchanged contract evidence do not qualify live services or gross earned/USD
+history. No website/server or deployment change occurred.
+
 The [royalty conversion candidate](ROYALTY_SETTLEMENT.md) adds a fixed pre-seal
 converter binding, batch ETH accounting, optional-token failure isolation and an
 opt-in keeper job. Independent wrapper/route/feed and runtime-inventory review,

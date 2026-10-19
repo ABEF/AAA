@@ -1,3 +1,26 @@
+## Royalty reporting continuation - 2026-10-19
+
+The optional current-ledger API profile reports per-currency royalty eligibility,
+ETH/source balances and converter enable control. Currency view/runtime failures
+are null/unavailable, never zero; strict core/lifecycle/history/snapshot and work
+limits remain. Complete raw history separates conversion credits from actual
+claims, including pinned same-chain predecessors and historical assets. Read
+[the profile/runbook](docs/ROYALTY_REPORTING.md) and
+[scoped evidence](reports/royalty-reporting/VERIFICATION.md).
+
+Evidence: 138 affected Python cases, then 20 supplemental cases (three new edge
+cases plus 17 request-limit cases), no failures/skips. The 17 initial new test
+bodies and production backend code were unchanged in the supplemental run.
+All 40 Solidity source bindings match the prior royalty build; ten new getter
+ABIs and 26 added event schemas match reusable compiler artifacts. No unchanged
+Solidity suites/build were rerun. This is internal scoped verification only.
+
+Keep gross earned 24h/all-time USD history, website wallet/data integration and
+production service qualification open. No website/server/monitor, deployment or
+public-transaction change occurred. Use main and exact Git publication state;
+preserve the unrelated wallet/server/history-test/route/artwork drafts. Maintain
+the central Todo, feature reference and operator manual together.
+
 ## Replacement NFT holder preflight - 2026-10-19
 
 Read [the holder inventory and cutover procedure](docs/HOLDER_PREFLIGHT.md) and
