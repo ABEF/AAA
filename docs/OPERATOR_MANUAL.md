@@ -175,7 +175,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Trade-size ceiling and target ZZZ are not mutable setters. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
-| Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Separate bounded ledger (17 total including native). Already-admitted history has no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |
+| Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |
 | Synchronize/claim royalties | Permissionless `RoyaltyRewards.sync(asset)`/`syncAll`; actual owner calls ledger `claim` or bounded ClaimRouter | Direct royalty claim synchronizes pending admitted receipts. LP claim does not harvest new venue fees. Use current owner and actual funded amounts. |
 
 A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**, or claim individually. One failed operation reverts the whole batch; simulate and split by asset/NFT if needed. No operator can choose a different beneficiary or claim just because it holds ERC721 approval. All unclaimed rights follow the current NFT owner; already paid funds do not travel with it. An escrow that owns the NFT is the contract-level holder. Lifetime claimed display requires complete confirmed index history, including predecessors after replacement.
@@ -183,6 +183,24 @@ A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees, proposed creator invoices and UI estimates.
 
 Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Change creator commercial terms off-chain and reconcile payments, but do not promise arbitrary payout-asset conversion or a mutable 80/10/5/5 allocation. See [external revenue](EXTERNAL_REWARDS.md), [royalty/claim behavior](CLAIM_ROUTER.md) and [measurement proposals](REVENUE_SHARE.md).
+
+### Marketplace currency and ETH payouts
+
+The [royalty settlement procedure](ROYALTY_SETTLEMENT.md) records the accepted
+ETH pricing direction, exact OpenSea owner/editor request, asynchronous verification,
+and receipt checks for listings/offers/checkouts. Do not infer that a buyer using
+USDC means PoPL receives USDC, or that ETH pricing proves every order excludes it.
+If stablecoin royalties cannot be excluded, guarded automatic conversion is required.
+The current ledger pays each admitted currency directly; no WETH unwrap or swap
+command is implemented. Do not promise ETH-only claims from this candidate.
+
+An unreadable admitted ERC20 balance can still revert activation and `syncAll`;
+healthy single-currency claims are separate. Zero royalties are valid. Investigate
+the asset without bypassing accounting or removing liabilities. Activation inputs,
+rarity fixed at reveal, and activation-based royalty eligibility remain distinct.
+The central [settlement task](../TODO.md#task-royalty-eth-settlement) owns the
+conversion/failure-isolation work and qualification; this procedure is not evidence
+that those changes are implemented.
 
 ## Mint and metadata
 

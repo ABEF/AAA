@@ -40,6 +40,14 @@ Rehearse [custody parking](CUSTODY_PARKING.md) through the sealed zero-delay con
 
 ## 4. Validate the accepted economics and NFT lifecycle
 
+Qualify [marketplace settlement currencies](../TODO.md#task-royalty-eth-settlement)
+before expanding the royalty asset set. Start with ETH pricing and verified ETH/WETH
+receipts; distinguish buyer checkout funds from actual royalty transfers. If stablecoin
+settlement cannot be excluded, implement guarded conversion to ETH. Resolve receipt
+cutoffs and activation failure isolation before claiming conversion preserves older
+royalties. Current ledger claims remain in the admitted currency. See the
+[decision and procedure](ROYALTY_SETTLEMENT.md).
+
 Owning tasks: [creator terms](../TODO.md#task-creator-terms), [random assignment](../TODO.md#task-fair-draw), [metadata operations](../TODO.md#task-metadata-ops), [dependency security](../TODO.md#task-security-dependencies), [asset liveness/dust](../TODO.md#task-asset-liveness-dust), [backend integration](../TODO.md#backend), [frontend integration](../TODO.md#frontend).
 
 Independently review equal activated-NFT membership, collection/delivery-time collective allocation for unharvested/remote rewards, processing-time creator receipts, incumbent pending/indexed/dust settlement, remote/in-flight eligibility and reward-asset limits. Model timing incentives, manipulated valuations, depreciated positions, strategy costs, and token eligibility. Review the implemented repeated-hop custody epochs, ordered home-location ACKs, canonical returns, legacy reward budgets, and post-seal append-only route governance against adversarial operation sequences.

@@ -5,6 +5,17 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
+October 19 royalty clarification: [the accepted direction](ROYALTY_SETTLEMENT.md)
+is ETH pricing and verified ETH/WETH royalty receipts first. If USDC/USDG royalty
+settlement cannot be excluded, implement guarded automatic ETH conversion. OpenSea
+documents Robinhood ETH/USDG pricing selection; it does not establish a universal
+currency ban or qualify actual collection settlement. Buyer checkout assets may
+differ from receiver settlement. No royalty conversion or failure-isolation code
+has changed. Delayed per-currency eligibility was discussed, not approved. The
+central Todo, operator procedure and feature boundary distinguish this planned work
+from current direct per-currency claims. Documentation-only verification does not
+require repeating unchanged contract tests. No marketplace/service action occurred.
+
 The October 19 operator-controls continuation adds dependency-independent,
 disable-only `PoolRegistry.disablePool` and governed `NFT.setMintPaused`.
 Pending original reveals and existing economic rights retain their own guards;

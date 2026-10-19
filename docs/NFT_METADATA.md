@@ -28,9 +28,16 @@ The optional keeper watcher observes confirmed-block evolution, valuation availa
 
 ## Separate marketplace royalties
 
-`royaltyInfo` requests5% of sale value, payable entirely to the immutable `ZZZRoyaltyRewards` helper. ERC-2981 reports a royalty request; it does not enforce payment. All actually received eligible funds are distributed to activated Commun/Rare/Legendary at1/2/3, regardless of LP size/evolution. Dormant NFTs get zero weight. LP owner/collective rewards remain a separate ledger.
+`royaltyInfo` requests 5% of sale value, payable entirely to the immutable `ZZZRoyaltyRewards` helper. ERC-2981 reports a royalty request; it does not enforce payment. All actually received eligible funds are distributed to activated Commun/Rare/Legendary at 1/2/3, regardless of LP size/evolution. Dormant NFTs get zero weight. LP owner/collective rewards remain a separate ledger.
 
 Native ETH is admitted automatically. Reviewed ERC20 assets can be appended through NFT governance; prefunds at admission are quarantined. Pending receipts are checkpointed before a new NFT joins, preserving incumbent rights. Zero-eligibility and constructor prefunds stay orphaned. Current owners claim, and unclaimed funds follow transfers. No admin rescue or redirected claim exists. Read [economic rules](ECONOMICS.md) for dust, token admission and liveness boundaries.
+
+The [ETH-first settlement direction](ROYALTY_SETTLEMENT.md) is a separate planned
+integration: qualify ETH pricing and actual ETH/WETH receipts, and convert
+USDC/USDG only if those royalty settlement currencies cannot be excluded. Current
+claims pay the admitted asset directly; there is no automatic conversion. Rarity
+is already fixed at reveal; activation enables its royalty weight without another
+user payment. No delayed per-currency eligibility policy has been approved.
 
 Primary references: [ERC-2981](https://eips.ethereum.org/EIPS/eip-2981), [ERC-4906](https://eips.ethereum.org/EIPS/eip-4906), [Chainlink VRF security](https://docs.chain.link/vrf/v2-5/security), [VRF request ABI](https://docs.chain.link/vrf/v2-5/subscription/get-a-random-number). Actual coordinator/network review remains open.
 

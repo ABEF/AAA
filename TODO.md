@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**12 To do | 18 In progress | 12 Implemented locally**
+**13 To do | 18 In progress | 12 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,6 +15,21 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
+
+<a id="task-royalty-eth-settlement"></a>
+
+- [ ] **[Qualify ETH settlement for marketplace royalties](docs/ROYALTY_SETTLEMENT.md)** - To do. Accepted initial scope is ETH pricing with verified ETH/WETH receipts. Confirm actual Robinhood listings/offers and checkout settlement. ETH payouts require new WETH conversion support; if USDC/USDG royalty settlement cannot be excluded, implement guarded automatic conversion. Current claims still pay each admitted currency directly.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Use the documented owner/editor OpenSea pricing_currency operation with use_stablecoin=false and verify the asynchronous result. Inspect exact royalty transfers for listings, item/collection offers, old orders and supported cross-chain checkouts; buyer input currency is not necessarily receiver settlement currency. An ETH pricing preference is not proof of an on-chain currency ban.
+  - Keep native ETH and the exact verified Robinhood WETH wrapper as the initial royalty scope; review wrapper code, backing, unwrap behavior and mutable authorities. Stablecoin activation inputs remain separate. Add USDC/USDG royalty conversion only if settlement qualification shows it is required, with exact token/route/feed admission.
+  - Implement and review ETH-denominated payouts: exact WETH unwrap and, if required, automatic stablecoin conversion with fresh prices, minimum output, deadline, bounded approvals, measured ETH receipt and separate gas. A royalty conversion-loss limit still needs selection; do not reuse the activation or maintenance limits by assumption.
+  - Preserve prior eligible membership, current NFT ownership, liabilities, dust and canonical handoff/late receipts during delayed conversion. A converter must not give older receipts to later activations. Failed processing must retain funds for retry and not undo successful LP activation or block unrelated claims. Per-currency delayed eligibility is not an approved rule; settle the accounting design before implementing it.
+  - Verify zero receipts, no eligible NFTs, native/WETH/stablecoin payouts as applicable, failed balance reads/unwrap/swaps, retries, callbacks, transfers and conversion across activations. Reconcile claimed ETH and original-currency backing; update API/history/frontend units and operator controls with the implementation. No production or marketplace configuration has been performed.
+
+  </details>
 
 <a id="task-pons-qualification"></a>
 
@@ -373,6 +388,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   <summary>Acceptance criteria</summary>
 
   - Review royalty-token outage isolation: activation synchronizes every admitted royalty asset, so a reverting balanceOf can block new activation and syncAll. Single-asset healthy claims are separate. Any remediation must preserve old receipt ownership, exact liabilities and eligibility checkpoints; blindly skipping failed assets can redistribute past receipts to new entrants. The mint/pool stop controls do not repair this separate accounting/liveness boundary.
+  - Follow the accepted ETH-first [royalty settlement direction](docs/ROYALTY_SETTLEMENT.md) and its [owning task](TODO.md#task-royalty-eth-settlement). Native ETH has no external token balance query; a verified WETH wrapper is still an external dependency. OpenSea pricing and a proposed converter do not by themselves close activation outage or historical-allocation risks.
 
   </details>
 
@@ -539,4 +555,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `b47c7cbd971821f56e5b718e8881548d0c8e8502f28fb948879f782d6ed1b4a0`.
+Snapshot SHA-256: `46cf9243cf6d66355d4b63fbcc1b9e11fd96f9809bd1a4837e47288e15f0aaf8`.

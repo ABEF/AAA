@@ -1,3 +1,24 @@
+## ETH-first marketplace royalties - 2026-10-19
+
+Read [royalty settlement](docs/ROYALTY_SETTLEMENT.md) and its
+[central task](TODO.md#task-royalty-eth-settlement). The user accepted ETH pricing
+with native ETH/verified Robinhood WETH as the initial royalty scope. If USDC/USDG
+royalty settlement cannot be excluded on supported marketplace flows, implement
+guarded automatic conversion to ETH. Activation input choices are separate.
+Rarity/multiplier is fixed at reveal; activation enables eligibility without an
+additional royalty payment or user registration. OpenSea documents an ETH/USDG
+pricing choice, not a proven universal currency ban. Inspect actual settlement,
+including offers and cross-chain checkout, rather than buyer input currency.
+
+This is a documented direction, not implemented conversion or outage isolation.
+The current ledger claims each admitted currency and synchronizes all admitted
+assets during activation. Native ETH has no external token balance read; WETH
+still has wrapper risks. Preserve pre-activation receipts and funded liabilities.
+Per-currency delayed eligibility was discussed but NOT approved. Do not silently
+adopt it or distribute older receipts using membership at later conversion time.
+No source, marketplace, website/server, monitor or public transaction change is
+included. Main only; preserve unrelated drafts and use Git for publication status.
+
 ## Operator procedures and maintenance - 2026-10-19
 
 ## Independent operator controls - 2026-10-19
