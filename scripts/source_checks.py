@@ -7,7 +7,7 @@ EXPECTED=['ZZZVault','ZZZNFT','ZZZLiquidityManager','ZZZRewards','ZZZMembership'
 'ZZZOracle','ZZZPoolRegistry','ZZZMigrationRegistry','ZZZBridgeRouter',
 'ZZZCanonicalHandoff','ZZZNFTCanonical','ZZZVaultCanonical','ZZZFeesCanonical']
 HELPERS=['ZZZRewardReceiver','ZZZRoyaltyRewards','ZZZNFTMetadata','ZZZClaimRouter','ZZZActivationAssets','ZZZActivationEntry',
-'ZZZMigrationBudget','ZZZRoyaltyFactory','ZZZRewardReceiverFactory']
+'ZZZMigrationBudget','ZZZRoyaltyFactory','ZZZRewardReceiverFactory','ZZZRoyaltyConverter']
 def sanitized(text):
     return re.sub(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
         lambda m:'\n'*m.group(0).count('\n')+' '*len(m.group(0)),text)

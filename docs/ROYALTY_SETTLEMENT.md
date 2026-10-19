@@ -9,7 +9,7 @@ Price PoPL secondary sales in ETH on OpenSea, and initially qualify native ETH
 and the exact Robinhood WETH wrapper for royalties. Holders should be able to
 receive royalties in ETH. Stablecoin conversion is conditional: if USDC/USDG
 royalties cannot be excluded from the supported marketplace settlement flows,
-implement guarded conversion to ETH. Do not admit arbitrary currencies or assume
+enable the implemented guarded conversion after qualification. Do not admit arbitrary currencies or assume
 a ticker identifies a reviewed token. Activation inputs remain a separate policy;
 this decision does not remove USDC/USDG from the intended activation inputs.
 
@@ -41,68 +41,166 @@ an Ethereum example does not identify a Robinhood deployment. Under
 currency. There is no verified OpenSea setting here that automatically converts
 every creator royalty into ETH. All sources above were read on 2026-10-19.
 
-## Current implementation boundary
+## Implemented conversion and outage boundary
 
-[NFT.royaltyInfo](../src/ZZZNFT.sol) points at the fixed
-[RoyaltyRewards ledger](../src/ZZZRoyaltyRewards.sol). Native ETH is admitted by
-default; governance can append up to 16 ERC20 currencies with
-`NFT.addRoyaltyAsset(token)`. Claims pay the admitted currency directly. There is
-no automatic WETH unwrap or stablecoin-to-ETH converter. Admission does not
-restrict the payment currency a marketplace or peer-to-peer seller can use.
+[RoyaltyRewards](../src/ZZZRoyaltyRewards.sol) preserves each NFT's original-currency
+balance. An authorized keeper selects **1-32 distinct, sorted NFT IDs** and calls
+`convertBatch(asset,ids,routeId,minimumETH,deadline)`. The ledger synchronizes
+pending receipts, checkpoints those NFTs and aggregates only their earned whole
+units. One swap/unwrap returns ETH to the ledger. That ETH is credited directly
+to the same NFTs in proportion to the exact amounts converted, not today's
+rarity-membership denominator. Cumulative rounding assigns every received wei;
+source fractions and index dust stay backed in the source currency. Quarantined
+prefunds and other NFTs' balances are never included. Larger inventories use
+multiple bounded batches rather than a transaction iterating all 1,000 holders.
 
-The Vault issues LP shares before `NFT.notifyContribution` calls
-`RoyaltyRewards.activate`. All are in one atomic transaction. Activation syncs
-existing receipts before adding the new weight, so an admitted ERC20 balance-read
-failure can roll back activation. Native ETH has no external ERC20 balance read.
-Zero royalties are valid and do not prevent activation. Existing healthy-currency
-claims are separate from `syncAll`.
+The separately deployed [RoyaltyConverter](../src/ZZZRoyaltyConverter.sol) is bound
+once through `RoyaltyRewards.bindConverter(address)` **before sealing**. It has
+fixed controller, ledger and WETH addresses, no arbitrary recipient/call/rescue,
+and no access to LP principal. Governance can update reviewed wrapper policies,
+append routes, and disable/re-enable conversion or routes after sealing. Existing
+immediate-governance trust applies; there is no new timelock or override role.
+The converter is optional to the generic core seal check; a release promising
+ETH conversion must independently verify its pre-seal binding and configuration.
+An imported successor needs its own reviewed converter binding.
 
-The desired failure boundary remains: royalty processing must not undo successful
-LP activation or award older royalties to a newcomer. Moving the check later in
-the same transaction, catching an error without correct accounting, or adding a
-converter does not by itself establish that boundary. Per-currency delayed
-eligibility was discussed but not approved; do not implement it as a settled
-product rule. Define and review receipt/eligibility cutoffs before changing the ledger.
+Native ETH needs no conversion. WETH unwrapping must return exactly 1:1 in ETH.
+An admitted stablecoin uses a pinned, typed, single-hop SwapRouter02 route to
+WETH, followed by exact unwrap. At execution, the current protocol Oracle quote
+sets a **99% minimum**, rounded up, and the caller's stronger minimum also applies.
+Zero prices, stale feeds, bad routes, expired deadlines, transfer taxes, mismatched
+outputs or changed pins reject atomically. The deadline may be at most ten minutes
+away. Router approvals are exact and reset. **The 1% execution-loss cap is separate
+from network gas**, which the keeper pays; no gas is deducted from holder balances.
 
-## Operator procedure and implementation constraints
+`RoyaltyConverted` records source and ETH amounts per NFT; it is not a payout and
+must not increment lifetime claimed totals. Actual native `Claimed` events do.
+Direct original-currency claims remain available as a fallback, and the existing
+mixed ClaimRouter can claim credited ETH alongside LP fees. A raw claim racing
+conversion either consumes that NFT's balance first or causes the prepared batch
+minimum to reject; no double claim is possible through the same ledger guard.
+NFT transfers carry both unconverted and converted balances. No claim is paid to
+the keeper or the former owner merely because they prepared a batch.
 
-After an actual collection exists and the authorized marketplace account is
-available, use OpenSea's collection-pricing operation:
+### Optional currency outage
+
+The user approved this recovery rule on 2026-10-19. Healthy currencies settle
+before activation joins. Each optional ERC20 synchronization runs behind a
+250,000-gas self-call boundary with bounded failure-data handling. Failed balance
+reads, negative-balance accounting or token execution do not undo LP activation;
+the NFT's fixed rarity weight becomes active globally and for healthy currencies.
+`eligibleFor(id,asset)` reports eligibility for the particular currency.
+
+The failed currency retains its earlier eligible cohort. On the first successful
+sync, **all previously unseen receipts go to that earlier cohort** (or quarantine
+if it was empty). Waiting NFTs join only subsequent receipts. This deliberately
+excludes newcomers from receipts arriving during the outage as well as before it:
+without readable receipts the contract cannot distinguish the arrival times.
+There is no retroactive catch-up or operator-selected allocation. Bounded cohort
+intervals and lazy index checkpoints avoid looping over all waiting NFTs.
+
+`RoyaltyAssetDeferred` and `RoyaltyEligibilityRecovered` expose the transition.
+Native ETH uses no external token balance read. Genuine overall transaction gas
+shortage still reverts; the caller must fund enough gas to run each isolated check.
+Broken payout tokens can still prevent their own claims or canonical handoff,
+which requires exact readable backing. Healthy single-currency claims continue.
+
+Canonical settlement enrolls all recovered cohorts and exports flattened per-NFT
+index baselines in the existing row format. Converted ETH and remaining source
+currency are separate classified backing. Import/abort/late-forwarding keep the
+existing lifecycle rules; converter configuration is not economic state imported
+from the source. Future-chain transport remains a separate unimplemented gate.
+
+## Operator procedure
+
+For collection pricing, the authorized marketplace owner/editor can request:
 
 ```text
 POST /api/v2/collections/{slug}/pricing_currency
 {"use_stablecoin": false}
 ```
 
-Verify the account, chain, collection contract and slug first. Follow the reported
-repricing job to completion; a successful request alone is not settlement proof.
-Inspect new listings, accepted item/collection offers, existing orders and
-supported cross-chain checkouts. Record exact recipient/currency/amount from
-transactions, including the 5% creator payment when included. Configure the
-creator recipient from `NFT.royaltyInfo` / `NFT.royaltyRewards()`, never a manager's
-wallet. API credentials remain outside the repository.
+Verify account/chain/collection/slug, follow asynchronous completion, and inspect
+actual royalty transfers for listings, offers, old orders and checkouts. Set the
+creator recipient to `NFT.royaltyInfo` / `NFT.royaltyRewards()`, not a manager wallet.
+This request does not cancel signatures or enforce a universal currency ban.
 
-Do not assume this operation cancels old signatures or bans stablecoin transfers.
-Changing pricing back is another authorized marketplace operation, not a reversal
-of completed sales. Any proposed currency expansion requires fresh qualification.
+Before sealing:
 
-The planned ETH payout path retains ETH, unwraps only a verified WETH deployment
-with exact accounting, and swaps stablecoins only if required by the settlement
-findings. Stablecoin conversion needs reviewed routes, price/minimum-output and
-deadline protections, bounded approvals, measured received ETH and separate gas
-accounting. No swap-loss parameter has been selected for royalties; the activation
-1% and maintenance 3% limits are not automatically royalty-conversion budgets.
+1. Independently review exact WETH/token/router/factory/pool/feed addresses and
+   runtime pins. Do not use an Ethereum address on Robinhood by analogy.
+2. Deploy the converter with the current controller, royalty ledger and wrapper;
+   governance calls `RoyaltyRewards.bindConverter(converter)` once. Verify both
+   directions and record code hashes. This guide does not execute a deployment.
+3. `configureWrapper(WrapperPolicy)` pins wrapper runtime and, for the Robinhood
+   proxy, its reviewed admin, implementation, owner and code hashes. Direct-code
+   mode (zero admin) is only for a reviewed non-proxy wrapper; it cannot prove that
+   a supplied token is not an upgradeable proxy. Review remains essential.
+4. Admit required currencies through `NFT.addRoyaltyAsset(token)`, then append
+   stablecoin `addRoute(RoutePolicy)` records. Identity commits to all route data;
+   mutable source/router implementations still need independent review/monitoring.
+5. Call converter `setEnabled(true)` after policy validation. A WETH batch uses
+   zero route ID; stablecoin batches use a reviewed enabled route. ETH is excluded.
 
-Automation must preserve which NFTs earned pending funds, NFT ownership changes,
-all liabilities and fractional balances. Delayed conversion cannot distribute
-old funds using a newer membership set. Failed conversion must retain the funds
-and its accounting for retry, without a sweep, invented ETH credit or disruption
-to unrelated activation/claims. Dust, retries, wrapper failures, callbacks and
-canonical handoff/late receipts belong to the same design review. None of these
-conversion operations is an available operator command in the current candidate.
+### Automatic processing
 
-For a current admitted-token failure, inspect the exact asset and its provider;
-there is no supported removal/sweep or accounting bypass. Healthy single-currency
-claims may still work. Preserve the failure evidence and resolve/review the
-dependency before retrying affected calls. See the
-[operator manual](OPERATOR_MANUAL.md#revenue-operations).
+The existing [keeper](../keeper/monitor.py) has an opt-in
+[royalty worker](../keeper/royalties.py). It is disabled in the example config.
+Add reviewed `royalties`, `royalty_converter`, `royalty_nft`, `royalty_wrapper`
+and `oracle` addresses to `contracts` with their `code_hashes`, then configure:
+
+```json
+"royalty_conversion": {
+  "enabled": true,
+  "max_nfts_per_cycle": 32,
+  "max_gas_to_output_bps": 100,
+  "assets": [{
+    "asset": "<reviewed ERC20 address>",
+    "route_id": "<reviewed route ID; zero bytes32 for WETH>",
+    "minimum_source_units": "<positive raw-unit batch threshold>",
+    "minimum_output_wei": "<positive ETH-value threshold>"
+  }]
+}
+```
+
+These are placeholders, not a live configuration. Thresholds are operator choices;
+avoid uneconomic tiny swaps. `max_gas_to_output_bps` limits estimated operator gas
+relative to ETH output (default 1%); it is additional to the on-chain 1% execution
+cap. Existing absolute transaction/daily gas budgets also apply. The worker checks
+bindings/runtime hashes at a confirmed canonical hash, scans at most 32 NFTs and
+one currency per cycle, alternates priority with other work, estimates gas and
+simulates exact calldata through the existing serial pending/nonce path. Currency
+rotation and per-NFT on-chain balances make retry/restart idempotent. No server is
+started or upgraded by enabling source support.
+
+Changing the configured contract inventory requires the existing reviewed keeper
+state reconciliation and backup procedure; **never reset nonce/spending/pending
+state**. First use dry run, then qualify signer/RPC/fee policy and logs on the target
+network. No new private-key storage, external notification or monitor is added.
+
+### Stop, recover and verify
+
+- Governance `converter.setEnabled(false)` or `setRouteEnabled(id,false)` reads no
+  failing venue/token and stops new conversions. Global pause or migration
+  preparation also stops conversion; claims retain their own lifecycle rules.
+- Correct/review the dependency, configure a new reviewed policy/route if needed,
+  and re-enable with full validation. Already converted amounts cannot be reversed.
+- Failed conversions atomically retain original balances. Retry from fresh state,
+  not an old assumed balance/price. `sync(asset)` recovers currency eligibility;
+  the worker can submit this when a waiting cohort has no convertible batch.
+- Check per-NFT conversion events, native claimable balances, source liabilities,
+  native liabilities, zero approvals, receipts and separately charged keeper gas.
+  `royalty_conversion_deferred`, `royalty_conversion_uneconomic`, the existing
+  cooldown and pending-recovery logs distinguish a skipped batch from a payment.
+- Unsupported currency receipts are not rescued, admitted or converted silently.
+  Direct currency claims remain available when their token is healthy. If ETH
+  payment to an owning smart contract fails, ownership/payout compatibility still
+  needs resolution; operators cannot redirect another holder's funds.
+
+## Qualification boundary
+
+Read [scoped verification and internal review](../reports/royalty-conversion/VERIFICATION.md).
+No real route, wrapper, OpenSea settlement, live keeper, website/API integration
+or public transaction has been qualified by local mocks. Final runtime inventory,
+outage/recovery UI and conversion-event projections, target gas and independent
+audit remain in the [central task](../TODO.md#task-royalty-eth-settlement).

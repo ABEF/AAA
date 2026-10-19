@@ -44,16 +44,17 @@
         },
         {
           "id": "royalty-eth-settlement",
-          "status": "todo",
+          "status": "progress",
           "title": "Qualify ETH settlement for marketplace royalties",
-          "text": "Accepted initial scope is ETH pricing with verified ETH/WETH receipts. Confirm actual Robinhood listings/offers and checkout settlement. ETH payouts require new WETH conversion support; if USDC/USDG royalty settlement cannot be excluded, implement guarded automatic conversion. Current claims still pay each admitted currency directly.",
+          "text": "Bounded batch ETH conversion and optional-currency activation failure isolation are implemented, with a 1% execution-loss cap and gas separate. An opt-in keeper job preserves per-NFT entitlements and existing transaction recovery. Qualify exact Robinhood wrapper/routes/feeds, marketplace receipts, UI/history integration and operating behavior.",
           "href": "docs/ROYALTY_SETTLEMENT.md",
           "acceptance": [
-            "Use the documented owner/editor OpenSea pricing_currency operation with use_stablecoin=false and verify the asynchronous result. Inspect exact royalty transfers for listings, item/collection offers, old orders and supported cross-chain checkouts; buyer input currency is not necessarily receiver settlement currency. An ETH pricing preference is not proof of an on-chain currency ban.",
-            "Keep native ETH and the exact verified Robinhood WETH wrapper as the initial royalty scope; review wrapper code, backing, unwrap behavior and mutable authorities. Stablecoin activation inputs remain separate. Add USDC/USDG royalty conversion only if settlement qualification shows it is required, with exact token/route/feed admission.",
-            "Implement and review ETH-denominated payouts: exact WETH unwrap and, if required, automatic stablecoin conversion with fresh prices, minimum output, deadline, bounded approvals, measured ETH receipt and separate gas. A royalty conversion-loss limit still needs selection; do not reuse the activation or maintenance limits by assumption.",
-            "Preserve prior eligible membership, current NFT ownership, liabilities, dust and canonical handoff/late receipts during delayed conversion. A converter must not give older receipts to later activations. Failed processing must retain funds for retry and not undo successful LP activation or block unrelated claims. Per-currency delayed eligibility is not an approved rule; settle the accounting design before implementing it.",
-            "Verify zero receipts, no eligible NFTs, native/WETH/stablecoin payouts as applicable, failed balance reads/unwrap/swaps, retries, callbacks, transfers and conversion across activations. Reconcile claimed ETH and original-currency backing; update API/history/frontend units and operator controls with the implementation. No production or marketplace configuration has been performed."
+            "Keep ETH pricing and verified ETH/WETH as the initial marketplace scope. Verify actual listings/offers/old orders/checkout settlement; a buyer source currency or ETH pricing preference does not prove what reaches the royalty receiver.",
+            "Independently review and record the fixed converter binding before sealing, exact wrapper/admin/implementation policies, admitted source currencies, route/factory/pool pins, feeds and final runtime inventory. Stablecoin support remains conditional on actual settlement needs; no live route is assumed.",
+            "Implemented: one guarded conversion for up to 32 NFTs' earned balances, proportional ETH credit to those same NFTs, exact WETH unwrap, at least 99% oracle-valued stablecoin output, strict minimum/deadline, approvals/delta checks and separate keeper gas. Original claims/fractions/quarantines remain intact.",
+            "Approved and implemented: activation survives optional royalty-token failures; unseen receipts at recovery go to the earlier cohort, then waiting NFTs join future receipts. Expose eligibleFor and deferred/recovered status accurately. Exact unreadable backing still blocks canonical handoff.",
+            "Review [scoped tests and internal findings](reports/royalty-conversion/VERIFICATION.md). Rehearse automatic dry/live keeper conversion, gas economics, failed currency/route recovery, mixed claims and successor configuration on the target network; do not infer production readiness from local mocks.",
+            "Integrate conversion event projections and per-currency eligibility in API/frontend. RoyaltyConverted is not Claimed; lifetime paid history increases only on actual claims. Verify converted and raw balances across ownership changes and predecessor handoffs. Independent audit/remediation remains required."
           ]
         },
         {
@@ -393,7 +394,7 @@
           "href": "docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting",
           "acceptance": [
             "Review royalty-token outage isolation: activation synchronizes every admitted royalty asset, so a reverting balanceOf can block new activation and syncAll. Single-asset healthy claims are separate. Any remediation must preserve old receipt ownership, exact liabilities and eligibility checkpoints; blindly skipping failed assets can redistribute past receipts to new entrants. The mint/pool stop controls do not repair this separate accounting/liveness boundary.",
-            "Follow the accepted ETH-first [royalty settlement direction](docs/ROYALTY_SETTLEMENT.md) and its [owning task](TODO.md#task-royalty-eth-settlement). Native ETH has no external token balance query; a verified WETH wrapper is still an external dependency. OpenSea pricing and a proposed converter do not by themselves close activation outage or historical-allocation risks."
+            "The [royalty conversion and outage candidate](docs/ROYALTY_SETTLEMENT.md) isolates optional-token activation failures and preserves earned balances. Actual token/wrapper/route behavior, runtime inventory, eligibility UI and live recovery still require qualification; native ETH has no external ERC20 balance query."
           ]
         },
         {

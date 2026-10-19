@@ -1,5 +1,15 @@
 # Deployment address inventory
 
+The royalty conversion candidate also requires a separately deployed
+[`ZZZRoyaltyConverter`](../src/ZZZRoyaltyConverter.sol), constructed with the exact
+controller, RoyaltyRewards ledger and WETH wrapper. Governance binds it to the
+ledger once **before sealing**. Record its runtime hash and bidirectional bindings,
+wrapper proxy/admin/implementation policy and each reviewed conversion route/feed.
+It is an optional fixed helper, not a replacement sealed controller module. Core
+seal validation alone does not prove this optional feature is configured. Each
+successor needs its own reviewed binding. Production helper-inventory qualification
+remains open; see [setup and stopping procedures](ROYALTY_SETTLEMENT.md).
+
 This is a configuration reference, not a task-status list or approved deployment.
 The protocol remains an undeployed candidate. Production public wallets and
 PoPL contract addresses are not selected. The [release record](RELEASE_CHECKLIST.md)

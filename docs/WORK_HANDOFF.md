@@ -5,7 +5,14 @@ criteria live in the [central Todo](../TODO.md#task-security-chain-recovery).
 
 ## Current checkpoint
 
-October 19 royalty clarification: [the accepted direction](ROYALTY_SETTLEMENT.md)
+The royalty conversion continuation implements guarded batches, per-currency
+outage recovery and optional keeper automation. Read [the runbook](ROYALTY_SETTLEMENT.md)
+and [source-bound verification](../reports/royalty-conversion/VERIFICATION.md).
+The approved 1% cap excludes gas; older unapproved/not-implemented statements
+below describe the earlier checkpoint. Live qualification remains open, release
+NOT APPROVED, website/server/paused monitor unchanged. Use main and preserve drafts.
+
+Historical October 19 royalty clarification (superseded by the implemented checkpoint above): [the accepted direction](ROYALTY_SETTLEMENT.md)
 is ETH pricing and verified ETH/WETH royalty receipts first. If USDC/USDG royalty
 settlement cannot be excluded, implement guarded automatic ETH conversion. OpenSea
 documents Robinhood ETH/USDG pricing selection; it does not establish a universal

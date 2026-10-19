@@ -1,0 +1,35 @@
+{
+  "findings": 392,
+  "matched_previous_expressions": 378,
+  "new_findings_reviewed": [
+    6,
+    7,
+    9,
+    15,
+    99,
+    104,
+    105,
+    108,
+    111,
+    114,
+    326,
+    332,
+    338,
+    390
+  ],
+  "dispositions": {
+    "false_positive": 167,
+    "accepted_risk": 75,
+    "informational": 150
+  },
+  "coverage_pass": true,
+  "mutation_rejections": {
+    "missing": true,
+    "unreviewed": true,
+    "wrong_expression": true,
+    "stale_ledger": true,
+    "stale_converter": true
+  },
+  "independent_audit": false,
+  "previous_review_commit": "b7a50103443624f5bc75f3f58281d537c235f8d1"
+}

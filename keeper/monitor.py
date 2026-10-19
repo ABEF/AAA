@@ -20,6 +20,7 @@ from typing import Any
 from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
+from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
 MAX_METADATA_SUPPLY = 1000
@@ -29,6 +30,7 @@ PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('vault','rebalance(uint256,uint128,uint256)'),
     ('compounder','compound(uint256,uint128,uint256)'),
     ('buyback','execute(address,uint256,bytes32,uint256)'),
+    ('royalties',ROYALTY_BATCH),
 ))
 
 def log(event: str, **fields: Any) -> None:
@@ -125,6 +127,7 @@ class Keeper:
         if self.fee_policy not in ('unverified','included','separate_l1_fee'):
             raise ValueError('Unsupported receipt fee policy')
         self._configure_metadata()
+        self.royalties = RoyaltyAutomation(self)
         if self.live:
             if config.get('reviewed_for_live_use') is not True:
                 raise ValueError('Live use requires an explicit reviewed deployment configuration')
@@ -439,7 +442,7 @@ class Keeper:
         if not valid: raise RpcError('Pending transaction identity mismatch')
 
     def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0,
-               metadata_observation: dict[str,Any] | None = None) -> bool:
+               metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None) -> bool:
         if self.state.get('pending'): return False
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
@@ -452,7 +455,7 @@ class Keeper:
             log('action_cooldown',action=key,retry_after=retry_after)
             return False
         to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
-        data = calldata(signature,*args)
+        data = encode_batch(*args) if name == 'royalties' and signature == ROYALTY_BATCH else calldata(signature,*args)
         if metadata_observation is not None:
             self._validate_metadata_payload(metadata_observation)
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
@@ -467,6 +470,10 @@ class Keeper:
             self.blocked_actions += 1
             log('gas_cap_exceeded',action=key); return False
         cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
+        if maximum_cost is not None and cost > positive(maximum_cost,'maximum_cost',zero=True):
+            self.blocked_actions += 1
+            log('royalty_conversion_uneconomic',action=key,gas_cost_wei=str(cost),maximum_cost_wei=str(maximum_cost))
+            return False
         day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
             int(self.state['spent'].get(day,0))+cost > positive(self.config['max_daily_cost_wei'],'max_daily_cost_wei'):
@@ -824,6 +831,13 @@ class Keeper:
             return self.submit('fees','syncExternal(uint256)',(bucket,),f'external_rewards:{bucket}')
         return False
 
+    def _convert_royalties(self) -> bool:
+        try: return self.royalties.scan_once()
+        except (ValueError,RpcError) as exc:
+            self.blocked_actions += 1
+            log('royalty_conversion_deferred',**error_context(exc))
+            return False
+
     def cycle(self) -> None:
         if self.poll_pending(): return
         if self.canonical_state() != 0: return
@@ -832,6 +846,10 @@ class Keeper:
         preparing = self.preparation_active()
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
+        royalty_first = self.royalties.enabled and self.state['royalty_conversion']['next_first']
+        if self.royalties.enabled:
+            self.state['royalty_conversion']['next_first'] = not royalty_first
+            if royalty_first and not paused and not preparing and self._convert_royalties(): return
         metadata_first = False
         if self.metadata_enabled:
             # Alternate priority so changing artwork cannot starve LP maintenance
@@ -883,6 +901,7 @@ class Keeper:
         if paused:
             log('protocol_paused'); return
         if preparing: return
+        if self.royalties.enabled and not royalty_first and self._convert_royalties(): return
         for task in self.config.get('buybacks',[]):
             token = address(task['token']); amount = positive(task['amount'],'amount')
             if self.view('fees','buybackBalance(address)',token) >= amount:

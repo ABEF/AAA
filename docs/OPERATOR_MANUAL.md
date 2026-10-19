@@ -182,25 +182,31 @@ A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**
 
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees, proposed creator invoices and UI estimates.
 
-Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Change creator commercial terms off-chain and reconcile payments, but do not promise arbitrary payout-asset conversion or a mutable 80/10/5/5 allocation. See [external revenue](EXTERNAL_REWARDS.md), [royalty/claim behavior](CLAIM_ROUTER.md) and [measurement proposals](REVENUE_SHARE.md).
+Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Change creator commercial terms off-chain and reconcile payments, while royalty-only conversion uses the separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. See [external revenue](EXTERNAL_REWARDS.md), [royalty/claim behavior](CLAIM_ROUTER.md) and [measurement proposals](REVENUE_SHARE.md).
 
 ### Marketplace currency and ETH payouts
 
-The [royalty settlement procedure](ROYALTY_SETTLEMENT.md) records the accepted
-ETH pricing direction, exact OpenSea owner/editor request, asynchronous verification,
-and receipt checks for listings/offers/checkouts. Do not infer that a buyer using
-USDC means PoPL receives USDC, or that ETH pricing proves every order excludes it.
-If stablecoin royalties cannot be excluded, guarded automatic conversion is required.
-The current ledger pays each admitted currency directly; no WETH unwrap or swap
-command is implemented. Do not promise ETH-only claims from this candidate.
+The [settlement and conversion runbook](ROYALTY_SETTLEMENT.md) specifies the exact
+OpenSea pricing procedure, pre-seal converter binding, reviewed wrapper/routes,
+post-seal governance stop/reopen controls, keeper configuration, gas budgets,
+outage recovery and event/accounting checks. Native ETH requires no conversion;
+WETH unwrap is exact and stablecoin conversion enforces at most 1% execution loss.
+Network gas is separate and paid by the keeper. Batches convert earned balances
+for at most 32 NFTs and credit ETH to those same NFTs; they are not claims.
 
-An unreadable admitted ERC20 balance can still revert activation and `syncAll`;
-healthy single-currency claims are separate. Zero royalties are valid. Investigate
-the asset without bypassing accounting or removing liabilities. Activation inputs,
-rarity fixed at reveal, and activation-based royalty eligibility remain distinct.
-The central [settlement task](../TODO.md#task-royalty-eth-settlement) owns the
-conversion/failure-isolation work and qualification; this procedure is not evidence
-that those changes are implemented.
+`RoyaltyRewards.bindConverter` is one-time **before sealing**; converter
+`configureWrapper`, `addRoute`, `setRouteEnabled` and `setEnabled` are immediate
+governance operations within lifecycle controls. The optional keeper job is off
+by default. Do not reset pending/nonce/budget state when adding its contract pins.
+Stop a failed route without querying it, then review fresh policies before restart.
+
+Activation survives optional-currency balance failures. On recovery, unseen funds
+belong to the earlier eligible cohort; waiting NFTs join future receipts only.
+Check `eligibleFor(id,asset)` and the deferred/recovered events. Healthy claims
+continue; exact unreadable backing can still block canonical handoff. Original
+currency claims remain a fallback. No LP principal, orphaned funds or other NFT's
+entitlement is swept into a conversion. Local implementation is not live-service
+approval; use the [central settlement task](../TODO.md#task-royalty-eth-settlement).
 
 ## Mint and metadata
 

@@ -34,10 +34,11 @@ Native ETH is admitted automatically. Reviewed ERC20 assets can be appended thro
 
 The [ETH-first settlement direction](ROYALTY_SETTLEMENT.md) is a separate planned
 integration: qualify ETH pricing and actual ETH/WETH receipts, and convert
-USDC/USDG only if those royalty settlement currencies cannot be excluded. Current
-claims pay the admitted asset directly; there is no automatic conversion. Rarity
-is already fixed at reveal; activation enables its royalty weight without another
-user payment. No delayed per-currency eligibility policy has been approved.
+USDC/USDG only if those royalty settlement currencies cannot be excluded. The candidate converts earned royalties in bounded batches into ETH and preserves
+direct-currency claims as a fallback. A failed optional currency no longer blocks
+activation: earlier eligible NFTs retain unseen receipts; newcomers join that
+currency after recovery. Rarity is fixed at reveal; no additional user payment
+is required. See the settlement guide for exact boundaries and qualification.
 
 Primary references: [ERC-2981](https://eips.ethereum.org/EIPS/eip-2981), [ERC-4906](https://eips.ethereum.org/EIPS/eip-4906), [Chainlink VRF security](https://docs.chain.link/vrf/v2-5/security), [VRF request ABI](https://docs.chain.link/vrf/v2-5/subscription/get-a-random-number). Actual coordinator/network review remains open.
 

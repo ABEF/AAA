@@ -1,3 +1,27 @@
+## Royalty batch conversion and outage recovery - 2026-10-19
+
+The user approved automated batch ETH conversion, a maximum 1% execution loss
+with gas separate, and optional-currency failure isolation. This supersedes earlier
+notes saying these decisions were unapproved. Read [the runbook](docs/ROYALTY_SETTLEMENT.md)
+and [scoped evidence](reports/royalty-conversion/VERIFICATION.md).
+
+RoyaltyRewards checkpoints earned source balances for 1-32 sorted NFT IDs, converts
+once through a separately deployed pre-seal-bound RoyaltyConverter, and credits the
+same NFTs in ETH. Native receipt indices never redistribute conversion output.
+Original source fractions, dust, quarantines and direct-currency claims persist;
+conversion is not a payout or lifetime claim. Fixed helper, reviewed mutable route/
+wrapper policies, exact deltas, 99% oracle floor, stronger caller minimum and deadline.
+Keeper conversion is opt-in, shares serial nonce/pending/gas recovery, and uses
+confirmed hash reads with fair bounded scanning. It is not deployed on the server.
+
+Unreachable optional assets retain their older eligible cohort while activation
+and healthy-currency royalties continue. On recovery, unseen receipts (including
+during the outage) go to incumbents before waiting NFTs join future receipts.
+No retroactive catch-up. Canonical export flattens join-index baselines; exact
+unreadable backing can still block handoff. Immediate governance and all existing
+LP economics remain unchanged. No website, server, public transaction or monitor
+restart. Main only; preserve unrelated drafts and check Git for publication.
+
 ## ETH-first marketplace royalties - 2026-10-19
 
 Read [royalty settlement](docs/ROYALTY_SETTLEMENT.md) and its

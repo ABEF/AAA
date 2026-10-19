@@ -12,7 +12,8 @@
     "ZZZActivationEntry",
     "ZZZMigrationBudget",
     "ZZZRoyaltyFactory",
-    "ZZZRewardReceiverFactory"
+    "ZZZRewardReceiverFactory",
+    "ZZZRoyaltyConverter"
   ],
   "source_files": [
     {
@@ -121,7 +122,7 @@
     },
     {
       "file": "src/ZZZNFT.sol",
-      "lines": 318
+      "lines": 329
     },
     {
       "file": "src/ZZZNFTCanonical.sol",
@@ -137,7 +138,7 @@
     },
     {
       "file": "src/ZZZPoolRegistry.sol",
-      "lines": 195
+      "lines": 206
     },
     {
       "file": "src/ZZZRewardReceiver.sol",
@@ -152,12 +153,16 @@
       "lines": 228
     },
     {
+      "file": "src/ZZZRoyaltyConverter.sol",
+      "lines": 164
+    },
+    {
       "file": "src/ZZZRoyaltyFactory.sol",
       "lines": 14
     },
     {
       "file": "src/ZZZRoyaltyRewards.sol",
-      "lines": 345
+      "lines": 476
     },
     {
       "file": "src/ZZZStrategy.sol",

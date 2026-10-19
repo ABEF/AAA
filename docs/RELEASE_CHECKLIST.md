@@ -3,6 +3,12 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-19.
 
+The [royalty conversion candidate](ROYALTY_SETTLEMENT.md) adds a fixed pre-seal
+converter binding, batch ETH accounting, optional-token failure isolation and an
+opt-in keeper job. Independent wrapper/route/feed and runtime-inventory review,
+marketplace settlement, live keeper/UI rehearsals and audit remain required.
+This feature is not activated on any server or public chain.
+
 The [internal review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
 leaves this decision unchanged. Resolve the VRF/handoff liveness dependency and
 contract-holder successor compatibility before qualifying recovery. Total API
