@@ -136,7 +136,8 @@ transaction object. Smaller claim batches may be needed; these are estimates,
 not guaranteed inclusion costs.
 
 Direct calls share a 25-second work budget, finite RPC counts and snapshot expiry;
-HTTP adds a serial killable worker with a 30-second supervisor limit. Failed or
+HTTP adds [bounded parallel admission](CONCURRENT_SERVICES.md), with one isolated
+killable child per request and a 30-second supervisor limit. Failed or
 expired results cannot become drafts, and terminal budget errors cannot be hidden
 by per-currency isolation.
 

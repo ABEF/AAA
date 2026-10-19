@@ -213,17 +213,21 @@ python -m frontend_api.server --config /path/to/frontend-read.json --port 8787
 python -m unittest tests_python.test_frontend_api -v
 ```
 
-The server binds **127.0.0.1 only** and processes requests serially to bound
-upstream concurrency. It validates loopback Host including the selected port
-and uses five-second client socket/read-RPC timeouts. Do not expose Python's
-standard-library HTTP server directly to the internet. A separately reviewed
-HTTPS reverse proxy must set `Host: 127.0.0.1:8787`, strip incoming proxy headers,
-bound request/header/connection sizes and time, rate-limit expensive requests,
-cap queue/concurrency, and enforce same-origin website access. No proxy or public
-service is installed by this change. A per-request end-to-end operating budget,
-monitoring, archive-provider coverage and realistic load/failover rehearsals
-remain production gates; serial reads deliberately prioritize consistency over
-throughput. Keep credential-bearing configuration files out of source control.
+The server binds **127.0.0.1 only**. It now defaults to four independent spawned
+request workers and eight bounded HTTP connections, with no expensive-work waiting
+queue. Set `--workers` (1-8) and `--max-connections` (1-32) explicitly when sizing
+the service. Full capacity returns HTTP 503 `service_busy` / `Retry-After: 1`.
+Each request owns its Projection, RPC client, database reader and budget; financial
+results are not cached across users. See [concurrent operation](CONCURRENT_SERVICES.md)
+for exact ingress/header/deadline limits, logs, sizing and stop/restart procedures.
+
+Do not expose Python's standard-library server directly to the internet. A reviewed
+HTTPS proxy must set `Host: 127.0.0.1:8787`, strip incoming proxy headers, bound
+request/header/connection/response sizes and time, rate-limit expensive requests,
+cap queue/concurrency, and enforce same-origin access. No proxy or public service
+is installed by this change. Actual provider capacity, monitoring, archive coverage
+and realistic Linux load/failover rehearsals remain production gates. Keep
+credential-bearing configuration files out of source control.
 
 The tests exercise actual static ABI encodings and mocked contract-returned
 balances, native royalty receipts, decimal precision, ownership changes, current
@@ -240,9 +244,10 @@ budget, 1,024 logical RPC calls and 2,048 physical RPC POSTs (including retry an
 chain-check work). Snapshot/quote expiry shortens the deadline; nested history,
 lineage and trace work cannot reset it. SQLite queries use a progress callback.
 The parent stops a request at 30 seconds including startup, with terminate/kill
-cleanup waits of up to one second each; an unreaped worker blocks further work.
+cleanup waits of up to one second each. Failed process/directory cleanup quarantines
+that supervisor slot until operator recovery; other healthy slots continue.
 Direct library users share cooperative limits but do not get the process supervisor
-unless they use WorkerClient. DNS/body stalls require that supervisor.
+unless they use WorkerClient or WorkerPool. RPC stalls require that supervisor.
 
 Timeouts/work exhaustion return unavailable, never partial history or an expired
 transaction. Logs contain only sanitized outcome/elapsed fields. Public ingress,

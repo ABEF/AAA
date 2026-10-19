@@ -143,8 +143,10 @@ repeat live simulation and gas estimation immediately before user signing.
 Approval confirmation requires a new activation request. Handle rejected/replaced
 transactions and canonical receipts/reorgs, and refresh the NFT's on-chain value
 after confirmation. Smart-account execution/fee sponsorship is not qualified by
-an EOA-style call simulation. Server hosting still needs authentication/rate limits,
-request budgets, health/error monitoring and provider operating qualification.
+an EOA-style call simulation. The loopback server now uses [bounded parallel workers](CONCURRENT_SERVICES.md)
+and ingress/work deadlines; overload returns 503 `service_busy` with Retry-After.
+Hosting still needs reviewed ingress/origin/rate policy, health/error monitoring
+and actual provider/operating qualification.
 
 RPC traces are observations from the configured provider, **not cryptographic
 execution proofs**. Reviewed code and the on-chain checks enforce the limit when

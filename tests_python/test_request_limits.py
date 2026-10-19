@@ -165,6 +165,18 @@ class WorkerTests(unittest.TestCase):
         try:
             with self.assertRaises(RpcError):client.protocol()
         finally:client._lock.release()
+        admission = client._lock
+        class QuarantinedAtAdmission:
+            def acquire(self, **kwargs):
+                acquired=admission.acquire(**kwargs)
+                if acquired:client._unreaped=True
+                return acquired
+            def release(self):admission.release()
+        client._lock=QuarantinedAtAdmission()
+        with patch('frontend_api.worker.multiprocessing.get_context') as spawn:
+            with self.assertRaises(RpcError):client.protocol()
+            spawn.assert_not_called()
+        self.assertFalse(admission.locked())
 
     def test_temp_creation_failure_releases_admission_lock(self):
         client=WorkerClient(configuration())
@@ -174,6 +186,15 @@ class WorkerTests(unittest.TestCase):
 
     def test_cleanup_failure_is_sanitized_and_releases_lock(self):
         client = WorkerClient(configuration())
+        admission = client._lock
+        case = self
+        class CheckedAdmission:
+            def acquire(self, **kwargs):return admission.acquire(**kwargs)
+            def locked(self):return admission.locked()
+            def release(self):
+                case.assertIsNotNone(client._unreaped, 'Quarantine must precede reopening admission')
+                admission.release()
+        client._lock = CheckedAdmission()
         factory = tempfile.TemporaryDirectory
         def failing_cleanup(*args, **kwargs):
             directory = factory(*args, **kwargs)
@@ -190,6 +211,10 @@ class WorkerTests(unittest.TestCase):
         self.assertNotIn('SECRET', log.getvalue())
         self.assertFalse(client._lock.locked())
         self.assertIn('worker_cleanup_failed', log.getvalue())
+        self.assertIsNotNone(client._unreaped)
+        with patch('frontend_api.worker.multiprocessing.get_context') as spawn:
+            with self.assertRaises(RpcError):client.protocol()
+            spawn.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()

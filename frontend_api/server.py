@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 import argparse
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler
+from frontend_api.http_runtime import BoundedHandler, BoundedHTTPServer, ServiceBusy
 import json
 from pathlib import Path
 import re
@@ -40,28 +41,38 @@ def _bounded_depth(payload):
 
 
 def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandler]:
-    class Handler(BaseHTTPRequestHandler):
+    class Handler(BoundedHandler):
         protocol_version = 'HTTP/1.0'
         server_version = 'PoPLReadAPI/1'
         sys_version = ''
 
         def _json(self, status: int, value: dict[str, Any]) -> None:
-            body = (json.dumps(value, separators=(',', ':'), ensure_ascii=True) + '\n').encode()
-            self.send_response(status)
-            self.send_header('Content-Type', 'application/json; charset=utf-8')
-            self.send_header('Content-Length', str(len(body)))
-            self.send_header('Cache-Control', 'no-store')
-            self.send_header('X-Content-Type-Options', 'nosniff')
-            self.send_header('Connection', 'close')
-            self.end_headers()
-            self.wfile.write(body)
+            body = (json.dumps(value, separators=(',', ':'), ensure_ascii=True, allow_nan=False) + '\n').encode()
+            self.close_connection = True
+            try:
+                self.send_response(status)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Content-Length', str(len(body)))
+                self.send_header('Cache-Control', 'no-store')
+                self.send_header('X-Content-Type-Options', 'nosniff')
+                self.send_header('Connection', 'close')
+                if value.get('error') == 'service_busy':
+                    self.send_header('Retry-After', '1')
+                self.end_headers()
+                self.wfile.write(body)
+            except OSError:
+                # Client disconnection is not an invitation to retry work or send
+                # a second error response after headers have already been sent.
+                pass
 
         def do_GET(self) -> None:
             port = self.server.server_address[1]
-            if self.headers.get('Host') not in (f'127.0.0.1:{port}', f'localhost:{port}'):
+            hosts = self.headers.get_all('Host', [])
+            if len(hosts) != 1 or hosts[0] not in (f'127.0.0.1:{port}', f'localhost:{port}'):
                 self._json(400, {'error': 'invalid_host'})
                 return
-            if self.headers.get('Content-Length') not in (None, '0') or self.headers.get('Transfer-Encoding'):
+            lengths = self.headers.get_all('Content-Length', [])
+            if lengths not in ([], ['0']) or self.headers.get_all('Transfer-Encoding') is not None or self.headers.get_all('Expect') is not None:
                 self._json(400, {'error': 'request_body_not_allowed'})
                 return
             match = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})', self.path)
@@ -79,10 +90,13 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
                 self._json(400, {'error': 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
                 return
             try:
+                self.begin_work()
                 result = projection.earnings(identifier) if earned or collection_earnings else projection.mint_readiness() if readiness else projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
             except UnknownNFT:
                 self._json(404, {'error': 'nft_not_minted'})
-            except (RpcError, ValueError, KeyError, TypeError, OverflowError):
+            except ServiceBusy:
+                self._json(503, {'error': 'service_busy'})
+            except Exception:
                 # Never disclose upstream errors, configured endpoints or keys.
                 self._json(503, {'error': 'confirmed_projection_unavailable'})
             else:
@@ -131,7 +145,10 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
                 return
             from frontend_api.transactions import TransactionInputError
             try:
+                self.begin_work()
                 result = preparer.prepare(payload)
+            except ServiceBusy:
+                self._json(503, {'error': 'service_busy'})
             except TransactionInputError:
                 self._json(400, {'error': 'invalid_transaction_request'})
             except UnknownNFT:
@@ -156,35 +173,34 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
     return Handler
 
 
-class ReadServer(HTTPServer):
-    """Serial handler bounds concurrent upstream work; proxy must rate-limit."""
-    request_queue_size = 8
-
-    def get_request(self):
-        connection, peer = super().get_request()
-        connection.settimeout(5)
-        return connection, peer
+class ReadServer(BoundedHTTPServer):
+    """Bounded connections; production entry points supply isolated worker pools."""
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', required=True)
     parser.add_argument('--port', type=int, default=8787)
+    parser.add_argument('--workers', type=int, default=4, choices=range(1, 9), help='Isolated request workers (1-8)')
+    parser.add_argument('--max-connections', type=int, default=8, choices=range(1, 33), help='Bounded HTTP connections (1-32)')
     parser.add_argument('--transaction-config',
                         help='Reviewed fee policy for opt-in unsigned mint/claim preparation; no signing')
     args = parser.parse_args()
     if not 1024 <= args.port <= 65535:
         parser.error('port must be between 1024 and 65535')
-    config = json.loads(Path(args.config).read_text(encoding='utf-8'))
-    from frontend_api.worker import WorkerClient
-    transaction_config = json.loads(Path(args.transaction_config).read_text(encoding='utf-8')) if args.transaction_config else None
-    projection = WorkerClient(config, transaction_config=transaction_config)
+    try:
+        config = json.loads(Path(args.config).read_text(encoding='utf-8'))
+        from frontend_api.worker import WorkerPool
+        transaction_config = json.loads(Path(args.transaction_config).read_text(encoding='utf-8')) if args.transaction_config else None
+        projection = WorkerPool(config, transaction_config=transaction_config, workers=args.workers)
+    except Exception:
+        parser.exit(1, 'Invalid reviewed deployment/transaction configuration.\n')
     preparer = None
     if transaction_config is not None:
         preparer = projection
-    with ReadServer(('127.0.0.1', args.port), handler(projection, preparer)) as server:
+    with ReadServer(('127.0.0.1', args.port), handler(projection, preparer), max_connections=args.max_connections) as server:
         print(json.dumps({'event': 'frontend_read_api_started', 'port': args.port,
-                          'chain_id': projection.chain, 'transaction_preparation_enabled': preparer is not None}), flush=True)
+                          'chain_id': projection.chain, 'workers': args.workers, 'max_connections': args.max_connections, 'transaction_preparation_enabled': preparer is not None}), flush=True)
         try:
             server.serve_forever(poll_interval=.5)
         except KeyboardInterrupt:

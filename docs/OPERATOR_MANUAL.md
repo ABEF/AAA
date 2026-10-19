@@ -499,3 +499,33 @@ behavior; prefer a reviewed forward fix over rollback. See [evidence](../reports
 Production recovery still requires persisted transaction hashes and canonical
 receipt/replacement/reorg reconciliation; browser/demo locks are not distributed
 wallet authorization or a production multi-user capacity guarantee.
+
+## Concurrent read and preparation services
+
+Infrastructure operators configure `python -m frontend_api.server` and
+`python -m frontend_api.activation_server` with the existing reviewed manifests.
+Both now accept `--workers 4` (1-8) and `--max-connections 8` (1-32), per listener.
+See [exact start commands, bounds and recovery](CONCURRENT_SERVICES.md). These
+are separate read-only/unsigned services, with no new contract authority or signer.
+Do not parallelize the disposable local launcher's mutation/signing lock.
+
+Verify startup caps/chain and fresh `/v1/protocol` responses before exposing a
+reviewed ingress proxy. Busy capacity returns 503 `service_busy` with Retry-After;
+permit only finite read backoff, never a new financial submission as an automatic
+retry. A failed cleanup permanently quarantines that worker slot and emits a fixed
+operator-action log. Inspect and drain ingress, stop the service and all children,
+retain sanitized evidence, correct the cause, then restart and verify fresh state.
+Do not remove live-child directories or substitute old financial data. Reducing
+workers to one is a bounded fallback; rolling back the HTTP protections is not.
+Linux/provider capacity, process-group shutdown and off-host monitoring still need
+qualification before hosting. No existing service or paused monitor was restarted.
+
+Main-site unsent simulation actions expire after 15 seconds or navigation away;
+returning to the page reads saved state and requires a fresh action. Ordinary tab
+switching is allowed. The exact-version immutable preview cache never replaces
+a storage read or an on-chain query. The local `/app/` confirmation adapter rejects
+missing/nonfinite/overlong expiry, counts preparation time, and checks monotonic
+and wall time plus chain/account/revision before submission. Refresh and prepare
+again on expiry; recover unresolved submissions using the existing operation ID.
+Only a page reload is needed for these website code changes. No economics, local
+signer permissions, on-chain configuration or automatic transaction retry changed.

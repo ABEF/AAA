@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-19",
+  "scope": "Scoped internal concurrency/resilience verification; not production qualification",
+  "contract_repository": {
+    "frontend_api/http_runtime.py": "99d0be38a5cf7819b060d6e41e6ad96f63d441fef812b5f0253c6544a6652722",
+    "frontend_api/worker.py": "6ff71abe770c6278812bb5b820c43ecf4e3c865423cb498df0436b908c80d941",
+    "frontend_api/server.py": "1fb8efb83777ebc0513cdce88aabd549d2d6d794131935ff9b6e17aaad288a46",
+    "frontend_api/activation_server.py": "0eacbc9cf5e8aa4d29728bf5344d16b3315876a7a1570db793b155b7b0044f46",
+    "tests_python/test_http_concurrency.py": "f1a08829e6f52880ba39d0782705fd881b82f31addb7d5499aef7a7aaf8c9e35",
+    "tests_python/test_frontend_transaction_http.py": "9c6a0a1698d32ee06406cdb0641f27f5b1573c35a0ade8af86c3ad840aca5f37",
+    "tests_python/test_frontend_activation_http.py": "53dc4f6656ef18bf1fcc27a6271ef2b41525d92539c27435df520c2688f68156",
+    "tests_python/test_frontend_api.py": "1a808bb3a0e426c0f8e16eec8744d3784560e083220a13fc1fc2d77843e5ca62",
+    "tests_python/test_request_limits.py": "145b024744fc26e49fbb613019ad48d297dc8b9c87d5f9df799008b976668802",
+    "tests_python/test_wallet_preparation.py": "ce6dc97a1ed5c40e48e7dc47ac894c3af4eb7c348ff6b2eaf03b4a9f48459518"
+  },
+  "website_repository": {
+    "app.js": "95b7784672e322e6b46cf845017ceab57883c1a25d0a87ac85e5f289e76d5a8a",
+    "ui-state.js": "8f86ff740c3debf49f0a23a21d8797fb0bb3d027ee48727a7e6e4dc6905f6298",
+    "preview-store.js": "df87182dc6cf0cb08a05a73dadd8d12cb9fee05a5a418d30b4b1774a912846ca",
+    "local-client.js": "6aaec44fe6e7bd05c8d553f2ca180539504c44c77908a3c03bc7c7769b0ac5b4",
+    "tests/ui-state.test.mjs": "115db5848d62d4143f5c1f70a088be73f2bdd85bf9d29a16d253f2d72ad3e8de",
+    "tests/local-client.test.mjs": "4a3c8f9df12a864d4dc73c9416e8f1b8b2046b5412af52b53442d1188596c47a",
+    "tests/domain.test.mjs": "75b56603c03697061fbbdebeb533c6ed4ba63851a423803cbdd56211527ca262",
+    "domain.js": "c3128ae2c28d6267ed12c1d29dd928b58ba3fab775becbbd726f3c3f1f7eada8",
+    "wallet.js": "a41826166cfa69ead5d1d5927cdda2b8383b16c432f718bbe1ddec8bafa5a1d0"
+  }
+}

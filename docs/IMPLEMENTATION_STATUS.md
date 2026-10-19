@@ -16,6 +16,20 @@ decision for an exact release, not development progress. Creator-dependent quest
 are grouped in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team);
 recording them does not implement a feed, payment agreement or live route.
 
+## Bounded concurrent API and website resilience
+
+Read and unsigned preparation listeners now admit independent spawned requests
+in a finite pool (default four workers / eight HTTP connections per process).
+Absolute ingress and connection deadlines, bounded headers, explicit overload,
+sanitized disconnect/error handling and failed-cleanup quarantine complement the
+existing confirmed-state/RPC budgets. Main website state uses a single immutable
+exact-version preview cache and expires suspended intents. Its local confirmation
+adapter checks finite bounded expiry, elapsed preparation and current context.
+[Scoped evidence](../reports/concurrent-services/VERIFICATION.md) records 47 affected
+Python and 90 JavaScript passes plus a source build/browser check. These are local
+admission/isolation checks, not production load or multi-device signing approval.
+The [operating procedure](CONCURRENT_SERVICES.md) covers capacity and recovery.
+
 ## Main website interaction state
 
 The default website now has per-NFT/mint action tracking, overlapping-batch guards,

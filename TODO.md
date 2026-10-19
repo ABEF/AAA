@@ -159,7 +159,7 @@ The data and services behind the app.
 
 <a id="task-host-services"></a>
 
-- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts. Request-wide deadlines/RPC budgets, SQLite checkpoints and killable serial HTTP workers are implemented; deployment and operating qualification remain open.
+- [ ] **[Host and monitor the API & indexer](docs/FRONTEND_API.md#local-operation-and-verification)** - In progress. A bounded read-only RPC compatibility probe exists. Pinax passed its initial checks; the documented public endpoint returned HTTP 403 from this environment. Qualify a second provider, production hosting, backfills, reorgs and external alerts. Request-wide deadlines/RPC budgets, SQLite checkpoints and bounded parallel isolated HTTP workers and connection/ingress limits are implemented; deployment and operating qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -171,6 +171,7 @@ The data and services behind the app.
   - [AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.
   - Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance.
   - Use the [history comparison procedure](docs/HISTORY_AUDIT.md) with a reviewed separate RPC operator. Qualify the first block_log_lookup index build on the actual database, disk/backup/restart behavior, complete backfills and provider/reorg/load conditions. No server restart or provider approval is implied by local evidence.
+  - [Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace peak load, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added.
 
   </details>
 
@@ -273,7 +274,7 @@ What holders see and use.
 
 <a id="task-transaction-ui"></a>
 
-- [ ] **[Handle the complete transaction journey](docs/CLAIM_ROUTER.md)** - In progress. Main website now uses per-NFT action tracking, safe cross-tab preview commits, wallet-change cancellation and inline feedback. Local contract mode retains exact confirmations/recovery. Production signing, receipts/reorgs and multi-device load qualification remain open.
+- [ ] **[Handle the complete transaction journey](docs/CLAIM_ROUTER.md)** - In progress. Main website tracks per-NFT actions, commits cross-tab previews safely, caches only immutable exact-version demo state, expires suspended intents and rejects malformed/stale local confirmations. Production signing, receipts/reorgs and multi-device load qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -287,6 +288,7 @@ What holders see and use.
   - Qualify multiple independent devices/wallets activating, topping up and claiming concurrently: shared-pool quote movement, same-NFT transfer/claim races, account/chain changes, nonce/replacement recovery, isolated sessions and peak-load limits. Preserve exact transaction validation and confirmed-only artwork/financial state; a two-account serial Anvil fixture is not production concurrency qualification.
   - Local contribution review shows validation, progress and errors inside the dialog. Exact-contribution acknowledgement survives confirmed approval, while Entry retains a separate explicit confirmation. Only the activated/topped-up NFT shows the artwork Updating badge; stale portfolio finances/actions remain guarded.
   - Main website implementation: per-NFT/mint resources, atomic overlapping batch rejection, latest-state commits under Web Locks, bounded cross-tab waits, reset epochs and explicit persistence failures. Seventeen new focused cases plus affected domain/wallet cases and two-tab browser activation/claim checks are recorded in [scoped evidence](reports/frontend-state/VERIFICATION.md). No claim of distributed production safety or public deployment.
+  - [Website/backend resilience evidence](reports/concurrent-services/VERIFICATION.md): 47 scoped Python and 90 JS passes, including source isolation, overload, cleanup, storage invalidation, nonfinite expiry, wallet/context changes and duplicate confirmation. Main-site browser/read checks and static build passed. Simulation/browser locks and the serial local signer do not establish concurrent production wallet safety.
 
   </details>
 
@@ -709,4 +711,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `149621f503d5436e12b34fba6bab37260b424750131e819cd1365f3e201671a6`.
+Snapshot SHA-256: `57b5ddadc593586319897a80aa087305f13d5532179143b8a4c33c9293467e79`.

@@ -221,12 +221,12 @@ class TransactionHTTPTests(unittest.TestCase):
                 policy = transaction_config(self.projection)
                 reads = [json.dumps(configuration())] + ([json.dumps(policy)] if enabled else [])
                 with patch('sys.argv', argv), patch('frontend_api.server.Path.read_text', side_effect=reads), \
-                        patch('frontend_api.worker.WorkerClient', return_value=self.projection) as constructor, \
+                        patch('frontend_api.worker.WorkerPool', return_value=self.projection) as constructor, \
                         patch('frontend_api.server.ReadServer', return_value=context), \
                         patch('frontend_api.server.handler') as route, contextlib.redirect_stdout(output):
                     main()
                 route.assert_called_once_with(self.projection, self.projection if enabled else None)
-                constructor.assert_called_once_with(configuration(), transaction_config=policy if enabled else None)
+                constructor.assert_called_once_with(configuration(), transaction_config=policy if enabled else None, workers=4)
                 self.assertEqual(json.loads(output.getvalue())['transaction_preparation_enabled'], enabled)
 
 

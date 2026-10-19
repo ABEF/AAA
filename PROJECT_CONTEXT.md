@@ -1,3 +1,18 @@
+## Concurrent website/API resilience - 2026-10-19
+
+Read docs/CONCURRENT_SERVICES.md and reports/concurrent-services/VERIFICATION.md.
+The API now admits bounded independent spawned requests (4 workers/8 connections
+per process by default), with absolute ingress/header limits, explicit busy replies
+and failed-cleanup quarantine. Main website has an immutable exact-storage cache,
+15-second/navigation cancellation for unsent previews and strict local confirmation
+expiry/context checks. Scoped evidence: 47 Python and 90 JS passes, static build
+and browser check. No Solidity/unchanged broad suites rerun, public service change,
+signer expansion, public transaction or monitor restart. Keep the local signer
+serial. Hosting/provider/Linux and multi-device wallet qualification remain open.
+Todo/features/operator procedures updated; main only, check Git for publication.
+Preserve unrelated drafts and the user's current example positions. Release NOT
+APPROVED. The public site remains a simulation.
+
 ## Main website interaction hardening - 2026-10-19
 
 The user requested improvements in the actual website, not just its local test

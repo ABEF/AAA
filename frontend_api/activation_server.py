@@ -8,6 +8,7 @@ import re
 
 from frontend_api.activation import ActivationTransactions, ActivationInputError
 from frontend_api.server import ReadServer, handler as read_handler
+from frontend_api.http_runtime import ServiceBusy
 from frontend_api.service import Projection, UnknownNFT
 
 
@@ -52,7 +53,10 @@ def handler(projection, preparer):
                     raise ValueError('Expected flat request')
             except (OSError,ValueError,RecursionError):
                 self._json(400,{'error':'invalid_json_body'});return
-            try:result=preparer.prepare(payload)
+            try:
+                self.begin_work()
+                result=preparer.prepare(payload)
+            except ServiceBusy:self._json(503,{'error':'service_busy'})
             except ActivationInputError:self._json(400,{'error':'invalid_activation_request'})
             except UnknownNFT:self._json(404,{'error':'nft_not_minted'})
             except Exception:
@@ -67,16 +71,18 @@ def main():
     parser.add_argument('--config',required=True)
     parser.add_argument('--activation-config',required=True)
     parser.add_argument('--port',type=int,default=8788)
+    parser.add_argument('--workers',type=int,default=4,choices=range(1,9))
+    parser.add_argument('--max-connections',type=int,default=8,choices=range(1,33))
     args=parser.parse_args()
     if not 1024<=args.port<=65535:parser.error('port must be between 1024 and 65535')
     try:
-        from frontend_api.worker import WorkerClient
-        p=WorkerClient(json.loads(Path(args.config).read_text(encoding='utf-8')),
-                       json.loads(Path(args.activation_config).read_text(encoding='utf-8')))
+        from frontend_api.worker import WorkerPool
+        p=WorkerPool(json.loads(Path(args.config).read_text(encoding='utf-8')),
+                       json.loads(Path(args.activation_config).read_text(encoding='utf-8')),workers=args.workers)
         preparer=p
     except Exception:parser.exit(1,'Invalid reviewed deployment/activation configuration.\n')
-    with ReadServer(('127.0.0.1',args.port),handler(p,preparer)) as server:
-        print(json.dumps({'event':'activation_preparation_started','port':args.port,'chain_id':p.chain}),flush=True)
+    with ReadServer(('127.0.0.1',args.port),handler(p,preparer),max_connections=args.max_connections) as server:
+        print(json.dumps({'event':'activation_preparation_started','port':args.port,'chain_id':p.chain,'workers':args.workers,'max_connections':args.max_connections}),flush=True)
         try:server.serve_forever(poll_interval=.5)
         except KeyboardInterrupt:pass
 

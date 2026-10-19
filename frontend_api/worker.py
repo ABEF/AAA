@@ -1,14 +1,16 @@
-"""Killable, serial, read-only API requests; configuration stays in memory."""
+"""Killable isolated API workers with bounded parallel admission."""
 from __future__ import annotations
 
 import json
 import multiprocessing
+import queue
 from pathlib import Path
 import tempfile
 import threading
 import time
 
 from frontend_api.service import Projection, UnknownNFT
+from frontend_api.http_runtime import ServiceBusy
 from zzz_ops.errors import RpcError, WorkLimit
 from zzz_ops.work_budget import request_scope
 
@@ -65,8 +67,8 @@ class WorkerClient:
     """One child per operation, no orphan work after the response deadline.
 
     The supervisor uses spawn on every OS. A worker can read RPC/history but
-    cannot sign or broadcast. The serial HTTP listener admits only one at a time.
-    Reverse-proxy admission/rate limiting remains an operating requirement.
+    cannot sign or broadcast. Each client handles one child; WorkerPool owns a
+    finite set of independent clients. Proxy/rate limits remain required.
     """
 
     def __init__(self, config, activation_config=None, *, transaction_config=None):
@@ -90,7 +92,12 @@ class WorkerClient:
     def _request(self, action, payload=None):
         from frontend_api.activation import ActivationInputError
         from frontend_api.transactions import TransactionInputError
-        if self._unreaped is not None or not self._lock.acquire(blocking=False):
+        if not self._lock.acquire(blocking=False):
+            raise RpcError('Request worker unavailable')
+        # Check quarantine under admission, not before it: a caller can be
+        # preempted while the preceding request is finishing failed cleanup.
+        if self._unreaped is not None:
+            self._lock.release()
             raise RpcError('Request worker unavailable')
         started = time.monotonic()
         event = 'failed'
@@ -165,6 +172,7 @@ class WorkerClient:
                     if alive:
                         self._unreaped = process
                         event = 'worker_cleanup_failed'
+                        cleanup_failed = True
                     else:
                         process.close()
             except Exception:
@@ -182,9 +190,12 @@ class WorkerClient:
             except Exception:
                 cleanup_failed = True
             finally:
+                if cleanup_failed:
+                    # Poison before releasing admission, including for direct
+                    # WorkerClient callers outside the pool's exclusive lease.
+                    self._unreaped = self._unreaped or True
+                    event = 'worker_cleanup_failed'
                 self._lock.release()
-            if cleanup_failed:
-                event = 'worker_cleanup_failed'
             print(json.dumps({'event': 'api_request', 'outcome': event,
                               'elapsed_ms': int((time.monotonic()-started)*1000)}), flush=True)
             if cleanup_failed:
@@ -209,3 +220,53 @@ class WorkerClient:
         if self.activation_config is None and self.transaction_config is None:
             raise RpcError('Transaction preparation is disabled')
         return self._request('activation' if self.activation_config is not None else 'transactions', payload)
+
+
+class WorkerPool:
+    """No waiting queue or shared Projection/RPC/request budget across callers.
+
+    Each lease owns one supervisor. Every request still creates a fresh child,
+    checks freshness after completion and reaps it before returning the lease.
+    Failed cleanup quarantines that slot until an operator restarts the service.
+    """
+
+    def __init__(self, config, activation_config=None, *, transaction_config=None, workers=4):
+        if type(workers) is not int or not 1 <= workers <= 8:
+            raise ValueError('workers must be between 1 and 8')
+        self._available = queue.Queue(maxsize=workers)
+        for _ in range(workers):
+            client = WorkerClient(config, activation_config, transaction_config=transaction_config)
+            self._available.put_nowait(client)
+            self.chain = client.chain
+
+    def _dispatch(self, method, *args):
+        try:
+            client = self._available.get_nowait()
+        except queue.Empty:
+            raise ServiceBusy('Request capacity unavailable') from None
+        try:
+            return getattr(client, method)(*args)
+        finally:
+            if client._unreaped is None:
+                self._available.put_nowait(client)
+            else:
+                print(json.dumps({'event': 'api_worker_quarantined',
+                                  'operator_action': 'inspect_and_restart'}), flush=True)
+
+    def protocol(self):
+        return self._dispatch('protocol')
+
+    def mint_readiness(self):
+        return self._dispatch('mint_readiness')
+
+    def nft(self, identifier):
+        return self._dispatch('nft', identifier)
+
+    def wallet(self, owner):
+        return self._dispatch('wallet', owner)
+
+    def earnings(self, identifier=None):
+        return self._dispatch('earnings', identifier)
+
+    def prepare(self, payload):
+        return self._dispatch('prepare', payload)

@@ -61,10 +61,16 @@ class ActivationHTTPTests(unittest.TestCase):
 
     def test_duplicate_host_and_length_rejected(self):
         for header,value in [('Host','localhost'),('Content-Length','2')]:
-            c=http.client.HTTPConnection('127.0.0.1',self.server.server_address[1],timeout=5)
+            c=http.client.HTTPConnection('127.0.0.1',self.server.server_address[1],timeout=1)
             c.putrequest('POST','/v1/activation/prepare')
             c.putheader('Content-Type','application/json');c.putheader('Content-Length','2');c.putheader(header,value)
-            c.endheaders(b'{}');r=c.getresponse();self.assertEqual(r.status,400);r.read();c.close()
+            # Bad framing must be rejected before requesting/consuming any body.
+            # Sending a separate body after an early close can cause a TCP reset
+            # instead of delivering the error response on Windows.
+            try:
+                c.endheaders();r=c.getresponse();self.assertEqual(r.status,400);r.read()
+            finally:c.close()
+        self.assertEqual(self.rpc.calls, [])
 
 
 if __name__=='__main__':unittest.main()
