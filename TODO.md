@@ -321,7 +321,7 @@ What holders see and use.
   - New $5 increases and $100 activation are aligned in preview, local client, preparation and contracts. Preserve historical smaller preview events without permitting new ones. Earned totals sit on one line below attached LP, separate from claimable. Existing local sessions/public services are not upgraded; qualify production browser transactions and multi-user operation.
   - Match the accepted ETH-only holder payout requirement to actual on-chain conversion before displaying ETH. The older TEST-1/TEST-2 session is preserved; separate named ZZZ/WETH/USDC/USDG fixtures now exercise wrapping, decimals and mock routes. Balance/faucet UX and source-to-ETH payout qualification remain open. Do not cosmetically rename generic balances or silently reset current NFTs.
   - Four visible contribution inputs: ZZZ, USDG, USDC, ETH; WETH internal only. Contribution-only dialogs and scoped confirmed refresh are implemented. Named local fixtures exercise exact approvals and mock conversion separately from public route qualification; see [local setup](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal).
-  - [Gallery/reward-feedback evidence](reports/website-polish/VERIFICATION.md): one saved sample funding round preserves prior LP and claims, allocation is LP/equal-collective/rarity weighted, duplicates cannot refill it. Confirmed tier celebrations wait for successful contribution and fresh LP. Single-pool UI hides redundant pool controls. These are demo/presentation improvements, not live funding or production signing.
+  - [Gallery/reward-feedback evidence](reports/website-polish/VERIFICATION.md): one saved sample funding round preserves prior LP and claims, allocation is LP/equal-collective/rarity weighted, duplicates cannot refill it. Confirmed tier celebrations use supplied ACTI/EV audio synchronized with the image after successful contribution and fresh increased LP. The claimed-total frame is hidden without changing lifetime accounting. Single-pool UI hides redundant pool controls. These are demo/presentation improvements, not live funding or production signing.
 
   </details>
 
@@ -746,4 +746,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ec72fb19bb2b098f88f4b44ddc4a89a843faec1d0f8b9d21be4da6adba9302ef`.
+Snapshot SHA-256: `45b6366b602cbf40048650fec78bbadbf2b778ac57042e7f7befc6a9a1d5fdbf`.

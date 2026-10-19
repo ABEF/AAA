@@ -1,17 +1,25 @@
 {
-  "website_commit": "75de6a3333c28b3d674056721000fac403bc92d2",
+  "website_commit": "4abb09bbfa49666ab6d5592823393ef7cdbfd0eb",
   "website_files": {
-    "app.js": "28b0352093473556906194b9515129f02184f2772a23399f185352c0029d9bb4",
+    "FRONTEND_STATE.md": "4ca24ee12ace5e2e97d951b005fcb86f73f5ff11bd7f84a32664669bde399c20",
+    "PROJECT_CONTEXT.md": "bc021dc4d2255c6767519fff3cb81b67d5cacdb06a86969961e8bf15aaf89f5c",
+    "app.js": "b37e2a98c412251e5fbe1673bc390dba419440d5da60109691a4cae90f9fbad9",
+    "artworks.js": "6c6b0d5f5d5cf454c338ddb6930ba9a1d7475042d61a889102922f012ce5c42d",
+    "assets/audio/README.md": "8e0458ebeda9da68ea9febe7630df147178ffbac7085449398c5bcfb2df4c417",
+    "assets/audio/activation.mp4": "dfcd3c6321c55603b0602d8e54f1c3947392b20c2eccb36f383f5556bfa52d33",
+    "assets/audio/evolution.mp4": "48128f4014cb4c000ab282ac1a74debf4dacd20430bae5d43e1ac1fd4de72587",
+    "build.mjs": "df7b96ffc3e085eb905bd27fafd25ada00676ab8b7e116ccb91934ab34075a1b",
     "domain.js": "934a69deaf3b4bd20e6d2565b15c84c2d553e4d1fe063a97faf5e681ced00fe1",
     "index.html": "458587036341f966ea890bb82d6286deb80e6296dab45ab4a1345ed26d4ee9b8",
-    "local-view.js": "6afe79d61f17dded30e0e7edcd6e27545e5310d49e9e0a71db8be9937ef410f9",
+    "local-view.js": "3c562dd5f7a7ffcaa540bebd71bd32518d87b8422b8ac7f0ac7550f6905b844e",
     "preview-store.js": "b1a248221835231560ca8b2095a99a79e5db0309a737f542075599b6fb497b46",
+    "server.mjs": "1319ebc1efbfa82278af130ef93c16997c6a990744d4bb1446b4ec037bf7e50a",
     "styles.css": "44ae292b395fc632d8d7cc53c15bc3e392a1ff2a8741e6ba0e1bf526837ab307",
-    "ui-state.js": "18944c80643ae07dbab02a10fc6d96a9243b2f0085e0883775d8359fd8921702",
-    "tests/ui-state.test.mjs": "e382594c7892f038cfaf2400d04cbc989a4544eb6180dd43fdde13abb3f4a050",
-    "tests/domain.test.mjs": "6e60ce079fd4720f1168661ab2911ea0c2e89f7046d9e7c2663a5d713ebd001f",
     "tests/contribution-flow.test.mjs": "af1847ebdc307c2645b53e04343e82c4f2abbd36e94bb088ddbeef12bc59edcb",
+    "tests/domain.test.mjs": "6e60ce079fd4720f1168661ab2911ea0c2e89f7046d9e7c2663a5d713ebd001f",
+    "tests/local-client.test.mjs": "00d4c5ad26aec4cdf85bb5f948b48ebf08bb5951919189ee1ef9d42745b5a7b6",
     "tests/reward-display-audit.test.mjs": "e9452ae94ec9d30de10aa17c815d66b0bc4af2fb63989c8fe62a4f0e01721491",
-    "artworks.js": "8e028260a326875b589842dd2cfe90d500c3f1337cc09d37b6ac50ff4fe65202"
+    "tests/ui-state.test.mjs": "47219fb6a2157a993a253ba277eb63d6d86282b768be03960e7f2c08caa92199",
+    "ui-state.js": "7fa3a79aff22e0bf7f4bc0efd8d621dfd3fe95a141327598379126988d626277"
   }
 }

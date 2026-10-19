@@ -12,7 +12,7 @@ existing local chains are unchanged; production release remains NOT APPROVED.
   equal across active NFTs, separate royalties use active rarity weights.
   Compounding/buyback portions are excluded from holder credits. Duplicate tabs
   and replay cannot fund the same round twice; later activations get no past fee.
-- A confirmed upward evolution can play a 1.18-second chime and 1.35-second glow.
+- A confirmed upward evolution can play a synchronized supplied audio cue and glow.
   Local mode also requires post-receipt LP growth and unchanged session/account.
   Approvals, claims, failures and same-tier additions do not celebrate. Missing
   image/audio does not change transaction state; reduced motion suppresses glow.
@@ -40,10 +40,42 @@ server resource permission or chain restart is required. After this relocation,
 all 26 UI-state cases passed again. A new read-only browser tab on the existing
 8893 deployment loaded all eight confirmed NFTs at block 197, with no console
 errors and no pool column. No local transaction was submitted by that check.
-Website implementation is published on main at `75de6a3` (following `fa4e0b6`).
+This compatibility step was published at `75de6a3` (following `fa4e0b6`);
+the later source-bound audio/card follow-up is identified in source-bindings.json.
 
 Operator impact: no contract call, authority, route or service configuration
 changed. Demo funding persistence and reset behavior are documented in the
 [operator manual](../../docs/OPERATOR_MANUAL.md#main-website-pending-action-and-storage-recovery).
 Exact website commit/deployment receipts are recorded separately from this source
 record. Public website financial actions remain simulations.
+
+## Supplied ACTI/EV and simplified details follow-up
+
+ACTI replaces the synthesized activation sound. Its entire audible content is
+retained (3.69-second exported clip; only surrounding silence removed), as the user
+explicitly approved. EV is used for subsequent upward tiers (1.425 seconds).
+Audio-only AAC/MP4 assets are compatible with existing local fixture resource
+lists. Original MP3 files are unchanged outside the repository. Both assets are
+prefetched; decoding is cached after a user gesture. A successful receipt plus
+fresh increased LP/higher evolution is required in local mode before scheduling
+the reveal. Sound starts in the same render frame as the image crossfade, once
+for duplicate card/dialog views; failures cannot reject financial operations.
+
+The final affected UI-state/contribution run passed 33 cases. Its audio case
+checks ACTI versus EV selection, same-frame reveal/playback, duplicate suppression
+and silent normal refresh/claims. After removing the Previously claimed frame,
+three selected local-view cases pass: dormant omission, active earnings/rewards
+and fixed rarity weight. Claimed balances and earnings calculations are unchanged.
+No unchanged contract/backend suites were rerun. The new build has 5,590 files,
+including the two clips. Source/artwork checks retain all 2,784 image/metadata pairs.
+
+Browser QA on the isolated 4183 origin confirmed Dormant -> Activated at $100,
+then Enhanced at $1,100, with zero retroactive income, no claimed-total frame and
+no console errors. Dialog scroll returns to the updated image. Unit frame evidence
+establishes playback scheduling; browser QA is not a physical audio-latency test.
+Static previews serve both audio files; the existing local fixture is checked
+read-only using GET because it does not implement HEAD. No local test chain restart.
+
+A separate Constellation inlays comparison was created outside both repositories
+at the user's request. Existing Orbital rings assets, inventory and metadata are
+unchanged. No replacement has been approved.

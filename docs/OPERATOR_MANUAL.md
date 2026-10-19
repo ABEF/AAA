@@ -545,9 +545,18 @@ The public simulation adds one `claim-testing-20261020` receipt after existing
 saved actions. It preserves LP, NFT traits and cumulative claims; refreshing does
 not refill a claimed receipt. Reset demo intentionally restores the starting
 portfolio/history and a later page load can reinitialize that sample receipt.
-The local contract adapter never uses this sample funding. Upgrade sparkle/sound
-requires a confirmed higher tier and increased LP, not an approval. No operator
-contract call, service restart, signer permission or production economics changed.
+The local contract adapter never uses this sample funding. Upgrade feedback uses
+the supplied ACTI sound for activation (full audible clip, 3.69 seconds) and EV for
+later upward tiers (1.425 seconds). The image crossfade and sound start together
+after a successful contribution and refreshed increased LP/higher tier, in the
+same wallet/session. Approvals, claims, failures and same-tier top-ups are silent.
+Audio failure never changes transaction results; reduced motion suppresses glow.
+Reload the page for updated JavaScript; existing local fixture servers already
+allow the audio-only MP4 assets and need no chain reset. Static Node previews must
+load the updated asset allowlist. No authority, signer or contract procedure changes.
+The NFT detail view omits the Previously claimed frame; lifetime claims remain
+accounted for. Earned history includes claimed and unclaimed rewards and must not
+be relabeled as cumulative payouts or current claimable funds.
 
 The main website tracks activation/top-up/claim work per NFT and mint separately.
 A conflicting action on the same NFT or overlapping claim batch is rejected;
