@@ -452,6 +452,17 @@
           "title": "Isolated $1 activation rehearsal",
           "text": "A separate local-only build allows $1 gross activation with the unchanged 99% marginal-LP limit and 0.05 ETH mint price. Ten focused Solidity and four generator checks pass. Production source/API/website stay at $100; no public deployment or funds used.",
           "href": "docs/ONE_DOLLAR_REHEARSAL.md"
+        },
+        {
+          "id": "local-browser-stack",
+          "status": "done",
+          "title": "Run a disposable local browser integration stack",
+          "text": "Anvil launcher, sealed PoPL core, two local wallets, indexed confirmed balances/history and a browser test panel. Mint, activate, top up, fund, rebalance, transfer and combined claims pass locally. Venue, prices and randomness are explicit substitutes; production website integration and target-chain qualification stay open.",
+          "href": "docs/LOCAL_TEST_STACK.md",
+          "acceptance": [
+            "[Scoped evidence](reports/local-stack/VERIFICATION.md): 39 expanded Anvil journey assertions and 35 launcher/HTTP/recovery cases pass. Strict inputs, duplicate-request recovery, stale revisions and uncertain-submission stops. Unchanged production Solidity suites were not repeated.",
+            "Existing website artwork is read locally. No production website source, public server, private key, public transaction or paused-monitor change."
+          ]
         }
       ]
     },

@@ -1,0 +1,122 @@
+# Local browser test environment
+
+The [launcher](../scripts/local-stack.py) starts its own loopback Anvil chain,
+deploys and seals the current PoPL core, seeds four NFTs, and connects the
+confirmed read/earnings API and SQLite indexer to a separate local browser panel.
+It does not modify or deploy the public website. The panel borrows the website's
+existing artwork; the production website wallet adapter is still separate work.
+
+## What is real and what is substituted
+
+| Component | Local behavior |
+| --- | --- |
+| NFT, Vault, Entry, contribution/maintenance budgets, Strategy, reward ledgers, ClaimRouter, controller | Unmodified compiled production candidate; source hashes checked before deployment. |
+| Shared LP custody boundary | `LocalDemoVenue` replaces LiquidityManager and Uniswap. Exact local ERC20 balances and recorded quantities; deterministic 1:1 swaps. This does not test Uniswap math, Pons, real liquidity or slippage. |
+| Prices | Local, always-fresh $1 test-token feed. ETH royalties have no USD mark; the API reports unavailable USD. |
+| Randomness | Existing MockVRF; no proof, subscription or provider qualification. The real finite NFT draw still runs. |
+| Accounts | Two disposable holder/buyer accounts plus a local operator. Only this launcher-owned Anvil process accepts transactions. No private key, wallet environment variable or public RPC is used. |
+| API/indexer | Current confirmed projections, real raw event ingestion and current-price earnings replay. One confirmation on a local chain is not production finality. |
+| Timing | Rebalance advances local time by 601 seconds and changes the range through immediate governance. API freshness uses that same test-chain clock. No production keeper runs. |
+
+Activation and top-ups use TEST-1, an admitted member of the local pair. The pool
+has a $100 contribution floor; the Entry enforces the original-source 99% deployed
+LP rule. Exact token approval and the Entry transaction are separate receipts.
+Network gas is separate in test ETH. No USDG/USDC/ZZZ public conversion route is
+claimed. The browser fixture caps new minting at 20 for bounded interactive reads;
+the actual NFT contract still has its 1,000 cap and 0.05 ETH mint price.
+
+## Start
+
+Requirements: Python 3.11+, Foundry Anvil/Cast/Forge, the pinned Solidity toolchain
+and installed repository dependencies. Run from the contract repository root.
+Use existing current-source compiler artifacts when available. Otherwise build
+the core following [Development](DEVELOPMENT.md), then compile only the local
+fixtures:
+
+```sh
+forge build test/local/LocalDemoVenue.sol test/mocks/MockVRF.sol --out /path/to/local-fixture-out --cache-path /path/to/local-fixture-cache
+python scripts/local-stack.py --anvil /path/to/anvil --cast /path/to/cast --artifacts /path/to/current-core-out --fixture-artifacts /path/to/local-fixture-out --state /path/to/external-local-state --website /path/to/AAA-website --port 8890
+```
+
+Quote paths with spaces. Windows executables use `.exe`; `python3` can be used
+on Unix. The launcher refuses stale compiler source bindings. It never silently
+rebuilds or modifies production sources. `--state` receives a new unique session
+directory, preserving earlier evidence. Open `http://127.0.0.1:8890` after the
+launcher prints `OPEN`. The optional `--verify-only` checks deployment/read state
+and shuts down its child instead of serving the panel.
+
+## Use the panel
+
+1. The Holder starts with one dormant, two Enhanced and one Singularity NFT.
+   Artwork comes from the actual local reveal, rather than copied demo IDs.
+2. Mint, then activate with 100 TEST-1. The new NFT has no older fee entitlement.
+3. Add LP; the NFT keeps its allocation in the same shared position.
+4. **Fund LP fees + royalties** transfers 100 TEST-1 to the venue and 0.01 test
+   ETH to the royalty ledger, then processes them through the real contracts.
+5. **Rebalance test LP** exercises a governed range change, cooldown and the
+   actual Vault maintenance budget against the test venue.
+6. Transfer an NFT to the Buyer, switch accounts and inspect its unclaimed
+   balances. **Claim both** uses the existing unsigned preparation API and a
+   fresh local simulation before submission; lifetime history accumulates.
+
+Only typed actions are exposed. The host, same-origin header, JSON size and
+per-session nonce are checked; there is no arbitrary RPC relay or recipient.
+Action shapes are exact: canonical string IDs, whole 100..99,999 TEST-1 amounts
+and only the two local accounts. Wrong lifecycle, balance or owner is rejected
+before approval. Later Entry checks can still fail after a successful approval.
+All operations are serialized, including indexer writes. Concurrent economic
+requests return a busy response rather than queue a second transaction. Twelve
+HTTP workers, a five-second socket timeout and a 2,048-byte body ceiling bound
+local request handling. Duplicate security headers/JSON keys are rejected. Read aggregation only
+deduplicates exact block-hash-bound reads within one response; latest/header
+checks are fresh. Pure runtime-byte hashes have a bounded cache, never an
+address/state cache. This local convenience service is **not a production host**.
+
+## Verification, stop and recovery
+
+Run the focused browser-API journey against a **fresh** session:
+
+```sh
+python scripts/verify-local-stack.py --port 8890 --output /path/to/new-evidence.json
+python -m unittest tests_python.test_local_stack tests_python.test_local_stack_edges
+```
+
+The journey changes only disposable local state. It verifies real receipts,
+ownership, LP allocation, funded fees, no retroactive income, rebalancing,
+combined claims and cumulative history. See [scoped evidence](../reports/local-stack/VERIFICATION.md).
+
+Stop with Ctrl+C in the launcher. A same-origin/session-authenticated
+`POST /action` with `{"action":"stop"}` also stops this session and its owned
+Anvil child. Restart with the same launch command to get a **new** disposable
+deployment and fresh indexer; never reuse an old browser session token or API
+configuration with the new deployment. Closing the browser alone does not stop
+the services. No Windows startup task or recurring monitor is installed.
+
+`deployment.json`, `api.json`, `indexer.json`, `receipts.json`, `submissions.json`,
+`operations.json`, `errors.log` and
+`running.json` remain in the external session directory. Failed operations may
+leave a successful exact approval; inspect receipts and refresh before retrying.
+A response failure after a successful transaction must not be treated as a
+reverted transaction. The panel stores the pending operation in session storage;
+**Refresh** resubmits the same operation ID to recover its saved outcome, never a
+new economic action. Confirmed/failed outcomes include any completed transaction
+hashes. Pending storage must succeed before the browser submits. A new server
+session discards the old browser operation without replaying it.
+
+The typed action protocol is `POST /action` with `operation_id` (32 lowercase hex
+characters), `revision` (the latest `/state` revision) and `payload` (the typed
+action/account/id/amount). Identical ID + inputs return the recorded outcome;
+changed inputs under the same ID or an old revision under a new ID are rejected.
+There is a hard 256-operation session limit, with no replay-record eviction.
+The standalone authenticated stop payload is unchanged.
+
+Transaction intent is saved before submission; the hash and receipt are saved
+as they arrive, separately from fallible balance/history refresh. Files use
+atomic replacement. If submission/receipt tracking or durable operation recording
+becomes uncertain, new actions are blocked. Inspect the external records and
+start a new **disposable** chain; there is no automatic resend or production
+nonce-recovery claim. Do not expose the service beyond loopback. The lab does not resume persisted chain state after process
+loss; evidence remains readable, but the next run deliberately starts fresh.
+
+No public-chain contracts, production services, public website/server or the
+user-paused staging monitor are changed. Production release remains NOT APPROVED.

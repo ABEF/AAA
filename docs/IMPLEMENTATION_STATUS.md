@@ -3,7 +3,7 @@
 Reviewed 2026-10-19; the architecture repair and evidence were first recorded in
 `4fbd4c0`. The user subsequently requested integration into `main` and use of
 `main` for future work. Check the current Git revision for publication identity.
-The contracts remain undeployed and the website remains a simulation.
+The contracts remain undeployed on public networks and the public website remains a simulation.
 This candidate includes same-chain canonical handoff, local migration-budget and
 keeper lifecycle changes. Exact publication is established by Git HEAD and origin/main.
 Implemented means the behavior exists in source; it does not mean production
@@ -15,6 +15,20 @@ evidence. The [release approval record](RELEASE_CHECKLIST.md) records the final
 decision for an exact release, not development progress. Creator-dependent questions
 are grouped in [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team);
 recording them does not implement a feed, payment agreement or live route.
+
+## Disposable local browser integration
+
+The [local stack](LOCAL_TEST_STACK.md) deploys the unchanged core to an owned Anvil
+process and exercises confirmed reads, finite NFT mint/reveal, Entry activation,
+top-ups, funded LP/royalty accounting, governed rebalancing, transfers and combined
+claims in a separate browser panel. Test-only venue/feed/VRF boundaries are explicit.
+The local action service rejects malformed inputs, old revisions, wrong owners
+and invalid contribution states before approvals; session-scoped operation IDs
+prevent duplicate execution after response loss. Uncertain submissions stop new
+actions. [Evidence](../reports/local-stack/VERIFICATION.md) separates the original
+journey from the expanded 39-assertion integration and 35 launcher/HTTP checks.
+This does not close production wallet integration,
+Uniswap/Pons routing, live prices/randomness or operating qualification.
 
 ## Current candidate capabilities
 

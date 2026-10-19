@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**17 To do | 20 In progress | 14 Implemented locally**
+**17 To do | 20 In progress | 15 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -457,6 +457,18 @@ Three required testing layers, with source-bound evidence.
 
 - [x] **[Isolated $1 activation rehearsal](docs/ONE_DOLLAR_REHEARSAL.md)** - Implemented. A separate local-only build allows $1 gross activation with the unchanged 99% marginal-LP limit and 0.05 ETH mint price. Ten focused Solidity and four generator checks pass. Production source/API/website stay at $100; no public deployment or funds used.
 
+<a id="task-local-browser-stack"></a>
+
+- [x] **[Run a disposable local browser integration stack](docs/LOCAL_TEST_STACK.md)** - Implemented. Anvil launcher, sealed PoPL core, two local wallets, indexed confirmed balances/history and a browser test panel. Mint, activate, top up, fund, rebalance, transfer and combined claims pass locally. Venue, prices and randomness are explicit substitutes; production website integration and target-chain qualification stay open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped evidence](reports/local-stack/VERIFICATION.md): 39 expanded Anvil journey assertions and 35 launcher/HTTP/recovery cases pass. Strict inputs, duplicate-request recovery, stale revisions and uncertain-submission stops. Unchanged production Solidity suites were not repeated.
+  - Existing website artwork is read locally. No production website source, public server, private key, public transaction or paused-monitor change.
+
+  </details>
+
 
 ## Security & audit
 
@@ -684,4 +696,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `57c5001f432a0d0c82d5261d7e460c877aabf837f45f8c2f52e6f834a4d8ab3f`.
+Snapshot SHA-256: `5443ce0181678e2dcc13b1b598f5b282d8b617ce0fd2fbe44f3f93a877131cfa`.

@@ -1,0 +1,40 @@
+test_cache_is_disabled_between_aggregates (tests_python.test_local_stack.LocalReadTests.test_cache_is_disabled_between_aggregates) ... ok
+test_code_cache_does_not_cache_address_or_skip_reads (tests_python.test_local_stack.LocalReadTests.test_code_cache_does_not_cache_address_or_skip_reads) ... ok
+test_external_account_rejected_before_simulation (tests_python.test_local_stack.LocalReadTests.test_external_account_rejected_before_simulation) ... ok
+test_local_identity_guard_checks_owned_process (tests_python.test_local_stack.LocalReadTests.test_local_identity_guard_checks_owned_process) ... ok
+test_local_value_cap (tests_python.test_local_stack.LocalReadTests.test_local_value_cap) ... ok
+test_missing_and_unbounded_runtime_rejected (tests_python.test_local_stack.LocalReadTests.test_missing_and_unbounded_runtime_rejected) ... ok
+test_only_exact_hash_bound_reads_are_deduplicated (tests_python.test_local_stack.LocalReadTests.test_only_exact_hash_bound_reads_are_deduplicated) ... ok
+test_disconnected_caller_can_recover_same_operation (tests_python.test_local_stack_edges.HTTPTests.test_disconnected_caller_can_recover_same_operation) ... ok
+test_duplicate_security_headers_rejected (tests_python.test_local_stack_edges.HTTPTests.test_duplicate_security_headers_rejected) ... ok
+test_host_origin_session_encoding_and_body_bounds (tests_python.test_local_stack_edges.HTTPTests.test_host_origin_session_encoding_and_body_bounds) ... ok
+test_incomplete_body_times_out_without_execution (tests_python.test_local_stack_edges.HTTPTests.test_incomplete_body_times_out_without_execution) ... ok
+test_simultaneous_requests_do_not_queue_second_mutation (tests_python.test_local_stack_edges.HTTPTests.test_simultaneous_requests_do_not_queue_second_mutation) ... ok
+test_strange_wire_inputs_have_no_side_effect (tests_python.test_local_stack_edges.HTTPTests.test_strange_wire_inputs_have_no_side_effect) ... ok
+test_traversal_unknown_path_no_rpc_relay (tests_python.test_local_stack_edges.HTTPTests.test_traversal_unknown_path_no_rpc_relay) ... ok
+test_bad_operation_envelopes_never_execute (tests_python.test_local_stack_edges.OperationTests.test_bad_operation_envelopes_never_execute) ... ok
+test_bad_shapes_amounts_and_identifiers_never_execute (tests_python.test_local_stack_edges.OperationTests.test_bad_shapes_amounts_and_identifiers_never_execute) ... ok
+test_duplicate_and_nonfinite_json_rejected (tests_python.test_local_stack_edges.OperationTests.test_duplicate_and_nonfinite_json_rejected) ... ok
+test_failed_intent_persistence_precedes_broadcast (tests_python.test_local_stack_edges.OperationTests.test_failed_intent_persistence_precedes_broadcast) ... ok
+test_failed_partial_operation_is_not_retried (tests_python.test_local_stack_edges.OperationTests.test_failed_partial_operation_is_not_retried) ... ok
+test_gas_and_native_balance_caps_prevent_submission (tests_python.test_local_stack_edges.OperationTests.test_gas_and_native_balance_caps_prevent_submission) ... ok
+test_limits_accept_canonical_boundary_values (tests_python.test_local_stack_edges.OperationTests.test_limits_accept_canonical_boundary_values) ... ok
+test_outcome_persistence_failure_blocks_new_submission (tests_python.test_local_stack_edges.OperationTests.test_outcome_persistence_failure_blocks_new_submission) ... ok
+test_receipt_survives_post_transaction_balance_read_failure (tests_python.test_local_stack_edges.OperationTests.test_receipt_survives_post_transaction_balance_read_failure) ... ok
+test_record_capacity_never_evicts_old_operation (tests_python.test_local_stack_edges.OperationTests.test_record_capacity_never_evicts_old_operation) ... ok
+test_record_replace_failure_preserves_previous_evidence (tests_python.test_local_stack_edges.OperationTests.test_record_replace_failure_preserves_previous_evidence) ... ok
+test_replay_lost_response_executes_once (tests_python.test_local_stack_edges.OperationTests.test_replay_lost_response_executes_once) ... ok
+test_rpc_loss_after_submission_marks_uncertain (tests_python.test_local_stack_edges.OperationTests.test_rpc_loss_after_submission_marks_uncertain) ... ok
+test_same_id_different_payload_or_revision_rejected (tests_python.test_local_stack_edges.OperationTests.test_same_id_different_payload_or_revision_rejected) ... ok
+test_simulation_revert_prevents_broadcast (tests_python.test_local_stack_edges.OperationTests.test_simulation_revert_prevents_broadcast) ... ok
+test_stale_tab_cannot_submit_new_intent (tests_python.test_local_stack_edges.OperationTests.test_stale_tab_cannot_submit_new_intent) ... ok
+test_success_is_recorded_before_projection_refresh (tests_python.test_local_stack_edges.OperationTests.test_success_is_recorded_before_projection_refresh) ... ok
+test_uncertain_submission_blocks_new_actions (tests_python.test_local_stack_edges.OperationTests.test_uncertain_submission_blocks_new_actions) ... ok
+test_wrong_chain_client_or_genesis_fails_closed (tests_python.test_local_stack_edges.OperationTests.test_wrong_chain_client_or_genesis_fails_closed) ... ok
+test_wrong_mode_amount_and_balance_do_not_approve (tests_python.test_local_stack_edges.OperationTests.test_wrong_mode_amount_and_balance_do_not_approve) ... ok
+test_wrong_owner_rejected_before_approval_or_claim (tests_python.test_local_stack_edges.OperationTests.test_wrong_owner_rejected_before_approval_or_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 8.426s
+
+OK

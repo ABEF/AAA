@@ -1,0 +1,20 @@
+{
+  "command": [
+    "-m",
+    "unittest",
+    "tests_python.test_local_stack",
+    "tests_python.test_local_stack_edges",
+    "-v"
+  ],
+  "exit_code": 0,
+  "observed_at": "2026-10-19T17:05:35Z",
+  "source_sha256": {
+    "scripts/local-stack.py": "d15fbf837f73a2148689780dd533e18ccff273e48a9f49e69f4b999007d7f37e",
+    "tests_python/test_local_stack.py": "f567cefd011050f3aa4e81fd90e787f9ba2bf6bd9a696fed04b36ff6691b65d9",
+    "tests_python/test_local_stack_edges.py": "5d701002cd054bb086bbd4f025046a29fff2539e1a013aac1cdfbd1855556d2d"
+  },
+  "log_sha256": "a89d31c158086fbcd87b4b00bb81e096162cd5eb20d09a3f477408d11ef2c3c9",
+  "tests_passed": 35,
+  "failures": 0,
+  "skips": 0
+}

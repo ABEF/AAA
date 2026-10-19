@@ -1,3 +1,27 @@
+## Local browser stack continuation - 2026-10-19
+
+The user requested that we set up and run the local test environment. Read
+[the local runbook](docs/LOCAL_TEST_STACK.md) and
+[scoped verification](reports/local-stack/VERIFICATION.md). The separate local
+panel at port 8890 uses real sealed core contracts, Entry, Strategy, budgets,
+funded LP/royalty ledgers, ClaimRouter and confirmed indexed API projections.
+LocalDemoVenue replaces LiquidityManager/Uniswap, LocalFeed is an always-fresh
+$1 mock and MockVRF has no proof. It is not a public-chain/provider qualification.
+The completed journey verifies mint, activation/no retroactive income, top-up,
+funding, rebalance, ownership transfer and repeated combined claims/lifetime totals.
+The expanded 39-assertion Anvil journey passes, including adversarial input/replay checks;
+35 focused launcher/HTTP/recovery cases pass. Strict action schemas, revision
+checks, durable operation IDs, bounded workers/timeouts and atomic evidence writes
+protect the local panel. Refresh recovers a lost response with the same ID;
+uncertain submissions block new operations. Production sources are unchanged
+and their suites were not rerun. The public website/server and paused
+monitor are unchanged. Production website wallet integration remains open.
+Local state and full receipts are external, disposable and not recoverable as a
+chain after shutdown; restarting creates a fresh deployment. Source and metadata
+are verified against reused artifacts. No private key or public funds are used.
+Use main; preserve unrelated drafts and check Git for publication. Update the
+central Todo, feature/evidence reference and operator manual with future changes.
+
 ## Earnings ingestion audit continuation - 2026-10-19
 
 The earnings backend and unsigned mint/claim preparation are already published;

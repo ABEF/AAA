@@ -394,6 +394,21 @@ fresh validation with a compatible reviewed policy. A configuration/code change
 requires old drafts to be discarded; mined transactions cannot be rolled back.
 This service is not installed on the server by this change.
 
+## Disposable local testing
+
+Use the [local browser stack procedure](LOCAL_TEST_STACK.md) for Anvil-only
+mint/activation/top-up/fees/royalties/transfer/claim rehearsals. The launcher owns
+its local chain and disposable accounts; no production key or public RPC is used.
+It simulates each typed transaction and records receipts and gas. Test venues,
+prices, randomness and time advancement are explicit. Stop with Ctrl+C or the
+authenticated local stop endpoint; restart creates a new isolated deployment and
+indexer. Preserve receipts, inspect partial approvals before retrying and discard
+old session/configuration data. Lost responses recover with Refresh and the same
+operation ID. Do not bypass an uncertain-submission stop: inspect operations and
+submission/receipt records, then restart the disposable chain. Requests have
+strict input bounds, no queued concurrent mutations, revision checks and a
+256-operation session ceiling. This does not install or qualify a production keeper.
+
 ## Fixed boundaries
 
 | Desired future change | Current boundary |

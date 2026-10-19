@@ -209,6 +209,13 @@ Remaining work is tracked only in the [Project Todo](TODO.md). It includes:
 
 The [production inventory](config/production.example.json) records the exact deployment configuration and evidence. The [release approval record](docs/RELEASE_CHECKLIST.md) records the final go/no-go decision. Internal reviews and local passes do not replace either.
 
+## Try the local browser test
+
+The [local setup guide](docs/LOCAL_TEST_STACK.md) starts an isolated Anvil deployment,
+confirmed API/indexer and browser panel with disposable test wallets. Mint, activate,
+add LP, fund fees/royalties, rebalance, transfer and claim without public funds.
+The venue, prices and randomness are test substitutes; the public website is unchanged.
+
 ## Development
 
 ### Setup and verification
