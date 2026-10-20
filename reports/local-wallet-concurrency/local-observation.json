@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-10-20T01:42:32.575Z",
+  "url": "http://127.0.0.1:8898",
+  "scope": "Two independent clients with real earlier confirmed snapshot, concurrent unsigned preparation only",
+  "observations": [
+    {
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "old_revision": 0,
+      "confirmed_revision": 32,
+      "draft_revision": 32,
+      "prepare_requests": 1,
+      "state_reads": 2,
+      "submitted": false
+    },
+    {
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "old_revision": 0,
+      "confirmed_revision": 32,
+      "draft_revision": 32,
+      "prepare_requests": 5,
+      "state_reads": 6,
+      "submitted": false
+    }
+  ]
+}

@@ -705,3 +705,24 @@ celebration. Failure of the atomic Entry call reverts its wrapping/conversion/LP
 effects; approval and paid gas are separate. No governance/keeper permission
 changes. [Runbook](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
 [evidence](../reports/local-contribution-flow/VERIFICATION.md).
+
+
+## Two browsers using local wallets
+
+Chrome and Codex may select different disposable accounts on the same running
+loopback deployment. Reload both pages after a client update; account selection
+and saved pending intent remain in each browser's session storage. No operator
+permission, service restart or Anvil reset is required for this fix.
+
+A newer unsigned draft triggers a real confirmed-state read and up to three
+preparations if the other browser keeps changing state. Review the final wallet,
+amount and operation before confirming. If state changes after review, an explicit
+rejection sends nothing and refreshes balances; review again manually. If the
+response is ambiguous, use Refresh to recover the identical saved operation ID.
+Do not clear pending storage or create a replacement operation to bypass recovery.
+A definite server rejection of a recovered intent is safe to clear; unresolved
+outcomes remain blocked. Verify receipt and confirmed balances for success.
+
+Stop by cancelling an unsigned review. Rollback means restoring the prior client
+and reloading; it does not undo transactions and restores the stale-cache bug.
+Keep both chains and their state intact. [Evidence](../reports/local-wallet-concurrency/VERIFICATION.md).

@@ -417,3 +417,14 @@ reset. The UI retains confirmation continuity and fixes local activation at $100
 See [behavior and limits](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
 [scoped verification](../reports/local-contribution-flow/VERIFICATION.md).
 Production venue/service qualification and fixed-$100 price/rounding policy remain open.
+
+
+### Cross-browser local confirmations - 2026-10-20
+
+Independent local wallet sessions reconcile newer unsigned drafts with confirmed
+state instead of rejecting their older cached revision. Bounded retries preserve
+expiry and account/session checks. Explicit stale submissions require new review;
+ambiguous responses retain exact-operation recovery. [59 focused cases and scoped
+local observation](../reports/local-wallet-concurrency/VERIFICATION.md) cover this
+client change. Backend/production Solidity are unchanged; public wallet signing
+and concurrent production operation qualification remain open.

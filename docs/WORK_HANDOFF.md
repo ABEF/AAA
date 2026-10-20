@@ -1,3 +1,14 @@
+## Cross-browser local wallet continuation - 2026-10-20
+
+Chrome/Codex stale-cache confirmation mismatch fixed in website local-client.js;
+read [evidence](../reports/local-wallet-concurrency/VERIFICATION.md). Reload both
+8898 pages to load it; do not restart or reset either Anvil chain. Newer unsigned
+drafts reconcile actual confirmed state with bounded retries. Post-review changes
+still require fresh review; backend global revision protection remains. Ambiguous
+submissions keep the identical pending ID. Only confirmed pre-handler rejections
+clear saved intent. No production contract/server/monitor changes. Main only,
+preserve unrelated drafts and verify Git publication.
+
 ## Latest local continuation - 2026-10-20
 
 Local read-clock bottleneck and contribution flow corrected; see

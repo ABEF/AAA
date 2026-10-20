@@ -1,0 +1,6 @@
+{
+  "local-client.js": "a66c46cd00e5c28244030c4cf9b6a628a69cd495ba2926f235975c0f52aa4f45",
+  "local-view.js": "ba14ccebd332dca2c93b9428039acb54aea6d9f47270bac23a19a7a717c153d1",
+  "tests/local-client.test.mjs": "c1236001fef85664449802285bf3f6ed555941bf2be688af63f8f873e14e0b69",
+  "tests/contribution-flow.test.mjs": "af1847ebdc307c2645b53e04343e82c4f2abbd36e94bb088ddbeef12bc59edcb"
+}
