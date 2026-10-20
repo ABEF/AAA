@@ -1,0 +1,36 @@
+{
+  "scope": "Local unsigned browser preparation and canonical receipt observation; no public transactions; no existing Anvil process change",
+  "recorded_at": "2026-10-20T15:56:42.227238+00:00",
+  "distinct_tests": 43,
+  "runs": [
+    {
+      "command": "python -m unittest tests_python.test_local_browser tests_python.test_local_stack_edges.HTTPTests -v",
+      "passed": 41,
+      "duration_seconds": 12.873,
+      "note": "Before final transaction-index/header-number hardening; all 6 new HTTP and 9 existing HTTP bodies unchanged afterward."
+    },
+    {
+      "command": "python -m unittest tests_python.test_local_browser.BrowserTests -v",
+      "passed": 27,
+      "duration_seconds": 0.314,
+      "note": "Final core body after reviewer fixes, including one added mismatch case."
+    },
+    {
+      "command": "python -m unittest tests_python.test_local_browser.BrowserPageTests -v",
+      "passed": 1,
+      "duration_seconds": 0.604,
+      "note": "Real loopbackHTTP path test after narrowly allowing exact /app/?wallet=browser; arbitraryqueriesremainrejected."
+    }
+  ],
+  "findings_fixed": [
+    "Reject previously observed receipt changing canonical inclusion/status instead of reusing historical successful outcome.",
+    "Require transaction-index and requested canonical-header-number consistency.",
+    "Serve exact browser-mode query as index.html instead of attempting a literal filename; verifiedHTTP200 and arbitraryquery404."
+  ],
+  "sha256": {
+    "scripts/local_browser.py": "fbb223be15780ba91f44dc4709daf0b172248ece577ebbe93db6f125937229db",
+    "scripts/local-stack.py": "3a11f168df8431c65d3689ebe8de60c1f23548b49a3146c1b0dbc0503b6ea72a",
+    "tests_python/test_local_browser.py": "b6af051c59810a2ecf4891e385bf3a7d3e62c219dc93b8575432fd4ccd51cafb",
+    "tests_python/test_local_stack_edges.py": "cc0643a69e8f6f3bbc19a655f082276efe95e191eb307f1f016ca7062b619924"
+  }
+}

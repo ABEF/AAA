@@ -1,0 +1,23 @@
+{
+  "contract": {
+    "scripts/local_browser.py": "fbb223be15780ba91f44dc4709daf0b172248ece577ebbe93db6f125937229db",
+    "scripts/local-stack.py": "3a11f168df8431c65d3689ebe8de60c1f23548b49a3146c1b0dbc0503b6ea72a",
+    "tests_python/test_local_browser.py": "b6af051c59810a2ecf4891e385bf3a7d3e62c219dc93b8575432fd4ccd51cafb"
+  },
+  "website": {
+    "browser-wallet.js": "db27dd4afaddf04a7eabf5cc66ea4bd75031d47ed526ed5b4f6d6784dfa422a7",
+    "browser-intent.js": "b815deee123120ee5bba839558f3265aacfc54552dc83655df4635bee352ac9b",
+    "browser-client.js": "eb8ab4fe9c61a1c8a317cdaf0b1d0e845976351b42b103786430a3354ef4f789",
+    "local-client.js": "3d93229c7f39be9a6dade9b0937ffec2e98865ddbea89e1aba066543da613c0f",
+    "local-view.js": "eaa3987339074185867eb889a9ef95ac3066737dd1ee2affe442cd735d48899b",
+    "app.js": "44bf7bdddfc5156b053ff17f5914e390c6e13c77494ea1869f94d40ce7c464e9",
+    "build.mjs": "4bc4b5ff99a087fe57b95b131926a6e9b91bef546a0591029d302ed0da177c13",
+    "tests/browser-wallet.test.mjs": "1c4c0ee0066d1c091f8c85d920c5287f34256054e5d91f31fc03a96ad8e3e81b",
+    "tests/browser-intent.test.mjs": "fdf27f928aa0b0acc277cb32e8468ade463e856ec2d216ddf94ee6e21ad5e333",
+    "tests/browser-client.test.mjs": "8d8b26439a8dc96fae381fc3138ff2cac1d927277dd91380a69525b5a2208a12",
+    "tests/local-client.test.mjs": "7cf12a7eb983a21925844821b9c13e00d5a0a3a84f1cd0d2c9a653e2cfc1a759",
+    "tests/contribution-flow.test.mjs": "af1847ebdc307c2645b53e04343e82c4f2abbd36e94bb088ddbeef12bc59edcb",
+    "tests/reward-display-audit.test.mjs": "e9452ae94ec9d30de10aa17c815d66b0bc4af2fb63989c8fe62a4f0e01721491",
+    "package.json": "21dcdc82e42980b3c0465b52ca9f89907b16493ba13a3fd1214bebce3b789227"
+  }
+}

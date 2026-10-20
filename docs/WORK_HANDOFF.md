@@ -1,3 +1,27 @@
+## Browser-wallet local integration - 2026-10-20
+
+Read [the browser-wallet procedure](BROWSER_WALLET.md) and
+[scoped evidence](../reports/browser-wallet/VERIFICATION.md). The explicit local
+/app/?wallet=browser profile uses injected EIP-1193 signing, independently checked
+typed calldata, exact approvals, chain/genesis/runtime/nonce/gas checks and durable
+per-account recovery. Browser drafts cannot use the service holder signer. Never
+automatically retry a payment or erase an unresolved journal. Confirmed receipts
+and actual LP reads still govern artwork/sound; approval alone changes no LP.
+
+43 affected Python and 167 distinct JS cases pass across scoped runs. A five-user-
+transaction Anvil journey covers mint, native activation, exact USDC approval and
+top-up, and ETH combined claim, preserving the original four positions. The probe
+uses an EIP-1193-shaped RPC test provider, not an actual extension. Chrome/MetaMask
+acceptance remains open. Production deployment pins, live endpoint adaptation,
+routes/services and independent release approval remain open; public signing is
+disabled and release remains NOT APPROVED. The large load campaign stays deferred.
+
+The previous 8898 processes were already gone. Separate 8900 fixture data is in
+EXT/browser-wallet-lab/run-20261020-180024-5688c6; read running.json before process
+control. No old live chain reset, public deployment or monitor restart. Use main,
+preserve unrelated drafts, and verify Git for publication. Keep central Todo,
+feature evidence, operator procedures and both repository memories consistent.
+
 ## Manual acceptance and next priority - 2026-10-20
 
 The user reports all six proposed local 8898 two-wallet scenarios passed; read

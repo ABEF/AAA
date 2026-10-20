@@ -3,7 +3,9 @@
 `frontend_api.transactions` prepares two typed wallet actions using the existing
 deployment-pinned [read service](FRONTEND_API.md). It constructs and simulates a
 transaction draft, with no key, signature, broadcast, allowance or asset movement.
-The website remains a simulation. No production PoPL deployment is configured.
+The public website remains a simulation. A separate local
+[browser-wallet profile](BROWSER_WALLET.md) implements signing and receipt recovery
+against disposable Anvil contracts. No production PoPL deployment is configured.
 
 ## Supported actions
 
@@ -161,7 +163,12 @@ No simulated mint ID is reserved or advertised. The actual confirmed
 `DormantMinted`/NFT `Transfer` receipt determines the minted token. Mint inclusion
 does not mean VRF has fulfilled and the ordered trait reveal has finalized.
 
-## Remaining browser integration
+## Browser integration requirements
+
+The local [browser-wallet profile](BROWSER_WALLET.md) exercises these boundaries
+with a fixture manifest and independent EIP-1193 submission. Actual extension
+acceptance, production endpoint adaptation and reviewed public deployment/fee
+policies remain open; its dynamic local manifest is not production authentication.
 
 Before offering a real wallet confirmation, the frontend must:
 
@@ -179,9 +186,10 @@ Before offering a real wallet confirmation, the frontend must:
    refreshing balances and complete lifetime claim history. LP and royalty ledger
    events are counted once; the router's batch event is not another reward.
 
-This browser integration, deployed runtime manifest, qualified gas policy and live
-wallet rehearsal are not supplied by the preparation endpoint. It is an unhosted
-backend integration component, not a sign-ready production service.
+The preparation endpoint itself supplies no wallet, reviewed deployment manifest
+or production gas policy. It is an unhosted backend integration component.
+Qualify its browser consumer and live services together before offering public
+wallet transactions.
 
 ## Activation and additions stay separate
 

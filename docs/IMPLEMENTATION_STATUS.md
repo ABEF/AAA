@@ -1,11 +1,28 @@
+## Independent browser-wallet candidate - 2026-10-20
+
+The opt-in local website now prepares typed actions for independent EIP-1193
+signing: mint, exact approval, activation, top-up and ETH claims. It reconstructs
+calldata, verifies account/chain/genesis/runtime/nonce/gas, saves recovery before
+submission and reconciles canonical receipts without automatically retrying a
+payment. The local observer cannot submit a browser holder draft. Unknown hashes,
+changed receipts and incompatible replacements stay on explicit recovery.
+
+[Operator procedure](BROWSER_WALLET.md) and [scoped evidence](../reports/browser-wallet/VERIFICATION.md)
+cover 43 affected Python and 167 website checks plus five real local transactions
+through an EIP-1193-shaped RPC adapter. This is not browser-extension acceptance.
+Only the disposable chain-31337 profile is enabled; independently reviewed public
+deployment pins, live routes/services and release qualification remain open.
+The public website remains a simulation, the large-scale load campaign remains
+deferred, and release remains NOT APPROVED.
+
 ## User-reported manual acceptance - 2026-10-20
 
 The six proposed local two-wallet scenarios are reported passed by the user:
 activation, top-ups, cancel-after-approval/reopen, pending refresh/recovery,
 concurrent claim/contribution and invalid inputs. [Acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
 separates this report from the existing automated checks and two-mint receipts.
-No new test execution or code change is claimed. Real browser-wallet integration
-is next; the dedicated 10/25/100-user load campaign is deferred. Production
+No new test execution or code change is claimed by that earlier acceptance record.
+The dedicated 10/25/100-user load campaign is deferred. Production
 capacity is unverified and release remains NOT APPROVED.
 
 # Feature and evidence reference

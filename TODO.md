@@ -285,11 +285,12 @@ What holders see and use.
 
 <a id="task-wallet"></a>
 
-- [ ] **[Connect real wallet transactions](docs/FRONTEND_API.md)** - In progress. Next development priority: connect real browser-wallet signing/submission to the existing unsigned preparation and confirmed data services. Disposable two-wallet flows have user-reported manual passes; production deployment pins and actual routes remain open.
+- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. Opt-in local EIP-1193 signing now covers mint, exact approval, activation/top-up and ETH claims with typed calldata checks, durable recovery and canonical receipt observation. Qualify actual browser extensions and independently reviewed production manifests, routes and services; public transactions remain disabled.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Browser-wallet candidate](docs/BROWSER_WALLET.md): only the explicit chain-31337 browser mode can sign. Account/chain/genesis/runtime/nonce/gas and typed intent checks precede one wallet request; same-origin localStorage/Web Locks retain unknown submissions. Browser drafts cannot be sent by the local service signer. [Scoped evidence](reports/browser-wallet/VERIFICATION.md) records 43 affected Python and 167 website cases plus five actual local transactions through an EIP-1193-shaped RPC adapter, not extension acceptance.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Integrate actual wallet transactions and the implemented confirmed API/history/unsigned-preparation service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review deployments and calldata; discard drafts on account/chain changes or expiry; freshly simulate/estimate gas, confirm with the user and handle canonical receipts/replacements/reorgs. Bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them.
   - Local fast session handshake supplies wallets before full portfolio reads; selection survives soft reload/navigation within that disposable deployment. New sessions require selection again. This is not public-wallet persistence or signer hosting.
@@ -300,6 +301,7 @@ What holders see and use.
   - Local submission-lock follow-up: only the exact pre-handler busy /action response waits with the same saved operation ID and unchanged payload. Lost/ambiguous responses stay on recovery; stale revisions need new review. 64 scoped cases and an actual service-lock probe pass. [Evidence](reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).
   - Local wallet execution now pins each sender nonce: exact server drafts may span unrelated wallet operations, while same-wallet activity, expiry, ownership, lifecycle and gas changes still require review. Two real local mints reviewed at one revision both confirmed; 70 distinct affected Python cases. [Evidence](reports/local-wallet-concurrency/NONCE_VERIFICATION.md). This supersedes the earlier blanket global-revision rejection for typed wallet execution only; production extension-wallet qualification stays open.
   - User reported all six proposed local two-wallet scenarios passed on 2026-10-20: activation, top-ups, cancel after approval/reopen, pending refresh recovery, concurrent claim/contribution and invalid inputs. [Manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) is user-reported evidence, not a new automated run or production qualification.
+  - Next qualification: actual Chrome/extension signing, rejection, delayed prompts, account/network changes and recovery; independently reviewed production deployment pins, complete RPC/gas semantics and live activation routes/feeds. Dynamic local manifests and mock prices are not production approvals. Keep local exact-$100 activation versus production minimum-$100 quote/rounding alignment explicit; the 10/25/100-user campaign remains deferred.
 
   </details>
 
@@ -541,7 +543,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-browser-stack"></a>
 
-- [x] **[Run a disposable local browser integration stack](docs/LOCAL_TEST_STACK.md)** - Implemented. Anvil launcher, sealed PoPL core, two local wallets, indexed confirmed balances/history and a browser test panel. Mint, activate, top up, fund, rebalance, transfer and combined claims pass locally. Venue, prices and randomness are explicit substitutes; production website integration and target-chain qualification stay open.
+- [x] **[Run a disposable local browser integration stack](docs/LOCAL_TEST_STACK.md)** - Implemented. Disposable Anvil core, indexed confirmed balances/history, launcher wallets and an opt-in independent browser-wallet path are implemented. The native fixture supports exact approval/Entry and ETH claims. Venue, prices and randomness are substitutes; actual extension acceptance and production qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -549,6 +551,7 @@ Three required testing layers, with source-bound evidence.
   - [Scoped evidence](reports/local-stack/VERIFICATION.md): 39 expanded Anvil journey assertions and 35 launcher/HTTP/recovery cases pass. Strict inputs, duplicate-request recovery, stale revisions and uncertain-submission stops. Unchanged production Solidity suites were not repeated.
   - Existing website artwork is read locally. No production website source, public server, private key, public transaction or paused-monitor change.
   - User reported all six proposed local two-wallet scenarios passed on 2026-10-20: activation, top-ups, cancel after approval/reopen, pending refresh recovery, concurrent claim/contribution and invalid inputs. [Manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) is user-reported evidence, not a new automated run or production qualification.
+  - Independent browser path: five actual local holder transactions exercised mint, native ETH activation, exact USDC approval, USDC top-up and ETH claim without the backend holder signer. All four original fixture owner/LP/activation records were preserved. [Evidence](reports/browser-wallet/VERIFICATION.md) distinguishes the EIP-1193-shaped RPC adapter from browser-extension acceptance and includes 43 affected Python / 167 website cases. New fixture setup preserved historical run directories; no public transaction or load campaign.
 
   </details>
 
@@ -781,4 +784,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `2160b8832f8495ba3245d8897364a29cf613cc91400ff9da1ab5cd60c2225dd2`.
+Snapshot SHA-256: `a81f5ec22fcc6c943a866a9eda3e925c75864ffa97ffec1f45975c2ee220ca9c`.

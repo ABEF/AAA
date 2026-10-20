@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-20):** the user reports all six [local two-wallet acceptance scenarios](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) passed. Next: [real browser-wallet integration](TODO.md#task-wallet) with unsigned preparation, independent signing and safe recovery. The [10/25/100-user load campaign](TODO.md#task-capacity-campaign) is deferred by user decision; production capacity remains unverified. The public website is still simulated. Live pricing/routes/VRF, deployment and service qualification, independent audit and release approval remain open.
+**Current development work (2026-10-20):** [browser-wallet signing](docs/BROWSER_WALLET.md) is implemented for the disposable Anvil profile with [scoped verification](reports/browser-wallet/VERIFICATION.md): unsigned preparation, independent signing and receipt recovery. Actual extension acceptance, public deployment pins and live endpoint/service qualification remain open. Earlier [manual two-wallet acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) retains its original scope. The [10/25/100-user load campaign](TODO.md#task-capacity-campaign) is deferred; production capacity remains unverified. The public website stays simulated; production release remains NOT APPROVED.
 
 ## Project navigation
 
@@ -23,7 +23,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 | --- | --- | --- |
 | **1. Smart contracts** | Enforce ownership, LP custody, accounting and permissions on-chain. | [Contract components](#contract-components) |
 | **2. Backend and operations** | Read confirmed state, prepare unsigned user transactions and operate authorized maintenance. | [Services and data flow](#backend-components) |
-| **3. Frontend** | Explain the product and present NFT positions and wallet actions. Currently a simulation. | [Website components](#frontend-components) |
+| **3. Frontend** | Explain the product and present NFT positions and wallet actions. Public simulation; separate local contract/browser-wallet profile. | [Website components](#frontend-components) |
 
 <a id="contract-components"></a>
 

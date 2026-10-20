@@ -6,9 +6,11 @@ The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes the can
 
 Work proceeds through contract safety, qualified dependencies, backend/frontend integration and operating rehearsals, then independent release approval. Service research and tooling can run alongside contract work, but sealing must wait for the accepted pre-seal capabilities. Initially disabled bridges defer provider activation, not missing contract functionality.
 
-The [website local integration](LOCAL_WEBSITE.md) now exercises confirmed data and
-holder transactions through disposable Anvil accounts. Continue from this boundary
-to production wallet-provider/deployment/route qualification; do not rebuild the
+The [website local integration](LOCAL_WEBSITE.md) exercises confirmed data and
+holder transactions through disposable Anvil accounts. Its separate
+[browser-wallet profile](BROWSER_WALLET.md) now prepares unsigned calls for
+independent EIP-1193 signing. Continue with actual extension acceptance and
+production wallet-provider/deployment/route qualification; do not rebuild the
 simulation or treat the local signer as a production service. Frontend progress
 remains owned by the central wallet, portfolio, transaction-UI and history tasks.
 
@@ -17,9 +19,12 @@ Resolve [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) alongside
 ## Current sequencing decision - 2026-10-20
 
 The user reports all six [manual two-wallet scenarios](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
-passed. Prioritize [real browser-wallet integration](../TODO.md#task-wallet) next,
-using independent wallet signing with the existing unsigned APIs, bounded request
-work and saved transaction recovery. Develop against Anvil before public funds.
+passed. The local [browser-wallet implementation](BROWSER_WALLET.md) now has
+typed unsigned preparation, independent signing and saved transaction recovery,
+with [scoped automated and Anvil evidence](../reports/browser-wallet/VERIFICATION.md).
+Next verify an actual browser extension, then adapt the production endpoints and
+independently reviewed deployment/fee policy. The EIP-1193-shaped test provider
+does not close extension acceptance or authorize public funds.
 
 The proposed [10/25/100-user capacity campaign](../TODO.md#task-capacity-campaign)
 is deferred at the user's request and may be revisited after launch if needed.

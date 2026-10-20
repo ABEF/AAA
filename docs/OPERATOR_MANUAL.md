@@ -18,6 +18,7 @@ This is the management guide for the **current undeployed candidate**. It descri
 | Collect fees, compound, burn, receive creator payments or royalties | [Revenue operations](#revenue-operations) |
 | Resolve pending artwork reveals or replace all contracts | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
 | Change managers/keys, replace a server, update software | [Authorities](#authorities), [services](#services-and-server-recovery) |
+| Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
 ## Before every management operation
@@ -571,6 +572,14 @@ stale balance guards remain. Reload the local page to load this UI-only change;
 no service restart, contract call, public deployment or governance change is needed.
 
 ## Main website pending-action and storage recovery
+
+The opt-in local **browser-wallet** mode has a separate
+[signing and recovery procedure](BROWSER_WALLET.md). It uses unsigned typed
+preparation, independent extension signing, exact nonce/code/gas checks,
+same-origin durable pending records and canonical receipt observation. Public
+hosting remains a simulation. Its recovery must not be replaced by the demo or
+launcher-owned signer procedures below; switching modes does not cancel a sent
+transaction. No contract authority or production deployment changes.
 
 The public simulation adds one `claim-testing-20261020` receipt after existing
 saved actions. It preserves LP, NFT traits and cumulative claims; refreshing does

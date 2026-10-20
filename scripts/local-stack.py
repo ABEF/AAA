@@ -34,6 +34,7 @@ from indexer.monitor import Indexer
 from frontend_api.service import Projection, ProjectionError, ZERO
 from frontend_api.transactions import Transactions
 from scripts.local_wallet import LocalWallet
+from scripts.local_browser import LocalBrowser
 from scripts.local_clock import LocalChainClock
 from scripts.local_inputs import deploy_inputs, configure_inputs, input_for, input_tx, settle_lp
 
@@ -498,6 +499,11 @@ class LocalHTTPServer(ThreadingHTTPServer):
 
 def make_server(lab):
     website=Path(lab.args.website).resolve() if lab.args.website else None
+    def browser():
+        # Lazy construction preserves the existing local-only fixture and allows
+        # guarded web-only recovery without replacing its Anvil process.
+        if not hasattr(lab,'browser'):lab.browser=LocalBrowser(lab,save)
+        return lab.browser
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args): pass
         def setup(self):
@@ -518,6 +524,11 @@ def make_server(lab):
             if not self.valid(): return self.output(403,{'error':'Invalid local host'})
             try:
                 if self.path=='/session': return self.output(200,{'token':lab.token,'mode':'LOCAL ANVIL TEST ONLY','chain_id':CHAIN,'accounts':lab.accounts[1:]})
+                if self.path=='/browser/manifest':
+                    if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
+                    try:result=browser().manifest()
+                    finally:lab.lock.release()
+                    return self.output(200,result)
                 if self.path=='/state':
                     if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
                     try:result=lab.state()
@@ -525,8 +536,8 @@ def make_server(lab):
                     return self.output(200,result)
                 local={'/':'index.html','/local.js':'local.js','/local.css':'local.css'}
                 if website and self.path.startswith('/app/'):
-                    name=self.path[5:] or 'index.html'
-                    allowed={'index.html','app.js','domain.js','wallet.js','artworks.js','palette-system.js','styles.css','local-client.js','local-view.js','local-view.css'}
+                    name='index.html' if self.path in ('/app/','/app/?wallet=browser') else self.path[5:]
+                    allowed={'index.html','app.js','domain.js','wallet.js','artworks.js','palette-system.js','styles.css','local-client.js','local-view.js','local-view.css','browser-wallet.js','browser-client.js','browser-intent.js'}
                     if name not in allowed and not re.fullmatch(r'assets/[a-zA-Z0-9/_\-.]+\.(svg|png|jpg|jpeg|webp|json|mp4)',name):
                         return self.output(404,{'error':'Unknown website resource'})
                     if '..' in Path(name).parts:return self.output(404,{})
@@ -547,11 +558,17 @@ def make_server(lab):
             if not self.valid(True): return self.output(403,{'error':'Local origin/session required'})
             length=self.headers.get_all('Content-Length',[])
             if len(length)!=1 or not re.fullmatch(r'[1-9][0-9]{0,3}',length[0]) or int(length[0])>2048:return self.output(400,{'error':'Invalid bounded request'})
-            if self.path not in ('/action','/prepare'):return self.output(404,{})
+            if self.path not in ('/action','/prepare','/browser/prepare','/browser/confirm'):return self.output(404,{})
             try:
                 raw=self.rfile.read(int(length[0]))
                 if len(raw)!=int(length[0]):raise ValueError('Incomplete request body')
                 payload=parse_payload(raw)
+                if self.path in ('/browser/prepare','/browser/confirm'):
+                    if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
+                    try:
+                        result=browser().prepare(payload) if self.path=='/browser/prepare' else browser().confirm(payload)
+                    finally:lab.lock.release()
+                    return self.output(200,result)
                 if self.path=='/prepare':
                     if not lab.lock.acquire(blocking=False):return self.output(409,{'error':'Local operation in progress; refresh shortly'})
                     try:result=lab.wallet.prepare(payload)

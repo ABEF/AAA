@@ -1,5 +1,13 @@
 # Existing website connected to disposable contracts
 
+**Browser-wallet option (2026-10-20):** open the local mount with the exact
+`?wallet=browser` query to use independent EIP-1193 signing and the separate
+unsigned/receipt-observation path. Read [setup, approvals and recovery](BROWSER_WALLET.md)
+before testing. Only disposable chain 31337 is enabled; public hosting remains
+a simulation. The ordinary `/app/` route described below keeps the launcher-owned
+local wallets. Do not mix their recovery records or resend a browser transaction
+through the local signer.
+
 The original website now has an explicit **local contract mode** at
 `http://127.0.0.1:8890/app/#my-nfts` when served by the
 [local launcher](LOCAL_TEST_STACK.md). The port follows `--port`. Normal static

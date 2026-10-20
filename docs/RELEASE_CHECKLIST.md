@@ -8,8 +8,10 @@ records six user-reported local two-wallet passes and defers the dedicated
 10/25/100-user load campaign. Production capacity remains **unverified**; this
 is not a release approval or a waiver of independent wallet signing, bounded
 service work, transaction/accounting safety, recovery or dependency qualification.
-The next development priority is real browser-wallet integration. No tests or
-production deployment were performed by this documentation update.
+The [local browser-wallet candidate](BROWSER_WALLET.md) now implements independent
+signing and recovery, with scoped checks and local adapter receipts. Actual
+extension acceptance and reviewed production deployment/service qualification
+remain next; public transactions are disabled and this release is NOT APPROVED.
 
 The [client admission and proxy candidate](API_INGRESS.md) has local
 [scoped verification](../reports/api-admission/VERIFICATION.md). It does not close

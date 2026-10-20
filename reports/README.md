@@ -1,5 +1,7 @@
 # Verification evidence
 
+
+- [Browser-wallet integration](browser-wallet/VERIFICATION.md): local unsigned preparation, independent signing and canonical recovery; public signing remains disabled.
 ## User-reported local acceptance - 2026-10-20
 
 [Manual acceptance and priority decision](local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
