@@ -1,3 +1,29 @@
+## MetaMask connection and approval recovery - 2026-10-20
+
+Connection diagnostics now distinguish site-authorized account, network ID and
+exact local RPC/genesis. Reconnecting uses fresh public reads; importing/selecting
+Test A in MetaMask alone does not authorize it for the site. Failed verification
+never marks the connection ready. Gas-limit padding is tolerated only within hard
+policy and canonical paid-gas/price/cost limits from the unchanged original review.
+Economic fields, nonce and submitted gas-price ceiling remain exact. Never clear
+an unresolved journal or repeat a confirmed approval.
+
+31 Python, 41 connection-adapter and 44 signer cases pass in scoped runs.
+The user's existing MetaMask approval fbcd791c...a0c86e7 was independently verified
+and recorded without resubmission; this is not complete extension-flow acceptance.
+Only web process 10672 was replaced by 25784; Anvil10988/RPC61752, session and all
+six NFT owners/LP/activation/claimable balances were preserved. Port8900 remains
+the local fixture. Read running.json before process control; never reset Anvil
+to resolve a page error. The external fixed-fixture recovery helper never owns
+or terminates that chain. See the contract report
+reports/browser-wallet/CONNECTION_RECOVERY.md and docs/BROWSER_WALLET.md.
+
+Production must request Robinhood Chain using independently reviewed deployment
+configuration; current signing remains local31337 only. Public server/signing,
+unchanged Solidity and paused monitoring are untouched. Main only, preserve
+unrelated drafts; central Todo, features, operator procedures and both memories
+are maintained. Production remains NOT APPROVED.
+
 ## Browser-wallet local integration - 2026-10-20
 
 Read [the browser-wallet procedure](docs/BROWSER_WALLET.md) and

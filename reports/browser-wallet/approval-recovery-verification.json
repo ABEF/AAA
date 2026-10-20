@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-20T16:44:43.034Z",
+  "hash": "0xfbcd791c19b9ccaa2a41fb08df90e8b04cf26d36588a0b110265f7e07a0c86e7",
+  "status": "confirmed",
+  "scope": "Updated BrowserWallet read-only reconciliation of existing user approval; isolated in-memory journal only",
+  "original_review_preserved": true,
+  "read_methods": [
+    "eth_chainId",
+    "eth_getBlockByNumber",
+    "eth_getTransactionReceipt",
+    "eth_getTransactionByHash",
+    "eth_getBlockByNumber",
+    "eth_blockNumber",
+    "eth_getBlockByNumber",
+    "eth_chainId",
+    "eth_getBlockByNumber",
+    "eth_getTransactionReceipt",
+    "eth_getTransactionByHash",
+    "eth_getBlockByNumber",
+    "eth_blockNumber",
+    "eth_getBlockByNumber"
+  ],
+  "no_transaction_sent": true,
+  "actual_browser_storage_untouched": true
+}

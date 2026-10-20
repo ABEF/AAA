@@ -1,0 +1,26 @@
+{
+  "observed_at_utc": "2026-10-20T16:47:40.2399068Z",
+  "scope": "Local browser observation: MetaMask gas-limit padding",
+  "command": "python -m unittest tests_python.test_local_browser.BrowserTests -q",
+  "tests": 31,
+  "result": "pass",
+  "new_cases": 4,
+  "source_sha256": "03eea8634233a65ecafc73e1890a43d5d00857c4660df4adc10171286ed810a9",
+  "tests_sha256": "705493bc745f3c49b9ed538cd44c4ace248d6ea533c14532d3ad52d8ba317429",
+  "actual_approval_hash": "0xfbcd791c19b9ccaa2a41fb08df90e8b04cf26d36588a0b110265f7e07a0c86e7",
+  "recovery_preflight": {
+    "revision": 18,
+    "nfts": 6,
+    "receipts": 134,
+    "browser_reviews": 6,
+    "read_only_check": "pass",
+    "session_preserved": true,
+    "holder_operator_transactions": 0,
+    "process_changes": 0
+  },
+  "limitations": [
+    "31 affected core cases only; unchanged HTTP/contract suites not rerun",
+    "Service swap and post-swap inspection owned by parent",
+    "prepare /state reads mine an empty confirmation block in existing fixture"
+  ]
+}

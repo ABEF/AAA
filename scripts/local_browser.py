@@ -162,11 +162,13 @@ class LocalBrowser:
                 raise ValueError('Observed transaction value or nonce differs from the review')
         if _quantity(transaction.get('chainId')) != CHAIN:
             raise ValueError('Observed transaction belongs to another chain')
-        if _quantity(transaction.get('gas')) > _quantity(reviewed['gas']):
-            raise ValueError('Observed transaction exceeds the reviewed gas limit')
-        # The local review uses legacy gasPrice. Wallets must preserve its ceiling.
-        if _quantity(transaction.get('gasPrice')) > _quantity(reviewed['gasPrice']):
-            raise ValueError('Observed transaction exceeds the reviewed fee price')
+        # Extensions may add gas-limit headroom without changing the call. The
+        # submitted ceiling must still fit the hard local policy; actual paid
+        # gas/price below is checked against the tighter original review.
+        gas, price = _quantity(transaction.get('gas')), _quantity(transaction.get('gasPrice'))
+        if (not 21_000 <= gas <= MAX_GAS or not 0 < price <= min(MAX_PRICE, _quantity(reviewed['gasPrice'])) or
+                gas * price > MAX_NETWORK_FEE):
+            raise ValueError('Observed transaction exceeds the hard local gas policy')
 
     def _receipt(self, transaction_hash, reviewed):
         lab = self.lab
@@ -197,8 +199,10 @@ class LocalBrowser:
             raise ValueError('Receipt is not on the current canonical local chain')
         if receipt.get('status') not in ('0x0', '0x1'):
             raise ValueError('Receipt has no valid execution status')
-        if (_quantity(receipt.get('gasUsed')) > _quantity(reviewed['gas']) or
-                _quantity(receipt.get('effectiveGasPrice')) > _quantity(reviewed['gasPrice'])):
+        gas_used, paid_price = _quantity(receipt.get('gasUsed')), _quantity(receipt.get('effectiveGasPrice'))
+        if (gas_used > min(_quantity(reviewed['gas']), _quantity(transaction['gas'])) or
+                paid_price > min(_quantity(reviewed['gasPrice']), _quantity(transaction['gasPrice'])) or
+                gas_used * paid_price > _quantity(reviewed['gas']) * _quantity(reviewed['gasPrice'])):
             raise ValueError('Receipt exceeds the reviewed network fee')
         return receipt
 

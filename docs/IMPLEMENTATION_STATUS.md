@@ -1,3 +1,17 @@
+## MetaMask connection and confirmed approval recovery - 2026-10-20
+
+The local browser adapter distinguishes wrong account, wrong chain and wrong
+genesis/RPC, explains connected-account permissions, and revalidates an already
+authorized provider without repeating its permission request. Wallet gas-limit
+padding is accepted only inside hard policy and with canonical paid gas, price
+and cost within the unchanged original review. Economic fields and nonce remain
+exact; recovery does not resend approval or attach LP.
+
+[Follow-up evidence](../reports/browser-wallet/CONNECTION_RECOVERY.md) separates
+the user's observed MetaMask approval from full extension-flow acceptance.
+Production will request Robinhood Chain using separately reviewed configuration;
+only the disposable local signing profile is currently enabled.
+
 ## Independent browser-wallet candidate - 2026-10-20
 
 The opt-in local website now prepares typed actions for independent EIP-1193

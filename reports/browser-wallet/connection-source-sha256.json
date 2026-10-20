@@ -1,0 +1,23 @@
+{
+  "scope": "MetaMask connection and mined approval recovery follow-up",
+  "checks": {
+    "backend_core": 31,
+    "connection_adapter": 41,
+    "receipt_signer": 44
+  },
+  "public_transactions": 0,
+  "new_holder_or_operator_test_transactions": 0,
+  "sha256": {
+    "contract": {
+      "scripts/local_browser.py": "03eea8634233a65ecafc73e1890a43d5d00857c4660df4adc10171286ed810a9",
+      "tests_python/test_local_browser.py": "705493bc745f3c49b9ed538cd44c4ace248d6ea533c14532d3ad52d8ba317429"
+    },
+    "website": {
+      "browser-client.js": "6edc82dbb033772a4d09cea105c73347cafc0e0c690e696447dfb18f8892e867",
+      "browser-wallet.js": "42766ec5dabb7beab571b57cddadd20655fffe14a44c9ae3fc84156ab2f41a5a",
+      "local-view.js": "edcb4210cb7d4c68924ff0f3c498f8776fc0fed1cdea3500c37c9756c6938e7c",
+      "tests/browser-client.test.mjs": "74815d00f51b8d5b67c0525dfd30603c0d413fdd3c6507e9ec62b390748b0e33",
+      "tests/browser-wallet.test.mjs": "df0b76f4b661c6fdc3e11c424555e98c319b1a9688771d16b1f94338f17a84ae"
+    }
+  }
+}

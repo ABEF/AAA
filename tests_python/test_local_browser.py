@@ -198,13 +198,53 @@ class BrowserTests(unittest.TestCase):
         self.prepare()
         original = self.transaction.copy()
         for field, value in [('from', B), ('to', ENTRY), ('value', '0x0'), ('nonce', '0x1'),
-                             ('input', '0x87654321'), ('chainId', '0x1'), ('gas', '0x30d41'),
-                             ('gasPrice', '0x65'), ('hash', '0x' + 'e' * 64)]:
+                             ('input', '0x87654321'), ('chainId', '0x1'), ('gas', hex(30_000_001)),
+                             ('gasPrice', '0x65'), ('gasPrice', hex(100 * 10**9 + 1)),
+                             ('hash', '0x' + 'e' * 64)]:
             self.transaction = {**original, field: value}
             with self.subTest(field=field), self.assertRaises(ValueError):
                 self.confirm()
             self.assertEqual(self.lab.operations.revision, 0)
             self.lab.call.assert_not_called()
+
+    def test_wallet_gas_padding_preserves_review_and_accepts_only_paid_gas_within_it(self):
+        self.draft['action'] = 'approve'
+        self.draft['transaction'] = {**self.tx, 'gas': '0xdfa9', 'gasPrice': '0x3b9aca07'}
+        draft = self.prepare()
+        original_review = copy.deepcopy(draft['transaction'])
+        self.transaction.update(gas='0x11793', gasPrice='0x3b9aca07')
+        self.receipt.update(gasUsed='0xba62', effectiveGasPrice='0x3b9aca07')
+        result = self.confirm()
+        self.assertEqual(result['status'], 'confirmed')
+        self.assertEqual(self.browser.items[KEY]['draft']['transaction'], original_review)
+        self.assertEqual(self.lab.operations.revision, 1)
+        self.lab.call.assert_not_called()
+
+    def test_padded_limit_never_allows_paid_gas_above_original_review(self):
+        self.prepare()
+        self.transaction['gas'] = '0x61a80'
+        self.receipt['gasUsed'] = '0x30d41'
+        with self.assertRaisesRegex(ValueError, 'reviewed network fee'):
+            self.confirm()
+        self.assertEqual(self.lab.operations.items, {})
+
+    def test_smaller_submitted_gas_and_price_are_the_tighter_paid_ceiling(self):
+        self.prepare()
+        self.transaction.update(gas='0x1869f')
+        with self.assertRaisesRegex(ValueError, 'reviewed network fee'):
+            self.confirm()
+        self.transaction.update(gas='0x30d40', gasPrice='0x63')
+        with self.assertRaisesRegex(ValueError, 'reviewed network fee'):
+            self.confirm()
+        self.assertEqual(self.lab.operations.items, {})
+
+    def test_padding_cannot_exceed_hard_total_cost_even_with_valid_gas_and_price(self):
+        self.draft['transaction'] = {**self.tx, 'gasPrice': hex(100 * 10**9)}
+        self.prepare()
+        self.transaction.update(gas=hex(30_000_000), gasPrice=hex(100 * 10**9))
+        with self.assertRaisesRegex(ValueError, 'hard local gas policy'):
+            self.confirm()
+        self.lab.call.assert_not_called()
 
     def test_wrong_receipt_identity_or_failed_canonical_inclusion_never_confirms(self):
         self.prepare()

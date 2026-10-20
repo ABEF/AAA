@@ -10,6 +10,8 @@ This is a reusable signing implementation exercised against disposable contracts
 not an approved production deployment. [Scoped evidence](../reports/browser-wallet/VERIFICATION.md)
 distinguishes automated provider tests, actual local receipts and browser-extension
 acceptance. The [central wallet task](../TODO.md#task-wallet) remains in progress.
+Connection diagnostics and receipt recovery follow-up are recorded separately in
+[connection and recovery evidence](../reports/browser-wallet/CONNECTION_RECOVERY.md).
 
 ## Start and connect
 
@@ -34,6 +36,20 @@ acceptance. The [central wallet task](../TODO.md#task-wallet) remains in progres
 5. Refresh confirmed state. Check ownership, LP and claimable balances before
    reviewing a transaction. Connection survives soft refresh through account
    reads; no transaction is sent while restoring a connection.
+
+The dialog distinguishes the address the wallet exposes to this website from the
+account merely selected in the extension. If the exposed address is not one of
+the two fixture accounts, change the site's connected-account permissions in the
+wallet and reconnect. The error displays that public address; importing an
+account alone does not grant the website access to it.
+
+A switch-network button is shown only for a different chain ID. Chain 31337 with
+the wrong genesis is a different local deployment: correct the RPC URL to the
+one displayed for this run. A failed connection stays in the dialog with its
+error and cannot trigger a successful-state refresh. Reconnecting the same
+provider reads its current authorized accounts and chain before verifying the
+genesis again; it does not reuse a stale account or open overlapping permission
+prompts. A refresh also revalidates the connection before enabling actions.
 
 The local named inputs are ZZZ, USDG, USDC and ETH. **All have a $1 mock input
 price, including ETH.** Local activation is exactly 100 input units at that mock
@@ -70,6 +86,13 @@ production fee policy. Before offering public transactions, replace the dynamic
 local manifest with an independently reviewed production deployment inventory,
 qualified fee semantics, supported RPCs, token routes and prices.
 
+**Production network requirement:** the production UI must request Robinhood
+Chain using an independently verified production manifest containing its exact
+chain ID, approved RPCs and deployed contract identities. It must not substitute
+a testnet or fall back to Anvil. These production values remain unqualified here;
+the currently enabled browser signer still accepts only the explicit local
+chain-31337 profile. This requirement does not enable public signing.
+
 ## Submission, confirmation and artwork
 
 Before the single wallet send request, the browser saves a recovery record in
@@ -90,6 +113,23 @@ inclusion and canonical block identity. The local observer independently checks
 the receipt against its saved draft. A previously observed receipt changing
 inclusion or status requires operator review; an old successful result is not
 reused for a different canonical receipt.
+
+Wallets can increase the submitted gas limit after the website's review. Recovery
+can accept that adjustment only after canonical execution is verified. Sender,
+destination, calldata, value, nonce and chain must still match exactly. The
+submitted gas limit and gas price must remain within the local policy's hard
+limits and total fee envelope; its gas price cannot exceed the reviewed price.
+The receipt must use no more gas than either the submitted or reviewed gas limit,
+pay no higher unit price than either submitted or reviewed price, and charge no
+more than the original reviewed maximum network cost.
+
+The original reviewed transaction remains unchanged in both recovery records;
+observed transaction/receipt fields establish what actually happened. This is a
+bounded receipt-reconciliation rule, not permission to raise the reviewed cost,
+accept changed calldata or sign again. Pre-send checks remain unchanged. Without
+a canonical receipt, the transaction remains pending or unresolved. If any paid
+bound is exceeded, preserve the record for operator review. The website cannot
+prevent a user or extension from editing the wallet's own confirmation.
 
 Only a reconciled terminal receipt can be acknowledged and removed from browser
 recovery storage. Confirmed state is then read again. LP and artwork do not change
@@ -132,12 +172,15 @@ evidence before starting another disposable fixture.
 
 | Symptom | Required action |
 | --- | --- |
+| Wallet exposes an ordinary account instead of fixture A/B | Use the displayed public address to inspect the wallet's site permissions. Authorize the intended disposable account, then reconnect. Do not mint or transfer funds to solve a connection error. |
+| Wallet reports chain 31337 but the connection is not verified | Check the exact RPC URL and genesis for this run. A chain-ID-only switch is insufficient; another Anvil deployment can use the same ID. |
 | Wallet rejection | Inspect whether the wallet reports a definitive rejection. A confirmed approval remains on-chain; reprepare and reuse its sufficient allowance. |
 | Wallet prompt takes more than 15 seconds | Inspect the existing prompt/activity. Keep the original request; do not submit it again. Refresh to recover a later returned hash. |
 | Browser refresh while a transaction is pending | Reconnect to the same account, exact RPC/genesis and origin. Refresh reads the saved hash and verifies its receipt; it does not send again. |
 | Wallet sent, but the page never received a hash | Keep the recovery record. Copy the exact hash from wallet activity into recovery; identity and reviewed nonce/calldata must match. If no hash can be established, stop that account's new actions and inspect wallet/RPC records. |
 | Account or chain changed | Unsent reviews are discarded. A sent transaction remains associated with its original account/genesis; switch back and recover it. |
-| Wallet replaced/cancelled a transaction or changed reviewed fields | Do not clear storage or assume success. Inspect the original/replacement receipts and account nonce. Automatic replacement searching or accepting different calldata is not implemented. |
+| Wallet increased the gas limit | Recover the existing hash. Canonical execution may be accepted only within the submitted-policy and original reviewed paid bounds described above. Preserve the original review; never repeat a confirmed approval or contribution. |
+| Wallet replaced/cancelled a transaction, changed economic fields or exceeded reviewed paid bounds | Do not clear storage or assume success. Inspect the original/replacement receipts and account nonce. Automatic replacement searching or accepting different calldata is not implemented. |
 | Receipt disappeared or changed after observation | Preserve old/new hashes, inclusion and outcome records. Do not acknowledge or replay a payment. Reconcile canonical execution before continuing. |
 | API/indexer read failed after receipt success | Retry confirmed reads. Preserve the successful transaction; a projection failure is not a reason to pay again. |
 | Mock reveal failed | Inspect the original request and the operator's submissions; complete only the original request in order. Never reroll or mint a replacement. |
@@ -174,7 +217,10 @@ mint, native ETH activation, exact USDC approval, USDC increase and ETH claim.
 The four original fixture NFT ownership/LP/activation records remained unchanged.
 The adapter exercise is **not** browser-extension acceptance or public signing.
 See the [verification record](../reports/browser-wallet/VERIFICATION.md) for exact
-source scope, receipts, corrections and limitations.
+source scope, receipts, corrections and limitations. The later
+[connection and recovery record](../reports/browser-wallet/CONNECTION_RECOVERY.md)
+separates the actual extension observation from its focused fixes; the initial
+test counts above are not new evidence for those changes.
 
 Actual Chrome/extension behavior, production manifests, provider semantics, live
 routes/feeds, hosting and independent review remain open. The user-deferred

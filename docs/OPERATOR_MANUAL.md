@@ -575,11 +575,36 @@ no service restart, contract call, public deployment or governance change is nee
 
 The opt-in local **browser-wallet** mode has a separate
 [signing and recovery procedure](BROWSER_WALLET.md). It uses unsigned typed
-preparation, independent extension signing, exact nonce/code/gas checks,
+preparation, independent extension signing, exact nonce/code and bounded gas checks,
 same-origin durable pending records and canonical receipt observation. Public
 hosting remains a simulation. Its recovery must not be replaced by the demo or
 launcher-owned signer procedures below; switching modes does not cancel a sent
 transaction. No contract authority or production deployment changes.
+
+For connection failures, inspect the public account actually exposed to the site,
+not only the account selected in the extension. Only the two disposable fixture
+accounts are admitted locally. Change the wallet's site permissions as needed.
+If the chain ID is 31337 but genesis verification fails, correct the run's exact
+RPC URL; switching to another network with the same ID is insufficient. Repeated
+connects and refreshes read current authorization and reverify the deployment.
+Failed connection leaves actions disabled and the error visible in the dialog.
+
+If the wallet padded a transaction's gas limit, recover its original hash without
+resubmission. The submitted transaction must retain the exact economic fields,
+nonce and chain and stay inside hard policy limits; canonical gas used, unit price
+and paid cost must also stay inside the original reviewed limits. Preserve that
+review and the observed receipt. A pending receipt, altered economic field,
+exceeded paid bound or changed inclusion remains unresolved for operator review;
+do not erase the journal or repeat a confirmed approval. See
+[connection and recovery evidence](../reports/browser-wallet/CONNECTION_RECOVERY.md)
+and the full [receipt procedure](BROWSER_WALLET.md#submission-confirmation-and-artwork).
+
+The production UI must request **Robinhood Chain**, using an independently
+verified production manifest for chain ID, RPCs and contract identities. It must
+not select a testnet or use an Anvil fallback. The current opt-in browser signer
+continues to allow only local chain 31337; production manifest qualification and
+public signing remain open. No public network values are inferred from a wallet's
+network name.
 
 The public simulation adds one `claim-testing-20261020` receipt after existing
 saved actions. It preserves LP, NFT traits and cumulative claims; refreshing does

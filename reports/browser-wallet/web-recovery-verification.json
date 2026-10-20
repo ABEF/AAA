@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-10-20T16:48:53.741575+00:00",
+  "original_anvil_pid": 10988,
+  "web_pid": 25784,
+  "url": "http://127.0.0.1:8900",
+  "genesis_unchanged": true,
+  "session_preserved": true,
+  "positions_preserved": 6,
+  "lp_ownership_and_claimable_unchanged": true,
+  "original_review_preserved": true,
+  "holder_or_operator_transactions_sent": 0,
+  "state_reads_mine_empty_confirmation_blocks": true,
+  "confirmation": {
+    "status": "confirmed",
+    "transaction_hash": "0xfbcd791c19b9ccaa2a41fb08df90e8b04cf26d36588a0b110265f7e07a0c86e7",
+    "revision": 19
+  },
+  "repeat_same_revision": true,
+  "actual_browser_storage_untouched": true
+}
