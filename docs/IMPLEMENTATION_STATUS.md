@@ -1,3 +1,10 @@
+## Current publication - 2026-10-20
+
+The wallet candidate and its focused evidence are published on main. The matching
+static website is deployed; it remains a simulation. [Publication evidence](../reports/browser-wallet/PUBLICATION.md)
+records source bindings, server/public checks and untouched local chain state.
+This adds no feature or test-suite claim and does not close production gates.
+
 ## Independent chain confirmation - 2026-10-20
 
 Shared wallet flows now read balances, simulation and confirmation through the

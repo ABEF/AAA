@@ -1,3 +1,19 @@
+## Publication checkpoint - 2026-10-20
+
+The verified wallet implementation is published on main: contract/backend
+df8a98a and website f060d66. The static Ubuntu site now serves website f060d66;
+full server checksums and scoped public HTTPS/redirect/privacy checks passed.
+See [publication evidence](../reports/browser-wallet/PUBLICATION.md).
+The public site remains simulated; this is not a public contract/API deployment
+or release approval. Local port 8900, Anvil and saved wallet/NFT state were not
+reset. Thirteen source bindings still match the prior focused test evidence;
+unchanged suites and the deferred load campaign were not rerun.
+
+Actual MetaMask acceptance of the latest confirmation fix, production pins,
+routes, feeds, services and independent audit remain open. Keep the single Todo
+ledger and operator procedures authoritative. Preserve older unrelated local
+drafts; they were not included in this publication. Monitoring remains paused.
+
 ## Independent chain confirmation - 2026-10-20
 
 Shared wallet flows now read balances, simulation and confirmation through the

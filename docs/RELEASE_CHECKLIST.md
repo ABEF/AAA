@@ -1,5 +1,9 @@
 # Release approval record - NOT APPROVED
 
+The [static demo publication](../reports/browser-wallet/PUBLICATION.md) updates website
+files only. It does not deploy contracts, enable public wallet transactions,
+qualify production services or change this decision.
+
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-20.
 

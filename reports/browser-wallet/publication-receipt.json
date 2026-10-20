@@ -1,0 +1,18 @@
+{
+  "website_commit": "f060d666d423efd674b17d01b2a026afbe07f1c9",
+  "backend_commit": "df8a98ad58c86e722d4adac19557316bb585599e",
+  "previous_website_commit": "d1a6959598bd9329aa2fddc1da68a11d55121f93",
+  "deployed_at": "2026-10-20T20:20:37Z",
+  "server_public_file_checks": 5593,
+  "public_file_checks": 37,
+  "public_host_checks": 4,
+  "private_path_checks": 4,
+  "server_verified": true,
+  "public_verified": true,
+  "verification_time": "2026-10-20T20:20:55.592679+00:00",
+  "source_bindings": 13,
+  "public_site": "https://popldemo.0xwave.com/",
+  "local_chain_reset": false,
+  "public_transactions_enabled": false,
+  "monitor_restarted": false
+}

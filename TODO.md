@@ -290,6 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Publication checkpoint](reports/browser-wallet/PUBLICATION.md): latest wallet/backend code is on main and the matching static website is deployed and checksum-verified. Public mode remains simulated; actual extension acceptance and production qualification remain open. No unchanged suites or deferred capacity campaign rerun.
   - [Independent chain reader](reports/browser-wallet/CHAIN_READER.md): shared mint/approval/activation/top-up/claim confirmation now uses a pinned read RPC rather than extension transaction formatting; EIP-155 legacy chain identity is supported without weakening typed chain checks. 232 distinct website and 43 backend passes; actual existing mint recovery and exact-node CSP/CORS verified. 13 NFTs/LP/session preserved. Actual extension acceptance and production deployment/service qualification remain open.
   - [Canonical dynamic-fee receipt recovery](reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md): generic EIP-1559 fee derivation fixes uncapped RPC convenience reporting without loosening reviewed limits. 142 signer/client + 40 observer cases and actual minted receipt/balance replay pass. Local web-only reload preserves session/12 NFTs/Anvil; actual extension recovery retest and production qualification remain open.
   - [Mint loading states](reports/browser-wallet/MINT_LOADING.md): first load/refresh and connection are distinguished from mint review, wallet prompt, receipt and reconciliation; unrelated NFT actions never show mint progress. 44 affected UI checks and build pass. Existing pending/readiness safeguards remain.
@@ -797,4 +798,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `0fa7e1e7354e31683e0b881c7e3be125214314270010bb73394b83da077d4086`.
+Snapshot SHA-256: `68db7c50fb92081c56648e41c86818c55260e87f812f6e0ed84c292d0b91579c`.

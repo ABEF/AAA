@@ -22,6 +22,8 @@ The user reports all six [manual two-wallet scenarios](../reports/local-wallet-c
 passed. The local [browser-wallet implementation](BROWSER_WALLET.md) now has
 typed unsigned preparation, independent signing and saved transaction recovery,
 with [scoped automated and Anvil evidence](../reports/browser-wallet/VERIFICATION.md).
+The [latest confirmation fix](../reports/browser-wallet/CHAIN_READER.md) uses a pinned
+node reader independently of wallet response formatting and is [published](../reports/browser-wallet/PUBLICATION.md).
 Next verify an actual browser extension, then adapt the production endpoints and
 independently reviewed deployment/fee policy. The EIP-1193-shaped test provider
 does not close extension acceptance or authorize public funds.
