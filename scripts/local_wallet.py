@@ -58,22 +58,22 @@ class LocalWallet:
             source=input_for(lab,payload.get('asset'))
             value=int(payload['amount']);amount=value*10**source['decimals']
             native=source['symbol']=='ETH'
+            atomic_native=native and getattr(lab,'native_input',False)
             token=lab.weth if native else source['address']
             active = bool(lab.uint('vault','nftBucket(uint256)',identifier))
             if active != (action == 'increase'):
                 raise ValueError('NFT activation state changed; refresh')
             wrap_key=(owner,identifier,payload['amount'])
-            if native and wrap_key not in self.wrapped:
-                if len(self.wrapped)>=32:raise ValueError('Finish a pending ETH contribution before wrapping more')
-                action='wrap'
-                tx={'from':owner,'to':token,'value':hex(amount),'data':lab.encode('deposit()')}
+            if native and not atomic_native:
+                raise ValueError('Use the native-ETH test setup: this older pool requires a separate wrap and is not supported by the two-transaction flow')
+            if atomic_native:
+                tx=input_tx(lab,owner,identifier,value,action == 'increase',payload.get('asset'))
             elif lab.uint(token,'balanceOf(address)',owner) < amount:
                 raise ValueError('Insufficient '+source['symbol']+' local balance')
             elif lab.uint(token,'allowance(address,address)',owner,lab.contracts['entry']) < amount:
                 action = 'approve'
-                # Reset a prior smaller allowance, then request exactly the selected input.
-                allowance=lab.uint(token,'allowance(address,address)',owner,lab.contracts['entry'])
-                approved=0 if allowance else amount
+                # Exact allowance replacement; reset-only tokens are unsupported.
+                approved=amount
                 tx = {'from':owner,'to':token,'value':'0x0',
                       'data':lab.encode('approve(address,uint256)',lab.contracts['entry'],approved)}
             else:

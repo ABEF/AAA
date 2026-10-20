@@ -38,8 +38,9 @@ LP/royalty claim balances remain separate. The website still shows examples.
    venue identity, feed/decimal/age configuration, current Oracle prices,
    sequencer policy and configured dependency getters/storage slots.
 3. Check actual balance and Entry allowance. An insufficient ERC20 allowance
-   returns an exact approval draft, or a zero reset first for an existing nonzero
-   allowance. Simulate and estimate that approval; **no activation quote is
+   returns one exact replacement approval draft even for a smaller nonzero
+   allowance. Tokens requiring a separate zero reset fail simulation and are
+   unsupported by this two-transaction flow. Simulate and estimate that approval; **no activation quote is
    declared ready**. After confirmation, prepare again. No unlimited approval,
    fabricated allowance, permit, arbitrary recipient or arbitrary calldata.
 4. Simulate the complete original-source conversion, balancing and LP addition

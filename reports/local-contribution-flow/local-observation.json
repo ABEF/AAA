@@ -1,0 +1,43 @@
+{
+  "chain_id": 31337,
+  "port": 8898,
+  "read_seconds": 2.25,
+  "nft_count": 4,
+  "all_lp_available": true,
+  "tested_nft_ordinal": 1,
+  "tested_nft_lp_raw": "104999999999999999999",
+  "native_atomic": true,
+  "no_standalone_wraps": true,
+  "web_receipts": [
+    {
+      "label": "website activate",
+      "hash": "0xc27da56f6634dcb616a0ae5966ccfcfc24d03f9c89d7f01a37b58e93f4a98c4d",
+      "status": "0x1"
+    },
+    {
+      "label": "website claim",
+      "hash": "0xe5c8be886271efc493afc714647b0b3bb7eb04ca11229d96825f0d97a16d45de",
+      "status": "0x1"
+    },
+    {
+      "label": "website approve",
+      "hash": "0xa9efec4d97cd5c877047e13dbe2cfbc7378f4beab431b96eed6b928a4e5046ab",
+      "status": "0x1"
+    },
+    {
+      "label": "website increase",
+      "hash": "0x5ca686fd26b02b730b40a686e59e6bffad64b360da15c5698cdead7eb759dfc4",
+      "status": "0x1"
+    },
+    {
+      "label": "website approve",
+      "hash": "0x7538affd4f20b7b2e5ef4309b45a0dafb2df39efe6ac1ad42d96c91c73e04d91",
+      "status": "0x1"
+    },
+    {
+      "label": "website increase",
+      "hash": "0x75a75dfbd22d94ed88fa030dc7f22b36e8f18bc39daa1ad18ff45436b4a9dd7d",
+      "status": "0x1"
+    }
+  ]
+}

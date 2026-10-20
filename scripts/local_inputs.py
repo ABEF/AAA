@@ -10,7 +10,7 @@ def deploy_inputs(lab):
     weth = lab.deploy('LocalInputWETH',local=True)
     usdc = lab.deploy('LocalInputToken', 'constructor(string,uint8)', ('USDC',6),local=True)
     usdg = lab.deploy('LocalInputToken', 'constructor(string,uint8)', ('USDG',6),local=True)
-    lab.tokens = sorted([zzz,weth])
+    lab.tokens = [weth,zzz] if getattr(lab,'native_input',False) else sorted([zzz,weth])
     lab.input_assets = [dict(symbol=s,address=a,decimals=d,route_id=EMPTY,enabled=True)
                         for s,a,d in [('ZZZ',zzz,18),('USDG',usdg,6),('USDC',usdc,6),('ETH',ZERO,18)]]
     lab.weth = weth
@@ -78,8 +78,10 @@ def input_for(lab, symbol=None):
 
 def input_tx(lab, owner, identifier, value, increase, asset=None):
     a=input_for(lab,asset);source=lab.weth if a['symbol']=='ETH' else a['address']
+    native=a['symbol']=='ETH' and getattr(lab,'native_input',False)
+    if native:source=ZERO
     amount=value*10**a['decimals'];route=a['route_id']
     minimum=value*UNIT*99//100 if route!=EMPTY else 0
-    return {'from':owner,'to':lab.contracts['entry'],'value':'0x0',
+    return {'from':owner,'to':lab.contracts['entry'],'value':hex(amount) if native else '0x0',
             'data':lab.encode('execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))',
                 f'({identifier},{lab.pool},{source},{amount},{route},{minimum},1,{lab.clock()+120},{str(increase).lower()})')}

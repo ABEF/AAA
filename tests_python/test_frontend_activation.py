@@ -192,14 +192,28 @@ class ActivationPreparationTests(unittest.TestCase):
                 self.assertEqual(final['data'],r['transaction']['data'])
                 self.assertEqual(r['onchain_deadline'],1060)
 
-    def test_exact_approval_or_reset_requires_new_quote_no_fake_allowance(self):
+    def test_exact_approval_requires_new_quote_no_fake_allowance(self):
         for allowance in (0,1):
             svc=self.service();self.rpc.allowance=allowance;r=svc.prepare(self.rpc.request)
             self.assertFalse(r['activation_ready']);self.assertEqual(r['kind'],'approval_required')
             self.assertIsNone(r['contribution']);self.assertIsNone(r['onchain_deadline']);self.assertEqual(self.rpc.trace_count,0)
-            amount=0 if allowance else 100*USD
+            amount=100*USD
             self.assertEqual(r['transaction']['data'],calldata('approve(address,uint256)',self.rpc.pins['entry'],amount))
             self.assertTrue(r['approval_steps'][0]['reprepare_after_confirmation'])
+            self.assertFalse(r['approval_steps'][0]['reset_first'])
+
+    def test_reset_only_or_false_returning_token_never_returns_a_zero_approval(self):
+        for failure in ('revert','false'):
+            svc=self.service();self.rpc.allowance=1;original=self.rpc.call
+            approval=calldata('approve(address,uint256)',self.rpc.pins['entry'],100*USD)
+            def call(method,params):
+                if method=='eth_call' and params[0].get('data')==approval:
+                    if failure=='revert':raise ProjectionError('token requires reset')
+                    return words(0)
+                return original(method,params)
+            self.rpc.call=call
+            with self.assertRaises(ProjectionError):svc.prepare(self.rpc.request)
+            self.assertEqual(self.rpc.trace_count,0)
 
     def test_original_source_floor_cannot_be_paid_from_incumbent_idle_or_compound(self):
         for deployed,idle,incumbent in ((1099*USD-1,0,1000*USD),(1098*USD,2*USD,1000*USD),(1100*USD,0,1002*USD)):

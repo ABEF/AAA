@@ -183,16 +183,17 @@ class ActivationTransactions:
             if balance<req['amount']: raise ActivationInputError('Source balance is insufficient')
             allowance=int(p._call(source,'allowance(address,address)',req['owner'],pins['entry'],block=block)[0],16)
             if allowance<req['amount']:
-                # Reset a nonzero allowance first; never silently grant unlimited
-                # approval or fake approval state to claim activation is ready.
-                approval_amount=0 if allowance else req['amount']
+                # Exact replacement only: approval + Entry is at most two sends.
+                # Reset-only tokens fail simulation; do not silently add a third
+                # transaction. Entry pulls only from its authenticated caller.
+                approval_amount=req['amount']
                 transaction={'from':req['owner'],'to':source,'value':'0x0',
                              'data':calldata('approve(address,uint256)',pins['entry'],approval_amount)}
                 response=p.rpc.call('eth_call',[{**transaction,'gas':hex(GAS_CAP)},block])
                 if response not in ('0x','0x'+f'{1:064x}'): raise ProjectionError('Approval simulation failed')
                 kind='approval_required'
                 approvals=[{'asset':source,'spender':pins['entry'],'amount_raw':str(approval_amount),
-                            'reset_first':allowance!=0,'reprepare_after_confirmation':True}]
+                            'reset_first':False,'reprepare_after_confirmation':True}]
         if transaction is None:
             req['minimum_out']=0 if req['route']==ZERO_HASH else 1;req['minimum_lp']=1
             def tx():

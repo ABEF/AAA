@@ -1,3 +1,18 @@
+## Latest local continuation - 2026-10-20
+
+Local read-clock bottleneck and contribution flow corrected; see
+[verification](../reports/local-contribution-flow/VERIFICATION.md). Existing
+8896 Anvil/NFTs/LP were preserved through a web-only recovery. A separate native
+fixture is available at http://127.0.0.1:8898/app/#my-nfts with mock native venue
+admission. ETH is one atomic Entry call; supported ERC20 needs at most exact
+approval plus Entry. The current processes use external session recovery launchers;
+consult the external run directory/running.json before process control. Do not
+reset either chain or assume normal launcher restart resumes its persisted state.
+Only the web processes were replaced; old unsigned drafts are invalidated.
+No public deployment/server/paused-monitor change. Main only; preserve unrelated
+drafts and verify Git publication. Production still requires live route/service
+qualification and fixed-$100 pricing policy alignment.
+
 ## Local activation busy-response fix - 2026-10-20
 
 The current local website adapter retries only pre-handler busy unsigned

@@ -156,3 +156,36 @@ Only the NFT receiving a confirmed activation/top-up shows the artwork Updating
 badge during balance refresh. Other artwork stays visible without that badge;
 stale financial values/actions still wait for the confirmed portfolio snapshot.
 A plain refresh or token approval does not label every artwork as changing.
+
+## Local contribution flow - 2026-10-20
+
+The local website fixes activation at $100 of mock-priced input; growing attached
+LP remains separate, starting at $5. Inputs are token quantities with an explicit
+$1 mock USD estimate, not a live market quote. After exact approval, the next LP
+review opens automatically but still requires explicit confirmation. The window
+stays open during receipt and balance reads; artwork follows confirmed LP only.
+
+The local wallet and production unsigned preparation now replace an insufficient
+allowance with the exact requested amount, never an automatic zero reset or unlimited
+approval. Direct approval must simulate successfully; reset-only tokens are
+unsupported by the two-transaction flow. An already sufficient allowance is reused.
+Governed Entry pulls only from its authenticated caller. Native ETH needs no wallet
+approval and is wrapped inside Entry atomically for a compatible native pool.
+
+Use the separate launcher profile `--named-assets --native-input` to test native
+ETH. It substitutes `LocalNativeRegistry` admission on chain 31337 and retains the
+unmodified production Entry/Vault/budget/ledger implementations above the mock
+venue. This is not qualification of Robinhood venue pins or real market prices.
+The older WETH-pool session cannot support atomic native input: its three-step
+wrap flow is rejected, not hidden. Keep that session intact when starting another
+profile. Neither the public website nor public contracts were deployed.
+
+The read clock now samples actual chain time at initial/final freshness boundaries
+and advances monotonically between them. Budget checkpoints no longer perform a
+fresh RPC per check. Missing/stale data still fails closed. Do not infer ETH/USD
+prices from the local input feed; missing history prices remain unavailable.
+
+Production Entry still enforces a $100 minimum, not an exact-$100 upper bound.
+The fixed activation amount is a local UI/API product rule; real quote rounding
+and price-drift policy must be resolved before asserting contract-level equality.
+See [scoped verification](../reports/local-contribution-flow/VERIFICATION.md).

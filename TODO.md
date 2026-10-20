@@ -294,6 +294,7 @@ What holders see and use.
   - Local fast session handshake supplies wallets before full portfolio reads; selection survives soft reload/navigation within that disposable deployment. New sessions require selection again. This is not public-wallet persistence or signer hosting.
   - Main static website now preserves wallet selection in tab session storage and restores browser accounts without prompts/signing. Account/network changes invalidate unsent previews. This is public-account connection continuity, not live financial transaction integration. See [main website evidence](reports/frontend-state/VERIFICATION.md).
   - Local preparation contention: activation/mint/claim review waits on the exact pre-handler busy response with bounded retries and account/state cancellation. Submission is never automatically repeated. See [scoped evidence](reports/local-preparation-busy/VERIFICATION.md). This does not qualify production wallet concurrency.
+  - Local two-transaction flow: exact replacement approval then Entry; atomic native ETH in a separate chain-31337 admission fixture. Fixed $100 local activation, token-unit inputs and continuous confirmation UI. Read-clock RPC overhead removed. [Evidence](reports/local-contribution-flow/VERIFICATION.md). Production fixed-$100 quote/rounding policy and public wallet qualification remain open; production Entry currently retains its $100 minimum.
 
   </details>
 
@@ -762,4 +763,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `48e765ee43b1c1f3a1713d6235bb5c713b1b5f2f0d72f38c91056ef0059ba22f`.
+Snapshot SHA-256: `e588bcd39ad840d9015caf18bdfac28bf0538039ca1ace1d923e09bdb49cf023`.

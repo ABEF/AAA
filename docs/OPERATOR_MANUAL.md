@@ -683,3 +683,25 @@ tab finish, then prepare again; inspect pending-operation recovery before any
 new submission. Never reset the live test chain merely to clear this message.
 Reverting the client restores the immediate-busy error but changes no on-chain
 state. See [focused verification](../reports/local-preparation-busy/VERIFICATION.md).
+
+## Two-transaction contribution operation
+
+For local rehearsals, use `--named-assets --native-input` with a new port/state
+directory; it substitutes local-only native admission, not production venue pins.
+Never restart an existing lab expecting persisted chain recovery: preserve its
+owned Anvil process and state, or use a separately verified web-only recovery.
+Stop a pending UI flow without repeating a confirmed transaction; reread balances
+and allowance before preparing again. Old unsigned drafts expire/cannot be replayed.
+
+The holder approves exactly the required ERC20 amount once, then explicitly confirms
+Entry. Direct approval must simulate successfully; a reset-only token is unsupported
+rather than silently adding a third send. Already sufficient allowance needs no
+approval. Native ETH wraps atomically inside Entry in the new native fixture. The
+legacy WETH-only pool cannot offer that ETH path. The local fixed activation is
+$100; top-ups start at $5. This does not change production Entry's $100 minimum.
+
+Verify receipt success, increased confirmed LP and unchanged unrelated NFTs before
+celebration. Failure of the atomic Entry call reverts its wrapping/conversion/LP
+effects; approval and paid gas are separate. No governance/keeper permission
+changes. [Runbook](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
+[evidence](../reports/local-contribution-flow/VERIFICATION.md).

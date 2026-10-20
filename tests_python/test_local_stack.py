@@ -9,6 +9,15 @@ spec=importlib.util.spec_from_file_location('popl_local_stack',Path(__file__).re
 lab=importlib.util.module_from_spec(spec);spec.loader.exec_module(lab)
 
 class LocalReadTests(unittest.TestCase):
+    def test_wallet_activation_fixed_value_and_separate_topups(self):
+        for asset in ('ZZZ','USDC','USDG','ETH'):
+            base={'action':'activate','account':'alice','id':'1','asset':asset,'amount':'100'}
+            lab.validate_action(base,['alice'])
+            for amount in ('99','101','150','99999'):
+                with self.assertRaises(ValueError):lab.validate_action({**base,'amount':amount},['alice'])
+            for amount in ('5','8','50','100','99999'):
+                lab.validate_action({**base,'action':'increase','amount':amount},['alice'])
+
     def test_optional_history_failure_is_unavailable_not_zero_or_a_portfolio_failure(self):
         p=object.__new__(lab.Lab)
         p.api=SimpleNamespace(earnings=Mock(side_effect=lab.RpcError('secret endpoint detail')))

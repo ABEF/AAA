@@ -407,3 +407,13 @@ Actual submissions and ambiguous responses are not automatically repeated.
 See [focused verification](../reports/local-preparation-busy/VERIFICATION.md).
 No Solidity or backend behavior changed; production browser signing and
 concurrent service qualification remain open.
+
+## Local read and contribution update - 2026-10-20
+
+A boundary-sampled monotonic clock removes per-check RPC overhead without dropping
+initial/final freshness checks. The native fixture uses unchanged Entry for atomic
+ETH; supported ERC20 uses exact replacement approval then Entry, with no automatic
+reset. The UI retains confirmation continuity and fixes local activation at $100.
+See [behavior and limits](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
+[scoped verification](../reports/local-contribution-flow/VERIFICATION.md).
+Production venue/service qualification and fixed-$100 price/rounding policy remain open.

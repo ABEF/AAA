@@ -1,0 +1,15 @@
+{
+  "scripts/local-stack.py": "2114ab1f98a9b23e31a4b06aa3a4fae76f79eb03eb3013fc48f18d12ca9e1670",
+  "scripts/local_clock.py": "ece4be4950025680a6135d5758f9af1d3628acf3d3dfa2f6ef069c25e35c1615",
+  "scripts/local_wallet.py": "ccee84937ad164924bea6e867b0e24d0a0b48407fa18ba481659cb2a8d07f27e",
+  "scripts/local_inputs.py": "f4dda4e24fc06a4c85ef5caa7d6e293618f19624a6689fced70b5902bb04f354",
+  "frontend_api/activation.py": "ce475a3240599080e151b3ddd8195efac9562d1709c3f1cd82612e4e3b9811d8",
+  "test/local/LocalNativeRegistry.sol": "bb01b956a7646858ef79a2383461c95e52ac78a77d01362c390f79d37d44e3a6",
+  "tests_python/test_local_clock.py": "f8ae6b3ca36d440406743f806898498387d74f88cecdae3bdea8f744bb2fdda0",
+  "tests_python/test_local_stack.py": "c79d6817a0c9530d05bae5c0aa01b82a62d937f52ce328002b8cdc3eb11e1253",
+  "tests_python/test_local_wallet.py": "4ba1ec17d0b089995ebc47448f2adf9044166f8f4ad28e13b8edaa6eac448635",
+  "tests_python/test_local_inputs.py": "3fc87658e0c78d071da4bd4f47c688cbf8da7f2f24b421f342a6a74a3014dbd4",
+  "tests_python/test_frontend_activation.py": "3b038761ba3284d0ae33f5ecd6f21c44546ed8fd6a227ec3f97fbd71d760276d",
+  "website/local-view.js": "ac386e7b5f5f7a17d3812f35648af6eb14839a205cbe24ea9919df2e480f2e99",
+  "website/tests/local-client.test.mjs": "1d9271b51d802e5c3a8c1af6dcb5e08ebf4d15d6a760d10ba28a8c1e3e95e302"
+}

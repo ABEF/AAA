@@ -34,6 +34,7 @@ from indexer.monitor import Indexer
 from frontend_api.service import Projection, ProjectionError, ZERO
 from frontend_api.transactions import Transactions
 from scripts.local_wallet import LocalWallet
+from scripts.local_clock import LocalChainClock
 from scripts.local_inputs import deploy_inputs, configure_inputs, input_for, input_tx, settle_lp
 
 CHAIN = 31337
@@ -87,6 +88,8 @@ def validate_action(payload, accounts):
         if (not isinstance(payload['amount'],str) or not re.fullmatch(r'[1-9][0-9]{0,4}',payload['amount']) or
                 not minimum <= int(payload['amount']) <= 99999):
             raise ValueError(f'Use a whole test-token amount from {minimum} to 99,999')
+        if action == 'activate' and payload['amount'] != '100':
+            raise ValueError('Activation is exactly $100 at the local $1 token price; grow LP separately')
     if 'draft_id' in fields[action] and (not isinstance(payload['draft_id'],str) or not re.fullmatch(r'[a-f0-9]{32}',payload['draft_id'])):
         raise ValueError('Invalid confirmation ID')
 
@@ -132,6 +135,12 @@ def runtime_hash(code):
     return '0x'+keccak256(bytes.fromhex(code[2:])).hex()
 
 class LocalProjection(Projection):
+    def _fresh(self, header):
+        # Sample the actual chain at each initial/final freshness boundary.
+        # Budget checkpoints use elapsed monotonic time, not thousands of RPCs.
+        if isinstance(self.clock, LocalChainClock): self.clock.refresh()
+        return super()._fresh(header)
+
     def _code(self, addr, expected, block):
         # Cache the pure hash of exact runtime BYTES, never the RPC read or the
         # address's identity. Every request still reads the pinned block hash.
@@ -194,8 +203,11 @@ class Lab:
         self.guard()
         if tx['from'] not in self.accounts: raise ValueError('Only disposable local accounts are permitted')
         wrap_limit=(4_000_000*UNIT if tx['from']==self.accounts[0] else 99_999*UNIT) if getattr(self,'weth',None)==tx.get('to') and tx.get('data')=='0xd0e30db0' else UNIT
+        if getattr(self,'native_input',False) and tx.get('to')==self.contracts.get('entry') and tx.get('data','').startswith('0x'+keccak256(b'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))')[:4].hex()):wrap_limit=99_999*UNIT
         if int(tx.get('value','0x0'),16)>wrap_limit: raise ValueError('Local value limit exceeded')
-        self.rpc('eth_call',[tx,'latest'])
+        response=self.rpc('eth_call',[tx,'latest'])
+        if tx.get('data','').startswith('0x095ea7b3') and response not in ('0x','0x'+f'{1:064x}'):
+            raise ValueError('Token rejected exact approval; reset-only tokens are unsupported')
         gas=int(self.rpc('eth_estimateGas',[tx]),16)
         if gas>29_000_000: raise ValueError('Local gas limit exceeded')
         price=int(self.rpc('eth_gasPrice'),16)
@@ -236,6 +248,7 @@ class Lab:
         return self.send({'from':sender or self.accounts[0],'to':self.contracts.get(role,role),'data':self.encode(signature,*args),'value':hex(value)},signature)
     def deploy(self, name, signature='constructor()', args=(), *, local=False):
         source='LocalInputFixtures.sol' if name.startswith('LocalInput') else (('LocalDemoVenue.sol' if name.startswith('Local') else name+'.sol') if name!='MockVRF' else 'MockVRF.sol')
+        if name=='LocalNativeRegistry':source='LocalNativeRegistry.sol'
         path=Path(self.args.fixture_artifacts if local else self.args.artifacts)/source/(name+'.json')
         artifact=json.loads(path.read_text(encoding='utf-8'))
         metadata=artifact.get('metadata') or json.loads(artifact['rawMetadata'])
@@ -257,6 +270,7 @@ class Lab:
         self.contracts[role]=address
         self.call('access','bind(bytes32,address)','0x'+keccak256(LABELS[role].encode()).hex(),address)
     def start(self):
+        self.native_input=bool(getattr(self.args,'native_input',False))
         self.artifacts=[]
         self.log=(self.home/'anvil.log').open('w',encoding='utf-8')
         command=[self.args.anvil,'--host','127.0.0.1','--port',str(self.rpc_port),'--chain-id',str(CHAIN),'--silent']
@@ -283,7 +297,9 @@ class Lab:
         self.bind('nft',self.deploy('ZZZNFT','constructor(address,string)',(ac,'')))
         self.bind('liquidity',self.deploy('LocalDemoVenue','constructor(address,address,address)',(ac,*self.tokens),local=True))
         for role in ('rewards','membership','fees','strategy','compounder','migration','transport','receiver','pools','routes','handoff'):
-            self.bind(role,self.deploy(LABELS[role],'constructor(address)',(ac,)))
+            if role=='pools' and self.native_input:
+                self.bind(role,self.deploy('LocalNativeRegistry','constructor(address,address,address)',(ac,self.weth,self.tokens[1]),local=True))
+            else:self.bind(role,self.deploy(LABELS[role],'constructor(address)',(ac,)))
         self.bind('buyback',self.deploy('ZZZBuyback','constructor(address,address,uint256)',(ac,self.tokens[0],1000*UNIT)))
         self.bind('bridge',self.deploy('ZZZBridgeAdapter','constructor(address,address)',(ac,self.contracts['transport'])))
         self.bind('oracle',self.deploy('ZZZOracle','constructor(address,address)',(ac,ZERO)))
@@ -318,7 +334,9 @@ class Lab:
     def configure_pool(self, width):
         sig='configure(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))'
         value=f'(({self.tokens[0]},{self.tokens[1]},3000,60,{ZERO}),true,true,{width},300,100,100,600,{5*UNIT},{10**30})'
-        self.pool='0x'+keccak256(bytes.fromhex(self.encode('key(address,address,uint24,int24,address)',*self.tokens,3000,60,ZERO,constructor=True)[2:])).hex()
+        first=ZERO if getattr(self,'native_input',False) else self.tokens[0]
+        if getattr(self,'native_input',False):sig=sig.replace('configure(', 'configureNative(');value=value.replace(self.tokens[0],ZERO)
+        self.pool='0x'+keccak256(bytes.fromhex(self.encode('key(address,address,uint24,int24,address)',first,self.tokens[1],3000,60,ZERO,constructor=True)[2:])).hex()
         if self.uint('access','isSealed()'):
             data=self.encode(sig,value);salt='0x'+secrets.token_hex(32);empty='0x'+'00'*32
             self.call('access','schedule(address,uint256,bytes,bytes32,bytes32,uint256)',self.contracts['pools'],0,data,empty,salt,0)
@@ -348,7 +366,7 @@ class Lab:
         self.indexer.db=sqlite3.connect(index['database'],timeout=10,check_same_thread=False)
         self.indexer.db.execute('PRAGMA foreign_keys=ON')
         self.read_rpc=LocalReadRPC([self.rpc_url],CHAIN,timeout=5,retries=2)
-        self.api=LocalProjection(config,rpc=self.read_rpc,clock=self.clock)
+        self.api=LocalProjection(config,rpc=self.read_rpc,clock=LocalChainClock(self.clock))
     def sync(self):
         self.guard();self.rpc('evm_mine')
         while self.indexer.step(): pass
@@ -404,7 +422,7 @@ class Lab:
                 position['earnings']=(self.optional_earnings(position['token_id']) if position['position']['activated']
                                       else {'available':False,'reason':'not_activated'})
             inputs=getattr(self,'input_assets',None)
-            return {'mode':'LOCAL ANVIL TEST ONLY','revision':self.operations.revision,'uncertain':self.uncertain,'chain_id':CHAIN,'accounts':self.accounts[1:],'contracts':self.contracts,'pool':self.pool,'tokens':self.tokens,'input_assets':inputs,'protocol':self.api.protocol(),'nfts':positions,'earnings':self.optional_earnings(),'transactions':[{'label':r['label'],'hash':r['receipt']['transactionHash'],'block':int(r['receipt']['blockNumber'],16),'gas_used':int(r['receipt']['gasUsed'],16)} for r in self.receipts[-12:]]}
+            return {'mode':'LOCAL ANVIL TEST ONLY','revision':self.operations.revision,'uncertain':self.uncertain,'chain_id':CHAIN,'accounts':self.accounts[1:],'contracts':self.contracts,'pool':self.pool,'tokens':self.tokens,'input_assets':inputs,'contribution_flow':{'native_eth_atomic':bool(getattr(self,'native_input',False)),'max_transactions':2,'activation_usd':100,'min_topup_usd':5},'protocol':self.api.protocol(),'nfts':positions,'earnings':self.optional_earnings(),'transactions':[{'label':r['label'],'hash':r['receipt']['transactionHash'],'block':int(r['receipt']['blockNumber'],16),'gas_used':int(r['receipt']['gasUsed'],16)} for r in self.receipts[-12:]]}
         finally:self.read_rpc.aggregation=False;self.read_rpc.memo={}
     def action(self, payload):
         validate_action(payload,self.accounts[1:])
@@ -562,7 +580,9 @@ def main():
     parser.add_argument('--website',required=True);parser.add_argument('--port',type=int,default=8890)
     parser.add_argument('--verify-only',action='store_true')
     parser.add_argument('--named-assets',action='store_true',help='Disposable ZZZ/USDG/USDC/ETH UI fixtures; not public routes')
+    parser.add_argument('--native-input',action='store_true',help='Local-only native admission mock; ETH wraps atomically inside production Entry')
     args=parser.parse_args()
+    if args.native_input and not args.named_assets:parser.error('--native-input requires --named-assets')
     if not (Path(args.website)/'palette-system.js').is_file() or not (Path(args.website)/'assets/nfts').is_dir():
         parser.error('--website must contain the existing palette-system.js and assets/nfts')
     if not 1024<=args.port<=65535:parser.error('Use a local unprivileged port between 1024 and 65535')

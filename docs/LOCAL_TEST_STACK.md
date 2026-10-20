@@ -44,7 +44,7 @@ the core following [Development](DEVELOPMENT.md), then compile only the local
 fixtures:
 
 ```sh
-forge build test/local/LocalDemoVenue.sol test/mocks/MockVRF.sol --out /path/to/local-fixture-out --cache-path /path/to/local-fixture-cache
+forge build test/local/LocalDemoVenue.sol test/local/LocalInputFixtures.sol test/local/LocalNativeRegistry.sol test/mocks/MockVRF.sol --out /path/to/local-fixture-out --cache-path /path/to/local-fixture-cache
 python scripts/local-stack.py --anvil /path/to/anvil --cast /path/to/cast --artifacts /path/to/current-core-out --fixture-artifacts /path/to/local-fixture-out --state /path/to/external-local-state --website /path/to/AAA-website --port 8890
 ```
 
@@ -170,3 +170,16 @@ Stop a named session using its normal launcher stop procedure. Its chain is
 disposable; starting again creates a new deployment/session and invalidates old
 confirmations. There is no production operator/authority change in this UI/local
 fixture work. No server update or paused-monitor restart is included.
+
+## Local read and contribution update - 2026-10-20
+
+A boundary-sampled monotonic clock removes per-check RPC overhead without dropping
+initial/final freshness checks. The native fixture uses unchanged Entry for atomic
+ETH; supported ERC20 uses exact replacement approval then Entry, with no automatic
+reset. The UI retains confirmation continuity and fixes local activation at $100.
+See [behavior and limits](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
+[scoped verification](../reports/local-contribution-flow/VERIFICATION.md).
+Production venue/service qualification and fixed-$100 price/rounding policy remain open.
+
+For the new atomic-ETH browser rehearsal, add `--named-assets --native-input`
+and choose a separate port such as 8898 and a separate state directory.

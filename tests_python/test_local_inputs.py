@@ -24,17 +24,18 @@ class InputsTests(unittest.TestCase):
             self.assertEqual(draft['minimum_lp_usd_18'],str(99*UNIT))
         self.lab.send.assert_not_called()
 
-    def test_native_wrap_is_separate_and_does_not_activate(self):
+    def test_native_entry_is_atomic_and_old_wrapper_flow_is_rejected(self):
         self.lab.uint.return_value=0
         payload=dict(action='activate',account=A,id='1',amount='100',asset='ETH')
-        wrapped=self.wallet.prepare(payload)
-        self.assertEqual(wrapped['action'],'wrap');self.assertEqual(wrapped['transaction']['to'],'wrapper')
-        self.assertEqual(int(wrapped['transaction']['value'],16),100*UNIT)
-        self.wallet.execute(dict(account=A,draft_id=wrapped['draft_id']))
-        self.lab.uint.side_effect=lambda role,sig,*args: 100*UNIT if sig=='balanceOf(address)' else 0
-        approval=self.wallet.prepare(payload)
-        self.assertEqual(approval['action'],'approve');self.assertEqual(approval['transaction']['to'],'wrapper')
-        self.assertEqual(len(self.lab.send.call_args_list),1)
+        with self.assertRaisesRegex(ValueError,'native-ETH test setup'):self.wallet.prepare(payload)
+        self.lab.native_input=True
+        draft=self.wallet.prepare(payload)
+        self.assertEqual(draft['action'],'activate')
+        self.assertEqual(draft['transaction']['to'],'entry')
+        self.assertEqual(int(draft['transaction']['value'],16),100*UNIT)
+        self.assertIn(','+ZERO+',',self.lab.encode.call_args.args[1])
+        self.assertIsNone(draft['approval_raw'])
+        self.lab.send.assert_not_called()
 
     def test_wrong_asset_no_silent_fallback_or_native_alias(self):
         for symbol in ['WETH','OTHER','usdc','',None]:
@@ -43,11 +44,11 @@ class InputsTests(unittest.TestCase):
         self.lab.input_assets[0]['enabled']=False
         with self.assertRaises(ValueError):input_for(self.lab,'ZZZ')
 
-    def test_nonzero_allowance_resets_then_exact_amount(self):
+    def test_nonzero_allowance_replaced_by_exact_amount(self):
         self.lab.uint.side_effect=lambda role,sig,*args: 0 if sig=='nftBucket(uint256)' else 1 if sig=='allowance(address,address)' else 1000*UNIT
         draft=self.wallet.prepare(dict(action='activate',account=A,id='1',amount='100',asset='USDG'))
-        self.assertEqual(draft['approval_raw'],'0')
-        self.lab.encode.assert_called_with('approve(address,uint256)','entry',0)
+        self.assertEqual(draft['approval_raw'],'100000000')
+        self.lab.encode.assert_called_with('approve(address,uint256)','entry',100000000)
 
     def test_conversion_has_decimal_aware_amount_and_nonzero_minimum(self):
         input_tx(self.lab,A,'1',100,False,'USDC')

@@ -14,6 +14,7 @@ class WalletTests(unittest.TestCase):
         self.lab.accounts=['operator',A,B]
         self.lab.tokens=['token']
         self.lab.input_assets=None
+        self.lab.native_input=False
         self.lab.pool='pool'
         self.lab.contracts={'entry':'entry','nft':'nft'}
         self.lab.operations=SimpleNamespace(revision=4)
