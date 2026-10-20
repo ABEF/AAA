@@ -236,6 +236,6 @@ contract ProductionGasTest is Test {
         // Shared warm accesses make it cheaper than 32 separate transactions;
         // ClaimRouter.t.sol independently measures its bounded 32-operation ABI.
         _report("collection.1000.assets.32.funded", "claim32BatchedCalls", spent);
-        assertEq(rewards.assetCount(), 32);
+        assertEq(rewards.assetCount(), 33);
     }
 }

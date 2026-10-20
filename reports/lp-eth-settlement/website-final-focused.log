@@ -1,0 +1,11 @@
+✔ ETH settlement keeps source balances visible without treating them as ready ETH (63.7664ms)
+✔ claim total combines ETH exactly and keeps different currencies distinct (1.4846ms)
+✔ pending identity cards never read financial payloads or render cached balances (0.3646ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204.9828

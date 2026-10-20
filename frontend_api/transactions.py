@@ -88,8 +88,6 @@ def _parse(payload: Any) -> tuple[str, str, tuple[Claim, ...]]:
                 asset = ZERO if item['asset'] == ZERO else address(item['asset'])
             except ValueError as exc:
                 raise TransactionInputError('Invalid claim identity or asset') from exc
-            if asset == ZERO and not item['royalty']:
-                raise TransactionInputError('Native currency is allowed only for royalties')
             entry = Claim(identifier, asset, item['royalty'])
             if entry in claims:
                 raise TransactionInputError('Duplicate claim operation')

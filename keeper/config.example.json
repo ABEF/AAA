@@ -14,6 +14,7 @@
   },
   "reviewed_for_live_use": false,
   "royalty_conversion": {"enabled": false},
+  "lp_conversion": {"enabled": false},
   "code_hashes": {},
   "keystore": "/run/zzz/keystore.json",
   "password_file": "/run/zzz/password",

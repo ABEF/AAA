@@ -88,6 +88,7 @@ contract ZZZVaultCanonical {
         ICanonicalVaultRewards rewards = ICanonicalVaultRewards(access.module(Ids.REWARDS));
         for (uint256 i; i < rewards.assetCount(); ++i) {
             address asset = rewards.assets(i);
+            if (asset == address(0)) continue; // ETH reward credits are held by Rewards, never Vault principal.
             uint256 balance = IERC20(asset).balanceOf(address(vault));
             if (balance < vault.totalIdle(asset)) revert InvalidState();
             backingAssets.push(asset); backingAmounts.push(balance); released[i] = false;

@@ -33,14 +33,15 @@ contract ZZZFeesCanonical is ZZZModule {
         delete assets; delete amounts; delete quarantine;
         groups = _vault().bucketCount(); receivers = fees.rewardReceiverCount();
         ICanonicalFeeAssets rewards = ICanonicalFeeAssets(access.module(Ids.REWARDS));
-        lpAssets = rewards.assetCount();
-        for (uint256 i; i < lpAssets; ++i) {
+        for (uint256 i; i < rewards.assetCount(); ++i) {
             address asset = rewards.assets(i);
+            if (asset == address(0)) continue; // Settled holder ETH belongs to the Rewards domain.
             uint256 raw = IERC20(asset).balanceOf(address(fees));
             assets.push(asset); amounts.push(0);
             quarantine.push(raw - fees.accounted(asset) - fees.canonicalLateTotal(asset));
-            released[i] = false;
+            released[assets.length - 1] = false;
         }
+        lpAssets = assets.length;
         // The FeeController's barrier rejects capture inside ordinary ingress.
         // No external token mutation occurs until EVERY module has captured.
         fees.canonicalCaptureReceivers();

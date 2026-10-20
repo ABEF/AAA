@@ -202,9 +202,9 @@ class Projection:
 
     def _call(self, target: str, signature: str, *args: Any, block: dict[str, Any], words: int = 1) -> list[str]:
         # The common ABI helper intentionally rejects zero addresses for most
-        # operations. Here zero is a legitimate *native royalty asset*, never a
+        # operations. Here zero is a legitimate native reward asset, never a
         # target. Keep its selector/uint validation and replace only that word.
-        native_methods = {'claimable(uint256,address)', 'eligibleFor(uint256,address)'}
+        native_methods = {'claimable(uint256,address)', 'eligibleFor(uint256,address)', 'ownerIndex(uint256,address)'}
         if signature in native_methods and len(args) == 2 and args[1] == ZERO:
             data = calldata(signature, args[0], '0x' + '0' * 39 + '1')[:-64] + '0' * 64
         elif signature in {'eligibleCount(address)', 'eligibleWeight(address)', 'index(address)', 'pending(address)'} and args == (ZERO,):
@@ -284,14 +284,16 @@ class Projection:
 
     def _admitted(self, block: dict[str, Any], *, asset_health=None) -> tuple[list[str], list[str]]:
         admitted = []
-        for role, maximum in (('rewards', 32), ('royalties', 17)):
+        for role, maximum in (('rewards', 33), ('royalties', 17)):
             count = self._uint(role, 'assetCount()', block=block)
             if count > maximum:
                 raise ProjectionError('Contract asset count exceeds reviewed bound')
-            addresses = [self._addr(role, 'assets(uint256)', n, block=block, native=role == 'royalties')
+            addresses = [self._addr(role, 'assets(uint256)', n, block=block, native=True)
                          for n in range(count)]
             if len(set(addresses)) != count or role == 'royalties' and (not addresses or addresses[0] != ZERO):
                 raise ProjectionError('Malformed admitted asset inventory')
+            if role == 'rewards' and (len(set(addresses)-{ZERO}) > 32 or (ZERO in addresses and addresses[0] != ZERO)):
+                raise ProjectionError('Malformed LP native settlement inventory')
             admitted.append(addresses)
         if set().union(*map(set, admitted)) != set(self.assets):
             raise ProjectionError('Admitted assets differ from the reviewed descriptor allowlist')
@@ -481,6 +483,7 @@ class Projection:
                          'evolution': EVOLUTION[stage], 'evolution_value_available': available,
                          'principal_redeemable': False},
             'claimable': {'lp': lp_balances,
+                          'default_settlement': 'native_eth' if ZERO in lp_assets else 'source_assets',
                           'royalties': royalty_balances,
                           'lp_scope': 'Already allocated funded rewards; pending creator inbox receipts are not simulated.',
                           'royalty_scope': 'Contract view includes pending admitted receipts at this currency\'s eligible membership weights. ETH also includes unclaimed conversion credits.'},
@@ -509,11 +512,14 @@ class Projection:
             reason = 'Complete verified predecessor claim history is not configured; lifetime totals are unavailable.'
             result['previously_claimed'] = {'available': False, 'assets': None, 'reason': reason}
             result['royalty_conversions'] = {'available': False, 'assets': None, 'total_eth_credited_raw': None, 'reason': reason}
+            result['lp_conversions'] = {'available': False, 'assets': None, 'total_eth_credited_raw': None, 'reason': reason}
             result['unavailable_metrics']['previously_claimed'] = reason
         else:
             result['previously_claimed'] = self._claimed(history, nft_id)
             from frontend_api.history import conversion_report
             result['royalty_conversions'] = conversion_report(history.conversions if history else None,
+                nft_id, self.assets, dict(history.provenance) if history else None)
+            result['lp_conversions'] = conversion_report(history.lp_conversions if history else None,
                 nft_id, self.assets, dict(history.provenance) if history else None)
         # No partial response is released if ancestry/chain changes during the
         # serial reads, including provider failover to a competing fork.

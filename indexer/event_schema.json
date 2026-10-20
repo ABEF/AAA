@@ -1393,6 +1393,42 @@
     "name": "PoolConfigured",
     "signature": "PoolConfigured(bytes32,address,address)"
   },
+  "0x9d56d8f39966c4aec41faeb2d0f38767003bb6e271dcd691ef0fc5c1616a77f0": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sourceIndividual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "sourceCollective",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeIndividual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nativeCollective",
+        "type": "uint256"
+      }
+    ],
+    "name": "LPRewardsConverted",
+    "signature": "LPRewardsConverted(uint256,address,uint256,uint256,uint256,uint256)"
+  },
   "0xa0607ea4fcecc0b00a929dfab2de403e82ed0217d30e157663e2bc3f055e0ebe": {
     "fields": [
       {
@@ -1576,6 +1612,22 @@
     ],
     "name": "Cancelled",
     "signature": "Cancelled(bytes32)"
+  },
+  "0xbbcee41c7443b0fdb8c58d11d2366c0c369c31939a94c568462b87443df60b2c": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "currentPool",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ContributionPoolChanged",
+    "signature": "ContributionPoolChanged(bytes32,bytes32)"
   },
   "0xbec38d5c557a9d03c3351219f69425cac909678d25a05e382f9bde53719a0b59": {
     "fields": [

@@ -385,11 +385,15 @@ are scoped to the activated/topped-up NFT; financial snapshot guards remain glob
 ## Payout-currency audit boundary
 
 [The claim-currency audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
-finds that LP claims remain source-token payouts. Royalty batch ETH conversion
+found that the earlier revision's LP claims were source-token payouts. Royalty batch ETH conversion
 does not cover LP rewards; native creator receipts are wrapped before allocation.
 A read-only Anvil claim trace pays the original mock ERC20 plus ETH royalties and
-leaves balances untouched. ETH-only holder payout is therefore a separately
-tracked pre-seal implementation gap, not an implemented feature. No unchanged
+leaves balances untouched. That pre-seal implementation gap is addressed by the
+LP settlement candidate below; live qualification remains open. No unchanged
 Solidity suite was rerun for this audit.
 
 Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.
+
+## LP holder ETH settlement
+
+The local candidate checkpoints earned individual/collective LP balances, converts through a dedicated fixed-ledger executor with a 1% maximum loss (99% oracle floor; gas separate), and credits native ETH to the same NFTs. Exact WETH unwrap, source-claim recovery, native claims, bounded keeper rotation, history/earnings reconciliation and native backing handoff are implemented. Verification covers 142 distinct affected Solidity cases across scoped runs and 33 local journey assertions, with focused backend/UI evidence. See [semantics and operating procedure](LP_ETH_SETTLEMENT.md) and [scoped evidence](../reports/lp-eth-settlement/VERIFICATION.md). Actual routes, latency/gas qualification and independent approval remain open.

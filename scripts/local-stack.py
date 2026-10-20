@@ -34,7 +34,7 @@ from indexer.monitor import Indexer
 from frontend_api.service import Projection, ProjectionError, ZERO
 from frontend_api.transactions import Transactions
 from scripts.local_wallet import LocalWallet
-from scripts.local_inputs import deploy_inputs, configure_inputs, input_for, input_tx
+from scripts.local_inputs import deploy_inputs, configure_inputs, input_for, input_tx, settle_lp
 
 CHAIN = 31337
 UNIT = 10**18
@@ -381,6 +381,7 @@ class Lab:
         bucket=self.uint('vault','nftBucket(uint256)',active[0])
         self.call('liquidity','fundFees(uint256,uint256)',100*UNIT,0)
         self.call('vault','collectFees(uint256,uint256)',bucket,self.clock()+120)
+        settle_lp(self,active)
         self.send({'from':self.accounts[0],'to':self.contracts['royalties'],'value':hex(UNIT//100),'data':'0x'},'fund local ETH royalties')
         self.call('royalties','sync(address)',ZERO)
     def ids(self): return [str(self.uint('nft','tokenAtOrdinal(uint256)',n)) for n in range(1,self.uint('nft','mintedCount()')+1)]
@@ -442,7 +443,8 @@ class Lab:
                 self.call('nft','transferFrom(address,address,uint256)',owner,other,identifier,sender=owner)
             else:
                 item=self.api.nft(identifier)
-                claims=[{'token_id':identifier,'asset':a['asset'],'royalty':scope=='royalties'} for scope in ('lp','royalties') for a in item['claimable'][scope] if int(a['raw'])>0]
+                claims=[{'token_id':identifier,'asset':a['asset'],'royalty':scope=='royalties'} for scope in ('lp','royalties') for a in item['claimable'][scope] if int(a['raw'])>0 and
+                        (item['claimable'].get('default_settlement')!='native_eth' or a['asset']==ZERO)]
                 draft=self.preparer.prepare({'action':'claim','wallet':owner,'claims':claims})
                 self.send({k:v for k,v in draft['transaction'].items() if k!='chainId'},'prepared combined claim')
         else: raise ValueError('Unsupported local action')

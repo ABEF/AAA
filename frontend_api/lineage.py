@@ -147,7 +147,9 @@ class Lineage:
         totals = {asset: amounts for (identifier, asset), amounts in local_history.claims.items()
                   if identifier == nft_id}
         conversions = {}
+        lp_conversions = {}
         merge_conversions(conversions, local_history.conversions, nft_id)
+        merge_conversions(lp_conversions, local_history.lp_conversions, nft_id)
         receipts = []
         previous_order = None
         epochs = []
@@ -177,6 +179,7 @@ class Lineage:
             lp_assets, royalty_assets = source._admitted(at_cutoff)
             history = source._history_snapshot(cutoff, at_cutoff, lp_assets, royalty_assets)
             merge_conversions(conversions, history.conversions, nft_id)
+            merge_conversions(lp_conversions, history.lp_conversions, nft_id)
             if nft_id is not None:
                 old_ordinal = source._uint('nft', 'mintOrdinalOf(uint256)', nft_id, block=at_cutoff)
                 if old_ordinal:
@@ -223,4 +226,5 @@ class Lineage:
                                'lineage_complete': True, 'verification': 'Pinned code, canonical RPC receipts and indexed history; not a consensus proof.',
                                'protocol_finalized': False}}
         return {'previously_claimed': claimed,
+                'lp_conversions': conversion_report(lp_conversions, nft_id, self.descriptors, claimed['provenance']),
                 'royalty_conversions': conversion_report(conversions, nft_id, self.descriptors, claimed['provenance'])}

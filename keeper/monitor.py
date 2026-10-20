@@ -31,6 +31,7 @@ PREPARATION_BLOCKED_ACTIONS = frozenset((
     ('compounder','compound(uint256,uint128,uint256)'),
     ('buyback','execute(address,uint256,bytes32,uint256)'),
     ('royalties',ROYALTY_BATCH),
+    ('rewards',ROYALTY_BATCH),
 ))
 
 def log(event: str, **fields: Any) -> None:
@@ -128,6 +129,9 @@ class Keeper:
             raise ValueError('Unsupported receipt fee policy')
         self._configure_metadata()
         self.royalties = RoyaltyAutomation(self)
+        self.lp_rewards = RoyaltyAutomation(self, lp=True)
+        turn = self.state.get('conversion_turn',0)
+        if type(turn) is not int or not 0 <= turn <= 2: raise ValueError('Invalid conversion scheduling state')
         if self.live:
             if config.get('reviewed_for_live_use') is not True:
                 raise ValueError('Live use requires an explicit reviewed deployment configuration')
@@ -455,7 +459,7 @@ class Keeper:
             log('action_cooldown',action=key,retry_after=retry_after)
             return False
         to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
-        data = encode_batch(*args) if name == 'royalties' and signature == ROYALTY_BATCH else calldata(signature,*args)
+        data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else calldata(signature,*args)
         if metadata_observation is not None:
             self._validate_metadata_payload(metadata_observation)
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
@@ -472,7 +476,7 @@ class Keeper:
         cost = gas_limit*gas_price + value + positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True)
         if maximum_cost is not None and cost > positive(maximum_cost,'maximum_cost',zero=True):
             self.blocked_actions += 1
-            log('royalty_conversion_uneconomic',action=key,gas_cost_wei=str(cost),maximum_cost_wei=str(maximum_cost))
+            log('lp_conversion_uneconomic' if name == 'rewards' else 'royalty_conversion_uneconomic',action=key,gas_cost_wei=str(cost),maximum_cost_wei=str(maximum_cost))
             return False
         day = dt.datetime.fromtimestamp(timestamp,dt.timezone.utc).date().isoformat()
         if cost > positive(self.config['max_transaction_cost_wei'],'max_transaction_cost_wei') or \
@@ -832,10 +836,13 @@ class Keeper:
         return False
 
     def _convert_royalties(self) -> bool:
-        try: return self.royalties.scan_once()
+        return self._convert_rewards(self.royalties)
+
+    def _convert_rewards(self, worker) -> bool:
+        try: return worker.scan_once()
         except (ValueError,RpcError) as exc:
             self.blocked_actions += 1
-            log('royalty_conversion_deferred',**error_context(exc))
+            log(worker.key+'_deferred',**error_context(exc))
             return False
 
     def cycle(self) -> None:
@@ -846,10 +853,14 @@ class Keeper:
         preparing = self.preparation_active()
         if self.view('access','isSealed()') != 1: raise RpcError('Protocol is not sealed')
         if self.view('access','keepers(address)',self.sender) != 1: raise RpcError('Configured sender is not an authorized keeper')
-        royalty_first = self.royalties.enabled and self.state['royalty_conversion']['next_first']
-        if self.royalties.enabled:
-            self.state['royalty_conversion']['next_first'] = not royalty_first
-            if royalty_first and not paused and not preparing and self._convert_royalties(): return
+        # Three-way durable priority: LP conversion, royalty conversion, then
+        # maintenance. One busy stream cannot consume every serial nonce slot.
+        workers = (self.lp_rewards,self.royalties)
+        turn = self.state.get('conversion_turn',0)
+        self.state['conversion_turn'] = (turn+1)%3
+        self.save()
+        if turn < 2 and workers[turn].enabled and not paused and not preparing:
+            if self._convert_rewards(workers[turn]): return
         metadata_first = False
         if self.metadata_enabled:
             # Alternate priority so changing artwork cannot starve LP maintenance
@@ -901,12 +912,13 @@ class Keeper:
         if paused:
             log('protocol_paused'); return
         if preparing: return
-        if self.royalties.enabled and not royalty_first and self._convert_royalties(): return
         for task in self.config.get('buybacks',[]):
             token = address(task['token']); amount = positive(task['amount'],'amount')
             if self.view('fees','buybackBalance(address)',token) >= amount:
                 _,fresh = self._head()
                 if self.submit('buyback','execute(address,uint256,bytes32,uint256)',(token,amount,task['pool_id'],fresh+180),f'buyback:{token}'): return
+        for i in ((turn+1)%2, turn%2):
+            if i != turn and workers[i].enabled and self._convert_rewards(workers[i]): return
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)

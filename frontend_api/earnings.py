@@ -99,6 +99,7 @@ class Earnings:
             require(life['predecessor_controller'] is None, 'Earnings requires complete predecessor history')
             epochs=[(p,header,None)]
             financial={'previously_claimed':p._claimed(history,identifier),
+                       'lp_conversions':conversion_report(history.lp_conversions,identifier,p.assets,dict(history.provenance)),
                        'royalty_conversions':conversion_report(history.conversions,identifier,p.assets,dict(history.provenance))}
         model=Replay(header['timestamp'],identifier)
         provenance=[]
@@ -133,10 +134,14 @@ class Earnings:
         """Reconcile earned original currencies to current entitlement plus payouts."""
         claimed={a['asset']:a for a in financial['previously_claimed']['assets']}
         conversions={a['asset']:a for a in financial['royalty_conversions']['assets']}
+        lp_conversion=financial['lp_conversions']
+        lp_converted={a['asset']:a for a in lp_conversion['assets']}
         for asset in lp:
             earned=model.totals['lp_individual',asset]+model.totals['lp_collective',asset]
             paid=int(claimed[asset]['lp_raw'])
-            require(earned-paid==p._uint('rewards','claimable(uint256,address)',model.nft_id,asset,block=block),
+            converted=int(lp_converted.get(asset,{}).get('source_converted_raw','0'))
+            credited=int(lp_conversion['total_eth_credited_raw']) if asset==ZERO else 0
+            require(earned-paid-converted+credited==p._uint('rewards','claimable(uint256,address)',model.nft_id,asset,block=block),
                     'LP earnings do not reconcile with actual claims and entitlement')
         for asset in royalties:
             paid=int(claimed[asset]['royalties_raw'])

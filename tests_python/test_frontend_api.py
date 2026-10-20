@@ -249,13 +249,13 @@ class FrontendProjectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ProjectionError, 'allowlist'):
             self.read()
 
-    def test_native_cannot_be_an_lp_asset(self):
+    def test_native_slot_requires_complete_reviewed_inventory(self):
         self.rpc.put(addr(4), 'assets(uint256)', (0,), (ZERO,))
-        with self.assertRaisesRegex(ProjectionError, 'zero'):
+        with self.assertRaisesRegex(ProjectionError, 'allowlist'):
             self.read()
 
     def test_asset_count_and_duplicates_bounded(self):
-        self.rpc.put(addr(4), 'assetCount()', values=(33,))
+        self.rpc.put(addr(4), 'assetCount()', values=(34,))
         with self.assertRaisesRegex(ProjectionError, 'bound'):
             self.read()
         self.rpc.put(addr(4), 'assetCount()', values=(2,))

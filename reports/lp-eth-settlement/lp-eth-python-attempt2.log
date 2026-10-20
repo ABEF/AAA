@@ -1,0 +1,48 @@
+{"active": true, "event": "canonical_preparation_observed", "time": "2026-10-20T00:04:08.450386+00:00"}
+{"active": true, "event": "canonical_preparation_observed", "time": "2026-10-20T00:04:09.062426+00:00"}
+.....................E............................................
+======================================================================
+ERROR: test_source_and_native_claims_reconcile_without_new_income (tests_python.test_lp_conversion.LPEarningsTests.test_source_and_native_claims_reconcile_without_new_income)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_lp_conversion.py", line 68, in test_source_and_native_claims_reconcile_without_new_income
+    before=self.read(str(i));row=next(a for a in before['all_time'] if a['asset']==addr(20))
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_earnings.py", line 227, in read
+    def read(self,identifier=None):return Projection(self.cfg,self.rpc,clock=lambda:1000).earnings(identifier)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 400, in earnings
+    return self.earnings_history.read(None if identifier is None else token_id(identifier))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings.py", line 114, in read
+    self.reconcile(peer,model,at,a,b,replayed.provenance['minted_count'])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings.py", line 65, in reconcile
+    require(p._uint('rewards','ownerIndex(uint256,address)',bucket,asset,block=block) == model.owner_index[bucket,asset],
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 224, in _uint
+    return int(self._call(self.contracts[role].address, signature, *args, block=block)[0], 16)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 213, in _call
+    data = calldata(signature, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 65, in calldata
+    return '0x' + keccak256(signature.encode()).hex()[:8] + ''.join(word(a,t) for a,t in zip(args,types))
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 65, in <genexpr>
+    return '0x' + keccak256(signature.encode()).hex()[:8] + ''.join(word(a,t) for a,t in zip(args,types))
+                                                                    ^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 44, in word
+    if typ == 'address': return address(str(value))[2:].rjust(64,'0')
+                                ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 40, in address
+    if int(value,16) == 0: raise ValueError('Zero address is not permitted')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Zero address is not permitted
+
+----------------------------------------------------------------------
+Ran 66 tests in 11.017s
+
+FAILED (errors=1)

@@ -27,9 +27,16 @@ def encode_batch(asset, ids, route, minimum, deadline):
         word(len(ids),'uint256')+''.join(word(n,'uint256') for n in ids))
 
 class RoyaltyAutomation:
-    def __init__(self, keeper):
+    def __init__(self, keeper, *, lp=False):
         self.k = keeper
-        cfg = keeper.config.get('royalty_conversion',{})
+        self.lp = lp
+        self.key = 'lp_conversion' if lp else 'royalty_conversion'
+        self.ledger = 'rewards' if lp else 'royalties'
+        self.converter = 'lp_converter' if lp else 'royalty_converter'
+        self.nft = 'lp_nft' if lp else 'royalty_nft'
+        self.wrapper = 'lp_wrapper' if lp else 'royalty_wrapper'
+        self.names = (self.ledger,self.converter,self.nft,self.wrapper,'oracle')
+        cfg = keeper.config.get(self.key,{})
         if not isinstance(cfg,dict) or type(cfg.get('enabled',False)) is not bool:
             raise ValueError('royalty_conversion requires an explicit enabled boolean')
         self.enabled = cfg.get('enabled',False)
@@ -48,15 +55,15 @@ class RoyaltyAutomation:
             p['route_id']=p['route_id'].lower()
             p['minimum_source_units']=number(p['minimum_source_units'],'minimum_source_units')
             p['minimum_output_wei']=number(p['minimum_output_wei'],'minimum_output_wei')
-        for name in ('royalties','royalty_converter','royalty_nft','royalty_wrapper','oracle'):
+        for name in self.names:
             if name not in keeper.contracts: raise ValueError('Missing royalty contract: '+name)
             if not re.fullmatch(r'0x[0-9a-fA-F]{64}',keeper.config.get('code_hashes',{}).get(name,'')):
                 raise ValueError('Missing royalty runtime pin: '+name)
-        identity={'ledger':keeper.contracts['royalties'],'nft':keeper.contracts['royalty_nft'],
+        identity={'ledger':keeper.contracts[self.ledger],'nft':keeper.contracts[self.nft],
             'assets':[p['asset'] for p in self.routes]}
-        state=keeper.state.get('royalty_conversion')
+        state=keeper.state.get(self.key)
         if state is None:
-            keeper.state['royalty_conversion']={'identity':identity,'asset':0,'ordinal':1,'next_first':True}
+            keeper.state[self.key]={'identity':identity,'asset':0,'ordinal':1,'next_first':True}
         else:
             if not isinstance(state,dict) or state.get('identity') != identity: raise ValueError('Royalty scan identity changed; reconcile state')
             integer(state.get('asset'),'asset cursor',minimum=0)
@@ -65,7 +72,7 @@ class RoyaltyAutomation:
             if type(state.get('next_first')) is not bool: raise ValueError('Invalid royalty scheduling state')
 
     def scan_once(self):
-        k=self.k; state=k.state['royalty_conversion']; contracts=k.contracts
+        k=self.k; state=k.state[self.key]; contracts=k.contracts
         latest=k.rpc.call('eth_getBlockByNumber',['latest',False])
         if not isinstance(latest,dict) or not re.fullmatch(r'0x[0-9a-fA-F]+',latest.get('number','')): raise RpcError('Invalid royalty head')
         block=int(latest['number'],16)-k.confirmations
@@ -78,23 +85,25 @@ class RoyaltyAutomation:
             words=decode_words(k.rpc.call('eth_call',[{'to':contracts[name],'data':calldata(sig,*args)},selector]))
             if len(words)!=1: raise RpcError('Unexpected royalty getter ABI')
             return int(words[0],16)
-        checks=[('royalties','nft()',contracts['royalty_nft']),('royalties','canonicalController()',contracts['access']),
-            ('royalties','converter()',contracts['royalty_converter']),('royalty_converter','ledger()',contracts['royalties']),
-            ('royalty_converter','access()',contracts['access']),('royalty_converter','wrapper()',contracts['royalty_wrapper']),
-            ('royalty_nft','access()',contracts['access']),('royalty_nft','royaltyRewards()',contracts['royalties'])]
+        checks=[(self.ledger,'access()' if self.lp else 'canonicalController()',contracts['access']),
+            (self.ledger,'converter()',contracts[self.converter]),(self.converter,'ledger()',contracts[self.ledger]),
+            (self.converter,'access()',contracts['access']),(self.converter,'wrapper()',contracts[self.wrapper]),
+            (self.nft,'access()',contracts['access'])]
+        if not self.lp:
+            checks += [(self.ledger,'nft()',contracts[self.nft]),(self.nft,'royaltyRewards()',contracts[self.ledger])]
         for name,sig,expected in checks:
             if read(name,sig)!=int(expected,16): raise RpcError('Royalty binding mismatch')
-        for name in ('royalties','royalty_converter','royalty_nft','royalty_wrapper','oracle'):
+        for name in self.names:
             code=k.rpc.call('eth_getCode',[contracts[name],selector])
             if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
                 '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=k.config['code_hashes'][name].lower():
                 raise RpcError('Royalty code pin mismatch')
-        for key,name in (('ZZZNFT','royalty_nft'),('ZZZOracle','oracle')):
+        for key,name in [('ZZZNFT',self.nft),('ZZZOracle','oracle')] + ([('ZZZRewards',self.ledger)] if self.lp else []):
             if read('access','module(bytes32)','0x'+keccak256(key.encode()).hex())!=int(contracts[name],16): raise RpcError('Royalty module mismatch')
-        if read('royalties','MAX_CONVERSION_NFTS()')!=32 or read('royalty_converter','MAX_LOSS_BPS()')!=100:
+        if read(self.ledger,'MAX_CONVERSION_NFTS()')!=32 or read(self.converter,'MAX_LOSS_BPS()')!=100:
             raise RpcError('Royalty protocol limit mismatch')
-        if read('royalty_converter','enabled()')!=1: return False
-        count=read('royalty_nft','mintedCount()')
+        if read(self.converter,'enabled()')!=1: return False
+        count=read(self.nft,'mintedCount()')
         if count>1000: raise RpcError('Invalid royalty inventory')
         if count==0: return False
         first=min(state['ordinal'],count); last=min(first+self.scan-1,count)
@@ -105,32 +114,32 @@ class RoyaltyAutomation:
         if state['asset']==0: state['ordinal']=1 if last==count else last+1
         k.save()
         asset=policy['asset'];route=policy['route_id']
-        if read('royalties','isAsset(address)',asset)!=1: raise RpcError('Royalty currency is not admitted')
-        if asset!=contracts['royalty_wrapper']:
-            if read('royalty_converter','routeEnabled(bytes32)',route)!=1: return False
-            values=decode_words(k.rpc.call('eth_call',[{'to':contracts['royalty_converter'],'data':calldata('route(bytes32)',route)},selector]))
+        if read(self.ledger,'isAsset(address)',asset)!=1: raise RpcError('Royalty currency is not admitted')
+        if asset!=contracts[self.wrapper]:
+            if read(self.converter,'routeEnabled(bytes32)',route)!=1: return False
+            values=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.converter],'data':calldata('route(bytes32)',route)},selector]))
             if len(values)!=10 or int(values[0],16)!=int(asset,16): raise RpcError('Royalty route currency mismatch')
         elif route!=ZERO: raise RpcError('WETH unwrapping must not select a swap route')
         ids=[];total=0
         for ordinal in range(first,last+1):
-            token=read('royalty_nft','tokenAtOrdinal(uint256)',ordinal)
-            if read('royalties','weightOf(uint256)',token)==0: continue
-            amount=read('royalties','claimable(uint256,address)',token,asset)
+            token=read(self.nft,'tokenAtOrdinal(uint256)',ordinal)
+            if not self.lp and read(self.ledger,'weightOf(uint256)',token)==0: continue
+            amount=read(self.ledger,'claimable(uint256,address)',token,asset)
             if amount: ids.append(token);total+=amount
         if len(ids)!=len(set(ids)): raise RpcError('Duplicate royalty token inventory')
         # A successful balance read can recover the waiting cohort even if no
         # currently payable whole units exist. sync never swaps or pays anyone.
-        recover=read('royalties','eligibleCount(address)',asset)<read('royalties','activationCount()')
+        recover=not self.lp and read(self.ledger,'eligibleCount(address)',asset)<read(self.ledger,'activationCount()')
         _,now=k._head()
         if now-int(header['timestamp'],16)>300: raise RpcError('Stale royalty snapshot')
         if k.rpc.call('eth_getBlockByNumber',[hex(block),False])!=header: raise RpcError('Royalty anchor changed')
         if total<policy['minimum_source_units']:
-            if recover: return k.submit('royalties','sync(address)',(asset,),f'royalty_sync:{asset}')
+            if recover: return k.submit(self.ledger,'sync(address)',(asset,),f'royalty_sync:{asset}')
             return False
-        expected=total if asset==contracts['royalty_wrapper'] else read('oracle','quote(address,address,uint256)',asset,contracts['royalty_wrapper'],total)
+        expected=total if asset==contracts[self.wrapper] else read('oracle','quote(address,address,uint256)',asset,contracts[self.wrapper],total)
         if expected<policy['minimum_output_wei']: return False
-        minimum=expected if asset==contracts['royalty_wrapper'] else (expected*9900+9999)//10000
+        minimum=expected if asset==contracts[self.wrapper] else (expected*9900+9999)//10000
         # Recheck after the last price read; the contract repeats its own floor.
         if k.rpc.call('eth_getBlockByNumber',[hex(block),False])!=header: raise RpcError('Royalty anchor changed')
-        return k.submit('royalties',BATCH,(asset,sorted(ids),route,minimum,now+180),
-            f'royalty_convert:{asset}:{first}:{last}',maximum_cost=minimum*self.gas_bps//10000)
+        return k.submit(self.ledger,BATCH,(asset,sorted(ids),route,minimum,now+180),
+            f'{self.key}:{asset}:{first}:{last}',maximum_cost=minimum*self.gas_bps//10000)

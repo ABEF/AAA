@@ -1,0 +1,96 @@
+✔ one confirmed contribution refresh marks only its NFT LP and artwork (4.1733ms)
+✔ claims touch reward balances only and never redraw evolution (0.4165ms)
+✔ approvals and wrapping do not imply deployed LP or change artwork (0.2553ms)
+✔ failed reads and different sessions do not retain spendable balances (0.3702ms)
+✔ approval acknowledgement includes input identity (0.3719ms)
+✔ four preloaded evolutions retain fixed identity and never mutate the selected art (0.5761ms)
+✔ public selector keeps the four agreed choices with ETH representing native input (0.2066ms)
+✔ ETH settlement keeps source balances visible without treating them as ready ETH (87.1293ms)
+✔ malformed or unbounded draft lifetimes never reach confirmation (27.7261ms)
+✔ preparation time is part of expiry; slow drafts fail before confirmation (0.5964ms)
+✔ nonfinite expiry, changed chain/revision and missing state never submit (0.9651ms)
+✔ monotonic deadline still expires after wall clock moves backwards (0.6418ms)
+✔ request extras cannot override the selected wallet or operation (0.7428ms)
+✔ overlapping confirmations submit one operation; refresh invalidates old drafts (0.8809ms)
+✔ local adapter requires exact loopback mount; never query or production hostname (0.3451ms)
+✔ uint256 IDs remain exact, malformed and overflowing values rejected (0.4384ms)
+✔ prices are null-aware and large balances use bigint precision (0.6283ms)
+✔ claim currencies are summed by address, never assumed equal (0.2437ms)
+✔ wrong chain, duplicate wallet and excessive collection fail closed (0.2387ms)
+✔ refresh failure clears old balances instead of returning stale demo data (0.3889ms)
+✔ account change during preparation invalidates the result (0.3257ms)
+✔ expired and wrong-account confirmations never submit (1.1254ms)
+✔ storage failure blocks transaction submission (0.527ms)
+✔ lost response recovers the identical operation, then reads confirmed state (0.6837ms)
+✔ changed session drops old intent and wallet without replaying (4.7371ms)
+✔ uncertain submission keeps recovery record and blocks a second intent (0.3867ms)
+✔ failed receipt result is terminal, not retried as a fresh transaction (0.3854ms)
+✔ only explicit busy state reads retry, with bounded backoff (0.386ms)
+✔ persistent busy reads stop after 13 attempts and keep state unavailable (0.4634ms)
+✔ writes and non-busy state errors are never automatically retried (0.3919ms)
+✔ overlapping refresh requests share one confirmed read (21.0362ms)
+✔ confirmed action is not resubmitted when balance reads are busy (1.7536ms)
+✔ cancelled read backoff fails closed without a further request (0.3552ms)
+✔ dormant cards omit finances and dormant details never read reward payloads (0.6221ms)
+✔ active cards combine only claimable amounts while detail retains unavailable history (0.4732ms)
+✖ claim total combines ETH exactly and keeps different currencies distinct (2.2633ms)
+✔ royalty trait keeps revealed rarity weight while dormant, unknown draws stay unknown (0.3569ms)
+✔ fast session enables wallet selection before slow portfolio completes (5.311ms)
+✔ wallet selection survives reload, explicit disconnect persists, new session resets it (1.2413ms)
+✔ malformed cached selections and changed session account inventory never authorize a wallet (0.5021ms)
+✖ pending identity cards never read financial payloads or render cached balances (0.6645ms)
+✔ contribution review exposes invalid amounts and missing acknowledgement (0.3286ms)
+✔ approval acknowledgement stays bound to the exact deployment wallet NFT and amount (0.2125ms)
+✔ top-up review accepts five test dollars but activation still needs one hundred (0.1553ms)
+✔ NFT income totals sum net individual collective and royalty USD at the same snapshot (0.4046ms)
+✔ demo 444 total is exactly individual plus collective plus royalties, paid once (27.7925ms)
+✔ top-up and gross display figures cannot increase NFT earned history (15.9097ms)
+✔ NFT total uses its equal collective allocation, not 90 percent of its own gross share (1.083ms)
+✔ conversion credits, principal, reserves and past payouts are not added to earned totals (30.2554ms)
+✔ sum current-price components exactly before display rounding (0.3291ms)
+✔ missing price and aggregate integer overflow produce unavailable, never partial totals or a render crash (0.4334ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 49
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 485.4149
+
+✖ failing tests:
+
+test at tests\local-client.test.mjs:181:1
+✖ claim total combines ETH exactly and keeps different currencies distinct (2.2633ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /0.9 ETH/. Input:
+  
+  '<section class="position-breakdown"><div class="position-attached-lp"><span>LP attached</span><strong>Unavailable</strong></div><div class="position-earnings" aria-label="NFT earnings, LP rewards plus royalties"><div><span>Fees generated · 24h</span><span class="earnings-value">Unavailable</span></div><div><span>Fees generated · all time</span><span class="earnings-value">Unavailable</span></div></div></section><section class="position-breakdown claim-breakdown"><div class="position-reward-total"><span>Rewards to claim</span><strong>0.03 ETH + 2 USDG</strong></div><div class="breakdown-rows"><div><span>LP rewards</span><b>0.01 ETH</b></div><div><span>Royalties</span><b>0.019999 ETH + 2 USDG</b></div></div></section>'
+  
+      at TestContext.<anonymous> (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/local-client.test.mjs:189:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1103:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:785:18)
+      at Test.postRun (node:internal/test_runner/test:1232:19)
+      at Test.run (node:internal/test_runner/test:1160:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<section class="position-breakdown"><div class="position-attached-lp"><span>LP attached</span><strong>Unavailable</strong></div><div class="position-earnings" aria-label="NFT earnings, LP rewards plus royalties"><div><span>Fees generated · 24h</span><span class="earnings-value">Unavailable</span></div><div><span>Fees generated · all time</span><span class="earnings-value">Unavailable</span></div></div></section><section class="position-breakdown claim-breakdown"><div class="position-reward-total"><span>Rewards to claim</span><strong>0.03 ETH + 2 USDG</strong></div><div class="breakdown-rows"><div><span>LP rewards</span><b>0.01 ETH</b></div><div><span>Royalties</span><b>0.019999 ETH + 2 USDG</b></div></div></section>',
+    expected: /0.9 ETH/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\local-client.test.mjs:224:1
+✖ pending identity cards never read financial payloads or render cached balances (0.6645ms)
+  TypeError: Cannot read properties of undefined (reading 'default_settlement')
+      at pendingConversion (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/local-client.js:24:55)
+      at claimTotal (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/local-view.js:48:17)
+      at positionRows (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/local-view.js:33:47)
+      at TestContext.<anonymous> (file:///C:/Users/Ali/Desktop/2.x%20holas/Oto/aaa-website/tests/local-client.test.mjs:227:14)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1103:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:785:18)
+      at Test.postRun (node:internal/test_runner/test:1232:19)
+      at Test.run (node:internal/test_runner/test:1160:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:785:7)

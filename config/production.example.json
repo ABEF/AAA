@@ -15,6 +15,7 @@
     "Eight base colors form 58 palettes and four patterns covering 2784 artwork states; reviewed immutable production publication remains pending. Metadata uses current attributed LP value; stale/remote valuation is unavailable.",
     "No verified randomness coordinator, subscription, key hash or staged fulfillment is supplied for Robinhood. Required randomness review and canonical NFT/helper observations remain pending.",
     "ERC-2981 requests 5% but cannot enforce marketplace payment. All royalties actually received are shared by activated Commun/Rare/Legendary weights 1/2/3 in a separate ledger.",
+    "LP holder rewards require a dedicated pre-seal-bound ZZZLPRewardConverter, reviewed wrapper/routes/feeds and keeper operation; 1% conversion loss maximum with network gas separate. Core sealing does not certify this product setup.",
     "Ready means offline inventory consistency only. It never authorizes deployment, sealing, signing or spending."
   ],
   "release_commit": null,

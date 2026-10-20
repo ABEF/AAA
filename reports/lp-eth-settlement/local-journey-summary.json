@@ -1,0 +1,124 @@
+{
+  "scope": "owned local Anvil website API; no public assets",
+  "assertions": [
+    "fresh fixture has four NFTs",
+    "activation first prepares only exact approval",
+    "99% contribution floor disclosed independently from gas",
+    "network gas quote separate and nonzero",
+    "approve confirmed with receipts",
+    "identical approve operation recovered without execution",
+    "approval does not activate NFT",
+    "second confirmation executes Entry",
+    "activate confirmed with receipts",
+    "identical activate operation recovered without execution",
+    "activation adds actual LP",
+    "activation grants no historical fees",
+    "top-up requires a new exact allowance after consumption",
+    "approve confirmed with receipts",
+    "identical approve operation recovered without execution",
+    "increase confirmed with receipts",
+    "identical increase operation recovered without execution",
+    "top-up increases same NFT on-chain value",
+    "activation and top-up preserve revealed traits",
+    "transfer confirmed with receipts",
+    "identical transfer operation recovered without execution",
+    "old owner confirmation invalidated by revision change",
+    "buyer inherits both claim streams",
+    "claim confirmed with receipts",
+    "identical claim operation recovered without execution",
+    "claim confirmed with receipts",
+    "identical claim operation recovered without execution",
+    "mint confirmed with receipts",
+    "identical mint operation recovered without execution",
+    "mint creates one actual NFT",
+    "bounded claim-all and buyer claim consume funded balances",
+    "lifetime royalty claims and ownership retained",
+    "missing ETH price remains unavailable"
+  ],
+  "native_claims_only": true,
+  "claim_operations": [
+    {
+      "claims": [
+        {
+          "token_id": "17650862174945570176257448465577216379924965918670898670245700079102468437787",
+          "asset": "0x0000000000000000000000000000000000000000",
+          "royalty": false,
+          "symbol": "ETH",
+          "decimals": 18,
+          "view_raw": "10756868843960601347",
+          "simulated_raw": "10756868843960601347"
+        },
+        {
+          "token_id": "17650862174945570176257448465577216379924965918670898670245700079102468437787",
+          "asset": "0x0000000000000000000000000000000000000000",
+          "royalty": true,
+          "symbol": "ETH",
+          "decimals": 18,
+          "view_raw": "2500000000000000",
+          "simulated_raw": "2500000000000000"
+        }
+      ],
+      "outcome": {
+        "operation_id": "c6405f612134a74338acc34b3046f80a",
+        "status": "confirmed",
+        "revision": 6,
+        "transactions": [
+          "0xbe44141c3c94ac2d489d812a4c3a131cb163040ec78e52113a7d6432205ba4d0"
+        ],
+        "uncertain": false
+      }
+    },
+    {
+      "claims": [
+        {
+          "token_id": "64044415172580677621704848937468454405810934044134943271338619508172668081179",
+          "asset": "0x0000000000000000000000000000000000000000",
+          "royalty": false,
+          "symbol": "ETH",
+          "decimals": 18,
+          "view_raw": "13701399688958009330",
+          "simulated_raw": "13701399688958009330"
+        },
+        {
+          "token_id": "64044415172580677621704848937468454405810934044134943271338619508172668081179",
+          "asset": "0x0000000000000000000000000000000000000000",
+          "royalty": true,
+          "symbol": "ETH",
+          "decimals": 18,
+          "view_raw": "2500000000000000",
+          "simulated_raw": "2500000000000000"
+        },
+        {
+          "token_id": "31555012962387059468723381828393000036418919371987462851538176659036249125739",
+          "asset": "0x0000000000000000000000000000000000000000",
+          "royalty": false,
+          "symbol": "ETH",
+          "decimals": 18,
+          "view_raw": "65541731467081389320",
+          "simulated_raw": "65541731467081389320"
+        },
+        {
+          "token_id": "31555012962387059468723381828393000036418919371987462851538176659036249125739",
+          "asset": "0x0000000000000000000000000000000000000000",
+          "royalty": true,
+          "symbol": "ETH",
+          "decimals": 18,
+          "view_raw": "5000000000000000",
+          "simulated_raw": "5000000000000000"
+        }
+      ],
+      "outcome": {
+        "operation_id": "b2831d40eeb3d3118d2856d4d8f54bc4",
+        "status": "confirmed",
+        "revision": 7,
+        "transactions": [
+          "0x8134e2e0b98e8fd4187e1c48d880175ee91068b83c1e664516cd957f4087955f"
+        ],
+        "uncertain": false
+      }
+    }
+  ],
+  "full_receipt": "local-journey.json",
+  "contracts_deployed_publicly": false,
+  "old_user_anvil_reset": false
+}

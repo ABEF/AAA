@@ -148,3 +148,7 @@ chain IDs 31337/31338 and deliberately does not seal. It is not an approved publ
 deployment script. Anvil/staging addresses and test tokens must never be relabelled
 as production addresses. Every actual deployment requires exact-release review,
 source/bytecode/binding observations and explicit authorization.
+
+## LP settlement helper
+
+ETH-default LP claims require a separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol) bound once to Rewards before sealing. Record controller, ledger, fixed WETH wrapper, runtime/implementation hashes, route/feed review and keeper pins. This is distinct from the royalty converter and has no custody of LP principal. Require the binding and route evidence in the release inventory; see [setup and recovery](LP_ETH_SETTLEMENT.md).

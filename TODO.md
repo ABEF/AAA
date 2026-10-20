@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**14 To do | 24 In progress | 16 Implemented locally**
+**13 To do | 25 In progress | 16 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -18,17 +18,18 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-eth-settlement"></a>
 
-- [ ] **[Settle holder LP rewards in ETH](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)** - To do. Required product behavior; not implemented. Current LP claims pay source ERC20s, including ZZZ/WETH. Royalty conversion does not cover LP balances. Implement guarded source-to-ETH settlement and an explicit claim/outage policy before sealing.
+- [ ] **[Settle holder LP rewards in ETH](docs/LP_ETH_SETTLEMENT.md)** - In progress. LP holder conversion to native ETH is implemented in the local candidate with the user-approved 1% loss cap and separate gas. Includes fixed converter binding, per-NFT native credits, bounded keeper scheduling, history reconciliation and ETH-default claims. Scoped verification covers 142 distinct affected Solidity cases and 33 local journey assertions; real routes/feeds, operating latency/gas qualification and independent release review remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Preserve the fixed 80/10/5/5 allocation. Convert only the already-earned individual and collective holder balances; never spend principal, compounding/buyback reserves, quarantines or another NFT backing. Preserve each NFT entitlement before conversion, not current shares/membership at conversion time.
-  - Unwrap reviewed WETH exactly; swap ZZZ or other admitted LP reward assets through pinned routes with fresh independent prices, exact deltas/approvals, minimum output/deadline and a separately approved execution-loss policy. A proposed 1% limit with gas separate is not yet selected for LP conversion.
-  - Bind the converter/custody path before sealing. Add bounded keeper execution, ETH ledger/claim support, current-owner checks and reentrancy/lifecycle guards. The existing royalty-only converter and passive ClaimRouter cannot supply this by configuration.
+  - User approved 1% maximum LP conversion loss with gas separate on 2026-10-20. The candidate unwraps reviewed WETH exactly or uses pinned routes, fresh independent prices, exact deltas/approvals, caller minimum and deadline. Qualify actual target-chain routes, token/wrapper behavior and complete gas costs.
+  - Bind the dedicated converter before sealing; the implementation supports bounded keeper execution, ETH ledger/current-owner claims and reentrancy/lifecycle guards. Qualify and record actual deployment bindings; core sealing alone does not prove conversion readiness.
   - Define ETH-only default claim behavior and explicit source-currency outage recovery. Failed conversion must leave original backed entitlements intact; never display an unconverted token balance as ETH. Preserve dust/fractions, transfer rights, complete handoff/abort/backing and historical claims.
-  - Update read APIs, wallet preparation and today-price earnings replay without counting conversion as new income or a payout. Qualify traces/receipts for ZZZ conversion, WETH unwrap, mixed LP-plus-royalty claims, simultaneous ownership/claim changes and stalled/restarted keepers.
-  - The read-only [local claim trace](reports/topup-and-reward-review/claim-currency-trace.json) confirms source-token LP plus ETH royalty payout, with no claim broadcast or balance consumed. Internal source audit only; real routes/feeds and independent review remain open.
+  - Read API, unsigned claims and today-price earnings replay include LP conversion credits without counting them as new income or payout. Qualify full ingestion/lineage, real conversion receipts and stalled/restarted keepers; measure worst-case conversion waiting time across the collection and minimum economic batches.
+  - The earlier [source-only claim audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) describes the pre-conversion revision. Current candidate evidence belongs in [LP ETH verification](reports/lp-eth-settlement/VERIFICATION.md); local fixtures do not qualify public routes or independent security.
+  - Local ETH-only default claims, pending source-currency display, exact native backing/abort and current-owner same-chain handoff are verified in the scoped report. Qualify complete real-market conversion and operating latency before closing this task.
 
   </details>
 
@@ -760,4 +761,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `0f87820ab1b677bee02aa05b27300ee3c6e0a205ea710595a77aafebb0c3acbd`.
+Snapshot SHA-256: `7b37fc1eff6ea5252c0dbcce58f0e9e1e44844e6b3f3f3812e856827c7d383cf`.

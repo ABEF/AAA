@@ -173,7 +173,7 @@ contract CombinedCapacityGasTest is Test {
         for (uint256 i; i < 16; ++i) tokens[i].mint(address(royalties), 1600);
         vm.deal(address(royalties), 16 ether);
         assertEq(vault.bucketCount(), SUPPORTED_BUCKETS);
-        assertEq(rewards.assetCount(), 32);
+        assertEq(rewards.assetCount(), 33);
         assertEq(fees.rewardReceiverCount(), SUPPORTED_BUCKETS);
         assertEq(royalties.assetCount(), 17);
         assertEq(membership.totalEligible(), SUPPORTED_BUCKETS);

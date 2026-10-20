@@ -153,13 +153,22 @@ class FrontendTransactionTests(unittest.TestCase):
             self.claim([{**self.entry(), 'recipient': addr(40)}])
         self.assertFalse(self.rpc.calls)
 
-    def test_bad_wallet_and_native_lp_rejected_before_rpc(self):
+    def test_bad_wallet_rejected_before_rpc(self):
         for owner in (ZERO, None, '', '0x123', 30):
             with self.subTest(owner=owner), self.assertRaises(TransactionInputError):
                 self.mint(wallet=owner)
-        with self.assertRaises(TransactionInputError):
-            self.claim([self.entry(asset=ZERO)])
         self.assertFalse(self.rpc.calls)
+
+    def test_native_lp_requires_confirmed_admission(self):
+        with self.assertRaises(TransactionInputError):self.claim([self.entry(asset=ZERO)])
+        self.assertFalse(self.rpc.simulations)
+        self.rpc.put(addr(4),'assetCount()',values=(3,))
+        for n,a in enumerate((ZERO,addr(20),addr(21))):self.rpc.put(addr(4),'assets(uint256)',(n,),(a,))
+        from tests_python.test_earnings import native_put
+        native_put(self.rpc,addr(4),'claimable(uint256,address)',(self.rpc.nft_id,ZERO),(77,))
+        result=self.claim([self.entry(asset=ZERO),self.entry(asset=ZERO,royalty=True)])
+        self.assertEqual(result['claim_operations'][0]['view_raw'],'77')
+        self.assertEqual(result['transaction']['data'],claim_calldata((Claim(self.rpc.nft_id,ZERO,False),Claim(self.rpc.nft_id,ZERO,True))))
 
     def test_duplicate_addresses_normalized_before_detection(self):
         a = self.entry(asset=addr(20))

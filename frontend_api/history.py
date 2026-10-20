@@ -6,7 +6,7 @@ trusted. Actual ownership is cross-checked by the RPC service before serving.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
 from pathlib import Path
 import re
@@ -23,6 +23,7 @@ ZERO = '0x' + '0' * 40
 TRANSFER = '0x' + keccak256(b'Transfer(address,address,uint256)').hex()
 CLAIMED = '0x' + keccak256(b'Claimed(uint256,address,address,uint256)').hex()
 ROYALTY_CONVERTED = '0x' + keccak256(b'RoyaltyConverted(uint256,address,uint256,uint256)').hex()
+LP_CONVERTED = '0x' + keccak256(b'LPRewardsConverted(uint256,address,uint256,uint256,uint256,uint256)').hex()
 
 
 class HistoryError(RpcError):
@@ -56,6 +57,7 @@ class HistorySnapshot:
     # (nft_id, source asset) -> source spent, ETH credited, count, last event.
     # This is denomination conversion, never payment or newly earned revenue.
     conversions: Any
+    lp_conversions: Any = field(default_factory=lambda: MappingProxyType({}))
 
     def claimed(self, nft_id: int, assets: set[str]) -> list[dict[str, str]]:
         records = []
@@ -126,7 +128,7 @@ class History:
             raise HistoryError('Confirmed history target precedes coverage or exceeds SQLite bounds')
         if type(minted_count) is not int or not 0 <= minted_count <= 1000:
             raise HistoryError('Canonical NFT supply exceeds the bounded collection')
-        if len(lp_assets) > 32 or len(royalty_assets) > 17 or ZERO in lp_assets or ZERO not in royalty_assets:
+        if len(lp_assets - {ZERO}) > 32 or len(royalty_assets) > 17 or ZERO not in royalty_assets:
             raise HistoryError('Unsupported history reward asset inventory')
         target_hash = _hash(block_hash)
         emitters = sorted({self.nft, self.rewards, self.royalties, *(address(a) for a in extra_emitters)})
@@ -187,11 +189,13 @@ class History:
         owners = {}
         claims = {}
         conversions = {}
+        lp_conversions = {}
         seen_logs = set()
         transaction_blocks = {}
         examined = 0
         claim_events = 0
         conversion_events = 0
+        lp_conversion_events = 0
         for number, block_hash, transaction_hash, log_index, emitter, raw, stored_hash, timestamp in rows:
             checkpoint()
             examined += 1
@@ -253,29 +257,38 @@ class History:
                 amount = int(data[0], 16)
                 claims[nft_id, asset] = (lp + amount, royalty) if emitter == self.rewards else (lp, royalty + amount)
                 claim_events += 1
-            elif emitter == self.royalties and topic == ROYALTY_CONVERTED:
+            elif (emitter == self.royalties and topic == ROYALTY_CONVERTED) or (emitter == self.rewards and topic == LP_CONVERTED):
+                is_lp = emitter == self.rewards
                 if len(topics) != 3:
-                    raise HistoryError('Noncanonical royalty conversion topics')
+                    raise HistoryError('Noncanonical reward conversion topics')
                 data = decode_words(item.get('data'))
-                if len(data) != 2:
-                    raise HistoryError('Royalty conversion must contain two amounts')
+                if len(data) != (4 if is_lp else 2):
+                    raise HistoryError('Unexpected reward conversion amount layout')
                 nft_id = int(topics[1], 16)
                 asset = _topic_address(topics[2])
-                source, native = map(lambda value: int(value, 16), data)
-                if nft_id not in owners or asset == ZERO or asset not in royalty_assets or (source == 0 and native != 0):
-                    raise HistoryError('Royalty conversion is not bound to a minted NFT and source currency')
+                amounts = [int(value, 16) for value in data]
+                source, native = (sum(amounts[:2]), sum(amounts[2:])) if is_lp else amounts
+                admitted = lp_assets if is_lp else royalty_assets
+                if nft_id not in owners or asset == ZERO or asset not in admitted or ZERO not in admitted or (source == 0 and native != 0):
+                    raise HistoryError('Reward conversion is not bound to a minted NFT and admitted currencies')
+                if is_lp and ((amounts[0] == 0 and amounts[2] != 0) or (amounts[1] == 0 and amounts[3] != 0)):
+                    raise HistoryError('LP conversion credits an empty reward component')
                 if type(timestamp) is not int or not 0 <= timestamp <= target_timestamp:
                     raise HistoryError('Invalid conversion block timestamp')
-                before_source, before_native, count, _ = conversions.get((nft_id, asset), (0, 0, 0, None))
+                target_conversions = lp_conversions if is_lp else conversions
+                before_source, before_native, count, _ = target_conversions.get((nft_id, asset), (0, 0, 0, None))
                 last = MappingProxyType({'ledger': emitter, 'block_number': number, 'block_hash': block_hash,
                     'timestamp': timestamp, 'transaction_hash': transaction_hash, 'log_index': log_index})
-                conversions[nft_id, asset] = (before_source + source, before_native + native, count + 1, last)
-                conversion_events += 1
+                target_conversions[nft_id, asset] = (before_source + source, before_native + native, count + 1, last)
+                if is_lp: lp_conversion_events += 1
+                else: conversion_events += 1
         if len(owners) != minted_count:
             raise HistoryError('Transfer mint inventory differs from canonical mintedCount')
         provenance = {'available': True, 'from_block': self.start, 'start_block_hash': first[0], 'start_parent_hash': self.parent,
                       'through_block': target, 'block_hash': target_hash, 'indexer_next_block': row[0],
-                      'logs_examined': examined, 'claim_events': claim_events, 'royalty_conversion_events': conversion_events, 'minted_count': minted_count,
+                      'logs_examined': examined, 'claim_events': claim_events, 'royalty_conversion_events': conversion_events,
+                      'lp_conversion_events': lp_conversion_events, 'minted_count': minted_count,
                       'scope': 'All owners and all prior claims through the exact confirmed block, per NFT and asset.',
                       'completeness': 'Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof.'}
-        return HistorySnapshot(MappingProxyType(owners), MappingProxyType(claims), MappingProxyType(provenance), MappingProxyType(conversions))
+        return HistorySnapshot(MappingProxyType(owners), MappingProxyType(claims), MappingProxyType(provenance),
+                               MappingProxyType(conversions), MappingProxyType(lp_conversions))

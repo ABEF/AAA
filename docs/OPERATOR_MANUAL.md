@@ -643,20 +643,15 @@ signer permissions, on-chain configuration or automatic transaction retry change
 
 ## Holder payout currencies
 
-The current LP reward ledger pays its admitted source ERC20 directly. It has no
-LP conversion/unwrap function. Creator ETH intake is wrapped into the accounting
-asset; `RoyaltyRewards.convertBatch(...)` handles royalty balances only. There is
-no operator call or keeper flag that turns current LP claims into native ETH.
-Do not configure arbitrary approvals or send ledger assets to the royalty
-converter. See [the audited boundaries](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md).
-
-Before enabling an ETH-only user flow, complete and review the linked pre-seal
-implementation. Verify actual receipt currencies, converter bindings and output
-backing, not token labels. Until then preserve source-asset balances and explicit
-unavailability/pending status. Existing controls can stop new maintenance or
-conversions within their own documented scope; they do not add missing payout
-functionality. No new authority, operator procedure or economic code is introduced
-by this audit; qualification remains in the [central task](../TODO.md#task-lp-eth-settlement).
+The current candidate supports LP conversion through its own fixed converter,
+separate from `RoyaltyRewards.convertBatch(...)`. Follow [LP setup and recovery](LP_ETH_SETTLEMENT.md)
+below. Older source-only deployments cannot gain this binding after sealing;
+the [earlier audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) applies
+to those earlier sources. Never send LP ledger assets to the royalty converter
+or configure arbitrary approvals. Verify actual receipt currencies, exact
+converter bindings and backing before enabling native claims. Preserve source
+balances and explicit pending/unavailable reporting while conversion is stopped.
+Live qualification remains in the [central task](../TODO.md#task-lp-eth-settlement).
 
 Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.
 
@@ -668,3 +663,7 @@ an earlier allowance. A successful Entry creates nonredeemable LP even when the
 API subsequently fails. Separately wrapped local ETH remains wallet-owned WETH
 if contribution fails; public native Entry wrapping is atomic. See the
 [failure evidence](../reports/topup-and-reward-review/contribution-rollback.json).
+
+## Convert LP holder fees to ETH
+
+Follow the [LP ETH settlement procedure](LP_ETH_SETTLEMENT.md#operator-procedure) before sealing: bind a separate converter, review wrapper/routes/feeds, enable the guarded worker, and confirm exact source/native liability changes. It covers route rotation, dependency-independent stops, source-currency recovery, pending transaction reconciliation, restart and irreversible bindings. The 1% LP conversion cap is user-approved; gas is separate. See [bounded scheduling](LP_ETH_SETTLEMENT.md#keeper-configuration-and-scheduling) for both conversion streams and maintenance.

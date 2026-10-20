@@ -87,6 +87,14 @@ class WalletTests(unittest.TestCase):
         self.assertEqual(len(claims),20)
         self.assertEqual(len({c['token_id'] for c in claims}),10)
         self.assertEqual(result['action'],'claim');self.lab.send.assert_not_called()
+    def test_native_default_does_not_include_pending_source_balances(self):
+        native='0x'+'00'*20
+        self.lab.api.nft.return_value={'claimable':{'default_settlement':'native_eth',
+            'lp':[{'asset':'token','raw':'100'},{'asset':native,'raw':'12'}],
+            'royalties':[{'asset':native,'raw':'4'}]}}
+        self.wallet.prepare({'action':'claim','account':A,'id':'1'})
+        claims=self.lab.preparer.prepare.call_args.args[0]['claims']
+        self.assertEqual(len(claims),2);self.assertEqual({x['asset'] for x in claims},{native})
     def test_approved_gas_cost_increase_does_not_submit(self):
         from tests_python.test_local_stack import lab
         instance=object.__new__(lab.Lab)

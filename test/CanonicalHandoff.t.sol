@@ -7,6 +7,8 @@ import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZRewards} from "../src/ZZZRewards.sol";
+import {ZZZLPRewardConverter} from "../src/ZZZLPRewardConverter.sol";
+import {ZZZRoyaltyConverter} from "../src/ZZZRoyaltyConverter.sol";
 import {ZZZMembership} from "../src/ZZZMembership.sol";
 import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZCompounder} from "../src/ZZZCompounder.sol";
@@ -75,6 +77,7 @@ contract HandoffTransitionToken is MockToken {
 contract HandoffNativeWrapper is MockToken {
     constructor() MockToken(18) {}
     function deposit() external payable { _mint(msg.sender, msg.value); }
+    function withdraw(uint256 amount) external { _burn(msg.sender,amount);(bool ok,)=msg.sender.call{value:amount}("");require(ok); }
 }
 
 /// @notice Two independent real controller/economic systems on one local chain.
@@ -347,6 +350,32 @@ contract CanonicalHandoffTest is Test {
         vm.prank(ALICE); vm.expectRevert(); destination.vault.mintDormant{value: 0.05 ether}();
         assertEq(destination.nft.mintedCount(), 0); assertEq(destination.membership.totalEligible(), 0);
         assertEq(source.ac.canonicalState(), 0);
+    }
+
+    function testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner() public {
+        source=_deploySystem(false);HandoffNativeWrapper wrapper=new HandoffNativeWrapper();
+        source.rewards.addAsset(address(wrapper));
+        ZZZLPRewardConverter converter=new ZZZLPRewardConverter(address(source.ac),address(source.rewards),address(wrapper));
+        source.rewards.bindConverter(address(converter));
+        converter.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("test wrapper")));
+        converter.setEnabled(true);source.ac.seal();_approve(source);
+        destination=_deploySystemWithAssets(false,false);destination.handoff.prepareImport(address(source.ac));destination.ac.seal();
+        uint256 id=_mint(source,0,0);_activate(source,id,1000);
+        wrapper.deposit{value:3 ether}();wrapper.transfer(address(source.fees),3 ether);
+        vm.prank(address(source.fees));wrapper.approve(address(source.rewards),3 ether);
+        uint256 bucket=source.vault.nftBucket(id);
+        vm.prank(address(source.fees));source.rewards.creditPool(bucket,address(wrapper),2 ether,1 ether);
+        uint256[] memory list=new uint256[](1);list[0]=id;
+        source.rewards.convertBatch(address(wrapper),list,0,3 ether,block.timestamp+60);
+        vm.prank(ALICE);source.nft.transferFrom(ALICE,BOB,id);
+        _freeze(id);_exportAll();_importAll();_fundAll();_commit();
+        assertEq(destination.rewards.individual(id,address(0)),2 ether);
+        assertEq(destination.rewards.collective(id,address(0)),1 ether);
+        assertEq(address(destination.rewards).balance,3 ether);
+        vm.prank(ALICE);vm.expectRevert();destination.rewards.claim(id,address(0));
+        uint256 balance=BOB.balance;vm.prank(BOB);assertEq(destination.rewards.claim(id,address(0)),3 ether);
+        assertEq(BOB.balance,balance+3 ether);assertEq(destination.rewards.liabilities(address(0)),0);
+        vm.prank(BOB);vm.expectRevert();source.rewards.claim(id,address(0));
     }
 
     function testFreezeRequiresTimelockAndFullyRevealedMintInventory() public {
@@ -726,11 +755,11 @@ contract CanonicalHandoffTest is Test {
         _migrate(0);
         assertEq(destination.nft.mintedCount(), 0);
         assertEq(destination.nft.remainingToReveal(), 1000);
-        assertEq(destination.rewards.assetCount(), 0);
+        assertEq(destination.rewards.assetCount(), 1);
         assertEq(destination.membership.totalEligible(), 0);
         assertEq(destination.royalties.totalWeight(), 0);
         assertEq(destination.handoff.assetCount(1), 0);
-        assertEq(destination.handoff.assetCount(3), 0);
+        assertEq(destination.handoff.assetCount(3), 1);
         assertEq(destination.handoff.assetCount(4), 1); // Native royalty slot, zero backing.
         uint256 id = _mint(destination, 0, 0);
         assertEq(destination.nft.ownerOf(id), ALICE); assertEq(destination.nft.mintedCount(), 1);
@@ -868,7 +897,7 @@ contract CanonicalHandoffTest is Test {
         uint256 commitGas = _governColdHandoff(abi.encodeCall(source.handoff.commit, ()));
         emit log_named_uint("handoff.4-buckets.32-assets.4-inboxes.17-royalties.commit.cold", commitGas);
         assertEq(source.ac.canonicalState(), 3); assertEq(destination.ac.canonicalState(), 0);
-        assertEq(destination.vault.bucketCount(), 4); assertEq(destination.rewards.assetCount(), 32);
+        assertEq(destination.vault.bucketCount(), 4); assertEq(destination.rewards.assetCount(), 33);
         assertEq(destination.royalties.assetCount(), 17);
         assertEq(destination.membership.totalEligible(), 5);
         for (uint256 i; i < extra.length; ++i) {

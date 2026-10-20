@@ -37,6 +37,35 @@ def configure_inputs(lab):
         a['route_id']='0x'+keccak256(bytes.fromhex(lab.encode('policy('+signature+')',tuple_value,constructor=True)[2:])).hex()
         lab.call('entry','addRoute('+signature+')',tuple_value)
 
+    # Dedicated LP conversion instance, using only reserve-backed local WETH and
+    # the deterministic $1 test venue. This is not a reviewed public swap route.
+    converter=lab.deploy('ZZZLPRewardConverter','constructor(address,address,address)',
+                        (lab.contracts['access'],lab.contracts['rewards'],lab.weth))
+    lab.contracts['lp_converter']=converter
+    lab.call('rewards','bindConverter(address)',converter)
+    review='0x'+keccak256(b'LOCAL LP SETTLEMENT ONLY').hex()
+    wrapper=f'({lab.pin(lab.weth)["code_hash"]},{ZERO},{ZERO},{ZERO},{EMPTY},{EMPTY},{review})'
+    lab.call(converter,'configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))',wrapper)
+    lab.call(converter,'setEnabled(bool)',True)
+    lab.call(factory,'create(address,address)',zzz,lab.weth)
+    pool=lab.addr(factory,'getPool(address,address,uint24)',zzz,lab.weth,500)
+    lab.call(lab.weth,'transfer(address,uint256)',router,100_000*UNIT)
+    values=[zzz,router,factory,pool,500,*[lab.pin(x)['code_hash'] for x in (zzz,router,factory,pool)],review]
+    signature='(address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32)'
+    policy='('+','.join(map(str,values))+')'
+    lab.lp_route='0x'+keccak256(bytes.fromhex(lab.encode('policy('+signature+')',policy,constructor=True)[2:])).hex()
+    lab.call(converter,'addRoute('+signature+')',policy)
+
+def settle_lp(lab, identifiers):
+    if not getattr(lab,'lp_route',None): return
+    ids=sorted(map(int,identifiers))
+    for token in lab.tokens:
+        total=sum(lab.uint('rewards','claimable(uint256,address)',i,token) for i in ids)
+        if not total: continue
+        route=EMPTY if token==lab.weth else lab.lp_route
+        lab.call('rewards','convertBatch(address,uint256[],bytes32,uint256,uint256)',token,
+                 '['+','.join(map(str,ids))+']',route,max(1,total*99//100),lab.clock()+120)
+
 def input_for(lab, symbol=None):
     inventory=getattr(lab,'input_assets',None)
     if not inventory:

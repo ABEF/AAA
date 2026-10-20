@@ -1,0 +1,1332 @@
+{
+  "distinct_successful_cases": 142,
+  "scope": "Union of scoped runs, not a new full regression; final test bodies are LF-normalized. Initial failures and fixture corrections retained.",
+  "cases": {
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAbortAfterFundingRequiresExactReturnedBacking()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 110652851
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAbortAfterRoyaltySettlementReopensWithoutDoubleCrediting()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 12864701
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAbortBeforeFundingRestoresOnlySourceAndPermanentlyCancelsDestination()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 107812197
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAbortBeforeSettlementReopensSourceWithoutLosingPendingReceipts()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 12691326
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAbortedSourceCanUseFreshDestinationWithoutReusingOldRootsOrFundingFlags()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 280250911
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testActivatedSuccessorCanLaterMigrateAgainAfterNewMintsAndContributions()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 289701448
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testAnyHistoricalBridgeUseRequiresSeparateAuthenticatedDrainDesign()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1904951
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 110254619
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testCrossChainNoticeDoesNotAuthorizeUnverifiedFreezeOrExport()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1099406
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testDestinationNeverCopiesOldOperatorApprovalsAndRightsFollowNewOwner()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 109903375
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testDestinationRoyaltyPrefundsCannotSubstituteForHandoffFundingOrRewardUsers()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 110005112
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testDormantImportedNFTCanActivateIntoExistingSharedBucket()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 112320152
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testEmptyCollectionAndZeroLPAssetsCanMigrateWithoutInventingBacking()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 235674624
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFreezeInsideLegacyFundingCallbackCannotCountOnePaymentTwice()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 187872944
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFreezeRejectsLiveLiquidityAndPreservesItsCustody()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 4140099
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFreezeRequiresTimelockAndFullyRevealedMintInventory()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1507026
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFrozenSourceBlocksTransfersClaimsAndOrdinarySync()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 11536518
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFullThousandNFTInventoryImportsExactlyOnceWithCompleteDenominators()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 63629262
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 107949007
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testImportingDestinationCannotMintOrAllocateRights()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 58536
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testInterruptedSettlementKeepsCutoffsAndBlocksEarlyImportFundingAndClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 114312699
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testLegacyReceiptsQueuedWhileSuccessorFrozenRemainBackedAcrossNextHandoff()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 290283157
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testMalformedRecordAndIncompleteImportCannotActivate()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 38598943
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 376356855
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testPartialFundingAbortReturnsOnlyTransferredBacking()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 107987441
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testPartialFundingCannotActivateAndFundingCannotReplay()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 107671893
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testPendingNativeCreatorPaymentIsWrappedAndAllocatedOnceAtFreeze()": {
+      "status": "Success",
+      "receipt": "lp-eth-additional-solidity.json",
+      "kind": {
+        "Unit": {
+          "gas": 258107822
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testPostFreezeSourceDonationDoesNotAlterStateCommitmentOrBaseBacking()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 109982104
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testProtectedInboxTokensNativeAndSuccessorPrefundsStayQuarantined()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 115239250
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testRemainingRarityAndArtworkInventoryContinueAfterMigration()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 107217035
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testRetiredRoyaltyInboxForwardsOnlyRemainingReceiptsWithoutDuplicatingClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 110004650
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 109766241
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testSatelliteConfiguredDestinationCannotPrepareCanonicalImport()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 72126532
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testUnsealedSameChainDestinationCannotBeAnnouncedAsExecutableHandoff()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 71461724
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testAttackerAndNFTApprovalDoNotAuthorizeClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 612252
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testCallbackNativeRefundStaysPendingAndBackingRemainsIntact()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1592884
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testCallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1704632
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testDirectOwnerClaimsRemainAvailable()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 821097
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testEmptyOversizedAndDuplicateBatchesRejected()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 95933
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96,uint96,uint96)": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x0994647e0000000000000000000000000000000000000000000000000000000000e19aea00000000000000000000000000000000000000000000000000000000003c48dd00000000000000000000000000000000000000000000000be734da67d4e4c883",
+            "gas": 735038,
+            "stipend": 21628
+          },
+          "runs": 1000,
+          "mean_gas": 717371,
+          "median_gas": 714529,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testImmutableEndpointsAndNoApprovalsOrCustody()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1050054
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testMaximum32ColdOperationsAcross16NFTsUnder12MGas()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 12156200
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testMissingLPDependencyDoesNotBlockRoyaltyOnlyBatch()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 704750
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testMixedOwnerAndNonexistentNFTFailBeforePayouts()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 545119
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1496822
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testNativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1893205
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testNativeReceiverRevertRollsBackWholeBatchThenERC20CanClaimSeparately()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 2174069
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testPauseAndUnavailableValuationDoNotBlockClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1034426
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testRouterCannotBeRedeployedByThirdPartyForCanonicalNFT()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 70761
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testRouterCannotRedirectToWrongOwnerAtLedger()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 515270
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testRouterRejectsETHAndArbitraryCalls()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 18422
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testTaxedRoyaltyAssetAtomicallyRevertsOtherAssetPayouts()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1461422
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testTransferredNFTClaimsBelongOnlyToNewOwner()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1071428
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testUnsealedOrNoncanonicalBindingRejected()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 17368419
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testUnsupportedAssetAtomicallyRollsBackEarlierLPAndRoyaltyClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1001666
+        }
+      }
+    },
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testZeroBalancesAndDormantNFTCannotClaimAnotherNFTRewards()": {
+      "status": "Success",
+      "receipt": "lp-eth-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 1455740
+        }
+      }
+    },
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdActivationAtCombinedBucketAssetAndReceiverCaps()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 11465766
+        }
+      }
+    },
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdActivationWithEveryHistoricalRewardIndexPopulated()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 13261684
+        }
+      }
+    },
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 9061244
+        }
+      }
+    },
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 10826701
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testCallbacksCannotPauseOrExposePartialBalances()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1768290
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testCanonicalAbortReturnsETHAndSourceBacking()": {
+      "status": "Success",
+      "receipt": "lp-eth-additional-solidity.json",
+      "kind": {
+        "Unit": {
+          "gas": 12434719
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testCanonicalNativeBackingImportClaimsAndPrefunds()": {
+      "status": "Success",
+      "receipt": "lp-eth-additional-solidity.json",
+      "kind": {
+        "Unit": {
+          "gas": 12369806
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testEarnedOnlyConservationAndNoNewcomerRedistribution()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1161670
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testExactUnwrapWithoutPriceAndFailureRecovery()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 847966
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testFuzzOutputAndSourceFractionsConserved(uint96,uint96)": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xa42a1470000000000000000000000000000000000000000000000000000000000000f4e90000000000000000000000000000000000000000000260ad5cd93b6dd9e376c3",
+            "gas": 1123371,
+            "stipend": 21476
+          },
+          "runs": 1001,
+          "mean_gas": 1087276,
+          "median_gas": 1101895,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testInvalidBatchDeadlineAndNativeInput()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 782919
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testNativeRecipientRevertRestoresLiabilityAndClaimsIgnorePause()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1115258
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testOnePercentBoundaryAndAtomicRollback()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1437714
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testRolesLifecycleAndOriginalBinding()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 326506
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testSourceRecoveryDoesNotPayAgain()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1214099
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testStaleOracleAndRouteDisableLeaveBalances()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 917525
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testStrongerMinimumAndLyingRouterRevert()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1386607
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testTransferBeforeAndAfterConversionAndShareGrowth()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1040568
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testAccountingImportRequiresAuthenticatedReceiver()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 690191
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testBothCanonicalAssetsMustBeFundedBeforeBarrierClears()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1464401
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testCumulativeRemoteBaselinePreservesPastHopsWithoutDoubleCounting()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1174490
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testDirectDonationDoesNotPublishOwnerIndex()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 638657
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x85720506000000000000000000000000000000000000000000000000000000000000465400000000000000000000000000000000000000000000000000000000000010f8000000000000000000000000000000000000000000000000000000000000246000000000000000000000000000000000000000000000000000000000000005fd",
+            "gas": 1394980,
+            "stipend": 21672
+          },
+          "runs": 1000,
+          "mean_gas": 1368857,
+          "median_gas": 1373308,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testHomeSnapshotCannotResetPreviousExpectedCounters()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 827589
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testImportedAccountingRejectsWrongSharesBeforeUpdatingCounters()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 713786
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testIndexDivisionRemainderCannotBeCapturedByNewShares()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1429056
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testNewOwnerSharesCannotReceiveHistoricalOwnerFees()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1202890
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testNoEligibleNFTCollectiveFundsRemainOrphanedForFutureParticipants()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 860462
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testOwnerFeesFollowSharesAndCollectiveIsEqualAcrossBuckets()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1802033
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testOwnerFractionSurvivesClaimsAndShareIncrease()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1422505
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testRemoteDustAddsToLifetimeOwnerCounterBeforeDeparture()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1010443
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testRemoteSnapshotCannotEraseUnsentLiabilities()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1100676
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testReturnedBucketBarrierRequiresBothOwnerAndCollectiveFunding()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1293954
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testReversedSnapshotTokenOrderingPreservesCanonicalCounterIdentity()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 831827
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testTopUpCheckpointDoesNotRepriceOldOwnerFees()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1230060
+        }
+      }
+    },
+    "test/PooledRewards.t.sol:PooledRewardsTest::testUnsentRemoteReservesAreIncludedInDepartureCounters()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1118468
+        }
+      }
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest::testGasCollection1()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 7074496
+        }
+      }
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest::testGasCollection100()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 6575664
+        }
+      }
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest::testGasCollection1000()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 6596957
+        }
+      }
+    },
+    "test/ProductionGas.t.sol:ProductionGasTest::testGasMaximum32FundedRewardAssets()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 20742019
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testClaimWorksWhilePaused()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 363171
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testClaimsCannotRepeat()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 391982
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testDustBeforeJoinCannotBeClaimedByEntrant()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1066686
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testDustOnMigrationGoesToIncumbentOwners()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 443348
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testFeeSplitIsExactAndBacked()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 505622
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testFractionalClaimsRemainFunded()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 4656577
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testFuzzFeeChunkingPreservesTwentyUnitBaskets(uint96,uint96)": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xfc44d3650000000000000000000000000000000000000000000000000000000000003ab40000000000000000000000000000000000000000000000000000000007b79f3e",
+            "gas": 678596,
+            "stipend": 21392
+          },
+          "runs": 1000,
+          "mean_gas": 649861,
+          "median_gas": 657204,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testFuzzFeeConservation(uint96)": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xd4d5ebe50000000000000000000000000000000000000000000000000000000000000bde",
+            "gas": 532624,
+            "stipend": 21216
+          },
+          "runs": 1000,
+          "mean_gas": 502726,
+          "median_gas": 511408,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testMembershipCannotBeActivatedTwice()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 32450
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testMissingNFTCannotBecomeEligible()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 42752
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNFTSupportsStandardERC721()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 11216
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNFTTransferCarriesUnclaimedRewards()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 402696
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNewActivatedNFTCannotClaimPublishedPastReward()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 580823
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testTinyFeesCannotManipulateSplitWithoutMembershipBoundary()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 2254407
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testTopUpDoesNotIncreaseEqualCollectiveShare()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 529783
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnauthorizedCollectiveCheckpoint()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 19430
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnauthorizedCredit()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 22165
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnauthorizedMembershipActivation()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 22593
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnauthorizedOwnerCheckpoint()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 19672
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnauthorizedReserveRelease()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 450364
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnknownBucketCannotReceiveFundedRewards()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 132238
+        }
+      }
+    },
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testUnsafeReceiverRejected()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 76069
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testBadTokenActivationRecoveryExcludesOlderReceipts()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1179403
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testBatchConvertsOnlyEarnedBalancesAndKeepsNativeEntitlement()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1105560
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testBoundedBatchAndFullNativeAllocation()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 8184583
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testCallbackPauseRollsBackConversion()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 756451
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testCallbackReentryCannotClaimOrDuplicateConversion()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 890508
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testCanonicalExportFlattensRecoveryBaseline()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 833709
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testConvertedAndDeferredRightsSurviveCanonicalImport()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 14158444
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testDeadlineRoleBindingAndDuplicateGuards()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 547728
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testDisabledRouteAndConverterStopWithoutDependencyReads()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 353786
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testExactUnwrapNoSwapOrOracle()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 504078
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testFuzzBatchConservation(uint96)": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xa446ff480000000000000000000000000000000000000000000000000000000000007552",
+            "gas": 813017,
+            "stipend": 21216
+          },
+          "runs": 1000,
+          "mean_gas": 766263,
+          "median_gas": 791801,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testGasBurningOptionalTokenCannotBlockActivation()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 473620
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testLossOverOnePercentRollsBackEverythingAndRetryWorks()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1246516
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testNoOldEligibleMembersRecoveryQuarantinesReceipts()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 6239378
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testPartialBatchDoesNotConvertOtherNFTOrQuarantinedBalance()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 806056
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testPausePreparationAndCanonicalStopConversionsButNotNativeClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 334285
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testReadOnlyCallbacksCannotObserveIntermediateClaimableBalances()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 935308
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testRepeatedOutagesJoinAtDifferentBaselines()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 853903
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testStaleOracleRejectsWithoutConsumingRights()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 443484
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testTransferBeforeAndAfterConversionPreservesRights()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 781922
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testUserMinimumCannotBeRelaxedAndRouterReturnIsMeasured()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1174325
+        }
+      }
+    },
+    "test/RoyaltyConversion.t.sol:RoyaltyConversionTest::testWrapperFailureDoesNotBlockActivationOrNativeClaims()": {
+      "status": "Success",
+      "receipt": "lp-eth-solidity-attempt2.json",
+      "kind": {
+        "Unit": {
+          "gas": 1077089
+        }
+      }
+    },
+    "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner()": {
+      "status": "Success",
+      "receipt": "lp-eth-native-handoff-final.json",
+      "kind": {
+        "Unit": {
+          "gas": 250487687
+        }
+      }
+    },
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testMaximumBatchConservesOutputWithinGasBudget()": {
+      "status": "Success",
+      "receipt": "lp-eth-additional-solidity.json",
+      "kind": {
+        "Unit": {
+          "gas": 10428093
+        }
+      }
+    }
+  }
+}

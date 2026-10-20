@@ -1,0 +1,38 @@
+{
+  "normalization": "SHA-256 of LF-normalized content; production Solidity metadata above also verifies exact raw bytes. No semantic test change from final line-ending normalization.",
+  "contract_repository": {
+    "src/ZZZRewards.sol": "70f0d5501649b3e97233f79414d9d291fad3d3efd8aafa5fe72a3f116ccc0d3b",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZRoyaltyConverter.sol": "17201bec44787e3e9145422474ac6d4a9cd37f5294f4e7b7884320461ae8b6b1",
+    "src/ZZZVaultCanonical.sol": "0e7f789b28338285cb24f3c19cc082351060a3ddbfc4772a6f545285fe582120",
+    "src/ZZZFeesCanonical.sol": "f12f36b1e7f11fa3f23a20c5fee3b43eb409e19f7336d585f4d6c32125ce5539",
+    "src/base/ZZZCanonicalLedger.sol": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "frontend_api/earnings.py": "44c50612e6a16f7c129fef2659a682a16e65d5b71b0386bb7bc3cb194fc18ac2",
+    "frontend_api/lineage.py": "0b6fc3ee445c31a83aa81a416aee3ac10ebd4da6f6381a691bbfb7021dd63958",
+    "frontend_api/service.py": "d97250c14b9fd2cf923000874b937ab2c66475e1f29ae1b2a273425c435256f4",
+    "frontend_api/transactions.py": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+    "keeper/monitor.py": "5d880db870a6c6167596fdc6882fb35c4dfbf4601c98b9511d535b78d31ed6a5",
+    "keeper/royalties.py": "da85b6a773776acabe2c78178d28daf0d08a355f2ba3a31d8b5b327f06ffa034",
+    "keeper/config.example.json": "be9f687fcb31e9a5c8d202f500b43ce369335572157aab2a1ce0ffc2500e0703",
+    "scripts/local-stack.py": "6d13ddcd59de04489e4e57cc8f603a7037789c8b70c2b5167c6ede455f7924bc",
+    "scripts/local_inputs.py": "803818325f7d2b3a4ea7a8b5fa6f24bc764f3df99d7db5da1aaf5bc5e6d06cd4",
+    "scripts/local_wallet.py": "ad41bd11529e337344c28102d7307aa556ef84103b7ade250ec10644a80c4bf4",
+    "scripts/verify-local-website.py": "b3ab63e42ee10bbff08281731c66cc787b6de2fccd40c93737971b8624ea71fd",
+    "indexer/event_schema.json": "5b4dd7b0da60289e6d7ac5841c6467a1db7570e72237b2c5ba856029a159828a",
+    "test/LPRewardConversion.t.sol": "0f1d6b192b9ab1ddc4fb3085fd180fed5ace144c9460dd455bfd29ff47fc0fa0",
+    "test/CanonicalHandoff.t.sol": "8464f83370809aa42d1c18f1326c6006c2444769991fb119e0b6e266820f6bb5",
+    "test/ClaimRouter.t.sol": "e7ae303f43ca0c11f1ba3a4ac736c2830e5df2308f964e68e78e9ad78a399020",
+    "test/CombinedCapacityGas.t.sol": "4a3deea33bec58a7cc1b58e048da2aef95351a627f585f9bfd1c325d46ec0451",
+    "test/ProductionGas.t.sol": "f643158a19ed8225fc0636178fb73ae9d4b9899c1449f28067bf4794ada5cd2d",
+    "tests_python/test_lp_conversion.py": "80347c4777751fc1161aa136dde2d7fe9a02c1cfc9dc7be8f4aaee8e83f79ec2",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "tests_python/test_frontend_transactions.py": "1ef8a405b74fee67c24eab9ba7929b298c9d5d35e9bf4e5c7cde0ba0609f2fd9",
+    "tests_python/test_local_wallet.py": "fedd05628a6502e1b793e80745a9fee6fe671da9c9d459010f47a2fe34a42bb8"
+  },
+  "website_repository": {
+    "local-client.js": "94561b232dd09f67fe78370c774073b4aedbf58950ce6d319bcbef0fdc2aee49",
+    "local-view.js": "565a8b114462bd1844e6973e9e7d5337d0401f62b8c2a4d66d11da5334ab6eb6",
+    "tests/local-client.test.mjs": "754dbee44243cf66e3d373373494c0c8fb6505e14cfb5ab8b8ce742aff9cf93f"
+  }
+}

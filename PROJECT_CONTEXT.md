@@ -1,3 +1,29 @@
+## LP holder ETH settlement checkpoint - 2026-10-20
+
+The user approved a 1% maximum LP reward conversion loss, gas separate. Read
+[the operator procedure](docs/LP_ETH_SETTLEMENT.md) and
+[scoped verification](reports/lp-eth-settlement/VERIFICATION.md). A dedicated
+pre-seal-bound converter checkpoints earned 80% individual/10% collective
+balances and credits ETH to the same NFTs. Principal, compound/buyback, dust
+and rarity economics are unchanged. Source claims remain an explicit fallback.
+Native payouts, exact backing/abort and same-chain handoff, bounded keeper
+priority, history/earnings reconciliation and ETH-default local UI are implemented.
+Vault/Fees handoff helpers skip the Rewards-only native slot. Do not reintroduce
+ERC20 reads at asset zero or count conversion as new earnings/claimed income.
+
+142 distinct affected Solidity cases pass across scoped runs, with 32 normal
+object gates/41 production bindings and a 33-assertion fresh local Anvil journey.
+Backend/UI results, initial failures and corrected fixtures are recorded in the
+report. This is not a full fresh regression or independent audit. Actual routes,
+feeds, wrapper policy, operator pins, Linux/gas/settlement-latency qualification
+and release approval remain open. Core sealing alone does not certify converter
+setup; require the binding before sealing. Production remains NOT APPROVED.
+
+Use main; check Git and deployment receipts for publication. The separate new
+local fixture uses port 8896; prior user fixtures were not reset. No public
+contract transaction/deployment or paused-monitor restart. Preserve unrelated
+drafts; keep Todo, feature evidence and operator procedures together.
+
 ## API client admission checkpoint - 2026-10-20
 
 Both read/unsigned-preparation CLI services now install bounded per-client

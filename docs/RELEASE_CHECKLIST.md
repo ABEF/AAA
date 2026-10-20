@@ -177,7 +177,11 @@ The [holder preflight](HOLDER_PREFLIGHT.md) supplies a pinned ownership/code inv
 not escrow or replacement approval. Include complete frozen coverage plus exact
 contract-holder release/claim and marketplace cutover evidence in release review.
 
-The 2026-10-19 payout audit also identifies missing native-ETH LP settlement.
-Current source-currency claims do not satisfy the user's ETH-only payout rule;
-the royalty converter does not close this gap. See [audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
+The 2026-10-19 payout audit identified missing native-ETH LP settlement in its
+source-only revision. The dedicated LP candidate below addresses implementation;
+live qualification and independent review remain required. See [historical audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
 and [owning task](../TODO.md#task-lp-eth-settlement). Approval remains NOT APPROVED.
+
+## LP settlement candidate scope
+
+The [LP ETH candidate](LP_ETH_SETTLEMENT.md) adds native reward credits, a fixed helper and a native asset slot in the Rewards handoff domain. Require current source-bound sizes/tests, source/successor schema compatibility, exact converter/wrapper bindings, qualified swap/feed/unwrap and keeper gas/latency/recovery evidence, complete ingestion and independent review. Older source-only receipts do not qualify these changes. The release decision remains **NOT APPROVED**.

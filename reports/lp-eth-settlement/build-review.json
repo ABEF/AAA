@@ -1,0 +1,459 @@
+{
+  "scope": "Source-matched default-profile compiler objects; dynamic constructor payloads still require exact deployment checks. forge test succeeded; standalone forge build reported a Windows cache-directory error after artifacts.",
+  "normal_size_gates": [
+    {
+      "contract": "ZZZVault",
+      "runtime_bytes": 24557,
+      "runtime_margin": 19,
+      "initcode_object_bytes": 41313,
+      "with_static_constructor_arguments": 41409,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "4f089843ef14474f54eb4df05b444fb46dbee092c39c6eb1facc9fd1cd496410"
+    },
+    {
+      "contract": "ZZZNFT",
+      "runtime_bytes": 23502,
+      "runtime_margin": 1074,
+      "initcode_object_bytes": 43287,
+      "with_static_constructor_arguments": null,
+      "dynamic_arguments_need_deployment_check": true,
+      "artifact_sha256": "a5ba7707d1a2fc8439e41a9e510506aec6a635c2eb1d8acd52f0e7ad601c9d48"
+    },
+    {
+      "contract": "ZZZLiquidityManager",
+      "runtime_bytes": 21993,
+      "runtime_margin": 2583,
+      "initcode_object_bytes": 23461,
+      "with_static_constructor_arguments": 23621,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "8bf7b1ecdd1929c3e3cca23da5abbe90048c7231283b32e45d717b2969669108"
+    },
+    {
+      "contract": "ZZZRewards",
+      "runtime_bytes": 20963,
+      "runtime_margin": 3613,
+      "initcode_object_bytes": 21970,
+      "with_static_constructor_arguments": 22002,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "f03db8b4723cf4d3fc5ce2ec54510c944b4cdce52ba1eb050fac9dc929c1111f"
+    },
+    {
+      "contract": "ZZZMembership",
+      "runtime_bytes": 9332,
+      "runtime_margin": 15244,
+      "initcode_object_bytes": 9743,
+      "with_static_constructor_arguments": 9775,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "e73942d46262d6e2be5718552f9ce781f5b446a6edf3dfc990d5f54cc3172bb5"
+    },
+    {
+      "contract": "ZZZFeeController",
+      "runtime_bytes": 23303,
+      "runtime_margin": 1273,
+      "initcode_object_bytes": 40079,
+      "with_static_constructor_arguments": 40111,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "83a3b9fcc8696afa2cbc28cea68eacc5e3b20226a56d11c49d56706d576cf3dc"
+    },
+    {
+      "contract": "ZZZStrategy",
+      "runtime_bytes": 12186,
+      "runtime_margin": 12390,
+      "initcode_object_bytes": 12635,
+      "with_static_constructor_arguments": 12667,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "36d1b7da1d630acdc679ea625d3175ab7165641ab7735e627c7db137a0350197"
+    },
+    {
+      "contract": "ZZZCompounder",
+      "runtime_bytes": 2017,
+      "runtime_margin": 22559,
+      "initcode_object_bytes": 2402,
+      "with_static_constructor_arguments": 2434,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "65d798fd62be8ced93fe008978826edf5409d3b177a3a759fb6d5aa09f741c00"
+    },
+    {
+      "contract": "ZZZBuyback",
+      "runtime_bytes": 6160,
+      "runtime_margin": 18416,
+      "initcode_object_bytes": 6824,
+      "with_static_constructor_arguments": 6920,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "7a3aff3e105740dbc6144d5590add30ae58d914cab470b63751a49e59959ba1b"
+    },
+    {
+      "contract": "ZZZMigration",
+      "runtime_bytes": 24515,
+      "runtime_margin": 61,
+      "initcode_object_bytes": 25041,
+      "with_static_constructor_arguments": 25073,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "3267e53c64593d60b04a8b7f808837424f468b5216981d6dec8b25941c3e39d4"
+    },
+    {
+      "contract": "ZZZBridgeAdapter",
+      "runtime_bytes": 10347,
+      "runtime_margin": 14229,
+      "initcode_object_bytes": 10921,
+      "with_static_constructor_arguments": 10985,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "58a3c99faba35acb76ec7e622a2f51b661daf9e6af247e7025dfc77b152ae5f7"
+    },
+    {
+      "contract": "ZZZMigrationReceiver",
+      "runtime_bytes": 15959,
+      "runtime_margin": 8617,
+      "initcode_object_bytes": 16506,
+      "with_static_constructor_arguments": 16538,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "e3ecd8b233cac564a3c52fde38fc1852a6f8cea4af3ad228bb5927b765a71957"
+    },
+    {
+      "contract": "ZZZAccessController",
+      "runtime_bytes": 14614,
+      "runtime_margin": 9962,
+      "initcode_object_bytes": 38674,
+      "with_static_constructor_arguments": null,
+      "dynamic_arguments_need_deployment_check": true,
+      "artifact_sha256": "53981285bd0864f66390b36e7b7a620307f1acff5f52801240659ac1a1590307"
+    },
+    {
+      "contract": "ZZZOracle",
+      "runtime_bytes": 7221,
+      "runtime_margin": 17355,
+      "initcode_object_bytes": 9589,
+      "with_static_constructor_arguments": 9653,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "4983410d8e4c15d70e3d483d3cfe6ca276869eb95e3b57bac40615f400c366a8"
+    },
+    {
+      "contract": "ZZZPoolRegistry",
+      "runtime_bytes": 12619,
+      "runtime_margin": 11957,
+      "initcode_object_bytes": 34280,
+      "with_static_constructor_arguments": 34312,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "74703bdeac9611b55899d0f9ca1722b4a3ba113bf1e17a0e8d2ea013063205ef"
+    },
+    {
+      "contract": "ZZZMigrationRegistry",
+      "runtime_bytes": 7513,
+      "runtime_margin": 17063,
+      "initcode_object_bytes": 7934,
+      "with_static_constructor_arguments": 7966,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "190cf28cbe8b0e4f646266dece2927cc2f96664bcc05c9f0ef3261d2bb374d37"
+    },
+    {
+      "contract": "ZZZBridgeRouter",
+      "runtime_bytes": 15290,
+      "runtime_margin": 9286,
+      "initcode_object_bytes": 15795,
+      "with_static_constructor_arguments": 15827,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "e86ea4bc5d610608d2a3040efeb3fa40578643ccc8750313066d1613ef3c3937"
+    },
+    {
+      "contract": "ZZZCanonicalHandoff",
+      "runtime_bytes": 21029,
+      "runtime_margin": 3547,
+      "initcode_object_bytes": 21666,
+      "with_static_constructor_arguments": 21698,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "9122b32fb1d9ea5d212aa1436c278c532ada427c24879a01ba3e5be1728011e9"
+    },
+    {
+      "contract": "ZZZNFTCanonical",
+      "runtime_bytes": 10671,
+      "runtime_margin": 13905,
+      "initcode_object_bytes": 11584,
+      "with_static_constructor_arguments": 11648,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "841faad8b36796b5ab357df70f76185dc4f782c56483683e00c8bce5908eb0da"
+    },
+    {
+      "contract": "ZZZVaultCanonical",
+      "runtime_bytes": 15915,
+      "runtime_margin": 8661,
+      "initcode_object_bytes": 17206,
+      "with_static_constructor_arguments": 17302,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "4c8d015edfc57f7389d84cf58d9c990348678205cc53129c893dcbc3b20a7f84"
+    },
+    {
+      "contract": "ZZZFeesCanonical",
+      "runtime_bytes": 13093,
+      "runtime_margin": 11483,
+      "initcode_object_bytes": 14036,
+      "with_static_constructor_arguments": 14100,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "4d5d61129985249772294737c5853c4676a28c882f03d4ef9256476c518852b4"
+    },
+    {
+      "contract": "ZZZRewardReceiver",
+      "runtime_bytes": 8035,
+      "runtime_margin": 16541,
+      "initcode_object_bytes": 9700,
+      "with_static_constructor_arguments": 9860,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "d07e3504173424a12d8aee04b47a49416ec5615ab8c0a8241237ead3652207f0"
+    },
+    {
+      "contract": "ZZZRoyaltyRewards",
+      "runtime_bytes": 20696,
+      "runtime_margin": 3880,
+      "initcode_object_bytes": 21633,
+      "with_static_constructor_arguments": 21665,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "1f83bfc96fdd1f9a6e39f9730f0b7ccc37c75ad8aefccc48e70f87d77c09e54c"
+    },
+    {
+      "contract": "ZZZNFTMetadata",
+      "runtime_bytes": 12448,
+      "runtime_margin": 12128,
+      "initcode_object_bytes": 12772,
+      "with_static_constructor_arguments": 12804,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "b326b96c5483a480dda8f52c7d5b8834d33b3f3aeeabc06cb9b65825edcc5485"
+    },
+    {
+      "contract": "ZZZClaimRouter",
+      "runtime_bytes": 2885,
+      "runtime_margin": 21691,
+      "initcode_object_bytes": 3443,
+      "with_static_constructor_arguments": 3539,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "9b5ea40c9b5aba1ee3cad4398037d1c758abcf33f7f163b849f91904b22f2c63"
+    },
+    {
+      "contract": "ZZZActivationAssets",
+      "runtime_bytes": 4819,
+      "runtime_margin": 19757,
+      "initcode_object_bytes": 5314,
+      "with_static_constructor_arguments": 5378,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "ab6e1ba674ddd0f91c26f4a9cb6a0743566c20ade961b58f99ef6e88d14cea2b"
+    },
+    {
+      "contract": "ZZZActivationEntry",
+      "runtime_bytes": 13592,
+      "runtime_margin": 10984,
+      "initcode_object_bytes": 14644,
+      "with_static_constructor_arguments": 14740,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "8bd2c7e771e35c1ee2867bd0f10a60b38f1cb78b2e51e19f029cad5ffa131d76"
+    },
+    {
+      "contract": "ZZZMigrationBudget",
+      "runtime_bytes": 15172,
+      "runtime_margin": 9404,
+      "initcode_object_bytes": 15768,
+      "with_static_constructor_arguments": 15800,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "f4889b593268d950e591f2ef3e6b00d516150291694fe516a830ef8873254ebe"
+    },
+    {
+      "contract": "ZZZRoyaltyFactory",
+      "runtime_bytes": 22243,
+      "runtime_margin": 2333,
+      "initcode_object_bytes": 22296,
+      "with_static_constructor_arguments": 22296,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "827add5c9c1af161a37d8a58112f436ca6db8747b9b290fe2393f094d8ec4433"
+    },
+    {
+      "contract": "ZZZRewardReceiverFactory",
+      "runtime_bytes": 15812,
+      "runtime_margin": 8764,
+      "initcode_object_bytes": 16086,
+      "with_static_constructor_arguments": 16118,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "56e50216f2ed11b6fe3120d455f94f19cdc8fce4d475355c2f2cbc79acc686ca"
+    },
+    {
+      "contract": "ZZZRoyaltyConverter",
+      "runtime_bytes": 12553,
+      "runtime_margin": 12023,
+      "initcode_object_bytes": 13249,
+      "with_static_constructor_arguments": 13345,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "7cd4aca9171bc014ab3e32061426d0bd346d9e119e501a472f27f734fd611e1e"
+    },
+    {
+      "contract": "ZZZLPRewardConverter",
+      "runtime_bytes": 12553,
+      "runtime_margin": 12023,
+      "initcode_object_bytes": 13260,
+      "with_static_constructor_arguments": 13356,
+      "dynamic_arguments_need_deployment_check": false,
+      "artifact_sha256": "1785d5dce8fc6ac70d9bc7ac291c05b879c7ffaeabe0ce2fc10fec6de610a8bc"
+    }
+  ],
+  "production_source_bindings": {
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "2c1121255cc61ea71e8e02899c2eb7ffc8bfa859c610c70517af425888c84c8e",
+      "keccak256": "0x2b071b975faaba218e5615d21740b1f604605d32c68fa2b607b9cb317da6ec94"
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "b2586ace9c56e141f10e5f8d4801a980e9c891e8d4d0d1bf7dc8ff36b2aa6572",
+      "keccak256": "0x6711962365b71937f20096888d35154b31eb15fa748131122962ab1d5ac36fb0"
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "0e7f789b28338285cb24f3c19cc082351060a3ddbfc4772a6f545285fe582120",
+      "keccak256": "0x56206ed95963467b3ff3573bc9dcb4829978807ba477cdeeee762f8369863a3e"
+    },
+    "src/base/ZZZModule.sol": {
+      "sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "keccak256": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f"
+    },
+    "src/interfaces/IZZZ.sol": {
+      "sha256": "6d1505f1d023cfd29a252be544c99e2729f716d7e88addb7d91bfc809daefde1",
+      "keccak256": "0x00adbe401faf8a496a642c70be27a4ac10a36462d46d49bdebf1f13653ebce6e"
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "sha256": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "keccak256": "0x9c5cdcadf153f743668ce09c6040f2bc7469167c6d87cccfadb871fee1606703"
+    },
+    "src/libraries/ExactToken.sol": {
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e"
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "sha256": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+      "keccak256": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c"
+    },
+    "src/ZZZClaimRouter.sol": {
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161"
+    },
+    "src/ZZZNFT.sol": {
+      "sha256": "a5e8b2f14bd45a00db9d4ce31c0b984826751fa45b64f84ea67c10fa32908d49",
+      "keccak256": "0x748cf524b7ba70af7c60879c19dc5b7a5b99942083273d08dc06b1293e7c54b7"
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "sha256": "f17bb397d3b4e4aba09d0220351008433287769bd5b5b6032f24a8dfe2bba9ac",
+      "keccak256": "0x66c2679743811756242e7be3ea5b2dadc23ca130b5ce4685397a7f9e9807c87d"
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "keccak256": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171"
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "sha256": "c958e694cbb41b2d28cab7fee29fb2697a8b8fd5d0946df63a48b0bde5b2b9c7",
+      "keccak256": "0xdde4d9aa15f67abdd5797f887a9b6ffa3fb19daee5184d24d74a4f9bbf4085ca"
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "sha256": "38e914454305696307fcf7a84cc3cbf905901ec3d6839108d6687fea8226255d",
+      "keccak256": "0xcc714b693897cc676523aac7e1c13c7efe6d3cc675502ee1ccbc10fe0f06ce30"
+    },
+    "src/interfaces/IZZZNFTCanonical.sol": {
+      "sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "keccak256": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b"
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8"
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "sha256": "d6c17e6add0448f8e7cc4a500a571adcc5c587aea2a3bbc84ded55b9ffe75e1f",
+      "keccak256": "0x8b7c2951de2f94088646e50cf9c50f98ac177493e797029554cb6565a78c8bc7"
+    },
+    "src/ZZZActivationAssets.sol": {
+      "sha256": "ff211ef968419e88127dfde72a4b498e704d031704ea240f8e2bc67fe9ea5ba0",
+      "keccak256": "0xfb6822cac6703bf4d35173b6d51eb1f4b3692eec35d8156c07a150db17913394"
+    },
+    "src/ZZZActivationEntry.sol": {
+      "sha256": "6f7463e2f7016e0cc91ca37586dc44807207084872af58d67ce5bee81c951ccc",
+      "keccak256": "0x74491247467b76288ba601f003648b94e8e94876892416bdbb6bafeadde9509b"
+    },
+    "src/ZZZLPRewardConverter.sol": {
+      "sha256": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+      "keccak256": "0xa2703117a3a8fd5b3928f73b2af5c117944b3055fbfba29867d21a452a857ea5"
+    },
+    "src/ZZZRewards.sol": {
+      "sha256": "70f0d5501649b3e97233f79414d9d291fad3d3efd8aafa5fe72a3f116ccc0d3b",
+      "keccak256": "0x1bed1eef107ad63a3d755eb762ec7f5a06adeceb3278e7fd0b32836a646b68c6"
+    },
+    "src/ZZZRoyaltyConverter.sol": {
+      "sha256": "17201bec44787e3e9145422474ac6d4a9cd37f5294f4e7b7884320461ae8b6b1",
+      "keccak256": "0xa1b9552f39ea5b9d2f3c92715bc4a29a9a680d6e7174b729aeeb276e969606a7"
+    },
+    "src/ZZZMembership.sol": {
+      "sha256": "63cd6b1f2b3145c2064a0a842b992ffcd281a253bcde904c02ec459dfb0272f6",
+      "keccak256": "0x99d72373efe3bc278276bc9e003db889346202208e59e2b5f0252451af8be68f"
+    },
+    "src/ZZZFeeController.sol": {
+      "sha256": "8996956b71716a5155a4a80271e48b7b6ee6589fed32bc7de8b1b7965c849793",
+      "keccak256": "0x97896b98531883e814adf2977495feb74e10babe2c201bd791b304bbac500214"
+    },
+    "src/ZZZRewardReceiver.sol": {
+      "sha256": "8c2447ffbe0043a641118c02f2acaf72d16db7050be1e3a0e6330c06f5f202c0",
+      "keccak256": "0x06abf84e70a843c89f3459fa9d511d416ec3757a4c348fa4f498d1279be61e41"
+    },
+    "src/ZZZRewardReceiverFactory.sol": {
+      "sha256": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+      "keccak256": "0x0d634c4527ec73b3304473d2be0a39a9d6aa6c2189dfc21845dee434e5ea5f5b"
+    },
+    "src/ZZZStrategy.sol": {
+      "sha256": "532755dc12a76c7059843bdee7520af03f1d1b78e033c2f7e613f66196c6428a",
+      "keccak256": "0x459cf9087147ea6d17e9dcac6dcb20f719247c95fe3a9e0c27900a38ba5e4606"
+    },
+    "src/ZZZCompounder.sol": {
+      "sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "keccak256": "0xe30f027478d9ce4bc4b5204de9a35bdf13793411fd0e770594ecb59ace4c3b81"
+    },
+    "src/ZZZBuyback.sol": {
+      "sha256": "313b50d2188808f705191caa695e632c03e361571e6c1403ede5da88f2b5bc16",
+      "keccak256": "0xed4451238c35a104edcc690e1794e09b345754e4538fb899bfb835d37f0cff7d"
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "10b09c5cb68fed2fe0aac8a8ce68a843734a15806c7e24ff9629a2b7f48616d3",
+      "keccak256": "0xfd8686e0135b4c450c511a96ef3cb32370d6e7aa496c4c3a47a5ca8898900d81"
+    },
+    "src/ZZZBridgeAdapter.sol": {
+      "sha256": "bea3ce35351c5f3fb58bbfe9a3ceb28b29bb6fb280f3895c36f0b371b2771088",
+      "keccak256": "0xc25e1774b091a681be1aae268a939da8c5b3d6c482f6a1530a94527210183379"
+    },
+    "src/libraries/BridgeAssets.sol": {
+      "sha256": "9224556f8c8bc99682ea8517a7d4a35b3a9a03a692a1f9c1e9633f7b5f322b62",
+      "keccak256": "0xfd768f445c7c9fba5f85e123838f69b5111c281798ec77f6ed4323f8cf56af29"
+    },
+    "src/ZZZMigrationReceiver.sol": {
+      "sha256": "2fb4f7def4a8398d65641db72a006bce359e8d4cae1d8e2fbb74564b929e8217",
+      "keccak256": "0x2aa61f62d9f907f6d2ba8af9366b2e36db47da98df9909643f9e8c0387220715"
+    },
+    "src/ZZZAccessController.sol": {
+      "sha256": "c1fd0c4268ddad685c88df6c89266acf0d9c446a2c082feb2545fa6129bde069",
+      "keccak256": "0xd0bd5c86261fd9b69d53929ec6bbdc897e0f2d603c50c1bb10cdc23f9a61af20"
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "sha256": "203b08c76fdd85556135be823b524f152f502cd37677dbf940b741cb8890de01",
+      "keccak256": "0x498d04072c1b3ec0b1eb41466f860d3c282da2981d90c43e6567c2e04e54d9c1"
+    },
+    "src/ZZZOracle.sol": {
+      "sha256": "a5c8b3f1753a1042c47beb615e017d347e9703d5491f84ed3a25e30c75846f29",
+      "keccak256": "0xa554116c3b81c4cfd9a664ae001ab9408b12bdd675750bd787b9a946ab5d18df"
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "sha256": "1fa10b45a02ceac8f155ad82d43efcd4922a7840ff77f47dea3eb55e87c1a1d6",
+      "keccak256": "0x29c46711f84952cd58f7a2d9dc483011697ebf74b7b4a2c29147a588408cc7dd"
+    },
+    "src/ZZZMigrationRegistry.sol": {
+      "sha256": "cd2d9369e34043137ea63663352b73fa9af4ac1d54a31aa30f8f76878abc90fb",
+      "keccak256": "0x5539ef9099f9306b6a6030872bde48e1a7a09f6503cc5160e34fabb2cdb55eb4"
+    },
+    "src/ZZZBridgeRouter.sol": {
+      "sha256": "51f8b376f38523b5a474ed42cb482d601f4ec79066980f576a4e89c88b3d02cc",
+      "keccak256": "0x96dfbe39cce0414741569b4cd7857a4fd0e0df58cb689b604ed504b0c9b93886"
+    },
+    "src/ZZZNFTCanonical.sol": {
+      "sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "keccak256": "0xc51bbe0f1e57b71995c14799a5cba751d90b4d15d2afe6d668bbc8e959319bea"
+    },
+    "src/ZZZFeesCanonical.sol": {
+      "sha256": "f12f36b1e7f11fa3f23a20c5fee3b43eb409e19f7336d585f4d6c32125ce5539",
+      "keccak256": "0x3ac786736851d4ebd1d42747937e0a27f8fafba0c2b50d5dd024f4bbd62b091a"
+    }
+  }
+}

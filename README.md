@@ -260,3 +260,7 @@ the [payout audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) and
 [central Todo](TODO.md#task-lp-eth-settlement).
 
 Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. The [named local rehearsal](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal) uses separate disposable fixtures; public route/ETH payout qualification stays open.
+
+## LP reward settlement
+
+The development candidate converts allocated holder LP rewards to native ETH with a **1% execution-loss cap and separate gas**. Credits stay with the same NFT; failed conversion preserves its source balances. [Conversion, claims and operator procedure](docs/LP_ETH_SETTLEMENT.md) | [Scoped verification](reports/lp-eth-settlement/VERIFICATION.md). Public routes and production approval remain open.

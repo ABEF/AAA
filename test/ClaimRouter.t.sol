@@ -198,7 +198,7 @@ contract ClaimRouterTest is Test {
         vm.prank(ALICE); vm.expectRevert(); router.claimBatch(list);
         assertEq(token.balanceOf(ALICE), 0); assertEq(rewards.claimable(1, address(token)), 800);
         assertEq(royalties.pending(address(token)), 900); assertEq(royalties.claimable(1, address(token)), 300);
-        vm.prank(ALICE); vm.expectRevert(); router.claimBatch(_one(1, address(0), false));
+        vm.prank(ALICE); vm.expectRevert(); router.claimBatch(_one(1, address(0xBAD), false));
     }
 
     function testUnsealedOrNoncanonicalBindingRejected() public {

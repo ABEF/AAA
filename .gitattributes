@@ -25,3 +25,6 @@ reports/operator-controls/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-
 
 # Preserve exact scoped top-up/reward review receipts and native diagnostics.
 reports/topup-and-reward-review/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact scoped LP settlement receipts and native diagnostics.
+reports/lp-eth-settlement/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

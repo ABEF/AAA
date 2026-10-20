@@ -1,7 +1,7 @@
 """Typed confirmation drafts for the launcher-owned disposable Anvil only."""
 import secrets
 import time
-from scripts.local_inputs import input_for, input_tx
+from scripts.local_inputs import input_for, input_tx, ZERO
 
 UNIT = 10**18
 
@@ -38,7 +38,8 @@ class LocalWallet:
             for candidate in candidates:
                 item = lab.api.nft(candidate)
                 entries = [{'token_id':candidate,'asset':a['asset'],'royalty':scope=='royalties'}
-                           for scope in ('lp','royalties') for a in item['claimable'][scope] if int(a['raw']) > 0]
+                           for scope in ('lp','royalties') for a in item['claimable'][scope] if int(a['raw']) > 0 and
+                           (item['claimable'].get('default_settlement') != 'native_eth' or a['asset'] == ZERO)]
                 if entries:
                     if count == 10 or len(claims)+len(entries) > 32:break
                     claims.extend(entries);count+=1

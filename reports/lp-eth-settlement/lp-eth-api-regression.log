@@ -1,0 +1,76 @@
+....E..............F.............................FF.........................................
+======================================================================
+ERROR: test_asset_count_and_duplicates_bounded (tests_python.test_frontend_api.FrontendProjectionTests.test_asset_count_and_duplicates_bounded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 260, in test_asset_count_and_duplicates_bounded
+    self.read()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 149, in read
+    return self.projection.nft(str(self.rpc.nft_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 409, in nft
+    lp_assets, royalty_assets = self._admitted(block, asset_health=health)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 291, in _admitted
+    addresses = [self._addr(role, 'assets(uint256)', n, block=block, native=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 227, in _addr
+    return _address_word(self._call(self.contracts[role].address, signature, *args, block=block)[0], native=native)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 214, in _call
+    raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 104, in call
+    result = self.inner.call(method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 138, in call
+    return self.responses[(tx['to'], tx['data'])]
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: ('0x0000000000000000000000000000000000000004', '0xcf35bdd00000000000000000000000000000000000000000000000000000000000000002')
+
+======================================================================
+FAIL: test_native_cannot_be_an_lp_asset (tests_python.test_frontend_api.FrontendProjectionTests.test_native_cannot_be_an_lp_asset)
+----------------------------------------------------------------------
+frontend_api.service.ProjectionError: Admitted assets differ from the reviewed descriptor allowlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 254, in test_native_cannot_be_an_lp_asset
+    with self.assertRaisesRegex(ProjectionError, 'zero'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "zero" does not match "Admitted assets differ from the reviewed descriptor allowlist"
+
+======================================================================
+FAIL: test_slow_history_cannot_release_expired_nft_or_wallet_snapshot (tests_python.test_frontend_history.ConfirmedHistoryTests.test_slow_history_cannot_release_expired_nft_or_wallet_snapshot) (operation='nft')
+----------------------------------------------------------------------
+zzz_ops.errors.WorkLimit: Request work limit: snapshot_expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_history.py", line 336, in test_slow_history_cannot_release_expired_nft_or_wallet_snapshot
+    with self.assertRaisesRegex(RpcError, 'timestamp'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "timestamp" does not match "Request work limit: snapshot_expired"
+
+======================================================================
+FAIL: test_slow_history_cannot_release_expired_nft_or_wallet_snapshot (tests_python.test_frontend_history.ConfirmedHistoryTests.test_slow_history_cannot_release_expired_nft_or_wallet_snapshot) (operation='wallet')
+----------------------------------------------------------------------
+zzz_ops.errors.WorkLimit: Request work limit: snapshot_expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_history.py", line 336, in test_slow_history_cannot_release_expired_nft_or_wallet_snapshot
+    with self.assertRaisesRegex(RpcError, 'timestamp'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "timestamp" does not match "Request work limit: snapshot_expired"
+
+----------------------------------------------------------------------
+Ran 91 tests in 18.264s
+
+FAILED (failures=3, errors=1)
