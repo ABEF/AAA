@@ -1,5 +1,20 @@
 # PoPL operator manual
 
+## Choose another wallet account from the website
+
+When the extension exposes a different account from the one visible in its
+popup, open the website connection dialog and click **Choose a different account
+in MetaMask** (or the named extension). Select the intended disposable fixture
+account in its permission prompt. The site rereads permissions and verifies the
+network/deployment before enabling actions. No transaction is sent.
+
+Complete or reject an already-open wallet prompt before trying again. If the
+extension does not support permission requests, use its connected-site settings.
+Pending transactions must be recovered before switching accounts; never erase
+the journal to bypass that guard. No operator contract call/configuration is
+required. [Evidence](../reports/browser-wallet/ACCOUNT_CHOOSER.md).
+
+
 This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
 
 **Keep this manual current.** Every change to an operator-facing function, permission, default, parameter, lifecycle, service or failure mode must update the affected procedure in the same change, or explicitly record why there is no operator impact. Update the task ledger and feature/evidence reference too. This is a required development/review step, not automatic synchronization. See [maintenance rules](TODO_WORKFLOW.md).

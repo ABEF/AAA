@@ -1,5 +1,20 @@
 # Browser-wallet signing on the disposable local chain
 
+## Choose another wallet account from the website
+
+When the extension exposes a different account from the one visible in its
+popup, open the website connection dialog and click **Choose a different account
+in MetaMask** (or the named extension). Select the intended disposable fixture
+account in its permission prompt. The site rereads permissions and verifies the
+network/deployment before enabling actions. No transaction is sent.
+
+Complete or reject an already-open wallet prompt before trying again. If the
+extension does not support permission requests, use its connected-site settings.
+Pending transactions must be recovered before switching accounts; never erase
+the journal to bypass that guard. No operator contract call/configuration is
+required. [Evidence](../reports/browser-wallet/ACCOUNT_CHOOSER.md).
+
+
 The existing website has an opt-in EIP-1193 browser-wallet flow for minting,
 activation, LP increases and ETH reward claims. The website prepares and checks
 an exact transaction; the selected wallet signs and submits it. The local service

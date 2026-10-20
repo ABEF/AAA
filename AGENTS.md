@@ -1,3 +1,24 @@
+## In-page wallet account selection - 2026-10-20
+
+The user reports Rabby works but MetaMask exposes a previous site-authorized
+address while another account is visible in the extension. Do not assume the
+website can silently change wallet permissions. The local connection dialog now
+offers Choose a different account in the selected extension. Its explicit click
+requests only eth_accounts permissions, then reads current accounts/network and
+verifies the admitted fixture account and exact deployment. Ordinary reconnect
+remains read-only when already authorized; no automatic permission prompts.
+
+Expected account-change events during the chooser do not invalidate the final
+fresh verification. Cancellation, unsupported methods, busy prompts, empty/wrong
+accounts and wrong networks stay unverified. Pending transactions block account
+selection and retain their journals. No signing/transaction/approval occurs.
+49 client checks pass including seven new cases; JS syntax and 5,593-file build
+pass. See reports/browser-wallet/ACCOUNT_CHOOSER.md and docs/BROWSER_WALLET.md.
+Actual MetaMask chooser acceptance remains user verification. No backend,
+contract, Anvil/service/public deployment or monitoring changes. Use main;
+keep Todo/features/operator procedures and both memories consistent, preserve
+unrelated drafts. Production remains NOT APPROVED.
+
 ## Automatic receipt confirmation follow-up - 2026-10-20
 
 The user still saw manual recovery after mint. The reported b041662e...6822560

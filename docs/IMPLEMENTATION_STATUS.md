@@ -1,3 +1,11 @@
+## In-page account permission recovery - 2026-10-20
+
+The local wallet dialog can explicitly reopen the selected extension's account
+chooser, then revalidate fresh accounts/network and deployment. Ordinary
+reconnect does not prompt again. Pending transactions remain protected.
+[Scoped evidence](../reports/browser-wallet/ACCOUNT_CHOOSER.md): 49 client passes,
+syntax and build checks; actual MetaMask chooser acceptance remains open.
+
 ## Automatic canonical receipt monitoring - 2026-10-20
 
 One-confirmation local receipts use two checked canonical inclusion blocks,
