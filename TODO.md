@@ -290,7 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
-  - [In-page account chooser](reports/browser-wallet/ACCOUNT_CHOOSER.md): explicitly reopen the selected extension account permissions and verify fresh accounts/network. Ordinary reconnect remains read-only; pending journals block switching. 49 client cases pass, including seven new cases; actual MetaMask chooser acceptance remains open.
+  - [In-page account chooser](reports/browser-wallet/ACCOUNT_CHOOSER.md): explicitly reopen the selected extension account permissions and verify fresh accounts/network. Already-valid reconnect remains read-only; the main provider button opens account selection for a still-rejected restored address. Refresh never opens prompts; pending journals block switching. Follow-up: 53 client cases pass, including four new normal-button retry cases; actual MetaMask chooser acceptance remains open.
   - [Automatic confirmation follow-up](reports/browser-wallet/AUTO_CONFIRMATION.md): canonical inclusion checks avoid a lagging head veto for one confirmation; 21 same-hash polls at 1500ms spacing have a 45-second total budget. Specific pending reasons reach the UI. Seven new focused cases and read-only actual-receipt replay pass; next extension acceptance remains open. This supersedes the earlier three-attempt polling limit.
   - [Mint wait and local latency](reports/browser-wallet/MINT_WAIT_PERFORMANCE.md): separate 90-second wallet response wait, bounded same-hash receipt retries, and labeled confirmed cards during refresh. Local loopback connection reuse reduced an eight-NFT warm read from 6.057s to 1.904s; this is not production/load qualification. Eight positions and session preserved; no payment resubmitted.
   - [MetaMask connection and approval recovery](reports/browser-wallet/CONNECTION_RECOVERY.md): distinguish site-authorized account, chain ID and exact local genesis; reconnect through fresh public reads. Recognize wallet gas-limit padding only within hard policy and original canonical paid-gas/price/cost ceilings. Preserve the original review and never resend a confirmed approval.
@@ -789,4 +789,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8b27a30d86c45dcea64a95e22ce2be3c87ba769bd4d4f60744d4a87608360383`.
+Snapshot SHA-256: `f55139ef6d7744ecddb672dd09d086b3901a456eb7053a8efc3f53f8b89feaf0`.

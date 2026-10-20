@@ -37,3 +37,20 @@ MetaMask UI acceptance remains open; unit tests do not prove extension behavior.
 
 Reference: [MetaMask permission management](https://support.metamask.io/more-web3/dapps/manage-dapp-permissions/)
 and [EIP-2255](https://eips.ethereum.org/EIPS/eip-2255).
+
+
+## Main provider button follow-up
+
+The user clarified: after refresh, the rejected address appeared at the bottom;
+clicking MetaMask itself appeared inert. The first change added a separate chooser
+but left the main provider button repeating read-only connection to that address.
+The main button now rereads a previously rejected/restored account and opens
+the selected extension's permission chooser if it remains inadmissible.
+An already-corrected account reconnects without prompting. Refresh never opens
+permissions by itself. Pending journal, account/network and genesis checks stay.
+
+`node --test tests/browser-client.test.mjs`: **53 passes**, four new cases for
+normal rejected/restored retries, cancellation/retry, and an already-corrected
+external account. No transactions sent. The earlier 49-case/source evidence is
+historical; [new source bindings](account-retry-source-sha256.json) cover this
+follow-up. Actual MetaMask acceptance remains open.

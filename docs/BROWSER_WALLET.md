@@ -2,6 +2,11 @@
 
 ## Choose another wallet account from the website
 
+The main MetaMask/provider button also opens account selection when its previously
+rejected or restored address is still inadmissible after a fresh read. Click that
+button after refreshing; refresh alone deliberately does not open wallet prompts.
+If you already corrected the extension account, it reconnects without prompting.
+
 When the extension exposes a different account from the one visible in its
 popup, open the website connection dialog and click **Choose a different account
 in MetaMask** (or the named extension). Select the intended disposable fixture

@@ -1,0 +1,5 @@
+{
+  "browser-client.js": "4caf47b3329b0206adfbe86ab314453c2f9d59ebe4605b970052b28d09c0535e",
+  "local-view.js": "7a714299db797fa48ea3b82df38add1a524b4549349537cd040e1aeaa9da1382",
+  "tests/browser-client.test.mjs": "227326732ed64fd3cc04d08f92661caa65b209914931c81a7404dec1fb6879ab"
+}

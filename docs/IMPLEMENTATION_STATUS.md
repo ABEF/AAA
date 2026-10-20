@@ -1,3 +1,10 @@
+## Main wallet button retry correction - 2026-10-20
+
+Clicking MetaMask now opens account selection when its restored/rejected account
+is still inadmissible; a fresh read avoids prompting if already corrected.
+Refresh alone never prompts. [Follow-up evidence](../reports/browser-wallet/ACCOUNT_CHOOSER.md#main-provider-button-follow-up)
+records 53 client passes; actual extension acceptance remains open.
+
 ## In-page account permission recovery - 2026-10-20
 
 The local wallet dialog can explicitly reopen the selected extension's account

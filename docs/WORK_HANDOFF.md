@@ -1,3 +1,21 @@
+## Main wallet button account retry - 2026-10-20
+
+The user clarified that refresh restored the rejected MetaMask address and
+clicking the main MetaMask button appeared to do nothing. The previous separate
+chooser did not fix that normal button's read-only retry path. Main provider
+click now rereads a previously rejected/restored account and invokes its selected
+extension's chooser if that address is still inadmissible. If external wallet
+selection already corrected it, normal verified reconnect avoids another prompt.
+Refresh itself never opens permissions. Pending journals and exact deployment
+checks remain; no silent account substitution or transaction send.
+
+53 client tests pass, including four new rejected/restored/cancelled/corrected
+retry cases. See reports/browser-wallet/ACCOUNT_CHOOSER.md (follow-up) and
+docs/BROWSER_WALLET.md. Actual MetaMask acceptance still needs the user's click.
+No backend/contract change, service/chain reset, public deployment or monitoring
+change. Use main and maintain Todo/features/operator notes and both memories;
+preserve unrelated drafts. Production remains NOT APPROVED.
+
 ## In-page wallet account selection - 2026-10-20
 
 The user reports Rabby works but MetaMask exposes a previous site-authorized
