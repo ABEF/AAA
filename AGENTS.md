@@ -1,3 +1,20 @@
+## Fresh MetaMask button selection - 2026-10-20
+
+The user still reproduced the previous-account issue. Explicit reconnect no
+longer prefers a remembered sender over fresh provider accounts. The MetaMask
+picker button always requests fresh eth_accounts permission on that user gesture;
+refresh never prompts. If several accounts are returned, the user must select
+one in the website instead of guessing which popup account was intended.
+Unfinished selection blocks account restoration and clears only remembered
+connection selection, not pending transaction journals. Exact chain/genesis,
+sender authorization and pending recovery remain enforced.
+
+90 affected client/UI-state cases and the 5,593-file build pass. See
+reports/browser-wallet/FRESH_SELECTION.md. Actual Chrome/MetaMask acceptance is
+still open: mock-provider tests do not verify the extension popup. No backend,
+contract, transaction, chain reset, service restart or public deployment.
+Use main; preserve unrelated drafts and keep operator/Todo/evidence consistent.
+
 ## Authorized wallet account selection and clean picker - 2026-10-20
 
 Fresh wallet picker sessions hide previous-attempt diagnostics and old provider

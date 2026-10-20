@@ -2,6 +2,19 @@
 
 ## Choose another wallet account from the website
 
+### Fresh MetaMask selection (2026-10-20)
+
+This supersedes the earlier statement that explicit reconnect retains a chosen
+sender. Refresh can retain a completed authorized selection, but clicking the
+MetaMask button starts a fresh permission choice. Select the intended account in
+MetaMask; if multiple accounts are shared, use its exact address in the website
+picker. An unfinished choice cannot restore the previous sender. Pending
+transactions must still recover under their original sender before switching.
+No network or service configuration change is required; reload the updated app.
+[Scoped evidence](../reports/browser-wallet/FRESH_SELECTION.md): 90 affected
+passes; actual Chrome extension acceptance remains open.
+
+
 After selecting MetaMask, choose the intended **Test Wallet A/B** from the accounts
 it shares with the website. The list order does not select the signing account.
 An existing choice persists on reload only while still authorized. If the desired
