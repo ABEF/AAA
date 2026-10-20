@@ -1,3 +1,13 @@
+## Mint loading presentation - 2026-10-20
+
+Mint button loading now follows the actual activity instead of a generic busy
+flag. Initial/refresh reads, connection, mint preparation, wallet confirmation,
+receipt waiting and confirmed-state reconciliation have separate labels. Claims,
+approvals and LP actions cannot label the button as a mint in progress. Existing
+readiness/pending guards remain. See [evidence](../reports/browser-wallet/MINT_LOADING.md):
+44 affected UI/lifecycle/contribution cases, syntax/build and served-source checks
+pass. No signer, contract, backend, transaction, service or public deployment change.
+
 ## Numeric wallet nonce compatibility - 2026-10-20
 
 The user supplied the exact failure: eth_getTransactionCount returned a number.

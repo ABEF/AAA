@@ -185,6 +185,11 @@ evidence before starting another disposable fixture.
 
 ## Transaction stages and diagnostics
 
+The mint button distinguishes loading/refreshing mint data from actual mint
+preparation, wallet confirmation and receipt waiting. Other NFT operations never
+show mint progress. Loading still disables actions until confirmed state is ready.
+See [presentation evidence](../reports/browser-wallet/MINT_LOADING.md).
+
 The dialog advances through Checking transaction, Confirm in your wallet,
 Transaction submitted, Waiting for confirmation and Updating confirmed balances.
 Only the submitted stage has a wallet-returned hash. Confirmed balances and
