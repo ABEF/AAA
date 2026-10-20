@@ -108,6 +108,37 @@ a testnet or fall back to Anvil. These production values remain unqualified here
 the currently enabled browser signer still accepts only the explicit local
 chain-31337 profile. This requirement does not enable public signing.
 
+## Independent read RPC and recovery
+
+The selected extension handles account authorization and signing. Node reads for
+nonce/balance/simulation and transaction confirmation use the deployment's pinned
+RPC through a bounded read-only transport. Both wallet and node identity are
+verified before signing; receipt checks verify the original node chain/genesis
+again before finalization. A wallet network change after submission cannot move
+that saved transaction to another chain. No automatic wallet-reader fallback or
+resubmission is allowed when the node is unavailable.
+
+Operator: review the RPC URL together with chain ID, genesis, contract code, fee
+and confirmation policy. Serve only explicitly approved RPC origins in connect-src
+and verify provider CORS from the website origin. The local /app/ server permits
+only its own validated loopback RPC; public hosting needs separately reviewed HTTPS
+origins. No cookies or browser credentials are sent to the node. Never embed a
+private provider credential. Read responses are capped at 2 MiB, requests at 15
+seconds (or the remaining confirmation budget), with redirects and signing RPCs
+blocked. Provider outage leaves the saved hash pending for later recovery.
+
+Legacy chainId may be omitted: EIP-155 v establishes it. Typed transactions must
+still provide their signed chain ID; conflicting or unverifiable identity cannot
+confirm. RPC identity and canonical reads are not consensus proofs.
+
+For this incident, reload the page and use Recover status for the saved mint;
+new operations then use the same path automatically. Preserve localStorage and
+server journals. Do not repeat mint or approval, reset Anvil, or loosen receipt
+checks. A web-only update must preserve the original session, chain and contracts.
+If rollback is necessary, retain journals and deploy a reviewed reader fix; the
+old wallet-only reader can reproduce the error. Production deployment remains
+gated. [Verification](../reports/browser-wallet/CHAIN_READER.md).
+
 ## Submission, confirmation and artwork
 
 For EIP-1559 transactions, observation derives execution gas price from the signed

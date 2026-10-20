@@ -581,6 +581,15 @@ hosting remains a simulation. Its recovery must not be replaced by the demo or
 launcher-owned signer procedures below; switching modes does not cancel a sent
 transaction. No contract authority or production deployment changes.
 
+Use the deployment-pinned read RPC for blockchain reads and receipts; the selected
+extension handles authorization/signing. Review node chain/genesis, RPC origin,
+CSP/CORS and fee policy together. A failed reader preserves the original hash;
+never fall back to another chain, erase recovery storage or repeat an approval.
+Approval completion is separate from the Entry transaction and cannot change LP
+or artwork. See [reader setup, outage and recovery](BROWSER_WALLET.md#independent-read-rpc-and-recovery)
+and [verification](../reports/browser-wallet/CHAIN_READER.md). Public signing and
+production provider qualification remain gated. No contract role/control changed.
+
 For type-2 receipts, use signed fee caps and the canonical block base fee to derive
 execution price; retain raw RPC-reported price separately. The original reviewed
 unit-price and total-cost limits still apply. Deterministic mismatches require

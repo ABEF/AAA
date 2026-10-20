@@ -96,6 +96,20 @@ class BrowserTests(unittest.TestCase):
         self.assertEqual(self.receipt['effectiveGasPrice'], '0x6b')
         self.lab.call.assert_not_called()
 
+    def test_legacy_chain_id_omission_uses_replay_protected_signature(self):
+        for parity in (0, 1):
+            self.transaction.pop('chainId', None)
+            self.transaction['v'] = hex(31337 * 2 + 35 + parity)
+            self.assertEqual(self.browser._receipt(HASH, self.tx)['status'], '0x1')
+
+    def test_wrong_unprotected_or_missing_typed_chain_cannot_confirm(self):
+        original = copy.deepcopy(self.transaction)
+        for changes in ({'chainId': None, 'v': '0x25'}, {'v': '0x25'},
+                        {'chainId': None, 'v': '0x1b'},
+                        {'chainId': None, 'type': '0x2', 'v': hex(31337 * 2 + 35)}):
+            self.transaction = {**original, **changes}
+            with self.assertRaises(ValueError):
+                self.browser._receipt(HASH, self.tx)
     def test_dynamic_fee_rejects_caps_and_unknown_base(self):
         self.transaction.update(type='0x2', maxFeePerGas='0x65', maxPriorityFeePerGas='0x1')
         with self.assertRaises(ValueError):
@@ -484,7 +498,8 @@ class BrowserPageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / 'index.html').write_text('<html>browser fixture</html>')
-            lab = SimpleNamespace(home=root, args=SimpleNamespace(website=directory, port=0))
+            lab = SimpleNamespace(home=root, args=SimpleNamespace(website=directory, port=0),
+                                  rpc_url='http://127.0.0.1:61752')
             server = launcher.make_server(lab)
             thread = threading.Thread(target=server.serve_forever, daemon=True)
             thread.start()
@@ -500,10 +515,17 @@ class BrowserPageTests(unittest.TestCase):
                     self.assertEqual(response.status, expected, path)
                     if expected == 200:
                         self.assertEqual(body, b'<html>browser fixture</html>')
+                        self.assertIn("connect-src 'self' http://127.0.0.1:61752;", response.getheader('Content-Security-Policy'))
             finally:
                 server.shutdown()
                 server.server_close()
                 thread.join()
+
+    def test_csp_rejects_unreviewed_or_injected_node_origins(self):
+        for url in ('https://unreviewed.test', 'http://127.0.0.1:61752; *',
+                    'http://127.0.0.1:61752/path', 'http://127.0.0.1:61752\r\nInjected: true'):
+            with self.assertRaises(ValueError):
+                launcher.make_server(SimpleNamespace(args=SimpleNamespace(website=None), rpc_url=url))
 
 
 if __name__ == '__main__':

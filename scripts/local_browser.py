@@ -14,7 +14,7 @@ import re
 import time
 
 from zzz_ops.abi import keccak256
-from zzz_ops.ethereum_fees import fee_cap, execution_price
+from zzz_ops.ethereum_fees import fee_cap, execution_price, transaction_chain_id
 
 CHAIN = 31337
 ZERO = '0x' + '0' * 40
@@ -161,7 +161,7 @@ class LocalBrowser:
         for field in ('value', 'nonce'):
             if _quantity(transaction.get(field)) != _quantity(reviewed[field]):
                 raise ValueError('Observed transaction value or nonce differs from the review')
-        if _quantity(transaction.get('chainId')) != CHAIN:
+        if transaction_chain_id(transaction) != CHAIN:
             raise ValueError('Observed transaction belongs to another chain')
         # Extensions may add gas-limit headroom without changing the call. The
         # submitted ceiling must still fit the hard local policy; actual paid

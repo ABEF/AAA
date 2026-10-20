@@ -1,3 +1,22 @@
+## Independent chain confirmation - 2026-10-20
+
+Shared wallet flows now read balances, simulation and confirmation through the
+reviewed deployment RPC instead of extension-formatted transaction responses.
+Wallet permissions/signing stay in the selected extension. Node and wallet chain/
+genesis checks, exact approvals/calldata/fees and saved-hash recovery remain.
+Legacy missing chainId resolves only through replay-protected EIP-155 v; typed
+missing IDs fail closed. Approval never changes LP or artwork; Entry receipt plus
+confirmed on-chain position remains required for activation/growth presentation.
+
+[Evidence](reports/browser-wallet/CHAIN_READER.md): 232 distinct website and 43 backend cases;
+read-only recovery of the actual successful nonce-36 mint, exact-node CSP/CORS,
+syntax/build and preservation of all 13 NFTs/LP/session after web-only restart.
+Anvil 10988 was not reset. No signing/public transaction/server deployment or
+paused-monitor change. Actual extension acceptance and production pins/routes/
+RPC/fee qualification remain open; public signing is not enabled. Use main,
+preserve unrelated drafts and check Git for publication. Keep Todo, feature
+reference, operator guidance and both repo memories aligned.
+
 ## Canonical dynamic-fee receipt recovery - 2026-10-20
 
 The user's mint 0xa7f91e…ac3891 succeeded at block 351. Anvil's derived fee fields

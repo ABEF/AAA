@@ -1,0 +1,28 @@
+{
+  "scope": "Read-only replay of existing real mint through independent reader; simulated defective extension is never read. No new signing, submission or actual extension acceptance.",
+  "hash": "0x3d770ea9c6fe7c3e7892097c4149db0e1e481e87731885db1fac325943958805",
+  "status": "confirmed",
+  "receipt": {
+    "transactionHash": "0x3d770ea9c6fe7c3e7892097c4149db0e1e481e87731885db1fac325943958805",
+    "transactionIndex": "0x0",
+    "blockNumber": "0x16a",
+    "blockHash": "0x49b9f090c12025033a10af5c59ae57431ab86f15468cee2fed30eb4d46ac7b45",
+    "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+    "status": "0x1",
+    "gasUsed": "0x5440b",
+    "effectiveGasPrice": "0x3b9aca07",
+    "reportedEffectiveGasPrice": "0x3b9aca0e",
+    "feeBasis": "eip1559-signed-caps-and-canonical-base"
+  },
+  "reader_calls": 16,
+  "wallet_calls": 0,
+  "same_session": true,
+  "same_manifest": true,
+  "same_nft_records": true,
+  "nfts": 13,
+  "csp_exact_node_origin": true,
+  "local_node_cors": true,
+  "web_pid": 35448,
+  "anvil_pid": 10988
+}

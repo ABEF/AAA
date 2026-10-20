@@ -25,6 +25,23 @@ def fee_cap(transaction):
     return quantity(transaction.get('gasPrice'))
 
 
+def transaction_chain_id(transaction):
+    """Resolve optional legacy chainId using EIP-155 v, never typed parity."""
+    kind = quantity(transaction.get('type', '0x0'))
+    chain = quantity(transaction['chainId']) if transaction.get('chainId') is not None else None
+    if kind == 0 and transaction.get('v') is not None:
+        v = quantity(transaction['v'])
+        if v < 35:
+            raise ValueError('Legacy transaction has no chain replay protection')
+        signed_chain = (v - 35) // 2
+        if chain is not None and chain != signed_chain:
+            raise ValueError('Transaction chain ID conflicts with its signature')
+        chain = signed_chain
+    if chain is None:
+        raise ValueError('Transaction has no verifiable signed chain ID')
+    return chain
+
+
 def execution_price(transaction, canonical_block, receipt):
     cap = fee_cap(transaction)
     if quantity(transaction.get('type', '0x0')) == 2:

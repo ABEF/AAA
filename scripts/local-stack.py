@@ -533,6 +533,10 @@ class LocalHTTPServer(ThreadingHTTPServer):
 
 def make_server(lab):
     website=Path(lab.args.website).resolve() if lab.args.website else None
+    # Permit only this launcher's validated loopback node, never caller/query URLs.
+    chain_read_origin=getattr(lab,'rpc_url','')
+    if chain_read_origin and not re.fullmatch(r'http://127\.0\.0\.1:[0-9]{1,5}',chain_read_origin):
+        raise ValueError('Invalid local chain read origin')
     def browser():
         # Lazy construction preserves the existing local-only fixture and allows
         # guarded web-only recovery without replacing its Anvil process.
@@ -552,7 +556,8 @@ def make_server(lab):
             raw=json.dumps(data).encode() if mime=='application/json' else data
             try:
                 style="'self' 'unsafe-inline'" if self.path.startswith('/app/') else "'self'"
-                self.send_response(status);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Content-Security-Policy',f"default-src 'self'; script-src 'self'; style-src {style}; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'none'");self.end_headers();self.wfile.write(raw)
+                connect="'self'"+((' '+chain_read_origin) if self.path.startswith('/app/') and chain_read_origin else '')
+                self.send_response(status);self.send_header('Content-Type',mime);self.send_header('Content-Length',str(len(raw)));self.send_header('Cache-Control','no-store');self.send_header('X-Content-Type-Options','nosniff');self.send_header('Content-Security-Policy',f"default-src 'self'; script-src 'self'; style-src {style}; img-src 'self' data:; connect-src {connect}; frame-ancestors 'none'; form-action 'none'; base-uri 'none'");self.end_headers();self.wfile.write(raw)
             except (BrokenPipeError,ConnectionResetError,ConnectionAbortedError,TimeoutError):pass # Outcome already saved; never resubmit.
         def do_GET(self):
             if not self.valid(): return self.output(403,{'error':'Invalid local host'})
