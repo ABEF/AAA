@@ -726,3 +726,16 @@ outcomes remain blocked. Verify receipt and confirmed balances for success.
 Stop by cancelling an unsigned review. Rollback means restoring the prior client
 and reloading; it does not undo transactions and restores the stale-cache bug.
 Keep both chains and their state intact. [Evidence](../reports/local-wallet-concurrency/VERIFICATION.md).
+
+
+### Local submission lock recovery - 2026-10-20
+
+The exact `/action` pre-handler busy response now waits with the identical saved
+operation ID and payload (30 attempts maximum within a 90-second request timeout).
+This is the narrow exception to earlier notes saying submissions never retry.
+Lost responses and ambiguous outcomes still require saved-intent recovery; state
+changes after review still require a new review. Reload both browsers to pick up
+the client fix; use Recover status for a saved pending intent. Do not clear session
+storage, repeat a confirmed approval or restart/reset Anvil. No permissions or
+contract changes. Reverting the client restores the immediate lock error without
+undoing transactions. [64 scoped cases and actual lock probe](../reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).

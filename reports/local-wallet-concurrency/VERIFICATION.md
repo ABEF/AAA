@@ -15,8 +15,9 @@ time consumes the original draft lifetime. An operation after review can still
 invalidate that review: the backend revision guard remains unchanged. An explicit
 pre-submission rejection refreshes balances and requires a new manual review.
 Ambiguous responses retain the exact saved operation ID for recovery; a definite
-rejection during recovery clears only that rejected intent. There is no automatic
-transaction retry or new operation ID to bypass uncertainty.
+rejection during recovery clears only that rejected intent. Lost or ambiguous transaction responses are not automatically retried, and no
+new operation ID bypasses uncertainty. The follow-up below permits a bounded
+identical-envelope retry only for the exact pre-handler service-lock response.
 
 ## Evidence
 
@@ -35,7 +36,7 @@ transaction retry or new operation ID to bypass uncertainty.
   not rerun. Local services and both Anvil chains were preserved without restart.
 
 Website fix published on main as `7c858c1`. [Source hashes](source-sha256.json)
-bind the final 59-case run; the running 8898 mount serves both exact client files.
+bind the latest 64-case follow-up run; the running 8898 mount serves both exact client files.
 
 ## Scope and residual limits
 
@@ -45,3 +46,32 @@ still serializes operations and conservatively invalidates reviewed drafts after
 any intervening operation. During sustained changes a new review can be needed;
 this is not a throughput or latency certification. Public website/server and the
 paused monitor are unchanged. Release remains NOT APPROVED.
+
+
+## Submission-lock follow-up - 2026-10-20
+
+The actual second-wallet screen exposed another path: `/action` returned the
+exact 409 `Local operation in progress; retry the SAME operation ID` while the
+other browser held the service lock, including portfolio reads. The previous
+fix handled newer preparation revisions but not this submission contention.
+
+The client now waits only for that exact pre-handler action-lock response, with
+at most 30 attempts and the existing 90-second request timeout. Every attempt
+uses the identical durable operation ID, revision and payload. Lost responses,
+non-busy errors and uncertain outcomes are not retried here. Backend replay,
+revision, simulation and expiry guards are unchanged. A revision change while
+waiting is rejected and requires new review; no changed draft is auto-submitted.
+Persistent contention keeps pending recovery storage. Recovery itself uses the
+same bounded lock wait. The dialog shows saved-operation recovery explicitly
+with a Recover status button instead of only an unhelpful generic review message.
+
+All 64 affected Node cases pass (the previous 59 plus five action-lock cases).
+The [real service-lock probe](submission-lock-observation.json) holds a read on
+8898 while requesting an intentionally stale operation. It observes exact busy
+responses, then the expected pre-ledger stale-revision rejection. All payloads
+are identical. No transaction, new NFT or position mutation is submitted by the
+probe. Existing user pending intents and both chains remain intact. JS syntax
+passes. This follow-up changes the website client only, not production contracts
+or backend code. Reload both pages; no service restart is necessary.
+
+Submission-lock client follow-up published on main as `cc26f1f`.

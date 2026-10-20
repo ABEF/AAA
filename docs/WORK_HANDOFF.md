@@ -1,3 +1,12 @@
+## Second-wallet submission lock follow-up - 2026-10-20
+
+The browser error was the exact pre-handler /action busy response. Client now
+waits with the identical durable envelope only for that response. Ambiguous
+responses keep recovery; stale reviews are not automatically submitted. 64 cases
+and real local lock/rejection probe pass; see reports/local-wallet-concurrency.
+Reload pages, preserve pending intents and Anvil; no service restart needed.
+No public deployment or production contract/backend change. Main only.
+
 ## Cross-browser local wallet continuation - 2026-10-20
 
 Chrome/Codex stale-cache confirmation mismatch fixed in website local-client.js;

@@ -296,6 +296,7 @@ What holders see and use.
   - Local preparation contention: activation/mint/claim review waits on the exact pre-handler busy response with bounded retries and account/state cancellation. Submission is never automatically repeated. See [scoped evidence](reports/local-preparation-busy/VERIFICATION.md). This does not qualify production wallet concurrency.
   - Local two-transaction flow: exact replacement approval then Entry; atomic native ETH in a separate chain-31337 admission fixture. Fixed $100 local activation, token-unit inputs and continuous confirmation UI. Read-clock RPC overhead removed. [Evidence](reports/local-contribution-flow/VERIFICATION.md). Production fixed-$100 quote/rounding policy and public wallet qualification remain open; production Entry currently retains its $100 minimum.
   - Local cross-browser confirmation fix: a newer draft reconciles confirmed state with bounded unsigned retries; explicit stale submission rejection requires a fresh review, while ambiguous responses retain their saved operation ID. [Scoped evidence](reports/local-wallet-concurrency/VERIFICATION.md). Production wallet concurrency remains open.
+  - Local submission-lock follow-up: only the exact pre-handler busy /action response waits with the same saved operation ID and unchanged payload. Lost/ambiguous responses stay on recovery; stale revisions need new review. 64 scoped cases and an actual service-lock probe pass. [Evidence](reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).
 
   </details>
 
@@ -764,4 +765,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `bc7db838ba26437064ce46df970f6e4b7bcac3b8705a1d808bb572bc8ae39f14`.
+Snapshot SHA-256: `c4fdb5df4042d548476cf415f34e48fb6cb69168cbd2c459c80015aad3152c6b`.

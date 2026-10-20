@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-10-20T01:47:01.080Z",
+  "scope": "Real local read lock followed by identical stale-revision pre-ledger rejection; no transaction",
+  "attempts": [
+    {
+      "status": 409,
+      "error": "Local operation in progress; retry the SAME operation ID",
+      "rejected": false
+    },
+    {
+      "status": 409,
+      "error": "Local operation in progress; retry the SAME operation ID",
+      "rejected": false
+    },
+    {
+      "status": 409,
+      "error": "Local operation in progress; retry the SAME operation ID",
+      "rejected": false
+    },
+    {
+      "status": 409,
+      "error": "Local operation in progress; retry the SAME operation ID",
+      "rejected": false
+    },
+    {
+      "status": 409,
+      "error": "State changed. Refresh before preparing a new action",
+      "rejected": true
+    }
+  ],
+  "identical_envelope": true
+}
