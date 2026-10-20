@@ -1,3 +1,17 @@
+## Canonical dynamic-fee receipt recovery - 2026-10-20
+
+The user's mint 0xa7f91e…ac3891 succeeded at block 351. Anvil's derived fee fields
+reported 1,000,000,014 wei/gas although signed cap and actual balance charge were
+1,000,000,007. Shared signing and independent observation now derive EIP-1559
+execution price from signed caps and canonical block base fee; original gas/unit/
+paid-cost limits remain. Raw reported fee is retained separately. Deterministic
+verification failures surface immediately with their specific reason.
+[Evidence](../reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md): 142 signer/client and
+40 observer tests, actual read-only mint receipt/balance replay, syntax/build pass.
+Only local web worker restarted; session, 12 NFTs/LP and Anvil preserved. No new
+holder/operator transaction or public deployment. Actual extension recovery retest
+and production fee/profile qualification remain open.
+
 ## Mint loading presentation - 2026-10-20
 
 Mint button loading now follows the actual activity instead of a generic busy

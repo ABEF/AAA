@@ -1,0 +1,10 @@
+{
+  "same_session": true,
+  "same_manifest": true,
+  "same_nft_ownership_and_positions": true,
+  "nft_count": 12,
+  "web_pid": 18456,
+  "anvil_pid": 10988,
+  "chain_reset": false,
+  "holder_transactions_submitted": 0
+}

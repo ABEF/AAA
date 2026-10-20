@@ -85,6 +85,28 @@ class BrowserTests(unittest.TestCase):
     def confirm(self):
         return self.browser.confirm({'draft_id': KEY, 'account': A, 'transaction_hash': HASH})
 
+    def test_dynamic_fee_uses_signed_cap_and_canonical_base(self):
+        self.transaction.update(type='0x2', maxFeePerGas='0x64', maxPriorityFeePerGas='0x64', gasPrice='0x6b')
+        self.receipt['effectiveGasPrice'] = '0x6b'
+        original = self.lab.rpc.side_effect
+        self.lab.rpc.side_effect = lambda m, a: ({'hash': BLOCK, 'number': '0x10', 'baseFeePerGas': '0x7'} if m == 'eth_getBlockByNumber' else original(m, a))
+        receipt = self.browser._receipt(HASH, self.tx)
+        self.assertEqual(receipt['effectiveGasPrice'], '0x64')
+        self.assertEqual(receipt['reportedEffectiveGasPrice'], '0x6b')
+        self.assertEqual(self.receipt['effectiveGasPrice'], '0x6b')
+        self.lab.call.assert_not_called()
+
+    def test_dynamic_fee_rejects_caps_and_unknown_base(self):
+        self.transaction.update(type='0x2', maxFeePerGas='0x65', maxPriorityFeePerGas='0x1')
+        with self.assertRaises(ValueError):
+            self.browser._receipt(HASH, self.tx)
+        self.transaction['maxFeePerGas'] = '0x64'
+        with self.assertRaises(ValueError):
+            self.browser._receipt(HASH, self.tx)
+        self.transaction['maxPriorityFeePerGas'] = '0x65'
+        with self.assertRaises(ValueError):
+            self.browser._receipt(HASH, self.tx)
+
     def test_manifest_pins_only_fixture_targets_and_contains_no_key(self):
         result = self.browser.manifest()
         self.assertEqual(result['policy']['chainId'], '0x7a69')

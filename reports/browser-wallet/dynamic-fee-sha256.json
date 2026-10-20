@@ -1,0 +1,13 @@
+{
+  "website": {
+    "browser-wallet.js": "2f0242b08354f021688e42794611ba6dc76ae211534cb818876f075e0920058f",
+    "tests/browser-wallet.test.mjs": "415c39fd6feeddbaa6f7151f03e6d3d74744b4f2445bac2e3156967a7aafadff",
+    "tests/browser-client.test.mjs": "e284cb30d958de109d20992c9321ea4a3913d892b7bdba04a27caa7a98baf9b6"
+  },
+  "contract_repo": {
+    "scripts/local_browser.py": "3d19849034e031ab26a350f89cfc028c45d9af32a30d24f1ca40afee02ec8a18",
+    "zzz_ops/ethereum_fees.py": "6fa13fe416e937dd505ec6948bf43527e9dcc923181520bae37c1415852fc71e",
+    "tests_python/test_local_browser.py": "27839d00b935d78f0270bacf7c919b76f1d0abd98a8479eb96bf2f27155588ae"
+  },
+  "website_commit": "3741a3f"
+}

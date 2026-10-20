@@ -581,6 +581,11 @@ hosting remains a simulation. Its recovery must not be replaced by the demo or
 launcher-owned signer procedures below; switching modes does not cancel a sent
 transaction. No contract authority or production deployment changes.
 
+For type-2 receipts, use signed fee caps and the canonical block base fee to derive
+execution price; retain raw RPC-reported price separately. The original reviewed
+unit-price and total-cost limits still apply. Deterministic mismatches require
+same-hash recovery, not another mint. See [dynamic-fee evidence](../reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md).
+
 For connection failures, inspect the public account actually exposed to the site,
 not only the account selected in the extension. Only the two disposable fixture
 accounts are admitted locally. Change the wallet's site permissions as needed.

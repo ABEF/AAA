@@ -290,6 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Canonical dynamic-fee receipt recovery](reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md): generic EIP-1559 fee derivation fixes uncapped RPC convenience reporting without loosening reviewed limits. 142 signer/client + 40 observer cases and actual minted receipt/balance replay pass. Local web-only reload preserves session/12 NFTs/Anvil; actual extension recovery retest and production qualification remain open.
   - [Mint loading states](reports/browser-wallet/MINT_LOADING.md): first load/refresh and connection are distinguished from mint review, wallet prompt, receipt and reconciliation; unrelated NFT actions never show mint progress. 44 affected UI checks and build pass. Existing pending/readiness safeguards remain.
   - [Numeric provider nonce compatibility](reports/browser-wallet/NUMERIC_NONCE.md): reported number-valued eth_getTransactionCount failure reproduced and fixed in the shared chain-independent signer. Safe integers normalize exactly; unsafe values fail, canonical outgoing/journal encoding and economic checks remain. 139 affected passes. Actual MetaMask retest and production profile qualification remain open.
   - [Wallet lifecycle review](reports/browser-wallet/LIFECYCLE_REVIEW.md): modern provider discovery, clean account selection, verified network switch/event restoration, explicit signing/receipt states and full sender review. 203 affected checks plus build/served-source checks pass. Direct-node mint preflight passes without sending; actual MetaMask pre-prompt failure and browser acceptance remain open. Current operator procedure supersedes older reconnect descriptions below.
@@ -795,4 +796,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `618238633ad2dffb0a135ad657345eb0b4e3616b405db6e23c75d5e834eb5352`.
+Snapshot SHA-256: `dd2e31f0b63ff769e2a913b40b6f3d7cdc0f8e52a39ed8df1d2c54650f7ce362`.

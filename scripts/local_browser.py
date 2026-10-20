@@ -14,6 +14,7 @@ import re
 import time
 
 from zzz_ops.abi import keccak256
+from zzz_ops.ethereum_fees import fee_cap, execution_price
 
 CHAIN = 31337
 ZERO = '0x' + '0' * 40
@@ -165,7 +166,7 @@ class LocalBrowser:
         # Extensions may add gas-limit headroom without changing the call. The
         # submitted ceiling must still fit the hard local policy; actual paid
         # gas/price below is checked against the tighter original review.
-        gas, price = _quantity(transaction.get('gas')), _quantity(transaction.get('gasPrice'))
+        gas, price = _quantity(transaction.get('gas')), fee_cap(transaction)
         if (not 21_000 <= gas <= MAX_GAS or not 0 < price <= min(MAX_PRICE, _quantity(reviewed['gasPrice'])) or
                 gas * price > MAX_NETWORK_FEE):
             raise ValueError('Observed transaction exceeds the hard local gas policy')
@@ -199,11 +200,15 @@ class LocalBrowser:
             raise ValueError('Receipt is not on the current canonical local chain')
         if receipt.get('status') not in ('0x0', '0x1'):
             raise ValueError('Receipt has no valid execution status')
-        gas_used, paid_price = _quantity(receipt.get('gasUsed')), _quantity(receipt.get('effectiveGasPrice'))
+        gas_used, paid_price = _quantity(receipt.get('gasUsed')), execution_price(transaction, canonical, receipt)
         if (gas_used > min(_quantity(reviewed['gas']), _quantity(transaction['gas'])) or
-                paid_price > min(_quantity(reviewed['gasPrice']), _quantity(transaction['gasPrice'])) or
+                paid_price > min(_quantity(reviewed['gasPrice']), fee_cap(transaction)) or
                 gas_used * paid_price > _quantity(reviewed['gas']) * _quantity(reviewed['gasPrice'])):
             raise ValueError('Receipt exceeds the reviewed network fee')
+        if _quantity(transaction.get('type', '0x0')) == 2:
+            receipt = {**receipt, 'reportedEffectiveGasPrice': receipt.get('effectiveGasPrice'),
+                       'effectiveGasPrice': hex(paid_price),
+                       'feeBasis': 'eip1559-signed-caps-and-canonical-base'}
         return receipt
 
     def _record(self, item, receipt):

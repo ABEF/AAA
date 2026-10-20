@@ -110,6 +110,13 @@ chain-31337 profile. This requirement does not enable public signing.
 
 ## Submission, confirmation and artwork
 
+For EIP-1559 transactions, observation derives execution gas price from the signed
+max fee/priority caps and canonical block base fee. It keeps the raw reported RPC
+fee separately because that convenience field may be inconsistent. Signed caps,
+gas used and paid cost still must fit the original review; no tolerance is added.
+Unknown fee types or invalid caps fail closed. See [scoped receipt evidence](../reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md).
+Specific deterministic mismatches return recovery immediately; do not resubmit.
+
 Before the single wallet send request, the browser saves a recovery record in
 `localStorage`, keyed by chain, genesis and account. Same-origin Web Locks serialize
 that account's submission across tabs. Different accounts have separate records
@@ -132,8 +139,8 @@ reused for a different canonical receipt.
 Wallets can increase the submitted gas limit after the website's review. Recovery
 can accept that adjustment only after canonical execution is verified. Sender,
 destination, calldata, value, nonce and chain must still match exactly. The
-submitted gas limit and gas price must remain within the local policy's hard
-limits and total fee envelope; its gas price cannot exceed the reviewed price.
+submitted gas limit and signed fee cap must remain within the local policy's hard
+limits and total fee envelope; its signed fee cap cannot exceed the reviewed price.
 The receipt must use no more gas than either the submitted or reviewed gas limit,
 pay no higher unit price than either submitted or reviewed price, and charge no
 more than the original reviewed maximum network cost.
