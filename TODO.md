@@ -290,7 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
-  - [Wallet RPC quantity diagnostics](reports/browser-wallet/RPC_QUANTITIES.md): bounded padded hex provider responses supported; invalid fields named, strict prepared/journal values retained. Preflight failure distinguished from submitted recovery. 123 affected passes; actual MetaMask incident cause remains unconfirmed.
+  - [Wallet RPC quantity diagnostics](reports/browser-wallet/RPC_QUANTITIES.md): bounded padded hex provider responses supported; invalid fields named, strict prepared/journal values retained. Preflight failure distinguished from submitted recovery. 123 affected passes; actual MetaMask incident cause remains unconfirmed. The review dialog now exposes the exact escaped failure; direct node quantity checks pass, but the browser-provider error is still required.
   - [Fresh MetaMask selection](reports/browser-wallet/FRESH_SELECTION.md): explicit reconnect stops preferring the saved sender; MetaMask button requests fresh permissions and multiple returned accounts require explicit selection. Unfinished choice cannot restore the old sender; pending journals remain. 90 affected checks pass. Actual Chrome/MetaMask acceptance remains open.
   - [Authorized account selection](reports/browser-wallet/AUTHORIZED_ACCOUNTS.md): fresh picker suppresses old diagnostics; select an admitted account actually authorized by the chosen provider, even when another address is first. Selection persists only while authorized. Sender membership, pending journals and deployment checks remain. 180 distinct affected cases pass; actual MetaMask UI acceptance stays open.
   - [In-page account chooser](reports/browser-wallet/ACCOUNT_CHOOSER.md): explicitly reopen the selected extension account permissions and verify fresh accounts/network. Already-valid reconnect remains read-only; the main provider button opens account selection for a still-rejected restored address. Refresh never opens prompts; pending journals block switching. Follow-up: 53 client cases pass, including four new normal-button retry cases; actual MetaMask chooser acceptance remains open.
@@ -792,4 +792,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `a94483b2de6956e118afd0c4f426a49c194f97804339307b1111745eb2980e1f`.
+Snapshot SHA-256: `ab923d26469bacdbf71ad0c710f2f84746ef823a64a4266c6e01e09300712938`.

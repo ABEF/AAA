@@ -47,3 +47,13 @@ their original recovery journal and hash; there is no automatic resubmission.
 [Source bindings](rpc-quantities-sha256.json). No unchanged Solidity/backend
 suites, public transaction, local reset, service restart, load campaign,
 monitoring change or public deployment.
+
+## Review-dialog diagnostics follow-up - 2026-10-20
+
+The transaction dialog now shows the escaped underlying failure instead of only
+Review required. At observed local block 333 no new Wallet A mint was mined;
+next nonce remained 0x23. Direct node balance/nonce/gas/estimate reads returned
+canonical quantities. Actual browser-provider error is still needed; no confirmed
+root cause or successful mint is claimed. Syntax and build pass; unchanged
+signer/client tests were not rerun. No transaction/service/contract change.
+
