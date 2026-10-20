@@ -1,0 +1,9 @@
+{
+  "website_files": {
+    "browser-wallet.js": "18b6dbaec4975d0f9d0bcd6fbc98d0fb71957243db52ef1199cc70f32aaf2383",
+    "tests/browser-wallet.test.mjs": "441dd204b25bf0d6bc169c6ddeac8de9f887c371822cb6617648165dc01e3ead",
+    "tests/browser-client.test.mjs": "e284cb30d958de109d20992c9321ea4a3913d892b7bdba04a27caa7a98baf9b6"
+  },
+  "served_local_module_matches": true,
+  "website_commit": "e7cefd6"
+}

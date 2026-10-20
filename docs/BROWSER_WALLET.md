@@ -197,9 +197,12 @@ unsent. A successful receipt with a failed projection refresh stays confirmed.
 Closing a page or reaching a wait timeout does not cancel an extension request.
 Provider numeric failures name the field without logging raw wallet data.
 
-The reported MetaMask pre-prompt failure is still not reproduced in the actual
-extension. A direct-node preflight passes, which is not extension acceptance.
-See the [lifecycle review](../reports/browser-wallet/LIFECYCLE_REVIEW.md).
+A later exact diagnostic identifies a numeric eth_getTransactionCount response.
+The shared signer accepts safe nonnegative integers as well as bounded hex at the
+provider response boundary. Unsafe numbers are rejected, never rounded; outgoing
+transactions remain canonical hex. Reload updated files before a new review.
+See [numeric nonce evidence](../reports/browser-wallet/NUMERIC_NONCE.md).
+The type mismatch is reproduced and fixed; actual MetaMask acceptance is pending.
 
 ## Failure and recovery procedure
 

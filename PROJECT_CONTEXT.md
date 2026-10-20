@@ -1,3 +1,15 @@
+## Numeric wallet nonce compatibility - 2026-10-20
+
+The user supplied the exact failure: eth_getTransactionCount returned a number.
+The shared website signer now accepts only exactly representable nonnegative JS
+integers at its RPC response boundary, converting directly to BigInt. Hex responses
+remain supported; prepared transactions/journals remain canonical hex. This has
+no local-chain/address exception and keeps exact nonce, gas and receipt guards.
+139 affected signer/client cases pass after reproducing the original failure.
+See [evidence](reports/browser-wallet/NUMERIC_NONCE.md). Actual MetaMask retest is
+pending; public signing/Robinhood manifest qualification remains open. No backend,
+contract, chain reset, public transaction, deployment or monitor change.
+
 ## Wallet lifecycle review - 2026-10-20
 
 The browser connection/signing flow now separates provider discovery, account
