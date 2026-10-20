@@ -1,3 +1,20 @@
+## Wallet RPC quantity diagnostics - 2026-10-20
+
+The user reported Invalid transaction quantity after the mint review. At the
+observed local block 319, Wallet A's next nonce was 0x23, both latest mint drafts
+used that nonce with no observed hash, and no pending transaction was present.
+The supplied text was the app review, not a receipt. Actual MetaMask failure
+cause remains unconfirmed; do not claim a successful mint or a proven root cause.
+
+Wallet-returned numeric fields accept bounded unsigned hexadecimal padding;
+unsigned prepared transactions and journals remain strictly canonical. Invalid
+responses identify their field without logging raw provider data. Preflight
+failure says nothing was submitted by this operation; uncertain submissions
+retain recovery. No automatic retry sends. 123 affected signer/client tests and
+5,593-file build pass; see reports/browser-wallet/RPC_QUANTITIES.md.
+No backend/contract, public transaction, service reset or deployment change.
+Keep main, Todo/evidence/operator notes and both memories consistent.
+
 ## Fresh MetaMask button selection - 2026-10-20
 
 The user still reproduced the previous-account issue. Explicit reconnect no

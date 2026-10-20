@@ -1,3 +1,14 @@
+## Wallet numeric-response failure - 2026-10-20
+
+Reload updated frontend files. A failed preflight identifies the RPC field and
+states that this operation was not submitted; refresh balances before another
+review. If a saved submission exists, recover its original hash instead. Never
+delete the journal or repeat a potentially confirmed approval/mint. Collect the
+exact field diagnostic and wallet transaction hash when investigating; no keys
+or full session data. Bounded hex padding is accepted only for provider reads.
+[Evidence](../reports/browser-wallet/RPC_QUANTITIES.md): 123 focused passes.
+The user's actual MetaMask response/root cause remains unconfirmed.
+
 ## MetaMask explicit reconnect follow-up - 2026-10-20
 
 
