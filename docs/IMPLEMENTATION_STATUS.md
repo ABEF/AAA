@@ -1,3 +1,13 @@
+## User-reported manual acceptance - 2026-10-20
+
+The six proposed local two-wallet scenarios are reported passed by the user:
+activation, top-ups, cancel-after-approval/reopen, pending refresh/recovery,
+concurrent claim/contribution and invalid inputs. [Acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
+separates this report from the existing automated checks and two-mint receipts.
+No new test execution or code change is claimed. Real browser-wallet integration
+is next; the dedicated 10/25/100-user load campaign is deferred. Production
+capacity is unverified and release remains NOT APPROVED.
+
 # Feature and evidence reference
 
 Reviewed 2026-10-19; the architecture repair and evidence were first recorded in

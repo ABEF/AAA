@@ -114,9 +114,12 @@ connections are closed without attempting a second HTTP response.
 ## Concurrent users
 
 The disposable launcher deliberately serializes its shared indexer and mutations.
-Two browsers can inspect/select their own accounts, but conflicting operations
-must refresh/reprepare; this is not a production multi-user server. Exact revision,
-ownership, simulation and operation-ID checks remain enforced.
+Two browsers can inspect/select their own accounts. Typed wallet reviews bind
+sender nonces and exact saved drafts; unrelated-wallet revision changes no longer
+invalidate them. Same-wallet nonce changes, expired or invalid execution still
+require fresh review. Ownership, simulation and operation-ID checks remain
+enforced. Legacy operator actions retain global revision checks. This remains
+a serialized disposable launcher, not a production multi-user server.
 
 Production must keep signing in each user's wallet, serve bounded independent
 reads, and revalidate quotes/ownership immediately before submission. Qualify
@@ -210,3 +213,16 @@ reset Anvil to resolve a browser confirmation issue. The guarded external recove
 script preserves existing contracts and positions; ordinary launcher restart does
 not promise persistence. Port 8896 remains on the earlier service until separately
 reloaded. [70 distinct Python cases and two actual local mints](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
+
+
+## Capacity decision and manual acceptance - 2026-10-20
+
+The user reports the six local two-wallet flows passed; see the
+[manual acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
+This report does not change operator functions, roles, configuration, limits or
+stop/restart procedures. The dedicated 10/25/100-user load campaign is deferred;
+do not run it automatically or raise worker limits as part of this decision.
+Continue using bounded API admission, independent user-wallet signing and saved
+transaction recovery for the production integration. The shared local signer
+and lock remain test-only. Production capacity is unverified, and accepting real
+funds still requires the outstanding dependency and release qualification.

@@ -1,3 +1,18 @@
+## Manual acceptance and next priority - 2026-10-20
+
+The user reports all six proposed local 8898 two-wallet scenarios passed; read
+[manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md). This is
+user-reported evidence, not new automated tests or independently captured receipts.
+The user deferred the proposed 10/25/100-user load campaign; do not run or schedule
+it without a later request. Production capacity remains UNVERIFIED. Next focus is
+real browser-wallet integration with unsigned preparation and independent signing.
+Basic bounded service concurrency, safe transaction recovery and dependency/release
+qualification remain required before real funds. The shared local signer/lock is
+test-only. Release remains NOT APPROVED. Use main; preserve unrelated drafts.
+No code/test/service/deployment/monitor change is included in this documentation
+update. Keep Todo, feature evidence, operator procedures and both repo memories
+consistent; docs/project-todo.json is the sole task-status ledger.
+
 ## LP holder ETH settlement checkpoint - 2026-10-20
 
 The user approved a 1% maximum LP reward conversion loss, gas separate. Read

@@ -93,3 +93,16 @@ failover, ingress policy and multi-device wallet/signing rehearsals remain under
 [the service task](../TODO.md#task-host-services) and
 [transaction integration](../TODO.md#task-transaction-ui). No public server was
 upgraded, no paused monitor resumed, and no public transaction was submitted.
+
+
+## Capacity decision and manual acceptance - 2026-10-20
+
+The user reports the six local two-wallet flows passed; see the
+[manual acceptance record](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md).
+This report does not change operator functions, roles, configuration, limits or
+stop/restart procedures. The dedicated 10/25/100-user load campaign is deferred;
+do not run it automatically or raise worker limits as part of this decision.
+Continue using bounded API admission, independent user-wallet signing and saved
+transaction recovery for the production integration. The shared local signer
+and lock remain test-only. Production capacity is unverified, and accepting real
+funds still requires the outstanding dependency and release qualification.

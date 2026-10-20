@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-20):** [per-client API admission](docs/API_INGRESS.md) now limits concurrent requests and separates read/preparation budgets, with a guarded proxy configuration and [local verification](reports/api-admission/VERIFICATION.md). Earnings reporting, unsigned mint/claim preparation and [independent history comparison](docs/HISTORY_AUDIT.md) are implemented. The public website remains simulated; live wallet integration, pricing, complete ingestion, service qualification and release approval remain open.
+**Current development work (2026-10-20):** the user reports all six [local two-wallet acceptance scenarios](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) passed. Next: [real browser-wallet integration](TODO.md#task-wallet) with unsigned preparation, independent signing and safe recovery. The [10/25/100-user load campaign](TODO.md#task-capacity-campaign) is deferred by user decision; production capacity remains unverified. The public website is still simulated. Live pricing/routes/VRF, deployment and service qualification, independent audit and release approval remain open.
 
 ## Project navigation
 
@@ -83,7 +83,7 @@ The website is maintained in [AAA-website](https://github.com/ABEF/AAA-website).
 | **Wallet connection** | Connects a browser wallet and handles account/chain changes. Live transaction validation, signing requests and receipt handling remain to be integrated. | [wallet.js](https://github.com/ABEF/AAA-website/blob/main/wallet.js) |
 | **Artwork catalogue** | Resolves palette, pattern, rarity and evolution assets for display. On-chain metadata remains authoritative for a real NFT. | [artworks.js](https://github.com/ABEF/AAA-website/blob/main/artworks.js), [palette-system.js](https://github.com/ABEF/AAA-website/blob/main/palette-system.js) |
 
-The target live flow is **website -> read/preparation API -> user wallet confirmation -> contracts -> confirmed receipt/indexer/API refresh**. The current website still simulates minting, LP contributions and claims; see the [frontend integration tasks](TODO.md#frontend).
+The target live flow is **website -> read/preparation API -> user wallet confirmation -> contracts -> confirmed receipt/indexer/API refresh**. The public/default website still simulates minting, LP contributions and claims; the separate [local contract mode](docs/LOCAL_WEBSITE.md) uses disposable Anvil contracts; see the [frontend integration tasks](TODO.md#frontend).
 
 ## NFT lifecycle
 

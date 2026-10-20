@@ -1,5 +1,13 @@
 # Verification evidence
 
+## User-reported local acceptance - 2026-10-20
+
+[Manual acceptance and priority decision](local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
+records six local two-wallet scenarios reported passed by the user. It is not a
+new automated run. The [nonce-bound two-mint rehearsal](local-wallet-concurrency/NONCE_VERIFICATION.md)
+retains its own receipts and source scope. The large-scale load campaign is
+deferred; production capacity remains unverified and release NOT APPROVED.
+
 ## Current development review
 
 The [royalty reporting continuation](royalty-reporting/VERIFICATION.md) records

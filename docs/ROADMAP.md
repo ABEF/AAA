@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-> Reviewed 2026-10-18 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
+> Reviewed 2026-10-20 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
 
 The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes the candidate: shared nonredeemable LP allocations, receipt-backed rewards and royalties, atomic activation entry, custody controls and bounded same-chain canonical handoff. Read it for implementation boundaries rather than treating the roadmap as another feature inventory. Historical [reward-funding](../reports/reward-funding/README.md), [shared-pool](../reports/pooled/README.md) and [earlier implementation](../reports/IMPLEMENTATION_UPDATE.md) reports retain their own source scope.
 
@@ -13,6 +13,21 @@ simulation or treat the local signer as a production service. Frontend progress
 remains owned by the central wallet, portfolio, transaction-UI and history tasks.
 
 Resolve [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) alongside dependency research: pricing and actual markets feed activation qualification; revenue terms, measurement and payment operations feed funding qualification. An unanswered ZZZ-feed question does not establish a live price source. Team answers require independent technical checks before enabling real flows.
+
+## Current sequencing decision - 2026-10-20
+
+The user reports all six [manual two-wallet scenarios](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
+passed. Prioritize [real browser-wallet integration](../TODO.md#task-wallet) next,
+using independent wallet signing with the existing unsigned APIs, bounded request
+work and saved transaction recovery. Develop against Anvil before public funds.
+
+The proposed [10/25/100-user capacity campaign](../TODO.md#task-capacity-campaign)
+is deferred at the user's request and may be revisited after launch if needed.
+No campaign is scheduled; capacity remains unverified. This changes sequencing,
+not the requirement for safe configured concurrency, qualified dependencies,
+accounting/recovery checks or independent release approval. The local shared
+signer/global-lock launcher remains test-only. Other pre-seal boundaries below
+are unchanged; task status remains exclusively in the central Todo.
 
 ## 1. Establish a reproducible build
 

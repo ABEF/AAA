@@ -3,6 +3,14 @@
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
 funds is authorized by this document. Reviewed 2026-10-20.
 
+The [2026-10-20 manual acceptance and priority decision](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
+records six user-reported local two-wallet passes and defers the dedicated
+10/25/100-user load campaign. Production capacity remains **unverified**; this
+is not a release approval or a waiver of independent wallet signing, bounded
+service work, transaction/accounting safety, recovery or dependency qualification.
+The next development priority is real browser-wallet integration. No tests or
+production deployment were performed by this documentation update.
+
 The [client admission and proxy candidate](API_INGRESS.md) has local
 [scoped verification](../reports/api-admission/VERIFICATION.md). It does not close
 Linux/TLS/host policy, live RPC budgets, distributed ingress or alert/recovery

@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**13 To do | 25 In progress | 16 Implemented locally**
+**14 To do | 25 In progress | 16 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -200,8 +200,9 @@ The data and services behind the app.
   - [AUD18-03 remediation](reports/api-work-limits/VERIFICATION.md): shared 25-second deadline, expiry shortening, finite logical/physical RPC budgets and 30-second supervised workers are implemented; original expiry reproduction stops before tracing. Qualify real Linux process cleanup, DNS/slow-body/RPC stalls, maximum lineage/history and trace workloads, admission/rate/connection limits and sanitized off-host timeout alerts. A timeout must not leave backend work or partial results.
   - Qualify the explicit royalty-reporting profile against actual pinned ledger/converter versions and complete history. Exercise currency-null states, strict core/work-limit rejection, predecessor cutoffs and clients that cannot interpret the new availability/eligibility fields; no automatic runtime-pin acceptance.
   - Use the [history comparison procedure](docs/HISTORY_AUDIT.md) with a reviewed separate RPC operator. Qualify the first block_log_lookup index build on the actual database, disk/backup/restart behavior, complete backfills and provider/reorg/load conditions. No server restart or provider approval is implied by local evidence.
-  - [Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace peak load, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added.
+  - [Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace behavior within configured limits, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added.
   - Implemented [per-client admission and proxy operation](docs/API_INGRESS.md), with 50 distinct affected Python cases across two scoped runs and 22 real Nginx/loopback assertions. Qualify actual Linux/TLS/default-host/CDN policy, shared-NAT client behavior, aggregate provider quotas, log retention and bounded frontend retries before opening public ingress. Local HTTP evidence does not approve hosting.
+  - Decision 2026-10-20: the dedicated 10/25/100-user capacity campaign is [deferred](TODO.md#task-capacity-campaign). Keep basic overload safety, bounded independent workers, safe recovery and qualification of configured hosting/RPC limits before real funds. Capacity stays unverified; the disposable shared signer is not a production service.
 
   </details>
 
@@ -284,7 +285,7 @@ What holders see and use.
 
 <a id="task-wallet"></a>
 
-- [ ] **[Connect real wallet transactions](docs/FRONTEND_API.md)** - In progress. Local website mint/approval/Entry/top-up/transfer/claims now use disposable Anvil contracts with explicit confirmations. Production extension-wallet signing, deployment pins and actual routes remain open.
+- [ ] **[Connect real wallet transactions](docs/FRONTEND_API.md)** - In progress. Next development priority: connect real browser-wallet signing/submission to the existing unsigned preparation and confirmed data services. Disposable two-wallet flows have user-reported manual passes; production deployment pins and actual routes remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -298,6 +299,7 @@ What holders see and use.
   - Local cross-browser confirmation fix: a newer draft reconciles confirmed state with bounded unsigned retries; explicit stale submission rejection requires a fresh review, while ambiguous responses retain their saved operation ID. [Scoped evidence](reports/local-wallet-concurrency/VERIFICATION.md). Production wallet concurrency remains open.
   - Local submission-lock follow-up: only the exact pre-handler busy /action response waits with the same saved operation ID and unchanged payload. Lost/ambiguous responses stay on recovery; stale revisions need new review. 64 scoped cases and an actual service-lock probe pass. [Evidence](reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).
   - Local wallet execution now pins each sender nonce: exact server drafts may span unrelated wallet operations, while same-wallet activity, expiry, ownership, lifecycle and gas changes still require review. Two real local mints reviewed at one revision both confirmed; 70 distinct affected Python cases. [Evidence](reports/local-wallet-concurrency/NONCE_VERIFICATION.md). This supersedes the earlier blanket global-revision rejection for typed wallet execution only; production extension-wallet qualification stays open.
+  - User reported all six proposed local two-wallet scenarios passed on 2026-10-20: activation, top-ups, cancel after approval/reopen, pending refresh recovery, concurrent claim/contribution and invalid inputs. [Manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) is user-reported evidence, not a new automated run or production qualification.
 
   </details>
 
@@ -501,6 +503,18 @@ Three required testing layers, with source-bound evidence.
 
   </details>
 
+<a id="task-capacity-campaign"></a>
+
+- [ ] **[Deferred: 10/25/100-user load campaign](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md#accepted-sequencing)** - To do. Deferred by the user on 2026-10-20; revisit after launch if needed or on explicit request. Production capacity remains unverified. This campaign is not the next development priority and is not scheduled.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Measure preparation/read latency, overload behavior, provider quotas, recovery and accounting at 10, 25 and 100 simultaneous users when resumed; do not infer capacity from the two-wallet rehearsal.
+  - Deferral does not waive independent user-wallet signing, bounded API concurrency, safe recovery, qualified dependencies or independent release approval. Keep the local shared signer/global lock test-only.
+
+  </details>
+
 <a id="task-mainnet-fork"></a>
 
 - [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. The latest targeted ordinary-rebalance case passes against the pinned selected native/Pons venue with current source bindings. Broader historical fork suites retain their recorded sources and blocks. Production feeds, full input routes, gas/strategy settings and services remain unqualified; synthetic prices and mocked authorities/VRF do not close those gates.
@@ -534,6 +548,7 @@ Three required testing layers, with source-bound evidence.
 
   - [Scoped evidence](reports/local-stack/VERIFICATION.md): 39 expanded Anvil journey assertions and 35 launcher/HTTP/recovery cases pass. Strict inputs, duplicate-request recovery, stale revisions and uncertain-submission stops. Unchanged production Solidity suites were not repeated.
   - Existing website artwork is read locally. No production website source, public server, private key, public transaction or paused-monitor change.
+  - User reported all six proposed local two-wallet scenarios passed on 2026-10-20: activation, top-ups, cancel after approval/reopen, pending refresh recovery, concurrent claim/contribution and invalid inputs. [Manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) is user-reported evidence, not a new automated run or production qualification.
 
   </details>
 
@@ -766,4 +781,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e725c2418672364c33b3d517f584004574b274164dbfd4687f759c5df1e3f142`.
+Snapshot SHA-256: `2160b8832f8495ba3245d8897364a29cf613cc91400ff9da1ab5cd60c2225dd2`.
