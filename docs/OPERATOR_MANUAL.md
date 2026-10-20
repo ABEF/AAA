@@ -667,3 +667,19 @@ if contribution fails; public native Entry wrapping is atomic. See the
 ## Convert LP holder fees to ETH
 
 Follow the [LP ETH settlement procedure](LP_ETH_SETTLEMENT.md#operator-procedure) before sealing: bind a separate converter, review wrapper/routes/feeds, enable the guarded worker, and confirm exact source/native liability changes. It covers route rotation, dependency-independent stops, source-currency recovery, pending transaction reconciliation, restart and irreversible bindings. The 1% LP conversion cap is user-approved; gas is separate. See [bounded scheduling](LP_ETH_SETTLEMENT.md#keeper-configuration-and-scheduling) for both conversion streams and maintenance.
+
+## Local activation review during a busy refresh
+
+For the disposable loopback website only, reload `/app/#my-nfts` to load the
+client fix; no restart, reset, authority change or contract deployment is needed.
+Review activation/mint/claim can wait for a portfolio refresh using at most 30
+preparation attempts within the existing 90-second request timeout. Only the exact
+409 busy response, emitted before preparation starts, is retried. Account/state
+changes cancel the wait. Draft expiry counts from the final preparation attempt,
+including processing time; rejected busy waits create no draft.
+Approval and Entry still need separate confirmations. No `/action` submission or
+lost response is retried automatically. If contention persists, let the other
+tab finish, then prepare again; inspect pending-operation recovery before any
+new submission. Never reset the live test chain merely to clear this message.
+Reverting the client restores the immediate-busy error but changes no on-chain
+state. See [focused verification](../reports/local-preparation-busy/VERIFICATION.md).

@@ -397,3 +397,13 @@ Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH 
 ## LP holder ETH settlement
 
 The local candidate checkpoints earned individual/collective LP balances, converts through a dedicated fixed-ledger executor with a 1% maximum loss (99% oracle floor; gas separate), and credits native ETH to the same NFTs. Exact WETH unwrap, source-claim recovery, native claims, bounded keeper rotation, history/earnings reconciliation and native backing handoff are implemented. Verification covers 142 distinct affected Solidity cases across scoped runs and 33 local journey assertions, with focused backend/UI evidence. See [semantics and operating procedure](LP_ETH_SETTLEMENT.md) and [scoped evidence](../reports/lp-eth-settlement/VERIFICATION.md). Actual routes, latency/gas qualification and independent approval remain open.
+
+## Local unsigned preparation contention - 2026-10-20
+
+The website local adapter now waits with bounded retries when a portfolio refresh
+blocks unsigned activation/mint/claim preparation. Only the explicit pre-handler
+busy response is retried; account/state cancellation and draft expiry remain.
+Actual submissions and ambiguous responses are not automatically repeated.
+See [focused verification](../reports/local-preparation-busy/VERIFICATION.md).
+No Solidity or backend behavior changed; production browser signing and
+concurrent service qualification remain open.

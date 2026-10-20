@@ -1,3 +1,12 @@
+## Local activation busy-response fix - 2026-10-20
+
+The current local website adapter retries only pre-handler busy unsigned
+preparation, with bounded waits, account/state cancellation and unchanged expiry.
+Never auto-retry submission. Reload the page; preserve the running 8896 Anvil
+state. No contract/backend restart or public server change is needed. Read
+[scoped evidence](../reports/local-preparation-busy/VERIFICATION.md). Production
+wallet integration remains open; check Git for publication.
+
 ## LP holder ETH settlement checkpoint - 2026-10-20
 
 The user approved a 1% maximum LP reward conversion loss, gas separate. Read

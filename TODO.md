@@ -293,6 +293,7 @@ What holders see and use.
   - Integrate actual wallet transactions and the implemented confirmed API/history/unsigned-preparation service, including the separate royalty ledger, lifetime per-asset claims and indexed ownership. Independently pin/review deployments and calldata; discard drafts on account/chain changes or expiry; freshly simulate/estimate gas, confirm with the user and handle canonical receipts/replacements/reorgs. Bound/chunk portfolio claims. Gross earned fees and USD history require separate data/valuation; raw claimed totals cannot substitute for them.
   - Local fast session handshake supplies wallets before full portfolio reads; selection survives soft reload/navigation within that disposable deployment. New sessions require selection again. This is not public-wallet persistence or signer hosting.
   - Main static website now preserves wallet selection in tab session storage and restores browser accounts without prompts/signing. Account/network changes invalidate unsent previews. This is public-account connection continuity, not live financial transaction integration. See [main website evidence](reports/frontend-state/VERIFICATION.md).
+  - Local preparation contention: activation/mint/claim review waits on the exact pre-handler busy response with bounded retries and account/state cancellation. Submission is never automatically repeated. See [scoped evidence](reports/local-preparation-busy/VERIFICATION.md). This does not qualify production wallet concurrency.
 
   </details>
 
@@ -761,4 +762,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `7b37fc1eff6ea5252c0dbcce58f0e9e1e44844e6b3f3f3812e856827c7d383cf`.
+Snapshot SHA-256: `48e765ee43b1c1f3a1713d6235bb5c713b1b5f2f0d72f38c91056ef0059ba22f`.

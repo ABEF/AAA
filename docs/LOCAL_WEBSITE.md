@@ -102,8 +102,11 @@ Closing/cancelling a confirmation sends nothing. Account or route changes discar
 the confirmation. A successful approval can remain after a cancelled LP step.
 
 Overlapping refreshes in one client share a request. Only the explicit local busy
-409 from `GET /state` retries (13 attempts maximum, capped backoff, within the
-90-second request deadline). Writes, accounting failures and other errors do not
+409 from `GET /state` retries (30 attempts maximum, capped backoff, within the
+90-second request deadline). Unsigned `POST /prepare` also retries only this exact
+busy response, which the server returns before preparation begins. Each retry
+checks the selected account and client state; busy waiting creates no draft; final-attempt processing time counts against its expiry.
+`POST /action`, lost responses, accounting failures and other errors do not
 auto-retry. A confirmed transaction followed by a read failure stays **confirmed**;
 refresh its balances instead of creating a new transaction. Abandoned browser
 connections are closed without attempting a second HTTP response.

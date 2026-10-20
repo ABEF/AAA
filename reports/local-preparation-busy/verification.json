@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-20T00:57:52.891Z",
+  "scope": "Unsigned local activation preparation only; no action endpoint or wallet submission",
+  "busy_responses": 7,
+  "seconds": 17.15,
+  "confirmation_action": "activate",
+  "requested_action": "activate",
+  "revision_before": 12,
+  "revision_after": 12,
+  "submissions": 0,
+  "served_fix": true,
+  "source_sha256": {
+    "local-client.js": "4653b66b4c8fa8297f36a760a60f4e398d2117470d00720bd619dff3c849c169",
+    "tests/local-client.test.mjs": "b03f1bd61fb380aabe11a32c15cf57211e798aca2a300e12a71f8bd076a86f8e"
+  }
+}
