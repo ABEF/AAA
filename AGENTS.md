@@ -1,3 +1,26 @@
+## Authorized wallet account selection and clean picker - 2026-10-20
+
+Fresh wallet picker sessions hide previous-attempt diagnostics and old provider
+controls; actual pending-recovery notices and internal connection guards remain.
+After choosing a provider, its authorized fixture accounts are selectable in the
+website. Never infer the intended account solely from eth_accounts[0] or silently
+choose a different allowed account. Wallet A may be selected even if an older
+address is returned first; selection survives reload while still authorized.
+The extension's private popup selection is not readable by the website.
+
+Signer checks now require the explicitly reviewed sender to remain a valid member
+of eth_accounts, plus unchanged account-event revision, network/genesis and all
+existing economic/receipt checks. Revocation, wrong chain/genesis and pending
+journals still block operations. Missing account permission requires one explicit
+wallet authorization; no permission request on refresh and no silent substitution.
+
+180 affected tests pass across 171 existing and nine new focused cases; syntax
+and 5,593-file build pass. Read reports/browser-wallet/AUTHORIZED_ACCOUNTS.md.
+No holder transaction, backend/contract change, chain/service restart, public
+deployment or monitoring change. Actual MetaMask UI acceptance remains open.
+Use main, preserve unrelated drafts, maintain the central Todo, feature evidence,
+operator notes and both memories. Production remains NOT APPROVED.
+
 ## Main wallet button account retry - 2026-10-20
 
 The user clarified that refresh restored the rejected MetaMask address and

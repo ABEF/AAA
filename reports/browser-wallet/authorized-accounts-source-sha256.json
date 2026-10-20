@@ -1,0 +1,10 @@
+{
+  "browser-client.js": "1ea0f11d90aa41d5fbe2570734191f34e929a68c1169421f224a7f5cea44e8ee",
+  "browser-wallet.js": "a423a1d73a5e4ef8080fd8572c4f0d380dcaff64632a39e9ad8bf5fc3523bd7c",
+  "wallet.js": "c07b4b93b2ea6cf9912583d5d7cc148044567040e3cad64b490ec96c7d3667dc",
+  "local-view.js": "a13f0cf886e4ddc471ad087c081f9ab7907c81ae57b54bf9049461da0042185b",
+  "tests/browser-client.test.mjs": "46ce980eb1b18cc9f31a7f461df339f5a3f32f5dd559ab39d959f0913d90578a",
+  "tests/browser-wallet.test.mjs": "dc0e01c12d0cf421e8fd0ca2260ed12b1c3f00eb945b7404a439fa20aa124a26",
+  "tests/ui-state.test.mjs": "17f8d87ba12a61872d64faab72660b7e92d5548719601db1a63dd4d8ea78db90",
+  "tests/domain.test.mjs": "6e60ce079fd4720f1168661ab2911ea0c2e89f7046d9e7c2663a5d713ebd001f"
+}

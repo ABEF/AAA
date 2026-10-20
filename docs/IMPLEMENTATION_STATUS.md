@@ -1,3 +1,12 @@
+## Explicit wallet-authorized account selection - 2026-10-20
+
+The picker starts without previous-attempt warnings. Users can select any admitted
+account authorized by the selected extension; its position in eth_accounts does
+not determine the sender. Selection persists only while authorized; pending
+recovery, revocation and deployment checks remain enforced.
+[Scoped evidence](../reports/browser-wallet/AUTHORIZED_ACCOUNTS.md) records 180
+distinct affected passes across two runs. Actual MetaMask UI acceptance remains open.
+
 ## Main wallet button retry correction - 2026-10-20
 
 Clicking MetaMask now opens account selection when its restored/rejected account

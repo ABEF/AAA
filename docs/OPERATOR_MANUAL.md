@@ -2,6 +2,14 @@
 
 ## Choose another wallet account from the website
 
+After selecting MetaMask, choose the intended **Test Wallet A/B** from the accounts
+it shares with the website. The list order does not select the signing account.
+An existing choice persists on reload only while still authorized. If the desired
+account is absent, use the explicit account-permission chooser to grant access.
+The website cannot inspect MetaMask's private popup selection. A freshly opened
+picker hides previous-attempt warnings without clearing internal safety guards
+or pending recovery. [Evidence](../reports/browser-wallet/AUTHORIZED_ACCOUNTS.md).
+
 The main MetaMask/provider button also opens account selection when its previously
 rejected or restored address is still inadmissible after a fresh read. Click that
 button after refreshing; refresh alone deliberately does not open wallet prompts.
