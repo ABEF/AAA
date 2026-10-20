@@ -1,65 +1,4 @@
-## Review-dialog diagnostics follow-up - 2026-10-20
-
-The transaction dialog now shows the escaped underlying failure instead of only
-Review required. At observed local block 333 no new Wallet A mint was mined;
-next nonce remained 0x23. Direct node balance/nonce/gas/estimate reads returned
-canonical quantities. Actual browser-provider error is still needed; no confirmed
-root cause or successful mint is claimed. Syntax and build pass; unchanged
-signer/client tests were not rerun. No transaction/service/contract change.
-
-## Wallet numeric-response failure - 2026-10-20
-
-Reload updated frontend files. A failed preflight identifies the RPC field and
-states that this operation was not submitted; refresh balances before another
-review. If a saved submission exists, recover its original hash instead. Never
-delete the journal or repeat a potentially confirmed approval/mint. Collect the
-exact field diagnostic and wallet transaction hash when investigating; no keys
-or full session data. Bounded hex padding is accepted only for provider reads.
-[Evidence](../reports/browser-wallet/RPC_QUANTITIES.md): 123 focused passes.
-The user's actual MetaMask response/root cause remains unconfirmed.
-
 # PoPL operator manual
-
-## Choose another wallet account from the website
-
-### Fresh MetaMask selection (2026-10-20)
-
-This supersedes the earlier statement that explicit reconnect retains a chosen
-sender. Refresh can retain a completed authorized selection, but clicking the
-MetaMask button starts a fresh permission choice. Select the intended account in
-MetaMask; if multiple accounts are shared, use its exact address in the website
-picker. An unfinished choice cannot restore the previous sender. Pending
-transactions must still recover under their original sender before switching.
-No network or service configuration change is required; reload the updated app.
-[Scoped evidence](../reports/browser-wallet/FRESH_SELECTION.md): 90 affected
-passes; actual Chrome extension acceptance remains open.
-
-
-After selecting MetaMask, choose the intended **Test Wallet A/B** from the accounts
-it shares with the website. The list order does not select the signing account.
-An existing choice persists on reload only while still authorized. If the desired
-account is absent, use the explicit account-permission chooser to grant access.
-The website cannot inspect MetaMask's private popup selection. A freshly opened
-picker hides previous-attempt warnings without clearing internal safety guards
-or pending recovery. [Evidence](../reports/browser-wallet/AUTHORIZED_ACCOUNTS.md).
-
-The main MetaMask/provider button also opens account selection when its previously
-rejected or restored address is still inadmissible after a fresh read. Click that
-button after refreshing; refresh alone deliberately does not open wallet prompts.
-If you already corrected the extension account, it reconnects without prompting.
-
-When the extension exposes a different account from the one visible in its
-popup, open the website connection dialog and click **Choose a different account
-in MetaMask** (or the named extension). Select the intended disposable fixture
-account in its permission prompt. The site rereads permissions and verifies the
-network/deployment before enabling actions. No transaction is sent.
-
-Complete or reject an already-open wallet prompt before trying again. If the
-extension does not support permission requests, use its connected-site settings.
-Pending transactions must be recovered before switching accounts; never erase
-the journal to bypass that guard. No operator contract call/configuration is
-required. [Evidence](../reports/browser-wallet/ACCOUNT_CHOOSER.md).
-
 
 This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
 
@@ -646,8 +585,8 @@ For connection failures, inspect the public account actually exposed to the site
 not only the account selected in the extension. Only the two disposable fixture
 accounts are admitted locally. Change the wallet's site permissions as needed.
 If the chain ID is 31337 but genesis verification fails, correct the run's exact
-RPC URL; switching to another network with the same ID is insufficient. Repeated
-connects and refreshes read current authorization and reverify the deployment.
+RPC URL; switching to another network with the same ID is insufficient. Refresh reads current authorization; explicit MetaMask selection reopens permissions.
+Both reverify the deployment.
 Failed connection leaves actions disabled and the error visible in the dialog.
 
 If the wallet padded a transaction's gas limit, recover its original hash without

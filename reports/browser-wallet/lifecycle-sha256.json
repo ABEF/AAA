@@ -1,0 +1,44 @@
+{
+  "website_files": {
+    "wallet.js": "d39f97fe2ba6e6bcb989080bab51534f206a2f4b9cc38998312d7bd7df8cf101",
+    "app.js": "ad1dbdb0fef3afcaae0a92351a60878153a1cf406240e189876f612c9a5ea31f",
+    "browser-client.js": "ee375483334422b135683208b17172c2691a4305ce54116a7c6b56902068667a",
+    "browser-wallet.js": "9123c7c6684be6cdd1a7caaa092e05711d916da3045b38a624c3130fd85125bb",
+    "browser-intent.js": "b815deee123120ee5bba839558f3265aacfc54552dc83655df4635bee352ac9b",
+    "local-view.js": "5a0f7cc6ae8294fc22f87d426b4c409b7cadf01881c23bd152bf07338dbb8730",
+    "package.json": "c16cb21da1888b2e38e9c1382913d9db89d51c97188f4ffba0ffeb4ec105cc89",
+    "tests/wallet-lifecycle.test.mjs": "4c4b4872ac672ccf480bfae59d7eb9062e2e03b453086ae1d95d0e47d8f23c4e",
+    "tests/browser-client.test.mjs": "e284cb30d958de109d20992c9321ea4a3913d892b7bdba04a27caa7a98baf9b6",
+    "tests/browser-wallet.test.mjs": "d6189d72c018f10eae52ffab8cd1072013caacd8fc288bff000c81ce403b8c4b",
+    "tests/browser-intent.test.mjs": "fdf27f928aa0b0acc277cb32e8468ade463e856ec2d216ddf94ee6e21ad5e333",
+    "tests/contribution-flow.test.mjs": "a819711022683df69568b84f9f0b0fb1f99ad5af503fedfc580664684912d0b4",
+    "tests/ui-state.test.mjs": "17f8d87ba12a61872d64faab72660b7e92d5548719601db1a63dd4d8ea78db90"
+  },
+  "served_local_8900": {
+    "wallet.js": {
+      "matches_source": true,
+      "cache_control": "no-store"
+    },
+    "app.js": {
+      "matches_source": true,
+      "cache_control": "no-store"
+    },
+    "browser-client.js": {
+      "matches_source": true,
+      "cache_control": "no-store"
+    },
+    "browser-wallet.js": {
+      "matches_source": true,
+      "cache_control": "no-store"
+    },
+    "browser-intent.js": {
+      "matches_source": true,
+      "cache_control": "no-store"
+    },
+    "local-view.js": {
+      "matches_source": true,
+      "cache_control": "no-store"
+    }
+  },
+  "website_commit": "e6fa467"
+}

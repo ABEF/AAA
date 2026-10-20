@@ -1,0 +1,47 @@
+{
+  "time": "2026-10-20T18:22:11.837Z",
+  "scope": "Read-only simulation of latest saved mint, refreshed local review expiry; no signing request",
+  "passed": true,
+  "calls": [
+    {
+      "method": "eth_chainId",
+      "type": "string"
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "type": "object"
+    },
+    {
+      "method": "eth_getCode",
+      "type": "string"
+    },
+    {
+      "method": "eth_getTransactionCount",
+      "type": "string"
+    },
+    {
+      "method": "eth_getBalance",
+      "type": "string"
+    },
+    {
+      "method": "eth_gasPrice",
+      "type": "string"
+    },
+    {
+      "method": "eth_estimateGas",
+      "type": "string"
+    },
+    {
+      "method": "eth_call",
+      "type": "string"
+    },
+    {
+      "method": "eth_chainId",
+      "type": "string"
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "type": "object"
+    }
+  ]
+}

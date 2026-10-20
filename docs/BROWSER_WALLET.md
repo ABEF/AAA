@@ -1,78 +1,32 @@
-## Review-dialog diagnostics follow-up - 2026-10-20
-
-The transaction dialog now shows the escaped underlying failure instead of only
-Review required. At observed local block 333 no new Wallet A mint was mined;
-next nonce remained 0x23. Direct node balance/nonce/gas/estimate reads returned
-canonical quantities. Actual browser-provider error is still needed; no confirmed
-root cause or successful mint is claimed. Syntax and build pass; unchanged
-signer/client tests were not rerun. No transaction/service/contract change.
-
-## Wallet numeric-response failure - 2026-10-20
-
-Reload updated frontend files. A failed preflight identifies the RPC field and
-states that this operation was not submitted; refresh balances before another
-review. If a saved submission exists, recover its original hash instead. Never
-delete the journal or repeat a potentially confirmed approval/mint. Collect the
-exact field diagnostic and wallet transaction hash when investigating; no keys
-or full session data. Bounded hex padding is accepted only for provider reads.
-[Evidence](../reports/browser-wallet/RPC_QUANTITIES.md): 123 focused passes.
-The user's actual MetaMask response/root cause remains unconfirmed.
-
 # Browser-wallet signing on the disposable local chain
 
-## Choose another wallet account from the website
+## Connection and account selection
 
-### Fresh MetaMask selection (2026-10-20)
+The website uses the provider object announced by the selected extension through
+EIP-6963. Rabby and MetaMask are separate connections. The shared legacy injection
+is a fallback only when no modern announcement is available; it is labeled
+Browser wallet (legacy), not inferred to be MetaMask from an isMetaMask flag.
+Provider names and rdns are discovery hints, not authentication.
 
-This supersedes the earlier statement that explicit reconnect retains a chosen
-sender. Refresh can retain a completed authorized selection, but clicking the
-MetaMask button starts a fresh permission choice. Select the intended account in
-MetaMask; if multiple accounts are shared, use its exact address in the website
-picker. An unfinished choice cannot restore the previous sender. Pending
-transactions must still recover under their original sender before switching.
-No network or service configuration change is required; reload the updated app.
-[Scoped evidence](../reports/browser-wallet/FRESH_SELECTION.md): 90 affected
-passes; actual Chrome extension acceptance remains open.
+Clicking MetaMask explicitly requests a fresh account-permission choice. Select
+the intended account in its prompt; if several accounts are shared, select its
+exact address in the website picker. The website can read authorized accounts,
+not the extension popup's private selection. Rabby and ordinary authorized
+reconnects use current public account reads. Refresh restores a completed choice
+only while it is authorized; it never opens a permission or transaction prompt.
+A cancelled or incomplete choice cannot silently restore an old sender.
 
+Network and account events invalidate unsent reviews and revalidate the selected
+account against this deployment. A late response cannot restore an older review.
+Transactions already sent remain tied to the original account and genesis;
+recover them before changing wallets. The review displays the extension name and
+full signing address, along with the target, value and separate maximum gas cost.
 
-After selecting MetaMask, choose the intended **Test Wallet A/B** from the accounts
-it shares with the website. The list order does not select the signing account.
-An existing choice persists on reload only while still authorized. If the desired
-account is absent, use the explicit account-permission chooser to grant access.
-The website cannot inspect MetaMask's private popup selection. A freshly opened
-picker hides previous-attempt warnings without clearing internal safety guards
-or pending recovery. [Evidence](../reports/browser-wallet/AUTHORIZED_ACCOUNTS.md).
-
-The main MetaMask/provider button also opens account selection when its previously
-rejected or restored address is still inadmissible after a fresh read. Click that
-button after refreshing; refresh alone deliberately does not open wallet prompts.
-If you already corrected the extension account, it reconnects without prompting.
-
-When the extension exposes a different account from the one visible in its
-popup, open the website connection dialog and click **Choose a different account
-in MetaMask** (or the named extension). Select the intended disposable fixture
-account in its permission prompt. The site rereads permissions and verifies the
-network/deployment before enabling actions. No transaction is sent.
-
-Complete or reject an already-open wallet prompt before trying again. If the
-extension does not support permission requests, use its connected-site settings.
-Pending transactions must be recovered before switching accounts; never erase
-the journal to bypass that guard. No operator contract call/configuration is
-required. [Evidence](../reports/browser-wallet/ACCOUNT_CHOOSER.md).
-
-
-The existing website has an opt-in EIP-1193 browser-wallet flow for minting,
-activation, LP increases and ETH reward claims. The website prepares and checks
-an exact transaction; the selected wallet signs and submits it. The local service
-does not submit holder transactions in this mode.
-
-**Scope: local Anvil, chain 31337 only.** The public website remains a simulation.
-This is a reusable signing implementation exercised against disposable contracts,
-not an approved production deployment. [Scoped evidence](../reports/browser-wallet/VERIFICATION.md)
-distinguishes automated provider tests, actual local receipts and browser-extension
-acceptance. The [central wallet task](../TODO.md#task-wallet) remains in progress.
-Connection diagnostics and receipt recovery follow-up are recorded separately in
-[connection and recovery evidence](../reports/browser-wallet/CONNECTION_RECOVERY.md).
+If an account prompt is already open, complete or reject it in that extension.
+Use the explicit Choose a different account control to reopen permissions. If the
+extension does not implement permission requests, use its connected-site settings.
+Neither action approves a token or sends a transaction. No private key is read by
+the website. Reload the app to load frontend changes; do not reset Anvil.
 
 ## Start and connect
 
@@ -107,10 +61,10 @@ account alone does not grant the website access to it.
 A switch-network button is shown only for a different chain ID. Chain 31337 with
 the wrong genesis is a different local deployment: correct the RPC URL to the
 one displayed for this run. A failed connection stays in the dialog with its
-error and cannot trigger a successful-state refresh. Reconnecting the same
-provider reads its current authorized accounts and chain before verifying the
-genesis again; it does not reuse a stale account or open overlapping permission
-prompts. A refresh also revalidates the connection before enabling actions.
+error and cannot trigger a successful-state refresh. Explicit MetaMask selection
+uses the permission flow above; refresh remains read-only. Adding a network is
+followed by an explicit switch if needed, then fresh account/chain/genesis checks.
+A different provider or disconnected account cannot complete an old setup request.
 
 The local named inputs are ZZZ, USDG, USDC and ETH. **All have a $1 mock input
 price, including ETH.** Local activation is exactly 100 input units at that mock
@@ -162,7 +116,7 @@ that account's submission across tabs. Different accounts have separate records
 and nonces. Missing locks, unreadable storage or a failed durable write block a
 new send. These browser locks are not a distributed authorization system.
 
-The wallet request has a 15-second UI wait bound. A slow extension prompt can
+The wallet submission request has a 90-second UI wait bound. A slow extension prompt can
 remain open afterward; timeout does not cancel a wallet request. A later returned
 hash is still saved while the page remains alive. There is exactly one send:
 timeout, missing response and receipt recovery never automatically repeat it.
@@ -228,6 +182,24 @@ a signed transaction may be mined after the UI review expires. The server-side
 browser review journal has a 256-record and 16 MiB limit. Records are not evicted merely because
 a review expired; it might have been sent. At capacity, preserve and inspect
 evidence before starting another disposable fixture.
+
+## Transaction stages and diagnostics
+
+The dialog advances through Checking transaction, Confirm in your wallet,
+Transaction submitted, Waiting for confirmation and Updating confirmed balances.
+Only the submitted stage has a wallet-returned hash. Confirmed balances and
+artwork still require the on-chain result, not just a successful approval or send.
+
+A failed preflight is labeled Transaction not sent with its exact escaped error.
+A definitive wallet rejection is Cancelled in wallet. A saved or ambiguous send
+instead requires recovery of the same transaction; it is never described as
+unsent. A successful receipt with a failed projection refresh stays confirmed.
+Closing a page or reaching a wait timeout does not cancel an extension request.
+Provider numeric failures name the field without logging raw wallet data.
+
+The reported MetaMask pre-prompt failure is still not reproduced in the actual
+extension. A direct-node preflight passes, which is not extension acceptance.
+See the [lifecycle review](../reports/browser-wallet/LIFECYCLE_REVIEW.md).
 
 ## Failure and recovery procedure
 

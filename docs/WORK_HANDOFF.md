@@ -1,3 +1,21 @@
+## Wallet lifecycle review - 2026-10-20
+
+The browser connection/signing flow now separates provider discovery, account
+selection, deployment verification, submission, receipt and balance refresh.
+EIP-6963 providers take precedence over the legacy slot. Cancelled account choices
+cannot poison later connections; network addition is followed by a verified switch;
+account events and late provider restoration revalidate without transaction prompts.
+The review identifies the extension/full sender and distinguishes unsent failures,
+rejections, pending recovery and confirmed receipts. Existing exact approval,
+calldata/gas, journal and confirmed-artwork safeguards remain.
+
+[Scoped lifecycle review](../reports/browser-wallet/LIFECYCLE_REVIEW.md): 203 affected
+website cases, syntax/build and served-source checks pass. The saved mint preflight
+passes through direct local RPC without sending. Actual MetaMask acceptance and
+its reported pre-prompt failure remain unresolved; Chrome inspection hit an app
+approval timeout. No transaction, chain/service reset, backend/contract change,
+public deployment or load campaign. Release remains NOT APPROVED.
+
 ## Review-dialog diagnostics follow-up - 2026-10-20
 
 The transaction dialog now shows the escaped underlying failure instead of only
