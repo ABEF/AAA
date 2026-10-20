@@ -35,7 +35,7 @@ class LocalReadTests(unittest.TestCase):
         self.assertIs(p.optional_earnings('2'),result)
 
     def test_state_skips_dormant_history_without_weakening_core_failure(self):
-        p=object.__new__(lab.Lab);p.sync=Mock();p.read_rpc=SimpleNamespace(memo={},aggregation=False)
+        p=object.__new__(lab.Lab);p.sync=Mock();p.read_rpc=SimpleNamespace(memo={},aggregation=False,close_aggregate=Mock())
         p.ids=lambda:['1','2'];p.operations=SimpleNamespace(revision=0);p.uncertain=False
         p.accounts=['operator','alice','bob'];p.contracts={};p.pool='pool';p.tokens=[];p.receipts=[]
         positions=[{'token_id':'1','position':{'activated':True},'claimable':{'lp':['confirmed']}},
@@ -47,6 +47,7 @@ class LocalReadTests(unittest.TestCase):
         self.assertFalse(result['nfts'][0]['earnings']['available'])
         self.assertEqual([call.args for call in p.api.earnings.call_args_list],[('1',),(None,)])
         self.assertFalse(p.read_rpc.aggregation);self.assertEqual(p.read_rpc.memo,{})
+        p.read_rpc.close_aggregate.assert_called_once()
         p.api.nft=Mock(side_effect=lab.ProjectionError('core failure'))
         with self.assertRaises(lab.ProjectionError):p.state()
         self.assertFalse(p.read_rpc.aggregation)

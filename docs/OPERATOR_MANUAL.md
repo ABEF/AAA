@@ -599,6 +599,19 @@ do not erase the journal or repeat a confirmed approval. See
 [connection and recovery evidence](../reports/browser-wallet/CONNECTION_RECOVERY.md)
 and the full [receipt procedure](BROWSER_WALLET.md#submission-confirmation-and-artwork).
 
+Wallet response and RPC-read waits are separate: 90 seconds for the extension,
+15 seconds per read. A transient receipt-read fault retries the same hash at most
+three times with 750ms spacing; no retry sends a transaction. If still unresolved,
+inspect the wallet and recover the saved hash. Keep the original request and
+review. Ordinary refresh shows labeled last-confirmed cards with actions disabled;
+read failures or account/session changes must not present those values as current.
+
+Local portfolio reads reuse one literal-loopback HTTP connection only within the
+serialized read and close it on completion/failure. This changes no operator
+permissions or production RPC configuration. A web-only update must authenticate
+the original chain/session/journals; never restart Anvil to clear a slow read.
+See [latency and mint follow-up](../reports/browser-wallet/MINT_WAIT_PERFORMANCE.md).
+
 The production UI must request **Robinhood Chain**, using an independently
 verified production manifest for chain ID, RPCs and contract identities. It must
 not select a testnet or use an Anvil fallback. The current opt-in browser signer

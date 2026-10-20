@@ -175,7 +175,7 @@ evidence before starting another disposable fixture.
 | Wallet exposes an ordinary account instead of fixture A/B | Use the displayed public address to inspect the wallet's site permissions. Authorize the intended disposable account, then reconnect. Do not mint or transfer funds to solve a connection error. |
 | Wallet reports chain 31337 but the connection is not verified | Check the exact RPC URL and genesis for this run. A chain-ID-only switch is insufficient; another Anvil deployment can use the same ID. |
 | Wallet rejection | Inspect whether the wallet reports a definitive rejection. A confirmed approval remains on-chain; reprepare and reuse its sufficient allowance. |
-| Wallet prompt takes more than 15 seconds | Inspect the existing prompt/activity. Keep the original request; do not submit it again. Refresh to recover a later returned hash. |
+| Wallet prompt exceeds the 90-second response wait | Inspect the existing prompt/activity. Keep the original request; do not submit it again. Refresh to recover a later returned hash. |
 | Browser refresh while a transaction is pending | Reconnect to the same account, exact RPC/genesis and origin. Refresh reads the saved hash and verifies its receipt; it does not send again. |
 | Wallet sent, but the page never received a hash | Keep the recovery record. Copy the exact hash from wallet activity into recovery; identity and reviewed nonce/calldata must match. If no hash can be established, stop that account's new actions and inspect wallet/RPC records. |
 | Account or chain changed | Unsent reviews are discarded. A sent transaction remains associated with its original account/genesis; switch back and recover it. |
@@ -188,6 +188,19 @@ evidence before starting another disposable fixture.
 
 No wallet private keys or session tokens belong in reports or Git. Preserve public
 transaction hashes, receipts, source bindings and sanitized outcomes.
+
+Wallet response and RPC-read waits are separate: 90 seconds for the extension,
+15 seconds per read. A transient receipt-read fault retries the same hash at most
+three times with 750ms spacing; no retry sends a transaction. If still unresolved,
+inspect the wallet and recover the saved hash. Keep the original request and
+review. Ordinary refresh shows labeled last-confirmed cards with actions disabled;
+read failures or account/session changes must not present those values as current.
+
+Local portfolio reads reuse one literal-loopback HTTP connection only within the
+serialized read and close it on completion/failure. This changes no operator
+permissions or production RPC configuration. A web-only update must authenticate
+the original chain/session/journals; never restart Anvil to clear a slow read.
+See [latency and mint follow-up](../reports/browser-wallet/MINT_WAIT_PERFORMANCE.md).
 
 ## Stop, restart and rollback
 

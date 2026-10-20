@@ -1,3 +1,29 @@
+## Mint confirmation and local read latency - 2026-10-20
+
+The user confirmed the minted NFT appears after Recover status. The successful
+mint was inspected on-chain; the original UI failure cause is not established.
+Wallet submission now has a separate 90-second response wait (read RPCs retain
+15 seconds), and receipt faults retry the same hash up to three times. Never
+resubmit a payment automatically or erase unresolved recovery records.
+Same-account/session refresh preserves labeled confirmed cards with actions
+disabled; failed reads and account changes do not present cached values as current.
+Confirmed LP execution still controls artwork and sound.
+
+The local serialized portfolio read now reuses its literal-loopback HTTP
+connection, closing it at the end or on failure. Chain, canonical hash, response
+identity, size and work-budget checks remain. Default production RPC transport
+is unchanged. Eight-NFT state reads measured 6.057s before, 3.723s cold and 1.904s
+warm after. This is not production capacity qualification.
+
+48 signer, 8 contribution-flow and 35 Python cases pass; website build passed.
+Read reports/browser-wallet/MINT_WAIT_PERFORMANCE.md and docs/BROWSER_WALLET.md.
+Only the web process changed to 21472; original Anvil10988/RPC61752, session,
+revision22 and eight NFT owner/LP/reward/trait records were preserved. Always
+read running.json before process control. No holder/operator test transactions,
+public deployment, unchanged Solidity rerun or paused-monitor restart.
+Use main, preserve unrelated drafts, keep the single Todo ledger/features/operator
+procedures and both memories consistent. Release remains NOT APPROVED.
+
 ## MetaMask connection and approval recovery - 2026-10-20
 
 Connection diagnostics now distinguish site-authorized account, network ID and

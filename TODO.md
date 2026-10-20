@@ -290,6 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Mint wait and local latency](reports/browser-wallet/MINT_WAIT_PERFORMANCE.md): separate 90-second wallet response wait, bounded same-hash receipt retries, and labeled confirmed cards during refresh. Local loopback connection reuse reduced an eight-NFT warm read from 6.057s to 1.904s; this is not production/load qualification. Eight positions and session preserved; no payment resubmitted.
   - [MetaMask connection and approval recovery](reports/browser-wallet/CONNECTION_RECOVERY.md): distinguish site-authorized account, chain ID and exact local genesis; reconnect through fresh public reads. Recognize wallet gas-limit padding only within hard policy and original canonical paid-gas/price/cost ceilings. Preserve the original review and never resend a confirmed approval.
   - Production network selection must request Robinhood Chain from independently reviewed deployment/network configuration, with exact chain, RPC and contract bindings. Local Anvil prompts stay local. Do not enable public signing or reuse a chain-31337 fixture manifest as mainnet configuration.
   - [Browser-wallet candidate](docs/BROWSER_WALLET.md): only the explicit chain-31337 browser mode can sign. Account/chain/genesis/runtime/nonce/gas and typed intent checks precede one wallet request; same-origin localStorage/Web Locks retain unknown submissions. Browser drafts cannot be sent by the local service signer. [Scoped evidence](reports/browser-wallet/VERIFICATION.md) records 43 affected Python and 167 website cases plus five actual local transactions through an EIP-1193-shaped RPC adapter, not extension acceptance.
@@ -315,7 +316,7 @@ What holders see and use.
   <summary>Acceptance criteria</summary>
 
   - Local display correction: show the revealed rarity multiplier (Commun Ã—1, Rare Ã—2, Legendary Ã—3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.
-  - Local dormant cards/details omit reward, claim and earnings-history sections. Activated cards have separate Claim and Grow attached LP controls. Pending reads retain labeled last-confirmed artwork but mask balances and disable actions; confirmed evolution crossfades without changing rarity/palette. Reduced-motion is supported.
+  - Local dormant cards/details omit reward, claim and earnings-history sections. Activated cards have separate Claim and Grow attached LP controls. Same-account/session refresh retains labeled last-confirmed cards with actions disabled; failed reads and context changes mask unavailable balances; confirmed evolution crossfades without changing rarity/palette. Reduced-motion is supported.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Use confirmed current ownership, attached LP and separate per-asset individual/collective/royalty balances. Preserve unavailable remote/stale valuations and sticky activation eligibility through artwork downgrades.
   - Decide whether production labels use raw hashed token IDs or the existing sequential mint ordinal; implement and review matching metadata/UI labels without changing stable custody IDs. Demo #444 is not a promised production identifier.
@@ -786,4 +787,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8c068a1def0b6f845555e40f5ee25618d5d2b41cf8ae549fcfda16a6c71aa816`.
+Snapshot SHA-256: `96a0cd9ea2ef23970cfc9b540af56a8f93bc928108382d38b6ba0197b40d6667`.

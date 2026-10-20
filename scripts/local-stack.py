@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 from functools import lru_cache
 import hashlib
+import http.client
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import mimetypes
@@ -30,6 +31,7 @@ sys.path.insert(0, str(ROOT))
 from zzz_ops.abi import keccak256, decode_words
 from zzz_ops.rpc import Rpc
 from zzz_ops.errors import RpcError, WorkLimit
+from zzz_ops.work_budget import timeout as remaining_timeout
 from indexer.monitor import Indexer
 from frontend_api.service import Projection, ProjectionError, ZERO
 from frontend_api.transactions import Transactions
@@ -162,6 +164,37 @@ class LocalReadRPC(Rpc):
     writes and independent HTTP requests are never cached.
     """
     aggregation=False
+    def close_aggregate(self):
+        connection=getattr(self,'_aggregate_http',None)
+        if connection is not None:connection.close()
+        self._aggregate_http=None;self._aggregate_url=None
+    def _read_http(self, url, raw):
+        if not self.aggregation:return super()._read_http(url,raw)
+        parsed=urllib.parse.urlsplit(url)
+        # Only the existing launcher's literal loopback endpoint may reuse a
+        # connection. No redirects, credentials, cross-user or cross-read cache.
+        if parsed.scheme!='http' or parsed.hostname!='127.0.0.1' or parsed.username or parsed.password:
+            raise RpcError('Local aggregate transport requires literal loopback')
+        try:
+            duration=remaining_timeout(self.timeout)
+            connection=getattr(self,'_aggregate_http',None)
+            if connection is None or getattr(self,'_aggregate_url',None)!=url:
+                self.close_aggregate()
+                connection=http.client.HTTPConnection(parsed.hostname,parsed.port,timeout=duration)
+                self._aggregate_http=connection;self._aggregate_url=url
+            connection.timeout=duration
+            if connection.sock is not None:connection.sock.settimeout(duration)
+            target=parsed.path or '/'
+            if parsed.query:target+='?'+parsed.query
+            connection.request('POST',target,body=raw,headers={'Content-Type':'application/json'})
+            response=connection.getresponse()
+            if response.status!=200:raise RpcError('Local RPC HTTP response failed')
+            data=response.read(8*1024*1024+1)
+            if len(data)>8*1024*1024:raise RpcError('RPC response exceeded size limit')
+            return data
+        except Exception:
+            self.close_aggregate()
+            raise
     def call(self, method, params=None):
         selector=(params or [None])[-1]
         pinned=isinstance(selector,dict) and selector.get('requireCanonical') is True and set(selector)=={'blockHash','requireCanonical'}
@@ -429,7 +462,8 @@ class Lab:
                                       else {'available':False,'reason':'not_activated'})
             inputs=getattr(self,'input_assets',None)
             return {'mode':'LOCAL ANVIL TEST ONLY','revision':self.operations.revision,'uncertain':self.uncertain,'chain_id':CHAIN,'accounts':self.accounts[1:],'contracts':self.contracts,'pool':self.pool,'tokens':self.tokens,'input_assets':inputs,'contribution_flow':{'native_eth_atomic':bool(getattr(self,'native_input',False)),'max_transactions':2,'activation_usd':100,'min_topup_usd':5},'protocol':self.api.protocol(),'nfts':positions,'earnings':self.optional_earnings(),'transactions':[{'label':r['label'],'hash':r['receipt']['transactionHash'],'block':int(r['receipt']['blockNumber'],16),'gas_used':int(r['receipt']['gasUsed'],16)} for r in self.receipts[-12:]]}
-        finally:self.read_rpc.aggregation=False;self.read_rpc.memo={}
+        finally:
+            self.read_rpc.close_aggregate();self.read_rpc.aggregation=False;self.read_rpc.memo={}
     def action(self, payload):
         validate_action(payload,self.accounts[1:])
         if payload.get('asset') is not None:

@@ -39,13 +39,17 @@ class Rpc:
     @property
     def active_url(self) -> str: return self.urls[self.active]
 
+    def _read_http(self, url: str, raw: bytes) -> bytes:
+        """Transport hook; response identity, limits and budgets stay in _post."""
+        request = urllib.request.Request(url, data=raw, headers={'Content-Type':'application/json'})
+        with urllib.request.urlopen(request,timeout=timeout(self.timeout)) as response:
+            return response.read(8 * 1024 * 1024 + 1)
+
     def _post(self, url: str, method: str, params: list[Any]) -> Any:
         consume('posts')
         request_id = next(self._ids)
         raw = json.dumps({'jsonrpc':'2.0','id':request_id,'method':method,'params':params}).encode()
-        request = urllib.request.Request(url, data=raw, headers={'Content-Type':'application/json'})
-        with urllib.request.urlopen(request,timeout=timeout(self.timeout)) as response:
-            data = response.read(8 * 1024 * 1024 + 1)
+        data = self._read_http(url, raw)
         checkpoint()
         if len(data) > 8 * 1024 * 1024: raise RpcError('RPC response exceeded size limit')
         body = json.loads(data)

@@ -1,0 +1,16 @@
+{
+  "nfts_preserved": 8,
+  "session_preserved": true,
+  "position_rewards_traits_unchanged": true,
+  "anvil_pid": 10988,
+  "web_pid": 21472,
+  "revision": 22,
+  "before_state_seconds": 6.057,
+  "after_state_seconds": [
+    3.723,
+    1.904
+  ],
+  "holder_operator_transactions_sent": 0,
+  "scope": "Local eight-NFT reads, not production load qualification",
+  "state_reads_mine_empty_confirmation_blocks": true
+}

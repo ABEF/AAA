@@ -1,3 +1,14 @@
+## Mint wait and faster local confirmed reads - 2026-10-20
+
+Separate bounded wallet-response/read waits, automatic same-hash receipt retries,
+and labeled confirmed cards during refresh reduce unnecessary recovery screens.
+The local reader reuses one loopback connection per serialized portfolio read,
+preserving chain/hash/budget checks. Eight-NFT refresh measured 6.057s before and
+1.904s warm after; this does not qualify production capacity.
+[Scoped evidence](../reports/browser-wallet/MINT_WAIT_PERFORMANCE.md) records
+48 signer, 8 flow and 35 Python passes, the build, and preservation of all eight
+NFTs/session/chain during web-only recovery. Public signing remains disabled.
+
 ## MetaMask connection and confirmed approval recovery - 2026-10-20
 
 The local browser adapter distinguishes wrong account, wrong chain and wrong

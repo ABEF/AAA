@@ -1,0 +1,22 @@
+{
+  "scope": "Mint wait and local read follow-up",
+  "checks": {
+    "signer": 48,
+    "contribution_flow": 8,
+    "python": 35
+  },
+  "sha256": {
+    "contract": {
+      "zzz_ops/rpc.py": "829cdbceafabdf2ba634cfefaa57db1bc7fc6f6a9a80771c7929e131b82be397",
+      "scripts/local-stack.py": "2d7d5e8a8f17f254b31d3a77203acdea859d61d37f0970589bf2e725fc3ec9d1",
+      "tests_python/test_local_stack.py": "c5fa220ffb19286af00f05b4d47e4e05f23f91f9a5eaec82ba7f44e0750c9e60",
+      "tests_python/test_local_rpc_connection.py": "69074f78bfc08faaa0735d9e6da2e67838131c17389837c6c385a5fa7e3b5dd8"
+    },
+    "website": {
+      "browser-wallet.js": "0540ee66059c746edf42c6f2e63f3ec37a2442ea785f490d7c6ec02a2b36454b",
+      "local-view.js": "51a77883c479a6eb738cf39f47a5375a56555bf7a92bf3a23207e34ad6e3c087",
+      "tests/browser-wallet.test.mjs": "b851bdd4c9a3a3356da90b2f05d8c125abc4aec15f55a301ef8f50c50f63a78b",
+      "tests/contribution-flow.test.mjs": "a819711022683df69568b84f9f0b0fb1f99ad5af503fedfc580664684912d0b4"
+    }
+  }
+}
