@@ -1,0 +1,6 @@
+{
+  "browser-wallet.js": "e7c34e746f672a64b8453ceb488a354e016c9ba68e1f9785f1a779bb02f9f9d2",
+  "browser-client.js": "75d74b9d4e631e030b5f9014b55fa79e5aae4324eb3f9e6e177ed27dc7b9f9f7",
+  "tests/browser-wallet.test.mjs": "389a75877cf1155e58d4a77f88163b4873ef7bb1853ad6b50cee0c69d4ecc319",
+  "tests/browser-client.test.mjs": "ee5f6f3d8dc031e6b8009770dc38d01964dfbadc351a061c36d61841c8ecf6b3"
+}

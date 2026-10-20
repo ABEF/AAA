@@ -1,3 +1,12 @@
+## Automatic canonical receipt monitoring - 2026-10-20
+
+One-confirmation local receipts use two checked canonical inclusion blocks,
+avoiding a lagging head counter. Same-hash polling now spans 21 attempts with
+1500ms spacing and a 45-second total read budget; no payment is resent. Pending
+reasons reach the UI. [Follow-up evidence](../reports/browser-wallet/AUTO_CONFIRMATION.md)
+covers 54 wallet/42 client passes and the actual receipt's read-only replay.
+Actual extension acceptance and production qualification remain open.
+
 ## Mint wait and faster local confirmed reads - 2026-10-20
 
 Separate bounded wallet-response/read waits, automatic same-hash receipt retries,

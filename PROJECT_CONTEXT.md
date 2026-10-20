@@ -1,3 +1,27 @@
+## Automatic receipt confirmation follow-up - 2026-10-20
+
+The user still saw manual recovery after mint. The reported b041662e...6822560
+receipt succeeded at block274. Read-only replay with its original review
+reproduced old pending behavior under a synthetic lagging eth_blockNumber;
+this cache condition was not directly observed in the extension.
+
+One-confirmation inclusion now requires two canonical block hash/number reads,
+without a separate cached head veto. Additional confirmations still require
+the configured depth. Automatic polling is 21 attempts/1500ms, bounded by a
+45-second monotonic read budget (each RPC also has its existing 15-second cap).
+This supersedes the previous three-attempt/750ms note. The separate 90-second
+wallet response wait remains. Same hash only; no automatic resubmission.
+Persistent faults retain recovery, and the client displays the specific pending
+reason. Economic, original gas, identity, genesis and reorg checks remain.
+
+54 wallet and 42 client checks pass, with seven new cases. Read-only replay
+confirms the actual mint without signing, acknowledgement or backend writes.
+See reports/browser-wallet/AUTO_CONFIRMATION.md and docs/BROWSER_WALLET.md.
+Refresh Chrome to load the changed client; actual extension acceptance remains
+open. No service/Anvil restart, contract change, public deployment or monitor
+restart. Keep main, preserve unrelated drafts, maintain Todo/features/operator
+procedures and both memories. Production remains NOT APPROVED.
+
 ## Mint confirmation and local read latency - 2026-10-20
 
 The user confirmed the minted NFT appears after Recover status. The successful

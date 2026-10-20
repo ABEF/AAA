@@ -600,8 +600,12 @@ do not erase the journal or repeat a confirmed approval. See
 and the full [receipt procedure](BROWSER_WALLET.md#submission-confirmation-and-artwork).
 
 Wallet response and RPC-read waits are separate: 90 seconds for the extension,
-15 seconds per read. A transient receipt-read fault retries the same hash at most
-three times with 750ms spacing; no retry sends a transaction. If still unresolved,
+15 seconds per read. Confirmation polls the same hash up to 21 times at 1500ms spacing,
+within a 45-second monotonic read budget; no retry sends a transaction.
+One confirmation requires two matching canonical block hash/number reads;
+additional confirmations still require the configured depth. This avoids a
+separate cached head vetoing checked inclusion. See
+[automatic confirmation evidence](../reports/browser-wallet/AUTO_CONFIRMATION.md). If still unresolved,
 inspect the wallet and recover the saved hash. Keep the original request and
 review. Ordinary refresh shows labeled last-confirmed cards with actions disabled;
 read failures or account/session changes must not present those values as current.

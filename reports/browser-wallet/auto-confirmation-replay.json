@@ -1,0 +1,10 @@
+{
+  "transaction": "0xb041662ef159a8ae9778f64d8911b2a99dd24380c1702e8aa92a1ba7c6822560",
+  "receipt_block": "0x112",
+  "receipt_status": "0x1",
+  "actual_rpc_new_reader": "confirmed",
+  "synthetic_lagging_head_before": "pending",
+  "synthetic_lagging_head_after": "confirmed",
+  "sends": 0,
+  "limitation": "Lagging wallet head is reproduced, not directly observed inside the user extension. Original review and actual receipt are used."
+}

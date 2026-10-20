@@ -290,6 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Automatic confirmation follow-up](reports/browser-wallet/AUTO_CONFIRMATION.md): canonical inclusion checks avoid a lagging head veto for one confirmation; 21 same-hash polls at 1500ms spacing have a 45-second total budget. Specific pending reasons reach the UI. Seven new focused cases and read-only actual-receipt replay pass; next extension acceptance remains open. This supersedes the earlier three-attempt polling limit.
   - [Mint wait and local latency](reports/browser-wallet/MINT_WAIT_PERFORMANCE.md): separate 90-second wallet response wait, bounded same-hash receipt retries, and labeled confirmed cards during refresh. Local loopback connection reuse reduced an eight-NFT warm read from 6.057s to 1.904s; this is not production/load qualification. Eight positions and session preserved; no payment resubmitted.
   - [MetaMask connection and approval recovery](reports/browser-wallet/CONNECTION_RECOVERY.md): distinguish site-authorized account, chain ID and exact local genesis; reconnect through fresh public reads. Recognize wallet gas-limit padding only within hard policy and original canonical paid-gas/price/cost ceilings. Preserve the original review and never resend a confirmed approval.
   - Production network selection must request Robinhood Chain from independently reviewed deployment/network configuration, with exact chain, RPC and contract bindings. Local Anvil prompts stay local. Do not enable public signing or reuse a chain-31337 fixture manifest as mainnet configuration.
@@ -787,4 +788,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `96a0cd9ea2ef23970cfc9b540af56a8f93bc928108382d38b6ba0197b40d6667`.
+Snapshot SHA-256: `1fa2b03f659f2a0f7dce91f7c8338661f3ec787b05a24953a0d66a31f892e55f`.
