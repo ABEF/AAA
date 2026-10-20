@@ -21,6 +21,7 @@ class WalletTests(unittest.TestCase):
         self.lab.ids.return_value=['1']
         self.lab.addr.return_value=A
         self.lab.clock.return_value=1000
+        self.lab.rpc.return_value='0x4'
         self.lab.encode.return_value='0xab'
         self.lab.simulate.side_effect=lambda tx:({**tx,'gas':'0x100','gasPrice':'0x1'},{'max_cost_wei':'256'})
         self.lab.preparer.prepare.return_value={'transaction':{'from':A,'to':'vault','value':'0x0','data':'0xab'},'claim_operations':[]}
@@ -56,7 +57,7 @@ class WalletTests(unittest.TestCase):
         payload={'account':A,'draft_id':draft['draft_id']}
         for kind in ['account','revision','wall','chain']:
             with self.subTest(kind=kind):
-                self.lab.operations.revision=5 if kind=='revision' else 4
+                self.lab.operations.revision=3 if kind=='revision' else 4
                 self.lab.clock.return_value=1060 if kind=='chain' else 1000
                 with patch('scripts.local_wallet.time.monotonic',return_value=10**20 if kind=='wall' else 0):
                     with self.assertRaisesRegex(ValueError,'expired'):self.wallet.execute({**payload,'account':B if kind=='account' else A})

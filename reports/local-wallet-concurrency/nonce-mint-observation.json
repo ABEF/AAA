@@ -1,0 +1,58 @@
+{
+  "observed_at": "2026-10-20T01:55:09.963Z",
+  "url": "http://127.0.0.1:8898",
+  "scope": "Two independently reviewed real local mints at the same shared revision; serial chain execution with independent sender nonces",
+  "before_revision": 34,
+  "after_revision": 36,
+  "preserved_existing_nfts": 14,
+  "new_dormant_nfts": [
+    {
+      "id": "95014703312839039105975331363524535267377881629809879161960722846695311988961",
+      "ordinal": 15,
+      "owner": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "active": false
+    },
+    {
+      "id": "25249400364163300429137787617118706771732495629002716149950197453664996951224",
+      "ordinal": 16,
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "active": false
+    }
+  ],
+  "drafts": [
+    {
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "revision": 34,
+      "nonce": "0x28"
+    },
+    {
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "revision": 34,
+      "nonce": "0x4"
+    }
+  ],
+  "outcomes": [
+    {
+      "operation_id": "92723df017024fc68c16ce0e549ff1d2",
+      "status": "confirmed",
+      "revision": 35,
+      "transactions": [
+        "0x75b9ff47045bb1fc34f117224b7d7197077fa2de901aa7e7688f69281536aa6e",
+        "0xf58c19010b8f888fa24a9711b5cdf9474df678c907f141b7df7663d2e05b02d0",
+        "0xd7f066b164a3a7a36db96f41cdea814c3e6193654791a3ee71376e38df21af5a"
+      ],
+      "uncertain": false
+    },
+    {
+      "operation_id": "3c8a9261a84a403da33c9643231cf61f",
+      "status": "confirmed",
+      "revision": 36,
+      "transactions": [
+        "0xd3f41d394af45b23b5ad611187508099e61f37cddff88e37414300c4f7a25b0b",
+        "0x13d3e6d857f45d9d47f7a4e21d619c2ed87eefdd4a5203ce029431307ecb03ee",
+        "0xaef3ae7303114dee4bfe1859546e4778639080f8fca69b165474587bf7c8448c"
+      ],
+      "uncertain": false
+    }
+  ]
+}

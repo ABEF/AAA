@@ -441,3 +441,13 @@ the client fix; use Recover status for a saved pending intent. Do not clear sess
 storage, repeat a confirmed approval or restart/reset Anvil. No permissions or
 contract changes. Reverting the client restores the immediate lock error without
 undoing transactions. [64 scoped cases and actual lock probe](../reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).
+
+
+### Independent local wallet nonces - 2026-10-20
+
+Typed server drafts pin each sender nonce instead of rejecting unrelated-wallet
+revision changes. Exact draft, ownership, lifecycle, expiry, gas and simulation
+checks remain. [70 distinct affected Python cases and two real local mints reviewed
+at the same revision](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md)
+verify the local path; unchanged client evidence is hash-bound. No production
+contract change or production browser-wallet qualification is implied.

@@ -110,7 +110,12 @@ class OperationLedger:
             item=self.items[identifier]
             if item['fingerprint']!=fingerprint:raise LocalConflict('Operation ID already used for different inputs')
             return dict(item['outcome'],replayed=True)
-        if revision!=self.revision:raise LocalConflict('State changed. Refresh before preparing a new action')
+        if payload['action']=='execute':
+            # Only server-held, exact unsigned drafts may span unrelated wallet
+            # operations. The draft binds this envelope revision; execution pins
+            # the sender nonce and resimulates unchanged calldata and gas limits.
+            lab.wallet.validate_draft(payload, revision)
+        elif revision!=self.revision:raise LocalConflict('State changed. Refresh before preparing a new action')
         if len(self.items)>=256:raise LocalConflict('Local session operation limit reached; start a fresh lab')
         if lab.uncertain:raise LocalConflict('Uncertain local submission: inspect submission records and start a fresh lab; do not retry')
         item={'fingerprint':fingerprint,'outcome':{'operation_id':identifier,'status':'pending','transactions':[]}}

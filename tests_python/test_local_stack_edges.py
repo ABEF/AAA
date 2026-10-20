@@ -42,8 +42,11 @@ class OperationTests(unittest.TestCase):
             with self.subTest(payload=payload),self.assertRaises(ValueError):lab.validate_action(payload,[ALICE,BOB])
         self.assertEqual(self.p.calls,0)
     def test_limits_accept_canonical_boundary_values(self):
-        for amount in ['100','99999']:
+        for amount in ['100']:
             lab.validate_action(dict(action='activate',account=ALICE,id=str(2**256-1),amount=amount),[ALICE])
+        for amount in ['101','99999']:
+            with self.assertRaises(ValueError):
+                lab.validate_action(dict(action='activate',account=ALICE,id='1',amount=amount),[ALICE])
         for amount in ['5','99','100','99999']:
             lab.validate_action(dict(action='increase',account=ALICE,id='1',amount=amount),[ALICE])
         for amount in ['4','0','05','5.0','5e0',' 5','5\n',5,True,None]:

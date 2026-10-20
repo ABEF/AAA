@@ -1,6 +1,7 @@
 """Typed confirmation drafts for the launcher-owned disposable Anvil only."""
 import secrets
 import time
+import re
 from scripts.local_inputs import input_for, input_tx, ZERO
 
 UNIT = 10**18
@@ -10,6 +11,24 @@ class LocalWallet:
         self.lab = lab
         self.drafts = {}
         self.wrapped = set()
+
+    def nonce(self, owner):
+        value = self.lab.rpc('eth_getTransactionCount', [owner, 'pending'])
+        if not isinstance(value, str) or not re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]{0,15})', value):
+            raise ValueError('Invalid local account nonce')
+        return value
+
+    def validate_draft(self, payload, revision=None):
+        item = self.drafts.get(payload['draft_id'])
+        if not item or item['used']:
+            raise ValueError('Confirmation is missing or already consumed; refresh')
+        draft = item['public']
+        if (payload['account'] != draft['account'] or
+                (revision is not None and revision != draft['revision']) or
+                draft['revision'] > self.lab.operations.revision or
+                time.monotonic() >= item['deadline'] or self.lab.clock() >= item['chain_deadline']):
+            raise ValueError('Confirmation expired or account/state changed; prepare again')
+        return item
 
     def prepare(self, payload):
         lab = self.lab
@@ -78,7 +97,9 @@ class LocalWallet:
                       'data':lab.encode('approve(address,uint256)',lab.contracts['entry'],approved)}
             else:
                 tx = input_tx(lab,owner,identifier,value,action == 'increase',payload.get('asset'))
-        tx, gas = lab.simulate(tx)
+        # Other wallets do not consume this sender's nonce. Pin it explicitly;
+        # concurrent activity by the SAME sender still needs a fresh review.
+        tx, gas = lab.simulate({**tx, 'nonce': self.nonce(owner)})
         # Bounded expiring drafts. Consumed IDs cannot be made live again.
         now = time.monotonic()
         self.drafts = {key:item for key,item in self.drafts.items() if item['deadline'] > now}
@@ -99,18 +120,28 @@ class LocalWallet:
 
     def execute(self, payload):
         lab = self.lab
-        item = self.drafts.get(payload['draft_id'])
-        if not item or item['used']:
-            raise ValueError('Confirmation is missing or already consumed; refresh')
+        item = self.validate_draft(payload)
         draft = item['public']
-        if (payload['account'] != draft['account'] or lab.operations.revision != draft['revision']
-                or time.monotonic() >= item['deadline'] or lab.clock() >= item['chain_deadline']):
-            raise ValueError('Confirmation expired or account/state changed; prepare again')
+        if lab.uncertain:
+            raise ValueError('Submission state is uncertain; inspect records')
+        if self.nonce(payload['account']) != draft['transaction']['nonce']:
+            raise ValueError('This wallet sent another transaction; prepare a new confirmation')
         # A second owner check applies even to approval, whose calldata alone
         # would not reject a transferred NFT. No hidden approval+Entry sequence.
         identifier = item['payload'].get('id')
         if identifier and lab.addr('nft','ownerOf(uint256)',identifier) != payload['account']:
             raise ValueError('NFT ownership changed; refresh')
+        for claim in draft['claims']:
+            if lab.addr('nft', 'ownerOf(uint256)', claim['token_id']) != payload['account']:
+                raise ValueError('NFT ownership changed; refresh')
+        if item['payload']['action'] == 'mint' and lab.uint('nft','mintedCount()') >= 20:
+            raise ValueError('Local fixture capped at 20 NFTs')
+        if item['payload']['action'] in ('activate', 'increase'):
+            if not lab.api.protocol()['lifecycle']['new_economic_work_available_by_lifecycle']:
+                raise ValueError('New contributions are unavailable in the current lifecycle')
+            active = bool(lab.uint('vault', 'nftBucket(uint256)', identifier))
+            if active != (item['payload']['action'] == 'increase'):
+                raise ValueError('NFT activation state changed; refresh')
         item['used'] = True
         lab.send(draft['transaction'], 'website '+draft['action'], approved=True)
         key=(payload['account'],identifier,item['payload'].get('amount'))

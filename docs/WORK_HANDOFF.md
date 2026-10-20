@@ -1,3 +1,16 @@
+## Independent sender nonce checkpoint - 2026-10-20
+
+Current 8898 web PID20672 uses per-sender nonce-bound wallet drafts, resolving the
+remaining cross-wallet global revision rejection. Anvil PID35896 was preserved.
+Both real local mints reviewed at revision34 confirmed at35/36, adding dormant
+#15 and #16 (one per owner); 14 existing owner/LP records unchanged. Read
+[verification](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
+70 distinct affected Python cases pass. Reload browser pages; old unsigned reviews
+were invalidated by the guarded web-only restart. Preserve saved pending intents
+for identical-ID recovery. Legacy operator actions retain global revision checks.
+No production Solidity/public server/monitor change. Port8896 not upgraded.
+Main only; preserve unrelated drafts and verify Git for publication.
+
 ## Second-wallet submission lock follow-up - 2026-10-20
 
 The browser error was the exact pre-handler /action busy response. Client now

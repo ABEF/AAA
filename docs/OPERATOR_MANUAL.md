@@ -739,3 +739,24 @@ the client fix; use Recover status for a saved pending intent. Do not clear sess
 storage, repeat a confirmed approval or restart/reset Anvil. No permissions or
 contract changes. Reverting the client restores the immediate lock error without
 undoing transactions. [64 scoped cases and actual lock probe](../reports/local-wallet-concurrency/VERIFICATION.md#submission-lock-follow-up---2026-10-20).
+
+
+## Independent local wallet confirmations - 2026-10-20
+
+Typed local wallet drafts now pin the sender nonce. Another wallet's transaction
+no longer invalidates an otherwise valid review. The server still binds the exact
+saved draft/revision/account and freshly simulates unchanged calldata within the
+reviewed gas ceiling; same-wallet nonce changes, expiry, owner changes and invalid
+execution still require fresh review. Legacy operator actions keep global revision
+checks. This supersedes the earlier rule rejecting every cross-wallet revision.
+
+Reload both browsers after the guarded web-only upgrade on 8898. Old unsigned
+reviews are invalidated: review afresh. Recover saved pending outcomes by the same
+operation ID before starting new work; never clear storage to bypass uncertainty.
+No new authority or contract function is introduced. Cancel an unsigned review to
+stop; restoring old service code restores the global conflict behavior, not prior
+chain state. Verify receipts and confirmed ownership/LP after execution. Never
+reset Anvil to resolve a browser confirmation issue. The guarded external recovery
+script preserves existing contracts and positions; ordinary launcher restart does
+not promise persistence. Port 8896 remains on the earlier service until separately
+reloaded. [70 distinct Python cases and two actual local mints](../reports/local-wallet-concurrency/NONCE_VERIFICATION.md).
