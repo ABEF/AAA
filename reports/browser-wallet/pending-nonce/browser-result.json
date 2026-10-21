@@ -1,0 +1,19 @@
+{
+  "scope": "Headless Chrome with mocked wallet, node and API responses; fresh isolated browser storage. No actual transaction or user journal access.",
+  "records": [
+    {
+      "scenario": "changed_nonce",
+      "passed": true,
+      "simulated_sends": 1,
+      "recoveries": 3,
+      "journal_preserved": true
+    },
+    {
+      "scenario": "nonce_gap",
+      "passed": true,
+      "simulated_sends": 1,
+      "recoveries": 3,
+      "journal_preserved": true
+    }
+  ]
+}

@@ -1,3 +1,24 @@
+## Pending mint nonce diagnosis - 2026-10-22
+
+The user explicitly authorized a narrowly scoped read-only confirmation/recovery
+change in browser-wallet.js. Earlier byte-identical instructions remain historical;
+this exception does not authorize nonlocal signing or journal deletion. BrowserClient,
+transaction submission policy and deployment coordinator remain unchanged.
+
+Submitted transactions are checked before receipt polling. Queued/changed/consumed
+nonces return specific diagnostics promptly; normal canonical confirmation guards
+remain. The UI moves past wallet-confirmation text after a hash and keeps Close
+available. No resend, nonce rewrite, transaction drop, chain reset or journal clear.
+
+[Evidence](../reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked headless browser scenarios,
+and six actual read-only recovery observations pass. Syntax/build pass. The actual
+local mint 7df63a...00cc6 uses nonce 35 while the node expects 25 and remains unmined.
+Replay reviews were reconstructed in memory, not taken from the user's browser.
+Controlled queue reconciliation and actual extension acceptance remain open.
+Preserve the running 8902 chain, NFTs/LP, saved transaction and paused monitoring.
+Public DEPLOYMENT remains null; production NOT APPROVED. Use main and maintain
+the sole Todo, features, operator guidance and both memories. Publication is separate.
+
 ## Real local API rehearsal and wallet totals - 2026-10-22
 
 Publication: backend `f068f9f` and website `777fd05` are pushed on main. The

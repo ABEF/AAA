@@ -1,0 +1,17 @@
+{
+  "website": {
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-view.js": "d28817b439d42597a29ba0c391fc4cbe2d2a14abb41830db91fb5281ba07613b",
+    "tests/browser-wallet.test.mjs": "22c319be876d41d60371dbe79c6699f2c5272f5bc673c2f230298a8071329e77",
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08"
+  },
+  "evidence": {
+    "browser-result.json": "26407334b1d1a134973c11fde8a6708eeff08bbcb9f7ef6c76274826d4273908",
+    "browser.mjs": "f5fb3ef8ad2ac132a4ba5230c47483314ea773c156dea55bbee49d603b6fed0a",
+    "observed-transaction.json": "16787d1f20762736b4345fb6d56eea5645d15c20d76bd99f10b10c532bb60e09",
+    "replay.json": "d275a5b077474571c5d56f3836ae171186d9e95892d8ed242bf70daae9855e35",
+    "replay.mjs": "ab907564081b6f5a6c9eab5fb6ab8dd8bd89d5ceeb0746d31668340a9a69bbd0",
+    "tests.log": "ab6a2198dff0e17379eb4229fc3441ecb4df0d621e616ca859b1318ce8b8b1cb"
+  }
+}

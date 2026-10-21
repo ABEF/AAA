@@ -1,0 +1,72 @@
+{
+  "scope": "Actual node reads only; isolated in-memory reconstructed reviews at signed nonce 35 and current nonce 25. The user browser journal was not accessed or altered. No wallet requests, sends, drops or state resets.",
+  "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+  "records": [
+    {
+      "reconstructed_review_nonce": "0x23",
+      "elapsed_ms": 21,
+      "result": {
+        "status": "pending",
+        "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+        "reason": "nonce_gap",
+        "requiresAttention": true,
+        "error": "This transaction uses number 35; the node reports 25 as the next confirmed account number and 25 as its pending-state number. Earlier account transactions are missing or not executable on this node. Repeated recovery cannot resolve that queue. Inspect wallet activity; do not resend this operation."
+      }
+    },
+    {
+      "reconstructed_review_nonce": "0x23",
+      "elapsed_ms": 12,
+      "result": {
+        "status": "pending",
+        "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+        "reason": "nonce_gap",
+        "requiresAttention": true,
+        "error": "This transaction uses number 35; the node reports 25 as the next confirmed account number and 25 as its pending-state number. Earlier account transactions are missing or not executable on this node. Repeated recovery cannot resolve that queue. Inspect wallet activity; do not resend this operation."
+      }
+    },
+    {
+      "reconstructed_review_nonce": "0x23",
+      "elapsed_ms": 9,
+      "result": {
+        "status": "pending",
+        "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+        "reason": "nonce_gap",
+        "requiresAttention": true,
+        "error": "This transaction uses number 35; the node reports 25 as the next confirmed account number and 25 as its pending-state number. Earlier account transactions are missing or not executable on this node. Repeated recovery cannot resolve that queue. Inspect wallet activity; do not resend this operation."
+      }
+    },
+    {
+      "reconstructed_review_nonce": "0x19",
+      "elapsed_ms": 4,
+      "result": {
+        "status": "unresolved",
+        "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+        "error": "Your wallet submitted transaction number 35, but this review requested 25. Inspect the saved transaction in your wallet; it has not been accepted as the reviewed operation. Do not submit it again.",
+        "requiresAttention": true,
+        "reason": "review_nonce_changed"
+      }
+    },
+    {
+      "reconstructed_review_nonce": "0x19",
+      "elapsed_ms": 5,
+      "result": {
+        "status": "unresolved",
+        "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+        "error": "Your wallet submitted transaction number 35, but this review requested 25. Inspect the saved transaction in your wallet; it has not been accepted as the reviewed operation. Do not submit it again.",
+        "requiresAttention": true,
+        "reason": "review_nonce_changed"
+      }
+    },
+    {
+      "reconstructed_review_nonce": "0x19",
+      "elapsed_ms": 3,
+      "result": {
+        "status": "unresolved",
+        "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+        "error": "Your wallet submitted transaction number 35, but this review requested 25. Inspect the saved transaction in your wallet; it has not been accepted as the reviewed operation. Do not submit it again.",
+        "requiresAttention": true,
+        "reason": "review_nonce_changed"
+      }
+    }
+  ]
+}

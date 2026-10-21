@@ -840,6 +840,15 @@ transaction recovery for the production integration. The shared local signer
 and lock remain test-only. Production capacity is unverified, and accepting real
 funds still requires the outstanding dependency and release qualification.
 
+### Queued wallet transaction recovery
+
+If recovery reports a changed or blocked transaction number, use the
+[wallet queue procedure](BROWSER_WALLET.md#queued-or-changed-transaction-numbers).
+Preserve the original hash and review; Close does not cancel a submission.
+Inspect the node and wallet before any separately approved reconciliation.
+Do not reset Anvil, fill nonce gaps, or erase unresolved journals. The diagnostic
+does not add cancellation, replacement discovery or nonlocal signing.
+
 ### Real local API rehearsal and complete wallet totals
 
 Use [the isolated API runbook](LOCAL_API_REHEARSAL.md) to exercise actual local

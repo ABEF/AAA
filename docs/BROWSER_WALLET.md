@@ -289,6 +289,24 @@ permissions or production RPC configuration. A web-only update must authenticate
 the original chain/session/journals; never restart Anvil to clear a slow read.
 See [latency and mint follow-up](../reports/browser-wallet/MINT_WAIT_PERFORMANCE.md).
 
+## Queued or changed transaction numbers
+
+Recovery now checks the submitted transaction before waiting for inclusion.
+A changed nonce, a non-executable predecessor queue on the reviewed node, or a
+consumed nonce without its receipt returns a specific diagnostic immediately.
+Recover status reads the same hash; repeated clicks do not repair a wallet queue.
+Close remains available and does not cancel or erase the transaction.
+
+Keep the original review/hash. Check the selected network/genesis, wallet activity,
+transaction/receipt and latest/pending account nonces. A missing hash is unresolved,
+not proof that nothing was sent. Never auto-resend, clear pending storage, fill
+nonce gaps with payments or reset the chain. Local MetaMask activity can outlive
+a disposable development chain; only after separately reconciling pending sends
+should its documented local activity/nonce reset be considered. That reset does
+not cancel a signed transaction on a node. Public-wallet cancellation/replacement
+reconciliation is not implemented here. See
+[scoped diagnosis and evidence](../reports/browser-wallet/PENDING_NONCE.md).
+
 ## Stop, restart and rollback
 
 The local operator may close an unsigned review at any time. A wallet request
