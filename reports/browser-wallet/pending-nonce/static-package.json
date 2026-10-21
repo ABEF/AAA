@@ -1,0 +1,29 @@
+{
+  "commit": "9aaedec3e0e4ffceef44441515cf2076c6bffa1d",
+  "previous": "777fd0500d9abb5b61ab7e178d408885baccce91",
+  "previous_commit": "777fd0500d9abb5b61ab7e178d408885baccce91",
+  "files": 5598,
+  "changed_files": [
+    "browser-wallet.js",
+    "deployment-view.js"
+  ],
+  "public_bytes": 363133484,
+  "archive": "aaa-website-9aaedec3e0e4ffceef44441515cf2076c6bffa1d-delta.tar.gz",
+  "archive_sha256": "d43dc76cbd528ba8985dbae0a71cb7af336dff327416d79081efcf8a625dd22c",
+  "installer": "install-aaa-website-9aaedec3e0e4ffceef44441515cf2076c6bffa1d-delta.sh",
+  "installer_sha256": "ed41c030d16fceeb9a48603d6a4736e3d039738cb2e7d755c9a8b8eadce30486",
+  "manifest_sha256": "fe8635bd6e55962b2c40dbfef8d33e91e5623884cd86e87eca3ef2bf78735f85",
+  "bytes": 264110,
+  "source_and_build_match_git_blobs": true,
+  "public_html_checks": {
+    "pass": true,
+    "checks": {
+      "development_preview_label": true,
+      "simulation_banner": true,
+      "no_github_reference": true,
+      "no_source_code_link": true
+    },
+    "banner": "PROOF OF PERMANENT LIQUIDITY (Minting and claims are simulated; no real assets move) DEVELOPMENT PREVIEW",
+    "source_code_links": []
+  }
+}

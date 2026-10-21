@@ -1,5 +1,9 @@
 ## Pending mint nonce diagnosis - 2026-10-22
 
+Publication: website `9aaedec` and contract evidence `1bb8668` are on main. The
+static server serves `9aaedec`; all 5,598 file checksums and 50 scoped public
+checks pass. Public DEPLOYMENT remains null. [Receipt](reports/browser-wallet/pending-nonce/PUBLICATION.md).
+
 The user explicitly authorized a narrowly scoped read-only confirmation/recovery
 change in browser-wallet.js. Earlier byte-identical instructions remain historical;
 this exception does not authorize nonlocal signing or journal deletion. BrowserClient,
