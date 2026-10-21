@@ -290,6 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Local-only publication](reports/deployment-local-wallet/PUBLICATION.md): website d786286 is on main and the Ubuntu static server. All 5,598 checksums and 50 scoped public/host/privacy checks pass. Public configuration remains null; no production signing or API deployment.
   - [Local API wallet coordinator](reports/deployment-local-wallet/VERIFICATION.md): 84 affected cases and nine headless scenarios pass with mocked wallet/RPC. Exact approval continues to fresh LP review; receipt recovery never resends, and confirmed/API-lag states are distinct. The user retained local Anvil-only signing; shared signer unchanged. Public signing, live extension/service qualification and replacement-transaction recovery remain open.
   - [Publication receipt](reports/deployment-adapter/PUBLICATION.md): website code 757a8de is on main and the static Ubuntu site; all 5,597 server checksums and 49 scoped public/host/privacy checks passed. Public DEPLOYMENT remains null. This does not enable production APIs or signing.
   - [Reviewed website API profile](docs/DEPLOYMENT_WEBSITE.md) and [scoped evidence](reports/deployment-adapter/VERIFICATION.md): 57 new focused cases and eight isolated browser scenarios pass. Eleven responses come from actual Python API code with byte-level mocked dependencies. No new signer or public transaction; the local-only signer restriction remains. Automatic approval review rejected its proposed expansion, which was not applied.
@@ -804,4 +805,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `fd127cea33ed4a81869c81922af729e2f80ffa56d3c5ef3326ff4b88f1ec4a18`.
+Snapshot SHA-256: `53d3242e5d511111179860984abfae9b9840cc90170cf6818e5879ed1241ba11`.

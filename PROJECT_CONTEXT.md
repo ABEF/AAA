@@ -1,5 +1,10 @@
 ## Local API wallet coordinator - 2026-10-21
 
+Publication: website code `d786286` and contract evidence `59739ea` are on main;
+the static server serves `d786286`. All 5,598 server checksums and 50 scoped public,
+host/redirect/privacy checks passed. Public DEPLOYMENT remains null. See
+[publication evidence](reports/deployment-local-wallet/PUBLICATION.md).
+
 The user explicitly chose **Keep the signer restricted to local Anvil** after
 automatic approval review rejected the broader signer proposal. That proposal
 was not executed. Shared BrowserWallet/BrowserClient remain byte-identical;
