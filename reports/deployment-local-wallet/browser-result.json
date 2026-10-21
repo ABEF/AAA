@@ -1,0 +1,49 @@
+{
+  "scope": "Headless Chrome, mocked wallet/RPC and real Python service response fixtures. No actual transactions or extensions.",
+  "records": [
+    {
+      "case": "public null profile stays simulated",
+      "passed": true
+    },
+    {
+      "case": "mint",
+      "passed": true,
+      "mockWalletSubmissions": 1
+    },
+    {
+      "case": "activate_eth",
+      "passed": true,
+      "mockWalletSubmissions": 1
+    },
+    {
+      "case": "activate_zzz",
+      "passed": true,
+      "mockWalletSubmissions": 1
+    },
+    {
+      "case": "approve_usdc",
+      "passed": true,
+      "mockWalletSubmissions": 2
+    },
+    {
+      "case": "increase_zzz",
+      "passed": true,
+      "mockWalletSubmissions": 1
+    },
+    {
+      "case": "claim",
+      "passed": true,
+      "mockWalletSubmissions": 1
+    },
+    {
+      "case": "rejected_mint",
+      "passed": true,
+      "mockWalletSubmissions": 0
+    },
+    {
+      "case": "lagging_api",
+      "passed": true,
+      "mockWalletSubmissions": 1
+    }
+  ]
+}

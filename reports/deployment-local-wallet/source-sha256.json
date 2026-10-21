@@ -1,0 +1,12 @@
+{
+  "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+  "deployment-api.js": "e372e54dbfbe8591f9a6ab9e416ddc4170a69eebd0ce31c525ccb5412bb29a04",
+  "deployment-session.js": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+  "deployment-view.js": "6a43247c05a088f32d2d7f0a5dcbecbe9bed0d34984bd1606370f48d80424833",
+  "browser-wallet.js": "f7ec8472f08a13b2fef9cf360cb8d6e352f0380e09bc777e069cc3537408c27c",
+  "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+  "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+  "tests/deployment-transactions.test.mjs": "1457af405ddc51070f701979e16936db014fa15474d59ddfad425ccdde37fd62",
+  "tests/deployment-api.test.mjs": "381d3112ec981669bd9b5eff3cb45d7cb11267113dd4555a4edc975e9c6ea542",
+  "tests/fixtures/deployment-api.json": "78aba5b8914c896038797cbbe510d47730ce90716820eef32463f7aeb5619f4b"
+}

@@ -2,9 +2,9 @@
 
 The website now has a separate **read and unsigned-review profile** for the
 existing production-shaped APIs. It is disabled in the shipped build:
-`deployment-config.js` exports `DEPLOYMENT = null`. Public signing is absent from
-this profile, and the existing browser signer still admits only the isolated
-chain-31337 fixture. This is an integration candidate, not deployment approval.
+`deployment-config.js` exports `DEPLOYMENT = null`. Nonlocal profiles remain
+unsigned. The optional local API coordinator reuses the unchanged browser signer,
+which admits only chain 31337; see the local rehearsal procedure below. This is an integration candidate, not deployment approval.
 
 See [verification](../reports/deployment-adapter/VERIFICATION.md),
 [API hosting](API_INGRESS.md), [read API](FRONTEND_API.md),
@@ -26,13 +26,13 @@ See [verification](../reports/deployment-adapter/VERIFICATION.md),
 | Growth review | User enters units of ETH/ZZZ/USDC/USDG, with a verified value of at least $5. Only reviewed enabled inputs/routes are accepted. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
 | LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the backend trace must report at least 99% marginal LP deployed. Review displays simulated LP added and separate network gas. |
-| Submit | **Unavailable.** No signing/submission method is implemented here. The preparation result is not a signable authorization. |
+| Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |
 
 Wallet-page subtotals are deliberately absent: eight cards are not the entire
 portfolio. Full collection aggregation is not wired in this candidate. The
 ordinary overview artwork/examples remain educational examples, not live totals.
 An account change invalidates a review; navigation closes it. Expiry is displayed
-and a new review is required. There is no payment or approval retry path.
+and a new review is required. There is no automatic payment or approval retry. Local recovery only reads the saved transaction.
 
 ## Operator configuration
 
@@ -85,7 +85,7 @@ profile ignores this configuration and retains its own local wallet admission.
    exact unsigned payloads and current simulation results. The committed fixtures
    verify interfaces only; they do not qualify live services or extensions.
 5. Publish only the approved static build. `DEPLOYMENT = null` preserves the
-   public simulation. A non-null configuration enables reads/review, **not sends**.
+   public simulation. A non-null production configuration enables reads/review, **not sends**. A literal-loopback Anvil rehearsal can enable the local wallet coordinator below.
    No server process, production RPC or public deployment is provisioned by the
    new adapter itself.
 
@@ -105,10 +105,60 @@ profile ignores this configuration and retains its own local wallet admission.
 - Preserve the existing local Anvil process, session and journals. Do not reset
   a chain to repair a website configuration/read failure.
 
-The remaining signer extension must preserve explicit sender/network/genesis
-checks, current re-simulation, exact approvals/calldata/gas, durable per-account
-pending journals, canonical confirmation, replacement/reorg recovery and
-confirmed-only LP/artwork updates. Automatic approval review rejected changing
-the shared signer in this work because it could enable signing outside the local
-profile. That change was not executed. It requires a separate explicit approval
-and remains open, together with production qualification and independent audit.
+## Local API wallet rehearsal
+
+On 2026-10-21 the user chose to retain the shared signer's local Anvil restriction.
+The proposed nonlocal signer change was rejected by automatic approval review and
+was not applied. This local-only alternative leaves BrowserWallet/BrowserClient
+unchanged. Public signing is not enabled or authorized by this implementation.
+
+Use an isolated reviewed configuration with `environment: rehearsal`, chain 31337,
+and an HTTP literal `127.0.0.1` page and RPC. All existing deployment, runtime,
+route, fee, provenance and lifecycle pins are still required. The shared signer
+supports at most 32 confirmations. Do not populate this manifest from an arbitrary
+query, wallet or unreviewed API response. Current public config remains null.
+The existing `/app/` launcher and its stored NFTs/journals are a separate profile;
+this change does not restart, reset or reconfigure it.
+
+1. Connect the intended wallet and select an authorized account. Reads/restoration
+   never prompt a signature. An explicit **Switch to [reviewed chain name]** button
+   requests a switch, then verifies the chain and genesis. Unknown networks require
+   the operator's independently reviewed settings; no guessed RPC is auto-added.
+2. Prepare a typed action. The coordinator reads the pending nonce and presents
+   exact calldata/value/gas from the verified API review. Confirm explicitly in the
+   selected wallet. Runtime pins, current simulation, permission, chain/genesis,
+   nonce, funds and spending limits are checked again before the single send.
+3. ERC20 approval is exactly the selected amount. On confirmation the same dialog
+   prepares the complete LP execution and requests a second explicit confirmation.
+   Approval never changes LP/artwork. If the new review still requests approval,
+   stop and explain the changed allowance/amount; never chain another approval.
+   Native ETH needs only the Entry transaction. An existing sufficient allowance
+   also needs only execution. A changed price may require a fresh $100 quote.
+4. The same account/genesis journal and cross-tab lock prevent duplicate sends.
+   Rejection clears only the unsent operation. Unknown submission/receipt errors
+   keep recovery. If the wallet lost its hash response, copy its activity hash into
+   recovery; the signer independently checks exact sender/nonce/calldata/value/fees.
+   Never erase a journal or repeat a confirmed approval to bypass an error.
+5. A confirmed receipt and an API outage are different states: **Confirmed - balances
+   catching up** retains the confirmed journal for read-only recovery. Fresh API
+   provenance must reach the receipt's block. LP activation/growth also requires
+   exactly one matching Entry `SourceContributed` event, confirmed active NFT shares
+   and an available LP valuation. Refresh holds back only that pending contribution's
+   artwork/LP; claims do not mark artwork pending. Market value need not increase by
+   the contribution amount if prices moved; actual execution is evidenced separately.
+6. Failed on-chain execution is reported as reverted, with network gas potentially
+   spent. A canonical failed receipt can be acknowledged without a working API.
+   Successful claims may already have new income; never demand a zero balance.
+   Network/account changes invalidate unsent reviews and preserve saved operations.
+   Return to the original account/deployment to recover its transaction.
+
+Speed-up/cancel replacement-hash discovery is still open: do not clear the original
+journal or silently accept a different hash. Preserve evidence for operator review.
+Actual MetaMask/Rabby acceptance, real API hosting, routes, pricing, fees and
+production capacity still require qualification. [Focused evidence](../reports/deployment-local-wallet/VERIFICATION.md)
+uses mocked providers and real Python response fixtures; it is not a live-chain test.
+
+The implementation follows the [EIP-1193 provider/account-event boundary](https://eips.ethereum.org/EIPS/eip-1193)
+and [explicit chain-switch method](https://eips.ethereum.org/EIPS/eip-3326).
+See also [network-addition semantics](https://eips.ethereum.org/EIPS/eip-3085) and
+[canonical transaction/receipt RPC fields](https://ethereum.org/developers/docs/apis/json-rpc/).

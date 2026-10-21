@@ -1,3 +1,28 @@
+## Local API wallet coordinator - 2026-10-21
+
+The user explicitly chose **Keep the signer restricted to local Anvil** after
+automatic approval review rejected the broader signer proposal. That proposal
+was not executed. Shared BrowserWallet/BrowserClient remain byte-identical;
+never generalize public signing from this work or treat it as release approval.
+
+The reviewed API profile now has a local-only coordinator for mint, exact approval,
+activation/growth and ETH claims. It requires environment rehearsal, chain 31337,
+HTTP literal-loopback page and RPC. Nonlocal profiles remain unsigned. Approval
+continues to a fresh complete LP review, never an automatic send or second approval.
+Recovery retains the original journal/hash. Confirmed receipts with a lagging API
+are labeled confirmed, with balances catching up. LP/artwork require the matching
+Entry event and a confirmed active NFT position; claims do not mark artwork pending.
+
+Read [operator procedure](docs/DEPLOYMENT_WEBSITE.md#local-api-wallet-rehearsal)
+and [scoped evidence](reports/deployment-local-wallet/VERIFICATION.md): 84 affected
+cases (57 API/session plus 27 coordinator) and nine headless browser scenarios.
+The wallet/RPC are mocked; no actual extension or chain transaction was performed.
+All 13 prior shared signer/backend bindings remain unchanged. Existing Anvil/8900,
+wallet state, paused monitoring and the deferred load campaign remain untouched.
+Public DEPLOYMENT is null. Production integration/qualification and independent
+audit remain open. Use main; preserve unrelated drafts; maintain the one Todo,
+features, operator guidance and both memories. Check Git/publication receipts.
+
 ## Reviewed website API profile - 2026-10-21
 
 Publication: website code `757a8de` and contract docs `1dc05d3` are pushed on

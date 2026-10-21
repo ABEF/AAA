@@ -1,0 +1,13 @@
+{
+  "website_commit": "d786286",
+  "static_files": 5598,
+  "syntax": [
+    "deployment-transactions.js",
+    "deployment-session.js",
+    "deployment-view.js"
+  ],
+  "source_bindings_match": true,
+  "unchanged_prior_bindings": 13,
+  "todo_check": "pass",
+  "relative_document_links": "pass"
+}

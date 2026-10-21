@@ -285,11 +285,12 @@ What holders see and use.
 
 <a id="task-wallet"></a>
 
-- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. Local browser signing remains available. A separate default-disabled reviewed deployment profile now reads the production API and prepares exact unsigned mint, approval, activation/top-up and ETH-claim reviews. Public signing, actual extension acceptance and qualified deployment/routes/services remain open.
+- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. The reviewed API now connects to the existing signer only in a literal-loopback Anvil rehearsal. Mint, exact approval, activation/growth and ETH claims have submission/recovery and confirmed-state reconciliation. The user retained local-only signing; nonlocal profiles remain unsigned. Actual extension acceptance and production deployment/routes/services remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Local API wallet coordinator](reports/deployment-local-wallet/VERIFICATION.md): 84 affected cases and nine headless scenarios pass with mocked wallet/RPC. Exact approval continues to fresh LP review; receipt recovery never resends, and confirmed/API-lag states are distinct. The user retained local Anvil-only signing; shared signer unchanged. Public signing, live extension/service qualification and replacement-transaction recovery remain open.
   - [Publication receipt](reports/deployment-adapter/PUBLICATION.md): website code 757a8de is on main and the static Ubuntu site; all 5,597 server checksums and 49 scoped public/host/privacy checks passed. Public DEPLOYMENT remains null. This does not enable production APIs or signing.
   - [Reviewed website API profile](docs/DEPLOYMENT_WEBSITE.md) and [scoped evidence](reports/deployment-adapter/VERIFICATION.md): 57 new focused cases and eight isolated browser scenarios pass. Eleven responses come from actual Python API code with byte-level mocked dependencies. No new signer or public transaction; the local-only signer restriction remains. Automatic approval review rejected its proposed expansion, which was not applied.
   - [Publication checkpoint](reports/browser-wallet/PUBLICATION.md): latest wallet/backend code is on main and the matching static website is deployed and checksum-verified. Public mode remains simulated; actual extension acceptance and production qualification remain open. No unchanged suites or deferred capacity campaign rerun.
@@ -347,6 +348,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Local API wallet coordinator](reports/deployment-local-wallet/VERIFICATION.md): 84 affected cases and nine headless scenarios pass with mocked wallet/RPC. Exact approval continues to fresh LP review; receipt recovery never resends, and confirmed/API-lag states are distinct. The user retained local Anvil-only signing; shared signer unchanged. Public signing, live extension/service qualification and replacement-transaction recovery remain open.
   - [Unsigned review profile](docs/DEPLOYMENT_WEBSITE.md) displays exact token units, simulated marginal LP addition, separate gas and expiry. It independently reconstructs typed calls, requires the 99% deployment floor and exact approval to Entry. Activation targets $100 with raw-unit round-up; growth requires at least $5. No submission/receipt path exists in this profile yet.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.
@@ -802,4 +804,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8be92e13aee93d135afbd1ae2914274c66c5727c68ab6500c3ded2c04a1fb624`.
+Snapshot SHA-256: `fd127cea33ed4a81869c81922af729e2f80ffa56d3c5ef3326ff4b88f1ec4a18`.
