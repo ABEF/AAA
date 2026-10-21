@@ -281,3 +281,14 @@ All reads use the same confirmed hash and final canonicality check; missing or
 malformed getters fail rather than assuming minting is open. Deployment pins must
 match this NFT implementation. Existing deployments without `mintPaused()` need
 a compatible service version. See [controls evidence](../reports/operator-controls/VERIFICATION.md).
+
+## Wallet summary chunks
+
+`GET /v1/wallets/{address}/summary/{block-number}/{offset}` returns schema1
+summary chunks under the same schema2 reviewed deployment. Each chunk covers
+at most16 holdings. Use the wallet inventory snapshot, offsets0/16/32, and
+require the same inventory digest, ordered IDs, owner, count and canonical block.
+Only display totals once every chunk is verified; never present partial sums.
+LP uses currentLPValue; funded ETH combines LP and royalties. Missing values
+remain null. Historical earnings and unconverted source currencies are excluded.
+See [aggregation and recovery procedure](LOCAL_API_REHEARSAL.md#full-wallet-totals).

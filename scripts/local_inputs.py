@@ -31,6 +31,10 @@ def configure_inputs(lab):
         lab.call(assets,'setAsset(address,bool,bytes32,bytes32)',token,True,lab.pin(token)['code_hash'],review)
         lab.call(factory,'create(address,address)',token,zzz)
         pool=lab.addr(factory,'getPool(address,address,uint24)',token,zzz,500)
+        if getattr(lab.args,'venue_fixture',None)=='LocalAPIVenue':
+            # Explicit reserve presence for the API fixture, no real V3 pool claim.
+            lab.call(token,'transfer(address,uint256)',pool,1000*10**a['decimals'])
+            lab.call(zzz,'transfer(address,uint256)',pool,1000*UNIT)
         values=[token,zzz,router,factory,pool,500,*[lab.pin(x)['code_hash'] for x in (router,factory,pool,token,zzz)],review]
         signature='(address,address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32)'
         tuple_value='('+','.join(map(str,values))+')'

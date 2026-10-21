@@ -527,6 +527,11 @@ class Projection:
         return result
 
     @bounded_request
+    def wallet_summary(self, wallet_address, block_number, offset=0):
+        from frontend_api.portfolio import read
+        return read(self, wallet_address, block_number, offset)
+
+    @bounded_request
     def wallet(self, wallet_address: Any) -> dict[str, Any]:
         wallet = address(wallet_address)
         if self.history is None:

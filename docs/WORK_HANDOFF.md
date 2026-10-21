@@ -1,3 +1,27 @@
+## Real local API rehearsal and wallet totals - 2026-10-22
+
+The reviewed API coordinator now has actual local-chain evidence: mint, native
+activation, exact USDC approval, $5 growth and a combined ETH claim. A deliberately
+interrupted post-claim API read recovered the same confirmed hash with one send.
+Wallet-wide LP and funded ETH totals use bounded 16-NFT chunks at one confirmed
+block and complete inventory; missing/partial/mismatched data never becomes zero
+or a partial total. Historical earnings remain per NFT; collection-wide aggregation
+and portfolio-wide historical earnings are still separate open work.
+
+Read [runbook](LOCAL_API_REHEARSAL.md) and
+[scoped evidence](../reports/api-chain-rehearsal/VERIFICATION.md). APIs, core contracts,
+receipts and transfers are real on isolated Anvil; venue math, token markets,
+feeds and VRF are explicit local substitutes. The signing test uses an EIP-1193
+RPC shim, not actual MetaMask/Rabby acceptance. Shared BrowserWallet/BrowserClient
+remain byte-identical and local-only; public DEPLOYMENT remains null.
+
+Separate fixture: port8902, external api-chain-rehearsal/runs; read running.json
+before process control. Prior8900 processes were already absent; its saved files
+were untouched. Monitor remains paused; the deferred load campaign was not run.
+No production Solidity change or public transaction. Main only; preserve unrelated
+drafts and keep the sole Todo, feature evidence, operator guidance and memories aligned.
+Publication is recorded separately; inspect Git and the publication receipt.
+
 ## Local API wallet coordinator - 2026-10-21
 
 Publication: website code `d786286` and contract evidence `59739ea` are on main;

@@ -1,0 +1,638 @@
+{
+  "scope": "Actual Anvil + production unsigned APIs + shared local-only signer; RPC provider shim, NOT actual extension acceptance",
+  "run": "run-20261022-001857-b830df",
+  "started": "2026-10-21T22:20:07.866Z",
+  "journey": [
+    {
+      "intent": {
+        "action": "mint"
+      },
+      "review": {
+        "action": "mint",
+        "requested_action": "mint",
+        "intent": {
+          "action": "mint",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "transaction": {
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "data": "0x21bf772d",
+          "value": "0xb1a2bc2ec50000",
+          "chainId": "0x7a69",
+          "gas": "0x6bc0f",
+          "gasPrice": "0x3b9aca07",
+          "nonce": "0x0"
+        },
+        "network_gas": {
+          "gas_limit": "441359",
+          "gas_price_wei": "1000000007",
+          "max_cost_wei": "441359003089513"
+        },
+        "source": null,
+        "claims": [],
+        "minimum_deployed_usd_18": null,
+        "liquidity_context": null,
+        "simulated_lp_added_usd_18": null,
+        "prepared_at": 1792621215,
+        "expires_at": 1792621275,
+        "provenance": {
+          "block_number": 164,
+          "block_hash": "0xdd955558431d2b134b8b8fa207633c21b29db45b32d313ef7ad0b3f772427965",
+          "block_timestamp": 1792621211,
+          "observed_head": 164,
+          "confirmations": 1,
+          "protocol_finalized": false,
+          "eip1898_require_canonical": true,
+          "deployment_block": 11,
+          "deployment_block_hash": "0x6d022f9dd5b88a8db118dee8a380d91b09541231bc08436bd15f5a9a858f3070",
+          "configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a",
+          "transaction_configuration_sha256": "cc25c42fedb22f2d8e20df88fe32e96cc231e80d941a46785f287f12e0dd5870"
+        },
+        "signing_enabled": true,
+        "notice": "Confirm this exact local Anvil transaction in your selected wallet."
+      },
+      "result": {
+        "status": "confirmed",
+        "hash": "0x2b2ee238b7754e5ef3abfc588341c1ea092ac66ae361eb34ec70cebca80d26fb",
+        "receipt": {
+          "transactionHash": "0x2b2ee238b7754e5ef3abfc588341c1ea092ac66ae361eb34ec70cebca80d26fb",
+          "transactionIndex": "0x0",
+          "blockNumber": "0xa5",
+          "blockHash": "0x408db0c25dc6961dbc1677b7c31dff2d968b0228cb15b8f3cc20149ea724c487",
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "status": "0x1",
+          "gasUsed": "0x586d7",
+          "effectiveGasPrice": "0x3b9aca07"
+        },
+        "action": "mint",
+        "intent": {
+          "action": "mint",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "reconciled": true
+      },
+      "balanceBefore": "0x84595161401484a000000",
+      "balanceAfter": "0x84595156115211458aa1f"
+    },
+    {
+      "intent": {
+        "action": "activate",
+        "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+        "asset": "ETH",
+        "amount": "100"
+      },
+      "review": {
+        "action": "activate",
+        "requested_action": "activate",
+        "intent": {
+          "action": "activate",
+          "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+          "asset": "ETH",
+          "amount": "100",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "transaction": {
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+          "value": "0x56bc75e2d63100000",
+          "chainId": "0x7a69",
+          "data": "0x35b13b87dec21d1e4f1f7c79d32aa4a2d4f038c976facd442d4cfe8605c5ddf80731bb00313f51c67b91e6383dc9a4a61938e9579cd2f83799641a894fa250d09e60054d00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000056bc75e2d6310000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005a298963fd1db0000000000000000000000000000000000000000000000000000000000006ad93ae50000000000000000000000000000000000000000000000000000000000000000",
+          "gas": "0x355294",
+          "gasPrice": "0x3b9aca07",
+          "nonce": "0x1"
+        },
+        "network_gas": {
+          "gas_limit": "3494548",
+          "gas_price_wei": "1000000007",
+          "max_cost_wei": "3494548024461836"
+        },
+        "source": {
+          "asset": "0x0000000000000000000000000000000000000000",
+          "amount_raw": "100000000000000000000",
+          "value_usd_18": "100000000000000000000"
+        },
+        "claims": [],
+        "minimum_deployed_usd_18": "99000000000000000000",
+        "liquidity_context": {
+          "bucket_id": "72260044946391209933368443107637924749833042619333683486130434451645283073016",
+          "lp_token_id": "1",
+          "range_basis": "existing_position",
+          "lower_tick": -1080,
+          "upper_tick": 960,
+          "current_tick": 0,
+          "sqrt_price_x96": "79228162514264337593543950336",
+          "in_range": true,
+          "configured_target_half_width_bps": 1000,
+          "rebalance": {
+            "status": "cooldown",
+            "eligible_at_snapshot": false,
+            "last_rebalance_at": 1792621153,
+            "cooldown_seconds": 600,
+            "earliest_eligible_at": 1792621753,
+            "earliest_eligible_utc": "2026-10-21T22:29:13+00:00",
+            "price_trigger_met": false,
+            "trigger_bps": 300,
+            "range_update_pending": false,
+            "eligibility_reason": null,
+            "next_keeper_check_at": null,
+            "expected_execution_at": null,
+            "schedule_source": "unavailable",
+            "explanation": "Earliest rebalance eligibility: 2026-10-21T22:29:13+00:00; the price trigger and safety checks must also pass."
+          },
+          "warnings": [],
+          "reprepare_on_position_or_range_change": true
+        },
+        "simulated_lp_added_usd_18": "100000000000000000000",
+        "prepared_at": 1792621228,
+        "expires_at": 1792621285,
+        "provenance": {
+          "block_number": 167,
+          "block_hash": "0x2e0cfc39e8797b34b5fa906bd598b6e38c4c0bd06827a0929759adc18d16aa85",
+          "block_timestamp": 1792621216,
+          "observed_head": 167,
+          "confirmations": 1,
+          "eip1898_require_canonical": true,
+          "protocol_finalized": false,
+          "deployment_configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a",
+          "activation_configuration_sha256": "9c25c0eddf8677aeb4c6e3e7aad3bad04172fcd2ac22ea8a54a7f28dc5e91920"
+        },
+        "signing_enabled": true,
+        "notice": "Confirm this exact local Anvil transaction in your selected wallet."
+      },
+      "result": {
+        "status": "confirmed",
+        "hash": "0x4b54febfea3bedaa77367d2b396fd9dc4d23c6609cd1818e5fab28f7bcc92262",
+        "receipt": {
+          "transactionHash": "0x4b54febfea3bedaa77367d2b396fd9dc4d23c6609cd1818e5fab28f7bcc92262",
+          "transactionIndex": "0x0",
+          "blockNumber": "0xa9",
+          "blockHash": "0x5ebc0f0617d6916f24953e83ccae8c68b5e9f4deef810531e893247bae838407",
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+          "status": "0x1",
+          "gasUsed": "0x262771",
+          "effectiveGasPrice": "0x3b9aca07"
+        },
+        "action": "activate",
+        "intent": {
+          "action": "activate",
+          "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+          "asset": "ETH",
+          "amount": "100",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "reconciled": true
+      },
+      "balanceBefore": "0x84595156115211458aa1f",
+      "balanceAfter": "0x8458fa990d4cad0246c08"
+    },
+    {
+      "intent": {
+        "action": "increase",
+        "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+        "asset": "USDC",
+        "amount": "5"
+      },
+      "review": {
+        "action": "approve",
+        "requested_action": "increase",
+        "intent": {
+          "action": "increase",
+          "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+          "asset": "USDC",
+          "amount": "5",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "transaction": {
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "value": "0x0",
+          "chainId": "0x7a69",
+          "data": "0x095ea7b3000000000000000000000000f3c6cf1c13ecc07204befce90ee14b5bf8bba4c900000000000000000000000000000000000000000000000000000000004c4b40",
+          "gas": "0xdf61",
+          "gasPrice": "0x3b9aca07",
+          "nonce": "0x2"
+        },
+        "network_gas": {
+          "gas_limit": "57185",
+          "gas_price_wei": "1000000007",
+          "max_cost_wei": "57185000400295"
+        },
+        "source": {
+          "asset": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "amount_raw": "5000000",
+          "value_usd_18": "5000000000000000000"
+        },
+        "claims": [],
+        "minimum_deployed_usd_18": "4950000000000000000",
+        "liquidity_context": {
+          "bucket_id": "72260044946391209933368443107637924749833042619333683486130434451645283073016",
+          "lp_token_id": "1",
+          "range_basis": "existing_position",
+          "lower_tick": -1080,
+          "upper_tick": 960,
+          "current_tick": 0,
+          "sqrt_price_x96": "79228162514264337593543950336",
+          "in_range": true,
+          "configured_target_half_width_bps": 1000,
+          "rebalance": {
+            "status": "cooldown",
+            "eligible_at_snapshot": false,
+            "last_rebalance_at": 1792621153,
+            "cooldown_seconds": 600,
+            "earliest_eligible_at": 1792621753,
+            "earliest_eligible_utc": "2026-10-21T22:29:13+00:00",
+            "price_trigger_met": false,
+            "trigger_bps": 300,
+            "range_update_pending": false,
+            "eligibility_reason": null,
+            "next_keeper_check_at": null,
+            "expected_execution_at": null,
+            "schedule_source": "unavailable",
+            "explanation": "Earliest rebalance eligibility: 2026-10-21T22:29:13+00:00; the price trigger and safety checks must also pass."
+          },
+          "warnings": [],
+          "reprepare_on_position_or_range_change": true
+        },
+        "simulated_lp_added_usd_18": null,
+        "prepared_at": 1792621243,
+        "expires_at": 1792621299,
+        "provenance": {
+          "block_number": 169,
+          "block_hash": "0x5ebc0f0617d6916f24953e83ccae8c68b5e9f4deef810531e893247bae838407",
+          "block_timestamp": 1792621229,
+          "observed_head": 169,
+          "confirmations": 1,
+          "eip1898_require_canonical": true,
+          "protocol_finalized": false,
+          "deployment_configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a",
+          "activation_configuration_sha256": "9c25c0eddf8677aeb4c6e3e7aad3bad04172fcd2ac22ea8a54a7f28dc5e91920"
+        },
+        "signing_enabled": true,
+        "notice": "Confirm this exact local Anvil transaction in your selected wallet."
+      },
+      "result": {
+        "status": "confirmed",
+        "hash": "0x444d5fe0b6325cda53a7567d98c163a8b3b511eb2852cf8119a4719c39be827b",
+        "receipt": {
+          "transactionHash": "0x444d5fe0b6325cda53a7567d98c163a8b3b511eb2852cf8119a4719c39be827b",
+          "transactionIndex": "0x0",
+          "blockNumber": "0xab",
+          "blockHash": "0xc5ac7406fc08d0f5d558372e72f2a204913ddd2e5b0357bb02b7734f92df2227",
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "status": "0x1",
+          "gasUsed": "0xba26",
+          "effectiveGasPrice": "0x3b9aca07"
+        },
+        "action": "approve",
+        "intent": {
+          "action": "increase",
+          "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+          "asset": "USDC",
+          "amount": "5",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "reconciled": true
+      },
+      "balanceBefore": "0x8458fa990d4cad0246c08",
+      "balanceAfter": "0x8458fa990a973806158fe"
+    },
+    {
+      "intent": {
+        "action": "increase",
+        "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+        "asset": "USDC",
+        "amount": "5"
+      },
+      "review": {
+        "action": "increase",
+        "requested_action": "increase",
+        "intent": {
+          "action": "increase",
+          "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+          "asset": "USDC",
+          "amount": "5",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "transaction": {
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+          "value": "0x0",
+          "chainId": "0x7a69",
+          "data": "0x35b13b87dec21d1e4f1f7c79d32aa4a2d4f038c976facd442d4cfe8605c5ddf80731bb00313f51c67b91e6383dc9a4a61938e9579cd2f83799641a894fa250d09e60054d000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc900000000000000000000000000000000000000000000000000000000004c4b403a96cfa3192578800239928d917f51002ca08d6bce7412a209a77f775601613f00000000000000000000000000000000000000000000000044b1eec6162f000000000000000000000000000000000000000000000000000044b1eec6162f0000000000000000000000000000000000000000000000000000000000006ad93afd0000000000000000000000000000000000000000000000000000000000000001",
+          "gas": "0x31ed31",
+          "gasPrice": "0x3b9aca07",
+          "nonce": "0x3"
+        },
+        "network_gas": {
+          "gas_limit": "3271985",
+          "gas_price_wei": "1000000007",
+          "max_cost_wei": "3271985022903895"
+        },
+        "source": {
+          "asset": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "amount_raw": "5000000",
+          "value_usd_18": "5000000000000000000"
+        },
+        "claims": [],
+        "minimum_deployed_usd_18": "4950000000000000000",
+        "liquidity_context": {
+          "bucket_id": "72260044946391209933368443107637924749833042619333683486130434451645283073016",
+          "lp_token_id": "1",
+          "range_basis": "existing_position",
+          "lower_tick": -1080,
+          "upper_tick": 960,
+          "current_tick": 0,
+          "sqrt_price_x96": "79228162514264337593543950336",
+          "in_range": true,
+          "configured_target_half_width_bps": 1000,
+          "rebalance": {
+            "status": "cooldown",
+            "eligible_at_snapshot": false,
+            "last_rebalance_at": 1792621153,
+            "cooldown_seconds": 600,
+            "earliest_eligible_at": 1792621753,
+            "earliest_eligible_utc": "2026-10-21T22:29:13+00:00",
+            "price_trigger_met": false,
+            "trigger_bps": 300,
+            "range_update_pending": false,
+            "eligibility_reason": null,
+            "next_keeper_check_at": null,
+            "expected_execution_at": null,
+            "schedule_source": "unavailable",
+            "explanation": "Earliest rebalance eligibility: 2026-10-21T22:29:13+00:00; the price trigger and safety checks must also pass."
+          },
+          "warnings": [],
+          "reprepare_on_position_or_range_change": true
+        },
+        "simulated_lp_added_usd_18": "5000000000000000000",
+        "prepared_at": 1792621252,
+        "expires_at": 1792621309,
+        "provenance": {
+          "block_number": 171,
+          "block_hash": "0xc5ac7406fc08d0f5d558372e72f2a204913ddd2e5b0357bb02b7734f92df2227",
+          "block_timestamp": 1792621243,
+          "observed_head": 171,
+          "confirmations": 1,
+          "eip1898_require_canonical": true,
+          "protocol_finalized": false,
+          "deployment_configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a",
+          "activation_configuration_sha256": "9c25c0eddf8677aeb4c6e3e7aad3bad04172fcd2ac22ea8a54a7f28dc5e91920"
+        },
+        "signing_enabled": true,
+        "notice": "Confirm this exact local Anvil transaction in your selected wallet."
+      },
+      "result": {
+        "status": "confirmed",
+        "hash": "0xf5ef1af338c45ae46beecb031f1062a5f6f76e031bbfba10407ff021d1838fc3",
+        "receipt": {
+          "transactionHash": "0xf5ef1af338c45ae46beecb031f1062a5f6f76e031bbfba10407ff021d1838fc3",
+          "transactionIndex": "0x0",
+          "blockNumber": "0xac",
+          "blockHash": "0x7ab5a0272dc2cf9094ac01c159c2c042179e4198dc8b083a425bf7a052c4cc1c",
+          "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+          "to": "0xf3c6cf1c13ecc07204befce90ee14b5bf8bba4c9",
+          "status": "0x1",
+          "gasUsed": "0x22d830",
+          "effectiveGasPrice": "0x3b9aca07"
+        },
+        "action": "increase",
+        "intent": {
+          "action": "increase",
+          "id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+          "asset": "USDC",
+          "amount": "5",
+          "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+        },
+        "reconciled": true
+      },
+      "balanceBefore": "0x8458fa990a973806158fe",
+      "balanceAfter": "0x8458fa9888c8ee3f78fae"
+    }
+  ],
+  "newNft": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+  "grown": {
+    "schema": 2,
+    "chain_id": 31337,
+    "token_id": "100756421683827225446845997262262578614920473362893519117181363164381717838592",
+    "mint_ordinal": 19,
+    "lifecycle": {
+      "state": "operating",
+      "state_code": 0,
+      "handoff_phase": "idle",
+      "preparation_active": false,
+      "paused": false,
+      "origin": {
+        "chain_id": 31337,
+        "vault": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6"
+      },
+      "origin_available": true,
+      "predecessor_controller": null,
+      "successor_controller": null,
+      "handoff_destination_controller": null,
+      "peer_deployments_verified": false,
+      "claims_available_by_lifecycle": true,
+      "transfers_available_by_lifecycle": true,
+      "new_economic_work_available_by_lifecycle": true,
+      "scope": "Confirmed same-chain lifecycle only. Flags are lifecycle permissions, not execution guarantees. Peer addresses are source commitments; no peer code or cross-chain finality is verified."
+    },
+    "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+    "traits_ready": true,
+    "traits": {
+      "rarity": "Legendary",
+      "palette": 27,
+      "pattern": 0
+    },
+    "position": {
+      "status": "active",
+      "bucket_id": "72260044946391209933368443107637924749833042619333683486130434451645283073016",
+      "shares_raw": "104965990801321500291",
+      "local_custody": {
+        "pool_id": "0x313f51c67b91e6383dc9a4a61938e9579cd2f83799641a894fa250d09e60054d",
+        "lp_token_id": "1",
+        "bucket_total_shares_raw": "15536965990801321500291",
+        "share_numerator_raw": "104965990801321500291",
+        "share_denominator_raw": "15536965990801321500291",
+        "last_rebalance_at": 1792621153,
+        "identity_source": "Vault.group at the confirmed snapshot"
+      },
+      "cumulative_gross_contribution_usd_18": "105000000000000000000",
+      "activated": true,
+      "royalty_weight": 3,
+      "current_lp_value": {
+        "available": true,
+        "raw": "104999999999999999999",
+        "decimals": 18,
+        "unit": "USD",
+        "source": "NFT.currentLPValue",
+        "reason": null
+      },
+      "evolution": "activated",
+      "evolution_value_available": true,
+      "principal_redeemable": false
+    },
+    "claimable": {
+      "lp": [
+        {
+          "asset": "0x0000000000000000000000000000000000000000",
+          "symbol": "ETH",
+          "decimals": 18,
+          "raw": "0"
+        },
+        {
+          "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+          "symbol": "WETH",
+          "decimals": 18,
+          "raw": "0"
+        },
+        {
+          "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+          "symbol": "ZZZ",
+          "decimals": 18,
+          "raw": "0"
+        }
+      ],
+      "default_settlement": "native_eth",
+      "royalties": [
+        {
+          "asset": "0x0000000000000000000000000000000000000000",
+          "symbol": "ETH",
+          "decimals": 18,
+          "raw": "0"
+        }
+      ],
+      "lp_scope": "Already allocated funded rewards; pending creator inbox receipts are not simulated.",
+      "royalty_scope": "Contract view includes pending admitted receipts at this currency's eligible membership weights. ETH also includes unclaimed conversion credits."
+    },
+    "royalty_reporting": {
+      "available": false,
+      "reason": "Current royalty-ledger reporting profile is not configured; no per-currency eligibility or conversion status is inferred."
+    },
+    "unavailable_metrics": {
+      "fees_all_time": "Requires funded-receipt history and attribution; current balances are not lifetime revenue.",
+      "fees_last_24h": "Requires timestamped funded-receipt history and attribution; no volume-based estimate is substituted.",
+      "reward_usd": "No reviewed historical/current reward-asset USD conversion is configured.",
+      "individual_collective_breakdown": "LP claimable is the exact contract total; unsettled component projections are not reconstructed."
+    },
+    "contracts": {
+      "access": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+      "nft": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+      "vault": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+      "rewards": "0x9a676e781a523b5d0c0e43731313a708cb607508",
+      "royalties": "0x8ff3801288a85ea261e4277d44e1131ea736f77b",
+      "claim_router": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+      "handoff": "0xa82ff9afd8f496c3d6ac40e2a0f282e47488cfc9",
+      "vault_canonical": "0x8f86403a4de0bb5791fa46b8e795c547942fe4cf"
+    },
+    "provenance": {
+      "block_number": 173,
+      "block_hash": "0x3af64484e097670259841f4f95bacdec000e70578f1536a74125c8a50570a1c7",
+      "block_timestamp": 1792621257,
+      "observed_head": 173,
+      "confirmations": 1,
+      "finality": "confirmation_depth_only",
+      "protocol_finalized": false,
+      "eip1898_require_canonical": true,
+      "deployment_block": 11,
+      "deployment_block_hash": "0x6d022f9dd5b88a8db118dee8a380d91b09541231bc08436bd15f5a9a858f3070",
+      "configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a"
+    },
+    "wallet_inventory_endpoint": "/v1/wallets/0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc/nfts",
+    "previously_claimed": {
+      "available": true,
+      "assets": [
+        {
+          "asset": "0x0000000000000000000000000000000000000000",
+          "lp_raw": "0",
+          "royalties_raw": "0",
+          "total_raw": "0",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        {
+          "asset": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+          "lp_raw": "0",
+          "royalties_raw": "0",
+          "total_raw": "0",
+          "symbol": "WETH",
+          "decimals": 18
+        },
+        {
+          "asset": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+          "lp_raw": "0",
+          "royalties_raw": "0",
+          "total_raw": "0",
+          "symbol": "ZZZ",
+          "decimals": 18
+        }
+      ],
+      "scope": "All-time NFT claims, including LP and royalties paid to every past/current owner.",
+      "provenance": {
+        "available": true,
+        "from_block": 11,
+        "start_block_hash": "0x6d022f9dd5b88a8db118dee8a380d91b09541231bc08436bd15f5a9a858f3070",
+        "start_parent_hash": "0xbb2061e54cdf62c18d6737ad31ff3040ce6856d0d9cf2a4eac5677e5e495c1fc",
+        "through_block": 173,
+        "block_hash": "0x3af64484e097670259841f4f95bacdec000e70578f1536a74125c8a50570a1c7",
+        "indexer_next_block": 174,
+        "logs_examined": 134,
+        "claim_events": 0,
+        "royalty_conversion_events": 0,
+        "lp_conversion_events": 3,
+        "minted_count": 19,
+        "scope": "All owners and all prior claims through the exact confirmed block, per NFT and asset.",
+        "completeness": "Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof."
+      }
+    },
+    "royalty_conversions": {
+      "available": true,
+      "assets": [],
+      "total_eth_credited_raw": "0",
+      "eth_decimals": 18,
+      "provenance": {
+        "available": true,
+        "from_block": 11,
+        "start_block_hash": "0x6d022f9dd5b88a8db118dee8a380d91b09541231bc08436bd15f5a9a858f3070",
+        "start_parent_hash": "0xbb2061e54cdf62c18d6737ad31ff3040ce6856d0d9cf2a4eac5677e5e495c1fc",
+        "through_block": 173,
+        "block_hash": "0x3af64484e097670259841f4f95bacdec000e70578f1536a74125c8a50570a1c7",
+        "indexer_next_block": 174,
+        "logs_examined": 134,
+        "claim_events": 0,
+        "royalty_conversion_events": 0,
+        "lp_conversion_events": 3,
+        "minted_count": 19,
+        "scope": "All owners and all prior claims through the exact confirmed block, per NFT and asset.",
+        "completeness": "Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof."
+      },
+      "scope": "Lifetime NFT conversion credits across the complete configured same-chain lineage. Not claims, new revenue, or the remaining claimable balance."
+    },
+    "lp_conversions": {
+      "available": true,
+      "assets": [],
+      "total_eth_credited_raw": "0",
+      "eth_decimals": 18,
+      "provenance": {
+        "available": true,
+        "from_block": 11,
+        "start_block_hash": "0x6d022f9dd5b88a8db118dee8a380d91b09541231bc08436bd15f5a9a858f3070",
+        "start_parent_hash": "0xbb2061e54cdf62c18d6737ad31ff3040ce6856d0d9cf2a4eac5677e5e495c1fc",
+        "through_block": 173,
+        "block_hash": "0x3af64484e097670259841f4f95bacdec000e70578f1536a74125c8a50570a1c7",
+        "indexer_next_block": 174,
+        "logs_examined": 134,
+        "claim_events": 0,
+        "royalty_conversion_events": 0,
+        "lp_conversion_events": 3,
+        "minted_count": 19,
+        "scope": "All owners and all prior claims through the exact confirmed block, per NFT and asset.",
+        "completeness": "Operator-maintained complete indexer ingestion; SQLite is not a cryptographic log-completeness proof."
+      },
+      "scope": "Lifetime NFT conversion credits across the complete configured same-chain lineage. Not claims, new revenue, or the remaining claimable balance."
+    }
+  },
+  "completed": "2026-10-21T22:21:00.176Z"
+}

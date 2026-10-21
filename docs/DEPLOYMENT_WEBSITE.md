@@ -28,8 +28,10 @@ See [verification](../reports/deployment-adapter/VERIFICATION.md),
 | LP execution review | Exact Entry calldata, selected NFT/pool/source/route, minimum output/liquidity and expiry; the backend trace must report at least 99% marginal LP deployed. Review displays simulated LP added and separate network gas. |
 | Submit | Nonlocal: unavailable. Local Anvil rehearsal: explicit wallet confirmation, independent preflight, same-hash recovery and confirmed-state reconciliation through the unchanged signer. |
 
-Wallet-page subtotals are deliberately absent: eight cards are not the entire
-portfolio. Full collection aggregation is not wired in this candidate. The
+Wallet-wide LP and claimable ETH totals aggregate every holding in bounded
+16-item chunks at one canonical block. Card pagination never becomes a total.
+Missing/incomplete data remains unavailable. Historical portfolio earnings and
+full collection aggregation are not wired in this candidate. The
 ordinary overview artwork/examples remain educational examples, not live totals.
 An account change invalidates a review; navigation closes it. Expiry is displayed
 and a new review is required. There is no automatic payment or approval retry. Local recovery only reads the saved transaction.
@@ -162,3 +164,9 @@ The implementation follows the [EIP-1193 provider/account-event boundary](https:
 and [explicit chain-switch method](https://eips.ethereum.org/EIPS/eip-3326).
 See also [network-addition semantics](https://eips.ethereum.org/EIPS/eip-3085) and
 [canonical transaction/receipt RPC fields](https://ethereum.org/developers/docs/apis/json-rpc/).
+
+## Actual local API integration
+
+The [local API rehearsal](LOCAL_API_REHEARSAL.md) supplies real Anvil receipts
+and real API worker responses. Its market/feed/VRF boundaries remain local mocks;
+actual extension acceptance remains open. No nonlocal signing was added.

@@ -1,0 +1,93 @@
+[
+  {
+    "repository": "contract_repository",
+    "file": "scripts\\local_browser.py",
+    "sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+    "current_sha256": "89fa34e6d117ef65bdc5d940d7dd2803e19d46bb657f88f91e2154f0ef818edb",
+    "unchanged": true
+  },
+  {
+    "repository": "contract_repository",
+    "file": "scripts\\local-stack.py",
+    "sha256": "d0b51530c31fd57b1a8713a718e0164648dd0db3b6b8080af51c00416ade4459",
+    "current_sha256": "979baafebef7ed1c1b9a5065351fb9aa0cf83a82ef0c1770f3a853f196785fdf",
+    "unchanged": false
+  },
+  {
+    "repository": "contract_repository",
+    "file": "zzz_ops\\ethereum_fees.py",
+    "sha256": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "current_sha256": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "unchanged": true
+  },
+  {
+    "repository": "contract_repository",
+    "file": "tests_python\\test_local_browser.py",
+    "sha256": "51d6a32b915a47379163c135eb8fb1cef8d71a5c1eac0d011fad97b66338d335",
+    "current_sha256": "51d6a32b915a47379163c135eb8fb1cef8d71a5c1eac0d011fad97b66338d335",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "browser-wallet.js",
+    "sha256": "f7ec8472f08a13b2fef9cf360cb8d6e352f0380e09bc777e069cc3537408c27c",
+    "current_sha256": "f7ec8472f08a13b2fef9cf360cb8d6e352f0380e09bc777e069cc3537408c27c",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "browser-client.js",
+    "sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "current_sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\browser-wallet.test.mjs",
+    "sha256": "2aeff5e753778c61f0d0cde0527c7959552ed564c151ba22ae73d04206c7a4e5",
+    "current_sha256": "2aeff5e753778c61f0d0cde0527c7959552ed564c151ba22ae73d04206c7a4e5",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\browser-client.test.mjs",
+    "sha256": "615198adcc3c8a79a4953e42feadd43b86fc4ddba445e6d2358fa7130dd1d60d",
+    "current_sha256": "615198adcc3c8a79a4953e42feadd43b86fc4ddba445e6d2358fa7130dd1d60d",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\chain-reader.test.mjs",
+    "sha256": "f3bddc299926577fe6a11a9aa24a8b70891dec82f21c545b8d621381a5a730c9",
+    "current_sha256": "f3bddc299926577fe6a11a9aa24a8b70891dec82f21c545b8d621381a5a730c9",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\browser-intent.test.mjs",
+    "sha256": "fdf27f928aa0b0acc277cb32e8468ade463e856ec2d216ddf94ee6e21ad5e333",
+    "current_sha256": "fdf27f928aa0b0acc277cb32e8468ade463e856ec2d216ddf94ee6e21ad5e333",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\contribution-flow.test.mjs",
+    "sha256": "a819711022683df69568b84f9f0b0fb1f99ad5af503fedfc580664684912d0b4",
+    "current_sha256": "a819711022683df69568b84f9f0b0fb1f99ad5af503fedfc580664684912d0b4",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\ui-state.test.mjs",
+    "sha256": "17f8d87ba12a61872d64faab72660b7e92d5548719601db1a63dd4d8ea78db90",
+    "current_sha256": "17f8d87ba12a61872d64faab72660b7e92d5548719601db1a63dd4d8ea78db90",
+    "unchanged": true
+  },
+  {
+    "repository": "website_repository",
+    "file": "tests\\wallet-lifecycle.test.mjs",
+    "sha256": "7e98bd9d7c2c6c9a2691e2c452492d8c6f08540cd9e9a79980f3e75cf70a978c",
+    "current_sha256": "7e98bd9d7c2c6c9a2691e2c452492d8c6f08540cd9e9a79980f3e75cf70a978c",
+    "unchanged": true
+  }
+]

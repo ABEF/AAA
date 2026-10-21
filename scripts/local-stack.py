@@ -288,6 +288,7 @@ class Lab:
     def deploy(self, name, signature='constructor()', args=(), *, local=False):
         source='LocalInputFixtures.sol' if name.startswith('LocalInput') else (('LocalDemoVenue.sol' if name.startswith('Local') else name+'.sol') if name!='MockVRF' else 'MockVRF.sol')
         if name=='LocalNativeRegistry':source='LocalNativeRegistry.sol'
+        if name=='LocalAPIVenue':source='LocalAPIVenue.sol'
         path=Path(self.args.fixture_artifacts if local else self.args.artifacts)/source/(name+'.json')
         artifact=json.loads(path.read_text(encoding='utf-8'))
         metadata=artifact.get('metadata') or json.loads(artifact['rawMetadata'])
@@ -334,7 +335,7 @@ class Lab:
         ac=self.contracts['access']
         self.bind('vault',self.deploy('ZZZVault','constructor(address,uint256,address)',(ac,CHAIN,admin)))
         self.bind('nft',self.deploy('ZZZNFT','constructor(address,string)',(ac,'')))
-        self.bind('liquidity',self.deploy('LocalDemoVenue','constructor(address,address,address)',(ac,*self.tokens),local=True))
+        self.bind('liquidity',self.deploy(getattr(self.args,'venue_fixture','LocalDemoVenue'),'constructor(address,address,address)',(ac,*self.tokens),local=True))
         for role in ('rewards','membership','fees','strategy','compounder','migration','transport','receiver','pools','routes','handoff'):
             if role=='pools' and self.native_input:
                 self.bind(role,self.deploy('LocalNativeRegistry','constructor(address,address,address)',(ac,self.weth,self.tokens[1]),local=True))

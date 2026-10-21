@@ -839,3 +839,11 @@ Continue using bounded API admission, independent user-wallet signing and saved
 transaction recovery for the production integration. The shared local signer
 and lock remain test-only. Production capacity is unverified, and accepting real
 funds still requires the outstanding dependency and release qualification.
+
+### Real local API rehearsal and complete wallet totals
+
+Use [the isolated API runbook](LOCAL_API_REHEARSAL.md) to exercise actual local
+contracts and reviewed preparations with the unchanged Anvil-only signer. It
+explains build/configuration pins, exact RPC/account selection, bounded summary
+chunks, missing-value handling, recovery and safe stop/restart. Operator authority
+is local fixture ownership only; no public contract/role/provider is configured.

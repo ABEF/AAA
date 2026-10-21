@@ -1,0 +1,45 @@
+import {createRequire} from 'node:module';
+import {readFile,readdir,writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const require=createRequire('C:/Users/Ali/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/'),{chromium}=require('playwright');
+const work=new URL('./',import.meta.url),run=(await readdir(new URL('runs/',work))).sort().at(-1);
+const home=new URL(`runs/${run}/`,work),r=JSON.parse(await readFile(new URL('running.json',home))),m=JSON.parse(await readFile(new URL('website-manifest.json',home)));
+const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const errors=[],requests=[];let account=r.accounts[0];
+try{
+ const page=await browser.newPage({viewport:{width:1440,height:1050}});page.on('pageerror',e=>errors.push(e.message));
+ page.on('response',resp=>{if(resp.url().includes('/api/'))requests.push({url:new URL(resp.url()).pathname,status:resp.status()})});
+ await page.exposeFunction('localWalletRead',async({method,params=[]})=>{
+   if(['eth_accounts','eth_requestAccounts'].includes(method))return[account];
+   if(!['eth_chainId','eth_getBlockByNumber'].includes(method))throw Error('Read-only browser acceptance probe');
+   const v=await(await fetch(m.rpc_url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})})).json();if(v.error)throw Error(v.error.message);return v.result;
+ });
+ await page.addInitScript(()=>{const listeners=new Map();window.ethereum={request:r=>window.localWalletRead(r),on:(e,f)=>{if(!listeners.has(e))listeners.set(e,new Set());listeners.get(e).add(f)},removeListener:(e,f)=>listeners.get(e)?.delete(f)};window.changeTestAccount=a=>{for(const f of listeners.get('accountsChanged')||[])f([a])};});
+ await page.goto(r.url+'/#my-nfts');await page.locator('[data-connect]').first().click();
+ await page.locator('[data-deployment-provider]').first().click();
+ await page.waitForFunction(()=>document.querySelector('#my-count')?.textContent.includes('18 NFTs'),{timeout:60000});
+ await page.waitForFunction(()=>document.querySelector('[data-wallet-total-note]')?.textContent.includes('18 NFTs'),{timeout:60000});
+ assert.equal(await page.locator('#owned-nfts .nft-card').count(),8);
+ const first={lp:await page.locator('[data-wallet-total="lp"]').innerText(),eth:await page.locator('[data-wallet-total="eth"]').innerText()};
+ assert.notEqual(first.lp,'Unavailable');assert.notEqual(first.eth,'Unavailable');
+ await page.screenshot({path:new URL('wallet-totals.png',work).pathname.replace(/^\/(?=[A-Z]:)/,'')});
+ assert.equal(await page.locator('[data-view="my-nfts"] .page-heading .eyebrow').innerText(),'YOUR PERMANENT POSITIONS');
+ assert.equal(await page.locator('[data-view="my-nfts"] .page-heading p:last-of-type').innerText(),'Your confirmed holdings, attached LP and funded rewards.');
+ await page.setViewportSize({width:390,height:844});
+ assert.equal(await page.locator('.deployment-wallet-totals').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length),1);
+ assert.ok(await page.locator('.deployment-wallet-totals').evaluate(e=>e.scrollWidth<=e.clientWidth));
+ await page.screenshot({path:new URL('wallet-totals-mobile.png',work).pathname.replace(/^\/(?=[A-Z]:)/,'')});
+ await page.setViewportSize({width:1440,height:1050});
+ await page.locator('[data-deployment-page="1"]').click();
+ await page.waitForFunction(()=>document.querySelector('.local-actions [role="status"]')?.textContent==='Page 2');
+ await page.waitForFunction(()=>document.querySelector('[data-wallet-total-note]')?.textContent.includes('18 NFTs')&&!document.querySelector('[data-wallet-total="lp"]')?.textContent.includes('Reading'),{timeout:60000});
+ assert.equal(await page.locator('[data-wallet-total="lp"]').innerText(),first.lp);assert.equal(await page.locator('[data-wallet-total="eth"]').innerText(),first.eth);
+ await page.reload();await page.waitForFunction(()=>document.querySelector('#my-count')?.textContent.includes('18 NFTs'),{timeout:60000});
+ account=r.accounts[1];await page.evaluate(a=>window.changeTestAccount(a),account);
+ await page.waitForFunction(()=>document.querySelector('#my-count')?.textContent.includes('1 NFTs owned'),{timeout:60000});
+ await page.waitForFunction(()=>document.querySelector('[data-wallet-total-note]')?.textContent.includes('1 NFTs'),{timeout:60000});
+ assert.notEqual(await page.locator('[data-wallet-total="lp"]').innerText(),first.lp);
+ assert.deepEqual(errors,[]);
+ await writeFile(new URL('browser.json',work),JSON.stringify({passed:true,run,first,scenarios:['real API cards','18 holding totals','page change preserves full totals','reload restores authorized account without prompt','account event discards earlier totals','responsive totals and confirmed-data copy'],requests,errors,scope:'Actual browser, HTTP APIs and Anvil reads; injected account-only provider, no extension popup or wallet submission'},null,2));
+ console.log('PASS: six real-API browser read/layout scenarios');
+}finally{await browser.close();}

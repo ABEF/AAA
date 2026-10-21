@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-> Reviewed 2026-10-20 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
+> Reviewed 2026-10-22 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
 
 The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes the candidate: shared nonredeemable LP allocations, receipt-backed rewards and royalties, atomic activation entry, custody controls and bounded same-chain canonical handoff. Read it for implementation boundaries rather than treating the roadmap as another feature inventory. Historical [reward-funding](../reports/reward-funding/README.md), [shared-pool](../reports/pooled/README.md) and [earlier implementation](../reports/IMPLEMENTATION_UPDATE.md) reports retain their own source scope.
 
@@ -25,7 +25,7 @@ with [scoped automated and Anvil evidence](../reports/browser-wallet/VERIFICATIO
 The [latest confirmation fix](../reports/browser-wallet/CHAIN_READER.md) uses a pinned
 node reader independently of wallet response formatting and is [published](../reports/browser-wallet/PUBLICATION.md).
 The [reviewed API profile](DEPLOYMENT_WEBSITE.md) now connects reads and unsigned
-reviews to those endpoints. Its [local API wallet coordinator](DEPLOYMENT_WEBSITE.md#local-api-wallet-rehearsal) now exercises submission/recovery with the unchanged Anvil-only signer. The user explicitly retained that restriction on 2026-10-21. Next verify actual extension behavior and qualify services; any future nonlocal signer extension needs explicit authorization and reviewed deployment/fee policy. Public signing remains disabled. The EIP-1193-shaped test provider
+reviews to those endpoints. Its [local API wallet coordinator](DEPLOYMENT_WEBSITE.md#local-api-wallet-rehearsal) now exercises submission/recovery with the unchanged Anvil-only signer. The user explicitly retained that restriction on 2026-10-21. The [actual API/Anvil rehearsal](LOCAL_API_REHEARSAL.md) now has real receipts and full-wallet LP/ETH totals. Next verify actual extension behavior and qualify services; any future nonlocal signer extension needs explicit authorization and reviewed deployment/fee policy. Public signing remains disabled. The EIP-1193-shaped test provider
 does not close extension acceptance or authorize public funds.
 
 The proposed [10/25/100-user capacity campaign](../TODO.md#task-capacity-campaign)

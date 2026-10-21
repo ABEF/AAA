@@ -30,6 +30,13 @@ contract LocalInputPool {
         require(block.chainid == 31337); factory = msg.sender;
         (token0,token1) = a < b ? (a,b) : (b,a);
     }
+    // Local reserve-presence indicator for API admission, NOT Uniswap liquidity math.
+    function liquidity() external view returns(uint128) {
+        uint256 x=IERC20Metadata(token0).balanceOf(address(this));
+        uint256 y=IERC20Metadata(token1).balanceOf(address(this));
+        uint256 smallest=x<y?x:y;
+        require(smallest<=type(uint128).max);return uint128(smallest);
+    }
 }
 contract LocalInputFactory {
     address public immutable operator = msg.sender;

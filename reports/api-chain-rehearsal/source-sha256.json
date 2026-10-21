@@ -1,0 +1,27 @@
+{
+  "contract_repository": {
+    "frontend_api/portfolio.py": "1f966461325e67ed28beec40c529e70e3fbf1512bba76ce149757f5cf96309eb",
+    "frontend_api/service.py": "503d0193982bc91fec185de183b693b4eb358ca15baee374ff13b68f734b79f2",
+    "frontend_api/server.py": "125cad3b6ebb1f93ba1d68d8dd60637e6b4bc2e0e665ec3e81ab7c494a4fcb8c",
+    "frontend_api/worker.py": "a1aff041ed4fc495d74096d3984413a3f233ad8b9dcc6a7db868526915031cfd",
+    "scripts/local-stack.py": "979baafebef7ed1c1b9a5065351fb9aa0cf83a82ef0c1770f3a853f196785fdf",
+    "scripts/local_inputs.py": "06b426f78dc79be5a53e5e8961d26351ea525400a3fe95b92a32a6e5e3119bae",
+    "scripts/local-api-stack.py": "bc3e549985f976b2c76b0aef1e52f112e65fb3c9359a2c6141a06fd9dabb1a70",
+    "test/local/LocalAPIVenue.sol": "531e0d6226779251e9ea0caa9a8d3a87ddbab393e9bcd47922f319e13e3e8f89",
+    "test/local/LocalInputFixtures.sol": "377d3057d571a9ac33a021d2a7ef6748d1610b2059b8059bd60fd6a2548415d8",
+    "tests_python/test_wallet_summary.py": "ea540390258577236eb5773136044f529752ab6c908a3ac6de1597b73b91c495"
+  },
+  "website_repository": {
+    "deployment-api.js": "8bed3de314c62b9df6e2d6f79751866788c0965e68442d0df2a23d820b6154eb",
+    "deployment-view.js": "7c8e2c94aabf242a51741c77971d49609deb0bdde2a5bf2d19181250ea41bbd4",
+    "local-view.css": "bfd2204afdffb79e5de08a20758bc777702f1aff114d4ee52c1af7d5469e3d69",
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "deployment-session.js": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "browser-wallet.js": "f7ec8472f08a13b2fef9cf360cb8d6e352f0380e09bc777e069cc3537408c27c",
+    "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "tests/wallet-summary.test.mjs": "3f3883272db4c83b5644ecde711ae60e0fe4af1fdfc4bf16810f508cd9ff6879",
+    "tests/deployment-api.test.mjs": "381d3112ec981669bd9b5eff3cb45d7cb11267113dd4555a4edc975e9c6ea542",
+    "package.json": "32207f5f04305ec9ac176ef35b8b9825b04bf6228c6a0dd311bac43f93af4070"
+  }
+}

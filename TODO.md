@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-21 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-22 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -285,7 +285,7 @@ What holders see and use.
 
 <a id="task-wallet"></a>
 
-- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. The reviewed API now connects to the existing signer only in a literal-loopback Anvil rehearsal. Mint, exact approval, activation/growth and ETH claims have submission/recovery and confirmed-state reconciliation. The user retained local-only signing; nonlocal profiles remain unsigned. Actual extension acceptance and production deployment/routes/services remain open.
+- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. The local-only API coordinator now has actual Anvil mint, native activation, exact USDC approval, growth and combined ETH claim evidence, including same-hash recovery after an API outage. Actual extension acceptance and qualified production deployment/routes/services remain open; public signing remains disabled by user decision.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -320,12 +320,13 @@ What holders see and use.
   - Local wallet execution now pins each sender nonce: exact server drafts may span unrelated wallet operations, while same-wallet activity, expiry, ownership, lifecycle and gas changes still require review. Two real local mints reviewed at one revision both confirmed; 70 distinct affected Python cases. [Evidence](reports/local-wallet-concurrency/NONCE_VERIFICATION.md). This supersedes the earlier blanket global-revision rejection for typed wallet execution only; production extension-wallet qualification stays open.
   - User reported all six proposed local two-wallet scenarios passed on 2026-10-20: activation, top-ups, cancel after approval/reopen, pending refresh recovery, concurrent claim/contribution and invalid inputs. [Manual acceptance](reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md) is user-reported evidence, not a new automated run or production qualification.
   - Next qualification: actual Chrome/extension signing, rejection, delayed prompts, account/network changes and recovery; independently reviewed production deployment pins, complete RPC/gas semantics and live activation routes/feeds. Dynamic local manifests and mock prices are not production approvals. Keep local exact-$100 activation versus production minimum-$100 quote/rounding alignment explicit; the 10/25/100-user campaign remains deferred.
+  - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
 
   </details>
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Confirmed ownership, LP, ETH rewards and matching-block earnings are available through local integration and a default-disabled reviewed API profile. Eight-card pagination bounds reads; partial-page totals are not presented as complete wallet totals. Live hosting, collection aggregation and lifecycle/outage qualification remain open.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Confirmed ownership/cards and full-wallet LP plus funded ETH totals are implemented. Bounded 16-NFT summary chunks verify one complete inventory and canonical block, independent of eight-card pagination. Historical portfolio earnings, collection aggregation and production hosting/lifecycle/outage qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -339,6 +340,7 @@ What holders see and use.
   - Integrate current physical LP/share-denominator context, marked NAV vs cumulative input and price-guard unavailable states. Render out-of-range warning plus earliest rebalance eligibility; only fresh authenticated telemetry may supply an estimated next keeper check. The public website is still simulated and was not changed by the backend delta.
   - Consume [royalty-reporting fields](docs/ROYALTY_REPORTING.md): separate claimable ETH/source currencies, deferred eligibility and unavailable amounts. Converter enabled is not a route quote or scheduled execution. Do not offer signing based solely on a read-only balance response.
   - Main website now also hides dormant fee/claim sections, shows fixed dormant rarity multipliers, separates Claim/Grow controls and preserves artwork through unrelated refreshes. Only its target NFT shows activation/top-up progress. Default data remains a simulation; local and live adapter boundaries remain explicit.
+  - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
 
   </details>
 
@@ -366,6 +368,7 @@ What holders see and use.
   - Match the accepted ETH-only holder payout requirement to actual on-chain conversion before displaying ETH. The older TEST-1/TEST-2 session is preserved; separate named ZZZ/WETH/USDC/USDG fixtures now exercise wrapping, decimals and mock routes. Balance/faucet UX and source-to-ETH payout qualification remain open. Do not cosmetically rename generic balances or silently reset current NFTs.
   - Four visible contribution inputs: ZZZ, USDG, USDC, ETH; WETH internal only. Contribution-only dialogs and scoped confirmed refresh are implemented. Named local fixtures exercise exact approvals and mock conversion separately from public route qualification; see [local setup](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal).
   - [Gallery/reward-feedback evidence](reports/website-polish/VERIFICATION.md): one saved sample funding round preserves prior LP and claims, allocation is LP/equal-collective/rarity weighted, duplicates cannot refill it. Confirmed tier celebrations use supplied ACTI/EV audio synchronized with the image after successful contribution and fresh increased LP. The claimed-total frame is hidden without changing lifetime accounting. Single-pool UI hides redundant pool controls. These are demo/presentation improvements, not live funding or production signing.
+  - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
 
   </details>
 
@@ -805,4 +808,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `53d3242e5d511111179860984abfae9b9840cc90170cf6818e5879ed1241ba11`.
+Snapshot SHA-256: `675638590bba97696c1e4a2c4974e4286acafd4f03f7984acae523daf5907da1`.

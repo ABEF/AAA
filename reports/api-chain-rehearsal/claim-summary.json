@@ -1,0 +1,266 @@
+{
+  "run": "run-20261022-001857-b830df",
+  "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+  "before": {
+    "available": true,
+    "count": 18,
+    "wallet": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "lp_usd_18": "15436999999999999999998",
+    "claimable_eth_wei": "90009999999999999997",
+    "provenance": {
+      "block_number": 177,
+      "block_hash": "0xcaa5ca0dc7d979ec842841e7c80eb68376424b875eae766a86d86f3db638acbe",
+      "block_timestamp": 1792621319,
+      "observed_head": 177,
+      "confirmations": 1,
+      "finality": "confirmation_depth_only",
+      "protocol_finalized": false,
+      "eip1898_require_canonical": true,
+      "configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a"
+    }
+  },
+  "after": {
+    "available": true,
+    "count": 18,
+    "wallet": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "lp_usd_18": "15436999999999999999998",
+    "claimable_eth_wei": "79250631156039398650",
+    "provenance": {
+      "block_number": 179,
+      "block_hash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+      "block_timestamp": 1792621344,
+      "observed_head": 179,
+      "confirmations": 1,
+      "finality": "confirmation_depth_only",
+      "protocol_finalized": false,
+      "eip1898_require_canonical": true,
+      "configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a"
+    }
+  },
+  "selected": "17650862174945570176257448465577216379924965918670898670245700079102468437787",
+  "review": {
+    "action": "claim",
+    "requested_action": "claim",
+    "intent": {
+      "action": "claim",
+      "ids": [
+        "17650862174945570176257448465577216379924965918670898670245700079102468437787"
+      ],
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "transaction": {
+      "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "to": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+      "value": "0x0",
+      "chainId": "0x7a69",
+      "data": "0xbbeaec9300000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002270608b17143ca57f7a161cd8c41ad7727f953cc9a91199e850bccf154c2371b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000270608b17143ca57f7a161cd8c41ad7727f953cc9a91199e850bccf154c2371b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "gas": "0x48c44",
+      "gasPrice": "0x3b9aca07",
+      "nonce": "0x18"
+    },
+    "network_gas": {
+      "gas_limit": "298052",
+      "gas_price_wei": "1000000007",
+      "max_cost_wei": "298052002086364"
+    },
+    "source": null,
+    "claims": [
+      {
+        "token_id": "17650862174945570176257448465577216379924965918670898670245700079102468437787",
+        "asset": "0x0000000000000000000000000000000000000000",
+        "royalty": false,
+        "symbol": "ETH",
+        "decimals": 18,
+        "view_raw": "10756868843960601347",
+        "simulated_raw": "10756868843960601347"
+      },
+      {
+        "token_id": "17650862174945570176257448465577216379924965918670898670245700079102468437787",
+        "asset": "0x0000000000000000000000000000000000000000",
+        "royalty": true,
+        "symbol": "ETH",
+        "decimals": 18,
+        "view_raw": "2500000000000000",
+        "simulated_raw": "2500000000000000"
+      }
+    ],
+    "minimum_deployed_usd_18": null,
+    "liquidity_context": null,
+    "simulated_lp_added_usd_18": null,
+    "prepared_at": 1792621344,
+    "expires_at": 1792621404,
+    "provenance": {
+      "block_number": 178,
+      "block_hash": "0x00a82d314912e973ba0431f6eb017d53d5311d957bc3a5579750f5c040c3fdb5",
+      "block_timestamp": 1792621334,
+      "observed_head": 178,
+      "confirmations": 1,
+      "protocol_finalized": false,
+      "eip1898_require_canonical": true,
+      "deployment_block": 11,
+      "deployment_block_hash": "0x6d022f9dd5b88a8db118dee8a380d91b09541231bc08436bd15f5a9a858f3070",
+      "configuration_sha256": "92668d92b971b7c85b22db2e03484ba4001917b2fbb6158d2845486a30778a5a",
+      "transaction_configuration_sha256": "cc25c42fedb22f2d8e20df88fe32e96cc231e80d941a46785f287f12e0dd5870"
+    },
+    "signing_enabled": true,
+    "notice": "Confirm this exact local Anvil transaction in your selected wallet."
+  },
+  "result": {
+    "status": "confirmed",
+    "hash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+    "receipt": {
+      "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+      "transactionIndex": "0x0",
+      "blockNumber": "0xb3",
+      "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+      "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "to": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+      "status": "0x1",
+      "gasUsed": "0x32f7b",
+      "effectiveGasPrice": "0x3b9aca07"
+    },
+    "action": "claim",
+    "reconciled": false,
+    "error": "Transaction confirmed on-chain. Intentional read outage after confirmed claim Refresh the same transaction; do not send it again."
+  },
+  "recovered": {
+    "status": "confirmed",
+    "hash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+    "receipt": {
+      "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+      "transactionIndex": "0x0",
+      "blockNumber": "0xb3",
+      "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+      "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "to": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+      "status": "0x1",
+      "gasUsed": "0x32f7b",
+      "effectiveGasPrice": "0x3b9aca07"
+    },
+    "action": "claim",
+    "intent": {
+      "action": "claim",
+      "ids": [
+        "17650862174945570176257448465577216379924965918670898670245700079102468437787"
+      ],
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "reconciled": true
+  },
+  "saved": {
+    "schema": 1,
+    "id": "a62b9343-50b8-4deb-8a62-9cd02c4253a1",
+    "genesisHash": "0x19df3ff29a52f43ea4c9120bcbf65ec6a3d707f90c4e6537d54274cfe3f4d439",
+    "status": "confirmed",
+    "createdAt": 1792621344208,
+    "transaction": {
+      "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "to": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+      "data": "0xbbeaec9300000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002270608b17143ca57f7a161cd8c41ad7727f953cc9a91199e850bccf154c2371b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000270608b17143ca57f7a161cd8c41ad7727f953cc9a91199e850bccf154c2371b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "value": "0x0",
+      "chainId": "0x7a69",
+      "gas": "0x48c44",
+      "gasPrice": "0x3b9aca07",
+      "nonce": "0x18"
+    },
+    "context": {
+      "deployment": "23ff51a9fb49e38a40dff3d39a302bd69d23d4e21ddca90a70de520d9083723d",
+      "action": "claim",
+      "intent": {
+        "action": "claim",
+        "ids": [
+          "17650862174945570176257448465577216379924965918670898670245700079102468437787"
+        ],
+        "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+      },
+      "amount": null,
+      "source": null,
+      "pool": "0x313f51c67b91e6383dc9a4a61938e9579cd2f83799641a894fa250d09e60054d"
+    },
+    "hash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+    "receipt": {
+      "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+      "transactionIndex": "0x0",
+      "blockNumber": "0xb3",
+      "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+      "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "to": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+      "status": "0x1",
+      "gasUsed": "0x32f7b",
+      "effectiveGasPrice": "0x3b9aca07"
+    }
+  },
+  "receipt": {
+    "type": "0x0",
+    "status": "0x1",
+    "cumulativeGasUsed": "0x32f7b",
+    "logs": [
+      {
+        "address": "0x9a676e781a523b5d0c0e43731313a708cb607508",
+        "topics": [
+          "0xce3bcb6e219596cf26007ffdfaae8953bc3f76e3f36c0a79b23e28020da3222e",
+          "0x270608b17143ca57f7a161cd8c41ad7727f953cc9a91199e850bccf154c2371b",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000095481338a3bd0b03",
+        "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+        "blockNumber": "0xb3",
+        "blockTimestamp": "0x6ad93b20",
+        "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+        "transactionIndex": "0x0",
+        "logIndex": "0x0",
+        "removed": false
+      },
+      {
+        "address": "0x8ff3801288a85ea261e4277d44e1131ea736f77b",
+        "topics": [
+          "0xce3bcb6e219596cf26007ffdfaae8953bc3f76e3f36c0a79b23e28020da3222e",
+          "0x270608b17143ca57f7a161cd8c41ad7727f953cc9a91199e850bccf154c2371b",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000008e1bc9bf04000",
+        "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+        "blockNumber": "0xb3",
+        "blockTimestamp": "0x6ad93b20",
+        "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+        "transactionIndex": "0x0",
+        "logIndex": "0x1",
+        "removed": false
+      },
+      {
+        "address": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+        "topics": [
+          "0x6798b16963626b4e151e09277cfe1d068e55f63f8a5fef33f171e9415af99a94",
+          "0x00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+        "blockNumber": "0xb3",
+        "blockTimestamp": "0x6ad93b20",
+        "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+        "transactionIndex": "0x0",
+        "logIndex": "0x2",
+        "removed": false
+      }
+    ],
+    "logsBloom": "0x00000000000080000002000000000000000000000000000000000000000000000000000800000000000000000000001000000000000000000000002000000000000000000000000000000008000000000000800000000000000000000000000000000800020004000080040000004800000000000000000040000000000000000000000000000000000000000000000000000000002000000000000000000000000000000008000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000100000000021000000000001000000000000000400",
+    "transactionHash": "0x343dff805a068901b3f3b6c0081a865264d167b68476da137494b762599fec83",
+    "transactionIndex": "0x0",
+    "blockHash": "0xaec52cdf062aaf562cd214ad57caab24a65ab3b623b7f864652e2de449edefc3",
+    "blockNumber": "0xb3",
+    "gasUsed": "0x32f7b",
+    "effectiveGasPrice": "0x3b9aca07",
+    "blobGasPrice": "0x1",
+    "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "to": "0x6f1216d1bfe15c98520ca1434fc1d9d57ac95321",
+    "contractAddress": null
+  },
+  "sends": 1,
+  "balanceBefore": "9999999085860349183669587",
+  "balanceAfter": "10000009845020430142809593",
+  "amount": "10759368843960601347",
+  "passed": true,
+  "scope": "Actual local Anvil, real HTTP/API; deliberately injected API outage only. RPC shim, not extension acceptance."
+}
