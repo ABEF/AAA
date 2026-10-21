@@ -1,5 +1,9 @@
 ## Real local API rehearsal and wallet totals - 2026-10-22
 
+Publication: backend `f068f9f` and website `777fd05` are pushed on main. The
+static server serves `777fd05`; all 5,598 checksums and 50 scoped public checks
+passed. Public DEPLOYMENT remains null. See [receipt](reports/api-chain-rehearsal/PUBLICATION.md).
+
 The reviewed API coordinator now has actual local-chain evidence: mint, native
 activation, exact USDC approval, $5 growth and a combined ETH claim. A deliberately
 interrupted post-claim API read recovered the same confirmed hash with one send.

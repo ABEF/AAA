@@ -1,0 +1,644 @@
+{
+  "commit": "777fd0500d9abb5b61ab7e178d408885baccce91",
+  "verified_at": "2026-10-21T22:38:47.887690+00:00",
+  "scope": "Complete server-side archive checksums plus public root assets/catalogues/video and 12 sampled artwork states. No repeat full artwork download or unchanged unit suite.",
+  "file_checks": [
+    {
+      "file": "app.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/app.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "22b60108f08059211d5cca181e87cbfcea4781a60a1aaeb45391d9b3a92d08d3",
+      "bytes": 44415,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-ad7f\"",
+      "redirects": []
+    },
+    {
+      "file": "artworks.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/artworks.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "6c6b0d5f5d5cf454c338ddb6930ba9a1d7475042d61a889102922f012ce5c42d",
+      "bytes": 9830,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"6ad699f3-2666\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/audio/activation.mp4",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/audio/activation.mp4?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "dfcd3c6321c55603b0602d8e54f1c3947392b20c2eccb36f383f5556bfa52d33",
+      "bytes": 75159,
+      "content_type": "video/mp4",
+      "cache_control": "no-cache",
+      "etag": "\"6ad6988b-12597\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/audio/evolution.mp4",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/audio/evolution.mp4?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "48128f4014cb4c000ab282ac1a74debf4dacd20430bae5d43e1ac1fd4de72587",
+      "bytes": 29427,
+      "content_type": "video/mp4",
+      "cache_control": "no-cache",
+      "etag": "\"6ad6988b-72f3\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/collec.jpg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/collec.jpg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "93c5244e2bd59b224b43cf894054944a7df46cc734a681ff0529ae025636dcf3",
+      "bytes": 266227,
+      "content_type": "image/jpeg",
+      "cache_control": "no-cache",
+      "etag": "\"6acf04e3-40ff3\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/favicon.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/favicon.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "ce5f67a3bd26efbc408d4a4ce54e2948205600faa610d09f2a3806e181208cbd",
+      "bytes": 259,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6acf0949-103\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/logo.jpg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/logo.jpg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "906091da4aa3db3bf53f892e79250c9dd8c08786c89446fbdb021ca5fcc105ea",
+      "bytes": 125551,
+      "content_type": "image/jpeg",
+      "cache_control": "no-cache",
+      "etag": "\"6acf04cf-1ea6f\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nft.jpg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nft.jpg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "7f80382a325b22298642bd3311cde19b2aa460f128b5256b009d43c2870af3e9",
+      "bytes": 193627,
+      "content_type": "image/jpeg",
+      "cache_control": "no-cache",
+      "etag": "\"6acf04dc-2f45b\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/amber-arcs-commun-activated.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/amber-arcs-commun-activated.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "570f671de89e5b1543b3ee84d1c1a28720b862a38d72a600fde5e29b6bdc8bb0",
+      "bytes": 62144,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fce-f2c0\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/amber-arcs-commun-dormant.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/amber-arcs-commun-dormant.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "280c6b5c7aff703dd91b5021000bf0f50611f298887335cecafc0b9ae5e74704",
+      "bytes": 48450,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fce-bd42\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/amber-arcs-commun-enhanced.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/amber-arcs-commun-enhanced.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "b1be6fc01dd0ee42f60fed9385d553cf79834a2a178d5ef5515ce4388ff03767",
+      "bytes": 76110,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fce-1294e\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/amber-arcs-commun-singularity.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/amber-arcs-commun-singularity.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "56f76e573c012bc60ce5464430cbbafe44f1a069b84bcd9e6663f8efa6b23882",
+      "bytes": 145366,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fce-237d6\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/cyan-crimson-ribs-commun-activated.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/cyan-crimson-ribs-commun-activated.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "da2431842c0b4c336a3aebba827c618fdb0445fd697b4ffdb2fcd7721f436b15",
+      "bytes": 70696,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcf-11428\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/cyan-crimson-ribs-commun-dormant.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/cyan-crimson-ribs-commun-dormant.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "22ffa77bf242844a70713f364812885749c0be12c2c65bff0f185a1b118d7a89",
+      "bytes": 52464,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcf-ccf0\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/cyan-crimson-ribs-commun-enhanced.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/cyan-crimson-ribs-commun-enhanced.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "e3eca0143955a96abe56df881f169d5fdce9d68aaa706ca64f6dd621aece1054",
+      "bytes": 81674,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcf-13f0a\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/cyan-crimson-ribs-commun-singularity.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/cyan-crimson-ribs-commun-singularity.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "7b9f1c770aca5e08fa98a28b9617dcfa373c45d0d61573387058ee4999f9c19b",
+      "bytes": 138159,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcf-21baf\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/inventory.json",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/inventory.json?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "17443dd8a29579cbb90bbbc077f7ff0e35209b31d3ee3ebba586ad5a3148c098",
+      "bytes": 217123,
+      "content_type": "application/json",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fd8-35023\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/manifest.json",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/manifest.json?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "fcd95d4d87f7d18eb6d548b9b19432056f982e6e66f3def9dd0ead076af692de",
+      "bytes": 2405929,
+      "content_type": "application/json",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fd8-24b629\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/violet-ribs-rare-activated.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/violet-ribs-rare-activated.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "1a7f4085542481123962a6344e99eea425d511a488644a755b86bf6118bb3617",
+      "bytes": 125572,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcd-1ea84\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/violet-ribs-rare-dormant.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/violet-ribs-rare-dormant.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "862c6f63281236fa51cf667ea21753bd602c58c4d1276385c794ccfd8fe345f0",
+      "bytes": 96252,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcd-177fc\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/violet-ribs-rare-enhanced.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/violet-ribs-rare-enhanced.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "8455f7c6ee402957c861bb44e2e08b34acc92655a687fb672e01556fa552bdcc",
+      "bytes": 144578,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcd-234c2\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/nfts/violet-ribs-rare-singularity.svg",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/nfts/violet-ribs-rare-singularity.svg?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "5afe5bc88ecbad1aba0a38d070c14dafc79af8f2c8fbf9440737170320ffb73d",
+      "bytes": 172567,
+      "content_type": "image/svg+xml",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcd-2a217\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/videos/popl-explainer-v7.mp4",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/videos/popl-explainer-v7.mp4?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "dfd82320045e4038c1393dee0a23edb12c7f530e5f211c9ec6a0220eb8a9f7ea",
+      "bytes": 1523283,
+      "content_type": "video/mp4",
+      "cache_control": "no-cache",
+      "etag": "\"6ad1861d-173e53\"",
+      "redirects": []
+    },
+    {
+      "file": "assets/videos/popl-explainer-v7.png",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/assets/videos/popl-explainer-v7.png?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "3750d66bfa70929d05166fbc97b41e3a21ddc3a7e4615743c22d482948423709",
+      "bytes": 371145,
+      "content_type": "image/png",
+      "cache_control": "no-cache",
+      "etag": "\"6ad1861d-5a9c9\"",
+      "redirects": []
+    },
+    {
+      "file": "browser-client.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/browser-client.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+      "bytes": 19575,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-4c77\"",
+      "redirects": []
+    },
+    {
+      "file": "browser-intent.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/browser-intent.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "b815deee123120ee5bba839558f3265aacfc54552dc83655df4635bee352ac9b",
+      "bytes": 6586,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-19ba\"",
+      "redirects": []
+    },
+    {
+      "file": "browser-wallet.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/browser-wallet.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "f7ec8472f08a13b2fef9cf360cb8d6e352f0380e09bc777e069cc3537408c27c",
+      "bytes": 31161,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-79b9\"",
+      "redirects": []
+    },
+    {
+      "file": "deployment-api.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/deployment-api.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "8bed3de314c62b9df6e2d6f79751866788c0965e68442d0df2a23d820b6154eb",
+      "bytes": 27424,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-6b20\"",
+      "redirects": []
+    },
+    {
+      "file": "deployment-config.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/deployment-config.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+      "bytes": 344,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-158\"",
+      "redirects": []
+    },
+    {
+      "file": "deployment-session.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/deployment-session.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+      "bytes": 4661,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-1235\"",
+      "redirects": []
+    },
+    {
+      "file": "deployment-transactions.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/deployment-transactions.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+      "bytes": 10366,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-287e\"",
+      "redirects": []
+    },
+    {
+      "file": "deployment-view.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/deployment-view.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "7c8e2c94aabf242a51741c77971d49609deb0bdde2a5bf2d19181250ea41bbd4",
+      "bytes": 29378,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-72c2\"",
+      "redirects": []
+    },
+    {
+      "file": "domain.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/domain.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "934a69deaf3b4bd20e6d2565b15c84c2d553e4d1fe063a97faf5e681ced00fe1",
+      "bytes": 16293,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"6ad694ec-3fa5\"",
+      "redirects": []
+    },
+    {
+      "file": "index.html",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/index.html?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "bytes": 35031,
+      "content_type": "text/html",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fbf-88d7\"",
+      "redirects": []
+    },
+    {
+      "file": "local-client.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/local-client.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "3d93229c7f39be9a6dade9b0937ffec2e98865ddbea89e1aba066543da613c0f",
+      "bytes": 13675,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-356b\"",
+      "redirects": []
+    },
+    {
+      "file": "local-view.css",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/local-view.css?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "bfd2204afdffb79e5de08a20758bc777702f1aff114d4ee52c1af7d5469e3d69",
+      "bytes": 2920,
+      "content_type": "text/css",
+      "cache_control": "no-cache",
+      "etag": "\"0-b68\"",
+      "redirects": []
+    },
+    {
+      "file": "local-view.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/local-view.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "3944ccf2006154151d35f528ed1c56f46f83b4a133a664c70a88cab9ed2cfb15",
+      "bytes": 47804,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-babc\"",
+      "redirects": []
+    },
+    {
+      "file": "palette-system.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/palette-system.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "9f0d0ca89cf7c968fc967b372270406504d5d67da8c0fd202466b8ebc8b7add7",
+      "bytes": 11640,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fcc-2d78\"",
+      "redirects": []
+    },
+    {
+      "file": "preview-store.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/preview-store.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "b1a248221835231560ca8b2095a99a79e5db0309a737f542075599b6fb497b46",
+      "bytes": 4307,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69540-10d3\"",
+      "redirects": []
+    },
+    {
+      "file": "styles.css",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/styles.css?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "44ae292b395fc632d8d7cc53c15bc3e392a1ff2a8741e6ba0e1bf526837ab307",
+      "bytes": 101552,
+      "content_type": "text/css",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69540-18cb0\"",
+      "redirects": []
+    },
+    {
+      "file": "ui-state.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/ui-state.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "7fa3a79aff22e0bf7f4bc0efd8d621dfd3fe95a141327598379126988d626277",
+      "bytes": 2020,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"6ad6991b-7e4\"",
+      "redirects": []
+    },
+    {
+      "file": "wallet.js",
+      "pass": true,
+      "url": "https://popldemo.0xwave.com/wallet.js?release=777fd0500d9abb5b61ab7e178d408885baccce91",
+      "status": 200,
+      "sha256": "d39f97fe2ba6e6bcb989080bab51534f206a2f4b9cc38998312d7bd7df8cf101",
+      "bytes": 7010,
+      "content_type": "application/javascript",
+      "cache_control": "no-cache",
+      "etag": "\"0-1b62\"",
+      "redirects": []
+    }
+  ],
+  "host_checks": [
+    {
+      "requested": "https://popldemo.0xwave.com/",
+      "pass": true,
+      "html": {
+        "pass": true,
+        "checks": {
+          "development_preview_label": true,
+          "simulation_banner": true,
+          "no_github_reference": true,
+          "no_source_code_link": true
+        },
+        "banner": "PROOF OF PERMANENT LIQUIDITY (Minting and claims are simulated; no real assets move) DEVELOPMENT PREVIEW",
+        "source_code_links": []
+      },
+      "url": "https://popldemo.0xwave.com/",
+      "status": 200,
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "bytes": 35031,
+      "content_type": "text/html",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fbf-88d7\"",
+      "redirects": []
+    },
+    {
+      "requested": "https://www.popldemo.0xwave.com/",
+      "pass": true,
+      "html": {
+        "pass": true,
+        "checks": {
+          "development_preview_label": true,
+          "simulation_banner": true,
+          "no_github_reference": true,
+          "no_source_code_link": true
+        },
+        "banner": "PROOF OF PERMANENT LIQUIDITY (Minting and claims are simulated; no real assets move) DEVELOPMENT PREVIEW",
+        "source_code_links": []
+      },
+      "url": "https://www.popldemo.0xwave.com/",
+      "status": 200,
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "bytes": 35031,
+      "content_type": "text/html",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fbf-88d7\"",
+      "redirects": []
+    },
+    {
+      "requested": "http://popldemo.0xwave.com/",
+      "pass": true,
+      "html": {
+        "pass": true,
+        "checks": {
+          "development_preview_label": true,
+          "simulation_banner": true,
+          "no_github_reference": true,
+          "no_source_code_link": true
+        },
+        "banner": "PROOF OF PERMANENT LIQUIDITY (Minting and claims are simulated; no real assets move) DEVELOPMENT PREVIEW",
+        "source_code_links": []
+      },
+      "url": "https://popldemo.0xwave.com/",
+      "status": 200,
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "bytes": 35031,
+      "content_type": "text/html",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fbf-88d7\"",
+      "redirects": [
+        {
+          "status": 301,
+          "from": "http://popldemo.0xwave.com/",
+          "to": "https://popldemo.0xwave.com/"
+        }
+      ]
+    },
+    {
+      "requested": "http://www.popldemo.0xwave.com/",
+      "pass": true,
+      "html": {
+        "pass": true,
+        "checks": {
+          "development_preview_label": true,
+          "simulation_banner": true,
+          "no_github_reference": true,
+          "no_source_code_link": true
+        },
+        "banner": "PROOF OF PERMANENT LIQUIDITY (Minting and claims are simulated; no real assets move) DEVELOPMENT PREVIEW",
+        "source_code_links": []
+      },
+      "url": "https://www.popldemo.0xwave.com/",
+      "status": 200,
+      "sha256": "e0060fec3ab701556105a7ecd4eccd15a0c1d63941e5b78b8520bf98e5a3db15",
+      "bytes": 35031,
+      "content_type": "text/html",
+      "cache_control": "no-cache",
+      "etag": "\"6ad69fbf-88d7\"",
+      "redirects": [
+        {
+          "status": 301,
+          "from": "http://www.popldemo.0xwave.com/",
+          "to": "https://www.popldemo.0xwave.com/"
+        }
+      ]
+    }
+  ],
+  "private_checks": [
+    {
+      "file": "AGENTS.md",
+      "pass": true,
+      "status": 404,
+      "url": "https://popldemo.0xwave.com/AGENTS.md"
+    },
+    {
+      "file": "PROJECT_CONTEXT.md",
+      "pass": true,
+      "status": 404,
+      "url": "https://popldemo.0xwave.com/PROJECT_CONTEXT.md"
+    },
+    {
+      "file": ".git/config",
+      "pass": true,
+      "status": 403,
+      "url": "https://popldemo.0xwave.com/.git/config"
+    },
+    {
+      "file": ".env",
+      "pass": true,
+      "status": 403,
+      "url": "https://popldemo.0xwave.com/.env"
+    }
+  ],
+  "pass": true
+}
