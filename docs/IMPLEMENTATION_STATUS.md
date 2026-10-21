@@ -1,3 +1,28 @@
+## Reviewed website API profile - 2026-10-21
+
+The separate website now has a build-configured, default-disabled read and unsigned-
+review profile for the existing APIs. Ordinary authorized accounts, eight-card
+holdings pages, confirmed LP/ETH rewards, matching-block earnings and typed
+mint/approval/Entry/claim reviews are implemented. Token-unit quotes target $100
+activation (minimal raw-unit round-up) and at least $5 growth, with a 99% marginal
+LP floor and separate gas. No signing or broadcast method exists in this profile.
+
+Read [operator setup](DEPLOYMENT_WEBSITE.md) and
+[scoped evidence](../reports/deployment-adapter/VERIFICATION.md): 57 focused cases,
+eleven actual Python API response fixtures and eight headless browser scenarios.
+Dependencies/wallets are mocked; this is not live provider/extension acceptance.
+All thirteen earlier chain-reader bindings still match; unchanged signer/contract
+suites and the deferred load campaign were not rerun. Build: 5,597 static files.
+
+Automatic approval review rejected expanding the shared signer beyond local mode;
+that proposal was not executed. Preserve its chain-31337 restriction and pending
+journals. Public signing/qualified deployment config, routes, feeds, hosting,
+full collection aggregation and independent release approval remain open. The
+shipped DEPLOYMENT is null, so the public website stays simulated. Existing
+Anvil/8900/session/NFT state and paused monitoring were not changed. Use main,
+keep the single Todo/evidence/operator procedures aligned, preserve unrelated
+drafts, and check Git/publication receipts rather than inferring publication.
+
 ## Current publication - 2026-10-20
 
 The wallet candidate and its focused evidence are published on main. The matching

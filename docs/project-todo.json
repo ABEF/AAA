@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed": "2026-10-20",
+  "reviewed": "2026-10-21",
   "areas": [
     {
       "id": "contracts",
@@ -270,9 +270,10 @@
           "id": "wallet",
           "status": "progress",
           "title": "Connect real wallet transactions",
-          "text": "Opt-in local EIP-1193 signing now covers mint, exact approval, activation/top-up and ETH claims with typed calldata checks, durable recovery and canonical receipt observation. Qualify actual browser extensions and independently reviewed production manifests, routes and services; public transactions remain disabled.",
+          "text": "Local browser signing remains available. A separate default-disabled reviewed deployment profile now reads the production API and prepares exact unsigned mint, approval, activation/top-up and ETH-claim reviews. Public signing, actual extension acceptance and qualified deployment/routes/services remain open.",
           "href": "docs/BROWSER_WALLET.md",
           "acceptance": [
+            "[Reviewed website API profile](docs/DEPLOYMENT_WEBSITE.md) and [scoped evidence](reports/deployment-adapter/VERIFICATION.md): 57 new focused cases and eight isolated browser scenarios pass. Eleven responses come from actual Python API code with byte-level mocked dependencies. No new signer or public transaction; the local-only signer restriction remains. Automatic approval review rejected its proposed expansion, which was not applied.",
             "[Publication checkpoint](reports/browser-wallet/PUBLICATION.md): latest wallet/backend code is on main and the matching static website is deployed and checksum-verified. Public mode remains simulated; actual extension acceptance and production qualification remain open. No unchanged suites or deferred capacity campaign rerun.",
             "[Independent chain reader](reports/browser-wallet/CHAIN_READER.md): shared mint/approval/activation/top-up/claim confirmation now uses a pinned read RPC rather than extension transaction formatting; EIP-155 legacy chain identity is supported without weakening typed chain checks. 232 distinct website and 43 backend passes; actual existing mint recovery and exact-node CSP/CORS verified. 13 NFTs/LP/session preserved. Actual extension acceptance and production deployment/service qualification remain open.",
             "[Canonical dynamic-fee receipt recovery](reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md): generic EIP-1559 fee derivation fixes uncapped RPC convenience reporting without loosening reviewed limits. 142 signer/client + 40 observer cases and actual minted receipt/balance replay pass. Local web-only reload preserves session/12 NFTs/Anvil; actual extension recovery retest and production qualification remain open.",
@@ -305,9 +306,10 @@
           "id": "portfolio",
           "status": "progress",
           "title": "Show actual holdings & claimable fees",
-          "text": "The existing website local mode reads confirmed ownership, current LP, per-currency LP/royalty balances and actual revealed artwork. Production hosting, lifecycle/remote/outage qualification remain open.",
+          "text": "Confirmed ownership, LP, ETH rewards and matching-block earnings are available through local integration and a default-disabled reviewed API profile. Eight-card pagination bounds reads; partial-page totals are not presented as complete wallet totals. Live hosting, collection aggregation and lifecycle/outage qualification remain open.",
           "href": "docs/FRONTEND_API.md#implemented-endpoint",
           "acceptance": [
+            "[Reviewed API integration](docs/DEPLOYMENT_WEBSITE.md) accepts ordinary authorized addresses, isolates connection storage by deployment and discards old account/page results. Missing history/prices remain unavailable; source rewards are never labeled ETH. Full collection aggregation and production provider qualification remain open.",
             "Local display correction: show the revealed rarity multiplier (Commun Ã—1, Rare Ã—2, Legendary Ã—3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.",
             "Local dormant cards/details omit reward, claim and earnings-history sections. Activated cards have separate Claim and Grow attached LP controls. Same-account/session refresh retains labeled last-confirmed cards with actions disabled; failed reads and context changes mask unavailable balances; confirmed evolution crossfades without changing rarity/palette. Reduced-motion is supported.",
             "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
@@ -325,6 +327,7 @@
           "text": "Main website tracks per-NFT actions, commits cross-tab previews safely, caches only immutable exact-version demo state, expires suspended intents and rejects malformed/stale local confirmations. Production signing, receipts/reorgs and multi-device load qualification remain open.",
           "href": "docs/CLAIM_ROUTER.md",
           "acceptance": [
+            "[Unsigned review profile](docs/DEPLOYMENT_WEBSITE.md) displays exact token units, simulated marginal LP addition, separate gas and expiry. It independently reconstructs typed calls, requires the 99% deployment floor and exact approval to Entry. Activation targets $100 with raw-unit round-up; growth requires at least $5. No submission/receipt path exists in this profile yet.",
             "Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.",
             "Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.",
             "Independently review and pin deployments, the immutable 32-operation claim router runtime/bindings and exact calldata. Chunk larger portfolios; recheck owner/assets, simulate and estimate gas immediately before user confirmation. Handle account/network changes, stale drafts, rejection, replacement, failure and canonical receipt/reorg recovery.",

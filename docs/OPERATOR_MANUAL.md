@@ -19,6 +19,7 @@ This is the management guide for the **current undeployed candidate**. It descri
 | Resolve pending artwork reveals or replace all contracts | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
 | Change managers/keys, replace a server, update software | [Authorities](#authorities), [services](#services-and-server-recovery) |
 | Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
+| Configure reviewed API holdings and unsigned reviews without enabling signing | [Reviewed website API profile](DEPLOYMENT_WEBSITE.md) |
 | Know what cannot be changed after sealing | [Fixed boundaries](#fixed-boundaries) |
 
 ## Before every management operation

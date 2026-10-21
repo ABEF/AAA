@@ -1,5 +1,9 @@
 # Browser-wallet signing on the disposable local chain
 
+For the separate default-disabled production-shaped read/unsigned-review adapter,
+see [reviewed website API profile](DEPLOYMENT_WEBSITE.md). It does not extend
+this local signer or enable public transactions.
+
 ## Connection and account selection
 
 The website uses the provider object announced by the selected extension through

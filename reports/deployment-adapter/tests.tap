@@ -1,0 +1,352 @@
+TAP version 13
+# Subtest: actual Python response accepted and independently reconstructed: activate_zzz
+ok 1 - actual Python response accepted and independently reconstructed: activate_zzz
+  ---
+  duration_ms: 35.1613
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_eth
+ok 2 - actual Python response accepted and independently reconstructed: activate_eth
+  ---
+  duration_ms: 1.994
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdc
+ok 3 - actual Python response accepted and independently reconstructed: activate_usdc
+  ---
+  duration_ms: 1.8749
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: activate_usdg
+ok 4 - actual Python response accepted and independently reconstructed: activate_usdg
+  ---
+  duration_ms: 1.3923
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_zzz
+ok 5 - actual Python response accepted and independently reconstructed: increase_zzz
+  ---
+  duration_ms: 1.4335
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_usdc_5
+ok 6 - actual Python response accepted and independently reconstructed: increase_usdc_5
+  ---
+  duration_ms: 1.1094
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: increase_eth_5
+ok 7 - actual Python response accepted and independently reconstructed: increase_eth_5
+  ---
+  duration_ms: 0.8812
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_zzz
+ok 8 - actual Python response accepted and independently reconstructed: approve_zzz
+  ---
+  duration_ms: 0.8685
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: approve_usdc
+ok 9 - actual Python response accepted and independently reconstructed: approve_usdc
+  ---
+  duration_ms: 0.9403
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: mint
+ok 10 - actual Python response accepted and independently reconstructed: mint
+  ---
+  duration_ms: 2.7161
+  type: 'test'
+  ...
+# Subtest: actual Python response accepted and independently reconstructed: claim
+ok 11 - actual Python response accepted and independently reconstructed: claim
+  ---
+  duration_ms: 1.0365
+  type: 'test'
+  ...
+# Subtest: token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+ok 12 - token quantities are exact; invalid, exponential, overprecision and zero inputs fail
+  ---
+  duration_ms: 0.8416
+  type: 'test'
+  ...
+# Subtest: activation uses oracle token price, exact $100 plus at most a raw rounding unit
+ok 13 - activation uses oracle token price, exact $100 plus at most a raw rounding unit
+  ---
+  duration_ms: 1.1623
+  type: 'test'
+  ...
+# Subtest: production config requires HTTPS and never enables signing or accepts unknown switches
+ok 14 - production config requires HTTPS and never enables signing or accepts unknown switches
+  ---
+  duration_ms: 0.6734
+  type: 'test'
+  ...
+# Subtest: reject chain without any submission
+ok 15 - reject chain without any submission
+  ---
+  duration_ms: 0.3183
+  type: 'test'
+  ...
+# Subtest: reject API configuration without any submission
+ok 16 - reject API configuration without any submission
+  ---
+  duration_ms: 0.7648
+  type: 'test'
+  ...
+# Subtest: reject stale snapshot without any submission
+ok 17 - reject stale snapshot without any submission
+  ---
+  duration_ms: 0.4637
+  type: 'test'
+  ...
+# Subtest: reject canonical hash without any submission
+ok 18 - reject canonical hash without any submission
+  ---
+  duration_ms: 0.4322
+  type: 'test'
+  ...
+# Subtest: reject target without any submission
+ok 19 - reject target without any submission
+  ---
+  duration_ms: 0.7696
+  type: 'test'
+  ...
+# Subtest: reject value without any submission
+ok 20 - reject value without any submission
+  ---
+  duration_ms: 0.7417
+  type: 'test'
+  ...
+# Subtest: reject data without any submission
+ok 21 - reject data without any submission
+  ---
+  duration_ms: 1.1354
+  type: 'test'
+  ...
+# Subtest: reject extra transaction field without any submission
+ok 22 - reject extra transaction field without any submission
+  ---
+  duration_ms: 0.9404
+  type: 'test'
+  ...
+# Subtest: reject deadline without any submission
+ok 23 - reject deadline without any submission
+  ---
+  duration_ms: 0.8883
+  type: 'test'
+  ...
+# Subtest: reject overlong expiry without any submission
+ok 24 - reject overlong expiry without any submission
+  ---
+  duration_ms: 0.9236
+  type: 'test'
+  ...
+# Subtest: reject sender without any submission
+ok 25 - reject sender without any submission
+  ---
+  duration_ms: 0.8501
+  type: 'test'
+  ...
+# Subtest: reject fee identity without any submission
+ok 26 - reject fee identity without any submission
+  ---
+  duration_ms: 0.8631
+  type: 'test'
+  ...
+# Subtest: reject unqualified fee model without any submission
+ok 27 - reject unqualified fee model without any submission
+  ---
+  duration_ms: 0.7317
+  type: 'test'
+  ...
+# Subtest: reject gas ceiling without any submission
+ok 28 - reject gas ceiling without any submission
+  ---
+  duration_ms: 0.7122
+  type: 'test'
+  ...
+# Subtest: reject fee arithmetic without any submission
+ok 29 - reject fee arithmetic without any submission
+  ---
+  duration_ms: 0.8029
+  type: 'test'
+  ...
+# Subtest: reject runtime without any submission
+ok 30 - reject runtime without any submission
+  ---
+  duration_ms: 0.7976
+  type: 'test'
+  ...
+# Subtest: reject state override without any submission
+ok 31 - reject state override without any submission
+  ---
+  duration_ms: 0.77
+  type: 'test'
+  ...
+# Subtest: reject LP shortfall without any submission
+ok 32 - reject LP shortfall without any submission
+  ---
+  duration_ms: 0.8598
+  type: 'test'
+  ...
+# Subtest: reject LP units shortfall without any submission
+ok 33 - reject LP units shortfall without any submission
+  ---
+  duration_ms: 0.8543
+  type: 'test'
+  ...
+# Subtest: reject shares zero without any submission
+ok 34 - reject shares zero without any submission
+  ---
+  duration_ms: 1.9474
+  type: 'test'
+  ...
+# Subtest: reject wrong source valuation without any submission
+ok 35 - reject wrong source valuation without any submission
+  ---
+  duration_ms: 0.7198
+  type: 'test'
+  ...
+# Subtest: reject price changed without any submission
+ok 36 - reject price changed without any submission
+  ---
+  duration_ms: 0.6873
+  type: 'test'
+  ...
+# Subtest: reject owner changed without any submission
+ok 37 - reject owner changed without any submission
+  ---
+  duration_ms: 0.736
+  type: 'test'
+  ...
+# Subtest: reject unrevealed without any submission
+ok 38 - reject unrevealed without any submission
+  ---
+  duration_ms: 0.5266
+  type: 'test'
+  ...
+# Subtest: reject lifecycle stopped without any submission
+ok 39 - reject lifecycle stopped without any submission
+  ---
+  duration_ms: 0.4961
+  type: 'test'
+  ...
+# Subtest: approval is exact, not unlimited, and requires another complete simulation
+ok 40 - approval is exact, not unlimited, and requires another complete simulation
+  ---
+  duration_ms: 3.4222
+  type: 'test'
+  ...
+# Subtest: top-up below $5 and activation above/below exact amount are rejected
+ok 41 - top-up below $5 and activation above/below exact amount are rejected
+  ---
+  duration_ms: 2.4834
+  type: 'test'
+  ...
+# Subtest: claim only selects funded ETH, never source tokens or duplicate NFTs
+ok 42 - claim only selects funded ETH, never source tokens or duplicate NFTs
+  ---
+  duration_ms: 1.9178
+  type: 'test'
+  ...
+# Subtest: mint does not allocate liquidity or reserve a returned NFT
+ok 43 - mint does not allocate liquidity or reserve a returned NFT
+  ---
+  duration_ms: 1.2342
+  type: 'test'
+  ...
+# Subtest: an expiry or reorg during the final checks invalidates the prepared review
+ok 44 - an expiry or reorg during the final checks invalidates the prepared review
+  ---
+  duration_ms: 1.5372
+  type: 'test'
+  ...
+# Subtest: portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+ok 45 - portfolio reads bounded cards with no invented earnings and rejects an oversized inventory
+  ---
+  duration_ms: 1.8071
+  type: 'test'
+  ...
+# Subtest: a 1,000-ID wallet fetches only eight card projections with at most two in flight
+ok 46 - a 1,000-ID wallet fetches only eight card projections with at most two in flight
+  ---
+  duration_ms: 30.0172
+  type: 'test'
+  ...
+# Subtest: mint readiness and malformed values fail closed
+ok 47 - mint readiness and malformed values fail closed
+  ---
+  duration_ms: 1.7525
+  type: 'test'
+  ...
+# Subtest: wallet changes discard late portfolio responses
+ok 48 - wallet changes discard late portfolio responses
+  ---
+  duration_ms: 1.1835
+  type: 'test'
+  ...
+# Subtest: unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+ok 49 - unavailable royalty balances remain unknown, never zero or combined with unrelated tokens
+  ---
+  duration_ms: 57.6276
+  type: 'test'
+  ...
+# Subtest: API request transport excludes credentials and redirects; size and error results are bounded
+ok 50 - API request transport excludes credentials and redirects; size and error results are bounded
+  ---
+  duration_ms: 1.397
+  type: 'test'
+  ...
+# Subtest: aborted request never retries or ignores cancellation
+ok 51 - aborted request never retries or ignores cancellation
+  ---
+  duration_ms: 0.2791
+  type: 'test'
+  ...
+# Subtest: ordinary addresses accepted; multiple authorized accounts require explicit selection
+ok 52 - ordinary addresses accepted; multiple authorized accounts require explicit selection
+  ---
+  duration_ms: 0.7723
+  type: 'test'
+  ...
+# Subtest: restore uses read-only permission checks and isolated deployment storage
+ok 53 - restore uses read-only permission checks and isolated deployment storage
+  ---
+  duration_ms: 0.3102
+  type: 'test'
+  ...
+# Subtest: account changes and disconnects invalidate prior selections and reviews
+ok 54 - account changes and disconnects invalidate prior selections and reviews
+  ---
+  duration_ms: 0.209
+  type: 'test'
+  ...
+# Subtest: revoked remembered account never silently restores a different account
+ok 55 - revoked remembered account never silently restores a different account
+  ---
+  duration_ms: 0.1388
+  type: 'test'
+  ...
+# Subtest: cancelled/late connection cannot revive a disconnected account
+ok 56 - cancelled/late connection cannot revive a disconnected account
+  ---
+  duration_ms: 0.1514
+  type: 'test'
+  ...
+# Subtest: published default keeps the public demo and local signer boundaries
+ok 57 - published default keeps the public demo and local signer boundaries
+  ---
+  duration_ms: 4.4496
+  type: 'test'
+  ...
+1..57
+# tests 57
+# suites 0
+# pass 57
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 304.0983

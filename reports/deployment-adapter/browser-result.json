@@ -1,0 +1,43 @@
+{
+  "scope": "Isolated headless browser; Python byte-level API fixtures; no real extension, RPC, funds or transaction",
+  "records": [
+    {
+      "case": "default simulation preserved",
+      "passed": true
+    },
+    {
+      "case": "activate_zzz",
+      "passed": true,
+      "rpcCalls": 49
+    },
+    {
+      "case": "activate_eth",
+      "passed": true,
+      "rpcCalls": 49
+    },
+    {
+      "case": "approve_usdc",
+      "passed": true,
+      "rpcCalls": 49
+    },
+    {
+      "case": "increase_zzz",
+      "passed": true,
+      "rpcCalls": 40
+    },
+    {
+      "case": "claim",
+      "passed": true,
+      "rpcCalls": 36
+    },
+    {
+      "case": "mint",
+      "passed": true,
+      "rpcCalls": 36
+    },
+    {
+      "case": "bad config fails closed",
+      "passed": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-20 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-21 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -285,11 +285,12 @@ What holders see and use.
 
 <a id="task-wallet"></a>
 
-- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. Opt-in local EIP-1193 signing now covers mint, exact approval, activation/top-up and ETH claims with typed calldata checks, durable recovery and canonical receipt observation. Qualify actual browser extensions and independently reviewed production manifests, routes and services; public transactions remain disabled.
+- [ ] **[Connect real wallet transactions](docs/BROWSER_WALLET.md)** - In progress. Local browser signing remains available. A separate default-disabled reviewed deployment profile now reads the production API and prepares exact unsigned mint, approval, activation/top-up and ETH-claim reviews. Public signing, actual extension acceptance and qualified deployment/routes/services remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Reviewed website API profile](docs/DEPLOYMENT_WEBSITE.md) and [scoped evidence](reports/deployment-adapter/VERIFICATION.md): 57 new focused cases and eight isolated browser scenarios pass. Eleven responses come from actual Python API code with byte-level mocked dependencies. No new signer or public transaction; the local-only signer restriction remains. Automatic approval review rejected its proposed expansion, which was not applied.
   - [Publication checkpoint](reports/browser-wallet/PUBLICATION.md): latest wallet/backend code is on main and the matching static website is deployed and checksum-verified. Public mode remains simulated; actual extension acceptance and production qualification remain open. No unchanged suites or deferred capacity campaign rerun.
   - [Independent chain reader](reports/browser-wallet/CHAIN_READER.md): shared mint/approval/activation/top-up/claim confirmation now uses a pinned read RPC rather than extension transaction formatting; EIP-155 legacy chain identity is supported without weakening typed chain checks. 232 distinct website and 43 backend passes; actual existing mint recovery and exact-node CSP/CORS verified. 13 NFTs/LP/session preserved. Actual extension acceptance and production deployment/service qualification remain open.
   - [Canonical dynamic-fee receipt recovery](reports/browser-wallet/DYNAMIC_FEE_RECEIPTS.md): generic EIP-1559 fee derivation fixes uncapped RPC convenience reporting without loosening reviewed limits. 142 signer/client + 40 observer cases and actual minted receipt/balance replay pass. Local web-only reload preserves session/12 NFTs/Anvil; actual extension recovery retest and production qualification remain open.
@@ -321,11 +322,12 @@ What holders see and use.
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. The existing website local mode reads confirmed ownership, current LP, per-currency LP/royalty balances and actual revealed artwork. Production hosting, lifecycle/remote/outage qualification remain open.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Confirmed ownership, LP, ETH rewards and matching-block earnings are available through local integration and a default-disabled reviewed API profile. Eight-card pagination bounds reads; partial-page totals are not presented as complete wallet totals. Live hosting, collection aggregation and lifecycle/outage qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Reviewed API integration](docs/DEPLOYMENT_WEBSITE.md) accepts ordinary authorized addresses, isolates connection storage by deployment and discards old account/page results. Missing history/prices remain unavailable; source rewards are never labeled ETH. Full collection aggregation and production provider qualification remain open.
   - Local display correction: show the revealed rarity multiplier (Commun Ã—1, Rare Ã—2, Legendary Ã—3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.
   - Local dormant cards/details omit reward, claim and earnings-history sections. Activated cards have separate Claim and Grow attached LP controls. Same-account/session refresh retains labeled last-confirmed cards with actions disabled; failed reads and context changes mask unavailable balances; confirmed evolution crossfades without changing rarity/palette. Reduced-motion is supported.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
@@ -344,6 +346,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Unsigned review profile](docs/DEPLOYMENT_WEBSITE.md) displays exact token units, simulated marginal LP addition, separate gas and expiry. It independently reconstructs typed calls, requires the 99% deployment floor and exact approval to Entry. Activation targets $100 with raw-unit round-up; growth requires at least $5. No submission/receipt path exists in this profile yet.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Show original contribution value, exact approvals, the 1% execution limit and network gas separately. Rejected or reverted execution may still cost network gas.
   - Independently review and pin deployments, the immutable 32-operation claim router runtime/bindings and exact calldata. Chunk larger portfolios; recheck owner/assets, simulate and estimate gas immediately before user confirmation. Handle account/network changes, stale drafts, rejection, replacement, failure and canonical receipt/reorg recovery.
@@ -798,4 +801,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `68db7c50fb92081c56648e41c86818c55260e87f812f6e0ed84c292d0b91579c`.
+Snapshot SHA-256: `98c5778723433a40a6c67635206c5bc0ed6b1ae70c94a66e304fb194cf264d8e`.

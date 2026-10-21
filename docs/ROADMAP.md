@@ -24,8 +24,10 @@ typed unsigned preparation, independent signing and saved transaction recovery,
 with [scoped automated and Anvil evidence](../reports/browser-wallet/VERIFICATION.md).
 The [latest confirmation fix](../reports/browser-wallet/CHAIN_READER.md) uses a pinned
 node reader independently of wallet response formatting and is [published](../reports/browser-wallet/PUBLICATION.md).
-Next verify an actual browser extension, then adapt the production endpoints and
-independently reviewed deployment/fee policy. The EIP-1193-shaped test provider
+The [reviewed API profile](DEPLOYMENT_WEBSITE.md) now connects reads and unsigned
+reviews to those endpoints. Next verify an actual browser extension and complete
+the separately approved signer adapter with independently reviewed deployment/fee
+policy; public signing remains disabled. The EIP-1193-shaped test provider
 does not close extension acceptance or authorize public funds.
 
 The proposed [10/25/100-user capacity campaign](../TODO.md#task-capacity-campaign)

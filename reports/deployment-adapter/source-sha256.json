@@ -1,0 +1,46 @@
+{
+  "contract_repository": {
+    "frontend_api/service.py": "d97250c14b9fd2cf923000874b937ab2c66475e1f29ae1b2a273425c435256f4",
+    "frontend_api/transactions.py": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+    "frontend_api/activation.py": "ce475a3240599080e151b3ddd8195efac9562d1709c3f1cd82612e4e3b9811d8",
+    "frontend_api/activation_trace.py": "7374795fe914a2e59464adb80fde0264520c0369b9eccaaf33b1fcf08d659230",
+    "frontend_api/activation_config.py": "dec2340b7c0e94681849caf10c07d36de958dda37bf3fb64dac1bfc694a975f3",
+    "frontend_api/earnings.py": "44c50612e6a16f7c129fef2659a682a16e65d5b71b0386bb7bc3cb194fc18ac2",
+    "frontend_api/mint_readiness.py": "3fcca923b2ce52d005a8fdbded5a269505660a80a8d760e52d3392be05f4836b",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "tests_python/test_frontend_activation.py": "3b038761ba3284d0ae33f5ecd6f21c44546ed8fd6a227ec3f97fbd71d760276d",
+    "tests_python/test_frontend_transactions.py": "1ef8a405b74fee67c24eab9ba7929b298c9d5d35e9bf4e5c7cde0ba0609f2fd9",
+    "tests_python/export_website_api_fixtures.py": "6346f3a46470ab371643edae1f0dff34c9f6d22b26474f82a9ca52489019bcaf"
+  },
+  "website_repository": {
+    "deployment-api.js": "e372e54dbfbe8591f9a6ab9e416ddc4170a69eebd0ce31c525ccb5412bb29a04",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "deployment-session.js": "db39ded029bd9423120b1a15942e0aed93c53fe6c2c73ec58cf3c60df40e5730",
+    "deployment-view.js": "73e6803b797165161b82a28a0c913231983cf810fb25cbe886f47f2565fc7d15",
+    "app.js": "22b60108f08059211d5cca181e87cbfcea4781a60a1aaeb45391d9b3a92d08d3",
+    "server.mjs": "eec3dec7120f10b3200a722aef90ab79d9bb699da8ccf71349a65eec38580bdc",
+    "build.mjs": "34d385269fcdcd3a1388df96d8a40f5cafdf2639ebff536f923ffd52e584c3a7",
+    "package.json": "9c40c3af17424b3cd57ea26186a18127f75d1e470e6dfb7874d0dfb75fe6ab26",
+    "tests/deployment-api.test.mjs": "381d3112ec981669bd9b5eff3cb45d7cb11267113dd4555a4edc975e9c6ea542",
+    "tests/fixtures/deployment-api.json": "78aba5b8914c896038797cbbe510d47730ce90716820eef32463f7aeb5619f4b"
+  },
+  "reused_chain_reader_bindings": [
+    "contract_repository/scripts\\local_browser.py",
+    "contract_repository/scripts\\local-stack.py",
+    "contract_repository/zzz_ops\\ethereum_fees.py",
+    "contract_repository/tests_python\\test_local_browser.py",
+    "website_repository/browser-wallet.js",
+    "website_repository/browser-client.js",
+    "website_repository/tests\\browser-wallet.test.mjs",
+    "website_repository/tests\\browser-client.test.mjs",
+    "website_repository/tests\\chain-reader.test.mjs",
+    "website_repository/tests\\browser-intent.test.mjs",
+    "website_repository/tests\\contribution-flow.test.mjs",
+    "website_repository/tests\\ui-state.test.mjs",
+    "website_repository/tests\\wallet-lifecycle.test.mjs"
+  ],
+  "evidence": {
+    "tests.tap": "581f099ec1e9b7a568b5c2d0a5863d5539a94919997d5a626f3a0a34f6446b9c",
+    "browser-result.json": "f111ff6c47ab52ed61ba813ebff1668f4d0660c673d718c4740bace168288965"
+  }
+}
