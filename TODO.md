@@ -322,6 +322,7 @@ What holders see and use.
   - Next qualification: actual Chrome/extension signing, rejection, delayed prompts, account/network changes and recovery; independently reviewed production deployment pins, complete RPC/gas semantics and live activation routes/feeds. Dynamic local manifests and mock prices are not production approvals. Keep local exact-$100 activation versus production minimum-$100 quote/rounding alignment explicit; the 10/25/100-user campaign remains deferred.
   - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
   - [Pending nonce diagnosis](reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked browser scenarios and six actual read-only recovery observations pass. Queued or wallet-changed nonces now stop the wait immediately; journals and local-only signing remain. The actual nonce 35 mint is unmined; controlled queue reconciliation and extension acceptance remain open.
+  - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
 
   </details>
 
@@ -371,6 +372,7 @@ What holders see and use.
   - [Gallery/reward-feedback evidence](reports/website-polish/VERIFICATION.md): one saved sample funding round preserves prior LP and claims, allocation is LP/equal-collective/rarity weighted, duplicates cannot refill it. Confirmed tier celebrations use supplied ACTI/EV audio synchronized with the image after successful contribution and fresh increased LP. The claimed-total frame is hidden without changing lifetime accounting. Single-pool UI hides redundant pool controls. These are demo/presentation improvements, not live funding or production signing.
   - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
   - [Pending nonce diagnosis](reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked browser scenarios and six actual read-only recovery observations pass. Queued or wallet-changed nonces now stop the wait immediately; journals and local-only signing remain. The actual nonce 35 mint is unmined; controlled queue reconciliation and extension acceptance remain open.
+  - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
 
   </details>
 
@@ -810,4 +812,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `a0e6421592e13a8ff8d9e3a7d6b260c8eec665288cc4cef327b9c63289dea114`.
+Snapshot SHA-256: `294397f25866dd49e08ae9f7dff2f5afd150035a315c8e4b954f073dc33bf168`.

@@ -849,6 +849,8 @@ Inspect the node and wallet before any separately approved reconciliation.
 Do not reset Anvil, fill nonce gaps, or erase unresolved journals. The diagnostic
 does not add cancellation, replacement discovery or nonlocal signing.
 
+For the authorized nonce 35 incident, follow the [one-time reconciliation](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md). Node cleanup is complete; the user browser/MetaMask step remains pending.
+
 ### Real local API rehearsal and complete wallet totals
 
 Use [the isolated API runbook](LOCAL_API_REHEARSAL.md) to exercise actual local

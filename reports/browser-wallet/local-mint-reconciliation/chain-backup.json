@@ -1,0 +1,8 @@
+{
+  "scope": "Read-only local Anvil state backup; not complete historical chain/browser recovery or permission to restart. No private keys.",
+  "file": "External pending-fix/chain-state-after-cleanup.bin",
+  "bytes": 1326310,
+  "sha256": "7c53f58fee1cf7a99dd5c3a76b67789521c31e261dec01bf5d8f1fbc9dbeb005",
+  "genesis": "0x19df3ff29a52f43ea4c9120bcbf65ec6a3d707f90c4e6537d54274cfe3f4d439",
+  "queued_mint_absent": true
+}

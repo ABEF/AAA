@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "scope": "Fresh isolated headless browser with synthetic journal; reads actual local manifest/RPC only. No extension or user-browser storage accessed.",
+  "checks": [
+    "Control displayed",
+    "Unchecked MetaMask attestation blocks cleanup",
+    "Exact synthetic journal archived byte-for-byte",
+    "Only synthetic pending record removed",
+    "Page reloads without error"
+  ],
+  "user_browser_step": "Still required"
+}

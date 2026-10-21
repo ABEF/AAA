@@ -1,0 +1,21 @@
+✔ archive exact abandoned mint, retain byte-exact journal and every other key (2.4694ms)
+✔ public origin preserves pending record (0.3836ms)
+✔ wrong deployment preserves pending record (0.1718ms)
+✔ unchecked MetaMask step preserves pending record (0.1503ms)
+✔ different saved hash preserves pending record (0.1958ms)
+✔ different mint nonce preserves pending record (0.1565ms)
+✔ mined receipt preserves pending record (0.2587ms)
+✔ rebroadcast transaction preserves pending record (0.2323ms)
+✔ changed account nonce preserves pending record (0.3401ms)
+✔ wrong genesis preserves pending record (0.3547ms)
+✔ busy other tab preserves pending record (0.1647ms)
+✔ archive cannot persist preserves pending record (0.7705ms)
+✔ journal changed during reads preserves pending record (0.1902ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.396

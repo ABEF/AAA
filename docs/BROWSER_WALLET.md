@@ -307,6 +307,17 @@ not cancel a signed transaction on a node. Public-wallet cancellation/replacemen
 reconciliation is not implemented here. See
 [scoped diagnosis and evidence](../reports/browser-wallet/PENDING_NONCE.md).
 
+## Authorized local mint cleanup - 2026-10-22
+
+The exact nonce 35 mint in the 8902 fixture has been removed from the isolated
+node; full chain state and both wallets' balances/nonces are unchanged. The user
+must still clear MetaMask's local activity/nonce history and use the temporary
+in-page archive control in the same browser. No automatic transaction is sent.
+The [reconciliation procedure and evidence](../reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md)
+contains exact prerequisites, preserved evidence and restoration instructions.
+The temporary dist overlay must never be published; source/public signing remain
+unchanged. Keep these browser steps pending until actually verified.
+
 ## Stop, restart and rollback
 
 The local operator may close an unsigned review at any time. A wallet request

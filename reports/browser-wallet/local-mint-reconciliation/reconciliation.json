@@ -1,0 +1,124 @@
+{
+  "time_utc": "2026-10-21T23:15:05.875768+00:00",
+  "scope": "User-authorized removal of this exact unmined local mint; no signing, chain reset or nonce/balance/storage edit",
+  "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+  "actions": [
+    {
+      "method": "anvil_dropTransaction",
+      "params": [
+        "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6"
+      ],
+      "result": null
+    },
+    {
+      "method": "anvil_removePoolTransactions",
+      "params": [
+        "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+      ],
+      "result": null
+    }
+  ],
+  "browser_journal": "Unchanged; browser archive and MetaMask local nonce-history reset still required",
+  "before": {
+    "block": {
+      "number": "0x180",
+      "hash": "0xd0588a80abbdba0fbdb0b46ca9dfc55953d219f239a129e9ac82e7c9e0568a72",
+      "stateRoot": "0x78326a082d37d866e4f674a0e77776e9c534502ffe8d7e988f93fccf974ce76e",
+      "timestamp": "0x6ad94778"
+    },
+    "accounts": {
+      "0x70997970c51812dc3a010c7d01b50e0d17dc79c8": {
+        "balance": "0x845959eb48b33d32025f9",
+        "nonce": "0x19"
+      },
+      "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc": {
+        "balance": "0x8458fa9888c8ee3f78fae",
+        "nonce": "0x4"
+      }
+    },
+    "receipt": null,
+    "transaction": {
+      "type": "0x0",
+      "chainId": "0x7a69",
+      "nonce": "0x23",
+      "gasPrice": "0x3b9aca07",
+      "gas": "0x806e1",
+      "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+      "value": "0xb1a2bc2ec50000",
+      "input": "0x21bf772d",
+      "r": "0x819faa4985e6f662095d1b1b051420f3ee6ba1e6d4eaee2ff9ae683ad3d099bd",
+      "s": "0x4e23e47f6e28b9f48825ea344d71a7129d71b448d072ad62ef8cb04569aefdc4",
+      "v": "0xf4f6",
+      "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+      "blockHash": null,
+      "blockNumber": null,
+      "transactionIndex": null,
+      "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "pool": {
+      "pending": {
+        "0x70997970c51812dc3a010c7d01b50e0d17dc79c8": {
+          "35": {
+            "type": "0x0",
+            "chainId": "0x7a69",
+            "nonce": "0x23",
+            "gasPrice": "0x3b9aca07",
+            "gas": "0x806e1",
+            "to": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+            "value": "0xb1a2bc2ec50000",
+            "input": "0x21bf772d",
+            "r": "0x819faa4985e6f662095d1b1b051420f3ee6ba1e6d4eaee2ff9ae683ad3d099bd",
+            "s": "0x4e23e47f6e28b9f48825ea344d71a7129d71b448d072ad62ef8cb04569aefdc4",
+            "v": "0xf4f6",
+            "hash": "0x7df63aa0d6bf24461b7fdf1858b778c7d1e051d904a11a86ad0dd538a9400cc6",
+            "blockHash": null,
+            "blockNumber": null,
+            "transactionIndex": null,
+            "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+          }
+        }
+      },
+      "queued": {}
+    },
+    "pool_status": {
+      "pending": "0x0",
+      "queued": "0x1"
+    }
+  },
+  "after": {
+    "block": {
+      "number": "0x180",
+      "hash": "0xd0588a80abbdba0fbdb0b46ca9dfc55953d219f239a129e9ac82e7c9e0568a72",
+      "stateRoot": "0x78326a082d37d866e4f674a0e77776e9c534502ffe8d7e988f93fccf974ce76e",
+      "timestamp": "0x6ad94778"
+    },
+    "accounts": {
+      "0x70997970c51812dc3a010c7d01b50e0d17dc79c8": {
+        "balance": "0x845959eb48b33d32025f9",
+        "nonce": "0x19"
+      },
+      "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc": {
+        "balance": "0x8458fa9888c8ee3f78fae",
+        "nonce": "0x4"
+      }
+    },
+    "receipt": null,
+    "transaction": null,
+    "pool": {
+      "pending": {},
+      "queued": {}
+    },
+    "pool_status": {
+      "pending": "0x0",
+      "queued": "0x0"
+    }
+  },
+  "pass": true,
+  "assertions": [
+    "Exact pending mint removed",
+    "No receipt or execution",
+    "Queue empty",
+    "Both wallet balances and nonces identical",
+    "Complete chain stateRoot unchanged: all NFT/LP/reward contract storage preserved"
+  ]
+}

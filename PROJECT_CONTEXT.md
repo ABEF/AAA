@@ -1,3 +1,25 @@
+## Authorized local mint cleanup and sleep handoff - 2026-10-22
+
+The user explicitly approved reconciliation of the exact unmined local mint
+7df63a...00cc6. It is removed from the 8902 Anvil queue, not mined or confirmed.
+Complete stateRoot, Wallet A/B balances and nonces are identical before/after;
+NFTs, LP and reward storage are preserved. No chain/service reset or new holder
+transaction. No public source/deployment or paused-monitor change.
+
+**Tomorrow:** user selects Wallet A and PoPL local network in MetaMask, clears
+activity/nonce data, refreshes 8902 in the original browser, then uses **Archive
+the abandoned mint and reconnect**. The one-time exact-fixture control archives
+and verifies only that pending journal under the same wallet lock. Actual user
+MetaMask and browser storage are untouched so far; do not call them reconciled.
+
+[Procedure/evidence](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): 13 focused checks and one isolated headless browser
+scenario pass; user journal not accessed. A temporary overlay exists only in
+website dist/deployment-view.js. Source remains published 9aaedec behavior. Do not
+deploy that dist; after verified browser archival, restore dist from committed
+source without restarting Anvil. External api-chain-rehearsal/pending-fix holds
+the original bytes, cleanup evidence and overlay hashes. Main only; preserve older
+drafts. Todo/features/operator/memories are updated; production NOT APPROVED.
+
 ## Pending mint nonce diagnosis - 2026-10-22
 
 Publication: website `9aaedec` and contract evidence `1bb8668` are on main. The
