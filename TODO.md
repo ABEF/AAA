@@ -290,6 +290,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Publication receipt](reports/deployment-adapter/PUBLICATION.md): website code 757a8de is on main and the static Ubuntu site; all 5,597 server checksums and 49 scoped public/host/privacy checks passed. Public DEPLOYMENT remains null. This does not enable production APIs or signing.
   - [Reviewed website API profile](docs/DEPLOYMENT_WEBSITE.md) and [scoped evidence](reports/deployment-adapter/VERIFICATION.md): 57 new focused cases and eight isolated browser scenarios pass. Eleven responses come from actual Python API code with byte-level mocked dependencies. No new signer or public transaction; the local-only signer restriction remains. Automatic approval review rejected its proposed expansion, which was not applied.
   - [Publication checkpoint](reports/browser-wallet/PUBLICATION.md): latest wallet/backend code is on main and the matching static website is deployed and checksum-verified. Public mode remains simulated; actual extension acceptance and production qualification remain open. No unchanged suites or deferred capacity campaign rerun.
   - [Independent chain reader](reports/browser-wallet/CHAIN_READER.md): shared mint/approval/activation/top-up/claim confirmation now uses a pinned read RPC rather than extension transaction formatting; EIP-155 legacy chain identity is supported without weakening typed chain checks. 232 distinct website and 43 backend passes; actual existing mint recovery and exact-node CSP/CORS verified. 13 NFTs/LP/session preserved. Actual extension acceptance and production deployment/service qualification remain open.
@@ -801,4 +802,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `98c5778723433a40a6c67635206c5bc0ed6b1ae70c94a66e304fb194cf264d8e`.
+Snapshot SHA-256: `8be92e13aee93d135afbd1ae2914274c66c5727c68ab6500c3ded2c04a1fb624`.

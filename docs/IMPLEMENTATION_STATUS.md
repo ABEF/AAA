@@ -1,5 +1,11 @@
 ## Reviewed website API profile - 2026-10-21
 
+Publication: website code `757a8de` and contract docs `1dc05d3` are pushed on
+main; the static server serves `757a8de`. All 5,597 server checksums and 41 public
+assets, four host/redirect and four private-path checks passed. The public
+configuration is null and financial actions remain simulated. See
+[publication receipt](../reports/deployment-adapter/PUBLICATION.md).
+
 The separate website now has a build-configured, default-disabled read and unsigned-
 review profile for the existing APIs. Ordinary authorized accounts, eight-card
 holdings pages, confirmed LP/ETH rewards, matching-block earnings and typed
