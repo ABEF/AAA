@@ -1,3 +1,26 @@
+## Production earnings and OpenSea mint scope - 2026-10-22
+
+The user clarified that production minting is intended for OpenSea; the website
+Mint page demonstrates the product. Local Anvil minting remains a test tool.
+The production website profile now refuses mint preparation. OpenSea chain/product,
+caller/recipient compatibility and exact collection URL are an explicit pre-seal
+qualification task; no marketplace integration has been approved or deployed.
+
+Shared production API/website earnings now cover all currently held NFTs in
+bounded same-block chunks and collection holder allocations. Independent NFT
+rounding, original-currency/current-price valuation, transfer history and complete
+same-chain lineage remain; claims/conversions are not new income. Missing history
+or prices stays unavailable. 86 affected Python, 89 distinct JS and six isolated
+production-profile browser cases pass; actual services/feeds/audit remain open.
+See [scoped evidence](reports/wallet-earnings/VERIFICATION.md). Full collection inventory/LP aggregation is still separate.
+
+Signer/transaction coordinator remain local-only and unchanged. Public DEPLOYMENT
+is null. Running 8902, Anvil, browser journals and paused monitoring are untouched.
+Its temporary local mint-repair dist overlay remains; do not deploy it. The clean
+build is external and contains 5,598 files. Actual user MetaMask reset/browser
+archival is still pending. Main only; preserve unrelated drafts, maintain the sole
+Todo, features/operator procedures and memories. Check Git/publication evidence.
+
 ## Authorized local mint cleanup and sleep handoff - 2026-10-22
 
 The user explicitly approved reconciliation of the exact unmined local mint

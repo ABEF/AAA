@@ -6,6 +6,17 @@ This is the management guide for the **current undeployed candidate**. It descri
 
 ## Find the right procedure
 
+Production minting is intended for OpenSea; the website Mint page is a demo.
+Qualify the exact mint product, chain, contract integration and collection URL
+before sealing, following [the mint venue procedure](OPENSEA_MINT.md).
+Existing mint pause/reveal controls still govern external mint callers.
+
+For full-wallet earnings and collection holder allocations, use the existing
+reviewed read API with [current-holdings totals](EARNINGS_HISTORY.md#current-holdings-totals).
+Match API/frontend versions, verify a complete same-block inventory, and retain
+unavailable states on missing chunks/prices. No authority or transaction is added;
+stop/rollback these reports through the read-service profile, not a chain reset.
+
 | I want to... | Procedure |
 | --- | --- |
 | Change +/-50% LP range to +/-20%, trigger, cooldown or execution settings | [Range and strategy](#range-and-strategy) |

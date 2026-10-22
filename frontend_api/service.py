@@ -532,6 +532,13 @@ class Projection:
         return read(self, wallet_address, block_number, offset)
 
     @bounded_request
+    def wallet_earnings(self, wallet_address, block_number, offset=0):
+        from frontend_api.wallet_earnings import read
+        if self.earnings_history is None:
+            raise HistoryError('Reviewed earnings-history profile is not configured')
+        return read(self.earnings_history, wallet_address, block_number, offset)
+
+    @bounded_request
     def wallet(self, wallet_address: Any) -> dict[str, Any]:
         wallet = address(wallet_address)
         if self.history is None:

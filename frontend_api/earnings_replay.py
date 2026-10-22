@@ -40,8 +40,15 @@ def require(condition, message):
 
 
 class Replay:
-    def __init__(self, timestamp, nft_id=None):
+    def __init__(self, timestamp, nft_id=None, *, selected=None):
+        require(selected is None or (nft_id is None and isinstance(selected, tuple) and
+                len(selected) <= 16 and len(set(selected)) == len(selected) and
+                all(type(i) is int and 0 < i < 2**256 for i in selected)), 'Invalid earnings selection')
         self.timestamp, self.nft_id = timestamp, nft_id
+        self.selected = selected if selected is not None else (() if nft_id is None else (nft_id,))
+        self.group = selected is not None
+        self.accounts = {i: defaultdict(int) for i in self.selected}
+        self.account_totals = {i: defaultdict(int) for i in self.selected}
         self.mints = []
         self.minted = set()
         self.shares = {}
@@ -81,12 +88,18 @@ class Replay:
         if self.timestamp - 86400 < timestamp <= self.timestamp:
             self.day[metric, asset] += amount
 
-    def earn(self, metric, asset, scaled, timestamp):
+    def earn(self, metric, asset, scaled, timestamp, identifier):
+        checkpoint()
         key = metric, asset
-        old = self.scaled[key]
-        self.scaled[key] += scaled
+        account = self.accounts[identifier]
+        old = account[key]
+        account[key] += scaled
         # Attribute a whole raw unit when carried fractions first make it payable.
-        self.add(metric, asset, self.scaled[key]//SCALE - old//SCALE, timestamp)
+        earned = account[key]//SCALE - old//SCALE
+        self.account_totals[identifier][key] += earned
+        self.add(metric, asset, earned, timestamp)
+        if not self.group:
+            self.scaled[key] = account[key]
 
     def __call__(self, emitter, topics, data, block, block_hash, timestamp, transaction, log_index):
         checkpoint()
@@ -156,10 +169,10 @@ class Replay:
             self.add('lp_collective_allocated' if self.members else 'lp_collective_quarantined', asset, collective, timestamp)
             shared_delta = collective*SCALE//len(self.members) if self.members else 0
             self.collective_index[asset] += shared_delta
-            if self.nft_id is not None:
-                own_bucket, shares = self.shares.get(self.nft_id, (0, 0))
-                self.earn('lp_individual', asset, shares*owner_delta if own_bucket == bucket else 0, timestamp)
-                self.earn('lp_collective', asset, shared_delta if self.nft_id in self.members else 0, timestamp)
+            for identifier in self.selected:
+                own_bucket, shares = self.shares.get(identifier, (0, 0))
+                self.earn('lp_individual', asset, shares*owner_delta if own_bucket == bucket else 0, timestamp, identifier)
+                self.earn('lp_collective', asset, shared_delta if identifier in self.members else 0, timestamp, identifier)
         elif role == 'fees':
             bucket, asset = t[0], _topic_address(topics[2])
             require(asset in self.lp_assets and self.supply[bucket] > 0, 'Unreviewed LP revenue currency/bucket')
@@ -221,8 +234,8 @@ class Replay:
             self.add('royalties_allocated' if eligible else 'royalties_quarantined', asset, amount, timestamp)
             delta = amount*SCALE//supply if supply else 0
             self.royalty_index[asset] += delta
-            if self.nft_id is not None:
-                self.earn('royalties', asset, delta*self.weights[self.nft_id] if self.nft_id in cohort else 0, timestamp)
+            for identifier in self.selected:
+                self.earn('royalties', asset, delta*self.weights[identifier] if identifier in cohort else 0, timestamp, identifier)
             if asset in self.pending_recovery:
                 require(self.pending_recovery.pop(asset) == transaction, 'Royalty cutoff recovery crossed transactions')
                 self.cohorts[asset] = set(self.weights)
@@ -233,12 +246,12 @@ class Replay:
         require(set(self.cohorts) == self.royalty_assets, 'Royalty admission history is incomplete')
 
     def report(self, descriptors):
-        fields = COLLECTION if self.nft_id is None else NFT
+        fields = NFT if self.group or self.nft_id is not None else COLLECTION
         def period(amounts):
             return [{'asset': asset, 'symbol': d.symbol, 'decimals': d.decimals,
                      **{name+'_raw': str(amounts[name, asset]) for name in fields}}
                     for asset, d in sorted(descriptors.items())]
-        return {'available': True, 'scope': 'collection' if self.nft_id is None else 'nft',
+        return {'available': True, 'scope': 'wallet_chunk' if self.group else 'collection' if self.nft_id is None else 'nft',
                 'all_time': period(self.totals), 'last_24h': period(self.day),
                 'window': {'after_timestamp_exclusive': max(-1, self.timestamp-86400),
                            'through_timestamp_inclusive': self.timestamp},

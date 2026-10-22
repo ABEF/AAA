@@ -1,0 +1,22 @@
+{
+  "contract": {
+    "frontend_api/earnings_replay.py": "0e0c988a68e2778376b5c362470ae01f8227ecba5c5b40dd0a5c737371c0de99",
+    "frontend_api/wallet_earnings.py": "f4cee068085968da315d469c87b41f6ec03dd994368ef032e4c54830762a1b0c",
+    "frontend_api/service.py": "88df9b97df490ce0368cfe5144e4b57247d88b7408cfdf87009a2fd88f499b61",
+    "frontend_api/server.py": "bf0cb22a3d9d4e75f7fe808f4796e23d4c6d7652f93eb6c1760d6257519c9168",
+    "frontend_api/worker.py": "dd43aca824ea9437e227f132ef5326a284c51e740e84b902c97bf657f4ddcbf7",
+    "tests_python/test_wallet_earnings.py": "c5b266d9f2bdb513c9e5258a7e26c65777c726d201dd99c35169b64eb0a4c444",
+    "config/nginx/popl-api-locations.conf": "9166ef022f94369d48048d2635985e0872d21e88f77bc7c7e8dafd9a242a2050",
+    "scripts/rehearse-api-ingress.py": "7123da957f30229543b2e0b77d3a94acce18656eed6a602c46593755d30abd52"
+  },
+  "website": {
+    "deployment-api.js": "4a984f03eeb3eb703a6a121cf8c365222b16267bc0d543585ac9016a53612327",
+    "deployment-view.js": "95c1c2e46ab30fb7b5fc9237d3bc42608a216b5bda2748ccd4a9b1d424f21287",
+    "tests/wallet-earnings.test.mjs": "aaa13b20a16e04ea001d2c5f81c2a1d4d1c7b1e26280effd82a0623cfed07abc",
+    "tests/fixtures/earnings.json": "467e74941b35dcb865833dff9ec1859edc52c00d4165fe146bb4234f36a0188d",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+  }
+}

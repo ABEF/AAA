@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-22):** the [local API rehearsal](docs/LOCAL_API_REHEARSAL.md) now exercises actual Anvil mint, activation, exact approval, growth and ETH claims through the real APIs and unchanged local-only signer. Full-wallet LP/ETH totals are independent of card pagination. [Scoped evidence](reports/api-chain-rehearsal/VERIFICATION.md) separates real local receipts from mock venue/feed/VRF behavior and remaining actual-extension acceptance. Public signing remains disabled, the demo remains simulated, and production qualification/audit remain open.
+**Current development work (2026-10-22):** the shared read API and opt-in website profile now provide complete current-holdings earnings and collection holder allocations, with confirmed accounting and current-price USD values. See [scope and evidence](reports/wallet-earnings/VERIFICATION.md). [Production minting is intended for OpenSea](docs/OPENSEA_MINT.md); the website Mint page is a demonstration, and local direct minting remains a test tool. OpenSea compatibility, production services/signing and independent approval remain open. The public demo stays simulated.
 
 ## Project navigation
 

@@ -18,6 +18,13 @@ Resolve [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) alongside
 
 ## Current sequencing decision - 2026-10-20
 
+Update 2026-10-22: production work now includes shared API/current-holdings earnings
+and collection holder allocations, with [scoped evidence](../reports/wallet-earnings/VERIFICATION.md).
+Production minting is intended for [OpenSea](OPENSEA_MINT.md); qualify its exact
+primary-mint integration before sealing. Website minting is demonstrative and
+local direct minting remains a test tool. Focus the production website on positions,
+activation, growth and claims. This does not lift the local-only signer restriction.
+
 The user reports all six [manual two-wallet scenarios](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
 passed. The local [browser-wallet implementation](BROWSER_WALLET.md) now has
 typed unsigned preparation, independent signing and saved transaction recovery,

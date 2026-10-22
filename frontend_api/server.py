@@ -81,23 +81,28 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             match = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})', self.path)
             wallet = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/nfts', self.path)
             summary = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/summary/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
+            wallet_earnings = re.fullmatch(r'/v1/wallets/(0x[0-9a-fA-F]{40})/earnings/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
             protocol = self.path == '/v1/protocol'
             readiness = self.path == '/v1/mint-readiness'
             earned = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})/earnings', self.path)
             collection_earnings = self.path == '/v1/earnings'
-            if not match and not wallet and not summary and not protocol and not readiness and not earned and not collection_earnings:
+            if not match and not wallet and not summary and not wallet_earnings and not protocol and not readiness and not earned and not collection_earnings:
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             try:
-                identifier = token_id((match or earned)[1]) if match or earned else address((wallet or summary)[1]) if wallet or summary else None
-                if summary and int(summary[3]) % 16:
+                identifier = token_id((match or earned)[1]) if match or earned else address((wallet or summary or wallet_earnings)[1]) if wallet or summary or wallet_earnings else None
+                cursor = summary or wallet_earnings
+                if cursor and int(cursor[3]) % 16:
                     raise ValueError('Invalid summary cursor')
             except ValueError:
                 self._json(400, {'error': 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
                 return
             try:
                 self.begin_work()
-                result = projection.wallet_summary(identifier, int(summary[2]), int(summary[3])) if summary else projection.earnings(identifier) if earned or collection_earnings else projection.mint_readiness() if readiness else projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
+                if wallet_earnings:
+                    result = projection.wallet_earnings(identifier, int(wallet_earnings[2]), int(wallet_earnings[3]))
+                else:
+                    result = projection.wallet_summary(identifier, int(summary[2]), int(summary[3])) if summary else projection.earnings(identifier) if earned or collection_earnings else projection.mint_readiness() if readiness else projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)
             except UnknownNFT:
                 self._json(404, {'error': 'nft_not_minted'})
             except AdmissionRejected as exc:

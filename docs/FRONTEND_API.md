@@ -1,5 +1,13 @@
 ## Processed earnings extension - 2026-10-19
 
+Updated 2026-10-22: the optional profile also serves
+`GET /v1/wallets/<address>/earnings/<confirmed-block>/<offset>` in 16-NFT chunks.
+The matching current-balance route is `/v1/wallets/<address>/summary/<block>/<offset>`.
+Both are in the reviewed Nginx GET allowlist; deploy the matching proxy include
+and run `nginx -t` before rollout. The opt-in website profile displays complete
+same-block earnings totals; the public deployment remains disabled. See
+[current-holdings semantics](EARNINGS_HISTORY.md#current-holdings-totals).
+
 Optional `earnings_history` adds read-only `GET /v1/earnings` and
 `GET /v1/nfts/<decimal-token-id>/earnings`. They reconstruct separate processed
 LP/collective/royalty earnings for all time and the last 24 hours. The user's USD

@@ -1,0 +1,21 @@
+{
+  "base": "bb81e7dd9a3d2a2bc1b0ff90f3ef28374208872f",
+  "included_changes": [
+    "frontend_api/earnings_replay.py",
+    "frontend_api/wallet_earnings.py",
+    "frontend_api/service.py",
+    "frontend_api/server.py",
+    "frontend_api/worker.py",
+    "tests_python/test_wallet_earnings.py"
+  ],
+  "unrelated_drafts_excluded": true,
+  "returncode": 0,
+  "sha256": {
+    "frontend_api/earnings_replay.py": "0e0c988a68e2778376b5c362470ae01f8227ecba5c5b40dd0a5c737371c0de99",
+    "frontend_api/wallet_earnings.py": "f4cee068085968da315d469c87b41f6ec03dd994368ef032e4c54830762a1b0c",
+    "frontend_api/service.py": "88df9b97df490ce0368cfe5144e4b57247d88b7408cfdf87009a2fd88f499b61",
+    "frontend_api/server.py": "bf0cb22a3d9d4e75f7fe808f4796e23d4c6d7652f93eb6c1760d6257519c9168",
+    "frontend_api/worker.py": "dd43aca824ea9437e227f132ef5326a284c51e740e84b902c97bf657f4ddcbf7",
+    "tests_python/test_wallet_earnings.py": "c5b266d9f2bdb513c9e5258a7e26c65777c726d201dd99c35169b64eb0a4c444"
+  }
+}

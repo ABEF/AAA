@@ -1,0 +1,10 @@
+[
+  {
+    "check": "python",
+    "returncode": 0
+  },
+  {
+    "check": "javascript",
+    "returncode": 0
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "scope": "Production-profile UI with isolated mock RPC/API. No signer, live chain, funds or user browser state.",
+  "records": [
+    {
+      "scenario": "complete",
+      "pass": true
+    },
+    {
+      "scenario": "unpriced",
+      "pass": true
+    },
+    {
+      "scenario": "missing-chunk",
+      "pass": true
+    },
+    {
+      "scenario": "account-change",
+      "pass": true
+    },
+    {
+      "scenario": "collection",
+      "pass": true
+    },
+    {
+      "scenario": "production-mint",
+      "pass": true
+    }
+  ]
+}

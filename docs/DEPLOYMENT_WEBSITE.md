@@ -21,7 +21,7 @@ See [verification](../reports/deployment-adapter/VERIFICATION.md),
 | LP attached | Confirmed `currentLPValue` projection in USD; unavailable values remain unavailable. An unsigned approval/contribution never changes the card or artwork. |
 | Earnings | LP individual + collective + royalty earnings at current reviewed prices, only with matching NFT/block provenance. No price or matching history means unavailable, not zero. |
 | ETH claim review | One to eight selected NFTs, funded ETH LP/royalty entries only. Source currencies are disclosed separately and are never relabeled ETH. |
-| Mint review | Reconstructs `Vault.mintDormant()` and exactly 0.05 ETH. Minted count/control checks; no promised/reserved token ID. |
+| Mint | Production: demonstration only; mint preparation blocked pending qualified OpenSea integration/URL. Local rehearsal retains `Vault.mintDormant()` with exactly 0.05 ETH. See [mint venue](OPENSEA_MINT.md). |
 | Activation review | Token units from the reviewed Oracle, targeting exactly $100 in value with the smallest necessary raw-unit round-up. A changed price requires a new quote. |
 | Growth review | User enters units of ETH/ZZZ/USDC/USDG, with a verified value of at least $5. Only reviewed enabled inputs/routes are accepted. |
 | Approval review | Exact selected amount to the pinned Entry, never unlimited or a hidden zero-reset sequence. Complete preparation must run again after an actual confirmed approval. |
@@ -30,8 +30,10 @@ See [verification](../reports/deployment-adapter/VERIFICATION.md),
 
 Wallet-wide LP and claimable ETH totals aggregate every holding in bounded
 16-item chunks at one canonical block. Card pagination never becomes a total.
-Missing/incomplete data remains unavailable. Historical portfolio earnings and
-full collection aggregation are not wired in this candidate. The
+Missing/incomplete data remains unavailable. Historical current-holdings earnings
+use separately reconciled 16-NFT chunks at the same block. Collection holder
+allocations consume the existing earnings endpoint; full collection inventory/LP
+aggregation remains separate. See [definitions and operations](EARNINGS_HISTORY.md#current-holdings-totals). The
 ordinary overview artwork/examples remain educational examples, not live totals.
 An account change invalidates a review; navigation closes it. Expiry is displayed
 and a new review is required. There is no automatic payment or approval retry. Local recovery only reads the saved transaction.

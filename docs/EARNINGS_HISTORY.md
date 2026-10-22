@@ -2,7 +2,8 @@
 
 This optional read-only backend reports processed earnings across the collection
 and for each NFT. It does not harvest, synchronize, convert, claim or sign a
-transaction. The website still uses example data. See the owning
+transaction. The public website still uses examples; its opt-in reviewed API
+profile consumes confirmed NFT, current-holdings and collection earnings. See the owning
 [financial-history task](../TODO.md#task-financial-history) and
 [scoped verification](../reports/earnings-history/VERIFICATION.md).
 
@@ -12,6 +13,7 @@ transaction. The website still uses example data. See the owning
 | --- | --- |
 | `/v1/earnings` | Collection processed LP revenue, allocations, processed royalties and quarantine, by asset |
 | `/v1/nfts/<decimal-token-id>/earnings` | That NFT's individual LP, collective LP and royalty earnings, including earnings already claimed by previous owners |
+| `/v1/wallets/<address>/earnings/<confirmed-block>/<offset>` | Up to 16 currently owned NFTs; sum every verified chunk for a wallet total |
 
 Each response contains `all_time` and `last_24h` asset rows, raw integer amounts,
 current-price USD values, the confirmed block and the complete verified epoch
@@ -22,6 +24,39 @@ use that asset's configured and verified decimals.
 **Earnings are not the remaining claimable balance.** Keep these endpoints
 separate from current ledger `claimable` and actual `previously_claimed` payouts.
 Transfers preserve the NFT's lifetime history; they do not reset it for the buyer.
+
+## Current-holdings totals
+
+Read `/v1/wallets/<address>/nfts` first. Request earnings at that inventory's
+confirmed block with offset 0, following `next_offset` until null. Each chunk
+binds the wallet, NFT contract, ordered IDs, full count, inventory SHA-256, block
+hash and API configuration. Offsets are multiples of 16, at most 992. Missing,
+expired, reorged or mismatched chunks invalidate the entire total.
+
+One replay per epoch handles the selected NFTs together, preserving each NFT's
+fractions before summing whole units. Shares, weights, current entitlements,
+actual claims and conversions reconcile against the chain. Existing same-chain
+retirement/identity checks cover predecessors. Request deadlines, RPC budgets and
+isolated workers still apply; large histories/assets/lineages can exceed them.
+This is not production capacity qualification.
+
+The website sums original earned currencies across chunks before USD rounding
+at the same confirmed prices. Missing prices for nonzero earnings produce
+unavailable USD, independently of healthy current LP/ETH balances. Account changes
+discard old totals. These are **lifetime earnings of currently held NFTs**, including
+earlier owners, not personal wallet income or remaining claimable rewards.
+
+Collection holder allocations sum individual LP + collective LP + allocated
+royalties. They exclude gross-receipt duplication, compound/buyback and quarantine,
+but include ledger rounding dust. They need not equal per-NFT whole-unit sums.
+Full collection inventory/LP aggregation remains separate.
+
+Enable through the existing reviewed `earnings_history` profile; no new role or
+on-chain call is needed. Deploy matching read API/frontend versions, verify known
+inventory/cutoffs, and qualify actual feeds/coverage/latency before public use.
+To stop reports, disable the optional profile and restart only the read service
+under its runbook, or roll back matching releases. Never reset the chain/index
+or substitute examples/zeros on failure. See [scoped evidence](../reports/wallet-earnings/VERIFICATION.md).
 
 | Metric | Meaning |
 | --- | --- |

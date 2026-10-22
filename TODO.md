@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**14 To do | 25 In progress | 16 Implemented locally**
+**15 To do | 25 In progress | 16 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,6 +15,19 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
+
+<a id="task-opensea-mint"></a>
+
+- [ ] **[Qualify OpenSea primary mint integration](docs/OPENSEA_MINT.md)** - To do. Production minting is intended for OpenSea; the website Mint page is a demonstration. Verify the actual supported mint product, Robinhood chain, canonical PoPL caller/recipient path and collection URL before sealing.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
+  - Preserve canonical NFT identity, 1,000 cap, 0.05 ETH recipient, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
+  - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
+
+  </details>
 
 <a id="task-lp-eth-settlement"></a>
 
@@ -171,11 +184,12 @@ The data and services behind the app.
 
 <a id="task-financial-history"></a>
 
-- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Collection/NFT processed 24h and all-time earnings with separate LP/collective/royalty amounts and current-price USD are implemented. A bounded independent-RPC history comparison and ordered SQLite index now support ingestion checks. Qualify actual feeds, complete coverage, live providers/load and frontend display.
+- [ ] **[Qualify processed earnings & current-price USD](docs/EARNINGS_HISTORY.md)** - In progress. Confirmed collection, NFT and complete current-holdings 24h/all-time earnings are implemented, with separate LP/collective/royalty attribution and current-price USD values. Qualify actual feeds, complete predecessor history, archive providers and production service budgets.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
   - Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.
   - User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.
   - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.
@@ -193,6 +207,7 @@ The data and services behind the app.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Wallet earnings proxy check](reports/wallet-earnings/VERIFICATION.md): summary and earnings GET chunks are admitted by the reviewed Nginx allowlist. 30 isolated actual Nginx checks pass, including cursor/method rejection; deploy matching includes and qualify Linux/TLS separately.
   - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
   - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
   - Independently qualify the schema-2 lifecycle and complete same-chain predecessor history with live consumers: reviewed peer code/ABI/semantics and configuration, archive receipt/state availability, full ingestion reconciliation, retirement-cutoff index retention/backups, request latency at configured bounds and sanitized failure behavior. No partial lifetime sums or automatic unreviewed peer discovery.
@@ -290,6 +305,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Decision 2026-10-22: production minting is intended for OpenSea; website minting is demonstrative. Production website mint preparation is blocked; local Anvil minting remains an integration tool. Qualify [OpenSea primary mint](TODO.md#task-opensea-mint) before sealing; production website priorities are activation, growth, ownership/balances and claims. Public signing remains disabled.
   - [Local-only publication](reports/deployment-local-wallet/PUBLICATION.md): website d786286 is on main and the Ubuntu static server. All 5,598 checksums and 50 scoped public/host/privacy checks pass. Public configuration remains null; no production signing or API deployment.
   - [Local API wallet coordinator](reports/deployment-local-wallet/VERIFICATION.md): 84 affected cases and nine headless scenarios pass with mocked wallet/RPC. Exact approval continues to fresh LP review; receipt recovery never resends, and confirmed/API-lag states are distinct. The user retained local Anvil-only signing; shared signer unchanged. Public signing, live extension/service qualification and replacement-transaction recovery remain open.
   - [Publication receipt](reports/deployment-adapter/PUBLICATION.md): website code 757a8de is on main and the static Ubuntu site; all 5,597 server checksums and 49 scoped public/host/privacy checks passed. Public DEPLOYMENT remains null. This does not enable production APIs or signing.
@@ -328,11 +344,12 @@ What holders see and use.
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. Confirmed ownership/cards and full-wallet LP plus funded ETH totals are implemented. Bounded 16-NFT summary chunks verify one complete inventory and canonical block, independent of eight-card pagination. Historical portfolio earnings, collection aggregation and production hosting/lifecycle/outage qualification remain open.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. The reviewed website profile displays complete-wallet LP, claimable ETH and current-holdings earnings independently of card pages, plus collection holder allocations. Full collection inventory/LP aggregation, live services and release qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
   - [Reviewed API integration](docs/DEPLOYMENT_WEBSITE.md) accepts ordinary authorized addresses, isolates connection storage by deployment and discards old account/page results. Missing history/prices remain unavailable; source rewards are never labeled ETH. Full collection aggregation and production provider qualification remain open.
   - Local display correction: show the revealed rarity multiplier (Commun Ã—1, Rare Ã—2, Legendary Ã—3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.
   - Local dormant cards/details omit reward, claim and earnings-history sections. Activated cards have separate Claim and Grow attached LP controls. Same-account/session refresh retains labeled last-confirmed cards with actions disabled; failed reads and context changes mask unavailable balances; confirmed evolution crossfades without changing rarity/palette. Reduced-motion is supported.
@@ -353,6 +370,7 @@ What holders see and use.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Decision 2026-10-22: production minting is intended for OpenSea; website minting is demonstrative. Production website mint preparation is blocked; local Anvil minting remains an integration tool. Qualify [OpenSea primary mint](TODO.md#task-opensea-mint) before sealing; production website priorities are activation, growth, ownership/balances and claims. Public signing remains disabled.
   - [Local API wallet coordinator](reports/deployment-local-wallet/VERIFICATION.md): 84 affected cases and nine headless scenarios pass with mocked wallet/RPC. Exact approval continues to fresh LP review; receipt recovery never resends, and confirmed/API-lag states are distinct. The user retained local Anvil-only signing; shared signer unchanged. Public signing, live extension/service qualification and replacement-transaction recovery remain open.
   - [Unsigned review profile](docs/DEPLOYMENT_WEBSITE.md) displays exact token units, simulated marginal LP addition, separate gas and expiry. It independently reconstructs typed calls, requires the 99% deployment floor and exact approval to Entry. Activation targets $100 with raw-unit round-up; growth requires at least $5. No submission/receipt path exists in this profile yet.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
@@ -378,11 +396,12 @@ What holders see and use.
 
 <a id="task-live-history-ui"></a>
 
-- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - In progress. Local website displays processed 24h/all-time individual/collective earnings at current prices, raw royalties and lifetime claims. Missing ETH USD price stays unavailable. Production ingestion, predecessor and conversion/UI qualification remain open.
+- [ ] **[Connect live history & cumulative claims](docs/EARNINGS_HISTORY.md)** - In progress. The shared production API profile displays NFT/wallet 24h/all-time earnings and collection holder allocations at current prices. Transfers retain NFT history; claims/conversions add no income. Actual ingestion, predecessor/price availability and deployment qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
   - Display verified 24-hour/all-time earned fees separately from claimable balances. Previously claimed means lifetime per-asset LP plus royalty claims across all prior claims/owners and verified predecessor deployments, not just the last claim.
   - Connect simulated royalty cards to the separate confirmed royalty ledger and complete event history. Preserve explicit unavailable states when coverage or USD prices are missing.
@@ -812,4 +831,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `294397f25866dd49e08ae9f7dff2f5afd150035a315c8e4b954f073dc33bf168`.
+Snapshot SHA-256: `2217f4a249058f3c9d11a432ce1eb8e16f9e1812c1102e1b06aaada37feb7a1d`.

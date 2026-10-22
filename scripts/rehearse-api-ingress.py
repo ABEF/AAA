@@ -52,6 +52,12 @@ def main():
         def prepare(self, payload):
             calls.append(payload)
             return {'unsigned': True}
+        def wallet_summary(self, owner, block, offset):
+            calls.append(('summary', owner, block, offset))
+            return {'scope': 'summary', 'offset': offset}
+        def wallet_earnings(self, owner, block, offset):
+            calls.append(('earnings', owner, block, offset))
+            return {'scope': 'earnings', 'offset': offset}
 
     def observed(factory):
         class Observed(factory(Projection(), Projection())):
@@ -141,6 +147,17 @@ http {{
         incoming={k.lower():v for k,v in headers[-1].items()}
         require(incoming.get('x-popl-client-ip')=='127.0.0.1','Edge overwrites forged client identity')
         require(not any(k in incoming for k in ('authorization','cookie','x-forwarded-for','forwarded')),'Credentials and untrusted forwarding headers are stripped')
+        for scope in ('summary','earnings'):
+            path='/v1/wallets/0x'+'1'*40+'/'+scope+'/99/'
+            time.sleep(.14)
+            status,_,body=request(path+'16')
+            require(status==200 and json.loads(body)=={'scope':scope,'offset':16},'Bounded wallet '+scope+' passes reviewed proxy')
+            time.sleep(.14);before=len(calls)
+            require(request(path+'1')[0]==400 and len(calls)==before,'Invalid '+scope+' cursor has no projection work')
+            time.sleep(.14);before=len(calls)
+            require(request(path+'1000')[0]==404 and len(calls)==before,'Oversized '+scope+' cursor has no projection work')
+            time.sleep(.14);before=len(calls)
+            require(request(path+'16','POST')[0]==405 and len(calls)==before,'Wallet '+scope+' is read-only through proxy')
         for path,method,expected in [('/v1/transactions/prepare','GET',405),('/v1/protocol','POST',405),
                                      ('/v1/activation/prepare','OPTIONS',405),('/v1/PRIVATE_UNKNOWN','GET',404),
                                      ('/v1/protocol?PRIVATE_QUERY=1','GET',404)]:
