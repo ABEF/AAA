@@ -1,5 +1,10 @@
 ## Confirmed collection explorer - 2026-10-23
 
+Publication: backend `d1b11eb` and website `9be6d11` are on main. The static
+server serves `9be6d11`; 5,598 server checksums and 50 scoped public checks pass.
+Public DEPLOYMENT remains null; local repair overlay/journals are preserved.
+See [publication receipt](../reports/collection-reads/PUBLICATION.md).
+
 The production read API and opt-in website profile now expose complete collection
 positions and total attached LP at one confirmed block, in bounded 16-NFT chunks.
 Canonical owners, reverse mint identities, immutable traits and NFT.currentLPValue

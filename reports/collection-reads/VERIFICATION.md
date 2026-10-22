@@ -63,4 +63,4 @@ blocks. Browser snapshots identify their block; refresh observes new state.
 Different-pair LP conversion/composition epochs and future-chain canonical handoff
 remain unfinished before sealing; current pair checks are retained. OpenSea primary
 mint integration remains unqualified. The existing local mint-repair overlay and
-pending browser archival must be preserved. Publication is recorded separately.
+pending browser archival must be preserved. [Publication is recorded separately](PUBLICATION.md).
