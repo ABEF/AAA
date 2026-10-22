@@ -11,6 +11,15 @@ See [verification](../reports/deployment-adapter/VERIFICATION.md),
 [activation preparation](ACTIVATION_PREPARATION.md) and
 [mint/claim preparation](FRONTEND_TRANSACTIONS.md).
 
+## Confirmed collection explorer - 2026-10-23
+
+The reviewed profile now lists the canonical collection and complete current LP
+total without connecting a wallet. Search, eligibility/rarity/color/style filters,
+16-row pages, current-LP/newest sorting and read-only current-owner details are
+implemented. Unknown marks remain unavailable. Deploy matching API/proxy/frontend
+versions and follow [the collection read procedure](COLLECTION_READS.md). Public
+DEPLOYMENT stays null; this does not enable signing or qualify live hosting.
+
 ## Data and action boundaries
 
 | Website action | Source and behavior |

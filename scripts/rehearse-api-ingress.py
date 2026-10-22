@@ -58,6 +58,9 @@ def main():
         def wallet_earnings(self, owner, block, offset):
             calls.append(('earnings', owner, block, offset))
             return {'scope': 'earnings', 'offset': offset}
+        def collection(self, block, offset):
+            calls.append(('collection', block, offset))
+            return {'scope': 'collection', 'offset': offset}
 
     def observed(factory):
         class Observed(factory(Projection(), Projection())):
@@ -158,6 +161,12 @@ http {{
             require(request(path+'1000')[0]==404 and len(calls)==before,'Oversized '+scope+' cursor has no projection work')
             time.sleep(.14);before=len(calls)
             require(request(path+'16','POST')[0]==405 and len(calls)==before,'Wallet '+scope+' is read-only through proxy')
+        time.sleep(.14)
+        status,_,body=request('/v1/collection/99/16')
+        require(status==200 and json.loads(body)=={'scope':'collection','offset':16},'Collection chunks pass reviewed proxy')
+        for path,method,expected in [('/v1/collection/99/1','GET',400),('/v1/collection/99/1000','GET',404),('/v1/collection/99/0','POST',405)]:
+            time.sleep(.14);before=len(calls)
+            require(request(path,method)[0]==expected and len(calls)==before,'Invalid collection path/method has no projection work: '+path)
         for path,method,expected in [('/v1/transactions/prepare','GET',405),('/v1/protocol','POST',405),
                                      ('/v1/activation/prepare','OPTIONS',405),('/v1/PRIVATE_UNKNOWN','GET',404),
                                      ('/v1/protocol?PRIVATE_QUERY=1','GET',404)]:

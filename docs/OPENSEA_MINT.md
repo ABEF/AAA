@@ -28,3 +28,17 @@ restart. Hiding a website button cannot pause external callers. See the
 Publish only the verified collection URL after chain/address checks.
 
 Task status: [OpenSea primary mint](../TODO.md#task-opensea-mint).
+
+## Interface research - 2026-10-23
+
+OpenSea's [chain guide](https://support.opensea.io/en/articles/8867082-which-blockchains-are-compatible-with-opensea)
+includes Robinhood, while its [primary-drop documentation](https://docs.opensea.io/docs/seadrop)
+describes SeaDrop-compatible NFT methods. These establish neither a supported
+Robinhood primary-drop product nor the required deployment pins. Verify those
+exact details before implementation; do not infer them from general chain support.
+
+Current source has no SeaDrop interface. `Vault.mintDormant()` charges 0.05 ETH
+and calls `NFT.mint(msg.sender, id)`; NFT minting admits only Vault. An intermediary
+using that path unchanged would own the NFT. Any integration must explicitly
+preserve the buyer recipient, proceeds/fee handling and original NFT/accounting
+identity. No adapter or mint permission was added by this research.

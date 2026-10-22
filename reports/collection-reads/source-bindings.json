@@ -1,0 +1,21 @@
+{
+  "contract": {
+    "frontend_api/collection.py": "997836270e0132c6719f3ccd3360ea0127c764de6e6ace8c81fa845affe5c0a7",
+    "frontend_api/service.py": "a49dea36a31936055d2ecf21cd30694aae039a58cbf96ba927dfc956ce056ff5",
+    "frontend_api/server.py": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+    "frontend_api/worker.py": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+    "tests_python/test_collection.py": "6efb2c4b2082390859a4172ab3fe75314a77cb8e38524d562b73cff4719319b1",
+    "config/nginx/popl-api-locations.conf": "0cac88acf93b684c16b2cf5b6717897e4c692ac7f896cf62a52e5aed48d1d6d7",
+    "scripts/rehearse-api-ingress.py": "2b51de722476fae905a5c0bb76b9133355de7fdd72c9b6ef7a294485c713e475"
+  },
+  "website": {
+    "deployment-api.js": "25966510556adf3824949049010f14ddcc447801804065d242ab738c657c25e0",
+    "deployment-view.js": "0596463f7cb7a0a1bf9f92b3461076eb09cdd507a9908a3f50f4442f4aa115f9",
+    "tests/collection.test.mjs": "cf8d572860154a9d9b5c32833dbcc4552478b7a58ec0ed7ffa80640af39cf139",
+    "tests/fixtures/collection.json": "1807ef96c4f1bbe27c1822ddaec3a70bedcb7c1b739fb6f73a3428321cb88e90",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "browser-client.js": "d88802cf97865ce1d9e096084eeef4e6cb8d1d3aa678171d10fabcf245affb08",
+    "deployment-transactions.js": "dd35fb2e723498a3690a9986138ebfa895691367646c8fbc207d2143ccc446d6",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+  }
+}

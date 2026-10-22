@@ -86,7 +86,8 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             readiness = self.path == '/v1/mint-readiness'
             earned = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})/earnings', self.path)
             collection_earnings = self.path == '/v1/earnings'
-            if not match and not wallet and not summary and not wallet_earnings and not protocol and not readiness and not earned and not collection_earnings:
+            collection = re.fullmatch(r'/v1/collection/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
+            if not match and not wallet and not summary and not wallet_earnings and not protocol and not readiness and not earned and not collection_earnings and not collection:
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             try:
@@ -94,12 +95,16 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
                 cursor = summary or wallet_earnings
                 if cursor and int(cursor[3]) % 16:
                     raise ValueError('Invalid summary cursor')
+                if collection and int(collection[2]) % 16:
+                    raise ValueError('Invalid collection cursor')
             except ValueError:
-                self._json(400, {'error': 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
+                self._json(400, {'error': 'invalid_cursor' if collection else 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
                 return
             try:
                 self.begin_work()
-                if wallet_earnings:
+                if collection:
+                    result = projection.collection(int(collection[1]), int(collection[2]))
+                elif wallet_earnings:
                     result = projection.wallet_earnings(identifier, int(wallet_earnings[2]), int(wallet_earnings[3]))
                 else:
                     result = projection.wallet_summary(identifier, int(summary[2]), int(summary[3])) if summary else projection.earnings(identifier) if earned or collection_earnings else projection.mint_readiness() if readiness else projection.protocol() if protocol else projection.nft(identifier) if match else projection.wallet(identifier)

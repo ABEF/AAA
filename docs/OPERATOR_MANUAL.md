@@ -19,6 +19,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 
 | I want to... | Procedure |
 | --- | --- |
+| View the confirmed collection, LP totals, and recover failed reads | [Confirmed collection data](COLLECTION_READS.md) |
 | Change +/-50% LP range to +/-20%, trigger, cooldown or execution settings | [Range and strategy](#range-and-strategy) |
 | Accept/remove an activation token, or change its swap pool | [Activation assets and routes](#activation-assets-and-routes) |
 | Stop minting independently | [Mint-only pause](#mint-and-metadata) |
@@ -869,3 +870,10 @@ contracts and reviewed preparations with the unchanged Anvil-only signer. It
 explains build/configuration pins, exact RPC/account selection, bounded summary
 chunks, missing-value handling, recovery and safe stop/restart. Operator authority
 is local fixture ownership only; no public contract/role/provider is configured.
+
+## Collection data operations - 2026-10-23
+
+Use [the confirmed collection procedure](COLLECTION_READS.md) for endpoint setup,
+complete inventory/current LP semantics, matched API/proxy/frontend deployment,
+refresh, stop/rollback and stale/reorg/indexer recovery. This is a read-only
+service change; no contract function, permission, key or transaction is added.

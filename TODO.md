@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-22 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-23 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -23,6 +23,7 @@ Custody, ownership and reward accounting.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Code review 2026-10-23: current Vault.mintDormant mints to msg.sender and the NFT accepts mint only from Vault; no SeaDrop interface is implemented. Verify buyer recipient, payment/fee handling and the exact supported Robinhood drop integration before adding any mint adapter. General marketplace chain support does not prove primary-drop support.
   - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
   - Preserve canonical NFT identity, 1,000 cap, 0.05 ETH recipient, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
   - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
@@ -207,6 +208,7 @@ The data and services behind the app.
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Collection ingress delta](reports/collection-reads/nginx.json): the reviewed GET allowlist and supervised workers support bounded collection reads; all 34 isolated Nginx checks pass. Roll out matching API/proxy/frontend versions; Linux/TLS/provider qualification remains open.
   - [Wallet earnings proxy check](reports/wallet-earnings/VERIFICATION.md): summary and earnings GET chunks are admitted by the reviewed Nginx allowlist. 30 isolated actual Nginx checks pass, including cursor/method rejection; deploy matching includes and qualify Linux/TLS separately.
   - Publish and qualify the confirmed read API, optional unsigned preparation and ownership/claim-history indexer for the reviewed deployment. Independently verify hashes/configuration and response freshness after all RPC/history reads.
   - Qualify redundant providers, hosting limits, complete backfill, reorg recovery, structured sanitized logs and off-host alerts. Never host a transaction signer in the frontend read/preparation API.
@@ -344,13 +346,14 @@ What holders see and use.
 
 <a id="task-portfolio"></a>
 
-- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. The reviewed website profile displays complete-wallet LP, claimable ETH and current-holdings earnings independently of card pages, plus collection holder allocations. Full collection inventory/LP aggregation, live services and release qualification remain open.
+- [ ] **[Show actual holdings & claimable fees](docs/FRONTEND_API.md#implemented-endpoint)** - In progress. The reviewed website profile implements complete-wallet LP/ETH/earnings and complete collection inventory/current LP aggregation, with confirmed ownership, filters and position details. Actual services, archive/pricing/latency and production release qualification remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - [Collection explorer evidence](reports/collection-reads/VERIFICATION.md), 2026-10-23: bounded canonical collection inventory and per-NFT current LP, all-page totals, eligibility counts, filters/pagination and current-owner details are implemented. Partial pages/unknown marks fail closed; qualify actual 1,000-NFT provider/history latency and hosting before release.
   - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
-  - [Reviewed API integration](docs/DEPLOYMENT_WEBSITE.md) accepts ordinary authorized addresses, isolates connection storage by deployment and discards old account/page results. Missing history/prices remain unavailable; source rewards are never labeled ETH. Full collection aggregation and production provider qualification remain open.
+  - [Reviewed API integration](docs/DEPLOYMENT_WEBSITE.md) accepts ordinary authorized addresses, isolates connection storage by deployment and discards old account/page results. Missing history/prices remain unavailable; source rewards are never labeled ETH. Collection aggregation is implemented as described above; production provider qualification remains open.
   - Local display correction: show the revealed rarity multiplier (Commun Ã—1, Rare Ã—2, Legendary Ã—3), grayed while dormant. Unrevealed remains unknown; effective zero accounting weight before activation must not replace the trait label. No contract eligibility or claim calculation changes.
   - Local dormant cards/details omit reward, claim and earnings-history sections. Activated cards have separate Claim and Grow attached LP controls. Same-account/session refresh retains labeled last-confirmed cards with actions disabled; failed reads and context changes mask unavailable balances; confirmed evolution crossfades without changing rarity/palette. Reduced-motion is supported.
   - Local milestone: [website integration](docs/LOCAL_WEBSITE.md) and [scoped evidence](reports/local-website/VERIFICATION.md). Disposable launcher-owned accounts only; public deployment and production browser-wallet signing are not approved.
@@ -831,4 +834,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `2217f4a249058f3c9d11a432ce1eb8e16f9e1812c1102e1b06aaada37feb7a1d`.
+Snapshot SHA-256: `309716d227a69a44c2ae0cdb7db2b4731dd1845ee65bd0d28bbd61c20c26b705`.

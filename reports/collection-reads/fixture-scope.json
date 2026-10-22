@@ -1,0 +1,4 @@
+{
+  "history_fixture_ast_equals_main": true,
+  "unrelated_test_methods_not_discovered_by_this_campaign": true
+}

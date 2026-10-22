@@ -1,3 +1,23 @@
+## Confirmed collection explorer - 2026-10-23
+
+The production read API and opt-in website profile now expose complete collection
+positions and total attached LP at one confirmed block, in bounded 16-NFT chunks.
+Canonical owners, reverse mint identities, immutable traits and NFT.currentLPValue
+are checked; unknown values/pages never become zero or partial totals. Includes
+filters/search, 16-row pagination, actual artwork and read-only current details.
+Activated counts eligibility, not current fee earning. Rounding follows NFT views.
+Read [operator procedure](docs/COLLECTION_READS.md) and [scoped evidence](reports/collection-reads/VERIFICATION.md). 74 affected Python, 75 JS, 12 isolated browser and
+34 actual isolated Nginx cases pass; real providers/history/latency remain open.
+
+Different-pair migration still needs composition epochs/historical intake work;
+the existing pair guards remain. OpenSea primary mint is still unqualified.
+Shared signer/coordinator are unchanged and Anvil-only; public DEPLOYMENT is null.
+No public API/contract/financial action, local chain/NFT/LP/journal change or paused
+monitor restart. Preserve 8902 and its temporary dist overlay; build outside dist.
+Actual user MetaMask reset/browser archival remains pending. Main only, keep the
+sole Todo/features/operator manual and both memories aligned; preserve old drafts.
+Check Git and publication evidence for what is actually published.
+
 ## Production earnings and OpenSea mint scope - 2026-10-22
 
 Publication: backend `31e5ac4` and website `35c7843` are on main; the static

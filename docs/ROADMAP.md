@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-> Reviewed 2026-10-22 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
+> Reviewed 2026-10-23 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
 
 The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes the candidate: shared nonredeemable LP allocations, receipt-backed rewards and royalties, atomic activation entry, custody controls and bounded same-chain canonical handoff. Read it for implementation boundaries rather than treating the roadmap as another feature inventory. Historical [reward-funding](../reports/reward-funding/README.md), [shared-pool](../reports/pooled/README.md) and [earlier implementation](../reports/IMPLEMENTATION_UPDATE.md) reports retain their own source scope.
 
@@ -15,6 +15,15 @@ simulation or treat the local signer as a production service. Frontend progress
 remains owned by the central wallet, portfolio, transaction-UI and history tasks.
 
 Resolve [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) alongside dependency research: pricing and actual markets feed activation qualification; revenue terms, measurement and payment operations feed funding qualification. An unanswered ZZZ-feed question does not establish a live price source. Team answers require independent technical checks before enabling real flows.
+
+## Confirmed collection progress - 2026-10-23
+
+The [collection read API/explorer](COLLECTION_READS.md) now implements complete
+canonical inventory and current-LP aggregation, with bounded pinned pages and
+[scoped evidence](../reports/collection-reads/VERIFICATION.md). Remaining work is
+actual service/history/pricing/latency qualification, not another demo rebuild.
+Different-pair composition and cross-chain canonical transport remain pre-seal
+work; the existing ordered-pair guards are unchanged.
 
 ## Current sequencing decision - 2026-10-20
 

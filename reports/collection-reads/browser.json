@@ -1,0 +1,29 @@
+{
+  "scope": "Isolated production-profile browser with mocked RPC/API and real local assets. No wallet signing, chain/funds or user browser.",
+  "records": [
+    {
+      "scenario": "complete",
+      "pass": true
+    },
+    {
+      "scenario": "unavailable",
+      "pass": true
+    },
+    {
+      "scenario": "missing-page",
+      "pass": true
+    },
+    {
+      "scenario": "cancel",
+      "pass": true
+    },
+    {
+      "scenario": "details",
+      "pass": true
+    },
+    {
+      "scenario": "mobile",
+      "pass": true
+    }
+  ]
+}

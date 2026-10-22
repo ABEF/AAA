@@ -4,7 +4,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-22):** the shared read API and opt-in website profile now provide complete current-holdings earnings and collection holder allocations, with confirmed accounting and current-price USD values. See [scope and evidence](reports/wallet-earnings/VERIFICATION.md). [Production minting is intended for OpenSea](docs/OPENSEA_MINT.md); the website Mint page is a demonstration, and local direct minting remains a test tool. OpenSea compatibility, production services/signing and independent approval remain open. The public demo stays simulated.
+**Current development work (2026-10-23):** the shared read API and opt-in website profile now provide confirmed collection positions, complete current attached LP totals, and wallet/collection earnings. See [collection scope and evidence](reports/collection-reads/VERIFICATION.md) and [earnings](reports/wallet-earnings/VERIFICATION.md). [Production minting is intended for OpenSea](docs/OPENSEA_MINT.md); the website Mint page is a demonstration. OpenSea integration, different-pair/future-chain migration, real services and independent approval remain open. The public demo stays simulated.
 
 ## Project navigation
 

@@ -1,0 +1,21 @@
+{
+  "python": {
+    "passed": 74,
+    "new_collection_cases": 16,
+    "other_cases": "34 existing API, 12 wallet summary and 12 wallet earnings"
+  },
+  "javascript": {
+    "passed": 75,
+    "new_collection_cases": 18,
+    "other_cases": "57 imported API/session cases; counted once"
+  },
+  "browsers": {
+    "passed": 12,
+    "scope": "Six collection and six retained production-profile wallet/earnings scenarios. Isolated mocked RPC/API; actual local static assets."
+  },
+  "nginx": {
+    "passed": 34,
+    "new_collection_cases": 4,
+    "scope": "Actual isolated Windows Nginx with fake loopback backend. Not Linux/TLS qualification."
+  }
+}

@@ -33,6 +33,8 @@ def _run(output, config, activation_config, action, payload, transaction_config=
                 result = p.nft(payload)
             elif action == 'wallet':
                 result = p.wallet(payload)
+            elif action == 'collection':
+                result = p.collection(*payload)
             elif action == 'wallet_summary':
                 result = p.wallet_summary(*payload)
             elif action == 'wallet_earnings':
@@ -220,6 +222,9 @@ class WorkerClient:
     def wallet_summary(self, owner, block_number, offset=0):
         return self._request('wallet_summary', [owner, block_number, offset])
 
+    def collection(self, block_number, offset=0):
+        return self._request('collection', [block_number, offset])
+
     def wallet_earnings(self, owner, block_number, offset=0):
         return self._request('wallet_earnings', [owner, block_number, offset])
 
@@ -277,6 +282,9 @@ class WorkerPool:
 
     def wallet_summary(self, owner, block_number, offset=0):
         return self._dispatch('wallet_summary', owner, block_number, offset)
+
+    def collection(self, block_number, offset=0):
+        return self._dispatch('collection', block_number, offset)
 
     def wallet_earnings(self, owner, block_number, offset=0):
         return self._dispatch('wallet_earnings', owner, block_number, offset)

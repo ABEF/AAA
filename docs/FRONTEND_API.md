@@ -1,3 +1,11 @@
+## Confirmed collection extension - 2026-10-23
+
+`GET /v1/collection/<confirmed-block>/<offset>` provides at most 16 canonical
+positions at one pinned block, with the complete inventory digest and per-chunk
+LP/eligibility sums. Complete all chunks before displaying totals. See
+[collection procedures and limits](COLLECTION_READS.md). Matching supervised workers
+and Nginx allowlist are required; unknown/partial pages cannot become zero.
+
 ## Processed earnings extension - 2026-10-19
 
 Updated 2026-10-22: the optional profile also serves
