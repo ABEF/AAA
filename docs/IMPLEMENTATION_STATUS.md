@@ -1,5 +1,10 @@
 ## Production earnings and OpenSea mint scope - 2026-10-22
 
+Publication: backend `31e5ac4` and website `35c7843` are on main; the static
+server serves `35c7843`. All 5,598 checksums and 50 scoped public checks passed.
+Public DEPLOYMENT remains null and local repair overlay/journals are preserved.
+See [publication receipt](../reports/wallet-earnings/PUBLICATION.md).
+
 The user clarified that production minting is intended for OpenSea; the website
 Mint page demonstrates the product. Local Anvil minting remains a test tool.
 The production website profile now refuses mint preparation. OpenSea chain/product,

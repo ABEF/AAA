@@ -68,5 +68,5 @@ The user-retained signer restriction still permits only local Anvil. Public
 `DEPLOYMENT` stays null; the public site is simulated. The local one-time mint
 repair still awaits the user's MetaMask/browser steps and must not be deployed.
 
-Publication is recorded separately; a passing local check does not deploy APIs
+[Publication is recorded separately](PUBLICATION.md); a passing local check does not deploy APIs
 or contracts and does not imply a green published CI run.
