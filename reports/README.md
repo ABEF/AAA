@@ -1,5 +1,10 @@
 # Verification evidence
 
+The [local pair-conversion review](pair-composition/VERIFICATION.md) records the
+current typed conversion, historical reserve accounting, backend ABI updates and
+normal size gates. Its incremental source scope and remaining qualification are
+explicit; it does not replace an independent audit or earlier report bindings.
+
 
 - [Browser-wallet integration](browser-wallet/VERIFICATION.md): local unsigned preparation, independent signing and canonical recovery; public signing remains disabled.
 ## User-reported local acceptance - 2026-10-20

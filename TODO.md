@@ -107,16 +107,17 @@ Custody, ownership and reward accounting.
 
 <a id="task-custody-composition"></a>
 
-- [ ] **[Design different-pair and future-venue custody evolution](docs/ARCHITECTURE_EVOLUTION.md#different-pair-migration-proposed-composition-epochs)** - In progress. Local same-ordered-pair move/resume now enforces a 3% aggregate execution-loss cap through the immutable Vault-created budget helper, with gas separate. Different pairs and asynchronous bridging still need typed conversion, bounded composition epochs and retained old-currency liabilities before sealing.
+- [ ] **[Complete multi-currency and future-venue custody evolution](docs/PAIR_MIGRATION.md)** - In progress. Typed local pair conversion is implemented in the candidate with one 3% fixed-price execution budget, unchanged NFT shares/rewards, retained old inboxes and historical compound NAV protection. Qualify actual conversion routes and complete authenticated multi-currency bridging/future-chain handoff before sealing.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Preserve stable NFT/bucket/shares and all old owner/collective/royalty liabilities through ZZZ/WETH to ZZZ/USDC and subsequent moves. Token mapping is not conversion; do not remove current pair checks as a shortcut.
-  - Qualify the implemented local movePool/resume 3% aggregate execution-loss cap: snapshot principal and attributed idle before harvest, add only exact released compound, and reuse the initial fresh price/decimal vector after close, balance and mint. Retained LP plus attributed idle must be at least 97%, with the existing 5% idle ceiling under the same vector; gas is separate and activation/top-ups retain 1%. Different-pair and asynchronous bridge costs, funded destination proof and market-movement treatment remain unimplemented and must not inherit this local guarantee.
-  - Define bounded composition/message epochs, historical creator inboxes and reward paths, late old-currency compound/buyback reserves, pending remote funding, exact fixed recipients and temporary approvals. Repeated moves cannot erase or relabel obligations.
+  - Qualify the local movePool/resume and separate typed pair-conversion 3% aggregate budgets: capture principal before callbacks, add exact released designated compound and reuse fresh starting prices/decimals through close, swaps and mint. Retained LP plus attributed idle must be at least 97%, deployed LP nonzero and idle at most 5%; gas is separate and user contributions retain 1%. Asynchronous bridge charges, funded destination proof and market-movement treatment remain separate unimplemented boundaries.
+  - Implemented local composition epochs, at most eight typed swap legs, 32 admitted assets, unchanged original creator inboxes, original-currency liabilities and exact fixed-recipient temporary custody/approvals. Historical compound stays incumbent backing and may be consolidated without changing the pool. V3 principal proposals reject composed buckets even after return to the original pair. Complete append-only new-payout-currency admission and authenticated multi-currency remote funding/message/ACK accounting before cross-chain use.
   - Review immutable typed helpers and remote destination compatibility for future venue code without arbitrary calls, principal sweeps or generic upgrades. Same-chain replacement Vaults cannot silently rebind the fixed NFT/Rewards system.
   - Measure aggregate and cumulative migration costs/frequency; repeated individually compliant 3% moves can substantially erode principal. A new cumulative hard cap or economic allocation change requires a separate policy decision.
+  - [Local pair-conversion evidence](reports/pair-composition/VERIFICATION.md) covers the source-bound candidate and its limits. Qualify real markets, native-wrapper/hook behavior, gas at admitted bounds and reviewed successor record compatibility; local fake-venue tests are not production qualification or an independent audit.
 
   </details>
 
@@ -834,4 +835,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `309716d227a69a44c2ae0cdb7db2b4731dd1845ee65bd0d28bbd61c20c26b705`.
+Snapshot SHA-256: `b38cd3f6297834ecdc9b07bdd85199900b4074430e9dceb483f5e629827d5ce0`.

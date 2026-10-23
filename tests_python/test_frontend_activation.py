@@ -4,7 +4,7 @@ import unittest
 
 from frontend_api.activation import ActivationTransactions, ActivationInputError, GAS_CAP
 from frontend_api.activation_config import MODULES, ZERO_HASH
-from frontend_api.activation_trace import EXECUTE, RESULT, MINT, INCREASE, SOURCE, SHARES, selector
+from frontend_api.activation_trace import EXECUTE, LEGACY_RESULT, RESULT, VALUE, MINT, INCREASE, SOURCE, SHARES, selector
 from frontend_api.service import Projection, ProjectionError, ZERO
 from zzz_ops.abi import calldata, decode_words, keccak256
 from zzz_ops.rpc import RpcError, Rpc
@@ -15,8 +15,10 @@ USD=10**18
 
 
 class ActivationRPC(MockRPC):
-    def __init__(self, native=False, conversion=False, increase=False, new_pool=False, source_decimals=18):
+    def __init__(self, native=False, conversion=False, increase=False, new_pool=False, source_decimals=18,
+                 current=False, historical=0):
         super().__init__()
+        self.current=current;self.historical=historical
         self.trace_mutation=None; self.trace_count=0; self.estimate=500000; self.gas_price=10**9
         self.source_decimals=source_decimals
         self.balance=1000*USD; self.allowance=10**30; self.original_amount=100*10**source_decimals
@@ -107,8 +109,13 @@ class ActivationRPC(MockRPC):
         root=frame(tx['from'],tx['to'],tx['data']);root['value']=tx['value'];root['gasUsed']=hex(400000+self.trace_count)
         vault=frame(self.pins['entry'],addr(3),calldata(vaultsig,*args));root['calls']=[vault]
         _,supply,incumbent,_,deployed,idle,_=self.economics
-        net=deployed+idle-incumbent;issued=supply*net//incumbent if supply else net
-        budget=frame(addr(3),self.pins['budget'],calldata(RESULT,*self.economics),words(issued,net),'STATICCALL')
+        net=deployed+idle-incumbent;issued=supply*net//(incumbent+self.historical) if supply else net
+        result_signature=RESULT if self.current else LEGACY_RESULT
+        arguments=(self.bucket,*self.economics) if self.current else self.economics
+        budget=frame(addr(3),self.pins['budget'],calldata(result_signature,*arguments),words(issued,net),'STATICCALL')
+        if self.historical:
+            budget['calls']=[frame(self.pins['budget'],self.pins['oracle'],
+                calldata(VALUE,addr(22),self.historical),words(self.historical),'STATICCALL')]
         create=self.new_pool
         params=(self.pool,-120,120,1000,1000,minlp,deadline) if create else (self.pool,self.lp_id,1000,1000,minlp,deadline)
         mint_data=selector(MINT)+words(self.pool,(1<<256)-120,120,1000,1000,minlp,deadline)[2:] if create else calldata(INCREASE,*params)
@@ -144,6 +151,43 @@ class ActivationRPC(MockRPC):
 
 
 class ActivationPreparationTests(unittest.TestCase):
+    def test_current_budget_preserves_historical_compound_in_share_price(self):
+        svc=self.service(ActivationRPC(current=True,historical=100*USD))
+        result=svc.prepare(self.rpc.request)
+        self.assertEqual(result['contribution']['shares_added_raw'],str(1000*USD*99//1100))
+        self.assertEqual(result['contribution']['marginal_deployed_usd_18'],str(99*USD))
+        self.assertEqual(result['minimum_deployed_usd_18'],str(99*USD))
+
+    def test_current_budget_with_zero_historical_reserve_and_new_pool(self):
+        for options in ({},{'new_pool':True}):
+            with self.subTest(options=options):
+                svc=self.service(ActivationRPC(current=True,**options))
+                self.assertTrue(svc.prepare(self.rpc.request)['activation_ready'])
+
+    def test_current_historical_witness_rejects_wrong_currency_price_or_frame(self):
+        def budget(t):return t['calls'][0]['calls'][1]
+        mutations=[lambda t:budget(t).update(input=calldata(RESULT,6,*self.rpc.economics)),
+            lambda t:budget(t)['calls'].append(copy.deepcopy(budget(t)['calls'][0])),
+            lambda t:budget(t)['calls'][0].update(type='CALL'),
+            lambda t:budget(t)['calls'][0].update(output=words(101*USD)),
+            lambda t:budget(t)['calls'][0].update(input=calldata(VALUE,addr(90),100*USD)),
+            lambda t:budget(t)['calls'][0].update(input=calldata(VALUE,addr(20),100*USD)),
+            lambda t:budget(t)['calls'][0].update(to=addr(91)),
+            lambda t:budget(t)['calls'][0].update(input=calldata(VALUE,addr(22),0)),
+            lambda t:budget(t)['calls'].clear()]
+        for i,mutation in enumerate(mutations):
+            with self.subTest(mutation=i):
+                svc=self.service(ActivationRPC(current=True,historical=100*USD));self.rpc.trace_mutation=mutation
+                with self.assertRaises(ProjectionError):svc.prepare(self.rpc.request)
+
+    def test_current_and_legacy_budget_frames_cannot_be_mixed(self):
+        svc=self.service(ActivationRPC(current=True))
+        def mutation(t):
+            b=copy.deepcopy(t['calls'][0]['calls'][1]);b['input']=calldata(LEGACY_RESULT,*self.rpc.economics)
+            t['calls'][0]['calls'].append(b)
+        self.rpc.trace_mutation=mutation
+        with self.assertRaises(ProjectionError):svc.prepare(self.rpc.request)
+
     def service(self,rpc=None):
         self.rpc=rpc or ActivationRPC();self.p=Projection(configuration(),self.rpc,clock=lambda:1000)
         return ActivationTransactions(self.p,self.rpc.config)

@@ -3,9 +3,13 @@ pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IZZZFees, IZZZMigration, IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IZZZFees, IZZZMigration, IPositionManagerMinimal, IZZZNFT, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
+import {ZZZPairMigration, IPairAssets} from "./ZZZPairMigration.sol";
+import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 
 interface IMigrationContribution { function contributionUSD(uint256 id) external view returns (uint256); }
+interface IMigrationIdle { function totalIdle(address) external view returns(uint256); }
+interface IPairCompanion { function pairMigration() external view returns (address); }
 
 /// @notice Fixed execution budget for atomic rebalances and same-pair custody moves.
 /// Created by its only caller, Vault. No token custody, configuration or executor.
@@ -24,6 +28,8 @@ contract ZZZMigrationBudget {
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
+    address public pairExecutor;
+    mapping(uint256 => uint64) public compositionEpoch;
     error Unauthorized();
     error InvalidState();
     error InvalidAmount();
@@ -39,9 +45,39 @@ contract ZZZMigrationBudget {
         if (msg.sender != vault) revert Unauthorized();
         _;
     }
+    function beginPair() external {
+        if (msg.sender != IPairCompanion(access.module(Ids.MIGRATION)).pairMigration() ||
+            pairExecutor != address(0) || snapshot.value != 0) revert Unauthorized();
+        pairExecutor = msg.sender;
+    }
+    function validateOwner(uint256 id,address caller,bool minted,bool activation) external view onlyVault returns (address entry) {
+        if (block.chainid != IZZZVault(vault).canonicalChainId() || !minted) revert Unauthorized();
+        if (activation && (IZZZVault(vault).nftBucket(id) != 0 || !IZZZNFT(access.module(Ids.NFT)).traitsReady(id))) revert InvalidState();
+        if (IZZZNFT(access.module(Ids.NFT)).ownerOf(id) == caller) return address(0);
+        entry = IZZZPools(access.module(Ids.POOLS)).activationEntry();
+        if (entry == address(0) || caller != entry) revert Unauthorized();
+    }
+    function importComposition(uint256 id, uint64 epoch) external {
+        if (msg.sender != access.module(Ids.VAULT_CANONICAL) ||
+            IZZZCanonicalAccess(address(access)).canonicalState() != 2 || compositionEpoch[id] != 0) revert Unauthorized();
+        compositionEpoch[id] = epoch;
+    }
+    function assertIdle(uint256 id) external view onlyVault {
+        (address a,address b) = poolTokens(IZZZVault(vault).group(id).poolId);
+        if (IERC20(a).balanceOf(vault) < IMigrationIdle(vault).totalIdle(a) ||
+            IERC20(b).balanceOf(vault) < IMigrationIdle(vault).totalIdle(b)) revert InvalidState();
+    }
+    function validateCanonicalWriter(address caller) external view onlyVault {
+        if (caller != access.module(Ids.VAULT_CANONICAL) || IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert Unauthorized();
+    }
     /// @dev Called before fee settlement, token callbacks or closing the old LP.
     /// Only attributed assets enter the starting denominator.
     function checkpoint(uint256 id, uint8 phase) external onlyVault {
+        if (pairExecutor != address(0)) {
+            ZZZPairMigration(pairExecutor).checkpoint(id,phase);
+            if (phase == 2) { ++compositionEpoch[id]; delete pairExecutor; }
+            return;
+        }
         if (phase == 0) _beforeMove(id);
         else if (phase == 1) _includeCompound(id);
         else if (phase == 2) _afterMove(id);
@@ -103,7 +139,8 @@ contract ZZZMigrationBudget {
     }
     /// @dev Shared current valuation keeps Vault within the standard code limit;
     /// migration checkpoints above deliberately use their cached price vector.
-    function valuePair(address token0, address token1, uint256 amount0, uint256 amount1) external view returns (uint256) {
+    function valueBucket(uint256 bucket, uint256 amount0, uint256 amount1) external view returns (uint256) {
+        (address token0,address token1) = poolTokens(IZZZVault(vault).group(bucket).poolId);
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         return oracle.value(token0, amount0) + oracle.value(token1, amount1);
     }
@@ -151,6 +188,9 @@ contract ZZZMigrationBudget {
         address manager = access.module(Ids.LIQUIDITY);
         if (manager == address(0) || sender != IZZZLiquidity(manager).positionManager()) revert Unauthorized();
     }
+    function mintTarget(uint256 id) external view onlyVault returns (int24,int24,uint160) {
+        return IZZZStrategy(access.module(Ids.STRATEGY)).target(IZZZVault(vault).group(id).poolId);
+    }
     function balancePlan(uint256 id, bool existingRange)
         external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) {
         Position memory p = IZZZVault(vault).group(id);
@@ -164,10 +204,17 @@ contract ZZZMigrationBudget {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         return (c.key.currency0, c.key.currency1);
     }
-    function validateReservation(bytes32 poolId) external view onlyVault {
+    function validateReservation(bytes32 poolId,uint256 bucket) external view onlyVault {
+        if (poolId == bytes32(0) || bucket == 0) revert InvalidConfiguration();
         IZZZPools(access.module(Ids.POOLS)).get(poolId);
+        uint256 old = IZZZVault(vault).poolBucket(poolId);
+        if (old != 0 && old != bucket) revert InvalidState();
     }
     function validateMove(uint256 id, bytes32 nextPool, uint128 minimumLiquidity) external view onlyVault {
+        if (pairExecutor != address(0)) {
+            ZZZPairMigration(pairExecutor).validateMove(id,nextPool,minimumLiquidity);
+            return;
+        }
         PoolConfig memory oldConfig = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
         PoolConfig memory nextConfig = IZZZPools(access.module(Ids.POOLS)).accounting(nextPool);
         if (minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
@@ -186,7 +233,7 @@ contract ZZZMigrationBudget {
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
         uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint16 maxSlippageBps) {
         Position memory p = IZZZVault(vault).group(bucket);
-        if (p.homeChain != block.chainid || p.homeVault != vault ||
+        if (p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != vault ||
             !IZZZFees(access.module(Ids.FEES)).remoteSettled(bucket) ||
             IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
@@ -195,16 +242,31 @@ contract ZZZMigrationBudget {
             IMigrationContribution(vault).contributionUSD(id) + inputUSD > c.maxPositionUSD) revert InvalidAmount();
         return (c.key.currency0, c.key.currency1, c.maxSlippageBps);
     }
-    function contributionResult(uint256 inputUSD, uint256 supply, uint256 incumbentNAV,
+    function contributionResult(uint256 bucket, uint256 inputUSD, uint256 supply, uint256 incumbentNAV,
         uint256 incumbentDeployed, uint256 deployed, uint256 idle, uint16 maxSlippageBps)
-        external pure returns (uint256 issued, uint256 netUSD) {
+        external view returns (uint256 issued, uint256 netUSD) {
+        if (IZZZFees(access.module(Ids.FEES)).hasPendingExternal()) revert InvalidState();
         if (deployed == 0 || idle > Math.mulDiv(deployed + idle, 500, 10000)) revert Slippage();
         if (deployed + idle <= incumbentNAV) revert InvalidAmount();
         netUSD = deployed + idle - incumbentNAV;
         if (netUSD < Math.mulDiv(inputUSD, 10000 - maxSlippageBps, 10000)) revert Slippage();
         uint256 minimumNet = inputUSD - inputUSD / 100;
         if (netUSD < minimumNet || deployed < incumbentDeployed + minimumNet) revert Slippage();
-        issued = supply == 0 ? netUSD : Math.mulDiv(supply, netUSD, incumbentNAV);
+        issued = supply == 0 ? netUSD : Math.mulDiv(supply, netUSD, incumbentNAV + historicalCompoundValue(bucket));
         if (issued == 0 || supply + issued > 1e36) revert InvalidAmount();
+    }
+    /// @notice Late old-currency compounding remains part of incumbent backing.
+    /// It is not the new contribution's deployed LP and cannot subsidize its 99% floor.
+    function historicalCompoundValue(uint256 id) public view returns (uint256 value) {
+        if (compositionEpoch[id] == 0) return 0;
+        (address a,address b) = poolTokens(IZZZVault(vault).group(id).poolId);
+        IPairAssets admitted = IPairAssets(access.module(Ids.REWARDS));
+        if (admitted.assetCount() > 32) revert InvalidState();
+        for (uint256 i; i < admitted.assetCount(); ++i) {
+            address token = admitted.assets(i);
+            if (token == address(0) || token == a || token == b) continue;
+            uint256 amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(id,token);
+            if (amount != 0) value += IZZZOracle(access.module(Ids.ORACLE)).value(token,amount);
+        }
     }
 }

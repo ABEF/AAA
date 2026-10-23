@@ -290,6 +290,28 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         g.check(all(br.get(key) is True for key in ('independent','aggregate_loss_tested','compound_not_subsidy_tested',
             'callback_price_snapshot_tested','local_scope_reviewed')),bp+'.review_evidence','migration_budget.review',
             'Review the aggregate local move/resume budget and its exclusions; it is not an asynchronous bridge guarantee')
+        pp=path+'.pair_migration';pair=g.obj(chain.get('pair_migration'),pp)
+        pair_address=g.hex(pair.get('address'),pp+'.address',20);pair['address']=pair_address
+        g.hex(pair.get('runtime_hash'),pp+'.runtime_hash')
+        g.check(pair_address is not None and pair_address not in addresses and
+            pair_address not in (activation_address,entry_address,budget_address) and pair.get('immutable') is True and
+            pair.get('migration')==modules['migration'].get('address') and pair.get('controller')==modules['access'].get('address') and
+            pair.get('vault')==modules['vault'].get('address') and pair.get('budget')==budget_address and
+            pair.get('vault_canonical')==modules['vault_canonical'].get('address'),pp,'pair_migration.binding',
+            'Inventory the fixed Migration-created pair companion and its exact custody/controller bindings')
+        g.check(pair_address is not None and pair.get('observed_migration_helper')==pair_address and
+            type(pair.get('observed_chain_id')) is int and pair.get('observed_chain_id')==cid and
+            type(pair.get('observed_block_number')) is int and pair.get('observed_block_number')==observed.get('number') and
+            pair.get('observed_block_hash')==observed.get('hash') and
+            type(pair.get('active_bucket')) is int and pair.get('active_bucket')==0 and
+            pair.get('active_request')=='0x'+'00'*32 and pair.get('taking_reserves') is False and
+            pair.get('budget_pair_executor')==ZERO,pp,'pair_migration.observation',
+            'Observe Migration.pairMigration, fixed bindings/runtime and empty atomic contexts at the inventory block')
+        pr=g.proof(pair.get('review_evidence'),pp+'.review_evidence')
+        g.check(all(pr.get(key) is True for key in ('independent','fixed_price_aggregate_loss_tested',
+            'historical_compound_tested','unchanged_reward_currencies_tested','exact_transient_custody_tested',
+            'composition_epoch_import_tested','v3_boundary_reviewed','bounded_gas_qualified')),
+            pp+'.review_evidence','pair_migration.review','Review local conversion, historic rights, atomic custody, epoch imports and the blocked V3 boundary')
         governance=g.obj(chain.get('governance'),path+'.governance')
         gov=g.hex(governance.get('multisig'),path+'.governance.multisig',20)
         proposers=[g.hex(a,path+'.governance.proposers',20) for a in g.items(governance.get('proposers'),path+'.governance.proposers')]
@@ -324,10 +346,10 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             path+'.constructor.canonical_chain_id','canonical.mismatch','Every vault must share the canonical chain ID')
         recipient=g.hex(constructor.get('mint_proceeds_recipient'),path+'.constructor.mint_proceeds_recipient',20)
         constructor['mint_proceeds_recipient']=recipient
-        g.check(not set(canonical_factories).intersection((activation_address,entry_address,budget_address,recipient)),
+        g.check(not set(canonical_factories).intersection((activation_address,entry_address,budget_address,pair_address,recipient)),
             cp,'canonical.factory','Factories cannot alias other helpers or the mint recipient')
         g.check(recipient not in addresses,path+'.constructor.mint_proceeds_recipient','mint.custody','Mint proceeds must stay outside protocol custody/reward modules')
-        g.check(recipient not in (activation_address,entry_address,budget_address),path+'.constructor.mint_proceeds_recipient','mint.custody',
+        g.check(recipient not in (activation_address,entry_address,budget_address,pair_address),path+'.constructor.mint_proceeds_recipient','mint.custody',
             'Mint proceeds cannot be sent to noncustodial helpers')
         g.proof(constructor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
         g.text(constructor.get('nft_base_uri'),path+'.constructor.nft_base_uri')
@@ -344,7 +366,7 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
                 helper_address=g.hex(helper.get('address'),hp+'.address',20);helper_addresses.append(helper_address)
                 g.hex(helper.get('runtime_hash'),hp+'.runtime_hash')
                 g.check(helper_address is not None and helper_address not in addresses and helper_address!=recipient and
-                    helper_address not in (activation_address,entry_address,budget_address),
+                    helper_address not in (activation_address,entry_address,budget_address,pair_address),
                     hp+'.address','nft.helper','NFT-owned helpers must be distinct from modules and the mint recipient')
                 g.check(helper.get('immutable') is True,hp+'.immutable','nft.helper','NFT helper addresses must be immutable constructor bindings')
                 review=g.proof(helper.get('review_evidence'),hp+'.review_evidence')
@@ -636,11 +658,12 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             activation_record=chain.get('activation_assets') if isinstance(chain.get('activation_assets'),dict) else {}
             entry_record=chain.get('activation_entry') if isinstance(chain.get('activation_entry'),dict) else {}
             budget_record=chain.get('migration_budget') if isinstance(chain.get('migration_budget'),dict) else {}
+            pair_record=chain.get('pair_migration') if isinstance(chain.get('pair_migration'),dict) else {}
             factories=[lineage.get(name,{}).get('address') for name in ('royalty_factory','reward_receiver_factory')
                 if isinstance(lineage.get(name),dict)]
             g.check(receiver not in [m.get('address') for m in modules.values() if isinstance(m,dict)] and
                 receiver not in nft_helpers and receiver!=constructor.get('mint_proceeds_recipient') and
-                receiver not in (activation_record.get('address'),entry_record.get('address'),budget_record.get('address')) and
+                receiver not in (activation_record.get('address'),entry_record.get('address'),budget_record.get('address'),pair_record.get('address')) and
                 receiver not in factories,rp+'.address','reward.custody',
                 'Reward receivers must be separate from modules, immutable helpers and the mint-proceeds recipient')
             g.check(record.get('immutable_configuration') is True and record.get('upgradeable') is False,

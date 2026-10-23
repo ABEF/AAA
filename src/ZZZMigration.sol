@@ -6,6 +6,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, Position, PositionStatus, PoolConfig, Route, BridgeMessage, MessageKind, AckPurpose} from "./libraries/ZZZTypes.sol";
 import {IZZZVault, IZZZPools, IZZZRoutes, IZZZBridge, IZZZBridgeRouter, IZZZFees} from "./interfaces/IZZZ.sol";
+import {ZZZPairMigration, IPairVault} from "./ZZZPairMigration.sol";
 
 /// @notice Repeated, governance-approved custody moves without a time delay.
 /// NFT shares and membership remain canonical; custody moves whole buckets without NFT loops.
@@ -43,6 +44,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     uint256 public sequence;
     // Preserve the public getter/plan layout; approved plans are immediately eligible.
     uint256 public constant MIGRATION_DELAY = 0;
+    ZZZPairMigration public immutable pairMigration;
     event Scheduled(bytes32 indexed migrationId, uint256 indexed bucketId, bytes32 indexed routeId, uint64 earliest);
     event Cancelled(bytes32 indexed migrationId);
     event Bridged(bytes32 indexed migrationId, bytes32 transportId);
@@ -50,7 +52,13 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     event LocationRecorded(uint256 indexed bucketId, uint64 indexed epoch, uint256 chainId, address vault);
     event ParkingExecuted(bytes32 indexed requestHash, uint256 indexed bucketId, uint64 nonce, uint256 principal0, uint256 principal1);
     event ParkingInvalidated(uint256 indexed bucketId, uint64 nextNonce);
-    constructor(address controller) ZZZModule(controller) {}
+    constructor(address controller) ZZZModule(controller) { pairMigration = new ZZZPairMigration(controller); }
+    function executePair(uint256 id, bytes32 pool, uint128 minimum, uint256 deadline) external live operating nonReentrant {
+        if (msg.sender != address(pairMigration) || activePlan[id] != bytes32(0)) revert Unauthorized();
+        IZZZVault v = IZZZVault(_moduleVault());
+        if (v.group(id).status == PositionStatus.Parked) v.resume(id,pool,minimum,deadline);
+        else v.movePool(id,pool,minimum,deadline);
+    }
 
     function _snapshot(BridgeMessage memory m) private pure returns (bytes32) {
         // ACK transport routes/nonces/purpose differ; the immutable custody move does not.
@@ -86,6 +94,9 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     function propose(uint256 id, bytes32 routeId) external onlyGovernance returns (bytes32 migrationId) {
         IZZZVault vault = IZZZVault(_moduleVault());
+        // V3 bridge accounting binds two immutable home currencies. It cannot
+        // carry a composed bucket's historical currency domains safely.
+        if (IPairVault(address(vault)).migrationBudget().compositionEpoch(id) != 0) revert InvalidState();
         Position memory p = vault.group(id);
         (Route memory r, bool active) = IZZZRoutes(_moduleRoutes()).get(routeId);
         PoolConfig memory c = IZZZPools(_modulePools()).accounting(p.poolId);
@@ -158,13 +169,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         external view returns (bool) {
         return rewardPaths[keccak256(abi.encode(id, chainId, vault, remoteToken, homeToken))];
     }
-    function _identity(BridgeMessage memory m, Route memory r) private pure {
-        if (m.version != 3 || m.totalShares == 0 || m.homePoolId == bytes32(0) ||
-            m.bucketId != uint256(keccak256(abi.encode(m.homeChain, m.homeVault, m.homePoolId))) || m.migrationId == bytes32(0) || m.migrationEpoch == 0 || m.depositUSD == 0 ||
-            m.homeChain == 0 || m.homeVault == address(0) || m.homeReceiver == address(0) ||
-            m.canonicalToken0 == address(0) || m.canonicalToken1 == address(0) || m.canonicalToken0 == m.canonicalToken1 ||
-            r.sourceToken0 == address(0) || r.sourceToken1 == address(0) ||
-            m.previousChain != r.sourceChain || m.previousVault != r.sourceVault || m.previousReceiver != r.sourceReceiver) revert InvalidConfiguration();
+    function _identity(BridgeMessage memory m, Route memory r) private view {
+        pairMigration.validateBridgeIdentity(m,r);
     }
     function registerImport(BridgeMessage calldata message) external onlyModule(Ids.RECEIVER) {
         BridgeMessage memory m = message;
@@ -261,16 +267,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         _deadline(request.deadline);
         IZZZVault vault = IZZZVault(_moduleVault());
         Position memory beforePosition = vault.group(request.bucketId);
-        PoolConfig memory config = IZZZPools(_modulePools()).accounting(request.poolId);
-        if (!access.isSealed() || !access.paused() || request.reviewHash == bytes32(0) ||
-            (request.minimum0 == 0 && request.minimum1 == 0) || request.lpTokenId == 0 ||
-            activePlan[request.bucketId] != bytes32(0) || request.nonce != parkingNonce[request.bucketId] ||
-            request.custodyEpoch != custodyEpoch[request.bucketId] ||
-            beforePosition.status != PositionStatus.Active || beforePosition.poolId != request.poolId ||
-            beforePosition.lpTokenId != request.lpTokenId || beforePosition.depositUSD != request.depositUSD ||
-            beforePosition.locationChain != block.chainid || beforePosition.locationVault != address(vault) ||
-            request.totalShares == 0 || vault.bucketTotalShares(request.bucketId) != request.totalShares ||
-            config.key.currency0 != request.token0 || config.key.currency1 != request.token1) revert InvalidState();
+        pairMigration.validateParking(abi.encode(request));
         // Nonce consumes before external calls; failure rolls back nonce and all
         // venue/fee/custody state. No old idle or compound counts as close output.
         ++parkingNonce[request.bucketId];

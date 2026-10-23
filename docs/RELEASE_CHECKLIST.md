@@ -1,5 +1,11 @@
 # Release approval record - NOT APPROVED
 
+The [local pair-conversion candidate](../reports/pair-composition/VERIFICATION.md)
+adds typed conversion, historical backing and epoch-aware same-chain records.
+Its local checks do not qualify actual routes, gas, composed controller cutover,
+cross-chain accounting or independent audit. The production inventory now also
+requires the constructor-created pair helper and its exact observed bindings.
+
 The [static demo publication](../reports/browser-wallet/PUBLICATION.md) updates website
 files only. It does not deploy contracts, enable public wallet transactions,
 qualify production services or change this decision.

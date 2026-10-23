@@ -9,7 +9,9 @@ from frontend_api.service import ProjectionError, ZERO, _address_word, _quantity
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 
 EXECUTE = 'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))'
-RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
+LEGACY_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
+RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
+VALUE = 'value(address,uint256)'
 MINT = 'mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)'
 INCREASE = 'increase(bytes32,uint256,uint256,uint256,uint128,uint256)'
 SOURCE = '0x' + keccak256(b'SourceContributed(address,uint256,bytes32,address,uint256,uint256,address,uint256,bool)').hex()
@@ -62,7 +64,7 @@ def event(frame, emitter, topic, indexed, count):
     return words(item.get('data'), count)
 
 
-def measure(trace, tx, pins, request, gross, max_slippage):
+def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=None):
     """Return contract-checked marginal deployment, share issuance and LP units."""
     root = successful(trace)
     stack = [(root, 0)]; count = 0
@@ -112,9 +114,42 @@ def measure(trace, tx, pins, request, gross, max_slippage):
     vault = child(root, pins['entry'], pins['vault'], signature, 'CALL')
     if vault['input'].lower() != calldata(signature, *args) or vault.get('output', '0x') != '0x':
         raise ProjectionError('Vault did not receive the exact owner contribution')
-    check = child(vault, pins['vault'], pins['budget'], RESULT, 'STATICCALL')
+    candidates = [x for x in vault.get('calls', []) if x.get('from','').lower()==pins['vault'] and
+                  x.get('to','').lower()==pins['budget'] and
+                  x.get('input','')[:10].lower() in (selector(RESULT),selector(LEGACY_RESULT))]
+    if len(candidates)!=1 or candidates[0].get('type')!='STATICCALL':
+        raise ProjectionError('Missing or ambiguous reviewed contribution result')
+    check = successful(candidates[0])
+    current = check['input'][:10].lower()==selector(RESULT)
+    values = words('0x'+check['input'][10:],8 if current else 7)
+    if current:
+        if int(values[0],16)!=req['bucket']:
+            raise ProjectionError('Contribution result uses a different bucket')
+        values=values[1:]
     input_usd, supply, incumbent_nav, incumbent_deployed, deployed, idle, slippage = [
-        int(x, 16) for x in words('0x' + check['input'][10:], 7)]
+        int(x, 16) for x in values]
+    # In the pinned current Budget implementation these direct Oracle.value
+    # calls are exclusively historicalCompoundValue's non-current currencies.
+    # Nested oracle calls from other modules never form part of this witness.
+    historical=[];seen=set()
+    for call in check.get('calls',[]):
+        if call.get('from','').lower()!=pins['budget'] or call.get('to','').lower()!=pins['oracle']:
+            continue
+        successful(call)
+        if not current or not supply or call.get('type')!='STATICCALL' or call.get('input','')[:10].lower()!=selector(VALUE):
+            raise ProjectionError('Unexpected historical compound valuation call')
+        token_raw,amount_raw=words('0x'+call['input'][10:],2)
+        token=_address_word(token_raw);amount=int(amount_raw,16)
+        if token in seen or token in (req['token0'],req['token1']) or amount==0:
+            raise ProjectionError('Invalid historical compound currency')
+        seen.add(token);value=int(words(call.get('output'),1)[0],16)
+        historical.append((token,amount,value))
+    historical_value=sum(item[2] for item in historical)
+    if historical_value+incumbent_nav>=2**256:
+        raise ProjectionError('Historical compound valuation overflow')
+    if historical:
+        if verify_historical is None:raise ProjectionError('Historical compound feeds are not reviewed')
+        verify_historical(historical)
     issued, net = [int(x, 16) for x in words(check.get('output'), 2)]
     floor = gross - gross // 100
     if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= 200 or
@@ -123,7 +158,7 @@ def measure(trace, tx, pins, request, gross, max_slippage):
             idle > (deployed + idle) * 500 // 10000 or deployed == 0 or
             supply and incumbent_nav == 0):
         raise ProjectionError('Simulated contribution violates its original-source 1% budget')
-    expected_shares = supply * net // incumbent_nav if supply else net
+    expected_shares = supply * net // (incumbent_nav + historical_value) if supply else net
     if issued != expected_shares or issued == 0 or issued + supply > 10**36:
         raise ProjectionError('Invalid contribution share issuance')
     share_event = event(vault, pins['vault'], SHARES,

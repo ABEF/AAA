@@ -137,6 +137,14 @@
       "observed_vault_helper": null, "observed_chain_id": 4663, "observed_block_number": null,
       "observed_block_hash": null, "review_evidence": null
     },
+    "pair_migration": {
+      "address": null, "runtime_hash": null, "immutable": true,
+      "migration": null, "controller": null, "vault": null, "budget": null, "vault_canonical": null,
+      "observed_migration_helper": null, "observed_chain_id": 4663,
+      "observed_block_number": null, "observed_block_hash": null,
+      "active_bucket": null, "active_request": null, "taking_reserves": null, "budget_pair_executor": null,
+      "review_evidence": null
+    },
     "governance": {
       "multisig": null, "proposers": [], "executors": [], "signers": [], "threshold": null,
       "keeper": null, "guardian": null, "overlap_review": null,

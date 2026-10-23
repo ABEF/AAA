@@ -27,6 +27,7 @@ contract MockAccess {
     }
     function canConfigure(address a) external view returns(bool){return !preparationActive && a==governor;}
     function setPreparation(bool active) external {preparationActive=active;}
+    function setCanonicalState(uint8 state) external {canonicalState=state;}
     function bind(bytes32 id,address a) external {module[id]=a;}
     function seal() external {isSealed=true;}
     function setPaused(bool a) external {paused=a;}

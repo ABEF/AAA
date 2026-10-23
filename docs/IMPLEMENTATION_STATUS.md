@@ -1,3 +1,22 @@
+## Typed local LP pair conversion - 2026-10-23
+
+The [fixed conversion companion](PAIR_MIGRATION.md) atomically closes, converts
+and redeploys a shared bucket under one 3% fixed-price loss cap, gas separate.
+NFT shares, original funding inboxes and earned reward currencies persist.
+Selected compound moves; other historical reserves remain backed and included
+in incumbent NAV. Historical dust cannot cross a new membership, and successor
+records preserve the epoch and current-token idle classification. V3 principal
+bridging is blocked after composition; future-chain accounting remains unfinished.
+
+Backend preparation now validates the current bucket-aware result ABI and
+historical feed/share accounting alongside the explicit legacy ABI. Production
+inventory requires the new helper's immutable bindings and independent review.
+The [scoped evidence](../reports/pair-composition/VERIFICATION.md) records 141 final
+Solidity passes, 176 Python passes and 33 normal object gates. Real routes,
+composed controller cutover and independent qualification remain open.
+[Publication](../reports/pair-composition/PUBLICATION.md) is separate; no public
+deployment or signing is enabled by this work.
+
 ## Confirmed collection explorer - 2026-10-23
 
 Publication: backend `d1b11eb` and website `9be6d11` are on main. The static

@@ -15,6 +15,8 @@ import {Ids,Position,PositionStatus,PoolKey,PoolConfig,Route,BridgeMessage,Messa
 import {MockAccess,MockToken,MockPools,MockRoutes,MockFeed,BoundDummy,MockReadyRouter} from "./mocks/Mocks.sol";
 
 contract HopVault {
+    function migrationBudget() external view returns(address){return address(this);}
+    function compositionEpoch(uint256) external pure returns(uint64){return 0;}
     IZZZAccess public immutable access;
     uint256 public immutable canonicalChainId;
     MockPools public immutable pools;

@@ -1,0 +1,28 @@
+{
+  "exit_code": 0,
+  "passed": true,
+  "tests": 176,
+  "command": [
+    "C:\\Users\\Ali\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "tests_python.test_frontend_activation",
+    "tests_python.test_frontend_activation_http",
+    "tests_python.test_production_config",
+    "-q"
+  ],
+  "source_sha256": {
+    "frontend_api/activation.py": "73018fc732119ce958a76aa71a24a5eb287f95bb77c722aacbae590495824a11",
+    "frontend_api/activation_trace.py": "4c2671d4de3f68abcebf2724d15f92c2e47a20b8d8437721b17b091d1a051135",
+    "scripts/validate-production-config.py": "1ee0222a8692e106499edf897a1cc31feac809a60992b115b69ca4408aba1d38",
+    "config/production.example.json": "9b23658c151a38f8cae3d4de5bcb3f7dafa9d932b700955f01668fd54bcf8047",
+    "tests_python/test_frontend_activation.py": "5b00c282c75a9980c7903eefcdfd56f2da50093ba9cff6c954e4abeec25a3afb",
+    "tests_python/test_frontend_activation_http.py": "53dc4f6656ef18bf1fcc27a6271ef2b41525d92539c27435df520c2688f68156",
+    "tests_python/test_production_config.py": "4d7636ba7e5cb717f8f10e0eaca7dc7851dfc563ece27293ef827b14c2021db2"
+  },
+  "output_sha256": "f3306b184883f31dbc7a9680f1a5eacecf10c898c2d37b2b85d9d2d8def79f00",
+  "scope": "Offline mock-RPC preparation/configuration, not live qualification",
+  "public_transactions": false
+}

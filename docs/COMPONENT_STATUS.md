@@ -1,5 +1,14 @@
 # Component implementation status
 
+## Local pair-conversion companion - 2026-10-23
+
+[`ZZZPairMigration`](../src/ZZZPairMigration.sol), created by Migration, adds
+governed typed same-chain conversion. Vault/Budget/canonical companions retain
+fixed custody, loss and epoch boundaries; Fees keeps old reward currencies and
+selected historical compound. See [operator procedure](PAIR_MIGRATION.md) and
+[current scoped evidence](../reports/pair-composition/VERIFICATION.md). Real route,
+cross-chain and independent qualification remain open; production is NOT APPROVED.
+
 **2026-10-17 handoff candidate:** the current source adds the six-domain
 [same-chain canonical handoff](CANONICAL_HANDOFF.md), including atomic cutoff
 capture, bounded ordered settlement, exact state/backing import, restored abort

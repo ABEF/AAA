@@ -13,14 +13,14 @@ wallets, generated contract/helper addresses and reviewed external dependencies.
 | --- | --- |
 | Rebalance the shared position's range | Implemented strategy, cooldown and execution guards; one LP serves many NFTs. |
 | Move to another local pool with the same ordered accounting pair | Supported within the fixed Uniswap v4 manager and admitted pools. |
-| Move ZZZ/WETH principal to ZZZ/USDC | Rejected. Requires actual conversion plus accounting changes described below. |
+| Move ZZZ/WETH principal to ZZZ/USDC | The separate typed local companion implements conversion under one 3% budget, retained home identities and historical ledgers. Actual markets/routes remain unqualified. Ordinary movePool still rejects changed pairs. |
 | Reverse local currency slots | Rejected by local move; cross-chain import has its own explicit slot mapping. |
 | Add a new hookless ERC20 v4 pool | Governed configuration, within existing manager/asset/price guards. |
 | Add an arbitrary hook, native pool or new DEX | Unsupported by the fixed manager; the selected native/Pons exception is narrowly pinned. |
 | Add a future EVM chain with equivalent assets | Append-only route/transport framework exists. Provider, remote custody, finality and capacity require qualification. |
 | Treat WETH18 as USDC6 through route mapping | Unsupported; v3 transports raw amounts and requires equivalent declared decimals, not a conversion. Equal decimals alone do not prove equivalence. |
 | Repeat A -> B -> C -> home -> B | Compatible-asset fixture coverage exists; no production bridge qualification. Stable home identity and historical funded obligations remain. |
-| Move canonical NFT ownership and both reward ledgers | Not implemented. Moving LP does not change the canonical chain. |
+| Move canonical NFT ownership and both reward ledgers | Same-chain canonical handoff is implemented in the candidate; complete future-chain relocation remains unfinished. Moving LP alone does not change the canonical chain. |
 
 Sources: [Vault](../src/ZZZVault.sol), [Migration](../src/ZZZMigration.sol),
 [route registry](../src/ZZZMigrationRegistry.sol), [manager](../src/ZZZLiquidityManager.sol),
@@ -72,17 +72,28 @@ reviewed destination's confirmed reservation before departure; the source does
 not authenticate a remote reservation proof. Arbitrary IDs reserved by malicious
 governance can exhaust capacity. There is deliberately no unsafe slot recycling.
 
-## Different-pair migration: proposed composition epochs
+<a id="different-pair-migration-proposed-composition-epochs"></a>
+## Different-pair migration and composition epochs
+
+Update 2026-10-23: the candidate now has an immutable typed **local** converter,
+fixed-price aggregate budget, historical compound share/NAV protection and
+same-chain successor epoch/backing records. Read the [operator and accounting
+procedure](PAIR_MIGRATION.md) and [scoped evidence](../reports/pair-composition/VERIFICATION.md).
+The ordinary ordered-pair guards remain. Composed buckets cannot use V3
+principal bridging; authenticated multi-currency cross-chain messages and
+full future-chain handoff remain unfinished before sealing.
 
 Do not remove the Vault's pair checks. Current `homeToken0/1` identifies remote
 reward paths, canonical liabilities and the immutable creator-payment inbox.
 Replacing those addresses would relabel old obligations; a new Vault alone cannot
 replace the original immutable NFT/Rewards binding.
 
-The smallest coherent extension would preserve home identity, NFT/share ledgers
-and existing asset indexes while introducing an authenticated **custody composition
-epoch**. Every principal proposal/message/ACK and relevant reward source must bind
-that epoch. Admission history must be bounded without discarding obligations.
+The implemented local extension preserves home identity, NFT/share ledgers and
+existing asset indexes with an authenticated **custody composition epoch**.
+The epoch follows same-chain canonical records. A future bridge must bind that
+epoch in every principal proposal/message/ACK; the current V3 path rejects
+nonzero epochs instead of guessing how to map currencies. Admission history
+must remain bounded without discarding obligations.
 
 | Value category | Conversion rule |
 | --- | --- |
@@ -93,16 +104,17 @@ that epoch. Admission history must be bounded without discarding obligations.
 | Donations and other buckets' balances | Excluded from migrating value and loss-floor checks. |
 | Late creator receipts / unharvested or in-flight fees | Retain authenticated old intake paths and explicit processing semantics; never erase or relabel them. |
 
-Prefer an atomic source-side same-chain conversion first: snapshot bucket,
+The local atomic conversion snapshots bucket,
 shares, epoch, routes, custody and a fresh trusted price vector; settle old local
 receipts/dust and old remote funding obligations; close the old position; convert
 principal through an immutable typed helper; redeploy; verify total outcome;
 otherwise revert. Fixed recipients, exact temporary approvals and measured
 deltas are mandatory. The user-contribution Entry is not a principal converter.
 
-Old creator inboxes must remain available for late receipts. Their old-currency
-5% compound amounts need an explicit bounded conversion/retention policy after
-the pair changes. New currencies need append-only inbox/asset admission. Remote
+Old creator inboxes remain available for late receipts in their original pair.
+Their old-currency 5% compound is backed in Fees, included in incumbent share
+pricing and NFT marked NAV, and convertible by a reviewed consolidation call.
+New external payout currencies still need append-only inbox/asset admission. Remote
 lifetime counters must cover all historical currencies, not merely the current
 pair. Version-3 two-currency principal messages cannot represent this design
 without a new authenticated message/accounting version.
@@ -116,10 +128,11 @@ Do not trade away checks or raise standard EVM limits to fit this feature.
 The user chose **at most 3% aggregate execution loss per migration, gas separate**.
 Activation/top-ups retain the **1%** original-input budget. The current candidate
 enforces the 3% floor for atomic same-ordered-pair `movePool` and parked `resume`,
-using one pre-callback price vector and exact designated compounding. The floor
-covers retained LP plus attributed idle, with the existing 5% idle cap. It does
-not yet cover arbitrary conversion, asynchronous bridging or an
-earlier parking close. On 2026-10-18 the user approved the same aggregate cap for
+using one pre-callback price vector and exact designated compounding. The separate
+typed local conversion now enforces the same aggregate floor across close,
+conversion and redeployment. Both cover retained LP plus attributed idle, with
+the existing 5% idle cap. Arbitrary conversion, asynchronous bridging and an
+earlier parking close remain outside this atomic budget. On 2026-10-18 the user approved the same aggregate cap for
 ordinary rebalancing; the candidate now uses the same helper checkpoints there. See [implemented scope](MIGRATION_SAFETY.md).
 
 For an atomic move, compare attributed principal before/after using one fresh

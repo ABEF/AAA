@@ -6,6 +6,8 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IZZZFees, IZZZStrategy} from "./interfaces/IZZZ.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
+import {IPairVault} from "./ZZZPairMigration.sol";
+interface IHistoricalCompound { function historicalCompoundValue(uint256 id) external view returns (uint256); }
 
 struct NFTMetadataInput {
     uint256 id;
@@ -48,6 +50,7 @@ contract ZZZNFTMetadata {
         a1 += position.idle1 + fees.compoundBalance(bucket, config.key.currency1);
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         uint256 nav = oracle.value(config.key.currency0, a0) + oracle.value(config.key.currency1, a1);
+        nav += IHistoricalCompound(address(IPairVault(address(vault)).migrationBudget())).historicalCompoundValue(bucket);
         return Math.mulDiv(nav, shares, supply);
     }
 

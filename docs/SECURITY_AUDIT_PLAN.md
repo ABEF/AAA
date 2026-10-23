@@ -162,3 +162,16 @@ intent tools and isolated keeper rehearsals exist; the website still simulates.
   supply chain, monitoring, exclusive keeper operation and off-host restore.
 - Require independent audit/remediation and exact-release operating/configuration
   sign-off. Open gates remain open even when every local regression passes.
+
+## Local composition review boundary - 2026-10-23
+
+Include the [typed pair converter](PAIR_MIGRATION.md), Vault/Budget/canonical
+companion interfaces and changed Fees/Liquidity caller admission in the external
+audit. Review fixed-price aggregate loss, exact transient balances/allowances,
+other-bucket/donation isolation, current and historical compound capitalization,
+entry marginal NAV, old-inbox dust and late funding, repeated composition and
+successor idle/epoch import. An appended group field requires explicitly
+compatible source/destination code. Confirm V3 bridging cannot bypass its
+nonzero-composition restriction. Real route/hook/wrapper behavior, MEV and gas
+at admitted bounds require operating qualification. See [internal scope and
+evidence](../reports/pair-composition/VERIFICATION.md); it is not independent approval.

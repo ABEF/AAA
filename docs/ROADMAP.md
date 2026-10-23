@@ -25,6 +25,17 @@ actual service/history/pricing/latency qualification, not another demo rebuild.
 Different-pair composition and cross-chain canonical transport remain pre-seal
 work; the existing ordered-pair guards are unchanged.
 
+## Local pair conversion - 2026-10-23
+
+The [typed local companion](PAIR_MIGRATION.md) now implements atomic pair changes
+and historical compound consolidation while preserving shares, old inboxes and
+original-currency rewards. Qualify its real routes and bounded gas, then complete
+authenticated multi-currency bridge messages, lineage and future-chain finality.
+V3 principal proposals remain blocked for composed buckets. Same-chain imports
+carry their composition epoch and classify idle by the current pair. The
+[central custody task](../TODO.md#task-custody-composition) remains in progress;
+local conversion does not close the pre-seal cross-chain requirements.
+
 ## Current sequencing decision - 2026-10-20
 
 Update 2026-10-22: production work now includes shared API/current-holdings earnings

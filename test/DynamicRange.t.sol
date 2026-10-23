@@ -31,6 +31,8 @@ contract RangePositionManager {
     function getPositionLiquidity(uint256 id) external view returns(uint128){require(id==currentId);return 1e18;}
 }
 contract RangeLedger {
+    function migrationBudget() external view returns(address){return address(this);}
+    function historicalCompoundValue(uint256) external pure returns(uint256){return 0;}
     Position private record;
     function set(Position memory p) external {record=p;}
     function group(uint256) external view returns(Position memory){return record;}

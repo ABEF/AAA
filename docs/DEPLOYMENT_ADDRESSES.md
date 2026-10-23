@@ -1,5 +1,13 @@
 # Deployment address inventory
 
+The local pair-conversion candidate also creates an immutable
+[`ZZZPairMigration`](../src/ZZZPairMigration.sol) in Migration's constructor.
+Record `Migration.pairMigration()`, its controller/migration immutables and runtime
+hash, plus Vault's Budget and canonical companion bindings. This helper can
+temporarily hold only the bucket's attributed conversion assets; it has no
+configurable router or recipient. Qualify actual pools, currencies, feeds and
+normal object sizes including constructor arguments. See [operator setup](PAIR_MIGRATION.md).
+
 The royalty conversion candidate also requires a separately deployed
 [`ZZZRoyaltyConverter`](../src/ZZZRoyaltyConverter.sol), constructed with the exact
 controller, RoyaltyRewards ledger and WETH wrapper. Governance binds it to the

@@ -1,3 +1,33 @@
+## Typed local pair conversion - 2026-10-23
+
+The candidate implements atomic local LP pair conversion through the immutable
+`Migration.pairMigration()` companion: at most eight typed v4 legs, one fixed-price
+3% aggregate loss floor, gas separate, no arbitrary router/recipient or sweep.
+NFT shares/home identity and old reward currencies/inboxes persist. Current and
+selected historical compound move; unselected reserves stay backed in Fees.
+Historical compound remains incumbent share/NAV backing; old venue dust cannot
+cross new membership. Same-chain group records carry epoch/current-token backing;
+V3 principal proposals reject composed buckets, even after returning home.
+
+[Operator procedure](docs/PAIR_MIGRATION.md) and
+[scoped evidence](reports/pair-composition/VERIFICATION.md): 141 final affected
+Solidity passes (14 new cases; aggregate fuzz 1,001 runs), 176 backend/configuration
+passes and 33 normal object gates. The preceding broad run retains its own scope
+and failed fixture diagnostics; do not call it a full final-source regression.
+Vault runtime is 24,567 bytes (9 bytes margin); normal compiler limits unchanged.
+Backend preparation checks the exact current/legacy result ABIs and reviewed
+historical prices without widening public signing. Inventory gate requires the
+new helper's exact bindings, empty contexts and independent qualification.
+
+Publication is [recorded separately](reports/pair-composition/PUBLICATION.md).
+No public contract transaction/deployment or website/server code change. Existing
+8902/Anvil/NFT/LP state, repair overlay, browser journals and paused monitoring
+are preserved. Signer remains Anvil-only; public DEPLOYMENT remains null.
+Actual routes/services, composed controller cutover, new payout currencies,
+multi-currency bridges/future-chain handoff and independent release approval
+remain open before sealing. Main only; preserve older unrelated drafts. Maintain
+the sole Todo, features, operator manual, roadmap and both repository memories.
+
 ## Confirmed collection explorer - 2026-10-23
 
 Publication: backend `d1b11eb` and website `9be6d11` are on main. The static

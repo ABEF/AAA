@@ -132,6 +132,16 @@ def fixture():
             'review_evidence':dict(proof(),independent=True,aggregate_loss_tested=True,
                 compound_not_subsidy_tested=True,callback_price_snapshot_tested=True,local_scope_reviewed=True)}
         bindings={name:modules[name]['address'] for name in ('canonical','nft_canonical','vault_canonical','fees_canonical')}
+        pair_address=addr(base+799)
+        manifest['chains'][-1]['pair_migration']={'address':pair_address,'runtime_hash':HASH,'immutable':True,
+            'migration':modules['migration']['address'],'controller':controller,'vault':modules['vault']['address'],
+            'budget':budget_address,'vault_canonical':modules['vault_canonical']['address'],
+            'observed_migration_helper':pair_address,'observed_chain_id':cid,'observed_block_number':5000,
+            'observed_block_hash':HASH,'active_bucket':0,'active_request':'0x'+'00'*32,'taking_reserves':False,
+            'budget_pair_executor':GATE.ZERO,'review_evidence':dict(proof(),independent=True,
+                fixed_price_aggregate_loss_tested=True,historical_compound_tested=True,
+                unchanged_reward_currencies_tested=True,exact_transient_custody_tested=True,
+                composition_epoch_import_tested=True,v3_boundary_reviewed=True,bounded_gas_qualified=True)}
         bindings.update({name+'_owner':modules[owner]['address'] for name,owner in
             (('nft_canonical','nft'),('vault_canonical','vault'),('fees_canonical','fees'))})
         bindings.update(origin_chain_id=1,origin_vault=modules['vault']['address'])
@@ -223,6 +233,7 @@ def onward_fixture():
     third['activation_assets']['observed_chain_id']=3
     third['activation_entry']['observed_chain_id']=3
     third['migration_budget']['observed_chain_id']=3
+    third['pair_migration']['observed_chain_id']=3
     third['canonical_handoff']['observed_chain_id']=3
     third['bucket_reservations'][0]['observed_chain_id']=3;manifest['chains'].append(third)
     for source,destination in ((2,3),(3,2),(3,1)):
@@ -970,3 +981,41 @@ class MigrationBudgetConfigTests(unittest.TestCase):
         chain['migration_budget']['address']='0x'+receiver[2:].upper()
         chain['migration_budget']['observed_vault_helper']=receiver.lower()
         self.check_blocked('reward.custody')
+
+class PairMigrationInventoryTest(unittest.TestCase):
+    def setUp(self): self.config=disabled_fixture()
+    def blocked(self,code):
+        result=GATE.validate(self.config,expected_commit=COMMIT,now=NOW)
+        self.assertFalse(result['ready']);self.assertIn(code,[x['code'] for x in result['issues']])
+    def test_required_when_bridging_is_disabled(self):
+        del self.config['chains'][0]['pair_migration'];self.blocked('pair_migration.binding')
+    def test_bindings_and_mutability(self):
+        for key,value in (('migration',addr(990)),('controller',addr(991)),('vault',addr(992)),
+            ('budget',addr(993)),('vault_canonical',addr(994)),('immutable',False)):
+            with self.subTest(key=key):
+                self.config=disabled_fixture();self.config['chains'][0]['pair_migration'][key]=value
+                self.blocked('pair_migration.binding')
+    def test_stale_or_nonempty_atomic_context(self):
+        for key,value in (('observed_chain_id',2),('observed_block_number',4999),
+            ('observed_migration_helper',addr(995)),('active_bucket',True),('active_bucket',1),
+            ('active_request',HASH),('taking_reserves',True),('budget_pair_executor',addr(996))):
+            with self.subTest(key=key,value=value):
+                self.config=disabled_fixture();self.config['chains'][0]['pair_migration'][key]=value
+                self.blocked('pair_migration.observation')
+    def test_independent_review_and_gas_are_required(self):
+        for key in ('independent','fixed_price_aggregate_loss_tested','historical_compound_tested',
+            'unchanged_reward_currencies_tested','exact_transient_custody_tested',
+            'composition_epoch_import_tested','v3_boundary_reviewed','bounded_gas_qualified'):
+            with self.subTest(key=key):
+                self.config=disabled_fixture();self.config['chains'][0]['pair_migration']['review_evidence'][key]=False
+                self.blocked('pair_migration.review')
+    def test_helper_cannot_alias_other_custody_or_mint_recipient(self):
+        for key in ('activation_entry','activation_assets','migration_budget'):
+            with self.subTest(key=key):
+                self.config=disabled_fixture();chain=self.config['chains'][0]
+                chain['pair_migration']['address']=chain[key]['address'];self.blocked('pair_migration.binding')
+        self.config=disabled_fixture();chain=self.config['chains'][0]
+        chain['constructor']['mint_proceeds_recipient']=chain['pair_migration']['address'];self.blocked('mint.custody')
+        self.config=external_fixture();chain=self.config['chains'][0]
+        chain['pair_migration']['address']='0x'+chain['external_rewards']['receivers'][0]['address'][2:].upper()
+        self.blocked('reward.custody')

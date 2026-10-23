@@ -26,6 +26,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     mapping(uint256 => bytes32) public homePoolId;
     mapping(bytes32 => uint256) public poolBucket;
     uint256[] private buckets;
+    mapping(uint256 => bool) private registeredBucket;
     // Bounds combined funded inbox/dust work, with all reward assets admitted.
     // Existing-bucket returns and pool migrations reuse their historical slot.
     uint256 public constant MAX_BUCKETS = 4;
@@ -67,20 +68,16 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     /// @dev Reservations and historical custody share permanent slots. Reusing a
     /// bucket (including through another pool alias) never consumes another slot.
     function _registerBucket(uint256 bucket) private {
-        for (uint256 i; i < buckets.length; ++i) {
-            if (buckets[i] == bucket) return;
-        }
+        if (registeredBucket[bucket]) return;
         if (buckets.length == MAX_BUCKETS) revert InvalidState();
+        registeredBucket[bucket] = true;
         buckets.push(bucket);
     }
     /// @notice Permanently reserve capacity before approving a route. Pool
     /// reservations cannot be reassigned or released on cancellation/timeout.
     function reservePool(bytes32 pool, uint256 bucket) external onlyGovernance { _reserve(pool, bucket); }
     function _reserve(bytes32 pool, uint256 bucket) private {
-        if (pool == bytes32(0) || bucket == 0) revert InvalidConfiguration();
-        migrationBudget.validateReservation(pool);
-        uint256 old = poolBucket[pool];
-        if (old != 0 && old != bucket) revert InvalidState();
+        migrationBudget.validateReservation(pool,bucket);
         _registerBucket(bucket);
         poolBucket[pool] = bucket;
         canonicalModule().registerAlias(pool, bucket);
@@ -90,12 +87,9 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         return migrationBudget.poolTokens(positions[id].poolId);
     }
     function _nft() private view returns (IZZZNFT) { return IZZZNFT(access.module(Ids.NFT)); }
-    function _requireOwner(uint256 id) private view {
-        if (block.chainid != canonicalChainId || !minted[id]) revert Unauthorized();
-        if (_nft().ownerOf(id) == msg.sender) return;
-        address entry = IZZZPools(_modulePools()).activationEntry();
-        if (entry == address(0) || msg.sender != entry) revert Unauthorized();
-        IZZZActivationEntry(entry).validateOwner(id, keccak256(msg.data));
+    function _requireOwner(uint256 id,bool activation) private view {
+        address entry = migrationBudget.validateOwner(id,msg.sender,minted[id],activation);
+        if (entry != address(0)) IZZZActivationEntry(entry).validateOwner(id,keccak256(msg.data));
     }
     function _active(uint256 id) private view {
         if (positions[id].status != PositionStatus.Active) revert InvalidState();
@@ -111,11 +105,10 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         totalIdle[token1] = totalIdle[token1] - p.idle1 + new1;
         p.idle0 = new0;
         p.idle1 = new1;
-        if (_tokenBalance(token0) < totalIdle[token0] ||
-            _tokenBalance(token1) < totalIdle[token1]) revert InvalidState();
+        migrationBudget.assertIdle(id);
     }
-    function _valuePair(address token0, address token1, uint256 amount0, uint256 amount1) private view returns (uint256) {
-        return migrationBudget.valuePair(token0, token1, amount0, amount1);
+    function _valueBucket(uint256 bucket, uint256 amount0, uint256 amount1) private view returns (uint256) {
+        return migrationBudget.valueBucket(bucket, amount0, amount1);
     }
     function _put(uint256 id, bool create, uint128 minimumLiquidity, uint256 deadline) private {
         Position storage p = positions[id];
@@ -130,7 +123,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         uint256 spent0;
         uint256 spent1;
         if (create) {
-            (int24 lower, int24 upper, uint160 ref) = IZZZStrategy(_moduleStrategy()).target(p.poolId);
+            (int24 lower, int24 upper, uint160 ref) = migrationBudget.mintTarget(id);
             (p.lpTokenId, spent0, spent1) = manager.mint(p.poolId, lower, upper, a0, a1, minimumLiquidity, deadline);
             IPositionManagerMinimal(manager.positionManager()).approve(address(manager), p.lpTokenId);
             p.centerX96 = ref;
@@ -147,10 +140,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     /// @notice Paid issuance creates no LP, collective membership or fee entitlement. Proceeds are
     /// forwarded separately and never enter the permanently locked principal ledger.
     function mintDormant() external payable live operating nonReentrant returns (uint256 id) {
-        // Satellite vaults can receive migrated positions, but never issue a second collection.
-        if (block.chainid != canonicalChainId) revert InvalidState();
-        if (msg.value != MINT_PRICE) revert InvalidAmount();
-        id = canonicalModule().mintIdentity(++sequence);
+        // Companion preserves the exact price and home-chain issuance checks.
+        id = canonicalModule().validateMint(msg.value,++sequence);
         if (minted[id]) revert InvalidState();
         minted[id] = true;
         _nft().mint(msg.sender, id);
@@ -161,8 +152,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     /// @notice New NFTs join the sole shared position for this pool. No redeemable token is issued.
     function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
         external live operating nonReentrant {
-        _requireOwner(id);
-        if (nftBucket[id] != 0 || !_nft().traitsReady(id)) revert InvalidState();
+        _requireOwner(id,true);
         uint256 bucket = poolBucket[poolId];
         if (bucket == 0 || positions[bucket].status == PositionStatus.None) {
             uint256 canonicalBucket = canonicalModule().bucketIdentity(poolId);
@@ -184,7 +174,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline)
         external live operating nonReentrant {
-        _requireOwner(id);
+        _requireOwner(id,false);
         uint256 bucket = nftBucket[id];
         if (bucket == 0) revert InvalidState();
         _join(id, bucket, amount0, amount1, minimumLiquidity, deadline, false);
@@ -195,7 +185,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     }
     function _join(uint256 id, uint256 bucket, uint256 amount0, uint256 amount1, uint128 minimumLiquidity,
         uint256 deadline, bool activation) private {
-        _deadline(deadline); _active(bucket);
+        _deadline(deadline);
         Position storage p = positions[bucket];
         IZZZFees fees = IZZZFees(_moduleFees());
         uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
@@ -223,7 +213,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             _harvest(bucket, deadline);
             fees.flushDust(bucket, token0); fees.flushDust(bucket, token1);
             (uint256 f0, uint256 f1) = _pullCompound(bucket);
-            freshCompound = _valuePair(token0, token1, f0, f1);
+            freshCompound = _valueBucket(bucket, f0, f1);
         }
         // Concentrated LP amounts reprice during the entry swap. Preserve that
         // gain/loss for incumbents; only net new assets buy the entrant's shares.
@@ -234,16 +224,15 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         // LP mint/increase can call tokens. Settle late receipts under OLD weights.
         fees.syncAllExternal();
         (uint256 late0, uint256 late1) = _pullCompound(bucket);
-        incumbentNAV += _valuePair(token0, token1, late0, late1);
+        incumbentNAV += _valueBucket(bucket, late0, late1);
         (uint256 newLP, uint256 newIdle) = _nav(bucket);
         // A transfer callback during the final pull may queue more receipts/dust.
         // All remaining dependency calls are static reads or fixed checkpoints.
-        if (fees.hasPendingExternal()) revert InvalidState();
         IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id);
         // A $100 gross contribution may deploy $99; network gas is separate.
         // Apply the same 1% execution/undeployed limit to later contributions.
         // Incumbent idle/compound assets cannot subsidize this contribution.
-        (uint256 issued, uint256 netUSD) = migrationBudget.contributionResult(inputUSD, supply, incumbentNAV,
+        (uint256 issued, uint256 netUSD) = migrationBudget.contributionResult(bucket, inputUSD, supply, incumbentNAV,
             oldLP + oldIdle + freshCompound, newLP, newIdle, maxSlippageBps);
         sharesOf[id] += issued; bucketTotalShares[bucket] = supply + issued;
         contributionUSD[id] += inputUSD; p.depositUSD += inputUSD;
@@ -438,7 +427,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         external onlyModule(Ids.MIGRATION) live operating nonReentrant {
         _deadline(deadline);
         _active(id);
-        if (positions[id].poolId == newPool) revert InvalidConfiguration();
+        if (positions[id].poolId == newPool && migrationBudget.pairExecutor() == address(0)) revert InvalidConfiguration();
         _movePool(id, newPool, minimumLiquidity, deadline);
     }
     function _movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) private {
@@ -452,7 +441,14 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             _migrationCheckpoint(id, 1);
         }
         else _unwind(id, deadline, true);
-        p.poolId = newPool; // Both pool keys have the exact same ordered currencies.
+        address converter = migrationBudget.pairExecutor();
+        if (converter != address(0)) {
+            uint256 a0 = p.idle0; uint256 a1 = p.idle1;
+            _idle(id,0,0);
+            (a0,a1) = canonicalModule().convertPair(id,a0,a1);
+            p.poolId = newPool;
+            _idle(id,a0,a1);
+        } else p.poolId = newPool; // Ordinary move still requires the same ordered pair.
         _redeploy(id, minimumLiquidity, deadline);
         _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
@@ -464,7 +460,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     /// @dev Only the immutable canonical companion can write source-authenticated
     /// records while this deployment is inert. No raw storage slots are exposed.
     function canonicalWrite(uint8 kind, bytes calldata row) external {
-        if (msg.sender != address(canonicalModule()) || IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert Unauthorized();
+        migrationBudget.validateCanonicalWriter(msg.sender);
         if (kind == 0) sequence = abi.decode(row, (uint256));
         else if (kind == 1) {
             (uint256 id, uint256 bucket, uint256 shares, uint256 contribution) = abi.decode(row, (uint256,uint256,uint256,uint256));
@@ -474,7 +470,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             (uint256 id, Position memory p, uint256 shares, bytes32 homePool) = abi.decode(row, (uint256,Position,uint256,bytes32));
             _registerBucket(id); positions[id] = p; bucketTotalShares[id] = shares; homePoolId[id] = homePool;
             if (p.status == PositionStatus.Parked) {
-                totalIdle[p.homeToken0] += p.idle0; totalIdle[p.homeToken1] += p.idle1;
+                (address a,address b) = migrationBudget.poolTokens(p.poolId);
+                totalIdle[a] += p.idle0; totalIdle[b] += p.idle1;
             }
         } else if (kind == 3) {
             (bytes32 pool, uint256 id) = abi.decode(row, (bytes32,uint256));

@@ -107,7 +107,7 @@ abstract contract PooledVaultFixture is Test {
     }
     function _bucket() internal view returns(uint256) {return uint256(keccak256(abi.encode(block.chainid,address(vault),poolId)));}
     function activePlan(uint256) external pure returns(bytes32) {return bytes32(0);}
-    function setUp() public { _fixture(treasury); }
+    function setUp() public virtual { _fixture(treasury); }
     function _fixture(address payable recipient) internal {
         vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(0);t1=new MockToken(0);pools=new MockPools();policy=new VaultPolicyMock();
         venue=new VaultLiquidityMock(address(t0),address(t1));vault=new ZZZVault(address(ac),block.chainid,recipient);nft=new ZZZNFT(address(ac),"");

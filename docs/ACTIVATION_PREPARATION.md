@@ -1,5 +1,17 @@
 # Activation and top-up preparation
 
+## Composed-bucket share pricing - 2026-10-23
+
+The current Budget result call includes the exact bucket ID. The parser supports
+that eight-argument signature and the explicit historical seven-argument signature;
+unknown/ambiguous calls fail. Historical compound Oracle.value calls are read only
+from the current result frame, verified against reviewed same-block token/feed
+pins and included in incumbent share pricing. They never satisfy new input's
+99% marginal-deployed floor. Missing historical token/price review refuses a draft.
+Legacy local deployments remain readable; public response shape, exact approvals,
+unsigned preparation and Anvil-only signing policy are unchanged. See
+[verification scope](../reports/pair-composition/VERIFICATION.md).
+
 The backend prepares an **unsigned, fully simulated Entry transaction** for a
 reviewed deployment. It does not sign, broadcast, approve a deployment or connect
 the public website. The associated current-NAV guard and rebalance budget are described in [dynamic liquidity](DYNAMIC_LIQUIDITY.md). Qualification of

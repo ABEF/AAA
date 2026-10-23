@@ -13,6 +13,8 @@ import {MockAccess, MockToken, MockPools} from "./mocks/Mocks.sol";
 // TEST ONLY: isolated canonical share ledger. Fair share issuance and LP custody
 // are exercised against the real Vault in separate suites.
 contract RewardsVaultFixture {
+    function migrationBudget() external view returns(address){return address(this);}
+    function compositionEpoch(uint256) external pure returns(uint64){return 0;}
     mapping(uint256 => uint256) public nftBucket;
     mapping(uint256 => uint256) public sharesOf;
     mapping(uint256 => uint256) public bucketTotalShares;

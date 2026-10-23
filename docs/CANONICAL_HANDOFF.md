@@ -8,6 +8,14 @@ retains the wider future-chain requirements. Source-bound verification belongs i
 
 ## Supported boundary
 
+The 2026-10-23 local composition extension appends a `uint64 compositionEpoch`
+to each Vault group record. Successors import that authenticated epoch and
+classify parked idle by the current pool's accounting pair, preserving original
+home currency identities. Both reviewed deployments must support this record
+format; old-format bytes are not silently accepted. See [pair-conversion
+accounting and verification](PAIR_MIGRATION.md). This does not enable V3 principal
+bridging of a composed bucket or complete cross-chain canonical relocation.
+
 The candidate transfers the complete collection and classified economic state to
 one replacement **on the same chain**. All nonempty LP buckets must first be
 parked at the home Vault; every minted NFT must be revealed. The initial path

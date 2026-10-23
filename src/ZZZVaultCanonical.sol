@@ -6,8 +6,12 @@ import {IZZZAccess, IZZZVault, IZZZPools, IZZZFees, IZZZMigration} from "./inter
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
+import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
+import {ZZZPairMigration} from "./ZZZPairMigration.sol";
 
 interface ICanonicalVaultState is IZZZVault {
+    function migrationBudget() external view returns (ZZZMigrationBudget);
+    function MINT_PRICE() external view returns (uint256);
     function sequence() external view returns (uint256);
     function contributionUSD(uint256 id) external view returns (uint256);
     function totalIdle(address asset) external view returns (uint256);
@@ -42,6 +46,7 @@ contract ZZZVaultCanonical {
     bool private imported;
     error Unauthorized();
     error InvalidState();
+    error InvalidAmount();
 
     constructor(address controller, address vaultController, uint256 chain) {
         access = IZZZAccess(controller);
@@ -59,6 +64,11 @@ contract ZZZVaultCanonical {
     function mintIdentity(uint256 ordinal) external view returns (uint256) {
         return uint256(keccak256(abi.encode(originChain, originVault, ordinal)));
     }
+    function validateMint(uint256 value,uint256 ordinal) external view onlyVault returns (uint256) {
+        if (block.chainid != vault.canonicalChainId()) revert InvalidState();
+        if (value != vault.MINT_PRICE()) revert InvalidAmount();
+        return uint256(keccak256(abi.encode(originChain,originVault,ordinal)));
+    }
     function bucketIdentity(bytes32 pool) external view returns (uint256) {
         return uint256(keccak256(abi.encode(originChain, originVault, pool)));
     }
@@ -66,6 +76,15 @@ contract ZZZVaultCanonical {
         uint256 old = aliasBucket[pool];
         if (old != 0 && old != bucket) revert InvalidState();
         if (old == 0) { aliases.push(pool); aliasBucket[pool] = bucket; }
+    }
+    /// @dev Called inside Vault's guarded move after its old idle is zeroed.
+    /// The fixed Budget has already authenticated the one atomic pair request.
+    function convertPair(uint256 id, uint256 a0, uint256 a1) external onlyVault returns (uint256,uint256) {
+        address helper = vault.migrationBudget().pairExecutor();
+        if (helper == address(0)) revert InvalidState();
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(vault.group(id).poolId);
+        vault.canonicalSend(c.key.currency0,helper,a0); vault.canonicalSend(c.key.currency1,helper,a1);
+        return ZZZPairMigration(helper).convert(id,a0,a1);
     }
     function canonicalCapture() external onlyHandoff {
         if (IZZZCanonicalAccess(address(access)).canonicalState() != 1) revert InvalidState();
@@ -105,7 +124,8 @@ contract ZZZVaultCanonical {
         --row;
         if (row < groupCount) {
             uint256 id = vault.bucketAt(row);
-            return abi.encode(id, vault.group(id), vault.bucketTotalShares(id), vault.homePoolId(id));
+            return abi.encode(id, vault.group(id), vault.bucketTotalShares(id), vault.homePoolId(id),
+                vault.migrationBudget().compositionEpoch(id));
         }
         row -= groupCount;
         if (row < aliasCount) return abi.encode(aliases[row], aliasBucket[aliases[row]]);
@@ -136,16 +156,17 @@ contract ZZZVaultCanonical {
         }
         --row;
         if (row < groupCount) {
-            (uint256 id, Position memory p, uint256 shares, bytes32 homePool) =
-                abi.decode(record, (uint256,Position,uint256,bytes32));
+            (uint256 id, Position memory p, uint256 shares, bytes32 homePool, uint64 epoch) =
+                abi.decode(record, (uint256,Position,uint256,bytes32,uint64));
             if (p.status != PositionStatus.None && p.status != PositionStatus.Parked) revert InvalidState();
             if (p.status == PositionStatus.Parked) {
                 PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-                if (c.key.currency0 != p.homeToken0 || c.key.currency1 != p.homeToken1 || p.lpTokenId != 0) revert InvalidState();
+                if ((epoch == 0 && (c.key.currency0 != p.homeToken0 || c.key.currency1 != p.homeToken1)) || p.lpTokenId != 0) revert InvalidState();
                 p.homeChain = block.chainid; p.homeVault = address(vault); p.homeReceiver = access.module(Ids.RECEIVER);
                 p.locationChain = block.chainid; p.locationVault = address(vault);
             }
             vault.canonicalWrite(2, abi.encode(id, p, shares, homePool));
+            vault.migrationBudget().importComposition(id,epoch);
             return;
         }
         row -= groupCount;

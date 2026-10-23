@@ -109,7 +109,13 @@ class ActivationTransactions:
     def _trace(self, tx, pins, req, gross, max_slippage, block):
         raw=self.p.rpc.call('debug_traceCall',[{**tx,'gas':hex(GAS_CAP)},block,
             {'tracer':'callTracer','timeout':'5s','tracerConfig':{'withLog':True}}])
-        return measure(raw,{**tx,'gas':hex(GAS_CAP)},pins,req,gross,max_slippage)
+        def verify_historical(items):
+            checked,prices=self.config.verify(self.p,block,[token for token,_,_ in items])
+            if checked!=pins:raise ProjectionError('Historical compound deployment binding changed')
+            for token,amount,value in items:
+                expected=amount*prices[token]//10**self.config.tokens[token]['decimals']
+                if value!=expected:raise ProjectionError('Historical compound price differs from the reviewed snapshot')
+        return measure(raw,{**tx,'gas':hex(GAS_CAP)},pins,req,gross,max_slippage,verify_historical)
 
     @bounded_request
     def prepare(self, payload):

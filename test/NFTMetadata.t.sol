@@ -13,6 +13,8 @@ import {MockVRF} from "./mocks/MockVRF.sol";
 
 /// @dev TEST ONLY. Marks synthetic LP shares/NAV without real LP custody.
 contract MetadataVaultMock {
+    function migrationBudget() external view returns(address){return address(this);}
+    function historicalCompoundValue(uint256) external pure returns(uint256){return 0;}
     ZZZNFT public nft;
     address payable public mintProceedsRecipient = payable(address(0x7EA5));
     mapping(uint256 => uint256) public nftBucket;
