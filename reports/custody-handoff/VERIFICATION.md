@@ -119,3 +119,5 @@ Internal review: [boundaries and remaining risks](REVIEW.md).
 
 Procedure: [operator runbook](../../docs/GOVERNED_CUSTODY_HANDOFF.md).
 Status: [sole Todo](../../TODO.md#task-custody-composition).
+
+Publication: [main-branch receipt and unchanged deployment boundary](PUBLICATION.md).

@@ -1,5 +1,7 @@
 ## Governed custody handoff candidate - 2026-10-23
 
+Publication: contract implementation `e36a581` and website memory-only `0c45c28` are pushed on main. Read [publication receipt](../reports/custody-handoff/PUBLICATION.md); no website/server deployment or fresh Anvil custody rehearsal occurred.
+
 Local follow-up: final affected custody/royalty/parking/access tests pass 64/64;
 33 source-object size gates pass (Migration runtime 23,754 bytes, 822 margin).
 The delayed local destination binding preserves the original exit/budget. Prior
