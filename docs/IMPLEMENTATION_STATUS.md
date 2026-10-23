@@ -1,4 +1,29 @@
-## Typed local LP pair conversion - 2026-10-23
+## Governed principal and royalty custody - 2026-10-23
+
+The [custody candidate](GOVERNED_CUSTODY_HANDOFF.md) replaces the old LP v3
+bridge/router/receiver/registry and pair executor. Ordinary exit consolidates
+principal into ZZZ; explicit raw emergency exit skips swaps and carries no USD
+loss guarantee. Recipient custody/liveness are trusted by governance.
+
+Exact-snapshot approval, paused atomic exit, unchanged NFT shares, actual funded
+local LP completion and full original-asset recovery are implemented locally.
+A sent local holding plan can bind one reviewed/reserved destination later,
+preserving its original mode, departure and loss budget. Separate royalty custody
+preserves liabilities and makes only the exited currency unavailable until full
+raw restoration. The fixed read-only validator adds no execution authority.
+
+The normal source-object gates pass for 33 compiled objects; Migration runtime
+is 23,754 bytes, with 822 bytes margin under EIP-170. Compiler settings and limits
+are unchanged. Read [scoped verification](../reports/custody-handoff/VERIFICATION.md)
+for exact test source bindings, initial diagnostics and publication status.
+
+Whole-collection same-chain handoff remains separate. Real exit/routes/feeds,
+new release inventory, API/keeper custody diagnostics, fresh Anvil rehearsal,
+future remote finality/accounting and independent audit remain open. Old dated
+entries below describe historical source, not newly verified current features.
+
+## Historical typed local LP pair conversion - superseded 2026-10-23
+
 
 The [fixed conversion companion](PAIR_MIGRATION.md) atomically closes, converts
 and redeploys a shared bucket under one 3% fixed-price loss cap, gas separate.

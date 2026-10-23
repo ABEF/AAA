@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-interface IPairSwapCompanion { function pairMigration() external view returns (address); }
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -256,8 +255,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     }
     function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
         external nonReentrant returns (uint256 amountOut) {
-        if (!access.isSealed() || (msg.sender != access.module(Ids.VAULT) && msg.sender != access.module(Ids.BUYBACK) &&
-            msg.sender != IPairSwapCompanion(access.module(Ids.MIGRATION)).pairMigration())) revert Unauthorized();
+        if (!access.isSealed() || (msg.sender != access.module(Ids.VAULT) && msg.sender != access.module(Ids.BUYBACK))) revert Unauthorized();
         _deadline(deadline);
         if (amountIn == 0 || amountIn > type(uint128).max) revert InvalidAmount();
         PoolConfig memory c = _config(poolId, true);

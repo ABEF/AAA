@@ -1,0 +1,12 @@
+    function testScheduledPrincipalPlanCanBeCancelledThroughTimelockDuringPreparation() public {
+        uint256 id = _active(); uint256 bucket = vault.nftBucket(id); bytes32 routeId = keccak256("planned departure");
+        Route memory r; r.sourceChain = block.chainid; r.sourceVault = address(vault); r.sourceReceiver = address(receiver);
+        r.sourceAdapter = address(bridge); r.sourceToken0 = address(t0); r.sourceToken1 = address(t1);
+        r.destinationChain = block.chainid + 1; r.destinationVault = address(0x5151); r.destinationReceiver = address(0x5152);
+        routes.set(routeId, r); _govern(address(migration), abi.encodeCall(migration.propose, (bucket, routeId)));
+        bytes32 plan = migration.activePlan(bucket); assertNotEq(plan, bytes32(0)); _prepare();
+        vm.prank(GUARDIAN); vm.expectRevert(ZZZModule.Unauthorized.selector); migration.cancel(plan);
+        _govern(address(migration), abi.encodeCall(migration.cancel, (plan)));
+        assertEq(migration.activePlan(bucket), bytes32(0)); assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Active));
+        assertTrue(ac.preparationActive());
+    }

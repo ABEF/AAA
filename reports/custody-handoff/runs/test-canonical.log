@@ -1,0 +1,125 @@
+Compiling 2 files with Solc 0.8.26
+Solc 0.8.26 finished in 179.70s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> test/CanonicalHandoff.t.sol:278:17:
+    |
+278 |                 uint256 beforeGas = gasleft();
+    |                 ^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> test/CanonicalHandoff.t.sol:285:9:
+    |
+285 |         uint256 beforeGas = gasleft();
+    |         ^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/CanonicalHandoff.t.sol:151:9:
+    |
+151 |         PreparationTransport transport = new PreparationTransport(address(s.ac));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:107:5:
+    |
+107 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:217:5:
+    |
+217 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-23T01:28:57.996935Z  WARN traces::etherscan: etherscan config not found
+
+Ran 34 tests for test/CanonicalHandoff.t.sol:CanonicalHandoffTest
+[PASS] testAbortAfterFundingRequiresExactReturnedBacking() (gas: 111060551)
+[PASS] testAbortAfterRoyaltySettlementReopensWithoutDoubleCrediting() (gas: 13213537)
+[PASS] testAbortBeforeFundingRestoresOnlySourceAndPermanentlyCancelsDestination() (gas: 108217139)
+[PASS] testAbortBeforeSettlementReopensSourceWithoutLosingPendingReceipts() (gas: 13040049)
+[PASS] testAbortedSourceCanUseFreshDestinationWithoutReusingOldRootsOrFundingFlags() (gas: 280384599)
+[PASS] testActivatedSuccessorCanLaterMigrateAgainAfterNewMintsAndContributions() (gas: 290341668)
+[PASS] testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers() (gas: 110653640)
+[PASS] testCrossChainNoticeDoesNotAuthorizeUnverifiedFreezeOrExport() (gas: 1099892)
+[PASS] testDestinationNeverCopiesOldOperatorApprovalsAndRightsFollowNewOwner() (gas: 110294032)
+[PASS] testDestinationRoyaltyPrefundsCannotSubstituteForHandoffFundingOrRewardUsers() (gas: 110393377)
+[PASS] testDormantImportedNFTCanActivateIntoExistingSharedBucket() (gas: 112971989)
+[PASS] testEmptyCollectionAndZeroLPAssetsCanMigrateWithoutInventingBacking() (gas: 235108191)
+[PASS] testFreezeInsideLegacyFundingCallbackCannotCountOnePaymentTwice() (gas: 187952742)
+[PASS] testFreezeRejectsLiveLiquidityAndPreservesItsCustody() (gas: 4227002)
+[PASS] testFreezeRequiresTimelockAndFullyRevealedMintInventory() (gas: 1430158)
+[PASS] testFrozenSourceBlocksTransfersClaimsAndOrdinarySync() (gas: 11884455)
+[PASS] testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner() (gas: 250184919)
+[PASS] testFullThousandNFTInventoryImportsExactlyOnceWithCompleteDenominators() (gas: 62927575)
+Logs:
+  handoff.freeze.peak: 2233391
+  handoff.settle-one-domain.cold.peak: 431534
+  handoff.export-8-rows.peak: 1089429
+  handoff.import-8-rows.peak: 3192430
+  handoff.fund-one-asset.peak: 248553
+  handoff.commit-and-activate.peak: 451520
+
+[PASS] testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() (gas: 108354344)
+[PASS] testImportingDestinationCannotMintOrAllocateRights() (gas: 58540)
+[PASS] testInterruptedSettlementKeepsCutoffsAndBlocksEarlyImportFundingAndClaims() (gas: 114703473)
+[PASS] testLegacyReceiptsQueuedWhileSuccessorFrozenRemainBackedAcrossNextHandoff() (gas: 290410293)
+[PASS] testMalformedRecordAndIncompleteImportCannotActivate() (gas: 38952645)
+[PASS] testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger() (gas: 377478512)
+Logs:
+  handoff.4-buckets.32-assets.4-inboxes.17-royalties.freeze.cold: 10630991
+  handoff.4-buckets.32-assets.4-inboxes.17-royalties.commit.cold: 3671180
+  handoff.freeze.peak: 0
+  handoff.settle-one-domain.cold.peak: 5563162
+  handoff.export-8-rows.peak: 583300
+  handoff.import-8-rows.peak: 7508226
+  handoff.fund-one-asset.peak: 245753
+  handoff.commit-and-activate.peak: 0
+
+[PASS] testPartialFundingAbortReturnsOnlyTransferredBacking() (gas: 108392437)
+[PASS] testPartialFundingCannotActivateAndFundingCannotReplay() (gas: 108061950)
+[PASS] testPendingNativeCreatorPaymentIsWrappedAndAllocatedOnceAtFreeze() (gas: 258014516)
+[PASS] testPostFreezeSourceDonationDoesNotAlterStateCommitmentOrBaseBacking() (gas: 110375959)
+[PASS] testProtectedInboxTokensNativeAndSuccessorPrefundsStayQuarantined() (gas: 115629477)
+[PASS] testRemainingRarityAndArtworkInventoryContinueAfterMigration() (gas: 107182162)
+[PASS] testRetiredRoyaltyInboxForwardsOnlyRemainingReceiptsWithoutDuplicatingClaims() (gas: 110409077)
+[PASS] testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause() (gas: 110155970)
+[PASS] testSatelliteConfiguredDestinationCannotPrepareCanonicalImport() (gas: 71945851)
+[PASS] testUnsealedSameChainDestinationCannotBeAnnouncedAsExecutableHandoff() (gas: 71282887)
+Suite result: ok. 34 passed; 0 failed; 0 skipped; finished in 5.12s (22.41s CPU time)
+
+Ran 1 test suite in 5.17s (5.12s CPU time): 34 tests passed, 0 failed, 0 skipped (34 total tests)

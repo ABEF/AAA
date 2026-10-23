@@ -1,0 +1,18 @@
+    function testAnyHistoricalBridgeUseRequiresSeparateAuthenticatedDrainDesign() public {
+        uint256 id = _mint(source, 0, 0);
+        bytes32 routeId = keccak256("fixture historical acknowledgement"); Route memory route;
+        route.sourceChain = block.chainid; route.sourceAdapter = address(source.bridge);
+        route.sourceVault = address(source.vault); route.sourceReceiver = source.ac.module(Ids.RECEIVER);
+        route.destinationChain = block.chainid + 1; route.destinationAdapter = address(0x5150);
+        route.destinationVault = address(0x5151); route.destinationReceiver = address(0x5152);
+        PreparationRoutes(source.ac.module(Ids.ROUTES)).set(routeId, route);
+        BridgeMessage memory message; message.version = 3; message.kind = MessageKind.Acknowledgement;
+        message.routeId = routeId; message.migrationId = keccak256("test-only old channel");
+        // Mock receiver authentication only: this creates real adapter history,
+        // not evidence of a real remote provider or completed channel shutdown.
+        vm.prank(source.ac.module(Ids.RECEIVER)); source.bridge.send(message);
+        assertEq(source.bridge.nonce(), 1);
+        _prepare(); _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
+        assertEq(source.ac.canonicalState(), 0); assertEq(source.nft.ownerOf(id), ALICE);
+        assertEq(source.vault.bucketCount(), 0);
+    }

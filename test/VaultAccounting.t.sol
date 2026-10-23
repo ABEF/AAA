@@ -187,6 +187,7 @@ contract VaultAccountingTest is PooledVaultFixture {
     }
     function testMigrationReleaseOnlyGoesToBoundModule() public {
         uint256 id=activatedPosition();vm.prank(alice);vm.expectRevert();vault.releaseForMigration(_bucket(),bytes32(uint256(1)),block.timestamp+100);
+        ac.setPaused(true);vault.park(_bucket(),block.timestamp+100);
         (uint256 a,uint256 b)=vault.releaseForMigration(_bucket(),bytes32(uint256(1)),block.timestamp+100);
         assertEq(a,1000);assertEq(b,1000);assertEq(uint256(_record(id).status),uint256(PositionStatus.Outbound));
         assertEq(vault.totalIdle(address(t0)),0);assertEq(nft.ownerOf(id),alice);

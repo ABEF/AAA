@@ -1,0 +1,13 @@
+    function testNewEconomicWorkStopsAndCancellationRestoresIt() public {
+        uint256 active = _active(); uint256 dormant = _mint(true); uint256 bucket = vault.nftBucket(active); _prepare();
+        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}();
+        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.activate(dormant, poolId, 1000, 1000, 1, block.timestamp + 100);
+        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.increase(active, 100, 100, 1, block.timestamp + 100);
+        vm.expectRevert(ZZZModule.Preparing.selector); vault.rebalance(bucket, 1, block.timestamp + 100);
+        vm.expectRevert(ZZZModule.Preparing.selector); compounder.compound(bucket, 1, block.timestamp + 100);
+        vm.expectRevert(ZZZModule.Preparing.selector); buyback.execute(address(t0), 1, poolId, block.timestamp + 100);
+        vm.expectRevert(ZZZModule.Preparing.selector); migration.execute(bytes32(uint256(1)), block.timestamp + 100);
+        _govern(address(ac), abi.encodeCall(ac.cancelPreparation, (ac.preparationHash()))); _fresh();
+        vm.prank(ALICE); vault.increase(active, 100, 100, 1, block.timestamp + 100);
+        assertEq(vault.contributionUSD(active), 2200e18); assertEq(nft.mintedCount(), 2);
+    }

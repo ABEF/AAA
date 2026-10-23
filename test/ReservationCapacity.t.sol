@@ -59,40 +59,7 @@ contract ReservationCapacityTest is PooledVaultFixture {
         assertEq(vault.totalIdle(address(t1)), 0); assertEq(address(vault).balance, 0);
     }
 
-    function testEarlierReservationImportsAfterAllRemainingSlotsAreOccupied() public {
-        vm.chainId(block.chainid + 1);
-        uint256 limit = vault.MAX_BUCKETS(); address receiver = ac.module(Ids.RECEIVER);
-        (uint256 reservedBucket, Position memory reservedOrigin) = _origin(limit);
-        bytes32 reservedPool = _destination(limit);
-        vault.reservePool(reservedPool, reservedBucket);
-        assertEq(vault.bucketCount(), 1); _assertEmptyReservation(reservedPool, reservedBucket);
 
-        for (uint256 i; i < limit - 1; ++i) {
-            (uint256 bucket, Position memory origin) = _origin(i);
-            bytes32 destination = _destination(i);
-            vault.reservePool(destination, bucket); _fundReceiver(receiver);
-            vm.prank(receiver);
-            vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000);
-            assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Inbound));
-        }
-        assertEq(vault.bucketCount(), limit);
-        (uint256 extra,) = _origin(limit + 1); bytes32 extraPool = _destination(limit + 1);
-        vm.expectRevert(bytes4(keccak256("InvalidState()"))); vault.reservePool(extraPool, extra);
-        assertEq(vault.poolBucket(extraPool), 0);
-
-        // The original slot cannot be taken by later arrivals. Delivery succeeds
-        // at the cap and does not append the already admitted identity twice.
-        _fundReceiver(receiver); vm.prank(receiver);
-        vault.importPending(reservedBucket, reservedPool, reservedOrigin, 2000e18, poolId, 1000, 1000);
-        assertEq(vault.bucketCount(), limit); assertEq(vault.bucketAt(0), reservedBucket);
-        assertEq(uint256(vault.group(reservedBucket).status), uint256(PositionStatus.Inbound));
-        assertEq(vault.bucketTotalShares(reservedBucket), 2000e18);
-        assertEq(vault.homePoolId(reservedBucket), poolId);
-        assertEq(vault.totalIdle(address(t0)), limit * 1000);
-        assertEq(vault.totalIdle(address(t1)), limit * 1000);
-        assertEq(t0.balanceOf(receiver), 0); assertEq(t1.balanceOf(receiver), 0);
-        assertEq(t0.allowance(receiver, address(vault)), 0); assertEq(t1.allowance(receiver, address(vault)), 0);
-    }
 
     function testFullCapacityDuplicatesAndPoolAliasesReuseTheSameSlot() public {
         uint256 first;
@@ -130,43 +97,9 @@ contract ReservationCapacityTest is PooledVaultFixture {
         assertEq(vault.bucketCount(), 0); assertEq(vault.poolBucket(poolId), 0);
     }
 
-    function testUnreservedAndMalformedImportsPreserveReceiverFundsAndReservation() public {
-        vm.chainId(block.chainid + 1);
-        (uint256 bucket, Position memory origin) = _origin(0);
-        address receiver = ac.module(Ids.RECEIVER); _fundReceiver(receiver);
-        vm.prank(receiver); vm.expectRevert();
-        vault.importPending(bucket, poolId, origin, 2000e18, poolId, 1000, 1000);
-        assertEq(vault.bucketCount(), 0); _assertReceiverUnchanged(receiver);
 
-        vault.reservePool(poolId, bucket);
-        for (uint256 i; i < 4; ++i) {
-            (, Position memory malformed) = _origin(0); uint256 shares = 2000e18; bytes32 homePool = poolId;
-            if (i == 0) malformed.homeVault = address(0xBAD);
-            else if (i == 1) shares = 0;
-            else if (i == 2) homePool = bytes32(uint256(123));
-            else malformed.homeReceiver = address(0);
-            vm.prank(receiver); vm.expectRevert();
-            vault.importPending(bucket, poolId, malformed, shares, homePool, 1000, 1000);
-            assertEq(vault.bucketCount(), 1); _assertEmptyReservation(poolId, bucket);
-            _assertReceiverUnchanged(receiver);
-        }
-        vm.prank(alice); vm.expectRevert();
-        vault.importPending(bucket, poolId, origin, 2000e18, poolId, 1000, 1000);
-        _assertReceiverUnchanged(receiver); _assertEmptyReservation(poolId, bucket);
-    }
 
-    function testLateTokenFailureRollsBackImportButNotItsEarlierReservation() public {
-        vm.chainId(block.chainid + 1);
-        (uint256 bucket, Position memory origin) = _origin(0); vault.reservePool(poolId, bucket);
-        address receiver = ac.module(Ids.RECEIVER); t0.mint(receiver, 1000);
-        vm.startPrank(receiver); t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
-        vm.expectRevert(); vault.importPending(bucket, poolId, origin, 2000e18, poolId, 1000, 1000); vm.stopPrank();
-        assertEq(vault.bucketCount(), 1); _assertEmptyReservation(poolId, bucket);
-        assertEq(t0.balanceOf(receiver), 1000); assertEq(t1.balanceOf(receiver), 0);
-        assertEq(t0.allowance(receiver, address(vault)), 1000); assertEq(t1.allowance(receiver, address(vault)), 1000);
-        assertEq(t0.balanceOf(address(vault)), 0); assertEq(t1.balanceOf(address(vault)), 0);
-        assertEq(vault.totalIdle(address(t0)), 0); assertEq(vault.totalIdle(address(t1)), 0);
-    }
+
 
     function testForeignReservationCannotBeHijackedByLocalActivation() public {
         (uint256 bucket,) = _origin(0); vault.reservePool(poolId, bucket); uint256 id = _mint(alice);

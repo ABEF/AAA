@@ -1,8 +1,10 @@
 # Component implementation status
 
-## Local pair-conversion companion - 2026-10-23
+**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
 
-[`ZZZPairMigration`](../src/ZZZPairMigration.sol), created by Migration, adds
+## Historical pair-conversion candidate - superseded 2026-10-23
+
+[`ZZZPairMigration` (retired)](../reports/history/retired-v3-contracts/ZZZPairMigration.sol.txt), created by Migration, adds
 governed typed same-chain conversion. Vault/Budget/canonical companions retain
 fixed custody, loss and epoch boundaries; Fees keeps old reward currencies and
 selected historical compound. See [operator procedure](PAIR_MIGRATION.md) and
@@ -12,8 +14,8 @@ cross-chain and independent qualification remain open; production is NOT APPROVE
 **2026-10-17 handoff candidate:** the current source adds the six-domain
 [same-chain canonical handoff](CANONICAL_HANDOFF.md), including atomic cutoff
 capture, bounded ordered settlement, exact state/backing import, restored abort
-and atomic source retirement/replacement activation. The controller seals 20
-modules; eight helpers/factories are created automatically. Current verification
+and atomic source retirement/replacement activation. That historical revision sealed 20
+modules; the governed-custody candidate instead seals 16 and removes the old LP transport roles. Current verification
 is recorded [separately](../reports/canonical-handoff/VERIFICATION.md); the dated
 receipts below do not verify these changes. Cross-chain closure, finalized proof,
 lineage/transport and independent qualification remain open. No deployment is approved.
@@ -36,7 +38,7 @@ The [website-alignment evidence](../reports/website-alignment/README.md), [rewar
 | `ZZZVault.sol` | Exact 0.05 ETH Dormant mint; $100 source-bound activation with at least 99% marginal LP; same limit on additions; nonredeemable shares; oracle-independent paused close into Parked custody and guarded resume | Independent accounting review, target-venue gas and staged recovery; no guarantee against failed external assets or venues |
 | `ZZZNFT.sol` | ERC-721/2981/4906; 1,000 cap; ordered quota/inventory VRF draws; immutable traits and royalty/metadata/claim helpers | Actual proof-verifying coordinator, funded subscription, callback/failure rehearsal and independently reviewed permanent artwork root |
 | `ZZZNFTMetadata.sol` | Read-only current marked principal/idle/compound NAV by NFT share; four evolution states; price-driven downgrades; explicit unavailable valuation; 58 palettes and four patterns selecting 2,784 supported artwork states | Permanent asset publication, live pricing and marketplace cache integration; bounded notifications and watcher are implemented but need staged operation |
-| `ZZZRoyaltyRewards.sol` | Separate funded native/ERC20 ledger; activated 1/2/3 weights; incumbent settlement; current-owner claims; no admin sweep | Marketplace payment is voluntary; asset admission, dust and worst-case bounded synchronization need independent review |
+| `ZZZRoyaltyRewards.sol` | Separate funded royalty ledger, 1/2/3 weights, optional-asset eligibility isolation, and paused per-currency custody exit with full original-asset return | External custody temporarily suspends that currency; no ETH substitution or remote ledger remapping; independent review remains open |
 | `ZZZLiquidityManager.sol` | Typed v4 mint/increase/collect/burn/swap; exact native wrapping/settlement for the specifically admitted Robinhood Pons pool; real venue key preserved and prefunds isolated | Complete selected-pool fork lifecycle, adverse callback/price/funding behavior, gas and strategy qualification; generic native/hook support is not authorized |
 | `ZZZClaimRouter.sol` | Immutable NFT-created helper; up to 32 mixed NFT/asset/ledger claims; duplicate rejection, current-owner checks, direct payouts and atomic rollback | Target-chain worst-case gas, frontend chunking/simulation, staged claims and independent review; no arbitrary targets or payout recipients |
 | `ZZZActivationAssets.sol` | Immutable registry-created helper; append-only governed source policies; add/disable/re-enable, code/decimal/feed checks on enable, dependency-independent disable | Proxy/token authority review, exact deployment inventory and operating qualification remain required |
@@ -46,11 +48,9 @@ The [website-alignment evidence](../reports/website-alignment/README.md), [rewar
 | `ZZZFeeController.sol` | Twenty-unit 16/2/1/1 allocation; segregated reserves; remote provenance; immutable creator inbox factory; exact funded intake and entry synchronization | Independent review, admitted token/wrapper behavior and actual Entry/venue costs with four reachable inboxes; separate factory ceiling remains 16 |
 | `ZZZRewardReceiver.sol` | Immutable original bucket/pair and optional native wrapper; plain payments; permissionless processing; prefund quarantine | Helper is not a replaceable module; unsupported assets have no rescue; dependency outages can block entry |
 | `ZZZStrategy.sol` / `ZZZCompounder.sol` | Oracle-relative ranges, deviation/cooldown/slippage policy; keeper coordinates Vault reinvestment of its own budget | Backtesting, volatility, MEV, gas and real settlement/rounding economics |
-| `ZZZBuyback.sol` | Bounded direct buyback or direct burn with supply/balance checks | No multi-hop; actual approved routes, liquidity and cross-chain supply semantics need review |
-| `ZZZMigration.sol` | Delayed whole-bucket repeated custody hops; frozen departure identity, epochs, ordered location history and legacy reward paths; exact paused governance-approved parking, nonce invalidation and guarded resume; Parked departure retains remote-liability barrier | Actual provider finality/backing/recovery, immediate parking authorization and multi-chain adversarial rehearsal; raw close minimums require independent economic review |
-| `ZZZBridgeAdapter.sol` / `ZZZBridgeRouter.sol` | Authenticated v3 route/nonce checks; exact funding; fixed router; append-only reviewed provider/channel policies | No production SDK wrapper supplied; code hashes do not prove remote safety, backing or immutable proxy internals |
-| `ZZZMigrationReceiver.sol` / `ZZZMigrationRegistry.sol` | Attributed import/finalization/retry and retained ACK snapshots; append-only routes and governance-approved future destinations | Live delivery/recovery and independent destination review; no timeout refund or arbitrary asset conversion |
-| `ZZZAccessController.sol` | Fixed-delay governance, keeper/guardian separation and sealed module bindings; canonical seal requires configured NFT randomness | Governance, feeds, providers and coordinator remain trust dependencies; no general upgrade path |
+| `ZZZBuyback.sol` | Bounded direct buyback/burn with acquired-balance and supply checks; separately governed reviewed future ZZZ target | No arbitrary multi-hop; actual token, routes, feed, burn behavior and operator coordination need qualification |
+| `ZZZMigration.sol` / `ZZZCustodyValidation.sol` | Governed exact-snapshot all-ZZZ or explicit raw custody exit; local holding and one-time destination binding; actual funded local completion/full recovery; immutable read-only admission helper | Recipient custody is trusted; real finality, remote accounting, target routes, backend state and updated inventory remain unqualified |
+| `ZZZAccessController.sol` | Zero-delay governed configuration, keeper/guardian permissions and 16 fixed sealed module bindings; retired LP bridge roles cannot be bound | Governance and external dependencies remain trust boundaries; no ordinary implementation rebinding after seal |
 | `ZZZOracle.sol` / `ZZZPoolRegistry.sol` | USD normalization and freshness checks; explicit runtime-pinned selected native-pool admission; real `get` key and WETH-normalized `accounting` assets | Reliable denominated feeds/outage policy; native production admission gates remain closed pending release-specific validation |
 | `frontend_api/` | Unhosted confirmed NFT state/claimable reads; explicit Parked custody without fabricated LP value; optional creation-anchored wallet/lifetime raw LP-plus-royalty history, cross-checked to canonical owners/counts | Gross lifetime/24h fee attribution, USD projections, live website transactions, proxy/load/finality/recovery staging and independent ingestion-completeness checks |
 | `zzz_ops/revenue_share.py` | Exact time-weighted and per-asset fee-weighted sampled active-liquidity proposals, receipt/dust reports and pinned actual-position collector | Creator approval, complete hook-event parser, source authenticity/completeness, receipt reconciliation and operating tests |

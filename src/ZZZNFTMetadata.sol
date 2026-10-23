@@ -6,7 +6,7 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZLiquidity, IZZZOracle, IZZZFees, IZZZStrategy} from "./interfaces/IZZZ.sol";
 import {ZZZArtwork} from "./libraries/ZZZArtwork.sol";
-import {IPairVault} from "./ZZZPairMigration.sol";
+import {IPairVault} from "./ZZZMigrationBudget.sol";
 interface IHistoricalCompound { function historicalCompoundValue(uint256 id) external view returns (uint256); }
 
 struct NFTMetadataInput {

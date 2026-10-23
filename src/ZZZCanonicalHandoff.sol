@@ -97,9 +97,9 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         if (!access.isSealed()) revert InvalidState();
         result = keccak256(abi.encode(SCHEMA, block.chainid, address(access), address(this),
             address(access).codehash, address(this).codehash, incomingSource));
-        bytes32[20] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
-            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE,
-            Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT, Ids.CANONICAL,
+        bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
+            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION,
+            Ids.ORACLE, Ids.POOLS, Ids.CANONICAL,
             Ids.NFT_CANONICAL, Ids.VAULT_CANONICAL, Ids.FEES_CANONICAL];
         for (uint256 i; i < ids.length; ++i) {
             address target = access.module(ids[i]);
@@ -135,10 +135,8 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             revert InvalidState();
         if (IZZZVault(IZZZAccess(destination).module(Ids.VAULT)).canonicalChainId() != block.chainid)
             revert UnsupportedTransport();
-        // A scalar expected/received reward balance is not evidence that all
-        // historic remote channels have stopped. No bypass exists here.
-        ICanonicalBridgeHistory bridge = ICanonicalBridgeHistory(access.module(Ids.BRIDGE));
-        if (bridge.nonce() != 0 || bridge.receivedCount() != 0) revert UnsupportedTransport();
+        // Every bucket must be parked and have no active custody handoff.
+        // Capture enforces that boundary; no retired v3 channel is admitted.
         destinationController = destination;
         destinationDeployment = deployment;
         handoffId = keccak256(abi.encode(SCHEMA, block.chainid, address(access), address(this),

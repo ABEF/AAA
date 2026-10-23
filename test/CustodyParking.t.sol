@@ -157,16 +157,7 @@ contract CustodyParkingTest is PooledVaultFixture {
         ac.setPaused(true); vm.expectRevert(); migration.park(stale);
         migration.park(_request(migration, _bucket()));
     }
-    function testParkingCannotRaceScheduledMigrationAndResumeCannotRaceParkedMigration() public {
-        activatedPosition(); ZZZMigration migration = _migration(); (bytes32 routeId,) = _route();
-        bytes32 plan = migration.propose(_bucket(), routeId); ac.setPaused(true);
-        ZZZMigration.ParkingRequest memory r = _request(migration, _bucket());
-        vm.expectRevert(); migration.park(r);
-        migration.cancel(plan); migration.park(_request(migration, _bucket()));
-        migration.propose(_bucket(), routeId); ac.setPaused(false);
-        vm.expectRevert(); migration.resume(_bucket(), poolId, 1, block.timestamp + 100);
-        assertEq(uint8(vault.group(_bucket()).status), uint8(PositionStatus.Parked));
-    }
+
     function testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares() public {
         uint256 id = activatedPosition(); ZZZMigration migration = _migration(); uint256 shares = vault.sharesOf(id);
         _park(migration); ac.setPaused(false); vm.warp(block.timestamp + 3601);
@@ -187,24 +178,7 @@ contract CustodyParkingTest is PooledVaultFixture {
         vm.expectRevert(); migration.resume(_bucket(), other, 1, block.timestamp + 100);
         assertEq(vault.group(_bucket()).poolId, poolId); assertEq(vault.group(_bucket()).idle0, 1000);
     }
-    function testParkedMigrationNeedsRemoteLiabilityFundingButNotRecoveredOracle() public {
-        activatedPosition(); ZZZMigration migration = _migration(); uint256 bucket = _bucket();
-        BridgeMessage memory imported; imported.version = 3; imported.kind = MessageKind.Principal;
-        imported.bucketId = bucket; imported.homeChain = block.chainid; imported.homeVault = address(vault);
-        imported.totalShares = vault.bucketTotalShares(bucket); imported.canonicalToken0 = address(t0); imported.canonicalToken1 = address(t1);
-        imported.allocatedIndividual0 = 100; imported.allocatedCollective0 = 10;
-        vm.prank(ac.module(Ids.RECEIVER)); fees.importAccounting(imported); assertFalse(fees.remoteSettled(bucket));
-        _park(migration); (bytes32 routeId, ParkingBridgeCapture bridge) = _route();
-        bytes32 plan = migration.propose(bucket, routeId); ac.setPaused(false); vm.warp(block.timestamp + 2 days);
-        vm.expectRevert(); migration.execute(plan, block.timestamp + 100);
-        assertEq(uint8(vault.group(bucket).status), uint8(PositionStatus.Parked)); assertEq(migration.custodyEpoch(bucket), 0);
-        address receiver = ac.module(Ids.RECEIVER); t0.mint(receiver, 110);
-        vm.startPrank(receiver); t0.approve(address(fees), 110); fees.creditRemote(bucket, address(t0), 100, 10); vm.stopPrank();
-        assertTrue(fees.remoteSettled(bucket)); vm.expectRevert(); oracle.price(address(t0));
-        migration.execute(plan, block.timestamp + 100);
-        assertEq(uint8(vault.group(bucket).status), uint8(PositionStatus.Outbound)); assertEq(vault.group(bucket).idle0, 0);
-        assertEq(bridge.received0(), 1000); assertEq(bridge.received1(), 1000); assertEq(migration.custodyEpoch(bucket), 1);
-    }
+
 }
 
 /// @dev Role-only fixture: real sealed timelock and Migration, synthetic custody
@@ -232,30 +206,5 @@ contract ParkingRolePools {
     function accounting(bytes32) external view returns (PoolConfig memory c) { c.key.currency0 = token0; c.key.currency1 = token1; }
 }
 contract CustodyParkingGovernanceTest is Test {
-    function testSealedPausedParkingRequiresExactImmediateGovernanceCall() public {
-        vm.warp(1000000);
-        address[] memory authorities = new address[](1); authorities[0] = address(this);
-        ZZZAccessController controller = new ZZZAccessController(0, authorities, authorities, address(this), address(this));
-        ParkingRoleVault vault = new ParkingRoleVault(controller, address(0x111), address(0x222));
-        ZZZMigration migration = new ZZZMigration(address(controller));
-        ParkingRolePools pools = new ParkingRolePools(controller, address(0x111), address(0x222));
-        bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP, Ids.FEES,
-            Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER,
-            Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT];
-        for (uint256 i; i < ids.length; ++i) {
-            address implementation = ids[i] == Ids.VAULT ? address(vault) : ids[i] == Ids.MIGRATION ? address(migration) :
-                ids[i] == Ids.POOLS ? address(pools) : address(new BoundDummy(address(controller)));
-            controller.bind(ids[i], implementation);
-        }
-        CanonicalFixture.bind(address(controller));
-        controller.seal(); controller.setPaused(true);
-        ZZZMigration.ParkingRequest memory r; r.bucketId = 7; r.poolId = bytes32(uint256(7)); r.lpTokenId = 99;
-        r.totalShares = 200e18; r.depositUSD = 200e18; r.token0 = address(0x111); r.token1 = address(0x222);
-        r.minimum0 = 100; r.minimum1 = 100; r.deadline = block.timestamp + 100; r.reviewHash = keccak256("independent-close-review");
-        bytes memory callData = abi.encodeCall(migration.park, (r)); bytes32 salt = keccak256("exact-paused-custody-authorization");
-        vm.expectRevert(); migration.park(r);
-        controller.schedule(address(migration), 0, callData, bytes32(0), salt, 0);
-        controller.execute(address(migration), 0, callData, bytes32(0), salt);
-        assertEq(uint8(vault.group(7).status), uint8(PositionStatus.Parked)); assertEq(migration.parkingNonce(7), 1);
-    }
+
 }

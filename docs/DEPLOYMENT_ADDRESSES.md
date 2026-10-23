@@ -1,7 +1,9 @@
 # Deployment address inventory
 
+**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+
 The local pair-conversion candidate also creates an immutable
-[`ZZZPairMigration`](../src/ZZZPairMigration.sol) in Migration's constructor.
+[`ZZZPairMigration`](https://github.com/ABEF/AAA/blob/4830cc92c905581fe898cd33317695f9b42f885c/src/ZZZPairMigration.sol) in Migration's constructor.
 Record `Migration.pairMigration()`, its controller/migration immutables and runtime
 hash, plus Vault's Budget and canonical companion bindings. This helper can
 temporarily hold only the bucket's attributed conversion assets; it has no

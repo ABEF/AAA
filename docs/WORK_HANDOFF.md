@@ -1,3 +1,44 @@
+## Governed custody handoff candidate - 2026-10-23
+
+Local follow-up: final affected custody/royalty/parking/access tests pass 64/64;
+33 source-object size gates pass (Migration runtime 23,754 bytes, 822 margin).
+The delayed local destination binding preserves the original exit/budget. Prior
+183-case accounting and 34-case canonical results retain their earlier source
+scope; this is not a fresh full regression or Anvil custody rehearsal. Read the
+verification and Git/publication record for status; production remains unapproved.
+
+The user approved replacing old LP migration/bridge paths with governed external
+custody, while retaining the whole-collection NFT/accounting handoff. Ordinary
+Migration Exit closes and converts principal to configured ZZZ; explicit
+`rawExit` is a separately approved no-swap emergency transfer with raw minima
+and no 3% USD guarantee. Never automatically downgrade a failed normal exit.
+Recipients can be EOAs/contracts; governance explicitly trusts their custody
+and liveness after departure. No holder redemption or general sweep is added.
+
+Original NFT shares and LP/royalty liabilities stay recorded. Local completion
+requires actual destination LP; normal mode reuses the original 97% fixed-price
+floor. Recovery requires the full actual sent assets. Cross-chain delivery and
+return require pinned finality/closure proofs, with no multisig/timeout override;
+no real verifier/provider/remote ledger is supplied. Whole-collection capture
+cannot proceed with pending principal or royalty custody. Royalty currencies
+have a separate paused, full-balance exit and exact raw return; claims/valuation
+for the exited currency are explicitly unavailable, not zero. Restoration is
+not new income. Buyback ZZZ targeting is separately governed and reviewed.
+
+Read [operator procedure](GOVERNED_CUSTODY_HANDOFF.md) and
+[verification scope](../reports/custody-handoff/VERIFICATION.md). Checks and
+publication must be read from that record/Git, not inferred from this note.
+The old v3 transport implementations and pair executor are removed from src;
+obsolete tests are preserved as historical text, not passing current tests.
+Current production inventory/provider/backend qualification must be adapted and
+independently reviewed. Existing source-bound reports keep their original scope.
+
+Preserve 8902/Anvil/NFT/LP/balances/journals and its temporary dist repair overlay.
+No public deployment, holder transaction, website build, service control or
+monitor restart is authorized by this work. Signer stays Anvil-only; public
+DEPLOYMENT remains null. Main only, preserve unrelated drafts, maintain the sole
+Todo/features/operator guidance and both memories. Production NOT APPROVED.
+
 ## Typed local pair conversion - 2026-10-23
 
 The candidate implements atomic local LP pair conversion through the immutable

@@ -16,7 +16,6 @@ import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZClaimRouter} from "../src/ZZZClaimRouter.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
-import {ZZZBridgeAdapter} from "../src/ZZZBridgeAdapter.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {IZZZAccess} from "../src/interfaces/IZZZ.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus, Route, BridgeMessage, MessageKind}
@@ -90,7 +89,6 @@ contract CanonicalPreparationTest is Test {
     ZZZBuyback private buyback;
     ZZZOracle private oracle;
     ZZZMigration private migration;
-    ZZZBridgeAdapter private bridge;
     PreparationPools private pools;
     PreparationVenue private venue;
     PreparationRoutes private routes;
@@ -124,15 +122,13 @@ contract CanonicalPreparationTest is Test {
         oracle = new ZZZOracle(address(ac), address(0)); migration = new ZZZMigration(address(ac));
         routes = new PreparationRoutes(address(ac)); transport = new PreparationTransport(address(ac));
         receiver = new PreparationReceiver(address(ac)); receiver.configure(address(t0), false);
-        bridge = new ZZZBridgeAdapter(address(ac), address(transport));
         ac.bind(Ids.VAULT, address(vault)); ac.bind(Ids.NFT, address(nft));
         ac.bind(Ids.LIQUIDITY, address(venue)); ac.bind(Ids.REWARDS, address(rewards));
         ac.bind(Ids.MEMBERSHIP, address(membership)); ac.bind(Ids.FEES, address(fees));
         ac.bind(Ids.STRATEGY, address(new PreparationPolicy(address(ac))));
         ac.bind(Ids.COMPOUNDER, address(compounder)); ac.bind(Ids.BUYBACK, address(buyback));
-        ac.bind(Ids.MIGRATION, address(migration)); ac.bind(Ids.BRIDGE, address(bridge));
-        ac.bind(Ids.RECEIVER, address(receiver)); ac.bind(Ids.ORACLE, address(oracle));
-        ac.bind(Ids.POOLS, address(pools)); ac.bind(Ids.ROUTES, address(routes)); ac.bind(Ids.TRANSPORT, address(transport));
+        ac.bind(Ids.MIGRATION, address(migration)); ac.bind(Ids.ORACLE, address(oracle));
+        ac.bind(Ids.POOLS, address(pools));
         feed = new MockFeed(8, 1e8);
         oracle.setFeed(address(t0), address(feed), 3600); oracle.setFeed(address(t1), address(feed), 3600);
         rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
@@ -194,19 +190,7 @@ contract CanonicalPreparationTest is Test {
         vm.warp(block.timestamp + 1 days); vm.chainId(block.chainid + 1);
         vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector); ac.execute(address(ac), 0, data, bytes32(0), salt);
     }
-    function testNewEconomicWorkStopsAndCancellationRestoresIt() public {
-        uint256 active = _active(); uint256 dormant = _mint(true); uint256 bucket = vault.nftBucket(active); _prepare();
-        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.mintDormant{value: 0.05 ether}();
-        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.activate(dormant, poolId, 1000, 1000, 1, block.timestamp + 100);
-        vm.prank(ALICE); vm.expectRevert(ZZZModule.Preparing.selector); vault.increase(active, 100, 100, 1, block.timestamp + 100);
-        vm.expectRevert(ZZZModule.Preparing.selector); vault.rebalance(bucket, 1, block.timestamp + 100);
-        vm.expectRevert(ZZZModule.Preparing.selector); compounder.compound(bucket, 1, block.timestamp + 100);
-        vm.expectRevert(ZZZModule.Preparing.selector); buyback.execute(address(t0), 1, poolId, block.timestamp + 100);
-        vm.expectRevert(ZZZModule.Preparing.selector); migration.execute(bytes32(uint256(1)), block.timestamp + 100);
-        _govern(address(ac), abi.encodeCall(ac.cancelPreparation, (ac.preparationHash()))); _fresh();
-        vm.prank(ALICE); vault.increase(active, 100, 100, 1, block.timestamp + 100);
-        assertEq(vault.contributionUSD(active), 2200e18); assertEq(nft.mintedCount(), 2);
-    }
+
     function testClaimsTransfersPendingRevealAndReceiptSettlementStayAvailable() public {
         uint256 active = _active(); uint256 pending = _mint(false); uint256 bucket = vault.nftBucket(active);
         _govern(address(fees), abi.encodeCall(fees.createRewardReceiver, (bucket, address(0))));
@@ -255,18 +239,7 @@ contract CanonicalPreparationTest is Test {
         assertEq(vault.sequence(), 0); assertEq(nft.mintedCount(), 0); assertEq(address(treasury).balance, 0);
         assertTrue(ac.isOperationReady(ac.hashOperation(address(ac), 0, data, bytes32(0), salt)));
     }
-    function testScheduledPrincipalPlanCanBeCancelledThroughTimelockDuringPreparation() public {
-        uint256 id = _active(); uint256 bucket = vault.nftBucket(id); bytes32 routeId = keccak256("planned departure");
-        Route memory r; r.sourceChain = block.chainid; r.sourceVault = address(vault); r.sourceReceiver = address(receiver);
-        r.sourceAdapter = address(bridge); r.sourceToken0 = address(t0); r.sourceToken1 = address(t1);
-        r.destinationChain = block.chainid + 1; r.destinationVault = address(0x5151); r.destinationReceiver = address(0x5152);
-        routes.set(routeId, r); _govern(address(migration), abi.encodeCall(migration.propose, (bucket, routeId)));
-        bytes32 plan = migration.activePlan(bucket); assertNotEq(plan, bytes32(0)); _prepare();
-        vm.prank(GUARDIAN); vm.expectRevert(ZZZModule.Unauthorized.selector); migration.cancel(plan);
-        _govern(address(migration), abi.encodeCall(migration.cancel, (plan)));
-        assertEq(migration.activePlan(bucket), bytes32(0)); assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Active));
-        assertTrue(ac.preparationActive());
-    }
+
     function testHarvestAndTimelockedParkingRemainAvailableWithoutSourcePrice() public {
         uint256 id = _active(); uint256 bucket = vault.nftBucket(id); _prepare();
         venue.setFees(100, 100); vault.collectFees(bucket, block.timestamp + 100);
@@ -280,31 +253,5 @@ contract CanonicalPreparationTest is Test {
         assertEq(p.idle0, 1000); assertEq(p.idle1, 1000); assertEq(vault.sharesOf(id), 2000e18);
         assertTrue(ac.preparationActive());
     }
-    function testAdapterPreservesFundedInboundRewardDrainAndAcknowledgements() public {
-        bytes32 incoming = keccak256("incoming"); Route memory r;
-        r.sourceChain = block.chainid + 1; r.sourceAdapter = address(0x5150); r.sourceVault = address(0x5151);
-        r.sourceReceiver = address(0x5152); r.destinationChain = block.chainid; r.destinationAdapter = address(bridge);
-        r.destinationVault = address(vault); r.destinationReceiver = address(receiver);
-        r.sourceToken0 = address(0x7711); r.destinationToken0 = address(t0); routes.set(incoming, r);
-        bytes32 outgoing = keccak256("acknowledgement");
-        r.sourceChain = block.chainid; r.sourceAdapter = address(bridge); r.sourceVault = address(vault);
-        r.sourceReceiver = address(receiver); r.destinationChain = block.chainid + 1;
-        r.destinationAdapter = address(0x5150); r.destinationVault = address(0x5151); r.destinationReceiver = address(0x5152);
-        r.sourceToken0 = address(0); r.destinationToken0 = address(0); routes.set(outgoing, r);
-        bytes32 rewardRoute = keccak256("reward drain");
-        r.sourceToken0 = address(t0); r.destinationToken0 = address(0x7711); routes.set(rewardRoute, r); _prepare();
-        BridgeMessage memory m; m.version = 3; m.kind = MessageKind.Reward; m.routeId = incoming;
-        m.nonce = 1; m.bucketId = 42; m.amount0 = 80; m.individual = 50; m.collective = 30;
-        t0.mint(address(transport), 80);
-        transport.deliver(address(bridge), block.chainid + 1, address(0x5150), abi.encode(m), address(t0), 80);
-        assertEq(t0.balanceOf(address(receiver)), 80); assertEq(receiver.received(), 1);
-        t0.mint(address(fees), 80); vm.prank(address(fees)); t0.approve(address(bridge), 80);
-        m.routeId = rewardRoute; m.nonce = 0;
-        vm.prank(address(fees)); assertNotEq(bridge.send(m), bytes32(0));
-        m.kind = MessageKind.Principal;
-        vm.prank(address(migration)); vm.expectRevert(ZZZModule.Preparing.selector); bridge.send(m);
-        m.kind = MessageKind.Acknowledgement; m.routeId = outgoing; m.nonce = 0; m.migrationId = keccak256("existing hop");
-        m.amount0 = 0; m.individual = 0; m.collective = 0;
-        vm.prank(address(receiver)); assertNotEq(bridge.send(m), bytes32(0)); assertEq(bridge.nonce(), 2);
-    }
+
 }

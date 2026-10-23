@@ -135,25 +135,5 @@ contract PoolSwitchingTest is PooledVaultFixture {
         assertEq(vault.poolBucket(target), 0); assertEq(venue.ownerOf(home.lpTokenId), address(vault));
     }
 
-    function testCancelledScheduledMigrationDoesNotReleaseReservedCapacity() public {
-        activatedPosition(); bytes32 reservedPool = _poolAt(1); uint256 reserved = 10001;
-        vault.reservePool(reservedPool, reserved); ZZZMigration migration = _migration();
-        MockRoutes routes = new MockRoutes(); ac.bind(Ids.ROUTES, address(routes));
-        ac.bind(Ids.TRANSPORT, address(new MockReadyRouter()));
-        Route memory r; r.sourceChain = block.chainid; r.sourceVault = address(vault);
-        r.sourceReceiver = ac.module(Ids.RECEIVER); r.sourceToken0 = address(t0); r.sourceToken1 = address(t1);
-        r.destinationChain = block.chainid + 1; r.destinationVault = address(0xF001); r.destinationReceiver = address(0xF002);
-        r.destinationToken0 = address(t0); r.destinationToken1 = address(t1);
-        bytes32 routeId = keccak256("capacity-cancel-fixture"); routes.set(routeId, r);
-        bytes32 plan = migration.propose(_bucket(), routeId);
-        bytes32 alternate = _poolAt(2);
-        vm.expectRevert(); migration.movePool(_bucket(), alternate, 1, block.timestamp + 100);
-        migration.cancel(plan);
-        assertEq(migration.activePlan(_bucket()), bytes32(0)); assertEq(vault.bucketCount(), 2);
-        assertEq(vault.poolBucket(reservedPool), reserved); assertEq(uint256(vault.group(reserved).status), uint256(PositionStatus.None));
-        vm.warp(block.timestamp + 365 days); vault.reservePool(reservedPool, reserved);
-        assertEq(vault.bucketCount(), 2); assertEq(vault.bucketAt(1), reserved);
-        vm.expectRevert(); vault.reservePool(reservedPool, reserved + 1);
-        assertEq(vault.poolBucket(reservedPool), reserved);
-    }
+
 }

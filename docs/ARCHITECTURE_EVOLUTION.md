@@ -1,5 +1,7 @@
 # Architecture evolution and trust boundaries
 
+**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+
 Design reviewed 2026-10-16 against baseline `37bf0d2`. This document separates
 current capabilities from proposed changes. The [central Todo](../TODO.md) owns
 progress; the [review brief](../reports/architecture-evolution/REVISED_PROMPT.md)
@@ -23,7 +25,7 @@ wallets, generated contract/helper addresses and reviewed external dependencies.
 | Move canonical NFT ownership and both reward ledgers | Same-chain canonical handoff is implemented in the candidate; complete future-chain relocation remains unfinished. Moving LP alone does not change the canonical chain. |
 
 Sources: [Vault](../src/ZZZVault.sol), [Migration](../src/ZZZMigration.sol),
-[route registry](../src/ZZZMigrationRegistry.sol), [manager](../src/ZZZLiquidityManager.sol),
+[route registry](https://github.com/ABEF/AAA/blob/4830cc92c905581fe898cd33317695f9b42f885c/src/ZZZMigrationRegistry.sol), [manager](../src/ZZZLiquidityManager.sol),
 [fee controller](../src/ZZZFeeController.sol), [change matrix](CHANGE_AND_RECOVERY.md).
 
 A future remote destination could implement another venue behind a reviewed

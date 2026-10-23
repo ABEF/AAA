@@ -1,0 +1,12 @@
+    function testLateTokenFailureRollsBackImportButNotItsEarlierReservation() public {
+        vm.chainId(block.chainid + 1);
+        (uint256 bucket, Position memory origin) = _origin(0); vault.reservePool(poolId, bucket);
+        address receiver = ac.module(Ids.RECEIVER); t0.mint(receiver, 1000);
+        vm.startPrank(receiver); t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
+        vm.expectRevert(); vault.importPending(bucket, poolId, origin, 2000e18, poolId, 1000, 1000); vm.stopPrank();
+        assertEq(vault.bucketCount(), 1); _assertEmptyReservation(poolId, bucket);
+        assertEq(t0.balanceOf(receiver), 1000); assertEq(t1.balanceOf(receiver), 0);
+        assertEq(t0.allowance(receiver, address(vault)), 1000); assertEq(t1.allowance(receiver, address(vault)), 1000);
+        assertEq(t0.balanceOf(address(vault)), 0); assertEq(t1.balanceOf(address(vault)), 0);
+        assertEq(vault.totalIdle(address(t0)), 0); assertEq(vault.totalIdle(address(t1)), 0);
+    }

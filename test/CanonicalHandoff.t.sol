@@ -17,7 +17,6 @@ import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {ZZZRewardReceiver} from "../src/ZZZRewardReceiver.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
-import {ZZZBridgeAdapter} from "../src/ZZZBridgeAdapter.sol";
 import {IZZZCanonicalModule} from "../src/interfaces/IZZZCanonical.sol";
 import {Ids, PoolKey, PoolConfig, Position, PositionStatus, Route, BridgeMessage, MessageKind}
     from "../src/libraries/ZZZTypes.sol";
@@ -93,7 +92,6 @@ contract CanonicalHandoffTest is Test {
         ZZZMembership membership;
         ZZZFeeController fees;
         ZZZMigration migration;
-        ZZZBridgeAdapter bridge;
         PreparationPools pools;
         PreparationVenue venue;
         MockVRF vrf;
@@ -153,18 +151,14 @@ contract CanonicalHandoffTest is Test {
         PreparationTransport transport = new PreparationTransport(address(s.ac));
         PreparationReceiver receiver = new PreparationReceiver(address(s.ac));
         receiver.configure(address(token0), false);
-        s.bridge = new ZZZBridgeAdapter(address(s.ac), address(transport));
         s.ac.bind(Ids.VAULT, address(s.vault)); s.ac.bind(Ids.NFT, address(s.nft));
         s.ac.bind(Ids.LIQUIDITY, address(s.venue)); s.ac.bind(Ids.REWARDS, address(s.rewards));
         s.ac.bind(Ids.MEMBERSHIP, address(s.membership)); s.ac.bind(Ids.FEES, address(s.fees));
         s.ac.bind(Ids.STRATEGY, address(new PreparationPolicy(address(s.ac))));
         s.ac.bind(Ids.COMPOUNDER, address(new ZZZCompounder(address(s.ac))));
         s.ac.bind(Ids.BUYBACK, address(new ZZZBuyback(address(s.ac), address(token0), 1e30)));
-        s.ac.bind(Ids.MIGRATION, address(s.migration)); s.ac.bind(Ids.BRIDGE, address(s.bridge));
-        s.ac.bind(Ids.RECEIVER, address(receiver)); s.ac.bind(Ids.ORACLE, address(oracle));
+        s.ac.bind(Ids.MIGRATION, address(s.migration)); s.ac.bind(Ids.ORACLE, address(oracle));
         s.ac.bind(Ids.POOLS, address(s.pools));
-        s.ac.bind(Ids.ROUTES, address(new PreparationRoutes(address(s.ac))));
-        s.ac.bind(Ids.TRANSPORT, address(transport));
         oracle.setFeed(address(token0), address(feed), 3600); oracle.setFeed(address(token1), address(feed), 3600);
         if (admitAssets) {
             s.rewards.addAsset(address(token0)); s.rewards.addAsset(address(token1));
@@ -708,24 +702,7 @@ contract CanonicalHandoffTest is Test {
         vm.expectRevert(); source.handoff.exportRows(0, 1);
     }
 
-    function testAnyHistoricalBridgeUseRequiresSeparateAuthenticatedDrainDesign() public {
-        uint256 id = _mint(source, 0, 0);
-        bytes32 routeId = keccak256("fixture historical acknowledgement"); Route memory route;
-        route.sourceChain = block.chainid; route.sourceAdapter = address(source.bridge);
-        route.sourceVault = address(source.vault); route.sourceReceiver = source.ac.module(Ids.RECEIVER);
-        route.destinationChain = block.chainid + 1; route.destinationAdapter = address(0x5150);
-        route.destinationVault = address(0x5151); route.destinationReceiver = address(0x5152);
-        PreparationRoutes(source.ac.module(Ids.ROUTES)).set(routeId, route);
-        BridgeMessage memory message; message.version = 3; message.kind = MessageKind.Acknowledgement;
-        message.routeId = routeId; message.migrationId = keccak256("test-only old channel");
-        // Mock receiver authentication only: this creates real adapter history,
-        // not evidence of a real remote provider or completed channel shutdown.
-        vm.prank(source.ac.module(Ids.RECEIVER)); source.bridge.send(message);
-        assertEq(source.bridge.nonce(), 1);
-        _prepare(); _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
-        assertEq(source.ac.canonicalState(), 0); assertEq(source.nft.ownerOf(id), ALICE);
-        assertEq(source.vault.bucketCount(), 0);
-    }
+
 
     function testUnsealedSameChainDestinationCannotBeAnnouncedAsExecutableHandoff() public {
         System memory unsealed = _deploySystem(false); unsealed.handoff.prepareImport(address(source.ac));

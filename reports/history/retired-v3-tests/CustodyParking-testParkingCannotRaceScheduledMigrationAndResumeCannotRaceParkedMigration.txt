@@ -1,0 +1,10 @@
+    function testParkingCannotRaceScheduledMigrationAndResumeCannotRaceParkedMigration() public {
+        activatedPosition(); ZZZMigration migration = _migration(); (bytes32 routeId,) = _route();
+        bytes32 plan = migration.propose(_bucket(), routeId); ac.setPaused(true);
+        ZZZMigration.ParkingRequest memory r = _request(migration, _bucket());
+        vm.expectRevert(); migration.park(r);
+        migration.cancel(plan); migration.park(_request(migration, _bucket()));
+        migration.propose(_bucket(), routeId); ac.setPaused(false);
+        vm.expectRevert(); migration.resume(_bucket(), poolId, 1, block.timestamp + 100);
+        assertEq(uint8(vault.group(_bucket()).status), uint8(PositionStatus.Parked));
+    }

@@ -28,3 +28,8 @@ reports/topup-and-reward-review/** -text whitespace=cr-at-eol,-blank-at-eol,-bla
 
 # Preserve exact scoped LP settlement receipts and native diagnostics.
 reports/lp-eth-settlement/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact custody diagnostics and retired source/test text.
+reports/custody-handoff/runs/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+reports/history/retired-v3-contracts/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+reports/history/retired-v3-tests/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

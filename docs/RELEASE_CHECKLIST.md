@@ -1,5 +1,7 @@
 # Release approval record - NOT APPROVED
 
+**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+
 The [local pair-conversion candidate](../reports/pair-composition/VERIFICATION.md)
 adds typed conversion, historical backing and epoch-aware same-chain records.
 Its local checks do not qualify actual routes, gas, composed controller cutover,

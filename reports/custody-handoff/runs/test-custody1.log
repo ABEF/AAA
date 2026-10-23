@@ -1,0 +1,81 @@
+Compiling 101 files with Solc 0.8.26
+Solc 0.8.26 finished in 144.43s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:107:5:
+    |
+107 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:217:5:
+    |
+217 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-23T01:16:22.390375Z  WARN traces::etherscan: etherscan config not found
+
+Ran 18 tests for test/CustodyHandoff.t.sol:CustodyHandoffTest
+[PASS] testApprovalCanBeCancelledWithoutMovingFunds() (gas: 4274344)
+[PASS] testCompleteRequiresActualLPAndPreservesNFTAndLedgers() (gas: 5631153)
+[PASS] testEmergencyRawExitWorksWithFailedSwapAndStalePrices() (gas: 4494494)
+[PASS] testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties() (gas: 4856090)
+[PASS] testFuzzExitSwapLossLimit(uint16) (runs: 1000, μ: 4681795, ~: 4636044)
+[PASS] testLateCreatorRewardsAndUnclaimedRightsFollowNFTDuringCustody() (gas: 6992002)
+[FAIL: next call did not revert as expected] testLocalEndToEndBudgetIncludesExitAndRedeployment() (gas: 5309865)
+[PASS] testNoTimeoutCancellationAfterSending() (gas: 4738180)
+[PASS] testNormalModeRejectsAnUnpricedOrUnswappableExit() (gas: 4004867)
+[PASS] testRawExitMinimumProtectsCloseAndRollsBack() (gas: 4357214)
+[PASS] testRecoveredCustodyNeedsFullActualSentZZZAndCanRemainPaused() (gas: 5007333)
+[PASS] testRemoteCannotBeApprovedWithoutVerifier() (gas: 4098632)
+[PASS] testRemoteProofCannotBeReplacedByGovernanceAndRecoveryRequiresClosure() (gas: 5219440)
+[PASS] testSentCustodyCannotChangeZZZOrAcceptInventedCompletion() (gas: 4791401)
+[FAIL: InvalidState()] testStateDriftAndDuplicateApprovalsFailClosed() (gas: 5055545)
+[PASS] testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback() (gas: 4623534)
+[PASS] testThreePercentBudgetCannotBeRelaxedByRequest() (gas: 4098432)
+[PASS] testUnauthorizedExitAndConfigurationAreRejected() (gas: 3123458)
+Suite result: FAILED. 16 passed; 2 failed; 0 skipped; finished in 6.92s (7.15s CPU time)
+
+Ran 1 test suite in 6.95s (6.92s CPU time): 16 tests passed, 2 failed, 0 skipped (18 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/CustodyHandoff.t.sol:CustodyHandoffTest
+[FAIL: next call did not revert as expected] testLocalEndToEndBudgetIncludesExitAndRedeployment() (gas: 5309865)
+[FAIL: InvalidState()] testStateDriftAndDuplicateApprovalsFailClosed() (gas: 5055545)
+
+Encountered a total of 2 failing tests, 16 tests succeeded

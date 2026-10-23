@@ -1,7 +1,11 @@
+# Historical typed pair-conversion design
+
+**Superseded in the current candidate:** use the [governed custody runbook](GOVERNED_CUSTODY_HANDOFF.md). The old pair executor/v3 bridge contracts are removed. The text below records the prior implementation and does not describe current callable paths.
+
 # Local LP pair conversion
 
 This is an **undeployed contract candidate**, not permission to move real funds.
-The fixed [`ZZZPairMigration`](../src/ZZZPairMigration.sol) companion implements
+The fixed [`ZZZPairMigration`](https://github.com/ABEF/AAA/blob/4830cc92c905581fe898cd33317695f9b42f885c/src/ZZZPairMigration.sol) companion implements
 atomic same-chain principal conversion through admitted pools supported by the
 existing Uniswap v4 liquidity adapter. It does not execute arbitrary routers,
 calldata, recipients, bridges or future venue implementations.

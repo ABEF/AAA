@@ -88,6 +88,11 @@ class Gate:
         return record
 
 def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) -> dict[str,Any]:
+    if isinstance(config,dict) and config.get('custody_architecture') == 'governed-v1':
+        return {'schema_version':4,'status':'blocked','ready':False,'deployment_authorized':False,
+            'issues':[{'code':'custody.inventory_schema_pending','path':'custody_architecture',
+                'message':'Governed custody changes module bindings, external principal/royalty trust, finality and recovery inventory. The legacy v3 release gate cannot approve this candidate; a separately reviewed inventory/schema update is required.'}],
+            'limitations':['No current-source production approval, verifier/provider qualification or public transaction authorization.']}
     config=copy.deepcopy(config) if isinstance(config,dict) else {}
     gate=Gate(config.get('release_commit'));g=gate;now=int(time.time()) if now is None else now
     g.check(config.get('schema_version')==4 and type(config.get('schema_version')) is int,

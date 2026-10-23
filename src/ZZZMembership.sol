@@ -4,7 +4,7 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {IZZZRewards, IZZZNFT, IZZZVault, IZZZFees, IZZZPools} from "./interfaces/IZZZ.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ZZZCanonicalLedger} from "./base/ZZZCanonicalLedger.sol";
-import {IPairVault, IPairAssets} from "./ZZZPairMigration.sol";
+import {IPairVault, IPairAssets} from "./ZZZMigrationBudget.sol";
 interface IZZZMembershipOrdinals {
     function mintedCount() external view returns (uint256);
     function tokenAtOrdinal(uint256) external view returns (uint256);

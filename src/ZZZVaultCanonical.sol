@@ -7,7 +7,6 @@ import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
-import {ZZZPairMigration} from "./ZZZPairMigration.sol";
 
 interface ICanonicalVaultState is IZZZVault {
     function migrationBudget() external view returns (ZZZMigrationBudget);
@@ -76,15 +75,6 @@ contract ZZZVaultCanonical {
         uint256 old = aliasBucket[pool];
         if (old != 0 && old != bucket) revert InvalidState();
         if (old == 0) { aliases.push(pool); aliasBucket[pool] = bucket; }
-    }
-    /// @dev Called inside Vault's guarded move after its old idle is zeroed.
-    /// The fixed Budget has already authenticated the one atomic pair request.
-    function convertPair(uint256 id, uint256 a0, uint256 a1) external onlyVault returns (uint256,uint256) {
-        address helper = vault.migrationBudget().pairExecutor();
-        if (helper == address(0)) revert InvalidState();
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(vault.group(id).poolId);
-        vault.canonicalSend(c.key.currency0,helper,a0); vault.canonicalSend(c.key.currency1,helper,a1);
-        return ZZZPairMigration(helper).convert(id,a0,a1);
     }
     function canonicalCapture() external onlyHandoff {
         if (IZZZCanonicalAccess(address(access)).canonicalState() != 1) revert InvalidState();

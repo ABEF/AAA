@@ -1,5 +1,14 @@
 # Security audit plan
 
+## Current governed-custody scope (2026-10-23)
+
+Review the [governed handoff](GOVERNED_CUSTODY_HANDOFF.md) and [current evidence](../reports/custody-handoff/VERIFICATION.md). The user explicitly accepts sending principal and separately tracked royalty funds to an external EOA/contract chosen by governance. This is a public authority/trust boundary, not an enforced guarantee of return. Normal 3% source/final LP limits do not protect funds while outside protocol control; raw emergency mode has explicit raw minima and no USD-loss guarantee.
+
+Audit the exact source/share/nonce snapshots, close/all-ZZZ conversion atomicity, explicit raw-mode selection, donation/other-ledger exclusion, actual local LP backing, 1:10 decimal handling, no timeout/partial recovery, and pinned finalized remote delivery/closure proofs. No real finality verifier/provider is supplied. Royalty exit must preserve original per-NFT liabilities/quarantine and ownership rights, suspend only the exited currency, require actual full restoration and never distribute that restoration as new income. Check native-currency activation deferral and replay. Whole-collection capture must reject all outstanding custody. Review the mutable governed ZZZ buyback target and retained strict burn verification.
+
+The old v3 bridge/pair execution contracts are retired; their historical tests are not current evidence. Adapt and independently qualify the release inventory, hosting/keeper/API status handling, real markets/native pins, operational recovery and holder disclosures before real funds.
+
+
 Reviewed 2026-10-19. **Undeployed candidate; not approved for real funds.**
 These seven workstreams define acceptance evidence, not completed audit claims.
 Status lives in the [central Todo](../TODO.md#security--audit) and

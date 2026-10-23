@@ -11,8 +11,6 @@ import {ZZZRewardReceiverFactory} from "./ZZZRewardReceiverFactory.sol";
 import {IZZZAccess} from "./interfaces/IZZZ.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {IZZZRewards, IZZZVault, IZZZMembership, IZZZPools, IZZZBridge} from "./interfaces/IZZZ.sol";
-import {IPairCompanion} from "./ZZZMigrationBudget.sol";
-import {ZZZPairMigration} from "./ZZZPairMigration.sol";
 
 interface ICanonicalFeeAssets { function assetCount() external view returns (uint256); function assets(uint256) external view returns (address); }
 interface ICanonicalFeeCutoff {
@@ -219,10 +217,7 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     }
     function releaseCompound(uint256 id, address token)
         external nonReentrant canonicalAccounting returns (uint256 amount) {
-        if (!access.moduleAuthorized(Ids.VAULT,msg.sender)) {
-            if (msg.sender != IPairCompanion(access.module(Ids.MIGRATION)).pairMigration() ||
-                !ZZZPairMigration(msg.sender).takingReserves() || ZZZPairMigration(msg.sender).activeBucket() != id) revert Unauthorized();
-        }
+        if (!access.moduleAuthorized(Ids.VAULT,msg.sender)) revert Unauthorized();
         amount = compoundBalance[id][token];
         compoundBalance[id][token] = 0;
         accounted[token] -= amount;

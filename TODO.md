@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**15 To do | 25 In progress | 16 Implemented locally**
+**15 To do | 26 In progress | 15 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -107,17 +107,19 @@ Custody, ownership and reward accounting.
 
 <a id="task-custody-composition"></a>
 
-- [ ] **[Complete multi-currency and future-venue custody evolution](docs/PAIR_MIGRATION.md)** - In progress. Typed local pair conversion is implemented in the candidate with one 3% fixed-price execution budget, unchanged NFT shares/rewards, retained old inboxes and historical compound NAV protection. Qualify actual conversion routes and complete authenticated multi-currency bridging/future-chain handoff before sealing.
+- [ ] **[Qualify governed custody exits, returns and future destinations](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. The local candidate replaces old LP v3 bridge/pair paths with governed custody handoffs. Normal exit converts principal to ZZZ; explicitly approved raw emergency exit bypasses swaps. Verify actual funded local LP, separate royalty custody and future finality/remote accounting before production.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Preserve stable NFT/bucket/shares and all old owner/collective/royalty liabilities through ZZZ/WETH to ZZZ/USDC and subsequent moves. Token mapping is not conversion; do not remove current pair checks as a shortcut.
-  - Qualify the local movePool/resume and separate typed pair-conversion 3% aggregate budgets: capture principal before callbacks, add exact released designated compound and reuse fresh starting prices/decimals through close, swaps and mint. Retained LP plus attributed idle must be at least 97%, deployed LP nonzero and idle at most 5%; gas is separate and user contributions retain 1%. Asynchronous bridge charges, funded destination proof and market-movement treatment remain separate unimplemented boundaries.
-  - Implemented local composition epochs, at most eight typed swap legs, 32 admitted assets, unchanged original creator inboxes, original-currency liabilities and exact fixed-recipient temporary custody/approvals. Historical compound stays incumbent backing and may be consolidated without changing the pool. V3 principal proposals reject composed buckets even after return to the original pair. Complete append-only new-payout-currency admission and authenticated multi-currency remote funding/message/ACK accounting before cross-chain use.
-  - Review immutable typed helpers and remote destination compatibility for future venue code without arbitrary calls, principal sweeps or generic upgrades. Same-chain replacement Vaults cannot silently rebind the fixed NFT/Rewards system.
-  - Measure aggregate and cumulative migration costs/frequency; repeated individually compliant 3% moves can substantially erode principal. A new cumulative hard cap or economic allocation change requires a separate policy decision.
-  - [Local pair-conversion evidence](reports/pair-composition/VERIFICATION.md) covers the source-bound candidate and its limits. Qualify real markets, native-wrapper/hook behavior, gas at admitted bounds and reviewed successor record compatibility; local fake-venue tests are not production qualification or an independent audit.
+  - Verify normal close/consolidation/send with a fixed-price 3% floor, atomic rollback, exact approvals and asset segregation; end-to-end local completion reuses that original floor. Gas stays separate. Explicit raw emergency exits use reviewed token minima and do NOT claim a 3% USD guarantee.
+  - Preserve NFT ownership/shares, accrued LP/collective/royalty rights, historical currencies/inboxes and incumbent compound NAV. No sweep of another ledger, donation or bucket. Local completion must actually mint destination LP; sent custody cannot be cancelled by a timeout.
+  - Review external recipient custody/liveness trust, code/hash/proxy/owner controls and issuer 1:1 or 1:10 token conversion terms, decimals, claim deadlines and actual receipt amounts. Configure future ZZZ and buyback targeting explicitly; source native/hook bindings are still restricted.
+  - Qualify separate full-currency royalty exits: freeze only the sent currency, preserve original liabilities/quarantine, require full funded raw return, avoid new-income double-counting and do not let newcomers receive old royalties. Unknown tokens follow admission/quarantine, not an arbitrary sweep.
+  - Adapt production inventory, keeper/API diagnostics and hosting to the 16-module custody layout plus immutable validation helper. Retired v3 contracts/tests are historical, not new current evidence. Qualify real exit depth, stale-state behavior, gas and independent audit.
+  - Remote delivery and returns require reviewed finality/channel-closure proofs, never multisig/timeout overrides. No real verifier/provider/remote NAV or revenue ledger is supplied. Complete future-chain canonical ownership/reward relocation and multi-hop operating procedures separately before those capabilities are used.
+  - A sent local holding plan can bind one admitted and permanently reserved destination through `bindLocalDestination`, retaining the original mode, departure quantities and loss denominator. Qualify issuer exchanges, target token units/decimals and actual local LP completion; this is not a remote proof bypass.
+  - The immutable read-only custody validator and all normal runtime/initcode gates must be bound to exact source evidence. The latest custody work needs its own fresh Anvil rehearsal; earlier Anvil tests do not qualify it.
 
   </details>
 
@@ -234,6 +236,7 @@ The data and services behind the app.
   - Eight runtime/address pins, controller/helper bindings and strict lifecycle checks share the confirmed balance snapshot. Frozen/importing/retired/cancelled NFT and wallet projections fail closed; protocol status stays readable without reward/price calls. Operating qualification and consumer integration remain under hosted services and frontend tasks.
   - Complete explicitly pinned same-chain predecessor history preserves original NFT IDs and lifetime LP plus royalty claims. Verify both handoff directions, canonical matching activation/retirement receipts, terminal roots, historical assets and full creation-to-retirement ingestion. Missing configuration returns unavailable totals; inconsistent configured lineage fails closed. Import transfers are ownership reconstruction, not paid mints or marketplace sales.
   - Enforce at most eight predecessors and one million configured maximum replay events across current and prior histories. RPC observations and operator ingestion remain the trust model; this backend does not prove consensus finality or implement cross-chain history.
+  - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
 
   </details>
 
@@ -364,6 +367,7 @@ What holders see and use.
   - Consume [royalty-reporting fields](docs/ROYALTY_REPORTING.md): separate claimable ETH/source currencies, deferred eligibility and unavailable amounts. Converter enabled is not a route quote or scheduled execution. Do not offer signing based solely on a read-only balance response.
   - Main website now also hides dormant fee/claim sections, shows fixed dormant rarity multipliers, separates Claim/Grow controls and preserves artwork through unrelated refreshes. Only its target NFT shows activation/top-up progress. Default data remains a simulation; local and live adapter boundaries remain explicit.
   - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
+  - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
 
   </details>
 
@@ -514,6 +518,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   - Ask how sharing continues when liquidity moves to another pool/chain or PoPL changes its canonical deployment. Agree effective cutoffs, measurement across old/new pools, settlement of old periods, late payment destinations and verification of replacement receivers. Compatibility still requires reviewed protocol support; a commercial agreement cannot add missing migration code.
   - Name the operational/incident contact and backup contact; agree notification for hook, recipient, token, oracle or liquidity changes, payment delays and service failure. Define an escalation and reconciliation process without promising an unagreed response time.
   - For incident or termination, preserve already funded holder rights and reconcile unpaid periods under the agreement. Do not assume refunds, principal withdrawals, arbitrary receiver redirection or continued future revenue. Use [operator controls](docs/OPERATOR_MANUAL.md#stop-controls) and the separately tracked [migration work](TODO.md#future-migration).
+  - Agree issuer token-upgrade terms: exact old/new ZZZ contracts, ratio direction and decimals, conversion mechanism/authority, migration deadline, fees, new pool/hook and payout-currency continuity. The governed custody recipient may perform the exchange but NFT rights and original liabilities must remain intact.
 
   </details>
 
@@ -624,6 +629,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review the malicious approved-provider trust demonstration and remote custody powers. Code/configuration hashes and governance approvals do not prove honest destination funding or safe remote administrators. Keep fixed 80/10/5/5; no percentage setter or generic upgrade is authorized.
   - Independently review the implemented canonical preparation notice: existing controller-only start/cancel, exact notice binding, blocked new economic work and protocol configuration, trailing callback guards, and fixed parking/plan-cancellation drains. Guardian pause and governance controller unpause remain; inherited governance controller roles and scheduling keep their existing rules. The notice grants no successor authority and cannot freeze or export canonical rights.
   - Independently review/rehearse [mint/pool stop controls](reports/operator-controls/REVIEW.md): disable-only flags, full reopening validation, callback rollback, unchanged roles/canonical locks, obsolete approved operations and explicitly reviewed successor mint-pause state.
+  - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
 
   </details>
 
@@ -712,6 +718,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   - The [review of all October 18 changes](reports/daily-security-20261018/REVIEW.md) records source inspection, exact evidence hashes, one new availability reproduction, and accepted governance/economic plus VRF/escrow recovery risks. It identifies no new unauthorized withdrawal path but does not close independent audit, service qualification or final-release testing. Resolve findings under their owning tasks without silently adding governance delays.
   - The [October 19 internal review](reports/topup-and-reward-review/REVIEW.md) covers contribution floors, current contract changes and request/display boundaries. Optional local history failure no longer hides confirmed balances; work-limit/core failures remain fatal and dormant reads skip history. Live concurrent load, exact deployment inventory and independent audit remain required.
+  - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
 
   </details>
 
@@ -775,6 +782,7 @@ Decisions and rehearsals before real funds.
   - Qualify independent production alerts/backups/retention, redundant RPCs and complete real fee accounting.
   - Qualify preparationActive() and canonicalState() against the exact deployment and keeper. Missing/malformed/reverted getters fail closed. Frozen/importing/retired/cancelled states block all new maintenance/drain/metadata submissions; canonical receipt recovery continues. Recheck state before simulation, after gas estimation and before intent persistence. The local 88-case targeted receipt does not update the older staging fixture/keeper or replace a new operating rehearsal.
   - Add/review authenticated freshness-bounded next-check/last-success telemetry for frontend warnings; do not infer an execution promise from a 600-second poll example. Offline, delayed, paused, pending or budget-limited operation must be explicit. Qualify the new aggregate rebalance guard against the exact keeper deployment.
+  - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
 
   </details>
 
@@ -799,40 +807,49 @@ A separate phase. Disabled at initial launch.
 
 <a id="task-bridge-operation"></a>
 
-- [ ] **[Qualify bridges & remote compounding](docs/CHANGE_AND_RECOVERY.md)** - To do. Review real transport providers, backing and repeated migrations; implement funded compounding when LP stays on another chain.
+- [ ] **[Qualify bridges & remote compounding](docs/GOVERNED_CUSTODY_HANDOFF.md)** - To do. The governed custody candidate replaces old LP v3 bridge/pair paths. Qualify actual recipients, destination backing/finality, recovery, new inventory and remote reward/compounding services. Whole-collection ownership/ledger handoff remains separate.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Independently review real provider SDK wrappers, backing/equivalent token semantics, channels, finality, exact funding and recovery.
-  - Stage canonical -> satellite -> satellite -> home -> revisit with actual providers, duplicate/reordered/forged/underfunded receipts, ACK epochs, pauses, old-policy and historical reward paths.
-  - Verify destination reservations, frozen canonical shares/membership, no remint/principal refund, legacy liability barriers, and governance trust for every new destination.
-  - Rehearse source-oracle-independent departure of an already Parked bucket with designated compound reserves, retained `remoteSettled` barrier, exact attributed transfers, destination valuation and reviewed provider recovery. Parking does not waive bridge backing or enable arbitrary conversion.
-  - Review each future destination and onboard its immutable policy/routes through the governance controller before economic migration. Authenticate provider SDKs, delivery fees, delayed receipts, failure/recovery and retained historical routes; future chains, arbitrary conversions and satellite top-ups are not automatically supported.
-  - Resolve permanent-relocation compounding: the canonical creator receiver reserves its 5% compounding share at home while principal is remote. Remote reinvestment needs a separately reviewed funded bridge/top-up design; the current path waits for return.
-
-  </details>
-
-<a id="task-destination-slots"></a>
-
-- [ ] **[Reserve destination capacity](docs/ARCHITECTURE_EVOLUTION.md#permanent-destination-capacity-bounded-repair)** - In progress. Permanent idempotent local admission is implemented with targeted capacity, switching, return and None-state regressions. Remote reservation authentication, independent review and real-provider qualification remain open.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Implement and independently review permanent destination capacity admission before delivery. Verify the repaired reserved-arrival path, local/remote competition, aliases, duplicate registration, malformed-import rollback, None-state consumers and full-cap returns. Real bridging remains disabled pending independent admission/provider review.
-  - Reserve durable historical capacity before delivery, not just pool identity. Reuse returning slots; test local/remote concurrency, duplicate/idempotent registration, reserved None-state enumeration and delayed/cancelled operations without freeing a reservation that an in-flight delivery may still need.
-  - Authenticate confirmed destination admission before departure. The source does not verify a remote capacity proof; local idempotent reservation alone does not qualify an arbitrary provider or sealed old destination.
+  - Old v3 transport implementations and tests are historical, not current deployed functionality. Use the governed custody runbook and new source-bound evidence.
+  - Preserve NFT shares/ownership and original reward liabilities. Require actual local LP or reviewed finalized remote custody proof; no guessed NAV, timeout recovery or double activation.
+  - Independently qualify provider/admission/finality/channel-closure proofs, custody keys and backing, repeated migration and fail/recover operations. External recipients can divert assets; governance explicitly accepts that custody trust.
+  - Complete the updated production inventory, keeper/API diagnostics, funded remote reward/compound flows and future-chain canonical ownership/ledger migration before claiming production support.
 
   </details>
 
 <a id="task-migration-framework"></a>
 
-- [x] **[Governed migration framework](src/ZZZMigration.sol)** - Implemented. Timelocked compatible-asset routes preserve fixed home identity and NFT allocations. Local same-pair move/resume now has a 3% aggregate loss cap, and a cancellable canonical preparation notice stops new work while rights and drains remain available. The same-chain canonical handoff candidate now carries ownership and accounting. Different-pair conversion, arbitrary local venues and cross-chain canonical relocation remain unimplemented.
+- [ ] **[Governed migration framework](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. The governed custody candidate replaces old LP v3 bridge/pair paths. Qualify actual recipients, destination backing/finality, recovery, new inventory and remote reward/compounding services. Whole-collection ownership/ledger handoff remains separate.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Old v3 transport implementations and tests are historical, not current deployed functionality. Use the governed custody runbook and new source-bound evidence.
+  - Preserve NFT shares/ownership and original reward liabilities. Require actual local LP or reviewed finalized remote custody proof; no guessed NAV, timeout recovery or double activation.
+  - Independently qualify provider/admission/finality/channel-closure proofs, custody keys and backing, repeated migration and fail/recover operations. External recipients can divert assets; governance explicitly accepts that custody trust.
+  - Complete the updated production inventory, keeper/API diagnostics, funded remote reward/compound flows and future-chain canonical ownership/ledger migration before claiming production support.
+
+  </details>
+
+<a id="task-destination-slots"></a>
+
+- [ ] **[Reserve destination capacity](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. The governed custody candidate replaces old LP v3 bridge/pair paths. Qualify actual recipients, destination backing/finality, recovery, new inventory and remote reward/compounding services. Whole-collection ownership/ledger handoff remains separate.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Old v3 transport implementations and tests are historical, not current deployed functionality. Use the governed custody runbook and new source-bound evidence.
+  - Preserve NFT shares/ownership and original reward liabilities. Require actual local LP or reviewed finalized remote custody proof; no guessed NAV, timeout recovery or double activation.
+  - Independently qualify provider/admission/finality/channel-closure proofs, custody keys and backing, repeated migration and fail/recover operations. External recipients can divert assets; governance explicitly accepts that custody trust.
+  - Complete the updated production inventory, keeper/API diagnostics, funded remote reward/compound flows and future-chain canonical ownership/ledger migration before claiming production support.
+
+  </details>
 
 
 ---
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `b38cd3f6297834ecdc9b07bdd85199900b4074430e9dceb483f5e629827d5ce0`.
+Snapshot SHA-256: `ef7c4bfc451c7256196f7c6f5ded515e1a3c0832936add0ac3b7d86232025085`.

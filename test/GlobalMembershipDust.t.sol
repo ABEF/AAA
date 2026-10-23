@@ -56,6 +56,7 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
     function testCanonicalOutboundBucketDustAlsoSettlesBeforeNewMembership() public {
         uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
         address inbox = fees.createRewardReceiver(bucket, address(0));
+        ac.setPaused(true);vault.park(bucket,block.timestamp+100);ac.setPaused(false);
         vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Outbound));
         t0.mint(inbox, 19); fees.syncExternal(bucket); assertEq(fees.dust(bucket, address(t0)), 19);

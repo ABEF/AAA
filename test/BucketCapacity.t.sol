@@ -36,24 +36,7 @@ contract BucketCapacityTest is PooledVaultFixture {
         assertEq(vault.bucketCount(), 4); assertEq(membership.totalEligible(), 5);
     }
 
-    function testHistoricalCapStillAllowsCanonicalCustodyReturnAndRepeatedDeparture() public {
-        uint256[] memory ids = _canonicalBuckets(4); uint256 bucket = vault.nftBucket(ids[0]);
-        Position memory original = vault.group(bucket); uint256 shares = vault.bucketTotalShares(bucket);
-        for (uint256 i; i < 2; ++i) {
-            vault.releaseForMigration(bucket, bytes32(i + 1), block.timestamp + 100);
-            vault.confirmMigration(bucket, block.chainid + 1, address(0xF001));
-            address receiver = ac.module(Ids.RECEIVER); t0.mint(receiver, 1000); t1.mint(receiver, 1000);
-            vm.startPrank(receiver);
-            t0.approve(address(vault), 1000); t1.approve(address(vault), 1000);
-            vault.importPending(bucket, poolId, original, shares, poolId, 1000, 1000);
-            vault.finalizeImport(bucket, 1, block.timestamp + 100); vm.stopPrank();
-            assertEq(vault.bucketCount(), 4); assertEq(vault.bucketTotalShares(bucket), shares);
-            assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.Active));
-        }
-        assertTrue(membership.eligible(ids[0])); assertEq(membership.totalEligible(), 4);
-        uint256 entrant = _mint(bob); bytes32 extra = _poolAt(4);
-        vm.prank(bob); vm.expectRevert(); vault.activate(entrant, extra, 1000, 1000, 1, block.timestamp + 100);
-    }
+
 
     function _remoteOrigin(uint256 index) private view returns (uint256 bucket, Position memory origin) {
         origin.homeChain = vault.canonicalChainId(); origin.homeVault = address(uint160(0x10000 + index));
@@ -70,21 +53,7 @@ contract BucketCapacityTest is PooledVaultFixture {
         vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000); vm.stopPrank();
     }
 
-    function testSatelliteImportHistoryHasTheSameFourBucketLimit() public {
-        vm.chainId(block.chainid + 1);
-        for (uint256 i; i < 4; ++i) _importRemote(i);
-        assertEq(vault.bucketCount(), 4); assertEq(vault.totalIdle(address(t0)), 4000);
-        uint256 bucket; Position memory origin; (bucket, origin) = _remoteOrigin(4);
-        bytes32 destination = _poolAt(4);
-        // Admission now rejects the fifth identity before any bridge delivery.
-        vm.expectRevert(); vault.reservePool(destination, bucket);
-        assertEq(vault.poolBucket(destination), 0);
-        // Unreserved delivery still rejects atomically rather than bypassing admission.
-        vm.prank(ac.module(Ids.RECEIVER)); vm.expectRevert();
-        vault.importPending(bucket, destination, origin, 2000e18, poolId, 1000, 1000);
-        assertEq(vault.bucketCount(), 4); assertEq(vault.totalIdle(address(t0)), 4000);
-        assertEq(uint256(vault.group(bucket).status), uint256(PositionStatus.None));
-    }
+
 
     function testMaximumFundedFourBucketEntryWorkload() public {
         uint256[] memory ids = _canonicalBuckets(4);

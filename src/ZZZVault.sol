@@ -13,7 +13,8 @@ import {ExactToken} from "./libraries/ExactToken.sol";
 import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZStrategy, IZZZLiquidity,
     IPositionManagerMinimal, IZZZRewards, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
 
-/// @notice Non-upgradeable custody. Principal has no owner/admin redemption path.
+/// @notice Non-upgradeable custody. Holders cannot redeem principal.
+/// Governance may release it to explicitly trusted external custody through Migration.
 /// Deposits, idle assets, compound reserves and earned fees are separate ledgers.
 contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     using SafeERC20 for IERC20;
@@ -44,7 +45,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     event FeesCollected(uint256 indexed bucketId, uint256 amount0, uint256 amount1);
     event Rebalanced(uint256 indexed bucketId, uint256 oldLpTokenId, uint256 newLpTokenId, uint160 centerX96);
     event Compounded(uint256 indexed bucketId, uint256 amount0, uint256 amount1);
-    event PrincipalBridged(uint256 indexed bucketId, bytes32 indexed migrationId, uint256 amount0, uint256 amount1);
+    event PrincipalExited(uint256 indexed bucketId, bytes32 indexed handoffId, uint256 amount0, uint256 amount1);
+    event PrincipalReturned(uint256 indexed bucketId,uint256 lpTokenId,bool deployed);
     event ImportPending(uint256 indexed bucketId, uint256 indexed homeChain, address indexed homeVault);
     event ImportFinalized(uint256 indexed bucketId, uint256 lpTokenId);
     event LocationConfirmed(uint256 indexed bucketId, uint256 chainId, address destinationVault);
@@ -163,7 +165,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             Position storage p = positions[bucket];
             (address token0, address token1) = migrationBudget.poolTokens(poolId);
             p.poolId = poolId; p.status = PositionStatus.Active;
-            p.homeChain = block.chainid; p.homeVault = address(this); p.homeReceiver = access.module(Ids.RECEIVER);
+            p.homeChain = block.chainid; p.homeVault = address(this); p.homeReceiver = access.module(Ids.MIGRATION);
             p.homeToken0 = token0; p.homeToken1 = token1;
             p.locationChain = block.chainid; p.locationVault = address(this);
         }
@@ -347,65 +349,70 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
     }
-    function releaseForMigration(uint256 id, bytes32 migrationId, uint256 deadline)
-        external onlyModule(Ids.MIGRATION) live operating nonReentrant returns (uint256 amount0, uint256 amount1) {
+    /// @notice The fixed handoff converts the complete other side into its reviewed ZZZ.
+    function consolidateHandoff(uint256 id,address zzz,uint256 minimumZZZ,uint256 deadline)
+        external onlyModule(Ids.MIGRATION) operating nonReentrant {
+        _deadline(deadline); Position storage p = positions[id];
+        if (!access.paused() || p.status != PositionStatus.Parked || p.lpTokenId != 0) revert InvalidState();
+        (address t0,address t1) = _tokens(id);
+        if (zzz != t0 && zzz != t1) revert InvalidConfiguration();
+        bool direction = zzz == t1;
+        uint256 amount = direction ? p.idle0 : p.idle1;
+        uint256 held = direction ? p.idle1 : p.idle0;
+        if (amount != 0) {
+            address manager = _moduleLiquidity(); address input = direction ? t0 : t1;
+            IERC20(input).forceApprove(manager,amount);
+            uint256 out = IZZZLiquidity(manager).swap(p.poolId,direction,amount,
+                minimumZZZ > held ? minimumZZZ-held : 1,deadline);
+            IERC20(input).forceApprove(manager,0);
+            if (direction) _idle(id,0,held+out); else _idle(id,held+out,0);
+        }
+        if ((direction ? p.idle1 : p.idle0) < minimumZZZ) revert Slippage();
+    }
+    /// @notice Release only already parked, attributed principal to the fixed handoff module.
+    /// It cannot sweep donations, claimable fees, royalties or another bucket.
+    function releaseForMigration(uint256 id, bytes32 handoffId, uint256 deadline)
+        external onlyModule(Ids.MIGRATION) operating nonReentrant returns (uint256 amount0, uint256 amount1) {
         _deadline(deadline);
         Position storage p = positions[id];
-        if (!IZZZFees(_moduleFees()).remoteSettled(id)) revert InvalidState();
-        if (p.status == PositionStatus.Parked) _pullCompound(id);
-        else { _active(id); _unwind(id, deadline, false); }
+        if (p.status != PositionStatus.Parked || p.lpTokenId != 0 ||
+            p.homeChain != block.chainid || p.homeVault != address(this)) revert InvalidState();
         (address token0, address token1) = _tokens(id);
-        amount0 = p.idle0;
-        amount1 = p.idle1;
+        amount0 = p.idle0; amount1 = p.idle1;
+        if (amount0 == 0 && amount1 == 0) revert InvalidAmount();
         _idle(id, 0, 0);
         p.status = PositionStatus.Outbound;
-        IZZZFees(_moduleFees()).flushDust(id, token0);
-        IZZZFees(_moduleFees()).flushDust(id, token1);
         ExactToken.push(token0, msg.sender, amount0);
         ExactToken.push(token1, msg.sender, amount1);
-        emit PrincipalBridged(id, migrationId, amount0, amount1);
+        emit PrincipalExited(id, handoffId, amount0, amount1);
     }
-    function importPending(uint256 id, bytes32 poolId, Position calldata origin, uint256 shares, bytes32 homePool, uint256 amount0, uint256 amount1)
-        external onlyModule(Ids.RECEIVER) nonReentrant canonicalAccounting {
-        bool returning = migrationBudget.validateImport(id, poolId, origin, shares, homePool);
-        Position storage p = positions[id];
-        if (!returning) _registerBucket(id);
-        bucketTotalShares[id] = shares; homePoolId[id] = homePool;
-        (address token0, address token1) = migrationBudget.poolTokens(poolId);
-        p.poolId = poolId;
-        p.homeChain = origin.homeChain;
-        p.homeVault = origin.homeVault;
-        p.homeReceiver = origin.homeReceiver;
-        p.homeToken0 = origin.homeToken0;
-        p.homeToken1 = origin.homeToken1;
-        p.depositUSD = origin.depositUSD;
-        p.locationChain = block.chainid;
-        p.locationVault = address(this);
-        p.status = PositionStatus.Inbound;
-        ExactToken.pull(token0, msg.sender, amount0);
-        ExactToken.pull(token1, msg.sender, amount1);
-        _idle(id, amount0, amount1);
-        emit ImportPending(id, p.homeChain, p.homeVault);
-    }
-    function finalizeImport(uint256 id, uint128 minimumLiquidity, uint256 deadline)
-        external onlyModule(Ids.RECEIVER) live nonReentrant canonicalAccounting {
+    /// @notice The fixed handoff funds this call in exact tokens. No accounting-only receipt.
+    /// A zero minimum is reserved by that module for full raw-token recovery into parking.
+    function acceptHandoff(uint256 id, bytes32 pool, uint256 amount0, uint256 amount1,
+        uint128 minimumLiquidity, uint256 deadline) external onlyModule(Ids.MIGRATION) operating nonReentrant {
         _deadline(deadline);
-        if (positions[id].status != PositionStatus.Inbound || minimumLiquidity == 0) revert InvalidState();
-        _redeploy(id, minimumLiquidity, deadline);
-        positions[id].status = PositionStatus.Active;
-        emit ImportFinalized(id, positions[id].lpTokenId);
-    }
-    function confirmMigration(uint256 id, uint256 destinationChain, address destinationVault)
-        external onlyModule(Ids.MIGRATION) canonicalAccounting {
         Position storage p = positions[id];
-        if (p.status != PositionStatus.Outbound && p.status != PositionStatus.Remote) revert InvalidState();
-        p.status = PositionStatus.Remote;
-        p.locationChain = destinationChain;
-        p.locationVault = destinationVault;
-        emit LocationConfirmed(id, destinationChain, destinationVault);
+        if (p.status != PositionStatus.Outbound || p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0) revert InvalidState();
+        _reserve(pool, id);
+        p.poolId = pool;
+        (address token0,address token1) = _tokens(id);
+        ExactToken.pull(token0,msg.sender,amount0); ExactToken.pull(token1,msg.sender,amount1);
+        _idle(id,amount0,amount1);
+        p.locationChain = block.chainid; p.locationVault = address(this);
+        p.status = PositionStatus.Parked;
+        if (minimumLiquidity != 0) {
+            if (access.paused()) revert Paused();
+            _redeploy(id,minimumLiquidity,deadline);
+            p.status = PositionStatus.Active;
+        }
+        migrationBudget.recordComposition(id);
+        emit PrincipalReturned(id,p.lpTokenId,minimumLiquidity!=0);
     }
-
-    /// @notice Only the fixed Migration module can park an LP. Its timelocked
+    /// @dev Retired v3 selectors fail closed. No receiver/bridge can be bound in new controllers.
+    function importPending(uint256,bytes32,Position calldata,uint256,bytes32,uint256,uint256) external pure { revert InvalidState(); }
+    function finalizeImport(uint256,uint128,uint256) external pure { revert InvalidState(); }
+    function confirmMigration(uint256,uint256,address) external pure { revert InvalidState(); }
+    /// @notice Only the fixed Migration module can park an LP. Its governed
     /// request binds exact custody and raw close minimums. No assets leave Vault.
     function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant canonicalAccounting {
         _deadline(deadline); _active(id);
@@ -427,7 +434,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         external onlyModule(Ids.MIGRATION) live operating nonReentrant {
         _deadline(deadline);
         _active(id);
-        if (positions[id].poolId == newPool && migrationBudget.pairExecutor() == address(0)) revert InvalidConfiguration();
+        if (positions[id].poolId == newPool) revert InvalidConfiguration();
         _movePool(id, newPool, minimumLiquidity, deadline);
     }
     function _movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) private {
@@ -441,14 +448,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             _migrationCheckpoint(id, 1);
         }
         else _unwind(id, deadline, true);
-        address converter = migrationBudget.pairExecutor();
-        if (converter != address(0)) {
-            uint256 a0 = p.idle0; uint256 a1 = p.idle1;
-            _idle(id,0,0);
-            (a0,a1) = canonicalModule().convertPair(id,a0,a1);
-            p.poolId = newPool;
-            _idle(id,a0,a1);
-        } else p.poolId = newPool; // Ordinary move still requires the same ordered pair.
+        p.poolId = newPool; // Ordinary local maintenance retains its ordered-pair guard.
         _redeploy(id, minimumLiquidity, deadline);
         _migrationCheckpoint(id, 2);
         emit Rebalanced(id, oldId, p.lpTokenId, p.centerX96);
@@ -487,7 +487,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     function canonicalBarrier() external nonReentrant {
         if (msg.sender != address(canonicalModule())) revert Unauthorized();
     }
-    // No withdraw, rescue-token, arbitrary execution, proxy upgrade or admin NFT transfer.
+    // No holder redemption or generic sweep. Governed custody handoff is explicit in the fixed Migration module.
     function _modulePools() private view returns (address) { return access.module(Ids.POOLS); }
     function _moduleLiquidity() private view returns (address) { return access.module(Ids.LIQUIDITY); }
     function _moduleStrategy() private view returns (address) { return access.module(Ids.STRATEGY); }

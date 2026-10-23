@@ -1,0 +1,18 @@
+    function testParkedMigrationNeedsRemoteLiabilityFundingButNotRecoveredOracle() public {
+        activatedPosition(); ZZZMigration migration = _migration(); uint256 bucket = _bucket();
+        BridgeMessage memory imported; imported.version = 3; imported.kind = MessageKind.Principal;
+        imported.bucketId = bucket; imported.homeChain = block.chainid; imported.homeVault = address(vault);
+        imported.totalShares = vault.bucketTotalShares(bucket); imported.canonicalToken0 = address(t0); imported.canonicalToken1 = address(t1);
+        imported.allocatedIndividual0 = 100; imported.allocatedCollective0 = 10;
+        vm.prank(ac.module(Ids.RECEIVER)); fees.importAccounting(imported); assertFalse(fees.remoteSettled(bucket));
+        _park(migration); (bytes32 routeId, ParkingBridgeCapture bridge) = _route();
+        bytes32 plan = migration.propose(bucket, routeId); ac.setPaused(false); vm.warp(block.timestamp + 2 days);
+        vm.expectRevert(); migration.execute(plan, block.timestamp + 100);
+        assertEq(uint8(vault.group(bucket).status), uint8(PositionStatus.Parked)); assertEq(migration.custodyEpoch(bucket), 0);
+        address receiver = ac.module(Ids.RECEIVER); t0.mint(receiver, 110);
+        vm.startPrank(receiver); t0.approve(address(fees), 110); fees.creditRemote(bucket, address(t0), 100, 10); vm.stopPrank();
+        assertTrue(fees.remoteSettled(bucket)); vm.expectRevert(); oracle.price(address(t0));
+        migration.execute(plan, block.timestamp + 100);
+        assertEq(uint8(vault.group(bucket).status), uint8(PositionStatus.Outbound)); assertEq(vault.group(bucket).idle0, 0);
+        assertEq(bridge.received0(), 1000); assertEq(bridge.received1(), 1000); assertEq(migration.custodyEpoch(bucket), 1);
+    }

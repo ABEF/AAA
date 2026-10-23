@@ -135,6 +135,7 @@ contract ZZZAccessController is TimelockController {
     }
     function bind(bytes32 id, address implementation) external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
+        if (id == Ids.BRIDGE || id == Ids.RECEIVER || id == Ids.ROUTES || id == Ids.TRANSPORT) revert InvalidConfiguration();
         if (implementation.code.length == 0 || module[id] != address(0) ||
             address(IZZZBound(implementation).access()) != address(this)) revert InvalidConfiguration();
         module[id] = implementation;
@@ -142,9 +143,9 @@ contract ZZZAccessController is TimelockController {
     }
     function seal() external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
-        bytes32[20] memory required = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
-            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE,
-            Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT, Ids.CANONICAL,
+        bytes32[16] memory required = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
+            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION,
+            Ids.ORACLE, Ids.POOLS, Ids.CANONICAL,
             Ids.NFT_CANONICAL, Ids.VAULT_CANONICAL, Ids.FEES_CANONICAL];
         for (uint256 i; i < required.length; ++i) {
             if (module[required[i]].code.length == 0) revert InvalidConfiguration();
@@ -155,7 +156,7 @@ contract ZZZAccessController is TimelockController {
         if (ICanonicalOwnerBinding(module[Ids.NFT_CANONICAL]).nft() != module[Ids.NFT] ||
             ICanonicalOwnerBinding(module[Ids.VAULT_CANONICAL]).vault() != module[Ids.VAULT] ||
             ICanonicalOwnerBinding(module[Ids.FEES_CANONICAL]).fees() != module[Ids.FEES]) revert InvalidConfiguration();
-        if (IZZZBridgeEndpoint(module[Ids.BRIDGE]).transport() != module[Ids.TRANSPORT]) revert InvalidConfiguration();
+
         // NFT randomness is configured only before sealing. Do not irreversibly
         // lock the canonical collection while its mint configuration is absent.
         if (IZZZVault(module[Ids.VAULT]).canonicalChainId() == block.chainid &&

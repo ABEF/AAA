@@ -1,0 +1,128 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 132.57s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:107:5:
+    |
+107 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:217:5:
+    |
+217 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 9 tests for test/RoyaltyCustody.t.sol:RoyaltyCustodyTest
+[PASS] testCustodyReturnCannotUseDonationAsReplacementOrBeReplayed() (gas: 246740)
+[PASS] testFullReturnIsNotNewIncomeAndRightsFollowTransfer() (gas: 378503)
+[PASS] testFullRoyaltyCurrencyMovesWithoutChangingRightsOrLP() (gas: 251493)
+[PASS] testHealthyNativeRoyaltiesRemainClaimableDuringTokenCustody() (gas: 323963)
+[PASS] testLateReceiptsNotDoubleCountedOnReturn() (gas: 276590)
+[PASS] testNativeCustodyDefersOnlyNewNativeEligibilityWithoutRetroactiveFees() (gas: 3040412)
+[PASS] testNativeExitAndExactReturn() (gas: 256791)
+[PASS] testRoyaltyExitRequiresPausedGovernanceExactAmountAndNonce() (gas: 142324)
+[PASS] testWholeCollectionCannotSnapshotExternalRoyaltyBacking() (gas: 203760)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 45.13ms (18.14ms CPU time)
+
+Ran 11 tests for test/CustodyParking.t.sol:CustodyParkingTest
+[PASS] testParkedResumeRejectsChangedOrderedTokensAndDisabledDestination() (gas: 10186323)
+[PASS] testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares() (gas: 11950040)
+[PASS] testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack() (gas: 10826472)
+[PASS] testParkingNonceInvalidationAndSuccessfulExecutionPreventReplay() (gas: 10027936)
+[PASS] testParkingOneSidedPositionAllowsOneZeroMinimum() (gas: 9824103)
+[PASS] testParkingRebalanceInvalidatesScheduledLPTokenSnapshot() (gas: 10778015)
+[PASS] testParkingRejectsEveryStaleSnapshotAndInvalidAuthorizationField() (gas: 10886353)
+[PASS] testParkingRejectsNonlocalCustodyEvenWithMatchingLPAndShareSnapshot() (gas: 9712282)
+[PASS] testParkingRequiresGovernancePausedSealedAndFixedMigrationModule() (gas: 10003049)
+[PASS] testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights() (gas: 12693563)
+[PASS] testParkingVenueFeesCannotSubsidizePrincipalMinimums() (gas: 10523479)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 74.41ms (165.94ms CPU time)
+
+Ran 20 tests for test/AccessController.t.sol:AccessControllerTest
+[PASS] testAllCoreModulesWithoutCanonicalCompanionsCannotSeal() (gas: 3314177)
+[PASS] testAuthorizedGovernanceCannotIntroduceDelay() (gas: 16057658)
+[PASS] testBootstrapCannotConfigureAfterSeal() (gas: 16005833)
+[PASS] testCannotReplaceModules() (gas: 16242463)
+[PASS] testCanonicalRandomnessMustBeConfiguredBeforeSeal() (gas: 16158931)
+[PASS] testFeeCompanionMustBelongToBoundFeeController() (gas: 16233945)
+[PASS] testFuzzNonzeroConstructorAndOperationDelayRejected(uint32) (runs: 1000, μ: 209729, ~: 209729)
+[PASS] testGuardianCanPauseNotUnpause() (gas: 16018319)
+[PASS] testImmediateBatchIsAtomicAndRoleGated() (gas: 16238668)
+[PASS] testImmediateGovernanceKeeperChange() (gas: 16087928)
+[PASS] testIncompleteDeploymentCannotSeal() (gas: 16354)
+[PASS] testNFTCompanionMustBelongToBoundCollection() (gas: 16229138)
+[PASS] testNoUnscheduledAlteredCancelledOrRepeatedExecution() (gas: 16177530)
+[PASS] testPredecessorStillRequiresCompletionNotElapsedTime() (gas: 16181098)
+[PASS] testProposerAndExecutorPermissionsRemainSeparate() (gas: 8174527)
+[PASS] testReservedTimestampCannotMislabelZeroDelayOperation() (gas: 13838)
+[PASS] testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal() (gas: 296724)
+[PASS] testSealErasesBootstrap() (gas: 16008890)
+[PASS] testWrongControllerBindingRejected() (gas: 255984)
+[PASS] testZeroDelayCannotBeChanged() (gas: 10295)
+Suite result: ok. 20 passed; 0 failed; 0 skipped; finished in 7.44s (327.00ms CPU time)
+
+Ran 24 tests for test/CustodyHandoff.t.sol:CustodyHandoffTest
+[PASS] testApprovalCanBeCancelledWithoutMovingFunds() (gas: 3990944)
+[PASS] testApprovalRejectsInvalidSnapshotAndCompanionAsRecipient() (gas: 3307136)
+[PASS] testCompleteRequiresActualLPAndPreservesNFTAndLedgers() (gas: 5342222)
+[PASS] testDestinationValidationRejectsUnreservedPoolAndWrongCustody() (gas: 5711005)
+[PASS] testEmergencyCanMoveToCustodyBeforeChoosingAnyNewPoolWithStoppedSourceAndStaleFeed() (gas: 4177862)
+[PASS] testEmergencyRawExitWorksWithFailedSwapAndStalePrices() (gas: 4262608)
+[PASS] testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties() (gas: 4569894)
+[PASS] testFuzzExitSwapLossLimit(uint16) (runs: 1000, μ: 4400291, ~: 4351121)
+[PASS] testHoldingCanBindNewDestinationExactlyOnceWithoutChangingSourceBudget() (gas: 6205412)
+[PASS] testLateCreatorRewardsAndUnclaimedRightsFollowNFTDuringCustody() (gas: 6705738)
+[PASS] testLocalEndToEndBudgetIncludesExitAndRedeployment() (gas: 6154516)
+[PASS] testNoTimeoutCancellationAfterSending() (gas: 4451822)
+[PASS] testNormalModeRejectsAnUnpricedOrUnswappableExit() (gas: 3755340)
+[PASS] testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue() (gas: 6782979)
+[PASS] testRawExitMinimumProtectsCloseAndRollsBack() (gas: 4127053)
+[PASS] testRecoveredCustodyNeedsFullActualSentZZZAndCanRemainPaused() (gas: 4719800)
+[PASS] testRemoteCannotBeApprovedWithoutVerifier() (gas: 3801811)
+[PASS] testRemoteProofCannotBeReplacedByGovernanceAndRecoveryRequiresClosure() (gas: 4898014)
+[PASS] testSentCustodyCannotChangeZZZOrAcceptInventedCompletion() (gas: 4507366)
+[PASS] testStateDriftAndDuplicateApprovalsFailClosed() (gas: 4615133)
+[PASS] testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback() (gas: 4338758)
+[PASS] testThreePercentBudgetCannotBeRelaxedByRequest() (gas: 3802059)
+[PASS] testUnauthorizedExitAndConfigurationAreRejected() (gas: 3123174)
+[PASS] testValidationCompanionCannotBeCalledByUnprivilegedAccounts() (gas: 3122611)
+Suite result: ok. 24 passed; 0 failed; 0 skipped; finished in 7.44s (7.76s CPU time)
+
+Ran 4 test suites in 7.45s (15.01s CPU time): 64 tests passed, 0 failed, 0 skipped (64 total tests)

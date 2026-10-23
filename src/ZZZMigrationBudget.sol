@@ -4,12 +4,12 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IZZZFees, IZZZMigration, IPositionManagerMinimal, IZZZNFT, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
-import {ZZZPairMigration, IPairAssets} from "./ZZZPairMigration.sol";
+interface IPairAssets { function assetCount() external view returns(uint256); function assets(uint256) external view returns(address); }
+interface IPairVault { function migrationBudget() external view returns(ZZZMigrationBudget); }
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 
 interface IMigrationContribution { function contributionUSD(uint256 id) external view returns (uint256); }
 interface IMigrationIdle { function totalIdle(address) external view returns(uint256); }
-interface IPairCompanion { function pairMigration() external view returns (address); }
 
 /// @notice Fixed execution budget for atomic rebalances and same-pair custody moves.
 /// Created by its only caller, Vault. No token custody, configuration or executor.
@@ -28,7 +28,6 @@ contract ZZZMigrationBudget {
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
-    address public pairExecutor;
     mapping(uint256 => uint64) public compositionEpoch;
     error Unauthorized();
     error InvalidState();
@@ -45,10 +44,8 @@ contract ZZZMigrationBudget {
         if (msg.sender != vault) revert Unauthorized();
         _;
     }
-    function beginPair() external {
-        if (msg.sender != IPairCompanion(access.module(Ids.MIGRATION)).pairMigration() ||
-            pairExecutor != address(0) || snapshot.value != 0) revert Unauthorized();
-        pairExecutor = msg.sender;
+    function recordComposition(uint256 id) external onlyVault {
+        ++compositionEpoch[id];
     }
     function validateOwner(uint256 id,address caller,bool minted,bool activation) external view onlyVault returns (address entry) {
         if (block.chainid != IZZZVault(vault).canonicalChainId() || !minted) revert Unauthorized();
@@ -73,11 +70,6 @@ contract ZZZMigrationBudget {
     /// @dev Called before fee settlement, token callbacks or closing the old LP.
     /// Only attributed assets enter the starting denominator.
     function checkpoint(uint256 id, uint8 phase) external onlyVault {
-        if (pairExecutor != address(0)) {
-            ZZZPairMigration(pairExecutor).checkpoint(id,phase);
-            if (phase == 2) { ++compositionEpoch[id]; delete pairExecutor; }
-            return;
-        }
         if (phase == 0) _beforeMove(id);
         else if (phase == 1) _includeCompound(id);
         else if (phase == 2) _afterMove(id);
@@ -146,21 +138,6 @@ contract ZZZMigrationBudget {
     }
     /// @dev Read-only validation extracted from custody; all writes and exact
     /// token movement remain in the immutable caller Vault.
-    function validateImport(uint256 id, bytes32 poolId, Position calldata origin, uint256 shares, bytes32 homePool)
-        external view onlyVault returns (bool returning) {
-        IZZZVault v = IZZZVault(vault);
-        if (id != uint256(keccak256(abi.encode(origin.homeChain, origin.homeVault, homePool))) ||
-            shares == 0 || shares > 1e36 || v.poolBucket(poolId) != id) revert InvalidState();
-        Position memory p = v.group(id);
-        returning = p.status == PositionStatus.Remote;
-        if ((!returning && p.status != PositionStatus.None) || origin.homeChain != v.canonicalChainId() ||
-            origin.homeVault == address(0) || origin.homeReceiver == address(0)) revert InvalidState();
-        if (returning && (p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0 || p.homeChain != origin.homeChain ||
-            p.homeVault != origin.homeVault || p.homeReceiver != origin.homeReceiver || v.homePoolId(id) != homePool)) revert InvalidState();
-        if (origin.homeChain == block.chainid && (!returning || origin.homeVault != vault)) revert InvalidState();
-        if (origin.homeChain == block.chainid &&
-            (v.bucketTotalShares(id) != shares || p.depositUSD != origin.depositUSD)) revert InvalidState();
-    }
     function nav(uint256 id) public view returns (uint256 deployed, uint256 idle) {
         Position memory p = IZZZVault(vault).group(id);
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
@@ -211,10 +188,6 @@ contract ZZZMigrationBudget {
         if (old != 0 && old != bucket) revert InvalidState();
     }
     function validateMove(uint256 id, bytes32 nextPool, uint128 minimumLiquidity) external view onlyVault {
-        if (pairExecutor != address(0)) {
-            ZZZPairMigration(pairExecutor).validateMove(id,nextPool,minimumLiquidity);
-            return;
-        }
         PoolConfig memory oldConfig = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
         PoolConfig memory nextConfig = IZZZPools(access.module(Ids.POOLS)).accounting(nextPool);
         if (minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||

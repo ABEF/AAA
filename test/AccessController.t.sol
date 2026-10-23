@@ -18,8 +18,8 @@ contract AccessControllerTest is Test {
         CanonicalFixture.bind(address(ac));
     }
     function fillCore() private {
-        bytes32[16] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
-            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
+        bytes32[12] memory ids=[Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
+            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.ORACLE,Ids.POOLS];
         for(uint256 i;i<ids.length;i++)ac.bind(ids[i],address(new BoundDummy(address(ac))));
     }
     function testIncompleteDeploymentCannotSeal() public {vm.expectRevert();ac.seal();}
@@ -134,5 +134,10 @@ contract AccessControllerTest is Test {
     function testReservedTimestampCannotMislabelZeroDelayOperation() public {
         vm.warp(1);vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);
         ac.schedule(address(ac),0,bytes(""),bytes32(0),bytes32(0),0);
+    }
+    function testRetiredBridgeModulesCannotBeBoundEvenBeforeSeal() public {
+        bytes32[4] memory ids=[Ids.BRIDGE,Ids.RECEIVER,Ids.ROUTES,Ids.TRANSPORT];
+        address candidate=address(new BoundDummy(address(ac)));
+        for(uint256 n;n<ids.length;++n){vm.expectRevert(ZZZAccessController.InvalidConfiguration.selector);ac.bind(ids[n],candidate);assertEq(ac.module(ids[n]),address(0));}
     }
 }

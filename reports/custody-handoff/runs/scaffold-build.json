@@ -1,0 +1,7 @@
+{
+  "scope": "Compile only; local deployment script not executed or broadcast",
+  "exit": 0,
+  "script_sha256": "9e780a2384f99feaede49a842d8ea09b1f4eacbb8fb0ca80def64f370b69f408",
+  "compiler": "0.8.26/Cancun unchanged profile",
+  "log_sha256": "5b049ef3d942be53503f218a25c59670ee33f69f75064ec5fb3cafe043a8ca4a"
+}

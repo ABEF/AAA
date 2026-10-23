@@ -45,9 +45,9 @@ UNIT = 10**18
 LABELS = dict(access='ZZZAccessController', vault='ZZZVault', nft='ZZZNFT',
     liquidity='ZZZLiquidityManager', rewards='ZZZRewards', membership='ZZZMembership',
     fees='ZZZFeeController', strategy='ZZZStrategy', compounder='ZZZCompounder',
-    buyback='ZZZBuyback', migration='ZZZMigration', transport='ZZZBridgeRouter',
-    bridge='ZZZBridgeAdapter', receiver='ZZZMigrationReceiver', oracle='ZZZOracle',
-    pools='ZZZPoolRegistry', routes='ZZZMigrationRegistry', handoff='ZZZCanonicalHandoff',
+    buyback='ZZZBuyback', migration='ZZZMigration',
+oracle='ZZZOracle',
+    pools='ZZZPoolRegistry', handoff='ZZZCanonicalHandoff',
     nft_canonical='ZZZNFTCanonical', vault_canonical='ZZZVaultCanonical', fees_canonical='ZZZFeesCanonical')
 
 def digest(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -336,12 +336,11 @@ class Lab:
         self.bind('vault',self.deploy('ZZZVault','constructor(address,uint256,address)',(ac,CHAIN,admin)))
         self.bind('nft',self.deploy('ZZZNFT','constructor(address,string)',(ac,'')))
         self.bind('liquidity',self.deploy(getattr(self.args,'venue_fixture','LocalDemoVenue'),'constructor(address,address,address)',(ac,*self.tokens),local=True))
-        for role in ('rewards','membership','fees','strategy','compounder','migration','transport','receiver','pools','routes','handoff'):
+        for role in ('rewards','membership','fees','strategy','compounder','migration','pools','handoff'):
             if role=='pools' and self.native_input:
                 self.bind(role,self.deploy('LocalNativeRegistry','constructor(address,address,address)',(ac,self.weth,self.tokens[1]),local=True))
             else:self.bind(role,self.deploy(LABELS[role],'constructor(address)',(ac,)))
         self.bind('buyback',self.deploy('ZZZBuyback','constructor(address,address,uint256)',(ac,self.tokens[0],1000*UNIT)))
-        self.bind('bridge',self.deploy('ZZZBridgeAdapter','constructor(address,address)',(ac,self.contracts['transport'])))
         self.bind('oracle',self.deploy('ZZZOracle','constructor(address,address)',(ac,ZERO)))
         self.bind('nft_canonical',self.deploy('ZZZNFTCanonical','constructor(address,address)',(ac,self.contracts['nft'])))
         self.bind('vault_canonical',self.deploy('ZZZVaultCanonical','constructor(address,address,uint256)',(ac,self.contracts['vault'],CHAIN)))
