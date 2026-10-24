@@ -195,7 +195,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-price-security"></a>
 
-- [x] **[Dual-source USD checks and factual LP contribution security](docs/PRICE_SECURITY.md)** - Implemented. Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before transfers/conversion; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open.
+- [x] **[Dual-source USD checks and factual LP contribution security](docs/PRICE_SECURITY.md)** - Implemented. Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before transfers/conversion; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open. User-selected source disagreement tolerance is 3% (300 bps); the separate default 1% execution floor still applies.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -203,6 +203,7 @@ Custody, ownership and reward accounting.
   - [Implementation and source-scoped verification](reports/price-security/VERIFICATION.md), [internal review](reports/price-security/REVIEW.md): distinct sources/runtime pins/declared independence, valid rounds/decimals/ages, bounded disagreement and no single-source/spot/peg fallback. Declared independence and matching answers do not prove market/provider independence.
   - Existing nonzero historical compound keeps its initial mark. Newly discovered old-currency compound is first marked at the final checkpoint only for incumbent backing; it cannot pay the entrant loss floor. Preserve shares, old rewards, exact token/native spending and atomic failure rollback.
   - Current preflight/preparation/earnings use explicit pricing_version 2, full append-only policies, raw confirmed-block observations and all 15 helper bindings. Historical single-source profiles retain old deployment/epoch semantics. No website, existing local-chain/journal, public signer or monitor change follows.
+  - The unchanged cold 12M gate initially failed at12,394,559 gas; skipping irrelevant epoch-zero historical scans repairs maximum-index activation to11,864,627 gas. This is local substituted-feed/venue evidence, not target-chain provider qualification. Historical epoch>0 checks remain.
 
   </details>
 
@@ -868,7 +869,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-dual-price-qualification"></a>
 
-- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - To do. Select and independently qualify two defensible USD sources for ETH and ZZZ plus each enabled USDG/USDC input. No real source pair, adapter or operating tolerance is selected. Do not enable unsupported assets or treat mock agreement as market safety.
+- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - To do. Select and independently qualify two defensible USD sources for ETH and ZZZ plus each enabled USDG/USDC input. The user selected 3% agreement (300 bps); no real source pair, adapter or freshness setting is qualified. Do not enable unsupported assets or treat mock agreement as market safety.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -879,6 +880,8 @@ Decisions and rehearsals before real funds.
   - Obtain actual ETH/ZZZ/USDG/USDC source proposals and market references with [Creator tasks / ZZZ team](TODO.md#task-creator-zzz-price), then independently verify them. If two defensible ZZZ sources cannot be qualified, keep ZZZ pricing/contributions unavailable; invent no provider or pool-spot fallback.
   - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
   - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
+  - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default1% execution floor; never average answers or automatically raise a cap to accept a wide quote.
+  - Run a fresh separate native/accounting2/routing2/pricing2 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the final local maximum-state workload has only135,373 gas margin below its unchanged12M gate.
 
   </details>
 
@@ -992,4 +995,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `e0bfefc7af8853fca40a819104774e7015d2a72b9479c7a593b8197d0bba41b5`.
+Snapshot SHA-256: `8366570b7f98a94647371e17ceda6bdf0a1f1307c74a87306681eadd42ab4009`.

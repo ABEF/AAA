@@ -4,9 +4,9 @@
 
 The undeployed pricing-V2 candidate combines two-source USD checks with factual
 Uniswap position and asset-movement checks. This is implemented protection, not
-qualification of live price services. No production ETH, ZZZ or USDG source pair,
-heartbeat, disagreement tolerance, proxy policy or conversion route is selected
-or approved by this document. Production remains unapproved.
+qualification of live price services. The user-selected disagreement tolerance is **3% (300 bps)**. No production
+ETH, ZZZ or USDG source pair, heartbeat, proxy policy or conversion route is
+selected or qualified by this document. Production remains unapproved.
 
 Two different questions must be answered:
 
@@ -49,7 +49,10 @@ responses. These are implementation limits to qualify against actual providers,
 not measured live-service requirements. Maximum source age is bounded to one day;
 the approved operational age must reflect the asset and feed heartbeat.
 
-Maximum disagreement can be configured from 0 to 500 basis points. Zero requires
+The intended configuration uses **300 basis points (3%)**. An observation at
+exactly 3% is within that band; anything above it fails. This does not relax the
+separate default 1% execution-loss test described below. Governance can configure
+maximum disagreement from 0 to 500 basis points. Zero requires
 exact agreement. The 500-basis-point hard ceiling is consistent with the existing
 maximum pool/reference-price guard; it is not a recommended production setting or
 a claim that 5% uncertainty is safe for an operation with a 1% loss budget.
@@ -197,7 +200,7 @@ they are not silently promoted to V2. Unknown values remain unavailable.
 The [production preflight](PRODUCTION_PREFLIGHT.md) separates approved policy,
 actual observation and independent qualification. Release still needs actual
 source addresses and adapters for every required asset, source/proxy review,
-chosen tolerances and heartbeats, qualified funded conversion routes, target-chain
+the selected 3% tolerance and qualified heartbeats, funded conversion routes, target-chain
 gas and outage rehearsals, and independent audit/remediation. In particular, do
 not enable ZZZ contributions if two defensible independent sources cannot be
 qualified. No real provider or public deployment is established by mock tests.

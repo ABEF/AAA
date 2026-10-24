@@ -41,8 +41,9 @@ The source addresses and declared independence IDs must differ; each runtime mus
 match its own approved pin, but identical adapter code is not itself forbidden.
 Different labels alone do not prove independent markets or reporters. Native ETH
 is asset zero, not a WETH-priced alias. USDG and USDC need
-actual depeg-aware USD observations. No production source pair or tolerance is
-chosen by the example.
+actual depeg-aware USD observations. The user-selected agreement tolerance is
+300 bps (3%). Production source addresses and freshness settings remain unset.
+A price inside that band must still satisfy the separate execution-loss floor.
 
 The observer recomputes policy identity, both normalized bounds and the exact
 chain/Oracle/policy/round/sequencer fingerprint at the confirmed timestamp. It

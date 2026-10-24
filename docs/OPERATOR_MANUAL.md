@@ -18,8 +18,9 @@ ZZZ/USD source as redundant coverage for both assets.
    maxDeviationBps,reviewHash)`. Each source tuple contains `source`,
    `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`. Source age must
    be 1-86,400 seconds; spread is 0-500 bps, with zero requiring exact agreement.
-   Those are hard code bounds, not production settings. Both current rounds must
-   already pass admission. No source pair or operational tolerance is selected.
+   Those are hard code bounds. The user selected **300 bps (3%)** for the
+   intended configuration. Both current rounds must already pass admission.
+   Actual source pairs and freshness settings remain unqualified.
 4. Execute through existing immediate governance, then verify `DualPolicyRecorded`,
    `DualPolicyActivated`, `activePolicy`, `policyAt`, the full immutable policy and
    `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
@@ -40,7 +41,8 @@ source transfer and conversion. Callback changes, even a later tighter limit,
 require a fresh review. Existing nonzero historical compound keeps its starting
 mark; newly discovered historical compound is first marked at the final
 checkpoint only for incumbent backing, never the new LP floor. Source uncertainty
-uses some of the captured execution budget. A failed quote does not authorize an
+uses some of the captured execution budget: even agreement inside 3% can fail
+the separate default 1% execution floor. A failed quote does not authorize an
 automatic cap increase, stablecoin peg, spot price or single-source fallback.
 
 If either source fails, retain unavailable status and disable affected work until

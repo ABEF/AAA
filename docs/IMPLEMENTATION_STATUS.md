@@ -12,8 +12,9 @@ only for incumbent backing, never the entrant's LP floor.
 
 The current inventory/API/preparation/earnings profiles explicitly use pricing V2
 and 15 helper bindings; old code/epoch profiles retain their original meaning.
-Missing/disagreeing prices remain unavailable. No source pair, tolerance, proxy
-policy, route or production provider is qualified by this implementation.
+Missing or excessively disagreeing prices remain unavailable. The user selected
+3% agreement (300 bps), distinct from the default 1% execution-loss cap. Actual
+source pairs, freshness/proxy policies, routes and providers remain unqualified.
 [Source-scoped verification](../reports/price-security/VERIFICATION.md) and
 [internal review](../reports/price-security/REVIEW.md) record evidence separately;
 production remains NOT APPROVED.

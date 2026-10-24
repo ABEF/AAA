@@ -1,3 +1,16 @@
+## Dual pricing publication verified - 2026-10-24
+
+Contract implementation `b5002df` and website memory-only
+`ea39eb0` are pushed on main; remote hashes and intended blobs
+verified. Read [publication receipt](reports/price-security/PUBLICATION.md).
+The selected3% agreement band is separate from the default1% execution floor.
+174 source-scoped Solidity cases,187 Python cases,36 normal object gates and115
+final Solidity bindings are recorded with their diagnostics/reuse boundaries.
+No fresh full regression or actual feed/service qualification is claimed.
+Production NOT APPROVED. Existing8902/Anvil/NFT/LP/journals/dist overlay, Anvil-only
+signing, null public DEPLOYMENT and paused monitoring remain unchanged. Main only;
+preserve older unrelated drafts. No website/server/service or public transaction.
+
 ## Dual pricing and factual LP security - 2026-10-24
 
 Read [current verification](reports/price-security/VERIFICATION.md),
