@@ -1,3 +1,29 @@
+## Liquidity operations publication verified - 2026-10-25
+
+Contract implementation `593a212` and website memory-only `1e1a9ba`
+are pushed on main; remote hashes verified. Read [publication](reports/liquidity-operations-20261025/PUBLICATION.md),
+[verification](reports/liquidity-operations-20261025/VERIFICATION.md) and [review](reports/liquidity-operations-20261025/REVIEW.md).
+68scoped Solidity cases,297Python passes/one Unix-only skip and37normal object
+gates pass.111published functional/evidence inputs match; one unrelated unexecuted
+research-reader draft remains explicitly outside publication. No full regression,
+real-provider qualification or independent audit is inferred.
+
+Defaults2%contribution/1%conversion/3%maintenance, gas separate. Bounded two-pass
+placement and attributed-idle reinvestment preserve shares/fees/backing with no
+sweep. Explicit ZZZ-price-in-ETH mode and reviewed keeper25/50policy are opt-in;
+old profiles/physical LP/journals retain original semantics. Current migration
+scope is local pool movement plus source-chain external custody; integrated
+bridges/remote ownership-ledgers are optional/deferred. Same-chain handoff stays.
+
+Next: caller-bound reviewed Entry policy (still absent), actual services/routes/
+dual feeds, strategy economics/max-state real gas, native website/OpenSea/VRF/
+authorities and independent audit. Vault57-byte runtime/Registry31-byte initcode
+margins require a size-safe next design. Production NOT APPROVED.
+Preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signing/null public DEPLOYMENT and paused monitoring. No website
+code/build/server, public transaction/deployment, service or monitor action.
+Main only; keep sole Todo/features/operator/roadmap and both memories aligned.
+
 ## Liquidity operations and keeper presets - 2026-10-25
 
 Read [scoped verification](reports/liquidity-operations-20261025/VERIFICATION.md),
