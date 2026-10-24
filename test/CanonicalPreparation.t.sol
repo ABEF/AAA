@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -130,7 +134,7 @@ contract CanonicalPreparationTest is Test {
         ac.bind(Ids.MIGRATION, address(migration)); ac.bind(Ids.ORACLE, address(oracle));
         ac.bind(Ids.POOLS, address(pools));
         feed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(feed), 3600); oracle.setFeed(address(t1), address(feed), 3600);
+        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
         vrf = new MockVRF(); nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
         PoolConfig memory c; c.key = PoolKey(address(t0), address(t1), 3000, 60, address(0));

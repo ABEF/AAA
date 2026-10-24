@@ -1,0 +1,10 @@
+test_composed_historical_compound_is_marked_twice_but_counted_once (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_composed_historical_compound_is_marked_twice_but_counted_once) ... ok
+test_historical_compound_mismatch_or_duplicate_in_one_phase_fails (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_historical_compound_mismatch_or_duplicate_in_one_phase_fails) ... ok
+test_full_activation_uses_reviewed_dual_prices (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_full_activation_uses_reviewed_dual_prices) ... ok
+test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases) ... ok
+test_pricing_phase_witness_rejects_missing_reordered_or_changed_callbacks (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_pricing_phase_witness_rejects_missing_reordered_or_changed_callbacks) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 10.015s
+
+OK

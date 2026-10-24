@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -118,8 +122,8 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         ZZZOracle oracle = new ZZZOracle(address(access), address(0));
         ZZZStrategy strategy = new ZZZStrategy(address(access));
         // Synthetic feeds belong only to the separate local test pool's reference price.
-        oracle.setFeed(WETH, address(new MockFeed(8, 1e8)), 1 days);
-        oracle.setFeed(ZZZ, address(new MockFeed(8, 1e8)), 1 days);
+        oracle.setTestFeed(WETH, address(new MockFeed(8, 1e8)), 1 days);
+        oracle.setTestFeed(ZZZ, address(new MockFeed(8, 1e8)), 1 days);
         access.bind(Ids.VAULT, address(this));
         access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.ORACLE, address(oracle));
@@ -422,7 +426,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         uint256 supply = s.vault.bucketTotalShares(bucket); uint256 oldId = s.vault.group(bucket).lpTokenId;
         manager.swap(testPool, true, 100 ether, 99 ether, block.timestamp + 100);
         vm.warp(block.timestamp + 601);
-        ZZZOracle(access.module(Ids.ORACLE)).setFeed(WETH, address(new MockFeed(8, 101_100_000)), 1 days);
+        ZZZOracle(access.module(Ids.ORACLE)).setTestFeed(WETH, address(new MockFeed(8, 101_100_000)), 1 days);
         assertTrue(ZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(bucket));
         uint256 next = positions.nextTokenId(); s.vault.rebalance(bucket, 1, block.timestamp + 100);
         uint256 newId = s.vault.group(bucket).lpTokenId; assertEq(newId, next); assertTrue(newId != oldId);

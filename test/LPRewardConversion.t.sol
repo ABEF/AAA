@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -46,7 +50,7 @@ contract LPRewardConversionTest is Test {
         a.bind(Ids.FEES,address(this));a.bind(Ids.REWARDS,address(r));a.bind(Ids.CANONICAL,address(this));a.setKeeper(address(this),true);
         r.addAsset(address(t));r.addAsset(address(w));
         oracle=new ZZZOracle(address(a),address(0));sf=new MockFeed(8,1e8);ef=new MockFeed(8,2000e8);
-        oracle.setFeed(address(t),address(sf),3600);oracle.setFeed(address(w),address(ef),3600);a.bind(Ids.ORACLE,address(oracle));
+        oracle.setTestFeed(address(t),address(sf),3600);oracle.setTestFeed(address(w),address(ef),3600);a.bind(Ids.ORACLE,address(oracle));
         c=new ZZZLPRewardConverter(address(a),address(r),address(w));r.bindConverter(address(c));
         c.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(w).codehash,address(0),address(0),address(0),0,0,bytes32(uint256(1))));
         c.setEnabled(true);venue=new ConversionVenue(address(t),w);

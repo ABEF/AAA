@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {Test} from "forge-std/Test.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
@@ -53,7 +57,7 @@ contract RangePolicyTest is Test {
         MockToken a = new MockToken(18); MockToken b = new MockToken(18);
         (t0, t1) = address(a) < address(b) ? (a, b) : (b, a);
         f0 = new MockFeed(8, 1e8); f1 = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(f0), 1 days); oracle.setFeed(address(t1), address(f1), 1 days);
+        oracle.setTestFeed(address(t0), address(f0), 1 days); oracle.setTestFeed(address(t1), address(f1), 1 days);
         config = PoolConfig(PoolKey(address(t0), address(t1), 3000, 200, address(0)),
             true, true, 5000, 500, 100, 100, 600, 100e18, 1e30);
         pool = registry.configure(config);

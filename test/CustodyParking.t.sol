@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -56,7 +60,7 @@ contract CustodyParkingTest is PooledVaultFixture {
     }
     function _refresh() private {
         MockFeed fresh = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(fresh), 3600); oracle.setFeed(address(t1), address(fresh), 3600);
+        oracle.setTestFeed(address(t0), address(fresh), 3600); oracle.setTestFeed(address(t1), address(fresh), 3600);
     }
     function testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights() public {
         uint256 id = activatedPosition(); ZZZMigration migration = _migration(); uint256 bucket = _bucket();

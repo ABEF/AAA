@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {Test} from "forge-std/Test.sol";
 import {Vm} from "forge-std/Vm.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
@@ -77,7 +81,7 @@ contract NFTMetadataTest is Test {
         venue = new MetadataVenueMock(); fees = new MetadataFeesMock(); pools = new MockPools();
         token0 = new MockToken(0); token1 = new MockToken(0);
         oracle = new ZZZOracle(address(access), address(0)); feed0 = new MockFeed(8, 1e8); feed1 = new MockFeed(8, 1e8);
-        oracle.setFeed(address(token0), address(feed0), 3600); oracle.setFeed(address(token1), address(feed1), 3600);
+        oracle.setTestFeed(address(token0), address(feed0), 3600); oracle.setTestFeed(address(token1), address(feed1), 3600);
         access.bind(Ids.NFT, address(nft)); access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.LIQUIDITY, address(venue)); access.bind(Ids.FEES, address(fees));
         access.bind(Ids.POOLS, address(pools)); access.bind(Ids.ORACLE, address(oracle));

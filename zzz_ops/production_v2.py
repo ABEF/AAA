@@ -30,7 +30,7 @@ HELPERS = ('activation_assets', 'activation_entry', 'migration_budget',
            'custody_validation', 'royalty_rewards', 'metadata_renderer',
            'claim_router', 'royalty_factory', 'reward_receiver_factory',
            'lp_converter', 'royalty_converter', 'entry_v4_executor',
-           'lp_v4_executor', 'royalty_v4_executor')
+           'lp_v4_executor', 'royalty_v4_executor', 'contribution_pricing')
 MODULE_IDENTITIES = dict(zip(MODULES[1:], ('ZZZVault', 'ZZZNFT', 'ZZZLiquidityManager',
     'ZZZRewards', 'ZZZMembership', 'ZZZFeeController', 'ZZZStrategy', 'ZZZCompounder',
     'ZZZBuyback', 'ZZZMigration', 'ZZZOracle', 'ZZZPoolRegistry', 'ZZZCanonicalHandoff',
@@ -42,7 +42,7 @@ EVIDENCE = ('toolchain', 'static_analysis', 'invariants', 'uniswap_fork', 'stagi
             'economic_approval', 'independent_audit', 'remediation',
             'native_accounting', 'typed_v4_routes', 'custody_handoff')
 SERVICES = ('rpc', 'pricing', 'randomness', 'keeper', 'api', 'metadata', 'opensea')
-TOP_FIELDS = frozenset(('schema_version','accounting_version','routing_version',
+TOP_FIELDS = frozenset(('schema_version','accounting_version','routing_version','pricing_version',
     'accounting_model','custody_architecture','release_commit','canonical_chain_id',
     'economics','nft_policy','evidence','chains'))
 CHAIN_FIELDS = frozenset(('chain_id','genesis_hash','observed_block',
@@ -166,7 +166,7 @@ def expected_bindings(chain: dict[str, Any]) -> dict[str, dict[str, dict[str, An
         zzzCodeHash=_obj(deps.get('zzz')).get('runtime_hash'),outstandingCount=0)
     result['pools'].update(activationAssets=h('activation_assets'),activationEntry=h('activation_entry'),
         contributionPool=chain.get('contribution_pool'))
-    result['oracle']['sequencerFeed'] = seq.get('address')
+    result['oracle'].update(sequencerFeed=seq.get('address'),PRICING_VERSION=2,contributionPricing=h('contribution_pricing'))
     result['buyback'].update(zzz=d('zzz'),maxTradeUSD=_numeric(ctor.get('maximum_buyback_usd18')),
         operatingTradeUSD=_numeric(chain.get('operating_buyback_usd18')))
     result['canonical'].update(SCHEMA=CANONICAL_SCHEMA,phase=canonical.get('phase'),
@@ -183,6 +183,7 @@ def expected_bindings(chain: dict[str, Any]) -> dict[str, dict[str, dict[str, An
             'contributionLossBps':limits.get('contribution_bps'),
             'maintenanceLossBps':limits.get('maintenance_bps')},
         'custody_validation': {'access':m('access'),'migration':m('migration')},
+        'contribution_pricing': {'access':m('access'),'oracle':m('oracle'),'active':False},
         'royalty_rewards': {'nft':m('nft'),'canonicalController':m('access'),
             'converter':h('royalty_converter'),'custodyCount':0},
         'metadata_renderer': {'access':m('access')},
@@ -467,6 +468,67 @@ def _dependencies(g,chain,path,addresses):
     return deps
 
 
+def _dual_price(g,chain,token,path,addresses):
+    from zzz_ops import price_policy as codec
+    pp = path+'.price_policy'; raw = g.obj(token.get('price_policy'),pp)
+    oracle = _obj(_obj(chain.get('modules')).get('oracle')).get('address')
+    approved = {key:raw.get(key) for key in ('policy_id','ordinal','policy')}
+    try:
+        approved = codec.record(approved,token.get('address'),token.get('decimals'),oracle)
+    except (ValueError,TypeError,KeyError,OverflowError):
+        g.check(False,pp,'pricing.policy','Configure an exact append-only two-source USD policy with distinct source and independence identities.','pricing')
+        return
+    policy = approved['policy']; identifier = approved['policy_id']; ordinal = approved['ordinal']
+    count = g.num(raw.get('observed_policy_count'),pp+'.observed_policy_count',1)
+    g.check(type(raw.get('observed_pricing_version')) is int and raw.get('observed_pricing_version') == 2 and
+        _equal(raw.get('observed_policy_id'),identifier) and _equal(raw.get('observed_policy'),policy) and
+        count is not None and count > ordinal and _equal(raw.get('observed_ordinal_id'),identifier),
+        pp,'pricing.binding','Read the current version, active policy, immutable descriptor and append-only ordinal at the same confirmed block.','pricing')
+    stamp = _obj(chain.get('observed_block')).get('timestamp')
+    observed_sources = g.items(raw.get('sources'),pp+'.sources',2,2)
+    rounds = []; prices = []
+    for i,item in enumerate(observed_sources):
+        sp = f'{pp}.sources[{i}]'; observed = g.obj(item,sp); expected = policy[('primary','secondary')[i]]
+        source,pin = _runtime(g,dict(observed,address=observed.get('source')),sp)
+        g.check(_equal(source,expected['source']) and source not in addresses and
+            _equal(pin,expected['expectedCodeHash']) and observed.get('denomination') == 'USD' and
+            type(observed.get('decimals')) is int and observed.get('decimals') == expected['feedDecimals'],
+            sp,'pricing.source','Observe both reviewed USD sources, their exact runtimes and precisions independently.','pricing')
+        values = [g.num(observed.get(key),sp+'.'+key,1) for key in
+            ('round_id','answer','started_at','updated_at','answered_in_round')]
+        try:
+            price,_ = codec.round_data(codec.words(values),expected,stamp)
+            prices.append(price);rounds.extend(values)
+        except (ValueError,TypeError,OverflowError):
+            g.check(False,sp,'pricing.round','Both independent sources must return complete, positive, fresh and correctly ordered rounds.','pricing')
+        review = g.proof(observed.get('review_evidence'),sp+'.review_evidence',independent=True)
+        g.check(review.get('independent_price_source') is True and review.get('depeg_and_manipulation_reviewed') is True and
+            review.get('underlying_sources_reviewed') is True and review.get('proxy_implementation_reviewed') is True and
+            type(review.get('chain_id')) is int and review.get('chain_id') == chain.get('chain_id') and
+            _equal(review.get('asset'),token.get('address')) and _equal(review.get('source'),source) and
+            _equal(review.get('runtime_hash'),pin) and _equal(review.get('independence_id'),expected['independenceId']),
+            sp+'.review_evidence','pricing.source_review','Review each underlying market/provider and proxy/implementation authority; distinct adapter addresses do not establish independence.','pricing')
+    if len(prices) == 2 and len(rounds) == 10:
+        low,high = min(prices),max(prices)
+        g.check(high-low <= low*policy['maxDeviationBps']//10000,pp,'pricing.disagreement',
+            'Reject source disagreement; never silently downgrade to one feed.','pricing')
+        seq = _obj(chain.get('sequencer')).get('active_policy_id',ZERO_HASH)
+        try:
+            fingerprint = codec.hash_words([codec.DOMAIN,chain.get('chain_id'),oracle,identifier,seq]+rounds)
+            expected_bounds = {'lower':low,'upper':high,'fingerprint':fingerprint}
+            g.check(_equal(raw.get('observed_bounds'),expected_bounds),pp+'.observed_bounds','pricing.bounds',
+                'Independently recompute both source bounds and the policy/round/sequencer fingerprint.','pricing')
+        except (ValueError,TypeError):
+            g.check(False,pp+'.observed_bounds','pricing.bounds','Observe exact dual-price bounds under the actual sequencer policy.','pricing')
+    review = g.proof(raw.get('review_evidence'),pp+'.review_evidence',independent=True,kind='dual_source_pricing_review')
+    g.check(type(review.get('chain_id')) is int and review.get('chain_id') == chain.get('chain_id') and
+        _equal(review.get('asset'),token.get('address')) and _equal(review.get('oracle'),oracle) and
+        _equal(review.get('policy_id'),identifier) and _equal(review.get('onchain_review_hash'),policy['reviewHash']) and
+        review.get('sources_independent') is True and review.get('common_mode_risk_reviewed') is True and
+        review.get('bounds_and_outage_reviewed') is True,
+        pp+'.review_evidence','pricing.independence','Independently qualify the pair, market coverage, disagreement/freshness bounds and fail-closed outage behavior.','pricing')
+
+
 def _tokens(g,chain,path,now,addresses):
     result = {}
     stamp = _obj(chain.get('observed_block')).get('timestamp')
@@ -487,28 +549,7 @@ def _tokens(g,chain,path,now,addresses):
                 tp,'token.semantics','Qualify exact non-rebasing, non-taxed transfer behavior and token authority risks.','security')
         g.check(type(token.get('observed_decimals')) is int and token.get('observed_decimals') == decimals,
             tp+'.observed_decimals','token.decimals','Read exact asset decimals at the inventory block.','pricing')
-        feed = g.obj(token.get('feed'),tp+'.feed')
-        source,_ = _runtime(g,dict(feed,address=feed.get('source')),tp+'.feed')
-        fd = g.num(feed.get('decimals'),tp+'.feed.decimals',0,18)
-        age = g.num(feed.get('maximum_age_seconds'),tp+'.feed.maximum_age_seconds',1,86400)
-        answer = g.num(feed.get('answer'),tp+'.feed.answer',1,10**36)
-        updated = g.num(feed.get('updated_at'),tp+'.feed.updated_at',1)
-        round_id = g.num(feed.get('round_id'),tp+'.feed.round_id',1)
-        answered = g.num(feed.get('answered_in_round'),tp+'.feed.answered_in_round',1)
-        g.check(feed.get('denomination') == 'USD' and source not in addresses and
-            type(stamp) is int and updated is not None and age is not None and 0 <= stamp-updated <= age and
-            round_id is not None and answered is not None and answered >= round_id and answer is not None and
-            fd is not None and answer * 10**(18-fd) <= 10**36,tp+'.feed','feed.invalid',
-            'Qualify an independent USD feed with valid rounds, fresh positive values and exact decimals; do not hardcode stablecoin pegs.','pricing')
-        g.check(_equal(feed.get('observed_oracle_feed'),{'source':source,'maxAge':age,
-            'feedDecimals':fd,'assetDecimals':decimals}),tp+'.feed.observed_oracle_feed','feed.binding',
-            'Match Oracle.feeds(asset) to the independently reviewed USD feed and freshness policy.','pricing')
-        review = g.proof(feed.get('review_evidence'),tp+'.feed.review_evidence',independent=True)
-        g.check(review.get('independent_price_source') is True and review.get('depeg_and_manipulation_reviewed') is True and
-            type(review.get('chain_id')) is int and review.get('chain_id') == chain.get('chain_id') and
-            _equal(review.get('asset'),address) and _equal(review.get('source'),source) and
-            _equal(review.get('runtime_hash'),feed.get('runtime_hash')),
-            tp+'.feed.review_evidence','feed.review','Review independence, depegs, market coverage and manipulation resistance.','pricing')
+        _dual_price(g,chain,token,tp,addresses)
         if address is not None: result[address] = token
     g.check(ZERO in result and NATIVE_DEPENDENCIES['zzz'][0] in result,path+'.tokens','token.required',
         'Qualify both actual ETH and the currently selected ZZZ contract.','pricing')
@@ -1009,9 +1050,9 @@ def _nft(g,chain,path,tokens):
 def _services(g,chain,path):
     services = g.obj(chain.get('services'),path+'.services')
     g.keys(services,SERVICES,path+'.services')
-    profiles = {'rpc':'eip1898_hash_pinned_debug_trace','pricing':'independent_usd_native_v2',
+    profiles = {'rpc':'eip1898_hash_pinned_debug_trace','pricing':'independent_dual_usd_v2',
         'randomness':'verified_coordinator_two_words','keeper':'native_v2_governed_limits',
-        'api':'accounting_v2_routing_v2','metadata':'content_addressed_v2','opensea':'primary_mint_current_nft'}
+        'api':'accounting_v2_routing_v2_pricing_v2','metadata':'content_addressed_v2','opensea':'primary_mint_current_nft'}
     access = _obj(_obj(chain.get('modules')).get('access')).get('address')
     nft = _obj(_obj(chain.get('modules')).get('nft')).get('address')
     for role in SERVICES:
@@ -1045,10 +1086,10 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
         'Use only explicit schema-5 fields; obsolete bridge approvals cannot accompany this release inventory.')
     g.commit = g.hex(g.commit,'release_commit',20,prefix=False)
     now = int(time.time()) if now is None else now
-    for key,value in {'schema_version':5,'accounting_version':2,'routing_version':2,
+    for key,value in {'schema_version':5,'accounting_version':2,'routing_version':2,'pricing_version':2,
         'accounting_model':'shared-pools-native-v2','custody_architecture':'governed-v1'}.items():
         g.check(_equal(config.get(key),value),key,'schema.unsupported',
-            'Use explicit current schema 5/native accounting 2/typed routing 2; legacy profiles cannot be reinterpreted.')
+            'Use explicit current schema 5/native accounting 2/typed routing 2/dual pricing 2; legacy profiles cannot be reinterpreted.')
     if expected_commit is not None:
         g.check(g.commit == expected_commit,'release_commit','commit.mismatch','Use the exact reviewed release commit.')
     home = g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)

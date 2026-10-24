@@ -93,13 +93,14 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
 | `fees_canonical` | `ZZZFeesCanonical` - reserves/inboxes codec bound to Fees |
 
-The current inventory has **14 fixed helpers**: twelve created by their parent contracts and two separately deployed converters. Every immutable-specific runtime and binding must be inventoried:
+The current inventory has **15 fixed helpers**: thirteen created by their parent contracts and two separately deployed converters. Every immutable-specific runtime and binding must be inventoried:
 
 | Creator | Helper addresses and bindings |
 | --- | --- |
 | Pool registry constructor | `ZZZActivationAssets` and `ZZZActivationEntry`; verify registry/controller/helper relationships. |
 | Controller constructor | `ZZZRoyaltyFactory`; only its atomic creation/binding path supplies the NFT's royalty ledger. Verify factory controller and observed NFT ledger. |
 | NFT constructor | `ZZZRoyaltyRewards` through the controller's fixed factory, plus `ZZZClaimRouter` and `ZZZNFTMetadata`; verify NFT/controller/royalty bindings. |
+| Oracle constructor | `ZZZContributionPricing`; verify `Oracle.contributionPricing()`, helper `oracle()`/`access()`, `active() == false` at the confirmed inventory anchor, and exact immutable-specific runtime. It holds no funds or approvals. |
 | Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
 | FeeController constructor | `ZZZRewardReceiverFactory`; verify immutable Fees/controller bindings and `Fees.receiverFactory`. It creates exact bound inboxes and supplies read-only validation/encoding helpers. |
 | Migration constructor | `ZZZCustodyValidation`; verify `Migration.validation`, helper `migration`/`access` bindings and runtime. It is read-only and has no custody/execution authority. |
@@ -128,9 +129,9 @@ identities, not ticker symbols or addresses copied from another chain.
 | Uniswap v4 settlement | PoolManager, PositionManager, StateView and Permit2; verify every constructor/getter relationship. |
 | Assets | ZZZ, any explicitly used WETH wrapper, every admitted activation input, LP currency, reward asset and royalty asset. Review decimals, backing, transfer behavior and proxy powers. Native ETH uses the native currency convention, not an ERC-20 address. |
 | Selected hookless native venue | Exact ETH/ZZZ PoolKey/ID, static fee and spacing, zero hook, pinned core/position/state/Permit2 runtimes and wiring; native asset-zero identity and reviewed native USD feed. Native settlement does not require WETH policy. Record Uniswap's protocol-fee controller separately. No Pons hook/factory/creator payout is required. |
-| Valuation | Each token's actual USD feed/proxy and relevant implementation/admin authorities; genuine sequencer-status source or explicitly approved chain-specific initial policy. |
+| Valuation | Explicit `pricing_version: 2`; every priced asset's full two-source policy, append-only ID/ordinal, source runtimes, independence IDs, USD denomination, decimals, reviewed ages/disagreement and proxy/admin/implementation authorities. Observe both raw rounds and `priceBounds` fingerprint at the same confirmed block. Genuine sequencer status or independently approved initial no-feed chain policy remains separate. |
 | Randomness | Qualified VRF coordinator and its implementation/admin/operator identities, subscription consumers and payment asset where applicable. A matching ABI is not qualification. |
-| Optional input conversion | Each admitted single-hop V3 router, factory, pool and input/output token address; reviewed code pins, fee and immutable route identity. |
+| Optional input conversion | Each admitted typed v3 or static hookless v4 route, exact source/output assets, venue/runtime/fee bindings and full-operation qualification. A route does not establish a safe USD source. |
 
 Current selected-market identities and dated observations are retained in
 [pool selection](POOL_SELECTION.md) and the [pinned pool observation](../reports/hookless-pool/observed-pool.json).
@@ -140,7 +141,7 @@ record remaining qualification; none is production approval. A v4 **pool ID is a
 bytes32 identity**, not a wallet or a separate pool-contract address. Native
 admission supports initialized static, hookless ETH/ZZZ fee tiers on the pinned
 Robinhood deployment; supported ERC20 pools use ordinary admission. Registration
-does not enable arbitrary venues. Production ZZZ/USD pricing and VRF remain unset.
+does not enable arbitrary venues. Production source pairs for ETH/ZZZ/USDG/USDC, their independent qualification and VRF remain unset. See [pricing requirements](PRICE_SECURITY.md).
 
 ## External custody and future-chain dependencies
 

@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -159,7 +163,7 @@ contract CanonicalHandoffTest is Test {
         s.ac.bind(Ids.BUYBACK, address(new ZZZBuyback(address(s.ac), address(token0), 1e30)));
         s.ac.bind(Ids.MIGRATION, address(s.migration)); s.ac.bind(Ids.ORACLE, address(oracle));
         s.ac.bind(Ids.POOLS, address(s.pools));
-        oracle.setFeed(address(token0), address(feed), 3600); oracle.setFeed(address(token1), address(feed), 3600);
+        oracle.setTestFeed(address(token0), address(feed), 3600); oracle.setTestFeed(address(token1), address(feed), 3600);
         if (admitAssets) {
             s.rewards.addAsset(address(token0)); s.rewards.addAsset(address(token1));
             s.nft.addRoyaltyAsset(address(token0));
@@ -310,6 +314,13 @@ contract CanonicalHandoffTest is Test {
         emit log_named_uint("handoff.commit-and-activate.peak", peakCommitGas);
     }
     function _coolSystem(System memory s) private {
+        ZZZOracle oracle=ZZZOracle(s.ac.module(Ids.ORACLE));
+        vm.cool(address(oracle.contributionPricing()));
+        address[2] memory pair=[address(token0),address(token1)];
+        for(uint256 i;i<pair.length;++i) {
+            ZZZOracle.DualPolicy memory p=oracle.policy(oracle.activePolicy(pair[i]));
+            vm.cool(p.primary.source);vm.cool(p.secondary.source);
+        }
         bytes32[20] memory ids = [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,
             Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,
             Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT,Ids.CANONICAL,Ids.NFT_CANONICAL,Ids.VAULT_CANONICAL,Ids.FEES_CANONICAL];

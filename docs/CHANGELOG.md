@@ -1,3 +1,13 @@
+## 2026-10-24 - Dual-source pricing and factual contribution guards
+
+Implemented [pricing2](PRICE_SECURITY.md), frozen Entry/direct contribution
+bases, actual LP/spot/callback checks and current backend/preflight witnesses.
+The user selected3% feed agreement; execution caps remain separate. Local legacy
+bootstrap rejects incompatible current artifacts; existing state is preserved.
+Read [scoped verification](../reports/price-security/VERIFICATION.md) for diagnostic,
+repair and reuse boundaries. Real sources/services and production approval remain
+open. Publication is recorded separately.
+
 ## Native V2 inventory and preflight - 2026-10-24
 
 [Current schema-5 preflight](PRODUCTION_PREFLIGHT.md) validates native/V4 bindings,

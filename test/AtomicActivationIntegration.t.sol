@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -67,8 +71,8 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         venue = new VaultLiquidityMock(address(t0), address(t1));
         ac.bind(Ids.LIQUIDITY, address(venue));
         MockFeed pairFeed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(pairFeed), 3600);
-        oracle.setFeed(address(t1), address(pairFeed), 3600);
+        oracle.setTestFeed(address(t0), address(pairFeed), 3600);
+        oracle.setTestFeed(address(t1), address(pairFeed), 3600);
         rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
         registry = new ZZZPoolRegistry(address(ac)); ac.bind(Ids.POOLS, address(registry));
         assets = registry.activationAssets(); entry = registry.activationEntry();
@@ -78,7 +82,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assertEq(assets.policyCount(), 2);
         assertEq(entry.registry(), address(registry)); assertEq(address(entry.activationAssets()), address(assets));
         stable = new MockToken(6); stableFeed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(stable), address(stableFeed), 3600);
+        oracle.setTestFeed(address(stable), address(stableFeed), 3600);
         assets.setAsset(address(stable), true, address(stable).codehash, REVIEW);
         factory = new EntryFactoryFixture(); router = new AtomicIntegrationRouter(address(factory));
         conversionPool = new EntryPoolFixture(address(factory), address(stable), address(t0)); factory.set(address(conversionPool));

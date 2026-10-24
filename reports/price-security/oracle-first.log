@@ -1,0 +1,71 @@
+Compiling 53 files with Solc 0.8.26
+Solc 0.8.26 finished in 22.61s
+Compiler run successful with warnings:
+Warning (8760): This declaration has the same name as another declaration.
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZOracle.sol:83:31:
+   |
+83 |     function _recordSequencer(SequencerPolicy memory policy) private returns (bytes32 id) {
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZOracle.sol:112:5:
+    |
+112 |     function policy(bytes32 id) external view returns (DualPolicy memory) { return policies[id]; }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (8760): This declaration has the same name as another declaration.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZOracle.sol:202:9:
+    |
+202 |         SequencerPolicy memory policy = sequencerPolicies[activeSequencerPolicy];
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZOracle.sol:112:5:
+    |
+112 |     function policy(bytes32 id) external view returns (DualPolicy memory) { return policies[id]; }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T20:30:22.042858Z  WARN traces::etherscan: etherscan config not found
+
+Ran 26 tests for test/DualOracleSecurity.t.sol:DualOracleSecurityTest
+[PASS] testAssetDecimalsChangeFails() (gas: 48242)
+[PASS] testDualBoundsUseLowerForThresholdAndUpperForConversionQuote() (gas: 1513734)
+[PASS] testExactFreshnessBoundaryAccepted() (gas: 101923)
+[PASS] testFingerprintBindsCompleteRoundsPolicyAndOracleDomain() (gas: 539970)
+[PASS] testFutureZeroAndReversedTimestampsRejected() (gas: 247592)
+[PASS] testFuzzBoundsAndSpreadNeverFavorSingleSource(uint96,uint16) (runs: 1000, μ: 1173679, ~: 1174030)
+[PASS] testImmediateGovernanceAfterSealAndUnauthorizedReconfigurationBlocked() (gas: 428369)
+[PASS] testIncompleteZeroAndNoncanonicalRoundsRejected() (gas: 178741)
+[PASS] testMalformedShortAndOversizedSourceResponsesRejected() (gas: 229877)
+[PASS] testMaximumNormalizedPriceAndOneUnitAbove() (gas: 1187878)
+[PASS] testMixedDecimalsNormalizedAndNativeIdentityExplicit() (gas: 1304480)
+[PASS] testNormalizedOverflowRejectedWithDomainError() (gas: 80582)
+[FAIL: next call did not revert as expected] testPolicyAdmissionRejectsCurrentlyDivergentOrInvalidSource() (gas: 32070)
+[PASS] testPolicyHistoryAppendOnlyEvenWhenReturningToSameParameters() (gas: 479963)
+[FAIL: next call did not revert as expected] testPolicyRejectsSameAddressOrSameIndependenceIdentity() (gas: 14781)
+[PASS] testPolicyRejectsZeroReviewWrongRuntimeBadAgeAndExcessiveSpread() (gas: 117807)
+[PASS] testRevertingSourceDoesNotSelectTheOther() (gas: 59939)
+[PASS] testRuntimeChangeFailsEvenWithSameAnswer() (gas: 78064)
+[PASS] testSequencerDownGraceAndRecoveryStillGateDualPrices() (gas: 3402144)
+[PASS] testSourceDecimalsChangeFailsEvenWithSameRuntime() (gas: 80410)
+[PASS] testSpreadExactBoundaryAndOneRawUnitAbove() (gas: 145129)
+[PASS] testStableDepegUsesBothActualPricesNotOneDollar() (gas: 153119)
+[PASS] testStaleEitherSourceCannotFallBackToHealthySource() (gas: 217316)
+[PASS] testUnknownAssetAndLegacySingleFeedAreExplicitlyRejected() (gas: 30172)
+[PASS] testZeroAndNegativeAnswersRejectedWithoutFallback() (gas: 218095)
+[PASS] testZeroSpreadRequiresExactNormalizedAgreement() (gas: 433386)
+Suite result: FAILED. 24 passed; 2 failed; 0 skipped; finished in 503.12ms (527.14ms CPU time)
+
+Ran 1 test suite in 511.85ms (503.12ms CPU time): 24 tests passed, 2 failed, 0 skipped (26 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/DualOracleSecurity.t.sol:DualOracleSecurityTest
+[FAIL: next call did not revert as expected] testPolicyAdmissionRejectsCurrentlyDivergentOrInvalidSource() (gas: 32070)
+[FAIL: next call did not revert as expected] testPolicyRejectsSameAddressOrSameIndependenceIdentity() (gas: 14781)
+
+Encountered a total of 2 failing tests, 24 tests succeeded
+

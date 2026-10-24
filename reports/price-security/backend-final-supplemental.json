@@ -1,0 +1,71 @@
+{
+  "scope": "Read-only final configuration/event preservation/doc review; no test suite repeated, provider call, signing or deployment",
+  "validator": {
+    "exit_code": 1,
+    "status": "blocked",
+    "ready": false,
+    "deployment_authorized": false,
+    "issues": 817,
+    "pricing_missing_explicitly_blocked": true
+  },
+  "example": {
+    "pricing_version": 2,
+    "helper_count": 15,
+    "live_sources_selected": false,
+    "live_disagreement_or_freshness_selected": false,
+    "approved_template_disagreement_bps": 300,
+    "disagreement_selection": "User selected 3% per-asset source-disagreement tolerance; source/freshness/proxy qualification remains unset; this is not an on-chain configuration"
+  },
+  "event_descriptors": {
+    "previous_count": 125,
+    "current_count": 128,
+    "all_previous_unchanged": true,
+    "new_events": [
+      "ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)",
+      "DualPolicyActivated(address,bytes32,bytes32)",
+      "DualPolicyRecorded(bytes32,address,address,address,bytes32,bytes32,uint16,bytes32)"
+    ],
+    "previous_catalog_sha256": "fb71d7cc7c7813cc598cfc5c5ef062cd8a7440a19e05397501631bb2ab4a7dd6"
+  },
+  "backend_bindings": {
+    "all_match": true,
+    "count": 14,
+    "sha256": {
+      "frontend_api/activation_config.py": "f9e8d4ea74b66317b7331aaefb7d33ab97299554a69398848be2d9bfda19197b",
+      "frontend_api/activation.py": "68650562f4882d1a7bf0c49a4715486009bc0ca2fad770c00b377b20d7516a2a",
+      "frontend_api/activation_trace.py": "e3b305f6723221175f41a5ce8c181be02154062a457abba53cafca759077af38",
+      "frontend_api/earnings_prices.py": "ac40409001f4203a8f13d34183f1e1d125c30127ae338077603a8d9fcab3513e",
+      "frontend_api/earnings.py": "c7bfd2287b3c0846e7b8ccab6fed30382ed1331a90814e825b39c790bbc6d6a0",
+      "frontend_api/wallet_earnings.py": "dd0564859a8bb643848857f0d44ace7843098a8aae75ca381e6c6f1cb636dde3",
+      "frontend_api/service.py": "6487985ece0a506a2ee50d3c2702021655c1076ddef4cf72804fa5f577021d59",
+      "zzz_ops/price_policy.py": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+      "zzz_ops/production_v2.py": "ed85797bc2cb36be3a74203471b4efe654b27c5d750dfadb5deda776f053407d",
+      "zzz_ops/production_observer.py": "1aafc57cda742a4bf51252d9fb9aea86a8684bed1028a634ead5ee4b76d8975e",
+      "tests_python/test_dual_price_integration.py": "1286b83099c1b39b3965527904e14e36ab6d523a6ab1d436098618945d41b6d9",
+      "tests_python/dual_price_fixtures.py": "3f3324576b255ae958bf9a2f6f5cf0b61fbe19229a8b0ac975936abfdf4e41b5",
+      "tests_python/test_production_v2.py": "6358ec636fb5b64c9aaa09f00d29e136a70b48bc2d26b17105ccbb6a321efd52",
+      "tests_python/test_production_observer.py": "93a816b5806a763c45e5c602b0aa0cef745a5e20181ce2e543f4dceaa6d3e20f"
+    }
+  },
+  "separate_artifact_sha256": {
+    "config/production.example.json": "12136f2a8a35e83032cec37a5d5ab839345252f03d8bbcd6b6cf961dca725ce0",
+    "indexer/event_schema.json": "b359b8ef7f47fe1d9dc2ff47991d4ecf1934457d535d01d7d9a4826c7bfe8589",
+    "tests_python/test_event_schema.py": "bfb72e5c404010e82ce216fb2f70f3641ecfe5b43e747be1dd34361f4ae630c0",
+    "docs/PRICE_SECURITY.md": "6bc28c9ec0afd376e28335636922835f2d4f56c010eed972b2b5cb5ecf517c11",
+    "src/ZZZContributionPricing.sol": "b077aa133f3f6ace9c06b9fc4eb19ec78e48058772c8c87cd443da2548317677"
+  },
+  "documentation_review": {
+    "actual_lp_and_usd_risk_separated": true,
+    "dual_source_and_missing_qualification_explicit": true,
+    "native_trace_and_early_cap_capture_agree": true,
+    "followup": "Earlier doc snapshot retained its recorded hash; current wording updates are maintained and verified separately by the root documentation workflow."
+  },
+  "template_refresh": {
+    "reason": "Explicit user selection of 3% source-disagreement tolerance; hard ceiling unchanged at 500bps",
+    "superseded_template_sha256": "31e0206ec7fb26751d75f587bec4fdad20583cced2790b64c528f0c659c7f9e1",
+    "current_template_sha256": "12136f2a8a35e83032cec37a5d5ab839345252f03d8bbcd6b6cf961dca725ce0",
+    "only_validator_rerun": true,
+    "no_python_suite_repeated": true,
+    "no_live_provider_or_onchain_action": true
+  }
+}

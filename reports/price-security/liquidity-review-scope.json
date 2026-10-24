@@ -1,0 +1,222 @@
+{
+  "scopes": {
+    "manager": {
+      "distinct_cases": 11,
+      "passing_cases": 11,
+      "cases": {
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testFinalRefundCannotTransferLPBehindEarlierOwnerCheck()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testHonestInstalledV4IncreaseMatchesRawLiquidityAndExactPrincipal()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testHonestInstalledV4NativeMintAndIncreaseUseNoWrapper()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testIncorrectPhysicalLiquidityCannotPassFactualCheck()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testIncreaseRejectsRealPriceChangeDuringApprovalReset()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testIncreaseRejectsRealPriceChangeDuringFinalRefund()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testIncreaseRejectsRealPriceChangeDuringTokenPullWithinOrdinaryDeviation()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testMintRejectsRealPriceChangeDuringApprovalReset()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testMintRejectsRealPriceChangeDuringFinalRefund()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testMintRejectsRealPriceChangeDuringTokenPullWithinOrdinaryDeviation()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "tests.json",
+          "decoded_logs": []
+        },
+        "test/LiquidityFactualChecks.t.sol:LiquidityFactualChecksTest::testCallbackTradeIsWithinOrdinaryPriceGuardYetChangesActualSpot()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "final-case.json",
+          "decoded_logs": []
+        }
+      }
+    },
+    "entry": {
+      "distinct_cases": 6,
+      "passing_cases": 6,
+      "cases": {
+        "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "entry/tests.json",
+          "decoded_logs": []
+        },
+        "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "entry/tests.json",
+          "decoded_logs": []
+        },
+        "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "entry/tests.json",
+          "decoded_logs": []
+        },
+        "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "entry/tests.json",
+          "decoded_logs": []
+        },
+        "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "entry/tests.json",
+          "decoded_logs": []
+        },
+        "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureSurvivesUntilFinalApprovalReset()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "entry/tests.json",
+          "decoded_logs": []
+        }
+      }
+    },
+    "governed_contribution": {
+      "distinct_cases": 3,
+      "passing_cases": 3,
+      "cases": {
+        "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest::testActivationAndGrowthUseGovernedContributionLimitWithVenueFloorRetained()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "governed-repaired/tests-final.json",
+          "decoded_logs": []
+        },
+        "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest::testPackedContributionCapStaysFixedDespiteLaterGovernanceChange()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "governed/tests.json",
+          "decoded_logs": []
+        },
+        "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest::testRetainedValueRoundsUpAndCannotExceedHardMaximum()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "governed/tests.json",
+          "decoded_logs": []
+        }
+      }
+    },
+    "capacity": {
+      "distinct_cases": 8,
+      "passing_cases": 8,
+      "cases": {
+        "test/CanonicalHandoff.t.sol:CanonicalHandoffTest::testMaximumPrefundedCompanionDomainsFitBudgetAndAbortPreservesAllPrefunds()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        },
+        "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdActivationAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        },
+        "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdActivationWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests-repaired.json",
+          "decoded_logs": [
+            "combined.4-buckets.32-indexed-assets.activation: 11864627"
+          ]
+        },
+        "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        },
+        "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        },
+        "test/ProductionGas.t.sol:ProductionGasTest::testGasCollection1()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        },
+        "test/ProductionGas.t.sol:ProductionGasTest::testGasCollection1000()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        },
+        "test/ProductionGas.t.sol:ProductionGasTest::testGasMaximum32FundedRewardAssets()": {
+          "status": "Success",
+          "reason": null,
+          "evidence": "gas/tests.json",
+          "decoded_logs": []
+        }
+      }
+    }
+  },
+  "distinct_scoped_passing_cases": 28,
+  "owned_current_sha256": {
+    "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+    "test/LiquidityFactualChecks.t.sol": "5aa0caa156d287d97027f3c4757c784d43a7198320bf514212d9aa08fe69988d",
+    "test/ContributionEntryPriceSecurity.t.sol": "f06b0a9a03842131e20f42e4c972a28c3fcc45dd3efa271a7cae3d93c3c69de6",
+    "test/GovernedExecutionLoss.t.sol": "b9eacff3c62319b156def33b85bed4bfb9803d467f688a328006c45c2d63472e",
+    "test/ProductionGas.t.sol": "4d89be7facd6de04aa0b95c8a5df1f09f55b13c272791e00d40dbde5bfa1b387",
+    "test/CombinedCapacityGas.t.sol": "78e2ac20ee9fbd2622932a50b36bb77a81306aeab8241cf1c0208a6db1a32b05",
+    "test/CanonicalHandoff.t.sol": "9d4c2a92d3dc0143590a1516be5b7bde9b290edba031fa9755fadaf84dff0071"
+  },
+  "capacity_repair": {
+    "initial_measured_gas": 12394559,
+    "repaired_measured_gas": 11864627,
+    "saved_gas": 529932,
+    "unchanged_limit": 12000000,
+    "remaining_margin": 135373,
+    "rerun_cases": 1,
+    "only_changed_cached_input": "src/ZZZContributionPricing.sol",
+    "repaired_source_sha256": "90e17557cedd4c04a4fbcad6f5dba016445ac5709957c4d3e24575ba7eabde07"
+  },
+  "scope_limit": "Source-bound isolated Foundry scopes; no full final-source regression or real provider/route gas qualification. Earlier successful seven gas cases retain their preoptimization helper scope; only the failed case reran after optimization. Diagnostics are preserved separately. Installed PoolManager/PositionManager/StateView in manager tests; bounded Permit2, source policies, feeds and callback authority are explicit test fixtures.",
+  "no_threshold_relaxation": true,
+  "public_or_live_chain_access": false,
+  "service_or_existing_anvil_changes": false
+}

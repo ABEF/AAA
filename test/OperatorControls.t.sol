@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
@@ -39,7 +43,7 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         t0 = new MockToken(0); t1 = new MockToken(0);
         if (address(t0) > address(t1)) (t0, t1) = (t1, t0);
         feed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(feed), 3600); oracle.setFeed(address(t1), address(feed), 3600);
+        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         ac.bind(Ids.NFT,address(nft)); ac.bind(Ids.POOLS,address(registry)); ac.bind(Ids.ORACLE,address(oracle));
         ac.bind(Ids.REWARDS,address(new RangeRewardAdmission(address(ac))));
         bytes32[12] memory ids = [Ids.VAULT,Ids.LIQUIDITY,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,

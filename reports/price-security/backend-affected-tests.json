@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "tests_python.test_frontend_activation",
+    "tests_python.test_earnings",
+    "tests_python.test_native_backend_boundary",
+    "tests_python.test_typed_v4_activation",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_full_activation_uses_reviewed_dual_prices",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_pricing_phase_witness_rejects_missing_reordered_or_changed_callbacks",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 64.657,
+  "scope": "Changed backend pricing/trace plus preserved legacy activation/earnings/native/routing boundaries; no network or actual provider qualification"
+}

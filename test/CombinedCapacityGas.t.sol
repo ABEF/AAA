@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -130,7 +134,7 @@ contract CombinedCapacityGasTest is Test {
         for (uint256 i; i < 32; ++i) {
             MockToken token = new MockToken(0);
             tokens.push(token);
-            oracle.setFeed(address(token), address(feed), 3600);
+            oracle.setTestFeed(address(token), address(feed), 3600);
             rewards.addAsset(address(token));
             if (i < 16) nft.addRoyaltyAsset(address(token));
             token.mint(OWNER, 100_000);
@@ -181,6 +185,11 @@ contract CombinedCapacityGasTest is Test {
     }
 
     function _cool() private {
+        vm.cool(address(oracle.contributionPricing()));
+        for (uint256 i; i < tokens.length; ++i) {
+            ZZZOracle.DualPolicy memory p=oracle.policy(oracle.activePolicy(address(tokens[i])));
+            vm.cool(p.primary.source);vm.cool(p.secondary.source);
+        }
         vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
         vm.cool(address(access)); vm.cool(address(pools)); vm.cool(address(feed));
         vm.cool(address(vrf)); vm.cool(address(policy)); vm.cool(address(venue));
@@ -196,6 +205,7 @@ contract CombinedCapacityGasTest is Test {
         vm.cool(access.module(Ids.VAULT_CANONICAL)); vm.cool(access.module(Ids.FEES_CANONICAL));
         // Reading companion bindings warms the controller; cool it last.
         vm.cool(address(access));
+        vm.cool(address(oracle));
     }
 
     function _assertHistoricalFundingExcluded() private view {

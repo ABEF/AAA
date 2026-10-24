@@ -117,7 +117,7 @@ class Earnings:
         result=model.report(self.descriptors)
         if identifier is not None:
             self.check_paid(p,model,financial,block,lp,royalties)
-        prices=(self.prices.read(block) if self.prices else {a:{'available':False,'usd_per_token_18':None,'reason':'price_not_configured'} for a in self.descriptors})
+        prices=(self.prices.read(block,timestamp=header['timestamp']) if self.prices else {a:{'available':False,'usd_per_token_18':None,'reason':'price_not_configured'} for a in self.descriptors})
         value_report(result,self.descriptors,prices)
         result.update(schema=1,chain_id=p.chain,token_id=None if identifier is None else str(identifier),owner=owner,
             lifecycle=life,provenance={'block_number':header['number'],'block_hash':header['hash'],

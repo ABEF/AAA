@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {Test} from "forge-std/Test.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ExactToken} from "../src/libraries/ExactToken.sol";
@@ -12,7 +16,7 @@ contract OracleAndTransfersTest is Test {
     function setUp() public {
         vm.warp(1_000_000);ac=new MockAccess();t0=new MockToken(18);t1=new MockToken(6);
         f0=new MockFeed(8,2000e8);f1=new MockFeed(8,1e8);oracle=new ZZZOracle(address(ac),address(0));
-        oracle.setFeed(address(t0),address(f0),3600);oracle.setFeed(address(t1),address(f1),3600);
+        oracle.setTestFeed(address(t0),address(f0),3600);oracle.setTestFeed(address(t1),address(f1),3600);
     }
     function testDecimalNormalization() public {
         assertEq(oracle.price(address(t0)),2000e18);assertEq(oracle.value(address(t1),1e6),1e18);
@@ -26,11 +30,11 @@ contract OracleAndTransfersTest is Test {
     function testUnknownFeedRejected() public {vm.expectRevert();oracle.price(address(0x123));}
     function testSequencerDownRejected() public {
         MockFeed seq=new MockFeed(0,1);ZZZOracle l2=new ZZZOracle(address(ac),address(seq));
-        l2.setFeed(address(t0),address(f0),3600);vm.expectRevert();l2.price(address(t0));
+        l2.setTestFeed(address(t0),address(f0),3600);vm.expectRevert();l2.price(address(t0));
     }
     function testSequencerGraceThenRecovery() public {
         MockFeed seq=new MockFeed(0,0);ZZZOracle l2=new ZZZOracle(address(ac),address(seq));
-        l2.setFeed(address(t0),address(f0),3600);vm.expectRevert();l2.price(address(t0));
+        l2.setTestFeed(address(t0),address(f0),3600);vm.expectRevert();l2.price(address(t0));
         vm.warp(block.timestamp+3601);f0.set(2000e8,block.timestamp,block.timestamp);assertEq(l2.price(address(t0)),2000e18);
     }
     function testTaxedTokenRejectedAtomically() public {

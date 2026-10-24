@@ -188,7 +188,8 @@ def fixture():
         constructor_arguments_included=True,all_production_objects=True)
     pool['review_evidence']['configuration_sha256']=P.configuration_hash(P.pool_configuration(chain,pool))
     chain['governance']['review_evidence']['configuration_sha256']=P.configuration_hash(P.governance_configuration(chain))
-    return result
+    from tests_python.dual_price_fixtures import upgrade_inventory
+    return upgrade_inventory(result,proof)
 
 
 def v3_fixture():
@@ -196,8 +197,11 @@ def v3_fixture():
     wrapper = addr(9100); converter = chain['helpers']['lp_converter']
     token = copy.deepcopy(chain['tokens'][0])
     token.update(address=wrapper,kind='erc20',runtime_hash=HASH,observed_runtime_hash=HASH)
-    token['feed']['review_evidence']['asset']=wrapper
+    from tests_python.dual_price_fixtures import rebind_token
+    token['price_policy']['ordinal']=len(chain['tokens'])
+    rebind_token(chain,token,proof)
     chain['tokens'].append(token)
+    for asset in chain['tokens']: asset['price_policy']['observed_policy_count']=len(chain['tokens'])
     for role,value in (('v3_router',addr(9101)),('v3_factory',addr(9102)),('v3_pool',addr(9103))):
         chain['dependencies'][role] = {'address':value,'runtime_hash':HASH,'observed_runtime_hash':HASH,
             'bindings':{},'observed_bindings':{},'authority_review':proof(
@@ -287,11 +291,12 @@ class ProductionV2Tests(unittest.TestCase):
         self.config=fixture();self.chain()['tokens'][0]['runtime_hash']=HASH;self.blocked('native.identity')
 
     def test_required_zzz_feed_missing_stale_depegged_or_misbound_blocks(self):
-        for field,value in (('answer',0),('updated_at',NOW-4000),('denomination','ETH'),
-            ('observed_oracle_feed',{'source':addr(2)})):
+        for field,value in (('answer',0),('updated_at',NOW-4000),('answered_in_round',0)):
             with self.subTest(field=field):
-                self.config=fixture();self.chain()['tokens'][1]['feed'][field]=value
-                self.blocked('feed.binding' if field=='observed_oracle_feed' else 'feed.invalid')
+                self.config=fixture();self.chain()['tokens'][1]['price_policy']['sources'][0][field]=value
+                self.blocked('pricing.round')
+        self.config=fixture();self.chain()['tokens'][1]['price_policy']['observed_policy_id']=HASH
+        self.blocked('pricing.binding')
 
     def test_pool_identity_accounting_flags_and_bounds_are_verified(self):
         for field,value,code in (('pool_id',HASH,'pool.identity'),('hooks',addr(2),'pool.assets'),
@@ -425,13 +430,15 @@ class ProductionV2Tests(unittest.TestCase):
         seq['policy']={'source':seq['address'],'expectedCodeHash':HASH,'reviewHash':'0x'+SHA,'bootstrapAdmission':False}
         seq['observed_policy']=dict(seq['policy']);chain['sequencer']=seq
         chain['modules']['oracle']['observed_bindings']['sequencerFeed']=seq['address']
+        from tests_python.dual_price_fixtures import rebind_token
+        for token in chain['tokens']: rebind_token(chain,token,proof)
         self.assertTrue(self.result()['ready'],self.result()['issues'])
         seq['answer']=1;self.blocked('sequencer.unavailable')
         seq['answer']=0;seq['observed_active_policy_id']=P.ZERO_HASH;self.blocked('sequencer.policy')
 
     def test_feed_review_cannot_be_reused_for_another_price_source(self):
-        self.chain()['tokens'][1]['feed']['review_evidence']['source']=addr(123)
-        self.blocked('feed.review')
+        self.chain()['tokens'][1]['price_policy']['sources'][0]['review_evidence']['source']=addr(123)
+        self.blocked('pricing.source_review')
 
     def test_changed_directional_protocol_fee_requires_route_requalification(self):
         route=self.chain()['conversion_routes'][0]

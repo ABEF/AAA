@@ -8,6 +8,8 @@
     "UNQUALIFIED EXAMPLE. No PoPL deployment, approved authority wallets, live price feeds, complete read-only observations or independent production evidence is supplied. Public signing and deployment are not authorized.",
     "Only known source-selected Robinhood native venue/token identities and hard pins are populated. They are intended references, not fresh on-chain observations or a service qualification. Observed fields and review evidence stay unset.",
     "Schema 5 is the explicit native/accounting-V2/routing-V2/governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2.",
+    "Pricing version 2 requires two independently reviewed USD sources PER asset, immutable source-runtime pins, full append-only policy and fresh agreed rounds. Two addresses, the target pool spot, a presumed stable peg or correlated test mirrors do not qualify independence. The user-selected disagreement tolerance is 300 bps (3%); source addresses and freshness limits are deliberately unset; no live ZZZ pair of sources is supplied.",
+    "A 3% agreement tolerance does not raise the separate default 1% contribution/conversion loss cap. Upper-input/lower-output conservative valuation can reject an operation within 3% agreement; there is no averaging, one-source fallback or automatic cap increase.",
     "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
     "Current policy defaults shown are contribution 1%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
     "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Add USDC/USDG only with reviewed exact addresses, feeds and routes; no stable peg is assumed.",
@@ -416,6 +418,19 @@
           "bindings": {
             "parent": null
           }
+        },
+        "contribution_pricing": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "oracle": null,
+            "active": false
+          }
         }
       },
       "dependencies": {
@@ -529,18 +544,63 @@
           "observed_decimals": null,
           "non_rebasing": null,
           "transfer_tax": null,
-          "feed": {
-            "source": null,
-            "runtime_hash": null,
-            "observed_runtime_hash": null,
-            "denomination": "USD",
-            "decimals": null,
-            "maximum_age_seconds": null,
-            "answer": null,
-            "updated_at": null,
-            "round_id": null,
-            "answered_in_round": null,
-            "observed_oracle_feed": null,
+          "price_policy": {
+            "policy_id": null,
+            "ordinal": null,
+            "policy": {
+              "token": "0x0000000000000000000000000000000000000000",
+              "primary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "secondary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "maxDeviationBps": 300,
+              "assetDecimals": 18,
+              "reviewHash": null
+            },
+            "observed_pricing_version": null,
+            "observed_policy_id": null,
+            "observed_policy": null,
+            "observed_policy_count": null,
+            "observed_ordinal_id": null,
+            "observed_bounds": null,
+            "sources": [
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              },
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              }
+            ],
             "review_evidence": null
           }
         },
@@ -553,18 +613,63 @@
           "observed_decimals": null,
           "non_rebasing": null,
           "transfer_tax": null,
-          "feed": {
-            "source": null,
-            "runtime_hash": null,
-            "observed_runtime_hash": null,
-            "denomination": "USD",
-            "decimals": null,
-            "maximum_age_seconds": null,
-            "answer": null,
-            "updated_at": null,
-            "round_id": null,
-            "answered_in_round": null,
-            "observed_oracle_feed": null,
+          "price_policy": {
+            "policy_id": null,
+            "ordinal": null,
+            "policy": {
+              "token": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+              "primary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "secondary": {
+                "source": null,
+                "expectedCodeHash": null,
+                "independenceId": null,
+                "maxAge": null,
+                "feedDecimals": null
+              },
+              "maxDeviationBps": 300,
+              "assetDecimals": 18,
+              "reviewHash": null
+            },
+            "observed_pricing_version": null,
+            "observed_policy_id": null,
+            "observed_policy": null,
+            "observed_policy_count": null,
+            "observed_ordinal_id": null,
+            "observed_bounds": null,
+            "sources": [
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              },
+              {
+                "source": null,
+                "runtime_hash": null,
+                "observed_runtime_hash": null,
+                "denomination": "USD",
+                "decimals": null,
+                "round_id": null,
+                "answer": null,
+                "started_at": null,
+                "updated_at": null,
+                "answered_in_round": null,
+                "review_evidence": null
+              }
+            ],
             "review_evidence": null
           }
         }
@@ -667,7 +772,7 @@
         },
         "pricing": {
           "status": "unqualified",
-          "profile": "independent_usd_native_v2",
+          "profile": "independent_dual_usd_v2",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -691,7 +796,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting_v2_routing_v2",
+          "profile": "accounting_v2_routing_v2_pricing_v2",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -716,5 +821,6 @@
         }
       }
     }
-  ]
+  ],
+  "pricing_version": 2
 }

@@ -117,11 +117,13 @@ class ActivationTransactions:
         raw=self.p.rpc.call('debug_traceCall',[{**tx,'gas':hex(GAS_CAP)},block,
             {'tracer':'callTracer','timeout':'5s','tracerConfig':{'withLog':True}}])
         def verify_historical(items):
-            checked,prices=self.config.verify(self.p,block,[token for token,_,_ in items])
+            checked,prices,bounds=self.config.verify(self.p,block,[token for token,_,_ in items],timestamp=req.get('pricing_timestamp'),include_bounds=True)
+            req['reviewed_price_bounds'].update(bounds)
             if checked!=pins:raise ProjectionError('Historical compound deployment binding changed')
             for token,amount,value in items:
                 expected=amount*prices[token]//10**self.config.tokens[token]['decimals']
-                if value!=expected:raise ProjectionError('Historical compound price differs from the reviewed snapshot')
+                if value is not None and value!=expected:raise ProjectionError('Historical compound price differs from the reviewed snapshot')
+            return sum(amount*prices[token]//10**self.config.tokens[token]['decimals'] for token,amount,_value in items)
         return measure(raw,{**tx,'gas':hex(GAS_CAP)},pins,req,gross,max_slippage,verify_historical)
 
     @bounded_request
@@ -129,11 +131,13 @@ class ActivationTransactions:
         req=parse(payload); p=self.p; cfg=self.config
         req['accounting_version'] = p.accounting_version
         req['routing_version'] = cfg.routing_version
+        req['pricing_version'] = cfg.pricing_version
         if cfg.routing_version == 1 and req['slippage'] > 100:
             raise ActivationInputError('Legacy preparation allows at most 100 basis points of caller slippage')
         if (req['pool'],req['source']) not in cfg.sources:
             raise ActivationInputError('No explicitly reviewed route for this source and pool')
         header,head,block=p._snapshot(); now=self._fresh(header)
+        req['pricing_timestamp']=header['timestamp']
         expire_at(min(now+DRAFT_SECONDS,header['timestamp']+SNAPSHOT_AGE),p.clock)
         life=p._verify_deployment(block)
         if life['paused'] or life['preparation_active']:
@@ -173,7 +177,8 @@ class ActivationTransactions:
                 raise ActivationInputError('Native input is unsupported for this pool')
             if req['source']!=ZERO and actual[0]!=account[0] and int(actual[0],16)!=0:
                 raise ProjectionError('Unexpected accounting token substitution')
-        pins,prices=cfg.verify(p,block,(source,req['token0'],req['token1']))
+        pins,prices,price_bounds=cfg.verify(p,block,(source,req['token0'],req['token1']),include_bounds=True,timestamp=header['timestamp'])
+        req['reviewed_price_bounds']=price_bounds
         req['execution_loss_bps'] = 100
         if cfg.routing_version == 2:
             maximum=int(p._call(pins['budget'],'MAX_LOSS_BPS()',block=block)[0],16)
@@ -183,6 +188,7 @@ class ActivationTransactions:
             req['execution_loss_bps']=loss
         req['output']=self._route(req,source,pins,block)
         gross=req['amount']*prices[source]//10**cfg.tokens[source]['decimals']
+        req['upper_input_usd'] = ((req['amount']*price_bounds[source]['upper']+10**cfg.tokens[source]['decimals']-1)//10**cfg.tokens[source]['decimals'] if cfg.pricing_version == 2 else gross)
         measured=int(p._call(pins['activation_assets'],'value(address,uint256)',source,req['amount'],block=block)[0],16)
         if measured!=gross: raise ProjectionError('Original-source valuation mismatch')
         contributed=p._uint('vault','contributionUSD(uint256)',req['id'],block=block)
@@ -259,7 +265,7 @@ class ActivationTransactions:
                 'liquidity_context':liquidity_context,
                 'contribution':None if result is None else {k:str(v) for k,v in result.items()},
                 'execution_limit_bps':req['execution_loss_bps'],
-                'minimum_deployed_usd_18':str(gross-gross*req['execution_loss_bps']//10000),
+                'minimum_deployed_usd_18':str(req['upper_input_usd']-req['upper_input_usd']*req['execution_loss_bps']//10000),
                 'minimum_liquidity_raw':str(req['minimum_lp']) if result else None,
                 'minimum_conversion_output_raw':str(req['minimum_out']) if result else None,
                 'network_gas':gas,'prepared_at':prepared,'expires_at':req['deadline'],
@@ -268,7 +274,7 @@ class ActivationTransactions:
                               'block_timestamp':header['timestamp'],'observed_head':head,'confirmations':p.confirmations,
                               'eip1898_require_canonical':True,'protocol_finalized':False,
                               'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity,
-                              'accounting_version':p.accounting_version,'routing_version':cfg.routing_version},
+                              'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,'pricing_version':cfg.pricing_version},
                 'wallet_revalidation_required':True,'state_overrides':False,
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '
                         'deadline, live simulation and gas. Approval is a separate transaction; reprepare after confirmation. '

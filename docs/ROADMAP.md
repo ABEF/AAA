@@ -1,3 +1,5 @@
+**Two-source price security (2026-10-24):** [Pricing-V2 and actual LP guards](PRICE_SECURITY.md) are implemented in the undeployed candidate, including frozen source/pair prices and limits before transfers/conversion, exact LP/spot checks and an Oracle-created fixed companion. The current schema-5 profile requires explicit pricing V2 and 15 helpers. Next qualify two genuinely independent USD sources per required asset, proxy/common-mode/depeg/outage policy, selected tolerances/ages, actual route execution and worst-case gas/recovery. No real source pair is approved. Independent audit and release approval remain open. [Scoped evidence](../reports/price-security/VERIFICATION.md).
+
 # Engineering roadmap
 
 **Native inventory tooling (2026-10-24):** [Schema-5 preflight and read-only observation](PRODUCTION_PREFLIGHT.md) now target actual native V2/v4 bindings and current governed limits. Legacy schema 4 remains historical. The example has missing public deployment/service/review records and must remain blocked. This tool does not close actual qualification, OpenSea, native website or independent audit gates.

@@ -1,0 +1,10 @@
+{
+  "command": "python -m unittest tests_python.test_event_schema",
+  "exit_code": 0,
+  "distinct_passes": 17,
+  "raw_console_result": "Ran 17 tests in 0.213s; OK",
+  "catalog": 128,
+  "prior_descriptors_unchanged": 125,
+  "new_descriptors": 3,
+  "scope": "Actual offline decoder/source-schema tests; no chain/indexer ingestion qualification."
+}

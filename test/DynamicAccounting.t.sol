@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {MockFeed} from "./mocks/Mocks.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
@@ -25,7 +29,7 @@ contract DynamicAccountingTest is PooledVaultFixture {
         assertEq(vault.sharesOf(id),shares);assertEq(vault.contributionUSD(id),500e18);
         // No rebalance: market marks alone change the NFT value.
         MockFeed higher=new MockFeed(8,120000000);
-        oracle.setFeed(address(t0),address(higher),3600);oracle.setFeed(address(t1),address(higher),3600);
+        oracle.setTestFeed(address(t0),address(higher),3600);oracle.setTestFeed(address(t1),address(higher),3600);
         assertEq(_value(id),588e18);assertEq(_value(other),11172e18);
         venue.setCloseLossBps(0);old=_record(id).lpTokenId;
         vault.rebalance(_bucket(),1,block.timestamp+100);

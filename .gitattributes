@@ -45,3 +45,6 @@ reports/typed-v4-routes/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eo
 
 # Preserve exact source-scoped native preflight diagnostics.
 reports/native-preflight/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact source-scoped dual pricing and LP verification receipts.
+reports/price-security/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

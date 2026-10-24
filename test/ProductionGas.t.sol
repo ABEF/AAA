@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -55,8 +59,8 @@ contract ProductionGasTest is Test {
         rewards = new ZZZRewards(address(access));
         fees = new ZZZFeeController(address(access));
         oracle = new ZZZOracle(address(access), address(0));
-        oracle.setFeed(address(tokens[0]), address(feed), 3600);
-        oracle.setFeed(address(tokens[1]), address(feed), 3600);
+        oracle.setTestFeed(address(tokens[0]), address(feed), 3600);
+        oracle.setTestFeed(address(tokens[1]), address(feed), 3600);
         access.bind(Ids.VAULT, address(vault));
         access.bind(Ids.NFT, address(nft));
         access.bind(Ids.MEMBERSHIP, address(membership));
@@ -92,6 +96,14 @@ contract ProductionGasTest is Test {
 
     function _cool() private {
         // Include every account reached by the workload, not merely the entrypoint.
+        vm.cool(address(oracle.contributionPricing()));
+        for (uint256 i; i < tokens.length; ++i) {
+            bytes32 id=oracle.activePolicy(address(tokens[i]));
+            if(id!=bytes32(0)) {
+                ZZZOracle.DualPolicy memory p=oracle.policy(id);
+                vm.cool(p.primary.source);vm.cool(p.secondary.source);
+            }
+        }
         vm.cool(address(vault.migrationBudget())); vm.cool(address(fees.receiverFactory()));
         vm.cool(address(access));
         vm.cool(address(vault));
@@ -115,6 +127,8 @@ contract ProductionGasTest is Test {
         vm.cool(access.module(Ids.VAULT_CANONICAL)); vm.cool(access.module(Ids.FEES_CANONICAL));
         // Reading companion bindings warms the controller; cool it last.
         vm.cool(address(access));
+        // Policy/getter observations above must not warm the measured Oracle.
+        vm.cool(address(oracle));
     }
 
     function _report(string memory prefix, string memory operation, uint256 spent) private {

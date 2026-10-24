@@ -12,6 +12,8 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Before sealing:** qualify the [native V2 implementation and remaining boundaries](docs/NATIVE_ETH_ARCHITECTURE.md), qualify the [typed v4 conversion candidate](docs/TYPED_V4_ROUTES.md), native profiles and real services, then complete independent security review. [Bounded operating controls](docs/POST_SEAL_POLICY.md) now allow future VRF gas/confirmation tuning and a buyback execution ceiling below its immutable maximum. [Execution-loss policy](docs/EXECUTION_LOSS_POLICY.md) retains 1% / 1% / 3% defaults; governance may change each category up to a hard 10%, with gas separate and original pending-custody minima preserved. At the default 1%, ZZZ conversion still needs a cheaper qualified route. Mainnet rehearsal must use a separate deployment; there is no collection reset.
 
+**Price security (2026-10-24):** [Two-source pricing and factual LP checks](docs/PRICE_SECURITY.md) are implemented in the undeployed candidate. Every priced asset requires two independently qualified USD sources. Entry freezes source/pair prices and operating limits before transfers/conversion; actual LP increments, raw spending and unchanged deployment spot are verified separately. Missing, stale or disagreeing sources stop the contribution. No live feed pair is selected or qualified; production remains NOT APPROVED.
+
 ## Project navigation
 
 | Purpose | Start here |
@@ -21,7 +23,8 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 | What is built and tested | [Feature and evidence reference](docs/IMPLEMENTATION_STATUS.md) - capabilities, boundaries and verification |
 | Manage the protocol | **[Operator manual](docs/OPERATOR_MANUAL.md)** - exact controls, range/assets/pools, emergency stops and restart procedures |
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
-| Production inventory | [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) - approved pins, actual read-only observations and actionable release blockers |
+| Production inventory | [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit pricing V2, 15 helper bindings, approved pins, actual observations and release blockers |
+| Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
 | Security and release | [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
@@ -52,7 +55,7 @@ flowchart LR
 | **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
 | **LP revenue accounting** | Creator inboxes and venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol), [creator intake](docs/EXTERNAL_REWARDS.md) |
 | **Royalties and claims** | RoyaltyRewards preserves per-NFT entitlements, isolates optional currency outages and credits batch-converted ETH to the same NFTs. Current owners claim through either ledger or ClaimRouter. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [converter](src/ZZZRoyaltyConverter.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [operator flow](docs/ROYALTY_SETTLEMENT.md) |
-| **Valuation and maintenance** | Oracle supplies guarded values; Strategy defines ranges and eligibility. Keeper calls execute through Vault, Compounder or Buyback within on-chain limits. | [Oracle](src/ZZZOracle.sol), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
+| **Valuation and maintenance** | Oracle requires two reviewed USD sources per asset. Its fixed pricing companion freezes contribution prices/limits and verifies marginal LP; Strategy defines guarded ranges and eligibility. Keeper maintenance stays within on-chain limits. | [Oracle](src/ZZZOracle.sol), [contribution pricing](src/ZZZContributionPricing.sol), [price security](docs/PRICE_SECURITY.md), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
 | **Governance and permissions** | AccessController binds modules and enforces immediate authorized configuration, guardian pause and keeper authorization. Sealing fixes module bindings; constrained configuration remains available. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
 | **Recovery and migration** | Migration atomically moves LP between admitted pools with identical actual currencies and governs all-ZZZ or explicit raw custody exits. Native raw exit sends ETH/ZZZ without WETH. Actual funded local LP is required for completion; external custody is trusted. A separate versioned handoff carries ownership, ledgers and backing to one compatible replacement. Cross-version and future-chain completion remain open. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
 
@@ -100,13 +103,13 @@ The target live flow is **website -> read/preparation API -> user wallet confirm
 | Step | Rule |
 | --- | --- |
 | **Mint** | Pay exactly **0.05 ETH** to the immutable mint recipient for a dormant NFT. Minting adds supply, not liquidity or reward eligibility. |
-| **Activate** | After traits are revealed, contribute at least **$100 in original gross input value**. At least **99% must become new LP**; conversion costs, slippage and undeployed input share one 1% limit. Network gas is separate. |
-| **Add liquidity** | Contributions from **$5 in original gross input value** grow the same NFT's LP allocation under the same 1% execution limit; gas is separate. A higher configured pool minimum still applies. Existing holders' assets cannot subsidize that limit; a top-up creates no extra collective membership. |
+| **Activate** | After reveal, the conservative original input value must reach **$100**. Conversion and new LP deployment share the captured execution limit (1% by default, governance maximum 10%); the upper input / lower LP price bounds tighten its floor. Network gas is separate. |
+| **Add liquidity** | Contributions from **$5 in conservative original input value** grow the same NFT under the captured contribution limit; gas is separate. Higher pool minima apply. Existing holders' assets cannot subsidize the new LP floor; a top-up adds no collective membership. |
 | **Hold or transfer** | The current owner can claim its funded balances. Transfers carry the LP allocation, remaining unclaimed balances and future fee rights. A seller can claim before a transfer, so an earlier listing balance is not guaranteed to the buyer. |
 
 **LP principal cannot be redeemed by holders.** It remains managed by the protocol for rebalancing, compounding and approved migration. A right to future funded fees has no expiry, but does not guarantee future revenue or capital value.
 
-Target activation assets are **ETH, ZZZ, USDG and USDC**, admitted by reviewed address and route. Actual routes and feeds still require qualification; USDC has no qualified funded route. The [atomic Entry](docs/ACTIVATION_ENTRY.md) binds the original contribution value through conversion into LP; [route qualification](docs/ACTIVATION_ROUTING.md) covers the remaining integration work.
+Target activation assets are **ETH, ZZZ, USDG and USDC**, admitted by reviewed address and route. Each economic asset needs two independently qualified USD sources, including depeg-aware USDG/USDC prices. Actual routes and feed pairs remain unqualified; USDC has no qualified funded route. The [atomic Entry](docs/ACTIVATION_ENTRY.md) binds the original contribution value through conversion into LP; [route qualification](docs/ACTIVATION_ROUTING.md) covers the remaining integration work.
 
 ## Revenue and claims
 

@@ -1,3 +1,13 @@
+## Current dual-price route boundary - 2026-10-24
+
+Every admitted source and LP currency needs [two qualified USD sources](PRICE_SECURITY.md).
+The selected agreement tolerance is3%; conservative bounds still must prove the
+separate current execution floor (1% by default). No route can replace original
+source value with a post-swap quote, pool spot, one source or a stable peg.
+Pricing2 preparation verifies the complete Entry/LP trace and all source rounds.
+Live market/provider qualification stays open; historical observations below keep
+their original scope. [Evidence](../reports/price-security/VERIFICATION.md).
+
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;

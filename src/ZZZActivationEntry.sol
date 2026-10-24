@@ -6,10 +6,11 @@ import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {ZZZActivationAssets} from "./ZZZActivationAssets.sol";
-import {IZZZNFT, IZZZPools} from "./interfaces/IZZZ.sol";
+import {IZZZNFT, IZZZPools, IZZZOracle} from "./interfaces/IZZZ.sol";
 import {Ids, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
+import {ZZZContributionPricing} from "./ZZZContributionPricing.sol";
 import {ZZZV4RouteExecutor} from "./ZZZV4RouteExecutor.sol";
 
 interface IActivationVault {
@@ -191,6 +192,18 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         return c.grossUSD;
     }
 
+    function _pricing() private view returns(ZZZContributionPricing) {
+        return ZZZContributionPricing(IZZZOracle(access.module(Ids.ORACLE)).contributionPricing());
+    }
+    /// @notice The fixed pricing companion may adopt only this exact live Vault context.
+    function pricingContext(uint256 id,bytes32 pool,uint256 packed,uint256 gross) external view returns(bool) {
+        if (msg.sender != address(_pricing())) revert Unauthorized();
+        Context memory c = context;
+        return c.owner != address(0) && c.nftId == id && c.poolId == pool && c.grossUSD == gross &&
+            c.amount0 <= type(uint128).max && c.amount1 <= type(uint128).max &&
+            packed == (c.amount0 | (c.amount1 << 128)) && _owner(id) == c.owner;
+    }
+
     function _convertV4(Request calldata r, address output, uint256 sourceBaseline, uint256 outputBaseline)
         private returns (uint256 acquired) {
         ExactAsset.approve(r.sourceAsset,address(v4Executor),r.amountIn);
@@ -240,10 +253,11 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         uint256 nativeBaseline = address(this).balance - msg.value;
         uint256 sourceBaseline = ExactAsset.balance(source,address(this)) - (source == address(0) ? msg.value : 0);
         uint256 outputBaseline = ExactAsset.balance(output,address(this)) - (output == address(0) ? msg.value : 0);
-        if (source != address(0)) ExactToken.pull(source, msg.sender, request.amountIn);
-        // Values the real original amount; an assumed stable peg or supplied USD
-        // claim cannot relax the Vault's governed end-to-end execution budget.
+        // Admit and freeze source + LP-pair prices BEFORE a token pull, approval
+        // or conversion can call external code. Both bounds come from two sources.
         uint256 grossUSD = activationAssets.value(source, request.amountIn);
+        if (_pricing().beginEntry(request.nftId,request.poolId,source,request.amountIn) != grossUSD) revert InvalidState();
+        if (source != address(0)) ExactToken.pull(source, msg.sender, request.amountIn);
         if (grossUSD == 0 || (!request.increase && grossUSD < 100e18) ||
             (request.increase && grossUSD < 5e18)) revert InvalidAmount();
         uint256 acquired = request.amountIn;
@@ -275,6 +289,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         ExactAsset.approve(output,vault, 0);
         if (_owner(request.nftId) != msg.sender || ExactAsset.balance(output,address(this)) != outputBaseline ||
             ExactAsset.balance(source,address(this)) != sourceBaseline || address(this).balance != nativeBaseline) revert InvalidState();
+        _pricing().endEntry();
         emit SourceContributed(msg.sender, request.nftId, request.poolId, request.sourceAsset,
             request.amountIn, grossUSD, output, acquired, request.increase);
     }

@@ -1,3 +1,13 @@
+## Independent dual USD sources - 2026-10-24
+
+Current pricing2 requires two independently qualified sources for each of ETH,
+ZZZ and USDG (and USDC if admitted). The user selected3% disagreement tolerance;
+addresses, freshness ages and actual proxy/upstream policies remain unset.
+[Price security](PRICE_SECURITY.md) distinguishes market truth from actual LP
+facts, common-mode risks and the separate execution-loss floor. The schema5
+inventory observes full policies and source rounds; no mocked review qualifies
+live services. Selected hookless LP income does not require Pons creator funding.
+
 ## Native V2 inventory and preflight - 2026-10-24
 
 [Current schema-5 preflight](PRODUCTION_PREFLIGHT.md) validates native/V4 bindings,

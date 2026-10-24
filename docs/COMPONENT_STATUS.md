@@ -1,3 +1,13 @@
+## Pricing-V2 component delta - 2026-10-24
+
+Oracle now creates a fixed [ContributionPricing helper](../src/ZZZContributionPricing.sol).
+It binds dual-source snapshots to Entry/Budget/Vault factual settlement. The
+current inventory has15 fixed helpers, explicit pricing2/accounting2/routing2,
+and user-selected3% price agreement distinct from execution caps. See
+[design/operator boundary](PRICE_SECURITY.md), [feature reference](IMPLEMENTATION_STATUS.md)
+and [source-scoped verification](../reports/price-security/VERIFICATION.md).
+Actual services and release approval remain open; historical tables retain scope.
+
 ## Native V2 inventory and preflight - 2026-10-24
 
 [Current schema-5 preflight](PRODUCTION_PREFLIGHT.md) validates native/V4 bindings,

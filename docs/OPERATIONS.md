@@ -1,3 +1,13 @@
+## Pricing-V2 operating requirement - 2026-10-24
+
+Use [the price-security procedure](PRICE_SECURITY.md) and updated
+[operator manual](OPERATOR_MANUAL.md). Agreement tolerance is user-selected3%,
+independent of the default1% contribution/conversion execution cap. Both fresh
+USD sources must pass; repair governed policy and refresh reviewed service pins,
+never silently use a fallback. Existing funded claims and applicable raw custody
+paths stay price-independent. Actual provider/gas/recovery qualification remains
+open. No running service or old Anvil state was changed by this implementation.
+
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;

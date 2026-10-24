@@ -65,6 +65,8 @@ interface IZZZActivationEntry {
     function sourceValue(bytes32 poolId, uint256 amount0, uint256 amount1) external view returns (uint256);
 }
 interface IZZZOracle {
+    function contributionPricing() external view returns (address);
+    function priceBounds(address token) external view returns (uint256 lower, uint256 upper, bytes32 fingerprint);
     function price(address token) external view returns (uint256);
     function tokenDecimals(address token) external view returns (uint8);
     function value(address token, uint256 amount) external view returns (uint256);

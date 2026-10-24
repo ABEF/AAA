@@ -381,6 +381,52 @@
     "name": "PrincipalBridged",
     "signature": "PrincipalBridged(uint256,bytes32,uint256,uint256)"
   },
+  "0x255d9461222a8a158eada0b4467a6921d765c79d919f6d425ee64c2e894ba6d8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "nftId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "inputLowerUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "inputUpperUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "marginalDeployedUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "netUSD",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "spotX96",
+        "type": "uint160"
+      },
+      {
+        "indexed": false,
+        "name": "basisHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "ContributionVerified",
+    "signature": "ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)"
+  },
   "0x29d647091aed56a3ac526b0fe16b864f369d39a66cbdeeef79b767d2999af6ae": {
     "fields": [
       {
@@ -769,6 +815,52 @@
     ],
     "name": "ExternalRewardsFunded",
     "signature": "ExternalRewardsFunded(uint256,address,uint256)"
+  },
+  "0x4fd871ae0e102485e83c9bc77282872198a7eebcdab4f51e45d706c21a498a53": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "primary",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "secondary",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "primaryIndependenceId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "secondaryIndependenceId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "maxDeviationBps",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DualPolicyRecorded",
+    "signature": "DualPolicyRecorded(bytes32,address,address,address,bytes32,bytes32,uint16,bytes32)"
   },
   "0x50e2b2b9ab2f28ec350dfef5f8d85818a1dd022acedec4f760ffd3638be6b30a": {
     "fields": [
@@ -2042,6 +2134,27 @@
     ],
     "name": "ImportPrepared",
     "signature": "ImportPrepared(address)"
+  },
+  "0xcd911564741857c562bf296d30e1f89765b7392ad09e5ebdcb852acc12f11069": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DualPolicyActivated",
+    "signature": "DualPolicyActivated(address,bytes32,bytes32)"
   },
   "0xcde340ce0756a8ebf322a0334529985972ad721a290b22b36bdee458feadd91b": {
     "fields": [],

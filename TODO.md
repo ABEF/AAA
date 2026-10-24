@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**16 To do | 28 In progress | 18 Implemented locally**
+**17 To do | 28 In progress | 19 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -87,17 +87,18 @@ Custody, ownership and reward accounting.
 
 <a id="task-activation-assets"></a>
 
-- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset controls and Entry logic exist. The new ETH/ZZZ pool selection requires fresh complete route/feed qualification; earlier USDG conversion quotes and Pons execution evidence retain their original scope. USDC still needs a reviewed funded route.
+- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset and typed Entry controls plus dual-source pricing V2 exist. Qualify actual ETH/ZZZ/USDG/USDC source pairs, source-to-LP routes, prices, full operation and gas against the selected hookless ETH/ZZZ pool. Earlier Pons quotes retain historical scope; USDC still has no qualified funded route.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Independently verify $100 original source value with at least 99% marginal actually deployed LP, separate network gas, incumbent NAV pricing, all conversion-leg costs, callbacks, pending/dust barriers, top-ups and nonredeemability. Review the immutable Entry's exact owner/calldata context, inactive approval window, Registry-only valuation and callback cleanup; a post-conversion pair value cannot replace original source value.
-  - Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native ingress is restricted to the actual native-pool wrapper. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution.
+  - Review USDC/USDG/ETH/ZZZ source-to-LP routing through the implemented Entry: exact token provenance, actual liquidity, fresh source prices, immutable binding/runtime, original-source budget, exact approvals and complete append-only route history. Native V2 ingress is the actual asset-zero ETH currency, not a wrapper substitution; explicit WETH routes retain their separate reviewed semantics. USDC remains disabled without a funded reviewed route; unsigned quotes alone do not establish qualified execution.
   - Use the [integration campaign](docs/INTEGRATION_CAMPAIGN.md) and [read-only observations](reports/activation-route-observation/VERIFICATION.md): one $1 conversion snapshot is not $100 activation qualification. Include subsequent LP costs in the same 1% limit, separate gas, qualified ZZZ pricing and complete operation simulation. Public transaction testing has not run; the isolated $1 build remains local only.
   - Track team-dependent feed, market and liquidity questions in [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team). Team responses do not replace independent route/feed qualification.
   - Implemented: fixed $100 activation / $5 increase floors in original-source Entry and the direct Vault helper, with higher pool minima retained. Qualify complete $5 routes at 99% marginal LP and separate gas, including real token units, depegs and execution costs. See [minimums and operator controls](docs/CONTRIBUTION_MINIMUMS.md).
   - Native V2 accepts actual ETH at asset zero with explicit policy and independent feed; exact Entry/Vault/manager call values are checked. Native V2 read/preparation profiles do not require WETH for ETH. Old local fixtures and prior WETH route evidence retain their original scope; current v3 conversions cannot output native ETH directly.
+  - The [two-source guard](docs/PRICE_SECURITY.md) is implemented, not live-qualified. Freeze source/pair prices and limits before any source pull/conversion; validate upper-input/lower-marginal-LP floors and final fingerprints/spot. Close [dual-source qualification](TODO.md#task-dual-price-qualification) for every enabled input and both LP currencies.
 
   </details>
 
@@ -189,6 +190,19 @@ Custody, ownership and reward accounting.
   <summary>Acceptance criteria</summary>
 
   - [Scoped verification and internal review](reports/operator-controls/VERIFICATION.md) cover authority, outage/reopen, callback rollback and economic continuity. Production service/authority rehearsals and independent audit remain required; no retroactive change to sealed contracts.
+
+  </details>
+
+<a id="task-price-security"></a>
+
+- [x] **[Dual-source USD checks and factual LP contribution security](docs/PRICE_SECURITY.md)** - Implemented. Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before transfers/conversion; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Implementation and source-scoped verification](reports/price-security/VERIFICATION.md), [internal review](reports/price-security/REVIEW.md): distinct sources/runtime pins/declared independence, valid rounds/decimals/ages, bounded disagreement and no single-source/spot/peg fallback. Declared independence and matching answers do not prove market/provider independence.
+  - Existing nonzero historical compound keeps its initial mark. Newly discovered old-currency compound is first marked at the final checkpoint only for incumbent backing; it cannot pay the entrant loss floor. Preserve shares, old rewards, exact token/native spending and atomic failure rollback.
+  - Current preflight/preparation/earnings use explicit pricing_version 2, full append-only policies, raw confirmed-block observations and all 15 helper bindings. Historical single-source profiles retain old deployment/epoch semantics. No website, existing local-chain/journal, public signer or monitor change follows.
 
   </details>
 
@@ -361,7 +375,7 @@ The data and services behind the app.
 
 <a id="task-native-production-preflight"></a>
 
-- [x] **[Native V2 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - Implemented. Schema-5 native accounting/routing V2 inventory and bounded read-only canonical observer are implemented. Exact module/helper/runtime bindings, current governed caps, actual source/route/ledger observations and scoped qualification records are checked. Missing real deployment, prices/routes/services and independent evidence remain release blockers; offline consistency never authorizes deployment or spending.
+- [x] **[Native V2 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - Implemented. Schema-5 native accounting/routing V2 inventory and bounded read-only canonical observer are implemented; the current extension requires explicit pricing V2 and 15 helpers. Exact runtime/bindings/current caps, dual policies/rounds/bounds and scoped qualification records remain distinct from approval. Missing actual deployments/sources/routes/services or independent evidence block release.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -369,6 +383,7 @@ The data and services behind the app.
   - [Scoped verification and internal review](reports/native-preflight/VERIFICATION.md): 73 distinct focused Python cases across source-scoped runs; repeat cases counted once. Complete observer-to-gate composition is synthetic, not actual-provider qualification. Prior 131 contract/source bindings match and unchanged Solidity checks were reused, not rerun.
   - [Operator runbook](docs/PRODUCTION_PREFLIGHT.md): separate approved pins and actual observations; preserve historical qualification blocks, require current configuration/fee scope and complete creation-to-anchor history. Nonzero creator-inbox inventory and unsupported canonical boundaries fail explicitly.
   - Populate independently reviewed real addresses, runtime pins, source/conversion routes, feeds, authorities, VRF/hosting/OpenSea/gas/recovery and independent audit records under the corresponding open release tasks. The checked-in current example must remain blocked until those actual inputs are qualified.
+  - Current [pricing-V2 extension](docs/PRICE_SECURITY.md) verifies the fixed Oracle pricing companion and complete two-source policy/bounds/fingerprints at the same confirmed timestamp. Its new source-scoped evidence is [separate](reports/price-security/VERIFICATION.md) from the earlier 73-case preflight publication; neither qualifies live providers.
 
   </details>
 
@@ -513,12 +528,12 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-terms"></a>
 
-- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Historical/conditional Pons work: the selected existing hookless ETH/ZZZ launch pool does not require a creator-payment agreement. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.
+- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Historical/optional Pons work. The selected hookless ETH/ZZZ pool earns ordinary LP fees without a creator-payment agreement. Agree exact terms only if discretionary external funding is explicitly selected.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - 2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).
+  - 2026-10-24 scope: optional/historical funding is not a primary launch blocker for the selected hookless pool. Preserve old questions and reopen only for an explicitly selected external revenue arrangement. See [pool decision](docs/POOL_SELECTION.md).
   - Ask the creator: what fraction is shared, and is its base total hook revenue, the creator payout after Pons deductions, or another explicitly defined net amount? Are conversion costs, buybacks, refunds or other deductions included? Record the formula with a worked example and an effective start date.
   - Confirm current hook fees, protocol/creator splits, buyback settings and actual creator payout control using dated on-chain evidence. The historical 1% hook / 70% creator observation is not a current payment guarantee. PoPL liquidity alone does not confer hook revenue rights.
   - Record written confirmation from the authorized party, the agreement version and how amendments, suspension or termination are handled. This external agreement does not change PoPL's fixed 80/10/5/5 allocation or create unfunded claims.
@@ -528,12 +543,12 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-measurement"></a>
 
-- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Historical/conditional Pons work: the selected existing hookless ETH/ZZZ launch pool does not require a creator-payment agreement. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.
+- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Historical/optional Pons work. The selected hookless ETH/ZZZ pool earns ordinary LP fees without a creator-payment agreement. Agree participation measurement only for an explicitly selected external-sharing arrangement.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - 2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).
+  - 2026-10-24 scope: optional/historical funding is not a primary launch blocker for the selected hookless pool. Preserve old questions and reopen only for an explicitly selected external revenue arrangement. See [pool decision](docs/POOL_SELECTION.md).
   - Ask whether fee-weighted sampled active-liquidity share or time-weighted active-liquidity share is accepted. Define the numerator/denominator, treatment of out-of-range LP, parked periods, deposits/top-ups, compounding, rebalances and moves between pools; total USD TVL is not automatically active-liquidity share.
   - Agree epoch length, sample frequency, maximum gaps, confirmation/finality depth, intra-block/tick-crossing approximation, complete raw hook-fee events, per-asset calculation, conversion basis and rounding/carry. Agree what happens if data is incomplete; do not silently impute missing fee history.
   - Name who produces, independently checks and resolves disputes over each report. The current calculator and collector propose amounts only; they do not authenticate creator acceptance, reconstruct exact intra-swap attribution or authorize payment. Technical event/backfill qualification remains under [hosted services](TODO.md#task-host-services) and [dependency review](TODO.md#task-security-dependencies).
@@ -542,31 +557,32 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-payments"></a>
 
-- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Historical/conditional Pons work: the selected existing hookless ETH/ZZZ launch pool does not require a creator-payment agreement. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.
+- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Historical/optional Pons work. The selected hookless ETH/ZZZ pool earns ordinary LP fees without a creator-payment agreement. Agree payer, asset, cadence and reconciliation only for an explicitly selected external-funding path.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - 2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).
+  - 2026-10-24 scope: optional/historical funding is not a primary launch blocker for the selected hookless pool. Preserve old questions and reopen only for an explicitly selected external revenue arrangement. See [pool decision](docs/POOL_SELECTION.md).
   - Ask which wallet or contract controls payment/configuration, whether payment is manual or automated, its frequency/minimum amount and its currency/network. Confirm control without requesting a private key. There is no deployed PoPL receiver address to send to yet.
   - After deployment and review, verify the canonical per-bucket RewardReceiver, its immutable bucket/pair and optional native wrapper. Do not use the mint recipient or NFT-sale royalty receiver. Current intake supports only its admitted pair assets and an exact reviewed native wrapper; any other payout asset needs explicit technical qualification.
   - Agree invoice/report IDs, transaction/receipt references, period reconciliation, late/partial/duplicate payments, shortfalls and unpaid residuals. Receipt acceptance does not authenticate the sender; the receiver is permissionless and cannot debit the creator or enforce an off-chain promise.
   - Explain and obtain agreement on processing-time allocation: a payment received after an NFT activation can benefit that entrant even when the creator earned it earlier. The existing intake does not reconstruct historical per-NFT swap entitlements. Requested historical allocation requires a separately scoped design, not a bookkeeping assumption.
   - Rehearse the complete report-to-payment-to-80/10/5/5-allocation-to-current-holder-claim cycle, with funded backing and separate gas. Creator hook funding and 5% NFT-marketplace royalties remain distinct streams.
-  - Native creator ETH is currently wrapped before LP allocation, so paying the inbox in ETH does not implement native holder claims. Coordinate payout currency with [LP ETH settlement](TODO.md#task-lp-eth-settlement); keep creator intake and holder payout policies distinct.
+  - Historical WETH epochs retain their original wrapping semantics. Native V2 inboxes use wrapper zero for actual ETH accounting; qualify any optional payout currency and preserve separate creator-intake, LP-holder and NFT-royalty accounting.
 
   </details>
 
 <a id="task-creator-zzz-price"></a>
 
-- [ ] **[Identify an independent ZZZ USD price source](docs/PRODUCTION_SERVICES.md#usd-prices-and-sequencer-status)** - To do. Ask the ZZZ team for any existing feed/provider or oracle work. No feed is selected; full $100 activation and 1% execution-loss qualification remain open.
+- [ ] **[Identify two defensible independent ZZZ USD sources](docs/PRODUCTION_SERVICES.md#usd-prices-and-sequencer-status)** - To do. Ask the ZZZ team for actual independent on-chain pricing/provider options and underlying market references. No pair is selected. Two adapters reading the same thin pool cannot establish independent economic pricing.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Ask whether an independent on-chain ZZZ/USD feed exists: provider, target chain, public contract address, denomination/decimals, underlying markets, update/heartbeat/deviation policy, history, admins/upgrades and outage support. Record a confirmed absence as an answer instead of assuming a feed.
-  - If none exists, discuss a supportable independent pricing design/provider and who maintains it; team approval alone is not a security review. Do not substitute the same instantaneous selected-pool price or an assumed stablecoin peg for an independent USD guard.
-  - PoPL engineering must independently qualify the chosen source, failure policy and actual activation/valuation paths under [prices and authorities](TODO.md#task-authorities-prices), [activation inputs](TODO.md#task-activation-assets) and [oracle security](TODO.md#task-security-strategy). Continue read-only dependency research while the answer is pending; do not mark the live route ready.
+  - Ask for two defensible independent ZZZ/USD source proposals: provider, target chain, public source/adapter addresses, denomination/decimals, underlying reporters/markets, heartbeat/deviation/history, admins/upgrades and outage support. Record absence or a shared sole market honestly rather than inventing a provider.
+  - If suitable sources do not exist, discuss a supportable authenticated on-chain pricing design and independent market coverage. Team approval is input, not security qualification. Do not substitute the contribution pool instantaneous price, two wrappers of one feed, an unverified web API or an assumed stablecoin peg.
+  - Confirm official USDG/USDC token references and depeg/incident contacts, plus actual ETH USD source availability on Robinhood; these currencies still need independently reviewed source pairs and funded routes.
+  - Engineering owns independent source/common-mode/proxy/bounds/liveness/gas qualification under [dual-source qualification](TODO.md#task-dual-price-qualification), [activation inputs](TODO.md#task-activation-assets) and [oracle security](TODO.md#task-security-strategy). The selected hookless pool does not require a Pons creator-payment agreement.
 
   </details>
 
@@ -777,6 +793,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
   - User decision 2026-10-19: keep the 3% per-operation cap only, no rolling/cumulative loss breaker. Monitor cumulative turnover/MEV/gas costs and rehearse operator pause/parameter recovery; see [range management](docs/OPERATOR_MANUAL.md#range-and-strategy).
   - Internal 2026-10-24 review found and fixed ERC20 destination fee sizing; no new cap or authorization bypass was found in the reviewed diff. Earlier fork receipts retain their old source scope; use the new focused source-bound audit evidence rather than treating older passes as a current full regression.
+  - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
 
   </details>
 
@@ -790,6 +807,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently qualify implemented royalty-token outage isolation: failed optional balance reads defer only new membership for that currency. Recovery protects the earlier cohort and exact liabilities. Single-asset healthy claims continue, while syncAll and exact unreadable canonical backing can still fail. Do not blindly skip old receipt/eligibility checkpoints.
   - The [royalty conversion and outage candidate](docs/ROYALTY_SETTLEMENT.md) isolates optional-token activation failures and preserves earned balances. Actual token/wrapper/route behavior, runtime inventory, eligibility UI and live recovery still require qualification; native ETH has no external ERC20 balance query.
   - Pons hook/creator funding is historical or optional intake, not a dependency of the selected launch pool. Qualify actual LP-fee collection, independent prices and cheaper ETH-conversion routes; no full-balance conversion through the selected approximately 1.101% fee may silently bypass the fixed 1% cap.
+  - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
 
   </details>
 
@@ -835,16 +853,32 @@ Decisions and rehearsals before real funds.
 
 <a id="task-authorities-prices"></a>
 
-- [ ] **[Select authorities & price services](docs/DEPLOYMENT_ADDRESSES.md)** - To do. Confirm governance, guardian, keeper and mint-recipient addresses, plus reliable USD pricing and outage policies.
+- [ ] **[Select authorities & price services](docs/DEPLOYMENT_ADDRESSES.md)** - To do. Confirm authority wallets and independently qualify two-source USD pricing for every enabled input/LP currency, with explicit proxy, bounds and outage policies.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.
+  - Supply two independently reviewed USD sources per required asset, exact policy IDs/ordinals, decimals, denomination, source ages/disagreement, source runtimes/proxy/upstream authorities and sequencer/outage policy. See [source qualification](TODO.md#task-dual-price-qualification).
   - Independently review and stage sequencer policy replacement through the actual sealed governance controller, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
   - Select and verify multisig/keeper/guardian/mint-recipient authorities, zero-delay governance controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
-  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and any optional creator payer; 17 fixed core contracts (controller plus 16 sealed modules), 14 fixed helpers including two separately deployed converters, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
+  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and any optional creator payer; 17 fixed core contracts (controller plus 16 sealed modules), 15 fixed helpers including two separately deployed converters, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. The governance controller has zero delay, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
   - Record the unresolved independent ZZZ price-feed question and the team's evidence under [creator pricing](TODO.md#task-creator-zzz-price); keep PoPL authority selection under this task.
+
+  </details>
+
+<a id="task-dual-price-qualification"></a>
+
+- [ ] **[Qualify two independent USD sources per input and LP asset](docs/PRICE_SECURITY.md)** - To do. Select and independently qualify two defensible USD sources for ETH and ZZZ plus each enabled USDG/USDC input. No real source pair, adapter or operating tolerance is selected. Do not enable unsupported assets or treat mock agreement as market safety.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Record exact network/source/adapter addresses, USD denomination, precision, runtime/implementation/admin/upstream policy and complete append-only Oracle policy/ordinal. Review common reporter, exchange, pool, bridge and USD-reference dependencies; two addresses or provider labels are not proof of independence.
+  - Choose source ages and disagreement settings from actual heartbeat, update/deviation behavior and market depth; qualify both-source outage/recovery, sequencer policy, stale/future/incomplete rounds, proxy upgrades, depeg and sustained manipulation. USDG/USDC are not hard-coded $1. Missing or disagreeing sources fail closed.
+  - Qualify $100 activation and $5 growth at actual source upper bounds and marginal LP lower bounds through funded routes, exact approvals, swaps, raw accounting and physical LP. Include worst-case 34-mark historical/source work, feed gas/latency, price/cap callbacks, newly discovered historical receipts, loss boundaries and recovery. Network gas is separate; wide uncertainty cannot silently enlarge the loss budget.
+  - Obtain actual ETH/ZZZ/USDG/USDC source proposals and market references with [Creator tasks / ZZZ team](TODO.md#task-creator-zzz-price), then independently verify them. If two defensible ZZZ sources cannot be qualified, keep ZZZ pricing/contributions unavailable; invent no provider or pool-spot fallback.
+  - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
+  - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
 
   </details>
 
@@ -958,4 +992,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `d11a9701600cded349c98194a9abb457655a7fbba9f0adebb0a115bd8936d99f`.
+Snapshot SHA-256: `e0bfefc7af8853fca40a819104774e7015d2a72b9479c7a593b8197d0bba41b5`.

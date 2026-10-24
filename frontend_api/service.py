@@ -221,6 +221,7 @@ class Projection:
         if self.accounting_version == 2:
             native_slots.update({
                 'feeds(address)': {0}, 'price(address)': {0}, 'tokenDecimals(address)': {0},
+                'priceBounds(address)': {0},
                 'value(address,uint256)': {0}, 'quote(address,address,uint256)': {0, 1},
                 'referenceX96(address,address)': {0, 1}, 'activePolicy(address)': {0},
                 'isAsset(address)': {0},

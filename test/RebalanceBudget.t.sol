@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {BudgetAdversarialVenue,BudgetAdversarialPolicy} from "./MigrationBudgetAdversarial.t.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
@@ -42,8 +46,8 @@ contract RebalanceBudgetTest is PooledVaultFixture {
     }
     function testPriceChangesDuringHarvestCannotHideExecutionLoss() public {
         uint256 id=_start();Position memory p=_record(id);
-        MockFeed feed=new MockFeed(8,1e8);oracle.setFeed(address(t0),address(feed),3600);
-        oracle.setFeed(address(t1),address(feed),3600);
+        MockFeed feed=new MockFeed(8,1e8);oracle.setTestFeed(address(t0),address(feed),3600);
+        oracle.setTestFeed(address(t1),address(feed),3600);
         adverse.harvestLosses(40,40);adverse.mutatePrice(feed,2e8,false);adverse.mutateAtHarvest(true);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector);_run();_unchanged(id,p);
         assertEq(feed.answer(),1e8);

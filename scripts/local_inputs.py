@@ -1,5 +1,6 @@
-"""Named disposable inputs for the local browser lab, never public routes."""
+"""Historical legacy disposable inputs; never current V2 qualification or public routes."""
 from zzz_ops.abi import keccak256
+from scripts.local_fixture_profile import require_legacy_fixture_artifacts
 
 UNIT = 10**18
 ZERO = '0x'+'00'*20
@@ -18,6 +19,7 @@ def deploy_inputs(lab):
     lab.call(weth,'deposit()',value=4_000_000*UNIT)
 
 def configure_inputs(lab):
+    require_legacy_fixture_artifacts(lab.args.artifacts)
     assets = lab.addr('pools','activationAssets()')
     factory = lab.deploy('LocalInputFactory',local=True)
     router = lab.deploy('LocalInputRouter','constructor(address)',(factory,),local=True)

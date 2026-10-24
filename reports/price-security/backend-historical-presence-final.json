@@ -1,0 +1,7 @@
+{
+  "tests": [
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_historical_compound_mismatch_or_duplicate_in_one_phase_fails"
+  ],
+  "exit_code": 0,
+  "scope": "Final independent-review repair: missing historical priceBounds frame must fail, as must mismatched/duplicate/fingerprint history"
+}

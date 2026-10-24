@@ -1,3 +1,33 @@
+## Dual pricing and factual LP security - 2026-10-24
+
+Read [current verification](reports/price-security/VERIFICATION.md),
+[internal review](reports/price-security/REVIEW.md) and
+[operator/design guide](docs/PRICE_SECURITY.md). Oracle PRICING_VERSION2 now
+requires two independently reviewed USD sources per priced asset. User-selected
+agreement tolerance is3% (300bps); this is not the separate default1% execution
+loss cap. The bounded setter retains a500bps ceiling. Actual source addresses,
+ages, common-mode/proxy policies and real provider/route qualification remain
+unset. No stable peg, single-source, pool-spot or stale fallback is permitted.
+
+The Oracle-created fixed ContributionPricing helper freezes source/pair prices
+and contribution/venue limits before Entry pulls/conversion. Direct contributions
+freeze before pulls. Lower minimums, upper-source/lower-LP execution floors,
+exact round fingerprints, actual position ownership/key/ticks/liquidity and
+unchanged deployment spot are checked. Later historical compound stays
+incumbent-only; epoch-zero skips only irrelevant historical scans. Source-scoped
+tests/repairs and gas findings must be read precisely; no fresh full regression,
+real provider approval or independent audit is inferred.
+
+Backend pricing_version2 is explicit alongside native accounting/routing2;
+schema5 now inventories15helpers. Old profiles stay distinct. Fresh legacy local
+scaffolds reject current incompatible pricing-V2 artifacts before state/process
+creation. Existing8902/Anvil/NFT/LP/balances/journals/dist overlay stay untouched.
+Public DEPLOYMENT null, signer Anvil-only, monitoring paused. No public signing,
+deployment, website build/server or service action. Preserve older unrelated
+drafts, use main only, maintain the sole Todo/features/roadmap/operator guidance
+and both repo memories. Publication is separate: inspect Git and the receipt.
+Production NOT APPROVED.
+
 ## Native production preflight publication - 2026-10-24
 
 Contract tooling7e6702d and website memory-onlyed966e4 are pushed on main;

@@ -1,0 +1,14 @@
+{
+  "tests": [
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_exact_price_word_codec_rejects_ambiguous_numeric_values",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_gate_complete_dual_policy_is_consistency_only",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_observer_and_gate_composition_preserves_approved_policy",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_full_activation_uses_reviewed_dual_prices",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases",
+    "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_pricing_phase_witness_rejects_missing_reordered_or_changed_callbacks",
+    "tests_python.test_production_v2.ProductionV2Tests.test_sequencer_policy_status_round_and_grace_are_current_observations"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 8.406,
+  "scope": "Final changed exact codec, service/API pricing profile, helper phase witness and repaired sequencer fingerprint fixture; no public/provider qualification"
+}

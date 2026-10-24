@@ -411,7 +411,26 @@ class CompositionRPC:
                 for role,name in O.MODULE_IDS.items():
                     if data[10:]==O.keccak256(name.encode()).hex(): return encoded(mods.get(role,{}).get('address',O.ZERO))
             if data[:10] in (selector('hasRole(bytes32,address)'),selector('keepers(address)'),selector('guardians(address)')): return encoded(1)
+        if target==mods['oracle']['address']:
+            if data==selector('PRICING_VERSION()'):return encoded(2)
+            if data==selector('policyCount()'):return encoded(len(chain['tokens']))
+            if data==selector('activeSequencerPolicy()'):return encoded(chain['sequencer'].get('active_policy_id',O.ZERO_HASH))
         for token in chain['tokens']:
+            if 'price_policy' in token:
+                from zzz_ops import price_policy as D
+                record=token['price_policy'];policy=record['policy']
+                if target==token['address'] and data==selector('decimals()'):return encoded(token['decimals'])
+                for index,role in enumerate(('primary','secondary')):
+                    if target==policy[role]['source']:
+                        if data==selector('decimals()'):return encoded(policy[role]['feedDecimals'])
+                        source=record['sources'][index]
+                        if data==selector('latestRoundData()'):return encoded(*(source[key] for key in ('round_id','answer','started_at','updated_at','answered_in_round')))
+                if target==mods['oracle']['address']:
+                    if data==selector('activePolicy(address)')+O._word(token['address']):return encoded(record['policy_id'])
+                    if data==selector('policyAt(uint256)')+O._word(record['ordinal']):return encoded(record['policy_id'])
+                    if data==selector('policy(bytes32)')+O._word(record['policy_id']):return encoded(*D.flat(policy))
+                    if data==selector('priceBounds(address)')+O._word(token['address']):return encoded(*(record['observed_bounds'][key] for key in ('lower','upper','fingerprint')))
+                continue
             feed=token['feed']
             if target==token['address'] and data==selector('decimals()'): return encoded(token['decimals'])
             if target==feed['source']:

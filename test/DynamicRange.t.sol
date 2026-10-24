@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {Test} from "forge-std/Test.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
@@ -62,7 +66,7 @@ contract DynamicRangeTest is Test {
     }
     function _load(uint256 n) private returns(Vectors.V memory v) {
         v=Vectors.get(n);vm.etch(T0,address(new MockToken(v.d0)).code);vm.etch(T1,address(new MockToken(v.d1)).code);
-        oracle.setFeed(T0,address(feed0),3600);oracle.setFeed(T1,address(feed1),3600);
+        oracle.setTestFeed(T0,address(feed0),3600);oracle.setTestFeed(T1,address(feed1),3600);
         feed0.set(v.reverse?int256(1e8):int256(v.priceE8),block.timestamp,block.timestamp);
         feed1.set(v.reverse?int256(v.priceE8):int256(1e8),block.timestamp,block.timestamp);
         pools.set(pool,config);posm.set(config.key,v.lower,v.upper);state.set(v.spot);

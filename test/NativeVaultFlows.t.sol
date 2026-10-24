@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
@@ -83,7 +87,7 @@ contract NativeVaultFlowsTest is Test {
         wrapper.failures(true,true);
         ZZZOracle oracle = new ZZZOracle(address(access),address(0));
         MockFeed price = new MockFeed(8,1e8);
-        oracle.setFeed(address(0),address(price),1 hours); oracle.setFeed(address(token),address(price),1 hours);
+        oracle.setTestFeed(address(0),address(price),1 hours); oracle.setTestFeed(address(token),address(price),1 hours);
         access.bind(Ids.ORACLE,address(oracle));
         pools = new NativeFlowRegistry(address(access),oracle,address(token));
         entry = pools.activationEntry();

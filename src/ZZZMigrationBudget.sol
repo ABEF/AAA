@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {ZZZContributionPricing} from "./ZZZContributionPricing.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
@@ -158,22 +159,17 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     }
     /// @dev Shared current valuation keeps Vault within the standard code limit;
     /// migration checkpoints above deliberately use their cached price vector.
-    function valueBucket(uint256 bucket, uint256 amount0, uint256 amount1) external view returns (uint256) {
-        (address token0,address token1) = poolTokens(IZZZVault(vault).group(bucket).poolId);
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        return oracle.value(token0, amount0) + oracle.value(token1, amount1);
+    function _pricing() private view returns(ZZZContributionPricing) {
+        return ZZZContributionPricing(IZZZOracle(access.module(Ids.ORACLE)).contributionPricing());
     }
-    /// @dev Read-only validation extracted from custody; all writes and exact
-    /// token movement remain in the immutable caller Vault.
-    function nav(uint256 id) public view returns (uint256 deployed, uint256 idle) {
-        Position memory p = IZZZVault(vault).group(id);
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        if (p.lpTokenId != 0) {
-            (uint256 a0, uint256 a1) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
-            deployed = oracle.value(c.key.currency0, a0) + oracle.value(c.key.currency1, a1);
-        }
-        idle = oracle.value(c.key.currency0, p.idle0) + oracle.value(c.key.currency1, p.idle1);
+    function valueBucket(uint256 bucket,uint256 amount0,uint256 amount1) external view returns(uint256) {
+        return _pricing().valueBucket(bucket,amount0,amount1);
+    }
+    function nav(uint256 id) public view returns(uint256 deployed,uint256 idle) {
+        return _pricing().nav(id);
+    }
+    function contributionNav(uint256 id) external onlyVault returns(uint256 deployed,uint256 idle) {
+        return _pricing().contributionNav(id);
     }
     function assertDeployed(uint256 id) external view {
         (uint256 deployed, uint256 idle) = nav(id);
@@ -275,7 +271,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
             minimumZZZ > plan.held ? minimumZZZ-plan.held : 1);
     }
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
-        uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint32 limits) {
+        uint128 minimumLiquidity, bool activation) external onlyVault returns (address token0, address token1, uint32 limits) {
         uint16 captured = contributionLossBps;
         uint16 venue;
         (token0,token1,venue) = IBudgetVaultValidation(access.module(Ids.VAULT_CANONICAL)).validateContribution(
@@ -283,35 +279,14 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         // Carry both limits in the existing third ABI word: low 16 bits are the
         // venue limit; high 16 bits freeze the contribution policy before callbacks.
         limits = uint32(venue) | (uint32(captured) << 16);
+        _pricing().begin(id,bucket,inputTotal,inputUSD,limits);
     }
-    function contributionResult(uint256 bucket, uint256 inputUSD, uint256 supply, uint256 incumbentNAV,
-        uint256 incumbentDeployed, uint256 deployed, uint256 idle, uint32 limits)
-        external view returns (uint256 issued, uint256 netUSD) {
-        uint16 maxSlippageBps = uint16(limits);
-        uint16 contributionLimit = uint16(limits >> 16);
-        if (maxSlippageBps > MAX_LOSS_BPS || contributionLimit > MAX_LOSS_BPS) revert InvalidConfiguration();
-        if (IZZZFees(access.module(Ids.FEES)).hasPendingExternal()) revert InvalidState();
-        if (deployed == 0 || idle > Math.mulDiv(deployed + idle, 500, 10000)) revert Slippage();
-        if (deployed + idle <= incumbentNAV) revert InvalidAmount();
-        netUSD = deployed + idle - incumbentNAV;
-        if (netUSD < Math.mulDiv(inputUSD, 10000 - maxSlippageBps, 10000)) revert Slippage();
-        uint256 minimumNet = inputUSD - Math.mulDiv(inputUSD, contributionLimit, 10000);
-        if (netUSD < minimumNet || deployed < incumbentDeployed + minimumNet) revert Slippage();
-        issued = supply == 0 ? netUSD : Math.mulDiv(supply, netUSD, incumbentNAV + historicalCompoundValue(bucket));
-        if (issued == 0 || supply + issued > 1e36) revert InvalidAmount();
+    function contributionResult(uint256 bucket,uint256 inputUSD,uint256 supply,uint256 incumbentNAV,
+        uint256 incumbentDeployed,uint256 deployed,uint256 idle,uint32 limits)
+        external onlyVault returns(uint256 issued,uint256 netUSD) {
+        return _pricing().finish(bucket,inputUSD,supply,incumbentNAV,incumbentDeployed,deployed,idle,limits);
     }
-    /// @notice Late old-currency compounding remains part of incumbent backing.
-    /// It is not the new contribution's deployed LP and cannot subsidize its 99% floor.
-    function historicalCompoundValue(uint256 id) public view returns (uint256 value) {
-        if (compositionEpoch[id] == 0) return 0;
-        (address a,address b) = poolTokens(IZZZVault(vault).group(id).poolId);
-        IPairAssets admitted = IPairAssets(access.module(Ids.REWARDS));
-        if (admitted.assetCount() > 33) revert InvalidState();
-        for (uint256 i; i < admitted.assetCount(); ++i) {
-            address token = admitted.assets(i);
-            if (token == a || token == b) continue;
-            uint256 amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(id,token);
-            if (amount != 0) value += IZZZOracle(access.module(Ids.ORACLE)).value(token,amount);
-        }
+    function historicalCompoundValue(uint256 id) public view returns(uint256) {
+        return _pricing().historicalValue(id);
     }
 }

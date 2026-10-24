@@ -1,6 +1,7 @@
 """Disposable loopback PoPL browser lab. Never accepts an RPC URL or wallet key.
 
-Real sealed core + Entry + shared accounting; test-only venue, feeds and VRF.
+Historical legacy sealed core + Entry + shared accounting; test-only venue/feeds/VRF.
+Fresh startup with current native/pricing-V2 artifacts is explicitly unsupported.
 Uses only unlocked accounts on an Anvil child created by this process. This is
 not a public deployment tool or a production API/signing service.
 """
@@ -39,6 +40,7 @@ from scripts.local_wallet import LocalWallet
 from scripts.local_browser import LocalBrowser
 from scripts.local_clock import LocalChainClock
 from scripts.local_inputs import deploy_inputs, configure_inputs, input_for, input_tx, settle_lp
+from scripts.local_fixture_profile import require_legacy_fixture_artifacts
 
 CHAIN = 31337
 UNIT = 10**18
@@ -207,6 +209,7 @@ class LocalReadRPC(Rpc):
 
 class Lab:
     def __init__(self, args):
+        require_legacy_fixture_artifacts(args.artifacts)
         self.args=args; self.contracts={}; self.receipts=[]; self.approvals={}; self.used_sources=set()
         self.home=Path(args.state).resolve()/('run-'+time.strftime('%Y%m%d-%H%M%S')+'-'+secrets.token_hex(3))
         self.home.mkdir(parents=True, exist_ok=False)
@@ -310,6 +313,7 @@ class Lab:
         self.contracts[role]=address
         self.call('access','bind(bytes32,address)','0x'+keccak256(LABELS[role].encode()).hex(),address)
     def start(self):
+        require_legacy_fixture_artifacts(self.args.artifacts)
         self.native_input=bool(getattr(self.args,'native_input',False))
         self.artifacts=[]
         self.log=(self.home/'anvil.log').open('w',encoding='utf-8')
@@ -641,7 +645,7 @@ def main():
     parser.add_argument('--website',required=True);parser.add_argument('--port',type=int,default=8890)
     parser.add_argument('--verify-only',action='store_true')
     parser.add_argument('--named-assets',action='store_true',help='Disposable ZZZ/USDG/USDC/ETH UI fixtures; not public routes')
-    parser.add_argument('--native-input',action='store_true',help='Local-only native admission mock; ETH wraps atomically inside production Entry')
+    parser.add_argument('--native-input',action='store_true',help='Historical pre-V2 wrapper fixture only; current native/pricing V2 fresh startup is blocked')
     args=parser.parse_args()
     if args.native_input and not args.named_assets:parser.error('--native-input requires --named-assets')
     if not (Path(args.website)/'palette-system.js').is_file() or not (Path(args.website)/'assets/nfts').is_dir():

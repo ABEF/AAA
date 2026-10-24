@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -66,8 +70,8 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         (uint160 price,,,) = IStateViewMinimal(STATE).getSlot0(POOL);
         // Synthetic reference ratio matches the pinned spot; it is not an approved ZZZ/USD oracle.
         uint256 ratio = Math.mulDiv(uint256(price), price, uint256(1) << 192);
-        oracle.setFeed(WETH, address(new MockFeed(8, int256(ratio * 1e8))), 1 days);
-        oracle.setFeed(ZZZ, address(new MockFeed(8, 1e8)), 1 days);
+        oracle.setTestFeed(WETH, address(new MockFeed(8, int256(ratio * 1e8))), 1 days);
+        oracle.setTestFeed(ZZZ, address(new MockFeed(8, 1e8)), 1 days);
         pools.configureNative(_config());
         canonicalNFT = new ZZZNFT(address(access), "ipfs://test-only/"); vrf = new MockVRF();
         canonicalNFT.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
@@ -472,8 +476,8 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         vm.expectRevert(); s.vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertEq(positions.ownerOf(lp), address(s.vault)); assertEq(uint8(s.vault.group(bucket).status), uint8(PositionStatus.Active));
         // Mock authority replaces feeds; source release still requires explicit parking.
-        oracle.setFeed(WETH, address(new MockFeed(8, int256(ethPrice / 1e10))), 1 days);
-        oracle.setFeed(ZZZ, address(new MockFeed(8, int256(zzzPrice / 1e10))), 1 days);
+        oracle.setTestFeed(WETH, address(new MockFeed(8, int256(ethPrice / 1e10))), 1 days);
+        oracle.setTestFeed(ZZZ, address(new MockFeed(8, int256(zzzPrice / 1e10))), 1 days);
         access.setPaused(true); s.vault.park(bucket, block.timestamp + 100);
         s.vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertEq(uint8(s.vault.group(bucket).status), uint8(PositionStatus.Outbound)); vm.expectRevert(); positions.ownerOf(lp);
@@ -538,8 +542,8 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         access.setPaused(true); migration.park(r); Position memory parked = s.vault.group(bucket); access.setPaused(false);
         vm.expectRevert(); migration.resume(bucket, POOL, 1, block.timestamp + 100);
         assertEq(s.vault.group(bucket).lpTokenId, 0); assertEq(s.vault.group(bucket).idle0, parked.idle0);
-        oracle.setFeed(WETH, address(new MockFeed(8, int256(ethPrice / 1e10))), 1 days);
-        oracle.setFeed(ZZZ, address(new MockFeed(8, int256(zzzPrice / 1e10))), 1 days);
+        oracle.setTestFeed(WETH, address(new MockFeed(8, int256(ethPrice / 1e10))), 1 days);
+        oracle.setTestFeed(ZZZ, address(new MockFeed(8, int256(zzzPrice / 1e10))), 1 days);
         migration.resume(bucket, POOL, 1, block.timestamp + 100);
         Position memory resumed = s.vault.group(bucket);
         assertEq(uint8(resumed.status), uint8(PositionStatus.Active)); assertGt(resumed.lpTokenId, 0);

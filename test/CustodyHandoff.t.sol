@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {MockToken,MockFeed,MockPools} from "./mocks/Mocks.sol";
 import {ZZZMigration,ICustodyFinality} from "../src/ZZZMigration.sol";
@@ -149,7 +153,7 @@ contract CustodyHandoffTest is PooledVaultFixture {
     }
     function testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue() public {
         uint256 nftId=activatedPosition();MockToken nextZZZ=new MockToken(6);MockFeed feed=new MockFeed(8,1e7);
-        oracle.setFeed(address(nextZZZ),address(feed),3600);rewards.addAsset(address(nextZZZ));
+        oracle.setTestFeed(address(nextZZZ),address(feed),3600);rewards.addAsset(address(nextZZZ));
         PoolConfig memory c=pools.get(poolId);c.key.currency1=address(nextZZZ);bytes32 target=keccak256(abi.encode(c.key));pools.set(target,c);vault.reservePool(target,_bucket());
         ZZZMigration.Request memory r=_r(false);r.destinationPool=target;r.output1=address(nextZZZ);r.minimum1=9700e6;
         bytes32 id=migration.approve(r);ac.setPaused(true);migration.exit(id);ac.setPaused(false);

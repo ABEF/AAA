@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -88,7 +92,7 @@ contract RoyaltyConversionTest is Test {
         vm.warp(100000); a=new ConversionAccess(); nft=new ConversionNFT(address(a)); r=nft.royalties();
         w=new ConversionWrapper();t=new ConversionToken();nft.add(address(w));nft.add(address(t));
         oracle=new ZZZOracle(address(a),address(0)); sf=new MockFeed(8,1e8);ef=new MockFeed(8,2000e8);
-        oracle.setFeed(address(t),address(sf),3600);oracle.setFeed(address(w),address(ef),3600);
+        oracle.setTestFeed(address(t),address(sf),3600);oracle.setTestFeed(address(w),address(ef),3600);
         a.bind(Ids.ORACLE,address(oracle));a.bind(Ids.NFT,address(nft));a.bind(Ids.CANONICAL,address(this));
         a.setKeeper(address(this),true);
         c=new ZZZRoyaltyConverter(address(a),address(r),address(w)); r.bindConverter(address(c));

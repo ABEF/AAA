@@ -1,0 +1,11 @@
+{
+  "local_doc_links": 24,
+  "missing": [],
+  "final_solidity_hashes": 115,
+  "all_match": true,
+  "previous_event_descriptors_preserved": 125,
+  "current_event_descriptors": 128,
+  "solidity_distinct_cases": 174,
+  "python_distinct_cases": 187,
+  "scope": "Source-scoped recorded checks, not a fresh full final-source regression. No live services or production approval."
+}

@@ -33,6 +33,10 @@ class ActivationConfig:
     def __init__(self, config, projection):
         fields = {'schema', 'contracts', 'tokens', 'dependencies', 'sources', 'sequencer',
                   'call_pins', 'storage_pins', 'fee_policy'}
+        self.pricing_version = config.get('pricing_version', 1)
+        if type(self.pricing_version) is not int or self.pricing_version not in (1, 2):
+            raise ValueError('Unsupported explicit activation pricing profile')
+        if 'pricing_version' in config: fields.add('pricing_version')
         self.routing_version = config.get('routing_version', 1)
         if type(self.routing_version) is not int or self.routing_version not in (1, 2):
             raise ValueError('Unsupported explicit activation routing profile')
@@ -40,10 +44,13 @@ class ActivationConfig:
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
+        if self.pricing_version == 2 and (self.routing_version != 2 or projection.accounting_version != 2):
+            raise ValueError('Dual pricing requires explicit native accounting and typed routing profiles')
         if self.routing_version == 2 and projection.accounting_version != 2:
             raise ValueError('Typed routing requires native accounting version 2')
         _keys(config['contracts'], set(MODULES) | HELPERS |
-              ({'v4_executor'} if self.routing_version == 2 else set()), 'activation contracts')
+              ({'v4_executor'} if self.routing_version == 2 else set()) |
+              ({'contribution_pricing'} if self.pricing_version == 2 else set()), 'activation contracts')
         self.contracts = {}
         for role, item in config['contracts'].items():
             _keys(item, {'address', 'code_hash'}, 'activation contract')
@@ -54,23 +61,28 @@ class ActivationConfig:
         self.accounting_version = projection.accounting_version
         self.tokens = {}
         for token in bounded(config['tokens'], 33 if self.accounting_version == 2 else 32, 'token inventory', 2):
-            _keys(token, {'address', 'code_hash', 'decimals', 'feed', 'feed_code_hash',
-                          'feed_decimals', 'max_age'}, 'activation token')
+            _keys(token, {'address', 'code_hash', 'decimals'} | ({'price_policy'} if self.pricing_version == 2 else
+                {'feed', 'feed_code_hash', 'feed_decimals', 'max_age'}), 'activation token')
             token = dict(token)
             native = self.accounting_version == 2 and token['address'] == ZERO
             token['address'] = ZERO if native else address(token['address'])
-            token['feed'] = address(token['feed'])
+            if self.pricing_version == 1: token['feed'] = address(token['feed'])
             if native:
                 if token['code_hash'] is not None or token['decimals'] != 18:
                     raise ValueError('Native ETH requires 18 decimals and no token runtime pin')
             else:
                 token['code_hash'] = _hash(token['code_hash'])
-            token['feed_code_hash'] = _hash(token['feed_code_hash'])
-            for key in ('decimals', 'feed_decimals'):
+            if self.pricing_version == 1: token['feed_code_hash'] = _hash(token['feed_code_hash'])
+            for key in (('decimals', 'feed_decimals') if self.pricing_version == 1 else ('decimals',)):
                 if integer(token[key], key) > 18: raise ValueError('Unsupported token/feed decimals')
-            if not 1 <= integer(token['max_age'], 'feed max age') <= 86400:
+            if self.pricing_version == 1 and not 1 <= integer(token['max_age'], 'feed max age') <= 86400:
                 raise ValueError('Unsupported feed age')
-            if token['address'] in self.tokens or token['address'] in addresses or token['feed'] in addresses:
+            if self.pricing_version == 2:
+                from zzz_ops.price_policy import record
+                token['price_policy'] = record(token['price_policy'], token['address'], token['decimals'], self.contracts['oracle'].address)
+                if any(token['price_policy']['policy'][role]['source'] in addresses for role in ('primary','secondary')):
+                    raise ValueError('Price source collides with protocol contract')
+            if token['address'] in self.tokens or token['address'] in addresses or self.pricing_version == 1 and token['feed'] in addresses:
                 raise ValueError('Repeated token or protocol/dependency collision')
             self.tokens[token['address']] = token
         if len(set(self.tokens) - {ZERO}) > 32:
@@ -106,7 +118,9 @@ class ActivationConfig:
             self.sequencer['address'] = address(self.sequencer['address'])
             self.sequencer['policy_id'] = _hash(self.sequencer['policy_id'])
             if self.sequencer['address'] not in self.dependencies: raise ValueError('Sequencer code pin is required')
-        allowed = set(addresses) | set(self.tokens) | set(self.dependencies) | {t['feed'] for t in self.tokens.values()}
+        price_sources = ({t['feed'] for t in self.tokens.values()} if self.pricing_version == 1 else
+            {t['price_policy']['policy'][role]['source'] for t in self.tokens.values() for role in ('primary','secondary')})
+        allowed = set(addresses) | set(self.tokens) | set(self.dependencies) | price_sources
         self.call_pins = []
         for item in bounded(config['call_pins'], 128, 'call pins'):
             _keys(item, {'target', 'data', 'expected'}, 'call pin')
@@ -128,7 +142,7 @@ class ActivationConfig:
         self.max_gas_price = int(fee['max_gas_price_wei'])
         self.identity = hashlib.sha256(json.dumps(config,sort_keys=True,separators=(',', ':')).encode()).hexdigest()
 
-    def verify(self, p, block, used_tokens):
+    def verify(self, p, block, used_tokens, *, include_bounds=False, timestamp=None):
         """All reads use the parent's one confirmed canonical hash."""
         pins = {role: c.address for role, c in {**p.contracts, **self.contracts}.items()}
         def read(role, signature, *args, count=1):
@@ -159,21 +173,37 @@ class ActivationConfig:
         if (_address_word(read('oracle','sequencerFeed()')[0],native=True) != self.sequencer['address'] or
                 '0x'+read('oracle','activeSequencerPolicy()')[0] != self.sequencer['policy_id']):
             raise ProjectionError('Reviewed sequencer policy changed')
-        prices = {}
+        if self.pricing_version == 2:
+            bindings += [('oracle','contributionPricing()','contribution_pricing'),('contribution_pricing','oracle()','oracle')]
+            for role,method,expected in bindings[-2:]:
+                if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Contribution pricing helper binding differs')
+            if _bool(read('contribution_pricing','active()')[0]): raise ProjectionError('Contribution pricing context is unexpectedly active')
+        prices = {}; bounds = {}
         for target in set(used_tokens):
             if target not in self.tokens: raise ProjectionError('Input/pool currency is not reviewed')
             t = self.tokens[target]
             if target != ZERO:
                 p._code(target,t['code_hash'],block)
-            p._code(t['feed'],t['feed_code_hash'],block)
+            if self.pricing_version == 1: p._code(t['feed'],t['feed_code_hash'],block)
             if target != ZERO and int(p._call(target,'decimals()',block=block)[0],16) != t['decimals']:
                 raise ProjectionError('Token decimals changed')
-            feed = read('oracle','feeds(address)',target,count=4)
-            if (_address_word(feed[0]) != t['feed'] or [int(x,16) for x in feed[1:]] != [t['max_age'],t['feed_decimals'],t['decimals']] or
-                    int(p._call(t['feed'],'decimals()',block=block)[0],16) != t['feed_decimals']):
-                raise ProjectionError('Price configuration differs from reviewed feed')
-            price = int(read('oracle','price(address)',target)[0],16)
-            if not 0 < price <= 10**36: raise ProjectionError('Invalid governed oracle price')
+            if self.pricing_version == 2:
+                from zzz_ops.price_policy import observe
+                def read_price(contract, method, *args, count=1):
+                    return p._call(contract, method, *args, block=block, words=count)
+                try:
+                    observed = observe(read_price, lambda contract, digest: p._code(contract,digest,block),
+                        pins['oracle'],target,t['decimals'],t['price_policy'],p.chain,self.sequencer['policy_id'],timestamp)
+                except (ValueError, TypeError, KeyError) as exc:
+                    raise ProjectionError('Dual-price policy or confirmed observation differs') from exc
+                price = observed['lower']; bounds[target] = observed
+            else:
+                feed = read('oracle','feeds(address)',target,count=4)
+                if (_address_word(feed[0]) != t['feed'] or [int(x,16) for x in feed[1:]] != [t['max_age'],t['feed_decimals'],t['decimals']] or
+                        int(p._call(t['feed'],'decimals()',block=block)[0],16) != t['feed_decimals']):
+                    raise ProjectionError('Price configuration differs from reviewed feed')
+                price = int(read('oracle','price(address)',target)[0],16)
+                if not 0 < price <= 10**36: raise ProjectionError('Invalid governed oracle price')
             prices[target] = price
         for target, data, expected in self.call_pins:
             if p.rpc.call('eth_call',[{'to':target,'data':data},block]) != expected:
@@ -181,4 +211,4 @@ class ActivationConfig:
         for target, slot, expected in self.storage_pins:
             if p.rpc.call('eth_getStorageAt',[target,slot,block]) != expected:
                 raise ProjectionError('Reviewed proxy/storage pin changed')
-        return pins, prices
+        return (pins,prices,bounds) if include_bounds else (pins,prices)

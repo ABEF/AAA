@@ -27,6 +27,23 @@ def log(signature, indexed=(), data=(), emitter=TOKEN):
 
 
 class EventSchemaTests(unittest.TestCase):
+    def test_dual_price_and_factual_contribution_events_are_exactly_decodable(self):
+        signatures = (
+            'DualPolicyRecorded(bytes32,address,address,address,bytes32,bytes32,uint16,bytes32)',
+            'DualPolicyActivated(address,bytes32,bytes32)',
+            'ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)',
+        )
+        for signature in signatures:
+            with self.subTest(signature=signature):
+                entry = SCHEMA[topic(signature)]
+                indexed, data, expected = [], [], {}
+                for field in entry['fields']:
+                    typ = field['type']
+                    value = TOKEN if typ == 'address' else '0x'+'11'*32 if typ == 'bytes32' else 7
+                    (indexed if field['indexed'] else data).append(word(value, typ))
+                    expected[field['name']] = value if typ in ('address', 'bytes32') else str(value)
+                self.assertEqual(decode(log(signature, indexed, data)), (entry['name'], expected))
+
     def test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules(self):
         historical=json.loads((ROOT/'indexer/historical_event_schema.json').read_text())
         self.assertEqual(len(historical),17)

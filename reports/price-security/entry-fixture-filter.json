@@ -1,0 +1,41 @@
+[
+  {
+    "file": "test/ActivationEntry.t.sol",
+    "original_sha256": "66aeb2bd316dd973225145db080040526284d968affa3a42ca5aa36aa59a2592",
+    "compiled_sha256": "ae7a2c112270ce5c30818d05b46a5b12f37a6bd98c6161697772e15de13776e0",
+    "excluded": [
+      "contract ActivationEntryTest"
+    ]
+  },
+  {
+    "file": "test/AtomicActivationIntegration.t.sol",
+    "original_sha256": "cd4fb3c4683c1240a13fdfa2ef911c934a85b128147cbe3cb8724251189a9638",
+    "compiled_sha256": "e2547852a9a7bc63f61f43f1d978800039440c7c3e1369a38abd74a457f44a28",
+    "excluded": [
+      "function testFiveDollarConvertedTopUpRetainsNinetyNinePercentFloor",
+      "function testTopUpFloorUsesSourceUSDNotTokenCountOrStablePeg",
+      "function testDirectVaultTopUpCannotBypassFiveDollarMinimum",
+      "function testGovernedPoolFloorCanTightenButCannotRelaxTopUpFloor",
+      "function testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent",
+      "function testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack",
+      "function testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor",
+      "function testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership",
+      "function testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner",
+      "function testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition",
+      "function testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer",
+      "function testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput",
+      "function testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar",
+      "function testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition",
+      "function testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory",
+      "function testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner"
+    ]
+  },
+  {
+    "file": "test/VaultAccounting.t.sol",
+    "original_sha256": "527ba1877ba7d7fc17a983eb205a33e69cc29a57fd679a33aac654c88b39ba90",
+    "compiled_sha256": "52b830cda1438612a088c6357ee49e1c414c2a7305c38c077c820da6591d1627",
+    "excluded": [
+      "contract VaultAccountingTest"
+    ]
+  }
+]

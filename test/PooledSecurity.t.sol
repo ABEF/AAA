@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {PooledVaultFixture, VaultLiquidityMock} from "./VaultAccounting.t.sol";
 import {MockFeed} from "./mocks/Mocks.sol";
@@ -167,7 +171,7 @@ contract PooledSecurityTest is PooledVaultFixture {
     function testShareCapFailureRollsBackCustodyAndLeavesPaidNFTDormant() public {
         PoolConfig memory c=pools.get(poolId);c.maxPositionUSD=type(uint256).max;pools.set(poolId,c);
         MockFeed veryHigh=new MockFeed(8,1e26);
-        oracle.setFeed(address(t0),address(veryHigh),3600);oracle.setFeed(address(t1),address(veryHigh),3600);
+        oracle.setTestFeed(address(t0),address(veryHigh),3600);oracle.setTestFeed(address(t1),address(veryHigh),3600);
         uint256 id=_mint(alice);uint256 paid=treasury.balance;
         vm.prank(alice);vm.expectRevert();vault.activate(id,poolId,1000,1000,1,block.timestamp+100);
         assertEq(vault.sharesOf(id),0);assertEq(vault.bucketCount(),0);assertEq(vault.poolBucket(poolId),0);

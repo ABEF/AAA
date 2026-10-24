@@ -1,5 +1,22 @@
 # Local API and browser-wallet rehearsal
 
+## Current native/pricing-V2 limitation - 2026-10-24
+
+The commands below describe the historical WETH/single-feed browser fixture.
+Fresh `local-stack.py` and `local-api-stack.py` startup with current native/pricing-V2
+artifacts is blocked before a state directory, Anvil process or deployment is
+created. The old scaffold still assumes wrapper accounting, single-source feed
+configuration and legacy unsigned-review traces; changing only its feed setter
+would not produce a qualified V2 rehearsal.
+
+Preserve the existing running 8902 fixture, NFT/LP balances, browser journals and
+its exact original build. Do not rebuild/restart it in place or relabel its
+history as V2. A fresh isolated native/routing/pricing-V2 lab needs coherent test
+venue/accounting fixtures, explicitly correlated test-only dual feed mirrors,
+current helper-phase configuration and a complete separate operating rehearsal.
+Mock sources never establish independent production pricing. The browser signer
+remains Anvil-only; no public signing or service change follows from this warning.
+
 This separate stack runs the website's reviewed API profile against actual Anvil,
 the real read/mint-claim/activation worker services and current source-authenticated
 core artifacts. It uses the unchanged local-only browser signer. No public RPC,

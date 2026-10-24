@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 import {Test} from "forge-std/Test.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
@@ -35,7 +39,7 @@ contract SequencerPolicyTest is Test {
         sequencer = new MockFeed(0, 0);
         sequencer.set(0, block.timestamp - 2 hours, block.timestamp - 2 hours);
         oracle = new ZZZOracle(address(access), address(sequencer));
-        oracle.setFeed(address(token), address(usd), 1 days);
+        oracle.setTestFeed(address(token), address(usd), 1 days);
     }
 
     function _replace(MockFeed source) private returns (bytes32) {
@@ -47,7 +51,7 @@ contract SequencerPolicyTest is Test {
     }
     function testOptionalConstructorZeroHasNoPolicyUntilConfigured() public {
         ZZZOracle noSource = new ZZZOracle(address(access), address(0));
-        noSource.setFeed(address(token), address(usd), 1 days);
+        noSource.setTestFeed(address(token), address(usd), 1 days);
         assertEq(noSource.sequencerFeed(), address(0));
         assertEq(noSource.sequencerPolicyCount(), 0);
         assertEq(noSource.price(address(token)), 2e18);
@@ -152,10 +156,12 @@ contract SequencerPolicyTest is Test {
         ZZZAccessController controller = new ZZZAccessController(0, actors, actors, address(0x111), address(0x222));
         RecoverableUptimeFeed oldSource = new RecoverableUptimeFeed(block.timestamp - 2 hours);
         ZZZOracle governed = new ZZZOracle(address(controller), address(oldSource));
-        governed.setFeed(address(token), address(usd), 1 days);
-        bytes32[16] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
-            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE,
-            Ids.RECEIVER, Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT];
+        governed.setTestFeed(address(token), address(usd), 1 days);
+        // Retired transport slots cannot be rebound in the custody-handoff
+        // layout. CanonicalFixture supplies the four required companions.
+        bytes32[12] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
+            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION,
+            Ids.ORACLE, Ids.POOLS];
         for (uint256 i; i < ids.length; ++i) {
             controller.bind(ids[i], ids[i] == Ids.ORACLE ? address(governed) : address(new BoundDummy(address(controller))));
         }

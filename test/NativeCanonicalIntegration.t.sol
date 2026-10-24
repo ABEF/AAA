@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -114,7 +118,7 @@ contract NativeCanonicalIntegrationTest is Test {
         s.access.bind(Ids.COMPOUNDER, address(new ZZZCompounder(address(s.access))));
         s.access.bind(Ids.BUYBACK, address(new ZZZBuyback(address(s.access), address(token), 1e30)));
         s.access.bind(Ids.MIGRATION, address(s.migration)); s.access.bind(Ids.ORACLE, address(oracle)); s.access.bind(Ids.POOLS, address(s.pools));
-        oracle.setFeed(address(0), address(feed), 3600); oracle.setFeed(address(token), address(feed), 3600);
+        oracle.setTestFeed(address(0), address(feed), 3600); oracle.setTestFeed(address(token), address(feed), 3600);
         s.rewards.addAsset(address(token)); s.nft.addRoyaltyAsset(address(token));
         s.vrf = new MockVRF(); s.nft.configureRandomness(address(s.vrf), bytes32(uint256(1)), 1, 3, 500000, false);
         PoolConfig memory config; config.key = PoolKey(address(0), address(token), 3000, 60, address(0));

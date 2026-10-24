@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
@@ -61,7 +65,7 @@ contract TypedV4RewardsTest is Test {
         access=new ConversionAccess();nft=new ConversionNFT(address(access));royalties=nft.royalties();
         token=new MockToken(18);nft.add(address(token));
         oracle=new ZZZOracle(address(access),address(0));feed=new MockFeed(8,1e8);
-        oracle.setFeed(address(0),address(feed),3600);oracle.setFeed(address(token),address(feed),3600);
+        oracle.setTestFeed(address(0),address(feed),3600);oracle.setTestFeed(address(token),address(feed),3600);
         access.bind(Ids.NFT,address(nft));access.bind(Ids.ORACLE,address(oracle));access.setKeeper(address(this),true);
         shares=new LPConversionShares();rewards=new ZZZRewards(address(access));rewards.addAsset(address(token));
         access.bind(Ids.REWARDS,address(rewards));access.bind(Ids.VAULT,address(shares));
@@ -211,8 +215,8 @@ contract TypedV4RewardsTest is Test {
     }
     function testLegacyV3RouteUsesCurrentCapAndExactUnwrapWhilePreservingABI() public {
         ConversionToken stable=new ConversionToken();ConversionWrapper wrapper=new ConversionWrapper();
-        oracle.setFeed(address(stable),address(new MockFeed(8,1e8)),3600);
-        oracle.setFeed(address(wrapper),address(new MockFeed(8,2000e8)),3600);
+        oracle.setTestFeed(address(stable),address(new MockFeed(8,1e8)),3600);
+        oracle.setTestFeed(address(wrapper),address(new MockFeed(8,2000e8)),3600);
         ZZZRoyaltyConverter separate=new ZZZRoyaltyConverter(address(access),address(this),address(wrapper));
         separate.configureWrapper(ZZZRoyaltyConverter.WrapperPolicy(address(wrapper).codehash,address(0),address(0),address(0),0,0,keccak256("wrapper fixture")));
         separate.setEnabled(true);ConversionVenue venue=new ConversionVenue(address(stable),wrapper);

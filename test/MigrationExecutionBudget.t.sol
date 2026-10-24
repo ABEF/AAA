@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
@@ -118,8 +122,8 @@ contract MigrationBudgetScaleTest is Test {
         stableFeed = new MockFeed(8, 1e8);
         nativeFeed = new MockFeed(8, 2000e8);
         ZZZOracle oracle = new ZZZOracle(address(ac), address(0));
-        oracle.setFeed(address(stable), address(stableFeed), 3600);
-        oracle.setFeed(address(native), address(nativeFeed), 3600);
+        oracle.setTestFeed(address(stable), address(stableFeed), 3600);
+        oracle.setTestFeed(address(native), address(nativeFeed), 3600);
         PoolConfig memory c;
         c.key.currency0 = address(stable);
         c.key.currency1 = address(native);

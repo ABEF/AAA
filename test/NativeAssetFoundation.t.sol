@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
@@ -166,8 +170,8 @@ contract NativeAssetFoundationTest is Test {
         access.bind(Ids.ORACLE, address(oracle));
         vm.expectRevert(); oracle.value(address(0), 1 ether);
         MockFeed nativeFeed = new MockFeed(8, 2000e8); MockFeed wrappedFeed = new MockFeed(8, 999e8);
-        oracle.setFeed(address(0), address(nativeFeed), 1 hours);
-        oracle.setFeed(address(brokenWrapper), address(wrappedFeed), 1 hours);
+        oracle.setTestFeed(address(0), address(nativeFeed), 1 hours);
+        oracle.setTestFeed(address(brokenWrapper), address(wrappedFeed), 1 hours);
         assertEq(oracle.tokenDecimals(address(0)), 18); assertEq(oracle.value(address(0), 1 ether), 2000 ether);
         assertEq(oracle.value(address(brokenWrapper), 1 ether), 999 ether);
         ZZZActivationAssets assets = new ZZZActivationAssets(address(access), address(this));

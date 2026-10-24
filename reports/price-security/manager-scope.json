@@ -1,0 +1,81 @@
+{
+  "distinct_passing_cases": 11,
+  "cases": {
+    "testFinalRefundCannotTransferLPBehindEarlierOwnerCheck()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testHonestInstalledV4IncreaseMatchesRawLiquidityAndExactPrincipal()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testHonestInstalledV4NativeMintAndIncreaseUseNoWrapper()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testIncorrectPhysicalLiquidityCannotPassFactualCheck()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testIncreaseRejectsRealPriceChangeDuringApprovalReset()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testIncreaseRejectsRealPriceChangeDuringFinalRefund()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testIncreaseRejectsRealPriceChangeDuringTokenPullWithinOrdinaryDeviation()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testMintRejectsRealPriceChangeDuringApprovalReset()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testMintRejectsRealPriceChangeDuringFinalRefund()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testMintRejectsRealPriceChangeDuringTokenPullWithinOrdinaryDeviation()": {
+      "status": "Success",
+      "evidence": "tests.json"
+    },
+    "testCallbackTradeIsWithinOrdinaryPriceGuardYetChangesActualSpot()": {
+      "status": "Success",
+      "evidence": "final-case.json"
+    }
+  },
+  "previous_10_test_bodies_identical_additive_final_case": true,
+  "prepatch_controls": {
+    "testFinalRefundCannotTransferLPBehindEarlierOwnerCheck()": {
+      "status": "Failure",
+      "reason": "next call did not revert as expected"
+    },
+    "testIncreaseRejectsRealPriceChangeDuringApprovalReset()": {
+      "status": "Failure",
+      "reason": "next call did not revert as expected"
+    },
+    "testIncreaseRejectsRealPriceChangeDuringFinalRefund()": {
+      "status": "Failure",
+      "reason": "next call did not revert as expected"
+    },
+    "testIncreaseRejectsRealPriceChangeDuringTokenPullWithinOrdinaryDeviation()": {
+      "status": "Failure",
+      "reason": "next call did not revert as expected"
+    }
+  },
+  "compiler_bindings_total": 145,
+  "compiler_bindings_matching": 144,
+  "snapshot_compiler_bindings_matching": 145,
+  "manager_runtime_bytes": 21113,
+  "manager_runtime_margin": 3463,
+  "manager_creation_bytes": 22581,
+  "constructor_argument_bytes": 160,
+  "manager_creation_with_arguments_bytes": 22741,
+  "source_sha256": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+  "test_sha256": "5aa0caa156d287d97027f3c4757c784d43a7198320bf514212d9aa08fe69988d",
+  "limits_relaxed": false,
+  "public_or_live_chain_access": false,
+  "scope": "Installed PoolManager, StateView, PositionManager. Exact-path Permit2, token/reference/admission and callback authority are local fixtures. No live market/provider qualification."
+}

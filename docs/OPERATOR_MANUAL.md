@@ -1,5 +1,56 @@
 # PoPL operator manual
 
+## Configure, stop and recover USD pricing - 2026-10-24
+
+The [pricing-V2 guard](PRICE_SECURITY.md) requires two independently reviewed USD
+sources per priced asset. `Oracle.setFeed` now explicitly reverts; its old
+single-feed instructions are historical. Do not use one ETH/USD source plus one
+ZZZ/USD source as redundant coverage for both assets.
+
+1. Disable affected pool contributions with `disablePool(poolId,true,false)`;
+   pause broader maintenance if necessary. Stopping does not require a working
+   price source. Preserve pending hashes, holders' ledgers and all raw balances.
+2. Review both exact chain/source addresses, runtime and proxy/implementation
+   authorities, underlying markets/reporters, USD denomination, decimals, ages,
+   disagreement bounds, outages and depegs. Independence IDs and review hashes
+   record reviewed assertions; they do not prove independence by themselves.
+3. Simulate the exact governance call `Oracle.setDualFeed(token,primary,secondary,
+   maxDeviationBps,reviewHash)`. Each source tuple contains `source`,
+   `expectedCodeHash`, `independenceId`, `maxAge`, `feedDecimals`. Source age must
+   be 1-86,400 seconds; spread is 0-500 bps, with zero requiring exact agreement.
+   Those are hard code bounds, not production settings. Both current rounds must
+   already pass admission. No source pair or operational tolerance is selected.
+4. Execute through existing immediate governance, then verify `DualPolicyRecorded`,
+   `DualPolicyActivated`, `activePolicy`, `policyAt`, the full immutable policy and
+   `priceBounds`. Confirm lower/upper values, both rounds and fingerprint. The old
+   policy remains in history. Never promote observed hashes to approved pins
+   automatically or remove a safety check to make a price appear available.
+5. Refresh the schema-5 release inventory with explicit `pricing_version: 2` and
+   all 15 helpers, including `Oracle.contributionPricing()` and its `oracle()`/
+   `access()` bindings. Update reviewed API/preparation/earnings configurations,
+   source proxy pins and service alerts at one confirmed block. Keep old deployed
+   epochs and wallet journals on their original profiles.
+6. Qualify $100 activation and $5 growth in actual token units through the full
+   route and LP operation, including callback/round changes, depegs, divergence,
+   outages/recovery and worst-case gas. Reopen only with complete validated pool
+   configuration and qualified dependencies. Retain actual receipts/evidence.
+
+Entry freezes prices and both contribution/venue limits before the original
+source transfer and conversion. Callback changes, even a later tighter limit,
+require a fresh review. Existing nonzero historical compound keeps its starting
+mark; newly discovered historical compound is first marked at the final
+checkpoint only for incumbent backing, never the new LP floor. Source uncertainty
+uses some of the captured execution budget. A failed quote does not authorize an
+automatic cap increase, stablecoin peg, spot price or single-source fallback.
+
+If either source fails, retain unavailable status and disable affected work until
+both sources recover or governance independently reviews a new pair. Raw-unit
+funded claims need no USD feed; the explicitly approved paused raw custody exit
+keeps its separate exact minima and no USD guarantee. Failed pools/tokens can
+still prevent movement. See [preflight](PRODUCTION_PREFLIGHT.md) and
+[raw recovery controls](GOVERNED_CUSTODY_HANDOFF.md).
+
+
 ## Current-version production preflight - 2026-10-24
 
 Use the [schema-5 inventory runbook](PRODUCTION_PREFLIGHT.md) before presenting any
@@ -53,8 +104,10 @@ at currency `address(0)`. Read `Vault.ACCOUNTING_VERSION() == 2` and the handoff
 module/helper runtime and binding. Deploy a coherent new set; do not attach V2
 helpers to the existing WETH-accounted local deployment or reset its journals.
 
-- **Prices and input admission:** govern `Oracle.setFeed(address(0),feed,maxAge)`
-  for ETH with 18 decimals. Native activation policy uses
+- **Prices and input admission:** govern the reviewed two-source policy with
+  `Oracle.setDualFeed(address(0),primary,secondary,maxDeviationBps,reviewHash)`
+  for ETH with 18 decimals. Verify both sources and the full pricing-V2 policy;
+  native activation policy uses
   `ActivationAssets.NATIVE_ASSET_CODE_HASH()`, a typed identity, not an ETH runtime
   hash. Enable it with `setAsset(address(0),true,sentinel,reviewHash)`; disabling
   new input never removes backing or accrued rewards. WETH is a separate ERC20.
@@ -214,7 +267,7 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 ### Add or re-enable an input token
 
 1. Review its exact chain/address, runtime and proxy authorities, decimals, transfers, liquidity, fees and price source. A symbol such as USDC does not identify an asset. Fee-on-transfer/rebasing/blacklisting or malicious callbacks can make an asset incompatible; permission to admit is not proof of compatibility.
-2. Governance configures the reviewed `Oracle.setFeed(token,feed,maxAge)`. Independently verify `price(token)` and decimals. Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
+2. Governance configures the reviewed two-source `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`. Independently verify both raw rounds, policy identity, `priceBounds(token)`, decimals and source/proxy independence under [pricing operations](#configure-stop-and-recover-usd-pricing---2026-10-24). Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
 3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The legacy supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. Typed hookless v4 policies are also implemented through `addV4Route(Policy)`; follow [typed route setup](TYPED_V4_ROUTES.md), including explicit version/profile pins. It is not a general multi-hop router or arbitrary external executor.
 4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation, including the 1% limit and separate gas. Qualify actual execution before enabling real users.
 
@@ -330,7 +383,7 @@ required for the operator's reviewed 3% close-plus-conversion limit. Follow the
 
 | Change/problem | Control and checks | Fallback/limit |
 | --- | --- | --- |
-| Price feed or freshness policy | Governance `Oracle.setFeed(token,feed,maxAge)`, maxAge 1-86,400 seconds, feed/asset decimals ≤18; verify actual USD semantics, rounds, freshness and oracle price | Do not substitute pool spot, assume a stablecoin is $1, or stretch maxAge to conceal stale data. Pause/disable affected entry; consider exact parking if executable. |
+| USD source pair / freshness / disagreement | Governance `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`; verify two independent reviewed sources, exact runtimes/decimals, valid current rounds, append-only identity and `priceBounds` fingerprint | Both sources are mandatory. No single-source, stale/spot or $1 fallback. Disable affected work and follow the [pricing recovery procedure](#configure-stop-and-recover-usd-pricing---2026-10-24); raw funded claims and explicitly approved raw custody retain separate rules. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
 | Optional/legacy WETH review record | Retained `PoolRegistry.approveWrapperPolicy(policy)`, then `activateWrapperPolicy(id)` after code/getter/authority review | Same fixed WETH address only; native V2 admission, parking and exit do not consult this record. It neither repairs a hostile proxy nor changes a converter's independent immutable wrapper/route bindings. Review an explicitly wrapped operation separately. |
 | Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |

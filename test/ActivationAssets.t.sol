@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
@@ -56,7 +60,7 @@ contract ActivationAssetsTest is Test {
         registry = new ActivationRegistryFixture(address(access)); assets = registry.assets();
         access.bind(Ids.ORACLE, address(oracle)); access.bind(Ids.POOLS, address(registry));
         token = new MockToken(6); feed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(token), address(feed), 1 days);
+        oracle.setTestFeed(address(token), address(feed), 1 days);
     }
 
     function _seal() private {
@@ -130,7 +134,7 @@ contract ActivationAssetsTest is Test {
 
     function testDisableOneAssetLeavesAnotherSourceUsableAndDoesNotChangeOracleValuation() public {
         MockToken other = new MockToken(18); MockFeed secondFeed = new MockFeed(8, 2e8);
-        oracle.setFeed(address(other), address(secondFeed), 1 days);
+        oracle.setTestFeed(address(other), address(secondFeed), 1 days);
         registry.admit(address(token)); registry.admit(address(other));
         assets.setAsset(address(token), false, address(token).codehash, REVIEW);
         assertEq(assets.value(address(other), 5e18), 10e18);
@@ -158,7 +162,7 @@ contract ActivationAssetsTest is Test {
 
     function testBadMetadataAndOracleDecimalMismatchRejectNewSource() public {
         ActivationMetadataToken changed = new ActivationMetadataToken();
-        oracle.setFeed(address(changed), address(feed), 1 days);
+        oracle.setTestFeed(address(changed), address(feed), 1 days);
         changed.configure(19, false); vm.expectRevert(); registry.admit(address(changed));
         changed.configure(6, false); vm.expectRevert(); registry.admit(address(changed));
         changed.configure(18, true); vm.expectRevert(); registry.admit(address(changed));
@@ -183,15 +187,15 @@ contract ActivationAssetsTest is Test {
         assertEq(registry.admit(address(token)), first);
         vm.expectRevert(); assets.setAsset(address(token), true, address(replacement).codehash, REVIEW);
         // Reconfigure the feed to the reviewed changed token's current decimals.
-        oracle.setFeed(address(token), address(feed), 1 days);
+        oracle.setTestFeed(address(token), address(feed), 1 days);
         bytes32 updated = assets.setAsset(address(token), true, address(replacement).codehash, keccak256("new internal review"));
         assertTrue(updated != first); assertEq(assets.value(address(token), 1e18), 1e18);
     }
 
     function testOracleDecimalReconfigurationInvalidatesOldAdmissionUntilReviewedAgain() public {
         ActivationMetadataToken changed = new ActivationMetadataToken();
-        oracle.setFeed(address(changed), address(feed), 1 days); registry.admit(address(changed));
-        changed.configure(6, false); oracle.setFeed(address(changed), address(feed), 1 days);
+        oracle.setTestFeed(address(changed), address(feed), 1 days); registry.admit(address(changed));
+        changed.configure(6, false); oracle.setTestFeed(address(changed), address(feed), 1 days);
         vm.expectRevert(); assets.value(address(changed), 1e6);
         assets.setAsset(address(changed), true, address(changed).codehash, REVIEW);
         assertEq(assets.value(address(changed), 1e6), 1e18);
@@ -242,7 +246,7 @@ contract ActivationAssetsTest is Test {
     }
 
     function testAdmissionDoesNotBypassExistingExactTransferExecutionGuard() public {
-        TaxToken taxed = new TaxToken(); oracle.setFeed(address(taxed), address(feed), 1 days);
+        TaxToken taxed = new TaxToken(); oracle.setTestFeed(address(taxed), address(feed), 1 days);
         // Governance's review attestation is not proof of transfer semantics.
         registry.admit(address(taxed)); assertEq(assets.value(address(taxed), 100), 100);
         ActivationPullFixture puller = new ActivationPullFixture(); taxed.mint(address(this), 100);

@@ -49,12 +49,12 @@ MODULE_IDS = {
     'routes': 'ZZZMigrationRegistry', 'transport': 'ZZZBridgeRouter',
 }
 BOOL_GETTERS = frozenset(('isSealed', 'canonicalSettling', 'preparationActive',
-                         'randomnessConfigured', 'nativePayment', 'enabled', 'paused', 'mintPaused'))
+                         'randomnessConfigured', 'nativePayment', 'enabled', 'paused', 'mintPaused', 'active'))
 UINT_GETTERS = frozenset(('getMinDelay', 'canonicalState', 'ACCOUNTING_VERSION', 'canonicalChainId',
     'MAX_SUPPLY', 'subscriptionId', 'requestConfirmations', 'callbackGasLimit', 'outstandingCount',
     'maxTradeUSD', 'operatingTradeUSD', 'phase', 'originChain', 'MAX_LOSS_BPS',
     'contributionLossBps', 'maintenanceLossBps', 'MAX_CLAIMS', 'conversionLossBps',
-    'rewardReceiverCount', 'custodyCount'))
+    'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION'))
 HASH_GETTERS = frozenset(('keyHash', 'zzzCodeHash', 'contributionPool', 'SCHEMA'))
 ADDRESS_GETTERS = frozenset(('access', 'canonicalHandoff', 'bootstrap', 'royaltyFactory',
     'migrationBudget', 'mintProceedsRecipient', 'royaltyRewards', 'claimRouter', 'metadataRenderer',
@@ -62,7 +62,7 @@ ADDRESS_GETTERS = frozenset(('access', 'canonicalHandoff', 'bootstrap', 'royalty
     'receiverFactory', 'validation', 'currentZZZ', 'activationAssets', 'activationEntry', 'sequencerFeed',
     'zzz', 'incomingSource', 'nft', 'vault', 'originVault', 'fees', 'registry', 'v4Executor',
     'migration', 'canonicalController', 'royalties', 'controller', 'parent', 'ledger', 'wrapper',
-    'factory', 'token0', 'token1', 'owner'))
+    'factory', 'token0', 'token1', 'owner', 'oracle', 'contributionPricing'))
 
 
 def _address(value: Any, *, native=False) -> str:
@@ -312,6 +312,9 @@ class Observer:
                 lambda: int(self.read(token['address'], 'decimals()')[0], 16))
             if token['observed_decimals'] != token.get('decimals'):
                 self.errors.append({'path': path, 'code': 'decimals.mismatch'})
+            if self.pricing_version == 2:
+                self.dual_price(token,path,oracle)
+                continue
             feed = token['feed']
             feed['observed_runtime_hash'] = self.attempt(path+'.feed', 'runtime.unavailable', lambda: self.code(feed['source']))
             if feed['observed_runtime_hash'] is not None and not _same(feed['observed_runtime_hash'], feed.get('runtime_hash')):
@@ -336,6 +339,49 @@ class Observer:
                 lambda: {key: _decode(value, wanted[key]) for key, value in zip(wanted, raw)})
             if feed['observed_oracle_feed'] is not None and not _same(feed['observed_oracle_feed'], wanted):
                 self.errors.append({'path': path+'.feed', 'code': 'oracle_feed.mismatch'})
+
+    def dual_price(self, token, path, oracle):
+        from zzz_ops import price_policy as codec
+        approved = token.get('price_policy')
+        if not isinstance(approved,dict):
+            self.errors.append({'path':path+'.price_policy','code':'pricing.policy_missing'})
+            return
+        # Failed reads must never retain copied healthy observations.
+        for key in ('observed_pricing_version','observed_policy_id','observed_policy',
+                    'observed_policy_count','observed_ordinal_id','observed_bounds'):
+            approved[key] = None
+        sources = approved.get('sources')
+        if isinstance(sources,list):
+            for observed in sources:
+                if isinstance(observed,dict):
+                    for key in ('observed_runtime_hash','decimals','round_id','answer','started_at','updated_at','answered_in_round'):
+                        observed[key] = None
+        def observe_price():
+            record = {key:approved.get(key) for key in ('policy_id','ordinal','policy')}
+            parsed = codec.record(record,token['address'],token['decimals'],oracle)
+            def checked_code(target, expected):
+                actual = self.code(target)
+                if not _same(actual,expected): raise ValueError('Price source runtime differs')
+            sequence = '0x'+self.read(oracle,'activeSequencerPolicy()')[0]
+            observed = codec.observe(self.read,checked_code,oracle,token['address'],token['decimals'],
+                parsed,self.chain['chain_id'],sequence,self.start['timestamp'])
+            return parsed,observed
+        result = self.attempt(path+'.price_policy','pricing.unavailable_or_changed',observe_price)
+        if result is None: return
+        parsed,observed = result
+        approved.update(observed_pricing_version=2,observed_policy_id=observed['policy_id'],
+            observed_policy=parsed['policy'],observed_policy_count=observed['policy_count'],
+            observed_ordinal_id=observed['ordinal_id'],observed_bounds={key:observed[key] for key in ('lower','upper','fingerprint')})
+        if not isinstance(sources,list) or len(sources)!=2:
+            self.errors.append({'path':path+'.price_policy.sources','code':'pricing.source_inventory'})
+            return
+        for index,role in enumerate(('primary','secondary')):
+            expected = parsed['policy'][role]; actual = sources[index]
+            if not isinstance(actual,dict) or not _same(actual.get('source'),expected['source']) or not _same(actual.get('runtime_hash'),expected['expectedCodeHash']):
+                self.errors.append({'path':path+'.price_policy.sources','code':'pricing.source_pin_mismatch'})
+                continue
+            actual.update(observed['sources'][index],observed_runtime_hash=expected['expectedCodeHash'],
+                decimals=expected['feedDecimals'])
 
     def descriptor(self, target, signature, identifier, fields, expected):
         raw = self.read(target, signature, identifier, count=len(fields))
@@ -633,7 +679,11 @@ def observe(config, rpc):
         value = chain.get(field)
         if not isinstance(value, dict if field == 'dependencies' else list) or len(value) > limit:
             raise ValueError('Unbounded inventory list')
+    pricing_version = config.get('pricing_version', 1)
+    if type(pricing_version) is not int or pricing_version not in (1,2):
+        raise ValueError('Unsupported explicit pricing observation profile')
     observer = Observer(rpc, chain)
+    observer.pricing_version = pricing_version
     with request_scope(Budget(seconds=60, calls=1024, posts=2048)):
         chain_id, genesis = observer.anchor()
         observer.records(expected)

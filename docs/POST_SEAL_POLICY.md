@@ -22,7 +22,7 @@ historical/default scope. Actual routes, services and independent audit remain o
 | --- | --- | --- |
 | Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
 | Assets and conversions | Admit/remove supported input assets and rotate conversion pools when liquidity changes, without redeploying. | Entry and LP/royalty converters support append-only route policies and enable/disable controls. They implement explicit typed single-hop v3 and hookless static-fee v4 routes. Native v4 output needs no wrapper. Real route/service qualification remains open; a route record cannot add an unsupported algorithm. |
-| Pools and pricing | Change the sole contribution pool, qualified feeds and supported strategy settings through governance. | Existing validation, exact asset/key/runtime checks, fresh prices, accounting and execution floors remain mandatory. New unimplemented venues are not enabled by configuration alone. |
+| Pools and pricing | Change the sole contribution pool, reviewed two-source USD policies and supported strategy settings through existing immediate governance. | `Oracle.setDualFeed` appends a policy with two distinct source/independence identities, runtime pins, per-source ages and 0-500 bps disagreement. Both sources must pass; old `setFeed` reverts. No missing-source/spot/peg fallback. Entry freezes prices and operating limits before transfers/conversion; new settings cannot replace that captured basis. Live source independence/proxy/depeg/gas qualification remains open. |
 | Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
 | Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
 | Economic rights and safety | Preserve supply/rarity inventory, revealed traits, ownership, earned rewards, backing, the 80/10/5/5 allocation and approved execution-loss limits. | No reset, confiscation, arbitrary sweep, generic executor or unbounded upgrade is introduced. A reviewed replacement uses the explicit handoff and preserves rights; it is not a way to erase them. |
@@ -52,6 +52,18 @@ qualified full-balance conversion route at reference prices. Require a cheaper,
 independently reviewed route; until then keep earned source balances backed and
 report conversion unavailable. Do not silently increase the limit or substitute
 pool spot prices for independent valuation.
+
+## Pricing implementation and source qualification
+
+[Dual-source pricing and factual LP checks](PRICE_SECURITY.md) are implemented as
+an undeployed pricing-V2 candidate. Governance can replace the reviewed source
+pair, ages and disagreement within explicit bounds after sealing; the Oracle-created
+pricing companion remains fixed and holds no funds. Versioned inventories and
+backend configurations require explicit pricing V2 and all 15 helper bindings.
+A new source policy is an operational change requiring fresh review/observations,
+not a rewrite of NFT rights or historical price profiles. No actual ETH/ZZZ/USDG/USDC
+source pair is qualified. Failure of either source stops affected price-dependent
+work; raw funded claims and explicit raw custody paths retain their own rules.
 
 ## Native implementation versus configurable policy
 

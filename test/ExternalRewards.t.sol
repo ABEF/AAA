@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {PooledVaultFixture, VaultLiquidityMock} from "./VaultAccounting.t.sol";
 import {Test} from "forge-std/Test.sol";
@@ -304,7 +308,7 @@ contract ExternalRewardsTest is PooledVaultFixture {
         t0 = replacement;
         venue = new VaultLiquidityMock(address(t0), address(t1));
         ac.bind(Ids.LIQUIDITY, address(venue));
-        oracle.setFeed(address(t0), address(new MockFeed(8, 1e8)), 3600);
+        oracle.setTestFeed(address(t0), address(new MockFeed(8, 1e8)), 3600);
         rewards.addAsset(address(t0));
         c.key.currency0 = address(t0);
         poolId = keccak256(abi.encode(c.key));
@@ -730,7 +734,7 @@ contract ExternalRewardsTest is PooledVaultFixture {
     function testNativeLowGasPaymentAlsoSupportsSecondPairAsset() public {
         ExternalRewardWETH wrapper = new ExternalRewardWETH(); PoolConfig memory c = pools.get(poolId);
         t1 = wrapper; venue = new VaultLiquidityMock(address(t0), address(t1)); ac.bind(Ids.LIQUIDITY, address(venue));
-        oracle.setFeed(address(t1), address(new MockFeed(8, 1e8)), 3600); rewards.addAsset(address(t1));
+        oracle.setTestFeed(address(t1), address(new MockFeed(8, 1e8)), 3600); rewards.addAsset(address(t1));
         c.key.currency1 = address(t1); poolId = keccak256(abi.encode(c.key)); pools.set(poolId, c);
         _fundUser(alice); _fundUser(bob);
         uint256 id = activatedPosition(); uint256 bucket = vault.nftBucket(id); address inbox = fees.createRewardReceiver(bucket, address(wrapper));

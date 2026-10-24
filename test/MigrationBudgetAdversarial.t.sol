@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {ZZZVault} from "../src/ZZZVault.sol";
@@ -173,7 +177,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     function testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss() public {
         _setupAdversary(); activatedPosition(); bytes32 nextPool = _destination();
         MockFeed feed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(feed), 3600); oracle.setFeed(address(t1), address(feed), 3600);
+        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         adversary.mutatePrice(feed, 2e8, false); adversary.losses(40, 40, 0, 0);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool);
         assertEq(feed.answer(), 1e8); assertEq(vault.group(_bucket()).poolId, poolId);
@@ -182,7 +186,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
         _setupAdversary(); uint256 id = activatedPosition(); bytes32 nextPool = _destination();
         Position memory beforePosition = vault.group(_bucket()); uint256 shares = vault.sharesOf(id);
         MockFeed feed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(t0), address(feed), 3600); oracle.setFeed(address(t1), address(feed), 3600);
+        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         // The initial implementation took its snapshot after this stateful call:
         // it would accept the already diminished 1920 as the starting principal.
         adversary.harvestLosses(40, 40); adversary.mutatePrice(feed, 2e8, false); adversary.mutateAtHarvest(true);
@@ -193,7 +197,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     }
     function testMintCallbackPriceChangeCannotHideExcessAttributedIdle() public {
         _setupAdversary(); activatedPosition(); bytes32 nextPool = _destination();
-        MockFeed feed = new MockFeed(8, 1e8); oracle.setFeed(address(t0), address(feed), 3600);
+        MockFeed feed = new MockFeed(8, 1e8); oracle.setTestFeed(address(t0), address(feed), 3600);
         adversePolicy.setSwapAmount(899); adversary.setSwapOutput(899); adversary.spending(0, 10000);
         adversary.mutatePrice(feed, 1e6, true);
         // Dynamic prices see 1.01 idle + 1899 LP; cached prices see 101/2000 idle.
@@ -210,7 +214,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     function testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary() public {
         _setupAdversary(); uint256 id = _mint(alice); _activate(alice, id, 100, 101); bytes32 nextPool = _destination();
         MockFeed feed = new MockFeed(18, 1);
-        oracle.setFeed(address(t0), address(feed), 3600); oracle.setFeed(address(t1), address(feed), 3600);
+        oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         adversary.losses(4, 3, 0, 0);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool); // 194 < ceil(201 * .97) = 195.
         adversary.losses(3, 3, 0, 0); _move(nextPool);
@@ -218,7 +222,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
     }
     function testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals() public {
         _setupAdversary(); activatedPosition(); bytes32 nextPool = _destination();
-        MockFeed dearer = new MockFeed(8, 10e8); oracle.setFeed(address(t0), address(dearer), 3600);
+        MockFeed dearer = new MockFeed(8, 10e8); oracle.setTestFeed(address(t0), address(dearer), 3600);
         // 34 raw units are only 1.7% of token counts, but $340 exceeds the $330 budget.
         adversary.losses(0, 0, 34, 0);
         vm.expectRevert(ZZZMigrationBudget.Slippage.selector); _move(nextPool);

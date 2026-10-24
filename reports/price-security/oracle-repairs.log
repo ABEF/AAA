@@ -1,0 +1,19 @@
+Compiling 2 files with Solc 0.8.26
+Solc 0.8.26 finished in 24.13s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T20:31:38.105428Z  WARN traces::etherscan: etherscan config not found
+
+Ran 3 tests for test/DualOracleSecurity.t.sol:DualOracleSecurityTest
+[PASS] testGasExhaustingSourceIsBoundedAndFailsClosed() (gas: 1093077)
+[PASS] testPolicyAdmissionRejectsCurrentlyDivergentOrInvalidSource() (gas: 165049)
+[PASS] testPolicyRejectsSameAddressOrSameIndependenceIdentity() (gas: 63418)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 4.48ms (2.45ms CPU time)
+
+Ran 1 test suite in 8.26ms (4.48ms CPU time): 3 tests passed, 0 failed, 0 skipped (3 total tests)
+

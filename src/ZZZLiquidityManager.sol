@@ -151,9 +151,6 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             if (address(posm).balance != beforePosmNative || address(this).balance + nativeValue != beforeNative) revert InvalidState();
         } else _reset(t0);
         _reset(t1);
-        (int24 actualLower, int24 actualUpper) = _checkPosition(poolId, tokenId);
-        if (actualLower != lower || actualUpper != upper ||
-            uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();
         uint256 unused0 = _balance(t0, address(this)) - before0;
         uint256 unused1 = IERC20(t1).balanceOf(address(this)) - before1;
         if (unused0 > amount0 || unused1 > amount1) revert InvalidState();
@@ -162,6 +159,14 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if (nativePool) _sendNative(msg.sender, unused0);
         else ExactToken.push(t0, msg.sender, unused0);
         ExactToken.push(t1, msg.sender, unused1);
+        // A static hookless mint/increase does not move the pool price. Token
+        // approvals, pulls, settlement and refunds can nevertheless call external
+        // code. Check the final mark and physical LP only after ALL those calls,
+        // so incumbent repricing or a late LP mutation cannot masquerade as new LP.
+        if (IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) != current) revert Slippage();
+        (int24 actualLower, int24 actualUpper) = _checkPosition(poolId, tokenId);
+        if (actualLower != lower || actualUpper != upper ||
+            uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();
     }
     function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
         uint128 minimumLiquidity, uint256 deadline)

@@ -1,7 +1,7 @@
 # Native V2 production inventory and read-only preflight
 
-The current candidate uses **schema 5**, native accounting V2, typed routing V2
-and governed custody. The offline validator checks declared policy against a
+The current candidate uses **schema 5**, native accounting V2, typed routing V2,
+explicit **`pricing_version: 2`** and governed custody. The offline validator checks declared policy against a
 complete pinned observation and required qualification records. A separate
 observer reads deployed contracts. Neither tool signs, deploys, seals, moves funds
 or authorizes a release. The checked-in example is deliberately unqualified.
@@ -17,7 +17,8 @@ deployment-specific runtime hashes, including immutable constructor values.
 | Area | Current checks |
 | --- | --- |
 | Core | Access plus its 16 current sealed modules, exact controller/owner bindings, unique addresses, active canonical state and no bootstrap authority. Retired bridge/receiver/routes/transport slots must be zero. |
-| Helpers | Fourteen fixed helpers: activation assets/Entry, Budget, custody validation, royalty ledger/renderer/claim router, two factories, two converters and their three parent-bound v4 executors. Actual getter names are checked; a helper is not assumed to expose `access()`. |
+| Helpers | Fifteen fixed helpers: activation assets/Entry, Oracle-created contribution pricing, Budget, custody validation, royalty ledger/renderer/claim router, two factories, two converters and three parent-bound v4 executors. Verify pricing `oracle`/`access`, inactive context and every actual getter; do not assume all helpers expose `access()`. |
+| USD pricing | Explicit pricing V2, full append-only two-source policies, active IDs/ordinals, source runtime/precision/round/freshness checks and independently recomputed lower/upper/fingerprint. Independent source and proxy/common-mode reviews remain required for each asset; observing agreement never approves it. |
 | Native identity | Vault accounting version 2, exact native canonical schema, native currency zero with 18 decimals and no runtime hash, separate reward/royalty admission inventories, no wrapper substitution or duplicated native protection. |
 | Governed policy | Current contribution, maintenance, LP-conversion and royalty-conversion limits must match the reviewed settings at the same block. Hard maxima are 1,000 bps; defaults are not substituted for missing observations. Gas, caller/venue minimums and original custody approval floors remain separate. |
 | Principal and conversion | One selected contribution pool, actual ordered currencies, hook/fee/spacing/runtime bindings and independent prices. Direct, typed v3 and typed v4 routes retain separate identities. Conversion pools do not become principal pools merely by being listed. |
@@ -31,6 +32,24 @@ canonical handoff, atomic ETH/WETH principal
 moves and legacy-schema import are not enabled by this inventory. External custody
 recipients still require explicit governance trust and their own actual recovery
 qualification; a pool-migration mechanism does not relocate NFT ownership.
+
+## Two-source pricing records
+
+Every priced token record supplies its complete `price_policy`: policy ID/ordinal,
+14-word dual policy, both source observations and independent source/pair review.
+The source addresses and declared independence IDs must differ; each runtime must
+match its own approved pin, but identical adapter code is not itself forbidden.
+Different labels alone do not prove independent markets or reporters. Native ETH
+is asset zero, not a WETH-priced alias. USDG and USDC need
+actual depeg-aware USD observations. No production source pair or tolerance is
+chosen by the example.
+
+The observer recomputes policy identity, both normalized bounds and the exact
+chain/Oracle/policy/round/sequencer fingerprint at the confirmed timestamp. It
+cannot create independent review evidence or repair a missing source. Missing or
+disagreeing prices remain unavailable. Legacy single-feed profiles retain their
+original code/epoch semantics; they do not qualify this new runtime. See
+[implementation and trust boundaries](PRICE_SECURITY.md).
 
 ## Prepare and validate the inventory
 

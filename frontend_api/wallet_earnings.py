@@ -91,7 +91,7 @@ def read(engine, wallet_address, block_number, offset):
                      'royalty_conversions': conversion_report(conversions, i, engine.descriptors, {})}
         engine.check_paid(p, account, financial, block, lp, royalties)
     result = model.report(engine.descriptors)
-    prices = engine.prices.read(block) if engine.prices else {
+    prices = engine.prices.read(block,timestamp=header['timestamp']) if engine.prices else {
         a: {'available': False, 'usd_per_token_18': None, 'reason': 'price_not_configured'} for a in engine.descriptors}
     value_report(result, engine.descriptors, prices)
     result.update(schema=1, chain_id=p.chain, wallet=wallet, nft_contract=p.contracts['nft'].address,

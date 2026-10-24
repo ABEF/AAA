@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 // Integration of real vault/rewards/NFT/Membership contracts, with a FAKE liquidity venue.
 import {Test} from "forge-std/Test.sol";
@@ -113,7 +117,7 @@ abstract contract PooledVaultFixture is Test {
         venue=new VaultLiquidityMock(address(t0),address(t1));vault=new ZZZVault(address(ac),block.chainid,recipient);nft=new ZZZNFT(address(ac),"");
         membership=new ZZZMembership(address(ac));rewards=new ZZZRewards(address(ac));fees=new ZZZFeeController(address(ac));
         compounder=new ZZZCompounder(address(ac));oracle=new ZZZOracle(address(ac),address(0));
-        MockFeed feed=new MockFeed(8,1e8);oracle.setFeed(address(t0),address(feed),3600);oracle.setFeed(address(t1),address(feed),3600);
+        MockFeed feed=new MockFeed(8,1e8);oracle.setTestFeed(address(t0),address(feed),3600);oracle.setTestFeed(address(t1),address(feed),3600);
         ac.bind(Ids.VAULT,address(vault));ac.bind(Ids.NFT,address(nft));ac.bind(Ids.MEMBERSHIP,address(membership));ac.bind(Ids.REWARDS,address(rewards));
         ac.bind(Ids.FEES,address(fees));ac.bind(Ids.COMPOUNDER,address(compounder));ac.bind(Ids.LIQUIDITY,address(venue));
         ac.bind(Ids.STRATEGY,address(policy));ac.bind(Ids.POOLS,address(pools));ac.bind(Ids.ORACLE,address(oracle));

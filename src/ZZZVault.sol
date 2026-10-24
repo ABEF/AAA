@@ -195,8 +195,8 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         _join(id, bucket, amount0, amount1, minimumLiquidity, deadline, false);
         emit LiquidityAdded(id, amount0, amount1);
     }
-    function _nav(uint256 bucket) private view returns (uint256 deployed, uint256 idleValue) {
-        return migrationBudget.nav(bucket);
+    function _nav(uint256 bucket) private returns (uint256 deployed, uint256 idleValue) {
+        return migrationBudget.contributionNav(bucket);
     }
     function _join(uint256 id, uint256 bucket, uint256 amount0, uint256 amount1, uint128 minimumLiquidity,
         uint256 deadline, bool activation) private {
@@ -204,7 +204,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         Position storage p = positions[bucket];
         IZZZFees fees = IZZZFees(_moduleFees());
         uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
-        (address token0, address token1, uint32 limits) = migrationBudget.validateContribution(id, bucket, inputUSD, amount0 + amount1, minimumLiquidity, activation);
+        (address token0, address token1, uint32 limits) = migrationBudget.validateContribution(id, bucket, inputUSD, amount0 | (amount1 << 128), minimumLiquidity, activation);
         uint256 supply = bucketTotalShares[bucket];
         // Other inboxes also fund the global collective index. Settle ALL before entry.
         fees.syncAllExternal();

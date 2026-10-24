@@ -1,3 +1,13 @@
+## Pricing-V2 contribution security - 2026-10-24
+
+The [current price-security guide](PRICE_SECURITY.md) supersedes older single-feed
+descriptions below. Two sources per asset, a user-selected3% agreement tolerance,
+frozen pre-pull prices/limits and actual marginal LP checks are implemented.
+Agreement tolerance is separate from the default1% execution-loss floor; gas is
+separate. Actual feeds/ages/routes remain unqualified. Use explicit pricing2,
+native accounting2/routing2 and the fixed Oracle-created helper, not a relabeled
+legacy deployment. [Scoped evidence](../reports/price-security/VERIFICATION.md).
+
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;

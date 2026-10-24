@@ -1,0 +1,10 @@
+{
+  "tests": [
+    "tests_python.test_dual_price_integration",
+    "tests_python.test_earnings",
+    "tests_python.test_wallet_earnings.WalletEarningsTests.test_current_prices_and_unpriced_nonzero_components_remain_separate"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 23.437,
+  "scope": "Final 23 dual-source integration cases plus earnings call sites affected by mandatory confirmed-timestamp propagation; no provider/chain/signing actions"
+}

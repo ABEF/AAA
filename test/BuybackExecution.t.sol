@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -159,8 +163,8 @@ contract BuybackExecutionTest is Test {
         access = new MockAccess(); input = new BuybackInputToken(); zzz = new BuybackBurnToken();
         inputFeed = new MockFeed(8, 1e8); zzzFeed = new MockFeed(8, 1e8);
         oracle = new ZZZOracle(address(access), address(0));
-        oracle.setFeed(address(input), address(inputFeed), 3600);
-        oracle.setFeed(address(zzz), address(zzzFeed), 3600);
+        oracle.setTestFeed(address(input), address(inputFeed), 3600);
+        oracle.setTestFeed(address(zzz), address(zzzFeed), 3600);
         rewards = new ZZZRewards(address(access)); membership = new ZZZMembership(address(access));
         fees = new ZZZFeeController(address(access)); vault = new RewardsVaultFixture(rewards);
         nft = new ZZZNFT(address(access), "ipfs://test-only/");
@@ -306,7 +310,7 @@ contract BuybackExecutionTest is Test {
     }
     function testApprovedWrongPairCannotDivertBuybackFunds() public {
         _fund(address(input), GROSS); MockToken third = new MockToken(18);
-        oracle.setFeed(address(third), address(inputFeed), 3600); rewards.addAsset(address(third));
+        oracle.setTestFeed(address(third), address(inputFeed), 3600); rewards.addAsset(address(third));
         PoolConfig memory wrongConfig = _configuration(address(input), address(third));
         // Alternate swap/maintenance routes are not additional contribution pools.
         wrongConfig.depositsEnabled = false;

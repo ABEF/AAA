@@ -1,0 +1,31 @@
+{
+  "scope": "Eight focused tests passed in the tool run; this receipt records results and hashes without repeating them",
+  "tests": [
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_authentic_legacy_source_profile_is_explicit_and_read_only",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_current_v2_artifact_refused_before_lab_state_or_process_creation",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_current_workspace_cannot_be_disguised_with_a_legacy_abi",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_direct_start_cannot_bypass_the_profile_guard",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_input_configuration_refused_before_any_contract_call",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_missing_or_malformed_artifact_fails_closed",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_stale_legacy_artifact_does_not_authorize_fresh_start",
+    "tests_python.test_local_pricing_profile.LocalPricingProfileTests.test_unbounded_artifact_is_rejected"
+  ],
+  "passed": 8,
+  "failed": 0,
+  "actual_process_rpc_signing_deployment": false,
+  "existing_8902_state_or_services_touched": false,
+  "future_current_v2_bootstrap": "explicitly blocked pending coherent native/routing/pricing V2 fixtures and operating qualification",
+  "legacy_calls_preserved_as_historical_only": [
+    "scripts/local-stack.py::setFeed(address,address,uint32)",
+    "scripts/local_inputs.py::setFeed(address,address,uint32)"
+  ],
+  "production_deploy_core": "Constructs current Oracle only; no single-source feed setup call",
+  "sha256": {
+    "scripts/local_fixture_profile.py": "049e5e67b5bedb68bffdf6f5049f787dd62d9245503f602bf65ca24598b713a4",
+    "scripts/local-stack.py": "d7f54a2e80a92473141ab1759059ac6b6bc18aacb9beb66cabaf7ffd577dfdc9",
+    "scripts/local_inputs.py": "02e8204f44a094d32fbc2fbd40d341cdfb40f613ee7c6dcfe7d28ba380621afc",
+    "tests_python/test_local_pricing_profile.py": "09d975ab5407cba3f3fe372adb875fdcc1ce600faaf531f5656fa03d9f2b2387",
+    "docs/LOCAL_API_REHEARSAL.md": "8184117398948ee3fcf06f9ac50f3ed3e173b14b87bc8b8a708f23bf13f83c43"
+  },
+  "post_test_note": "Final wording-only clarification: blocked by compatibility, not lack of user permission; behavior and checks unchanged."
+}

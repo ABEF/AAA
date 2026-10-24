@@ -1,0 +1,6 @@
+test_historical_compound_mismatch_or_duplicate_in_one_phase_fails (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_historical_compound_mismatch_or_duplicate_in_one_phase_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.684s
+
+OK

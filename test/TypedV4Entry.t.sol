@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
+import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
+import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
+using DualOracleFixture for FixtureOracleType;
+
 
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -64,8 +68,8 @@ contract TypedV4EntryTest is Test {
         access = new MockAccess(); source = new MockToken(18); zzz = new NativeFlowToken();
         brokenWrapper = new BoundaryWETH(); brokenWrapper.failures(true, true);
         ZZZOracle oracle = new ZZZOracle(address(access), address(0)); MockFeed feed = new MockFeed(8, 1e8);
-        oracle.setFeed(address(0), address(feed), 1 hours); oracle.setFeed(address(zzz), address(feed), 1 hours);
-        oracle.setFeed(address(source), address(feed), 1 hours); access.bind(Ids.ORACLE, address(oracle));
+        oracle.setTestFeed(address(0), address(feed), 1 hours); oracle.setTestFeed(address(zzz), address(feed), 1 hours);
+        oracle.setTestFeed(address(source), address(feed), 1 hours); access.bind(Ids.ORACLE, address(oracle));
         registry = new NativeFlowRegistry(address(access), oracle, address(zzz)); entry = registry.activationEntry();
         registry.activationAssets().setAsset(address(source), true, address(source).codehash, keccak256("source fixture admission"));
         BoundaryCore lpCore = new BoundaryCore(); FakePermit2 permit = new FakePermit2();

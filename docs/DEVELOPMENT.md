@@ -1,3 +1,12 @@
+## Current-source local rehearsal compatibility - 2026-10-24
+
+The historical local-stack bootstrap is not a qualified pricing-V2 deployment
+tool. It now rejects incompatible current artifacts before creating state or
+starting Anvil. Existing8902 and its saved state remain untouched. Use scoped
+offline tests and [current inventory instructions](PRODUCTION_PREFLIGHT.md);
+a separate fresh native/routing/pricing2 operating rehearsal remains open.
+[Price-security evidence](../reports/price-security/VERIFICATION.md).
+
 ## Native V2 inventory and preflight - 2026-10-24
 
 [Current schema-5 preflight](PRODUCTION_PREFLIGHT.md) validates native/V4 bindings,

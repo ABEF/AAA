@@ -1,0 +1,15 @@
+{
+  "scope": "Dual Oracle core and new dedicated focused test file only",
+  "distinct_passes": 27,
+  "first_scope": "24 pass, 2 fixture expectation-placement failures; one fuzz executes 1000 runs",
+  "repaired_new_scope": "2 repaired cases and 1 additional gas exhaustion case pass; unchanged 24 cases were not repeated",
+  "runtime_bytes": 11270,
+  "init_bytes_without_arguments": 13638,
+  "init_bytes_with_arguments": 13702,
+  "sources": {
+    "src/ZZZOracle.sol": "10e5b82f266f53ea028238af58edc4e4a8e9b06225b261773029aee0b6db0b8e",
+    "test/DualOracleSecurity.t.sol": "d490649eb66a4c7b9e58983c905216b4a7cb8a4929cf06795f5de78e68b4195c"
+  },
+  "production_approved": false,
+  "real_provider_qualification": false
+}
