@@ -1,3 +1,24 @@
+## Audit publication and native port handoff - 2026-10-24
+
+Contract audit fixes `e6b5872` and website memory-only `7849376` are pushed
+on main and remote hashes verified. Read [publication receipt](../reports/daily-security-20261024/PUBLICATION.md)
+and [internal review](../reports/daily-security-20261024/REVIEW.md). Four new regressions
+pass;58 existing passes plus2 repaired-case reruns and9 observer cases are scoped,
+not a fresh full regression. All95 final source/test hashes match. Strategy runtime
+12,862 bytes passes normal limits;32 unchanged source-object gates are reused.
+
+The broader native ETH redesign WAS included as a design audit. No native port
+is implemented. Its cross-contract/schema/backend requirements remain pre-seal
+gates, including native indices, historical reserves, two-stage funding/abort,
+nonduplicated backing and wrapper-independent raw exit/recovery. Current custody
+still uses WETH. Preserve1% conversion/3% ordinary maintenance limits and cheaper
+route requirement. Real services and independent audit remain open.
+
+No website source/build/server, existing8902/Anvil/NFT/LP/balance/journal, signing
+policy or monitoring change. Public DEPLOYMENT is null; signer Anvil-only; production
+NOT APPROVED. Both memories, Todo/features/roadmap/operator guidance are aligned.
+Older unrelated drafts remain local. Main only; follow the source-scoped evidence.
+
 ## Internal audit and native-design review - 2026-10-24
 
 Read [audit findings and scoped evidence](../reports/daily-security-20261024/REVIEW.md).
