@@ -1,3 +1,17 @@
+## On-chain safety/cost publication verified - 2026-10-24
+
+Contract `8d0234d` and website memory-only
+`7176278` are pushed on main with remote hashes verified.
+Read [publication](../reports/onchain-safety/PUBLICATION.md),
+[review](../reports/onchain-safety/REVIEW.md) and
+[verification](../reports/onchain-safety/VERIFICATION.md). 145 distinct Solidity
+cases,83 backend checks,37 normal object gates and120 final bindings are scoped;
+no fresh full regression or actual provider qualification is claimed. Cold
+combined activation11,507,856 passes unchanged12M gate. Production NOT APPROVED.
+Operator/Todo/features/roadmap and both memories align. Preserve older drafts,
+8902/Anvil/NFT/LP/journals/dist overlay, null public DEPLOYMENT, Anvil-only signing
+and paused monitoring. No website/server/service or public transaction change.
+
 ## On-chain safety and cost follow-up - 2026-10-24
 
 The [internal review](../reports/onchain-safety/REVIEW.md) hardens sequencer reads

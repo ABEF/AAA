@@ -7,6 +7,7 @@
   "cold-gas-summary.json": "44ac0667918ecf08f15352ea0001cccc84cc053b6d9c986f285863ff0ec4142b",
   "cold-gas.json": "c9a43b09d2b3bf45bf836d5f43f14cdc889fbc92d1e7f10794a221b5d292d081",
   "combined-capacity.log": "14a514cef5a461562e49ef7d76b40f50a97ce14dec0420445c97759b2a823975",
+  "contract-publication.json": "b34315af27838795abddef252eb93d601eb2c1418f2599f890f741b0ec533378",
   "final-solidity-bindings.json": "9765588fbad282df3f1d13d8fae4bc62e2fea80d97df9f819785334a5a30e3ad",
   "oracle-before-inputs.json": "2e6ba2cdeebaa17800ae6ec84d33a482a515a0590556058efb90b1744d5cc990",
   "oracle-before-summary.json": "1479fa171a92142b7d97cb53a3df1c2c016eb19a42e19d5cb5e822522cc889ac",
@@ -15,7 +16,7 @@
   "pricing-affected-summary.json": "191c80368cc22aa56a6f9e95eef927b1e39f3903d8fe72b801f459dcd6385d42",
   "pricing-affected.json": "5cf97cdf88b5befc2ed0b44adf74c1e1b77b64f5187842c8318b052108f2eac0",
   "production-size-gates.json": "b3fbefcbc02bb565582e34435d07d327cd8546768c719a4bf215ff41417951d2",
-  "PUBLICATION.md": "a23bd1934665f87115bac21cfcdec03b0ea5ad15b1422e1846457ffd03dd7cc6",
+  "PUBLICATION.md": "f4622a9354a39c3dc24b1c78eabb6bc131aa7e79da6206b8443101aba7db27d9",
   "REVIEW.md": "48a2519eb98f1349c054fd4834df644e2b932ac5ff36fe7052f013dfccb979ba",
   "reward-affected-inputs.json": "6876c8a1aa09eb6414256a8e7e9d18776b27497cb5ae4c1eca1906da02f3d867",
   "reward-affected-summary.json": "a7bfc3c25da99483014caf5e5d9025768f9705a9608f26ac4ca6f4e842334ff0",
@@ -50,5 +51,6 @@
   "strategy-native-summary.json": "ad9251ffd2b500614cdbaa156bf9e71892e9eb59a800e0b632cd4bdb22c3d4a2",
   "strategy-native.json": "46d8d06103e446ee652252907431f80994e36f0babda8177e210c5a8a892bc2e",
   "verification-summary.json": "770ae97003149212854d1d22cf31ed9b5d4f980ca6d8b7ad1000fb106867c47b",
-  "VERIFICATION.md": "d4eb328d6cd9c7b2a4c5d235b4a6450dc0a60dfecfafca37a83dc6581fc88ab5"
+  "VERIFICATION.md": "d4eb328d6cd9c7b2a4c5d235b4a6450dc0a60dfecfafca37a83dc6581fc88ab5",
+  "website-memory-publication.json": "0a41668c7172ebb118e457f40809cedce0360a7844f8ecd9951adb46253afa35"
 }
