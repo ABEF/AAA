@@ -1,6 +1,8 @@
 # PoPL operator manual
 
-**Pool decision 2026-10-24:** new ETH/ZZZ pool replaces the Pons target. The user supplied a 0.25% LP / 0.05% protocol / 0.30% effective fee display; version/hook and actual venue remain undecided. v4 without a custom hook is recommended, not selected. Native admission, actual fee deductions and all new-pool routes need review before sealing. Existing Pons evidence is historical. [Current decision](POOL_SELECTION.md).
+**Post-seal settings and real-funds rehearsals (2026-10-24):** [Configuration policy and cleanup boundaries](POST_SEAL_POLICY.md) distinguish existing setters from required pre-seal extensions. Use a separate mainnet rehearsal deployment; no reset/burn or general sweep exists. No public action is authorized by this design record.
+
+**Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
 
 This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
 
@@ -77,7 +79,7 @@ Roles can technically share an address, but this combines their compromise and a
 | +/-20% | `2000` | 0.80 to 1.20 |
 | Total width 20%, meaning +/-10% | `1000` | 0.90 to 1.10 |
 
-1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only the intended settings. For the selected native/Pons pool use `configureNative(config)`; for supported hookless ERC20 pools use `configure(config)`. Do not sort the normalized WETH/ZZZ accounting pair or replace a native venue key with its accounting key.
+1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only the intended settings. For the selected hookless native ETH/ZZZ pool use `configureNative(config)`; for supported hookless ERC20 pools use `configure(config)`. Do not sort the normalized WETH/ZZZ accounting pair or replace a native venue key with its accounting key.
 2. Check the dependent bounds below, oracle freshness, current price/spot difference, target ticks, actual swap costs and expected gas. Review narrower-range out-of-range exposure and turnover. Simulate the new configuration and maintenance on a fork at the same state before approval.
 3. Governance executes the configuration. This **does not immediately close/reopen LP**. Inspect `Strategy.rangeUpdatePending(bucketId)` and `needsRebalance(bucketId)`.
 4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Polling every ten minutes is only an example; it is not a guaranteed rebalance deadline.
@@ -93,7 +95,7 @@ Before execution, restoring the old configuration may clear the width mismatch; 
 | `triggerBps` | At least 100 and less than range | Price movement from recorded center which can trigger upkeep. |
 | `minRebalanceInterval` | 600 seconds-7 days | Minimum time between rebalances; a safety cooldown, not a governance delay. |
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
-| `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected native/Pons admission additionally requires greater than 100. This venue guard does **not** weaken the 1% complete contribution-loss ceiling. |
+| `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected LP fee 10020 pips therefore requires at least 101 bps; actual protocol fee, impact and complete quote must also pass execution checks. This venue guard does **not** weaken the 1% complete contribution-loss ceiling. |
 | `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed $100 activation / $5 top-up floors. The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
 | `depositsEnabled`, `operationsEnabled` | Full configure for enabling; `disablePool` can only clear flags | Different controls; see below. |
 
@@ -140,14 +142,14 @@ To stop an input immediately, use `ActivationAssets.setAsset(token,false,expecte
 
 ## Pool admission and retirement
 
-For a supported new LP venue, first qualify tokens, feeds, reward-asset admission (`Rewards.addAsset(token)`), the exact venue key/manager and strategy. Then governance calls `configure` or the narrowly supported `configureNative`. Not every Uniswap v4 hook/native pair is supported. The selected native/Pons constants and immutable adapter bindings are not arbitrary venue plug-ins.
+For a supported new LP venue, first qualify tokens, feeds, reward-asset admission (`Rewards.addAsset(token)`), the exact venue key/manager and strategy. Then governance calls `configure` or the narrowly supported `configureNative`. Not every Uniswap v4 hook/native pair is supported. Native admission permits only supported static, hookless ETH/ZZZ keys on the pinned Robinhood dependencies; immutable bindings are not arbitrary venue plug-ins.
 
 ### One contribution pool at a time
 
 `PoolRegistry.contributionPool()` is the only pool whose `depositsEnabled` flag
 can be true; zero means new activations/top-ups are stopped. Initial production
-configuration must select the reviewed Robinhood ZZZ/ETH native/Pons pool
-`0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f`.
+configuration must select the reviewed Robinhood hookless native ETH/ZZZ pool
+`0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`.
 The policy is per registry, not a permanent chain/pair restriction. A second
 enabled pool is rejected even through governance; comments/UI restrictions are
 not the enforcement boundary. Disabling only operations retains its selection.
@@ -232,7 +234,7 @@ capture is blocked until principal and royalty external custody are resolved.
 | Price feed or freshness policy | Governance `Oracle.setFeed(token,feed,maxAge)`, maxAge 1-86,400 seconds, feed/asset decimals ≤18; verify actual USD semantics, rounds, freshness and oracle price | Do not substitute pool spot, assume a stablecoin is $1, or stretch maxAge to conceal stale data. Pause/disable affected entry; consider exact parking if executable. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
 | Supported WETH implementation/admin change | `PoolRegistry.approveWrapperPolicy(policy)`, then `activateWrapperPolicy(id)` after live code/getter/authority review | Same canonical wrapper only. It does not approve arbitrary venue code changes or repair a hostile proxy. Parking itself can fail if wrapper bindings fail. |
-| Pons hook, pool manager, token or router change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
+| Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
 | RPC/trace/archive outage | Use chain-checked reviewed endpoints with required hash-pinned reads and trace/receipt semantics | Never fall back to latest/unconfirmed state or a wrong chain. Serve unavailable status; retain indexes/state. |
 
 Changing off-chain code hashes to whatever is currently deployed is not a review. Verify proxy implementation and external control as well as runtime bytecode. Governance configuration during canonical preparation is blocked; cancel preparation only if reopening is intended, not to bypass a migration freeze.

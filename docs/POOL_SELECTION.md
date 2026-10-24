@@ -1,86 +1,70 @@
-# New ETH / ZZZ pool selection - 2026-10-24
+# Selected Robinhood ETH / ZZZ pool
 
-## Current user decision
+## User decision - 2026-10-24
 
-The user will create a new Uniswap ETH/ZZZ pool instead of using the existing
-Pons venue. No pool creation, funding, admission, deployment or transaction is
-authorized or claimed by this record. The former documented integration target
-was the native-ETH/ZZZ Pons pool; references to that target are historical research,
-not the selected new pool. A USDG market may remain a separate activation route.
+The selected integration target is the existing pool
+`0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`.
+This replaces Pons and the earlier proposed 0.30% pool. Selection is not release approval.
 
-## Required details - pending
+| Property | Verified selection |
+| --- | --- |
+| Chain / venue | Robinhood 4663 / Uniswap v4 |
+| Physical currencies | Native ETH / ZZZ `0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a` |
+| PoolKey | `(address(0), ZZZ, 10020, 200, address(0))` |
+| Hook | Zero; no Pons or custom hook |
+| LP fee | Static 1.002% |
+| Observed protocol fee | 0.1% per direction; separately controlled by Uniswap |
+| Combined observed fee | Approximately 1.101%; gas/interface fees separate |
 
-- Confirm the chain and Uniswap version; do not infer them from the old market.
-- Confirm native ETH versus WETH as the physical currency.
-- The user supplied a target displayed breakdown: 0.25% LP, 0.05% Uniswap
-  protocol, 0.30% effective fee. Record this as intent, not an observed new-pool
-  setting. Confirm the version-specific calculation, actual protocol controller
-  and enabled policy; the creator does not automatically control protocol fees.
-- Confirm static/dynamic policy, tick spacing and any hook (including explicitly
-  no hook). Version and hook choice remain undecided.
-- Once created, record the exact PoolKey/pool ID or applicable pool address,
-  initialization transaction, deployed dependency identities and initial price.
-- Define initial seed liquidity and who provides it. Existing market volume,
-  liquidity, measurements and Pons creator terms do not carry to the new pool.
+[Pinned observation](../reports/hookless-pool/observed-pool.json) includes the
+initialization transaction, recomputed pool identity, dependency runtimes and wiring.
+Reproduce with `scripts/verify-hookless-pool.py`. Active liquidity units are not USD
+TVL or a volume forecast. Protocol and LP fees compose sequentially with rounding.
+The creator cannot change this static fee or add a hook, but may remove their own
+LP; token permissions, market depth and external governance remain separate risks.
 
-The version/hook decision is pending. Recommendation, not user approval: v4
-without a custom hook matches the current v4 custody/execution architecture and
-native ETH requirement. The existing Vault/keeper/reward ledgers already provide
-LP management and NFT revenue allocation; those functions do not require a hook.
-New native hookless admission still needs implementation and qualification.
+## Admission and revenue
 
-Official references checked 2026-10-24:
-- [v4 versus v3](https://developers.uniswap.org/docs/protocols/v4/concepts/v4-vs-v3): native ETH support and different position/settlement interfaces.
-- [Optional hooks](https://developers.uniswap.org/docs/protocols/v4/concepts/hooks): custom lifecycle behavior; hook identity cannot be changed on an existing pool.
-- [Fee structures](https://developers.uniswap.org/docs/get-started/concepts/fees): the displayed 0.25%/0.05% split is documented for fee-enabled 0.30% v3 pools, not a universal v4 configuration.
-- [v4 protocol-fee implementation](https://github.com/Uniswap/v4-core/blob/main/src/libraries/ProtocolFeeLibrary.sol): input protocol fee and LP fee compose sequentially; do not blindly sum or equate v3 and v4 fee fields.
+`SELECTED_NATIVE_POOL` records the launch identity. Governance can also use
+`configureNative` after sealing for future initialized static, hookless native
+ETH/ZZZ fee tiers on the same pinned Robinhood core. It checks the real slot fee,
+code/wiring, WETH proxy policy, admitted assets/feeds and existing strategy bounds.
+No dynamic fees, custom hooks or other native tokens are admitted. WETH/ZZZ uses
+ordinary hookless `configure`. Exactly one pool accepts contributions at a time.
 
-Confirm the actual new pool policy and chain before implementation. A reported
-Uniswap protocol fee goes to Uniswap's protocol mechanism, not the PoPL governor
-or NFT royalty address. PoPL's 80/10/5/5 applies to its actually collected LP fees,
-after venue-level deductions; never to all trading volume or another LP's income.
+LiquidityManager uses native ETH at the venue and WETH internally. It preserves
+prefunds and clears exact allowances. Vault harvests before increasing LP so old
+native fees cannot silently pay new principal. Unexpected offsets fail atomically.
+Ordinary venue fees earned by PoPL's own LP receive the unchanged 80/10/5/5 split.
+Pons creator payments are optional historical work, not a dependency of this pool.
+Royalties stay separate; ZZZ-side holder fees still require reviewed ETH conversion.
+The user retained the1% conversion-loss cap, gas separate, and requires a cheaper
+approved conversion route. The selected approximately1.101% fee does not qualify
+a full ZZZ-reward conversion at reference prices; never raise the cap to force it.
 
-## Revenue and retained accounting
+## Move funds versus exit
 
-For a normal fee-charging pool, PoPL receives venue fees attributable to its own
-active LP position. The existing receipt-backed 80/10/5/5 allocation remains.
-NFT royalties are independent and unchanged. Neither liquidity provision nor a
-new pool guarantees trading volume, active-range earnings or future revenue.
+| Intent | Operation | Boundary |
+| --- | --- | --- |
+| Another fee tier or native ETH / WETH venue | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; old `movePool` remains an alias | Atomic actual destination LP; unchanged NFT shares; one fixed 3% aggregate cap, gas separate; no external custody. |
+| Send principal to your regular address | Approve request, globally pause, then `Migration.exit(id)` | Normal mode converts all attributed principal to configured ZZZ before sending; recipient custody is explicitly trusted. |
+| Swap impossible / prices unavailable | Separately approve `rawExit=true`, then `exit(id)` | Transfers attributed WETH/ZZZ under raw close minima; no 3% USD guarantee; never automatic fallback. |
 
-The prior Pons creator-payment agreement/measurement work is historical and
-conditional; it is not automatically a launch dependency of a standard new pool.
-If a new custom hook or external sharing agreement is chosen, explicitly qualify
-that separate funding path. Do not retain an assumed Pons entitlement.
+Native/WETH venues share the ordered WETH/ZZZ accounting pair. Other pairs require
+external custody. Moving LP does not silently enable destination deposits or alter
+routes. [Exact operator steps](GOVERNED_CUSTODY_HANDOFF.md#move-funds-without-external-custody).
+The overall 3% cap is fixed, including after sealing; the narrower per-pool setting
+remains configurable within its coded bounds. Raw exit is a distinct risk approval.
 
-Collected venue fees may arrive in both pair currencies. Existing LP-holder ETH
-settlement still requires the reviewed converter, routes, prices and keeper;
-a native-ETH pair does not by itself make every reward an ETH-only credit.
+## Remaining qualification
 
-## Actual code compatibility
+The fee does not automatically violate the 1% contribution budget: only the swapped
+portion incurs it. Every complete input quote must still leave at least 99% as new
+LP. Do not weaken the limit to pass an expensive quote. Independent ZZZ/USD pricing,
+ETH/ZZZ/USDG/USDC routes, full conversion/gas economics, production inventory,
+VRF, authorities, marketplace support, operating rehearsals and independent audit
+remain open. Fork prices, authority and randomness are explicitly synthetic.
 
-`PoolRegistry.configure` admits the supported hookless ERC20/ERC20 path; it does
-not admit native ETH. Current `configureNative` is pinned to the old Robinhood
-native/Pons key and dependency boundary. Therefore a new native ETH/ZZZ pool is
-not supported by merely substituting a pool ID. It needs narrowly scoped reviewed
-admission/settlement support before sealing, plus updated inventory and evidence.
-A different Uniswap version may require a separately reviewed adapter.
-
-Preserve existing on-chain share accounting, exact contribution approvals, $100
-activation/$5 growth floors, 1% contribution-loss limit, 3% ordinary maintenance
-limit, one contribution pool at a time and current-holder reward rights. Do not
-loosen these guards to force an unsupported venue through admission.
-
-## Qualification work
-
-1. Confirm the missing venue decisions and actual created-pool identity.
-2. Implement only the required compatibility changes; qualify native settlement,
-   fee collection, close/rebalance, adverse callbacks, donations and exact approvals.
-3. Review fresh independent ZZZ pricing, asset conversion routes, wrapper policy,
-   loss/gas economics, starting price and liquidity depth for this pool.
-4. Update deployment inventory, operating procedures and service bindings.
-5. Run focused local/fork checks for changed behavior and an isolated Anvil journey.
-   Do not reset the existing 8902 fixture or reuse old-pool evidence as new-pool proof.
-
-No contract behavior or live website/server configuration changes in this decision
-record. Public signing stays disabled, monitoring stays paused, and production
-remains NOT APPROVED. [Sole Todo](../TODO.md#task-pons-qualification).
+[Current evidence](../reports/hookless-pool/VERIFICATION.md) |
+[Sole Todo](../TODO.md#task-pons-qualification). Public signing stays disabled;
+contracts are undeployed and production remains NOT APPROVED.

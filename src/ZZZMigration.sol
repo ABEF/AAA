@@ -210,9 +210,15 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function _amounts(Position memory p) private view returns(uint256,uint256) {
         if(p.lpTokenId==0) return(0,0); return IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
     }
-    // Local same-pair upkeep remains in this single module; no old bridge stack.
-    function movePool(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) external onlyGovernance live nonReentrant {
+    /// @notice Atomic pool-to-pool move. Never transfers principal to an external custodian.
+    /// Native ETH and WETH venues share accounting currencies; other pairs fail closed.
+    /// One 3% aggregate loss budget, unchanged NFT shares, actual destination LP.
+    function moveFunds(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) public onlyGovernance live nonReentrant {
         if(activePlan[id]!=bytes32(0)) revert InvalidState(); _vault().movePool(id,pool,minimum,deadline);
+    }
+    // Retain the existing selector with exactly the same authority and safeguards.
+    function movePool(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) external {
+        moveFunds(id,pool,minimum,deadline);
     }
     function resume(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) external onlyGovernance live nonReentrant {
         if(activePlan[id]!=bytes32(0)) revert InvalidState(); _vault().resume(id,pool,minimum,deadline);

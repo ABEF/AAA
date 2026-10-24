@@ -1,10 +1,12 @@
 # Engineering roadmap
 
-**Pool decision 2026-10-24:** new ETH/ZZZ pool replaces the Pons target. The user supplied a 0.25% LP / 0.05% protocol / 0.30% effective fee display; version/hook and actual venue remain undecided. v4 without a custom hook is recommended, not selected. Native admission, actual fee deductions and all new-pool routes need review before sealing. Existing Pons evidence is historical. [Current decision](POOL_SELECTION.md).
+**Pre-seal flexibility (2026-10-24):** [Operational configuration](../TODO.md#task-post-seal-configuration) and the [native ETH architecture](NATIVE_ETH_ARCHITECTURE.md) must be implemented/reviewed before sealing if these future controls are required. [Real-funds rehearsal planning](../TODO.md#task-mainnet-rehearsal-retirement) uses a separate deployment followed by a fresh final collection, not a reset. No public execution is authorized.
+
+**Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
 
 **Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
 
-> Reviewed 2026-10-23 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
+> Reviewed 2026-10-24 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.
 
 The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes the candidate: shared nonredeemable LP allocations, receipt-backed rewards and royalties, atomic activation entry, custody controls and bounded same-chain canonical handoff. Read it for implementation boundaries rather than treating the roadmap as another feature inventory. Historical [reward-funding](../reports/reward-funding/README.md), [shared-pool](../reports/pooled/README.md) and [earlier implementation](../reports/IMPLEMENTATION_UPDATE.md) reports retain their own source scope.
 
@@ -26,19 +28,40 @@ The [collection read API/explorer](COLLECTION_READS.md) now implements complete
 canonical inventory and current-LP aggregation, with bounded pinned pages and
 [scoped evidence](../reports/collection-reads/VERIFICATION.md). Remaining work is
 actual service/history/pricing/latency qualification, not another demo rebuild.
-Different-pair composition and cross-chain canonical transport remain pre-seal
-work; the existing ordered-pair guards are unchanged.
+Different-token operations now use separately approved external custody; atomic
+moveFunds retains ordered-pair guards. Future-chain canonical transport remains
+unfinished and is not supplied by external custody alone.
 
-## Local pair conversion - 2026-10-23
+## Current custody direction - 2026-10-24
 
-The [typed local companion](PAIR_MIGRATION.md) now implements atomic pair changes
-and historical compound consolidation while preserving shares, old inboxes and
-original-currency rewards. Qualify its real routes and bounded gas, then complete
-authenticated multi-currency bridge messages, lineage and future-chain finality.
-V3 principal proposals remain blocked for composed buckets. Same-chain imports
-carry their composition epoch and classify idle by the current pair. The
-[central custody task](../TODO.md#task-custody-composition) remains in progress;
-local conversion does not close the pre-seal cross-chain requirements.
+Atomic `Migration.moveFunds` supports admitted same-accounting-pair venue/fee-tier
+changes with actual destination LP, unchanged NFT shares and one fixed 3% aggregate
+cap. Current ETH-to-WETH normalization permits native/WETH pool moves. Normal
+paused external `exit` consolidates principal into ZZZ; separately approved raw
+exit sends both accounting currencies without a USD guarantee. A failed normal
+exit never selects raw mode automatically. Follow [operator steps](GOVERNED_CUSTODY_HANDOFF.md).
+
+The former typed pair executor and v3 bridge paths are removed. Their
+[pair-composition report](../reports/pair-composition/VERIFICATION.md) retains its
+historical revision scope, not operative features. Different-token conversion or
+bridging uses explicitly trusted external custody, actual funded completion/return
+and reviewed remote finality where applicable; no real verifier or remote ledger
+is supplied. Whole-collection handoff remains separate.
+
+Implement the requested [native ETH architecture](NATIVE_ETH_ARCHITECTURE.md)
+before claiming wrapper-independent recovery. The current implementation still
+uses WETH; native custody/Entry/rewards/reserves/exit/canonical backing require
+joint implementation and affected-source qualification. This is an authorized
+design direction, not completed functionality.
+
+Implement/review [post-seal operating flexibility](POST_SEAL_POLICY.md) before
+sealing: bounded future VRF request tuning, a buyback operating ceiling and typed
+v4 conversion support. Preserve pending request provenance, immutable traits,
+rights, backing and execution floors. Existing route setters cannot add new code.
+The 1% ZZZ reward-conversion cap remains, gas separate; require a cheaper qualified
+route than the selected pool's observed 1.101% fee. Do not invent a route or raise
+the cap. Real-funds rehearsal uses a separate deployment and fresh final collection,
+not an NFT/accounting reset.
 
 ## Current sequencing decision - 2026-10-20
 
@@ -79,13 +102,13 @@ The current four-historical-bucket cap follows combined funded-inbox/dust/index 
 
 Owning tasks: [shared accounting](../TODO.md#task-security-share-accounting), [ownership and rewards](../TODO.md#task-security-ownership-rewards), [custody composition](../TODO.md#task-custody-composition), [whole-protocol recovery](../TODO.md#task-security-chain-recovery), [governance](../TODO.md#task-security-governance).
 
-Extend the independent integer-ledger stateful handler beyond its current local custody/reward scope. Existing unit/fuzz and stateful tests cover mint, activation, top-ups, harvest, owner changes, claims, pauses, donations, compounding and rebalance. Add full multi-chain stateful and real provider failure behavior; existing repeated migration tests still use a mock transport. Review coverage rather than treating a passing run as proof of every possible sequence.
+Extend the independent integer-ledger stateful handler beyond its current local custody/reward scope. Existing unit/fuzz and stateful tests cover mint, activation, top-ups, harvest, owner changes, claims, pauses, donations, compounding and rebalance. Add full multi-chain stateful and real provider failure behavior; historical bridge tests used mock transport and do not verify the current custody replacement. Review coverage rather than treating a passing run as proof of every possible sequence.
 
-Independently qualify the [implemented same-chain canonical handoff](CANONICAL_HANDOFF.md): six receipt cutoffs, ordered bounded settlement, complete ownership/inventory/shares and reward-ledger export/import, exact classified backing, restored abort, atomic source retirement/single-successor activation and late forwarding. Its supported source has all mints revealed, Parked/None local buckets, no active plans and no historic legacy bridge activity. An imported successor cannot initiate v3 principal bridging.
+Independently qualify the [implemented same-chain canonical handoff](CANONICAL_HANDOFF.md): six receipt cutoffs, ordered bounded settlement, complete ownership/inventory/shares and reward-ledger export/import, exact classified backing, restored abort, atomic source retirement/single-successor activation and late forwarding. Its supported source has all mints revealed, Parked/None local buckets, no active plans and no historic legacy bridge activity. The old v3 principal bridge implementation is removed.
 
-Before sealing, complete the accepted [cross-chain canonical design](CANONICAL_MIGRATION_DESIGN.md): verified finalized source retirement with no multisig/timeout override, authenticated channel closure, new lineage/message semantics and exact transport/backing. Different-pair conversion also needs typed execution, composition epochs and preserved old-currency liabilities. The implemented 3% budget applies to ordinary rebalance and atomic local same-ordered-pair move/resume, with gas separate; it is not a cross-chain budget. Do not remove pair guards or assume a future provider can add absent sealed-code capabilities. Post-halt recovery remains deferred.
+Before sealing, complete the accepted [cross-chain canonical design](CANONICAL_MIGRATION_DESIGN.md): verified finalized source retirement with no multisig/timeout override, authenticated channel closure, new lineage/message semantics and exact transport/backing. External issuer exchanges preserve original shares and old-currency liabilities; real funded destination completion is distinct from atomic same-pair movement. The implemented 3% budget applies to ordinary rebalance and atomic local same-ordered-pair move/resume, with gas separate; it is not a cross-chain budget. Do not remove pair guards or assume a future provider can add absent sealed-code capabilities. Post-halt recovery remains deferred.
 
-Successors may use different reviewed code approved through governance-approved governance, as the user accepted. A malicious approved successor could divert LP; review code, admission and bindings independently. This accepted governance trust does not waive backing, single-successor retirement or verified finality. Include contract-owner/escrow compatibility and marketplace collection cutover in the handoff rehearsal.
+Successors may use different reviewed code approved through governance, as the user accepted. A malicious approved successor could divert LP; review code, admission and bindings independently. This accepted governance trust does not waive backing, single-successor retirement or verified finality. Include contract-owner/escrow compatibility and marketplace collection cutover in the handoff rehearsal.
 
 ## 3. Validate real Uniswap operation
 
@@ -93,11 +116,11 @@ Owning tasks: [selected pool](../TODO.md#task-pons-qualification), [activation a
 
 Use pinned-block fork tests against actual supported PositionManager, PoolManager, Permit2, and StateView deployments. Exercise mint, increase, collection, close, swaps, approvals, callbacks, donations, and failure paths. Measure rebalancing and all-asset checkpoint costs at realistic collection sizes.
 
-The older fixed-block suite used a different hookless pool. The selected-native/Pons adapter preserves the physical PoolKey, normalizes only accounting to WETH, checks reviewed runtimes/wiring and handles native settlement without spending prefunds. Recorded selected-pool fork runs cover that path for their exact source/block snapshots; complete release-source fork/gas/strategy qualification. The current offline regression did not run those opt-in fork suites. This is not generic hook approval or permission to deploy. Mock-venue collection/asset workloads do not establish target-pool operating costs.
+The current selected hookless native adapter preserves the physical PoolKey, normalizes accounting to WETH, checks reviewed runtimes/wiring and handles native settlement without spending prefunds. Earlier Pons forks retain their original source scope. Recorded selected-pool fork runs cover that path for their exact source/block snapshots; complete release-source fork/gas/strategy qualification. The current offline regression did not run those opt-in fork suites. This is not generic hook approval or permission to deploy. Mock-venue collection/asset workloads do not establish target-pool operating costs.
 
 Independently qualify the implemented immutable [atomic Entry](ACTIVATION_ENTRY.md): original-source gross valuation, exact received balances, current-owner intent and one full 1% execution/undeployed bound across conversion and LP deployment. Register and rehearse actual ZZZ/ETH/USDG routes and supply a funded reviewed USDC route before enabling it. Reject quotes that cannot meet the bound; do not subsidize them with incumbent LP, idle or compound assets. The implemented [complete preparation service](ACTIVATION_PREPARATION.md) now performs two full Entry simulations and returns bounded unsigned calldata. Next qualify actual route/feed manifests, hash-selected callTracer support/logs and complete network-fee estimation on the intended providers, then integrate wallet approval/requote/signing/receipts.
 
-Rehearse [custody parking](CUSTODY_PARKING.md) through the sealed zero-delay controller: global pause, exact bucket snapshot, close-only raw-token minimums, nonce cancellation/expiry and honest Parked custody reporting. Prove fresh-oracle resume and reviewed parked migration retain funding/legacy-liability barriers. Price-feed and inbox independence does not bypass actual venue, wrapper or token failures.
+Rehearse [custody parking](CUSTODY_PARKING.md) through the sealed zero-delay controller: global pause, exact snapshot, raw minima, nonce/expiry and honest parked custody reporting. Prove guarded resume and separately approved external custody preserve shares/liabilities. Price-feed independence does not bypass venue, wrapper or token failure.
 
 ## 4. Validate the accepted economics and NFT lifecycle
 
@@ -112,9 +135,13 @@ claims remain a fallback; balances stay attached to the same NFTs. See the
 
 Owning tasks: [creator terms](../TODO.md#task-creator-terms), [random assignment](../TODO.md#task-fair-draw), [metadata operations](../TODO.md#task-metadata-ops), [dependency security](../TODO.md#task-security-dependencies), [asset liveness/dust](../TODO.md#task-asset-liveness-dust), [backend integration](../TODO.md#backend), [frontend integration](../TODO.md#frontend).
 
-Independently review equal activated-NFT membership, collection/delivery-time collective allocation for unharvested/remote rewards, processing-time creator receipts, incumbent pending/indexed/dust settlement, remote/in-flight eligibility and reward-asset limits. Model timing incentives, manipulated valuations, depreciated positions, strategy costs, and token eligibility. Review the implemented repeated-hop custody epochs, ordered home-location ACKs, canonical returns, legacy reward budgets, and post-seal append-only route governance against adversarial operation sequences.
+Independently review equal activated-NFT membership, collection/delivery-time collective allocation for unharvested/remote rewards, processing-time creator receipts, incumbent pending/indexed/dust settlement, remote/in-flight eligibility and reward-asset limits. Model timing incentives, manipulated valuations, depreciated positions, strategy costs, and token eligibility. Review current custody request epochs, actual departure/return quantities, pending external custody and post-seal route governance against adversarial operation sequences. Legacy bridge ACK tests are historical, not current transport support.
 
-The user reports creator revenue sharing proportional to PoPL liquidity. Exact [sampled measurement tools](REVENUE_SHARE.md) now propose fee-weighted active share (preferred with complete reliable fee observations) or time-weighted active share; neither is creator-approved yet or reconstructs exact intra-swap v4 fee attribution. Confirm the base, window, sampling, payout asset/frequency and rounding; implement the complete hook-event/trace parser and reconcile actual receipts. Only funded, processed payments enter the existing 80/10/5/5 indexes. Native custody support does not confer Pons revenue rights. The website's assumed conventional-fee example remains hypothetical. See [external funding](EXTERNAL_REWARDS.md).
+The selected hookless pool earns ordinary LP fees; the old Pons creator-payment
+agreement is not a launch dependency. [Sampled revenue-share tools](REVENUE_SHARE.md)
+and [external funding research](EXTERNAL_REWARDS.md) remain conditional/historical
+unless a new external agreement is adopted. Independently verify actual LP fees,
+80/10/5/5 processing and ZZZ pricing; do not infer a new creator entitlement.
 
 Before paid minting, establish actual supported-chain VRF, subscription backing and measured callback/failure recovery. Quotas/inventory and current-value evolution have local tests, but mock VRF does not establish Robinhood service support. The eight-color/58-palette/four-pattern library covers 2,784 artwork states; its verified IPFS upload bundle is prepared, not pinned. Choose redundant hosting, verify the final CID and every renderer path, then stage the already-implemented market-driven watcher with real feeds and marketplace caches. Marketplace royalty payment remains voluntary. The immutable 32-operation [claim router](CLAIM_ROUTER.md) now batches LP and royalty claims; independently qualify worst-case gas, owner callbacks and frontend chunking.
 
@@ -133,11 +160,25 @@ Owning tasks: [authorities and prices](../TODO.md#task-authorities-prices), [kee
 
 Qualify the exact keeper/controller/fixture versions together. Strict canonical-state and preparation checks stop new submissions in locked states while pending receipt recovery continues. Existing isolated staging has not been upgraded to this lifecycle; historical crash/recovery receipts do not qualify the changed integration. Rehearse nonce/budget continuity, backups, host loss, old-host fencing, key rotation, RPC/fee behavior and independent alerts. The user paused the desktop chat monitor; it supplies no observations after that pause and must not be restarted without authorization.
 
-Real bridge transport can remain disabled at initial launch. An independently approved [migration-disabled launch](OPERATIONS.md#migration-disabled-initial-launch) still requires the pre-seal capabilities in section 2 and all applicable security/service/operating gates. Provider qualification and enabling routes are separate later actions; disabling them does not close unfinished canonical migration or different-pair implementation.
+The current release candidate has no operative legacy LP bridge/router or typed
+pair executor. Qualify [governed custody](GOVERNED_CUSTODY_HANDOFF.md), actual
+recipients, post-withdrawal exit depth, raw minima and funded completion/return.
+Remote custody requires pinned finality/channel-closure verification; no real
+verifier, provider, remote NAV/reward ledger or canonical relocation is supplied.
+Do not treat external manual bridging as complete NFT/ledger migration.
 
-The fixed router and append-only future-provider onboarding framework are implemented. Select and independently review bridge-specific `IZZZTransportProvider` wrappers, establish equivalent-token and supply semantics, and test canonical-to-satellite, satellite-to-satellite, canonical return, and revisited destinations against actual providers. Exercise authentication, backing, duplication, ordered home notifications, absent-hop epochs, delays, retries, legacy rewards after departure, pauses, and provider failures. Review every future destination's code and authorities before governance-approved route onboarding. Exercise real signer/RPC behavior and indexer backfill/reorg recovery on a test network.
+Local permanent reservations share four historical bucket slots. Verify admitted
+pool aliases/capacity before departure; this is not authenticated remote admission.
+Future-chain canonical relocation, ownership/reward continuity and accounting
+remain separate design/implementation/qualification gates. See the
+[current recovery matrix](CHANGE_AND_RECOVERY.md), not historical bridge procedures.
 
-Before enabling a real bridge, independently qualify the implemented permanent destination capacity admission and real provider recovery. Reservations and historical custody share four permanent slots; aliases and returns reuse them. Source governance must still authenticate the reviewed destination and confirmed admission. The [architecture evolution design](ARCHITECTURE_EVOLUTION.md) separates different-pair conversion, fixed-home remote custody and canonical NFT/ledger relocation. Home-chain creator-funded 5% compound reserves still wait for custody to return unless a separately reviewed funded remote reinvestment design is added. Task status remains in the central Todo.
+A real-funds campaign requires a separate clearly named rehearsal deployment,
+reviewed exact configuration and explicit spending/signing authorization. Preserve
+production guards when testing production behavior. Archive receipts and remaining
+obligations; pause/exit does not reset NFT supply, reward liabilities or public
+history. Deploy the final collection fresh under the
+[rehearsal policy](POST_SEAL_POLICY.md#testing-with-real-funds-on-robinhood).
 
 ## 6. Complete independent review before release
 
@@ -147,7 +188,7 @@ Obtain an independent security audit, verify remediation, review deployment conf
 
 ## Later product work
 
-Actual input routes, live projections, production VRF/feeds/authorities, immutable artwork publication, testnet operating rehearsals and independent audit remain initial release work. Use all three release-test layers: local security/accounting, actual selected-pool Robinhood mainnet fork and Robinhood Testnet operation; Sepolia is supplementary. Multi-hop buybacks and satellite deposits remain later extensions. Only compatible provider/route onboarding can be deferred through existing governance-approved interfaces; absent conversion, lineage or canonical transport capabilities cannot be added to sealed contracts by configuration.
+Actual input routes, live projections, production VRF/feeds/authorities, immutable artwork publication, testnet operating rehearsals and independent audit remain initial release work. Use all three release-test layers: local security/accounting, actual selected-pool Robinhood mainnet fork and Robinhood Testnet operation; Sepolia is supplementary. Further conversion algorithms and remote deposits require reviewed code, not merely route records. Only capabilities already implemented can be configured after sealing; absent native recovery, conversion or canonical transport cannot be added by a setter.
 
 Before committing a collection replacement, resolve the code-bearing holders from
 [the inventory procedure](HOLDER_PREFLIGHT.md) while transfers still work, then

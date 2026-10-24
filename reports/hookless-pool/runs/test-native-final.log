@@ -1,0 +1,44 @@
+Compiling 1 files with Solc 0.8.26
+Solc 0.8.26 finished in 49.98s
+Compiler run successful with warnings:
+Warning (5159): "selfdestruct" has been deprecated. Note that, starting from the Cancun hard fork, the underlying opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+   --> test/NativeLiquidity.t.sol:121:75:
+    |
+121 | contract BoundaryForce { constructor(address payable recipient) payable { selfdestruct(recipient); } }
+    |                                                                           ^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 24 tests for test/NativeLiquidity.t.sol:NativeLiquidityTest
+[PASS] testNativeAmountsRemainUint128BoundedWithoutPermitApproval() (gas: 41828)
+[PASS] testNativeBrokenDepositRollsBackCredits() (gas: 701017)
+[PASS] testNativeBrokenWithdrawRollsBack() (gas: 288487)
+[PASS] testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault() (gas: 771177)
+[PASS] testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees() (gas: 785742)
+[PASS] testNativeDisabledPoolExitDoesNotReadUnavailableOracle() (gas: 889004)
+[PASS] testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap() (gas: 1035987)
+[PASS] testNativeDynamicFeeRejected() (gas: 103440)
+[PASS] testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle() (gas: 2845723)
+[PASS] testNativeForcedETHDuringTakeCannotBeClaimed() (gas: 478221)
+[PASS] testNativeIncorrectWrapperRejectedBeforePull() (gas: 94662)
+[PASS] testNativeIncreaseReusesPositionAndClearsApprovals() (gas: 816921)
+[PASS] testNativeInputSwapResetsDirtySyncAndUsesNetDelta() (gas: 330584)
+[PASS] testNativeLiquidityCallbackHookMaskRejected() (gas: 120650)
+[PASS] testNativeMinOutIncludesExecutionFees() (gas: 301840)
+[PASS] testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds() (gas: 654706)
+[PASS] testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH() (gas: 422180)
+[PASS] testNativePartialInputRejectedAtomically() (gas: 336406)
+[PASS] testNativePlanBalancesNetAmountsWithinOnePercentBudget() (gas: 2917258)
+[PASS] testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee() (gas: 3252518)
+[PASS] testNativeRegistryAdmissionRejectsUnreviewedDependencies() (gas: 6341533)
+[PASS] testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping() (gas: 483599)
+[PASS] testNativeUnexpectedSenderAndCallbackRejected() (gas: 24359)
+[PASS] testNativeWrapperReentryFailsWhileCreditStillSucceeds() (gas: 406399)
+Suite result: ok. 24 passed; 0 failed; 0 skipped; finished in 7.58ms (39.44ms CPU time)
+
+Ran 1 test suite in 9.15ms (7.58ms CPU time): 24 tests passed, 0 failed, 0 skipped (24 total tests)

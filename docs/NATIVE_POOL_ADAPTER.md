@@ -1,65 +1,54 @@
-# Selected native-ETH/Pons pool adapter candidate
+# Hookless native ETH / ZZZ adapter
 
-**Pool selection update (2026-10-24):** the user will create a new Uniswap ETH/ZZZ pool. Exact chain/version, native currency, fee and hook are pending. The previous Pons target and evidence below are historical; new native admission and routes require separate qualification. See [current pool decision](POOL_SELECTION.md).
+Updated 2026-10-24. The [selected existing pool](POOL_SELECTION.md) replaces the old
+Pons integration. Historical Pons reports keep their original source/block scope.
 
-Updated 2026-10-15. This describes undeployed development code. It is not an independent audit, a production deployment approval, a creator-payment agreement or evidence of supported production USD/VRF services. No public-chain transaction is needed to run the fork tests.
+## Admission
 
-## Venue identity and accounting assets
+`configureNative` accepts initialized static, hookless native ETH/ZZZ markets on
+Robinhood 4663 with six pinned dependency runtimes, exact wiring and reviewed WETH
+proxy policy. `SELECTED_NATIVE_POOL` identifies launch; later governed fee tiers
+remain possible after sealing. Dynamic fees, hooks, other native pairs, missing
+slot state and wrong static fees fail closed. WETH/ZZZ uses ordinary `configure`.
 
-The selected Robinhood mainnet pool is `0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f`: native ETH / ZZZ, static core LP fee zero, spacing 200 and the reviewed Pons hook. `ZZZPoolRegistry.configure()` still rejects native currencies and hooks. The separate `configureNative(PoolConfig)` accepts only that exact PoolKey on chain 4663, with pinned deployed dependencies, bindings, hook permissions and frozen per-pool fee terms. This is candidate capability, not production approval.
+`get` preserves the real key; `accounting` normalizes native slot zero to WETH
+without re-sorting. Never hash the accounting copy as the real native identity.
+`nativeAsset` returns the reviewed wrapper. Accounting/native reads recheck bindings.
+Protocol-fee changes do not freeze collecting/closing; swap output minima remain.
+No Pons factory, hook or creator-payout getter is needed.
 
-- `get(poolId)` returns the **real** native/Pons key. Only this key identifies the actual Uniswap venue or may be hashed to reproduce its pool ID.
-- `accounting(poolId)` returns a copy with native slot zero normalized to canonical WETH `0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73`. Venue slot orientation is retained; do not sort or hash this accounting key as a new pool.
-- `nativeAsset(poolId)` returns that WETH for the admitted native pool and zero for a supported ordinary ERC20 pair.
+## Settlement
 
-Vault principal/idle balances, reward currencies, price reads, fee allocation, metadata valuation and migration principal vectors use canonical ERC20 accounting assets. The adapter retains the real native key. LP NFT ownership stays in the Vault; principal remains nonredeemable. Native ETH is not added to the general LP/reward/bridge ledger.
+LiquidityManager unwraps only exact rounded-up native principal debt and checks
+actual minted/increased LP, ownership and balances. It preserves its own and
+PositionManager prefunds; no sweep. Vault harvests before increase so accrued
+native fees cannot silently offset new principal debt. Unexpected offsets revert.
+Unused budgets return to the authenticated caller; exact token/Permit2 approvals
+are cleared. Collection/close wrap only expected core credits into attributed WETH.
+Swaps use actual net output, exact full input and unchanged price/slippage guards.
+Forced ETH, partial fills and malformed callbacks cannot become principal or fees.
 
-## Typed settlement and the contribution budget
+## Operations and trust
 
-Mint/increase pulls authorized WETH/ZZZ budgets and unwraps only the exact rounded-up native principal debt. With this admitted static-fee key and no liquidity callbacks, the debt follows the actual spot, ticks and liquidity. The adapter passes exactly that native value to PositionManager and verifies that its prefunded native balance is unchanged afterward. It never sweeps the PositionManager's whole balance. An unexpected fee offset/remainder fails atomically; the Vault harvests before increasing an existing position.
+`moveFunds` atomically changes native/WETH venues or fee tiers within the same
+ordered pair under the fixed 3% cap. [External exit](GOVERNED_CUSTODY_HANDOFF.md)
+is separate. Contributions/routes require deliberate cutover after checking LP.
 
-Collect/close take native credits to the adapter, admit receive callbacks only from the expected PoolManager, wrap only the actual callback amount, and return canonical ERC20 credits to the Vault. Existing forced ETH and token donations are excluded. Unexpected forced ETH during settlement fails the balance checks. Per-operation ERC20 and Permit2 approvals are cleared.
+Canonical WETH is a proxy: admin, implementation, owner and runtime policy remain
+append-only and governed. Getter/code checks are not a proof against a malicious
+proxy administrator installing lying getters; independent storage/authority review
+is still required. Native pool selection does not eliminate internal WETH trust.
 
-Disabling pool deposits/strategy operations blocks mint, increase and swaps, while typed collect/close remain available to the Vault under the same real-key, custody and wrapper-policy checks. The adapter computes closing principal from the venue's actual spot and ticks without a USD oracle read. The higher-level Vault still calls `Strategy.validateExitPrice`: it ignores the disabled-source flag but retains the same fresh-oracle and spot-deviation checks as ordinary strategy validation. A stale feed blocks Vault migration until governance admits a reviewed working replacement through the existing oracle configuration. Pause, migration authorization and destination-admission checks also apply. There is no implicit oracle or wrapper-policy bypass.
+[Verification scope](../reports/hookless-pool/VERIFICATION.md). Live prices/routes,
+services, operating rehearsals and independent audit remain open. No public signing,
+transaction, deployment or existing Anvil state change is implied by this candidate.
 
-Exact-input swaps use the actual returned **post-hook** delta, require the whole input to be consumed and check the recipient's exact net output. Native debt calls `sync(address(0))` before payable `settle`, so another synced ERC20 cannot poison native settlement. Native output is taken to the adapter and wrapped before delivery.
+### Open native recovery requirement
 
-The reviewed Pons hook charges 100 basis points of exact-input output. Strategy balancing compensates for this fee when choosing how much to swap: `swap value = excess / (1 - target input weight × 1%)`. This balances the net pair rather than leaving the output fee as undeployed input. It is not an execution guarantee; oracle deviation, protocol fees and price impact remain subject to actual slippage and Vault contribution-budget checks. Network gas is separate. No budget check is reduced to make a quote succeed.
-
-Core protocol-fee observations and mutable Pons creator recipient/buyback settings do not freeze normalization or custody. Those settings do not add liquidity callbacks. Swaps enforce net execution output. Pons buyback/vesting is separate from PoPL's own 5% buyback-and-burn allocation. Ordinary LP ownership still creates no automatic entitlement to Pons revenue; only actual separately funded receipts can be allocated to NFTs.
-
-## Canonical wrapper upgrades and governance
-
-The canonical WETH is a proxy. At pinned block 88,544,093, the implementation is `0xC6B81b429797E0f555440b70cD99e032D7AE947e`, its ProxyAdmin is `0xa3Acd31AFb851B4eB9DAD00F5204c01D924267dF`, and the observed ProxyAdmin owner is `0x2A153c6A1B66DBc930a8d7017230ab0253005C09`. These are third-party authorities, not selected PoPL governance wallets. The bootstrap policy records their observed code hashes and addresses; actual matching is required before native admission.
-
-`WrapperPolicy` commits to `admin`, `implementation`, `adminOwner`, `adminCodeHash` and `implementationCodeHash`. Its ID is `keccak256(abi.encode(policy))`.
-
-1. Governance reviews the actual upgrade, code, proxy storage, authority and exact-transfer/1:1 wrapping behavior off-chain.
-2. `approveWrapperPolicy(policy)` records a new immutable policy only when current code and public ProxyAdmin observations match it. A duplicate policy cannot overwrite history.
-3. `activateWrapperPolicy(id)` rechecks the observations and selects that recorded policy. Approval alone does not change the active policy.
-
-After sealing, both calls require the existing governance controller. The required delay is zero; exact reviewed calls can execute immediately. All historical policy records remain available. No wrapper-address replacement, arbitrary transaction, LP-recipient change, principal withdrawal or rescue is introduced.
-
-A normal implementation/admin/owner change fails native normalization closed until a matching reviewed policy is approved and activated. This allows reviewed infrastructure maintenance without a contract-code upgrade. Operations may be unavailable between the third-party upgrade and governance activation, so advance coordination and a rehearsed recovery procedure remain production requirements.
-
-An explicitly reviewed zero `adminOwner` is permitted for a ProxyAdmin whose ownership has been renounced. The nonzero administrator and implementation addresses, code hashes and current reported bindings still have to match. Renunciation does not silently change the active policy: governance must approve and activate the zero-owner policy through the same governance controller, retaining the historical owner record.
-
-**Trust limitation:** public ProxyAdmin getters are not an on-chain proof against every hostile admin handoff. A malicious replacement implementation could answer fallback getters deceptively after the old ProxyAdmin loses its administrative position. Runtime hashes, reported identities and exact per-operation wrap checks do not eliminate that third-party upgrade authority. Governance must independently review actual proxy storage, source and ownership; admitting a policy is an explicit security decision. The canonical WETH proxy address and real PoolKey remain fixed.
-
-## Verification scope and remaining qualification
-
-The native unit suites cover dirty native sync, partial fills, post-hook minimum output, forced ETH/prefund isolation, incorrect wrapper behavior, reentry rejection, amount bounds and typed custody. Wrapper-policy tests cover immutable records, failed observation checks, unauthorized calls and real immediate governance approval/activation after sealing.
-
-The opt-in `test/NativePoolFork.t.sol` targets the **actual selected native/Pons pool** at block 88,544,093 and checks its pinned block hash. It covers mint/increase/collect/close, both swap directions, range reopening, prefunds, changed dependencies, mutable payout settings, a local simulated EIP1967 implementation upgrade followed by reviewed policy activation, two NFTs sharing one physical LP, creator-funded claims and a single bucket rebalance preserving both NFTs' shares.
-
-The existing CI fork job runs both exact contracts through the same runner:
-
-```text
-python scripts/run-fork-checks.py --upstream https://YOUR_ARCHIVE_RPC --forge PATH_TO_PINNED_FORGE
-```
-
-Use the pinned Forge 1.4.4 build recorded by the script and an explicitly selected HTTPS archive RPC (loopback HTTP is also accepted for a local service). The runner enables `RUN_ROBINHOOD_FORK_TESTS=true`, routes Forge through its local read-only relay, uses one test thread, disables storage caching and preserves the 1.25-second minimum serial RPC cadence. It never signs or broadcasts. The anchored class filter selects `UniswapV4ForkTest` and `NativePoolForkTest`; CI records Forge JSON output and diagnostics in its existing fork log. A zero Forge exit code is insufficient: both exact suites must contain every test declared in their current source files, and every result must be successful with zero skips. Missing suites, setup skips, inherited test filters and partial inventories fail the runner. At this source snapshot the required inventory is nine original tests plus 20 native/Pons tests, including paused parking, close-only principal minimums and guarded resumption. This runner integration has targeted Python regression coverage; an actual CI result still belongs to the exact revision on which it runs.
-
-Mock authority, mocked VRF and synthetic USD reference calibration remain explicit test scaffolding. The bucket-rebalance test forces only the policy decision and tests custody/accounting, not production trigger economics. These tests do not establish reliable production price feeds, real randomness, creator-payment terms, bridge backing, operating gas safety for every asset combination, testnet rehearsals or an independent audit. The original alternative hookless-pool fork suite remains distinct coverage; including it in the same command does not make it evidence of actual Pons custody. The [release approval record](RELEASE_CHECKLIST.md) remains NOT APPROVED; outstanding qualification is tracked in the [selected-pool task](../TODO.md#task-pons-qualification).
-
-The implemented [custody-parking path](CUSTODY_PARKING.md) permits a separately governance-approved, globally paused close with an exact custody snapshot and raw principal-output minimums, without source-price or creator-inbox reads. Actual venue/wrapper/token checks remain; resume and destination deployment retain their ordinary valuation and backing guards. Production parking qualification stays in the [governance/recovery task](../TODO.md#task-security-governance).
+The current raw exit bypasses swaps and USD prices, but still calls native venue
+collection/close through the wrapper. A failed WETH deposit/withdraw, policy or
+proxy can therefore block it. Keeping internal WETH is a change-risk decision,
+not a claim that wrapping is intrinsically safer. A wrapper-independent native
+emergency custody path remains a pre-seal design/review task. It must classify
+principal and fees separately and preserve every liability; a generic payable
+withdraw/sweep would not satisfy it. No full native-ledger redesign is approved.

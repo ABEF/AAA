@@ -1,3 +1,66 @@
+## Post-seal flexibility and mainnet rehearsal policy - 2026-10-24
+
+The user requires noncritical operating settings to remain configurable after
+sealing; this is a design requirement, not a claim all controls exist. Existing
+assets/routes/feeds/pool parameters/roles are governed immediately. Current VRF
+request settings and buyback maximum are fixed; Entry and LP/royalty conversion
+are single-hop v3 only. Review bounded future-request tuning, an operating buyback
+ceiling and typed v4 support before sealing. Preserve ownership, exact traits,
+earned entitlements, backing, execution floors and canonical uniqueness; no reset,
+arbitrary executor or sweep. New controls require implementation and scoped tests.
+
+The user reconfirmed 1% maximum ZZZ LP-fee conversion loss, gas separate; require
+a cheaper independently qualified conversion route. Selected pool's observed
+approximately 1.101% fee does not qualify that full conversion at reference prices.
+No automatic cap increase or invented route. Native ETH accounting is now the
+requested architecture direction for robustness/efficiency; the specification is
+prepared but the current implementation still uses WETH. Earlier notes saying
+this direction was not approved are superseded; no native port is claimed done.
+
+A real-funds production rehearsal should use a separate clearly named deployment,
+then a fresh final collection. No burn/reset exists; paused principal exit does
+not clear NFTs, reward liabilities, reserves, mint payments or public history.
+Canonical retirement needs a real funded successor and preserves all rights.
+No deployment, signing, public transaction, service/reset/monitor change follows
+from this design discussion. Shared signer remains Anvil-only, public DEPLOYMENT
+null; preserve 8902 and all existing journals/state. Production NOT APPROVED.
+
+Read [policy and operator boundaries](docs/POST_SEAL_POLICY.md) and the sole Todo.
+This follow-up changes documentation/requirements only; unchanged tests are reused,
+not rerun. Local saves/publication must be distinguished; preserve older drafts.
+
+## Hookless selected pool and move/exit candidate - 2026-10-24
+
+The user selected existing Robinhood v4 native ETH/ZZZ pool
+`0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`:
+static LP fee10020 pips (1.002%), spacing200, zero hook. Observed protocol fee1000
+pips per direction gives approximately1.101% combined. Pons and the earlier
+proposed0.30% pool are superseded, not launch dependencies.
+
+Current local code admits runtime-pinned static hookless native ETH/ZZZ markets,
+including future initialized fee tiers; WETH/ZZZ uses ordinary hookless admission.
+Native Strategy reads actual directional protocol/LP fees. `Migration.moveFunds`
+is the atomic same-accounting-pair path; `movePool` is retained as an alias. It
+preserves NFT shares and one fixed3% aggregate cap, gas separate. Contribution
+pool/routes must be switched deliberately after actual destination LP is checked.
+
+Separate approved paused `exit` remains normal all-ZZZ or explicit no-swap raw
+custody to an EOA/contract; no automatic fallback, holder redemption or sweep.
+Current raw native-pool exit sends WETH/ZZZ and still depends on wrapper health.
+The user questioned wrapping; recommendation now distinguishes minimizing changes
+from the longer-term native-ETH architecture/recovery goal. A full native-accounting
+rewrite, wrapper-independent emergency exit and native custody payout are requested
+but NOT implemented. Track the explicit pre-seal native architecture task.
+Do not claim raw exit works through wrapper/pool/token failures.
+
+Read [decision](docs/POOL_SELECTION.md), [operator steps](docs/GOVERNED_CUSTODY_HANDOFF.md),
+[scope/evidence](reports/hookless-pool/VERIFICATION.md) and the sole Todo. Local checks
+and completed scoped fork results are recorded separately; publication must be read from
+Git, never inferred. Production NOT APPROVED. Preserve all older unrelated drafts,
+8902/Anvil/NFT/LP/balances/journals and the dist repair overlay. Signer stays
+Anvil-only; public DEPLOYMENT stays null. No website/server deployment, service
+control, public transaction or monitoring restart. Main only, maintain both memories.
+
 ## New ETH/ZZZ pool decision - 2026-10-24
 
 The user plans a new Uniswap ETH/ZZZ pool instead of the former Pons venue.

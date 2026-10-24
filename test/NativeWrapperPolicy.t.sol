@@ -81,6 +81,7 @@ contract NativeWrapperPolicyTest is Test {
             Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER,
             Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT];
         for (uint256 i; i < ids.length; ++i) {
+            if (ids[i] == Ids.BRIDGE || ids[i] == Ids.RECEIVER || ids[i] == Ids.ROUTES || ids[i] == Ids.TRANSPORT) continue;
             controller.bind(ids[i], ids[i] == Ids.POOLS ? address(governed) : address(new BoundDummy(address(controller))));
         }
         CanonicalFixture.bind(address(controller));
@@ -105,6 +106,7 @@ contract NativeWrapperPolicyTest is Test {
             Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER,
             Ids.ORACLE, Ids.POOLS, Ids.ROUTES, Ids.TRANSPORT];
         for (uint256 i; i < ids.length; ++i) {
+            if (ids[i] == Ids.BRIDGE || ids[i] == Ids.RECEIVER || ids[i] == Ids.ROUTES || ids[i] == Ids.TRANSPORT) continue;
             controller.bind(ids[i], ids[i] == Ids.POOLS ? address(governed) : address(new BoundDummy(address(controller))));
         }
         ZZZPoolRegistry.WrapperPolicy memory previous = _policy(address(first));

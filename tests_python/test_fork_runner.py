@@ -125,7 +125,7 @@ class ForkProcessTests(unittest.TestCase):
         with patch.object(sys,'stdout',stdout),patch.object(sys,'stderr',stderr):
             code=RUNNER.run_fork(UPSTREAM,run=self.spawn,server_factory=self.server)
         self.assertEqual(code,0);self.assertTrue(self.servers[0].closed)
-        self.assertIn(self.output,stdout.getvalue());self.assertIn('33 successful source tests, zero skips',stdout.getvalue())
+        self.assertIn(self.output,stdout.getvalue());self.assertIn('38 successful source tests, zero skips',stdout.getvalue())
         self.assertEqual(stderr.getvalue(),self.stderr)
     def test_filtered_green_run_is_rejected_and_relay_closed(self):
         self.code=0;results=complete_results();results[RUNNER.FORK_SUITES[1]]['test_results'].popitem()
@@ -163,12 +163,12 @@ def complete_results():
 class ForkCoverageTests(unittest.TestCase):
     def test_current_source_inventories_include_both_actual_fork_classes(self):
         old=RUNNER.expected_tests('test/UniswapV4Fork.t.sol');native=RUNNER.expected_tests('test/NativePoolFork.t.sol')
-        self.assertEqual(len(old),9);self.assertEqual(len(native),24)
+        self.assertEqual(len(old),9);self.assertEqual(len(native),29)
         self.assertIn('testRealSharedPoolRebalanceChangesOneLPAndPreservesAllShares',old)
         self.assertIn('testSelectedNativeReviewedRenouncedWrapperAdminRestoresCustody',native)
     def test_complete_unskipped_exact_suites_succeed_with_windows_paths(self):
         results={key.replace('/','\\'):value for key,value in complete_results().items()}
-        self.assertEqual(RUNNER.verify_fork_results(json.dumps(results)),33)
+        self.assertEqual(RUNNER.verify_fork_results(json.dumps(results)),38)
     def test_missing_or_similarly_named_native_suite_cannot_pass(self):
         for replacement in (None,'test/NativePoolFork.t.sol:NativePoolForkTestDisabled'):
             with self.subTest(replacement=replacement),self.assertRaises(ValueError):

@@ -141,7 +141,7 @@ contract CustodyHandoffTest is PooledVaultFixture {
         vm.expectRevert();migration.approve(r);
     }
     function testLocalEndToEndBudgetIncludesExitAndRedeployment() public {
-        activatedPosition();handoffVenue.configure(600,false);ZZZMigration.Request memory r=_r(false);
+        activatedPosition();handoffVenue.configure(100,false);ZZZMigration.Request memory r=_r(false);
         r.minimum0=1;r.minimum1=1;bytes32 id=migration.approve(r);ac.setPaused(true);migration.exit(id);ac.setPaused(false);
         t0.mint(address(this),970);t1.mint(address(this),969);t0.approve(address(migration),970);t1.approve(address(migration),969);
         vm.expectRevert();migration.completeLocal(id,970,969,1,block.timestamp+100); // raw minima pass; original USD budget fails.
@@ -161,7 +161,8 @@ contract CustodyHandoffTest is PooledVaultFixture {
     function testFuzzExitSwapLossLimit(uint16 loss) public {
         loss=uint16(bound(loss,0,10000));activatedPosition();bytes32 id=migration.approve(_r(false));
         handoffVenue.configure(loss,false);ac.setPaused(true);
-        if(loss>600){vm.expectRevert();migration.exit(id);}else migration.exit(id);
+        // This fixture's per-leg limit is 1%, stricter than the overall 3%.
+        if(loss>100){vm.expectRevert();migration.exit(id);}else migration.exit(id);
     }
     function testLateCreatorRewardsAndUnclaimedRightsFollowNFTDuringCustody() public {
         uint256 nftId=activatedPosition();address inbox=fees.createRewardReceiver(_bucket(),address(0));_send(false);

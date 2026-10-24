@@ -1,6 +1,24 @@
+## Post-seal configurability review - 2026-10-24
+
+[Source inventory and rehearsal boundaries](POST_SEAL_POLICY.md) distinguish existing post-seal controls from unimplemented extensions. Routine assets/routes/feeds/pool/role settings are configurable; VRF request settings and buyback maximum remain fixed, and conversion executors remain v3-only. The native ETH redesign is specified, not implemented. There is no public burn/reset or standalone empty retirement. This documentation-only review adds no runtime verification or deployment approval.
+
+## Hookless launch pool, move funds and exit - 2026-10-24
+
+[Selected pool and compatibility](POOL_SELECTION.md): runtime-pinned hookless
+native ETH/ZZZ admission, actual static LP fees and post-seal fee-tier destinations.
+`moveFunds` atomically creates replacement LP within the same ordered accounting
+pair, including native ETH/WETH changes, under the fixed 3% overall cap. Existing
+`movePool` is an alias. The separate paused external custody exit retains normal
+all-ZZZ and explicit raw emergency modes. No general sweep or holder redemption.
+
+[Current scoped evidence](../reports/hookless-pool/VERIFICATION.md) distinguishes
+local checks, read-only chain observations and fork execution. Prior Pons and
+custody reports keep their source scope. Real services/feeds/routes, gas, production
+inventory and independent audit remain open; no public deployment is approved.
+
 ## Governed principal and royalty custody - 2026-10-23
 
-**Pool decision 2026-10-24:** new ETH/ZZZ pool replaces the Pons target. The user supplied a 0.25% LP / 0.05% protocol / 0.30% effective fee display; version/hook and actual venue remain undecided. v4 without a custom hook is recommended, not selected. Native admission, actual fee deductions and all new-pool routes need review before sealing. Existing Pons evidence is historical. [Current decision](POOL_SELECTION.md).
+**Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
 
 The [custody candidate](GOVERNED_CUSTODY_HANDOFF.md) replaces the old LP v3
 bridge/router/receiver/registry and pair executor. Ordinary exit consolidates

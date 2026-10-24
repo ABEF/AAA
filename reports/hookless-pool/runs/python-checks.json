@@ -1,0 +1,10 @@
+{
+  "tests": [
+    "tests_python.test_production_config.ProductionConfigTests.test_template_is_explicitly_blocked",
+    "tests_python.test_production_config.ProductionConfigTests.test_cli_emits_blocked_machine_readable_output_without_chain_access",
+    "tests_python.test_fork_runner.ForkCoverageTests"
+  ],
+  "passed": 9,
+  "failed": 0,
+  "scope": "Observed unittest output in tool receipt; no production RPC/wallet action. Includes seven current-source fork-inventory checks."
+}

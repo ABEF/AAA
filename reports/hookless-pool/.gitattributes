@@ -1,0 +1,2 @@
+# Preserve raw Forge output byte-for-byte; do not render it as a source diff.
+runs/*.log -text -diff

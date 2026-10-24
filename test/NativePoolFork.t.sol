@@ -23,14 +23,14 @@ import {Ids, PoolKey, PoolConfig, Position, PositionStatus} from "../src/librari
 import {IPositionManagerMinimal, IStateViewMinimal} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockFeed} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
-import {IForkHeaderVm, IForkWETH, IForkPermit2Allowance, ForkRewardAssetAllowlist} from "./UniswapV4Fork.t.sol";
+import {IForkHeaderVm, IForkWETH, IForkPermit2Allowance, IForkPoolInitializer, ForkRewardAssetAllowlist} from "./UniswapV4Fork.t.sol";
 
-/// @notice Actual selected native/Pons custody tests; opt-in, no public transactions.
+/// @notice Actual selected hookless native ETH/ZZZ tests; opt-in, no public transactions.
 /// Mock authority and synthetic oracle calibration are test scaffolding only.
 /// They do not establish production USD feeds, VRF, payout rights or audit approval.
 contract NativePoolForkTest is Test, IERC721Receiver {
-    uint256 private constant FORK_BLOCK = 88_544_093;
-    bytes32 private constant FORK_HASH = 0xc44dc8c95c6011b991312179f532935c2d94e4f21b84899d23896fd0fe01d490;
+    uint256 private constant FORK_BLOCK = 96_427_989;
+    bytes32 private constant FORK_HASH = 0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3;
     address private constant CORE = 0x8366a39CC670B4001A1121B8F6A443A643e40951;
     address private constant POSM = 0x58daec3116aae6D93017bAAea7749052E8a04fA7;
     address private constant STATE = 0xF3334192D15450CdD385c8B70e03f9A6bD9E673b;
@@ -38,7 +38,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
     address private constant WETH = 0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73;
     address private constant ZZZ = 0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a;
     address private constant HOOK = 0xE5e702641Ea86F4ae6cC3cDaeD2B886f976Be044;
-    bytes32 private constant POOL = 0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f;
+    bytes32 private constant POOL = 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b;
     MockAccess private access;
     ZZZPoolRegistry private pools;
     ZZZLiquidityManager private manager;
@@ -76,7 +76,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         IERC20(WETH).approve(address(manager), type(uint256).max); IERC20(ZZZ).approve(address(manager), type(uint256).max);
     }
     function _config() private pure returns (PoolConfig memory c) {
-        c.key = PoolKey(address(0), ZZZ, 0, 200, HOOK); c.depositsEnabled = true; c.operationsEnabled = true;
+        c.key = PoolKey(address(0), ZZZ, 10020, 200, address(0)); c.depositsEnabled = true; c.operationsEnabled = true;
         c.rangeBps = 1000; c.triggerBps = 500; c.maxSpotDeviationBps = 100; c.maxSlippageBps = 200;
         c.minRebalanceInterval = 600; c.minDepositUSD = 100 ether; c.maxPositionUSD = 1_000_000 ether;
     }
@@ -92,7 +92,8 @@ contract NativePoolForkTest is Test, IERC721Receiver {
     }
     function testSelectedNativeAccountingKeepsRealPoolKey() public view {
         PoolConfig memory real = pools.get(POOL); PoolConfig memory ledger = pools.accounting(POOL);
-        assertEq(real.key.currency0, address(0)); assertEq(real.key.hooks, HOOK); assertEq(keccak256(abi.encode(real.key)), POOL);
+        assertEq(real.key.currency0, address(0)); assertEq(real.key.hooks, address(0)); assertEq(real.key.fee, 10020);
+        assertEq(keccak256(abi.encode(real.key)), POOL); assertEq(pools.SELECTED_NATIVE_POOL(), POOL);
         assertEq(ledger.key.currency0, WETH); assertEq(ledger.key.currency1, ZZZ); assertEq(pools.nativeAsset(POOL), WETH);
         assertTrue(keccak256(abi.encode(ledger.key)) != POOL);
     }
@@ -121,13 +122,13 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         assertEq(IERC20(WETH).balanceOf(address(this)), beforeWrapped + outWrapped); assertGe(outWrapped, minWrapped);
         assertEq(address(manager).balance, 0); _assertApprovalsCleared();
     }
-    function testSelectedNativeCoreZeroFeeDoesNotConferPonsRevenue() public {
+    function testSelectedNativeSwapAccruesActualLPFeesWithoutCreatorPayments() public {
         uint256 id = _mint();
         uint256 minZZZ = Math.mulDiv(oracle.quote(WETH, ZZZ, 0.00001 ether), 9800, 10000);
         manager.swap(POOL, true, 0.00001 ether, minZZZ, block.timestamp + 100);
         uint256 w = IERC20(WETH).balanceOf(address(this)); uint256 z = IERC20(ZZZ).balanceOf(address(this));
         manager.collect(POOL, id, block.timestamp + 100);
-        assertEq(IERC20(WETH).balanceOf(address(this)), w); assertEq(IERC20(ZZZ).balanceOf(address(this)), z);
+        assertGt(IERC20(WETH).balanceOf(address(this)), w); assertEq(IERC20(ZZZ).balanceOf(address(this)), z);
     }
     function testSelectedNativePrefundsCannotBecomePrincipalOrFees() public {
         vm.deal(address(manager), 123); vm.deal(POSM, POSM.balance + 456);
@@ -145,15 +146,11 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         (PoolKey memory key,) = positions.getPoolAndPositionInfo(nextId); assertEq(keccak256(abi.encode(key)), POOL);
     }
     function testSelectedNativeChangedRuntimeDisablesAdmissionAndAccounting() public {
-        vm.etch(HOOK, hex"00"); vm.expectRevert(); pools.accounting(POOL);
+        vm.etch(CORE, hex"00"); vm.expectRevert(); pools.accounting(POOL);
         vm.expectRevert(); manager.mint(POOL, 117000, 119000, 0.01 ether, 2000 ether, 1, block.timestamp + 100);
     }
-    function testSelectedNativeMutablePayoutSettingsDoNotTrapCustody() public {
-        // Simulate supported creator-recipient/buyback changes without altering frozen terms.
-        vm.mockCall(HOOK, abi.encodeWithSignature("launches(bytes32)", POOL), abi.encode(
-            true, false, ZZZ, address(0), address(0x123), address(0x456), address(0x789),
-            uint16(0), uint16(3000), uint16(5000), uint16(100), uint16(300), true
-        ));
+    function testSelectedNativeNoLongerDependsOnPonsHookOrItsPayoutSettings() public {
+        vm.etch(HOOK, hex"00");
         assertEq(pools.accounting(POOL).key.currency0, WETH); assertEq(pools.nativeAsset(POOL), WETH);
         uint256 id = _mint(); manager.collect(POOL, id, block.timestamp + 100); manager.close(POOL, id, block.timestamp + 100);
         assertEq(address(manager).balance, 0);
@@ -239,7 +236,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
 
     function _issueForEntry(SharedSystem memory s, address owner) private returns (uint256 id) {
         // TEST ONLY owner balances and VRF fulfillment. All Entry, wrapper,
-        // balancing, hook and LP settlement calls execute their actual code.
+        // balancing and LP settlement calls execute their actual code.
         vm.deal(owner, 2 ether); deal(ZZZ, owner, 1000 ether);
         vm.prank(owner); id = s.vault.mintDormant{value: 0.05 ether}();
         s.vrf.fulfill(s.nft.requestOf(id), 1, 1); s.nft.finalizeTraits(id);
@@ -459,7 +456,8 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         uint256 bucket = s.vault.nftBucket(first); uint256 lp = s.vault.group(bucket).lpTokenId;
         PoolConfig memory c = pools.get(POOL); c.operationsEnabled = false; c.depositsEnabled = false; pools.configureNative(c);
         vm.expectRevert(); strategy.validatePrice(POOL); assertGt(strategy.validateExitPrice(POOL), 0);
-        // The authenticated migration module is represented by this test-only stub.
+        // Raw release requires separately approved parking; it never closes implicitly.
+        access.setPaused(true); s.vault.park(bucket, block.timestamp + 100);
         (uint256 amount0, uint256 amount1) = s.vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertGt(amount0, 0); assertGt(amount1, 0); assertEq(uint8(s.vault.group(bucket).status), uint8(PositionStatus.Outbound));
         vm.expectRevert(); positions.ownerOf(lp); _assertApprovalsCleared();
@@ -473,9 +471,10 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         vm.warp(block.timestamp + 1 days + 1);
         vm.expectRevert(); s.vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertEq(positions.ownerOf(lp), address(s.vault)); assertEq(uint8(s.vault.group(bucket).status), uint8(PositionStatus.Active));
-        // Mock governance authorizes replacements here; real sealed governance is timelocked.
+        // Mock authority replaces feeds; source release still requires explicit parking.
         oracle.setFeed(WETH, address(new MockFeed(8, int256(ethPrice / 1e10))), 1 days);
         oracle.setFeed(ZZZ, address(new MockFeed(8, int256(zzzPrice / 1e10))), 1 days);
+        access.setPaused(true); s.vault.park(bucket, block.timestamp + 100);
         s.vault.releaseForMigration(bucket, bytes32(uint256(1)), block.timestamp + 100);
         assertEq(uint8(s.vault.group(bucket).status), uint8(PositionStatus.Outbound)); vm.expectRevert(); positions.ownerOf(lp);
     }
@@ -546,6 +545,84 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         assertEq(uint8(resumed.status), uint8(PositionStatus.Active)); assertGt(resumed.lpTokenId, 0);
         assertTrue(resumed.lpTokenId != r.lpTokenId); assertEq(positions.ownerOf(resumed.lpTokenId), address(s.vault));
         assertEq(s.vault.sharesOf(id), shares); assertTrue(s.membership.eligible(id)); _assertApprovalsCleared();
+    }
+    function testSelectedNativeRejectsHookDynamicWrongTokenAndUninitializedMarkets() public {
+        PoolConfig memory c = _config(); c.depositsEnabled = false;
+        c.key.hooks = HOOK; vm.expectRevert(); pools.configureNative(c);
+        c.key.hooks = address(0); c.key.fee = 0x800000; vm.expectRevert(); pools.configureNative(c);
+        c.key.fee = 500; c.key.currency1 = WETH; vm.expectRevert(); pools.configureNative(c);
+        c.key.currency1 = ZZZ; c.key.tickSpacing = 32766; vm.expectRevert(); pools.configureNative(c);
+        vm.prank(address(0xBAD)); vm.expectRevert(); pools.configureNative(_config());
+    }
+    function _destination(bool nativePool) private returns(bytes32 target) {
+        PoolConfig memory c = _config(); c.depositsEnabled = false;
+        c.key = PoolKey(nativePool ? address(0) : WETH, ZZZ, 500, 10, address(0));
+        IForkPoolInitializer(CORE).initialize(c.key, manager.spot(POOL));
+        target = nativePool ? pools.configureNative(c) : pools.configure(c);
+        // Seed actual destination depth with the test harness's own funds before
+        // constructing the collection. This seed is not collection backing.
+        (int24 lower,int24 upper,) = strategy.target(target);
+        manager.mint(target,lower,upper,0.1 ether,20_000 ether,1,block.timestamp+100);
+    }
+    function testSelectedNativeMoveFundsToWETHAndNewNativeFeeTierKeepsRights() public {
+        bytes32 wrappedPool = _destination(false); bytes32 nativePool = _destination(true);
+        SharedSystem memory s = _sharedSystem(); uint256 id = _issue(s);
+        s.vault.activate(id, POOL, 0, 200 ether, 1, block.timestamp + 100);
+        uint256 bucket = s.vault.nftBucket(id); uint256 shares = s.vault.sharesOf(id);
+        // Actual v4 destination pools are initialized on this isolated fork only.
+        ZZZMigration migration = new ZZZMigration(address(access)); access.bind(Ids.MIGRATION, address(migration));
+        uint256 oldLP = s.vault.group(bucket).lpTokenId;
+        migration.moveFunds(bucket, wrappedPool, 1, block.timestamp + 100);
+        Position memory p = s.vault.group(bucket); assertEq(p.poolId, wrappedPool);
+        assertEq(positions.ownerOf(p.lpTokenId), address(s.vault)); vm.expectRevert(); positions.ownerOf(oldLP);
+        migration.moveFunds(bucket, nativePool, 1, block.timestamp + 100);
+        p = s.vault.group(bucket); assertEq(p.poolId, nativePool);
+        assertEq(s.vault.sharesOf(id), shares); assertEq(s.vault.bucketTotalShares(bucket), shares);
+        assertEq(s.vault.homePoolId(bucket), POOL); assertEq(s.nft.ownerOf(id), address(this));
+        assertEq(pools.contributionPool(), POOL); // Deliberate, separate governed cutover.
+        assertEq(pools.accounting(nativePool).key.currency0, WETH); _assertApprovalsCleared();
+    }
+    function _exitRequest(SharedSystem memory s, ZZZMigration migration, uint256 bucket, bool raw)
+        private view returns(ZZZMigration.Request memory r) {
+        Position memory p = s.vault.group(bucket); (uint256 a0,uint256 a1) = manager.amounts(p.lpTokenId);
+        r.bucket=bucket; r.sourceSnapshot=migration.sourceSnapshot(bucket);
+        r.recipient=address(0xB0B); r.recipientCodeHash=r.recipient.codehash;
+        r.destinationChain=block.chainid; r.destinationCustody=r.recipient;
+        r.output0=WETH; r.output1=ZZZ; r.rawExit=raw;
+        r.exitMinimum0=a0+p.idle0; r.exitMinimum1=a1+p.idle1;
+        if(!raw) {
+            uint256 usd=oracle.value(WETH,a0+p.idle0)+oracle.value(ZZZ,a1+p.idle1);
+            r.minimumZZZ=Math.mulDiv(usd-usd*300/10000,1 ether,oracle.price(ZZZ),Math.Rounding.Ceil);
+        }
+        r.deadline=block.timestamp+100; r.reviewHash=keccak256("fork-only-exit-review");
+    }
+    function testSelectedNativeExitToRegularAddressConvertsOnlyPrincipalToZZZ() public {
+        SharedSystem memory s = _sharedSystem(); uint256 id = _issue(s);
+        s.vault.activate(id, POOL, 0, 200 ether, 1, block.timestamp + 100);
+        uint256 bucket=s.vault.nftBucket(id); uint256 shares=s.vault.sharesOf(id);
+        ZZZMigration migration=new ZZZMigration(address(access)); access.bind(Ids.MIGRATION,address(migration));
+        migration.configureZZZ(ZZZ,ZZZ.codehash,keccak256("review"));
+        ZZZMigration.Request memory r=_exitRequest(s,migration,bucket,false);
+        uint256 beforeZZZ=IERC20(ZZZ).balanceOf(r.recipient); uint256 beforeWETH=IERC20(WETH).balanceOf(r.recipient);
+        bytes32 plan=migration.approve(r); access.setPaused(true); migration.exit(plan);
+        (ZZZMigration.Status status,uint256 a0,uint256 a1,,)=migration.state(plan);
+        assertEq(uint256(status),uint256(ZZZMigration.Status.Sent)); assertEq(a0,0); assertGe(a1,r.minimumZZZ);
+        assertEq(IERC20(ZZZ).balanceOf(r.recipient)-beforeZZZ,a1); assertEq(IERC20(WETH).balanceOf(r.recipient),beforeWETH);
+        assertEq(s.vault.sharesOf(id),shares); assertEq(uint256(s.vault.group(bucket).status),uint256(PositionStatus.Outbound));
+        (bool available,)=s.nft.currentLPValue(id); assertFalse(available); _assertApprovalsCleared();
+    }
+    function testSelectedNativeRawExitWorksWithoutFeedOrEnabledPool() public {
+        SharedSystem memory s = _sharedSystem(); uint256 id = _issue(s);
+        s.vault.activate(id, POOL, 0, 200 ether, 1, block.timestamp + 100);
+        uint256 bucket=s.vault.nftBucket(id);
+        ZZZMigration migration=new ZZZMigration(address(access)); access.bind(Ids.MIGRATION,address(migration));
+        pools.disablePool(POOL,true,true); vm.warp(block.timestamp+1 days+1);
+        ZZZMigration.Request memory r=_exitRequest(s,migration,bucket,true);
+        bytes32 plan=migration.approve(r); access.setPaused(true); migration.exit(plan);
+        (,uint256 a0,uint256 a1,uint256 usd,)=migration.state(plan);
+        assertGe(a0,r.exitMinimum0); assertGe(a1,r.exitMinimum1); assertEq(usd,0);
+        assertEq(IERC20(WETH).balanceOf(r.recipient),a0); assertEq(IERC20(ZZZ).balanceOf(r.recipient),a1);
+        assertEq(s.nft.ownerOf(id),address(this)); _assertApprovalsCleared();
     }
     function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
         return IERC721Receiver.onERC721Received.selector;

@@ -1,0 +1,9 @@
+{
+  "scope": "Nine checks against intended publication snapshot: HEAD fork runner and only three inventory expectation updates; older unrelated runner/test drafts excluded. No network, signing or Solidity rerun.",
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 0,
+  "runner_sha256": "8e6d3049646bed2fe4d41700d1b7e128ce53ccd2568aeff1774a6c56014266b2",
+  "test_source_sha256": "2f7c511f48c53c4a2dff4bde851e03c01150c5b5265b616f322204bb7321321d",
+  "config_sha256": "dcd852f88830056989f7c5355ec2bf61fd054c30d2b084bbd822c3273777106b"
+}

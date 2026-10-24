@@ -11,17 +11,13 @@ interface INativeVenueBindings {
     function stateView() external view returns (address);
     function permit2() external view returns (address);
     function WETH9() external view returns (address);
-    function factory() external view returns (address);
     function owner() external view returns (address);
     function getProxyImplementation(address proxy) external view returns (address);
     function getProxyAdmin(address proxy) external view returns (address);
-    function launches(bytes32 poolId) external view returns (
-        bool, bool, address, address, address, address, address, uint16, uint16, uint16, uint16, uint16, bool
-    );
 }
 
 /// @notice Append-only pool identities; bounded strategy parameters are governed.
-/// Native support is restricted to one runtime-pinned, separately admitted market.
+/// Native support is restricted to static, hookless ETH/ZZZ on pinned Robinhood v4.
 /// get() preserves the real venue key; accounting() normalizes native slot zero to WETH.
 contract ZZZPoolRegistry is ZZZModule {
     ZZZActivationAssets public immutable activationAssets;
@@ -33,15 +29,13 @@ contract ZZZPoolRegistry is ZZZModule {
         bytes32 adminCodeHash;
         bytes32 implementationCodeHash;
     }
-    bytes32 public constant SELECTED_NATIVE_POOL = 0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f;
+    bytes32 public constant SELECTED_NATIVE_POOL = 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b;
     address private constant CORE = 0x8366a39CC670B4001A1121B8F6A443A643e40951;
     address private constant POSM = 0x58daec3116aae6D93017bAAea7749052E8a04fA7;
     address private constant STATE = 0xF3334192D15450CdD385c8B70e03f9A6bD9E673b;
     address private constant PERMIT2 = 0x000000000022D473030F116dDEE9F6B43aC78BA3;
     address private constant WETH = 0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73;
     address private constant ZZZ = 0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a;
-    address private constant HOOK = 0xE5e702641Ea86F4ae6cC3cDaeD2B886f976Be044;
-    address private constant FACTORY = 0x7eD598BcEf8bd9Edd8C97A195C6d13f40801EC7e;
     address private constant WETH_ADMIN = 0xa3Acd31AFb851B4eB9DAD00F5204c01D924267dF;
     address private constant WETH_IMPLEMENTATION = 0xC6B81b429797E0f555440b70cD99e032D7AE947e;
     address private constant WETH_ADMIN_OWNER = 0x2A153c6A1B66DBc930a8d7017230ab0253005C09;
@@ -71,7 +65,7 @@ contract ZZZPoolRegistry is ZZZModule {
         emit WrapperPolicyActivated(bytes32(0), id);
     }
     /// @notice Append-only review of the same canonical WETH address after a dependency upgrade.
-    /// After sealing, only the existing governance timelock can approve/activate a policy.
+    /// After sealing, only controller governance can approve/activate a policy.
     function approveWrapperPolicy(WrapperPolicy calldata policy) external onlyGovernance returns (bytes32 id) {
         _checkWrapperPolicy(policy);
         return _recordWrapperPolicy(policy);
@@ -108,17 +102,20 @@ contract ZZZPoolRegistry is ZZZModule {
             k.hooks != address(0)) revert InvalidConfiguration();
         return _configure(config, k.currency0, k.currency1);
     }
-    /// @notice Candidate admission, not deployment approval. No other native/hooked pool is accepted.
-    /// Runtime/wiring/fee terms are rechecked on every accounting/nativeAsset read.
+    /// @notice Admit a static hookless ETH/ZZZ pool, including future fee tiers.
+    /// The selected launch identity does not prevent governed moves after sealing.
+    /// Runtime/wiring are rechecked on every accounting/nativeAsset read.
     function configureNative(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
-        if (keccak256(abi.encode(config.key)) != SELECTED_NATIVE_POOL || config.maxSlippageBps <= 100) {
+        PoolKey memory key = config.key;
+        if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000) {
             revert InvalidConfiguration();
         }
         _nativeBindings();
-        // Core protocol fees can change independently of the immutable zero LP fee.
+        poolId = keccak256(abi.encode(key));
+        // Core protocol fees can change independently of the immutable static LP fee.
         // Swaps enforce actual net output; a fee-policy change must not freeze custody.
-        (uint160 price,,, uint24 lpFee) = IStateViewMinimal(STATE).getSlot0(SELECTED_NATIVE_POOL);
-        if (price == 0 || lpFee != 0) revert InvalidConfiguration();
+        (uint160 price,,, uint24 lpFee) = IStateViewMinimal(STATE).getSlot0(poolId);
+        if (price == 0 || lpFee != key.fee) revert InvalidConfiguration();
         return _configure(config, WETH, ZZZ);
     }
     /// @notice Restrict an admitted pool without reading tokens, prices or venue
@@ -200,9 +197,7 @@ contract ZZZPoolRegistry is ZZZModule {
             STATE.codehash != 0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6 ||
             PERMIT2.codehash != 0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca ||
             WETH.codehash != 0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353 ||
-            ZZZ.codehash != 0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597 ||
-            HOOK.codehash != 0xc21b1e6c1b45403e81a581f22ed6d9c747997af1cfdac1b1dc9f4b1d346a10db ||
-            FACTORY.codehash != 0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84) {
+            ZZZ.codehash != 0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597) {
             revert InvalidConfiguration();
         }
         // Detect ordinary implementation/admin/owner changes, not hostile-proxy
@@ -212,12 +207,8 @@ contract ZZZPoolRegistry is ZZZModule {
         address manager = access.module(Ids.LIQUIDITY);
         if (IZZZLiquidity(manager).positionManager() != POSM ||
             INativeVenueBindings(manager).poolManager() != CORE || INativeVenueBindings(manager).stateView() != STATE ||
-            INativeVenueBindings(manager).permit2() != PERMIT2 || INativeVenueBindings(POSM).WETH9() != WETH ||
-            INativeVenueBindings(HOOK).poolManager() != CORE || INativeVenueBindings(HOOK).factory() != FACTORY ||
-            uint160(HOOK) & 0x3fff != 0x2044) revert InvalidConfiguration();
-        (bool registered, bool meme0, address meme, address quote,,,, uint16 tax, uint16 protocolShare,
-            uint16 buybackShare, uint16 hookFee, uint16 impact,) = INativeVenueBindings(HOOK).launches(SELECTED_NATIVE_POOL);
-        if (!registered || meme0 || meme != ZZZ || quote != address(0) || tax != 0 || protocolShare != 3000 ||
-            buybackShare != 5000 || hookFee != 100 || impact != 300) revert InvalidConfiguration();
+            INativeVenueBindings(manager).permit2() != PERMIT2 || INativeVenueBindings(POSM).WETH9() != WETH) {
+            revert InvalidConfiguration();
+        }
     }
 }

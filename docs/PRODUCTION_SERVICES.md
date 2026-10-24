@@ -1,5 +1,7 @@
 # Production service decisions still open
 
+**Current service scope (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) earns conventional LP fees; Pons creator-payment terms are historical/optional rather than launch prerequisites. Independent feeds, supported VRF, real routes and operating qualification remain open. [Post-seal policy](POST_SEAL_POLICY.md) records current fixed settings and required extensions; native accounting remains a specification.
+
 These are development research results from 2026-10-15. None selects a provider,
 approves deployment or establishes that a service will remain available.
 

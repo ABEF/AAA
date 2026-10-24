@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Read-only, pinned-block evidence for the selected Robinhood market.
+"""Historical read-only, pinned-block evidence for the former Pons market.
+
+The selected hookless pool uses scripts/verify-hookless-pool.py instead. These
+old constants/economics are preserved for reproducible historical evidence.
 
 Requires Python 3.11+ and the pinned Foundry `cast` executable. No credentials,
 signer, approvals, transaction submission or synthetic prices are used here.

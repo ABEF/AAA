@@ -1,0 +1,14 @@
+test_complete_unskipped_exact_suites_succeed_with_windows_paths (published_forktests.ForkCoverageTests.test_complete_unskipped_exact_suites_succeed_with_windows_paths) ... ok
+test_current_source_inventories_include_both_actual_fork_classes (published_forktests.ForkCoverageTests.test_current_source_inventories_include_both_actual_fork_classes) ... ok
+test_inventory_ignores_commented_and_quoted_function_declarations (published_forktests.ForkCoverageTests.test_inventory_ignores_commented_and_quoted_function_declarations) ... ok
+test_missing_or_malformed_json_results_are_rejected (published_forktests.ForkCoverageTests.test_missing_or_malformed_json_results_are_rejected) ... ok
+test_missing_or_similarly_named_native_suite_cannot_pass (published_forktests.ForkCoverageTests.test_missing_or_similarly_named_native_suite_cannot_pass) ... ok
+test_partial_empty_extra_and_overloaded_test_results_are_rejected (published_forktests.ForkCoverageTests.test_partial_empty_extra_and_overloaded_test_results_are_rejected) ... ok
+test_zero_exit_with_any_skipped_failed_or_setup_only_native_result_is_rejected (published_forktests.ForkCoverageTests.test_zero_exit_with_any_skipped_failed_or_setup_only_native_result_is_rejected) ... ok
+test_template_is_explicitly_blocked (tests_python.test_production_config.ProductionConfigTests.test_template_is_explicitly_blocked) ... ok
+test_cli_emits_blocked_machine_readable_output_without_chain_access (tests_python.test_production_config.ProductionConfigTests.test_cli_emits_blocked_machine_readable_output_without_chain_access) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.343s
+
+OK

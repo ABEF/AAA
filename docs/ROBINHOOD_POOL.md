@@ -1,8 +1,8 @@
-# Requested Robinhood ETH / ZZZ pool
+# Historical Pons pool research
 
-**Pool selection update (2026-10-24):** the user will create a new Uniswap ETH/ZZZ pool. Exact chain/version, native currency, fee and hook are pending. The previous Pons target and evidence below are historical; new native admission and routes require separate qualification. See [current pool decision](POOL_SELECTION.md).
+**Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
 
-The user selected this market for future PoPL liquidity. Its identity and fee policy were checked on **2026-10-14** with read-only public RPC requests and verified source. No transactions were sent. That read predates the selected native-ETH/Pons adapter now implemented in the candidate. [Scoped selected-pool fork evidence](../reports/range-policy/VERIFICATION.md) covers settlement mechanics with synthetic pricing; it does not qualify a production ZZZ feed or complete live activation. The market addresses and fee settings below retain their historical observation date, not a new live verification.
+The user previously selected this market; it is no longer the launch target. Its identity and fee policy were checked on **2026-10-14** with read-only public RPC requests and verified source. No transactions were sent. That read predates the selected native-ETH/Pons adapter now implemented in the candidate. [Scoped selected-pool fork evidence](../reports/range-policy/VERIFICATION.md) covers settlement mechanics with synthetic pricing; it does not qualify a production ZZZ feed or complete live activation. The market addresses and fee settings below retain their historical observation date, not a new live verification.
 
 ## Network and pool identity
 

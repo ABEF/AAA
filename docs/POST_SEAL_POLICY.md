@@ -1,0 +1,87 @@
+# Post-seal configuration and public-chain rehearsals
+
+Decision recorded 2026-10-24. Routine operating settings should remain configurable
+after sealing. This is a pre-seal design requirement, not a claim that all of the
+controls below are implemented. The [central Todo](../TODO.md#task-post-seal-configuration)
+owns completion status. No public deployment, transaction or signer extension is
+authorized by this document.
+
+## Configuration boundary
+
+| Category | Requirement | Current boundary |
+| --- | --- | --- |
+| Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.maxTradeUSD` is still immutable; separate an adjustable operating ceiling from a reviewed hard safety ceiling before sealing. |
+| Assets and conversions | Admit/remove supported input assets and rotate conversion pools when liquidity changes, without redeploying. | Entry and LP/royalty converters support append-only route policies and enable/disable controls. Their execution code supports single-hop v3 only. v4 conversion support is pre-seal implementation work; a route record cannot add a new algorithm. |
+| Pools and pricing | Change the sole contribution pool, qualified feeds and supported strategy settings through governance. | Existing validation, exact asset/key/runtime checks, fresh prices, accounting and execution floors remain mandatory. New unimplemented venues are not enabled by configuration alone. |
+| Randomness operation | Review post-seal tuning of callback gas, confirmations and funding settings; distinguish that from replacing the trusted randomness provider. | `NFT.configureRandomness` currently fixes provider and all request settings once before seal. Any redesign must bind pending requests to their original provider/settings, preserve ordered draws and forbid rerolls or administrator-chosen traits. Provider rotation is security-sensitive, not a routine setter. |
+| Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
+| Economic rights and safety | Preserve supply/rarity inventory, revealed traits, ownership, earned rewards, backing, the 80/10/5/5 allocation and approved execution-loss limits. | No reset, confiscation, arbitrary sweep, generic executor or unbounded upgrade is introduced. A reviewed replacement uses the explicit handoff and preserves rights; it is not a way to erase them. |
+
+Adding a route or feed is security-sensitive even when it is configurable.
+Governance retains immediate authorization with no new waiting period. Every
+control still needs an explicit caller, bounds, events, dependency checks,
+stop/reopen behavior and old-transaction/pending-state handling. A global pause
+does not bypass preparation or terminal canonical locks.
+
+The user reconfirmed the **1% maximum ZZZ LP-reward conversion loss, gas separate**.
+The selected pool's observed approximately 1.101% swap fee means it is not a
+qualified full-balance conversion route at reference prices. Require a cheaper,
+independently reviewed route; until then keep earned source balances backed and
+report conversion unavailable. Do not silently increase the limit or substitute
+pool spot prices for independent valuation.
+
+## Testing with real funds on Robinhood
+
+Use a **separate, clearly named mainnet rehearsal deployment**, dedicated disposable
+funds and reviewed per-operation/campaign limits. Preserve production economics
+and guards when qualifying production behavior. A reduced-minimum test build is
+a different candidate and does not verify the unchanged $100 activation rule.
+The current $1 rehearsal is local-only. Production mint is intended for OpenSea;
+direct local mint evidence does not qualify an OpenSea primary mint.
+
+Before any operator-run public transaction, record exact source/runtime/configuration,
+chain, asset/venue/feed/provider identities, roles, funding and actual signer
+permissions. Simulate exact calldata and retain receipts and balance/liability
+assertions. Real swaps create fees only according to actual venue execution;
+funded royalty distribution tests and genuine marketplace royalty receipt tests
+must be identified separately. This design discussion does not approve public
+signing, deployment, sealing or use of real funds.
+
+After the campaign:
+
+1. Stop new mints with `NFT.setMintPaused(true)`, disable affected contributions
+   and pause economic work as appropriate. Reconcile every submitted transaction.
+2. Use the approved paused custody exit to close attributed LP principal if the
+   venue and assets remain usable. Normal all-ZZZ and explicit raw exits have
+   different guarantees; a failed normal exit never selects raw mode automatically.
+   The current checkpoint still wraps native pool proceeds, so raw exit is not
+   yet independent of WETH. [Native redesign](NATIVE_ETH_ARCHITECTURE.md) remains
+   unimplemented.
+3. Claim funded rewards as their current NFT owners. Account separately for
+   compounding/buyback reserves, royalties, rounding dust, mint payments and gas.
+   A principal exit does not empty every contract or erase any liability.
+   `RoyaltyRewards.exitCustody` preserves liabilities and is not a settlement/reset.
+4. Archive manifests, journals, receipts, final balances and remaining obligations;
+   remove rehearsal addresses from active service/UI configuration. Public-chain
+   and marketplace history remains. No public burn/reset or standalone deployment
+   retirement function exists; canonical retirement requires an actual checked,
+   funded successor handoff and preserves economic rights.
+5. Use a fresh, separately reviewed deployment for the final collection. It has a
+   different address/collection identity. Rehearsal NFTs do not become final NFTs
+   automatically, and already spent gas, swap fees, losses or burned assets cannot
+   be refunded by a reset.
+
+Do not admit unrelated public holders to a disposable rehearsal. If outside holders
+or unresolved liabilities exist, stopping services does not remove their rights.
+There is no guarantee that a failed token, pool or external custody recipient
+will permit full recovery. Do not add a production deletion/sweep backdoor to make
+test cleanup easier.
+
+## Review scope
+
+This inventory is a source review, not new runtime evidence. Current controls were
+read in `ZZZAccessController`, `ZZZNFT`, `ZZZActivationEntry`, `ZZZRoyaltyConverter`,
+`ZZZLPRewardConverter`, `ZZZBuyback`, `ZZZMigration`, `ZZZVault` and
+`ZZZCanonicalHandoff`. No implementation, tests, public service or chain state
+changed for this policy. Any later setter/executor requires focused tests for its
+changed behavior, code-size checks and refreshed operator/inventory guidance.

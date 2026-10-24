@@ -1,5 +1,11 @@
 # Local $1 activation rehearsal - 2026-10-18
 
+## 2026-10-24 - selected hookless pool and operating boundaries
+
+The candidate supports static hookless Robinhood native ETH/ZZZ fee tiers, actual directional fee planning and atomic `moveFunds`; normal custody exit now respects both the stricter per-swap minimum and unchanged aggregate3% floor. [Source-bound checks](../reports/hookless-pool/VERIFICATION.md) retain failed attempts and distinguish corrected-path reruns from older evidence.
+
+The user retained the1% reward-conversion limit and requires a cheaper qualified route. [Native ETH accounting](NATIVE_ETH_ARCHITECTURE.md) and [post-seal operational settings](POST_SEAL_POLICY.md) are specified but unfinished. Real-funds rehearsal uses a separate deployment with no reset; no public deployment, transaction or website/server code change.
+
 Added a separate, generated local-only build and focused fixtures. Production
 contracts remain unchanged at $100 activation and 0.05 ETH mint. Ten Solidity and
 four Python cases pass, including the 99% deployed-LP rule and both funded claim

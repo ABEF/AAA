@@ -66,8 +66,8 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         if ((requireOperations && !c.operationsEnabled) || keccak256(abi.encode(c.key)) != poolId) revert InvalidState();
         if (c.key.currency0 == address(0)) {
             // Only the registry's separately reviewed native policy can normalize this key.
-            if (_nativeAsset(poolId) == address(0) || c.key.fee != 0 ||
-                uint160(c.key.hooks) & 0x3fff != 0x2044) revert InvalidState();
+            if (_nativeAsset(poolId) == address(0) || c.key.fee > 100000 ||
+                c.key.hooks != address(0)) revert InvalidState();
         } else if (c.key.hooks != address(0)) revert InvalidState();
     }
     function _nativeAsset(bytes32 poolId) private view returns (address wrapper) {

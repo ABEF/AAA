@@ -1,0 +1,55 @@
+{
+  "read_only": true,
+  "observed_at_utc": "2026-10-24T02:45:58.847199+00:00",
+  "chain_id": 4663,
+  "block": 96427989,
+  "block_hash": "0x0ba14c22200dfc717bbd2c8b5b8842329775374d06f46e30c65e273f067ecbc3",
+  "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+  "currencies": [
+    "0x0000000000000000000000000000000000000000",
+    "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a"
+  ],
+  "hook": "0x0000000000000000000000000000000000000000",
+  "static_lp_fee_pips": 10020,
+  "tick_spacing": 200,
+  "protocol_fee_pips": [
+    1000,
+    1000
+  ],
+  "combined_fee_pips": [
+    11010,
+    11010
+  ],
+  "active_liquidity": "4097261221843566824993",
+  "protocol_fee_controller": "0x6d0009504d129cf5002dba61d9ae8575aa79314c",
+  "manager_owner": "0x2bad8182c09f50c8318d769245bea52c32be46cd",
+  "creation_tx": "0x0752dc07e3eb6007b548ec58acdc273bdd6670762ce8f2789a40e64d1c46cd04",
+  "contracts": {
+    "core": {
+      "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "runtime_keccak": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626"
+    },
+    "positions": {
+      "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "runtime_keccak": "0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2"
+    },
+    "state": {
+      "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+      "runtime_keccak": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6"
+    },
+    "permit2": {
+      "address": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+      "runtime_keccak": "0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca"
+    },
+    "weth": {
+      "address": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "runtime_keccak": "0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353"
+    },
+    "zzz": {
+      "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+      "runtime_keccak": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597"
+    }
+  },
+  "release_approved": false,
+  "limits": "No independent USD feeds, routes, liquidity valuation or audit qualified"
+}

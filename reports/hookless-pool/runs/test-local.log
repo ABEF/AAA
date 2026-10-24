@@ -1,0 +1,173 @@
+Compiling 111 files with Solc 0.8.26
+Solc 0.8.26 finished in 484.88s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (5159): "selfdestruct" has been deprecated. Note that, starting from the Cancun hard fork, the underlying opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+   --> test/NativeLiquidity.t.sol:121:75:
+    |
+121 | contract BoundaryForce { constructor(address payable recipient) payable { selfdestruct(recipient); } }
+    |                                                                           ^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:107:5:
+    |
+107 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:217:5:
+    |
+217 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 1 test for test/ContributionPool.t.sol:SingleContributionPoolTest
+[FAIL: InvalidConfiguration()] setUp() (gas: 0)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 6.84ms (0.00ns CPU time)
+
+Ran 6 tests for test/PoolSwitching.t.sol:PoolSwitchingTest
+[PASS] testChangedPairReversedOrderAndDisabledPoolRemainRejectedAtomically() (gas: 10941498)
+[PASS] testFullCapacitySwitchAndReturnReuseTheExistingBucketSlot() (gas: 12509137)
+[PASS] testPoolAlreadyAssignedToAnotherBucketCannotBeTakenBySwitch() (gas: 12500445)
+[PASS] testRolePauseDeadlineMinimumAndSamePoolGuardsPreserveCustody() (gas: 10034938)
+[PASS] testSamePairSwitchKeepsTwoNFTSharesFundedRewardsAndHomeIdentity() (gas: 14069907)
+[PASS] testVenueFailureRollsBackCloseFeesCompoundAndNewPoolReservation() (gas: 11800920)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 71.35ms (127.05ms CPU time)
+
+Ran 7 tests for test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest
+[PASS] testWrapperPolicyActivationRechecksCurrentObservation() (gas: 220018)
+[FAIL: InvalidConfiguration()] testWrapperPolicyAfterSealRequiresBothImmediateGovernanceActions() (gas: 17252138)
+[PASS] testWrapperPolicyAppendOnlyAndHistoricalRecordSurvivesActivation() (gas: 435852)
+[PASS] testWrapperPolicyMustMatchCurrentCodeOwnerAndReportedImplementation() (gas: 81750)
+[PASS] testWrapperPolicyRejectsZeroOrEOAImplementationAndDoesNotAcceptNativeFunds() (gas: 58949)
+[FAIL: InvalidConfiguration()] testWrapperPolicyRenouncedOwnerCanBeReviewedThroughImmediateGovernance() (gas: 17252006)
+[PASS] testWrapperPolicyUnauthorizedApprovalAndActivationRejected() (gas: 203722)
+Suite result: FAILED. 5 passed; 2 failed; 0 skipped; finished in 7.35s (13.58ms CPU time)
+
+Ran 9 tests for test/RoyaltyCustody.t.sol:RoyaltyCustodyTest
+[PASS] testCustodyReturnCannotUseDonationAsReplacementOrBeReplayed() (gas: 246740)
+[PASS] testFullReturnIsNotNewIncomeAndRightsFollowTransfer() (gas: 378503)
+[PASS] testFullRoyaltyCurrencyMovesWithoutChangingRightsOrLP() (gas: 251493)
+[PASS] testHealthyNativeRoyaltiesRemainClaimableDuringTokenCustody() (gas: 323963)
+[PASS] testLateReceiptsNotDoubleCountedOnReturn() (gas: 276590)
+[PASS] testNativeCustodyDefersOnlyNewNativeEligibilityWithoutRetroactiveFees() (gas: 3040412)
+[PASS] testNativeExitAndExactReturn() (gas: 256791)
+[PASS] testRoyaltyExitRequiresPausedGovernanceExactAmountAndNonce() (gas: 142324)
+[PASS] testWholeCollectionCannotSnapshotExternalRoyaltyBacking() (gas: 203760)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 7.35s (19.60ms CPU time)
+
+Ran 23 tests for test/NativeLiquidity.t.sol:NativeLiquidityTest
+[PASS] testNativeAmountsRemainUint128BoundedWithoutPermitApproval() (gas: 41806)
+[PASS] testNativeBrokenDepositRollsBackCredits() (gas: 701000)
+[PASS] testNativeBrokenWithdrawRollsBack() (gas: 288465)
+[PASS] testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault() (gas: 772542)
+[PASS] testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees() (gas: 785724)
+[PASS] testNativeDisabledPoolExitDoesNotReadUnavailableOracle() (gas: 889686)
+[PASS] testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap() (gas: 1036660)
+[PASS] testNativeDynamicFeeRejected() (gas: 103396)
+[PASS] testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle() (gas: 2667265)
+[PASS] testNativeForcedETHDuringTakeCannotBeClaimed() (gas: 478199)
+[PASS] testNativeIncorrectWrapperRejectedBeforePull() (gas: 94640)
+[PASS] testNativeIncreaseReusesPositionAndClearsApprovals() (gas: 816894)
+[PASS] testNativeInputSwapResetsDirtySyncAndUsesNetDelta() (gas: 330567)
+[PASS] testNativeLiquidityCallbackHookMaskRejected() (gas: 120606)
+[PASS] testNativeMinOutIncludesExecutionFees() (gas: 301818)
+[PASS] testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds() (gas: 654661)
+[PASS] testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH() (gas: 422162)
+[PASS] testNativePartialInputRejectedAtomically() (gas: 336384)
+[FAIL: assertion failed: 198000000000000001177 <= 198500000000000000000] testNativePlanBalancesNetAmountsWithinOnePercentBudget() (gas: 2719270)
+[PASS] testNativeRegistryAdmissionRejectsUnreviewedDependencies() (gas: 6341488)
+[PASS] testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping() (gas: 483577)
+[PASS] testNativeUnexpectedSenderAndCallbackRejected() (gas: 24338)
+[PASS] testNativeWrapperReentryFailsWhileCreditStillSucceeds() (gas: 406381)
+Suite result: FAILED. 22 passed; 1 failed; 0 skipped; finished in 7.35s (40.76ms CPU time)
+
+Ran 24 tests for test/CustodyHandoff.t.sol:CustodyHandoffTest
+[PASS] testApprovalCanBeCancelledWithoutMovingFunds() (gas: 3991142)
+[PASS] testApprovalRejectsInvalidSnapshotAndCompanionAsRecipient() (gas: 3307422)
+[PASS] testCompleteRequiresActualLPAndPreservesNFTAndLedgers() (gas: 5342452)
+[PASS] testDestinationValidationRejectsUnreservedPoolAndWrongCustody() (gas: 5711423)
+[PASS] testEmergencyCanMoveToCustodyBeforeChoosingAnyNewPoolWithStoppedSourceAndStaleFeed() (gas: 4178026)
+[PASS] testEmergencyRawExitWorksWithFailedSwapAndStalePrices() (gas: 4262772)
+[PASS] testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties() (gas: 4570080)
+[PASS] testFuzzExitSwapLossLimit(uint16) (runs: 1000, μ: 4397685, ~: 4351285)
+[PASS] testHoldingCanBindNewDestinationExactlyOnceWithoutChangingSourceBudget() (gas: 6205708)
+[PASS] testLateCreatorRewardsAndUnclaimedRightsFollowNFTDuringCustody() (gas: 6705902)
+[PASS] testLocalEndToEndBudgetIncludesExitAndRedeployment() (gas: 6154724)
+[PASS] testNoTimeoutCancellationAfterSending() (gas: 4452030)
+[PASS] testNormalModeRejectsAnUnpricedOrUnswappableExit() (gas: 3755494)
+[PASS] testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue() (gas: 6783209)
+[PASS] testRawExitMinimumProtectsCloseAndRollsBack() (gas: 4127195)
+[PASS] testRecoveredCustodyNeedsFullActualSentZZZAndCanRemainPaused() (gas: 4719986)
+[PASS] testRemoteCannotBeApprovedWithoutVerifier() (gas: 3801965)
+[PASS] testRemoteProofCannotBeReplacedByGovernanceAndRecoveryRequiresClosure() (gas: 4898332)
+[PASS] testSentCustodyCannotChangeZZZOrAcceptInventedCompletion() (gas: 4507574)
+[PASS] testStateDriftAndDuplicateApprovalsFailClosed() (gas: 4615385)
+[PASS] testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback() (gas: 4338966)
+[PASS] testThreePercentBudgetCannotBeRelaxedByRequest() (gas: 3802213)
+[PASS] testUnauthorizedExitAndConfigurationAreRejected() (gas: 3123262)
+[PASS] testValidationCompanionCannotBeCalledByUnprivilegedAccounts() (gas: 3122677)
+Suite result: ok. 24 passed; 0 failed; 0 skipped; finished in 7.35s (7.64s CPU time)
+
+Ran 11 tests for test/CustodyParking.t.sol:CustodyParkingTest
+[PASS] testParkedResumeRejectsChangedOrderedTokensAndDisabledDestination() (gas: 10197729)
+[PASS] testParkedResumeRetainsStaleOracleAndVenueFailureRollbackThenPreservesShares() (gas: 11961468)
+[PASS] testParkingMinimaExcludeOldIdleCompoundAndDirectDonationsAndRollBack() (gas: 10838010)
+[PASS] testParkingNonceInvalidationAndSuccessfulExecutionPreventReplay() (gas: 10039518)
+[PASS] testParkingOneSidedPositionAllowsOneZeroMinimum() (gas: 9835465)
+[PASS] testParkingRebalanceInvalidatesScheduledLPTokenSnapshot() (gas: 10789509)
+[PASS] testParkingRejectsEveryStaleSnapshotAndInvalidAuthorizationField() (gas: 10899292)
+[PASS] testParkingRejectsNonlocalCustodyEvenWithMatchingLPAndShareSnapshot() (gas: 9723666)
+[PASS] testParkingRequiresGovernancePausedSealedAndFixedMigrationModule() (gas: 10014499)
+[PASS] testParkingStaleOracleAndBrokenInboxKeepsPrincipalAndFundedClaimRights() (gas: 12704925)
+[PASS] testParkingVenueFeesCannotSubsidizePrincipalMinimums() (gas: 10534863)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 7.35s (168.96ms CPU time)
+
+Ran 7 test suites in 7.35s (36.82s CPU time): 77 tests passed, 4 failed, 0 skipped (81 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/ContributionPool.t.sol:SingleContributionPoolTest
+[FAIL: InvalidConfiguration()] setUp() (gas: 0)
+
+Encountered 1 failing test in test/NativeLiquidity.t.sol:NativeLiquidityTest
+[FAIL: assertion failed: 198000000000000001177 <= 198500000000000000000] testNativePlanBalancesNetAmountsWithinOnePercentBudget() (gas: 2719270)
+
+Encountered 2 failing tests in test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest
+[FAIL: InvalidConfiguration()] testWrapperPolicyAfterSealRequiresBothImmediateGovernanceActions() (gas: 17252138)
+[FAIL: InvalidConfiguration()] testWrapperPolicyRenouncedOwnerCanBeReviewedThroughImmediateGovernance() (gas: 17252006)
+
+Encountered a total of 4 failing tests, 77 tests succeeded

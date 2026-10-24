@@ -23,6 +23,37 @@ These are separate custody domains:
 | Marketplace royalties | Per-currency `RoyaltyRewards.exitCustody(...)`; original NFT liabilities and quarantine remain. Full same-currency restoration is required by `returnCustody(...)`. |
 | Whole collection | Existing canonical handoff carries NFT ownership, shares and both complete ledgers to one reviewed same-chain successor. It cannot freeze while external custody is outstanding. |
 
+## Move funds without external custody
+
+Use `Migration.moveFunds(bucket,destinationPool,minimumLiquidity,deadline)` for a
+new fee tier or native ETH/ZZZ to WETH/ZZZ (and back). The older `movePool` selector
+is an alias with the same authority/guards. It never sends principal to your wallet.
+
+1. Governance reviews and admits the initialized, hookless destination with
+   `PoolRegistry.configureNative` (static native ETH/ZZZ on the pinned Robinhood
+   core) or ordinary `configure` (WETH/ZZZ). Set destination deposits disabled;
+   operations must be enabled. Verify real key, fees, spacing, wrapper, reference
+   price, depth and destination reservation conflicts. No new core deployment is
+   needed for these supported venue changes after sealing.
+2. Stop new source deposits and review a fresh confirmed snapshot. Preserve source
+   operations if balancing needs them. Simulate the complete move with an actual
+   positive minimum liquidity and deadline at most ten minutes away. Execute via
+   controller governance while unpaused. No new holder approval is required.
+3. The atomic operation harvests old fees, includes designated compound, closes
+   source LP, balances and creates destination LP owned by Vault. It retains at
+   least 97% of starting principal plus released compound, at one starting price
+   vector. This 3% overall cap is fixed after sealing; gas is separate. Any failed
+   settlement or limit rolls back the whole move, including closing the old LP.
+4. Verify actual destination LP, pool ID, unchanged NFT shares/home identity,
+   existing reward liabilities and cleared allowances. Governance then enables
+   this sole contribution pool and separately updates reviewed input routes/API/
+   keeper configuration. Do not reactivate the old physical pool for new entries.
+
+Native ETH is normalized to WETH internally, so native/WETH venues preserve the
+same ordered pair. Arbitrary different tokens, reversed accounting pairs, another
+bucket's reserved pool, unsupported hooks and dynamic native pools are rejected.
+Use the distinct external exit below for token migration or manual bridging.
+
 ## Ordinary Migration Exit: all principal into ZZZ
 
 1. Independently qualify the selected ZZZ contract, source/destination venue,
@@ -96,6 +127,17 @@ ordinary 3% USD execution guarantee does not apply**. The close minima, exact
 transfers, shares, recipient and asset segregation remain enforced. A failed
 venue or nontransferable/frozen token can still prevent exit. Donations, other
 buckets, rewards, royalty assets and fee reserves are not included.
+
+### Native ETH versus WETH at exit
+
+The selected pool holds native ETH, but current internal accounting normalizes it
+to WETH. Its raw exit therefore sends **WETH and ZZZ**, not native ETH and ZZZ.
+The recipient can unwrap later if the wrapper works. Normal exit still sends only
+ZZZ. Raw exit bypasses swaps and USD reads; it is **not wrapper-independent**.
+A failed wrapper or rejected wrapper policy can still prevent pool closure.
+Native custody recovery and its treatment of separately earned fees need a
+pre-seal review; no native-payout switch or full native-ledger rewrite is supplied
+by the current pool-selection change. See the [open recovery requirement](NATIVE_POOL_ADAPTER.md#open-native-recovery-requirement).
 
 ## Local completion, recovery and stopping
 

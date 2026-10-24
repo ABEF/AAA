@@ -1,13 +1,8 @@
 # Configuration changes and LP recovery boundaries
 
-**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+**Current candidate (2026-10-24):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
 
-The LP is nonredeemable by NFT holders. This must not be confused with an LP
-position that can never move: the migration framework can close the shared
-position and move its accounted principal through a separately approved route.
-There is no direct local administrator sweep. Approved external providers and
-remote custody remain trust boundaries; exact source depletion does not prove
-honest delivery.
+The LP is nonredeemable by NFT holders. Governance can atomically move it between supported pools or release attributed principal to explicitly approved external custody. Recipient custody and liveness are accepted governance trust; the source cannot compel return. No generic executor or arbitrary sweep exists. See the [selected pool](POOL_SELECTION.md), [post-seal policy](POST_SEAL_POLICY.md) and [native ETH specification](NATIVE_ETH_ARCHITECTURE.md).
 
 The undeployed candidate uses fixed custody code and immediate governance-approved configuration.
 It is not a general proxy upgrade system. Sealing fixes module addresses; the
@@ -24,43 +19,62 @@ following explicit configuration paths remain available after sealing.
 | Replace a failed sequencer-status feed | `ZZZOracle.setSequencerFeed` appends a reviewed nonzero source/code policy through the governance controller without querying the failed old source. Uptime and recovery grace remain mandatory; a configured safeguard cannot be removed by setting zero. |
 | Maintain the canonical native wrapper | Append and activate a reviewed wrapper policy through the governance controller, checking the real proxy administrator, implementation, owner and code hashes. A reviewed renounced zero-owner state is allowed. The wrapper address and PoolKey stay fixed. |
 | Disable new strategy operations in a pool | New LP mint, increase and guarded swaps stop; typed collect/close remain available under custody, wrapper and real-key checks. Ordinary Vault exit validation ignores the source operations flag but still requires a valid oracle and acceptable spot deviation. Separately reviewed paused parking has raw-token authorization instead of a source USD read. |
-| Move LP to another supported local pool | Governed `ZZZMigration.movePool` closes and redeploys the whole bucket through the Vault. Both pools must have the same ordered accounting currencies; the destination must be admitted and enabled. NFT shares and historical liabilities remain attached to the bucket. |
-| Convert principal into another local pair | The constructor-created `Migration.pairMigration()` executes an exact governed request with at most eight typed v4 swap legs and fixed Vault custody. Close, designated compound conversion and deployment share one fixed-price 3% limit, gas separate. Original reward currencies/inboxes persist; late historical compound remains incumbent backing. See [procedure and limits](PAIR_MIGRATION.md). V3 principal bridging is blocked after composition; future-chain multi-currency accounting is still pre-seal work. |
+| Move LP to another supported local pool | Governed `ZZZMigration.moveFunds` closes and redeploys the whole bucket through the Vault; `movePool` is an alias. Both pools must have the same ordered accounting currencies and the destination must be admitted and enabled. Actual destination LP, unchanged shares and one fixed-price 3% aggregate loss floor are required; gas separate. Current normalization supports native ETH/ZZZ to WETH/ZZZ and fee-tier changes. Contribution pool/routes require deliberate cutover. |
+| Convert principal into another local pair | The former pair executor is removed. Use separately approved external custody, perform the issuer exchange/conversion outside the source contracts and fund actual local destination LP through `completeLocal`. Normal mode retains the original 97% floor; raw mode uses its explicit destination minima. This is not an atomic arbitrary-pair `moveFunds` operation. |
 | Park a paused shared LP during a source-price outage | Sealed, paused `ZZZMigration.park` requires the exact governance-approved LP/share/deposit/location/epoch/nonce snapshot, ordered currencies, reviewed close-only raw minima and a current deadline. It collects venue fees separately, closes the LP and keeps all principal attributed inside Vault. Old idle, donations and compound reserves cannot satisfy the close minimums. USD/sequencer reads and creator-inbox synchronization are omitted; native-wrapper and venue pins remain mandatory. |
-| Resume or migrate parked principal | After unpause, governed `resume` requires valid valuation and normal enabled-destination, ordered-currency, swap/slippage, liquidity and idle guards. A proposed parked migration retains approved transport, snapshot, exact-transfer and historical remote-liability funding barriers; already closed source principal needs no recovered source USD feed. Destination services and real bridge backing remain independent requirements. |
-| Add a future chain, equivalent-asset pool or bridge provider | Register new immutable transport policies and routes, deploy and independently review the destination system, then approve the economic migration. Disabling outbound policies does not cancel historical inbound settlement. Actual bridge wrappers are not supplied by this framework. |
+| Resume parked principal | After unpause, governed `resume` requires valid valuation, an enabled same-accounting-pair destination, actual LP and normal swap/idle/fixed 3% aggregate guards. Parking is not a bypass of destination validation. |
+| Exit to external custody | Approve an exact request, pause globally and call `exit`. Normal mode consolidates attributed principal into configured ZZZ with stricter swap minima and an original 97% aggregate floor. Separately approved `rawExit` sends both accounting assets without swap/USD reads and without a 3% guarantee. Never automatically downgrade normal failure. Current native raw exit sends WETH/ZZZ and still depends on wrapper health. |
+| Complete or recover external custody | `completeLocal` requires real approved destination assets and actual LP, preserving original normal/raw limits and shares. A sent local holding plan may bind one reserved destination through `bindLocalDestination`. `recover` requires all actual sent assets/quantities back into parked custody; no timeout or accounting-only completion. |
+| Use external custody for a future chain | The recipient receives on the source chain and may bridge externally. Remote confirmation/return requires a pinned reviewed finality/channel-closure verifier; no multisig-only or timeout override. No real verifier/provider/remote NAV or reward ledger is supplied. The old bridge path is removed. Canonical NFT/ledger relocation remains separate unfinished work. |
 | Change keepers, guardians or strategy settings | Existing governed configuration and zero-delay controller; guardian pause is not asset-withdrawal or upgrade authority. |
 | Change the Vault, reward ledgers or mint/trait rules after sealing | No generic implementation replacement exists. A new code version needs an explicit reviewed migration design; these configuration controls do not make arbitrary code changes safe or possible. |
 
-<a id="destination-capacity-unresolved-proposed-next-implementation"></a>
-## Destination capacity: permanent admission
+## Configuration requirements not yet implemented
 
-`reservePool` now registers a distinct bucket in the same permanent bounded set
-used for historical custody. At most four identities are admitted, including
-unfunded reservations. Duplicate reservations, pool aliases and returns reuse
-their slot even at capacity. Reassignment and a fifth identity reject before
-arrival. Cancellation, timeout, departure and disabled operations never free a
-slot that an old packet may still need.
+The user requires routine operating settings to stay configurable after seal.
+Current VRF request settings and buyback maximum are fixed; Entry and LP/royalty
+converters support single-hop v3 only. Bounded future-request tuning, a buyback
+operating ceiling and typed v4 support are [pre-seal work](POST_SEAL_POLICY.md),
+not completed setters. Preserve pending request provenance, exact draws, earned
+rights, backing and execution floors; no reroll, arbitrary executor or sweep.
 
-Reserved buckets remain in `None` state with no shares or attributed principal.
-Membership and keeper discovery skip them before pool/price reads. The
-[capacity and switching regressions](../reports/architecture-evolution/VERIFICATION.md)
-cover admission, arrival, rollback, aliases, full-cap returns, identity/reward
-preservation and combined gas. An unfunded reservation is not TVL or an NFT.
+The 1% ZZZ LP-reward conversion cap remains, gas separate. The selected pool's
+observed approximately 1.101% fee requires a cheaper independently qualified
+conversion route. Unsupported conversion leaves source entitlements backed.
 
-This repairs the earlier identity-only reservation defect. It does not prove an
-external provider delivers funds or authenticate destination capacity on the
-source chain. Governance must verify the exact destination implementation and
-confirmed admission before departure; arbitrary reservations can permanently
-exhaust the four slots. Real bridging remains disabled pending independent
-admission, provider/backing and operating qualification.
+Native ETH accounting is the requested direction for robustness/efficiency,
+[specified but not implemented](NATIVE_ETH_ARCHITECTURE.md). Current native pool
+closure still wraps ETH; raw exit is not wrapper-independent. Full native backing,
+Entry, fees, rewards, exit/return and canonical handoff need joint implementation
+and review before sealing.
 
-A reviewed new remote destination can implement the repair while a source stays
-sealed. It cannot patch an already sealed old destination, rebind the canonical
-NFT/Rewards contracts or enable same-chain replacement of a Vault. Different-pair
-conversion and the proposed aggregate **3% migration execution budget** require
-the [composition-epoch architecture](ARCHITECTURE_EVOLUTION.md); they are not
-implemented by this capacity repair. Activation/top-ups retain **1%**.
+## Permanent reservations and historical boundaries
+
+`reservePool` and funded buckets share four permanent historical bucket slots.
+Aliases/returns reuse a bucket; departure, cancellation or timeout cannot free or
+reassign its reservation. Unfunded reservations have no shares or TVL. Verify
+capacity and existing aliases first; governance can exhaust capacity. Local
+reservation is not authenticated remote admission.
+
+The former typed pair executor and v3 bridge/transport paths are removed.
+[Pair-composition evidence](../reports/pair-composition/VERIFICATION.md) and
+[architecture evidence](../reports/architecture-evolution/VERIFICATION.md) retain
+their original source scope, not current bridge execution claims.
+
+Whole-collection [canonical handoff](CANONICAL_HANDOFF.md) remains separate:
+actual same-chain ownership, shares and both backed ledgers move to one reviewed
+successor with atomic retirement/activation and funded abort. Outstanding
+principal or royalty custody blocks capture. Pending mint draws must finish;
+they do not block ordinary LP moves. Post-halt recovery remains deferred.
+
+Royalty-currency custody uses its separate paused full-balance exit and exact raw
+return. Original liabilities and quarantine persist; exited-currency claims and
+valuation are unavailable, not zero. Restoration is not new income. Principal
+exit never sweeps royalties, rewards, reserves, donations or mint payments.
+
+A real-funds rehearsal uses a separate clearly named deployment and fresh final
+collection. No public history/NFT/reward reset exists. Follow the
+[rehearsal policy](POST_SEAL_POLICY.md#testing-with-real-funds-on-robinhood).
 
 ## Edge cases that remain release considerations
 
@@ -73,11 +87,11 @@ implemented by this capacity repair. Activation/top-ups retain **1%**.
   governance-approved close into Vault-held currencies without source USD or sequencer
   reads. Governance must review raw per-asset close minimums and a fresh custody
   snapshot; this cannot bypass a failed venue, frozen token or incompatible
-  native wrapper. Resume requires recovered valuation. Migration of already
-  parked principal retains route, backing and funded-liability protections.
-- **In-flight migration:** do not erase old routes, reinterpret existing
-  messages, substitute unbacked tokens or release liabilities on a timeout alone.
-  Real providers need reviewed retry, finality and funded recovery procedures.
+  native wrapper. Resume requires recovered valuation. Recovery and local completion require actual funding and preserve the approved
+  normal/raw limits; remote delivery additionally requires finality verification.
+- **External custody:** sent plans cannot be erased or completed by timeout.
+  Do not substitute unbacked tokens or forgive outstanding liabilities. Real
+  finality verifiers and remote ledgers remain unsupplied release work.
 - **VRF failure:** the current collection has immutable coordinator configuration
   and ordered reveal. A missing earlier fulfillment can block later reveals and
   activation. Provider liveness, recovery and any required replacement design

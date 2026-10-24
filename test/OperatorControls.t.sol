@@ -44,7 +44,10 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         ac.bind(Ids.REWARDS,address(new RangeRewardAdmission(address(ac))));
         bytes32[12] memory ids = [Ids.VAULT,Ids.LIQUIDITY,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
             Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ROUTES,Ids.TRANSPORT];
-        for(uint256 i; i<ids.length; ++i) ac.bind(ids[i],address(new BoundDummy(address(ac))));
+        for(uint256 i; i<ids.length; ++i) {
+            if (ids[i] == Ids.BRIDGE || ids[i] == Ids.RECEIVER || ids[i] == Ids.ROUTES || ids[i] == Ids.TRANSPORT) continue;
+            ac.bind(ids[i],address(new BoundDummy(address(ac))));
+        }
         config.key=PoolKey(address(t0),address(t1),3000,60,address(0));
         config.depositsEnabled=true;config.operationsEnabled=true;config.rangeBps=2000;
         config.triggerBps=500;config.maxSpotDeviationBps=100;config.maxSlippageBps=100;

@@ -1,5 +1,7 @@
 # Activation inputs, routes and source provenance
 
+**Current target (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) replaces Pons. Earlier on-chain route observations below remain historical; qualify the complete selected-pool operation. Current conversion execution is single-hop v3; future v4 support must be implemented before sealing. The user retained the1% reward-conversion cap and requires a cheaper route.
+
 The accepted input choices are **USDC, USDG, ETH and ZZZ**. An activation starts
 from at least **$100 of source input value**, with at most **1% total execution
 loss** and network gas paid separately. A $100 source input therefore requires

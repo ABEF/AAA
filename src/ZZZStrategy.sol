@@ -5,7 +5,9 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
-import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault} from "./interfaces/IZZZ.sol";
+import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault, IStateViewMinimal} from "./interfaces/IZZZ.sol";
+
+interface INativeFeeState { function stateView() external view returns (IStateViewMinimal); }
 
 /// @notice Stateless policy. Only the vault can commit position state changes.
 contract ZZZStrategy is ZZZModule {
@@ -110,12 +112,15 @@ contract ZZZStrategy is ZZZModule {
         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
         address output = zeroForOne ? c.key.currency1 : c.key.currency0;
         uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
-        if (c.key.hooks != address(0)) {
-            // Registry admits only the reviewed native/Pons key with a frozen 100 bp
-            // fee on exact-input output. Rebalance the NET pair, not the pre-hook
-            // output: S = excess / (1 - target_input_weight * 1%).
+        if (IZZZPools(access.module(Ids.POOLS)).get(poolId).key.currency0 == address(0)) {
+            // Native admission is static and hookless. Account for the actual
+            // directional protocol + LP fee, not the superseded Pons hook charge.
+            (,, uint24 protocol, uint24 lpFee) = INativeFeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
+            uint256 pf = zeroForOne ? protocol & 0xfff : protocol >> 12;
+            if (c.key.hooks != address(0) || lpFee != c.key.fee || pf > 1000) revert InvalidConfiguration();
+            uint256 fee = pf + uint256(lpFee) - Math.mulDiv(pf, lpFee, 1_000_000);
             uint256 inputWeight = Math.mulDiv(zeroForOne ? u0 : u1, 1e18, u0 + u1);
-            excess = Math.mulDiv(excess, 1e18, 1e18 - inputWeight / 100);
+            excess = Math.mulDiv(excess, 1e18, 1e18 - Math.mulDiv(inputWeight, fee, 1_000_000));
         }
         amountIn = Math.mulDiv(excess, 10 ** oracle.tokenDecimals(input), oracle.price(input));
         if (amountIn > (zeroForOne ? amount0 : amount1)) revert InvalidState();

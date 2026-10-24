@@ -1,5 +1,7 @@
 # Atomic source activation
 
+**Selected integration (2026-10-24):** [Hookless ETH/ZZZ](POOL_SELECTION.md) supersedes Pons; historical Pons examples below keep their scope. Current Entry remains WETH-accounted and typed single-hop v3 for converted inputs. [Native ETH](NATIVE_ETH_ARCHITECTURE.md) and [future v4 routing](POST_SEAL_POLICY.md) are pre-seal work, not implemented by pool selection.
+
 `ZZZActivationEntry` is an immutable child created by the canonical Pool Registry,
 alongside `ZZZActivationAssets`. It converts a current NFT owner's admitted source
 asset into one accounting currency and calls the existing permanent-liquidity

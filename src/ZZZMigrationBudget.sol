@@ -203,6 +203,16 @@ contract ZZZMigrationBudget {
         uint16 slippage = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId).maxSlippageBps;
         if (idleValue(id) < Math.mulDiv(beforeValue, 10000 - slippage, 10000)) revert Slippage();
     }
+    /// @notice The end-to-end custody minimum cannot weaken a swap's own floor.
+    /// A looser overall request is tightened here, not passed to an adapter that
+    /// must reject it. This never relaxes the original Migration 97% guarantee.
+    function handoffMinimum(uint256 id,address input,address output,uint256 amount,uint256 requested)
+        external view onlyVault returns(uint256) {
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
+        uint256 floor = Math.mulDiv(IZZZOracle(access.module(Ids.ORACLE)).quote(input,output,amount),
+            10000-c.maxSlippageBps,10000);
+        return Math.max(requested,floor);
+    }
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
         uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint16 maxSlippageBps) {
         Position memory p = IZZZVault(vault).group(bucket);

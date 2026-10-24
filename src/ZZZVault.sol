@@ -363,7 +363,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             address manager = _moduleLiquidity(); address input = direction ? t0 : t1;
             IERC20(input).forceApprove(manager,amount);
             uint256 out = IZZZLiquidity(manager).swap(p.poolId,direction,amount,
-                minimumZZZ > held ? minimumZZZ-held : 1,deadline);
+                migrationBudget.handoffMinimum(id,input,zzz,amount,minimumZZZ > held ? minimumZZZ-held : 1),deadline);
             IERC20(input).forceApprove(manager,0);
             if (direction) _idle(id,0,held+out); else _idle(id,held+out,0);
         }

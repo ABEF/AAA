@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**16 To do | 25 In progress | 15 Implemented locally**
+**16 To do | 28 In progress | 15 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,21 +15,6 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
-
-<a id="task-pons-qualification"></a>
-
-- [ ] **[Select and qualify the new ETH/ZZZ pool](docs/POOL_SELECTION.md)** - To do. User decision 2026-10-24: create a new Uniswap ETH/ZZZ pool instead of Pons. Target displayed fees are 0.25% LP / 0.05% Uniswap protocol / 0.30% effective. Version, hook, chain confirmation and actual pool identity remain undecided; v4 without a custom hook is recommended, not approved. Existing Pons tests do not qualify it.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Confirm the chain, Uniswap version, native ETH/WETH identity, swap-fee policy, tick spacing and any hook; record the exact created PoolKey/pool ID or applicable address, initialization transaction, starting price and dependency runtime bindings. Do not assume a fee tier or pool already exists.
-  - Current native admission is pinned to the former Pons pool. Review and implement only the required new-pool compatibility before sealing; never bypass native/hook/price/approval/1% contribution or 3% ordinary maintenance guards. Qualify actual fee collection, source-to-LP routing, exit/rebalance, donations, callbacks, gas and current-owner ETH reward settlement.
-  - Ordinary venue LP fees become the intended funding path only if a conventional LP fee is selected. Keep 80/10/5/5 and separate royalties; do not depend on historical Pons creator-payment terms for an ordinary new pool or carry old volume/TVL as new-pool evidence.
-  - Retain the old [Pons research](docs/ROBINHOOD_POOL.md) and its source-bound fork results as historical only. Complete the new production inventory, provider/feed/seed-liquidity review, focused changed-path tests and isolated Anvil rehearsal. No public creation/funding/admission or existing fixture reset is authorized by this documentation update.
-  - Verify the proposed 0.25% LP / 0.05% Uniswap protocol / 0.30% effective display against actual version/chain policy. Do not treat Uniswap protocol fees as PoPL revenue or a creator-controlled setting; v4 fee composition is not interchangeable with v3 fee-tier fields. Official research and the unapproved v4/no-hook recommendation are in the pool decision record.
-
-  </details>
 
 <a id="task-opensea-mint"></a>
 
@@ -59,6 +44,7 @@ Custody, ownership and reward accounting.
   - Read API, unsigned claims and today-price earnings replay include LP conversion credits without counting them as new income or payout. Qualify full ingestion/lineage, real conversion receipts and stalled/restarted keepers; measure worst-case conversion waiting time across the collection and minimum economic batches.
   - The earlier [source-only claim audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) describes the pre-conversion revision. Current candidate evidence belongs in [LP ETH verification](reports/lp-eth-settlement/VERIFICATION.md); local fixtures do not qualify public routes or independent security.
   - Local ETH-only default claims, pending source-currency display, exact native backing/abort and current-owner same-chain handoff are verified in the scoped report. Qualify complete real-market conversion and operating latency before closing this task.
+  - User reconfirmed on 2026-10-24: retain 1% maximum ZZZ LP-reward conversion loss, gas separate; require a cheaper qualified route than the selected pool's approximately 1.101% observed fee. Unsupported conversion stays unavailable with source balances backed; do not raise the cap or invent a route.
 
   </details>
 
@@ -76,6 +62,21 @@ Custody, ownership and reward accounting.
   - Review [scoped tests and internal findings](reports/royalty-conversion/VERIFICATION.md). Rehearse automatic dry/live keeper conversion, gas economics, failed currency/route recovery, mixed claims and successor configuration on the target network; do not infer production readiness from local mocks.
   - Implemented [backend conversion and currency-eligibility reporting](docs/ROYALTY_REPORTING.md), verified across owners and complete pinned same-chain predecessors. Integrate the website and qualify live ingestion/availability recovery. RoyaltyConverted is not Claimed or new earnings; only actual payouts increase lifetime paid totals. Independent audit/remediation remains required.
   - This converter applies only to royalties. It neither converts the LP ledger nor guarantees native ETH for all claims; direct source-currency claims remain supported. See [LP ETH settlement](TODO.md#task-lp-eth-settlement).
+
+  </details>
+
+<a id="task-pons-qualification"></a>
+
+- [ ] **[Qualify the selected hookless ETH/ZZZ pool](docs/POOL_SELECTION.md)** - In progress. User selected Robinhood v4 pool 0x5011...afe1b: native ETH/ZZZ, static 1.002% LP fee, no hook; observed combined fee about 1.101%. Runtime-pinned native admission, post-seal static fee-tier destinations and atomic native/WETH pool moves are implemented in the current candidate. Real input routes, independent feeds, gas/operating qualification, production inventory and audit remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Keep the exact PoolKey `(address(0), ZZZ, 10020, 200, address(0))`, recomputed pool ID, creation transaction, confirmed block/hash, dependency runtimes and venue wiring bound to the selected integration. The earlier proposed 0.30% pool and Pons creator agreement are superseded, not current configuration.
+  - Review hookless native admission and exact settlement, actual fee collection, harvest-before-increase, source-to-LP entry, moves/exits, donations, adverse callbacks and cleared approvals. Do not weaken the 1% contribution or fixed 3% ordinary maintenance limit; gas stays separate.
+  - Qualify complete ETH/ZZZ/USDG/USDC quotes with independent prices and actual conversion depth. A higher pool fee applies only to swapped amounts but may make some full input routes unavailable; fail closed rather than subsidize execution from incumbents.
+  - Qualify actual current-owner ETH settlement, keeper/API configuration, one contribution pool at a time, release inventory and operating gas. Native/WETH or fee-tier moves require initialized admitted destinations, actual Vault-owned LP and a deliberate contribution/route cutover.
+  - Retain [historical Pons research](docs/ROBINHOOD_POOL.md) and source-bound old evidence. Use [current evidence](reports/hookless-pool/VERIFICATION.md) for changed-source checks; synthetic fork prices, authorities/VRF and locally initialized destinations are not production service qualification. No public deployment/transaction or existing 8902 reset is authorized.
 
   </details>
 
@@ -111,7 +112,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-custody-composition"></a>
 
-- [ ] **[Qualify governed custody exits, returns and future destinations](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. The local candidate replaces old LP v3 bridge/pair paths with governed custody handoffs. Normal exit converts principal to ZZZ; explicitly approved raw emergency exit bypasses swaps. Verify actual funded local LP, separate royalty custody and future finality/remote accounting before production.
+- [ ] **[Qualify governed custody exits, returns and future destinations](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. Atomic moveFunds changes supported ETH/WETH venues or fee tiers without external custody and preserves shares under one fixed 3% cap. Separate paused exit sends normal consolidated ZZZ or explicitly approved raw assets to a regular custody address. Qualify real exit depth, funded returns, royalty custody and future finality/accounting before production.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -124,6 +125,36 @@ Custody, ownership and reward accounting.
   - Remote delivery and returns require reviewed finality/channel-closure proofs, never multisig/timeout overrides. No real verifier/provider/remote NAV or revenue ledger is supplied. Complete future-chain canonical ownership/reward relocation and multi-hop operating procedures separately before those capabilities are used.
   - A sent local holding plan can bind one admitted and permanently reserved destination through `bindLocalDestination`, retaining the original mode, departure quantities and loss denominator. Qualify issuer exchanges, target token units/decimals and actual local LP completion; this is not a remote proof bypass.
   - The immutable read-only custody validator and all normal runtime/initcode gates must be bound to exact source evidence. The latest custody work needs its own fresh Anvil rehearsal; earlier Anvil tests do not qualify it.
+  - Selected hookless pool: verify actual native ETH to WETH and fee-tier LP moves, source/destination ownership, fixed-price 3% cap, recipient segregation and separate contribution cutover. The moveFunds alias adds no arbitrary external transfer capability; regular-address custody uses the existing reviewed exit request.
+
+  </details>
+
+<a id="task-native-custody-recovery"></a>
+
+- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. The user prioritizes robustness and efficiency over preserving existing code for the selected native ETH/ZZZ pool. Native-accounting specification is prepared; the implementation remains WETH-based and is not wrapper-independent. Port custody, fee/reward backing, Entry and recovery together; wrap only at a genuinely required optional boundary.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Specify how actual native principal and separately accrued fees are classified and preserved if WETH deposit/withdraw or its proxy policy fails; do not label the existing raw path wrapper-independent.
+  - Implement the native architecture with exact payable ingress and ETH/token deltas, explicit custody authorization, immutable NFT shares and backed liabilities. Handle recipient failure atomically and prohibit sweeping prefunds, unsolicited ETH or another ledger.
+  - Review normal exit, full recovery, local completion, fee/royalty currencies and future ETH/WETH moves together. Qualify affected code sizes, adverse callbacks and isolated venue execution; no bypass of a broken pool or nontransferable ZZZ can be promised.
+
+  </details>
+
+<a id="task-post-seal-configuration"></a>
+
+- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. User requires routine operating settings to stay configurable, with protected economic rights and bounded immediate governance. Source inventory is documented; request-parameter tuning, the buyback operating ceiling and typed v4 conversion support still need implementation/review before sealing.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Inventory every fixed setting and setter. Preserve supported asset/route/feed/pool/role/range changes after sealing, with exact authorization, events, bounds, dependency checks, pending-operation handling and canonical locks; no governance waiting period.
+  - Separate future-request VRF operating parameters from the trusted coordinator. Preserve pending request provenance, ordered exact-quota draws and immutable results; no retry/reroll/admin-selected traits. The current configureRandomness still fixes all settings before sealing.
+  - Review a configurable buyback operating trade ceiling within an independently reviewed hard safety bound. The current maxTradeUSD is immutable, while smaller amounts are already selectable per execution. Do not relax execution-loss caps or mix reserves.
+  - Implement and qualify typed v4 conversion routing before sealing if future v4 markets must be usable. Current Entry and LP/royalty converters are single-hop v3 only and fixed bindings cannot gain a new executor from a route record.
+  - Keep ownership, revealed rarity/artwork, accrued balances, backing and allocation guarantees protected. No reset, deletion, arbitrary calls/sweep or holder redemption. New compatible code uses reviewed handoff, not silent reinterpretation of old state.
+  - Update operator manual, deployment inventory, feature reference and focused source-bound evidence for every implemented control. This policy/source review is not runtime verification or production approval.
 
   </details>
 
@@ -181,7 +212,7 @@ The data and services behind the app.
   <summary>Acceptance criteria</summary>
 
   - Implemented: typed owner request, exact source admission/route/feed/runtime/module pins, one confirmed canonical hash, two full Entry simulations, contract-budget/share/event/LP reconciliation and tighter final conversion/liquidity minima. Missing allowance produces only an exact approval/reset draft and requires re-preparation after confirmation; no state overrides, signer or broadcast.
-  - Qualify actual ETH/ZZZ/USDG/USDC original-source-to-Pons paths and reviewed feeds at $100 gross value, with at least 99% new marginal LP and gas separate. Current local fixtures and trace/budget probe do not constitute a complete live-route rehearsal. Reject or revert when the limit cannot be met; reverted transactions can still spend gas.
+  - Qualify actual ETH/ZZZ/USDG/USDC original-source-to-selected hookless ETH/ZZZ paths and reviewed feeds at $100 gross value, with at least 99% new marginal LP and gas separate. Current local fixtures and trace/budget probe do not constitute a complete live-route rehearsal. Reject or revert when the limit cannot be met; reverted transactions can still spend gas.
   - Verify intended RPC providers support canonical-hash callTracer with logs and complete gas estimation. Approve network fee accounting (including every applicable data/L1 component), source/proxy/storage pins and actual gas/latency bounds. No latest/state-override fallback on unsupported/stale/future/reorg responses.
   - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
   - Qualify range/timing output against real StateView ticks and current physical LP IDs. Show cooldown end or eligible-now/waiting state; unknown/stale keeper next-check and execution times must remain unavailable. Reprepare after LP/range/policy changes; Entry calldata has economic minima/deadline, not an LP-version lock. See [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md).
@@ -200,7 +231,7 @@ The data and services behind the app.
   - [Production earnings delta](reports/wallet-earnings/VERIFICATION.md): bounded same-block current-holdings history and collection holder allocations are implemented in the shared API/website profile. 86 affected Python, 89 distinct JS and six isolated production-profile browser cases pass. Claims/conversions are not income; missing prices/chunks never become zero. Actual feeds/history/hosting and independent qualification remain open.
   - Implemented exact processed-event attribution, carried fractions, deferred currency cohorts and complete configured same-chain lineage, with [scoped evidence](reports/earnings-history/VERIFICATION.md). Verify actual deployment-to-present ingestion of all seven emitters, provider/reorg behavior and load within the existing request budgets; never truncate history or infer zero from missing coverage.
   - User decision 2026-10-19: value all-time/24h earned original token amounts at today's confirmed prices, not historical USD. The implemented price profile verifies Oracle/feed/token/sequencer pins and storage; qualify actual providers, proxy/admin/wrapper assumptions and stale/recovery behavior. No guessed stablecoin peg; incomplete nonzero valuation is null.
-  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected Pons pool has 0% conventional fees, not the demo assumption of 0.30%.
+  - Keep gross processed canonical receipts, holder allocations, actual claims, principal and current claimable balances distinct. Unprocessed/unpaid revenue is excluded; time means on-chain processing. Remote holder credits do not prove remote gross revenue/reserves. The selected hookless pool has a static 1.002% LP fee; its observed approximately 1.101% total charge includes protocol fees that are not PoPL income. Demo 0.30% is illustrative.
   - Conversions preserve earned source currency and are not new income; current ETH claimable already includes unclaimed converted credits. Integrate clear current-price/processing-time labels and unavailable states under [live-history-ui](TODO.md#task-live-history-ui).
   - Implemented the read-only [history audit](docs/HISTORY_AUDIT.md): per configured current/predecessor epoch, compare exact raw logs and headers in windows of up to 128 blocks/10,000 logs, with shared work budgets and no database repair. [Scoped evidence](reports/history-audit/VERIFICATION.md) covers 41 distinct affected cases via new runs and exact-body reuse. Reconcile all contiguous windows through reviewed epoch cutoffs; a partial matched window or agreeing providers is not a completeness/finality proof.
   - NFT card totals now combine individual LP, equal collective and royalties; they exclude gross pool income and require complete same-snapshot priced components. Saved demo 24h net history remains unavailable. [Scoped evidence](reports/topup-and-reward-review/VERIFICATION.md) does not qualify live ingestion or prices.
@@ -433,7 +464,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-terms"></a>
 
-- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.
+- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Historical/conditional Pons work: the selected existing hookless ETH/ZZZ launch pool does not require a creator-payment agreement. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -448,7 +479,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-measurement"></a>
 
-- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.
+- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Historical/conditional Pons work: the selected existing hookless ETH/ZZZ launch pool does not require a creator-payment agreement. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -462,7 +493,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-payments"></a>
 
-- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.
+- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Historical/conditional Pons work: the selected existing hookless ETH/ZZZ launch pool does not require a creator-payment agreement. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -497,7 +528,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Confirm the new user-created ETH/ZZZ venue and independent token/pool controllers; the former Pons fee-recipient and hook-control questions are conditional historical research, not assumed new-pool authorities.
+  - Confirm the selected existing hookless ETH/ZZZ venue and independent token/pool controllers; the former Pons fee-recipient and hook-control questions are conditional historical research, not assumed new-pool authorities.
   - Confirm intended chain/token/pool/hook identities, published verified sources, deployment provenance and current market plan. Distinguish observations from team commitments; independently match the physical PoolKey and deployed code.
   - Identify the actual controllers for token mint/transfer restrictions or taxes, hook configuration, creator payout, buybacks and upgradeable dependencies, where such capabilities exist. Request exact owner/admin and implementation references plus disclosure of planned changes. Do not assume the ZZZ creator controls Pons, Uniswap, wrappers or oracle providers.
   - Obtain technical contacts for external controllers when required. Team-provided addresses are inputs to [selected-pool qualification](TODO.md#task-pons-qualification) and [external-dependency review](TODO.md#task-security-dependencies), not automatic permission to admit arbitrary hooks or grant PoPL authority.
@@ -581,15 +612,31 @@ Three required testing layers, with source-bound evidence.
 
   </details>
 
-<a id="task-mainnet-fork"></a>
+<a id="task-mainnet-rehearsal-retirement"></a>
 
-- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. The latest targeted ordinary-rebalance case passes against the pinned selected native/Pons venue with current source bindings. Broader historical fork suites retain their recorded sources and blocks. Production feeds, full input routes, gas/strategy settings and services remain unqualified; synthetic prices and mocked authorities/VRF do not close those gates.
+- [ ] **[Qualify a separate real-funds rehearsal and cleanup plan](docs/POST_SEAL_POLICY.md#testing-with-real-funds-on-robinhood)** - To do. Plan an isolated, clearly named Robinhood mainnet rehearsal before a fresh final collection. The current contracts have no burn/reset or independent empty retirement. This design request does not authorize deployment, public signing or real transactions.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - **Robinhood mainnet fork:** compatibility with the actual ZZZ pool, hook and deployed dependencies. The existing separate hookless-pool tests do not close this gate.
+  - Require an independently reviewed exact candidate/configuration, dedicated funds, authority/service addresses, actual signer permissions, per-operation/campaign spending limits, simulations, receipts and stop conditions before operator-executed public actions. Keep the shared website signer Anvil-only.
+  - Test actual venue LP fees and funded royalty accounting separately from genuine marketplace royalty receipts. Qualify OpenSea primary mint explicitly; local direct minting does not prove marketplace compatibility.
+  - Reconcile pending transactions; stop new mints/contributions and use approved custody exits only for eligible principal. Preserve owner claims and account separately for compound/buyback reserves, rounding dust, royalties, mint payments and gas. No universal recovery or empty-balance guarantee.
+  - Archive all receipts, manifests, final balances and unresolved obligations. Rehearsal chain/marketplace history and minted NFTs cannot be erased. Whole-collection retirement preserves rights in a funded successor; it is not a reset.
+  - Deploy the final collection freshly after qualification; do not reuse consumed mint/rarity inventory or assume rehearsal NFTs become final NFTs. Reduced-minimum public tests would be a separate candidate and require explicit review, not the local-only dollar build.
+
+  </details>
+
+<a id="task-mainnet-fork"></a>
+
+- [ ] **[Robinhood mainnet-fork qualification](test/NativePoolFork.t.sol)** - In progress. Selected hookless-pool campaign: eight targeted fork cases passed before the exit-minimum fix; the two failing cases were corrected and rerun successfully against current production source. This is scoped evidence, not a full final-source regression. Real feeds, complete routes, gas/strategy settings, services and independent review remain unqualified.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Robinhood mainnet fork: qualify the actual selected hookless ETH/ZZZ pool and deployed dependencies against exact release sources. Historical Pons execution retains its original scope and is not selected-pool qualification; read reports/hookless-pool/VERIFICATION.md for current coverage.
   - Stage actual Uniswap swaps/entry/maintenance, malicious token/callback behavior, exact approvals/settlement, stale prices, donations and failures.
+  - Current fork inventory is 29 selected-native and nine historical alternative-pool cases, not a claim of 38 final-source passes.
 
   </details>
 
@@ -648,7 +695,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Review creator inboxes, optional wrappers, discretionary payment terms, processing-time eligibility and combined four-bucket/four-inbox costs with all admitted assets. The factory's separate 16-inbox ceiling does not enlarge current Vault capacity. Qualify actual Entry/Pons gas, not only the passing local fixture. Creator payment frequency and percentage remain undecided.
+  - Review creator inboxes, optional wrappers, discretionary payment terms, processing-time eligibility and combined four-bucket/four-inbox costs with all admitted assets. The factory's separate 16-inbox ceiling does not enlarge current Vault capacity. Qualify actual Entry/selected hookless-pool gas, not only the passing local fixture. Creator payment frequency and percentage remain undecided.
   - Review [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md): independent price/decimal range vectors, current-NAV entry and compound exclusion, loss/appreciation/replacement/transfer continuity. Extend the bounded local/mock evidence with actual production routes, calibrated strategy backtests and full configuration gas/MEV qualification.
 
   </details>
@@ -675,7 +722,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   <summary>Acceptance criteria</summary>
 
   - Qualify gas for 1/100/1,000 NFTs and maximum actual assets/inboxes; prove upkeep scales by shared pool. Backtest range, trigger, cooldown, slippage, impermanent loss, MEV and operating cost. Production strategy parameters remain unset.
-  - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/Pons/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
+  - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/selected hookless-pool/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
   - Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.
   - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
   - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
@@ -692,6 +739,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   - Independently qualify implemented royalty-token outage isolation: failed optional balance reads defer only new membership for that currency. Recovery protects the earlier cohort and exact liabilities. Single-asset healthy claims continue, while syncAll and exact unreadable canonical backing can still fail. Do not blindly skip old receipt/eligibility checkpoints.
   - The [royalty conversion and outage candidate](docs/ROYALTY_SETTLEMENT.md) isolates optional-token activation failures and preserves earned balances. Actual token/wrapper/route behavior, runtime inventory, eligibility UI and live recovery still require qualification; native ETH has no external ERC20 balance query.
+  - Pons hook/creator funding is historical or optional intake, not a dependency of the selected launch pool. Qualify actual LP-fee collection, independent prices and cheaper ETH-conversion routes; no full-balance conversion through the selected approximately 1.101% fee may silently bypass the fixed 1% cap.
 
   </details>
 
@@ -860,4 +908,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `167dd4c88cb23db673f63ddab7556f98bded834b38930a10c1153624b634dd12`.
+Snapshot SHA-256: `222e48dc17c94dbe5082c09691d97edcb85125ffd848b8da0cb7c62d2c377158`.
