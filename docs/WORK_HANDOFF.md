@@ -1,3 +1,25 @@
+## Publication checkpoint and resume priorities - 2026-10-24
+
+Contract checkpoint `7a1d564` and website memory-only `5c5a1de` are pushed on
+main and remote hashes verified. See [publication receipt](../reports/hookless-pool/PUBLICATION.md).
+Source-bound evidence preserves106/native24 earlier scope, final exit-floor53
+passes plus2 stale fixture failures, corrected custody24, and fork8 earlier passes
+plus2 repaired-path reruns. All94 final source/test bindings match;33 object gates
+pass;9 exact-publication Python checks pass. No fresh full regression is claimed.
+
+Next pre-seal implementation: native ETH custody/accounting/recovery, bounded
+post-seal operating controls, and typed v4 conversion support. The current code
+still uses WETH and v3 conversion. Retain1% ZZZ reward conversion limit, gas separate,
+and require a cheaper qualified route. Real services, inventory and audit remain
+open. No reset/burn or arbitrary sweep; separate mainnet rehearsal and final
+collection identities. Public contracts remain undeployed; production NOT APPROVED.
+
+Website code/build/server,8902/Anvil/NFT/LP/balances/journals and dist overlay are
+unchanged. Anvil-only signer/null public DEPLOYMENT and paused monitor preserved.
+Older unrelated drafts remain local and must not be bundled into publication.
+This final receipt is documentation only; source-code publication is the commit
+above. Use main and maintain the sole Todo, features, operator guide and memories.
+
 ## Post-seal flexibility and mainnet rehearsal policy - 2026-10-24
 
 The user requires noncritical operating settings to remain configurable after
