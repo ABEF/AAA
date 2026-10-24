@@ -1,13 +1,15 @@
 # Verification evidence
 
+Latest internal audit: [pre-production review](preproduction-audit-20261025/REVIEW.md), [scoped verification](preproduction-audit-20261025/VERIFICATION.md). Keeper budget/preflight fixes, improved composed/invariant evidence and current operator guidance; production NOT APPROVED.
+
 Current inventory tooling: [native preflight verification](native-preflight/VERIFICATION.md) and [internal review](native-preflight/REVIEW.md). These offline/mock checks qualify no real deployment, route, service or independent audit. Earlier contract evidence retains its source scope.
 
 Current scoped candidate: [typed v4 conversion and governed loss policy](typed-v4-routes/VERIFICATION.md), [internal review](typed-v4-routes/REVIEW.md). Defaults1%/1%/3%, governance maximum10%; local evidence is not release approval. Earlier reports retain their source scope.
 
 
-The [local pair-conversion review](pair-composition/VERIFICATION.md) records the
-current typed conversion, historical reserve accounting, backend ABI updates and
-normal size gates. Its incremental source scope and remaining qualification are
+The historical [local pair-conversion review](pair-composition/VERIFICATION.md)
+records a retired typed-pair implementation, reserve accounting and its original
+ABI/size scope; governed custody superseded that execution path. Its incremental source scope and remaining qualification are
 explicit; it does not replace an independent audit or earlier report bindings.
 
 

@@ -32,6 +32,7 @@ contract NFTRightsHandler is PooledVaultFixture {
     uint256 public transfers;
     uint256 public royaltiesClaimed;
     uint256 public mixedClaims;
+    uint256 public topUps;
 
     constructor() {
         setUp(); ac.bind(Ids.MIGRATION, address(new NFTRightsNoMigrationPlan()));
@@ -88,13 +89,20 @@ contract NFTRightsHandler is PooledVaultFixture {
     function topUp(uint256 seed, uint256 raw) external {
         uint256 n = seed % ids.length; uint256 id = ids[n];
         if (ac.paused() || !membership.eligible(id)) return;
-        uint256 amount = bound(raw, 1, 100);
+        // Both zero-decimal fixture currencies are $1. Equal-sided growth
+        // therefore needs at least 3+3 raw units to satisfy the real $5 floor.
+        // Smaller generated values previously made fail_on_revert reject an
+        // invalid action instead of exploring successful accounting changes.
+        uint256 amount = bound(raw, 3, 100);
         t0.mint(owner[n], amount); t1.mint(owner[n], amount);
         uint256 old0 = rewards.claimable(id, address(t0));
         uint256 old1 = rewards.claimable(id, address(t1));
         uint256 royaltyBefore = royalties.claimable(id, address(royaltyAsset));
+        uint256 sharesBefore = vault.sharesOf(id);
         vm.prank(owner[n]); vault.increase(id, amount, amount, 1, block.timestamp + 100);
         lpDeposited[0] += amount; lpDeposited[1] += amount;
+        ++topUps;
+        assertGt(vault.sharesOf(id), sharesBefore);
         assertGe(rewards.claimable(id, address(t0)), old0);
         assertGe(rewards.claimable(id, address(t1)), old1);
         assertEq(royalties.claimable(id, address(royaltyAsset)), royaltyBefore);
@@ -218,6 +226,12 @@ contract NFTRightsInvariantTest is Test {
         targetContract(address(handler)); targetSelector(FuzzSelector(address(handler), selectors));
     }
     function invariant_rightsAndActualFundingConserved() public view { handler.assertEconomicRights(); }
+    function testMinimumBoundTopUpActuallyExecutesAndConservesRights() public {
+        uint256 beforeCount = handler.topUps();
+        handler.topUp(1, 0);
+        assertEq(handler.topUps(), beforeCount + 1, "valid top-up must not be skipped");
+        handler.assertEconomicRights();
+    }
     function testReceiptActivationTransferPauseAndMixedClaimSequence() public {
         handler.receiveRoyalty(1001, false); handler.receiveRoyalty(2003, true);
         handler.harvest(109, 217); handler.activate(3, 900); handler.transfer(0, 3);

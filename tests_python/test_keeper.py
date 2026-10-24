@@ -35,6 +35,7 @@ class KeeperTests(unittest.TestCase):
         self.k.state['next_nonce']=7
         self.k.state['receipt_anchor']={'number':98,'hash':H,'timestamp':self.rpc.now,'nonce':6}
         self.k.live=True;self.k.cast='/mock/cast';self.k.keystore=Path('/mock/key');self.k.password=Path('/mock/pass')
+        self.k.fee_policy='included'
         self.k._validate_code_hashes=lambda:None
     def pending(self):
         self.k.state['pending']={'key':'collect:1','nonce':7,'to':B,'data':calldata('collectFees(uint256,uint256)',1,123),
@@ -42,10 +43,13 @@ class KeeperTests(unittest.TestCase):
         return self.k.state['pending']
     def receipt(self,success=True):
         p=self.pending()
+        p['fee_review']={'schema':1,'gas_limit':256,'max_fee_per_gas':2,'l1_fee_allowance_wei':5,
+            'maximum_cost_wei':527,'receipt_fee_policy':'separate_l1_fee'}
         self.rpc.receipt={'transactionHash':H,'blockNumber':'0x63','blockHash':H,'status':hex(int(success)),
             'gasUsed':'0x64','effectiveGasPrice':'0x2','l1Fee':'0x5','from':A,'to':B,'transactionIndex':'0x0'}
         self.rpc.tx={'hash':H,'from':A,'to':B,'nonce':'0x7','input':p['data'],'value':hex(p['value']),
-            'blockNumber':'0x63','blockHash':H,'transactionIndex':'0x0','gas':'0x100'}
+            'blockNumber':'0x63','blockHash':H,'transactionIndex':'0x0','gas':'0x100',
+            'type':'0x0','chainId':'0x1','v':'0x25','gasPrice':'0x2'}
     def test_default_dry_run_never_signs(self):
         with patch('subprocess.run') as run:
             self.assertFalse(self.k.submit('vault','collectFees(uint256,uint256)',(1,123),'c'))
@@ -261,6 +265,8 @@ class KeeperTests(unittest.TestCase):
         self.assertFalse(restarted.poll_pending());self.assertEqual(restarted.state,after)
     def test_optional_l1_fee_absent_but_explicit_zero_effective_price_supported(self):
         self.receipt();self.rpc.receipt.pop('l1Fee');self.rpc.receipt['effectiveGasPrice']='0x0'
+        self.rpc.tx['gasPrice']='0x0'
+        self.k.state['pending']['fee_review'].update(receipt_fee_policy='included',max_fee_per_gas=0,maximum_cost_wei=15)
         self.assertFalse(self.k.poll_pending())
         self.assertEqual(sum(self.k.state['spent'].values()),10)
     def test_reviewed_separate_l1_fee_cannot_be_omitted(self):
@@ -270,6 +276,7 @@ class KeeperTests(unittest.TestCase):
         self.assertEqual(self.k.state,before)
     def test_included_policy_rejects_conflicting_extra_fee(self):
         self.receipt();self.k.fee_policy='included'
+        self.k.state['pending']['fee_review']['receipt_fee_policy']='included'
         with self.assertRaises(RpcError):self.k.poll_pending()
     def test_failed_checkpoint_preserves_in_memory_pending_and_costs(self):
         self.receipt();self.k.save();before=copy.deepcopy(self.k.state);disk=self.k.path.read_text()

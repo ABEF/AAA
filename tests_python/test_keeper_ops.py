@@ -10,6 +10,7 @@ from keeper.monitor import Keeper
 from keeper.ops import create_snapshot, verify_snapshot, health_check, preflight
 from tests_python.test_keeper import FakeRpc, A, B
 from zzz_ops.abi import calldata, keccak256
+from zzz_ops.rpc import RpcError
 
 
 class OpsTests(unittest.TestCase):
@@ -126,3 +127,14 @@ class OpsTests(unittest.TestCase):
             return original(method,params)
         self.rpc.call = revoked
         self.assertIn('keeper_not_authorized',preflight(self.cfg,rpc=self.rpc)['reasons'])
+
+    def test_preflight_cannot_approve_wrong_native_accounting_abi(self):
+        self.cfg['accounting_version'] = 2
+        self.k.state['accounting_version'] = 2
+        self.k.save(); before = self.k.path.read_bytes()
+        # Runtime pin is present and matches. The actual version getter is 1,
+        # so the native profile must fail just as live startup would.
+        with patch('subprocess.run') as signer, self.assertRaisesRegex(RpcError,'accounting version differs'):
+            preflight(self.cfg,rpc=self.rpc)
+        signer.assert_not_called()
+        self.assertEqual(self.k.path.read_bytes(),before)

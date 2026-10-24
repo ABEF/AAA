@@ -30,6 +30,43 @@ LP stays on chain. The keeper discovers the Vault's shared buckets and reads cur
 
 The state file preserves deployment identity, next nonce, pending intent/hash, daily costs, maintenance times, discovery cursor and metadata checkpoints. Live startup refuses missing/corrupt state, an absent nonce checkpoint or an unqualified network fee policy. Used signers require a canonical confirmed receipt anchor; a later deep reorganization blocks further signing until reviewed reconciliation. Submission refuses nonce drift, unknown pending transactions and insufficient native balance. Ambiguous broadcasts never trigger blind resubmission.
 
+## Fee-review upgrades and legacy pending intents
+
+The current keeper writes `pending.fee_review` schema 1 before invoking its signer.
+It captures exact gas limit, maximum fee per gas, L1 allowance, maximum total
+cost and `included`/`separate_l1_fee` semantics. Signed transaction gas/cap/chain
+must match. For type 2, use signed fee caps plus canonical inclusion-block base
+fee to derive spend; the provider's reported effective price is separate evidence.
+The signer selects priority within the maximum, not a separately reviewed fixed
+priority. Failed transactions consume gas; reverted native value is not spent.
+
+Before upgrading a keeper that may have pending work:
+
+1. Stop and fence the old signer. Preserve release/configuration, state, private
+   backups and sanitized logs. Do not alter existing chain/NFT/LP state.
+2. Inspect the exact pending hash/nonce and canonical receipt using reviewed
+   nodes. An old journal without `fee_review` is loaded unchanged, but automatic
+   reconciliation cannot invent the missing review from current configuration.
+   Once receipt/candidate verification reaches that check it emits the sanitized
+   `pending_fee_review_required` event; absent hashes/receipts can first report
+   ordinary ambiguous/pending status. All pending states block new submissions.
+3. Recover original transaction-review evidence, signed gas/cap fields and the
+   chain's complete fee semantics. Reconcile inclusion-day spend and reverted
+   transactions. A larger actual L1 charge is already paid: refusal prevents
+   further automated work, not that historical fee. Archive the discrepancy.
+4. If the original review cannot be established, use independently reviewed
+   manual reconciliation or signer rotation. There is no automatic legacy-budget
+   migration. Never guess a review, delete a journal, reset budgets, drop/replace
+   a transaction or resend to make readiness pass.
+5. Verify the matching accounting-version getter, runtime/role/chain pins and
+   both nonces, then dry-run before resuming a separately authorized live service.
+   A preflight result is supplied-evidence consistency, not release approval.
+
+Current configuration changes apply to new work. They do not reinterpret pending
+review limits. The [internal audit and scoped checks](../reports/preproduction-audit-20261025/services/REVIEW.md)
+do not upgrade any running service or journal. Stage this procedure on Linux and
+the actual chain fee model before production.
+
 ## Move to a new host
 
 1. Stop the old signer and prevent simultaneous operation. File locking only protects one host. If key confidentiality is uncertain, revoke the old keeper and authorize a fresh signer through the reviewed immediate governance process.
@@ -54,7 +91,7 @@ deployment has not been upgraded; qualify controller, fixture and keeper togethe
 
 - JSON logs identify action, bucket and transaction where available. Errors include type and source location; raw error bodies, signer output, credentials and full tracebacks are excluded.
 - Separate `health_path` defaults to the state filename with `.health.json`. It reports heartbeat time, last success, pending flag, skipped buckets and failure count. `running`, `awaiting_receipt`, `recovery_required`, `degraded`, `error` and `halted` are not successful maintenance. Dry-run success is explicitly labelled.
-- Configure `receipt_fee_policy` only after qualifying the actual chain: `included` requires all gas costs in effective receipt gas accounting; `separate_l1_fee` requires an explicit L1 fee field on every receipt and a positive reviewed allowance. The example is `unverified`, which blocks live startup. An allowance is a conservative estimate, not an enforceable cap on external L1 charges.
+- Configure `receipt_fee_policy` only after qualifying the actual chain: `included` requires all network costs in the chain's qualified gas accounting; `separate_l1_fee` requires an explicit L1 fee field on every receipt and a positive reviewed allowance. The example is `unverified`, which blocks live startup. An allowance is a conservative estimate, not an enforceable cap on external L1 charges.
 - Reverted actions retain their gas costs and receive a durable cooldown (default one hour). Other eligible work can proceed, while repeated failures remain visible. Gas/budget rejections mark the cycle degraded.
 - RPC reads have bounded retries and chain-checked endpoint fallback. Failed cycles back off. A failing bucket is logged and marked degraded while independent buckets remain checkable. Never execute with stale prices or an unreviewed chain/route as a fallback.
 - Storage failures and unexpected program errors stop the loop. A failed initial health write prevents signing. The systemd unit limits restart storms and stops the keeper plus signer child processes together. Shutdown detected before intent persistence prevents a new submission; a submission already underway must finish or be reconciled from durable state. Invalid state/configuration still needs intervention.

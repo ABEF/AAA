@@ -41,7 +41,7 @@ python3 -m keeper.ops --config /etc/zzz/keeper.json verify-snapshot --input /bac
 ```
 
 All commands emit a sanitized JSON result and return nonzero on failure. They
-never sign or modify recovery state. `preflight` checks runtime pins, seal, role,
+never sign or modify recovery state. `preflight` checks runtime pins, the explicit Vault accounting version, seal, role,
 pause, head/receipt checkpoint, both nonces, pending intent, reviewed fee policy
 and funding. A pass is a point-in-time observation, **not permission to start a
 second host or proof of production qualification**. Existing ambiguous intent

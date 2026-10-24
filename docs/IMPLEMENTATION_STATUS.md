@@ -1,3 +1,25 @@
+## Pre-production composition and keeper audit - 2026-10-25
+
+The [internal audit](../reports/preproduction-audit-20261025/REVIEW.md) fixes
+keeper receipt-budget integrity and accounting-version preflight. Original
+signing-time fee semantics/gas/caps persist before signing; dynamic costs derive
+from signed limits and the canonical block. Legacy missing reviews stop for
+operator reconciliation, without guessed upgrades, deletion or resending.
+
+The improved harness combines installed native Uniswap v4 venue execution with
+protocol shares, LP fees, royalties, growth, compounding, rebalance and owner
+transfer. It also repairs the existing invariant's below-$5 input domain and
+requires successful growth. [Verification](../reports/preproduction-audit-20261025/VERIFICATION.md)
+separates focused new checks, unchanged evidence and explicit local substitutes.
+Operational guides now use current native/schema-5 controls and captured floors,
+not retired bridge APIs or immutable-default percentages.
+
+Two newly identified activation gates stay open: thin-market deployed-LP quote/planner feasibility, and a caller-bound maximum-loss expectation in the signed Request. Current execution-time cap capture does not bind the earlier wallet review; no stronger guarantee is claimed.
+
+This is not a new full regression, selected-chain/service qualification or
+independent audit. Production NOT APPROVED. Public website/signing, running
+services, Anvil state and journals remain unchanged.
+
 ## Price-service research and current boundary - 2026-10-25
 
 [Dated reference values and fee semantics](../reports/price-reference-20261025/OBSERVATION.md)

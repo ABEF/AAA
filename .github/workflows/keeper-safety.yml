@@ -21,7 +21,7 @@ jobs:
           cache: false
       - name: Keeper, metadata, RPC and Unix recovery regressions
         shell: bash
-        run: python3 -m unittest -v tests_python.test_keeper tests_python.test_keeper_preparation tests_python.test_keeper_canonical tests_python.test_metadata_keeper tests_python.test_keeper_recovery tests_python.test_keeper_ops tests_python.test_keeper_probe tests_python.test_staging_monitor tests_python.test_rpc tests_python.test_state 2>&1 | tee keeper-checks.log
+        run: python3 -m unittest -v tests_python.test_keeper tests_python.test_keeper_fees tests_python.test_keeper_preparation tests_python.test_keeper_canonical tests_python.test_metadata_keeper tests_python.test_keeper_recovery tests_python.test_keeper_ops tests_python.test_keeper_probe tests_python.test_staging_monitor tests_python.test_rpc tests_python.test_state 2>&1 | tee keeper-checks.log
       - name: Validate the dry-run systemd unit
         run: systemd-analyze verify keeper/zzz-keeper.service
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

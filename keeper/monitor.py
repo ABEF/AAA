@@ -20,6 +20,7 @@ from typing import Any
 from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
+from zzz_ops.ethereum_fees import execution_price, fee_cap, transaction_chain_id
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
@@ -190,6 +191,30 @@ class Keeper:
                 raise ValueError('Malformed pending calldata')
             dt.date.fromisoformat(pending['day'])
             if pending.get('hash') is not None: rpc_hash(pending['hash'],'pending hash')
+            # Older pending intents remain recoverable evidence. Never invent
+            # the signing-time budget they did not record; reconciliation stops
+            # with an explicit diagnostic until an operator reviews that record.
+            if 'fee_review' in pending: self._fee_review(pending)
+
+    @staticmethod
+    def _fee_review(pending: dict[str,Any]) -> dict[str,Any]:
+        review = pending.get('fee_review')
+        fields = {'schema','gas_limit','max_fee_per_gas','l1_fee_allowance_wei',
+                  'maximum_cost_wei','receipt_fee_policy'}
+        if review is None:
+            log('pending_fee_review_required',operator_action='preserve_and_review_original_evidence_never_resend')
+            raise RpcError('Legacy pending intent lacks its original fee review; preserve it and perform reviewed operator reconciliation, never resend')
+        if not isinstance(review,dict) or set(review) != fields or type(review.get('schema')) is not int or review['schema'] != 1:
+            raise RpcError('Malformed pending fee review')
+        for name in ('gas_limit','max_fee_per_gas','l1_fee_allowance_wei','maximum_cost_wei'):
+            if type(review[name]) is not int or not 0 <= review[name] < 1 << 256:
+                raise RpcError('Malformed pending fee bound')
+        if review['gas_limit'] == 0 or review['maximum_cost_wei'] != \
+                review['gas_limit']*review['max_fee_per_gas']+review['l1_fee_allowance_wei']+pending['value']:
+            raise RpcError('Pending fee review arithmetic differs')
+        if review['receipt_fee_policy'] not in ('included','separate_l1_fee'):
+            raise RpcError('Pending network fee semantics are unqualified')
+        return review
 
     def _validate_runtime_files(self) -> None:
         if os.name != 'posix': raise ValueError('Live keeper requires supported Unix ownership/locking')
@@ -417,15 +442,19 @@ class Keeper:
         if status not in (0,1): raise RpcError('Unsupported receipt status')
         success = status == 1
         gas_used = rpc_quantity(receipt.get('gasUsed'),'receipt gas used',minimum=1)
-        # A missing effective price is unavailable evidence, never free gas.
-        gas_price = rpc_quantity(receipt.get('effectiveGasPrice'),'receipt effective gas price')
+        # Keep the provider's derived field as evidence, but calculate dynamic
+        # execution cost from signed caps and the canonical inclusion block.
+        reported_price = rpc_quantity(receipt.get('effectiveGasPrice'),'receipt effective gas price')
+        review = self._fee_review(pending)
         # Optional chain-specific extension: production must qualify whether
         # additional L1 cost is reported separately or included in gasUsed.
-        if self.fee_policy == 'separate_l1_fee' and 'l1Fee' not in receipt:
+        if review['receipt_fee_policy'] == 'separate_l1_fee' and 'l1Fee' not in receipt:
             raise RpcError('Required separate L1 fee is missing')
         l1_fee = rpc_quantity(receipt['l1Fee'],'receipt L1 fee') if 'l1Fee' in receipt else 0
-        if self.fee_policy == 'included' and l1_fee != 0:
+        if review['receipt_fee_policy'] == 'included' and l1_fee != 0:
             raise RpcError('Separate L1 fee conflicts with reviewed inclusive accounting')
+        if l1_fee > review['l1_fee_allowance_wei']:
+            raise RpcError('Actual L1 fee exceeds the captured allowance; preserve pending intent for operator reconciliation')
         head,head_timestamp = self._head()
         if head-block+1 < self.confirmations: return True
         header = self.rpc.call('eth_getBlockByNumber',[hex(block),False])
@@ -447,7 +476,15 @@ class Keeper:
             raise RpcError('Transaction and receipt inclusion differ')
         if gas_used > rpc_quantity(transaction.get('gas'),'transaction gas limit',minimum=1):
             raise RpcError('Receipt gas exceeds the transaction limit')
+        try: gas_price = execution_price(transaction,header,receipt)
+        except (ValueError,TypeError,KeyError) as exc: raise RpcError('Canonical transaction execution fee cannot be verified') from exc
+        if rpc_quantity(transaction.get('type','0x0'),'transaction type') in (0,1) and gas_price != fee_cap(transaction):
+            raise RpcError('Legacy receipt price differs from signed gas price')
+        if gas_price > review['max_fee_per_gas']:
+            raise RpcError('Actual execution price exceeds the captured fee cap')
         cost = gas_used*gas_price + l1_fee + (pending['value'] if success else 0)
+        if cost > review['maximum_cost_wei']:
+            raise RpcError('Actual transaction cost exceeds the captured fee budget')
         metadata_records = None
         if success and pending.get('metadata_observation') is not None:
             metadata_records = self._confirm_metadata(pending,block,block_hash,head)
@@ -460,6 +497,10 @@ class Keeper:
                 rpc_hash(final.get('hash'),'final receipt header hash') != block_hash or
                 rpc_quantity(final.get('timestamp'),'final receipt timestamp') != timestamp or timestamp > final_timestamp):
             raise RpcError('Receipt block changed before checkpoint')
+        try:
+            if execution_price(transaction,final,receipt) != gas_price:
+                raise RpcError('Canonical execution price changed before checkpoint')
+        except (ValueError,TypeError,KeyError) as exc: raise RpcError('Final canonical execution fee cannot be verified') from exc
         previous_state = self.state
         updated = copy.deepcopy(previous_state)
         updated['spent'][day] = positive(updated['spent'].get(day,0),'recorded daily spend',zero=True) + cost
@@ -472,6 +513,9 @@ class Keeper:
         updated['pending'] = None
         updated['next_nonce'] = pending['nonce']+1
         updated['receipt_anchor'] = {'number':block,'hash':block_hash,'timestamp':timestamp,'nonce':pending['nonce']}
+        updated['last_fee_observation'] = {'transaction':tx_hash,'reported_price_wei':reported_price,
+            'execution_price_wei':gas_price,'gas_used':gas_used,'l1_fee_wei':l1_fee,
+            'receipt_fee_policy':review['receipt_fee_policy'],'cost_wei':cost}
         self.state = updated
         try: self.save()
         except Exception:
@@ -491,11 +535,15 @@ class Keeper:
         self.poll_pending()  # Independently checks sender, nonce, target and calldata.
 
     def _validate_pending_transaction(self,transaction: Any,pending: dict[str,Any],tx_hash: str) -> None:
+        review = self._fee_review(pending)
         try:
             valid = isinstance(transaction,dict) and rpc_hash(transaction.get('hash'),'transaction hash') == rpc_hash(tx_hash,'pending transaction hash') and \
                 address(transaction['from']) == self.sender and rpc_quantity(transaction.get('nonce'),'transaction nonce') == pending['nonce'] and \
                 address(transaction['to']) == pending['to'] and transaction['input'].lower() == pending['data'].lower() and \
-                rpc_quantity(transaction.get('value'),'transaction value') == pending['value']
+                rpc_quantity(transaction.get('value'),'transaction value') == pending['value'] and \
+                transaction_chain_id(transaction) == self.chain and \
+                rpc_quantity(transaction.get('gas'),'transaction gas limit',minimum=1) == review['gas_limit'] and \
+                fee_cap(transaction) == review['max_fee_per_gas']
         except (KeyError,TypeError,ValueError,AttributeError,RpcError):
             valid = False
         if not valid: raise RpcError('Pending transaction identity mismatch')
@@ -561,6 +609,10 @@ class Keeper:
         # reads. The on-chain guard still covers later inclusion-time races.
         if self._defer_for_lifecycle(name,signature): return False
         pending = {'key':key,'nonce':nonce,'to':to,'data':data,'value':value,'day':day,'hash':None}
+        pending['fee_review'] = {'schema':1,'gas_limit':gas_limit,'max_fee_per_gas':gas_price,
+            'l1_fee_allowance_wei':positive(self.config.get('l1_fee_allowance_wei',0),'l1_fee_allowance_wei',zero=True),
+            'maximum_cost_wei':cost,'receipt_fee_policy':self.fee_policy}
+        self._fee_review(pending)
         if metadata_observation is not None: pending['metadata_observation'] = metadata_observation
         self.state['pending'] = pending; self.save()  # Durable BEFORE the external signer can broadcast.
         # Foundry 1.4.4 accepts raw calldata as positional SIG; --data is invalid.

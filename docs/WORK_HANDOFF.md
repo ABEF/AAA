@@ -1,3 +1,53 @@
+## Pre-production internal audit - 2026-10-25
+
+Read [internal findings](../reports/preproduction-audit-20261025/REVIEW.md) and
+[scoped verification](../reports/preproduction-audit-20261025/VERIFICATION.md).
+Keeper now preserves the signing-time fee review before signing, binds actual
+chain/gas/max-fee, derives dynamic spend from signed caps/canonical base fee and
+enforces captured L1/total semantics. Preflight checks accounting version. Old
+pending records remain intact; missing original reviews need operator reconciliation,
+never guessed historical limits, deletion or resend. No existing journal was upgraded.
+
+Current native/schema-5 operations, captured/default loss floors, pause-versus-
+custody authority and retired bridge instructions are corrected in place. The
+operator/recovery guides, architecture, sole Todo, features, roadmap and release
+record align. New composed installed-v4 and repaired non-vacuous growth-invariant
+evidence is scoped with explicit local substitutes; no fresh full regression,
+real-service or independent audit approval is implied. Production NOT APPROVED.
+
+Two activation gates found in this audit remain open: selected-fee thin-market
+deployed-LP feasibility, and versioned caller maximum-loss binding. Current
+Entry captures execution-time policy, not the earlier reviewed cap. Do not
+promise review-pinned1% or enable public activation before this is resolved.
+Keep safety floors; the explicit thin-market rejection must roll back all
+economic changes, with earlier approval/gas correctly distinguished.
+
+No new unprivileged theft/replay exploit was confirmed in inspected paths; accepted
+immediate governance/recipient trust, actual feeds/routes/VRF/authorities/OpenSea,
+native website/Linux operations, future-chain canonical transport and independent
+audit remain open. Vault's prior normal runtime margin is25bytes; no size/gas
+guard is relaxed. Solidity production source remains unchanged in this audit.
+
+Preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signing/null public DEPLOYMENT and paused monitoring. No website
+source/build/server/service, public transaction, deployment or monitor action.
+Main only. Inspect Git and the audit publication receipt for actual push status.
+
+### Resume priorities
+
+1. Read the current audit verification/publication records and exact Git status;
+   older unrelated drafts are deliberately not part of this audit publication.
+2. Qualify actual dual price sources and feasible input/conversion routes with
+   independent provider/proxy review. Local feeds and a pool spot estimate do not
+   close the source-qualification task.
+3. Finish required pre-seal future-chain canonical capability and native profile/
+   OpenSea integration; keep unsupported ETH/WETH atomic conversion explicit.
+4. Stage fee-journal upgrade/recovery, original signed-cost evidence, Linux locking,
+   host fencing/rotation and actual chain fee semantics. Do not touch existing
+   local fixtures or restart paused monitoring as a side effect.
+5. Require independent audit and exact-release qualification before approval;
+   reuse unchanged evidence and run affected checks only for justified changes.
+
 ## Pricing documentation publication verified - 2026-10-25
 
 Documentation `14ee92e` and website memory-only

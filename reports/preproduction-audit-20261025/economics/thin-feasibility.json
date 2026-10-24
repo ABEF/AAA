@@ -1,0 +1,30 @@
+{
+  "kind": "independent_constant_liquidity_arithmetic_diagnostic_not_an_executed_transaction",
+  "source": "economics-launch-failure-trace.log",
+  "observed_starting_principal_raw_usd18": 100000000000000000000,
+  "observed_deployed_raw_usd18": 98849621202259071431,
+  "observed_idle_raw_usd18": 533536672418156838,
+  "required_deployed_raw_usd18": 99000000000000000000,
+  "baseline_reconstruction": {
+    "token_input": 0,
+    "native_output": 0,
+    "deployed_raw_usd18": 98849621202259071431,
+    "idle_raw_usd18": 533536672418156840,
+    "retained_raw_usd18": 99383157874677228271,
+    "post_sqrt_price": 79206739126307177086236617456
+  },
+  "hypothetical_bounded_reversal": {
+    "token_input": 244785183145455946,
+    "native_output": 242220781017517190,
+    "deployed_raw_usd18": 99380593472549289513,
+    "idle_raw_usd18": 2,
+    "retained_raw_usd18": 99380593472549289515,
+    "post_sqrt_price": 79206835028075424810118697013
+  },
+  "limitations": [
+    "uses recorded q/inventory, selected static and protocol fees, and known constant seed liquidity",
+    "TickMath roots reconstructed with high-precision Decimal; not actual final transaction execution",
+    "does not implement a production strategy or prove safety across liquidity ticks/ranges/providers",
+    "gas separate; exact quotes still need complete operation simulation"
+  ]
+}

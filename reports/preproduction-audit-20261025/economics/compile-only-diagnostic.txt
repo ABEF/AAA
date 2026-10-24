@@ -1,0 +1,24 @@
+Compiler run failed:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (5159): "selfdestruct" has been deprecated. Note that, starting from the Cancun hard fork, the underlying opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+  --> test/IntegratedEconomicConservation.t.sol:38:72:
+   |
+38 | contract EconomicForcedETH { constructor(address payable to) payable { selfdestruct(to); } }
+   |                                                                        ^^^^^^^^^^^^
+
+Error (9582): Member "expectCall" not found or not visible after argument-dependent lookup in contract Vm.
+   --> test/IntegratedEconomicConservation.t.sol:307:9:
+    |
+307 |         vm.expectCall(oracle.contributionPricing(),abi.encodeWithSelector(ZZZContributionPricing.finish.selector));
+    |         ^^^^^^^^^^^^^
+

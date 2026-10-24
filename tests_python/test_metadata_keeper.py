@@ -105,7 +105,7 @@ class MetadataKeeperTests(unittest.TestCase):
             'strategy':ACCESS,'fees':ACCESS,'compounder':ACCESS,'buyback':ACCESS,'pools':ACCESS},
             'state_path':str(Path(self.tmp.name)/'keeper.json'),'confirmations':2,
             'max_gas_limit':100000,'max_gas_price_wei':100,'max_transaction_cost_wei':1000000,
-            'max_daily_cost_wei':10000000,'metadata_refresh':{'enabled':True,'nft':NFT}}
+            'max_daily_cost_wei':10000000,'receipt_fee_policy':'included','metadata_refresh':{'enabled':True,'nft':NFT}}
         self.config['code_hashes'] = {key:'0x'+keccak256(bytes.fromhex('6000')).hex()
             for key in (*self.config['contracts'],'nft')}
         self.keeper = Keeper(self.config,rpc=self.rpc)
@@ -135,7 +135,8 @@ class MetadataKeeperTests(unittest.TestCase):
             'from':SENDER,'to':pending['to'],'transactionIndex':'0x0'}
         self.rpc.tx = {'hash':TX_HASH,'from':SENDER,'to':pending['to'],'nonce':'0x7',
             'input':pending['data'],'value':'0x0','blockNumber':hex(block),
-            'blockHash':self.rpc.block_hash(block),'transactionIndex':'0x0','gas':'0x3e8'}
+            'blockHash':self.rpc.block_hash(block),'transactionIndex':'0x0',
+            'gas':hex(pending['fee_review']['gas_limit']), 'type':'0x0','chainId':'0x1','v':'0x25','gasPrice':'0x2'}
 
     def confirmed_baseline(self):
         self.submit()

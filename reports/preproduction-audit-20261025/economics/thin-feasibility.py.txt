@@ -1,0 +1,31 @@
+from decimal import Decimal, localcontext
+import json,pathlib
+B=pathlib.Path(r'C:/Users/Ali/.codex/visualizations/2026/10/14/01a13899-2be7-76f2-a5d0-72e4804c67b9/preproduction-audit-20261025')
+Q=2**96;L=200_000*10**18;FEE=11010
+q=79206739126307177086236617456;a0=45302923580960234111;a1=54080234293716994160
+with localcontext() as c:
+ c.prec=120
+ qa=int(Decimal('1.0001')**Decimal(-600)*Q)+1;qb=int(Decimal('1.0001')**Decimal(500)*Q)+1
+
+def minted(x):
+ # Constant active liquidity; this tiny reversal stays within the fixture's
+ # -60000..60000 external range. No modeled hook or cross-tick liquidity change.
+ after_fee=x*(10**6-FEE)//10**6
+ after_q=q+after_fee*Q//L
+ out=L*(after_q-q)*Q//(after_q*q)
+ native=a0+out;token=a1-x
+ liquidity0=native*(after_q*qb//Q)//(qb-after_q)
+ liquidity1=token*Q//(after_q-qa)
+ liq=min(liquidity0,liquidity1)
+ deployed0=liq*(qb-after_q)*Q//(after_q*qb)
+ deployed1=liq*(after_q-qa)//Q
+ return liquidity0-liquidity1, {'token_input':x,'native_output':out,'deployed_raw_usd18':deployed0+deployed1,'idle_raw_usd18':native+token-deployed0-deployed1,'retained_raw_usd18':native+token,'post_sqrt_price':after_q}
+low=0;high=a1
+for _ in range(256):
+ if high-low<=1:break
+ mid=(low+high)//2
+ if minted(mid)[0]<0:low=mid
+ else:high=mid
+baseline=minted(0)[1];candidate=max([minted(low)[1],minted(high)[1]],key=lambda x:x['deployed_raw_usd18'])
+x={'kind':'independent_constant_liquidity_arithmetic_diagnostic_not_an_executed_transaction','source':'economics-launch-failure-trace.log','observed_starting_principal_raw_usd18':100*10**18,'observed_deployed_raw_usd18':98849621202259071431,'observed_idle_raw_usd18':533536672418156838,'required_deployed_raw_usd18':99*10**18,'baseline_reconstruction':baseline,'hypothetical_bounded_reversal':candidate,'limitations':['uses recorded q/inventory, selected static and protocol fees, and known constant seed liquidity','TickMath roots reconstructed with high-precision Decimal; not actual final transaction execution','does not implement a production strategy or prove safety across liquidity ticks/ranges/providers','gas separate; exact quotes still need complete operation simulation']}
+(B/'economics-thin-feasibility.json').write_text(json.dumps(x,indent=2)+'\n');print(json.dumps(x,indent=2))

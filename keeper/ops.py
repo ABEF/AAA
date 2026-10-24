@@ -74,6 +74,7 @@ def preflight(config, *, rpc=None):
     if keeper.state.get('next_nonce') not in (None,0) and keeper.state.get('receipt_anchor') is None:
         reasons.append('receipt_checkpoint_missing')
     keeper._validate_code_hashes()
+    keeper._validate_accounting_version()
     head,_ = keeper._head()
     keeper._validate_checkpoint()
     if keeper.view('access','isSealed()') != 1: reasons.append('protocol_not_sealed')

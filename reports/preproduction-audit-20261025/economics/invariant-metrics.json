@@ -1,0 +1,63 @@
+{
+  "runs": 32,
+  "calls": 4096,
+  "reverts": 0,
+  "metrics": {
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimRoyalty": {
+      "calls": 335,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.activate": {
+      "calls": 357,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.maintain": {
+      "calls": 380,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.transfer": {
+      "calls": 406,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.receiveRoyalty": {
+      "calls": 365,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.synchronizeRoyalty": {
+      "calls": 409,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.pause": {
+      "calls": 348,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimMixed": {
+      "calls": 354,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.topUp": {
+      "calls": 389,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.harvest": {
+      "calls": 374,
+      "reverts": 0,
+      "discards": 0
+    },
+    "test/NFTRightsInvariants.t.sol:NFTRightsHandler.claimLP": {
+      "calls": 379,
+      "reverts": 0,
+      "discards": 0
+    }
+  },
+  "failed_corpus_replays": 0
+}

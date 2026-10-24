@@ -1,3 +1,7 @@
+## 2026-10-25: pre-production internal audit
+
+[Keeper fee-review/preflight fixes and composed venue/accounting evidence](../reports/preproduction-audit-20261025/REVIEW.md); corrected native/pause/loss-cap/retired-path operations, strengthened invariant input domain, and aligned architecture/operator/recovery guidance. Focused verification only; no production approval, public transaction or service change.
+
 ## Price references, fees and qualification status - 2026-10-25
 
 [Saved reference observation](../reports/price-reference-20261025/OBSERVATION.md)

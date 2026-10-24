@@ -76,3 +76,27 @@ Existing Anvil state, saved reviews and public simulation are unchanged. See
 The public website is not switched to this policy. Its native-V2/live profile and
 review of current limits remain explicit release work; the existing local
 deployment and its journals keep their original contract/configuration semantics.
+
+### Review-time policy binding remains open
+
+The current Entry captures the **execution-time** loss policy before transfers,
+not the policy previously displayed in a wallet review. Its Request has amount,
+route, minimum output/liquidity and deadline, but no caller maximum-loss field.
+If governance raises the cap before inclusion, the new value can apply. Raw
+caller minima still constrain the result, but do not prove the earlier USD loss
+percentage, particularly after range/price changes. A pinned preparation trace
+only proves its observation block; it cannot control later inclusion.
+
+Before public activation/growth signing, implement a versioned reviewed Entry
+path binding the caller's maximum contribution-loss BPS (or equivalently rigorous
+minimum-value expectation). Compare it to the actual captured execution policy
+before any transfer; preserve final callback/price/policy checks. Update exact
+calldata/trace/API/inventory/wallet handling together, with no silent legacy or
+direct-Vault fallback claiming the stronger guarantee. A lower configured cap
+may be stricter; raising governance's maximum must not override the caller limit.
+Preserve old Anvil deployments/journals under their explicit historical profile.
+
+This is an [open release task](../TODO.md#task-reviewed-contribution-policy), not
+an implemented guard. Immediate governance remains deliberately trusted, and no
+new delay is proposed. Pausing/reviewing new work does not cancel transactions
+already signed and broadcast by users. Current public signing remains disabled.

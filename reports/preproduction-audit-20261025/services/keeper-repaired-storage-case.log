@@ -1,0 +1,6 @@
+test_pending_intent_save_failure_never_invokes_signer (tests_python.test_keeper_recovery.RecoveryTests.test_pending_intent_save_failure_never_invokes_signer) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.011s
+
+OK

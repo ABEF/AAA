@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**17 To do | 28 In progress | 19 Implemented locally**
+**18 To do | 28 In progress | 19 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -27,6 +27,19 @@ Custody, ownership and reward accounting.
   - Verify chain/product support and the required interface against the exact proposed OpenSea integration. A listing/secondary sale or direct Anvil mint is not primary-mint acceptance.
   - Preserve canonical NFT identity, 1,000 cap, 0.05 ETH recipient, exact rarity draw/VRF, zero LP at mint, mint pause/lifecycle and atomic rollback. Check NFT ownership when the caller is a marketplace intermediary; review any adapter/core change before sealing.
   - Rehearse a supported marketplace mint, payment, receiver callback/rejection, reveal and pause/restart; record receipts and exact verified collection URL. Keep production website mint preparation disabled.
+
+  </details>
+
+<a id="task-reviewed-contribution-policy"></a>
+
+- [ ] **[Bind the signed activation review to its maximum loss policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open)** - To do. Current Entry captures policy when execution starts but Request does not bind the maximum cap shown during review. Implement and qualify a versioned caller-bound contribution path before public activation/growth signing; a preparation simulation and raw liquidity minima alone do not preserve the earlier1% guarantee.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Bind the caller maximum contribution-loss BPS or an equivalently rigorous expectation to exact signed calldata; compare it with actual captured policy before transfers. A governance raise before inclusion must not override the caller limit; preserve stricter minima, final price/cap fingerprints and rollback.
+  - Update Entry version, exact ABI/trace/preparation/inventory and approved wallet profile coherently. No silent legacy or direct-Vault fallback may claim the stronger guarantee. Preserve existing Anvil identities/journals and leave public signing disabled until separately authorized/qualified.
+  - Improve a focused adversarial harness first: governance raises/lowers policy between review and inclusion, pool/range/price changes, callback changes, expired reviews, native/token inputs, activation and growth. Prove pre-transfer refusal and unchanged balances/LP/eligibility on mismatch; run affected checks and normal size gates only after implementation.
 
   </details>
 
@@ -99,6 +112,7 @@ Custody, ownership and reward accounting.
   - Implemented: fixed $100 activation / $5 increase floors in original-source Entry and the direct Vault helper, with higher pool minima retained. Qualify complete $5 routes at 99% marginal LP and separate gas, including real token units, depegs and execution costs. See [minimums and operator controls](docs/CONTRIBUTION_MINIMUMS.md).
   - Native V2 accepts actual ETH at asset zero with explicit policy and independent feed; exact Entry/Vault/manager call values are checked. Native V2 read/preparation profiles do not require WETH for ETH. Old local fixtures and prior WETH route evidence retain their original scope; current v3 conversions cannot output native ETH directly.
   - The [two-source guard](docs/PRICE_SECURITY.md) is implemented, not live-qualified. Freeze source/pair prices and limits before any source pull/conversion; validate upper-input/lower-marginal-LP floors and final fingerprints/spot. Close [dual-source qualification](TODO.md#task-dual-price-qualification) for every enabled input and both LP currencies.
+  - The [October25 selected-fee local composition](reports/preproduction-audit-20261025/REVIEW.md#a-07-thin-market-activation-feasibility-remains-open) exposes an honest thin-market native activation that retains about$99.38 but deploys only$98.85 of$100; the99% guard reverts safely. Qualify full-trace feasibility at actual liquidity/ticks/fees before wallet review, preserve exact rollback and existing approvals, and assess bounded post-swap ratio correction only if it can improve deployed LP within the same captured budget. Never weaken the floor or count incumbent/idle assets as new LP; deeper mock liquidity is not launch qualification.
 
   </details>
 
@@ -270,6 +284,8 @@ The data and services behind the app.
   - Implemented request-wide monotonic/expiry/RPC budgets and supervised HTTP workers; [scoped remediation](reports/api-work-limits/VERIFICATION.md) addresses AUD18-03. Qualify actual Linux/RPC/trace workloads and ingress limits under [host-services](TODO.md#task-host-services); keep final canonicality and on-chain deadlines.
   - Preparation now checks the $5 top-up / $100 activation floor and any higher pool minimum before approvals or traces. [Focused evidence](reports/topup-and-reward-review/VERIFICATION.md) covers exact/below limits and units. Actual route/feed/fee qualification remains open.
   - [Typed v4 preparation](docs/TYPED_V4_ROUTES.md) verifies the helper/parent and 14-word domain-bound policy, exact child calldata/value/output and current cap against the packed uint32 Budget trace; actual market/trace/network qualification remains open.
+  - The [October25 selected-fee local composition](reports/preproduction-audit-20261025/REVIEW.md#a-07-thin-market-activation-feasibility-remains-open) exposes an honest thin-market native activation that retains about$99.38 but deploys only$98.85 of$100; the99% guard reverts safely. Qualify full-trace feasibility at actual liquidity/ticks/fees before wallet review, preserve exact rollback and existing approvals, and assess bounded post-swap ratio correction only if it can improve deployed LP within the same captured budget. Never weaken the floor or count incumbent/idle assets as new LP; deeper mock liquidity is not launch qualification.
+  - Resolve [signed contribution policy binding](TODO.md#task-reviewed-contribution-policy) before public activation/growth. Current execution-time capture and a pinned simulation do not bind the cap shown in an earlier wallet review; caller raw minima are separate. No review-pinned1% claim or legacy fallback until the versioned flow is qualified.
 
   </details>
 
@@ -447,6 +463,7 @@ What holders see and use.
   - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
   - [Pending nonce diagnosis](reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked browser scenarios and six actual read-only recovery observations pass. Queued or wallet-changed nonces now stop the wait immediately; journals and local-only signing remain. The actual nonce 35 mint is unmined; controlled queue reconciliation and extension acceptance remain open.
   - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
+  - Resolve [signed contribution policy binding](TODO.md#task-reviewed-contribution-policy) before public activation/growth. Current execution-time capture and a pinned simulation do not bind the cap shown in an earlier wallet review; caller raw minima are separate. No review-pinned1% claim or legacy fallback until the versioned flow is qualified.
 
   </details>
 
@@ -501,6 +518,7 @@ What holders see and use.
   - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
   - [Pending nonce diagnosis](reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked browser scenarios and six actual read-only recovery observations pass. Queued or wallet-changed nonces now stop the wait immediately; journals and local-only signing remain. The actual nonce 35 mint is unmined; controlled queue reconciliation and extension acceptance remain open.
   - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
+  - Resolve [signed contribution policy binding](TODO.md#task-reviewed-contribution-policy) before public activation/growth. Current execution-time capture and a pinned simulation do not bind the cap shown in an earlier wallet review; caller raw minima are separate. No review-pinned1% claim or legacy fallback until the versioned flow is qualified.
 
   </details>
 
@@ -711,7 +729,7 @@ Three required testing layers, with source-bound evidence.
 
 <a id="task-local-verification"></a>
 
-- [x] **[Local contract and integration tests](reports/royalty-reporting/VERIFICATION.md)** - Implemented. Royalty reporting adds 138 affected Python passes plus 20 supplemental passes, with unchanged Solidity evidence reused and ten getter/26 added-event ABIs checked. Prior royalty scope has 135 affected Solidity cases, 195 scoped Python cases, 31 size gates and 40 source bindings; holder preflight adds 12 cases. These scoped receipts are not a new full regression or production approval.
+- [x] **[Local contract and integration tests](reports/preproduction-audit-20261025/VERIFICATION.md)** - Implemented. Source-scoped local unit/invariant/integration evidence is recorded, including the October25 installed-v4 composition harness and repaired non-vacuous growth invariant. Keeper audit records199 distinct scoped passes and one Unix-only skip. Earlier receipts retain their source scope; these are not a fresh full regression, actual providers or production approval.
 
 <a id="task-economic-rights-audit"></a>
 
@@ -754,6 +772,8 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently review the implemented canonical preparation notice: existing controller-only start/cancel, exact notice binding, blocked new economic work and protocol configuration, trailing callback guards, and fixed parking/plan-cancellation drains. Guardian pause and governance controller unpause remain; inherited governance controller roles and scheduling keep their existing rules. The notice grants no successor authority and cannot freeze or export canonical rights.
   - Independently review/rehearse [mint/pool stop controls](reports/operator-controls/REVIEW.md): disable-only flags, full reopening validation, callback rollback, unchanged roles/canonical locks, obsolete approved operations and explicitly reviewed successor mint-pause state.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
+  - Operator documentation must distinguish global pause from a custody freeze: approved pause-only principal/royalty exits remain possible. Loss defaults are not immutable: governance can set future categories up to10%, without weakening an original approved absolute custody floor. Independently review immediate-quorum and approved-recipient/replacement trust.
+  - Resolve [signed contribution policy binding](TODO.md#task-reviewed-contribution-policy) before public activation/growth. Current execution-time capture and a pinned simulation do not bind the cap shown in an earlier wallet review; caller raw minima are separate. No review-pinned1% claim or legacy fallback until the versioned flow is qualified.
 
   </details>
 
@@ -766,6 +786,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   - Review creator inboxes, optional wrappers, discretionary payment terms, processing-time eligibility and combined four-bucket/four-inbox costs with all admitted assets. The factory's separate 16-inbox ceiling does not enlarge current Vault capacity. Qualify actual Entry/selected hookless-pool gas, not only the passing local fixture. Creator payment frequency and percentage remain undecided.
   - Review [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md): independent price/decimal range vectors, current-NAV entry and compound exclusion, loss/appreciation/replacement/transfer continuity. Extend the bounded local/mock evidence with actual production routes, calibrated strategy backtests and full configuration gas/MEV qualification.
+  - Review [the October25 composed installed-v4 harness](reports/preproduction-audit-20261025/VERIFICATION.md) for actual fees, royalty/LP separation, growth/compound/rebalance/transfer conservation, prefund isolation and rollback. Local governance/feeds/VRF/Permit2/admission remain substitutes; extend actual provider/venue qualification, not unchanged generic test reruns.
 
   </details>
 
@@ -793,13 +814,14 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
   - Qualify gas for 1/100/1,000 NFTs and maximum actual assets/inboxes; prove upkeep scales by shared pool. Backtest range, trigger, cooldown, slippage, impermanent loss, MEV and operating cost. Production strategy parameters remain unset.
   - Keep the unchanged 12M local combined-workload budget and four-historical-bucket cap. Qualify actual Entry/selected hookless-pool/token/inbox costs, not only a local shared-pair fixture; refresh normal runtime/initcode gates including constructor arguments for final source.
-  - Independently qualify the implemented 3% loss cap for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups retain 1%.
-  - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
-  - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
+  - Independently qualify the implemented default3% loss cap (governed up to10%) for ordinary rebalance and atomic same-ordered-pair local move/resume, including the cached pre-harvest valuation vector, attributed compound, close/swap/mint costs, idle ceiling, callback repricing, MEV and repeated moves. Initial oracle honesty, venue backing and cumulative erosion remain risks; different-pair and asynchronous bridge enforcement remains open. Activation/top-ups default to1%, independently governed up to10%.
+  - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. The default per-operation3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
+  - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, captured maintenance loss floor (default3%, maximum10%) and idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
   - User decision 2026-10-19: keep the 3% per-operation cap only, no rolling/cumulative loss breaker. Monitor cumulative turnover/MEV/gas costs and rehearse operator pause/parameter recovery; see [range management](docs/OPERATOR_MANUAL.md#range-and-strategy).
   - Internal 2026-10-24 review found and fixed ERC20 destination fee sizing; no new cap or authorization bypass was found in the reviewed diff. Earlier fork receipts retain their old source scope; use the new focused source-bound audit evidence rather than treating older passes as a current full regression.
   - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
+  - The [October25 selected-fee local composition](reports/preproduction-audit-20261025/REVIEW.md#a-07-thin-market-activation-feasibility-remains-open) exposes an honest thin-market native activation that retains about$99.38 but deploys only$98.85 of$100; the99% guard reverts safely. Qualify full-trace feasibility at actual liquidity/ticks/fees before wallet review, preserve exact rollback and existing approvals, and assess bounded post-swap ratio correction only if it can improve deployed LP within the same captured budget. Never weaken the floor or count incumbent/idle assets as new LP; deeper mock liquidity is not launch qualification.
 
   </details>
 
@@ -850,6 +872,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - The [October 19 internal review](reports/topup-and-reward-review/REVIEW.md) covers contribution floors, current contract changes and request/display boundaries. Optional local history failure no longer hides confirmed balances; work-limit/core failures remain fatal and dormant reads skip history. Live concurrent load, exact deployment inventory and independent audit remain required.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
+  - Review [the October25 internal audit](reports/preproduction-audit-20261025/REVIEW.md): keeper budget/preflight defects, non-vacuous composed accounting/invariants, current native/schema-5 runbooks, pause-versus-custody authority and captured original floors. These fixes do not prove absence of exploits or close actual services and independent audit.
 
   </details>
 
@@ -922,7 +945,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-keeper-guardrails"></a>
 
-- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery, preparation and strict canonical lifecycle guards are implemented in the published candidate. Locked canonical states stop all new submissions while receipt recovery continues. Existing staging is unchanged; exact deployment compatibility, RPC/fees, alerts and operating review remain open.
+- [ ] **[Harden keeper recovery and monitoring](docs/KEEPER_RECOVERY.md)** - In progress. Recovery/lifecycle controls plus captured fee-review schema 1, canonical dynamic-fee accounting, L1/total bounds and version-aware preflight are implemented candidates. Legacy pending evidence is preserved, not guessed or resent. Actual Linux/RPC/fee/alert/host recovery and independent operating approval remain open.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -933,6 +956,7 @@ Decisions and rehearsals before real funds.
   - Qualify preparationActive() and canonicalState() against the exact deployment and keeper. Missing/malformed/reverted getters fail closed. Frozen/importing/retired/cancelled states block all new maintenance/drain/metadata submissions; canonical receipt recovery continues. Recheck state before simulation, after gas estimation and before intent persistence. The local 88-case targeted receipt does not update the older staging fixture/keeper or replace a new operating rehearsal.
   - Add/review authenticated freshness-bounded next-check/last-success telemetry for frontend warnings; do not infer an execution promise from a 600-second poll example. Offline, delayed, paused, pending or budget-limited operation must be explicit. Qualify the new aggregate rebalance guard against the exact keeper deployment.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
+  - Review [the October25 keeper audit](reports/preproduction-audit-20261025/services/REVIEW.md) and rehearse original fee-review preservation, canonical signed-cap cost, included/separate L1 fees, legacy missing-review recovery and preflight version refusal on actual Linux/chain services. 199 distinct scoped passes and one Unix-only skip are not that qualification; no running journal was upgraded.
 
   </details>
 
@@ -947,6 +971,7 @@ Decisions and rehearsals before real funds.
   - Verify off-host backups, health/log alert delivery, permissions/disk failures and actual Linux service restart/locking. Local guards are not production operating evidence.
   - Finish and review sustained multi-day staging; preserve observation gaps. The 30-minute desktop-dependent chat health monitor was paused at the user's request on 2026-10-17. It supplies no subsequent observations; do not restart it without authorization. The isolated server service was not stopped by pausing the monitor.
   - Rehearse [operator manual](docs/OPERATOR_MANUAL.md) scenarios with exact production roles/configuration: asset/pool stops, range changes, dependency outage/parking/resume, host/key recovery, reveal drain and whole-collection abort. Manual updates are required for every management behavior change under [maintenance rules](docs/TODO_WORKFLOW.md); a written runbook is not rehearsal evidence.
+  - Before upgrading a signer with pending work, stage [fee-review journal recovery](docs/KEEPER_RECOVERY.md#fee-review-upgrades-and-legacy-pending-intents). Preserve original review, hash, signed transaction and inclusion-day budgets; no inferred historical limits, automatic reset or blind resend. Independently qualify real L1 reporting and old-host fencing.
 
   </details>
 
@@ -1002,4 +1027,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6fbb5c80aa47f660fd90537c8b2c76a0522d6fedf18316eb9b3cb3766d82f412`.
+Snapshot SHA-256: `6a6efd4df675644377aed4ead8e62fef942afd95be9ebb6f190ca48799fe0716`.

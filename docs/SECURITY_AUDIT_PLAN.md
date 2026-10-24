@@ -22,7 +22,7 @@ The earlier WETH checkpoint evidence retains its original source scope.
 
 ## Current governed-custody scope (2026-10-23)
 
-Review the [governed handoff](GOVERNED_CUSTODY_HANDOFF.md) and [current evidence](../reports/custody-handoff/VERIFICATION.md). The user explicitly accepts sending principal and separately tracked royalty funds to an external EOA/contract chosen by governance. This is a public authority/trust boundary, not an enforced guarantee of return. Normal 3% source/final LP limits do not protect funds while outside protocol control; raw emergency mode has explicit raw minima and no USD-loss guarantee.
+Review the [governed handoff](GOVERNED_CUSTODY_HANDOFF.md) and [current native evidence](../reports/native-eth-port/VERIFICATION.md); earlier [custody evidence](../reports/custody-handoff/VERIFICATION.md) retains its WETH-accounting source scope. The user explicitly accepts sending principal and separately tracked royalty funds to an external EOA/contract chosen by governance. This is a public authority/trust boundary, not an enforced guarantee of return. Normal exit/completion retain the approval's captured absolute floor (3% loss by default); those checks do not protect funds while outside protocol control. Raw emergency mode has explicit raw minima and no USD-loss guarantee.
 
 Audit the exact source/share/nonce snapshots, close/all-ZZZ conversion atomicity, explicit raw-mode selection, donation/other-ledger exclusion, actual local LP backing, 1:10 decimal handling, no timeout/partial recovery, and pinned finalized remote delivery/closure proofs. No real finality verifier/provider is supplied. Royalty exit must preserve original per-NFT liabilities/quarantine and ownership rights, suspend only the exited currency, require actual full restoration and never distribute that restoration as new income. Check native-currency activation deferral and replay. Whole-collection capture must reject all outstanding custody. Review the mutable governed ZZZ buyback target and retained strict burn verification.
 
@@ -50,8 +50,8 @@ Todo tasks; it does not close these workstreams or authorize production.
 | Gate | Required decision or evidence |
 | --- | --- |
 | Before sealing | Approve immutable economics, authorities, dependency/recovery design and canonical-chain-loss policy. Resolve any requirement needing code changes before fixing bindings. |
-| Before launch or real funds | Independent review and remediation of frozen source/configuration; all three testing layers; qualified tokens, routes, feeds, VRF, creator funding and operating rehearsals. |
-| Before real bridging | Permanent destination-capacity admission, reviewed providers/destinations, backing/finality, repeated-hop recovery and remote compounding qualification. Keep bridging disabled meanwhile. |
+| Before launch or real funds | Independent review and remediation of frozen source/configuration; all three testing layers; qualified tokens, routes, feeds, VRF and operating rehearsals. Creator-payment qualification is required only if optional external creator revenue is enabled; it is not a dependency of selected hookless LP fees. |
+| Before a remote custody plan | Independently reviewed external recipient/transport, exact destination obligations, pinned delivery/finality and closure proofs, backing and return rehearsals. No real verifier/provider or remote reward ledger is supplied. Do not approve an unqualified remote plan; the retired LP bridge stack cannot be enabled by configuration. |
 
 For each gate retain source/configuration hashes, exact commands and results,
 failure reproductions, reviewer and unresolved risks. Use local adversarial tests,
@@ -67,13 +67,16 @@ Immediate governance controls supported feeds, assets, routes, destinations
 and bounded strategy settings. Guardians can pause; keepers have no redemption
 function. Governance and migration delays are fixed at zero; there is no advance notice window.
 
-- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify zero constructor/single/batch/migration delays and rejection of delay updates.
+- Audit the absence of a notice window: compromised governance can act immediately; no guardian veto or delay is promised. Verify zero controller constructor/single/batch scheduling delay and rejection of delay updates. Custody approvals have fresh deadlines, not a waiting period.
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
   compromised keepers/guardians, governance operations and forbidden module rebinding.
 - Verify all post-seal changes preserve custody and historical liabilities. Audit
   destination/provider admission: an unsafe approved destination or malicious feed
   can lose funds despite the absence of a wallet-sweep function.
 - Rehearse multisig/key rotation, lost signer quorum and emergency pause/parking.
+  Verify that global pause stops ordinary work but still permits separately
+  approved paused principal/royalty custody departures; it is not a guardian
+  veto of governance or an automatic raw-exit fallback.
   Record what is impossible after key loss; do not imply an administrator override.
 - Approve the [change and recovery boundaries](CHANGE_AND_RECOVERY.md) before seal.
 
@@ -81,14 +84,17 @@ function. Governance and migration delays are fixed at zero; there is no advance
 
 **Current controls:** one physical LP serves many canonical NFTs with independent,
 nonredeemable shares. Entry checkpoints old entitlements and prices new shares at
-incumbent NAV. Compounding does not issue shares. Historical local buckets are
-capped at four, LP reward assets at 32, and royalty slots at 17 including native.
+incumbent NAV. Compounding does not issue shares. One contribution pool may be
+selected at a time. Historical local buckets are capped at four, LP reward slots
+at 33 (32 ERC20 plus native), and royalty slots at 17 including native.
 
 - Independently reconcile each asset across 1,000 varied NFTs: principal, idle,
   new shares, compound reserves, liabilities, paid fees and unallocated donations.
 - Exercise entry/top-up front-running, pending receipts, tiny amounts, fractional
   carry, manipulated prices, dilution, repeated rebalances and custody migrations.
-  Prove incumbent assets cannot subsidize the 99% marginal-LP entry floor.
+  Prove incumbent assets cannot subsidize the captured marginal-LP entry floor
+  (99% at the default contribution cap), including conservative upper-input /
+  lower-LP prices and callback changes to policy.
 - Recheck worst-case combined settlement gas with real admitted assets/venues.
   Local fixtures and one-pool population tests do not bound every dependency cost.
 - Separate accounting conservation from market-value losses and impermanent loss.
@@ -106,8 +112,10 @@ fixed 5% request cannot force marketplace payment.
 - Verify both claim/transfer orderings, operators, contract recipients, callbacks,
   batch rollback, multiple NFTs per wallet and pending receipt synchronization.
 - Verify equal collective membership, no retrospective entry claims, and accepted
-  processing-time membership for unharvested/delayed remote receipts. Delivered
-  remote 90% rewards must not receive another 80/10/5/5 split.
+  processing-time membership for unharvested/delayed optional creator receipts.
+  One-hop predecessor creator receipts remain unsplit until allocated by the
+  active deployment; allocated or converted balances must not receive another
+  80/10/5/5 split. Legacy remote-message records do not enable the retired bridge.
 - Qualify each asset's dust value and entry-frequency incentives; test actual
   royalty receipt, transfer and payout on the selected marketplace.
 - Evaluate configurable splits **as a design proposal only**: possible incentive
@@ -167,13 +175,16 @@ DEXs/hooks. A future compatible destination needs separate code/dependency revie
 - Audit successor admissibility, finality/proof authority, authentic owners,
   immutable traits, eligibility/shares, per-asset liabilities/fractions, pending
   VRF and in-flight/late receipts. Prove single active ownership/claim rights,
-  a terminal source commit and no timeout resurrection. No 3% principal conversion
-  budget may haircut funded reward liabilities. Separately assess lost governance
+  a terminal source commit and no timeout resurrection. No principal execution
+  budget, including a governance-raised cap, may haircut funded reward
+  liabilities. Separately assess lost governance
   quorum and unusable immutable contracts; this plan does not solve every outage.
-- Before bridging, independently qualify permanent reservations and test real
-  delayed/concurrent arrivals, returns, retries and remote compounding. Local
-  reservation regressions pass; remote admission proof remains absent. Timeouts
-  alone cannot authorize refunds.
+- Before remote custody, qualify the external custodian/transport and exact
+  pinned delivery/closure verifier, with delayed, conflicting and replayed proof
+  cases plus actual full return. Local permanent pool reservations prevent alias
+  reassignment; they do not authenticate remote admission, remote LP value or
+  remote rewards. No real verifier or remote ledger is supplied. Timeouts alone
+  cannot authorize refunds or source reopening.
 - Document unrecoverable external failure cases; backups cannot restart a stopped
   chain, thaw a token or upgrade sealed code. Do not promise universal recovery.
 
@@ -192,15 +203,31 @@ intent tools and isolated keeper rehearsals exist; the website still simulates.
 - Require independent audit/remediation and exact-release operating/configuration
   sign-off. Open gates remain open even when every local regression passes.
 
-## Local composition review boundary - 2026-10-23
+## Current composition and historical-code boundary - 2026-10-25
 
-Include the [typed pair converter](PAIR_MIGRATION.md), Vault/Budget/canonical
-companion interfaces and changed Fees/Liquidity caller admission in the external
-audit. Review fixed-price aggregate loss, exact transient balances/allowances,
-other-bucket/donation isolation, current and historical compound capitalization,
-entry marginal NAV, old-inbox dust and late funding, repeated composition and
-successor idle/epoch import. An appended group field requires explicitly
-compatible source/destination code. Confirm V3 bridging cannot bypass its
-nonzero-composition restriction. Real route/hook/wrapper behavior, MEV and gas
-at admitted bounds require operating qualification. See [internal scope and
-evidence](../reports/pair-composition/VERIFICATION.md); it is not independent approval.
+Audit `Migration.moveFunds`/`movePool`/`resume` only for the supported same ordered
+actual currencies; ETH and WETH are distinct. Different-pair and issuer exchange
+now use the explicit governed custody path: reviewed source snapshot, normal
+all-ZZZ or separately approved raw exit, external recipient action, then actual
+destination LP funding through `completeLocal` or exact original-asset `recover`.
+Verify no normal failure automatically selects raw mode. Read the live cap before
+approval and preserve the plan's original `minimumRetainedUSD` despite later
+configuration or destination binding. External custody has no enforced return
+guarantee and does not migrate canonical ownership by itself.
+
+Review the current Vault/Budget/canonical interfaces, exact transient native/
+token balances and allowances, other-bucket/donation isolation, current and
+historical compound, entry marginal NAV, old-inbox dust/late receipts, composition
+epochs and successor import. Authenticate complete records and exact classified
+backing; native receiver protection must not be counted twice. Whole-collection
+capture rejects outstanding principal or royalty custody. Repeated successor and
+funded-abort paths need version-compatible source/destination code and actual
+dependency qualification.
+
+The [former typed pair converter](PAIR_MIGRATION.md) and V3 bridge/transport
+implementations are removed. Their [historical evidence](../reports/pair-composition/VERIFICATION.md)
+does not verify a current execution path. Check that retired module bindings and
+selectors fail closed; do not prescribe an operator bridge switch or use old
+transport fixtures as finality evidence. Real routes, tokens/proxies, optional
+wrappers, MEV, destination custody and worst-case gas remain separate operating
+and independent-audit gates.

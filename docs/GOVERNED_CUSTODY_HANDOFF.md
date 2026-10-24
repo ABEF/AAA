@@ -3,8 +3,9 @@
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
+absolute floor. Use the live policy and captured plan floor in the procedures
+below; percentages are examples only when explicitly labelled as defaults.
+Actual routes, services and independent audit remain open.
 
 # Governed custody handoff
 
@@ -49,11 +50,17 @@ ETH/ZZZ pool. The older `movePool` selector is an alias with the same authority/
    operations if balancing needs them. Simulate the complete move with an actual
    positive minimum liquidity and deadline at most ten minutes away. Execute via
    controller governance while unpaused. No new holder approval is required.
-3. The atomic operation harvests old fees, includes designated compound, closes
-   source LP, balances and creates destination LP owned by Vault. It retains at
-   least 97% of starting principal plus released compound, at one starting price
-   vector. This 3% overall cap is fixed after sealing; gas is separate. Any failed
-   settlement or limit rolls back the whole move, including closing the old LP.
+3. Read `Vault.migrationBudget().maintenanceLossBps()` and review that value as
+   `L` basis points. The atomic operation harvests old fees, includes designated
+   compound, closes source LP, balances and creates destination LP owned by Vault.
+   At one starting price vector it requires retained LP plus attributed idle of
+   at least `F = V - floor(V * L / 10000)`, where `V` is starting principal plus
+   released compound. This equals `ceil(V * (10000 - L) / 10000)`; the default
+   `L=300` means at least 97%. The Budget captures `L` before maintenance, so a
+   later change cannot loosen that operation. Governance may change future caps
+   after seal within 0-1000 bps. Gas is separate; stronger venue/caller minima and
+   the 5% idle ceiling remain. Any failed settlement or limit rolls back the
+   whole move, including closing the old LP.
 4. Verify actual destination LP, pool ID, unchanged NFT shares/home identity,
    existing reward liabilities and cleared allowances. Governance then enables
    this sole contribution pool and separately updates reviewed input routes/API/
@@ -75,10 +82,13 @@ manual token exchange, bridging or a return to a reviewed different pair.
    Rewards asset and healthy USD feed. No outstanding principal plan may exist.
    A future replacement ZZZ can be configured after sealing. Review its burn
    interface and update `Buyback.setZZZ(...)` separately; neither setter moves funds.
-   Before parking, record the reviewed principal-plus-idle USD value and the
-   configured ZZZ price/decimals at the same block. Compute the original raw ZZZ
-   minimum by rounding **up** the quantity needed to retain at least 97% of that
-   value at those prices. Preserve this amount through the later approval.
+   Before parking, record the reviewed principal-plus-idle USD18 value `V`,
+   Budget `maintenanceLossBps()` as `L`, and the configured ZZZ lower USD18 price
+   `P` and decimals `d` at the same block. Compute the retained USD floor
+   `F = V - floor(V * L / 10000)` and original raw ZZZ minimum
+   `M = ceil(F * 10**d / P)` using full-precision integer arithmetic. This is
+   97% retention only at the default `L=300`. Preserve the reviewed `M` through
+   later parking and approval; do not substitute a new default or round down.
 2. For a planned local destination, governance first calls
    `Vault.reservePool(destinationPool,bucket)` and verifies its permanent alias
    belongs to that bucket. This prevents a competing activation from consuming
@@ -112,10 +122,15 @@ manual token exchange, bridging or a return to a reviewed different pair.
    resulting ZZZ to the approved recipient. It does not close an already parked
    LP again. Failed swap, minimum, transfer or snapshot checks revert the exit;
    they do not undo the earlier, separately confirmed parking transaction.
-   The contract enforces at least 97% of the parked principal value at approval,
-   rounding against excess loss; gas is separate. Parking has its own raw close
-   minima and venue guards. The preserved, no-loosening `minimumZZZ` above is
-   required to retain the reviewed 3% budget across parking and conversion.
+   Approval captures `minimumRetainedUSD(id) = Vpark - floor(Vpark * Lapprove / 10000)`
+   using the parked value and then-current maintenance cap. Verify that exact
+   stored floor and request after approval; cancel an unsent plan and re-review
+   if they differ from the approved intention. The requested `minimumZZZ` must
+   meet that floor at the approval's ZZZ lower price, as well as the preserved
+   pre-parking raw minimum. Later cap increases do not weaken an approved plan.
+   Gas is separate. Parking has its own raw close minima and venue guards. The
+   preserved, no-loosening `minimumZZZ` above is required to retain the reviewed
+   pre-parking budget across parking and conversion.
    The contract does not autonomously combine separate parking and approval
    transactions into one pre-parking cached price-vector budget.
 6. Verify `CustodyAssetsSent`, actual recipient transfers, source `Outbound`
@@ -131,8 +146,9 @@ PoPL is globally paused. A separately mined active approval and exit can therefo
 become incompatible. Parking first removes this moving quantity from the snapshot
 without weakening its exactness. If using the supported direct active exit instead,
 review approval and exit as one controller batch; it still fails closed if the
-reviewed snapshot changed before inclusion, and its original 3% budget includes
-the in-transaction close and conversion. Never bypass a stale snapshot check.
+reviewed snapshot changed before inclusion, and its captured maintenance budget
+includes the in-transaction close and conversion. Never bypass a stale snapshot
+check.
 
 An issuer's 1:1 or 1:10 migration can be performed by the approved recipient
 outside the source contracts. No standard issuer ABI is assumed. Approval must
@@ -147,7 +163,7 @@ without selecting a new LP yet: `destinationPool=0`, `destinationChain=block.cha
 Destination minima may be zero in this explicit holding mode; raw **close**
 minima still apply and normal ZZZ/value minima still apply. This does not query
 or require an enabled destination pool, so a stopped source and unavailable
-prices cannot defeat the raw fallback merely because a replacement is not ready.
+prices cannot defeat the explicit raw holding path merely because a replacement is not ready.
 Holding does not establish completed LP or remote delivery. For a later local
 return, governance first admits and reserves the destination pool for the same
 bucket, then calls `bindLocalDestination(id,pool,minimum0,minimum1,reviewHash)`.
@@ -156,7 +172,8 @@ preserves the source snapshot, actual departure amounts, raw/normal mode and
 original loss budget; it derives output currencies from the admitted pool.
 `completeLocal` then requires actual destination-token funding and deployed LP.
 This supports an issuer's token exchange without requiring burned old tokens
-back, while preserving the normal original 97% floor or raw destination minima.
+back, while preserving the normal original `minimumRetainedUSD(id)` or raw
+destination minima. Binding a destination does not reset the approval's budget.
 
 Alternatively, full original-asset `recover` remains available. External bridging
 and issuer operations are the recipient's responsibility; local destination binding
@@ -176,7 +193,7 @@ source USD read is required, and at least one raw exit minimum must be positive.
 The ordinary request never falls back to this mode automatically.
 
 This is an explicit acceptance of raw-token custody and valuation risk: **the
-ordinary 3% USD execution guarantee does not apply**. The close minima, exact
+normal captured USD execution floor does not apply**. The close minima, exact
 transfers, shares, recipient and asset segregation remain enforced. A failed
 venue or nontransferable/frozen token can still prevent exit. Donations, other
 buckets, rewards, royalty assets and fee reserves are not included.
@@ -205,8 +222,10 @@ ERC20-only completion requires zero ETH. Existing prefunds are not return fundin
 The operation actually mints LP in the admitted destination and checks backing before closing
 the plan. It needs unpaused healthy local venue/price services, nonzero LP, the
 normal idle guards and unchanged NFT shares. Normal mode rechecks the **same
-original** 97% floor after deployment; closing, consolidation and redeployment
-cannot each spend separate 3% budgets. Raw mode instead enforces the explicit
+original** `minimumRetainedUSD(id)` after deployment at the recorded destination
+prices; closing, consolidation and redeployment cannot each spend a new loss
+budget. Read the plan's stored floor rather than recomputing it from today's
+cap or prices. Raw mode instead enforces the explicit
 destination raw-token minima after deployment; it makes no USD-loss claim.
 Failures revert the attempted funding and mint, leaving the original sent plan.
 
@@ -225,6 +244,24 @@ fresh reviewed `resume(...)` is required later. A sent request cannot be cancell
 or erased after a timeout. An approved, unsent request can be cancelled through
 governance, including while draining preparation. Every record/nonce remains
 historical; replay and conflicting per-bucket plans are rejected.
+
+**Stop and restart boundaries:** pause is required for principal `exit` and
+`park`; it does not stop those exact governance-approved departures. To abandon
+an approved but unsent custody plan, governance calls `Migration.cancel(id)`.
+To invalidate an unused parking authorization, call
+`Migration.invalidateParking(bucket)`. Neither reverses a completed transfer or
+restarts a parked position. A failed normal exit never selects raw mode.
+
+Canonical preparation is a different lock: `approve`, `exit`,
+`bindLocalDestination`, `completeLocal` and principal `recover` reject it.
+Resolve principal custody before announcing preparation, or governance must
+cancel the exact source notice with `AccessController.cancelPreparation(hash)`
+before funded completion/recovery. Reviewed parking and cancellation of an
+unsent plan remain permitted drains. Full royalty `returnCustody` has its own
+operating-state guard and may restore that currency during preparation. After
+canonical freeze, use the canonical handoff/abort procedure, not these ordinary
+custody calls. Resuming principal later requires a fresh reviewed unpaused
+`Migration.resume` and does not occur automatically on return or unpause.
 
 ## New-chain boundaries
 

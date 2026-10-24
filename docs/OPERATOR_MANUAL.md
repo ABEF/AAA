@@ -167,7 +167,8 @@ helpers to the existing WETH-accounted local deployment or reset its journals.
   now sends native ETH and ZZZ, without invoking WETH. It still depends on usable
   venue/token bindings. For `recover` or `completeLocal`, attach exactly the declared
   native amount as call value and approve only the ERC20 amount. Normal exit keeps
-  its 3% floor; raw mode retains explicit raw minima and no USD guarantee.
+  its captured `minimumRetainedUSD(id)`; raw mode retains explicit raw minima
+  and no USD guarantee.
 - **Optional funding inbox:** `Fees.createRewardReceiver(nativeBucket,address(0))`
   creates a native inbox with one ETH protection slot; do not supply a wrapper.
 - **Services and replacement:** API and keeper configurations explicitly select
@@ -275,13 +276,26 @@ Before execution, restoring the old configuration may clear the width mismatch; 
 | `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed $100 activation / $5 top-up floors. The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
 | `depositsEnabled`, `operationsEnabled` | Full configure for enabling; `disablePool` can only clear flags | Different controls; see below. |
 
-Ordinary rebalance and supported local move/resume must retain at least **97% of starting principal plus released compound**, measured at the same starting prices, in LP plus attributed idle; idle has its own 5% ceiling. Contributions must deploy at least **99% of gross original source value as new LP**. Network gas is separate. The user retained **per-operation limits only**: repeated permitted operations can accumulate losses. Monitor total turnover/costs and stop harmful activity; no rolling loss breaker or guarantee against impermanent loss exists.
+Read Budget `maintenanceLossBps()` as `L` before ordinary rebalance or supported
+local move/resume. Its captured floor is `V - floor(V * L / 10000)`, equal to
+`ceil(V * (10000 - L) / 10000)`, for starting principal plus released compound
+`V` at one starting price vector. Retained LP plus attributed idle must meet that
+floor; idle has its separate 5% ceiling. The default `L=300` means 97% retention,
+not an immutable percentage. Contributions similarly capture
+`contributionLossBps()` as `C`: both net added backing and marginal deployed LP,
+valued at lower source bounds, must reach
+`U - floor(U * C / 10000)` for upper-bound original input value `U`. The default
+`C=100` means 99%; stronger venue/caller guards remain. Network gas is separate.
+The user retained **per-operation limits only**: repeated permitted operations
+can accumulate losses. Monitor turnover/costs and stop harmful activity; no
+rolling loss breaker or guarantee against impermanent loss exists.
 
 ### Contribution minimums
 
 For normal $5 increases, governance configures `minDepositUSD=5e18` through the
 appropriate full `configure`/`configureNative` call. Activation still requires
-$100; each action must deploy 99% of its original value, gas separate. No per-user
+$100; each action must meet the captured contribution-loss floor above (99% at
+the default 100 bps), gas separate. No per-user
 override or new role exists. A higher pool minimum intentionally blocks smaller
 increases. Follow [the exact procedure](CONTRIBUTION_MINIMUMS.md#operator-procedure)
 for authority, simulation, verified getters/receipts, dependency-free stop,
@@ -310,7 +324,7 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 1. Review its exact chain/address, runtime and proxy authorities, decimals, transfers, liquidity, fees and price source. A symbol such as USDC does not identify an asset. Fee-on-transfer/rebasing/blacklisting or malicious callbacks can make an asset incompatible; permission to admit is not proof of compatibility.
 2. Governance configures the reviewed two-source `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`. Independently verify both raw rounds, policy identity, `priceBounds(token)`, decimals and source/proxy independence under [pricing operations](#configure-stop-and-recover-usd-pricing---2026-10-24). Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
 3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The legacy supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. Typed hookless v4 policies are also implemented through `addV4Route(Policy)`; follow [typed route setup](TYPED_V4_ROUTES.md), including explicit version/profile pins. It is not a general multi-hop router or arbitrary external executor.
-4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation, including the 1% limit and separate gas. Qualify actual execution before enabling real users.
+4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation against the current captured contribution-loss limit (1% by default), stronger route/venue minima and separate gas. Qualify actual execution before enabling real users.
 
 Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Actual production ETH/ZZZ/USDG/USDC routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
@@ -390,8 +404,8 @@ ownership/reward handoff below is a separate retained feature.
 
 | Need | Exact control and verification |
 | --- | --- |
-| Normal exit, all principal to ZZZ | Configure reviewed `Migration.configureZZZ`; retain a rounded-up raw ZZZ minimum worth at least 97% of reviewed pre-parking principal plus idle. Pause and cancel any unsent plan before reviewed `park(ParkingRequest)`. Verify parked principal, read its stable `sourceSnapshot`, approve the exact `rawExit=false` request and call `exit(id)` while paused before its ten-minute deadline. Use the greater of the preserved original minimum and the parked approval's required minimum; never loosen it. Parking has separate raw close minima; gas is separate. |
-| Unsafe or missing swap route | Cancel an unsent normal request before parking/reapproval. Use the same reviewed parking and stable-snapshot sequence, then separately approve `rawExit=true` with exact outgoing raw minima. Both attributed assets are sent without a swap. This mode deliberately has no 3% USD guarantee and never activates automatically. |
+| Normal exit, all principal to ZZZ | Configure reviewed `Migration.configureZZZ`; read Budget `maintenanceLossBps()` as `L`. For reviewed pre-parking value `V`, preserve `F = V - floor(V * L / 10000)` and raw ZZZ minimum `ceil(F * 10**decimals / lowerZZZPrice)`. Pause and cancel any unsent plan before reviewed `park(ParkingRequest)`. Verify parked principal, read its stable `sourceSnapshot`, approve the exact `rawExit=false` request and verify `minimumRetainedUSD(id)`. Call `exit(id)` while paused before its ten-minute deadline. Use the greater of the preserved pre-parking raw minimum and the parked approval's required minimum; never loosen it. Parking has separate raw close minima; gas is separate. |
+| Unsafe or missing swap route | Cancel an unsent normal request before parking/reapproval. Use the same reviewed parking and stable-snapshot sequence, then separately approve `rawExit=true` with exact outgoing raw minima. Both attributed assets are sent without a swap. This mode deliberately has no USD-loss guarantee and never activates automatically. |
 | Failed close/swap/transfer | Inspect the reverted receipt: that transaction's custody, balances, epoch and send changes roll back. Separately confirmed parking remains parked. Fix the cause and prepare a fresh approved snapshot if it changed. Never repeat a successful send. |
 | New local pool/token | Approve ordered destination currencies and minima. Recipient performs any issuer exchange externally. If the plan initially selected local holding without a pool, admit/reserve a target for the same bucket and call the one-time `bindLocalDestination(id,pool,min0,min1,reviewHash)`. It preserves the original loss budget and departure. `completeLocal` must actually fund/mint the target LP and preserve shares. Then deliberately switch the sole contribution pool/input routes. |
 | New chain | Recipient is a source-chain address which subsequently uses a reviewed bridge. Require the pinned verifier's finalized delivery proof, not a governance acknowledgement. Actual verifier, bridge and remote reward/ownership services still need qualification; source LP stays unavailable/outstanding. |
@@ -416,7 +430,9 @@ it can still revert if the snapshot changed before inclusion. A failed parked
 exit leaves the earlier parking intact. The contract's parked approval floor
 starts at parked value; it does not autonomously cache the pre-parking budget.
 Preserving the original rounded-up minimum across both transactions is therefore
-required for the operator's reviewed 3% close-plus-conversion limit. Follow the
+required for the operator's reviewed pre-parking close-plus-conversion budget.
+Read the captured plan floor; a later governance cap increase cannot relax it.
+Follow the
 [full budget and recovery procedure](GOVERNED_CUSTODY_HANDOFF.md#ordinary-migration-exit-all-principal-into-zzz).
 
 
@@ -491,7 +507,9 @@ The [settlement and conversion runbook](ROYALTY_SETTLEMENT.md) specifies the exa
 OpenSea pricing procedure, pre-seal converter binding, reviewed wrapper/routes,
 post-seal governance stop/reopen controls, keeper configuration, gas budgets,
 outage recovery and event/accounting checks. Native ETH requires no conversion;
-WETH unwrap is exact and stablecoin conversion enforces at most 1% execution loss.
+WETH unwrap is exact and stablecoin conversion enforces the converter's current
+`conversionLossBps()` ceiling (1% by default, maximum 10%), plus stronger caller
+and venue minima.
 Network gas is separate and paid by the keeper. Batches convert earned balances
 for at most 32 NFTs and credit ETH to those same NFTs; they are not claims.
 
@@ -631,10 +649,10 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 | `NFT.setMintPaused(true)` | New NFT mints and new randomness requests | Governance only. Original fulfillment/finalize, existing NFT rights and LP work retain their own guards. Resume with `false`; global/lifecycle controls remain. |
 | `Buyback.setOperatingTradeUSD(0)` | New buyback executions only | Immediate governance; no price/reserve query. Resize/remove keeper buyback tasks to avoid deliberate simulation failures. Accrued reserves stay classified; reopen with a reviewed positive limit no higher than `maxTradeUSD`. Preparation/canonical locks still apply. |
 | `PoolRegistry.disablePool(id,stopDeposits,stopOperations)` | Pool-specific new contributions / ordinary guarded operations; no token/price/venue reads on disable | Governance only; flags only clear. Not universal pause. Reopen with full validated config; parked LP still needs resume. |
-| `AccessController.setPaused(true)` | Live mint, contribution, rebalance/compound/buyback and outgoing principal execution | Operating-state transfers/claims, authenticated incoming settlement and supported drains remain. Only governance unpauses; it does not clear preparation/canonical lock. |
+| `AccessController.setPaused(true)` | Live mint, contributions, ordinary rebalance/compound/buyback, atomic pool moves/resume and local LP completion | Operating-state transfers/claims and supported incoming returns remain. Governance-approved `Migration.park`, normal or raw `Migration.exit`, and `RoyaltyRewards.exitCustody` deliberately remain possible while paused under their own exact guards. Pause does not revoke governance custody authority or trigger raw fallback. Only governance unpauses; preparation/canonical locks remain. |
 | Canonical preparation | New economic work and normal protocol configuration | Existing claims/transfers/reveal/permitted drains; exact notice can be cancelled before freeze. Not a generic pause toggle. |
 | Canonical freeze | Ownership and ordinary reward/accounting operations | Only handoff settlement/export/funding/abort path. Fully restore abort or complete one successor; no guardian unlock. |
-| Disable bridge outbound / cancel scheduled plan | New sends / that unexecuted plan | Preserve historical policies and authenticated pending delivery. No post-send refund or timeout rescue. |
+| `Migration.cancel(id)` / `Migration.invalidateParking(bucket)` | That approved but unsent custody plan / unused parking authorization at its current nonce | Neither moves funds or erases history. A sent plan cannot be cancelled: use actual full `recover` or qualified `completeLocal`; remote recovery needs the pinned closure proof. The retired bridge stack has no active outbound switch. |
 
 There is no independent pause for every individual feature/asset payout. Do not invent one in an incident. Source: [module guards](../src/base/ZZZModule.sol), [controller](../src/ZZZAccessController.sol), [recovery matrix](CHANGE_AND_RECOVERY.md).
 
@@ -982,7 +1000,7 @@ atomically; native V2 Entry uses actual ETH and does not wrap. See the
 
 ## Convert LP holder fees to ETH
 
-Follow the [LP ETH settlement procedure](LP_ETH_SETTLEMENT.md#operator-procedure) before sealing: bind a separate converter, review wrapper/routes/feeds, enable the guarded worker, and confirm exact source/native liability changes. It covers route rotation, dependency-independent stops, source-currency recovery, pending transaction reconciliation, restart and irreversible bindings. The 1% LP conversion cap is user-approved; gas is separate. See [bounded scheduling](LP_ETH_SETTLEMENT.md#keeper-configuration-and-scheduling) for both conversion streams and maintenance.
+Follow the [LP ETH settlement procedure](LP_ETH_SETTLEMENT.md#operator-procedure) before sealing: bind a separate converter, review wrapper/routes/feeds, enable the guarded worker, and confirm exact source/native liability changes. It covers route rotation, dependency-independent stops, source-currency recovery, pending transaction reconciliation, restart and irreversible bindings. Read the converter's current `conversionLossBps()`; the default is 1% with a 10% hard maximum, gas separate. See [bounded scheduling](LP_ETH_SETTLEMENT.md#keeper-configuration-and-scheduling) for both conversion streams and maintenance.
 
 ## Local activation review during a busy refresh
 

@@ -1,0 +1,26 @@
+{
+  "scope": "Scoped offline keeper receipt/preflight regression. No network, real signer, journal, service or chain changes.",
+  "tests_run": 200,
+  "failures": 0,
+  "errors": 1,
+  "skipped": [
+    {
+      "test": "test_runtime_permissions_and_symlinks_fail_closed (tests_python.test_keeper_recovery.RecoveryTests.test_runtime_permissions_and_symlinks_fail_closed)",
+      "reason": "Unix runtime ownership and permissions required"
+    }
+  ],
+  "failed_ids": [
+    "test_pending_intent_save_failure_never_invokes_signer (tests_python.test_keeper_recovery.RecoveryTests.test_pending_intent_save_failure_never_invokes_signer)"
+  ],
+  "files": {
+    "keeper/monitor.py": "0d865d13088b4de2d515b42bb42907e515235ebfb1677636164892240e156f8c",
+    "keeper/ops.py": "cc8259b31755fdef6a1a4105b8cdcf73413a3cface28fa59e77f4c758349d227",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "tests_python/test_keeper_fees.py": "997c711b0836d6ad948d3e8b1aa45b784d08311ad339f08a7ba63390ebe679c7",
+    "tests_python/test_keeper.py": "d62816a19a65dc764d782b3f8794d69fbf8aef7ff7791800bfbfe9f8edb5d1bd",
+    "tests_python/test_metadata_keeper.py": "e57747d3e89888e28be63e447a684fbb7e0a10195ee3c6db40665d9dded90fbe",
+    "tests_python/test_keeper_recovery.py": "6bf1e29c639e4d1a2efbf0d80815ec3448604bc5054788e772dc24c12d2fcc1f",
+    "tests_python/test_keeper_ops.py": "79a944cd7c0844a16f44434886780e4f97920c08b4a6a691e536d766d8bbcc4c",
+    "tests_python/test_keeper_native.py": "de3c87393cf62a5b2e2458416e29d50c48a03dc84c3a789fcc3559f87e660e70"
+  }
+}

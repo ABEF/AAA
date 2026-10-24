@@ -1,0 +1,34 @@
+{
+  "kind": "exact function text including all shared unchanged helpers; no bytecode or broad regression equivalence claim",
+  "functions_sha256": {
+    "activePlan": "b68d154bc609f1adfd1f6dae4b4e4ca0097c3d3606d7776543ccc8e5c3b973a9",
+    "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares": "e0ae37259a15493807e22c74ac84f8643e526888b95293ad7f8681a71b5dc2f6",
+    "get": "26130a5b053c70e46b6ada8726b516d062d055d5870a6761a1667dc65f0caa88",
+    "_contribute": "4e3addf4ec3c0cf0cd8add54c06ba0c1db46a9773f458fa61f2a37af01b3cb68",
+    "_trade": "436d73a4ebba4a55557882400062c58310016fd8c27044f106a6a2e4de9c8179",
+    "changePriceDuringFinalReset": "8a4dac35ac67691ce3a47e03d1a0c6921217f63fb047806cee474566d8d6b374",
+    "_observe": "3472ae515745434095f389b7fe049d9f254e6f40e730141ade3347acdf29fe58",
+    "_claim": "e5125172ea003b636da04198dd6945aa7af7e3dd632b855f738e4a3a6137fe7d",
+    "contributionValue": "d8cbdedbf62ab3382649784c0e7add44aa155c32667ae7953d05884c126513d8",
+    "_royalty": "c43d860fc52b3559d4abf351832cccc429e6a2e097ea985365d2316fdde3bc15",
+    "_balanced": "044902a4d1beea1c34d8d44960b3e7bffd45e77a8c8ba848331b0a7bb4c45505",
+    "_settle": "93071d97d6c140e60fa159552714da8db86bdff3eaeb6e35dd1d591c42e3625a",
+    "_feeds": "f49429765f6d99b2606cc8e2a8915db6b1b0f8d3c1a64db155181854f2f3ad4e",
+    "unlockCallback": "bec735201330334bf9be7055132019ca38252871d46ab6763f80359620cb2a27",
+    "_assertBacking": "35dcd50e67a9b6d833b5387a660fe587f62111451b4decc429ee0e405e9c4bc8",
+    "setUp": "3717b058f65ba5d3b63b0736d76ed595ceb1c9dcaecec9dc859b69b0a1e39b75",
+    "accounting": "2f16c72a5df829d0a470535e12ebdfdedfed66320d4c1ce0513b208e9d0a6dfc",
+    "setRange": "9259ce888d1247d9018f914e15de77dee46bb8273dbfcf6884cb011006619e43",
+    "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate": "6efc4cc81749d435a5654369ff6e2fc8a10141421bc70b69b90b0a57f206269f",
+    "isNativePool": "c6e06dbd8ca4e17072b435887f15b74ec7afc117f494b650513dba0e9fb6c80c",
+    "_mint": "9f208c353e4228fbd112bc3cc0c8af745e66e6ef9b37e241927b916f1ba9329e"
+  },
+  "excluded_changed": [
+    "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees",
+    "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded"
+  ],
+  "reused_selected_fee_cases": [
+    "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+    "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()"
+  ]
+}

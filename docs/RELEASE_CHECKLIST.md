@@ -1,3 +1,11 @@
+**New activation gates (2026-10-25):** selected-fee thin-market feasibility and [signed review-cap binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open) remain open. Current Request has no caller maximum-loss expectation; public activation/growth signing must stay disabled until versioned Entry/API/wallet qualification.
+
+**Internal audit (2026-10-25):** [Keeper budget/preflight fixes, composition
+coverage and operator corrections](../reports/preproduction-audit-20261025/REVIEW.md)
+have scoped evidence. No existing public service/journal was upgraded, and no
+real dependencies, Linux host recovery, native website/OpenSea, future-chain
+transport or independent audit gate is closed. Decision remains **NOT APPROVED**.
+
 **Price-service observation (2026-10-25):** [Public ETH candidate and ZZZ pool estimate](../reports/price-reference-20261025/OBSERVATION.md) are dated research only. Actual dual policies, independent providers, proxy/product terms, costs and target-chain gas remain unqualified. No production addresses or approval changed; decision stays **NOT APPROVED**. Unchanged test evidence is reused.
 
 **Optimized-source review (2026-10-24):** [Bounded uptime reads and cost improvements](../reports/onchain-safety/VERIFICATION.md) have focused local evidence. Re-pin the exact current runtimes, independently review price/proxy/market assumptions and qualify actual max-state gas. No loss/size/gas gate is relaxed; no live source pair is approved. Decision remains **NOT APPROVED**.
@@ -44,7 +52,7 @@ files only. It does not deploy contracts, enable public wallet transactions,
 qualify production services or change this decision.
 
 **Decision: NOT APPROVED.** No production deployment, sealing or use of real
-funds is authorized by this document. Reviewed 2026-10-20.
+funds is authorized by this document. Reviewed 2026-10-25.
 
 The [2026-10-20 manual acceptance and priority decision](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
 records six user-reported local two-wallet passes and defers the dedicated

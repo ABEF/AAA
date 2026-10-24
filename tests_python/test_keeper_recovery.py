@@ -166,7 +166,7 @@ class RecoveryTests(unittest.TestCase):
             signer.assert_not_called()
 
     def test_pending_intent_save_failure_never_invokes_signer(self):
-        self.k.live=True;self.k.state['next_nonce']=7
+        self.k.live=True;self.k.fee_policy='included';self.k.state['next_nonce']=7
         self.k.state['receipt_anchor']={'number':98,'hash':H,'timestamp':self.rpc.now,'nonce':6}
         self.k._validate_code_hashes=lambda:None
         with patch.object(self.k,'save',side_effect=OSError('disk full')),patch('subprocess.run') as signer:

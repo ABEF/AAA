@@ -1,0 +1,73 @@
+{
+  "head": "214d9a104643df0643a21ceec6970329f3525d3f",
+  "kind": "read-only committed HEAD confirmation; no speculative ABI or policy rewrite",
+  "files": {
+    "src/ZZZActivationEntry.sol": {
+      "committed_blob_sha256": "3c6af26a96d8bfa33e25ea88cc54d67dad225e1f2020e906ef1750c260a86bc2",
+      "working_bytes_sha256": "3c6af26a96d8bfa33e25ea88cc54d67dad225e1f2020e906ef1750c260a86bc2",
+      "normalized_working_equals_committed": true,
+      "evidence_lines": {
+        "struct Request {": [
+          53
+        ],
+        "uint128 minimumLiquidity;": [
+          60
+        ],
+        "function execute(Request calldata request)": [
+          222
+        ]
+      }
+    },
+    "src/ZZZContributionPricing.sol": {
+      "committed_blob_sha256": "76c522f977a86849c06020e300c449b740ae9e3097107242de26076eaceab406",
+      "working_bytes_sha256": "76c522f977a86849c06020e300c449b740ae9e3097107242de26076eaceab406",
+      "normalized_working_equals_committed": true,
+      "evidence_lines": {
+        "basis.limits =": [
+          78
+        ],
+        "uint16 cap =": [
+          76
+        ],
+        "function beginEntry": [
+          99
+        ],
+        "uint256 required =": [
+          211
+        ]
+      }
+    },
+    "frontend_api/activation.py": {
+      "committed_blob_sha256": "68650562f4882d1a7bf0c49a4715486009bc0ca2fad770c00b377b20d7516a2a",
+      "working_bytes_sha256": "68650562f4882d1a7bf0c49a4715486009bc0ca2fad770c00b377b20d7516a2a",
+      "normalized_working_equals_committed": true,
+      "evidence_lines": {
+        "req['execution_loss_bps'] = 100": [
+          182
+        ],
+        "req['execution_loss_bps']=loss": [
+          188
+        ],
+        "ceil_floor=lambda value": [
+          247
+        ],
+        "req['minimum_lp']=ceil_floor": [
+          248
+        ],
+        "'execution_limit_bps':req['execution_loss_bps']": [
+          267
+        ]
+      }
+    },
+    "frontend_api/activation_trace.py": {
+      "committed_blob_sha256": "e3b305f6723221175f41a5ce8c181be02154062a457abba53cafca759077af38",
+      "working_bytes_sha256": "e3b305f6723221175f41a5ce8c181be02154062a457abba53cafca759077af38",
+      "normalized_working_equals_committed": true,
+      "evidence_lines": {
+        "slippage >> 16 != loss": [
+          275
+        ]
+      }
+    }
+  }
+}
