@@ -1,3 +1,26 @@
+## Native production preflight publication - 2026-10-24
+
+Contract tooling7e6702d and website memory-onlyed966e4 are pushed on main;
+exact remote hashes verified. Publication is recorded separately below. The
+schema-5 native/accounting-V2/routing-V2/governed gate and bounded read-only
+observer are implemented, with actual pins/bindings/caps/source/routes/ledger
+observations separated from approved policy and qualification.
+
+73 distinct focused Python cases pass across scoped runs. All131 prior source/
+test bindings match; unchanged Solidity/build/size/fork suites were reused,
+not rerun. No fresh full regression, actual provider or independent approval.
+Historical qualification retains its real block and current configuration/fee
+scope; current snapshots/history remain separate. Actual addresses, feeds/routes,
+VRF/services/OpenSea/artwork, gas/recovery and audit remain open. Example blocked;
+production NOT APPROVED.
+
+No Solidity, website source/build/server, existing8902/Anvil/NFT/LP/balances/
+journals/dist overlay, shared signer, service or monitor change. Public DEPLOYMENT
+null; signing Anvil-only; monitor paused. Main only; older drafts preserved.
+Sole Todo/features/roadmap/operator guidance and both memories are updated.
+
+[Publication](reports/native-preflight/PUBLICATION.md), [verification](reports/native-preflight/VERIFICATION.md) and [operator runbook](docs/PRODUCTION_PREFLIGHT.md).
+
 ## Native V2 production preflight checkpoint - 2026-10-24
 
 The [schema-5 runbook](docs/PRODUCTION_PREFLIGHT.md), native/accounting-V2/routing-V2/governed inventory and bounded
