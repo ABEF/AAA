@@ -35,10 +35,10 @@ interface IZZZRewards {
     function isAsset(address token) external view returns (bool);
     function checkpointAll(uint256 id) external;
     function checkpointOwner(uint256 id) external;
-    function creditPool(uint256 bucketId, address token, uint256 individual, uint256 collective) external;
+    function creditPool(uint256 bucketId, address token, uint256 individual, uint256 collective) external payable;
 }
 interface IZZZFees {
-    function allocate(uint256 id, address token, uint256 amount) external;
+    function allocate(uint256 id, address token, uint256 amount) external payable;
     function syncExternal(uint256 bucketId) external;
     function syncAllExternal() external;
     function hasPendingExternal() external view returns (bool);
@@ -46,7 +46,7 @@ interface IZZZFees {
     function releaseCompound(uint256 id, address token) external returns (uint256);
     function flushDust(uint256 id, address token) external;
     function releaseBuyback(address token, uint256 amount) external;
-    function creditRemote(uint256 id, address token, uint256 individual, uint256 collective) external;
+    function creditRemote(uint256 id, address token, uint256 individual, uint256 collective) external payable;
     function bindRemoteAsset(uint256 id, address token, address canonicalToken) external;
     function allocated(uint256 bucketId, address canonicalToken) external view returns (uint256, uint256);
     function importAccounting(BridgeMessage calldata message) external;
@@ -55,8 +55,8 @@ interface IZZZFees {
 interface IZZZPools {
     function activationEntry() external view returns (address);
     function get(bytes32 poolId) external view returns (PoolConfig memory);
-    /// @notice Canonical ERC20 accounting assets in the actual venue's slot order.
-    /// Native venue currency is normalized only by the reviewed liquidity adapter.
+    /// @notice Actual accounting assets in venue slot order. Zero is admitted
+    /// native ETH, distinct from any wrapped ERC20 and from an unset pool.
     function accounting(bytes32 poolId) external view returns (PoolConfig memory);
     function contributionValue(bytes32 poolId, uint256 amount0, uint256 amount1) external view returns (uint256);
 }
@@ -82,13 +82,13 @@ interface IZZZStrategy {
 }
 interface IZZZLiquidity {
     function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
-        uint128 minimumLiquidity, uint256 deadline) external returns (uint256 tokenId, uint256 spent0, uint256 spent1);
+        uint128 minimumLiquidity, uint256 deadline) external payable returns (uint256 tokenId, uint256 spent0, uint256 spent1);
     function increase(bytes32 poolId, uint256 tokenId, uint256 amount0, uint256 amount1,
-        uint128 minimumLiquidity, uint256 deadline) external returns (uint256 spent0, uint256 spent1);
+        uint128 minimumLiquidity, uint256 deadline) external payable returns (uint256 spent0, uint256 spent1);
     function collect(bytes32 poolId, uint256 tokenId, uint256 deadline) external;
     function close(bytes32 poolId, uint256 tokenId, uint256 deadline) external;
     function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
-        external returns (uint256 amountOut);
+        external payable returns (uint256 amountOut);
     function amounts(uint256 tokenId) external view returns (uint256 amount0, uint256 amount1);
     function ticks(uint256 tokenId) external view returns (int24 lower, int24 upper);
     function spot(bytes32 poolId) external view returns (uint160);
@@ -108,8 +108,8 @@ interface IZZZVault {
     function MAX_BUCKETS() external view returns (uint256);
     function bucketAt(uint256 index) external view returns (uint256);
     function mintDormant() external payable returns (uint256 id);
-    function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external;
-    function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external;
+    function activate(uint256 id, bytes32 poolId, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external payable;
+    function increase(uint256 id, uint256 amount0, uint256 amount1, uint128 minimumLiquidity, uint256 deadline) external payable;
     function park(uint256 id, uint256 deadline) external;
     function resume(uint256 id, bytes32 poolId, uint128 minimumLiquidity, uint256 deadline) external;
     function compound(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
@@ -117,8 +117,6 @@ interface IZZZVault {
         external returns (uint256 amount0, uint256 amount1);
     function importPending(uint256 id, bytes32 poolId, Position calldata origin, uint256 shares, bytes32 homePool,
         uint256 amount0, uint256 amount1) external;
-    function finalizeImport(uint256 id, uint128 minimumLiquidity, uint256 deadline) external;
-    function confirmMigration(uint256 id, uint256 destinationChain, address destinationVault) external;
     function movePool(uint256 id, bytes32 newPool, uint128 minimumLiquidity, uint256 deadline) external;
 }
 interface IZZZRoutes {

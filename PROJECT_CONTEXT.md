@@ -1,3 +1,24 @@
+## Native ETH accounting V2 candidate - 2026-10-24
+
+Native V2 is now implemented locally, superseding the older notes saying no port
+exists. Read [implementation and scoped evidence](reports/native-eth-port/VERIFICATION.md)
+and [internal review](reports/native-eth-port/REVIEW.md). Actual ETH identity spans
+Entry, Vault, manager, fee reserves, indexed owner/collective rewards, claims,
+buyback, raw exit/return and two-stage canonical funding/abort. Explicit native
+API/keeper version profiles preserve legacy WETH epochs and existing journals.
+
+Preserve1% contribution/reward conversion,3% ordinary maintenance and separate gas.
+ZZZ still needs a cheaper qualified conversion route. Atomic ETH/WETH conversion
+and legacy V1 canonical import remain unsupported and fail closed. Native website
+profile, release inventory, actual routes/feeds/VRF, fork/services and independent
+audit remain open. Production NOT APPROVED; public contracts undeployed.
+
+No website code/build/server, existing8902/Anvil/NFT/LP/balances/journals/dist overlay,
+shared signer policy or paused monitor changed. Public DEPLOYMENT stays null;
+shared signing is Anvil-only. Main only; preserve older unrelated drafts. Maintain
+sole Todo/features/roadmap/operator guide and both memories. Read Git and the
+separate publication receipt before claiming this candidate pushed.
+
 ## Audit publication and native port handoff - 2026-10-24
 
 Contract audit fixes `e6b5872` and website memory-only `7849376` are pushed

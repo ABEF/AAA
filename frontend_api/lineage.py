@@ -36,11 +36,15 @@ class Lineage:
         contracts = {c.address for c in current.contracts.values()}
         total_events = current.history.max_events
         for item in items:
-            _keys(item, {'deployment_block', 'deployment_block_hash', 'contracts', 'assets',
-                         'history', 'retirement_transaction_hash'}, 'predecessor')
+            fields = {'deployment_block', 'deployment_block_hash', 'contracts', 'assets',
+                      'history', 'retirement_transaction_hash'}
+            if isinstance(item, dict) and ('accounting_version' in item or current.accounting_version == 2):
+                fields.add('accounting_version')
+            _keys(item, fields, 'predecessor')
             # Do not inherit a successor's new ledger ABI/profile or converter
             # into an older deployment. Historical event replay needs no new getters.
-            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history')}
+            previous_config = {k: v for k, v in config.items() if k not in ('predecessors', 'history', 'royalty_reporting', 'earnings_history', 'accounting_version')}
+            previous_config['accounting_version'] = item.get('accounting_version', 1)
             previous_config.update({k: v for k, v in item.items() if k != 'retirement_transaction_hash'})
             previous = Projection(previous_config, current.rpc, clock=current.clock)
             addresses = {c.address for c in previous.contracts.values()}

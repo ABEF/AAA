@@ -69,7 +69,7 @@ production values have been selected or inferred by this implementation.
 | `transaction_fee_review`, `activation_fee_review` | Reviewed complete-network-fee policy hashes, including applicable chain-specific fee components. |
 | `contracts` | `access`, `nft`, `vault`, `entry`, `claim_router`, `oracle`; each has exact lowercase `address` and full `runtime_code`. Never substitute a mock or proxy implementation without reviewing the boundary. |
 | `pool_id` | The one currently admitted contribution pool. Switching pools requires matching on-chain, API and website review; no arbitrary user pool selection. |
-| `input_assets` | Up to four entries: `symbol` (ETH/ZZZ/USDC/USDG), `address`, `valuation_asset`, `decimals`, `route_id`, `enabled`, and ERC20 `runtime_code`. Native ETH uses address zero, 18 decimals and the reviewed native accounting asset for valuation. WETH is not a second input selector. |
+| `input_assets` | Up to four entries: `symbol` (ETH/ZZZ/USDC/USDG), `address`, `valuation_asset`, `decimals`, `route_id`, `enabled`, and ERC20 `runtime_code`. The existing website profile uses zero input plus a nonzero legacy valuation asset. Native V2 zero-asset valuation still requires a separately reviewed website profile; do not deploy a V2 backend under this old manifest. WETH is not a second input selector. |
 | `reward_assets` | Exact admitted currency address/symbol/decimals inventory. A new or changed currency cannot silently reuse an old label/precision. |
 | `limits` | `gas` integer plus decimal-string `gas_price_wei`, `network_fee_wei`, `native_value_wei`, `contribution_usd_18`. These are hard preparation bounds, not approval of public spending. |
 

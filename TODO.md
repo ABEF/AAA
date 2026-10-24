@@ -45,6 +45,7 @@ Custody, ownership and reward accounting.
   - The earlier [source-only claim audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) describes the pre-conversion revision. Current candidate evidence belongs in [LP ETH verification](reports/lp-eth-settlement/VERIFICATION.md); local fixtures do not qualify public routes or independent security.
   - Local ETH-only default claims, pending source-currency display, exact native backing/abort and current-owner same-chain handoff are verified in the scoped report. Qualify complete real-market conversion and operating latency before closing this task.
   - User reconfirmed on 2026-10-24: retain 1% maximum ZZZ LP-reward conversion loss, gas separate; require a cheaper qualified route than the selected pool's approximately 1.101% observed fee. Unsupported conversion stays unavailable with source balances backed; do not raise the cap or invent a route.
+  - Native V2 venue ETH fees now enter individual/collective indices directly, without conversion. Already converted ETH credits coexist without new-income double counting. ZZZ still requires a cheaper qualified conversion route; the 1% limit and separate gas are unchanged.
 
   </details>
 
@@ -94,6 +95,7 @@ Custody, ownership and reward accounting.
   - Use the [integration campaign](docs/INTEGRATION_CAMPAIGN.md) and [read-only observations](reports/activation-route-observation/VERIFICATION.md): one $1 conversion snapshot is not $100 activation qualification. Include subsequent LP costs in the same 1% limit, separate gas, qualified ZZZ pricing and complete operation simulation. Public transaction testing has not run; the isolated $1 build remains local only.
   - Track team-dependent feed, market and liquidity questions in [Creator tasks / ZZZ team](TODO.md#creator-tasks--zzz-team). Team responses do not replace independent route/feed qualification.
   - Implemented: fixed $100 activation / $5 increase floors in original-source Entry and the direct Vault helper, with higher pool minima retained. Qualify complete $5 routes at 99% marginal LP and separate gas, including real token units, depegs and execution costs. See [minimums and operator controls](docs/CONTRIBUTION_MINIMUMS.md).
+  - Native V2 accepts actual ETH at asset zero with explicit policy and independent feed; exact Entry/Vault/manager call values are checked. Native V2 read/preparation profiles do not require WETH for ETH. Old local fixtures and prior WETH route evidence retain their original scope; current v3 conversions cannot output native ETH directly.
 
   </details>
 
@@ -129,12 +131,13 @@ Custody, ownership and reward accounting.
   - The immutable read-only custody validator and all normal runtime/initcode gates must be bound to exact source evidence. The latest custody work needs its own fresh Anvil rehearsal; earlier Anvil tests do not qualify it.
   - Selected hookless pool: verify actual native ETH to WETH and fee-tier LP moves, source/destination ownership, fixed-price 3% cap, recipient segregation and separate contribution cutover. The moveFunds alias adds no arbitrary external transfer capability; regular-address custody uses the existing reviewed exit request.
   - Use the audited park-first procedure for separately mined exit approvals: external swaps can change an Active snapshot despite PoPL pause. Preserve the original rounded-up pre-parking ZZZ minimum as well as the parked approval floor. Separate parking/approval does not automatically share one cached on-chain budget; snapshot and raw/normal safeguards stay strict.
+  - Native V2 raw exit/return is ETH/ZZZ and wrapper-independent, with exact payable return funding. It remains dependent on usable venue/token/runtime bindings. Atomic ETH/WETH moves are rejected pending an explicit conversion boundary; external governed custody completion is a separate workflow.
 
   </details>
 
 <a id="task-native-custody-recovery"></a>
 
-- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native ETH architecture and its cross-contract/backend threat model are specified and internally reviewed. The implementation remains WETH-based; raw exit is still wrapper-dependent. Implement the complete versioned native port with exact funding, indexed rewards, historical backing, canonical transfer/abort and native-aware service traces; qualify it before sealing.
+- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native accounting V2 is implemented in the undeployed candidate: actual ETH funding/custody, indexed fee rewards, reserves, raw exit/return and versioned canonical backing/abort. Focused local evidence and explicit API/keeper version profiles exist. Complete the explicit atomic ETH/WETH boundary, website profile, final native fork/gas/service qualification and independent review before sealing; legacy-schema import is rejected.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -143,6 +146,7 @@ Custody, ownership and reward accounting.
   - Implement the native architecture with exact payable ingress and ETH/token deltas, explicit custody authorization, immutable NFT shares and backed liabilities. Handle recipient failure atomically and prohibit sweeping prefunds, unsolicited ETH or another ledger.
   - Review normal exit, full recovery, local completion, fee/royalty currencies and future ETH/WETH moves together. Qualify affected code sizes, adverse callbacks and isolated venue execution; no bypass of a broken pool or nontransferable ZZZ can be promised.
   - Broader native redesign design-audit findings are explicit in docs/NATIVE_ETH_ARCHITECTURE.md: zero/unset identities; native indices and existing credits; historical native compound/dust and33-slot loops; two-stage canonical funding/abort; nonduplicated receiver protection; transitive wrapper independence; per-epoch schema/backend/price/trace profiles; and native recipient callbacks. These are implementation/verification blockers, not closed by the current WETH tests.
+  - [Native V2 implementation and scoped evidence](reports/native-eth-port/VERIFICATION.md): exact payable ingress, native indices with converted credits, 33-asset historical reserves, distinct receiver protection, two-stage canonical funding/abort and forced-ETH exclusion. Do not combine old WETH modules/epochs with V2 or reset existing local journals. Same-actual-pair fee-tier moves remain supported; atomic ETH/WETH conversion needs a reviewed explicit boundary and currently fails closed.
 
   </details>
 
@@ -262,6 +266,7 @@ The data and services behind the app.
   - [Concurrent service safeguards](docs/CONCURRENT_SERVICES.md) are implemented: per-process worker/connection caps, no work queue, absolute ingress/header bounds, sanitized overload and failed-cleanup quarantine. [Scoped evidence](reports/concurrent-services/VERIFICATION.md) records real loopback burst/isolation and process cleanup checks. Qualify actual Linux/RPC/history/trace behavior within configured limits, per-client fairness, reverse-proxy limits, aggregate provider budget and supervised restart before hosting; no signer or public endpoint added.
   - Implemented [per-client admission and proxy operation](docs/API_INGRESS.md), with 50 distinct affected Python cases across two scoped runs and 22 real Nginx/loopback assertions. Qualify actual Linux/TLS/default-host/CDN policy, shared-NAT client behavior, aggregate provider quotas, log retention and bounded frontend retries before opening public ingress. Local HTTP evidence does not approve hosting.
   - Decision 2026-10-20: the dedicated 10/25/100-user capacity campaign is [deferred](TODO.md#task-capacity-campaign). Keep basic overload safety, bounded independent workers, safe recovery and qualification of configured hosting/RPC limits before real funds. Capacity stays unverified; the disposable shared signer is not a production service.
+  - Native V2 API and keeper configurations require explicit accounting_version2, reviewed runtimes and deployment identity; legacy predecessor profiles remain explicit. Qualify the website native valuation profile, complete production inventory and provider traces before activation. Do not reinterpret old state journals or change Anvil-only signing.
 
   </details>
 
@@ -913,4 +918,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `c0a6bac57f0d7b239c71c76d8b31d275d27ec95fed4db82338b427c66d2434b4`.
+Snapshot SHA-256: `02e1e62e9e4a87fe6b3b110f0b35a362bbb3222a3df56c4cf0d5d8e0ee5664ff`.

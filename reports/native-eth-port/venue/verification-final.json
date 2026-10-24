@@ -1,0 +1,39 @@
+{
+  "native_foundation": {
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "log": "native-foundation-final.log",
+    "scope": "Final manager ingress guard; deterministic existing Boundary settlement; no livevenue/providerqualification."
+  },
+  "backend_affected": {
+    "passed": 102,
+    "failed": 0,
+    "log": "backend-affected.log",
+    "modules": [
+      "tests_python.test_frontend_api",
+      "tests_python.test_frontend_activation",
+      "tests_python.test_frontend_lineage",
+      "tests_python.test_earnings"
+    ]
+  },
+  "backend_new": {
+    "distinct_passed": 11,
+    "scope": "Initial8pass and1WindowsSQLitefixturecleanup error; explicitfixtureclosefixedandonlythatcase reranpass;added32ERC20/nativeinventory testcase pass. No fullfresh10case run is claimed. One added nativeLP+royalties same-currency/no-double-income replay case passed separately."
+  },
+  "source_sha256": {
+    "src/ZZZLiquidityManager.sol": "d18ab78fb70e04cf279dd730eb09574745df83ae5aab58ff9ecb8bff22d9dda8",
+    "src/ZZZPoolRegistry.sol": "c4df35f6c3e799149c54c53e44908993f40514ae9d7741ba4d561f187d3c5561",
+    "src/ZZZOracle.sol": "98ba5dededee7912219dad86b2ccc9691d16174b933b5173cebab544fe854a0a",
+    "src/ZZZActivationAssets.sol": "2e42802e8009696d83538b3875bfafd8ea3ac3bbe47d0ea1578f736bf2d36d75",
+    "test/NativeAssetFoundation.t.sol": "a4f8aee0d6d2110d43077cef7e9bb01b20eb98b4cddd898496b3c39d36ad4f10",
+    "frontend_api/service.py": "290ccca8dc20247e55ac1ccd4321ab4bd2d8a1bca600443f5165afc9d5773b55",
+    "frontend_api/lineage.py": "025b4c0677f94aab886708896d1bb58b810543d15330420779eace4e53711221",
+    "frontend_api/activation_config.py": "dd4285a2768e7109f6fdcc467c1d340ae85cb96e2cf58964155132cdb32390ee",
+    "frontend_api/activation.py": "a773c7148858b9053936e1d1326b5cb9a9adafefb1a30dddbecc752f1a7bc8b1",
+    "frontend_api/activation_trace.py": "ddbc9ed28f7ebe0a193189fe47dec0c7555c348cfa6356accf00df898a081bfc",
+    "frontend_api/liquidity_context.py": "c48948a28cf495a789ae8ea284a6cd9c981093cc2a752087140208fb40f10f89",
+    "frontend_api/earnings_prices.py": "25d64d0550b7e5b716b93dae807cd598683e350d8b536e565f8b4ac90ff92ac4",
+    "tests_python/test_native_backend_boundary.py": "316741f6fccb2972a4e0092d28887ebdc56d9bf531d79942ce1ec9eb9383c05a"
+  }
+}

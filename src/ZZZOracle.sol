@@ -67,9 +67,9 @@ contract ZZZOracle is ZZZModule {
         // healthy unchanged status must not expire based on updatedAt age.
     }
     function setFeed(address token, address feed, uint32 maxAge) external onlyGovernance {
-        if (token.code.length == 0 || feed.code.length == 0 || maxAge == 0 || maxAge > 1 days) revert InvalidConfiguration();
+        if ((token != address(0) && token.code.length == 0) || feed.code.length == 0 || maxAge == 0 || maxAge > 1 days) revert InvalidConfiguration();
         uint8 fd = IPriceFeed(feed).decimals();
-        uint8 td = IERC20Metadata(token).decimals();
+        uint8 td = token == address(0) ? 18 : IERC20Metadata(token).decimals();
         if (fd > 18 || td > 18) revert InvalidConfiguration();
         feeds[token] = Feed(feed, maxAge, fd, td);
         emit FeedConfigured(token, feed, maxAge);

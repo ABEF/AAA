@@ -59,10 +59,13 @@ contract ZZZMigrationBudget {
             IZZZCanonicalAccess(address(access)).canonicalState() != 2 || compositionEpoch[id] != 0) revert Unauthorized();
         compositionEpoch[id] = epoch;
     }
+    function _balance(address asset) private view returns(uint256) {
+        return asset==address(0)?vault.balance:IERC20(asset).balanceOf(vault);
+    }
     function assertIdle(uint256 id) external view onlyVault {
         (address a,address b) = poolTokens(IZZZVault(vault).group(id).poolId);
-        if (IERC20(a).balanceOf(vault) < IMigrationIdle(vault).totalIdle(a) ||
-            IERC20(b).balanceOf(vault) < IMigrationIdle(vault).totalIdle(b)) revert InvalidState();
+        if (_balance(a) < IMigrationIdle(vault).totalIdle(a) ||
+            _balance(b) < IMigrationIdle(vault).totalIdle(b)) revert InvalidState();
     }
     function validateCanonicalWriter(address caller) external view onlyVault {
         if (caller != access.module(Ids.VAULT_CANONICAL) || IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert Unauthorized();
@@ -157,9 +160,14 @@ contract ZZZMigrationBudget {
         Position memory p = IZZZVault(vault).group(id);
         (address token0, address token1) = poolTokens(p.poolId);
         address manager = IZZZLiquidity(access.module(Ids.LIQUIDITY)).positionManager();
-        if (spent0 > a0 || spent1 > a1 || IERC20(token0).balanceOf(vault) + spent0 != before0 ||
-            IERC20(token1).balanceOf(vault) + spent1 != before1 ||
+        if (spent0 > a0 || spent1 > a1 || _balance(token0) + spent0 != before0 ||
+            _balance(token1) + spent1 != before1 ||
             IPositionManagerMinimal(manager).ownerOf(p.lpTokenId) != vault) revert InvalidState();
+    }
+    function validateNativeSender(address sender) external view onlyVault returns (bool liquidityCredit) {
+        liquidityCredit = sender == access.module(Ids.LIQUIDITY);
+        if (!liquidityCredit && sender != access.module(Ids.FEES) &&
+            sender != access.module(Ids.VAULT_CANONICAL)) revert Unauthorized();
     }
     function validateLPReceiver(address sender) external view onlyVault {
         address manager = access.module(Ids.LIQUIDITY);
@@ -193,6 +201,21 @@ contract ZZZMigrationBudget {
         if (minimumLiquidity == 0 || oldConfig.key.currency0 != nextConfig.key.currency0 ||
             oldConfig.key.currency1 != nextConfig.key.currency1 || !nextConfig.operationsEnabled) revert InvalidConfiguration();
     }
+    function validateUnwind(uint256 id) external view onlyVault {
+        IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault).group(id).poolId);
+    }
+    function validateRelease(uint256 id) external view onlyVault {
+        Position memory p = IZZZVault(vault).group(id);
+        if (p.status != PositionStatus.Parked || p.lpTokenId != 0 ||
+            p.homeChain != block.chainid || p.homeVault != vault) revert InvalidState();
+    }
+    function validateHandoff(uint256 id) external view onlyVault {
+        Position memory p = IZZZVault(vault).group(id);
+        if (p.status != PositionStatus.Outbound || p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0) revert InvalidState();
+    }
+    function validateRebalance(uint256 id, uint128 minimumLiquidity) external view onlyVault {
+        if (minimumLiquidity == 0 || !IZZZStrategy(access.module(Ids.STRATEGY)).needsRebalance(id)) revert InvalidState();
+    }
     function idleValue(uint256 id) public view returns (uint256) {
         Position memory p = IZZZVault(vault).group(id);
         (address token0, address token1) = poolTokens(p.poolId);
@@ -207,11 +230,25 @@ contract ZZZMigrationBudget {
     /// A looser overall request is tightened here, not passed to an adapter that
     /// must reject it. This never relaxes the original Migration 97% guarantee.
     function handoffMinimum(uint256 id,address input,address output,uint256 amount,uint256 requested)
-        external view onlyVault returns(uint256) {
+        public view onlyVault returns(uint256) {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
         uint256 floor = Math.mulDiv(IZZZOracle(access.module(Ids.ORACLE)).quote(input,output,amount),
             10000-c.maxSlippageBps,10000);
         return Math.max(requested,floor);
+    }
+    struct HandoffSwap { bool direction; address input; uint256 amount; uint256 held; uint256 minimum; }
+    /// @dev Read-only extraction; custody, approval and exact sends stay in Vault.
+    function handoffPlan(uint256 id,address zzz,uint256 minimumZZZ) external view onlyVault returns(HandoffSwap memory plan) {
+        Position memory p = IZZZVault(vault).group(id);
+        if (!access.paused() || p.status != PositionStatus.Parked || p.lpTokenId != 0) revert InvalidState();
+        (address t0,address t1) = poolTokens(p.poolId);
+        if (zzz == address(0) || (zzz != t0 && zzz != t1)) revert InvalidConfiguration();
+        plan.direction = zzz == t1;
+        plan.input = plan.direction ? t0 : t1;
+        plan.amount = plan.direction ? p.idle0 : p.idle1;
+        plan.held = plan.direction ? p.idle1 : p.idle0;
+        if (plan.amount != 0) plan.minimum = handoffMinimum(id,plan.input,zzz,plan.amount,
+            minimumZZZ > plan.held ? minimumZZZ-plan.held : 1);
     }
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
         uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint16 maxSlippageBps) {
@@ -244,10 +281,10 @@ contract ZZZMigrationBudget {
         if (compositionEpoch[id] == 0) return 0;
         (address a,address b) = poolTokens(IZZZVault(vault).group(id).poolId);
         IPairAssets admitted = IPairAssets(access.module(Ids.REWARDS));
-        if (admitted.assetCount() > 32) revert InvalidState();
+        if (admitted.assetCount() > 33) revert InvalidState();
         for (uint256 i; i < admitted.assetCount(); ++i) {
             address token = admitted.assets(i);
-            if (token == address(0) || token == a || token == b) continue;
+            if (token == a || token == b) continue;
             uint256 amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(id,token);
             if (amount != 0) value += IZZZOracle(access.module(Ids.ORACLE)).value(token,amount);
         }

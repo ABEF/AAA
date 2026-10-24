@@ -1,0 +1,30 @@
+Compiling 8 files with Solc 0.8.26
+Solc 0.8.26 finished in 65.60s
+Compiler run successful with warnings:
+Warning (5159): "selfdestruct" has been deprecated. Note that, starting from the Cancun hard fork, the underlying opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NativeLiquidity.t.sol:121:75:
+    |
+121 | contract BoundaryForce { constructor(address payable recipient) payable { selfdestruct(recipient); } }
+    |                                                                           ^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T17:49:08.815503Z  WARN traces::etherscan: etherscan config not found
+
+Ran 9 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NativeAssetFoundation.t.sol:NativeAssetFoundationTest
+[PASS] testNativeCollectAndDisabledClosePayETHWithFailedWrapper() (gas: 854450)
+[PASS] testNativeERC20PullCannotInjectETHToReduceReportedNativeSpend() (gas: 229624)
+[PASS] testNativeETHOracleAndSourceAdmissionAreDistinctFromWETH() (gas: 3755425)
+[PASS] testNativeInputAndOutputSwapHaveExactBudgetsAndRetainPrefunds() (gas: 601644)
+[PASS] testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper() (gas: 797255)
+[PASS] testNativeMissingOrExtraValueCannotUseForcedPrefund() (gas: 228562)
+[PASS] testNativePartialSettlementAndUnexpectedETHRevertAtomically() (gas: 682512)
+[PASS] testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice() (gas: 779266)
+[PASS] testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP() (gas: 423296)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 5.19ms (15.82ms CPU time)
+
+Ran 1 test suite in 6.57ms (5.19ms CPU time): 9 tests passed, 0 failed, 0 skipped (9 total tests)

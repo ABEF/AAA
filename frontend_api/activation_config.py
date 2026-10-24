@@ -10,6 +10,7 @@ from zzz_ops.abi import address, calldata, keccak256
 from zzz_ops.state import integer
 
 ZERO_HASH = '0x' + '0' * 64
+NATIVE_ASSET_CODE_HASH = '0x' + keccak256(b'ZZZ_NATIVE_ETH_V1').hex()
 MODULES = {'pools': 'ZZZPoolRegistry', 'oracle': 'ZZZOracle', 'liquidity': 'ZZZLiquidityManager',
            'strategy': 'ZZZStrategy', 'fees': 'ZZZFeeController', 'membership': 'ZZZMembership',
            'migration': 'ZZZMigration'}
@@ -42,13 +43,21 @@ class ActivationConfig:
         addresses = [c.address for c in self.contracts.values()] + [c.address for c in projection.contracts.values()]
         if len(addresses) != len(set(addresses)):
             raise ValueError('Activation protocol bindings must have distinct addresses')
+        self.accounting_version = projection.accounting_version
         self.tokens = {}
-        for token in bounded(config['tokens'], 32, 'token inventory', 2):
+        for token in bounded(config['tokens'], 33 if self.accounting_version == 2 else 32, 'token inventory', 2):
             _keys(token, {'address', 'code_hash', 'decimals', 'feed', 'feed_code_hash',
                           'feed_decimals', 'max_age'}, 'activation token')
             token = dict(token)
-            token['address'] = address(token['address']); token['feed'] = address(token['feed'])
-            for key in ('code_hash', 'feed_code_hash'): token[key] = _hash(token[key])
+            native = self.accounting_version == 2 and token['address'] == ZERO
+            token['address'] = ZERO if native else address(token['address'])
+            token['feed'] = address(token['feed'])
+            if native:
+                if token['code_hash'] is not None or token['decimals'] != 18:
+                    raise ValueError('Native ETH requires 18 decimals and no token runtime pin')
+            else:
+                token['code_hash'] = _hash(token['code_hash'])
+            token['feed_code_hash'] = _hash(token['feed_code_hash'])
             for key in ('decimals', 'feed_decimals'):
                 if integer(token[key], key) > 18: raise ValueError('Unsupported token/feed decimals')
             if not 1 <= integer(token['max_age'], 'feed max age') <= 86400:
@@ -56,6 +65,8 @@ class ActivationConfig:
             if token['address'] in self.tokens or token['address'] in addresses or token['feed'] in addresses:
                 raise ValueError('Repeated token or protocol/dependency collision')
             self.tokens[token['address']] = token
+        if len(set(self.tokens) - {ZERO}) > 32:
+            raise ValueError('At most 32 ERC20 input currencies are supported')
         self.dependencies = {}
         for item in bounded(config['dependencies'], 64, 'dependency inventory', 1):
             _keys(item, {'address', 'code_hash'}, 'dependency')
@@ -135,8 +146,10 @@ class ActivationConfig:
         for target in set(used_tokens):
             if target not in self.tokens: raise ProjectionError('Input/pool currency is not reviewed')
             t = self.tokens[target]
-            p._code(target,t['code_hash'],block); p._code(t['feed'],t['feed_code_hash'],block)
-            if int(p._call(target,'decimals()',block=block)[0],16) != t['decimals']:
+            if target != ZERO:
+                p._code(target,t['code_hash'],block)
+            p._code(t['feed'],t['feed_code_hash'],block)
+            if target != ZERO and int(p._call(target,'decimals()',block=block)[0],16) != t['decimals']:
                 raise ProjectionError('Token decimals changed')
             feed = read('oracle','feeds(address)',target,count=4)
             if (_address_word(feed[0]) != t['feed'] or [int(x,16) for x in feed[1:]] != [t['max_age'],t['feed_decimals'],t['decimals']] or

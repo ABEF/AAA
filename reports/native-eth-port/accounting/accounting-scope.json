@@ -1,0 +1,333 @@
+{
+  "scope": "Native accounting modules; local offline Solidity only. Not a fresh full regression, live venue fork, service qualification or release approval.",
+  "native_cases": {
+    "initial_run": {
+      "passed": 12,
+      "failed": 0,
+      "record": "Forge stdout observed through exec session 47328; this compact record is a transcription, not raw Forge JSON."
+    },
+    "additional_run": {
+      "passed": 2,
+      "failed": 0,
+      "fuzz_runs": 1000,
+      "record": "Forge stdout observed through exec session 39708: native codec roundtrip and native fee chunking conservation."
+    },
+    "source_prefund_grief_regression": {
+      "passed": 1,
+      "record": "The new33-currency source/destination prefund abort+recapture test is included in the final four-case rerun below."
+    },
+    "distinct_total": 15
+  },
+  "affected_existing_before_gas_optimization": {
+    "sha256": "27764bc0e2674872ba7767ce6b5c7eb3cda690f6a14449733352f74b33f62784",
+    "suites": {
+      "test/ExternalRewards.t.sol:ExternalFundingInvariantTest": {
+        "passed": 2,
+        "failed": 0,
+        "names": [
+          "invariant_pendingExternalFundsPrincipalAndClaimsAreConserved()",
+          "testPendingFundingActivationTopUpAndPausedClaims()"
+        ],
+        "invariants": {
+          "invariant_pendingExternalFundsPrincipalAndClaimsAreConserved()": {
+            "runs": 32,
+            "calls": 4096,
+            "reverts": 0,
+            "metrics": {
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.transfer": {
+                "calls": 397,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.fund": {
+                "calls": 382,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.rebalance": {
+                "calls": 444,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.topUp": {
+                "calls": 423,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.mint": {
+                "calls": 410,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.activate": {
+                "calls": 457,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.claim": {
+                "calls": 401,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.sync": {
+                "calls": 391,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.paused": {
+                "calls": 420,
+                "reverts": 0,
+                "discards": 0
+              },
+              "test/ExternalRewards.t.sol:ExternalFundingHandler.compound": {
+                "calls": 371,
+                "reverts": 0,
+                "discards": 0
+              }
+            },
+            "failed_corpus_replays": 0
+          }
+        }
+      },
+      "test/ExternalRewards.t.sol:ExternalRewardsTest": {
+        "passed": 42,
+        "failed": 0,
+        "names": [
+          "testBothPairTokensUseIndependentFundedAllocations()",
+          "testCollectingVenueFeesAlsoSynchronizesPendingExternalFunds()",
+          "testConstructionPrefundingIsPermanentlyExcludedFromFutureRewards()",
+          "testDormantNFTCannotReceiveCurrentOrHistoricalExternalRewards()",
+          "testExternalPaymentDoesNotChangePrincipalSharesMembershipOrMintProceeds()",
+          "testExternalRewardsCannotMasqueradeAsOldRemoteSettlement()",
+          "testFinalCompoundDeliveryCannotQueueUnsettledFundsInAnotherInboxBeforeNewMember()",
+          "testFinalIncreaseCallbackCannotGiveNewNFTAnOldOwnerIndexIncrement()",
+          "testFinalIncreaseCallbackCheckpointsTopUpAtItsPreviousShareWeight()",
+          "testFourExternalReceiversFitBucketCapAndFifthActivationFails()",
+          "testFutureReceiverCannotBeTheImmutableMintProceedsRecipient()",
+          "testFuzzExternalFundedClaimsAndAllReservesConserveActualIngress(uint96,uint96)",
+          "testGlobalMembershipBarrierCannotBeInvokedByOrdinaryCaller()",
+          "testHugeLateCompoundCannotLeaveEntryAboveTheFivePercentIdleCap()",
+          "testIncorrectWrapperOutputRollsBackAllFundingAndLeavesNativePending()",
+          "testLateMintCallbackDuringRebalancePreservesFundedOwnerEntitlements()",
+          "testLateUndeployedCompoundDoesNotRaiseThe100GrossActivationMinimum()",
+          "testNFTTransferCarriesExternalEntitlementAndOnlyCurrentOwnerCanClaim()",
+          "testNativeAndWrappedPaymentsCannotDoubleCount()",
+          "testNativeLowGasPaymentAlsoSupportsSecondPairAsset()",
+          "testNativePaymentWrapsOnlyActualNewFundsAndBecomesClaimableWETH()",
+          "testOneImmutableReceiverPerBucketAndWrapperMustBePairAsset()",
+          "testOwnerAllocationStaysInItsBucketAndCollectiveUsesGlobalMembership()",
+          "testPairAssetWithWrongDecimalsCannotBeNativeWrapper()",
+          "testPairDonationToOtherCustodyContractsIsNotExternalRevenue()",
+          "testPausedSystemCanPublishAlreadyFundedExternalRewardsAndClaim()",
+          "testPendingMicroDustFromOtherPoolCannotRewardFutureCollectiveMember()",
+          "testPendingPaymentSettlesBeforeSamePoolActivationAndPricesCompoundNAV()",
+          "testPendingPaymentSettlesBeforeTopUpWithoutRewritingEitherNFTsFees()",
+          "testPendingRewardFromOtherPoolSettlesBeforeNewCollectiveMember()",
+          "testRawERC20PaymentIsFundedAndAllocatedExactlyOnce()",
+          "testReceiverCannotAcceptNativePaymentWithoutExplicitWrapper()",
+          "testReceiverCreationRequiresSealedCanonicalActiveBucketAndGovernance()",
+          "testScheduledMigrationFreezesMembershipButDoesNotPreventFundedClaims()",
+          "testSubTwentyPendingDustBelongsToIncumbentBeforeActivation()",
+          "testTaxedForwardTransferIsRejectedAtomically()",
+          "testUnknownTokenIsNotAllocatedOrRescued()",
+          "testUnregisteredCallerCannotAllocateExternalFundsOrChooseAnotherBucket()",
+          "testUnsealedControllerCannotCreateReceiverEvenForExistingShareLedger()",
+          "testUnsyncedPaymentDuringFinalIncreaseSettlesBeforeSharesChange()",
+          "testWrappedAndNativeConstructionPrefundingRemainsQuarantined()",
+          "testWrapperCannotReenterSyncDuringWrapping()"
+        ],
+        "invariants": {}
+      },
+      "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest": {
+        "passed": 5,
+        "failed": 0,
+        "names": [
+          "testCanonicalOutboundBucketDustAlsoSettlesBeforeNewMembership()",
+          "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool()",
+          "testGlobalSettlementOnlyFeesAndDustFlushOnlyAuthorizedModules()",
+          "testMembershipCannotFlushForeignCustodyDust()",
+          "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically()"
+        ],
+        "invariants": {}
+      },
+      "test/LPRewardConversion.t.sol:LPRewardConversionTest": {
+        "passed": 15,
+        "failed": 0,
+        "names": [
+          "testCallbacksCannotPauseOrExposePartialBalances()",
+          "testCanonicalAbortReturnsETHAndSourceBacking()",
+          "testCanonicalNativeBackingImportClaimsAndPrefunds()",
+          "testEarnedOnlyConservationAndNoNewcomerRedistribution()",
+          "testExactUnwrapWithoutPriceAndFailureRecovery()",
+          "testFuzzOutputAndSourceFractionsConserved(uint96,uint96)",
+          "testInvalidBatchDeadlineAndNativeInput()",
+          "testMaximumBatchConservesOutputWithinGasBudget()",
+          "testNativeRecipientRevertRestoresLiabilityAndClaimsIgnorePause()",
+          "testOnePercentBoundaryAndAtomicRollback()",
+          "testRolesLifecycleAndOriginalBinding()",
+          "testSourceRecoveryDoesNotPayAgain()",
+          "testStaleOracleAndRouteDisableLeaveBalances()",
+          "testStrongerMinimumAndLyingRouterRevert()",
+          "testTransferBeforeAndAfterConversionAndShareGrowth()"
+        ],
+        "invariants": {}
+      },
+      "test/PooledRewards.t.sol:PooledRewardsTest": {
+        "passed": 18,
+        "failed": 0,
+        "names": [
+          "testAccountingImportRequiresAuthenticatedReceiver()",
+          "testBothCanonicalAssetsMustBeFundedBeforeBarrierClears()",
+          "testCumulativeRemoteBaselinePreservesPastHopsWithoutDoubleCounting()",
+          "testDirectDonationDoesNotPublishOwnerIndex()",
+          "testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)",
+          "testHomeSnapshotCannotResetPreviousExpectedCounters()",
+          "testImportedAccountingRejectsWrongSharesBeforeUpdatingCounters()",
+          "testIndexDivisionRemainderCannotBeCapturedByNewShares()",
+          "testNewOwnerSharesCannotReceiveHistoricalOwnerFees()",
+          "testNoEligibleNFTCollectiveFundsRemainOrphanedForFutureParticipants()",
+          "testOwnerFeesFollowSharesAndCollectiveIsEqualAcrossBuckets()",
+          "testOwnerFractionSurvivesClaimsAndShareIncrease()",
+          "testRemoteDustAddsToLifetimeOwnerCounterBeforeDeparture()",
+          "testRemoteSnapshotCannotEraseUnsentLiabilities()",
+          "testReturnedBucketBarrierRequiresBothOwnerAndCollectiveFunding()",
+          "testReversedSnapshotTokenOrderingPreservesCanonicalCounterIdentity()",
+          "testTopUpCheckpointDoesNotRepriceOldOwnerFees()",
+          "testUnsentRemoteReservesAreIncludedInDepartureCounters()"
+        ],
+        "invariants": {}
+      },
+      "test/RewardsAndFees.t.sol:RewardsAndFeesTest": {
+        "passed": 22,
+        "failed": 0,
+        "names": [
+          "testClaimWorksWhilePaused()",
+          "testClaimsCannotRepeat()",
+          "testDustBeforeJoinCannotBeClaimedByEntrant()",
+          "testDustOnMigrationGoesToIncumbentOwners()",
+          "testFeeSplitIsExactAndBacked()",
+          "testFractionalClaimsRemainFunded()",
+          "testFuzzFeeChunkingPreservesTwentyUnitBaskets(uint96,uint96)",
+          "testFuzzFeeConservation(uint96)",
+          "testMembershipCannotBeActivatedTwice()",
+          "testMissingNFTCannotBecomeEligible()",
+          "testNFTSupportsStandardERC721()",
+          "testNFTTransferCarriesUnclaimedRewards()",
+          "testNewActivatedNFTCannotClaimPublishedPastReward()",
+          "testTinyFeesCannotManipulateSplitWithoutMembershipBoundary()",
+          "testTopUpDoesNotIncreaseEqualCollectiveShare()",
+          "testUnauthorizedCollectiveCheckpoint()",
+          "testUnauthorizedCredit()",
+          "testUnauthorizedMembershipActivation()",
+          "testUnauthorizedOwnerCheckpoint()",
+          "testUnauthorizedReserveRelease()",
+          "testUnknownBucketCannotReceiveFundedRewards()",
+          "testUnsafeReceiverRejected()"
+        ],
+        "invariants": {}
+      }
+    }
+  },
+  "targeted_canonical_rerun_after_gas_optimization": {
+    "sha256": "8b4fca2896c63a113eb37cb0c3fb1111e0b7ce8d8a4b7e609f3908f42fb322d2",
+    "suites": {
+      "test/LPRewardConversion.t.sol:LPRewardConversionTest": {
+        "passed": 2,
+        "failed": 0,
+        "names": [
+          "testCanonicalAbortReturnsETHAndSourceBacking()",
+          "testCanonicalNativeBackingImportClaimsAndPrefunds()"
+        ],
+        "invariants": {}
+      },
+      "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest": {
+        "passed": 1,
+        "failed": 0,
+        "names": [
+          "testCanonicalNativeFeeReservesAndReceiverQuarantineMigrateThenRestore()"
+        ],
+        "invariants": {}
+      }
+    }
+  },
+  "targeted_canonical_rerun_after_source_prefund_grief_fix": {
+    "sha256": "846de439452bfd5b0261ad12b2b582bdf2d0db38a8aafeb62619a7e0a4efc83b",
+    "suites": {
+      "test/LPRewardConversion.t.sol:LPRewardConversionTest": {
+        "passed": 2,
+        "failed": 0,
+        "names": [
+          "testCanonicalAbortReturnsETHAndSourceBacking()",
+          "testCanonicalNativeBackingImportClaimsAndPrefunds()"
+        ],
+        "invariants": {}
+      },
+      "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest": {
+        "passed": 2,
+        "failed": 0,
+        "names": [
+          "testCanonical33CurrencySourceCompanionPrefundsSurviveAbortAndRecapture()",
+          "testCanonicalNativeFeeReservesAndReceiverQuarantineMigrateThenRestore()"
+        ],
+        "invariants": {}
+      }
+    }
+  },
+  "final_file_sha256": {
+    "src/ZZZFeeController.sol": "76c7e63beb6756cbce8172cc346c0d045f777a9b95b538c7c0622e63c6e5be0b",
+    "src/ZZZRewards.sol": "18a02fc74dde2c6d878123de69ca17054eeeb8ee3adabb71ae1ece704dd75f37",
+    "src/ZZZMembership.sol": "59b2a0819bc31369ff94c6ccd173b9993b9c7e1ff6acadd15cb0d2f3b2094e8e",
+    "src/ZZZRewardReceiver.sol": "25a0910c6464ee2ffbacd95c024ee3f71cfc9b1ad03b216b78ac3346667cdb43",
+    "src/ZZZRewardReceiverFactory.sol": "9d43b64ede76b74d6e7b79d3419de1e02715c64585d13bca39cd8f949cc2af6f",
+    "src/ZZZFeesCanonical.sol": "de15c9ffa3db0ecf4ccd9af2e3c3ad2ac728318f645deb528f62593dabb9a600",
+    "src/base/ZZZCanonicalLedger.sol": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+    "src/ZZZVaultCanonical.sol": "6e5fff37040ec91bb5d4b9f9978208001734c192ce10ceced8b09b2ab0359fbc",
+    "test/NativeFeeRewards.t.sol": "4b144646f2626a707efcfaec9663872dd7ceb5bb0897c133bb80f3aaac3bd246"
+  },
+  "final_accounting_sizes": {
+    "ZZZFeeController": {
+      "runtime_bytes": 24133,
+      "initcode_bytes": 41797
+    },
+    "ZZZRewards": {
+      "runtime_bytes": 20748,
+      "initcode_bytes": 21755
+    },
+    "ZZZMembership": {
+      "runtime_bytes": 10256,
+      "initcode_bytes": 10674
+    },
+    "ZZZRewardReceiver": {
+      "runtime_bytes": 8756,
+      "initcode_bytes": 10581
+    },
+    "ZZZRewardReceiverFactory": {
+      "runtime_bytes": 16693,
+      "initcode_bytes": 16967
+    },
+    "ZZZFeesCanonical": {
+      "runtime_bytes": 13914,
+      "initcode_bytes": 14857
+    }
+  },
+  "limits": {
+    "runtime_bytes": 24576,
+    "initcode_bytes": 49152
+  },
+  "preserved_boundaries": [
+    "80/10/5/5",
+    "1% reward conversion; network gas separate",
+    "3% ordinary maintenance",
+    "Anvil-only signer",
+    "No public deployment or financial transaction",
+    "Existing Anvil/NFT/LP/journals unchanged"
+  ],
+  "not_implemented_or_qualified": [
+    "Atomic native ETH/WETH boundary conversion",
+    "Legacy V1 canonical import",
+    "Typed v4 conversion executor",
+    "Native V2 website manifest and actual backend/service qualification (explicit API/keeper accounting profiles are implemented as a candidate)",
+    "Actual routes/feeds/services/target-chain fork",
+    "Independent audit"
+  ]
+}

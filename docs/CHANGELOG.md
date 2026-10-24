@@ -1,3 +1,7 @@
+## Native V2 implementation candidate - 2026-10-24
+
+Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.
+
 # Local $1 activation rehearsal - 2026-10-18
 
 ## 2026-10-24 - internal audit and native design requirements

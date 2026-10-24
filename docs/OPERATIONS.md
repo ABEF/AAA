@@ -1,3 +1,7 @@
+## Native V2 operating boundary - 2026-10-24
+
+Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.
+
 # Development and operating procedures
 
 **Current operating boundary (2026-10-24):** The selected pool is [hookless native ETH/ZZZ](POOL_SELECTION.md); its actual earned LP fees fund PoPL, without a mandatory Pons creator-payment agreement. Current settlement/accounting still uses WETH and v3 input/reward conversion. Native ETH accounting and typed v4 conversions are unfinished pre-seal work. The old LP bridge/router/registry/receiver and pair executor are removed; their older instructions below are historical and must not be used for this candidate. Use the [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) for supported atomic local moves, normal all-ZZZ exit or separately approved no-swap raw WETH/ZZZ exit. The legacy production inventory remains blocked; this guide and local/fork evidence do not approve deployment or real funds.

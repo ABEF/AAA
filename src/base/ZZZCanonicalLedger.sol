@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IZZZCanonicalAccess} from "../interfaces/IZZZCanonical.sol";
-import {ExactToken} from "../libraries/ExactToken.sol";
+import {ExactAsset} from "../libraries/ExactAsset.sol";
 
 /// @dev Shared exact-backing mechanics; only the fixed controller-created handoff
 /// can call these hooks. Destination prefunds are never counted as migrated backing.
@@ -43,6 +43,7 @@ abstract contract ZZZCanonicalLedger {
         return asset == address(0) ? address(this).balance : IERC20(asset).balanceOf(address(this));
     }
     function _canonicalAdd(address asset, uint256 amount, uint256 prefund) internal {
+        for (uint256 i; i < canonicalAssets.length; ++i) if (canonicalAssets[i] == asset) revert CanonicalState();
         canonicalAssets.push(asset); canonicalAmounts.push(amount); canonicalPrefunds.push(prefund);
     }
     function canonicalAssetCount() external view returns (uint256) { return canonicalAssets.length; }
@@ -56,9 +57,7 @@ abstract contract ZZZCanonicalLedger {
         canonicalDelivered[i] = true;
         uint256 amount = canonicalAmounts[i];
         address asset = canonicalAssets[i];
-        if (asset == address(0)) {
-            if (amount != 0) { (bool ok,) = payable(destination).call{value: amount}(""); if (!ok) revert CanonicalState(); }
-        } else ExactToken.push(asset, destination, amount);
+        ExactAsset.push(asset,destination,amount);
     }
     function canonicalAccept(uint256 i, address) external payable canonicalOnly {
         if (_state() != 2 || canonicalAccepted[i] || msg.value != 0 ||

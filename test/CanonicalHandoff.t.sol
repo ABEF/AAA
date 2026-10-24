@@ -735,7 +735,9 @@ contract CanonicalHandoffTest is Test {
         assertEq(destination.rewards.assetCount(), 1);
         assertEq(destination.membership.totalEligible(), 0);
         assertEq(destination.royalties.totalWeight(), 0);
-        assertEq(destination.handoff.assetCount(1), 0);
+        assertEq(destination.handoff.assetCount(1), 1); // Explicit native principal identity, zero backing.
+        (address nativeAsset, uint256 nativeBacking) = IZZZCanonicalModule(destination.handoff.moduleAt(1)).canonicalBacking(0);
+        assertEq(nativeAsset, address(0)); assertEq(nativeBacking, 0);
         assertEq(destination.handoff.assetCount(3), 1);
         assertEq(destination.handoff.assetCount(4), 1); // Native royalty slot, zero backing.
         uint256 id = _mint(destination, 0, 0);
@@ -754,10 +756,10 @@ contract CanonicalHandoffTest is Test {
         (uint256 first,,) = _seed(); _freeze(first); _exportAll(); _importAll();
         uint256 principal = token0.balanceOf(address(source.vault));
         uint256 rewards = token0.balanceOf(address(source.rewards));
-        source.handoff.fund(1, 0);
+        source.handoff.fund(1, 1);
         assertEq(token0.balanceOf(address(source.vault)), 0);
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.abort, ()));
-        source.handoff.returnFunds(1, 0);
+        source.handoff.returnFunds(1, 1);
         vm.expectRevert(); source.handoff.returnFunds(3, 0);
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.finishAbort, ()));
         assertEq(token0.balanceOf(address(source.vault)), principal);
@@ -773,8 +775,8 @@ contract CanonicalHandoffTest is Test {
         uint256 principal = token0.balanceOf(address(source.vault));
         HandoffTransitionToken(address(token0)).arm(source.ac, address(source.handoff), data, salt,
             address(source.vault), destination.handoff.moduleAt(1));
-        vm.expectRevert(); source.handoff.fund(1, 0);
-        assertFalse(source.handoff.funded(1, 0));
+        vm.expectRevert(); source.handoff.fund(1, 1);
+        assertFalse(source.handoff.funded(1, 1));
         assertEq(token0.balanceOf(address(source.vault)), principal);
         assertEq(token0.balanceOf(address(destination.vault)), 0);
         assertEq(source.ac.canonicalState(), 1); assertEq(destination.ac.canonicalState(), 2);
@@ -884,6 +886,88 @@ contract CanonicalHandoffTest is Test {
             assertEq(destination.rewards.claimable(first, address(extra[i])), 0);
         }
         assertEq(destination.royalties.claimable(first, address(extra[14])), expectedRoyalty);
+        _logGasPeaks();
+    }
+
+    function testMaximumPrefundedCompanionDomainsFitBudgetAndAbortPreservesAllPrefunds() public {
+        (uint256 first,,) = _seed();
+        destination = _deploySystem(false);
+        MockToken[30] memory extra;
+        for (uint256 i; i < extra.length; ++i) {
+            extra[i] = new MockToken(0);
+            _govern(source, address(source.rewards), abi.encodeCall(source.rewards.addAsset, (address(extra[i]))));
+            destination.rewards.addAsset(address(extra[i]));
+            extra[i].mint(address(source.vault), i + 1);
+            extra[i].mint(address(source.rewards), i + 2);
+            extra[i].mint(address(source.fees), i + 3);
+            if (i < 15) {
+                _govern(source, address(source.nft), abi.encodeCall(source.nft.addRoyaltyAsset, (address(extra[i]))));
+                destination.nft.addRoyaltyAsset(address(extra[i]));
+                extra[i].mint(address(source.royalties), 40 * (i + 1));
+            }
+        }
+        bytes32 initialPool = poolId;
+        PoolConfig memory config = source.pools.get(poolId);
+        for (uint256 i = 1; i < 4; ++i) {
+            config.key.fee = uint24(3000 + i);
+            poolId = keccak256(abi.encode(config.key)); source.pools.set(poolId, config); destination.pools.set(poolId, config);
+            uint256 id = _mint(source, i * 79, i * 133); _activate(source, id, 100);
+        }
+        poolId = initialPool;
+        for (uint256 i; i < source.vault.bucketCount(); ++i) {
+            uint256 bucket = source.vault.bucketAt(i);
+            address predictedInbox = vm.computeCreateAddress(address(source.fees.receiverFactory()), i + 1);
+            token0.mint(predictedInbox, 1); token1.mint(predictedInbox, 1);
+            (bool prefundOK,) = predictedInbox.call{value: 1}(""); assertTrue(prefundOK);
+            _govern(source, address(source.fees), abi.encodeCall(source.fees.createRewardReceiver, (bucket, address(0))));
+            ZZZRewardReceiver receiver = ZZZRewardReceiver(payable(source.fees.rewardReceiver(bucket)));
+            assertEq(address(receiver), predictedInbox);
+            assertEq(receiver.protected0(), 1); assertEq(receiver.protected1(), 1); assertEq(receiver.protectedNative(), 1);
+            token0.mint(address(receiver), 100 + i);
+            token1.mint(address(receiver), 120 + i);
+        }
+        // Unsolicited one-unit balances in both source and importer companions
+        // cannot increase freeze cost or substitute for authenticated funding.
+        // Each importer must retain its independent prefund baseline as well.
+        address[4] memory companions = [source.handoff.moduleAt(1), source.handoff.moduleAt(5),
+            destination.handoff.moduleAt(1), destination.handoff.moduleAt(5)];
+        for (uint256 i; i < source.rewards.assetCount(); ++i) {
+            address asset = source.rewards.assets(i);
+            for (uint256 j; j < companions.length; ++j) {
+                if (asset == address(0)) { (bool ok,) = companions[j].call{value: 1}(""); assertTrue(ok); }
+                else MockToken(asset).mint(companions[j], 1);
+            }
+        }
+        destination.handoff.prepareImport(address(source.ac)); destination.ac.seal();
+        _prepare();
+        for (uint256 i; i < source.vault.bucketCount(); ++i) _park(source.vault.bucketAt(i));
+        uint256 freezeGas = _governColdHandoff(abi.encodeCall(source.handoff.freeze, ()));
+        emit log_named_uint("handoff.prefunded.4-buckets.33-assets.freeze.cold", freezeGas);
+        _settleAll();
+        uint256 expectedRoyalty = source.royalties.claimable(first, address(extra[14]));
+        _exportAll(); _importAll(); _fundAll();
+        _govern(source, address(source.handoff), abi.encodeCall(source.handoff.abort, ()));
+        for (uint8 slot; slot < 6; ++slot) {
+            for (uint256 i; i < source.handoff.assetCount(slot); ++i) source.handoff.returnFunds(slot, i);
+        }
+        _govern(source, address(source.handoff), abi.encodeCall(source.handoff.finishAbort, ()));
+        assertEq(source.ac.canonicalState(), 0); assertEq(destination.ac.canonicalState(), 4);
+        assertEq(source.vault.bucketCount(), 4); assertEq(source.rewards.assetCount(), 33);
+        for (uint256 i; i < source.rewards.assetCount(); ++i) {
+            address asset = source.rewards.assets(i);
+            for (uint256 j; j < companions.length; ++j) {
+                uint256 remaining = asset == address(0) ? companions[j].balance : MockToken(asset).balanceOf(companions[j]);
+                assertEq(remaining, 1, "Canonical funding/abort consumed or duplicated an unsolicited prefund");
+            }
+        }
+        for (uint256 i; i < source.vault.bucketCount(); ++i) {
+            address receiver = source.fees.rewardReceiver(source.vault.bucketAt(i));
+            assertEq(token0.balanceOf(receiver), 1); assertEq(token1.balanceOf(receiver), 1); assertEq(receiver.balance, 1);
+            assertEq(ZZZRewardReceiver(payable(receiver)).protected0(), 1);
+            assertEq(ZZZRewardReceiver(payable(receiver)).protected1(), 1);
+            assertEq(ZZZRewardReceiver(payable(receiver)).protectedNative(), 1);
+        }
+        assertEq(source.royalties.claimable(first, address(extra[14])), expectedRoyalty);
         _logGasPeaks();
     }
 

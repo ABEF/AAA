@@ -1,3 +1,7 @@
+## Native V2 verification boundary - 2026-10-24
+
+Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.
+
 # Development setup and verification
 
 > Updated 2026-10-16: undeployed candidate; $100 original gross source value with at least 99% marginal deployed LP, gas separate; atomic source entry and paused custody parking. Accepted 80/10/5/5, equal membership, 1,000-NFT quotas, VRF and separate royalties remain unchanged. See the [feature and evidence reference](IMPLEMENTATION_STATUS.md). Earlier receipts retain their source scope; actual routes/services, staging and independent audit remain open.

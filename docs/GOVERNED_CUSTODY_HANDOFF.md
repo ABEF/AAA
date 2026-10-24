@@ -2,7 +2,8 @@
 
 Undeployed candidate. Replaces the old v3 LP bridge stack and typed pair executor;
 the separate whole-collection ownership/reward handoff is retained. See the
-[current verification record](../reports/custody-handoff/VERIFICATION.md).
+[native ETH candidate verification](../reports/native-eth-port/VERIFICATION.md).
+Earlier [custody evidence](../reports/custody-handoff/VERIFICATION.md) retains its original WETH-accounting scope.
 
 ## Authority and custody guarantee
 
@@ -26,14 +27,15 @@ These are separate custody domains:
 ## Move funds without external custody
 
 Use `Migration.moveFunds(bucket,destinationPool,minimumLiquidity,deadline)` for a
-new fee tier or native ETH/ZZZ to WETH/ZZZ (and back). The older `movePool` selector
-is an alias with the same authority/guards. It never sends principal to your wallet.
+new fee tier with the **same actual ordered currencies**, such as another native
+ETH/ZZZ pool. The older `movePool` selector is an alias with the same authority/guards. It never sends principal to your wallet.
 
 1. Governance reviews and admits the initialized, hookless destination with
    `PoolRegistry.configureNative` (static native ETH/ZZZ on the pinned Robinhood
    core) or ordinary `configure` (WETH/ZZZ). Set destination deposits disabled;
-   operations must be enabled. Verify real key, fees, spacing, wrapper, reference
-   price, depth and destination reservation conflicts. No new core deployment is
+   operations must be enabled. Verify real key, fees, spacing, reference
+   price, depth and destination reservation conflicts. A wrapper review applies only
+   when an actual WETH operation is being proposed. No new core deployment is
    needed for these supported venue changes after sealing.
 2. Stop new source deposits and review a fresh confirmed snapshot. Preserve source
    operations if balancing needs them. Simulate the complete move with an actual
@@ -49,10 +51,13 @@ is an alias with the same authority/guards. It never sends principal to your wal
    this sole contribution pool and separately updates reviewed input routes/API/
    keeper configuration. Do not reactivate the old physical pool for new entries.
 
-Native ETH is normalized to WETH internally, so native/WETH venues preserve the
-same ordered pair. Arbitrary different tokens, reversed accounting pairs, another
-bucket's reserved pool, unsupported hooks and dynamic native pools are rejected.
-Use the distinct external exit below for token migration or manual bridging.
+Native ETH is `address(0)`; WETH is a distinct ERC20. **An atomic ETH/WETH pool
+move is not implemented and fails the same-pair guard.** It needs an explicit,
+reviewed conversion/accounting boundary before it can be supported; admitting a
+new pool does not supply that algorithm. Other different tokens, reversed pairs,
+another bucket's reservation, unsupported hooks and dynamic native pools also
+fail closed. Use the separately approved external custody procedure below for
+manual token exchange, bridging or a return to a reviewed different pair.
 
 ## Ordinary Migration Exit: all principal into ZZZ
 
@@ -86,7 +91,8 @@ Use the distinct external exit below for token migration or manual bridging.
    custody, pool, ordered output tokens, exact raw output minima, `minimumZZZ`,
    deadline (at most ten minutes), and review hash. Set `rawExit=false`.
    The source pair must contain the configured ZZZ. Output asset identities are
-   the Registry's accounting currencies, e.g. native ETH normalized as WETH.
+   the Registry's actual accounting currencies: native ETH is `address(0)`,
+   not the WETH token address.
    Set `minimumZZZ` to the **greater** of the preserved pre-parking raw minimum
    and the rounded-up minimum required by the parked approval's current value
    and ZZZ price. Never lower the pre-parking minimum to make an exit execute.
@@ -169,20 +175,26 @@ buckets, rewards, royalty assets and fee reserves are not included.
 
 ### Native ETH versus WETH at exit
 
-The selected pool holds native ETH, but current internal accounting normalizes it
-to WETH. Its raw exit therefore sends **WETH and ZZZ**, not native ETH and ZZZ.
-The recipient can unwrap later if the wrapper works. Normal exit still sends only
-ZZZ. Raw exit bypasses swaps and USD reads; it is **not wrapper-independent**.
-A failed wrapper or rejected wrapper policy can still prevent pool closure.
-Native custody recovery and its treatment of separately earned fees need a
-pre-seal review; no native-payout switch or full native-ledger rewrite is supplied
-by the current pool-selection change. See the [open recovery requirement](NATIVE_POOL_ADAPTER.md#open-native-recovery-requirement).
+The native-accounting V2 candidate sends **native ETH and ZZZ** for a raw exit
+from this pool. Normal exit still consolidates principal into ZZZ. Native pool
+settlement, fee classification, parking, raw exit and full native recovery do not
+call WETH or its policy. An optional broken wrapper therefore does not block
+these native paths.
+
+This is not universal recovery: core/token runtime bindings, usable settlement,
+transferable ZZZ and a recipient that accepts ETH are still required. A failed
+close, recipient callback or transfer reverts that transaction; an approved raw
+mode never bypasses exact minima or sweeps earned rewards. The unconfigured
+`currentZZZ == address(0)` sentinel must not relabel native ETH as ZZZ.
+See [native design and remaining qualification](NATIVE_ETH_ARCHITECTURE.md).
 
 ## Local completion, recovery and stopping
 
 `completeLocal(id,amount0,amount1,minimumLiquidity,deadline)` can be funded by the
-recipient or another caller. It pulls those exact approved output currencies,
-actually mints LP in the admitted destination and checks backing before closing
+recipient or another caller. ERC20 currencies require exact approvals; for a
+native output currency, attach exactly its declared amount as `msg.value`.
+ERC20-only completion requires zero ETH. Existing prefunds are not return funding.
+The operation actually mints LP in the admitted destination and checks backing before closing
 the plan. It needs unpaused healthy local venue/price services, nonzero LP, the
 normal idle guards and unchanged NFT shares. Normal mode rechecks the **same
 original** 97% floor after deployment; closing, consolidation and redeployment
@@ -196,7 +208,10 @@ Keep old funding addresses and conversion paths for historical reward currencies
 Historical compound remains incumbent NAV, not a new contributor's LP.
 
 `recover(id,deadline,proof)` requires **all actual sent currencies and quantities**
-back, in a single funded transaction. It restores parked principal, not an
+back, in a single funded transaction. Attach exactly the actually sent native
+amount as `msg.value` and approve only the required ERC20 amounts. Extra or missing
+ETH, failed funding or rejected settlement reverts the complete return; old native
+prefunds cannot fill a shortfall. It restores parked principal, not an
 accounting-only receipt or an automatically reopened LP. It can run while paused;
 fresh reviewed `resume(...)` is required later. A sent request cannot be cancelled
 or erased after a timeout. An approved, unsent request can be cancelled through
@@ -206,7 +221,7 @@ historical; replay and conflicting per-bucket plans are rejected.
 ## New-chain boundaries
 
 The recipient is always an address **on the source chain**. It may subsequently
-bridge; sending ERC20s to a numeric address does not itself cross chains.
+bridge; sending assets to a numeric address does not itself cross chains.
 Remote approval requires a pinned, reviewed `ICustodyFinality` verifier.
 `verifyRemote(id,proof)` verifies the domain-separated `proofCommitment(id,1)`:
 source deployment/plan, bucket/share snapshot, actual departure quantities,
@@ -260,6 +275,12 @@ Inventory the one Migration runtime/controller, configured ZZZ/code hash,
 outstanding plans, source/destination snapshots, verifier pins and every royalty
 custody nonce/balance. The removed bridge/pair-helper inventory is historical;
 production inventory/service adaptation must be reviewed for the new layout.
+Use fresh native-accounting version 2 API/keeper profiles with exact reviewed
+runtime pins and `Vault.ACCOUNTING_VERSION() == 2`. Version 1 WETH journals and
+predecessor history must not be reinterpreted or reset. The existing 8902 fixture
+and its saved transactions remain unchanged; the public website deployment is
+null and website V2 integration still requires qualification.
+
 Alert on pending custody age, unauthorized state changes, token/recipient code
 changes, proof failures and missing returns. A crash can resume from contract
 records; no server-held nonce or timeout decides who owns backing.

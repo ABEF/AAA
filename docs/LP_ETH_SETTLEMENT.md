@@ -5,6 +5,12 @@ The user approved a **1% maximum execution loss, network gas separate**, on
 and maintenance limits. Production routes, feeds, operating qualification and
 independent release approval remain required. See [the central task](../TODO.md#task-lp-eth-settlement).
 
+**Native V2 candidate, 2026-10-24:** native ETH earned by the LP is allocated and
+indexed directly in ETH. It needs no conversion. The conversion procedure below
+applies only to already-earned ERC20 balances, including ZZZ or an explicit WETH
+route. The candidate is undeployed; see
+[native-port verification and remaining gates](../reports/native-eth-port/VERIFICATION.md).
+
 ## Accounting and claims
 
 The existing 80/10/5/5 allocation runs first. Only whole units already earned in
@@ -33,21 +39,29 @@ for the exact batch and reset to zero. Network gas is paid separately by the kee
 Any failed swap, oracle check, unwrap, balance delta, callback guard or minimum
 reverts the whole batch, restoring source balances and liabilities. Native ETH
 is asset `address(0)` at Rewards asset index zero; there remain at most 32 ERC20
-assets, for 33 total. Native credits never enter share/membership indices.
-Unsolicited ETH does not become a claimable reward.
+assets, for 33 total. Direct native fee receipts enter the individual-share and
+equal-collective indices with the same checkpoint/fraction rules as ERC20 fees.
+Converted ETH is added only to the same NFTs' existing component balances; it
+never enters those indices a second time. Unsolicited ETH sent to Rewards does
+not become claimable income. Plain transfers to an optional registered creator
+inbox instead follow that inbox's documented receipt/cohort policy.
 
-The standard website claim selects native ETH from both LP and royalty ledgers.
+The configured standard claim selects native ETH from both LP and royalty ledgers.
 Unconverted balances are displayed separately as **awaiting ETH conversion**.
 `Rewards.claim(id, sourceToken)` remains an explicit source-currency recovery
 option, and ClaimRouter can prepare it when explicitly selected. It pays the
 current owner directly and prevents a later second payout through conversion.
 Claims remain available during an ordinary strategy pause. Canonical locks still
 apply, and a recipient rejecting ETH reverts its claim without losing the balance.
+The public website remains a simulation and signing remains Anvil-only. Explicit
+native V2 API/keeper accounting profiles are implemented as a candidate; the
+website native manifest and actual backend/inventory/service qualification remain open.
 
 ## Operator procedure
 
 | Step | Authority, operation and verification |
 | --- | --- |
+| Native fees | Harvest the native LP through the authorized maintenance path. Verify `FeesAllocated`, funded ETH rewards, separate reserves and unchanged principal classification. Do not schedule `convertBatch` for native asset zero. |
 | Install before sealing | Bootstrap deploys `ZZZLPRewardConverter(controller,rewards,wrappedETH)`; governance calls `Rewards.bindConverter(candidate)` once. Verify `ledger()`, `access()`, `wrapper()` and `Rewards.converter()`, addresses, code and implementation dependencies. This binding cannot be added or replaced after sealing. Core sealing alone does not certify that it was configured: require it in the product release inventory. |
 | Review the wrapper | Governance calls `configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))` with code/admin/implementation/owner pins and review hash, then `setEnabled(true)`. Follow the same proxy-risk review as [royalty conversion](ROYALTY_SETTLEMENT.md); a ticker or runtime hash alone is insufficient. |
 | Admit a swap | Governance calls `addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))` for source/router/factory/pool/fee and their hashes/review. Verify returned route ID, pair, exact routing interfaces, liquidity and independent feeds; simulate full conversion. No arbitrary calldata or output recipient is configurable. |
@@ -92,17 +106,28 @@ source conversions and adds native credits before comparing current claimables.
 Missing complete predecessor history remains unavailable, not zero.
 
 Same-chain handoff exports native and source Rewards balances, both component
-ledgers, fractions and indices with exact classified backing. Vault/Fees domains
-skip the native settlement slot, which belongs only to Rewards. Native index and
-fraction fields must be zero on import. Funding, recipient failure, abort and
-prefund checks apply equally to ETH. This changes the Rewards domain inventory;
-review source/successor schema compatibility, converter bindings and full backing
-before sealing. It does not implement different-pair or cross-chain migration.
+ledgers, nonzero native indices/fractions and exact classified backing. Vault
+native principal/quarantine, Fees native reserves/dust/quarantine and Rewards
+native liabilities each have separate custody/backing rows. Receiver native slot0
+is never exported again as its separate legacy native-quarantine slot2. Funding
+first transfers into the destination companion and then acknowledges with zero
+`msg.value`; abort reverses that sequence. Destination prefunds cannot substitute
+for source backing. The `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2` schema rejects legacy
+V1 handoff; no old-source compatibility or cross-chain canonical import is claimed.
 
-The named local fixture now deploys this converter, processes real allocated local
-LP fees into reserve-backed test ETH, and prepares native LP-plus-royalty claims.
+### Historical WETH local fixture
+
+The earlier named local fixture deployed this converter, processed allocated local
+LP fees into reserve-backed test ETH, and prepared native LP-plus-royalty claims.
 Its $1 mock prices and deterministic venue do not qualify Robinhood routes.
-Never restart an existing user's fixture implicitly; start a separate session.
+It has not been upgraded or reset for native V2. Never restart an existing user's
+fixture implicitly; start a separate session for a newly reviewed profile.
 
 See [scoped verification](../reports/lp-eth-settlement/VERIFICATION.md),
 [operator manual](OPERATOR_MANUAL.md) and [release approval](RELEASE_CHECKLIST.md).
+That settlement report retains its original WETH-checkpoint scope; current native
+changes and focused evidence are in the separate native-port report. The selected
+pool's observed approximately 1.101% swap fee exceeds the unchanged 1% full-balance
+ZZZ conversion cap at reference prices. A cheaper independently qualified route,
+typed v4 conversion support, actual feeds/services and independent audit remain
+open; no invented route or raised execution limit is implied.

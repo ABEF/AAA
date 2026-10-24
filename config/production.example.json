@@ -2,6 +2,7 @@
   "schema_version": 4,
   "accounting_model": "shared-pools-v2",
   "_notes": [
+    "NATIVE V2 CANDIDATE: actual ETH custody/rewards/raw exit and versioned API/keeper are implemented locally. This legacy production inventory remains BLOCKED pending reviewed native schema, exact runtime/accounting_version2 pins, actual ETH feed, conversions, website profile and independent qualification. Never reinterpret existing WETH epochs or journals; atomic ETH/WETH moves and V1 canonical import remain unsupported.",
     "SELECTED POOL 2026-10-24: existing Robinhood hookless v4 native ETH/ZZZ 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b; static LP fee10020 pips, spacing200, zero hook. Observed protocol1000 pips each direction. This is not release approval; the legacy release inventory remains explicitly blocked and pools remain unconfigured.",
     "GOVERNED CUSTODY CANDIDATE: the v3 bridge/pair inventory is retired. The current release gate explicitly blocks this layout pending an independently reviewed inventory schema update. Recipient EOA/contract custody is a governance trust; normal 3% checks do not guarantee return after sending.",
     "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",

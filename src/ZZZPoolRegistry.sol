@@ -18,7 +18,7 @@ interface INativeVenueBindings {
 
 /// @notice Append-only pool identities; bounded strategy parameters are governed.
 /// Native support is restricted to static, hookless ETH/ZZZ on pinned Robinhood v4.
-/// get() preserves the real venue key; accounting() normalizes native slot zero to WETH.
+/// Both get() and accounting() preserve the real native ETH identity at slot zero.
 contract ZZZPoolRegistry is ZZZModule {
     ZZZActivationAssets public immutable activationAssets;
     ZZZActivationEntry public immutable activationEntry;
@@ -116,7 +116,7 @@ contract ZZZPoolRegistry is ZZZModule {
         // Swaps enforce actual net output; a fee-policy change must not freeze custody.
         (uint160 price,,, uint24 lpFee) = IStateViewMinimal(STATE).getSlot0(poolId);
         if (price == 0 || lpFee != key.fee) revert InvalidConfiguration();
-        return _configure(config, WETH, ZZZ);
+        return _configure(config, address(0), ZZZ);
     }
     /// @notice Restrict an admitted pool without reading tokens, prices or venue
     /// dependencies. True flags DISABLE the respective capability; false keeps
@@ -170,7 +170,6 @@ contract ZZZPoolRegistry is ZZZModule {
         c = pools[poolId];
         if (c.key.currency0 == address(0)) {
             _nativeBindings();
-            c.key.currency0 = WETH; // Venue slot orientation is retained; never re-sort this key.
         }
     }
     /// @notice Source eligibility affects new contributions only, never existing LP/reward ledgers.
@@ -184,11 +183,17 @@ contract ZZZPoolRegistry is ZZZModule {
         PoolConfig memory c = accounting(poolId);
         return activationAssets.value(c.key.currency0, amount0) + activationAssets.value(c.key.currency1, amount1);
     }
+    /// @notice Legacy currency getter. Zero is native ETH, not a wrapper.
+    /// Use isNativePool to distinguish native identity from an ERC20-only pool.
     function nativeAsset(bytes32 poolId) external view returns (address) {
+        isNativePool(poolId);
+        return address(0);
+    }
+    function isNativePool(bytes32 poolId) public view returns (bool) {
         if (!exists[poolId]) revert InvalidConfiguration();
-        if (pools[poolId].key.currency0 != address(0)) return address(0);
+        if (pools[poolId].key.currency0 != address(0)) return false;
         _nativeBindings();
-        return WETH;
+        return true;
     }
     function _nativeBindings() private view {
         if (block.chainid != 4663 ||
@@ -196,18 +201,15 @@ contract ZZZPoolRegistry is ZZZModule {
             POSM.codehash != 0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2 ||
             STATE.codehash != 0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6 ||
             PERMIT2.codehash != 0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca ||
-            WETH.codehash != 0x5706be52f64875fee65a2cec0d80e47a23d8793cbe85d214b48445e2d05f5353 ||
             ZZZ.codehash != 0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597) {
             revert InvalidConfiguration();
         }
-        // Detect ordinary implementation/admin/owner changes, not hostile-proxy
-        // immutability: a malicious admin handoff can install lying fallback getters.
-        // The wrapper upgrade authority remains an explicit production trust gate.
-        _checkWrapperPolicy(wrapperPolicies[activeWrapperPolicy]);
+        // Native settlement and custody do not call or rely on WETH, its
+        // implementation, its admin, or the periphery's optional wrapper getter.
         address manager = access.module(Ids.LIQUIDITY);
         if (IZZZLiquidity(manager).positionManager() != POSM ||
             INativeVenueBindings(manager).poolManager() != CORE || INativeVenueBindings(manager).stateView() != STATE ||
-            INativeVenueBindings(manager).permit2() != PERMIT2 || INativeVenueBindings(POSM).WETH9() != WETH) {
+            INativeVenueBindings(manager).permit2() != PERMIT2) {
             revert InvalidConfiguration();
         }
     }

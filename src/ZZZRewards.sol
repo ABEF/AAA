@@ -45,7 +45,8 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
     event LPRewardsConverted(uint256 indexed nftId, address indexed source,
         uint256 sourceIndividual, uint256 sourceCollective, uint256 nativeIndividual, uint256 nativeCollective);
     constructor(address controller) ZZZModule(controller) {
-        // Native ETH is only credited by conversion, never through reward indices.
+        // Native fees use the same indices as token fees. Already converted
+        // credits remain individual balances and never enter those indices again.
         assets.push(address(0)); isAsset[address(0)] = true; emit AssetAdded(address(0));
     }
     receive() external payable {}
@@ -64,7 +65,6 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
     }
     function assetCount() external view returns (uint256) { return assets.length; }
     function _checkpoint(uint256 id, address token) private {
-        if (token == address(0)) return;
         uint256 delta = index[token] - paidIndex[id][token];
         uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;
         if (delta != 0 && weight != 0) {
@@ -79,7 +79,6 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
         for (uint256 i; i < assets.length; ++i) _checkpoint(id, assets[i]);
     }
     function _checkpointOwner(uint256 id, address token) private {
-        if (token == address(0)) return;
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
         uint256 current = ownerIndex[vault.nftBucket(id)][token];
         uint256 delta = current - paidOwnerIndex[id][token];
@@ -99,21 +98,26 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
         for (uint256 i; i < assets.length; ++i) _checkpointOwner(id, assets[i]);
     }
     function creditPool(uint256 bucketId, address token, uint256 personal, uint256 shared)
-        external onlyModule(Ids.FEES) nonReentrant economic {
+        external payable onlyModule(Ids.FEES) nonReentrant economic {
         _creditPool(bucketId, token, personal, shared, false);
     }
     function creditCanonicalCutoff(uint256 bucketId, address token, uint256 personal, uint256 shared)
-        external nonReentrant {
+        external payable nonReentrant {
         if (msg.sender != access.module(Ids.FEES) || _state() != 1 || !canonicalCaptured ||
             !IZZZCanonicalAccess(address(access)).canonicalSettling()) revert CanonicalState();
         _creditPool(bucketId, token, personal, shared, true);
         if (_state() != 1 || !IZZZCanonicalAccess(address(access)).canonicalSettling()) revert CanonicalState();
     }
     function _creditPool(uint256 bucketId, address token, uint256 personal, uint256 shared, bool cutoff) private {
-        if (token == address(0) || !isAsset[token] || personal + shared == 0) revert InvalidAmount();
+        if (!isAsset[token] || personal + shared == 0) revert InvalidAmount();
         uint256 supply = IZZZVault(access.module(Ids.VAULT)).bucketTotalShares(bucketId);
         if (supply == 0) revert InvalidState();
-        ExactToken.pull(token, msg.sender, personal + shared);
+        if (token == address(0)) {
+            if (msg.value != personal + shared) revert InvalidAmount();
+        } else {
+            if (msg.value != 0) revert InvalidAmount();
+            ExactToken.pull(token, msg.sender, personal + shared);
+        }
         if (cutoff) {
             for (uint256 i; i < canonicalAssets.length; ++i) {
                 if (canonicalAssets[i] == token) { canonicalAmounts[i] += personal + shared; break; }
@@ -129,7 +133,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
             index[token] += Math.mulDiv(shared, SCALE, weight);
             liabilities[token] += personal + shared;
         }
-        if (IERC20(token).balanceOf(address(this)) < liabilities[token] + orphaned[token]) revert InvalidState();
+        if (_canonicalBalance(token) < liabilities[token] + orphaned[token]) revert InvalidState();
         emit PoolRewardsCredited(bucketId, token, personal, shared);
     }
     function claim(uint256 id, address token) external nonReentrant economic returns (uint256 amount) {
@@ -158,7 +162,6 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
     }
     function claimable(uint256 id, address token) external view returns (uint256) {
         if (_reentrancyGuardEntered()) revert InvalidState();
-        if (token == address(0)) return individual[id][token] + collective[id][token];
         uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;
         uint256 delta = index[token] - paidIndex[id][token];
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
@@ -264,7 +267,7 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
         if (row < canonicalAssetTotal) {
             (address token, uint256 ix, uint256 liability, uint256 orphan, uint256 backing) =
                 abi.decode(record, (address,uint256,uint256,uint256,uint256));
-            if ((row == 0 ? token != address(0) || ix != 0 || orphan != 0 : token == address(0) || token.code.length == 0) ||
+            if ((row == 0 ? token != address(0) : token == address(0) || token.code.length == 0) ||
                 liabilities[token] != 0 || orphaned[token] != 0 || index[token] != 0 ||
                 backing < liability + orphan) revert CanonicalState();
             if (assets.length == row) { if (isAsset[token]) revert CanonicalState(); assets.push(token); isAsset[token] = true; }
@@ -278,14 +281,13 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
         uint256 ordinal = row / canonicalAssetTotal;
         if (ordinal < canonicalBuckets) {
             (uint256 bucket, address token, uint256 ix) = abi.decode(record, (uint256,address,uint256));
-            if (token != expected || (token == address(0) && ix != 0) ||
+            if (token != expected ||
                 bucket != IZZZVault(access.module(Ids.VAULT)).bucketAt(ordinal)) revert CanonicalState();
             ownerIndex[bucket][token] = ix; return;
         }
         (uint256 id, address asset, uint256 personal, uint256 shared, uint256 paid, uint256 frac,
             uint256 ownerPaid, uint256 ownerFrac) = abi.decode(record,(uint256,address,uint256,uint256,uint256,uint256,uint256,uint256));
         if (asset != expected || id != IZZZRewardNFTOrdinals(access.module(Ids.NFT)).tokenAtOrdinal(ordinal - canonicalBuckets + 1) ||
-            (asset == address(0) && (paid != 0 || frac != 0 || ownerPaid != 0 || ownerFrac != 0)) ||
             frac >= SCALE || ownerFrac >= SCALE || paid > index[asset] ||
             ownerPaid > ownerIndex[IZZZVault(access.module(Ids.VAULT)).nftBucket(id)][asset]) revert CanonicalState();
         individual[id][asset] = personal; collective[id][asset] = shared; paidIndex[id][asset] = paid;

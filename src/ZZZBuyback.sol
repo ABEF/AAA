@@ -7,6 +7,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZFees, IZZZLiquidity, IZZZPools, IZZZOracle, IZZZRewards, IBurnable} from "./interfaces/IZZZ.sol";
+import {ExactAsset} from "./libraries/ExactAsset.sol";
 
 contract ZZZBuyback is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
@@ -19,6 +20,9 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         zzz = zzzToken;
         maxTradeUSD = maximumTradeUSD;
     }
+    receive() external payable {
+        if (msg.sender != access.module(Ids.FEES)) revert Unauthorized();
+    }
     function setZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external onlyGovernance nonReentrant {
         if(token.code.length == 0 || token.codehash != codeHash || reviewHash == bytes32(0) ||
             !IZZZRewards(access.module(Ids.REWARDS)).isAsset(token)) revert InvalidConfiguration();
@@ -30,7 +34,9 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         if (amount == 0 || oracle.value(token, amount) > maxTradeUSD) revert InvalidAmount();
         uint256 beforeZZZ = IERC20(zzz).balanceOf(address(this));
+        uint256 beforeInput = ExactAsset.balance(token,address(this));
         IZZZFees(access.module(Ids.FEES)).releaseBuyback(token, amount);
+        if (ExactAsset.balance(token,address(this)) != beforeInput + amount) revert InvalidState();
         uint256 acquired = amount;
         if (token != zzz) {
             PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
@@ -38,9 +44,10 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
             if (!zeroForOne && !(c.key.currency1 == token && c.key.currency0 == zzz)) revert InvalidConfiguration();
             uint256 minimum = Math.mulDiv(oracle.quote(token, zzz, amount), 10000 - c.maxSlippageBps, 10000);
             address manager = access.module(Ids.LIQUIDITY);
-            IERC20(token).forceApprove(manager, amount);
-            acquired = IZZZLiquidity(manager).swap(poolId, zeroForOne, amount, minimum, deadline);
-            IERC20(token).forceApprove(manager, 0);
+            ExactAsset.approve(token,manager, amount);
+            acquired = IZZZLiquidity(manager).swap{value: token == address(0) ? amount : 0}(poolId, zeroForOne, amount, minimum, deadline);
+            ExactAsset.approve(token,manager, 0);
+            if (ExactAsset.balance(token,address(this)) != beforeInput) revert InvalidState();
         }
         if (IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired) revert InvalidState();
         uint256 supplyBefore = IBurnable(zzz).totalSupply();

@@ -30,6 +30,27 @@ independently reviewed route; until then keep earned source balances backed and
 report conversion unavailable. Do not silently increase the limit or substitute
 pool spot prices for independent valuation.
 
+## Native implementation versus configurable policy
+
+The native V2 candidate implements actual ETH custody, fee indices, principal
+return and same-chain canonical funding. Its schema rejects old V1 handoff codecs;
+existing WETH deployments/journals are not upgraded by changing configuration.
+Record exact version 2 Vault/runtime pins in fresh API/keeper profiles and retain
+per-deployment historical currency semantics. The existing 8902 fixture and saved
+transactions remain unchanged; the public website deployment stays null and its
+V2 profile remains to be qualified.
+
+Atomic pool moves currently require identical actual ordered currencies. ETH and
+WETH are distinct: moving between those pools needs an explicit reviewed boundary
+that is not implemented. Admitting a WETH destination or changing a route cannot
+supply missing code. A separately approved external custody exit/manual conversion
+and actual funded local completion is a different, governed path. Typed v4
+conversion, bounded future VRF request settings and buyback operating controls
+remain pre-seal work; native implementation does not close those tasks.
+
+See [native verification scope](../reports/native-eth-port/VERIFICATION.md) for the
+candidate and remaining gates; this policy is not a live release approval.
+
 ## Testing with real funds on Robinhood
 
 Use a **separate, clearly named mainnet rehearsal deployment**, dedicated disposable
@@ -54,9 +75,10 @@ After the campaign:
 2. Use the approved paused custody exit to close attributed LP principal if the
    venue and assets remain usable. Normal all-ZZZ and explicit raw exits have
    different guarantees; a failed normal exit never selects raw mode automatically.
-   The current checkpoint still wraps native pool proceeds, so raw exit is not
-   yet independent of WETH. [Native redesign](NATIVE_ETH_ARCHITECTURE.md) remains
-   unimplemented.
+   The native-accounting V2 candidate sends actual ETH/ZZZ in a raw exit without
+   calling WETH. Core/token runtime bindings, usable settlement and a recipient
+   that accepts ETH remain required; wrapper independence is not a guarantee
+   against every external failure. See [native scope](NATIVE_ETH_ARCHITECTURE.md).
 3. Claim funded rewards as their current NFT owners. Account separately for
    compounding/buyback reserves, royalties, rounding dust, mint payments and gas.
    A principal exit does not empty every contract or erase any liability.
@@ -79,9 +101,11 @@ test cleanup easier.
 
 ## Review scope
 
-This inventory is a source review, not new runtime evidence. Current controls were
+This policy distinguishes implemented candidate behavior from unimplemented
+operating controls and external qualification. Source-bound native evidence is
+recorded separately; earlier WETH reports retain their original scope. Current controls were
 read in `ZZZAccessController`, `ZZZNFT`, `ZZZActivationEntry`, `ZZZRoyaltyConverter`,
 `ZZZLPRewardConverter`, `ZZZBuyback`, `ZZZMigration`, `ZZZVault` and
-`ZZZCanonicalHandoff`. No implementation, tests, public service or chain state
-changed for this policy. Any later setter/executor requires focused tests for its
+`ZZZCanonicalHandoff`. Updating this policy performs no public transaction,
+service action or change to existing chain state. Any later setter/executor requires focused tests for its
 changed behavior, code-size checks and refreshed operator/inventory guidance.

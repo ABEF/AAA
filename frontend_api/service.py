@@ -115,6 +115,8 @@ class Projection:
                  clock: Callable[[], float] = time.time):
         expected = {'schema', 'chain_id', 'rpc_urls', 'deployment_block',
                     'deployment_block_hash', 'confirmations', 'max_block_age_seconds', 'contracts', 'assets'}
+        if isinstance(config, dict) and 'accounting_version' in config:
+            expected.add('accounting_version')
         if isinstance(config, dict) and 'history' in config:
             expected.add('history')
         if isinstance(config, dict) and 'predecessors' in config:
@@ -126,6 +128,9 @@ class Projection:
         _keys(config, expected, 'configuration')
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
+        self.accounting_version = config.get('accounting_version', 1)
+        if type(self.accounting_version) is not int or self.accounting_version not in (1, 2):
+            raise ValueError('Unsupported deployment accounting version')
         self.chain = integer(config['chain_id'], 'chain_id', minimum=1)
         self.start = integer(config['deployment_block'], 'deployment_block')
         self.start_hash = _hash(config['deployment_block_hash'])
@@ -201,16 +206,31 @@ class Projection:
         return header
 
     def _call(self, target: str, signature: str, *args: Any, block: dict[str, Any], words: int = 1) -> list[str]:
-        # The common ABI helper intentionally rejects zero addresses for most
-        # operations. Here zero is a legitimate native reward asset, never a
-        # target. Keep its selector/uint validation and replace only that word.
-        native_methods = {'claimable(uint256,address)', 'eligibleFor(uint256,address)', 'ownerIndex(uint256,address)'}
-        if signature in native_methods and len(args) == 2 and args[1] == ZERO:
-            data = calldata(signature, args[0], '0x' + '0' * 39 + '1')[:-64] + '0' * 64
-        elif signature in {'eligibleCount(address)', 'eligibleWeight(address)', 'index(address)', 'pending(address)'} and args == (ZERO,):
-            data = calldata(signature, '0x' + '0' * 39 + '1')[:-64] + '0' * 64
-        else:
-            data = calldata(signature, *args)
+        # Zero is a legitimate explicitly typed currency, never a contract
+        # target. Legacy profiles keep their conversion-only native ABI; the
+        # native accounting profile opts into the additional currency getters.
+        try:
+            target = address(target)
+        except ValueError as exc:
+            raise ProjectionError('Invalid contract call target') from exc
+        native_slots = {
+            'claimable(uint256,address)': {1}, 'eligibleFor(uint256,address)': {1},
+            'ownerIndex(uint256,address)': {1}, 'eligibleCount(address)': {0},
+            'eligibleWeight(address)': {0}, 'index(address)': {0}, 'pending(address)': {0},
+        }
+        if self.accounting_version == 2:
+            native_slots.update({
+                'feeds(address)': {0}, 'price(address)': {0}, 'tokenDecimals(address)': {0},
+                'value(address,uint256)': {0}, 'quote(address,address,uint256)': {0, 1},
+                'referenceX96(address,address)': {0, 1}, 'activePolicy(address)': {0},
+                'isAsset(address)': {0},
+            })
+        replacements = {i for i in native_slots.get(signature, ()) if i < len(args) and args[i] == ZERO}
+        safe = tuple('0x' + '0' * 39 + '1' if i in replacements else arg for i, arg in enumerate(args))
+        data = calldata(signature, *safe)
+        for i in replacements:
+            start = 10 + 64 * i
+            data = data[:start] + '0' * 64 + data[start + 64:]
         raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])
         try:
             result = decode_words(raw)
@@ -237,6 +257,13 @@ class Projection:
         for item in self.contracts.values():
             self._code(item.address, item.code_hash, block)
         access = self.contracts['access'].address
+        if self.accounting_version == 2:
+            if self._uint('vault', 'ACCOUNTING_VERSION()', block=block) != 2:
+                raise ProjectionError('Native accounting profile differs from the deployed Vault version')
+            native_schema = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2').hex()
+            actual = '0x' + self._call(self.contracts['handoff'].address, 'SCHEMA()', block=block)[0]
+            if actual != native_schema:
+                raise ProjectionError('Native canonical schema differs from the reviewed profile')
         sealed = _bool(self._call(access, 'isSealed()', block=block)[0])
         if not sealed:
             raise ProjectionError('Deployment is not sealed')
@@ -280,7 +307,7 @@ class Projection:
                                'confirmations': self.confirmations, 'protocol_finalized': False,
                                'finality': 'confirmation_depth_only', 'eip1898_require_canonical': True,
                                'deployment_block': self.start, 'deployment_block_hash': self.start_hash,
-                               'configuration_sha256': self.identity}}
+                               'configuration_sha256': self.identity, 'accounting_version': self.accounting_version}}
 
     def _admitted(self, block: dict[str, Any], *, asset_health=None) -> tuple[list[str], list[str]]:
         admitted = []
@@ -495,7 +522,7 @@ class Projection:
                            'observed_head': head, 'confirmations': self.confirmations,
                            'finality': 'confirmation_depth_only', 'protocol_finalized': False,
                            'eip1898_require_canonical': True, 'deployment_block': self.start,
-                           'deployment_block_hash': self.start_hash, 'configuration_sha256': self.identity},
+                           'deployment_block_hash': self.start_hash, 'configuration_sha256': self.identity, 'accounting_version': self.accounting_version},
         }
         history = self._history_snapshot(header, block, lp_assets, royalty_assets)
         if history is not None:
@@ -568,6 +595,6 @@ class Projection:
                                'block_timestamp': header['timestamp'], 'observed_head': head,
                                'confirmations': self.confirmations, 'finality': 'confirmation_depth_only',
                                'protocol_finalized': False, 'eip1898_require_canonical': True,
-                               'configuration_sha256': self.identity},
+                               'configuration_sha256': self.identity, 'accounting_version': self.accounting_version},
                 'history': dict(history.provenance),
                 'scope': 'Complete current wallet NFT inventory at this block; fetch each NFT endpoint for balances/history and compare snapshot provenance.'}

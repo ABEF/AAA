@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import re
 
-from frontend_api.activation_config import ActivationConfig, ZERO_HASH
+from frontend_api.activation_config import ActivationConfig, ZERO_HASH, NATIVE_ASSET_CODE_HASH
 from frontend_api.activation_trace import measure, request_data
 from frontend_api.liquidity_context import contribution_context
 from frontend_api.service import ProjectionError, UnknownNFT, ZERO, _address_word, _bool, _hash, _keys, _quantity, token_id
@@ -74,7 +74,8 @@ class ActivationTransactions:
         if '0x'+p._call(pins['activation_assets'],'activePolicy(address)',source,block=block)[0] != policy_id:
             raise ProjectionError('Active source policy differs from the reviewed policy')
         policy=p._call(pins['activation_assets'],'policies(bytes32)',policy_id,block=block,words=6)
-        if (_address_word(policy[0])!=source or not _bool(policy[1]) or '0x'+policy[2]!=cfg.tokens[source]['code_hash'] or
+        if (_address_word(policy[0],native=p.accounting_version==2)!=source or not _bool(policy[1]) or
+                '0x'+policy[2]!=(NATIVE_ASSET_CODE_HASH if source==ZERO else cfg.tokens[source]['code_hash']) or
                 int(policy[3],16)==0 or int(policy[4],16)!=cfg.tokens[source]['decimals']):
             raise ProjectionError('Source asset is disabled or its admission changed')
         _bool(policy[5])
@@ -120,6 +121,7 @@ class ActivationTransactions:
     @bounded_request
     def prepare(self, payload):
         req=parse(payload); p=self.p; cfg=self.config
+        req['accounting_version'] = p.accounting_version
         if (req['pool'],req['source']) not in cfg.sources:
             raise ActivationInputError('No explicitly reviewed route for this source and pool')
         header,head,block=p._snapshot(); now=self._fresh(header)
@@ -144,13 +146,24 @@ class ActivationTransactions:
         if ('0x'+keccak256(bytes.fromhex(''.join(actual[:5]))).hex()!=req['pool'] or actual[1:]!=account[1:] or
                 not _bool(account[5]) or not _bool(account[6])):
             raise ProjectionError('Pool identity/configuration is invalid or contributions are disabled')
-        req['token0'],req['token1']=map(_address_word,account[:2])
+        native_profile = p.accounting_version == 2
+        req['token0'] = _address_word(account[0], native=native_profile)
+        req['token1'] = _address_word(account[1])
         if req['token0']==req['token1']: raise ProjectionError('Invalid accounting pair')
-        source=req['token0'] if req['source']==ZERO else req['source']
-        if req['source']==ZERO and (int(actual[0],16)!=0 or _address_word(p._call(registry.address,'nativeAsset(bytes32)',req['pool'],block=block)[0])!=source):
-            raise ActivationInputError('Native input is unsupported for this pool')
-        if req['source']!=ZERO and actual[0]!=account[0] and int(actual[0],16)!=0:
-            raise ProjectionError('Unexpected accounting token substitution')
+        if native_profile:
+            if actual != account:
+                raise ProjectionError('Native accounting cannot substitute currency identities')
+            source = req['source']
+            if req['source'] == ZERO and (req['token0'] != ZERO or not _bool(
+                    p._call(registry.address,'isNativePool(bytes32)',req['pool'],block=block)[0])):
+                raise ActivationInputError('Native input is unsupported for this pool')
+        else:
+            source=req['token0'] if req['source']==ZERO else req['source']
+            if req['source']==ZERO and (int(actual[0],16)!=0 or _address_word(p._call(
+                    registry.address,'nativeAsset(bytes32)',req['pool'],block=block)[0])!=source):
+                raise ActivationInputError('Native input is unsupported for this pool')
+            if req['source']!=ZERO and actual[0]!=account[0] and int(actual[0],16)!=0:
+                raise ProjectionError('Unexpected accounting token substitution')
         pins,prices=cfg.verify(p,block,(source,req['token0'],req['token1']))
         req['output']=self._route(req,source,pins,block)
         gross=req['amount']*prices[source]//10**cfg.tokens[source]['decimals']
@@ -237,7 +250,8 @@ class ActivationTransactions:
                 'provenance':{'block_number':header['number'],'block_hash':header['hash'],
                               'block_timestamp':header['timestamp'],'observed_head':head,'confirmations':p.confirmations,
                               'eip1898_require_canonical':True,'protocol_finalized':False,
-                              'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity},
+                              'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity,
+                              'accounting_version':p.accounting_version},
                 'wallet_revalidation_required':True,'state_overrides':False,
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '
                         'deadline, live simulation and gas. Approval is a separate transaction; reprepare after confirmation. '

@@ -8,9 +8,9 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
 
-**Current development work (2026-10-24):** the selected hookless ETH/ZZZ adapter and `moveFunds` support native/WETH venue and fee-tier changes while preserving shares under one fixed 3% cap. The separate custody `exit` supports manual token migration/bridging. [Current verification](reports/hookless-pool/VERIFICATION.md). Whole-collection migration, real services, OpenSea qualification and independent release approval remain open.
+**Current development work (2026-10-24):** the [native accounting V2 candidate](reports/native-eth-port/VERIFICATION.md) carries actual ETH through Entry, Vault, LP settlement, fee reserves, indexed rewards and raw custody exits. Same-actual-pair fee-tier moves retain the fixed 3% cap. ETH and WETH are distinct: atomic moves between them await an explicit conversion boundary. The separate custody `exit` supports reviewed external migration. Existing Anvil deployments remain on their original code.
 
-**Before sealing:** the [native ETH architecture](docs/NATIVE_ETH_ARCHITECTURE.md) and [operational configuration extensions](docs/POST_SEAL_POLICY.md) are specified, not implemented. Reward conversion retains the1% limit and needs a cheaper qualified route. Mainnet rehearsal must use a separate deployment; there is no collection reset.
+**Before sealing:** qualify the [native V2 implementation and remaining boundaries](docs/NATIVE_ETH_ARCHITECTURE.md), implement [operational configuration extensions](docs/POST_SEAL_POLICY.md) and typed v4 conversion, and complete real-service and independent security review. ZZZ reward conversion retains the 1% limit and needs a cheaper qualified route. Mainnet rehearsal must use a separate deployment; there is no collection reset.
 
 ## Project navigation
 
@@ -53,7 +53,7 @@ flowchart LR
 | **Royalties and claims** | RoyaltyRewards preserves per-NFT entitlements, isolates optional currency outages and credits batch-converted ETH to the same NFTs. Current owners claim through either ledger or ClaimRouter. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [converter](src/ZZZRoyaltyConverter.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [operator flow](docs/ROYALTY_SETTLEMENT.md) |
 | **Valuation and maintenance** | Oracle supplies guarded values; Strategy defines ranges and eligibility. Keeper calls execute through Vault, Compounder or Buyback within on-chain limits. | [Oracle](src/ZZZOracle.sol), [Strategy](src/ZZZStrategy.sol), [Compounder](src/ZZZCompounder.sol), [Buyback](src/ZZZBuyback.sol) |
 | **Governance and permissions** | AccessController binds modules and enforces immediate authorized configuration, guardian pause and keeper authorization. Sealing fixes module bindings; constrained configuration remains available. | [AccessController](src/ZZZAccessController.sol), [authority and change boundaries](docs/CHANGE_AND_RECOVERY.md) |
-| **Recovery and migration** | Migration atomically moves LP between supported ETH/WETH venues and governs all-ZZZ principal exits and explicit raw emergency custody, with real local backing required for completion. Governance accepts external recipient custody risk. A separate canonical handoff coordinates ownership, ledgers and backing when replacing a whole deployment. Future-chain completion remains open. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
+| **Recovery and migration** | Migration atomically moves LP between admitted pools with identical actual currencies and governs all-ZZZ or explicit raw custody exits. Native raw exit sends ETH/ZZZ without WETH. Actual funded local LP is required for completion; external custody is trusted. A separate versioned handoff carries ownership, ledgers and backing to one compatible replacement. Cross-version and future-chain completion remain open. | [Migration](src/ZZZMigration.sol), [CanonicalHandoff](src/ZZZCanonicalHandoff.sol), [handoff scope](docs/CANONICAL_HANDOFF.md) |
 
 **Custody authority:** holders cannot redeem principal. Governance can send it to an approved external EOA/contract, which is explicitly trusted to preserve/return it. Royalty custody separately suspends the exited currency until full backing returns. The source cannot force an external custodian to return funds.
 
@@ -121,7 +121,7 @@ The allocation is fixed in the current contracts:
 
 Rarity does not change LP or collective weights; there is no Power multiplier. Actual receipts allocate in batches of 20 raw token units, with a documented sub-20-unit incumbent-dust exception at membership/migration boundaries. Returned remote holder rewards are already allocated and are not split again. See [accounting and timing](docs/ECONOMICS.md).
 
-The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL allocates only actual fees earned by its own position; Uniswap's separate protocol fee is not PoPL revenue. The observed combined swap fee is approximately 1.101%. Historical Pons creator payments are optional external funding, not a launch dependency. The current checkpoint wraps venue ETH into WETH for accounting; native ETH accounting remains [pre-seal work](docs/NATIVE_ETH_ARCHITECTURE.md). ZZZ reward conversion keeps the **1% loss cap**, gas separate, and needs a cheaper qualified route. See [pool selection](docs/POOL_SELECTION.md).
+The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL allocates only actual fees earned by its own position; Uniswap's separate protocol fee is not PoPL revenue. The observed combined swap fee is approximately 1.101%. Historical Pons creator payments are optional external funding. Native V2 accounts for ETH directly; already-native holder fees need no conversion. ZZZ reward conversion keeps the **1% loss cap**, gas separate, and needs a cheaper qualified route. See [pool selection](docs/POOL_SELECTION.md).
 
 ### NFT-sale royalties
 
@@ -267,7 +267,7 @@ marketplace royalties only. This is an open pre-seal requirement, documented in
 the [payout audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) and
 [central Todo](TODO.md#task-lp-eth-settlement).
 
-Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. The [named local rehearsal](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal) uses separate disposable fixtures; public route/ETH payout qualification stays open.
+Historical contribution UI rehearsal: four visible input choices (ZZZ/USDG/USDC/ETH), a dedicated contribution dialog and confirmed per-NFT evolution refresh. The [named local rehearsal](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal) retains its original WETH-accounted fixtures. Native V2 uses actual ETH; its website profile and public route/payout qualification remain open.
 
 ## LP reward settlement
 

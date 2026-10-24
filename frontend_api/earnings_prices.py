@@ -22,7 +22,10 @@ class Prices:
             _keys(item, {'asset', 'priced_token', 'token_code_hash', 'source', 'source_code_hash',
                          'max_age', 'feed_decimals'}, 'earnings price feed')
             asset = ZERO if item['asset'] == ZERO else address(item['asset'])
-            token = address(item['priced_token'])
+            native = projection.accounting_version == 2 and asset == ZERO
+            token = ZERO if native and item['priced_token'] == ZERO else address(item['priced_token'])
+            if native and (token != ZERO or item['token_code_hash'] is not None or descriptors[asset].decimals != 18):
+                raise ValueError('Native accounting requires a direct ETH feed without a wrapped-token pin')
             if asset not in descriptors or asset in self.feeds or asset != ZERO and token != asset:
                 raise ValueError('Unreviewed/repeated earnings price mapping')
             age = integer(item['max_age'], 'max_age', minimum=1)
@@ -30,7 +33,7 @@ class Prices:
             if age > 86400 or decimals > 18 or descriptors[asset].decimals > 18:
                 raise ValueError('Unsupported earnings price precision/age')
             self.feeds[asset] = dict(item, asset=asset, priced_token=token, source=address(item['source']),
-                token_code_hash=_hash(item['token_code_hash']), source_code_hash=_hash(item['source_code_hash']))
+                token_code_hash=None if native else _hash(item['token_code_hash']), source_code_hash=_hash(item['source_code_hash']))
 
     def read(self, block):
         from frontend_api.service import _address_word, ProjectionError
@@ -62,7 +65,8 @@ class Prices:
                 if actual != expected:
                     raise ProjectionError('Earnings feed policy changed')
                 p._code(policy['source'], policy['source_code_hash'], block)
-                p._code(policy['priced_token'], policy['token_code_hash'], block)
+                if policy['priced_token'] != ZERO:
+                    p._code(policy['priced_token'], policy['token_code_hash'], block)
                 value = int(p._call(oracle, 'price(address)', policy['priced_token'], block=block)[0], 16)
                 if not 0 < value <= 10**36:
                     raise ProjectionError('Invalid earnings price')

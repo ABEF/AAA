@@ -28,12 +28,14 @@ LP; token permissions, market depth and external governance remain separate risk
 `SELECTED_NATIVE_POOL` records the launch identity. Governance can also use
 `configureNative` after sealing for future initialized static, hookless native
 ETH/ZZZ fee tiers on the same pinned Robinhood core. It checks the real slot fee,
-code/wiring, WETH proxy policy, admitted assets/feeds and existing strategy bounds.
+code/wiring, admitted native/token assets and feeds, and existing strategy bounds.
+Native admission and accounting no longer consult WETH or its proxy policy.
 No dynamic fees, custom hooks or other native tokens are admitted. WETH/ZZZ uses
 ordinary hookless `configure`. Exactly one pool accepts contributions at a time.
 
-LiquidityManager uses native ETH at the venue and WETH internally. It preserves
-prefunds and clears exact allowances. Vault harvests before increasing LP so old
+The native-accounting V2 candidate uses native ETH at the venue and throughout
+principal/fee/reward custody; it does not normalize ETH to WETH. It preserves
+prefunds, requires exact declared payable budgets and clears exact ERC20 allowances. Vault harvests before increasing LP so old
 native fees cannot silently pay new principal. Unexpected offsets fail atomically.
 Ordinary venue fees earned by PoPL's own LP receive the unchanged 80/10/5/5 split.
 Pons creator payments are optional historical work, not a dependency of this pool.
@@ -46,15 +48,20 @@ a full ZZZ-reward conversion at reference prices; never raise the cap to force i
 
 | Intent | Operation | Boundary |
 | --- | --- | --- |
-| Another fee tier or native ETH / WETH venue | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; old `movePool` remains an alias | Atomic actual destination LP; unchanged NFT shares; one fixed 3% aggregate cap, gas separate; no external custody. |
+| Another fee tier with the identical actual ETH/ZZZ pair | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; old `movePool` remains an alias | Atomic actual destination LP; unchanged NFT shares; one fixed 3% aggregate cap, gas separate; no external custody. |
 | Send principal to your regular address | Approve request, globally pause, then `Migration.exit(id)` | Normal mode converts all attributed principal to configured ZZZ before sending; recipient custody is explicitly trusted. |
-| Swap impossible / prices unavailable | Separately approve `rawExit=true`, then `exit(id)` | Transfers attributed WETH/ZZZ under raw close minima; no 3% USD guarantee; never automatic fallback. |
+| Swap impossible / prices unavailable | Separately approve `rawExit=true`, then `exit(id)` | Transfers attributed native ETH/ZZZ under raw close minima; no 3% USD guarantee; never automatic fallback. |
 
-Native/WETH venues share the ordered WETH/ZZZ accounting pair. Other pairs require
-external custody. Moving LP does not silently enable destination deposits or alter
+ETH and WETH are distinct currencies. Atomic moves between their pools remain
+unimplemented and are rejected; they need a reviewed explicit conversion boundary.
+Different-pair returns through separately approved external custody remain a
+manual path, with actual new-token funding and destination LP checks. Moving LP does not silently enable destination deposits or alter
 routes. [Exact operator steps](GOVERNED_CUSTODY_HANDOFF.md#move-funds-without-external-custody).
 The overall 3% cap is fixed, including after sealing; the narrower per-pool setting
 remains configurable within its coded bounds. Raw exit is a distinct risk approval.
+Native raw exit/recovery do not call WETH, but still depend on actual core/token
+bindings, successful settlement and recipient transfers; there is no universal
+exit guarantee through failed external dependencies.
 
 ## Remaining qualification
 
@@ -63,8 +70,13 @@ portion incurs it. Every complete input quote must still leave at least 99% as n
 LP. Do not weaken the limit to pass an expensive quote. Independent ZZZ/USD pricing,
 ETH/ZZZ/USDG/USDC routes, full conversion/gas economics, production inventory,
 VRF, authorities, marketplace support, operating rehearsals and independent audit
-remain open. Fork prices, authority and randomness are explicitly synthetic.
+remain open. Bounded post-seal VRF/buyback controls, typed v4 conversion and an
+explicit ETH/WETH move boundary remain pre-seal work. Existing fork observations
+retain their original WETH-accounting source scope; local native fixtures do not
+qualify live services. Fresh version 2 backend/keeper pins and website integration
+are required; old 8902 state/journals remain unchanged and public deployment is null.
 
-[Current evidence](../reports/hookless-pool/VERIFICATION.md) |
+[Native candidate evidence](../reports/native-eth-port/VERIFICATION.md) |
+[Earlier selected-pool evidence](../reports/hookless-pool/VERIFICATION.md) |
 [Sole Todo](../TODO.md#task-pons-qualification). Public signing stays disabled;
 contracts are undeployed and production remains NOT APPROVED.

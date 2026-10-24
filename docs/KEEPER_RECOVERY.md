@@ -1,5 +1,18 @@
 # Keeper outage and server recovery
 
+Native V2 configurations explicitly set `accounting_version: 2`, the independently
+reviewed deployed runtime hash at `code_hashes.vault`, the actual address at
+`contracts.vault`, and the matching chain/deployment identity. A compiler template
+hash is not a deployed runtime pin. Every new-work/submission
+boundary verifies the version; pending receipt recovery runs first. A missing
+version in an old journal means legacy1, and a mismatch stops without rewriting
+pending transactions, nonces or receipts. Restore the matching profile/state;
+never convert the existing Anvil journal into V2 by editing its version number.
+Native reserve compounding/buyback uses currency zero with zero user call value;
+the fee controller funds its own classified reserve. Native venue fees need no
+conversion worker. Explicit WETH conversion remains separately configured.
+See [native implementation evidence](../reports/native-eth-port/VERIFICATION.md).
+
 Hardened keeper candidate. See [the internal review](../reports/keeper-recovery/REVIEW.md). Staging and independent approval remain required before funded operation.
 
 See [service qualification and rehearsal](KEEPER_REHEARSALS.md) for the isolated

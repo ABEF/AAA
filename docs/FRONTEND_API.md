@@ -1,3 +1,15 @@
+## Native accounting V2 profile - 2026-10-24
+
+Select top-level `accounting_version: 2` for the [native candidate](../reports/native-eth-port/VERIFICATION.md).
+The service verifies the pinned Vault's `ACCOUNTING_VERSION() == 2` and native
+canonical schema. Omitted version remains legacy1. Explicit per-predecessor
+versions prevent successor currency semantics from rewriting WETH history.
+Currency zero is accepted only in reviewed currency argument positions, never
+as a contract target. Native price profiles use `priced_token: zero` and
+`token_code_hash: null` with an independent pinned ETH feed. No runtime is invented
+for ETH. Actual native providers, hosting and website profile remain unqualified.
+No signing, existing deployment/journal rewrite or public activation is added.
+
 ## Confirmed collection extension - 2026-10-23
 
 `GET /v1/collection/<confirmed-block>/<offset>` provides at most 16 canonical

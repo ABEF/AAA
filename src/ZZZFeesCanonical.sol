@@ -22,22 +22,41 @@ contract ZZZFeesCanonical is ZZZModule {
     bool private captured;
     bool private imported;
     mapping(uint256 => bool) private released;
+    mapping(uint256 => bool) private accepted;
+    mapping(address => uint256) private prefunds;
     constructor(address controller, address feeController) ZZZModule(controller) {
         fees = ZZZFeeController(payable(feeController));
         if (feeController.code.length == 0 || address(fees.access()) != controller) revert InvalidConfiguration();
     }
     receive() external payable {}
+    function _balance(address asset, address holder) private view returns (uint256) {
+        return asset == address(0) ? holder.balance : IERC20(asset).balanceOf(holder);
+    }
+    function _requireLPAsset(address asset) private view {
+        for (uint256 i; i < lpAssets; ++i) if (assets[i] == asset) return;
+        revert InvalidState();
+    }
+    function _push(address asset, address destination, uint256 amount) private {
+        if (asset != address(0)) { ExactToken.push(asset, destination, amount); return; }
+        if (amount == 0) return;
+        uint256 beforeBalance = address(this).balance;
+        (bool ok,) = payable(destination).call{value: amount}("");
+        if (!ok || address(this).balance != beforeBalance - amount) revert InvalidState();
+    }
     function _vault() private view returns (IZZZVault) { return IZZZVault(access.module(Ids.VAULT)); }
     function canonicalCapture() external onlyHandoff {
         imported = false;
+        for (uint256 i; i < assets.length; ++i) delete accepted[i];
         delete assets; delete amounts; delete quarantine;
         groups = _vault().bucketCount(); receivers = fees.rewardReceiverCount();
         ICanonicalFeeAssets rewards = ICanonicalFeeAssets(access.module(Ids.REWARDS));
         for (uint256 i; i < rewards.assetCount(); ++i) {
             address asset = rewards.assets(i);
-            if (asset == address(0)) continue; // Settled holder ETH belongs to the Rewards domain.
-            uint256 raw = IERC20(asset).balanceOf(address(fees));
+            uint256 raw = _balance(asset, address(fees));
             assets.push(asset); amounts.push(0);
+            // Source restoration is authenticated by the handoff's exact
+            // incoming delta. Do not snapshot arbitrary companion donations:
+            // a nonzero prefund for every admitted asset must not inflate freeze.
             quarantine.push(raw - fees.accounted(asset) - fees.canonicalLateTotal(asset));
             released[assets.length - 1] = false;
         }
@@ -64,7 +83,7 @@ contract ZZZFeesCanonical is ZZZModule {
         for (uint256 i; i < lpAssets; ++i) {
             address asset = assets[i];
             amounts[i] = fees.accounted(asset) + quarantine[i];
-            if (IERC20(asset).balanceOf(address(fees)) < amounts[i] + fees.canonicalLateTotal(asset)) revert InvalidState();
+            if (_balance(asset, address(fees)) < amounts[i] + fees.canonicalLateTotal(asset)) revert InvalidState();
         }
     }
     function canonicalCount() public view returns (uint256) { return 1 + lpAssets + groups * lpAssets + receivers; }
@@ -89,16 +108,17 @@ contract ZZZFeesCanonical is ZZZModule {
         if (row == 0) {
             if (fees.rewardReceiverCount() != 0) revert InvalidState();
             (lpAssets, groups, receivers) = abi.decode(record, (uint256,uint256,uint256));
-            if (lpAssets > 32 || groups > 4 || receivers > 16) revert InvalidState();
+            if (lpAssets == 0 || lpAssets > 33 || groups > 4 || receivers > 16) revert InvalidState();
             imported = true; return;
         }
         --row;
         if (row < lpAssets) {
             (address asset, uint256 total,, uint256 backing, uint256 q) =
                 abi.decode(record, (address,uint256,uint256,uint256,uint256));
-            if (asset == address(0) || backing != total + q) revert InvalidState();
+            if ((row == 0 ? asset != address(0) : asset == address(0) || asset.code.length == 0) || backing != total + q) revert InvalidState();
             for (uint256 i; i < row; ++i) if (assets[i] == asset) revert InvalidState();
             assets.push(asset); amounts.push(backing); quarantine.push(q);
+            prefunds[asset] = _balance(asset, address(this));
             fees.canonicalWrite(0, record); return;
         }
         row -= lpAssets;
@@ -113,12 +133,15 @@ contract ZZZFeesCanonical is ZZZModule {
             abi.decode(record, (uint256,address,address,address,uint256,uint256,uint256));
         fees.canonicalWrite(2, record);
         assets.push(t0); amounts.push(p0); assets.push(t1); amounts.push(p1); assets.push(address(0)); amounts.push(pn);
+        if (t0 == address(0) && pn != 0) revert InvalidState();
+        _requireLPAsset(t0); _requireLPAsset(t1);
     }
     function canonicalAssetCount() external view returns (uint256) { return assets.length; }
     function canonicalBacking(uint256 index) external view returns (address asset, uint256 amount) { return (assets[index], amounts[index]); }
     function canonicalRelease(uint256 index, address destination) external onlyHandoff {
         uint8 state = access.canonicalState();
-        if ((state != 1 && state != 4) || released[index]) revert InvalidState();
+        if ((state != 1 && state != 4) || index >= assets.length || released[index] ||
+            (state == 4 && !accepted[index])) revert InvalidState();
         released[index] = true;
         if (index < lpAssets) fees.canonicalSend(assets[index], type(uint256).max, 0, destination, amounts[index]);
         else {
@@ -127,11 +150,13 @@ contract ZZZFeesCanonical is ZZZModule {
         }
     }
     function _accept(uint256 index, bool restore) private {
-        if (msg.value != 0) revert InvalidAmount();
-        if (index < lpAssets) { ExactToken.push(assets[index], address(fees), amounts[index]); return; }
+        if (msg.value != 0 || index >= assets.length || (!restore && accepted[index]) ||
+            _balance(assets[index], address(this)) < (restore ? 0 : prefunds[assets[index]]) + amounts[index]) revert InvalidAmount();
+        if (!restore) accepted[index] = true;
+        if (index < lpAssets) { _push(assets[index], address(fees), amounts[index]); return; }
         uint256 offset = index - lpAssets;
-        if (offset % 3 != 2) ExactToken.push(assets[index], fees.rewardReceivers(offset / 3), amounts[index]);
-        fees.canonicalFundReceiver{value: offset % 3 == 2 ? amounts[index] : 0}(offset / 3, uint8(offset % 3), amounts[index], restore);
+        if (assets[index] != address(0)) _push(assets[index], fees.rewardReceivers(offset / 3), amounts[index]);
+        fees.canonicalFundReceiver{value: assets[index] == address(0) ? amounts[index] : 0}(offset / 3, uint8(offset % 3), amounts[index], restore);
     }
     function canonicalAccept(uint256 index, address) external payable onlyHandoff {
         if (access.canonicalState() != 2) revert InvalidState();

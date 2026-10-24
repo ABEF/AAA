@@ -1,0 +1,92 @@
+Compiling 34 files with Solc 0.8.26
+Solc 0.8.26 finished in 294.67s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:278:17:
+    |
+278 |                 uint256 beforeGas = gasleft();
+    |                 ^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:285:9:
+    |
+285 |         uint256 beforeGas = gasleft();
+    |         ^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:151:9:
+    |
+151 |         PreparationTransport transport = new PreparationTransport(address(s.ac));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol:116:5:
+    |
+116 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol:235:5:
+    |
+235 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T18:09:52.959614Z  WARN traces::etherscan: etherscan config not found
+
+Ran 2 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest
+[PASS] testNativePartialFundingAbortRequiresAndRestoresExactBacking() (gas: 106102382)
+[PASS] testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndOneProtectedInboxBalance() (gas: 107891439)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 489.12ms (889.34ms CPU time)
+
+Ran 4 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:CanonicalHandoffTest
+[PASS] testEmptyCollectionAndZeroLPAssetsCanMigrateWithoutInventingBacking() (gas: 240850738)
+[PASS] testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() (gas: 108963565)
+[PASS] testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger() (gas: 386687250)
+Logs:
+  handoff.4-buckets.32-assets.4-inboxes.17-royalties.freeze.cold: 11780002
+  handoff.4-buckets.32-assets.4-inboxes.17-royalties.commit.cold: 3707493
+  handoff.freeze.peak: 0
+  handoff.settle-one-domain.cold.peak: 5649004
+  handoff.export-8-rows.peak: 583300
+  handoff.import-8-rows.peak: 4597331
+  handoff.fund-one-asset.peak: 269227
+  handoff.commit-and-activate.peak: 0
+
+[PASS] testPartialFundingAbortReturnsOnlyTransferredBacking() (gas: 109035682)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 901.55ms (2.22s CPU time)
+
+Ran 2 test suites in 913.32ms (1.39s CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

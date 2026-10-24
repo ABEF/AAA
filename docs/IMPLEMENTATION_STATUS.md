@@ -1,3 +1,18 @@
+## Native ETH V2 candidate - 2026-10-24
+
+The [native port evidence](../reports/native-eth-port/VERIFICATION.md) records actual
+ETH Entry/Vault/manager funding, indexed 80/10/5/5 fees, compound/buyback reserves,
+current-owner claims and wrapper-independent raw departure/return. Typed value
+guards exclude prefunds and callback-forced ETH. Native canonical V2 preserves
+independent backing and two-stage funding/abort; old schema import is rejected.
+
+The read/preparation API and keeper explicitly select accounting version2 with
+fresh runtime pins, independent ETH pricing and per-predecessor profiles. No
+existing Anvil state, website code/build/server or public signing was changed.
+Atomic ETH/WETH conversion, typed v4 conversion routes, website V2 acceptance,
+real providers/markets, full release inventory and independent audit remain open.
+Earlier entries below are dated source history, not verification of this port.
+
 ## Internal hookless and native-design audit - 2026-10-24
 
 [Scoped findings and evidence](../reports/daily-security-20261024/REVIEW.md) cover
@@ -9,7 +24,7 @@ Four new Solidity regressions pass;58 affected cases passed and the two correcte
 fixture cases passed on targeted rerun. Nine observer cases pass. The changed
 Strategy runtime is12,862 bytes;32 unchanged object gates are reused.
 
-The native redesign remains unimplemented. Its [design review](NATIVE_ETH_ARCHITECTURE.md)
+At that earlier audit revision the native redesign was unimplemented. Its [design review](NATIVE_ETH_ARCHITECTURE.md)
 now includes accounting/schema and per-epoch backend compatibility, native indices,
 historical reserves, two-stage handoff/abort and wrapper-independent recovery.
 Those requirements are not closed by current WETH evidence. No independent audit,
@@ -17,7 +32,7 @@ full final-source regression, public deployment or production approval is claime
 
 ## Post-seal configurability review - 2026-10-24
 
-[Source inventory and rehearsal boundaries](POST_SEAL_POLICY.md) distinguish existing post-seal controls from unimplemented extensions. Routine assets/routes/feeds/pool/role settings are configurable; VRF request settings and buyback maximum remain fixed, and conversion executors remain v3-only. The native ETH redesign is specified, not implemented. There is no public burn/reset or standalone empty retirement. This documentation-only review adds no runtime verification or deployment approval.
+[Source inventory and rehearsal boundaries](POST_SEAL_POLICY.md) distinguish existing post-seal controls from unimplemented extensions. Routine assets/routes/feeds/pool/role settings are configurable; VRF request settings and buyback maximum remain fixed, and conversion executors remain v3-only. At that earlier policy revision the native ETH redesign was specified, not implemented. There is no public burn/reset or standalone empty retirement. This documentation-only review adds no runtime verification or deployment approval.
 
 ## Hookless launch pool, move funds and exit - 2026-10-24
 

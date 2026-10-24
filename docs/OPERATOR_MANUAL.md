@@ -6,6 +6,49 @@
 
 This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
 
+## Native accounting V2 deployment boundary
+
+The [native V2 candidate](../reports/native-eth-port/VERIFICATION.md) uses actual ETH
+at currency `address(0)`. Read `Vault.ACCOUNTING_VERSION() == 2` and the handoff's
+`SCHEMA() == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2")`, then verify every
+module/helper runtime and binding. Deploy a coherent new set; do not attach V2
+helpers to the existing WETH-accounted local deployment or reset its journals.
+
+- **Prices and input admission:** govern `Oracle.setFeed(address(0),feed,maxAge)`
+  for ETH with 18 decimals. Native activation policy uses
+  `ActivationAssets.NATIVE_ASSET_CODE_HASH()`, a typed identity, not an ETH runtime
+  hash. Enable it with `setAsset(address(0),true,sentinel,reviewHash)`; disabling
+  new input never removes backing or accrued rewards. WETH is a separate ERC20.
+- **Activation/growth:** `Entry.execute` with source zero carries exactly
+  `amountIn` as native value; ERC20 input carries zero ETH and exact approval.
+  Direct `Vault.activate/increase` also requires exactly the declared slot-0 ETH.
+  Missing/extra value reverts; old prefunds cannot supply it. Approval never adds LP.
+- **Fees and claims:** native fees receive the same 80/10/5/5 allocation and
+  individual/equal-collective checkpoints as tokens. Current owners claim ETH
+  directly; already converted credits remain separate earned balances. ZZZ still
+  needs a qualified conversion route under the unchanged 1% cap; gas is separate.
+- **Pool moves:** `moveFunds` accepts identical actual currencies only, including
+  another native ETH/ZZZ fee tier. ETH/WETH atomic conversion is unfinished and
+  fails closed. Reviewed external custody completion remains a separate procedure.
+- **Raw exit and return:** the existing pause/park/snapshot/approve/exit procedure
+  now sends native ETH and ZZZ, without invoking WETH. It still depends on usable
+  venue/token bindings. For `recover` or `completeLocal`, attach exactly the declared
+  native amount as call value and approve only the ERC20 amount. Normal exit keeps
+  its 3% floor; raw mode retains explicit raw minima and no USD guarantee.
+- **Optional funding inbox:** `Fees.createRewardReceiver(nativeBucket,address(0))`
+  creates a native inbox with one ETH protection slot; do not supply a wrapper.
+- **Services and replacement:** API and keeper configurations explicitly select
+  `accounting_version: 2`; keeper configuration requires the reviewed deployed
+  runtime hash at `code_hashes.vault` and its actual `contracts.vault`. Review
+  all other runtime bindings, the actual ETH feed and per-predecessor
+  versions. Old journal files must not be reinterpreted as V2. Canonical funding
+  transfers backing first, then sends a zero-value acknowledgment; never pay it
+  twice. V1-to-V2 import is rejected pending a reviewed bridge between schemas.
+
+The website's native V2 profile, full release inventory, real feeds/routes,
+target-chain rehearsals and independent audit remain open. Public signing stays
+Anvil-only and the public deployment configuration remains null.
+
 **Keep this manual current.** Every change to an operator-facing function, permission, default, parameter, lifecycle, service or failure mode must update the affected procedure in the same change, or explicitly record why there is no operator impact. Update the task ledger and feature/evidence reference too. This is a required development/review step, not automatic synchronization. See [maintenance rules](TODO_WORKFLOW.md).
 
 ## Find the right procedure
@@ -79,7 +122,7 @@ Roles can technically share an address, but this combines their compromise and a
 | +/-20% | `2000` | 0.80 to 1.20 |
 | Total width 20%, meaning +/-10% | `1000` | 0.90 to 1.10 |
 
-1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only the intended settings. For the selected hookless native ETH/ZZZ pool use `configureNative(config)`; for supported hookless ERC20 pools use `configure(config)`. Do not sort the normalized WETH/ZZZ accounting pair or replace a native venue key with its accounting key.
+1. Read `PoolRegistry.get(poolId)` and copy the **entire** `PoolConfig`, including its real venue key. Change only intended settings. Use `configureNative(config)` for the selected native ETH/ZZZ pool and `configure(config)` for supported hookless ERC20 pools. V2 accounting retains the real zero ETH currency; do not substitute WETH or change slot ordering.
 2. Check the dependent bounds below, oracle freshness, current price/spot difference, target ticks, actual swap costs and expected gas. Review narrower-range out-of-range exposure and turnover. Simulate the new configuration and maintenance on a fork at the same state before approval.
 3. Governance executes the configuration. This **does not immediately close/reopen LP**. Inspect `Strategy.rangeUpdatePending(bucketId)` and `needsRebalance(bucketId)`.
 4. The authorized keeper submits `Vault.rebalance(bucketId,minimumLiquidity,deadline)` when cooldown and guards permit. A width mismatch can trigger it even at a flat price. Polling every ten minutes is only an example; it is not a guaranteed rebalance deadline.
@@ -133,10 +176,10 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 
 1. Review its exact chain/address, runtime and proxy authorities, decimals, transfers, liquidity, fees and price source. A symbol such as USDC does not identify an asset. Fee-on-transfer/rebasing/blacklisting or malicious callbacks can make an asset incompatible; permission to admit is not proof of compatibility.
 2. Governance configures the reviewed `Oracle.setFeed(token,feed,maxAge)`. Independently verify `price(token)` and decimals. Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
-3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The current supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct input/native wrapping is separate. It is not a general multi-hop router or arbitrary external executor.
+3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The current supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. It is not a general multi-hop router or arbitrary external executor.
 4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation, including the 1% limit and separate gas. Qualify actual execution before enabling real users.
 
-Native ETH uses the admitted wrapper/native path; do not admit `address(0)` as an ERC20 source. Accepting a new **input** does not automatically admit it for LP or royalty payouts. Those have separate finite ledgers. Actual production ETH/ZZZ/USDG/USDC services/routes remain subject to [qualification](ACTIVATION_PREPARATION.md).
+Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Actual production ETH/ZZZ/USDG/USDC routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
 ### Replace a swap route when market liquidity moves
 
@@ -221,7 +264,7 @@ ownership/reward handoff below is a separate retained feature.
 | New chain | Recipient is a source-chain address which subsequently uses a reviewed bridge. Require the pinned verifier's finalized delivery proof, not a governance acknowledgement. Actual verifier, bridge and remote reward/ownership services still need qualification; source LP stays unavailable/outstanding. |
 | Recover principal | `recover(id,deadline,proof)` pulls all actually sent assets back and restores parked custody. Remote recovery also needs finalized remote cancellation/closure proof. No timeout, partial funding, balance write-off or resend. |
 | Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `movePool` remains in this one module. |
-| Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD/inbox sync but cannot bypass an unusable venue/token/wrapper. Invalidate unused parking authorization with `invalidateParking`. |
+| Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD/inbox sync but cannot bypass an unusable venue/token or changed core/runtime binding. Native V2 parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
 | Move royalty currencies as well | Separate `RoyaltyRewards.exitCustody(asset,recipient,expectedBalance,nonce,recipientCodeHash,reviewHash)` while paused. Per-NFT entitlements remain; that currency's claims/valuation wait for exact full `returnCustody(asset,id)`. Native ETH is asset zero. Other currencies, LP principal and royalty quarantine must not be merged. |
 
 Record every plan/nonce, approval, exact recipient, source/destination bindings,
@@ -250,7 +293,7 @@ required for the operator's reviewed 3% close-plus-conversion limit. Follow the
 | --- | --- | --- |
 | Price feed or freshness policy | Governance `Oracle.setFeed(token,feed,maxAge)`, maxAge 1-86,400 seconds, feed/asset decimals ≤18; verify actual USD semantics, rounds, freshness and oracle price | Do not substitute pool spot, assume a stablecoin is $1, or stretch maxAge to conceal stale data. Pause/disable affected entry; consider exact parking if executable. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
-| Supported WETH implementation/admin change | `PoolRegistry.approveWrapperPolicy(policy)`, then `activateWrapperPolicy(id)` after live code/getter/authority review | Same canonical wrapper only. It does not approve arbitrary venue code changes or repair a hostile proxy. Parking itself can fail if wrapper bindings fail. |
+| Optional/legacy WETH review record | Retained `PoolRegistry.approveWrapperPolicy(policy)`, then `activateWrapperPolicy(id)` after code/getter/authority review | Same fixed WETH address only; native V2 admission, parking and exit do not consult this record. It neither repairs a hostile proxy nor changes a converter's independent immutable wrapper/route bindings. Review an explicitly wrapped operation separately. |
 | Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
 | RPC/trace/archive outage | Use chain-checked reviewed endpoints with required hash-pinned reads and trace/receipt semantics | Never fall back to latest/unconfirmed state or a wrong chain. Serve unavailable status; retain indexes/state. |
 
@@ -262,7 +305,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 
 | Operation | Entry point / owner of action | Verify and recover |
 | --- | --- | --- |
-| Receive optional/historical creator revenue | If separately agreed, governance creates the bucket's immutable inbox via `Fees.createRewardReceiver(bucketId,wrapper)`; give the creator the verified `rewardReceiver(bucketId)` | Not required by the selected hookless pool. Qualify payout assets/native wrapping, percentage basis, frequency and payer agreement. Receiver is append-only, not an operator wallet or the mint recipient. Unsupported/donated tokens do not automatically become rewards. |
+| Receive optional/historical creator revenue | If separately agreed, governance creates the bucket's immutable inbox via `Fees.createRewardReceiver(bucketId,wrapper)`; give the creator the verified `rewardReceiver(bucketId)` | Not required by the selected hookless pool. For native V2 use wrapper `address(0)`; qualify payout assets, percentage basis, frequency and payer agreement. Receiver is append-only, not an operator wallet or the mint recipient. Unsupported/donated tokens do not automatically become rewards. |
 | Process optional/historical creator payment | Permissionless `Fees.syncExternal(bucketId)` through its bound inbox, if one exists | Compare actual received funds, allocated ledgers and reserves. Missing optional creator payments cannot be fixed by calling sync more often. No automatic debit of creator funds. |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)` | Uses classified reserve, actual pool and guards; funds never pass through keeper. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
@@ -473,7 +516,7 @@ website deployment or paused-monitor restart is part of this procedure update.
 | Repeated slippage/loss/minimum failure | Retain old position; inspect actual conversion, venue costs, liquidity and oracle | Better route/timing or legitimate parameter review inside fixed limits; do not weaken accounting/aggregate limits to force success. |
 | Gas spike/low keeper funds/daily budget reached | Stop new submissions; continue receipt reconciliation/alerts | Refill reviewed signer or revise operating budget after analysis; gas is not taken from arbitrary holder balances. |
 | Unknown broadcast/nonce drift/reorg | Stop new signing, retain exact intent/hash and canonical anchors | Reconcile confirmed/pending transactions through recovery path; no blind resend or nonce reset. |
-| Token blacklist/pause, wrapper upgrade or venue unusable | Stop new exposure, preserve ledger, review dependency and exact exit | Policy update only where implemented and safe; venue/token failure can block even parking/claim/abort. No blanket rescue function. |
+| Token blacklist/pause, optional wrapper upgrade or venue unusable | Stop the affected exposure, preserve ledger, review the actual dependency and exact exit | Policy update only where implemented and safe; venue/token/runtime failure can block parking/claim/abort. A wrapper failure affects an explicitly wrapped operation, not native V2 custody. No blanket rescue function. |
 | Creator does not pay / royalties missing | Compare payer agreement, receiver and actual transfers | Process real receipts, resolve external payments; no invented accrual. Keep separate from API history outages. |
 | VRF unfulfilled / ordered reveals blocked | Verify subscription/provider/request; stop new minting if needed | Use the mint-only governance pause, then original authenticated fulfillment and ordered finalize. Resume deliberately after service checks. No reroll; postpone whole-collection replacement if unresolved. |
 | Server/disk/backup failure | Stop unsafe signing; alert off-host, preserve damaged evidence | Restore/reconcile state, permissions and storage; qualify health before new work. |
@@ -748,7 +791,7 @@ converter bindings and backing before enabling native claims. Preserve source
 balances and explicit pending/unavailable reporting while conversion is stopped.
 Live qualification remains in the [central task](../TODO.md#task-lp-eth-settlement).
 
-Contribution UI follow-up: four visible input choices (ZZZ/USDG/USDC/ETH), WETH internal only, dedicated contribution dialog and confirmed per-NFT evolution refresh. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.
+Historical pre-V2 named-fixture UI: four visible input choices (ZZZ/USDG/USDC/ETH), internal WETH accounting, a dedicated contribution dialog and confirmed per-NFT evolution refresh. That fixture's wrapping behavior does not describe native V2. See [named local rehearsal](LOCAL_TEST_STACK.md#named-input-local-rehearsal). No production authority/procedure change; public routes, ETH-only LP settlement and hosting remain open.
 
 Contribution incidents: distinguish a rejected/preparation failure, pending/unknown
 receipt, reverted receipt and confirmed LP with a failed read. Never ask for a new
@@ -756,7 +799,8 @@ submission while the original result is unknown. Recover the same operation ID a
 receipt first. A reverted Entry preserves input tokens but costs gas and can leave
 an earlier allowance. A successful Entry creates nonredeemable LP even when the
 API subsequently fails. Separately wrapped local ETH remains wallet-owned WETH
-if contribution fails; public native Entry wrapping is atomic. See the
+if contribution fails. The pre-V2 native-input fixture wrapped inside Entry
+atomically; native V2 Entry uses actual ETH and does not wrap. See the
 [failure evidence](../reports/topup-and-reward-review/contribution-rollback.json).
 
 ## Convert LP holder fees to ETH
@@ -781,7 +825,13 @@ state. See [focused verification](../reports/local-preparation-busy/VERIFICATION
 
 ## Two-transaction contribution operation
 
-For local rehearsals, use `--named-assets --native-input` with a new port/state
+**Historical pre-V2 fixture scope:** the commands and wrapping observations in
+this subsection refer to the earlier WETH-accounting local build. Existing 8902
+state/journals are preserved. Do not restart it with V2 sources or assume that an
+old launch command qualifies a new V2 fixture; verify a separate coherent build,
+configuration and state directory first.
+
+For those local rehearsals, use `--named-assets --native-input` with a new port/state
 directory; it substitutes local-only native admission, not production venue pins.
 Never restart an existing lab expecting persisted chain recovery: preserve its
 owned Anvil process and state, or use a separately verified web-only recovery.
@@ -791,13 +841,15 @@ and allowance before preparing again. Old unsigned drafts expire/cannot be repla
 The holder approves exactly the required ERC20 amount once, then explicitly confirms
 Entry. Direct approval must simulate successfully; a reset-only token is unsupported
 rather than silently adding a third send. Already sufficient allowance needs no
-approval. Native ETH wraps atomically inside Entry in the new native fixture. The
-legacy WETH-only pool cannot offer that ETH path. The local fixed activation is
+approval. ETH wrapped atomically inside Entry in that pre-V2 native-input fixture;
+the older WETH-only pool could not offer that path. Current native V2 Entry and
+pool custody instead use actual ETH without wrapping. The local fixed activation is
 $100; top-ups start at $5. This does not change production Entry's $100 minimum.
 
 Verify receipt success, increased confirmed LP and unchanged unrelated NFTs before
-celebration. Failure of the atomic Entry call reverts its wrapping/conversion/LP
-effects; approval and paid gas are separate. No governance/keeper permission
+celebration. Failure of the atomic Entry call reverts conversion/LP effects,
+including any wrapping in the historical pre-V2 fixture; approval and paid gas
+are separate. No governance/keeper permission
 changes. [Runbook](LOCAL_WEBSITE.md#local-contribution-flow---2026-10-20) and
 [evidence](../reports/local-contribution-flow/VERIFICATION.md).
 

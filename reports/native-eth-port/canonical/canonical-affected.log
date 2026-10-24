@@ -1,0 +1,134 @@
+Compiling 91 files with Solc 0.8.26
+Solc 0.8.26 finished in 229.26s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:278:17:
+    |
+278 |                 uint256 beforeGas = gasleft();
+    |                 ^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:285:9:
+    |
+285 |         uint256 beforeGas = gasleft();
+    |         ^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:151:9:
+    |
+151 |         PreparationTransport transport = new PreparationTransport(address(s.ac));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol:111:5:
+    |
+111 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol:230:5:
+    |
+230 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T17:56:18.818670Z  WARN traces::etherscan: etherscan config not found
+
+Ran 7 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalPreparation.t.sol:CanonicalPreparationTest
+[PASS] testClaimsTransfersPendingRevealAndReceiptSettlementStayAvailable() (gas: 6757894)
+[PASS] testHarvestAndTimelockedParkingRemainAvailableWithoutSourcePrice() (gas: 4497503)
+[PASS] testImmediatePreparationAndCancellationRequireGovernanceAndExactNotice() (gas: 486212)
+[PASS] testMaturedAnnouncementInFinalTreasuryCallbackCannotBypassVaultEndGuard() (gas: 985211)
+[PASS] testMaturedAnnouncementInNFTCallbackRollsBackTheEntireMint() (gas: 1470894)
+[PASS] testPreparationIsCanonicalOnlyAndDoesNotAcceptAnEmptyNotice() (gas: 153024)
+[PASS] testQueuedConfigurationCannotBypassPreparationButPauseControlRemains() (gas: 979349)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 804.18ms (43.80ms CPU time)
+
+Ran 34 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:CanonicalHandoffTest
+[PASS] testAbortAfterFundingRequiresExactReturnedBacking() (gas: 112535873)
+[PASS] testAbortAfterRoyaltySettlementReopensWithoutDoubleCrediting() (gas: 13618527)
+[PASS] testAbortBeforeFundingRestoresOnlySourceAndPermanentlyCancelsDestination() (gas: 108996191)
+[PASS] testAbortBeforeSettlementReopensSourceWithoutLosingPendingReceipts() (gas: 13444832)
+[PASS] testAbortedSourceCanUseFreshDestinationWithoutReusingOldRootsOrFundingFlags() (gas: 284569958)
+[PASS] testActivatedSuccessorCanLaterMigrateAgainAfterNewMintsAndContributions() (gas: 294862807)
+[PASS] testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers() (gas: 111892467)
+[PASS] testCrossChainNoticeDoesNotAuthorizeUnverifiedFreezeOrExport() (gas: 1100122)
+[PASS] testDestinationNeverCopiesOldOperatorApprovalsAndRightsFollowNewOwner() (gas: 111533458)
+[PASS] testDestinationRoyaltyPrefundsCannotSubstituteForHandoffFundingOrRewardUsers() (gas: 111633702)
+[PASS] testDormantImportedNFTCanActivateIntoExistingSharedBucket() (gas: 114252961)
+[FAIL: assertion failed: 1 != 0] testEmptyCollectionAndZeroLPAssetsCanMigrateWithoutInventingBacking() (gas: 240018288)
+[PASS] testFreezeInsideLegacyFundingCallbackCannotCountOnePaymentTwice() (gas: 192027840)
+[PASS] testFreezeRejectsLiveLiquidityAndPreservesItsCustody() (gas: 4260640)
+[PASS] testFreezeRequiresTimelockAndFullyRevealedMintInventory() (gas: 1432699)
+[PASS] testFrozenSourceBlocksTransfersClaimsAndOrdinarySync() (gas: 12159630)
+[PASS] testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner() (gas: 256130871)
+[PASS] testFullThousandNFTInventoryImportsExactlyOnceWithCompleteDenominators() (gas: 63710720)
+Logs:
+  handoff.freeze.peak: 2399442
+  handoff.settle-one-domain.cold.peak: 460790
+  handoff.export-8-rows.peak: 1089429
+  handoff.import-8-rows.peak: 3192430
+  handoff.fund-one-asset.peak: 272049
+  handoff.commit-and-activate.peak: 460186
+
+[FAIL: next call did not revert as expected] testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() (gas: 110576980)
+[PASS] testImportingDestinationCannotMintOrAllocateRights() (gas: 58546)
+[PASS] testInterruptedSettlementKeepsCutoffsAndBlocksEarlyImportFundingAndClaims() (gas: 116336703)
+[PASS] testLegacyReceiptsQueuedWhileSuccessorFrozenRemainBackedAcrossNextHandoff() (gas: 295498285)
+[PASS] testMalformedRecordAndIncompleteImportCannotActivate() (gas: 39351318)
+[FAIL: Cold canonical governance call exceeds unchanged 12M budget: 12884426 >= 12000000] testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger() (gas: 151715964)
+[FAIL: assertion failed: 1500 != 0] testPartialFundingAbortReturnsOnlyTransferredBacking() (gas: 110373735)
+[PASS] testPartialFundingCannotActivateAndFundingCannotReplay() (gas: 108831312)
+[PASS] testPendingNativeCreatorPaymentIsWrappedAndAllocatedOnceAtFreeze() (gas: 264248960)
+[PASS] testPostFreezeSourceDonationDoesNotAlterStateCommitmentOrBaseBacking() (gas: 111616205)
+[PASS] testProtectedInboxTokensNativeAndSuccessorPrefundsStayQuarantined() (gas: 117270390)
+[PASS] testRemainingRarityAndArtworkInventoryContinueAfterMigration() (gas: 108120168)
+[PASS] testRetiredRoyaltyInboxForwardsOnlyRemainingReceiptsWithoutDuplicatingClaims() (gas: 111649192)
+[PASS] testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause() (gas: 111396098)
+[PASS] testSatelliteConfiguredDestinationCannotPrepareCanonicalImport() (gas: 74245536)
+[PASS] testUnsealedSameChainDestinationCannotBeAnnouncedAsExecutableHandoff() (gas: 73590666)
+Suite result: FAILED. 30 passed; 4 failed; 0 skipped; finished in 6.21s (27.83s CPU time)
+
+Ran 2 test suites in 6.24s (7.01s CPU time): 37 tests passed, 4 failed, 0 skipped (41 total tests)
+
+Failing tests:
+Encountered 4 failing tests in C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:CanonicalHandoffTest
+[FAIL: assertion failed: 1 != 0] testEmptyCollectionAndZeroLPAssetsCanMigrateWithoutInventingBacking() (gas: 240018288)
+[FAIL: next call did not revert as expected] testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() (gas: 110576980)
+[FAIL: Cold canonical governance call exceeds unchanged 12M budget: 12884426 >= 12000000] testMaximumLocalAssetAndBucketDomainsPreserveEveryImportedLedger() (gas: 151715964)
+[FAIL: assertion failed: 1500 != 0] testPartialFundingAbortReturnsOnlyTransferredBacking() (gas: 110373735)
+
+Encountered a total of 4 failing tests, 37 tests succeeded

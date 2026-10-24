@@ -94,11 +94,12 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     if not 0 < gas_used <= int(tx['gas'], 16):
         raise ProjectionError('Invalid simulated gas use')
     req = request
+    native_profile = req.get('accounting_version', 1) == 2
     topic_word = lambda n: '0x' + f'{n:064x}'
     source = event(root, pins['entry'], SOURCE,
                    [topic_word(int(tx['from'], 16)), topic_word(req['id']), req['pool']], 6)
     if (_address_word(source[0], native=True) != req['source'] or int(source[1], 16) != req['amount'] or
-            int(source[2], 16) != gross or _address_word(source[3]) != req['output'] or
+            int(source[2], 16) != gross or _address_word(source[3], native=native_profile) != req['output'] or
             int(source[5], 16) != int(req['increase'])):
         raise ProjectionError('Source event differs from authenticated original input')
     acquired = int(source[4], 16)
@@ -114,6 +115,8 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     vault = child(root, pins['entry'], pins['vault'], signature, 'CALL')
     if vault['input'].lower() != calldata(signature, *args) or vault.get('output', '0x') != '0x':
         raise ProjectionError('Vault did not receive the exact owner contribution')
+    if native_profile and _quantity(vault.get('value', '0x0')) != (a0 if req['token0'] == ZERO else 0):
+        raise ProjectionError('Vault child call does not carry the exact declared native contribution')
     candidates = [x for x in vault.get('calls', []) if x.get('from','').lower()==pins['vault'] and
                   x.get('to','').lower()==pins['budget'] and
                   x.get('input','')[:10].lower() in (selector(RESULT),selector(LEGACY_RESULT))]
@@ -139,7 +142,7 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         if not current or not supply or call.get('type')!='STATICCALL' or call.get('input','')[:10].lower()!=selector(VALUE):
             raise ProjectionError('Unexpected historical compound valuation call')
         token_raw,amount_raw=words('0x'+call['input'][10:],2)
-        token=_address_word(token_raw);amount=int(amount_raw,16)
+        token=_address_word(token_raw,native=native_profile);amount=int(amount_raw,16)
         if token in seen or token in (req['token0'],req['token1']) or amount==0:
             raise ProjectionError('Invalid historical compound currency')
         seen.add(token);value=int(words(call.get('output'),1)[0],16)
@@ -174,6 +177,11 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     if (params[0] != req['pool'][2:] or int(params[-2], 16) != req['minimum_lp'] or
             int(params[-1], 16) != req['deadline'] or not create and int(params[1], 16) != req['old_lp_id']):
         raise ProjectionError('LP mint/increase parameters differ from the Entry request')
+    if native_profile:
+        amount0_slot = 3 if create else 2
+        expected_value = int(params[amount0_slot], 16) if req['token0'] == ZERO else 0
+        if _quantity(mint.get('value', '0x0')) != expected_value:
+            raise ProjectionError('LP child call does not carry the exact declared native budget')
     output = words(mint.get('output'), 3 if create else 2)
     lp_id = int(output[0], 16) if create else req['old_lp_id']
     target_call = calldata('getPositionLiquidity(uint256)', lp_id)

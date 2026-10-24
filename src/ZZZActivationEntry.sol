@@ -9,12 +9,12 @@ import {ZZZActivationAssets} from "./ZZZActivationAssets.sol";
 import {IZZZNFT, IZZZPools} from "./interfaces/IZZZ.sol";
 import {Ids, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
+import {ExactAsset} from "./libraries/ExactAsset.sol";
 
 interface IActivationVault {
-    function activate(uint256, bytes32, uint256, uint256, uint128, uint256) external;
-    function increase(uint256, uint256, uint256, uint128, uint256) external;
+    function activate(uint256, bytes32, uint256, uint256, uint128, uint256) external payable;
+    function increase(uint256, uint256, uint256, uint128, uint256) external payable;
 }
-interface IActivationWrapper { function deposit() external payable; }
 interface IActivationV3Factory { function getPool(address, address, uint24) external view returns (address); }
 interface IActivationV3Pool {
     function factory() external view returns (address);
@@ -48,9 +48,9 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
     struct Request {
         uint256 nftId;
         bytes32 poolId;
-        address sourceAsset; // Zero means native ETH, normalized to this native pool's wrapper.
+        address sourceAsset; // Zero is native ETH, distinct from every ERC20.
         uint256 amountIn;
-        bytes32 routeId; // Zero means direct accounting currency or exact native wrapping.
+        bytes32 routeId; // Zero means a direct accounting currency.
         uint256 minimumOut;
         uint128 minimumLiquidity;
         uint256 deadline;
@@ -166,7 +166,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         address vault = _vault();
         if (request.amountIn == 0 || request.minimumLiquidity == 0 || _owner(request.nftId) != msg.sender) revert Unauthorized();
         PoolConfig memory pool = IZZZPools(registry).accounting(request.poolId);
-        if (!pool.depositsEnabled || !pool.operationsEnabled || pool.key.currency0 == address(0) ||
+        if (!pool.depositsEnabled || !pool.operationsEnabled ||
             pool.key.currency0 == pool.key.currency1) revert InvalidConfiguration();
         address source = request.sourceAsset;
         address output;
@@ -174,7 +174,6 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         if (source == address(0)) {
             if (msg.value != request.amountIn || request.routeId != bytes32(0) || request.minimumOut != 0 ||
                 IZZZPools(registry).get(request.poolId).key.currency0 != address(0)) revert InvalidAmount();
-            source = pool.key.currency0;
             output = source;
         } else {
             if (msg.value != 0) revert InvalidAmount();
@@ -191,13 +190,9 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         }
         if (output != pool.key.currency0 && output != pool.key.currency1) revert InvalidConfiguration();
         uint256 nativeBaseline = address(this).balance - msg.value;
-        uint256 sourceBaseline = IERC20(source).balanceOf(address(this));
-        uint256 outputBaseline = IERC20(output).balanceOf(address(this));
-        if (request.sourceAsset == address(0)) {
-            IActivationWrapper(source).deposit{value: request.amountIn}();
-            if (address(this).balance != nativeBaseline ||
-                IERC20(source).balanceOf(address(this)) != sourceBaseline + request.amountIn) revert InvalidState();
-        } else ExactToken.pull(source, msg.sender, request.amountIn);
+        uint256 sourceBaseline = ExactAsset.balance(source,address(this)) - (source == address(0) ? msg.value : 0);
+        uint256 outputBaseline = ExactAsset.balance(output,address(this)) - (output == address(0) ? msg.value : 0);
+        if (source != address(0)) ExactToken.pull(source, msg.sender, request.amountIn);
         // Values the real original amount; an assumed stable peg or supplied USD
         // claim cannot relax the Vault's single 99% end-to-end execution budget.
         uint256 grossUSD = activationAssets.value(source, request.amountIn);
@@ -221,15 +216,15 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         // Token approval can call arbitrary token code. Context must remain
         // inactive until the immediate Vault call, whose own guard then protects
         // contribution valuation against unrelated callback-driven joins.
-        IERC20(output).forceApprove(vault, acquired);
+        ExactAsset.approve(output,vault, acquired);
         if (_owner(request.nftId) != msg.sender) revert Unauthorized();
         context = Context(msg.sender, request.nftId, keccak256(payload), request.poolId, amount0, amount1, grossUSD);
-        (bool success, bytes memory result) = vault.call(payload);
+        (bool success, bytes memory result) = vault.call{value: output == address(0) ? acquired : 0}(payload);
         if (!success) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
         delete context;
-        IERC20(output).forceApprove(vault, 0);
-        if (_owner(request.nftId) != msg.sender || IERC20(output).balanceOf(address(this)) != outputBaseline ||
-            IERC20(source).balanceOf(address(this)) != sourceBaseline || address(this).balance != nativeBaseline) revert InvalidState();
+        ExactAsset.approve(output,vault, 0);
+        if (_owner(request.nftId) != msg.sender || ExactAsset.balance(output,address(this)) != outputBaseline ||
+            ExactAsset.balance(source,address(this)) != sourceBaseline || address(this).balance != nativeBaseline) revert InvalidState();
         emit SourceContributed(msg.sender, request.nftId, request.poolId, request.sourceAsset,
             request.amountIn, grossUSD, output, acquired, request.increase);
     }

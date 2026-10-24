@@ -31,7 +31,7 @@ interface ICanonicalBridgeHistory {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_V1");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2");
     ICanonicalController public immutable access;
     // 0 idle, 1 frozen/exporting, 2 imported, 3 retired, 4 importing,
     // 5 active replacement, 6 aborting, 7 cancelled replacement, 8 captured/settling.
@@ -118,6 +118,7 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
             sourceController == address(access) || sourceController.code.length == 0 ||
             !IZZZAccess(sourceController).isSealed()) revert Unauthorized();
         if (IZZZVault(access.module(Ids.VAULT)).canonicalChainId() != block.chainid) revert UnsupportedTransport();
+        if (_peer(sourceController).SCHEMA() != SCHEMA) revert UnsupportedTransport();
         incomingSource = sourceController;
         phase = 4;
         access.canonicalTransition(2, false, false);
@@ -130,7 +131,7 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
         (uint256 chain, address destination, bytes32 deployment,) = access.preparationNotice();
         if (chain != block.chainid) revert UnsupportedTransport();
         ZZZCanonicalHandoff peer = _peer(destination);
-        if (!IZZZAccess(destination).isSealed() || peer.phase() != 4 ||
+        if (!IZZZAccess(destination).isSealed() || peer.SCHEMA() != SCHEMA || peer.phase() != 4 ||
             peer.incomingSource() != address(access) || peer.deploymentCommitment() != deployment)
             revert InvalidState();
         if (IZZZVault(IZZZAccess(destination).module(Ids.VAULT)).canonicalChainId() != block.chainid)

@@ -83,7 +83,9 @@ contract PooledSecurityTest is PooledVaultFixture {
         uint256 gross=bound(uint256(rawFees),1,1e6)*20;
         venue.setFees(gross,0);vault.collectFees(bucket,block.timestamp+100);
         uint256 earnedFirst=rewards.claimable(first,address(t0));uint256 earnedSecond=rewards.claimable(second,address(t0));
-        uint256 secondShares=vault.sharesOf(second);uint256 topUp=bound(uint256(rawTopUp),1,30000);
+        // Each zero-decimal fixture token is $1; both sides together must meet
+        // the existing $5 growth floor. $5 itself is covered by native Entry.
+        uint256 secondShares=vault.sharesOf(second);uint256 topUp=bound(uint256(rawTopUp),3,30000);
         vm.prank(alice);vault.increase(first,topUp,topUp,1,block.timestamp+100);
         assertEq(rewards.claimable(first,address(t0)),earnedFirst);
         assertEq(rewards.claimable(second,address(t0)),earnedSecond);

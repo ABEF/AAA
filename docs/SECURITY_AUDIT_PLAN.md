@@ -6,10 +6,10 @@ The [internal audit](../reports/daily-security-20261024/REVIEW.md) fixes fee-awa
 ERC20/native sizing and evidence-reader robustness, and corrects exit operations.
 It also audits the broader [native ETH design](NATIVE_ETH_ARCHITECTURE.md): currency
 identity, native indices, historical reserves, two-stage canonical funding/abort,
-nonduplicated receiver backing and versioned backend traces. The port remains
-unimplemented; no native implementation qualification or independent approval is
-claimed. The WETH checkpoint, accepted custody trust and real-service release
-gates remain explicit.
+nonduplicated receiver backing and versioned backend traces. The [native V2 candidate](../reports/native-eth-port/VERIFICATION.md) now implements
+these paths with scoped local checks. Explicit ETH/WETH conversion, legacy-schema
+import, target-chain/service qualification and independent approval remain open.
+The earlier WETH checkpoint evidence retains its original source scope.
 
 ## Current governed-custody scope (2026-10-23)
 

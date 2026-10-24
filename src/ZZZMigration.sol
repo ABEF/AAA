@@ -6,12 +6,13 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZCustodyValidation} from "./ZZZCustodyValidation.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
+import {ExactAsset} from "./libraries/ExactAsset.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {Ids,Position,PositionStatus,PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZVault,IZZZPools,IZZZOracle,IZZZLiquidity,IZZZRewards} from "./interfaces/IZZZ.sol";
 interface ICustodyVault is IZZZVault {
     function consolidateHandoff(uint256,address,uint256,uint256) external;
-    function acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) external;
+    function acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) external payable;
 }
 /// Must prove finality, exact destination custody/backing, and closure for returns.
 interface ICustodyFinality { function verifyCustody(bytes32,bytes calldata) external view returns(bool); }
@@ -60,6 +61,10 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     event ParkingInvalidated(uint256 indexed bucketId,uint64 nextNonce);
     ZZZCustodyValidation public immutable validation;
     constructor(address controller) ZZZModule(controller) {validation=new ZZZCustodyValidation(controller);}
+    receive() external payable {
+        if (msg.sender != access.module(Ids.VAULT)) revert Unauthorized();
+    }
+    function _balance(address asset) private view returns (uint256) { return ExactAsset.balance(asset,address(this)); }
     function _vault() private view returns(ICustodyVault) { return ICustodyVault(access.module(Ids.VAULT)); }
     function _pools() private view returns(IZZZPools) { return IZZZPools(access.module(Ids.POOLS)); }
     function request(bytes32 id) external view returns(Request memory) { return plans[id].request; }
@@ -126,7 +131,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         if(q.status!=Status.Approved || !access.paused() || r.sourceSnapshot!=sourceSnapshot(r.bucket) ||
             r.recipient.codehash!=r.recipientCodeHash || (!r.rawExit && q.zzz.codehash!=zzzCodeHash)) revert InvalidState();
         ICustodyVault v=_vault();
-        uint256 b0=IERC20(q.token0).balanceOf(address(this)); uint256 b1=IERC20(q.token1).balanceOf(address(this));
+        uint256 b0=_balance(q.token0); uint256 b1=_balance(q.token1);
         q.status=Status.Sent; q.departureBlock=block.number; ++custodyEpoch[r.bucket];
         if(q.sourceStatus==PositionStatus.Active) v.park(r.bucket,r.deadline);
         if(!r.rawExit) v.consolidateHandoff(r.bucket,q.zzz,r.minimumZZZ,r.deadline);
@@ -134,10 +139,10 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         if(r.rawExit) {
             if(a0<r.exitMinimum0 || a1<r.exitMinimum1) revert Slippage();
         } else if((q.zzz==q.token0?a1:a0)!=0 || (q.zzz==q.token0?a0:a1)<r.minimumZZZ) revert Slippage();
-        if(IERC20(q.token0).balanceOf(address(this))!=b0+a0 || IERC20(q.token1).balanceOf(address(this))!=b1+a1) revert InvalidState();
-        q.sent0=a0; q.sent1=a1; q.sentZZZ=q.zzz==q.token0?a0:(q.zzz==q.token1?a1:0);
-        ExactToken.push(q.token0,r.recipient,a0); ExactToken.push(q.token1,r.recipient,a1);
-        if(IERC20(q.token0).balanceOf(address(this))!=b0 || IERC20(q.token1).balanceOf(address(this))!=b1 ||
+        if(_balance(q.token0)!=b0+a0 || _balance(q.token1)!=b1+a1) revert InvalidState();
+        q.sent0=a0; q.sent1=a1; q.sentZZZ=q.zzz==address(0)?0:(q.zzz==q.token0?a0:(q.zzz==q.token1?a1:0));
+        ExactAsset.push(q.token0,r.recipient,a0); ExactAsset.push(q.token1,r.recipient,a1);
+        if(_balance(q.token0)!=b0 || _balance(q.token1)!=b1 ||
             v.bucketTotalShares(r.bucket)!=q.shares) revert InvalidState();
         emit CustodySent(id,r.bucket,r.recipient,q.sentZZZ);
         emit CustodyAssetsSent(id,q.token0,a0,q.token1,a1,r.rawExit);
@@ -148,7 +153,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     /// Actual funding + LP mint + final fixed-price 3% check in one transaction.
     function completeLocal(bytes32 id,uint256 a0,uint256 a1,uint128 minimumLiquidity,uint256 deadline)
-        external live operating nonReentrant {
+        external payable live operating nonReentrant {
         _deadline(deadline); Plan storage q=plans[id]; Request memory r=q.request;
         if(q.status!=Status.Sent || r.destinationChain!=block.chainid || r.destinationPool==bytes32(0) || a0<r.minimum0 ||
             a1<r.minimum1 || minimumLiquidity==0) revert InvalidState();
@@ -174,7 +179,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         emit CustodyRemoteVerified(id,commitment);
     }
     /// Return FULL actually-sent ZZZ. Remote returns also prove final channel closure.
-    function recover(bytes32 id,uint256 deadline,bytes calldata proof) external operating nonReentrant {
+    function recover(bytes32 id,uint256 deadline,bytes calldata proof) external payable operating nonReentrant {
         _deadline(deadline); Plan storage q=plans[id];
         if(q.status!=Status.Sent && q.status!=Status.RemoteVerified) revert InvalidState();
         if(q.request.destinationChain!=block.chainid) _verify(q,proofCommitment(id,2),proof);
@@ -196,12 +201,18 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function _receive(Plan storage q,bytes32 pool,address t0,address t1,uint256 a0,uint256 a1,uint128 minimum,uint256 deadline) private {
         ICustodyVault v=_vault(); if(v.group(q.request.bucket).status!=PositionStatus.Outbound ||
             v.bucketTotalShares(q.request.bucket)!=q.shares) revert InvalidState();
-        uint256 b0=IERC20(t0).balanceOf(address(this)); uint256 b1=IERC20(t1).balanceOf(address(this));
-        ExactToken.pull(t0,msg.sender,a0); ExactToken.pull(t1,msg.sender,a1);
-        IERC20(t0).forceApprove(address(v),a0); IERC20(t1).forceApprove(address(v),a1);
-        v.acceptHandoff(q.request.bucket,pool,a0,a1,minimum,deadline);
-        IERC20(t0).forceApprove(address(v),0); IERC20(t1).forceApprove(address(v),0);
-        if(IERC20(t0).balanceOf(address(this))!=b0 || IERC20(t1).balanceOf(address(this))!=b1) revert InvalidState();
+        uint256 nativeAmount=t0==address(0)?a0:(t1==address(0)?a1:0);
+        if (msg.value!=nativeAmount || t0==t1) revert InvalidAmount();
+        // This is the funding ingress. Existing ETH cannot cover missing value;
+        // only this operation's declared native budget is forwarded to Vault.
+        uint256 b0=_balance(t0)-(t0==address(0)?msg.value:0);
+        uint256 b1=_balance(t1)-(t1==address(0)?msg.value:0);
+        if (t0!=address(0)) { ExactToken.pull(t0,msg.sender,a0); IERC20(t0).forceApprove(address(v),a0); }
+        if (t1!=address(0)) { ExactToken.pull(t1,msg.sender,a1); IERC20(t1).forceApprove(address(v),a1); }
+        v.acceptHandoff{value:nativeAmount}(q.request.bucket,pool,a0,a1,minimum,deadline);
+        if (t0!=address(0)) IERC20(t0).forceApprove(address(v),0);
+        if (t1!=address(0)) IERC20(t1).forceApprove(address(v),0);
+        if(_balance(t0)!=b0 || _balance(t1)!=b1) revert InvalidState();
     }
     function _close(Plan storage q,bytes32 id) private {
         if(activePlan[q.request.bucket]!=id) revert InvalidState(); delete activePlan[q.request.bucket]; --outstandingCount;
@@ -211,7 +222,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         if(p.lpTokenId==0) return(0,0); return IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
     }
     /// @notice Atomic pool-to-pool move. Never transfers principal to an external custodian.
-    /// Native ETH and WETH venues share accounting currencies; other pairs fail closed.
+    /// Only identical actual currencies are accepted; native ETH and WETH are distinct.
     /// One 3% aggregate loss budget, unchanged NFT shares, actual destination LP.
     function moveFunds(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) public onlyGovernance live nonReentrant {
         if(activePlan[id]!=bytes32(0)) revert InvalidState(); _vault().movePool(id,pool,minimum,deadline);

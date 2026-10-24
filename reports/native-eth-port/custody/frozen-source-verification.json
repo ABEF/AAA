@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-24",
+  "result": "13 passed, 0 failed",
+  "scope": "Final frozen owned native custody/canonical/budget boundary tests; deterministic fixture venue and provider substitutes",
+  "source_bindings": {
+    "src/ZZZMigration.sol": {
+      "sha256": "a2b917e36a6ff363c1020aa9b89500f872d242e899fb9a420958c559ae607f17",
+      "compiler_metadata_keccak256": "0x8cd09a8c02158b4c00303758ba7fe89415dd0c8ffaa37b44dc802ed3eadca2af"
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "eb88f5c96f5f07230633793b186ed35c6b81c3094317cac3c0b8ceaa966e3452",
+      "compiler_metadata_keccak256": "0xb46930ac4e47de475406fc0435bc26114f39d73d4c5269d4fa9dfef4878d02f8"
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "sha256": "8952fd265e6b31559d5fd8f16aaf47e2a53b404954c02af0410d78a4e4fba81e",
+      "compiler_metadata_keccak256": "0x6dad7cd0e9642e9bf452dbf8de34871e1e64996565546d04c8df5e2d765adb24"
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "b7bb7c34256f9f6a7a72dceeb5f9288253363d018f61003ec4b5ee80c51a017c",
+      "compiler_metadata_keccak256": "0x3a7e0e509d213e38dd856f109ddbc3fbbb5e6fcb843ccff4a29d2e0e0f9232ce"
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "sha256": "a5244c7e1d5a7f4e1eacae6c250b158784ac247251ca142b30c21a3f2db66bda",
+      "compiler_metadata_keccak256": "0xb78a4c0f3dafa9ede3de507f9d8abbb9a66ba338fc4862dcc2c526f04afa64d5"
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "sha256": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "compiler_metadata_keccak256": "0x48989f6f79ba1b99cb21b0d81b727141a3cb8da78153061bf0ca4a820f3d021e"
+    },
+    "src/libraries/ExactAsset.sol": {
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "compiler_metadata_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314"
+    },
+    "test/NativeCustody.t.sol": {
+      "sha256": "09aa4b9b81d46be27234ac1fbebae695c712e29d445cb7266adc4f7c810fe82f",
+      "compiler_metadata_keccak256": "0x6fa15b7833fa96487b8094eccdc502e76e0921a73f00e72b208107aa07b20c99"
+    }
+  },
+  "runtime_bytes": {
+    "ZZZMigration": 24047,
+    "ZZZMigrationBudget": 21570,
+    "ZZZCustodyValidation": 8374,
+    "ZZZVaultCanonical": 17533,
+    "ZZZCanonicalHandoff": 20740
+  },
+  "initcode_bytes": {
+    "ZZZMigration": 33511,
+    "ZZZMigrationBudget": 22467,
+    "ZZZCustodyValidation": 8809,
+    "ZZZVaultCanonical": 18859,
+    "ZZZCanonicalHandoff": 21370
+  }
+}

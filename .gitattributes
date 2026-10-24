@@ -33,3 +33,6 @@ reports/lp-eth-settlement/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-
 reports/custody-handoff/runs/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 reports/history/retired-v3-contracts/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 reports/history/retired-v3-tests/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve source-bound native V2 receipts and native compiler diagnostics.
+reports/native-eth-port/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

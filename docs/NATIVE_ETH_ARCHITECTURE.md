@@ -1,9 +1,21 @@
-# Native ETH architecture: implementation specification
+# Native ETH architecture: V2 contract candidate
 
 2026-10-24. The user requires robustness and efficiency over preserving existing
-code. The selected venue is native ETH/ZZZ. Keep wrapping only for an operation
-that actually uses a wrapped asset. This document is a specification, not a claim
-the native redesign is implemented or production-approved.
+code. The selected venue is native ETH/ZZZ. The local native V2 contract candidate
+now preserves ETH through contributions, LP settlement, fee/reward accounting,
+maintenance, custody recovery and versioned same-chain canonical handoff. Keep
+wrapping only for an operation that actually uses WETH. This candidate is
+**undeployed and not approved for production**; scoped verification and remaining
+boundaries are recorded in the [native-port report](../reports/native-eth-port/VERIFICATION.md).
+
+Atomic native ETH/WETH pool conversion is not implemented and the same-pair guard
+rejects it. Legacy V1 canonical import is rejected. Typed v4 fee/input conversion,
+the native website manifest, actual backend/inventory/history qualification,
+routes/feeds/providers and
+native target-chain operating/fork qualification remain open. Do not treat the
+old WETH checkpoint or its backend profiles as evidence for this new candidate.
+The API/keeper candidate now binds explicit accounting versions, including
+predecessor profiles; that code does not qualify actual deployed services.
 
 ## Asset identity and backing
 
@@ -32,7 +44,7 @@ the native redesign is implemented or production-approved.
 | ZZZ fee conversion | User reconfirmed the1% limit on2026-10-24; gas stays separate. The selected approximately1.101% venue needs a cheaper route at reference prices; do not invent one or loosen the cap. |
 | Compound/buyback | Spend only the classified5% reserve through typed native settlement. Keeper gas is external. |
 | Fee-tier move | Atomic same-native-pair close/redeploy, actual destination depth and one fixed3% starting-price budget. |
-| ETH/WETH pool move | Explicit exact1:1 boundary conversion using a reviewed wrapper; distinct asset/idle accounting, composition epoch and historical reserve rights. No implicit identity normalization. |
+| ETH/WETH pool move | Not implemented atomically: the actual-currency pair guard rejects ETH/WETH substitution. A future boundary needs explicit exact1:1 reviewed wrapping, distinct asset/idle accounting and historical reserve rights; no implicit normalization. |
 | Normal custody exit | Close actual LP, preserve accrued fees, enforce stricter swap and aggregate floors, consolidate to ZZZ and send only approved principal. |
 | Raw custody exit | Close and send native ETH plus ZZZ without calling WETH, swapping or reading USD prices. Exact reviewed raw minima; no USD guarantee. |
 | Recovery/local completion | Actual ETH/token funding, declared units and actual LP backing; no synthetic return receipt. |
@@ -53,30 +65,40 @@ failure with successful raw native exit, canonical abort/backing and code sizes.
 Old evidence remains source-bound; changing these paths justifies fresh affected
 coverage. Do not repeat unchanged suites merely to inflate counts.
 
-Current checkpoint: [hookless-pool evidence](../reports/hookless-pool/VERIFICATION.md).
-The native redesign needs its own source-bound verification before any release.
+Current candidate: [native-port evidence](../reports/native-eth-port/VERIFICATION.md).
+The earlier [hookless-pool evidence](../reports/hookless-pool/VERIFICATION.md)
+retains its WETH source/block scope. No old result silently qualifies native V2.
 
 ## Adversarial design review - 2026-10-24
 
-The broader native redesign is included in the [internal audit](../reports/daily-security-20261024/REVIEW.md).
-Its implementation does not exist yet. These requirements are release blockers
-for a native-accounting candidate, not claims that the current WETH checkpoint
-already meets them. Complete the port across the bound modules before enabling
-a native deployment profile; do not combine incompatible old and new modules.
+The earlier [design audit](../reports/daily-security-20261024/REVIEW.md) identified
+the boundaries below before native implementation. Its historical claims are
+unchanged. The current code addresses the contract boundaries; fresh affected
+evidence is recorded separately. Website profile integration, actual backend/services, target-chain
+qualification and independent review remain release gates. Never combine
+incompatible old and new modules.
 
-| Boundary | Required design and implementation | Current code that needs adaptation |
+| Boundary | Required design and implementation | Native V2 implementation or remaining boundary |
 | --- | --- | --- |
-| Native versus missing identity | Permit zero only as an explicitly admitted currency. Keep zero forbidden for contract targets, owners, configured ZZZ and missing dependencies. An unconfigured `currentZZZ` must not make a raw ETH exit report ETH as `sentZZZ`. Bind native output identity to the real pool, not an arbitrary zero field. | `ZZZMigration`, `ZZZCustodyValidation`, `ZZZOracle`, `ZZZActivationAssets`, Entry and backend codecs |
-| Native fee accrual | Feed native receipts through both individual and equal-collective indices, checkpoints and fractions. Preserve already converted ETH credits and liabilities without counting them again as earnings. Settling old weights before activation/top-up remains mandatory. | `ZZZRewards._checkpoint`, `_checkpointOwner`, `_creditPool`, `claimable` and `canonicalImport` currently treat ETH as conversion-only |
-| Historical reserves and NAV | Native compound and dust must remain incumbent backing after moving to a WETH pool. Include all admitted assets, including the 33rd native/32-ERC20 slot, in bounded accounting. Missing ETH cannot dilute existing shares or downgrade metadata as a verified zero. | `ZZZMigrationBudget.historicalCompoundValue`, `ZZZMembership.settleDust`, Vault share pricing and metadata valuation |
-| Typed funding | Validate the whole declared native value once at the actual funding ingress. Subtract incoming value from starting balance baselines; ERC20 operations reject extra ETH. Match Entry, Vault, manager and fee-credit call values and exact outputs; existing prefunds cannot fill a shortfall. | Entry, Vault activation/growth, LiquidityManager, Fees/Rewards credits, Migration return/completion, API preparation and child-call traces |
-| Two-stage canonical funding | Handoff first transfers backing into the destination companion, then acknowledges it with zero `msg.value`; abort uses the reverse protocol. Receive, classify and forward the already transferred native amount once. Do not require `msg.value == amount` at an acknowledgment that is not the funding call. Preserve partial funding and exact abort restoration. | `ZZZCanonicalHandoff.fund/returnFunds`, `ZZZVaultCanonical.canonicalAccept`, `ZZZFeesCanonical.canonicalAccept` and restore hooks |
-| Separate backing domains | Export/import native Vault principal, Fees reserves/dust/quarantine, Rewards and royalties independently. Include asset zero where old codecs skip/reject it, and update finite inventory bounds. A contract balance cannot fund two captured rows or cover another domain's liability. | Vault/Fees canonical capture/import/release and `ZZZCanonicalLedger` funding verification |
-| Receiver cutoff/protection | If token0 is ETH, do not also count it in a separate `protectedNative` or cutoff slot. Native funding follows the actual currency identity, not the old assumption that only receiver slot 2 can receive ETH. | RewardReceiver capture/settle/protection/release, FeesCanonical receiver rows, FeeController receiver funding |
-| Transitive wrapper independence | Raw native close, harvest, fee classification, idle accounting, approval, exit and full recovery must all work when the optional wrapper or its policy fails. Avoid wrapper calls in Registry accounting as well as settlement. A wrapper failure may stop an explicitly requested WETH operation, not unrelated native recovery. | Registry `_nativeBindings/accounting`, manager close/collect, Fees/Rewards, Vault parking and Migration exit/recovery |
-| Versioned state and history | Bind an on-chain accounting/schema version and a per-deployment backend profile. Keep old WETH as WETH, including historical fees and claims; do not inherit new currency semantics into predecessor epochs. Qualify old-source import and abort explicitly; a new native source cannot be sent to an old codec that rejects its indices. | Canonical `SCHEMA`/commitments, NFT and reward codecs, `frontend_api/lineage.py`, deployment inventory and history replay |
-| Backend and wallet boundary | Encode native currency arguments explicitly while rejecting zero contract targets. Native USD pricing must not require a WETH token code hash. Verify exact ETH value on the root operation and typed child calls. Keep gas separate, approvals ERC20-only and the signer Anvil-only. | API service codecs, activation config/preparation/trace, earnings prices, deployment profile and confirmation checks |
-| Claims and callbacks | Preserve effects before native payment, reentrancy/lifecycle guards and current-owner checks before each ClaimRouter leg. A rejecting contract owner reverts atomically; there is no administrator payout redirect. Preserve transfers and both reward streams through callbacks and replacements. | Rewards, RoyaltyRewards, ClaimRouter, NFT ownership hooks and native send primitives |
+| Native versus missing identity | Zero is an explicitly admitted currency, never an owner, contract target or configured ZZZ. Raw ETH cannot be reported as `sentZZZ` when ZZZ is unset. | Native Oracle/ActivationAssets admission, exact pool identities, Entry and custody checks; API codec/profile qualification remains open. |
+| Native fee accrual | Publish both individual-share and equal-collective indices; preserve fractions and converted credits without re-earning them. Checkpoint old weights before new eligibility/shares. | Rewards native checkpoints, funded payable credits, claimable views and canonical records now follow the token accounting rules. |
+| Historical reserves and NAV | Include native compound/dust and all 33 currencies; do not hide missing backing as zero. | MigrationBudget historical valuation and Membership dust settlement include native. An atomic ETH/WETH move is still rejected, rather than silently normalized. |
+| Typed funding | Validate exact native value once per ingress, exclude incoming value from starting baselines, reject ETH on ERC20 operations and preserve prefunds. | Entry, Vault, LiquidityManager, Fees/Rewards credits and Migration funding use actual native budgets. The API/keeper candidate binds native V2 semantics; the website manifest and actual services remain unqualified. |
+| Two-stage canonical funding | Transfer backing first, then acknowledge with zero value; restore through the reverse protocol. | Vault/Fees companions forward already-received ETH, protect prefunds and reject duplicate acceptance. Handoff checks actual transfer deltas. |
+| Separate backing domains | Keep native Vault principal, Fees reserves/quarantine, Rewards and royalties independently backed, exactly once. | Native is included in finite Vault/Fees inventories; Rewards retains indexed and converted native liabilities in its own domain. |
+| Receiver cutoff/protection | Native slot0 cannot also be protected/exported as native slot2. | Native inboxes require wrapper zero, use slot0 and reject a positive duplicate slot2 protection. Explicit legacy ERC20 wrapper inboxes retain separate native quarantine. |
+| Transitive wrapper independence | Native close, harvest, parking, raw exit and recovery must not call WETH or its policy. | Native Registry bindings omit WETH; manager returns ETH; Vault/Fees/Migration preserve ETH. Actual target-chain behavior and operating failure rehearsals remain open. |
+| Versioned state and history | Bind schema/accounting semantics and keep historical WETH epochs distinct. | Native V2 handoffs require matching `SCHEMA`; legacy V1 import is rejected. The separate API/keeper profile candidate identifies deployment/predecessor versions; actual lineage history and service qualification remain open. |
+| Backend and wallet boundary | Accept native asset zero but reject zero targets; use native pricing and exact typed call values; keep gas separate and approvals ERC20-only. | Explicit native API/keeper profiles exist as a candidate. The website manifest, actual inventory/history/services and independent qualification remain open. Public deployment is null; signer remains Anvil-only. |
+| Claims and callbacks | Effects precede ETH payment; each batch leg rechecks owner; recipient rejection reverts atomically. | Rewards preserves its lifecycle/reentrancy/current-owner guards and unclaimed NFT rights. Existing ClaimRouter and royalty custody remain separate. |
+
+Source companion donations are not a new captured backing domain. Capture does
+not write a prefund baseline for every currency: anyone could otherwise inflate
+freeze gas by sending one raw unit of each admitted asset. On abort, the immutable
+handoff verifies the exact returned balance increase before restoration forwards
+exactly that amount, preserving unrelated companion funds. Destination import
+still records its independent prefund baseline and rejects unfunded acceptance.
+An imported successor later acting as a source uses the same source-return rule.
 
 ### Donations and actual receipts
 

@@ -14,12 +14,7 @@ import {IZZZPools, IZZZOracle, IZZZStrategy, IPositionManagerMinimal, IStateView
     IPermit2Minimal, IPoolManagerMinimal} from "./interfaces/IZZZ.sol";
 
 interface INativePoolAssets {
-    function nativeAsset(bytes32 poolId) external view returns (address);
-}
-interface ICanonicalWrapper {
-    function WETH9() external view returns (address);
-    function deposit() external payable;
-    function withdraw(uint256 amount) external;
+    function isNativePool(bytes32 poolId) external view returns (bool);
 }
 
 /// @notice Typed v4 operations only. No arbitrary call/action/recipient entrypoint.
@@ -31,7 +26,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
     IPoolManagerMinimal public immutable poolManager;
     IPermit2Minimal public immutable permit2;
     bytes32 private pendingSwapHash;
-    // A native credit is accepted only during an expected wrapper/core call.
+    // A native credit is accepted only during an expected core call.
     // Forced ETH is preserved and never counted as contribution or revenue.
     address private nativeSender;
     uint256 private nativeReceived;
@@ -65,46 +60,26 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         c = IZZZPools(access.module(Ids.POOLS)).get(poolId);
         if ((requireOperations && !c.operationsEnabled) || keccak256(abi.encode(c.key)) != poolId) revert InvalidState();
         if (c.key.currency0 == address(0)) {
-            // Only the registry's separately reviewed native policy can normalize this key.
-            if (_nativeAsset(poolId) == address(0) || c.key.fee > 100000 ||
+            // Native identity is the real zero currency, validated without a wrapper.
+            if (!INativePoolAssets(access.module(Ids.POOLS)).isNativePool(poolId) || c.key.fee > 100000 ||
                 c.key.hooks != address(0)) revert InvalidState();
         } else if (c.key.hooks != address(0)) revert InvalidState();
     }
-    function _nativeAsset(bytes32 poolId) private view returns (address wrapper) {
-        wrapper = INativePoolAssets(access.module(Ids.POOLS)).nativeAsset(poolId);
-        if (wrapper.code.length == 0 || ICanonicalWrapper(address(posm)).WETH9() != wrapper) revert InvalidConfiguration();
+    function _balance(address token, address owner) private view returns (uint256) {
+        return token == address(0) ? owner.balance : IERC20(token).balanceOf(owner);
     }
-    function _assets(bytes32 poolId, PoolConfig memory c) private view returns (address token0, address token1) {
-        token0 = c.key.currency0 == address(0) ? _nativeAsset(poolId) : c.key.currency0;
-        token1 = c.key.currency1;
-    }
-    function _unwrap(address wrapper, uint256 amount) private {
+    function _sendNative(address recipient, uint256 amount) private {
         if (amount == 0) return;
         uint256 beforeNative = address(this).balance;
-        uint256 beforeWrapped = IERC20(wrapper).balanceOf(address(this));
-        nativeSender = wrapper;
-        nativeReceived = 0;
-        ICanonicalWrapper(wrapper).withdraw(amount);
-        nativeSender = address(0);
-        if (nativeReceived != amount || address(this).balance != beforeNative + amount ||
-            IERC20(wrapper).balanceOf(address(this)) + amount != beforeWrapped) revert InvalidState();
-        nativeReceived = 0;
+        (bool ok,) = recipient.call{value: amount}("");
+        if (!ok || address(this).balance + amount != beforeNative) revert InvalidState();
     }
-    function _wrap(address wrapper, uint256 amount) private {
-        if (amount == 0) return;
-        uint256 beforeNative = address(this).balance;
-        uint256 beforeWrapped = IERC20(wrapper).balanceOf(address(this));
-        ICanonicalWrapper(wrapper).deposit{value: amount}();
-        if (address(this).balance + amount != beforeNative ||
-            IERC20(wrapper).balanceOf(address(this)) != beforeWrapped + amount) revert InvalidState();
-    }
-    function _finishNativeCredit(address wrapper, uint256 beforeNative, address recipient) private {
+    function _finishNativeCredit(uint256 beforeNative, address recipient) private {
         nativeSender = address(0);
         uint256 amount = nativeReceived;
         nativeReceived = 0;
         if (address(this).balance != beforeNative + amount) revert InvalidState();
-        _wrap(wrapper, amount);
-        ExactToken.push(wrapper, recipient, amount);
+        _sendNative(recipient, amount);
     }
     function _nativeDebt(uint160 current, int24 lower, int24 upper, uint128 liquidity) private pure returns (uint256) {
         uint160 a = TickMath.getSqrtPriceAtTick(lower);
@@ -140,14 +115,17 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         uint128 liquidity = LiquidityAmounts.getLiquidityForAmounts(current, TickMath.getSqrtPriceAtTick(lower),
             TickMath.getSqrtPriceAtTick(upper), amount0, amount1);
         if (liquidity == 0 || liquidity < minimumLiquidity) revert Slippage();
-        (address t0, address t1) = _assets(poolId, c);
-        uint256 before0 = IERC20(t0).balanceOf(address(this));
+        address t0 = c.key.currency0;
+        address t1 = c.key.currency1;
+        bool nativePool = t0 == address(0);
+        if (msg.value != (nativePool ? amount0 : 0)) revert InvalidAmount();
+        uint256 before0 = _balance(t0, address(this)) - msg.value;
         uint256 before1 = IERC20(t1).balanceOf(address(this));
-        ExactToken.pull(t0, msg.sender, amount0);
+        if (!nativePool) ExactToken.pull(t0, msg.sender, amount0);
         ExactToken.pull(t1, msg.sender, amount1);
-        bool nativePool = c.key.currency0 == address(0);
         uint256 nativeValue;
         uint256 beforeNative = address(this).balance;
+        if (nativePool && beforeNative != before0 + msg.value) revert InvalidState();
         uint256 beforePosmNative;
         if (nativePool) {
             // No SWEEP: pay exactly rounded-up principal debt. Prior PosM donations
@@ -155,7 +133,6 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             nativeValue = _nativeDebt(current, lower, upper, liquidity);
             if (nativeValue > amount0) revert Slippage();
             beforePosmNative = address(posm).balance;
-            _unwrap(t0, nativeValue);
         } else _approve(t0, amount0, deadline);
         _approve(t1, amount1, deadline);
         bytes[] memory parameters = new bytes[](2);
@@ -171,28 +148,29 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         posm.modifyLiquidities{value: nativeValue}(
             abi.encode(abi.encodePacked(id == 0 ? MINT : INCREASE, SETTLE_PAIR), parameters), deadline);
         if (nativePool) {
-            if (address(posm).balance != beforePosmNative || address(this).balance != beforeNative) revert InvalidState();
+            if (address(posm).balance != beforePosmNative || address(this).balance + nativeValue != beforeNative) revert InvalidState();
         } else _reset(t0);
         _reset(t1);
         (int24 actualLower, int24 actualUpper) = _checkPosition(poolId, tokenId);
         if (actualLower != lower || actualUpper != upper ||
             uint256(posm.getPositionLiquidity(tokenId)) != uint256(previousLiquidity) + liquidity) revert InvalidState();
-        uint256 unused0 = IERC20(t0).balanceOf(address(this)) - before0;
+        uint256 unused0 = _balance(t0, address(this)) - before0;
         uint256 unused1 = IERC20(t1).balanceOf(address(this)) - before1;
         if (unused0 > amount0 || unused1 > amount1) revert InvalidState();
         spent0 = amount0 - unused0;
         spent1 = amount1 - unused1;
-        ExactToken.push(t0, msg.sender, unused0);
+        if (nativePool) _sendNative(msg.sender, unused0);
+        else ExactToken.push(t0, msg.sender, unused0);
         ExactToken.push(t1, msg.sender, unused1);
     }
     function mint(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1,
         uint128 minimumLiquidity, uint256 deadline)
-        external onlyModule(Ids.VAULT) nonReentrant returns (uint256 tokenId, uint256 spent0, uint256 spent1) {
+        external payable onlyModule(Ids.VAULT) nonReentrant returns (uint256 tokenId, uint256 spent0, uint256 spent1) {
         return _mintOrIncrease(poolId, 0, lower, upper, amount0, amount1, minimumLiquidity, deadline);
     }
     function increase(bytes32 poolId, uint256 id, uint256 amount0, uint256 amount1,
         uint128 minimumLiquidity, uint256 deadline)
-        external onlyModule(Ids.VAULT) nonReentrant returns (uint256 spent0, uint256 spent1) {
+        external payable onlyModule(Ids.VAULT) nonReentrant returns (uint256 spent0, uint256 spent1) {
         (int24 lower, int24 upper) = _checkPosition(poolId, id);
         (, spent0, spent1) = _mintOrIncrease(poolId, id, lower, upper, amount0, amount1, minimumLiquidity, deadline);
     }
@@ -209,7 +187,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         uint256 beforeToken1 = nativePool ? IERC20(c.key.currency1).balanceOf(address(this)) : 0;
         posm.modifyLiquidities(abi.encode(abi.encodePacked(DECREASE, TAKE_PAIR), parameters), deadline);
         if (nativePool) {
-            _finishNativeCredit(_nativeAsset(poolId), beforeNative, access.module(Ids.VAULT));
+            _finishNativeCredit(beforeNative, access.module(Ids.VAULT));
             ExactToken.push(c.key.currency1, access.module(Ids.VAULT), IERC20(c.key.currency1).balanceOf(address(this)) - beforeToken1);
         }
     }
@@ -230,7 +208,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         uint256 beforeToken1 = nativePool ? IERC20(c.key.currency1).balanceOf(address(this)) : 0;
         posm.modifyLiquidities(abi.encode(abi.encodePacked(BURN, TAKE_PAIR), parameters), deadline);
         if (nativePool) {
-            _finishNativeCredit(_nativeAsset(poolId), beforeNative, access.module(Ids.VAULT));
+            _finishNativeCredit(beforeNative, access.module(Ids.VAULT));
             ExactToken.push(c.key.currency1, access.module(Ids.VAULT), IERC20(c.key.currency1).balanceOf(address(this)) - beforeToken1);
         }
     }
@@ -254,27 +232,27 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
         }
     }
     function swap(bytes32 poolId, bool zeroForOne, uint256 amountIn, uint256 minimumOut, uint256 deadline)
-        external nonReentrant returns (uint256 amountOut) {
+        external payable nonReentrant returns (uint256 amountOut) {
         if (!access.isSealed() || (msg.sender != access.module(Ids.VAULT) && msg.sender != access.module(Ids.BUYBACK))) revert Unauthorized();
         _deadline(deadline);
         if (amountIn == 0 || amountIn > type(uint128).max) revert InvalidAmount();
         PoolConfig memory c = _config(poolId, true);
         IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
-        (address token0, address token1) = _assets(poolId, c);
+        (address token0, address token1) = (c.key.currency0, c.key.currency1);
         address input = zeroForOne ? token0 : token1;
         address output = zeroForOne ? token1 : token0;
         uint256 protocolMinimum = Math.mulDiv(IZZZOracle(access.module(Ids.ORACLE)).quote(input, output, amountIn),
             10000 - c.maxSlippageBps, 10000);
         if (minimumOut < protocolMinimum || minimumOut == 0) revert Slippage();
-        ExactToken.pull(input, msg.sender, amountIn);
-        uint256 beforeNative = address(this).balance;
-        if (c.key.currency0 == address(0) && zeroForOne) _unwrap(token0, amountIn);
-        uint256 beforeOutput = IERC20(output).balanceOf(msg.sender);
+        if (msg.value != (input == address(0) ? amountIn : 0)) revert InvalidAmount();
+        if (input != address(0)) ExactToken.pull(input, msg.sender, amountIn);
+        uint256 beforeNative = address(this).balance - msg.value;
+        uint256 beforeOutput = _balance(output, msg.sender);
         bytes memory payload = abi.encode(c.key, zeroForOne, amountIn, minimumOut, msg.sender);
         pendingSwapHash = keccak256(payload);
         amountOut = abi.decode(poolManager.unlock(payload), (uint256));
         if (pendingSwapHash != bytes32(0) || amountOut < minimumOut ||
-            IERC20(output).balanceOf(msg.sender) != beforeOutput + amountOut ||
+            _balance(output, msg.sender) != beforeOutput + amountOut ||
             address(this).balance != beforeNative) revert InvalidState();
         IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId);
     }
@@ -308,7 +286,7 @@ contract ZZZLiquidityManager is ZZZModule, ReentrancyGuard {
             nativeReceived = 0;
             poolManager.take(output, address(this), amountOut);
             if (nativeReceived != amountOut) revert InvalidState();
-            _finishNativeCredit(_nativeAsset(keccak256(abi.encode(key))), beforeNative, recipient);
+            _finishNativeCredit(beforeNative, recipient);
         } else poolManager.take(output, recipient, amountOut);
         return abi.encode(amountOut);
     }

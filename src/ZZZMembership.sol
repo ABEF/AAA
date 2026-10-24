@@ -39,10 +39,10 @@ contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
             fees.flushDust(bucket, config.key.currency1);
             if (IPairVault(address(vault)).migrationBudget().compositionEpoch(bucket) != 0) {
                 IPairAssets assets = IPairAssets(access.module(Ids.REWARDS));
-                if (assets.assetCount() > 32) revert InvalidState();
+                if (assets.assetCount() > 33) revert InvalidState();
                 for (uint256 j; j < assets.assetCount(); ++j) {
                     address token = assets.assets(j);
-                    if (token != address(0) && token != config.key.currency0 && token != config.key.currency1) fees.flushDust(bucket,token);
+                    if (token != config.key.currency0 && token != config.key.currency1) fees.flushDust(bucket,token);
                 }
             }
         }

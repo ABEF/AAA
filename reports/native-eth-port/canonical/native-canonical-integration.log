@@ -1,0 +1,75 @@
+Compiling 12 files with Solc 0.8.26
+Solc 0.8.26 finished in 251.43s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2519): This declaration shadows an existing declaration.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:278:17:
+    |
+278 |                 uint256 beforeGas = gasleft();
+    |                 ^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:285:9:
+    |
+285 |         uint256 beforeGas = gasleft();
+    |         ^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/VaultAccounting.t.sol:175:51:
+    |
+175 |  ... stOnlyKeeperCanRebalance() public {uint256 id=activatedPosition();vm.prank(alice ...
+    |                                         ^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/CanonicalHandoff.t.sol:151:9:
+    |
+151 |         PreparationTransport transport = new PreparationTransport(address(s.ac));
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol:111:5:
+    |
+111 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol:230:5:
+    |
+230 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T18:02:02.288680Z  WARN traces::etherscan: etherscan config not found
+
+Ran 2 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest
+[PASS] testNativePartialFundingAbortRequiresAndRestoresExactBacking() (gas: 106214319)
+[PASS] testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndOneProtectedInboxBalance() (gas: 108003684)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 376.68ms (708.70ms CPU time)
+
+Ran 1 test suite in 387.13ms (376.68ms CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

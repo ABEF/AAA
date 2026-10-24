@@ -1,12 +1,19 @@
 # Release approval record - NOT APPROVED
 
+**Native V2 candidate (2026-10-24):** [actual ETH custody/accounting](../reports/native-eth-port/VERIFICATION.md)
+now has focused implementation evidence, including indexed fees, raw exit and
+two-stage canonical funding/abort. [Internal findings](../reports/native-eth-port/REVIEW.md)
+do not close native website/inventory, real routes/feeds/VRF, selected-chain
+rehearsals or independent audit. Atomic ETH/WETH conversion and legacy V1 import
+remain unsupported. Existing local deployments are unchanged. **Decision remains
+NOT APPROVED**; no production deployment or sealing is authorized.
+
 **Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
 
-The [local pair-conversion candidate](../reports/pair-composition/VERIFICATION.md)
-adds typed conversion, historical backing and epoch-aware same-chain records.
-Its local checks do not qualify actual routes, gas, composed controller cutover,
-cross-chain accounting or independent audit. The production inventory now also
-requires the constructor-created pair helper and its exact observed bindings.
+The historical [local pair-conversion candidate](../reports/pair-composition/VERIFICATION.md)
+predates the governed-custody replacement. Its retired pair helper is not a
+current deployment dependency. Its source-bound checks do not qualify the later
+custody/native candidate, actual routes, cross-chain accounting or independent audit.
 
 The [static demo publication](../reports/browser-wallet/PUBLICATION.md) updates website
 files only. It does not deploy contracts, enable public wallet transactions,

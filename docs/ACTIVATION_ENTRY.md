@@ -1,3 +1,7 @@
+## Activation native V2 boundary - 2026-10-24
+
+Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.
+
 # Atomic source activation
 
 **Selected integration (2026-10-24):** [Hookless ETH/ZZZ](POOL_SELECTION.md) supersedes Pons; historical Pons examples below keep their scope. Current Entry remains WETH-accounted and typed single-hop v3 for converted inputs. [Native ETH](NATIVE_ETH_ARCHITECTURE.md) and [future v4 routing](POST_SEAL_POLICY.md) are pre-seal work, not implemented by pool selection.

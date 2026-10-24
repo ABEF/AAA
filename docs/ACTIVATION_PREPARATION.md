@@ -23,7 +23,7 @@ actual Robinhood routes, feeds, trace providers and network fees remains in
 | Value | Source and meaning |
 | --- | --- |
 | Current attached LP value | `NFT.currentLPValue(tokenId)` at the confirmed block: the NFT's share of marked deployed LP, attributed idle and compound reserves. It is not lifetime deposits, a withdrawal entitlement or claimable fees. Unavailable valuation is `null`, never an invented zero. |
-| Original contribution value | Actual input amount and the reviewed on-chain Oracle price/decimals, checked against `ActivationAssets.value`. Native ETH is valued through the selected pool's admitted wrapper. No assumed stablecoin peg. |
+| Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Native V2 prices actual ETH directly at currency zero; historical V1 retains its wrapper mapping. No assumed stablecoin peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
 | Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the 1% execution limit. |
@@ -110,13 +110,21 @@ examples deliberately contain placeholders, not purported live addresses.
 
 All top-level fields below are required; additional fields are rejected.
 
+The parent read-service configuration explicitly selects `accounting_version: 2`
+for native deployments and verifies Vault version2 and the V2 canonical schema.
+The nested activation schema number stays1. Native V2 permits32 ERC20s plus ETH
+(`address: zero`, `code_hash: null`, decimals18, independently pinned ETH feed).
+Native admission uses `NATIVE_ASSET_CODE_HASH()`, not a WETH runtime. Legacy V1
+configuration remains separate. Exact ETH value is checked on Entry-to-Vault and
+Vault-to-manager calls, not only on the outer transaction.
+
 | Field | Contents |
 | --- | --- |
 | `schema` | Integer `1`. |
 | `contracts` | Exactly `pools`, `oracle`, `liquidity`, `strategy`, `fees`, `membership`, `migration`, `entry`, `activation_assets`, `budget`; each has `address` and `code_hash`. These are distinct from the read-service's eight bindings. |
-| `tokens` | 2..32 objects: `address`, `code_hash`, `decimals`, `feed`, `feed_code_hash`, `feed_decimals`, `max_age`. Input and both accounting currencies must be present; token/feed decimals 0..18, age 1..86400 seconds. |
+| `tokens` | 2..32 ERC20 objects in V1; V2 permits those32 plus one native ETH entry. Fields: `address`, `code_hash`, `decimals`, `feed`, `feed_code_hash`, `feed_decimals`, `max_age`. Input and both accounting currencies must be present; decimals0..18, age1..86400 seconds. Native code hash is null and decimals are18. |
 | `dependencies` | 1..64 `{address, code_hash}` entries covering PositionManager, PoolManager, StateView, Permit2 and every applicable conversion router/factory/pool, sequencer, implementation or other reviewed dependency. |
-| `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id}` entries. One selected route per input/pool; zero route is direct/native input. Native uses zero source address and the wrapper's asset policy. |
+| `sources` | 1..64 `{pool_id, source_asset, route_id, asset_policy_id}` entries. One selected route per input/pool; zero route is direct/native input. Native V2 uses zero source and its explicit native policy; V1 retains the original wrapper policy. |
 | `sequencer` | `{address, policy_id}` exactly matching Oracle. Explicit zero/zero only when that absence was reviewed for this network; no implicit omission. |
 | `call_pins` | Up to 128 `{target, data, expected}` exact getter checks on pinned contracts, tokens, feeds or dependencies. Include implementation/admin or wrapper policy getters where applicable. |
 | `storage_pins` | Up to 64 `{target, slot, expected}` exact storage checks; 32-byte words. Include applicable proxy implementation/admin/beacon slots and pin the implementation code in dependencies. |

@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZFees, IZZZMigration} from "./interfaces/IZZZ.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {ExactToken} from "./libraries/ExactToken.sol";
+import {ExactAsset} from "./libraries/ExactAsset.sol";
 import {ZZZMigrationBudget} from "./ZZZMigrationBudget.sol";
 
 interface ICanonicalVaultState is IZZZVault {
@@ -39,6 +38,8 @@ contract ZZZVaultCanonical {
     address[] private backingAssets;
     uint256[] private backingAmounts;
     mapping(uint256 => bool) private released;
+    mapping(uint256 => bool) private accepted;
+    mapping(uint256 => uint256) private companionPrefund;
     mapping(uint256 => uint256) private importedShares;
     uint256 private cursor;
     bool private captured;
@@ -55,6 +56,7 @@ contract ZZZVaultCanonical {
         originChain = chain;
         originVault = vaultController;
     }
+    receive() external payable {}
     modifier onlyVault() { if (msg.sender != address(vault)) revert Unauthorized(); _; }
     modifier onlyHandoff() {
         if (msg.sender != IZZZCanonicalAccess(address(access)).canonicalHandoff()) revert Unauthorized();
@@ -81,6 +83,7 @@ contract ZZZVaultCanonical {
         vault.canonicalBarrier();
         // A proved abort may be followed by a fresh freeze. Only snapshot caches
         // reset; ordinary shares, reservations and principal remain untouched.
+        bool reset = captured || imported;
         delete backingAssets; delete backingAmounts;
         imported = false;
         nftCount = vault.sequence(); groupCount = vault.bucketCount(); aliasCount = aliases.length;
@@ -95,12 +98,16 @@ contract ZZZVaultCanonical {
             if (IZZZMigration(access.module(Ids.MIGRATION)).activePlan(id) != bytes32(0)) revert InvalidState();
         }
         ICanonicalVaultRewards rewards = ICanonicalVaultRewards(access.module(Ids.REWARDS));
+        if (rewards.assetCount() > 33) revert InvalidState();
         for (uint256 i; i < rewards.assetCount(); ++i) {
             address asset = rewards.assets(i);
-            if (asset == address(0)) continue; // ETH reward credits are held by Rewards, never Vault principal.
-            uint256 balance = IERC20(asset).balanceOf(address(vault));
+            for (uint256 j; j < i; ++j) if (backingAssets[j] == asset) revert InvalidState();
+            uint256 balance = ExactAsset.balance(asset,address(vault));
             if (balance < vault.totalIdle(asset)) revert InvalidState();
-            backingAssets.push(asset); backingAmounts.push(balance); released[i] = false;
+            backingAssets.push(asset); backingAmounts.push(balance);
+            // A fresh source has zero flags; recapture/successor capture
+            // clears old delivery flags without snapshotting unrelated prefunds.
+            if (reset) { released[i] = false; accepted[i] = false; }
         }
         captured = true;
     }
@@ -137,7 +144,7 @@ contract ZZZVaultCanonical {
             uint256 assetCount;
             (originChain, originVault, nftCount, groupCount, aliasCount, assetCount) =
                 abi.decode(record, (uint256,address,uint256,uint256,uint256,uint256));
-            if (originChain == 0 || originVault == address(0) || nftCount > 1000 || groupCount > 4 || assetCount > 32) revert InvalidState();
+            if (originChain == 0 || originVault == address(0) || nftCount > 1000 || groupCount > 4 || assetCount > 33) revert InvalidState();
             // Fixed length records make the complete domain independent of relay choices.
             backingAssets = new address[](assetCount); backingAmounts = new uint256[](assetCount);
             vault.canonicalWrite(0, abi.encode(nftCount));
@@ -179,9 +186,10 @@ contract ZZZVaultCanonical {
         row -= nftCount;
         if (row >= backingAssets.length) revert InvalidState();
         (address asset, uint256 amount, uint256 principal) = abi.decode(record, (address,uint256,uint256));
-        if (asset == address(0) || principal != vault.totalIdle(asset) || amount < principal) revert InvalidState();
+        if (principal != vault.totalIdle(asset) || amount < principal) revert InvalidState();
         for (uint256 i; i < row; ++i) if (backingAssets[i] == asset) revert InvalidState();
         backingAssets[row] = asset; backingAmounts[row] = amount;
+        companionPrefund[row] = ExactAsset.balance(asset,address(this));
     }
     function canonicalAssetCount() external view returns (uint256) { return backingAssets.length; }
     function canonicalBacking(uint256 index) external view returns (address asset, uint256 amount) {
@@ -189,18 +197,31 @@ contract ZZZVaultCanonical {
     }
     function canonicalRelease(uint256 index, address destination) external onlyHandoff {
         uint8 state = IZZZCanonicalAccess(address(access)).canonicalState();
-        if ((state != 1 && state != 4) || released[index]) revert InvalidState();
+        if ((state != 1 && state != 4) || released[index] || (state == 4 && !accepted[index])) revert InvalidState();
         released[index] = true;
         vault.canonicalSend(backingAssets[index], destination, backingAmounts[index]);
     }
     function canonicalAccept(uint256 index, address) external payable onlyHandoff {
-        if (msg.value != 0 || IZZZCanonicalAccess(address(access)).canonicalState() != 2) revert InvalidState();
-        ExactToken.push(backingAssets[index], address(vault), backingAmounts[index]);
+        if (msg.value != 0 || IZZZCanonicalAccess(address(access)).canonicalState() != 2 || accepted[index]) revert InvalidState();
+        accepted[index] = true;
+        _forward(index,false);
     }
     function canonicalRestore(uint256 index, address) external payable onlyHandoff {
         if (msg.value != 0 || IZZZCanonicalAccess(address(access)).canonicalState() != 1 || !released[index]) revert InvalidState();
-        ExactToken.push(backingAssets[index], address(vault), backingAmounts[index]);
+        _forward(index,true);
         released[index] = false;
+    }
+    // Funding was transferred into this companion by canonicalRelease before
+    // this zero-value acknowledgment. Prefunds cannot substitute for that row.
+    function _forward(uint256 index,bool restore) private {
+        address asset=backingAssets[index]; uint256 amount=backingAmounts[index];
+        // Source restore follows Handoff.returnFunds' exact balance-delta check.
+        // Capturing source prefunds would permit 33 dust donations to impose
+        // cold storage costs on freeze. Imported successors must not reuse an
+        // old importer baseline when they later become a source.
+        uint256 prefund=restore?0:companionPrefund[index];
+        if (ExactAsset.balance(asset,address(this)) < prefund+amount) revert InvalidState();
+        ExactAsset.push(asset,address(vault),amount);
     }
     function canonicalValidate() external view {
         if (imported) {
@@ -211,7 +232,7 @@ contract ZZZVaultCanonical {
             }
         } else if (!captured) revert InvalidState();
         for (uint256 i; i < backingAssets.length; ++i) {
-            if (IERC20(backingAssets[i]).balanceOf(address(vault)) < backingAmounts[i]) revert InvalidState();
+            if (ExactAsset.balance(backingAssets[i],address(vault)) < backingAmounts[i]) revert InvalidState();
         }
     }
     function canonicalActivate() external onlyHandoff {

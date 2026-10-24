@@ -1,6 +1,6 @@
 # Deployment address inventory
 
-**Current candidate (2026-10-24):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor is removed; whole-collection handoff remains separate. The current native adapter still accounts and exits in WETH/ZZZ. [Native ETH accounting](NATIVE_ETH_ARCHITECTURE.md), real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier evidence retains its original scope. [Current verification](../reports/hookless-pool/VERIFICATION.md).
+**Current candidate (2026-10-24):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor is removed; whole-collection handoff remains separate. The native-accounting V2 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. Real finality/remote accounting, production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Current native verification](../reports/native-eth-port/VERIFICATION.md).
 
 Migration creates the immutable read-only [`ZZZCustodyValidation`](../src/ZZZCustodyValidation.sol)
 companion. Record `Migration.validation()`, its `migration()`/`access()` bindings
@@ -78,7 +78,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `buyback` | `ZZZBuyback` — reviewed purchase and supply-reducing burn |
 | `migration` | `ZZZMigration` — governed custody plans, parking and resume |
 | `oracle` | `ZZZOracle` — configured price and uptime policy |
-| `pools` | `ZZZPoolRegistry` — eligible pools, wrapper and input helpers |
+| `pools` | `ZZZPoolRegistry` — eligible pools, native identity and input helpers |
 | `canonical` | `ZZZCanonicalHandoff` - fixed canonical lifecycle and exact handoff coordinator |
 | `nft_canonical` | `ZZZNFTCanonical` - NFT inventory/ownership codec bound to the NFT |
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
@@ -115,8 +115,8 @@ identities, not ticker symbols or addresses copied from another chain.
 | Dependency group | Required address inventory |
 | --- | --- |
 | Uniswap v4 settlement | PoolManager, PositionManager, StateView and Permit2; verify every constructor/getter relationship. |
-| Assets | ZZZ, WETH/native wrapper, every admitted activation input, LP currency, reward asset and royalty asset. Review decimals, backing, transfer behavior and proxy powers. Native ETH uses the native currency convention, not an ERC-20 address. |
-| Selected hookless native venue | Exact ETH/ZZZ PoolKey/ID, static fee and spacing, zero hook, pinned core/position/state/Permit2 runtimes and wiring; current WETH proxy/implementation/admin/owner policy. Record Uniswap's protocol-fee controller separately. No Pons hook/factory/creator payout is required. |
+| Assets | ZZZ, any explicitly used WETH wrapper, every admitted activation input, LP currency, reward asset and royalty asset. Review decimals, backing, transfer behavior and proxy powers. Native ETH uses the native currency convention, not an ERC-20 address. |
+| Selected hookless native venue | Exact ETH/ZZZ PoolKey/ID, static fee and spacing, zero hook, pinned core/position/state/Permit2 runtimes and wiring; native asset-zero identity and reviewed native USD feed. Native settlement does not require WETH policy. Record Uniswap's protocol-fee controller separately. No Pons hook/factory/creator payout is required. |
 | Valuation | Each token's actual USD feed/proxy and relevant implementation/admin authorities; genuine sequencer-status source or explicitly approved chain-specific initial policy. |
 | Randomness | Qualified VRF coordinator and its implementation/admin/operator identities, subscription consumers and payment asset where applicable. A matching ABI is not qualification. |
 | Optional input conversion | Each admitted single-hop V3 router, factory, pool and input/output token address; reviewed code pins, fee and immutable route identity. |
@@ -137,8 +137,10 @@ Atomic supported local moves need no external recipient. A separately approved
 external exit records the exact recipient, recipient code hash (including an EOA's
 actual code hash), destination chain/custody and optional destination pool, snapshot,
 raw minimums, mode and review hash. Normal exit sends configured ZZZ; explicit raw
-exit sends both current accounting assets. In this checkpoint those native-pool
-assets are WETH/ZZZ, not native ETH. Record actual departure amounts and outstanding
+exit sends both actual accounting assets: native ETH/ZZZ for the selected pool.
+`completeLocal` and `recover` require exactly the declared native amount as
+`msg.value`, or zero ETH for ERC20-only funding. Wrapper independence does not
+remove core/token/recipient failure risks. Record actual departure amounts and outstanding
 liabilities; no blanket sweep or automatic raw fallback is available.
 
 For cross-chain verification/return, additionally inventory the exact verifier and
@@ -156,7 +158,7 @@ hash alone proves neither return funding nor safe remote accounting. See the
 
 ## Configuration that is not a wallet address
 
-Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities;
+Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities; the accounting version and canonical schema;
 multisig threshold; zero governance and migration delays; VRF key hash, subscription ID,
 confirmations and callback budget; pool keys/IDs and strategy bounds; conversion
 route IDs; custody request/snapshot/review identities and any qualified finality
@@ -172,4 +174,30 @@ source/bytecode/binding observations and explicit authorization.
 
 ## LP settlement helper
 
-ETH-default LP claims currently require a separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol) bound once to Rewards before sealing. Record controller, ledger, fixed WETH wrapper, runtime/implementation hashes, route/feed review and keeper pins. This is distinct from the royalty converter and has no custody of LP principal. Retain the 1% maximum ZZZ conversion loss, gas separate, and require a cheaper independently qualified route; the selected approximately 1.101% pool is not qualified for full conversion at reference prices. Current converted-input execution is single-hop v3; typed v4 conversion and native accounting remain pre-seal work. Require binding and route evidence in the release inventory; see [setup and recovery](LP_ETH_SETTLEMENT.md).
+Native ETH LP fees enter holder/collective accounting directly; they do not
+need wrapping or conversion. ZZZ and other non-native holder fees require a
+separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol), bound
+once to Rewards before sealing. Its current single-hop v3 path uses a reviewed
+WETH wrapper at that explicit conversion boundary. Record controller/ledger,
+wrapper runtime/implementation policy, route/feed review and keeper pins. This
+helper has no custody of LP principal. Retain the 1% maximum ZZZ conversion loss,
+gas separate, and require a cheaper independently qualified route; the selected
+approximately 1.101% pool does not qualify full conversion at reference prices.
+Typed v4 conversion remains pre-seal work. See [setup and recovery](LP_ETH_SETTLEMENT.md).
+
+## Native accounting and canonical version inventory
+
+Record `Vault.ACCOUNTING_VERSION() == 2` and the canonical coordinator's
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2")` with their exact
+runtime pins. A V1 WETH-accounting source cannot be imported into this V2 handoff;
+there is no silent old-source codec conversion. Both reviewed peers must expose
+the same schema. Native principal, Fees reserves/inboxes, Rewards and royalties
+are independently captured and funded. Handoff transfers each asset to its peer
+companion first, then acknowledges it with zero `msg.value`; the companion forwards
+already transferred native funding once. Abort reverses the same classified legs.
+
+Use fresh version 2 API/keeper configuration and state for a native deployment.
+Keep per-deployment predecessor profiles, original currencies and saved journals;
+never reinterpret old WETH as ETH or reset pending transactions to change versions.
+The existing 8902 fixture remains on its old profile. Public `DEPLOYMENT` remains
+null, shared browser signing remains Anvil-only and website V2 qualification is open.

@@ -4,33 +4,32 @@ This is the implementation and operating reference for the undeployed handoff
 candidate. It is not release approval. The [central Todo](../TODO.md#task-security-chain-recovery)
 owns remaining work; the [canonical migration design](CANONICAL_MIGRATION_DESIGN.md)
 retains the wider future-chain requirements. Source-bound verification belongs in
-[the handoff report](../reports/canonical-handoff/VERIFICATION.md).
+[the native candidate report](../reports/native-eth-port/VERIFICATION.md).
+Earlier [handoff evidence](../reports/canonical-handoff/VERIFICATION.md) retains
+its original source/accounting scope.
 
 ## Supported boundary
 
-The 2026-10-23 local composition extension appends a `uint64 compositionEpoch`
-to each Vault group record. Successors import that authenticated epoch and
-classify parked idle by the current pool's accounting pair, preserving original
-home currency identities. Both reviewed deployments must support this record
-format; old-format bytes are not silently accepted. See [pair-conversion
-accounting and verification](PAIR_MIGRATION.md). This does not enable V3 principal
-bridging of a composed bucket or complete cross-chain canonical relocation.
+The V2 coordinator binds
+`SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2")`. Both source and
+replacement must expose that schema; V1 WETH-accounting deployments are rejected,
+not silently reinterpreted. Native ETH is asset zero. All admitted assets,
+including native backing and historical compound, remain explicit currencies.
+Each Vault group carries its authenticated `uint64 compositionEpoch`; parked
+idle follows the actual current pair while original home identities survive.
 
-The candidate transfers the complete collection and classified economic state to
-one replacement **on the same chain**. All nonempty LP buckets must first be
-parked at the home Vault; every minted NFT must be revealed. The initial path
-rejects any source whose legacy bridge has sent or received messages. A zero
-current remote balance cannot prove that historic channels are closed.
+The candidate transfers the collection and classified economic state to one
+replacement **on the same chain**. Every nonempty bucket must first be parked
+at the home Vault, every draw must be complete, and principal/royalty external
+custody must be fully resolved. The retired LP bridge/pair executor stack cannot
+be bound to this candidate; historical records do not qualify remote closure.
 
-Cross-chain canonical activation, channel closure proofs, historical v3 replay
-cutoffs, cross-chain obligation funding and post-halt recovery are not supplied.
+Cross-chain canonical activation, authenticated channel closure and obligation
+funding, transport, replay boundaries and post-halt recovery remain unimplemented.
 There is no multisig attestation or timeout override. Same-chain source retirement
-and replacement activation occur atomically: a reorganization reverts both.
-Off-chain consumers must still wait for the chain's selected finality policy.
-An imported replacement cannot initiate legacy v3 principal bridging because v3
-conflates original bucket identity with current canonical routing. This explicit
-restriction must be resolved with a reviewed message/lineage version before
-future-chain qualification. These capabilities cannot be added to sealed code.
+and replacement activation are atomic: a reorganization reverts both. Off-chain
+consumers must still wait for the selected finality policy. These missing code
+capabilities cannot be added to already sealed implementations.
 
 ## Fixed modules and authority
 
@@ -68,7 +67,7 @@ does not authorize a finality, backing or source-retirement override.
 | Drain and freeze | Reveal all existing mints, resolve plans, return/park custody, then governance-approved `freeze`. Global state changes before any balance observations. | Receives the source handoff identity and domain sizes. |
 | Settle cutoffs | Phase 8 keeps all rights frozen. Six ordered, permissionless `settle(slot)` calls finalize only the captured amounts; retries cannot repeat a domain. Only completion changes the source to exportable phase 1. | Remains inert; no import or funding can proceed yet. |
 | Export/import | `exportRows` commits complete settled domains in batches of at most eight. | `importRows` verifies each exact source record and builds the same rolling roots. Imported ownership and claims remain disabled. |
-| Fund | Each one-use leg sends the exact captured asset amount to its fixed peer module. Principal and each reward/reserve class stay separate. | Measured receipt plus module acceptance; prefunds cannot replace authenticated funding. |
+| Fund | Each one-use leg transfers the exact captured asset into its fixed peer module/companion first. Principal and each reward/reserve class stay separate. | The coordinator verifies the actual receipt, then calls `canonicalAccept` with zero `msg.value`. Companions forward already-funded ETH once; prefunds cannot replace a funding leg. |
 | Commit | Governance checks all legs and roots, permanently retires the source. | In the same transaction, validates complete records/backing and activates once. Any failure rolls back both transitions. |
 
 Exports include zero rows and the complete finite domain, rather than a relay's
@@ -88,9 +87,18 @@ remain immutable across blocks and operator outages. Only the captured pending
 amount is indexed under the frozen membership.
 Subsequent plain transfers cannot change the export root or substitute for a
 captured obligation. Native and wrapped inbox balances are captured separately.
-LP and royalty liabilities, including division dust and per-NFT fractions, are
-carried exactly. The local 3% principal execution budget is not a haircut of
+Native Vault principal/quarantine, native Fees reserves/inbox protection, native
+individual/collective indices and converted credits, and native royalties are
+separate custody/accounting domains. Receiver asset zero is not duplicated in an
+extra native protection slot. LP and royalty liabilities, including division dust
+and per-NFT fractions, are carried exactly; converted ETH is not earned twice. The local 3% principal execution budget is not a haircut of
 claims or reserves. This direct handoff uses exact token units with no conversion.
+
+Unassigned source-companion donations are not exported or stored as new per-asset
+freeze baselines. On abort, the fixed coordinator verifies an exact incoming balance
+increase before the companion restores only that amount, preserving unrelated
+prefunds. Importer acceptance separately retains its own pre-funding baseline.
+This avoids allowing dust donations to add source freeze storage work.
 
 Destination donations remain unassigned/quarantined; royalty and creator inbox
 receipts before destination activation cannot become retroactive rewards. Old
@@ -104,8 +112,12 @@ Unknown unsolicited tokens do not create an unbounded migration inventory.
 ## Cancellation and recovery
 
 Before freeze, the existing exact-notice cancellation restores ordinary operation.
-After freeze, including partial settlement, `abort` permanently cancels the importer. Every leg that actually
-left the source must return in exact units; retries cannot return it twice.
+After freeze, including partial settlement/funding, `abort` permanently cancels
+the importer. Every leg that actually left must return in exact units; retries
+cannot return it twice. Native return funding first reaches the source companion,
+then `canonicalRestore` receives a zero-value acknowledgment and forwards that
+already transferred amount. It must not demand another copy of ETH as `msg.value`.
+Unfunded legs are not fabricated, and source/destination prefunds remain separate.
 `finishAbort` checks all returned legs and module backing before reopening source
 rights. Successfully settled cutoff accounting remains settled. No timeout,
 administrator balance edit or emergency principal withdrawal bypass exists.
@@ -117,6 +129,13 @@ handoff can keep rights frozen until exact restoration is possible. No universal
 recovery promise is made for a broken or malicious token.
 
 ## Integration and qualification
+
+Fresh native API/keeper profiles explicitly select accounting version 2 and verify
+`Vault.ACCOUNTING_VERSION()` plus reviewed runtime pins. Legacy WETH profiles and
+predecessor epochs retain their own currency/version interpretation; saved nonce,
+receipt and pending journals cannot be reset or reinterpreted as a native upgrade.
+The current website V2 profile still requires qualification; public deployment
+remains null, shared browser signing Anvil-only and the existing 8902 fixture is unchanged.
 
 Keeper reads `canonicalState()` strictly and stops all new transaction submissions
 while frozen, importing, retired or cancelled; it continues recovery of already

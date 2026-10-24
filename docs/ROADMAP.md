@@ -1,6 +1,6 @@
 # Engineering roadmap
 
-**Internal audit follow-up (2026-10-24):** [Fee-sizing and operational fixes](../reports/daily-security-20261024/REVIEW.md) are implemented with focused evidence. The broader [native design audit](NATIVE_ETH_ARCHITECTURE.md) identifies pre-seal implementation blockers; it does not qualify an unimplemented port. Continue the native versioned accounting/custody/service work before sealing; actual services and independent audit remain open.
+**Internal audit follow-up (2026-10-24):** [Fee-sizing and operational fixes](../reports/daily-security-20261024/REVIEW.md) are implemented with focused evidence. The broader [native design audit](NATIVE_ETH_ARCHITECTURE.md) identifies pre-seal implementation blockers; the [native V2 implementation](../reports/native-eth-port/VERIFICATION.md) now has scoped local evidence. Complete its explicit ETH/WETH boundary, versioned service/frontend and target-chain qualification before sealing; actual services and independent audit remain open.
 
 **Pre-seal flexibility (2026-10-24):** [Operational configuration](../TODO.md#task-post-seal-configuration) and the [native ETH architecture](NATIVE_ETH_ARCHITECTURE.md) must be implemented/reviewed before sealing if these future controls are required. [Real-funds rehearsal planning](../TODO.md#task-mainnet-rehearsal-retirement) uses a separate deployment followed by a fresh final collection, not a reset. No public execution is authorized.
 
@@ -38,7 +38,7 @@ unfinished and is not supplied by external custody alone.
 
 Atomic `Migration.moveFunds` supports admitted same-accounting-pair venue/fee-tier
 changes with actual destination LP, unchanged NFT shares and one fixed 3% aggregate
-cap. Current ETH-to-WETH normalization permits native/WETH pool moves. Normal
+cap. Native V2 retains actual ETH identity; same-native-pair fee-tier moves work, while atomic ETH/WETH conversion is unfinished and rejected. Normal
 paused external `exit` consolidates principal into ZZZ; separately approved raw
 exit sends both accounting currencies without a USD guarantee. A failed normal
 exit never selects raw mode automatically. Follow [operator steps](GOVERNED_CUSTODY_HANDOFF.md).
@@ -50,11 +50,11 @@ bridging uses explicitly trusted external custody, actual funded completion/retu
 and reviewed remote finality where applicable; no real verifier or remote ledger
 is supplied. Whole-collection handoff remains separate.
 
-Implement the requested [native ETH architecture](NATIVE_ETH_ARCHITECTURE.md)
-before claiming wrapper-independent recovery. The current implementation still
-uses WETH; native custody/Entry/rewards/reserves/exit/canonical backing require
-joint implementation and affected-source qualification. This is an authorized
-design direction, not completed functionality.
+The [native V2 implementation](NATIVE_ETH_ARCHITECTURE.md) now carries actual ETH
+through custody, Entry, fees, indexed rewards, raw exit and canonical backing.
+Complete explicit ETH/WETH conversion and old-schema compatibility separately;
+qualify real native markets, service/frontend profiles, gas and independent audit.
+Existing Anvil deployments and their historical evidence remain unchanged.
 
 Implement/review [post-seal operating flexibility](POST_SEAL_POLICY.md) before
 sealing: bounded future VRF request tuning, a buyback operating ceiling and typed
@@ -118,7 +118,7 @@ Owning tasks: [selected pool](../TODO.md#task-pons-qualification), [activation a
 
 Use pinned-block fork tests against actual supported PositionManager, PoolManager, Permit2, and StateView deployments. Exercise mint, increase, collection, close, swaps, approvals, callbacks, donations, and failure paths. Measure rebalancing and all-asset checkpoint costs at realistic collection sizes.
 
-The current selected hookless native adapter preserves the physical PoolKey, normalizes accounting to WETH, checks reviewed runtimes/wiring and handles native settlement without spending prefunds. Earlier Pons forks retain their original source scope. Recorded selected-pool fork runs cover that path for their exact source/block snapshots; complete release-source fork/gas/strategy qualification. The current offline regression did not run those opt-in fork suites. This is not generic hook approval or permission to deploy. Mock-venue collection/asset workloads do not establish target-pool operating costs.
+The current selected hookless native adapter preserves the physical PoolKey, retains actual ETH accounting in V2, checks reviewed runtimes/wiring and handles native settlement without spending prefunds. Earlier Pons forks retain their original source scope. Recorded selected-pool fork runs cover that path for their exact source/block snapshots; complete release-source fork/gas/strategy qualification. The current offline regression did not run those opt-in fork suites. This is not generic hook approval or permission to deploy. Mock-venue collection/asset workloads do not establish target-pool operating costs.
 
 Independently qualify the implemented immutable [atomic Entry](ACTIVATION_ENTRY.md): original-source gross valuation, exact received balances, current-owner intent and one full 1% execution/undeployed bound across conversion and LP deployment. Register and rehearse actual ZZZ/ETH/USDG routes and supply a funded reviewed USDC route before enabling it. Reject quotes that cannot meet the bound; do not subsidize them with incumbent LP, idle or compound assets. The implemented [complete preparation service](ACTIVATION_PREPARATION.md) now performs two full Entry simulations and returns bounded unsigned calldata. Next qualify actual route/feed manifests, hash-selected callTracer support/logs and complete network-fee estimation on the intended providers, then integrate wallet approval/requote/signing/receipts.
 

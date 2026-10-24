@@ -23,6 +23,17 @@ from zzz_ops.state import atomic_json, integer, process_lock, read_json
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
+NATIVE_ASSET = '0x'+'0'*40
+# Only these argument positions are currencies. Contract/owner/sender zeroes
+# remain invalid in the shared ABI codec and all other keeper calls.
+ASSET_ARGUMENTS = {
+    'compoundBalance(uint256,address)': (1,),
+    'buybackBalance(address)': (0,),
+    'execute(address,uint256,bytes32,uint256)': (0,),
+    'remoteIndividual(uint256,address)': (1,),
+    'remoteCollective(uint256,address)': (1,),
+    'bridgeRewards(uint256,address,bytes32)': (1,),
+}
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
@@ -71,6 +82,9 @@ def signer_environment(rpc_url: str | None = None) -> dict[str,str]:
 class Keeper:
     def __init__(self, config: dict[str,Any], *, live: bool = False, rpc: Rpc | None = None):
         self.config, self.live = config, live
+        self.accounting_version = config.get('accounting_version',1)
+        if type(self.accounting_version) is not int or self.accounting_version not in (1,2):
+            raise ValueError('Unsupported keeper accounting version')
         self.chain = positive(config['chain_id'],'chain_id')
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
         self.sender = address(config['sender'])
@@ -102,13 +116,17 @@ class Keeper:
         if len(set(paths)) != len(paths): raise ValueError('State, health and lock paths must be distinct')
         if live and not self.path.is_file():
             raise ValueError('Live state is missing; restore a verified backup or initialize an unused keeper')
-        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,
+        self.state = read_json(self.path,{'chain_id':self.chain,'sender':self.sender,'contracts':self.contracts,'accounting_model':ACCOUNTING_MODEL,'accounting_version':self.accounting_version,
             'bucket_cursor':0,'last':{},'spent':{},'pending':None,'next_nonce':None,'receipt_anchor':None})
         if not isinstance(self.state,dict): raise ValueError('Malformed persistent state')
         if self.state['chain_id'] != self.chain or self.state['sender'] != self.sender:
             raise ValueError('Persistent state belongs to another chain or sender')
         if self.state.get('accounting_model') != ACCOUNTING_MODEL:
             raise ValueError('Persistent keeper state requires a reviewed shared-pool migration; preserve pending records')
+        # A missing field is a historical WETH-accounting journal, never an
+        # implicit native port. No pending intent, nonce or receipt is rewritten.
+        if self.state.get('accounting_version',1) != self.accounting_version or type(self.state.get('accounting_version',1)) is not int:
+            raise ValueError('Persistent keeper state belongs to another accounting version; preserve recovery records')
         if self.state.get('contracts') != self.contracts:
             raise ValueError('Persistent keeper state belongs to another deployment')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
@@ -142,6 +160,7 @@ class Keeper:
             self._validate_runtime_files()
             self._validate_signer()
             self._validate_code_hashes()
+            self._validate_accounting_version()
             self._validate_checkpoint()
 
     def _validate_state(self) -> None:
@@ -205,6 +224,7 @@ class Keeper:
         if self.live or self.path.exists(): raise ValueError('Initialization requires missing state in dry-run mode')
         if self.config.get('reviewed_for_live_use') is not True: raise ValueError('Review configuration before initialization')
         self._validate_code_hashes()
+        self._validate_accounting_version()
         self._head()
         for tag in ('latest','pending'):
             if rpc_quantity(self.rpc.call('eth_getTransactionCount',[self.sender,tag]),'initial nonce') != 0:
@@ -260,7 +280,42 @@ class Keeper:
 
     def save(self) -> None: atomic_json(self.path,self.state)
     def view(self,name: str,signature: str,*args: int|str) -> int:
-        return uint_result(self.rpc.eth_call(self.contracts[name],calldata(signature,*args)))
+        return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
+
+    def _asset(self,value: Any) -> str:
+        if self.accounting_version == 2 and isinstance(value,str) and value.lower() == NATIVE_ASSET:
+            return NATIVE_ASSET
+        return address(value)
+
+    def _calldata(self,signature: str,*args: int|str) -> str:
+        positions = ASSET_ARGUMENTS.get(signature,())
+        values = list(args)
+        native = []
+        for index in positions:
+            if index >= len(values): raise ValueError('Missing currency argument')
+            values[index] = self._asset(values[index])
+            if values[index] == NATIVE_ASSET:
+                native.append(index)
+                # Use the strict shared encoder, replacing only reviewed asset
+                # words afterwards. Never loosen address() globally.
+                values[index] = '0x'+'0'*39+'1'
+        data = calldata(signature,*values)
+        for index in native:
+            start=10+64*index
+            data=data[:start]+'0'*64+data[start+64:]
+        return data
+
+    def _validate_accounting_version(self) -> None:
+        if self.accounting_version == 1: return
+        pin=self.config.get('code_hashes',{}).get('vault','')
+        if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin):
+            raise RpcError('Native accounting requires a reviewed Vault runtime pin')
+        code=self.rpc.call('eth_getCode',[self.contracts['vault'],'latest'])
+        if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or '0x'+keccak256(bytes.fromhex(code[2:])).hex()!=pin.lower():
+            raise RpcError('Native Vault runtime differs from the reviewed keeper profile')
+        try: version = self.view('vault','ACCOUNTING_VERSION()')
+        except (ValueError,RpcError) as exc: raise RpcError('Native accounting version is unavailable') from exc
+        if version != self.accounting_version: raise RpcError('Vault accounting version differs from the reviewed keeper profile')
 
     def preparation_active(self) -> bool:
         """Current deployments must expose this strict ABI; no legacy fallback."""
@@ -450,6 +505,7 @@ class Keeper:
         if self.state.get('pending'): return False
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
+        self._validate_accounting_version()
         if self._defer_for_lifecycle(name,signature): return False
         if self.live: self._validate_checkpoint()
         _,timestamp = self._head()
@@ -459,7 +515,7 @@ class Keeper:
             log('action_cooldown',action=key,retry_after=retry_after)
             return False
         to = self.metadata_nft if name == 'nft' and self.metadata_enabled else self.contracts[name]
-        data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else calldata(signature,*args)
+        data = encode_batch(*args) if name in ('royalties','rewards') and signature == ROYALTY_BATCH else self._calldata(signature,*args)
         if metadata_observation is not None:
             self._validate_metadata_payload(metadata_observation)
             self._metadata_transaction({'to':to,'data':data,'value':value,'key':key,
@@ -781,6 +837,10 @@ class Keeper:
             seen.add(bucket); batch.append((slot,bucket))
         return batch
 
+    def _asset_word(self,word: str) -> str:
+        if int(word,16) >= 1 << 160: raise RpcError('Noncanonical currency in contract response')
+        return self._asset('0x'+word[-40:])
+
     def _bucket(self,bucket: int) -> tuple[list[str],list[str]]:
         fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
         if len(fields) != 15: raise RpcError('Unexpected vault group ABI')
@@ -790,7 +850,8 @@ class Keeper:
             raise RpcError('Malformed shared-pool state')
         if int(fields[8],16) == 0 or int(fields[13],16) == 0:
             raise RpcError('Missing shared-pool provenance')
-        for index in (9,10,11,12,14): self._address_word(fields[index])
+        for index in (9,10,12,14): self._address_word(fields[index])
+        self._asset_word(fields[11])
         if self.view('vault','bucketTotalShares(uint256)',bucket) == 0:
             raise RpcError('Shared pool has no shares')
         pool_id = '0x'+fields[0]
@@ -810,14 +871,17 @@ class Keeper:
         accounting = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('accounting(bytes32)',pool_id)))
         if len(accounting) != 14 or accounting[1:] != config[1:]:
             raise RpcError('Accounting configuration differs from the venue policy')
-        tokens = [self._address_word(accounting[0]),self._address_word(accounting[1])]
-        if int(config[0],16) == 0:
+        tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
+        if self.accounting_version == 2:
+            if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
+        elif int(config[0],16) == 0:
             wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
             if len(wrapper) != 1 or self._address_word(wrapper[0]) != tokens[0] or tokens[0] == tokens[1]:
                 raise RpcError('Native accounting wrapper mismatch')
         elif accounting[0] != config[0]:
             raise RpcError('ERC20 accounting asset differs from the venue')
-        # Normalized native assets retain venue orientation; never re-sort WETH.
+        # Legacy WETH normalization is confined to version1; native version2
+        # keeps assetzero and never consults the optional wrapper getter.
         return fields,tokens
 
     def _sync_external(self, bucket: int) -> bool:
@@ -847,6 +911,7 @@ class Keeper:
 
     def cycle(self) -> None:
         if self.poll_pending(): return
+        self._validate_accounting_version()
         if self.canonical_state() != 0: return
         paused = self.view('access','paused()') != 0
         self.strategy_paused = paused
@@ -898,7 +963,7 @@ class Keeper:
                         if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
                 # Funded satellite rewards remain deliverable after principal leaves.
                 for remote in item.get('reward_routes',[]):
-                    token = address(remote['token'])
+                    token = self._asset(remote['token'])
                     personal = self.view('fees','remoteIndividual(uint256,address)',bucket,token)
                     shared = self.view('fees','remoteCollective(uint256,address)',bucket,token)
                     if personal+shared >= positive(remote['minimum_units'],'minimum_units'):
@@ -913,7 +978,7 @@ class Keeper:
             log('protocol_paused'); return
         if preparing: return
         for task in self.config.get('buybacks',[]):
-            token = address(task['token']); amount = positive(task['amount'],'amount')
+            token = self._asset(task['token']); amount = positive(task['amount'],'amount')
             if self.view('fees','buybackBalance(address)',token) >= amount:
                 _,fresh = self._head()
                 if self.submit('buyback','execute(address,uint256,bytes32,uint256)',(token,amount,task['pool_id'],fresh+180),f'buyback:{token}'): return

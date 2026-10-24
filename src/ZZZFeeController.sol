@@ -14,7 +14,7 @@ import {IZZZRewards, IZZZVault, IZZZMembership, IZZZPools, IZZZBridge} from "./i
 
 interface ICanonicalFeeAssets { function assetCount() external view returns (uint256); function assets(uint256) external view returns (address); }
 interface ICanonicalFeeCutoff {
-    function creditCanonicalCutoff(uint256 id, address token, uint256 personal, uint256 shared) external;
+    function creditCanonicalCutoff(uint256 id, address token, uint256 personal, uint256 shared) external payable;
 }
 interface ICanonicalFeeHandoff {
     function incomingSource() external view returns (address);
@@ -63,6 +63,25 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     ZZZRewardReceiverFactory public immutable receiverFactory;
     constructor(address controller) ZZZModule(controller) { receiverFactory = new ZZZRewardReceiverFactory(controller); }
     receive() external payable {}
+    function _balance(address token) private view returns (uint256) {
+        return token == address(0) ? address(this).balance : IERC20(token).balanceOf(address(this));
+    }
+    /// @dev Each payable ingress calls this once for the whole declared amount.
+    /// Existing donations cannot substitute for missing execution funding.
+    function _pull(address token, uint256 amount) private {
+        if (msg.value != (token == address(0) ? amount : 0)) revert InvalidAmount();
+        if (token != address(0)) ExactToken.pull(token, msg.sender, amount);
+    }
+    function _push(address token, address destination, uint256 amount) private {
+        if (token != address(0)) { ExactToken.push(token, destination, amount); return; }
+        if (amount == 0) return;
+        uint256 beforeBalance = address(this).balance;
+        (bool ok,) = payable(destination).call{value: amount}("");
+        if (!ok || address(this).balance != beforeBalance - amount) revert InvalidState();
+    }
+    function _approve(address token, address spender, uint256 amount) private {
+        if (token != address(0)) IERC20(token).forceApprove(spender, amount);
+    }
     function canonicalState() public view returns (uint8) { return IZZZCanonicalAccess(address(access)).canonicalState(); }
     function _vault() private view returns (IZZZVault) { return IZZZVault(access.module(Ids.VAULT)); }
     function _isHome(Position memory p, IZZZVault vault) private view returns (bool) {
@@ -103,14 +122,14 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     }
     /// @notice Final entry barrier also catches dust queued by nested callbacks.
     function hasPendingExternal() external view returns (bool) { return receiverFactory.hasPendingExternal(); }
-    function allocateExternal(uint256 id, address token, uint256 amount) external nonReentrant {
+    function allocateExternal(uint256 id, address token, uint256 amount) external payable nonReentrant {
         if (rewardReceiver[id] == address(0) || msg.sender != rewardReceiver[id]) revert Unauthorized();
         IZZZVault vault = _vault();
         Position memory p = vault.group(id);
         if (!access.isSealed() || amount == 0 || p.status == PositionStatus.None || p.status == PositionStatus.Dormant ||
             !_isHome(p, vault) || vault.bucketTotalShares(id) == 0 ||
             (token != p.homeToken0 && token != p.homeToken1)) revert InvalidState();
-        ExactToken.pull(token, msg.sender, amount);
+        _pull(token, amount);
         uint8 state = canonicalState();
         if (state == 3) { lateGross[id][token] += amount; lateTotal[token] += amount; return; }
         if (state != 0 && !(state == 1 && IZZZCanonicalAccess(address(access)).canonicalSettling())) revert InvalidState();
@@ -134,17 +153,17 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     }
     function _credit(uint256 id, address token, uint256 personal, uint256 shared) private {
         address rewards = access.module(Ids.REWARDS);
-        IERC20(token).forceApprove(rewards, personal + shared);
+        _approve(token, rewards, personal + shared);
         if (canonicalState() == 1) {
             if (!IZZZCanonicalAccess(address(access)).canonicalSettling()) revert InvalidState();
-            ICanonicalFeeCutoff(rewards).creditCanonicalCutoff(id, token, personal, shared);
-        } else IZZZRewards(rewards).creditPool(id, token, personal, shared);
-        IERC20(token).forceApprove(rewards, 0);
+            ICanonicalFeeCutoff(rewards).creditCanonicalCutoff{value: token == address(0) ? personal + shared : 0}(id, token, personal, shared);
+        } else IZZZRewards(rewards).creditPool{value: token == address(0) ? personal + shared : 0}(id, token, personal, shared);
+        _approve(token, rewards, 0);
     }
     function _solvent(address token) private view {
-        if (IERC20(token).balanceOf(address(this)) < accounted[token] + lateTotal[token]) revert InvalidState();
+        if (_balance(token) < accounted[token] + lateTotal[token]) revert InvalidState();
     }
-    function allocate(uint256 id, address token, uint256 amount) external onlyModule(Ids.VAULT) nonReentrant canonicalAccounting {
+    function allocate(uint256 id, address token, uint256 amount) external payable onlyModule(Ids.VAULT) nonReentrant canonicalAccounting {
         if (amount == 0) revert InvalidAmount();
         Position memory p = IZZZVault(msg.sender).group(id);
         if (p.status != PositionStatus.Active) revert InvalidState();
@@ -154,7 +173,7 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         if (!canonical) {
             _bindRemoteAsset(id, token, token == c.key.currency0 ? p.homeToken0 : p.homeToken1);
         }
-        ExactToken.pull(token, msg.sender, amount);
+        _pull(token, amount);
         _distribute(id, token, amount, canonical);
     }
     function _distribute(uint256 id, address token, uint256 amount, bool canonical) private {
@@ -221,14 +240,14 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         amount = compoundBalance[id][token];
         compoundBalance[id][token] = 0;
         accounted[token] -= amount;
-        ExactToken.push(token, msg.sender, amount);
+        _push(token, msg.sender, amount);
         _solvent(token);
     }
     function releaseBuyback(address token, uint256 amount) external onlyModule(Ids.BUYBACK) nonReentrant canonicalAccounting {
         if (amount == 0 || amount > buybackBalance[token]) revert InvalidAmount();
         buybackBalance[token] -= amount;
         accounted[token] -= amount;
-        ExactToken.push(token, msg.sender, amount);
+        _push(token, msg.sender, amount);
         _solvent(token);
     }
     function bridgeRewards(uint256 id, address token, bytes32 routeId) external payable live nonReentrant canonicalAccounting {
@@ -245,13 +264,13 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         emit RemoteRewardsSent(id, token, amount, receipt);
     }
     function creditRemote(uint256 id, address token, uint256 personal, uint256 shared)
-        external onlyModule(Ids.RECEIVER) nonReentrant canonicalAccounting {
+        external payable onlyModule(Ids.RECEIVER) nonReentrant canonicalAccounting {
         if (personal + shared == 0) revert InvalidAmount();
         IZZZVault vault = _vault();
         Position memory p = vault.group(id);
         if (!_isHome(p, vault) ||
             (token != p.homeToken0 && token != p.homeToken1)) revert InvalidConfiguration();
-        ExactToken.pull(token, msg.sender, personal + shared);
+        _pull(token, personal + shared);
         receivedIndividual[id][token] += personal;
         receivedCollective[id][token] += shared;
         _credit(id, token, personal, shared);
@@ -311,17 +330,17 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         address nextController = ICanonicalFeeHandoff(IZZZCanonicalAccess(address(access)).canonicalHandoff()).destinationController();
         address nextFees = IZZZAccess(nextController).module(Ids.FEES);
         lateGross[id][token] = 0; lateTotal[token] -= amount;
-        IERC20(token).forceApprove(nextFees, amount);
-        ZZZFeeController(payable(nextFees)).acceptLegacyGross(id, token, amount);
-        IERC20(token).forceApprove(nextFees, 0);
+        _approve(token, nextFees, amount);
+        ZZZFeeController(payable(nextFees)).acceptLegacyGross{value: token == address(0) ? amount : 0}(id, token, amount);
+        _approve(token, nextFees, 0);
     }
-    function acceptLegacyGross(uint256 id, address token, uint256 amount) external nonReentrant {
+    function acceptLegacyGross(uint256 id, address token, uint256 amount) external payable nonReentrant {
         uint8 state = canonicalState();
         address source = ICanonicalFeeHandoff(IZZZCanonicalAccess(address(access)).canonicalHandoff()).incomingSource();
         if (source == address(0) || msg.sender != IZZZAccess(source).module(Ids.FEES) || amount == 0) revert Unauthorized();
         Position memory p = _vault().group(id);
         if ((token != p.homeToken0 && token != p.homeToken1) || _vault().bucketTotalShares(id) == 0) revert InvalidConfiguration();
-        ExactToken.pull(token, msg.sender, amount);
+        _pull(token, amount);
         if (canonicalState() != state) revert InvalidState();
         if (state == 0) {
             totalExternalFunded[id][token] += amount;
@@ -377,13 +396,15 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     }
     function canonicalSend(address asset, uint256 receiver, uint8 slot, address destination, uint256 amount)
         external onlyCanonical nonReentrant {
-        if (receiver == type(uint256).max) ExactToken.push(asset, destination, amount);
+        if (receiver == type(uint256).max) _push(asset, destination, amount);
         else ZZZRewardReceiver(payable(rewardReceivers[receiver])).canonicalRelease(slot, destination, amount);
     }
     function canonicalFundReceiver(uint256 receiverIndex, uint8 slot, uint256 amount, bool restore)
         external payable onlyCanonical {
         ZZZRewardReceiver receiver = ZZZRewardReceiver(payable(rewardReceivers[receiverIndex]));
-        if (slot == 2) {
+        if (slot > 2) revert InvalidConfiguration();
+        address asset = slot == 0 ? receiver.token0() : slot == 1 ? receiver.token1() : address(0);
+        if (asset == address(0)) {
             if (msg.value != amount) revert InvalidAmount();
             receiver.canonicalNative{value: amount}();
         } else if (msg.value != 0) revert InvalidAmount();

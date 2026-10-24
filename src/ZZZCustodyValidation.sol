@@ -40,8 +40,7 @@ contract ZZZCustodyValidation {
             v.bucketTotalShares(r.bucket)==0 || r.sourceSnapshot!=state.sourceSnapshot(r.bucket) || (!r.rawExit && (token==address(0) ||
             token.codehash!=state.zzzCodeHash())) || r.recipient==address(0) || r.recipient==migration || r.recipient==address(this) ||
             r.recipient==address(v) || r.recipient.codehash!=r.recipientCodeHash || r.destinationChain==0 ||
-            r.destinationCustody==address(0) || (!custodyOnly && r.destinationPool==bytes32(0)) || r.output0==address(0) ||
-            r.output1==address(0) || r.output0==r.output1 || (!custodyOnly && r.minimum0==0 && r.minimum1==0) ||
+            r.destinationCustody==address(0) || (!custodyOnly && r.destinationPool==bytes32(0)) || r.output1==address(0) || r.output0==r.output1 || (!custodyOnly && r.minimum0==0 && r.minimum1==0) ||
             (r.rawExit ? (r.exitMinimum0==0 && r.exitMinimum1==0) : r.minimumZZZ==0) || r.reviewHash==bytes32(0)) revert InvalidConfiguration();
     }
     function validateDestination(bytes calldata encoded) external view returns(uint256,uint256,uint256,uint256) {

@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-24",
+  "scope": "Two changed/new VaultCanonical source-prefund abort cases after gas-grief hardening; no unaffected suite rerun",
+  "result": "2 passed, 0 failed",
+  "bindings": {
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "6e5fff37040ec91bb5d4b9f9978208001734c192ce10ceced8b09b2ab0359fbc",
+      "metadata_keccak256": "0xb68feff8e4e91c113b7607f26b6e448d9b4a463a2a6e2d0033b6afd27941bed1"
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "sha256": "a5244c7e1d5a7f4e1eacae6c250b158784ac247251ca142b30c21a3f2db66bda",
+      "metadata_keccak256": "0xb78a4c0f3dafa9ede3de507f9d8abbb9a66ba338fc4862dcc2c526f04afa64d5"
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "sha256": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "metadata_keccak256": "0x48989f6f79ba1b99cb21b0d81b727141a3cb8da78153061bf0ca4a820f3d021e"
+    },
+    "src/libraries/ExactAsset.sol": {
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "metadata_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314"
+    },
+    "test/NativeCustody.t.sol": {
+      "sha256": "071461dc12155ff110f6dfdfb8082e054af84acc7a189b145b76f81183d1a615",
+      "metadata_keccak256": "0xa0d0b461c4bac5f57f347e64d28be192d4665d5f20b644e34d2295dd8413ca93"
+    }
+  },
+  "vault_canonical_runtime": 17499,
+  "vault_canonical_initcode": 18825
+}

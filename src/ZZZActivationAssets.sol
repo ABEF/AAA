@@ -10,6 +10,9 @@ import {Ids} from "./libraries/ZZZTypes.sol";
 /// reward, valuation and unwind permissions. No assets are held or transferred.
 contract ZZZActivationAssets is ZZZModule {
     address public immutable registry;
+    // Native currency has no deployed runtime. This explicit identity pin must
+    // never be interpreted as a runtime code hash or as a missing policy.
+    bytes32 public constant NATIVE_ASSET_CODE_HASH = keccak256("ZZZ_NATIVE_ETH_V1");
     struct Policy {
         address token;
         bool enabled;
@@ -39,7 +42,7 @@ contract ZZZActivationAssets is ZZZModule {
     /// Disabling deliberately reads no token, price or implementation state.
     function setAsset(address token, bool enabled, bytes32 expectedCodeHash, bytes32 reviewHash)
         external onlyGovernance returns (bytes32 id) {
-        if (token == address(0) || reviewHash == bytes32(0)) revert InvalidConfiguration();
+        if (reviewHash == bytes32(0)) revert InvalidConfiguration();
         bytes32 previous = activePolicy[token];
         uint8 decimals = previous == bytes32(0) ? 0 : policies[previous].decimals;
         if (enabled) decimals = _validate(token, expectedCodeHash);
@@ -51,10 +54,9 @@ contract ZZZActivationAssets is ZZZModule {
     /// disabled currency, replace an old pin or silently approve changed code.
     function admitPoolAsset(address token) external returns (bytes32 id) {
         if (msg.sender != registry) revert Unauthorized();
-        if (token == address(0)) revert InvalidConfiguration();
         id = activePolicy[token];
         if (id != bytes32(0)) return id;
-        bytes32 codeHash = token.codehash;
+        bytes32 codeHash = token == address(0) ? NATIVE_ASSET_CODE_HASH : token.codehash;
         uint8 decimals = _validate(token, codeHash);
         // This binds the authenticated pool-configuration admission, not an
         // independent audit. Explicit reviews use governance's supplied hash.
@@ -76,10 +78,15 @@ contract ZZZActivationAssets is ZZZModule {
     }
 
     function _validate(address token, bytes32 expectedCodeHash) private view returns (uint8 decimals) {
-        if (expectedCodeHash == bytes32(0) || token.code.length == 0 || token.codehash != expectedCodeHash) {
-            revert InvalidConfiguration();
+        if (token == address(0)) {
+            if (expectedCodeHash != NATIVE_ASSET_CODE_HASH) revert InvalidConfiguration();
+            decimals = 18;
+        } else {
+            if (expectedCodeHash == bytes32(0) || token.code.length == 0 || token.codehash != expectedCodeHash) {
+                revert InvalidConfiguration();
+            }
+            decimals = IERC20Metadata(token).decimals();
         }
-        decimals = IERC20Metadata(token).decimals();
         if (decimals > 18) revert InvalidConfiguration();
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         if (oracle.tokenDecimals(token) != decimals || oracle.price(token) == 0) revert InvalidConfiguration();
@@ -90,8 +97,11 @@ contract ZZZActivationAssets is ZZZModule {
     function value(address token, uint256 amount) external view returns (uint256) {
         if (amount == 0) return 0;
         Policy memory policy = policies[activePolicy[token]];
-        if (!policy.enabled || policy.expectedCodeHash == bytes32(0) || token.code.length == 0 ||
-            token.codehash != policy.expectedCodeHash) revert InvalidConfiguration();
+        if (!policy.enabled || (token == address(0) ?
+            policy.expectedCodeHash != NATIVE_ASSET_CODE_HASH || policy.decimals != 18 :
+            policy.expectedCodeHash == bytes32(0) || token.code.length == 0 || token.codehash != policy.expectedCodeHash)) {
+            revert InvalidConfiguration();
+        }
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         if (oracle.tokenDecimals(token) != policy.decimals) revert InvalidConfiguration();
         return oracle.value(token, amount);
