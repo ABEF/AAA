@@ -16,6 +16,15 @@ Before sealing, governance configures a VRF-v2.5-compatible coordinator, key, fu
 
 Mint records its ordinal and one request for two words. The authenticated callback only stores words. Anyone may finalize the next mint ordinal. The first word draws a rarity from the remaining quotas; the second independently selects one remaining entry from that rarity's fixed visual inventory, using a sparse Fisher-Yates draw without replacement. Consuming an entry swaps the final remaining index into its place. Neither callback ordering nor token ownership selects an entry. The first rarity odds are 60/30/10; later odds depend on remaining quotas. Color-style and palette odds likewise follow their remaining finite inventories, rather than promising fixed independent odds throughout a sellout. No reroll or cancellation exists. An unavailable earlier request blocks later finalization, so subscription backing, callback gas and fulfillment recovery need explicit operational review. Activation requires revealed traits.
 
+Governance may tune only future request confirmations and callback gas using
+`setRandomnessRequestSettings(uint16,uint32)` after the initial one-time setup.
+The bounds remain 3-200 and 200,000-10,000,000; actual provider limits may be
+narrower. Coordinator, lane/key, subscription and payment mode remain fixed.
+Pending requests retain their original provider-recorded arguments, so this
+cannot repair an already-submitted callback or create another draw. Ordinary
+pause permits tuning; preparation/canonical locks and reentry do not. Review
+[operator steps](OPERATOR_MANUAL.md#mint-and-metadata) and [scoped evidence](../reports/post-seal-controls/VERIFICATION.md).
+
 Traits remain bound to the NFT through transfers, additions and migration. `paletteOf` and `patternOf` identify the immutable visual entry; the compatibility getter `colorOf` reports its first canonical color. Metadata publishes Color style, Palette, Color 1/2/3 as applicable, Circuit pattern, Rarity, Evolution and current NFT-sale royalty weight. Unrevealed NFTs return an embedded placeholder. Revealed SVG filenames are `palette-pattern-rarity-evolution.svg`, such as `cyan-amber-onyx-arcs-rare-enhanced.svg`. The root can only be populated once before sealing; it is not a post-seal governance image switch. Production admission requires the entire supported 2,784-path publication with independent content-root/manifest review. No SVG publication, website preview or local VRF mock establishes deployment readiness.
 
 ## Current LP value and ERC-4906

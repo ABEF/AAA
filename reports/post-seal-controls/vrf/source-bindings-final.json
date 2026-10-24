@@ -1,0 +1,569 @@
+{
+  "generated_utc": "2026-10-24T18:49:10.067528+00:00",
+  "compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "settings": {
+    "remappings": [
+      "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+      "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/"
+    ],
+    "optimizer": {
+      "runs": 1,
+      "details": {
+        "peephole": true,
+        "inliner": true,
+        "jumpdestRemover": true,
+        "orderLiterals": true,
+        "deduplicate": true,
+        "cse": true,
+        "constantOptimizer": true,
+        "yul": false,
+        "simpleCounterForLoopUncheckedIncrement": true
+      }
+    },
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "compilationTarget": {
+      "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFT.sol": "ZZZNFT"
+    },
+    "evmVersion": "cancun",
+    "libraries": {},
+    "viaIR": true
+  },
+  "artifacts_examined": 144,
+  "compiler_metadata_bound_sources": 73,
+  "mismatches": [],
+  "metadata_conflicts": [],
+  "sources": [
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/Base.sol",
+      "compiler_keccak256": "0xa3735a6618a3014e42bb4329ad143e3b2c59cd95094350202e4c4a06c9d585dd",
+      "sha256": "dc5e18050f154e4211ee58a58fdd395e5feb222ef61c76184791d7f6e5405516",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdAssertions.sol",
+      "compiler_keccak256": "0x4584f551c3a875c26423c1e50a77179bc2f9c9c1ee6d0f0c6be0f89ca5ee8270",
+      "sha256": "9795e71054414332c56673d60d0d868f657224a1c52ceb6c3884d7f667338095",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdChains.sol",
+      "compiler_keccak256": "0xd3edaf57db178f839d97ccee0009c2b7b20f78c2adca9028a6013acb8d5b4c5e",
+      "sha256": "cdf1d76f68953a1e3be842b3a7043c0c9bca61cbff844f95cd677a4b5410bfb7",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdCheats.sol",
+      "compiler_keccak256": "0x0fa6ec03602648b62cce41aab2096e6b7e052f2846075d967b6958dd586db746",
+      "sha256": "a0fe96a5e188c6721ca2242241a2eeb7ad3617dd75460268fa38acfd8e3e8aa2",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdConstants.sol",
+      "compiler_keccak256": "0x319ccdabfa2c0b2428301445873270ffea20f0e039d4fd5e6eeba65158e4e534",
+      "sha256": "ce159d02a0ed064cbf5abd717204f59036cfa4eb73b9d6e5d77c83d3fd215ea8",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdError.sol",
+      "compiler_keccak256": "0xbf477b11a42d7611696956546bcfaa29317d1166bf65e402344599c05943fc77",
+      "sha256": "a10f8f4d12e7716942c3e20753f1ea0af0cc707ca58eaaa01da8246209ed8151",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdInvariant.sol",
+      "compiler_keccak256": "0x4dab3021edfa9511bbdd80c48f060ef62eaf457f99eaf841f561fc2557d9a08d",
+      "sha256": "71aada0625f02eebb94c495dec0b28a575f7343f734543bde662b10f0a3ba724",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdJson.sol",
+      "compiler_keccak256": "0xbc0132abe1c2accc2867c0f03667afffdf92f3e95a581bb03c9557eaa38ea500",
+      "sha256": "4792802533e7d8315a2287ef246d8ffea13f38f5b8966bd9545b38050f243765",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdMath.sol",
+      "compiler_keccak256": "0xd90ad4fd8aeaeb8929964e686e769fdedd5eded3fc3815df194a0ab9f91a3fb2",
+      "sha256": "473474e8608945a1c87a606ea85e6b605dcc3186d361796f60f36011964036da",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdStorage.sol",
+      "compiler_keccak256": "0xb91ab24383a5872b894fc93325eef1add6cbbf981628f18e860068bf88bb7dcc",
+      "sha256": "6dfa28c0a86589e51ffe4af526c2930f34d9c1a34de7897ee99a8cea0fda62be",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdStyle.sol",
+      "compiler_keccak256": "0x43e2a8a9b9c2574dabe74f11adf6f782df218f463540e3b5b563609fe108597d",
+      "sha256": "be2eea9cbe407894fd24ae1f824d03ca35ff5fe3ab684850e7190fbc098417df",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdToml.sol",
+      "compiler_keccak256": "0x58a72c765ed3f7ff6b105509689658795b8a3739b8931772a497155878381861",
+      "sha256": "cbb859d5c18c322f8153128504ad513d41baa29905dd9aeb0c8369d06ad8acec",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/StdUtils.sol",
+      "compiler_keccak256": "0x7274081e11c05164fd8eadde4de8305c033e58a43008dea58065f3170ccf0737",
+      "sha256": "76caac7e205bb638728d078a5d3e46468190b763d2e98524d12f2041a65204f8",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/Test.sol",
+      "compiler_keccak256": "0x3dda6083a83dfa3e8526e97bcc28e862ee2442dd58fe94d5c426d65b8e38f73c",
+      "sha256": "cf5e7d5e176eac56f6514da12163ff7b9b6af57c255a399012d8b5b2459b8e9e",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/Vm.sol",
+      "compiler_keccak256": "0xaae88142a348064677cf81169ea0ca706be3e99e2a0f13a01878ff8d52cf6b25",
+      "sha256": "d03386284af495e27b9eb9f70a00c9736da6b0ed9f147b32859a1ac6b4c358a6",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/console.sol",
+      "compiler_keccak256": "0x4bbf47eb762cef93729d6ef15e78789957147039b113e5d4df48e3d3fd16d0f5",
+      "sha256": "887089be32f2fbfe442d556112d2023d1037f43ea5c7d857b18c5ea3f74bfaba",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/console2.sol",
+      "compiler_keccak256": "0x3b8fe79f48f065a4e4d35362171304a33784c3a90febae5f2787805a438de12f",
+      "sha256": "2398c4aa056416dbbae6167f3443678733a35413290be51060e15d4aebd78ff9",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/interfaces/IMulticall3.sol",
+      "compiler_keccak256": "0x7aac1389150499a922d1f9ef5749c908cef127cb2075b92fa17e9cb611263d0a",
+      "sha256": "984896bb1275945047e9f81ea5c8c5dd331e511e9bd208b786b835f91d5bc055",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/safeconsole.sol",
+      "compiler_keccak256": "0xbef9786cb49d3eade757bad87568c49c8c8f35721f0193c95ffb055d9e466e11",
+      "sha256": "9249257fdba10bf6feea3ac74698a24694c2c568137b9e7f5b9c549e305e2edb",
+      "matches_current": false,
+      "crlf_normalized_matches_compiler": true
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/access/AccessControl.sol",
+      "compiler_keccak256": "0x1a6b4f6b7798ab80929d491b89d5427a9b3338c0fd1acd0ba325f69c6f1646af",
+      "sha256": "93c8ebfe7b36ef4d180f1660a5a741125691957726209720af476fdd5c7bac43",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/access/IAccessControl.sol",
+      "compiler_keccak256": "0xbff9f59c84e5337689161ce7641c0ef8e872d6a7536fbc1f5133f128887aba3c",
+      "sha256": "140304b7e99d517c57a13f391dfd3b550ca633a507f7b2af130f391b6cd89cc5",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/governance/TimelockController.sol",
+      "compiler_keccak256": "0xa0b43a4e7f6c4e67c518c40e0e75ee66b38a1b077e5f315b0dc7a98d11e778b4",
+      "sha256": "4a5946a9ea4abbaef29225dc42da6c50c66bb13cae1b592607222599b0526f64",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "compiler_keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+      "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+      "compiler_keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+      "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "compiler_keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+      "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "compiler_keccak256": "0x19fdfb0f3b89a230e7dbd1cf416f1a6b531a3ee5db4da483f946320fc74afc0e",
+      "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol",
+      "compiler_keccak256": "0x6ec6d7fce29668ede560c7d2e10f9d10de3473f5298e431e70a5767db42fa620",
+      "sha256": "3df310870e0187a59020ea48e910ed2693778b1f758b57b97a47365d74b92af5",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol",
+      "compiler_keccak256": "0x845cd93ae5216fb91ab3085c632006cdff95460134dd83f3519c1b08cc3e1b4a",
+      "sha256": "08dbc044feab0e187a81a52142f907be598ecca0d35311766a346343af7b18af",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "compiler_keccak256": "0x86b7b71a6aedefdad89b607378eeab1dcc5389b9ea7d17346d08af01d7190994",
+      "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "compiler_keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+      "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "compiler_keccak256": "0xd6fa4088198f04eef10c5bce8a2f4d60554b7ec4b987f684393c01bf79b94d9f",
+      "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "compiler_keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "compiler_keccak256": "0x6ead281d4569c26b3dee7313aefff24add906f3600b57d8aef1255a17d6b34e5",
+      "sha256": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "compiler_keccak256": "0xf78f05f3b8c9f75570e85300d7b4600d7f6f6a198449273f31d44c1641adb46f",
+      "sha256": "ff0eb9902bf0ac099205615fac90eacf34fae637571b05aab3ea35dea53d5f17",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "compiler_keccak256": "0x88cd5e3bee2e8c36b8d9058fbcaa81ad5704281b25634122234b55ea853d8055",
+      "sha256": "eafee3ffdc7cb2fba4bf6bd16fb28f8e5b4679742e81c2ad42a1b1df5c179feb",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "compiler_keccak256": "0xf46268c37522320bb2119a5a394bc5c739a95c0c574c8d08e8c643f4d06e5c76",
+      "sha256": "33223782ea652dca413702ce92f9f59d91d758a035065b24bbedb7dc60c63a78",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol",
+      "compiler_keccak256": "0xaad20f8713b5cd98114278482d5d91b9758f9727048527d582e8e88fd4901fd8",
+      "sha256": "fa1e231eedfd128232d8f34e9599165fb302c9dee5e58ef009f3b99f7e5d930d",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol",
+      "compiler_keccak256": "0xc2dfdc8fbc8fdb142575c90568e237b809a1feaccff23e32d00131887a08dc36",
+      "sha256": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/Address.sol",
+      "compiler_keccak256": "0x6d0ae6e206645341fd122d278c2cb643dea260c190531f2f3f6a0426e77b00c0",
+      "sha256": "f1a9255dbc40cf9ae7c786abed3b022691a9d24bca0c7f05dc60e63421d405ab",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/Base64.sol",
+      "compiler_keccak256": "0xed82055e8e44241f0f55892198960452018fa743e419ba469a2583c43103965a",
+      "sha256": "b24abf66270126ee48e47646b1a2258b429aeb220b6ca828a1ee2163fd4dce87",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "compiler_keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+      "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/Errors.sol",
+      "compiler_keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+      "sha256": "0704b9d6c032cca8512a3bc3f30f49f86f1f03102d2896a3d23e794b82efea66",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "compiler_keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+      "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "compiler_keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+      "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "compiler_keccak256": "0xad148d59f05165f9217d0a9e1ac8f772abb02ea6aaad8a756315c532bf79f9f4",
+      "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "compiler_keccak256": "0x2d9dc2fe26180f74c11c13663647d38e259e45f95eb88f57b61d2160b0109d3e",
+      "sha256": "61a2b12c96857aaa35f48aeda67a4281637a42494c0b3795be0ae976aa7b3793",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "compiler_keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+      "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "compiler_keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "compiler_keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+      "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "compiler_keccak256": "0xb1970fac7b64e6c09611e6691791e848d5e3fe410fa5899e7df2e0afd77a99e3",
+      "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZAccessController.sol",
+      "compiler_keccak256": "0xc6046f6e1fcd234202ace97606efb2333d55ae44eaa9a7ed7b12245d332f4a67",
+      "sha256": "d065ee3f56d4d9bd4bd52e323743fa28a3578f7fd8422295198dbc928dc51468",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZCanonicalHandoff.sol",
+      "compiler_keccak256": "0xb78a4c0f3dafa9ede3de507f9d8abbb9a66ba338fc4862dcc2c526f04afa64d5",
+      "sha256": "a5244c7e1d5a7f4e1eacae6c250b158784ac247251ca142b30c21a3f2db66bda",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZClaimRouter.sol",
+      "compiler_keccak256": "0x0d81e392f0ff769419e9c13fd31843d4644d2650be8c85b10cc4f21bf0fbf161",
+      "sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZMigrationBudget.sol",
+      "compiler_keccak256": "0xb46930ac4e47de475406fc0435bc26114f39d73d4c5269d4fa9dfef4878d02f8",
+      "sha256": "eb88f5c96f5f07230633793b186ed35c6b81c3094317cac3c0b8ceaa966e3452",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFT.sol",
+      "compiler_keccak256": "0xc26d5a100448454d702276b6c95912ba9c01310aa6bcc5846be4983a0b806646",
+      "sha256": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol",
+      "compiler_keccak256": "0xc51bbe0f1e57b71995c14799a5cba751d90b4d15d2afe6d668bbc8e959319bea",
+      "sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTMetadata.sol",
+      "compiler_keccak256": "0x6e7d60875e9b22f32ce2c5f755d28a7b31620b5db66bb318bee57b02e3428ae9",
+      "sha256": "ecf3bd39064464c24bae6623c36e53d9948f4b65d08fdf218e9e339b7932056d",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZOracle.sol",
+      "compiler_keccak256": "0x10d30b7819def0a5e8476f608659aff1cba58fa86957793cec96be55fecdefe7",
+      "sha256": "98ba5dededee7912219dad86b2ccc9691d16174b933b5173cebab544fe854a0a",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZRoyaltyFactory.sol",
+      "compiler_keccak256": "0xe5403242b09fa538aec267cf1e3a789f233948df3bad02663cbaea7283444171",
+      "sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZRoyaltyRewards.sol",
+      "compiler_keccak256": "0xcb7d66fef7c1611d4aef8fe075285e34ec60654d5439f474c745d753f91d3157",
+      "sha256": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol",
+      "compiler_keccak256": "0x48989f6f79ba1b99cb21b0d81b727141a3cb8da78153061bf0ca4a820f3d021e",
+      "sha256": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZModule.sol",
+      "compiler_keccak256": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/interfaces/IZZZ.sol",
+      "compiler_keccak256": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "sha256": "51d6a8c17b7fe04d3bf400522d338d36777cd4e7ecce65ba60dae6726a65ae6a",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/interfaces/IZZZCanonical.sol",
+      "compiler_keccak256": "0x9c5cdcadf153f743668ce09c6040f2bc7469167c6d87cccfadb871fee1606703",
+      "sha256": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/interfaces/IZZZNFTCanonical.sol",
+      "compiler_keccak256": "0x2274dde0c6ca3e366226390460c67782be7f5bf94f4675706677837e1df6fb2b",
+      "sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/libraries/ExactAsset.sol",
+      "compiler_keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/libraries/ExactToken.sol",
+      "compiler_keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/libraries/ZZZArtwork.sol",
+      "compiler_keccak256": "0xb64f96b35a47733af6d2446f7793036f84e69045485e5049b4d1110fc9866df8",
+      "sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/libraries/ZZZTypes.sol",
+      "compiler_keccak256": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "sha256": "0b17d8ea1548aeb8cb69648d595b226a3915753ed63a5688e5368b01d564fd80",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NFTMetadata.t.sol",
+      "compiler_keccak256": "0x9d331ae136fae4d40ed0a042f0fd8e80ab7c26e3d0f5f219512512e5c75640eb",
+      "sha256": "9f19c72c5392e7c8b2e04a162211840acecccb9d549844a4837f447250d37d81",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/RandomnessRequestSettings.t.sol",
+      "compiler_keccak256": "0x3f22bb833eb89c2263883d5d85827106875854ad4d3f1460796d7e02af1b7b17",
+      "sha256": "c52252c13fcddf450022ff866e5d585194db16b66b95ae22c0b2a03120e65378",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/mocks/MockVRF.sol",
+      "compiler_keccak256": "0xcb1567e0ace2ee3c56da522483a1cdebdcc6cb1f6c1a0b0b6373b8dabaca18c0",
+      "sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    },
+    {
+      "source": "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/mocks/Mocks.sol",
+      "compiler_keccak256": "0x7a8674c9a211caf862963baf608c00e8edb7155133a1190b568ad34fe8bf47a3",
+      "sha256": "f3da75f716e155d09e2f7be548160aa7b12fc19ac02fd7c68912325c761f8d85",
+      "matches_current": true,
+      "crlf_normalized_matches_compiler": false
+    }
+  ],
+  "import_only_wrappers": [
+    {
+      "source": "test/Focused.t.sol",
+      "sha256": "b086e6d72c6e4f80199e6b8eec94c59524b6dc46a799b10d480ffe4114f8b9d4",
+      "note": "No source metadata emitted for import-only compilation wrapper; current bytes archived separately."
+    }
+  ],
+  "nft_size": {
+    "runtime_bytes": 23929,
+    "initcode_bytes": 43923,
+    "runtime_limit": 24576,
+    "initcode_limit": 49152,
+    "runtime_headroom": 647,
+    "initcode_headroom_before_constructor_args": 5229
+  }
+}

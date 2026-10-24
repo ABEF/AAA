@@ -1,3 +1,11 @@
+## Bounded operating controls - 2026-10-24
+
+The [current control candidate](../reports/post-seal-controls/VERIFICATION.md)
+adds governance-only future VRF gas/confirmation settings and a buyback operating
+limit within its immutable hard ceiling. Pending draws, fixed provider settings,
+canonical economic records and backing are preserved. Actual services/provider
+limits and independent review remain open; older entries retain their source scope.
+
 # Component implementation status
 
 **Native V2 update (2026-10-24):** the [implemented candidate and evidence](../reports/native-eth-port/VERIFICATION.md)

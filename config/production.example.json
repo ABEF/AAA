@@ -395,7 +395,11 @@
           "requestConfirmations": null,
           "callbackGasLimit": null,
           "nativePayment": null,
-          "immutable_configuration": true,
+          "immutable_provider_configuration": true,
+          "mutable_request_parameters": [
+            "requestConfirmations",
+            "callbackGasLimit"
+          ],
           "no_admin_reroll": true,
           "review_evidence": null,
           "integration_evidence": null

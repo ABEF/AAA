@@ -464,15 +464,17 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
             callback_gas=g.num(randomness.get('callbackGasLimit'),rp+'.callbackGasLimit',200000,10000000)
             native=randomness.get('nativePayment')
             g.check(type(native) is bool,rp+'.nativePayment','nft.randomness','Native-payment mode must be selected explicitly')
-            g.check(randomness.get('immutable_configuration') is True and randomness.get('no_admin_reroll') is True,
-                rp,'nft.randomness','One-time coordinator configuration and absence of a privileged reroll must be reviewed')
+            g.check(randomness.get('immutable_provider_configuration') is True and
+                randomness.get('mutable_request_parameters')==['requestConfirmations','callbackGasLimit'] and
+                'immutable_configuration' not in randomness and randomness.get('no_admin_reroll') is True,
+                rp,'nft.randomness','Fixed coordinator/lane/subscription/payment policy, bounded future-request tuning and absence of a privileged reroll must be reviewed')
             g.check(bindings.get('randomnessConfigured') is True and bindings.get('randomnessCoordinator')==coordinator and coordinator is not None and
                 bindings.get('keyHash')==key_hash and key_hash is not None and
                 g.num(bindings.get('subscriptionId'),np+'.observed_bindings.subscriptionId',1)==subscription and
                 g.num(bindings.get('requestConfirmations'),np+'.observed_bindings.requestConfirmations',3,200)==confirmations and
                 g.num(bindings.get('callbackGasLimit'),np+'.observed_bindings.callbackGasLimit',200000,10000000)==callback_gas and
                 type(bindings.get('nativePayment')) is bool and bindings.get('nativePayment')==native,
-                rp,'nft.randomness','Observed NFT randomness getters must match the complete reviewed coordinator configuration')
+                rp,'nft.randomness','Observed NFT randomness getters must match the reviewed provider configuration and current future-request settings')
             review=g.proof(randomness.get('review_evidence'),rp+'.review_evidence')
             g.check(review.get('independent') is True and review.get('kind')=='verified_randomness_coordinator_review' and
                 type(review.get('chain_id')) is int and review.get('chain_id')==cid and review.get('coordinator')==coordinator and coordinator is not None,

@@ -1,0 +1,58 @@
+{
+  "distinct_new_cases_passed": 9,
+  "affected_existing_cases_passed": 6,
+  "full_fresh_regression_claimed": false,
+  "runs": [
+    {
+      "log": "new-controls.log",
+      "new_passed": 6,
+      "new_failed": 2,
+      "note": "Two expectation failures only: scheduling log order and original NotReady selector; no production remediation."
+    },
+    {
+      "log": "repaired-and-affected-empty-selection.log",
+      "passed": 0,
+      "note": "Anchored test-name selection omitted signature parentheses; no cases matched. Not passing evidence."
+    },
+    {
+      "log": "repaired-and-affected.log",
+      "repaired_new_passed": 2,
+      "affected_existing_passed": 6
+    },
+    {
+      "log": "importer-bootstrap.log",
+      "new_passed": 1
+    }
+  ],
+  "source_scope": "NFT production source stayed identical across all runs; test repairs/extensions are archived. Real controller, NFT and NFT codec; request proof verification, LP modules and full funded handoff are explicitly not qualified.",
+  "nft_size": {
+    "runtime_bytes": 23929,
+    "initcode_bytes": 43923,
+    "runtime_limit": 24576,
+    "initcode_limit": 49152,
+    "runtime_headroom": 647,
+    "initcode_headroom_before_constructor_args": 5229
+  },
+  "files": {
+    "new-controls.log": "d54737548480fc67d89677349582a4ea1d29447a7364a250eba66cd77f956135",
+    "repaired-and-affected-empty-selection.log": "073603b4e50b5e89ce2f4e7c09c2619d715acef16a6ed3f717cb7f21d9594cf7",
+    "repaired-and-affected.log": "4d92475e299cf59dfa9dc42f6c271f9f05372ac0e31d87dfd465ee222d6a92a6",
+    "importer-bootstrap.log": "16668bd080c3553b0156b08485d56d3e1b0c26fff2fda814723578e4cac2f043",
+    "RandomnessRequestSettings-initial.sol.txt": "4d5ab32c74198748e2be849ad5c73825c0bff97dd6b71ab41ef979d8a091217c",
+    "RandomnessRequestSettings-before-importer-case.sol.txt": "58289952348b54fd79e7672c4a70ccbf98cdf2bb427a775fc37ec11d50ef56c2",
+    "Focused-wrapper.sol.txt": "b086e6d72c6e4f80199e6b8eec94c59524b6dc46a799b10d480ffe4114f8b9d4"
+  },
+  "owned_current_sources": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\src\\ZZZNFT.sol": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\test\\RandomnessRequestSettings.t.sol": "c52252c13fcddf450022ff866e5d585194db16b66b95ae22c0b2a03120e65378"
+  },
+  "bound_source_count": 73,
+  "binding_mismatches": [],
+  "metadata_conflicts": [],
+  "limitations": [
+    "Actual VRF provider, coordinator support, subscription funding, payment mode, gas lane and provider-specific bounds remain unqualified.",
+    "No provider/lane/subscription/payment setters or request retry/cancellation/reroll are implemented.",
+    "Successor deployment keeps independently configured future-request settings; historical request epochs/traits are imported, not rewritten.",
+    "No public signing, deployment, service action, Anvil state change or website change."
+  ]
+}

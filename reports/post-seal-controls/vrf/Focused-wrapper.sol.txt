@@ -1,0 +1,4 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+import "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/RandomnessRequestSettings.t.sol";
+import "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NFTMetadata.t.sol";

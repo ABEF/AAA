@@ -56,10 +56,12 @@ Complete explicit ETH/WETH conversion and old-schema compatibility separately;
 qualify real native markets, service/frontend profiles, gas and independent audit.
 Existing Anvil deployments and their historical evidence remain unchanged.
 
-Implement/review [post-seal operating flexibility](POST_SEAL_POLICY.md) before
-sealing: bounded future VRF request tuning, a buyback operating ceiling and typed
-v4 conversion support. Preserve pending request provenance, immutable traits,
-rights, backing and execution floors. Existing route setters cannot add new code.
+The [post-seal operating controls](POST_SEAL_POLICY.md) now implement bounded
+future VRF gas/confirmation tuning and a buyback operating ceiling within its
+immutable maximum. Their provider/deployment operating qualification remains
+open. Complete typed v4 conversion before sealing; preserve pending request
+provenance, immutable traits, rights, backing and execution floors. Existing route
+setters cannot add new code.
 The 1% ZZZ reward-conversion cap remains, gas separate; require a cheaper qualified
 route than the selected pool's observed 1.101% fee. Do not invent a route or raise
 the cap. Real-funds rehearsal uses a separate deployment and fresh final collection,

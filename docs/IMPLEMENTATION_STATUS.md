@@ -1,3 +1,19 @@
+## Bounded post-seal controls - 2026-10-24
+
+The [operating-control candidate](../reports/post-seal-controls/VERIFICATION.md)
+adds immediate governance tuning of future VRF confirmations/callback gas and a
+buyback operating trade ceiling at or below immutable `maxTradeUSD`. Zero stops
+buybacks before oracle reads/reserve release. Pause permits these settings;
+preparation/canonical locks and reentry do not. Old requests, exact traits,
+economic rights and classified backing are unchanged. The event catalog includes
+both new controls and current custody events while retaining retired decoders.
+
+Provider/lane/subscription/payment configuration remains fixed; future tuning
+cannot repair an already-submitted request. Successors review their own operating
+policy. Current settings require new observations, compatible provider limits and
+keeper task updates. Typed v4 conversion, actual services and independent audit
+remain open. Earlier dated entries retain their source scope.
+
 ## Native ETH V2 candidate - 2026-10-24
 
 The [native port evidence](../reports/native-eth-port/VERIFICATION.md) records actual

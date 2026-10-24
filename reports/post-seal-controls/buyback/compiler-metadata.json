@@ -1,0 +1,484 @@
+{
+  "compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "language": "Solidity",
+  "output": {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "controller",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "zzzToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maximumTradeUSD",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [],
+        "name": "CanonicalLocked",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Expired",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidAmount",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidConfiguration",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "InvalidState",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "NotReady",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Paused",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Preparing",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ReentrancyGuardReentrantCall",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          }
+        ],
+        "name": "SafeERC20FailedOperation",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Slippage",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Unauthorized",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "input",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "inputAmount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "zzzBurned",
+            "type": "uint256"
+          }
+        ],
+        "name": "BoughtAndBurned",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previous",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "current",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "reviewHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "BuybackTargetChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "previous",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "current",
+            "type": "uint256"
+          }
+        ],
+        "name": "OperatingTradeLimitChanged",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "access",
+        "outputs": [
+          {
+            "internalType": "contract IZZZAccess",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "poolId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deadline",
+            "type": "uint256"
+          }
+        ],
+        "name": "execute",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "maxTradeUSD",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "operatingTradeUSD",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "limit",
+            "type": "uint256"
+          }
+        ],
+        "name": "setOperatingTradeUSD",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "codeHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "reviewHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "setZZZ",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "zzz",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "stateMutability": "payable",
+        "type": "receive"
+      }
+    ],
+    "devdoc": {
+      "errors": {
+        "ReentrancyGuardReentrantCall()": [
+          {
+            "details": "Unauthorized reentrant call."
+          }
+        ],
+        "SafeERC20FailedOperation(address)": [
+          {
+            "details": "An operation with an ERC-20 token failed."
+          }
+        ]
+      },
+      "kind": "dev",
+      "methods": {},
+      "version": 1
+    },
+    "userdoc": {
+      "kind": "user",
+      "methods": {
+        "operatingTradeUSD()": {
+          "notice": "Immediate operating limit within the immutable deployment ceiling. Zero stops new buybacks without consulting an oracle or releasing reserves."
+        },
+        "setOperatingTradeUSD(uint256)": {
+          "notice": "Changes execution policy only; cannot withdraw funds, change the revenue split or exceed the hard ceiling. Available during an ordinary pause, but not preparation or a canonical handoff lifecycle lock."
+        }
+      },
+      "version": 1
+    }
+  },
+  "settings": {
+    "compilationTarget": {
+      "src/ZZZBuyback.sol": "ZZZBuyback"
+    },
+    "evmVersion": "cancun",
+    "libraries": {},
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "details": {
+        "constantOptimizer": true,
+        "cse": true,
+        "deduplicate": true,
+        "inliner": true,
+        "jumpdestRemover": true,
+        "orderLiterals": true,
+        "peephole": true,
+        "simpleCounterForLoopUncheckedIncrement": true,
+        "yul": false
+      },
+      "runs": 1
+    },
+    "remappings": [
+      ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      ":@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      ":@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      ":ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+      ":erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      ":forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+      ":forge-std/=lib/forge-std/src/",
+      ":openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+      ":permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      ":solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      ":v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+    ],
+    "viaIR": true
+  },
+  "sources": {
+    "node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol": {
+      "keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://da5e832b40fc5c3145d3781e2e5fa60ac2052c9d08af7e300dc8ab80c4343100",
+        "dweb:/ipfs/QmTzf7N5ZUdh5raqtzbM11yexiUoLC9z3Ws632MCuycq1d"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+      "keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://1c299900ac4ec268d4570ecef0d697a3013cd11a6eb74e295ee3fbc945056037",
+        "dweb:/ipfs/Qmab9owJoxcA7vJT5XNayCMaUR1qxqj1NDzzisduwaJMcZ"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://1bb2332a7ee26dd0b0de9b7fe266749f54820c99ab6a3bcb6f7e6b751d47ee2d",
+        "dweb:/ipfs/QmcRWpaBeCYkhy68PR3B4AgD7asuQk7PwkWxrvJbZcikLF"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://5282825a626cfe924e504274b864a652b0023591fa66f06a067b25b51ba9b303",
+        "dweb:/ipfs/QmeCfPykghhMc81VJTrHTC7sF6CRvaA1FXVq2pJhwYp1dV"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+      "keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://8150ceb4ac947e8a442b2a9c017e01e880b2be2dd958f1fa9bc405f4c5a86508",
+        "dweb:/ipfs/QmbcBmFX66AY6Kbhnd5gx7zpkgqnUafo43XnmayAM7zVdB"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "keccak256": "0xf7fe324703a64fc51702311dc51562d5cb1497734f074e4f483bfb6717572d7a",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://c6a5ff4f9fd8649b7ee20800b7fa387d3465bd77cf20c2d1068cd5c98e1ed57a",
+        "dweb:/ipfs/QmVSaVJf9FXFhdYEYeCEfjMVHrxDh5qL4CGkxdMWpQCrqG"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "keccak256": "0x11a5a79827df29e915a12740caf62fe21ebe27c08c9ae3e09abe9ee3ba3866d3",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://3cf0c69ab827e3251db9ee6a50647d62c90ba580a4d7bbff21f2bea39e7b2f4a",
+        "dweb:/ipfs/QmZiKwtKU1SBX4RGfQtY7PZfiapbbu6SZ9vizGQD9UHjRA"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://971f954442df5c2ef5b5ebf1eb245d7105d9fbacc7386ee5c796df1d45b21617",
+        "dweb:/ipfs/QmadRjHbkicwqwwh61raUEapaVEtaLMcYbQZWs9gUkgj3u"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "keccak256": "0x1225214420c83ebcca88f2ae2b50f053aaa7df7bd684c3e878d334627f2edfc6",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://6c5fab4970634f9ab9a620983dc1c8a30153981a0b1a521666e269d0a11399d3",
+        "dweb:/ipfs/QmVRnBC575MESGkEHndjujtR7qub2FzU9RWy9eKLp4hPZB"
+      ]
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8",
+        "dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy"
+      ]
+    },
+    "src/ZZZBuyback.sol": {
+      "keccak256": "0x4e073caa9e13de361a491bded02036293d3bb256bb0a10f12e58117e05e3eaba",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://6a7c44256dc8bdde0c82e559d3591ff7708cd04068da09e2a1ddfc26542bfc60",
+        "dweb:/ipfs/QmZeCMYmJvqDuhs8ZXfRgTAQMSFzzBUs5H7VgCqLTdVS14"
+      ]
+    },
+    "src/base/ZZZModule.sol": {
+      "keccak256": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://1c5eb8157e2de6e8f7f20b465f8bba6786ed0100a9367ddb5b0ad357873cc5a4",
+        "dweb:/ipfs/QmQaXXDKFom2ESBWWQAV47PRQEfVKDzMxqW5PE62JrnLsW"
+      ]
+    },
+    "src/interfaces/IZZZ.sol": {
+      "keccak256": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://6b16e5fa903806721d8d41c72e337599d36194fa693fa8484f67f1303938fb3a",
+        "dweb:/ipfs/QmTyQM1q67TuWwCmsAM2M3UmTv4ZHpjsfPHXcHADwTy2Qm"
+      ]
+    },
+    "src/libraries/ExactAsset.sol": {
+      "keccak256": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://e8e8d9100599bccaa944922d87dea785fb63ebb618c1868ef2d415eebd6056d8",
+        "dweb:/ipfs/QmZKD8ZAus3zsYVZKiXZZuZiHeSkBnUYE82zk1NZ2nyLFL"
+      ]
+    },
+    "src/libraries/ExactToken.sol": {
+      "keccak256": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://88bed90c49751f1eb0571f2f163e1e22ef8aabfa1bed5f7db98e4ec4b7e5190e",
+        "dweb:/ipfs/QmXC4XkzxNn7WK4FziYTMVAAhSK9qysmrWNUaiE8c1QK6n"
+      ]
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "keccak256": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://42307b07e77ed1298445a313cda8ec5ff6f673d7e35621256d64d51fa22542dd",
+        "dweb:/ipfs/QmZ3TcxKihkQbTHWAk9qh4A1kHGU8yoN3gAmtpHcx9eNKC"
+      ]
+    }
+  },
+  "version": 1
+}

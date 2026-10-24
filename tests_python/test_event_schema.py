@@ -27,6 +27,28 @@ def log(signature, indexed=(), data=(), emitter=TOKEN):
 
 
 class EventSchemaTests(unittest.TestCase):
+    def test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules(self):
+        historical=json.loads((ROOT/'indexer/historical_event_schema.json').read_text())
+        self.assertEqual(len(historical),17)
+        for event_topic,entry in historical.items():
+            with self.subTest(signature=entry['signature']):
+                self.assertEqual(SCHEMA[event_topic],entry)
+                indexed=[];data=[];expected={}
+                for field in entry['fields']:
+                    typ=field['type'];value=TOKEN if typ=='address' else '0x'+'11'*32 if typ=='bytes32' else True if typ=='bool' else 1
+                    (indexed if field['indexed'] else data).append(word(value,typ))
+                    expected[field['name']]=value if typ in ('address','bytes32','bool') else str(value)
+                self.assertEqual(decode(log(entry['signature'],indexed,data)),(entry['name'],expected))
+
+    def test_historical_catalog_rejects_wrong_topics_and_indexed_collisions(self):
+        entry=generator.build_schema(['event Example(uint256 indexed value);'])
+        event_topic=next(iter(entry))
+        with self.assertRaisesRegex(ValueError,'Historical event topic'):
+            generator.merge_historical({}, {'0x'+'00'*32:entry[event_topic]})
+        different=generator.build_schema(['event Example(uint256 value);'])
+        with self.assertRaisesRegex(ValueError,'Conflicting historical'):
+            generator.merge_historical(different,entry)
+
     def test_generated_artifact_matches_current_contract_sources(self):
         stored = json.loads((ROOT / 'indexer/event_schema.json').read_text(encoding='utf-8'))
         self.assertEqual(stored, generator.source_schema())
@@ -106,6 +128,21 @@ class EventSchemaTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Event integer overflow'):
             decode(log('TraitsFinalized(uint256,uint8,uint8)', [word(42, 'uint256')],
                 [word(256, 'uint256'), word(5, 'uint8')]))
+
+    def test_future_request_policy_changes_retain_old_and_new_values(self):
+        self.assertEqual(decode(log('RandomnessRequestSettingsChanged(uint16,uint32,uint16,uint32)',
+            data=[word(3,'uint16'),word(500000,'uint32'),word(10,'uint16'),word(1000000,'uint32')])),
+            ('RandomnessRequestSettingsChanged', {'previousConfirmations':'3',
+                'previousCallbackGasLimit':'500000','confirmations':'10','callbackGasLimit':'1000000'}))
+        with self.assertRaisesRegex(ValueError,'Event integer overflow'):
+            decode(log('RandomnessRequestSettingsChanged(uint16,uint32,uint16,uint32)',
+                data=[word(3,'uint16'),word(500000,'uint32'),word(65536,'uint256'),word(1000000,'uint32')]))
+
+    def test_buyback_operating_limit_stop_and_reopen_are_observable(self):
+        for previous,current in ((1000,0),(0,500)):
+            self.assertEqual(decode(log('OperatingTradeLimitChanged(uint256,uint256)',
+                data=[word(previous,'uint256'),word(current,'uint256')])),
+                ('OperatingTradeLimitChanged',{'previous':str(previous),'current':str(current)}))
 
     def test_erc4906_metadata_events_have_unindexed_data_arguments(self):
         self.assertEqual(decode(log('MetadataUpdate(uint256)', data=[word(42, 'uint256')])),

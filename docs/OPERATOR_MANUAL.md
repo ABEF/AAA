@@ -309,7 +309,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | Process optional/historical creator payment | Permissionless `Fees.syncExternal(bucketId)` through its bound inbox, if one exists | Compare actual received funds, allocated ledgers and reserves. Missing optional creator payments cannot be fixed by calling sync more often. No automatic debit of creator funds. |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)` | Uses classified reserve, actual pool and guards; funds never pass through keeper. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
-| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Trade-size ceiling remains immutable. Governance can update the reviewed target with `Buyback.setZZZ(token,codeHash,reviewHash)` after new-token/feed/burn qualification; coordinate with `Migration.configureZZZ` and current pools/routes. |
+| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. Governance can update the reviewed target with `Buyback.setZZZ(token,codeHash,reviewHash)` after new-token/feed/burn qualification; coordinate with `Migration.configureZZZ` and current pools/routes. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
 | Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |
@@ -320,6 +320,29 @@ A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**
 Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees, proposed creator invoices and UI estimates.
 
 Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Change creator commercial terms off-chain and reconcile payments, while royalty-only conversion uses the separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. See [external revenue](EXTERNAL_REWARDS.md), [royalty/claim behavior](CLAIM_ROUTER.md) and [measurement proposals](REVENUE_SHARE.md).
+
+### Tune or stop buyback trading
+
+Read `Buyback.maxTradeUSD()` (immutable hard ceiling) and `operatingTradeUSD()`
+(current limit), both USD18. The deployment default is the hard ceiling. Through
+the existing immediate governance controller, call
+`Buyback.setOperatingTradeUSD(limit)`, with `0 <= limit <= maxTradeUSD`.
+Confirm `OperatingTradeLimitChanged(previous,current)` and the getter. Zero stops
+new execution without querying the oracle or releasing reserves; it does not stop
+LP maintenance, claims or royalty processing, and does not move accumulated funds.
+Reopen by selecting a positive reviewed limit within the hard ceiling.
+This is a per-trade USD limit, not a token quantity or daily/cumulative budget.
+Zero also stops direct ZZZ burns; it leaves the 5% buyback reserve backed in Fees.
+
+Remove or resize the keeper's fixed `buybacks[].amount` tasks after lowering or
+stopping the ceiling. The keeper still simulates exact execution; an oversized
+task intentionally reverts and can cause error/backoff until its configuration is
+adjusted. Do not clear pending journals or resend confirmed transactions. An old
+review above the new limit fails at execution; inspect any already-submitted hash
+before preparing another action. Pause allows configuration, while preparation,
+canonical locks and reentry prevent it. A replacement reviews its own limit;
+handoff does not copy the source's operating policy. The immutable hard maximum
+cannot be raised by this setter. [Evidence and limits](../reports/post-seal-controls/VERIFICATION.md).
 
 ### Coordinate the creator agreement
 
@@ -403,7 +426,27 @@ faults even when the separate healthy-currency balance view still works.
 
 ## Mint and metadata
 
-Before sealing, qualify the actual randomness coordinator/network/subscription, funding asset, gas lane, confirmations and callback budget. `NFT.configureRandomness(...)` is **one-time before seal**; coordinator, request settings and subscription ID cannot be changed afterward. Funding/service management uses that provider's reviewed procedures, not an invented PoPL retry function. Do not seal against an unavailable/unqualified provider.
+Before sealing, qualify the actual randomness coordinator/network/subscription, funding asset, gas lane, confirmations and callback budget. `NFT.configureRandomness(...)` is **one-time before seal**; coordinator, gas lane, subscription ID and payment mode stay fixed. Only future confirmations and callback gas have the bounded control below. Funding/service management uses that provider's reviewed procedures, not an invented PoPL retry function. Do not seal against an unavailable/unqualified provider.
+
+After initial configuration, governance can call
+`NFT.setRandomnessRequestSettings(confirmations,gasLimit)` through the existing
+controller, before or after seal. Contract bounds are 3-200 confirmations and
+200,000-10,000,000 callback gas; independently check the actual coordinator's
+potentially narrower bounds and simulate the intended next request. Read old
+`requestConfirmations()`/`callbackGasLimit()`, execute exact calldata, then verify
+both getters and `RandomnessRequestSettingsChanged(previousConfirmations,
+previousCallbackGasLimit,confirmations,callbackGasLimit)`. Update the current
+deployment observation and provider review; keep old request transactions intact.
+
+Only requests created afterward use the new settings. The provider retains an
+old request's original arguments; no ID, epoch, fulfillment, trait, quota or draw
+order is rewritten. Raising gas now **cannot repair an already-submitted failed
+callback**. Stop new mints, reconcile original requests and use the provider's
+reviewed recovery procedure. There is no retry/reroll/provider replacement.
+Configuration is allowed while ordinarily paused; preparation, canonical locks
+and callbacks into an active mint block it. A successor uses its own reviewed
+settings, not an imported source policy. Existing sealed code without this setter
+does not gain it by configuration. [Scoped control review](../reports/post-seal-controls/REVIEW.md).
 
 Monitor `RandomnessRequested`, `RandomnessReceived`, `TraitsFinalized`, subscription funding and oldest unanswered request. Authenticated fulfillment stores words; anyone can call `NFT.finalizeTraits(tokenId)` **in mint-ordinal order**. A fulfilled request awaiting finalization is different from a missing provider response. Read `nextToFinalize()` and `tokenAtOrdinal(ordinal)`; never guess token IDs from ordinal numbers. Fixed 600/300/100 quotas and prepared artwork draw remain unchanged.
 
@@ -453,6 +496,7 @@ A successful same-chain handoff does not qualify cross-chain finality, transport
 | Revoke keeper | New authorized keeper actions from that address | Permissionless claims, transfers and allowed fee synchronization remain. Governance must authorize a reviewed replacement. |
 | Disable source asset / Entry route | Affected contributions/conversions | Existing LP and funded claims remain. Re-enable after dependency review, re-quote. |
 | `NFT.setMintPaused(true)` | New NFT mints and new randomness requests | Governance only. Original fulfillment/finalize, existing NFT rights and LP work retain their own guards. Resume with `false`; global/lifecycle controls remain. |
+| `Buyback.setOperatingTradeUSD(0)` | New buyback executions only | Immediate governance; no price/reserve query. Resize/remove keeper buyback tasks to avoid deliberate simulation failures. Accrued reserves stay classified; reopen with a reviewed positive limit no higher than `maxTradeUSD`. Preparation/canonical locks still apply. |
 | `PoolRegistry.disablePool(id,stopDeposits,stopOperations)` | Pool-specific new contributions / ordinary guarded operations; no token/price/venue reads on disable | Governance only; flags only clear. Not universal pause. Reopen with full validated config; parked LP still needs resume. |
 | `AccessController.setPaused(true)` | Live mint, contribution, rebalance/compound/buyback and outgoing principal execution | Operating-state transfers/claims, authenticated incoming settlement and supported drains remain. Only governance unpauses; it does not clear preparation/canonical lock. |
 | Canonical preparation | New economic work and normal protocol configuration | Existing claims/transfers/reveal/permitted drains; exact notice can be cancelled before freeze. Not a generic pause toggle. |

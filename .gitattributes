@@ -36,3 +36,6 @@ reports/history/retired-v3-tests/** -text whitespace=cr-at-eol,-blank-at-eol,-bl
 
 # Preserve source-bound native V2 receipts and native compiler diagnostics.
 reports/native-eth-port/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact bounded operating-control test receipts and diagnostics.
+reports/post-seal-controls/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

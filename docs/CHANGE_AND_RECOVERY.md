@@ -32,11 +32,12 @@ following explicit configuration paths remain available after sealing.
 ## Configuration requirements not yet implemented
 
 The user requires routine operating settings to stay configurable after seal.
-Current VRF request settings and buyback maximum are fixed; Entry and LP/royalty
-converters support single-hop v3 only. Bounded future-request tuning, a buyback
-operating ceiling and typed v4 support are [pre-seal work](POST_SEAL_POLICY.md),
-not completed setters. Preserve pending request provenance, exact draws, earned
-rights, backing and execution floors; no reroll, arbitrary executor or sweep.
+The [bounded operating controls](POST_SEAL_POLICY.md) now implement future VRF
+gas/confirmation tuning and a buyback operating ceiling beneath the immutable
+hard maximum. Provider/lane/subscription/payment policy stays fixed; pending
+draws and source economic rights are untouched. Entry and LP/royalty converters
+remain single-hop v3 only; typed v4 execution is still pre-seal work. Preserve
+earned rights, backing and execution floors; no reroll, arbitrary executor or sweep.
 
 The 1% ZZZ LP-reward conversion cap remains, gas separate. The selected pool's
 observed approximately 1.101% fee requires a cheaper independently qualified

@@ -26,6 +26,17 @@ The protocol remains an undeployed candidate. Production public wallets and
 PoPL contract addresses are not selected. The [release record](RELEASE_CHECKLIST.md)
 remains NOT APPROVED; progress belongs in the [central Todo](../TODO.md).
 
+For the [bounded operating-control candidate](POST_SEAL_POLICY.md), record the
+actual NFT and Buyback runtime hashes, fixed VRF provider/lane/subscription/payment
+configuration, current `requestConfirmations`/`callbackGasLimit`, immutable
+`maxTradeUSD` and current `operatingTradeUSD`. The two request parameters and the
+buyback operating limit are deployment policy, not immutable NFT rights or copied
+canonical records. Refresh observations after configuration; retain old request
+transactions and operation history. The blocked inventory distinguishes
+`immutable_provider_configuration` from the exact two-field
+`mutable_request_parameters` list. Actual native release-inventory qualification
+remains separate and open.
+
 The [production manifest](../config/production.example.json) records addresses,
 chain IDs, observed blocks, code hashes, immutable bindings and review evidence.
 An address alone does not establish the right chain, code or authority.

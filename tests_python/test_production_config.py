@@ -46,7 +46,8 @@ def nft_inventory(chain):
                     chain_id=cid,exact_transfers_reviewed=True,authority_risks_reviewed=True,activation_griefing_reviewed=True)}]},
         'randomness':{'coordinator':coordinator,'runtime_hash':HASH,'keyHash':key_hash,'subscriptionId':7,
             'requestConfirmations':3,'callbackGasLimit':300000,'nativePayment':False,
-            'immutable_configuration':True,'no_admin_reroll':True,
+            'immutable_provider_configuration':True,
+            'mutable_request_parameters':['requestConfirmations','callbackGasLimit'],'no_admin_reroll':True,
             'review_evidence':dict(proof(),independent=True,kind='verified_randomness_coordinator_review',chain_id=cid,coordinator=coordinator),
             'integration_evidence':dict(proof(),kind='coordinator_staged_randomness',chain_id=cid,coordinator=coordinator,
                 nft=nft,fulfilled_request_id=91,finalized_token_id=123)},'observation_evidence':proof()}
@@ -795,7 +796,19 @@ class NFTProductionConfigTests(unittest.TestCase):
     def test_verified_randomness_cannot_be_replaced_with_admin_entropy(self):
         self.config['nft_policy']['randomness_policy']='admin_seed';self.blocked('nft.policy')
         self.config=disabled_fixture();self.inventory()['randomness']['no_admin_reroll']=False;self.blocked('nft.randomness')
-        self.config=disabled_fixture();self.inventory()['randomness']['immutable_configuration']=False;self.blocked('nft.randomness')
+        self.config=disabled_fixture();self.inventory()['randomness']['immutable_provider_configuration']=False;self.blocked('nft.randomness')
+    def test_future_request_policy_cannot_claim_provider_rotation_or_full_immutability(self):
+        for fields in ({'immutable_configuration':True},
+            {'mutable_request_parameters':['requestConfirmations','callbackGasLimit','coordinator']},
+            {'mutable_request_parameters':['requestConfirmations','callbackGasLimit','subscriptionId']},
+            {'mutable_request_parameters':['callbackGasLimit']},
+            {'mutable_request_parameters':True}, {'immutable_provider_configuration':1}):
+            with self.subTest(fields=fields):
+                self.config=disabled_fixture();self.inventory()['randomness'].update(fields);self.blocked('nft.randomness')
+    def test_current_future_request_settings_may_change_with_matching_observation(self):
+        self.inventory()['randomness'].update(requestConfirmations=200,callbackGasLimit=10000000)
+        self.inventory()['observed_bindings'].update(requestConfirmations=200,callbackGasLimit=10000000)
+        self.assertTrue(self.result()['ready'])
     def test_randomness_configuration_and_observed_getters_must_match(self):
         for field,value in (('randomnessConfigured',False),('randomnessCoordinator',addr(99)),('keyHash','0x'+'33'*32),
             ('subscriptionId',8),('requestConfirmations',4),('callbackGasLimit',300001),('nativePayment',True)):

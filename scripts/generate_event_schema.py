@@ -1,4 +1,4 @@
-"""Generate the indexer's flat event schemas, rejecting ambiguous topic layouts."""
+"""Generate current and reviewed historical event schemas; reject ambiguous layouts."""
 from pathlib import Path
 import json
 import re
@@ -45,14 +45,38 @@ def build_schema(texts):
 
 def source_schema(root=ROOT):
     texts = [path.read_text(encoding='utf-8') for path in sorted((root / 'src').glob('*.sol'))]
-    return build_schema(texts + list(ERC721_EVENTS))
+    schema = build_schema(texts + list(ERC721_EVENTS))
+    historical = json.loads((root / 'indexer/historical_event_schema.json').read_text(encoding='utf-8'))
+    return merge_historical(schema, historical)
+
+
+def merge_historical(schema, historical):
+    result = dict(schema)
+    for topic, entry in historical.items():
+        if set(entry) != {'name','signature','fields'} or any(
+            set(field) != {'type','name','indexed'} or type(field['indexed']) is not bool
+            for field in entry['fields']):
+            raise ValueError('Invalid historical event descriptor')
+        arguments = ','.join(field['type'] + (' indexed ' if field['indexed'] else ' ') + field['name']
+                             for field in entry['fields'])
+        rebuilt = build_schema([f"event {entry['name']}({arguments});"])
+        if rebuilt.get(topic) != entry:
+            raise ValueError('Historical event topic or signature does not match its layout')
+        previous = result.get(topic)
+        if previous is not None:
+            layout = lambda fields: [(field['type'],field['indexed']) for field in fields]
+            if previous['signature'] != entry['signature'] or layout(previous['fields']) != layout(entry['fields']):
+                raise ValueError('Conflicting historical event topic layout')
+        else:
+            result[topic] = entry
+    return result
 
 
 def main():
     schema = source_schema()
     (ROOT / 'indexer/event_schema.json').write_text(
         json.dumps(schema, indent=2, sort_keys=True) + '\n', encoding='utf-8', newline='\n')
-    print(f'Generated {len(schema)} event schemas from current source')
+    print(f'Generated {len(schema)} current/historical event schemas')
 
 
 if __name__ == '__main__':

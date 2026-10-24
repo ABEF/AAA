@@ -1,5 +1,12 @@
 # Release approval record - NOT APPROVED
 
+**Bounded operating controls (2026-10-24):** [future VRF gas/confirmation tuning and
+buyback operating limits](../reports/post-seal-controls/VERIFICATION.md) now have
+scoped implementation evidence and internal review. Fixed provider settings,
+pending requests and economic rights remain protected. Actual provider limits,
+current runtime/configuration observations, keeper operating rehearsal and
+independent audit remain unqualified. This does not change the NOT APPROVED decision.
+
 **Native V2 candidate (2026-10-24):** [actual ETH custody/accounting](../reports/native-eth-port/VERIFICATION.md)
 now has focused implementation evidence, including indexed fees, raw exit and
 two-stage canonical funding/abort. [Internal findings](../reports/native-eth-port/REVIEW.md)

@@ -10,10 +10,10 @@ authorized by this document.
 
 | Category | Requirement | Current boundary |
 | --- | --- | --- |
-| Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.maxTradeUSD` is still immutable; separate an adjustable operating ceiling from a reviewed hard safety ceiling before sealing. |
+| Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
 | Assets and conversions | Admit/remove supported input assets and rotate conversion pools when liquidity changes, without redeploying. | Entry and LP/royalty converters support append-only route policies and enable/disable controls. Their execution code supports single-hop v3 only. v4 conversion support is pre-seal implementation work; a route record cannot add a new algorithm. |
 | Pools and pricing | Change the sole contribution pool, qualified feeds and supported strategy settings through governance. | Existing validation, exact asset/key/runtime checks, fresh prices, accounting and execution floors remain mandatory. New unimplemented venues are not enabled by configuration alone. |
-| Randomness operation | Review post-seal tuning of callback gas, confirmations and funding settings; distinguish that from replacing the trusted randomness provider. | `NFT.configureRandomness` currently fixes provider and all request settings once before seal. Any redesign must bind pending requests to their original provider/settings, preserve ordered draws and forbid rerolls or administrator-chosen traits. Provider rotation is security-sensitive, not a routine setter. |
+| Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
 | Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
 | Economic rights and safety | Preserve supply/rarity inventory, revealed traits, ownership, earned rewards, backing, the 80/10/5/5 allocation and approved execution-loss limits. | No reset, confiscation, arbitrary sweep, generic executor or unbounded upgrade is introduced. A reviewed replacement uses the explicit handoff and preserves rights; it is not a way to erase them. |
 
@@ -22,6 +22,19 @@ Governance retains immediate authorization with no new waiting period. Every
 control still needs an explicit caller, bounds, events, dependency checks,
 stop/reopen behavior and old-transaction/pending-state handling. A global pause
 does not bypass preparation or terminal canonical locks.
+
+The [bounded operating-control candidate](../reports/post-seal-controls/VERIFICATION.md)
+adds these two setters with previous/new-value events and immediate governance.
+They work during an ordinary pause, but reject preparation, canonical lifecycle
+locks and reentry. A successor reviews its own operating settings; these are not
+imported NFT economic entitlements. Actual provider acceptance can be narrower
+than the contract bounds and still needs independent qualification.
+
+For randomness observations, the blocked production template now distinguishes
+`immutable_provider_configuration: true` from the exact mutable field list
+`["requestConfirmations","callbackGasLimit"]`. The old ambiguous
+`immutable_configuration` flag is rejected in that NFT record. Capture current
+getters and retain original request transactions when reviewing pending draws.
 
 The user reconfirmed the **1% maximum ZZZ LP-reward conversion loss, gas separate**.
 The selected pool's observed approximately 1.101% swap fee means it is not a
@@ -45,8 +58,8 @@ WETH are distinct: moving between those pools needs an explicit reviewed boundar
 that is not implemented. Admitting a WETH destination or changing a route cannot
 supply missing code. A separately approved external custody exit/manual conversion
 and actual funded local completion is a different, governed path. Typed v4
-conversion, bounded future VRF request settings and buyback operating controls
-remain pre-seal work; native implementation does not close those tasks.
+conversion remains pre-seal work. The two bounded controls are implemented as a
+candidate; they do not qualify actual VRF, routes, inventory or services.
 
 See [native verification scope](../reports/native-eth-port/VERIFICATION.md) for the
 candidate and remaining gates; this policy is not a live release approval.

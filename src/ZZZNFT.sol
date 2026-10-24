@@ -80,6 +80,8 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
     event MetadataBaseChanged(string newBase);
     event RandomnessConfigured(address indexed coordinator, bytes32 keyHash, uint256 subscriptionId,
         uint16 confirmations, uint32 callbackGasLimit, bool nativePayment);
+    event RandomnessRequestSettingsChanged(uint16 previousConfirmations, uint32 previousCallbackGasLimit,
+        uint16 confirmations, uint32 callbackGasLimit);
     event RandomnessRequested(uint256 indexed nftId, uint256 indexed requestId, uint256 indexed ordinal);
     event RandomnessReceived(uint256 indexed requestId);
     event TraitsFinalized(uint256 indexed nftId, uint8 rarity, uint8 color);
@@ -98,7 +100,7 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         metadataRenderer = new ZZZNFTMetadata(controller);
     }
 
-    /// @notice Configure once before sealing. No coordinator replacement,
+    /// @notice Configure the provider and initial settings once before sealing. No coordinator replacement,
     /// cancellation, retry, owner-selected traits or administrator reroll exists.
     function configureRandomness(address coordinator, bytes32 gasLane, uint256 subId, uint16 confirmations,
         uint32 gasLimit, bool payNative) external onlyGovernance {
@@ -109,6 +111,22 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         requestConfirmations = confirmations; callbackGasLimit = gasLimit; nativePayment = payNative;
         randomnessConfigured = true;
         emit RandomnessConfigured(coordinator, gasLane, subId, confirmations, gasLimit, payNative);
+    }
+
+    /// @notice Tune only future requests within the original reviewed bounds.
+    /// The coordinator, gas lane, subscription and payment mode stay fixed.
+    /// Already submitted requests keep their coordinator-recorded arguments;
+    /// no pending request, fulfilled word or ordered artwork draw is replaced.
+    /// Pause is allowed; preparation and canonical locks still prevent changes.
+    function setRandomnessRequestSettings(uint16 confirmations, uint32 gasLimit)
+        external onlyGovernance operating nonReentrant {
+        if (!randomnessConfigured) revert NotReady();
+        if (confirmations < 3 || confirmations > 200 || gasLimit < 200000 || gasLimit > 10000000)
+            revert InvalidConfiguration();
+        uint16 previousConfirmations = requestConfirmations;
+        uint32 previousCallbackGasLimit = callbackGasLimit;
+        requestConfirmations = confirmations; callbackGasLimit = gasLimit;
+        emit RandomnessRequestSettingsChanged(previousConfirmations, previousCallbackGasLimit, confirmations, gasLimit);
     }
 
     /// @notice Stop new requests/mints independently of existing NFT rights and

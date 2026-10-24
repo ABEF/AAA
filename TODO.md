@@ -152,17 +152,17 @@ Custody, ownership and reward accounting.
 
 <a id="task-post-seal-configuration"></a>
 
-- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. User requires routine operating settings to stay configurable, with protected economic rights and bounded immediate governance. Source inventory is documented; request-parameter tuning, the buyback operating ceiling and typed v4 conversion support still need implementation/review before sealing.
+- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Bounded future VRF gas/confirmation tuning and the buyback operating ceiling are implemented with immediate governance, lifecycle/reentry guards and events. Fixed provider settings, pending draws, earned rights and backing remain protected. Actual service qualification and typed v4 conversion support remain open before sealing.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Inventory every fixed setting and setter. Preserve supported asset/route/feed/pool/role/range changes after sealing, with exact authorization, events, bounds, dependency checks, pending-operation handling and canonical locks; no governance waiting period.
-  - Separate future-request VRF operating parameters from the trusted coordinator. Preserve pending request provenance, ordered exact-quota draws and immutable results; no retry/reroll/admin-selected traits. The current configureRandomness still fixes all settings before sealing.
-  - Review a configurable buyback operating trade ceiling within an independently reviewed hard safety bound. The current maxTradeUSD is immutable, while smaller amounts are already selectable per execution. Do not relax execution-loss caps or mix reserves.
+  - Implemented NFT.setRandomnessRequestSettings(uint16,uint32) affects only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/lane, subscription and payment mode remain fixed; pending request provenance, ordered exact-quota draws and immutable results persist. It cannot repair a past callback, retry, reroll or select traits. Independently qualify actual provider limits and operator recovery.
+  - Implemented Buyback.setOperatingTradeUSD(uint256) selects zero through immutable maxTradeUSD, defaulting to that hard maximum. Zero stops execution before oracle/reserve calls; both setters allow ordinary pause and reject preparation/canonical locks/reentry. Resize/remove keeper tasks after lowering/stopping. No allocation, reserve or execution-loss cap is relaxed.
   - Implement and qualify typed v4 conversion routing before sealing if future v4 markets must be usable. Current Entry and LP/royalty converters are single-hop v3 only and fixed bindings cannot gain a new executor from a route record.
   - Keep ownership, revealed rarity/artwork, accrued balances, backing and allocation guarantees protected. No reset, deletion, arbitrary calls/sweep or holder redemption. New compatible code uses reviewed handoff, not silent reinterpretation of old state.
-  - Update operator manual, deployment inventory, feature reference and focused source-bound evidence for every implemented control. This policy/source review is not runtime verification or production approval.
+  - [Scoped verification and internal review](reports/post-seal-controls/VERIFICATION.md) cover the two setters, pending continuity, lifecycle/callback boundaries, current-setting inventory checks and compatible current/historical event decoding. Operator manual, features, roadmap and memories are updated. Source-local evidence is not actual VRF/route/service qualification or independent approval; typed v4 support remains unfinished.
 
   </details>
 
@@ -918,4 +918,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `02e1e62e9e4a87fe6b3b110f0b35a362bbb3222a3df56c4cf0d5d8e0ee5664ff`.
+Snapshot SHA-256: `ea8e370c330b2824cd14feaadf327ea9cdfd7fcdba867df48da30599303c694d`.

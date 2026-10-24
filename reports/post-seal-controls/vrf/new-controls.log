@@ -1,0 +1,53 @@
+Compiling 70 files with Solc 0.8.26
+Solc 0.8.26 finished in 61.32s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T18:44:00.679229Z  WARN traces::etherscan: etherscan config not found
+
+Ran 8 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest
+[FAIL: log != expected log] testImmediateGovernanceChangesOnlyFutureRequestArgumentsAndEmitsExactEvent() (gas: 522942)
+[PASS] testInvalidBoundsAndNonGovernanceCannotChangeSettings() (gas: 896615)
+[PASS] testPauseDoesNotPreventGovernanceRepairOrChangePauseState() (gas: 754338)
+[FAIL: Error != expected error: NotReady() != InvalidState()] testPendingAuthenticationOrderedRevealAndFinalTraitsSurviveTuning() (gas: 1514785)
+[PASS] testPreparationAndAllCanonicalLocksRejectTuningWhileRevealMayDrain() (gas: 1325349)
+[PASS] testRequestCallbackCannotExecuteReadyGovernanceChangeDuringMint() (gas: 1016529)
+[PASS] testSuccessorKeepsOwnFutureSettingsAndImportedHistoricalRequestEpoch() (gas: 69039734)
+[PASS] testTuningRequiresConfigurationAndWorksBeforeSealWithoutProviderReplacement() (gas: 45268830)
+Suite result: FAILED. 6 passed; 2 failed; 0 skipped; finished in 164.68ms (176.66ms CPU time)
+
+Ran 1 test suite in 172.94ms (164.68ms CPU time): 6 tests passed, 2 failed, 0 skipped (8 total tests)
+
+Failing tests:
+Encountered 2 failing tests in C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest
+[FAIL: log != expected log] testImmediateGovernanceChangesOnlyFutureRequestArgumentsAndEmitsExactEvent() (gas: 522942)
+[FAIL: Error != expected error: NotReady() != InvalidState()] testPendingAuthenticationOrderedRevealAndFinalTraitsSurviveTuning() (gas: 1514785)
+
+Encountered a total of 2 failing tests, 6 tests succeeded

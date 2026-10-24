@@ -1,0 +1,18 @@
+No files changed, compilation skipped
+2026-10-24T18:46:41.662396Z  WARN traces::etherscan: etherscan config not found
+
+Ran 2 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/RandomnessRequestSettings.t.sol:RandomnessRequestSettingsTest
+[PASS] testImmediateGovernanceChangesOnlyFutureRequestArgumentsAndEmitsExactEvent() (gas: 985077)
+[PASS] testPendingAuthenticationOrderedRevealAndFinalTraitsSurviveTuning() (gas: 1545593)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 6.56ms (2.16ms CPU time)
+
+Ran 6 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/NFTMetadata.t.sol:NFTMetadataTest
+[PASS] testMintRequiresFixedVRFAndRollbackLeavesNoRequest() (gas: 18592463)
+[PASS] testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords() (gas: 730518)
+[PASS] testOutOfOrderCallbackCannotReorderQuotaConsumption() (gas: 1054019)
+[PASS] testPendingTraitsCannotActivateAndTransferCannotReroll() (gas: 798180)
+[PASS] testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration() (gas: 18575097)
+[PASS] testVRFConfigurationAndRequestTupleAreFixed() (gas: 477246)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 6.62ms (7.32ms CPU time)
+
+Ran 2 test suites in 9.23ms (13.18ms CPU time): 8 tests passed, 0 failed, 0 skipped (8 total tests)

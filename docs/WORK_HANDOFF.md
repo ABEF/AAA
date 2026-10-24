@@ -1,3 +1,36 @@
+## Bounded post-seal operating controls - 2026-10-24
+
+The local candidate adds NFT.setRandomnessRequestSettings(uint16,uint32) for
+future confirmations/callback gas and Buyback.setOperatingTradeUSD(uint256)
+beneath immutable maxTradeUSD. Zero stops swaps/direct ZZZ burns before oracle
+or reserve calls. Immediate governance, ordinary-pause support, preparation/
+canonical locks and reentrancy guards remain. Provider/lane/subscription/payment,
+pending draws, ordered traits, NFT rights and classified funds are unchanged.
+Read [scope and evidence](../reports/post-seal-controls/VERIFICATION.md) and
+[internal review](../reports/post-seal-controls/REVIEW.md).
+
+Nine distinct new VRF cases plus six affected existing cases and 35 distinct
+buyback cases pass across scoped runs; only repaired/changed cases were repeated.
+All 34 production size gates pass (32 source objects unchanged); 78 current
+compiler bindings match; 104 Solidity inputs typecheck. The event schema keeps
+all 103 earlier decoders unchanged and adds 16 current topics, retaining 17
+retired descriptors without enabling old modules. Inventory observations now
+separate immutable provider policy from two mutable future-request parameters.
+
+Actual VRF/provider limits and original-request recovery remain unqualified;
+future tuning cannot repair an old callback. Resize/remove keeper buyback tasks
+after lowering/stopping its cap, or intentional simulation failures can back off.
+Successors review their own settings; no economic record copies operating policy.
+Keep the 1%/3% execution limits and separate gas. Typed v4 conversions, native
+website/inventory/services and independent audit remain open. Production NOT
+APPROVED; public DEPLOYMENT null; signer Anvil-only.
+
+No website source/build/server, existing 8902/Anvil/NFT/LP/balances/journals/dist
+repair overlay, services or paused monitoring changed. No public transaction or
+private-key access. Main only; preserve older unrelated drafts. Todo, features,
+roadmap, operator guidance and both memories must remain aligned. Check Git and
+publication receipt before claiming this local candidate pushed.
+
 ## Native ETH V2 publication checkpoint - 2026-10-24
 
 Contract implementation `f907733` and website memory-only `cb43349` are pushed

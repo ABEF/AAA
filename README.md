@@ -10,7 +10,7 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Current development work (2026-10-24):** the [native accounting V2 candidate](reports/native-eth-port/VERIFICATION.md) carries actual ETH through Entry, Vault, LP settlement, fee reserves, indexed rewards and raw custody exits. Same-actual-pair fee-tier moves retain the fixed 3% cap. ETH and WETH are distinct: atomic moves between them await an explicit conversion boundary. The separate custody `exit` supports reviewed external migration. Existing Anvil deployments remain on their original code.
 
-**Before sealing:** qualify the [native V2 implementation and remaining boundaries](docs/NATIVE_ETH_ARCHITECTURE.md), implement [operational configuration extensions](docs/POST_SEAL_POLICY.md) and typed v4 conversion, and complete real-service and independent security review. ZZZ reward conversion retains the 1% limit and needs a cheaper qualified route. Mainnet rehearsal must use a separate deployment; there is no collection reset.
+**Before sealing:** qualify the [native V2 implementation and remaining boundaries](docs/NATIVE_ETH_ARCHITECTURE.md), finish typed v4 conversion and real-service/independent security review. [Bounded operating controls](docs/POST_SEAL_POLICY.md) now allow future VRF gas/confirmation tuning and a buyback execution ceiling below its immutable maximum. ZZZ reward conversion retains the 1% limit and needs a cheaper qualified route. Mainnet rehearsal must use a separate deployment; there is no collection reset.
 
 ## Project navigation
 

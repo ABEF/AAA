@@ -1,0 +1,8 @@
+test_generated_artifact_matches_current_contract_sources (tests_python.test_event_schema.EventSchemaTests.test_generated_artifact_matches_current_contract_sources) ... ok
+test_future_request_policy_changes_retain_old_and_new_values (tests_python.test_event_schema.EventSchemaTests.test_future_request_policy_changes_retain_old_and_new_values) ... ok
+test_buyback_operating_limit_stop_and_reopen_are_observable (tests_python.test_event_schema.EventSchemaTests.test_buyback_operating_limit_stop_and_reopen_are_observable) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.216s
+
+OK

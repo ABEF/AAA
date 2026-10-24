@@ -1,0 +1,10 @@
+test_generated_artifact_matches_current_contract_sources (tests_python.test_event_schema.EventSchemaTests.test_generated_artifact_matches_current_contract_sources) ... ok
+test_future_request_policy_changes_retain_old_and_new_values (tests_python.test_event_schema.EventSchemaTests.test_future_request_policy_changes_retain_old_and_new_values) ... ok
+test_buyback_operating_limit_stop_and_reopen_are_observable (tests_python.test_event_schema.EventSchemaTests.test_buyback_operating_limit_stop_and_reopen_are_observable) ... ok
+test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules (tests_python.test_event_schema.EventSchemaTests.test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules) ... ok
+test_historical_catalog_rejects_wrong_topics_and_indexed_collisions (tests_python.test_event_schema.EventSchemaTests.test_historical_catalog_rejects_wrong_topics_and_indexed_collisions) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.269s
+
+OK
