@@ -1,3 +1,12 @@
+## Price-service research and current boundary - 2026-10-25
+
+[Dated reference values and fee semantics](../reports/price-reference-20261025/OBSERVATION.md)
+are recorded separately from implementation and qualification. Public candidate
+ETH reads and a ZZZ pool estimate do not establish configured Oracle output or
+an independent source pair. Governance can replace compatible dual-feed policies
+after sealing; actual sources, costs, ages and proxy review stay open. Previous
+source-scoped tests are reused; no code or production readiness status changes.
+
 ## Optimized on-chain guards and price reads - 2026-10-24
 
 The [internal review](../reports/onchain-safety/REVIEW.md) hardens sequencer reads

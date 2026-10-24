@@ -1,3 +1,17 @@
+## Current feed candidates, costs and dated readings - 2026-10-25
+
+The [saved read-only observation](../reports/price-reference-20261025/OBSERVATION.md)
+records candidate Chainlink ETH/USD and a separately labeled pool-derived ZZZ
+estimate. Neither is configured PoPL two-source consensus. The catalog's Shared
+SVR secondary proxy is not an independent second provider. Actual pairs, ages,
+administration/product policy and operating gas/cost agreements remain open.
+
+Standard public push-feed getter reads require no separate LINK payment; gas
+inside transactions and potential RPC/custom-provider charges are separate.
+No production oracle cost estimate or provider contract is selected. For an
+already sealed compatible deployment, governance uses setDualFeed, not retired
+setFeed, and must refresh approved downstream policies after admission.
+
 ## Independent dual USD sources - 2026-10-24
 
 Current pricing2 requires two independently qualified sources for each of ETH,
@@ -27,7 +41,7 @@ historical/default scope. Actual routes, services and independent audit remain o
 
 # Production service decisions still open
 
-**Current service scope (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) earns conventional LP fees; Pons creator-payment terms are historical/optional rather than launch prerequisites. Independent feeds, supported VRF, real routes and operating qualification remain open. [Post-seal policy](POST_SEAL_POLICY.md) records current fixed settings and required extensions; native accounting remains a specification.
+**Current service scope (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) earns conventional LP fees; Pons creator-payment terms are historical/optional rather than launch prerequisites. Independent feeds, supported VRF, real routes and operating qualification remain open. [Post-seal policy](POST_SEAL_POLICY.md) records current fixed settings and required extensions; native accounting V2 is implemented; actual services remain unqualified.
 
 These are development research results from 2026-10-15. None selects a provider,
 approves deployment or establishes that a service will remain available.
@@ -84,8 +98,9 @@ alone do not pin proxy implementations. See
 
 - Public governance multisig, guardian, keeper and mint-recipient addresses remain
   unset at the user's request.
-- Creator receipt terms and the precise liquidity-measurement/payment policy must
-  be agreed with the creator; the implemented calculator has no payout authority.
+- Creator receipt terms and the liquidity-measurement/payment policy are
+  historical/optional for the selected hookless pool; the calculator has no
+  payout authority. Any optional external revenue arrangement still needs review.
 - The artwork upload bundle is prepared; IPFS provider, CID, publication,
   independent retrieval and marketplace rehearsals remain open.
 - Production RPC, indexer/API hosting, confirmations, rate limits, monitoring,

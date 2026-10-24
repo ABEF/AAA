@@ -1,0 +1,12 @@
+{
+  "scope": "documentation consistency and saved-observation arithmetic only",
+  "unchanged_solidity_bindings": 120,
+  "checked_doc_links": 1168,
+  "source_tests_rerun": false,
+  "live_feeds_configured": false,
+  "production_approved": false,
+  "public_transactions": false,
+  "source_evidence_reused": "reports/onchain-safety/VERIFICATION.md",
+  "central_todo_consistent": true,
+  "observation_is_qualification": false
+}

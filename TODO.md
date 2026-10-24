@@ -1,6 +1,6 @@
 # Project Todo
 
-**Reviewed 2026-10-24 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-25 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
@@ -205,6 +205,7 @@ Custody, ownership and reward accounting.
   - Current preflight/preparation/earnings use explicit pricing_version 2, full append-only policies, raw confirmed-block observations and all 15 helper bindings. Historical single-source profiles retain old deployment/epoch semantics. No website, existing local-chain/journal, public signer or monitor change follows.
   - The unchanged cold 12M gate initially failed at12,394,559 gas; skipping irrelevant epoch-zero historical scans repairs maximum-index activation to11,864,627 gas. This is local substituted-feed/venue evidence, not target-chain provider qualification. Historical epoch>0 checks remain.
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
+  - 25October documentation corrects the post-seal recovery setter to setDualFeed and distinguishes public read charges/network gas/custom provider costs plus historical reference prices. Source pairs remain unset; no implementation test or provider qualification is inferred from this update.
 
   </details>
 
@@ -585,6 +586,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   - If suitable sources do not exist, discuss a supportable authenticated on-chain pricing design and independent market coverage. Team approval is input, not security qualification. Do not substitute the contribution pool instantaneous price, two wrappers of one feed, an unverified web API or an assumed stablecoin peg.
   - Confirm official USDG/USDC token references and depeg/incident contacts, plus actual ETH USD source availability on Robinhood; these currencies still need independently reviewed source pairs and funded routes.
   - Engineering owns independent source/common-mode/proxy/bounds/liveness/gas qualification under [dual-source qualification](TODO.md#task-dual-price-qualification), [activation inputs](TODO.md#task-activation-assets) and [oracle security](TODO.md#task-security-strategy). The selected hookless pool does not require a Pons creator-payment agreement.
+  - 25October research: the checked Robinhood catalog has an ETH/USD candidate but no ZZZ-named entry. Ask the ZZZ team for two independent defensible ZZZ USD source proposals, market coverage, administrators/update policy, operating costs and who funds any custom service. The [pool-derived reference](reports/price-reference-20261025/OBSERVATION.md) is not an approved substitute.
 
   </details>
 
@@ -885,7 +887,8 @@ Decisions and rehearsals before real funds.
   - Retain independently reviewed exact-release/chain/deployment evidence, schema-5 pricing_version 2 observations and current helper/runtime bindings. Internal focused checks do not close real-provider, fork/service, gas/recovery or independent audit gates.
   - Reconcile the contract companion 34-mark maximum with the current 33-currency activation/preflight inventory limit. Keep configurations requiring 34 distinct reviewed currencies unavailable unless a separately reviewed bounded capacity change is implemented and qualified; never truncate historical backing or silently widen budgets.
   - User decision2026-10-24: intended source disagreement tolerance is3% (300bps). Calibrate actual feed ages and verify the independent default1% execution floor; never average answers or automatically raise a cap to accept a wide quote.
-  - Run a fresh separate native/accounting2/routing2/pricing2 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the final local maximum-state workload has only135,373 gas margin below its unchanged12M gate.
+  - Run a fresh separate native/accounting2/routing2/pricing2 operating rehearsal. Historical local scaffolds now reject incompatible current artifacts before state/process creation; existing8902, NFTs, LP and journals remain untouched. Qualify actual provider/route gas: the latest [local cold-capacity workload](reports/onchain-safety/VERIFICATION.md) uses11,507,856 gas, leaving492,144 under its unchanged12M gate. Earlier135,373 margin is historical; neither substituted-feed workload qualifies actual providers or all34-mark compositions.
+  - Record [dated candidate readings and cost semantics](reports/price-reference-20261025/OBSERVATION.md) separately from configured policy/qualification. Public Chainlink ETH availability and a ZZZ pool-derived estimate do not close either source pair. Review Shared-SVR/product/secondary-proxy common dependencies, feed ages, source/admin upgrades, per-read versus data/RPC/hosting charges and who pays. No source service or production gas price is selected.
 
   </details>
 
@@ -999,4 +1002,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `edc3f8ea68ef24546a0484d5c26185c36a18959884531329d48c996e41be2b7b`.
+Snapshot SHA-256: `6fbb5c80aa47f660fd90537c8b2c76a0522d6fedf18316eb9b3cb3766d82f412`.

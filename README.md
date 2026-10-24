@@ -16,6 +16,8 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 The [on-chain safety and cost review](reports/onchain-safety/REVIEW.md) adds bounded sequencer reads and reduces repeated strategy, contribution-storage and reward-checkpoint work. Final execution checks and economic limits remain; [scoped measurements](reports/onchain-safety/VERIFICATION.md) are local evidence, not live-provider qualification or independent audit.
 
+**Pricing follow-up (2026-10-25):** [Dated reference readings and costs](reports/price-reference-20261025/OBSERVATION.md) are research only. Production source pairs remain unset; a pool-derived ZZZ estimate is not an independent oracle.
+
 ## Project navigation
 
 | Purpose | Start here |

@@ -20,6 +20,22 @@ with provider, market, governance and common-mode risks. Correct token amounts
 cannot prove that an oracle's dollar price is true. Conversely, matching oracle
 prices cannot prove that liquidity was deployed.
 
+## Feed fees and recorded reference prices
+
+The Oracle adds no separate percentage or LINK payment for price reads. Ordinary
+public Chainlink push-feed getters have no per-read LINK charge. On-chain reads
+consume transaction gas; off-chain eth_call has no transaction gas fee but RPC,
+custom data/provider and hosting bills may apply. The500,000-gas source-call
+limit is a ceiling, not a flat charge. Actual provider terms and full-operation
+gas are release work; VRF/data-reporting products are separate services.
+
+[The dated25October observation](../reports/price-reference-20261025/OBSERVATION.md)
+is candidate research, not configured PoPL output. Its ETH round was last updated
+the previous evening; ZZZ was calculated from instantaneous pool spot. The
+catalog's second Shared-SVR proxy does not supply independent coverage. Record
+current quote block/time, source update time and provenance separately; never
+copy these values into a live policy or presume future freshness/free service.
+
 ## Two sources for every priced asset
 
 [ZZZOracle](../src/ZZZOracle.sol) exposes `PRICING_VERSION() == 2` and

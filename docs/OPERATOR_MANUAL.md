@@ -1,5 +1,20 @@
 # PoPL operator manual
 
+## Budget feed services and label observations - 2026-10-25
+
+Use the [pricing snapshot and cost boundary](../reports/price-reference-20261025/OBSERVATION.md)
+as dated research only. Before choosing providers, record actual product terms,
+subscription/update/adapter/RPC costs, payment authority and network gas. Standard
+public push-feed getters need no separate per-read LINK transfer; that does not
+make VRF, paid reporting or custom hosting free. Qualify the exact proxy product
+and upstream administrators, not only its ticker or runtime hash.
+
+Do not use a secondary proxy of the same upstream as independent confirmation,
+nor the selected pool's spot as its own USD guard. Show observation time and feed
+update time separately. Governed post-seal replacement uses the complete
+setDualFeed admission procedure below and refreshed reviewed downstream policy;
+it does not deploy new Oracle code or authorize a single-feed fallback.
+
 ## Price-read gas and optimized checkpoints - 2026-10-24
 
 The [on-chain safety/cost follow-up](../reports/onchain-safety/REVIEW.md) changes

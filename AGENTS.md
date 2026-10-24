@@ -1,3 +1,27 @@
+## Price references, fees and qualification status - 2026-10-25
+
+[Saved reference observation](reports/price-reference-20261025/OBSERVATION.md)
+records Robinhood block97,093,373 at25October00:02:43 Paris. ETH candidate
+Chainlink answer was$2,340.61, last updated24October22:01:14 Paris. ZZZ's
+approximately$0.01031019 is selected-pool spot times that ETH answer, NOT an
+independent USD feed or configured PoPL output. No PoPL source pair is configured
+or qualified. The catalog's primary/secondary Shared-SVR proxies do not establish
+independence. Do not copy these dated prices into runtime configuration.
+
+Ordinary public push-feed reads have no separate per-read LINK charge; on-chain
+reads consume gas. RPC/custom provider/product/hosting costs remain unsettled.
+The500,000-gas call ceiling is a maximum, not a flat fee. Post-seal immediate
+governance uses setDualFeed with full admission/history and downstream inventory
+updates; setFeed is retired. Selected3% agreement and default1% execution floors
+remain separate. Actual services, source/proxy/common-mode review and independent
+audit stay open. Production NOT APPROVED.
+
+This update is documentation/evidence only. Prior145Solidity/83backend/37object
+checks retain their source scope; no unchanged tests were rerun. Preserve older
+drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay, null public DEPLOYMENT,
+Anvil-only signing and paused monitoring. No website code/build/server/service or
+public transaction. Main only; inspect the publication receipt/Git for push status.
+
 ## On-chain safety/cost publication verified - 2026-10-24
 
 Contract `8d0234d` and website memory-only
