@@ -1,0 +1,38 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 87.42,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\onchain-safety-20261024\\strategy-native-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "NativeLiquidityTest",
+    "--json",
+    "--match-test",
+    "testNativePlan|testNativeExitPolicy"
+  ],
+  "cases": [
+    {
+      "suite": "test/NativeLiquidity.t.sol:NativeLiquidityTest",
+      "test": "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeLiquidity.t.sol:NativeLiquidityTest",
+      "test": "testNativePlanBalancesNetAmountsWithinOnePercentBudget()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeLiquidity.t.sol:NativeLiquidityTest",
+      "test": "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

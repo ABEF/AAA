@@ -14,6 +14,7 @@ import {MockAccess, MockPools} from "./mocks/Mocks.sol";
 
 /// @dev Isolated constant-price planner regression, not a live venue/depth test.
 contract FeeSizingOracle {
+    function priceBounds(address) external pure returns (uint256,uint256,bytes32) { return (1 ether,1 ether,bytes32(0)); }
     function value(address, uint256 amount) external pure returns (uint256) { return amount; }
     function quote(address, address, uint256 amount) external pure returns (uint256) { return amount; }
     function price(address) external pure returns (uint256) { return 1 ether; }

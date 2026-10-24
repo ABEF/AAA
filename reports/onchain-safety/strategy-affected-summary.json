@@ -1,0 +1,168 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 168.04,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\onchain-safety-20261024\\strategy-affected-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "StrategyPriceSnapshotTest|StrategyFeeSizingTest|DynamicRangeTest|RangePolicyTest",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/DynamicRange.t.sol:DynamicRangeTest",
+      "test": "testDisabledOperationsStillPermitHonestValuation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DynamicRange.t.sol:DynamicRangeTest",
+      "test": "testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DynamicRange.t.sol:DynamicRangeTest",
+      "test": "testInitialRangeRecentersButExistingEntryUsesOldRange()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DynamicRange.t.sol:DynamicRangeTest",
+      "test": "testMetadataRejectsManipulatedSpotEvenWithFreshUsdFeeds()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DynamicRange.t.sol:DynamicRangeTest",
+      "test": "testStaleOracleAndFailedVenueCannotBecomeVerifiedZero()",
+      "status": "Failure",
+      "reason": "InvalidPrice(0x0000000000000000000000000000000000001000)"
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testFuzzAppliedWidthHasNoPersistentMismatch(uint16)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testNarrowingWaitsForCooldownThenAppliesOnce()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testRealSealedGovernanceCanImmediatelyApproveRangeChange()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testSmallMarketMoveDoesNotCreateRangeUpdateChurn()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testWideningAndReturningToDeployedPolicy()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest",
+      "test": "testERC20MismatchedStaticFeeAndInvalidDirectionalProtocolFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest",
+      "test": "testERC20OneSidedInputsDeployNinetyNinePercentWithActualFees()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest",
+      "test": "testERC20ProtocolFeeSizingUsesOnlyTheSwapDirection()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest",
+      "test": "testERC20UnavailableFeeStateCannotFallBackToAnUnpricedSwap()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testCompoundPlanReadsEachValidatedPairSourceExactlyOnce()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testExactPlannerParityAcrossNativeMixedDecimalsBothDirectionsAndDualSpread()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testManipulatedSpotAndDisabledOperationsStillFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testMemorySnapshotGasControlRetainsExactOutput()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testSecondSourceStalenessAndInvalidPriceCannotUseSnapshotFallback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testSnapshotIsNotReusedAcrossCallsAndDivergenceFailsClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest",
+      "test": "testSwapPlanReadsEachValidatedPairSourceExactlyOnce()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

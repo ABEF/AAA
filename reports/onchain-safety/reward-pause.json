@@ -1,0 +1,1 @@
+{"test/ClaimRouter.t.sol:ClaimRouterTest":{"duration":"8ms 952µs 300ns","test_results":{"testPauseAndUnavailableValuationDoNotBlockClaims()":{"status":"Success","reason":null,"counterexample":null,"logs":[],"decoded_logs":[],"kind":{"Unit":{"gas":1040216}},"traces":[],"labeled_addresses":{},"duration":"1ms 156µs 700ns","breakpoints":{},"gas_snapshots":{}}},"warnings":[]}}

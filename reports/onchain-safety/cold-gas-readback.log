@@ -1,0 +1,19 @@
+No files changed, compilation skipped
+2026-10-24T21:49:17.570681Z  WARN traces::etherscan: etherscan config not found
+
+Ran 1 test for test/ProductionGas.t.sol:ProductionGasTest
+[PASS] testGasMaximum32FundedRewardAssets() (gas: 23534005)
+Logs:
+  collection.1000.assets.32.mintDormant: 308184
+  collection.1000.assets.32.activate: 3670567
+  collection.1000.assets.32.topUpWithFeeCheckpoint: 4081952
+  collection.1000.assets.32.harvest: 642667
+  collection.1000.assets.32.sharedPoolRebalance: 1839295
+  collection.1000.assets.32.checkpointAll: 421773
+  collection.1000.assets.32.claimOneAsset: 116862
+  collection.1000.assets.32.funded.checkpointAll: 1809073
+  collection.1000.assets.32.funded.claim32BatchedCalls: 4978580
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 11.89s (11.89s CPU time)
+
+Ran 1 test suite in 11.90s (11.89s CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

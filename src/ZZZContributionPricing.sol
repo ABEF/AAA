@@ -20,7 +20,10 @@ interface IPricingBudget {
 contract ZZZContributionPricing {
     IZZZAccess public immutable access;
     IZZZOracle public immutable oracle;
-    struct Mark { uint256 lower; uint256 upper; uint256 scale; bytes32 fingerprint; }
+    // Oracle USD18 prices are at most 1e36, below uint128.max. Packing the
+    // bounds saves one persistent slot per marked asset. ABI field order and
+    // padded values stay identical, including the final basis fingerprint.
+    struct Mark { uint128 lower; uint128 upper; uint256 scale; bytes32 fingerprint; }
     struct Basis {
         bytes32 pool;
         uint256 nft;
@@ -61,7 +64,8 @@ contract ZZZContributionPricing {
         if (marks[token].lower != 0) return;
         if (assets.length == 34) revert InvalidState();
         (uint256 lower,uint256 upper,bytes32 fingerprint) = oracle.priceBounds(token);
-        marks[token] = Mark(lower,upper,10 ** oracle.tokenDecimals(token),fingerprint);
+        if (lower == 0 || upper < lower || upper > type(uint128).max) revert InvalidState();
+        marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint);
         assets.push(token);
     }
     function _pair(bytes32 pool) private {

@@ -1,0 +1,41 @@
+{
+  "scope": "ABI comparison against previous exact production compiler receipt; errors can add visibility without new call authority",
+  "contracts": [
+    {
+      "contract": "ZZZOracle",
+      "functions_events_and_entries_identical": true,
+      "whole_abi_identical": false,
+      "added_abi": []
+    },
+    {
+      "contract": "ZZZContributionPricing",
+      "functions_events_and_entries_identical": true,
+      "whole_abi_identical": true,
+      "added_abi": []
+    },
+    {
+      "contract": "ZZZStrategy",
+      "functions_events_and_entries_identical": true,
+      "whole_abi_identical": false,
+      "added_abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            }
+          ],
+          "name": "InvalidPrice",
+          "type": "error"
+        }
+      ]
+    },
+    {
+      "contract": "ZZZRewards",
+      "functions_events_and_entries_identical": true,
+      "whole_abi_identical": true,
+      "added_abi": []
+    }
+  ]
+}

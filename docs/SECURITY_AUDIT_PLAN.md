@@ -1,5 +1,11 @@
 # Security audit plan
 
+The [on-chain safety/cost follow-up](../reports/onchain-safety/REVIEW.md) covers
+bounded uptime calls, memory-only strategy prices, packed contribution bounds
+and static-loop reward contexts. Independently review the exact optimized source,
+live dependency gas/proxy behavior and all retained guards; internal parity tests
+and gas savings do not close any production security workstream.
+
 **Current execution policy (2026-10-24):** governance may configure contribution, conversion and maintenance loss limits within hard10% ceilings; defaults remain1%/1%/3%, with gas separate. Captured operation policy, original approved custody floors, stronger caller/venue minima and backing remain. [Exact controls and risks](EXECUTION_LOSS_POLICY.md), [typed v4 routes](TYPED_V4_ROUTES.md). Earlier fixed-limit descriptions are default/historical scope. The candidate remains undeployed and production NOT APPROVED.
 
 

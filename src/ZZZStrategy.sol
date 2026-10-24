@@ -4,6 +4,7 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
+import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 
@@ -11,6 +12,8 @@ interface IV4FeeState { function stateView() external view returns (IStateViewMi
 
 /// @notice Stateless policy. Only the vault can commit position state changes.
 contract ZZZStrategy is ZZZModule {
+    struct AssetPrice { uint256 lower; uint256 upper; uint256 scale; }
+    struct PairPrices { AssetPrice first; AssetPrice second; uint160 referenceX96; }
     constructor(address controller) ZZZModule(controller) {}
     function _floor(int24 tick, int24 spacing) private pure returns (int24) {
         int24 quotient = tick / spacing;
@@ -44,6 +47,9 @@ contract ZZZStrategy is ZZZModule {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
         if (requireOperations && !c.operationsEnabled) revert InvalidState();
         uint160 referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
+        return _checkedSpot(poolId, c, referenceX96);
+    }
+    function _checkedSpot(bytes32 poolId, PoolConfig memory c, uint160 referenceX96) private view returns (uint160 spotX96) {
         spotX96 = IZZZLiquidity(access.module(Ids.LIQUIDITY)).spot(poolId);
         if (spotX96 == 0) revert InvalidState();
         uint256 relativeRoot = Math.mulDiv(spotX96, 1e18, referenceX96);
@@ -78,19 +84,38 @@ contract ZZZStrategy is ZZZModule {
     }
     function swapPlan(bytes32 poolId, uint256 amount0, uint256 amount1)
         external view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut) {
-        (int24 lower, int24 upper,) = target(poolId);
-        return _plan(poolId, lower, upper, amount0, amount1);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        if (!c.operationsEnabled) revert InvalidState();
+        PairPrices memory prices = _pairPrices(c);
+        (int24 lower, int24 upper) = _range(c, prices.referenceX96);
+        return _plan(poolId, c, prices, lower, upper, amount0, amount1);
     }
     function compoundPlan(uint256 id, uint256 amount0, uint256 amount1)
         external view returns (bool, uint256, uint256) {
         Position memory p = IZZZVault(access.module(Ids.VAULT)).group(id);
         (int24 lower, int24 upper) = IZZZLiquidity(access.module(Ids.LIQUIDITY)).ticks(p.lpTokenId);
-        return _plan(p.poolId, lower, upper, amount0, amount1);
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        if (!c.operationsEnabled) revert InvalidState();
+        return _plan(p.poolId, c, _pairPrices(c), lower, upper, amount0, amount1);
     }
-    function _plan(bytes32 poolId, int24 lower, int24 upper, uint256 amount0, uint256 amount1)
+    /// @dev One read-only plan uses one fully validated pair vector. This is
+    /// memory-only: execution and final contribution checks still read afresh.
+    function _pairPrices(PoolConfig memory c) private view returns (PairPrices memory p) {
+        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
+        (p.first.lower,p.first.upper,) = oracle.priceBounds(c.key.currency0);
+        (p.second.lower,p.second.upper,) = oracle.priceBounds(c.key.currency1);
+        uint8 d0 = oracle.tokenDecimals(c.key.currency0);
+        uint8 d1 = oracle.tokenDecimals(c.key.currency1);
+        p.first.scale = 10 ** d0; p.second.scale = 10 ** d1;
+        p.referenceX96 = ZZZPriceMath.referenceX96(p.first.lower,p.second.lower,d0,d1,c.key.currency0);
+    }
+    function _value(AssetPrice memory p, uint256 amount) private pure returns (uint256) {
+        return Math.mulDiv(amount,p.lower,p.scale);
+    }
+    function _plan(bytes32 poolId, PoolConfig memory c, PairPrices memory prices,
+        int24 lower, int24 upper, uint256 amount0, uint256 amount1)
         private view returns (bool zeroForOne, uint256 amountIn, uint256 minimumOut) {
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
-        uint160 spotX96 = validatePrice(poolId);
+        uint160 spotX96 = _checkedSpot(poolId,c,prices.referenceX96);
         uint160 a = TickMath.getSqrtPriceAtTick(lower);
         uint160 b = TickMath.getSqrtPriceAtTick(upper);
         uint256 unit0;
@@ -101,16 +126,15 @@ contract ZZZStrategy is ZZZModule {
             unit0 = SqrtPriceMath.getAmount0Delta(spotX96, b, uint128(1e18), false);
             unit1 = SqrtPriceMath.getAmount1Delta(a, spotX96, uint128(1e18), false);
         }
-        IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        uint256 v0 = oracle.value(c.key.currency0, amount0);
-        uint256 v1 = oracle.value(c.key.currency1, amount1);
-        uint256 u0 = oracle.value(c.key.currency0, unit0);
-        uint256 u1 = oracle.value(c.key.currency1, unit1);
+        uint256 v0 = _value(prices.first, amount0);
+        uint256 v1 = _value(prices.second, amount1);
+        uint256 u0 = _value(prices.first, unit0);
+        uint256 u1 = _value(prices.second, unit1);
         if (u0 + u1 == 0) revert InvalidAmount();
         uint256 desired0 = Math.mulDiv(v0 + v1, u0, u0 + u1);
         zeroForOne = v0 > desired0;
-        address input = zeroForOne ? c.key.currency0 : c.key.currency1;
-        address output = zeroForOne ? c.key.currency1 : c.key.currency0;
+        AssetPrice memory input = zeroForOne ? prices.first : prices.second;
+        AssetPrice memory output = zeroForOne ? prices.second : prices.first;
         uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
         {
             // Every admitted v4 pool is static and hookless. Size the net pair
@@ -123,9 +147,12 @@ contract ZZZStrategy is ZZZModule {
             uint256 inputWeight = Math.mulDiv(zeroForOne ? u0 : u1, 1e18, u0 + u1);
             excess = Math.mulDiv(excess, 1e18, 1e18 - Math.mulDiv(inputWeight, fee, 1_000_000));
         }
-        amountIn = Math.mulDiv(excess, 10 ** oracle.tokenDecimals(input), oracle.price(input));
+        amountIn = Math.mulDiv(excess, input.scale, input.lower);
         if (amountIn > (zeroForOne ? amount0 : amount1)) revert InvalidState();
-        minimumOut = Math.mulDiv(oracle.quote(input, output, amountIn), 10000 - c.maxSlippageBps, 10000);
+        // Preserve Oracle.quote's two floor operations exactly: upper-valued
+        // source USD first, then lower-valued output raw units.
+        uint256 quoted = Math.mulDiv(Math.mulDiv(amountIn,input.upper,input.scale),output.scale,output.lower);
+        minimumOut = Math.mulDiv(quoted, 10000 - c.maxSlippageBps, 10000);
         if (minimumOut == 0) amountIn = 0;
     }
 }

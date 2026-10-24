@@ -1,0 +1,21 @@
+{
+  "scope": "Same two focused test functions on the prepatch and cached ZZZRewards snapshots. Gasleft deltas surround only the checkpoint call. Setup, admitted assets and prior funding warm the same relevant contracts/storage; this is not a cold end-to-end activation or real-provider qualification.",
+  "baseline_inputs": "baseline-inputs.json",
+  "cached_inputs": "cached-inputs.json",
+  "baseline_results": "baseline.json",
+  "cached_results": "cached.json",
+  "snapshot_differences": "Concurrent root work also changed Oracle, ContributionPricing and Strategy between the source snapshots. These contracts are neither deployed nor called by this isolated checkpoint fixture. NFT, Access, Membership, Vault, token and test fixture inputs are identical; only Rewards changes on the measured execution path.",
+  "verbosity_readback": "The already compiled two benchmarks were rerun with -vv after each scoped run solely to expose log_named_uint output omitted by --json. Repeated cases are not additional distinct tests.",
+  "owner_checkpoint_33": {
+    "before": 1923894,
+    "after": 1753960,
+    "saved": 169934
+  },
+  "collective_checkpoint_33": {
+    "before": 1887574,
+    "after": 1758563,
+    "saved": 129011
+  },
+  "total_saved_for_both": 298945,
+  "case_count": 6
+}

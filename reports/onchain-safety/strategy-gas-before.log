@@ -1,0 +1,20 @@
+Compiling 64 files with Solc 0.8.26
+Solc 0.8.26 finished in 36.29s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-10-24T21:44:37.718345Z  WARN traces::etherscan: etherscan config not found
+
+Ran 1 test for test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest
+[PASS] testMemorySnapshotGasControlRetainsExactOutput() (gas: 1121373)
+Logs:
+  Repeated-read formula gas (warm fixture): 623723
+  Pair snapshot gas (warm fixture): 486203
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 6.53ms (3.58ms CPU time)
+
+Ran 1 test suite in 25.59ms (6.53ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

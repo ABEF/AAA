@@ -1,0 +1,88 @@
+{
+  "scope": "Each execution retains its actual source snapshot. Final build covers all current production inputs. Earlier targeted observations are reused only for unchanged relevant logic; not a final-source full regression.",
+  "runs": [
+    {
+      "receipt": "cold-gas-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "oracle-before-inputs.json",
+      "production_differences_vs_final": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZOracle.sol",
+        "src/ZZZRewards.sol",
+        "src/ZZZStrategy.sol"
+      ],
+      "not_in_snapshot": [
+        "src/libraries/ZZZPriceMath.sol"
+      ]
+    },
+    {
+      "receipt": "pricing-affected-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "reward-affected-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "reward-baseline-inputs.json",
+      "production_differences_vs_final": [
+        "src/ZZZContributionPricing.sol",
+        "src/ZZZOracle.sol",
+        "src/ZZZRewards.sol",
+        "src/ZZZStrategy.sol"
+      ],
+      "not_in_snapshot": [
+        "src/libraries/ZZZPriceMath.sol"
+      ]
+    },
+    {
+      "receipt": "reward-cached-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "root-focused-inputs.json",
+      "production_differences_vs_final": [
+        "src/ZZZOracle.sol"
+      ],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "strategy-additions-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "strategy-affected-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "strategy-fixture-repair-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "strategy-gas-after-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "strategy-gas-before-inputs.json",
+      "production_differences_vs_final": [
+        "src/ZZZStrategy.sol"
+      ],
+      "not_in_snapshot": []
+    },
+    {
+      "receipt": "strategy-native-inputs.json",
+      "production_differences_vs_final": [],
+      "not_in_snapshot": []
+    }
+  ]
+}

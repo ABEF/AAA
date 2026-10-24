@@ -65,8 +65,10 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
     }
     function assetCount() external view returns (uint256) { return assets.length; }
     function _checkpoint(uint256 id, address token) private {
+        _checkpoint(id, token, IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0);
+    }
+    function _checkpoint(uint256 id, address token, uint256 weight) private {
         uint256 delta = index[token] - paidIndex[id][token];
-        uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;
         if (delta != 0 && weight != 0) {
             uint256 whole = Math.mulDiv(weight, delta, SCALE);
             uint256 remainder = mulmod(weight, delta, SCALE) + fraction[id][token];
@@ -76,13 +78,18 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
         paidIndex[id][token] = index[token];
     }
     function checkpointAll(uint256 id) external onlyModule(Ids.MEMBERSHIP) economic {
-        for (uint256 i; i < assets.length; ++i) _checkpoint(id, assets[i]);
+        // Only static dependency reads and ledger writes occur in this loop.
+        // One eligibility snapshot therefore applies to every admitted asset.
+        uint256 weight = IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) ? 1 : 0;
+        for (uint256 i; i < assets.length; ++i) _checkpoint(id, assets[i], weight);
     }
     function _checkpointOwner(uint256 id, address token) private {
         IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
-        uint256 current = ownerIndex[vault.nftBucket(id)][token];
+        _checkpointOwner(id, token, vault.nftBucket(id), vault.sharesOf(id));
+    }
+    function _checkpointOwner(uint256 id, address token, uint256 bucket, uint256 shares) private {
+        uint256 current = ownerIndex[bucket][token];
         uint256 delta = current - paidOwnerIndex[id][token];
-        uint256 shares = vault.sharesOf(id);
         if (delta != 0 && shares != 0) {
             uint256 whole = Math.mulDiv(shares, delta, SCALE);
             uint256 remainder = mulmod(shares, delta, SCALE) + ownerFraction[id][token];
@@ -95,7 +102,12 @@ contract ZZZRewards is ZZZModule, ReentrancyGuard, ZZZCanonicalLedger {
     /// then calls this before every share increase. Membership never changes
     /// buckets; migration moves the whole bucket, not the canonical share ledger.
     function checkpointOwner(uint256 id) external onlyModule(Ids.VAULT) economic {
-        for (uint256 i; i < assets.length; ++i) _checkpointOwner(id, assets[i]);
+        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        uint256 bucket = vault.nftBucket(id);
+        uint256 shares = vault.sharesOf(id);
+        // No external mutable call can change the bucket or shares while the
+        // per-asset checkpoints settle against this pre-contribution snapshot.
+        for (uint256 i; i < assets.length; ++i) _checkpointOwner(id, assets[i], bucket, shares);
     }
     function creditPool(uint256 bucketId, address token, uint256 personal, uint256 shared)
         external payable onlyModule(Ids.FEES) nonReentrant economic {

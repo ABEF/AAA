@@ -204,6 +204,7 @@ Custody, ownership and reward accounting.
   - Existing nonzero historical compound keeps its initial mark. Newly discovered old-currency compound is first marked at the final checkpoint only for incumbent backing; it cannot pay the entrant loss floor. Preserve shares, old rewards, exact token/native spending and atomic failure rollback.
   - Current preflight/preparation/earnings use explicit pricing_version 2, full append-only policies, raw confirmed-block observations and all 15 helper bindings. Historical single-source profiles retain old deployment/epoch semantics. No website, existing local-chain/journal, public signer or monitor change follows.
   - The unchanged cold 12M gate initially failed at12,394,559 gas; skipping irrelevant epoch-zero historical scans repairs maximum-index activation to11,864,627 gas. This is local substituted-feed/venue evidence, not target-chain provider qualification. Historical epoch>0 checks remain.
+  - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
 
   </details>
 
@@ -777,6 +778,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Independently verify 80/10/5/5 funding, 90% remote delivery, equal collective membership and index/fractional solvency across transfers, entries and migrations.
   - Independently review the 5% ERC-2981 request and 100% eligible royalty redistribution in the separate immutable ETH/ERC20 ledger at activated rarity weights 1/2/3. Marketplace payment remains voluntary.
   - Configure OpenSea creator earnings to the actual `NFT.royaltyRewards()` helper at 5%, verify collection-administration access and each admitted payout asset, and stage a paid sale through receipt, weighted claim and NFT transfer. The current contract requests optional earnings; it does not implement ERC-721-C enforcement.
+  - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
 
   </details>
 
@@ -795,6 +797,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - User decision 2026-10-19: keep the 3% per-operation cap only, no rolling/cumulative loss breaker. Monitor cumulative turnover/MEV/gas costs and rehearse operator pause/parameter recovery; see [range management](docs/OPERATOR_MANUAL.md#range-and-strategy).
   - Internal 2026-10-24 review found and fixed ERC20 destination fee sizing; no new cap or authorization bypass was found in the reviewed diff. Earlier fork receipts retain their old source scope; use the new focused source-bound audit evidence rather than treating older passes as a current full regression.
   - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
+  - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
 
   </details>
 
@@ -844,6 +847,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - The [review of all October 18 changes](reports/daily-security-20261018/REVIEW.md) records source inspection, exact evidence hashes, one new availability reproduction, and accepted governance/economic plus VRF/escrow recovery risks. It identifies no new unauthorized withdrawal path but does not close independent audit, service qualification or final-release testing. Resolve findings under their owning tasks without silently adding governance delays.
   - The [October 19 internal review](reports/topup-and-reward-review/REVIEW.md) covers contribution floors, current contract changes and request/display boundaries. Optional local history failure no longer hides confirmed balances; work-limit/core failures remain fatal and dormant reads skip history. Live concurrent load, exact deployment inventory and independent audit remain required.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
+  - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
 
   </details>
 
@@ -995,4 +999,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8366570b7f98a94647371e17ceda6bdf0a1f1307c74a87306681eadd42ab4009`.
+Snapshot SHA-256: `edc3f8ea68ef24546a0484d5c26185c36a18959884531329d48c996e41be2b7b`.

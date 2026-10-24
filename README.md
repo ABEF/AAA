@@ -14,6 +14,8 @@ PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT at
 
 **Price security (2026-10-24):** [Two-source pricing and factual LP checks](docs/PRICE_SECURITY.md) are implemented in the undeployed candidate. Every priced asset requires two independently qualified USD sources. Entry freezes source/pair prices and operating limits before transfers/conversion; actual LP increments, raw spending and unchanged deployment spot are verified separately. Missing or stale prices, or disagreement above the selected **3%**, stop the contribution. The separate default **1% execution-loss cap** still applies; disagreement within 3% does not guarantee acceptance. No live feed pair is selected or qualified; production remains NOT APPROVED.
 
+The [on-chain safety and cost review](reports/onchain-safety/REVIEW.md) adds bounded sequencer reads and reduces repeated strategy, contribution-storage and reward-checkpoint work. Final execution checks and economic limits remain; [scoped measurements](reports/onchain-safety/VERIFICATION.md) are local evidence, not live-provider qualification or independent audit.
+
 ## Project navigation
 
 | Purpose | Start here |

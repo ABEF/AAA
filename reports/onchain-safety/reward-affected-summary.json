@@ -1,0 +1,140 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 249.46,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\onchain-safety-20261024\\reward-affected-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(PooledRewardsTest|RewardsAndFeesTest|NativeFeeRewardsTest|LPRewardConversionTest|ClaimRouterTest)$",
+    "--json",
+    "--match-test",
+    "test(NewActivatedNFTCannotClaimPublishedPastReward|TopUpDoesNotIncreaseEqualCollectiveShare|NFTTransferCarriesUnclaimedRewards|ClaimsCannotRepeat|FractionalClaimsRemainFunded|OwnerFractionSurvivesClaimsAndShareIncrease|IndexDivisionRemainderCannotBeCapturedByNewShares|TopUpCheckpointDoesNotRepriceOldOwnerFees|FuzzOwnerClaimsNeverExceedFundedPoolFees|NativeTopUpAndLaterActivationExcludeHistoricalIncome|NativeFractionsSurviveClaimsAndShareChanges|ConvertedNativeCreditsCoexistWithoutReindexing|EarnedOnlyConservationAndNoNewcomerRedistribution|TransferBeforeAndAfterConversionAndShareGrowth|FuzzOutputAndSourceFractionsConserved|SourceRecoveryDoesNotPayAgain|MultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts|CallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer|NativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter|FuzzBatchAndDirectClaimsConserveFundedBalances)"
+  ],
+  "cases": [
+    {
+      "suite": "test/ClaimRouter.t.sol:ClaimRouterTest",
+      "test": "testCallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ClaimRouter.t.sol:ClaimRouterTest",
+      "test": "testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96,uint96,uint96)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ClaimRouter.t.sol:ClaimRouterTest",
+      "test": "testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ClaimRouter.t.sol:ClaimRouterTest",
+      "test": "testNativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "test": "testEarnedOnlyConservationAndNoNewcomerRedistribution()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "test": "testFuzzOutputAndSourceFractionsConserved(uint96,uint96)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "test": "testSourceRecoveryDoesNotPayAgain()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+      "test": "testTransferBeforeAndAfterConversionAndShareGrowth()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "test": "testConvertedNativeCreditsCoexistWithoutReindexing()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "test": "testNativeFractionsSurviveClaimsAndShareChanges()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest",
+      "test": "testNativeTopUpAndLaterActivationExcludeHistoricalIncome()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PooledRewards.t.sol:PooledRewardsTest",
+      "test": "testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PooledRewards.t.sol:PooledRewardsTest",
+      "test": "testIndexDivisionRemainderCannotBeCapturedByNewShares()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PooledRewards.t.sol:PooledRewardsTest",
+      "test": "testOwnerFractionSurvivesClaimsAndShareIncrease()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/PooledRewards.t.sol:PooledRewardsTest",
+      "test": "testTopUpCheckpointDoesNotRepriceOldOwnerFees()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RewardsAndFees.t.sol:RewardsAndFeesTest",
+      "test": "testClaimsCannotRepeat()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RewardsAndFees.t.sol:RewardsAndFeesTest",
+      "test": "testFractionalClaimsRemainFunded()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RewardsAndFees.t.sol:RewardsAndFeesTest",
+      "test": "testNFTTransferCarriesUnclaimedRewards()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RewardsAndFees.t.sol:RewardsAndFeesTest",
+      "test": "testNewActivatedNFTCannotClaimPublishedPastReward()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RewardsAndFees.t.sol:RewardsAndFeesTest",
+      "test": "testTopUpDoesNotIncreaseEqualCollectiveShare()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

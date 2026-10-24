@@ -1,0 +1,17 @@
+{
+  "scope": "Whole-test gas from retained JSON; identical relevant fixture outside changed Rewards. Other concurrent source changes are not deployed/called in this fixture. Absolute call-only verbose logs were not retained.",
+  "benchmarks": [
+    {
+      "test": "testCheckpointCacheBenchmarkCollective33()",
+      "before_whole_test_gas": 27323733,
+      "after_whole_test_gas": 27194722,
+      "saved": 129011
+    },
+    {
+      "test": "testCheckpointCacheBenchmarkOwner33()",
+      "before_whole_test_gas": 27360383,
+      "after_whole_test_gas": 27190449,
+      "saved": 169934
+    }
+  ]
+}

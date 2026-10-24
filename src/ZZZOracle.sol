@@ -4,6 +4,7 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {IPriceFeed} from "./interfaces/IZZZ.sol";
 import {ZZZContributionPricing} from "./ZZZContributionPricing.sol";
+import {ZZZPriceMath} from "./libraries/ZZZPriceMath.sol";
 
 /// @notice Two-source USD consensus. Source independence is a reviewed governance
 /// assertion, not something two addresses or two matching answers can prove.
@@ -97,10 +98,13 @@ contract ZZZOracle is ZZZModule {
     function _sequencerData(address source, bytes32 expectedCodeHash) private view
         returns (int256 answer, uint256 startedAt) {
         if (source.code.length == 0 || expectedCodeHash == bytes32(0) || source.codehash != expectedCodeHash ||
-            IPriceFeed(source).decimals() != 0) revert InvalidConfiguration();
-        uint80 round; uint80 answeredRound; uint256 updated;
-        (round, answer, startedAt, updated, answeredRound) = IPriceFeed(source).latestRoundData();
-        if (round == 0 || answeredRound < round || (answer != 0 && answer != 1) || startedAt == 0 ||
+            _decimals(source, source) != 0) revert InvalidConfiguration();
+        uint256 round; uint256 answeredRound; uint256 updated;
+        (round, answer, startedAt, updated, answeredRound) = abi.decode(
+            _boundedRead(source, IPriceFeed.latestRoundData.selector, 160, source),
+            (uint256, int256, uint256, uint256, uint256));
+        if (round == 0 || round > type(uint80).max || answeredRound > type(uint80).max ||
+            answeredRound < round || (answer != 0 && answer != 1) || startedAt == 0 ||
             startedAt > block.timestamp || updated < startedAt || updated > block.timestamp) revert InvalidPrice(source);
         // Uptime feeds report status transitions, not periodic price rounds. A
         // healthy unchanged status must not expire based on updatedAt age.
@@ -127,10 +131,9 @@ contract ZZZOracle is ZZZModule {
         uint8 assetDecimals = token == address(0) ? 18 : _decimals(token, token);
         if (assetDecimals > 18) revert InvalidConfiguration();
         DualPolicy memory next = DualPolicy(token, primary, secondary, maxDeviationBps, assetDecimals, reviewHash);
-        _validateSource(primary, token);
-        _validateSource(secondary, token);
         // Reject an invalid current observation at admission too. Static source
         // calls cannot mutate the policy or its authority during these checks.
+        // _round also validates each source policy: do not repeat those calls.
         _readBounds(next);
         bytes32 previous = activePolicy[token];
         id = keccak256(abi.encode(address(this), history.length, next));
@@ -232,19 +235,13 @@ contract ZZZOracle is ZZZModule {
     }
     function quote(address input, address output, uint256 amount) external view returns (uint256) {
         (, uint256 upper,) = priceBounds(input);
-        (uint256 lower,,) = priceBounds(output);
         if (input == output) return amount;
+        (uint256 lower,,) = priceBounds(output);
         uint256 sourceUSD = Math.mulDiv(amount, upper, 10 ** tokenDecimals(input));
         return Math.mulDiv(sourceUSD, 10 ** tokenDecimals(output), lower);
     }
     function referenceX96(address token0, address token1) external view returns (uint160) {
-        uint256 ratioX128 = Math.mulDiv(price(token0), uint256(1) << 128, price(token1));
-        uint8 d0 = tokenDecimals(token0);
-        uint8 d1 = tokenDecimals(token1);
-        if (d1 >= d0) ratioX128 = Math.mulDiv(ratioX128, 10 ** (d1 - d0), 1);
-        else ratioX128 /= 10 ** (d0 - d1);
-        uint256 root = Math.sqrt(ratioX128);
-        if (root == 0 || root > type(uint128).max) revert InvalidPrice(token0);
-        return uint160(root << 32);
+        return ZZZPriceMath.referenceX96(price(token0),price(token1),
+            tokenDecimals(token0),tokenDecimals(token1),token0);
     }
 }

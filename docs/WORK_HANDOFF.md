@@ -1,3 +1,25 @@
+## On-chain safety and cost follow-up - 2026-10-24
+
+The [internal review](../reports/onchain-safety/REVIEW.md) hardens sequencer reads
+with bounded gas/exact return data and reduces repeated static price reads,
+contribution storage and reward checkpoint work. Strategy uses a memory-only
+pair vector; final execution/fingerprint/physical LP checks remain independent.
+Price/share/quote rounding, exact approvals, owner rights and execution limits
+are preserved. Source uncertainty, qualified provider/proxy independence and
+accepted immediate governance/custody trust remain explicit.
+
+[Scoped verification](../reports/onchain-safety/VERIFICATION.md): 145 distinct
+Solidity cases, 83 affected backend checks, 37 normal source-object gates and
+120 final source/test/script bindings. Original negative controls and one repaired
+stale fixture retain their scope. This is not a fresh full regression or actual
+provider qualification. Cold combined activation is11,507,856 under the unchanged
+12M gate. Production NOT APPROVED; real services and independent audit remain open.
+
+No public transaction/deployment, website code/build/server, existing8902/Anvil/
+NFT/LP/balances/journals/dist overlay, signer or service/monitor change. Public
+DEPLOYMENT null; signing Anvil-only; monitoring paused. Main only; preserve older
+unrelated drafts. Publication must be checked separately from Git and the receipt.
+
 ## Dual pricing publication verified - 2026-10-24
 
 Contract implementation `b5002df` and website memory-only

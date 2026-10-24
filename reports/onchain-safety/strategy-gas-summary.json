@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "tag": "before",
+      "exit_code": 0,
+      "seconds": 39.48,
+      "command": [
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+        "test",
+        "--root",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\onchain-safety-20261024\\strategy-gas-before-profile",
+        "--use",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+        "--match-contract",
+        "StrategyPriceSnapshotTest",
+        "--match-test",
+        "testMemorySnapshotGasControlRetainsExactOutput",
+        "-vv"
+      ],
+      "gas": {
+        "Repeated-read formula gas (warm fixture)": 623723,
+        "Pair snapshot gas (warm fixture)": 486203
+      }
+    },
+    {
+      "tag": "after",
+      "exit_code": 0,
+      "seconds": 36.01,
+      "command": [
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+        "test",
+        "--root",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\onchain-safety-20261024\\strategy-gas-after-profile",
+        "--use",
+        "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+        "--match-contract",
+        "StrategyPriceSnapshotTest",
+        "--match-test",
+        "testMemorySnapshotGasControlRetainsExactOutput",
+        "-vv"
+      ],
+      "gas": {
+        "Repeated-read formula gas (warm fixture)": 623762,
+        "Pair snapshot gas (warm fixture)": 155839
+      }
+    }
+  ],
+  "changed_inputs": [
+    "src/ZZZStrategy.sol"
+  ],
+  "scope": "Same real-Oracle mock-feed warm fixture, same settings and harness; only Strategy differs. No actual provider or target-chain gas claim."
+}

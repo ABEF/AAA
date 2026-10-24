@@ -53,6 +53,7 @@ contract BoundaryPools {
 }
 
 contract BoundaryOracle {
+    function priceBounds(address) external pure returns (uint256,uint256,bytes32) { return (1 ether,1 ether,bytes32(0)); }
     function quote(address, address, uint256 amount) external pure returns (uint256) { return amount; }
     function value(address, uint256 amount) external pure returns (uint256) { return amount; }
     function price(address) external pure returns (uint256) { return 1e18; }

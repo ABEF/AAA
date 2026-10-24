@@ -1,0 +1,462 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 329.95,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\onchain-safety-20261024\\pricing-affected-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "DualOracleSecurityTest|SequencerPolicyTest|ContributionPriceSecurityTest|ContributionEntryPriceSecurityTest",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testDirectVaultTopUpCannotBypassFiveDollarMinimum()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureSurvivesUntilFinalApprovalReset()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testFiveDollarConvertedTopUpRetainsNinetyNinePercentFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testGovernedPoolFloorCanTightenButCannotRelaxTopUpFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testTopUpFloorUsesSourceUSDNotTokenCountOrStablePeg()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testDepegCannotBeAssumedOneDollarForMinimumGrowth()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testDirectActivationAndGrowthClearFrozenBasisAndKeepRights()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testFundedClaimsRemainAvailableWhenPricingFails()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testGrowingExistingLPRejectsChangedRoundWithoutDilutingIncumbent()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testHistoricalBackingCannotSubsidizeInsufficientMarginalLP()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testLateHistoricalBackingIsPricedOnlyForIncumbents()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testPriceRoundChangeDuringPullRevertsAllAssetsAndMembership()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testThreePercentAgreementDoesNotOverrideExecutionLossFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testTightAgreementAllowsHonestFullLPAndConservativeThreshold()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testUnreadableNewHistoricalBackingRevertsWithoutLosingContribution()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testUnrelatedCallerCannotOpenOrAdoptPriceSnapshot()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testUpperInputLowerLPRejectsHiddenPriceUncertaintyAtLossBoundary()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest",
+      "test": "testVaultApprovalResetCannotRepriceLPAfterManagerReturns()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testAssetDecimalsChangeFails()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testDualBoundsUseLowerForThresholdAndUpperForConversionQuote()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testExactFreshnessBoundaryAccepted()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testFingerprintBindsCompleteRoundsPolicyAndOracleDomain()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testFutureZeroAndReversedTimestampsRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testFuzzBoundsAndSpreadNeverFavorSingleSource(uint96,uint16)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testGasExhaustingSourceIsBoundedAndFailsClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testImmediateGovernanceAfterSealAndUnauthorizedReconfigurationBlocked()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testIncompleteZeroAndNoncanonicalRoundsRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testMalformedShortAndOversizedSourceResponsesRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testMaximumNormalizedPriceAndOneUnitAbove()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testMixedDecimalsNormalizedAndNativeIdentityExplicit()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testNormalizedOverflowRejectedWithDomainError()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testPolicyAdmissionRejectsCurrentlyDivergentOrInvalidSource()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testPolicyHistoryAppendOnlyEvenWhenReturningToSameParameters()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testPolicyRejectsSameAddressOrSameIndependenceIdentity()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testPolicyRejectsZeroReviewWrongRuntimeBadAgeAndExcessiveSpread()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testRevertingSourceDoesNotSelectTheOther()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testRuntimeChangeFailsEvenWithSameAnswer()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testSequencerDownGraceAndRecoveryStillGateDualPrices()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testSourceDecimalsChangeFailsEvenWithSameRuntime()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testSpreadExactBoundaryAndOneRawUnitAbove()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testStableDepegUsesBothActualPricesNotOneDollar()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testStaleEitherSourceCannotFallBackToHealthySource()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testUnknownAssetAndLegacySingleFeedAreExplicitlyRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testZeroAndNegativeAnswersRejectedWithoutFallback()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "test": "testZeroSpreadRequiresExactNormalizedAgreement()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testActualSealedTimelockControlsReplacementAndCannotDisable()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testConstructorAdmissionRetainsExplicitProvenance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testDownReplacementDoesNotBypassUptimeGuard()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testFutureOrZeroStartedAndMalformedRoundsRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testHealthyUnchangingUptimeDoesNotBecomeStale()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testNonbinaryStatusBadTimestampsAndDecimalsRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testOptionalConstructorZeroHasNoPolicyUntilConfigured()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testPoliciesAppendEvenWhenParametersRepeat()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testRevertingOldDependencyDoesNotBlockRecovery()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testRuntimeMutationFailsClosedAndReviewedReplacementRecovers()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testUnauthorizedReplacementRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/SequencerPolicy.t.sol:SequencerPolicyTest",
+      "test": "testZeroSourceReviewAndCodePinsRejected()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

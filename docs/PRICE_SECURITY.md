@@ -44,8 +44,10 @@ Every price read requires both sources to:
 - Agree within the asset's configured tolerance, measured against the lower
   answer. Rounding cannot admit a spread just outside that tolerance.
 
-Source calls have a 500,000-gas ceiling and exact 32-byte decimals / 160-byte round
-responses. These are implementation limits to qualify against actual providers,
+Price-source, asset-decimals and configured sequencer calls have a 500,000-gas
+ceiling and exact 32-byte decimals / 160-byte round responses. Oversized replies,
+noncanonical round widths and revert data cannot bypass those boundaries. These
+are implementation limits to qualify against actual providers,
 not measured live-service requirements. Maximum source age is bounded to one day;
 the approved operational age must reflect the asset and feed heartbeat.
 
@@ -204,6 +206,31 @@ the selected 3% tolerance and qualified heartbeats, funded conversion routes, ta
 gas and outage rehearsals, and independent audit/remediation. In particular, do
 not enable ZZZ contributions if two defensible independent sources cannot be
 qualified. No real provider or public deployment is established by mock tests.
+
+## Execution cost without stale-price caching
+
+One Strategy swap/compound plan reads each asset's complete dual-source bounds
+once into memory. It computes the same lower-price inventory, reference ratio,
+directional venue fees and upper-input/lower-output quote with the original
+rounding order. The snapshot ends when that read-only call returns; there is no
+persistent, cross-transaction or last-good-price cache. Actual execution and the
+final contribution checkpoints still independently validate prices, fingerprints,
+spot and physical LP. Shared reference arithmetic lives in an internal library;
+it is not another deployed authority or configurable dependency.
+
+Contribution marks pack the two bounds into one slot, with an explicit range
+check before narrowing. The Oracle's `1e36` maximum fits in each `uint128` field.
+Event/basis encoding keeps the same padded values and field order. Reward
+checkpoint loops read eligibility or bucket/shares once before their local
+arithmetic; no mutable dependency call occurs inside those loops.
+
+Admission no longer repeats source validation that is already performed by its
+round read. A same-currency quote validates its source pair once before returning
+the unchanged amount; an unhealthy source still fails. The [security and cost
+review](../reports/onchain-safety/REVIEW.md) and [scoped measurements](../reports/onchain-safety/VERIFICATION.md)
+describe failure reproductions, accounting parity and local gas limits. No loss
+floor, approval, owner check, runtime pin or source-independence requirement is
+relaxed to save gas.
 
 ### Bounded inventory capacity
 

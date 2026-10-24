@@ -1,5 +1,29 @@
 # PoPL operator manual
 
+## Price-read gas and optimized checkpoints - 2026-10-24
+
+The [on-chain safety/cost follow-up](../reports/onchain-safety/REVIEW.md) changes
+implementation, not operator permissions, limits or transaction arguments.
+Qualify the exact release runtimes again before deployment. An already sealed
+deployment cannot receive these code changes merely by changing its feed address.
+
+Every price/asset-decimals/sequencer read must fit the fixed 500,000-gas call
+ceiling and exact ABI length. Review real proxy/adapter behavior and worst-case
+gas before admitting it. On failure, disable affected new work, retain saved
+transactions, diagnose/replace the dependency through existing governance and
+fully revalidate before reopening. Never bypass a failed source or increase an
+execution cap automatically. The ceiling is a code bound, not a mutable setting.
+Healthy uptime status transitions do not expire periodically; down/recovery
+grace checks remain. Raw funded claims still need no USD price.
+
+Strategy snapshots last only for one read-only planning call. Execution/final
+contribution checks still re-read; checkpoint caching cannot be enabled across
+transactions. Eligibility and NFT shares still change only through the existing
+authorized lifecycle. No new server option, maintenance schedule, sweep or
+custody authority is introduced. Local component gas savings are not actual
+target-chain fee estimates; qualify real cold/max-state routes and feeds using
+the unchanged gas/size gates in the [verification record](../reports/onchain-safety/VERIFICATION.md).
+
 ## Configure, stop and recover USD pricing - 2026-10-24
 
 The [pricing-V2 guard](PRICE_SECURITY.md) requires two independently reviewed USD

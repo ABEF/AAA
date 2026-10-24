@@ -1,0 +1,1 @@
+{"test/DynamicRange.t.sol:DynamicRangeTest":{"duration":"6ms 667µs 300ns","test_results":{"testStaleOracleAndFailedVenueCannotBecomeVerifiedZero()":{"status":"Success","reason":null,"counterexample":null,"logs":[],"decoded_logs":[],"kind":{"Unit":{"gas":5314319}},"traces":[],"labeled_addresses":{},"duration":"3ms 704µs","breakpoints":{},"gas_snapshots":{}}},"warnings":[]}}

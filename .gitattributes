@@ -48,3 +48,6 @@ reports/native-preflight/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-e
 
 # Preserve exact source-scoped dual pricing and LP verification receipts.
 reports/price-security/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact on-chain security/cost receipts and native diagnostics.
+reports/onchain-safety/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

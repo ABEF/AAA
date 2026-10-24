@@ -1,0 +1,1666 @@
+{
+  "distinct_passed_solidity": 145,
+  "passing_cases": [
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testCallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer()",
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96,uint96,uint96)",
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts()",
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testNativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter()",
+    "test/ClaimRouter.t.sol:ClaimRouterTest::testPauseAndUnavailableValuationDoNotBlockClaims()",
+    "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest::testColdActivationWithEveryHistoricalRewardIndexPopulated()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDirectVaultTopUpCannotBypassFiveDollarMinimum()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureSurvivesUntilFinalApprovalReset()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testFiveDollarConvertedTopUpRetainsNinetyNinePercentFloor()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testGovernedPoolFloorCanTightenButCannotRelaxTopUpFloor()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testTopUpFloorUsesSourceUSDNotTokenCountOrStablePeg()",
+    "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership()",
+    "test/ContributionMarkPacking.t.sol:ContributionMarkPackingTest::testFuzzPackedPricePreservesContributionAccounting(uint128)",
+    "test/ContributionMarkPacking.t.sol:ContributionMarkPackingTest::testMaximumNormalizedPriceRetainsExactSharesAndBasisHash()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testDepegCannotBeAssumedOneDollarForMinimumGrowth()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testDirectActivationAndGrowthClearFrozenBasisAndKeepRights()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testFundedClaimsRemainAvailableWhenPricingFails()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testGrowingExistingLPRejectsChangedRoundWithoutDilutingIncumbent()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testHistoricalBackingCannotSubsidizeInsufficientMarginalLP()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testLateHistoricalBackingIsPricedOnlyForIncumbents()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testPriceRoundChangeDuringPullRevertsAllAssetsAndMembership()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testThreePercentAgreementDoesNotOverrideExecutionLossFloor()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testTightAgreementAllowsHonestFullLPAndConservativeThreshold()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testUnreadableNewHistoricalBackingRevertsWithoutLosingContribution()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testUnrelatedCallerCannotOpenOrAdoptPriceSnapshot()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testUpperInputLowerLPRejectsHiddenPriceUncertaintyAtLossBoundary()",
+    "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testVaultApprovalResetCannotRepriceLPAfterManagerReturns()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testAssetDecimalsChangeFails()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testDualBoundsUseLowerForThresholdAndUpperForConversionQuote()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testExactFreshnessBoundaryAccepted()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testFingerprintBindsCompleteRoundsPolicyAndOracleDomain()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testFutureZeroAndReversedTimestampsRejected()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testFuzzBoundsAndSpreadNeverFavorSingleSource(uint96,uint16)",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testGasExhaustingSourceIsBoundedAndFailsClosed()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testImmediateGovernanceAfterSealAndUnauthorizedReconfigurationBlocked()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testIncompleteZeroAndNoncanonicalRoundsRejected()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testMalformedShortAndOversizedSourceResponsesRejected()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testMaximumNormalizedPriceAndOneUnitAbove()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testMixedDecimalsNormalizedAndNativeIdentityExplicit()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testNormalizedOverflowRejectedWithDomainError()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyAdmissionRejectsCurrentlyDivergentOrInvalidSource()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyHistoryAppendOnlyEvenWhenReturningToSameParameters()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyRejectsSameAddressOrSameIndependenceIdentity()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyRejectsZeroReviewWrongRuntimeBadAgeAndExcessiveSpread()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testRevertingSourceDoesNotSelectTheOther()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testRuntimeChangeFailsEvenWithSameAnswer()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testSequencerDownGraceAndRecoveryStillGateDualPrices()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testSourceDecimalsChangeFailsEvenWithSameRuntime()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testSpreadExactBoundaryAndOneRawUnitAbove()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testStableDepegUsesBothActualPricesNotOneDollar()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testStaleEitherSourceCannotFallBackToHealthySource()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testUnknownAssetAndLegacySingleFeedAreExplicitlyRejected()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testZeroAndNegativeAnswersRejectedWithoutFallback()",
+    "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testZeroSpreadRequiresExactNormalizedAgreement()",
+    "test/DynamicRange.t.sol:DynamicRangeTest::testDisabledOperationsStillPermitHonestValuation()",
+    "test/DynamicRange.t.sol:DynamicRangeTest::testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals()",
+    "test/DynamicRange.t.sol:DynamicRangeTest::testInitialRangeRecentersButExistingEntryUsesOldRange()",
+    "test/DynamicRange.t.sol:DynamicRangeTest::testMetadataRejectsManipulatedSpotEvenWithFreshUsdFeeds()",
+    "test/DynamicRange.t.sol:DynamicRangeTest::testStaleOracleAndFailedVenueCannotBecomeVerifiedZero()",
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testEarnedOnlyConservationAndNoNewcomerRedistribution()",
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testFuzzOutputAndSourceFractionsConserved(uint96,uint96)",
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testSourceRecoveryDoesNotPayAgain()",
+    "test/LPRewardConversion.t.sol:LPRewardConversionTest::testTransferBeforeAndAfterConversionAndShareGrowth()",
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testConvertedNativeCreditsCoexistWithoutReindexing()",
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeFractionsSurviveClaimsAndShareChanges()",
+    "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeTopUpAndLaterActivationExcludeHistoricalIncome()",
+    "test/NativeLiquidity.t.sol:NativeLiquidityTest::testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle()",
+    "test/NativeLiquidity.t.sol:NativeLiquidityTest::testNativePlanBalancesNetAmountsWithinOnePercentBudget()",
+    "test/NativeLiquidity.t.sol:NativeLiquidityTest::testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testAdmissionReadsEachPriceSourceOnce()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testFaultyOldUptimeDoesNotPreventGovernedReplacement()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testIdenticalCurrencyQuoteDoesNotBypassFaultySource()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testIdenticalCurrencyQuoteStillValidatesOneSourcePair()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeDecimalsGasBombIsBounded()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeNoncanonicalRoundHasDomainError()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeOversizedDecimalsRejected()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeOversizedRoundRejected()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeRevertDataIsNotBubbled()",
+    "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeRoundGasBombIsBounded()",
+    "test/PooledRewards.t.sol:PooledRewardsTest::testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)",
+    "test/PooledRewards.t.sol:PooledRewardsTest::testIndexDivisionRemainderCannotBeCapturedByNewShares()",
+    "test/PooledRewards.t.sol:PooledRewardsTest::testOwnerFractionSurvivesClaimsAndShareIncrease()",
+    "test/PooledRewards.t.sol:PooledRewardsTest::testTopUpCheckpointDoesNotRepriceOldOwnerFees()",
+    "test/ProductionGas.t.sol:ProductionGasTest::testGasMaximum32FundedRewardAssets()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testFuzzAppliedWidthHasNoPersistentMismatch(uint16)",
+    "test/RangePolicy.t.sol:RangePolicyTest::testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testNarrowingWaitsForCooldownThenAppliesOnce()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testRealSealedGovernanceCanImmediatelyApproveRangeChange()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testSmallMarketMoveDoesNotCreateRangeUpdateChurn()",
+    "test/RangePolicy.t.sol:RangePolicyTest::testWideningAndReturningToDeployedPolicy()",
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testClaimsCannotRepeat()",
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testFractionalClaimsRemainFunded()",
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNFTTransferCarriesUnclaimedRewards()",
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNewActivatedNFTCannotClaimPublishedPastReward()",
+    "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testTopUpDoesNotIncreaseEqualCollectiveShare()",
+    "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheBenchmarkCollective33()",
+    "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheBenchmarkOwner33()",
+    "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheDormantExcludesAll33PastCurrencies()",
+    "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCachePreservesAll33CurrenciesBeforeTopUp()",
+    "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheReadsMembershipOnceAt33Assets()",
+    "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheReadsOwnerStateOnceAt33Assets()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testActualSealedTimelockControlsReplacementAndCannotDisable()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testConstructorAdmissionRetainsExplicitProvenance()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testDownReplacementDoesNotBypassUptimeGuard()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testFutureOrZeroStartedAndMalformedRoundsRejected()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testHealthyUnchangingUptimeDoesNotBecomeStale()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testNonbinaryStatusBadTimestampsAndDecimalsRejected()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testOptionalConstructorZeroHasNoPolicyUntilConfigured()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testPoliciesAppendEvenWhenParametersRepeat()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testRevertingOldDependencyDoesNotBlockRecovery()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testRuntimeMutationFailsClosedAndReviewedReplacementRecovers()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testUnauthorizedReplacementRejected()",
+    "test/SequencerPolicy.t.sol:SequencerPolicyTest::testZeroSourceReviewAndCodePinsRejected()",
+    "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20MismatchedStaticFeeAndInvalidDirectionalProtocolFailClosed()",
+    "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20OneSidedInputsDeployNinetyNinePercentWithActualFees()",
+    "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20ProtocolFeeSizingUsesOnlyTheSwapDirection()",
+    "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20UnavailableFeeStateCannotFallBackToAnUnpricedSwap()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testCompoundPlanReadsEachValidatedPairSourceExactlyOnce()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testExactPlannerParityAcrossNativeMixedDecimalsBothDirectionsAndDualSpread()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testExistingRangeParityWhenSpotIsOutsideEitherBoundary()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testManipulatedSpotAndDisabledOperationsStillFailClosed()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testMemorySnapshotGasControlRetainsExactOutput()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testParityWithReversedAssetPricesAndSecondaryAsLowerSource()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testSecondSourceStalenessAndInvalidPriceCannotUseSnapshotFallback()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testSnapshotIsNotReusedAcrossCallsAndDivergenceFailsClosed()",
+    "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testSwapPlanReadsEachValidatedPairSourceExactlyOnce()"
+  ],
+  "receipts": [
+    {
+      "receipt": "root-focused.json",
+      "case": "test/ContributionMarkPacking.t.sol:ContributionMarkPackingTest::testFuzzPackedPricePreservesContributionAccounting(uint128)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xe529948500000000000000000000000000000000000000000000000000000000000047fa",
+            "gas": 4647298,
+            "stipend": 21216
+          },
+          "runs": 1000,
+          "mean_gas": 4625781,
+          "median_gas": 4626082,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/ContributionMarkPacking.t.sol:ContributionMarkPackingTest::testMaximumNormalizedPriceRetainsExactSharesAndBasisHash()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 4620675
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testAdmissionReadsEachPriceSourceOnce()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 389149
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testFaultyOldUptimeDoesNotPreventGovernedReplacement()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 525652
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testIdenticalCurrencyQuoteDoesNotBypassFaultySource()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 122055
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testIdenticalCurrencyQuoteStillValidatesOneSourcePair()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 130909
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeDecimalsGasBombIsBounded()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 562592
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeNoncanonicalRoundHasDomainError()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 69587
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeOversizedDecimalsRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 63595
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeOversizedRoundRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 67268
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeRevertDataIsNotBubbled()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 80256
+        }
+      }
+    },
+    {
+      "receipt": "root-focused.json",
+      "case": "test/OracleReadCost.t.sol:OracleReadCostTest::testUptimeRoundGasBombIsBounded()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 564952
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 25236847
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 20186435
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 25085368
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDirectVaultTopUpCannotBypassFiveDollarMinimum()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 24191307
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 25448803
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 28157611
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 23334496
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 23187201
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 22098681
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 21934615
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 22306019
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 21954220
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testEntryPriceCaptureSurvivesUntilFinalApprovalReset()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 24548198
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testFiveDollarConvertedTopUpRetainsNinetyNinePercentFloor()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 27422585
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testGovernedPoolFloorCanTightenButCannotRelaxTopUpFloor()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 27636124
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 19403479
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 19347353
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 22450888
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 20033519
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 22351998
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testTopUpFloorUsesSourceUSDNotTokenCountOrStablePeg()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 26024625
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest::testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 27516165
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testDepegCannotBeAssumedOneDollarForMinimumGrowth()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1532881
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testDirectActivationAndGrowthClearFrozenBasisAndKeepRights()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 5347025
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testFundedClaimsRemainAvailableWhenPricingFails()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3979698
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testGrowingExistingLPRejectsChangedRoundWithoutDilutingIncumbent()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 6918856
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testHistoricalBackingCannotSubsidizeInsufficientMarginalLP()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 9364264
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testLateHistoricalBackingIsPricedOnlyForIncumbents()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 9194383
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testPriceRoundChangeDuringPullRevertsAllAssetsAndMembership()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 4203958
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testThreePercentAgreementDoesNotOverrideExecutionLossFloor()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3738374
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testTightAgreementAllowsHonestFullLPAndConservativeThreshold()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3736575
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testUnreadableNewHistoricalBackingRevertsWithoutLosingContribution()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 8992709
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testUnrelatedCallerCannotOpenOrAdoptPriceSnapshot()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 79379
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testUpperInputLowerLPRejectsHiddenPriceUncertaintyAtLossBoundary()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3741169
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/ContributionPriceSecurity.t.sol:ContributionPriceSecurityTest::testVaultApprovalResetCannotRepriceLPAfterManagerReturns()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 6352374
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testAssetDecimalsChangeFails()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 48264
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testDualBoundsUseLowerForThresholdAndUpperForConversionQuote()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1469418
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testExactFreshnessBoundaryAccepted()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 101483
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testFingerprintBindsCompleteRoundsPolicyAndOracleDomain()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 529756
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testFutureZeroAndReversedTimestampsRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 247584
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testFuzzBoundsAndSpreadNeverFavorSingleSource(uint96,uint16)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x4a3b5b97000000000000000000000000000000000000000005028f551e27d51259908780000000000000000000000000000000000000000000000000000000000000000f",
+            "gas": 1186194,
+            "stipend": 21476
+          },
+          "runs": 1000,
+          "mean_gas": 1164414,
+          "median_gas": 1164718,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testGasExhaustingSourceIsBoundedAndFailsClosed()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1083989
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testImmediateGovernanceAfterSealAndUnauthorizedReconfigurationBlocked()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 419563
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testIncompleteZeroAndNoncanonicalRoundsRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 178793
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testMalformedShortAndOversizedSourceResponsesRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 229575
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testMaximumNormalizedPriceAndOneUnitAbove()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1178597
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testMixedDecimalsNormalizedAndNativeIdentityExplicit()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1294281
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testNormalizedOverflowRejectedWithDomainError()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 80591
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyAdmissionRejectsCurrentlyDivergentOrInvalidSource()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 147482
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyHistoryAppendOnlyEvenWhenReturningToSameParameters()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 471223
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyRejectsSameAddressOrSameIndependenceIdentity()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 63484
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testPolicyRejectsZeroReviewWrongRuntimeBadAgeAndExcessiveSpread()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 118637
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testRevertingSourceDoesNotSelectTheOther()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 59983
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testRuntimeChangeFailsEvenWithSameAnswer()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 77978
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testSequencerDownGraceAndRecoveryStillGateDualPrices()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 6386360
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testSourceDecimalsChangeFailsEvenWithSameRuntime()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 80302
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testSpreadExactBoundaryAndOneRawUnitAbove()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 144451
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testStableDepegUsesBothActualPricesNotOneDollar()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 152173
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testStaleEitherSourceCannotFallBackToHealthySource()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 216720
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testUnknownAssetAndLegacySingleFeedAreExplicitlyRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 30260
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testZeroAndNegativeAnswersRejectedWithoutFallback()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 217959
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest::testZeroSpreadRequiresExactNormalizedAgreement()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 424298
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testActualSealedTimelockControlsReplacementAndCannotDisable()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 31641069
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testConstructorAdmissionRetainsExplicitProvenance()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 40817
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testDownReplacementDoesNotBypassUptimeGuard()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 633583
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testFutureOrZeroStartedAndMalformedRoundsRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 155346
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testHealthyUnchangingUptimeDoesNotBecomeStale()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 133668
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testNonbinaryStatusBadTimestampsAndDecimalsRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3551553
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testOptionalConstructorZeroHasNoPolicyUntilConfigured()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 6167452
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testPoliciesAppendEvenWhenParametersRepeat()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 294701
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testRevertingOldDependencyDoesNotBlockRecovery()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 976517
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testRuntimeMutationFailsClosedAndReviewedReplacementRecovers()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 614658
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testUnauthorizedReplacementRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 389378
+        }
+      }
+    },
+    {
+      "receipt": "pricing-affected.json",
+      "case": "test/SequencerPolicy.t.sol:SequencerPolicyTest::testZeroSourceReviewAndCodePinsRejected()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 74401
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testDisabledOperationsStillPermitHonestValuation()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3121131
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 182917974
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testInitialRangeRecentersButExistingEntryUsesOldRange()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3276764
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testMetadataRejectsManipulatedSpotEvenWithFreshUsdFeeds()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3062800
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testStaleOracleAndFailedVenueCannotBecomeVerifiedZero()",
+      "status": "Failure",
+      "kind": {
+        "Unit": {
+          "gas": 4274848
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1035961
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 682497
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testFuzzAppliedWidthHasNoPersistentMismatch(uint16)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xf7e63aef000000000000000000000000000000000000000000000000000000000000c5bd",
+            "gas": 774901,
+            "stipend": 21216
+          },
+          "runs": 1000,
+          "mean_gas": 745956,
+          "median_gas": 748816,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 698741
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testNarrowingWaitsForCooldownThenAppliesOnce()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1093163
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testRealSealedGovernanceCanImmediatelyApproveRangeChange()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 47882025
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1123803
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testSmallMarketMoveDoesNotCreateRangeUpdateChurn()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 965633
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/RangePolicy.t.sol:RangePolicyTest::testWideningAndReturningToDeployedPolicy()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1185345
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20MismatchedStaticFeeAndInvalidDirectionalProtocolFailClosed()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 382722
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20OneSidedInputsDeployNinetyNinePercentWithActualFees()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 664292
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20ProtocolFeeSizingUsesOnlyTheSwapDirection()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 633856
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest::testERC20UnavailableFeeStateCannotFallBackToAnUnpricedSwap()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 129168
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testCompoundPlanReadsEachValidatedPairSourceExactlyOnce()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 317800
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testExactPlannerParityAcrossNativeMixedDecimalsBothDirectionsAndDualSpread()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 31433580
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testManipulatedSpotAndDisabledOperationsStillFailClosed()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 556909
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testMemorySnapshotGasControlRetainsExactOutput()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 792462
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testSecondSourceStalenessAndInvalidPriceCannotUseSnapshotFallback()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 491518
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testSnapshotIsNotReusedAcrossCallsAndDivergenceFailsClosed()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 361619
+        }
+      }
+    },
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testSwapPlanReadsEachValidatedPairSourceExactlyOnce()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 328228
+        }
+      }
+    },
+    {
+      "receipt": "strategy-additions.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testExistingRangeParityWhenSpotIsOutsideEitherBoundary()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 4801754
+        }
+      }
+    },
+    {
+      "receipt": "strategy-additions.json",
+      "case": "test/StrategyPriceSnapshot.t.sol:StrategyPriceSnapshotTest::testParityWithReversedAssetPricesAndSecondaryAsLowerSource()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 13872751
+        }
+      }
+    },
+    {
+      "receipt": "strategy-fixture-repair.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testStaleOracleAndFailedVenueCannotBecomeVerifiedZero()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 5314319
+        }
+      }
+    },
+    {
+      "receipt": "strategy-native.json",
+      "case": "test/NativeLiquidity.t.sol:NativeLiquidityTest::testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 2887070
+        }
+      }
+    },
+    {
+      "receipt": "strategy-native.json",
+      "case": "test/NativeLiquidity.t.sol:NativeLiquidityTest::testNativePlanBalancesNetAmountsWithinOnePercentBudget()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 2920680
+        }
+      }
+    },
+    {
+      "receipt": "strategy-native.json",
+      "case": "test/NativeLiquidity.t.sol:NativeLiquidityTest::testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 3146326
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/ClaimRouter.t.sol:ClaimRouterTest::testCallbackTransferBeforeLaterEntryRollsBackClaimsAndNFTTransfer()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1710459
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/ClaimRouter.t.sol:ClaimRouterTest::testFuzzBatchAndDirectClaimsConserveFundedBalances(uint96,uint96,uint96)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x0994647e000000000000000000000000000000000000000000000000011edb9b915e1ef80000000000000000000000000000000000000000000000000000096dc9ec6d610000000000000000000000000000000000000000ffffffffffffffffffffffff",
+            "gas": 759551,
+            "stipend": 21760
+          },
+          "runs": 1000,
+          "mean_gas": 719941,
+          "median_gas": 717891,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/ClaimRouter.t.sol:ClaimRouterTest::testMultipleNFTsAssetsAndLedgersReturnSeparateRawAmounts()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1505953
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/ClaimRouter.t.sol:ClaimRouterTest::testNativeCallbackCannotReenterBatchAndNeverReceivesThroughRouter()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1898951
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/LPRewardConversion.t.sol:LPRewardConversionTest::testEarnedOnlyConservationAndNoNewcomerRedistribution()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1366290
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/LPRewardConversion.t.sol:LPRewardConversionTest::testFuzzOutputAndSourceFractionsConserved(uint96,uint96)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0xa42a1470000000000000000000000000000000000000000000000000000000000000f4e90000000000000000000000000000000000000000000260ad5cd93b6dd9e376c3",
+            "gas": 1283662,
+            "stipend": 21476
+          },
+          "runs": 1001,
+          "mean_gas": 1246033,
+          "median_gas": 1262186,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/LPRewardConversion.t.sol:LPRewardConversionTest::testSourceRecoveryDoesNotPayAgain()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1331808
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/LPRewardConversion.t.sol:LPRewardConversionTest::testTransferBeforeAndAfterConversionAndShareGrowth()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1148500
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testConvertedNativeCreditsCoexistWithoutReindexing()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1047680
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeFractionsSurviveClaimsAndShareChanges()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1285571
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/NativeFeeRewards.t.sol:NativeFeeRewardsTest::testNativeTopUpAndLaterActivationExcludeHistoricalIncome()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1649438
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/PooledRewards.t.sol:PooledRewardsTest::testFuzzOwnerClaimsNeverExceedFundedPoolFees(uint96,uint96,uint96,uint96)",
+      "status": "Success",
+      "kind": {
+        "Fuzz": {
+          "first_case": {
+            "calldata": "0x85720506000000000000000000000000000000000000000033739058dd52fe6ab844d3290000000000000000000000000000000000000000000001d7ae451ad78ebe31260000000000000000000000000000000000000000000002ff96dca3be1986ba3f0000000000000000000000000000000000000000000000000000000002528b77",
+            "gas": 1395404,
+            "stipend": 22008
+          },
+          "runs": 1000,
+          "mean_gas": 1366024,
+          "median_gas": 1372277,
+          "failed_corpus_replays": 0
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/PooledRewards.t.sol:PooledRewardsTest::testIndexDivisionRemainderCannotBeCapturedByNewShares()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1426319
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/PooledRewards.t.sol:PooledRewardsTest::testOwnerFractionSurvivesClaimsAndShareIncrease()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1417782
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/PooledRewards.t.sol:PooledRewardsTest::testTopUpCheckpointDoesNotRepriceOldOwnerFees()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1225712
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testClaimsCannotRepeat()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 391837
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testFractionalClaimsRemainFunded()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 4675140
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNFTTransferCarriesUnclaimedRewards()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 402805
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testNewActivatedNFTCannotClaimPublishedPastReward()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 593123
+        }
+      }
+    },
+    {
+      "receipt": "reward-affected.json",
+      "case": "test/RewardsAndFees.t.sol:RewardsAndFeesTest::testTopUpDoesNotIncreaseEqualCollectiveShare()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 546190
+        }
+      }
+    },
+    {
+      "receipt": "reward-pause.json",
+      "case": "test/ClaimRouter.t.sol:ClaimRouterTest::testPauseAndUnavailableValuationDoNotBlockClaims()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 1040216
+        }
+      }
+    },
+    {
+      "receipt": "cold-gas.json",
+      "case": "test/ProductionGas.t.sol:ProductionGasTest::testGasMaximum32FundedRewardAssets()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 23534005
+        }
+      }
+    },
+    {
+      "receipt": "reward-cached.json",
+      "case": "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheBenchmarkCollective33()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 27194722
+        }
+      }
+    },
+    {
+      "receipt": "reward-cached.json",
+      "case": "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheBenchmarkOwner33()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 27190449
+        }
+      }
+    },
+    {
+      "receipt": "reward-cached.json",
+      "case": "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheDormantExcludesAll33PastCurrencies()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 28680330
+        }
+      }
+    },
+    {
+      "receipt": "reward-cached.json",
+      "case": "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCachePreservesAll33CurrenciesBeforeTopUp()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 32858510
+        }
+      }
+    },
+    {
+      "receipt": "reward-cached.json",
+      "case": "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheReadsMembershipOnceAt33Assets()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 19778690
+        }
+      }
+    },
+    {
+      "receipt": "reward-cached.json",
+      "case": "test/RewardsCheckpointCaching.t.sol:RewardsCheckpointCachingTest::testCheckpointCacheReadsOwnerStateOnceAt33Assets()",
+      "status": "Success",
+      "kind": {
+        "Unit": {
+          "gas": 19776209
+        }
+      }
+    }
+  ],
+  "retained_failures": [
+    {
+      "receipt": "strategy-affected.json",
+      "case": "test/DynamicRange.t.sol:DynamicRangeTest::testStaleOracleAndFailedVenueCannotBecomeVerifiedZero()",
+      "reason": "InvalidPrice(0x0000000000000000000000000000000000001000)"
+    }
+  ],
+  "unresolved_cases": [],
+  "oracle_before_is_expected_negative_control": true,
+  "combined_cold_activation_gas": 11507856,
+  "unchanged_combined_budget": 12000000,
+  "backend_cases": 83,
+  "production_approved": false,
+  "full_fresh_regression": false,
+  "live_providers_qualified": false,
+  "public_transactions": false
+}

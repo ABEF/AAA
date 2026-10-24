@@ -1,0 +1,1 @@
+{"test/ProductionGas.t.sol:ProductionGasTest":{"duration":"11s 666ms 512µs 700ns","test_results":{"testGasMaximum32FundedRewardAssets()":{"status":"Success","reason":null,"counterexample":null,"logs":[],"decoded_logs":[],"kind":{"Unit":{"gas":23534005}},"traces":[],"labeled_addresses":{},"duration":"11s 663ms 804µs 100ns","breakpoints":{},"gas_snapshots":{}}},"warnings":[]}}
