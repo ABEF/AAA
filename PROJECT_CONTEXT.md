@@ -1,3 +1,18 @@
+## Pre-production audit publication verified - 2026-10-25
+
+Audit implementation/evidence `d6faad4` and website memory-only `29d7807`
+are pushed on main; remote hashes verified. Read [publication](reports/preproduction-audit-20261025/PUBLICATION.md),
+[findings](reports/preproduction-audit-20261025/REVIEW.md) and [scoped verification](reports/preproduction-audit-20261025/VERIFICATION.md).
+Keeper budget/preflight fixes are published, not installed into a running service.
+Five composed v4 scenarios, the4096-call invariant and199scoped backend passes
+retain exact reuse/skip limits. Two activation gaps remain open: thin-market
+deployment feasibility and signed review-cap binding. Public signing stays disabled;
+production NOT APPROVED. All42production Solidity sources are unchanged.
+
+Preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signing/null public DEPLOYMENT and paused monitoring. No website
+source/build/server/service, public transaction or deployment action. Main only.
+
 ## Pre-production internal audit - 2026-10-25
 
 Read [internal findings](reports/preproduction-audit-20261025/REVIEW.md) and
