@@ -1,0 +1,126 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 154.04,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\maintenance-policy-20261025\\range-policy-final-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "KeeperRangePolicyTest|RangePolicyTest",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testChangedConfigurationDisablesEligibilityUntilGovernanceReviewsAgain()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testExplicitOrientationPreservesLegacyUntilApprovedAndInvertsOutwardTicks()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testFuzzInverseEndpointsBracketExactTickNeighbors(int24,bool,bool)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testInverseTriggerTreatsUpAndDownMovesInTheChosenPriceDirection()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testNarrowWidenHysteresisAndPhysicalApplicationRequireSeparateCheckpoints()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testPolicyIsDisabledByDefaultAndCannotChooseUnapprovedWidths()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testRegistryCallbackPreservesEveryControllerLifecycleAndStopGuard()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testStopsLocksAndBadPriceCannotEnableRangeSelection()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/KeeperRangePolicy.t.sol:KeeperRangePolicyTest",
+      "test": "testThresholdBoundsOrientationAndCooldownAreGoverned()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testFuzzAppliedWidthHasNoPersistentMismatch(uint16)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testInactiveAndMissingIdentityCannotAuthorizeRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testNarrowingWaitsForCooldownThenAppliesOnce()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testRealSealedGovernanceCanImmediatelyApproveRangeChange()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testSmallMarketMoveDoesNotCreateRangeUpdateChurn()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/RangePolicy.t.sol:RangePolicyTest",
+      "test": "testWideningAndReturningToDeployedPolicy()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

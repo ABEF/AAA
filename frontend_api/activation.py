@@ -210,7 +210,9 @@ class ActivationTransactions:
             if req['increase']: raise ProjectionError('Active NFT has no shared bucket')
             bucket=int(p._call(pins['vault_canonical'],'bucketIdentity(bytes32)',req['pool'],block=block)[0],16)
         req['bucket']=bucket
-        liquidity_context=contribution_context(p,pins,req['pool'],bucket,position,account,header,block)
+        liquidity_context=contribution_context(p,pins,req['pool'],bucket,position,account,header,block,
+            range_policy_version=cfg.range_policy_version,
+            range_policy=cfg.range_policies.get(req['pool']))
         current=p._call(pins['nft'],'currentLPValue(uint256)',req['id'],block=block,words=2)
         available=_bool(current[0]);current_value=int(current[1],16)
         if not available and current_value: raise ProjectionError('Unavailable current NFT valuation contains a value')

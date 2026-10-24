@@ -1,0 +1,27 @@
+{
+  "observed_at_utc": "2026-10-24T23:18:35.191532+00:00",
+  "method": "Read-only independent internal review; no new test execution or edits",
+  "source_sha256": {
+    "keeper/monitor.py": "43ac06e534b5d5723995b4888f6aea07f6773084f57ae1e6c6d5783b28b0ce8d",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "tests_python/test_keeper_maintenance_policy.py": "b1b2b5b244d545879669e39d92a205cda0c96ac19a3bb0296f12e805d026b787",
+    "tests_python/test_keeper_range_policy.py": "f07c178fd3b95d042a4dcc343eb27bcd04179143ac9b3a723f07f50fa22f0cd9"
+  },
+  "confirmed_findings": [],
+  "checked_boundaries": [
+    "New settings reject ambiguous booleans and oversized integers before scheduling; thresholds map actual lowercase asset identities and are not summed across decimals.",
+    "Idle scheduling uses attributed bucket idle and same-currency compound only; exact budget runtime, version, Vault getter/parent and chain cooldown are checked; no raw balance sweep or outgoing keeper transfer.",
+    "Adaptive scheduling validates exact Strategy/Registry runtime, bounded policy ABI/fingerprint, target/cooldown and only sends the pool ID; on-chain reviewed policy chooses width.",
+    "Global pause/preparation suppress both new actions; submission repeats preparation/accounting/code checks and simulation before durable signing intent.",
+    "Old pending hashes are recovered before new work; retired route configuration is allowed only for pending inspection and cannot schedule a new bridge call; no nonce or journal migration/reset.",
+    "Actual spend/receipts remain bounded by captured signing-time reviews; failures retain original pending state or confirmed-revert backoff."
+  ],
+  "operational_limits": [
+    "Keeper maintenance policy reads use latest-state calls rather than one atomic snapshot; concurrent policy/cooldown changes can cause a skipped cycle or reverted simulation/transaction. On-chain guards remain authoritative; no guaranteed execution time.",
+    "Adaptive width selection and physical LP rebalance are separate transactions. A selected width does not mean the physical LP has moved until the subsequent guarded rebalance confirms.",
+    "Per-currency raw thresholds and maximum gas/daily budgets do not by themselves prove optimal economic maintenance timing; qualify real liquidity, prices, gas and alerts before production.",
+    "Changing optional profile/configuration while a legacy transaction is pending can require restoring valid reviewed configuration or disabling the optional feature for recovery; preserve the original journal and hash."
+  ]
+}

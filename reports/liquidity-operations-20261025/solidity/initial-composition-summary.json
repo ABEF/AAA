@@ -1,0 +1,66 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 173.82,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\liquidity-idle-20261025\\initial-composition-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "IntegratedEconomicConservationTest",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4BalancedJoinsCannotCaptureOldIncomeOrPrefundsAndPreserveShares()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext()",
+      "status": "Failure",
+      "reason": "native LP cash conservation: 123 != 50288725419"
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4LateSourceRoundCallbackRollsBackLPFundsEligibilityAndFees()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4LifetimeFeesRoyaltiesGrowthCompoundRebalanceAndTransferRemainFunded()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest",
+      "test": "testActualV4UnfeasibleDepthStillRollsBackEveryLedger()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

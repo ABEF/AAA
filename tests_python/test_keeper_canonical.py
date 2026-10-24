@@ -39,7 +39,6 @@ class KeeperCanonicalTests(unittest.TestCase):
             ('buyback', 'execute(address,uint256,bytes32,uint256)', (fixtures.B,1,fixtures.H,self.rpc.now+180)),
             ('vault', 'collectFees(uint256,uint256)', (7,self.rpc.now+180)),
             ('fees', 'syncExternal(uint256)', (7,)),
-            ('fees', 'bridgeRewards(uint256,address,bytes32)', (7,fixtures.B,fixtures.H)),
             ('nft', 'refreshMetadataRange(uint256,uint256)', (1,2)),
         )
         before = copy.deepcopy(self.k.state)

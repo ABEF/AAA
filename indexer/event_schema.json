@@ -51,6 +51,27 @@
     "name": "MigrationValueChecked",
     "signature": "MigrationValueChecked(uint256,uint256,uint256,uint256)"
   },
+  "0x035ce0d8566fc11c9155a6b7670caab30d312ca03fa937bd0b0c409567913a57": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint8"
+      }
+    ],
+    "name": "RangeOrientationChanged",
+    "signature": "RangeOrientationChanged(bytes32,uint8,uint8)"
+  },
   "0x062a097cb1aaff0fc14f4995579e726e2d0cc1ca460604f79ec411cde485c3f8": {
     "fields": [
       {
@@ -883,6 +904,32 @@
     "name": "ArtworkFinalized",
     "signature": "ArtworkFinalized(uint256,uint8,uint8)"
   },
+  "0x5380fbb57cd387b316d7af0b35d147f9b8e513047a3b6660516534da1883a808": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "configurationHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "KeeperRangePolicyChanged",
+    "signature": "KeeperRangePolicyChanged(bytes32,bool,bytes32,bytes32)"
+  },
   "0x541d2af57c89150ea20c0c7b30bd53aa85503de2b8bfae8f5d2cf585df10303d": {
     "fields": [
       {
@@ -1587,6 +1634,32 @@
     ],
     "name": "RoyaltyConverted",
     "signature": "RoyaltyConverted(uint256,address,uint256,uint256)"
+  },
+  "0x8f76021ad32ade2d458f62ee3fe48b296cc8859b41bb6e46325eb46250784330": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "poolId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "KeeperRangeSelected",
+    "signature": "KeeperRangeSelected(bytes32,uint16,uint16,bytes32)"
   },
   "0x8f9097b22724d0030e4200c3c7b4d34414be658e8218fe8d713b19dfb945d577": {
     "fields": [

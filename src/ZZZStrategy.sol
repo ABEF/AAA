@@ -9,9 +9,26 @@ import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.so
 import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 
 interface IV4FeeState { function stateView() external view returns (IStateViewMinimal); }
+interface IRangeRegistry { function applyKeeperRange(bytes32 poolId,uint16 rangeBps) external; }
 
-/// @notice Stateless policy. Only the vault can commit position state changes.
+/// @notice Bounded strategy policy. Only the vault commits physical LP changes.
 contract ZZZStrategy is ZZZModule {
+    uint256 public constant RANGE_POLICY_VERSION = 1;
+    /// 0 preserves historical token1/token0; 1 expresses token0/token1.
+    mapping(bytes32 => uint8) public rangeOrientation;
+    struct KeeperRangePolicy {
+        bool enabled;
+        uint16 narrowTriggerBps;
+        uint16 widenTriggerBps;
+        uint32 minInterval;
+        uint64 lastChange;
+        bytes32 configurationHash;
+        bytes32 reviewHash;
+    }
+    mapping(bytes32 => KeeperRangePolicy) public keeperRangePolicy;
+    event RangeOrientationChanged(bytes32 indexed poolId,uint8 previous,uint8 current);
+    event KeeperRangePolicyChanged(bytes32 indexed poolId,bool enabled,bytes32 configurationHash,bytes32 reviewHash);
+    event KeeperRangeSelected(bytes32 indexed poolId,uint16 previous,uint16 current,bytes32 reviewHash);
     struct AssetPrice { uint256 lower; uint256 upper; uint256 scale; }
     struct PairPrices { AssetPrice first; AssetPrice second; uint160 referenceX96; }
     constructor(address controller) ZZZModule(controller) {}
@@ -26,14 +43,95 @@ contract ZZZStrategy is ZZZModule {
         referenceX96 = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
         (lower, upper) = _range(c, referenceX96);
     }
-    function _range(PoolConfig memory c, uint160 referenceX96) private pure returns (int24 lower, int24 upper) {
-        uint256 lowerRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 - c.rangeBps) * 1e28), 1e16);
-        uint256 upperRoot = Math.mulDiv(referenceX96, Math.sqrt(uint256(10000 + c.rangeBps) * 1e28), 1e16);
+    function _range(PoolConfig memory c, uint160 referenceX96) private view returns (int24 lower, int24 upper) {
+        uint256 below = Math.sqrt(uint256(10000 - c.rangeBps) * 1e28);
+        uint256 above = Math.sqrt(uint256(10000 + c.rangeBps) * 1e28);
+        bool inverse = rangeOrientation[keccak256(abi.encode(c.key))] == 1;
+        uint256 lowerRoot = inverse ? Math.mulDiv(referenceX96,1e16,
+            Math.sqrt(uint256(10000+c.rangeBps)*1e28,Math.Rounding.Ceil)) : Math.mulDiv(referenceX96,below,1e16);
+        uint256 upperRoot = inverse ? Math.mulDiv(referenceX96,1e16,below,Math.Rounding.Ceil) : Math.mulDiv(referenceX96,above,1e16);
         if (lowerRoot <= TickMath.MIN_SQRT_PRICE || upperRoot >= TickMath.MAX_SQRT_PRICE) revert InvalidConfiguration();
         lower = _floor(TickMath.getTickAtSqrtPrice(uint160(lowerRoot)), c.key.tickSpacing);
         // Always round the upper limit outward, including an exact tick boundary.
         upper = _floor(TickMath.getTickAtSqrtPrice(uint160(upperRoot)), c.key.tickSpacing) + c.key.tickSpacing;
         if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) revert InvalidConfiguration();
+    }
+    /// @notice Explicit opt-in; existing physical ticks are not reinterpreted.
+    function setRangeOrientation(bytes32 poolId,uint8 orientation) external onlyGovernance operating {
+        uint8 previous = rangeOrientation[poolId];
+        if (orientation > 1 || previous == orientation) revert InvalidConfiguration();
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        rangeOrientation[poolId] = orientation;
+        _range(c,IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0,c.key.currency1));
+        KeeperRangePolicy storage policy = keeperRangePolicy[poolId];
+        if (policy.enabled) {
+            policy.enabled = false;
+            emit KeeperRangePolicyChanged(poolId,false,policy.configurationHash,policy.reviewHash);
+        }
+        emit RangeOrientationChanged(poolId,previous,orientation);
+    }
+    /// @notice Review actual price-displacement rules, not an inferred volatility model.
+    /// Disabling never needs healthy Oracle/venue data. Existing audit fields persist.
+    function setKeeperRangePolicy(bytes32 poolId,bool enabled,uint16 narrowTriggerBps,uint16 widenTriggerBps,
+        uint32 minInterval,bytes32 reviewHash) external onlyGovernance operating {
+        if (poolId == bytes32(0)) revert InvalidConfiguration();
+        KeeperRangePolicy storage policy = keeperRangePolicy[poolId];
+        if (!enabled) {
+            policy.enabled = false;
+            emit KeeperRangePolicyChanged(poolId,false,policy.configurationHash,policy.reviewHash);
+            return;
+        }
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        if (rangeOrientation[poolId] != 1 || (c.rangeBps != 2500 && c.rangeBps != 5000) ||
+            c.triggerBps >= 2500 || c.maxSpotDeviationBps >= 2500 || narrowTriggerBps >= widenTriggerBps ||
+            widenTriggerBps >= 2500 || minInterval < 600 || minInterval < c.minRebalanceInterval ||
+            minInterval > 7 days || reviewHash == bytes32(0)) revert InvalidConfiguration();
+        _range(c,IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0,c.key.currency1));
+        bytes32 fingerprint = _rangeConfiguration(c);
+        keeperRangePolicy[poolId] = KeeperRangePolicy(true,narrowTriggerBps,widenTriggerBps,minInterval,
+            uint64(block.timestamp),fingerprint,reviewHash);
+        emit KeeperRangePolicyChanged(poolId,true,fingerprint,reviewHash);
+    }
+    function _rangeConfiguration(PoolConfig memory c) private view returns(bytes32 fingerprint) {
+        uint16 width = c.rangeBps;
+        c.rangeBps = 0;
+        fingerprint = keccak256(abi.encode(c,rangeOrientation[keccak256(abi.encode(c.key))]));
+        c.rangeBps = width;
+    }
+    function _displacement(bytes32 poolId,uint160 center,uint160 referenceX96) private view returns(uint256) {
+        uint256 root = rangeOrientation[poolId] == 1 ? Math.mulDiv(center,1e18,referenceX96) :
+            Math.mulDiv(referenceX96,1e18,center);
+        uint256 ratio = Math.mulDiv(root,root,1e18);
+        return ratio > 1e18 ? ratio-1e18 : 1e18-ratio;
+    }
+    function keeperRangeTarget(bytes32 poolId) public view returns(uint16 next) {
+        KeeperRangePolicy memory policy = keeperRangePolicy[poolId];
+        if (!policy.enabled || !access.isSealed() || access.paused() || access.preparationActive() ||
+            access.canonicalState() != 0 || rangeOrientation[poolId] != 1 ||
+            block.timestamp < uint256(policy.lastChange)+policy.minInterval) return 0;
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(poolId);
+        if (!c.operationsEnabled || _rangeConfiguration(c) != policy.configurationHash ||
+            (c.rangeBps != 2500 && c.rangeBps != 5000)) return 0;
+        IZZZVault vault = IZZZVault(access.module(Ids.VAULT));
+        uint256 bucket = vault.poolBucket(poolId);
+        if (bucket == 0) return 0;
+        Position memory p = vault.group(bucket);
+        if (p.poolId != poolId || p.status != PositionStatus.Active || p.lpTokenId == 0 || p.centerX96 == 0 ||
+            block.timestamp < uint256(p.lastRebalance)+c.minRebalanceInterval || _rangeUpdatePending(p,c)) return 0;
+        uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0,c.key.currency1);
+        uint256 movement = _displacement(poolId,p.centerX96,ref);
+        if (c.rangeBps == 2500 && movement >= uint256(policy.widenTriggerBps)*1e14) next = 5000;
+        else if (c.rangeBps == 5000 && movement <= uint256(policy.narrowTriggerBps)*1e14) next = 2500;
+        if (next != 0) { c.rangeBps = next; _range(c,ref); }
+    }
+    /// @notice Keeper supplies a pool only; the reviewed on-chain rule chooses width.
+    function applyKeeperRange(bytes32 poolId) external onlyKeeper live operating returns(uint16 next) {
+        next = keeperRangeTarget(poolId);
+        if (next == 0) revert InvalidState();
+        uint16 previous = IZZZPools(access.module(Ids.POOLS)).get(poolId).rangeBps;
+        keeperRangePolicy[poolId].lastChange = uint64(block.timestamp);
+        IRangeRegistry(access.module(Ids.POOLS)).applyKeeperRange(poolId,next);
+        emit KeeperRangeSelected(poolId,previous,next,keeperRangePolicy[poolId].reviewHash);
     }
     function validatePrice(bytes32 poolId) public view returns (uint160 spotX96) {
         return _validatePrice(poolId, true);
@@ -63,12 +161,10 @@ contract ZZZStrategy is ZZZModule {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval) return false;
         uint160 ref = IZZZOracle(access.module(Ids.ORACLE)).referenceX96(c.key.currency0, c.key.currency1);
-        uint256 rootRatio = Math.mulDiv(ref, 1e18, p.centerX96);
-        uint256 priceRatio = Math.mulDiv(rootRatio, rootRatio, 1e18);
-        uint256 delta = priceRatio > 1e18 ? priceRatio - 1e18 : 1e18 - priceRatio;
+        uint256 delta = _displacement(p.poolId,p.centerX96,ref);
         return delta >= uint256(c.triggerBps) * 1e14 || _rangeUpdatePending(p, c);
     }
-    /// @notice A timelocked width change can require replacement even at a flat price.
+    /// @notice A governed width/orientation change can require replacement at a flat price.
     /// Pending is not execution eligibility: cooldown, operations and all Vault
     /// guards still apply. Comparing at the recorded center avoids price-drift churn.
     function rangeUpdatePending(uint256 id) external view returns (bool) {

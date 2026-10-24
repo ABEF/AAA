@@ -1,0 +1,19 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 5.87,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\liquidity-idle-20261025\\maintenance-regressions-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(MigrationBudgetAdversarialTest|AtomicActivationIntegrationTest|ContributionPriceSecurityTest|GovernedExecutionLossTest)$",
+    "--json",
+    "--match-test",
+    "test(Budget|FreshHarvestCompound|FundedReward|CloseCallback|HarvestCallback|MintCallback|DefaultsHardMaximum|ActivationAndGrowthUseGoverned|LaterContributionsUseSamePolicy|PackedContributionCap|UpperInputLowerLP|ThreePercentAgreement|FiveDollarConverted|OnePercentConversion|DirectPairPath)"
+  ],
+  "cases": [],
+  "diagnostic": "Compiler run failed:\nWarning (2519): This declaration shadows an existing declaration.\n  --> src/ZZZNFTCanonical.sol:56:13:\n   |\n56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));\n   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nNote: The shadowed declaration is here:\n  --> src/ZZZNFTCanonical.sol:62:36:\n   |\n62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));\n   |                                    ^^^^^^^^^^^^\n\nError (3415): No arguments passed to the base constructor. Specify the arguments or mark \"RebalanceBudgetPolicy\" as abstract.\n  --> test/RebalanceBudget.t.sol:13:1:\n   |\n13 | contract RebalanceBudgetPolicy is BudgetAdversarialPolicy {\n   | ^ (Relevant source part starts here and spans across multiple lines).\nNote: Base constructor parameters:\n   --> test/MigrationBudgetAdversarial.t.sol:113:16:\n    |\n113 |     constructor(BudgetAdversarialVenue observed) { venue = observed; }\n    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n"
+}

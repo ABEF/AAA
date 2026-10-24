@@ -2,7 +2,7 @@
 
 Decision updated 2026-10-24: governance may change all three execution-loss
 categories immediately after sealing, with an immutable **10% hard maximum**.
-Current defaults remain **1% contribution, 1% reward conversion, 3% maintenance**.
+Current defaults remain **2% contribution, 1% reward conversion, 3% maintenance**.
 These are per-operation ceilings, not targets or protection against market losses.
 Network gas is separate. The candidate is undeployed and not production approved.
 

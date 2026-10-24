@@ -69,7 +69,7 @@ the approved operational age must reflect the asset and feed heartbeat.
 
 The intended configuration uses **300 basis points (3%)**. An observation at
 exactly 3% is within that band; anything above it fails. This does not relax the
-separate default 1% execution-loss test described below. Governance can configure
+separate default 2% contribution execution-loss test described below. Governance can configure
 maximum disagreement from 0 to 500 basis points. Zero requires
 exact agreement. The 500-basis-point hard ceiling is consistent with the existing
 maximum pool/reference-price guard; it is not a recommended production setting or
@@ -154,7 +154,7 @@ growth threshold, currently $100 or $5 respectively. Its **upper** input value i
 used for the captured execution floor, while incremental LP is valued with the
 frozen **lower** pair prices. Both net new backing and marginal deployed LP must
 meet the floor; incumbent idle, old LP and historical compound cannot subsidize
-it. The default contribution loss limit is 1%; existing governance can configure
+it. The default contribution loss limit is 2%; existing governance can configure
 future limits up to the 10% hard maximum. Stronger venue/caller minima remain.
 See [execution-loss policy](EXECUTION_LOSS_POLICY.md).
 

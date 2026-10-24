@@ -39,7 +39,7 @@ Forced ETH, partial fills and malformed callbacks cannot become principal or fee
 ## Operations and trust
 
 `moveFunds` atomically changes fee tiers within the same ordered actual-currency
-pair under the fixed 3% cap. Native ETH and WETH are different currencies:
+pair under the captured maintenance cap (3% default). Native ETH and WETH are different currencies:
 an atomic ETH/WETH boundary is not implemented and the pair guard rejects it.
 [External exit](GOVERNED_CUSTODY_HANDOFF.md)
 is separate. Contributions/routes require deliberate cutover after checking LP.

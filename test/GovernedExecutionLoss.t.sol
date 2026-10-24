@@ -77,8 +77,8 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
 
     function testDefaultsHardMaximumZeroAndGovernanceEvents() public {
         ZZZMigrationBudget b=_budget();assertEq(b.MAX_LOSS_BPS(),1000);
-        assertEq(b.contributionLossBps(),100);assertEq(b.maintenanceLossBps(),300);
-        vm.expectEmit(false,false,false,true,address(b));emit ContributionLossLimitChanged(100,1000);
+        assertEq(b.contributionLossBps(),200);assertEq(b.maintenanceLossBps(),300);
+        vm.expectEmit(false,false,false,true,address(b));emit ContributionLossLimitChanged(200,1000);
         b.setLossLimits(1000,300);
         vm.expectEmit(false,false,false,true,address(b));emit ContributionLossLimitChanged(1000,1000);
         vm.expectEmit(false,false,false,true,address(b));emit MaintenanceLossLimitChanged(300,0);
@@ -102,6 +102,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         assertEq(b.maintenanceLossBps(),500);assertEq(b.contributionLossBps(),200);
     }
     function testActivationAndGrowthUseGovernedContributionLimitWithVenueFloorRetained() public {
+        _budget().setLossLimits(100,300);
         GovernedGrowthLossVenue lossy=new GovernedGrowthLossVenue(address(t0),address(t1));
         ac.bind(Ids.LIQUIDITY,address(lossy));lossy.losses(0,0,20,0);
         _venueLimit(1000);uint256 id=_mint(alice);
@@ -118,6 +119,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         assertEq(vault.sharesOf(id),shares);assertEq(t0.balanceOf(alice),before);
     }
     function testLaterContributionsUseSamePolicyWithoutBorrowingIncumbentIdle() public {
+        _budget().setLossLimits(100,300);
         uint256 id=activatedPosition();_venueLimit(1000);venue.setSpendBps(9800);
         vm.prank(alice);vm.expectRevert(ZZZModule.Slippage.selector);vault.increase(id,1000,0,1,block.timestamp+100);
         _budget().setLossLimits(200,300);vm.prank(alice);vault.increase(id,1000,0,1,block.timestamp+100);
@@ -125,6 +127,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
         assertEq(vault.group(_bucket()).idle0,20);
     }
     function testPackedContributionCapStaysFixedDespiteLaterGovernanceChange() public {
+        _budget().setLossLimits(100,300);
         _venueLimit(1000);uint256 id=_mint(alice);venue.setSpendBps(9800);
         LossPolicyCallbackToken implementation=new LossPolicyCallbackToken();
         vm.etch(address(t0),address(implementation).code);

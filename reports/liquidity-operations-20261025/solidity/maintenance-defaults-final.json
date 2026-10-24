@@ -1,0 +1,23 @@
+Compiler run failed:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Error (3415): No arguments passed to the base constructor. Specify the arguments or mark "RebalanceBudgetPolicy" as abstract.
+  --> test/RebalanceBudget.t.sol:13:1:
+   |
+13 | contract RebalanceBudgetPolicy is BudgetAdversarialPolicy {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: Base constructor parameters:
+   --> test/MigrationBudgetAdversarial.t.sol:113:16:
+    |
+113 |     constructor(BudgetAdversarialVenue observed) { venue = observed; }
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

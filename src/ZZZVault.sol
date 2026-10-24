@@ -298,16 +298,12 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         external onlyModule(Ids.COMPOUNDER) live operating nonReentrant {
         _deadline(deadline);
         _active(id);
+        _migrationCheckpoint(id, 3);
         _harvest(id, deadline);
         (uint256 amount0, uint256 amount1) = _pullCompound(id);
-        if (amount0 + amount1 == 0 || minimumLiquidity == 0) revert InvalidAmount();
-        uint256 beforeValue = _idleValue(id);
-        _balanceUsing(id, deadline, true);
-        // A same-pool swap can itself generate fees for this still-active LP.
-        // Settle them separately before INCREASE so they cannot become principal.
-        _harvest(id, deadline);
-        migrationBudget.assertIdleLoss(id, beforeValue);
-        _put(id, false, minimumLiquidity, deadline);
+        _migrationCheckpoint(id, 1);
+        _redeploy(id, minimumLiquidity, deadline);
+        _migrationCheckpoint(id, 2);
         emit Compounded(id, amount0, amount1);
     }
     function _close(uint256 id, uint256 deadline) private {
@@ -323,17 +319,21 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         p.lpTokenId = 0;
         _idle(id, p.idle0 + closed0, p.idle1 + closed1);
     }
-    function _balance(uint256 id, uint256 deadline) private { _balanceUsing(id, deadline, false); }
     function _balanceUsing(uint256 id, uint256 deadline, bool existingRange) private {
         Position storage p = positions[id];
-        (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) = migrationBudget.balancePlan(id, existingRange);
-        if (amountIn == 0) return;
-        address manager = _moduleLiquidity();
-        ExactAsset.approve(input, manager, amountIn);
-        uint256 amountOut = IZZZLiquidity(manager).swap{value: input == address(0) ? amountIn : 0}(p.poolId, zeroForOne, amountIn, minimumOut, deadline);
-        ExactAsset.approve(input, manager, 0);
-        if (zeroForOne) _idle(id, p.idle0 - amountIn, p.idle1 + amountOut);
-        else _idle(id, p.idle0 + amountOut, p.idle1 - amountIn);
+        // A swap changes the LP ratio. Re-plan once from actual post-swap state;
+        // never loop toward zero dust or touch anything beyond attributed idle.
+        for (uint256 pass; pass < 2;) {
+            (bool zeroForOne, uint256 amountIn, uint256 minimumOut, address input) = migrationBudget.balancePlan(id, existingRange);
+            if (amountIn == 0) return;
+            address manager = _moduleLiquidity();
+            ExactAsset.approve(input, manager, amountIn);
+            uint256 amountOut = IZZZLiquidity(manager).swap{value: input == address(0) ? amountIn : 0}(p.poolId, zeroForOne, amountIn, minimumOut, deadline);
+            ExactAsset.approve(input, manager, 0);
+            if (zeroForOne) _idle(id, p.idle0 - amountIn, p.idle1 + amountOut);
+            else _idle(id, p.idle0 + amountOut, p.idle1 - amountIn);
+            unchecked { ++pass; }
+        }
     }
     function _idleValue(uint256 id) private view returns (uint256) {
         return migrationBudget.idleValue(id);
@@ -349,10 +349,14 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         migrationBudget.checkpoint(id, phase);
     }
     function _redeploy(uint256 id, uint128 minimumLiquidity, uint256 deadline) private {
+        bool create = positions[id].lpTokenId == 0;
         uint256 beforeValue = _idleValue(id);
-        _balance(id, deadline);
+        _balanceUsing(id, deadline, !create);
+        // An existing LP earns fees from either bounded balancing swap. Settle
+        // them separately before INCREASE; they are never treated as principal.
+        if (!create) _harvest(id, deadline);
         migrationBudget.assertIdleLoss(id, beforeValue);
-        _put(id, true, minimumLiquidity, deadline);
+        _put(id, create, minimumLiquidity, deadline);
     }
     function rebalance(uint256 id, uint128 minimumLiquidity, uint256 deadline) external onlyKeeper live operating nonReentrant {
         _deadline(deadline);

@@ -1,3 +1,35 @@
+## Liquidity operating candidate and resume priorities - 2026-10-25
+
+Read [scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md),
+[internal review](../reports/liquidity-operations-20261025/REVIEW.md),
+[idle ownership](IDLE_AND_DUST.md) and [range policy](RANGE_POLICY_UPDATES.md).
+User decisions: contribution default2%; conversion1% and maintenance3% unchanged;
+gas separate. Keeper chooses only reviewed±25/±50 ranges in **ZZZ price in ETH**,
+not inverse rawquote. Mode1/policy/keeper features are explicit default-disabled
+opt-ins; old profiles and existing physical LP keep their original semantics.
+
+Implemented candidate: bounded two-pass balance, safe idle-only compounding and
+cooldown, range orientation and reviewed Strategy-only width callback, strict
+keeper/unit/retired-route handling, API/observer metadata and typed events.
+No sweep, generic executor, operator dust recipient or holder redemption.
+Vault runtime24,519/57margin; Registry creation+args49,121/31margin. Future embedded
+Entry changes need a size-safe design under normal gates. Source-scoped evidence
+is not a full regression, actual service qualification or independent audit.
+
+Next: caller-bound reviewed loss policy in versioned Entry/API/wallet before
+public activation signing; actual independent feeds/routes, maximal real venue
+gas and threshold economics; native website/OpenSea/VRF/authorities, Linux/target-
+chain rehearsals and independent audit. Integrated bridge/remote NFT/reward
+transport is deferred optional scope. Use source-chain external custody for
+external bridge/issuer exchanges; this does not relocate ownership/reward ledgers.
+Same-chain whole-collection handoff is retained; no post-halt recovery is promised.
+
+Preserve all unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signer/null public DEPLOYMENT and paused monitoring. No website source/
+build/server, service, public transaction or deployment action. Main only; update
+sole Todo/features/operator/roadmap and both memories. Check Git and the new
+publication receipt separately; local saves are not proof of push.
+
 ## Pre-production audit publication verified - 2026-10-25
 
 Audit implementation/evidence `d6faad4` and website memory-only `29d7807`

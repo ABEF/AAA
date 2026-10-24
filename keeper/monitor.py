@@ -21,6 +21,7 @@ from zzz_ops.abi import address, calldata, decode_words, keccak256, uint_result
 from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
 from zzz_ops.ethereum_fees import execution_price, fee_cap, transaction_chain_id
+from zzz_ops.range_policy import observe as observe_range_policy, verify as verify_range_policy
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
@@ -31,14 +32,12 @@ ASSET_ARGUMENTS = {
     'compoundBalance(uint256,address)': (1,),
     'buybackBalance(address)': (0,),
     'execute(address,uint256,bytes32,uint256)': (0,),
-    'remoteIndividual(uint256,address)': (1,),
-    'remoteCollective(uint256,address)': (1,),
-    'bridgeRewards(uint256,address,bytes32)': (1,),
 }
 MAX_METADATA_SUPPLY = 1000
 MAX_METADATA_BATCH = 50
 CANONICAL_STATES = ('operating', 'frozen', 'importing', 'retired', 'cancelled')
 PREPARATION_BLOCKED_ACTIONS = frozenset((
+    ('strategy','applyKeeperRange(bytes32)'),
     ('vault','rebalance(uint256,uint128,uint256)'),
     ('compounder','compound(uint256,uint128,uint256)'),
     ('buyback','execute(address,uint256,bytes32,uint256)'),
@@ -92,6 +91,12 @@ class Keeper:
         self.contracts = {k:address(v) for k,v in config['contracts'].items()}
         for name in ('access','vault','strategy','fees','compounder','buyback','pools'):
             if name not in self.contracts: raise ValueError(f'Missing contract: {name}')
+        adaptive = config.get('adaptive_range',{})
+        if not isinstance(adaptive,dict) or type(adaptive.get('enabled',False)) is not bool:
+            raise ValueError('Adaptive range requires explicit boolean configuration')
+        self.adaptive_range_enabled = adaptive.get('enabled',False)
+        if self.adaptive_range_enabled and (type(adaptive.get('policy_version')) is not int or adaptive['policy_version'] != 1):
+            raise ValueError('Adaptive range requires the explicit reviewed policy version 1')
         if 'positions' in config or config.get('accounting_model',ACCOUNTING_MODEL) != ACCOUNTING_MODEL:
             raise ValueError('Keeper configuration must use the shared-pool accounting model')
         discovery = config.get('bucket_discovery',{})
@@ -132,6 +137,10 @@ class Keeper:
             raise ValueError('Persistent keeper state belongs to another deployment')
         positive(self.state.get('bucket_cursor'),'bucket_cursor',zero=True)
         self._validate_state()
+        # Old pending transactions retain their original recovery path. Retired
+        # bridge configuration may not schedule any NEW transaction, but must
+        # not prevent inspection of an already saved hash.
+        self._validate_maintenance_config(allow_retired=bool(self.state.get('pending')))
         self.retry_cooldown = positive(config.get('revert_cooldown_seconds',3600),'revert_cooldown_seconds')
         if not 60 <= self.retry_cooldown <= 86400: raise ValueError('Revert cooldown must be 60-86400 seconds')
         self.cycle_failures = 0
@@ -304,6 +313,117 @@ class Keeper:
         return not (self.skipped_buckets or self.blocked_actions)
 
     def save(self) -> None: atomic_json(self.path,self.state)
+
+    def _validate_maintenance_settings(self,settings: dict[str,Any],*,allow_retired: bool = False) -> None:
+        if not isinstance(settings,dict): raise ValueError('Maintenance settings must be an object')
+        for name in ('compound','compound_idle','harvest','sync_external_rewards'):
+            if name in settings and type(settings[name]) is not bool:
+                raise ValueError(f'{name} must be an explicit boolean')
+        limits = {'minimum_liquidity':128,'minimum_compound_units':256}
+        for name,bits in limits.items():
+            if name in settings and positive(settings[name],name) >= 1 << bits:
+                raise ValueError(f'{name} exceeds uint{bits}')
+        if 'harvest_interval_seconds' in settings:
+            positive(settings['harvest_interval_seconds'],'harvest_interval_seconds')
+        if 'compound_interval_seconds' in settings:
+            interval = positive(settings['compound_interval_seconds'],'compound_interval_seconds',zero=True)
+            if interval != 0 and not 600 <= interval <= 604800:
+                raise ValueError('Compounding interval must be zero or 600-604800 seconds')
+        if 'compound_thresholds' in settings:
+            thresholds = settings['compound_thresholds']
+            if not isinstance(thresholds,dict) or not 1 <= len(thresholds) <= 33:
+                raise ValueError('Compound thresholds require a bounded nonempty currency map')
+            for currency,raw in thresholds.items():
+                if self._asset(currency) != currency:
+                    raise ValueError('Compound threshold currencies must use canonical lowercase addresses')
+                if positive(raw,'compound threshold') >= 1 << 256:
+                    raise ValueError('Compound threshold exceeds uint256')
+        if 'reward_routes' in settings:
+            routes = settings['reward_routes']
+            if not isinstance(routes,list) or routes and not allow_retired:
+                raise ValueError('Reward bridge scheduling is retired; remove reward_routes without changing pending evidence')
+
+    def _validate_maintenance_config(self,*,allow_retired: bool = False) -> None:
+        for settings in (self.maintenance,*self.overrides.values()):
+            self._validate_maintenance_settings(settings,allow_retired=allow_retired)
+        for override in ({},*self.overrides.values()):
+            settings = {**self.maintenance,**override}
+            if settings.get('compound_idle',False):
+                if self.accounting_version != 2 or not settings.get('compound_thresholds') or \
+                        not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
+                    raise ValueError('Idle compounding requires native V2, currency thresholds and an explicit 600-604800-second interval')
+                address(self.config.get('idle_compounding_budget'))
+                pin = self.config.get('code_hashes',{}).get('idle_compounding_budget','')
+                if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or int(pin,16) == 0:
+                    raise ValueError('Idle compounding requires an exact reviewed budget runtime pin')
+
+    def _idle_compound_checkpoint(self,bucket: int,fields: list[str]) -> tuple[int,int]:
+        """Authenticate the opt-in companion without changing journal identity."""
+        budget = address(self.config['idle_compounding_budget'])
+        pin = self.config['code_hashes']['idle_compounding_budget'].lower()
+        code = self.rpc.call('eth_getCode',[budget,'latest'])
+        if not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin:
+            raise RpcError('Idle compounding budget runtime differs from the reviewed profile')
+        def read(signature: str,*args: int) -> int:
+            return uint_result(self.rpc.eth_call(budget,calldata(signature,*args)))
+        if self.view('vault','migrationBudget()') != int(budget,16) or \
+                read('vault()') != int(self.contracts['vault'],16) or read('IDLE_COMPOUNDING_VERSION()') != 1:
+            raise RpcError('Idle compounding budget capability or Vault binding differs')
+        last = read('lastCompound(uint256)',bucket)
+        if last >= 1 << 64: raise RpcError('Malformed compound checkpoint')
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)','0x'+fields[0])))
+        if len(config) != 14 or not 600 <= int(config[11],16) <= 604800:
+            raise RpcError('Malformed on-chain compound cooldown')
+        if int(config[6],16) != 1: raise RpcError('Pool operations are not enabled for idle compounding')
+        return last,int(config[11],16)
+
+    def _adaptive_range_target(self,pool: str,now: int) -> int:
+        # Opt-in only; historical profiles never call new Strategy getters.
+        for name in ('strategy','pools'):
+            pin = self.config.get('code_hashes',{}).get(name,'')
+            code = self.rpc.call('eth_getCode',[self.contracts[name],'latest'])
+            if not isinstance(pin,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',pin) or \
+                    not isinstance(code,str) or not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})+',code) or \
+                    '0x'+keccak256(bytes.fromhex(code[2:])).hex() != pin.lower():
+                raise RpcError('Adaptive range runtime differs from the reviewed profile')
+        def read(signature: str,*args: int|str,count: int) -> list[str]:
+            result = decode_words(self.rpc.eth_call(self.contracts['strategy'],calldata(signature,*args)))
+            if len(result) != count: raise RpcError('Malformed adaptive range response')
+            return result
+        observed = observe_range_policy(read,pool)
+        config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool)))
+        # The on-chain governance-approved policy is the authority. Independently
+        # check its ABI/bounds/fingerprint; no local raw-width override is used.
+        metadata = verify_range_policy({key:observed[key] for key in ('orientation','keeper')},observed,config,now)
+        return metadata['target_half_width_bps']
+
+    def _compound_due(self,bucket: int,tokens: list[str],reserves: list[int],item: dict[str,Any],now: int,
+                      fields: list[str]) -> bool:
+        interval = positive(item.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True)
+        last = positive(self.state['last'].get(f'compound:{bucket}',0),'last compound',zero=True)
+        if now < last+interval: return False
+        if item.get('compound_idle',False):
+            # Only this bucket's attributed balances, never a raw contract
+            # balance or another NFT/bucket's rewards, can become principal.
+            reserves = [amount+int(fields[index],16) for amount,index in zip(reserves,(2,3))]
+            if any(amount >= 1 << 256 for amount in reserves): raise RpcError('Compound amount exceeds uint256')
+        thresholds = item.get('compound_thresholds')
+        if thresholds is not None:
+            if any(currency not in thresholds for currency in tokens):
+                raise ValueError('Missing compound threshold for the actual pool currency')
+            # Raw units belong to one currency only: never sum ETH, ZZZ or a
+            # six-decimal stablecoin, and never silently reuse another's bound.
+            due = any(amount >= positive(thresholds[currency],'compound threshold')
+                      for currency,amount in zip(tokens,reserves))
+        else:
+            threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
+            due = any(amount >= threshold for amount in reserves)
+        if due and item.get('compound_idle',False):
+            chain_last,chain_interval = self._idle_compound_checkpoint(bucket,fields)
+            if now < max(last,chain_last)+max(interval,chain_interval): return False
+        return due
+
     def view(self,name: str,signature: str,*args: int|str) -> int:
         return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
 
@@ -397,6 +517,9 @@ class Keeper:
     def _validate_code_hashes(self) -> None:
         hashes = self.config.get('code_hashes',{})
         targets = dict(self.contracts)
+        if any(({**self.maintenance,**override}).get('compound_idle',False)
+               for override in ({},*self.overrides.values())):
+            targets['idle_compounding_budget'] = address(self.config['idle_compounding_budget'])
         if self.metadata_enabled or (self.state.get('pending') or {}).get('metadata_observation'):
             targets['nft'] = self.metadata_nft
         for name,contract in targets.items():
@@ -551,6 +674,9 @@ class Keeper:
     def submit(self, name: str, signature: str, args: tuple[int|str,...], key: str, *, value: int = 0,
                metadata_observation: dict[str,Any] | None = None, maximum_cost: int | None = None) -> bool:
         if self.state.get('pending'): return False
+        if signature == 'bridgeRewards(uint256,address,bytes32)':
+            raise ValueError('Reward bridge scheduling is retired')
+        self._validate_maintenance_config()
         if self.stop_requested():
             log('shutdown_before_submission',action=key); return False
         self._validate_accounting_version()
@@ -963,6 +1089,7 @@ class Keeper:
 
     def cycle(self) -> None:
         if self.poll_pending(): return
+        self._validate_maintenance_config()
         self._validate_accounting_version()
         if self.canonical_state() != 0: return
         paused = self.view('access','paused()') != 0
@@ -993,6 +1120,7 @@ class Keeper:
             self.state['bucket_cursor'] = slot+1
             item = {**self.maintenance,**self.overrides.get(str(bucket),{})}
             try:
+                self._validate_maintenance_settings(item)
                 fields,tokens = self._bucket(bucket)
                 status = int(fields[7],16)
                 if status not in (1,2,3,4,6): continue
@@ -1003,24 +1131,17 @@ class Keeper:
                 if status == 1:
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
+                    if not preparing and self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):
+                        if self.submit('strategy','applyKeeperRange(bytes32)',('0x'+fields[0],),f'range_policy:{bucket}'): return
                     if not preparing and self.view('strategy','needsRebalance(uint256)',bucket):
                         if self.submit('vault','rebalance(uint256,uint128,uint256)',(bucket,minimum,deadline),f'rebalance:{bucket}'): return
                     if not preparing and item.get('compound',True):
                         reserves = [self.view('fees','compoundBalance(uint256,address)',bucket,t) for t in tokens]
-                        threshold = positive(item.get('minimum_compound_units',1),'minimum_compound_units')
-                        if max(reserves,default=0) >= threshold:
+                        if self._compound_due(bucket,tokens,reserves,item,now,fields):
                             if self.submit('compounder','compound(uint256,uint128,uint256)',(bucket,minimum,deadline),f'compound:{bucket}'): return
                     interval = positive(item.get('harvest_interval_seconds',14400),'harvest_interval_seconds')
                     if item.get('harvest',True) and now-int(self.state['last'].get(f'harvest:{bucket}',0)) >= interval:
                         if self.submit('vault','collectFees(uint256,uint256)',(bucket,deadline),f'harvest:{bucket}'): return
-                # Funded satellite rewards remain deliverable after principal leaves.
-                for remote in item.get('reward_routes',[]):
-                    token = self._asset(remote['token'])
-                    personal = self.view('fees','remoteIndividual(uint256,address)',bucket,token)
-                    shared = self.view('fees','remoteCollective(uint256,address)',bucket,token)
-                    if personal+shared >= positive(remote['minimum_units'],'minimum_units'):
-                        if self.submit('fees','bridgeRewards(uint256,address,bytes32)',(bucket,token,remote['route_id']),
-                            f'bridge_rewards:{bucket}:{token}',value=positive(remote.get('native_fee_wei',0),'native_fee_wei',zero=True)): return
             except (ValueError,RpcError) as exc:
                 self.skipped_buckets += 1
                 log('bucket_skipped',bucket_id=str(bucket),**error_context(exc))

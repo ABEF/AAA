@@ -54,3 +54,6 @@ reports/onchain-safety/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 
 # Preserve exact pre-production audit receipts and native diagnostic spacing.
 reports/preproduction-audit-20261025/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact liquidity-placement, range and keeper scoped receipts.
+reports/liquidity-operations-20261025/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

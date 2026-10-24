@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**18 To do | 28 In progress | 19 Implemented locally**
+**18 To do | 28 In progress | 21 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -40,6 +40,7 @@ Custody, ownership and reward accounting.
   - Bind the caller maximum contribution-loss BPS or an equivalently rigorous expectation to exact signed calldata; compare it with actual captured policy before transfers. A governance raise before inclusion must not override the caller limit; preserve stricter minima, final price/cap fingerprints and rollback.
   - Update Entry version, exact ABI/trace/preparation/inventory and approved wallet profile coherently. No silent legacy or direct-Vault fallback may claim the stronger guarantee. Preserve existing Anvil identities/journals and leave public signing disabled until separately authorized/qualified.
   - Improve a focused adversarial harness first: governance raises/lowers policy between review and inclusion, pool/range/price changes, callback changes, expired reviews, native/token inputs, activation and growth. Prove pre-transfer refusal and unchanged balances/LP/eligibility on mismatch; run affected checks and normal size gates only after implementation.
+  - Registry creation remains close to EIP-3860 because it embeds Entry creation. Any reviewed-Request extension needs a size-safe design and fresh normal Registry/initcode/Entry/Vault gas gates; no limit increase, silent helper alias or approval-binding bypass.
 
   </details>
 
@@ -89,7 +90,7 @@ Custody, ownership and reward accounting.
   <summary>Acceptance criteria</summary>
 
   - Keep the exact PoolKey `(address(0), ZZZ, 10020, 200, address(0))`, recomputed pool ID, creation transaction, confirmed block/hash, dependency runtimes and venue wiring bound to the selected integration. The earlier proposed 0.30% pool and Pons creator agreement are superseded, not current configuration.
-  - Review hookless native admission and exact settlement, actual fee collection, harvest-before-increase, source-to-LP entry, moves/exits, donations, adverse callbacks and cleared approvals. Do not weaken the 1% contribution or fixed 3% ordinary maintenance limit; gas stays separate.
+  - Review hookless native admission and exact settlement, actual fee collection, harvest-before-increase, source-to-LP entry, moves/exits, donations, adverse callbacks and cleared approvals. Respect the user-approved current2% contribution default and3% ordinary maintenance default, their captured policies and stronger venue/caller limits; gas stays separate.
   - Qualify complete ETH/ZZZ/USDG/USDC quotes with independent prices and actual conversion depth. A higher pool fee applies only to swapped amounts but may make some full input routes unavailable; fail closed rather than subsidize execution from incumbents.
   - Qualify actual current-owner ETH settlement, keeper/API configuration, one contribution pool at a time, release inventory and operating gas. Native/WETH or fee-tier moves require initialized admitted destinations, actual Vault-owned LP and a deliberate contribution/route cutover.
   - Retain [historical Pons research](docs/ROBINHOOD_POOL.md) and source-bound old evidence. Use [current evidence](reports/hookless-pool/VERIFICATION.md) for changed-source checks; synthetic fork prices, authorities/VRF and locally initialized destinations are not production service qualification. No public deployment/transaction or existing 8902 reset is authorized.
@@ -154,7 +155,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-native-custody-recovery"></a>
 
-- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native accounting V2 is implemented in the undeployed candidate: actual ETH funding/custody, indexed fee rewards, reserves, raw exit/return and versioned canonical backing/abort. Focused local evidence and explicit API/keeper version profiles exist. Complete the explicit atomic ETH/WETH boundary, website profile, final native fork/gas/service qualification and independent review before sealing; legacy-schema import is rejected.
+- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native accounting V2 is implemented in the undeployed candidate: actual ETH funding/custody, indexed fee rewards, reserves, raw exit/return and versioned canonical backing/abort. Focused local evidence and explicit API/keeper version profiles exist. Qualify the native website profile, final fork/gas/services and independent review. Atomic ETH/WETH moves and legacy-schema import remain unsupported; approved external custody is the selected route for external token/chain conversion, not an integrated bridge requirement.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -170,7 +171,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-post-seal-configuration"></a>
 
-- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Bounded future VRF tuning, buyback ceilings, typed v3/v4 conversion routes and governance-adjustable loss limits are implemented locally. Defaults are 1% / 1% / 3%, hard maximum 10%, immediate authority, captured in-progress/approved minima and separate gas. Actual route/service/native inventory qualification and independent review remain open before sealing.
+- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Bounded future VRF tuning, buyback ceilings, typed v3/v4 conversion routes and governance-adjustable loss limits are implemented locally. Defaults are 2% / 1% / 3%, hard maximum 10%, immediate authority, captured in-progress/approved minima and separate gas. Actual route/service/native inventory qualification and independent review remain open before sealing.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -180,7 +181,7 @@ Custody, ownership and reward accounting.
   - Implemented Buyback.setOperatingTradeUSD(uint256) selects zero through immutable maxTradeUSD, defaulting to that hard maximum. Zero stops execution before oracle/reserve calls; both setters allow ordinary pause and reject preparation/canonical locks/reentry. Resize/remove keeper tasks after lowering/stopping. Allocation and reserves stay fixed; the separately approved governed execution policy is described below.
   - Keep ownership, revealed rarity/artwork, accrued balances, backing and allocation guarantees protected. No reset, deletion, arbitrary calls/sweep or holder redemption. New compatible code uses reviewed handoff, not silent reinterpretation of old state.
   - [Typed v4 routes](docs/TYPED_V4_ROUTES.md) are implemented through immutable fixed-parent single-hop helpers with exact native/ERC20 settlement and explicit preparation/keeper profiles. Actual routes, feeds and providers still require qualification; no arbitrary hook/router/recipient/sweep.
-  - [Governed execution-loss policy](docs/EXECUTION_LOSS_POLICY.md): Budget setLossLimits(contribution,maintenance) and each converter setConversionLossBps select 0..1000 bps. Defaults 100/100/300. Captured operation policies and original custody approval floors persist; raw emergency remains separate. Verify current settings and reconcile pending reviews; no cumulative cap is added.
+  - [Governed execution-loss policy](docs/EXECUTION_LOSS_POLICY.md): Budget setLossLimits(contribution,maintenance) and each converter setConversionLossBps select 0..1000 bps. Defaults 200/100/300. Captured operation policies and original custody approval floors persist; raw emergency remains separate. Verify current settings and reconcile pending reviews; no cumulative cap is added.
   - [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) is implemented as schema-5 inventory and read-only same-block observations. Complete the actual pinned deployment, route/feed/service and independent review records; implementing a checker does not qualify its inputs or authorize release.
 
   </details>
@@ -209,7 +210,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-price-security"></a>
 
-- [x] **[Dual-source USD checks and factual LP contribution security](docs/PRICE_SECURITY.md)** - Implemented. Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before transfers/conversion; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open. User-selected source disagreement tolerance is 3% (300 bps); the separate default 1% execution floor still applies.
+- [x] **[Dual-source USD checks and factual LP contribution security](docs/PRICE_SECURITY.md)** - Implemented. Undeployed pricing-V2 implementation requires two reviewed USD sources per priced asset. Entry freezes source/pair prices and contribution/venue limits before transfers/conversion; a fixed Oracle-created companion checks consistent NAV, conservative upper-input/lower-LP execution floors and unchanged final fingerprints/spot alongside exact physical LP/balance checks. Live source qualification and independent audit remain open. User-selected source disagreement tolerance is 3% (300 bps); the separate default 2% contribution execution floor still applies.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -225,7 +226,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-nft-lifecycle"></a>
 
-- [x] **[Minting, activation & NFT ownership](src/ZZZVault.sol)** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with a governed deployed-LP floor (99% by default, maximum 10% execution loss). Rights follow the NFT.
+- [x] **[Minting, activation & NFT ownership](src/ZZZVault.sol)** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with a governed deployed-LP floor (98% by default, maximum 10% execution loss). Rights follow the NFT.
 
 <a id="task-reward-ledgers"></a>
 
@@ -255,12 +256,39 @@ Custody, ownership and reward accounting.
 
 <a id="task-governed-loss-limits"></a>
 
-- [x] **[Governance-adjustable execution-loss ceilings](docs/EXECUTION_LOSS_POLICY.md)** - Implemented. All three categories are configurable after sealing by immediate governance, up to a hard 10%. Defaults stay 1% contribution, 1% conversion and 3% maintenance. Captured policy, original pending custody floors, independent caller/venue guards and separate gas remain.
+- [x] **[Governance-adjustable execution-loss ceilings](docs/EXECUTION_LOSS_POLICY.md)** - Implemented. All three categories are configurable after sealing by immediate governance, up to a hard 10%. Defaults stay 2% contribution, 1% conversion and 3% maintenance. Captured policy, original pending custody floors, independent caller/venue guards and separate gas remain.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Budget.setLossLimits sets both contribution/maintenance values; each converter.setConversionLossBps is separate. Values are 0-1000 bps, with events, authorization/lifecycle guards and focused callback/floor/approval tests. Stronger venue/caller minima can still block execution.
+
+  </details>
+
+<a id="task-liquidity-placement-idle"></a>
+
+- [x] **[Bounded placement and attributed-idle reinvestment](docs/IDLE_AND_DUST.md)** - Implemented. Implemented candidate uses at most two actual-state balancing passes, skips precision corrections, and reinvests attributed idle through guarded compound with a successful-operation cooldown. Contribution default is now2%; conversion1% and maintenance3% are unchanged. Scoped installed-v4, rollback, cooldown and normal-size verification is recorded; real routes, depth/gas economics and independent qualification remain open.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification](reports/liquidity-operations-20261025/VERIFICATION.md) must prove the former shallow selected-fee case at an explicitly retained1% cap, thinner-market rejection, second-swap rollback and actual idle-only LP growth. Preserve exact principal shares, incumbent fees, royalties, prefunds, approvals and fixed-price budgets; do not count idle as marginal deployed LP.
+  - Keep classified reward fractions/division dust, compound/buyback and quarantined/unknown funds backed. No universal clear/sweep, operator dust recipient, principal redemption or claim haircut. Contribution default2%, conversion1%, maintenance3%, hard governed maxima10%; gas separate.
+  - Qualify full actual target-chain routes, independent sources, real depth/ticks, maximal cold gas and economic thresholds. Substituted maximum-state gas and actual two-pass small-fixture gas are separate evidence; do not combine them into a production worst-case claim.
+
+  </details>
+
+<a id="task-adaptive-range-policy"></a>
+
+- [x] **[Reviewed keeper selection of ZZZ-price ranges](docs/RANGE_POLICY_UPDATES.md)** - Implemented. Explicit version1 orientation supports ZZZ priced in ETH while preserving legacy raw-ratio profiles. Default-disabled governance policy lets the keeper select only±25%/±50% using reviewed displacement, configuration and cooldown rules; ordinary guarded rebalance applies physical ticks separately. Scoped range/fuzz, API/keeper and normal-size verification is recorded; no production thresholds or service activation are assumed.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Require explicit orientation/profile/runtime pins and reviewed policy hash. Inverse endpoints round outward. Bind every non-width pool parameter; changed configuration, disabled/paused/canonical/preparation states, stale prices, cooldown and unapplied previous ticks block automatic selection.
+  - Keeper supplies a pool only, never arbitrary width/config/assets/recipient or a force-rebalance bypass. Selection is one transaction; actual normal rebalance is separate and retains3% default captured maintenance, caller/venue minima, actual backing and idle guards.
+  - Qualify threshold/cadence and narrowing/widening economics, MEV and turnover on actual markets. The signal is displacement from the last applied center, not continuous volatility or proof of sustained calm; a ten-minute poll is not an execution guarantee.
+  - Use range_policy_version1 in API/schema5 current inventory and exact Strategy pins, complete reviewed/observed per-pool metadata and typed events. Historical version0 keeps its original raw semantics and getters; no silent migration of journals or deployed contracts.
 
   </details>
 
@@ -821,13 +849,13 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Internal 2026-10-24 review found and fixed ERC20 destination fee sizing; no new cap or authorization bypass was found in the reviewed diff. Earlier fork receipts retain their old source scope; use the new focused source-bound audit evidence rather than treating older passes as a current full regression.
   - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
-  - The [October25 selected-fee local composition](reports/preproduction-audit-20261025/REVIEW.md#a-07-thin-market-activation-feasibility-remains-open) exposes an honest thin-market native activation that retains about$99.38 but deploys only$98.85 of$100; the99% guard reverts safely. Qualify full-trace feasibility at actual liquidity/ticks/fees before wallet review, preserve exact rollback and existing approvals, and assess bounded post-swap ratio correction only if it can improve deployed LP within the same captured budget. Never weaken the floor or count incumbent/idle assets as new LP; deeper mock liquidity is not launch qualification.
+  - Historical thin-market finding A-07: the original one-pass native fixture retained about$99.38 but deployed only$98.85 and safely reverted at1%. The [bounded two-pass candidate](docs/IDLE_AND_DUST.md) addresses ratio drift and the user separately approved2% default; qualify actual markets and complete traces, preserving all guards. Neither a higher cap nor this local correction qualifies every route.
 
   </details>
 
 <a id="task-security-dependencies"></a>
 
-- [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and future bridges for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
+- [ ] **[External dependencies & receipt backing](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - In progress. Review Uniswap v4, Pons, creator payments, tokens/wrappers, oracles, randomness and externally chosen custody/bridge providers for upgrades, compromise, outages and unexpected behavior. Reconcile every asset liability to actual receipts; test quarantine, duplicate/delayed funding, token failure and provider/destination change.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -841,20 +869,20 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
 
 <a id="task-security-chain-recovery"></a>
 
-- [ ] **[Whole-protocol recovery & canonical chain loss](docs/CANONICAL_HANDOFF.md)** - In progress. Same-chain handoff candidate now carries complete ownership, inventory, shares, both reward ledgers and exact backing, with atomic retirement/activation, restored abort and late forwarding. Qualify it and complete cross-chain finality, channel closure and lineage/transport before sealing; post-halt recovery stays deferred.
+- [ ] **[Whole-protocol recovery & canonical chain loss](docs/CANONICAL_HANDOFF.md)** - In progress. Qualify same-chain whole-collection handoff of ownership, inventory, shares, reward ledgers and exact backing, including funded abort and late forwarding. Future-chain NFT/reward transport is deferred optional scope; source-chain LP custody exit does not provide it. Post-halt recovery remains deferred.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Implement and independently qualify the accepted 2026-10-17 direction: planned whole-protocol migration while the source chain works. Preserve canonical NFT ownership and both funded ledgers, not just LP location. Post-halt recovery is deferred; no emergency recovery authority is authorized.
   - For any canonical transfer, specify one successor epoch and source freeze, NFT ownership/traits/shares, LP and royalty accruals/fractions/backing, in-flight messages and old-chain restart/replay policy. A snapshot or remote LP location ACK does not revoke old ownership.
-  - Implement the selected verified-finality requirement: destination activation must authenticate finalized source retirement through an independently qualified chain-specific proof mechanism. No multisig/manual override, timeout activation or signer-attestation fallback is authorized. The concrete verifier/provider and finality configuration remain unselected; source terminal commitment must precede successor rights and cannot be reversed afterward.
+  - Deferred optional future-chain scope, not a current launch/sealing gate: Deferred optional future-chain scope, not a current launch/sealing gate: Implement the selected verified-finality requirement: destination activation must authenticate finalized source retirement through an independently qualified chain-specific proof mechanism. No multisig/manual override, timeout activation or signer-attestation fallback is authorized. The concrete verifier/provider and finality configuration remain unselected; source terminal commitment must precede successor rights and cannot be reversed afterward.
   - Drain original ordered VRF/reveal and resolve in-flight custody/reward messages before freeze. The user selected provider qualification plus reveal drain; no pending-request carry is being added. Preserve exact IDs/traits, remaining supply/quota/inventory, owners and per-asset liabilities/fractions; never recreate balances from website data.
   - Retain safe handling of late old creator/royalty receipts and historical marketplace receivers. No double claims, duplicated canonical NFTs, erased backed obligations, principal refunds or arbitrary administrator transfers.
-  - For principal conversion during relocation, enforce the agreed aggregate 3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards. The implemented atomic local same-pair budget does not yet supply cross-chain aggregate enforcement.
+  - Deferred optional future-chain scope, not a current launch/sealing gate: Deferred optional future-chain scope, not a current launch/sealing gate: For principal conversion during relocation, enforce the agreed aggregate 3% per migrating bucket, gas separate, without offsetting one bucket loss against another bucket gain or spending claimable rewards. The implemented atomic local same-pair budget does not yet supply cross-chain aggregate enforcement.
   - Independently qualify the implemented same-chain cutoff, bounded exact export/import, classified backing, single-successor retirement, full/partial abort and late-forwarding paths. Benchmark atomic cutoff capture, ordered per-domain settlement, eight-row batches, each funding leg and final activation across 1,000 NFTs, four historical buckets, 32 LP assets, reachable funded inboxes and 17 royalty slots under unchanged limits.
-  - Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
-  - Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
+  - Deferred optional future-chain scope, not a current launch/sealing gate: Deferred optional future-chain scope, not a current launch/sealing gate: Implement authenticated closure for historically used bridge channels and separate stable origin lineage from live canonical routing in a new message version. The current direct handoff rejects any legacy bridge activity and an imported successor cannot initiate v3 principal bridging; those restrictions are not a completed future-chain design.
+  - Deferred optional future-chain scope, not a current launch/sealing gate: Deferred optional future-chain scope, not a current launch/sealing gate: Review compatible successor templates, code/configuration commitments and all owner/helper bindings. On 2026-10-17 the user explicitly accepted governance approval of different reviewed replacement code. A malicious approved replacement could divert LP; code hashes alone do not prove nonredeemability. This accepted trust does not waive exact backing, single-successor/source-retirement or verified-finality requirements.
   - Rehearse contract-holder and marketplace escrow compatibility with the new collection address. Import preserves owner addresses without ERC721 callbacks and cannot prove an old escrow can release a replacement NFT. Verify retirement notices, source/destination metadata, old listings and historical royalty receiver forwarding. The [read-only preflight](docs/HOLDER_PREFLIGHT.md) now inventories pinned ownership/code and flags unresolved holders. Repeat after freeze; incomplete coverage or unreviewed escrow release behavior prevents operational sign-off.
   - Historical canonical-handoff qualification recorded 582 regression cases plus 34 focused handoff cases, two opt-in fork setup skips, repaired bridge fixtures and three cold-gas suites. These retain their original source scope. The latest Vault/metadata changes have separate [dynamic-liquidity evidence](reports/dynamic-liquidity/VERIFICATION.md), not a new complete handoff regression. Preserve failed diagnostics, verify exact-commit Ubuntu CI and obtain independent review plus real operating qualification before release.
   - Qualify the selected [provider-and-drain operator policy](docs/OPERATOR_MANUAL.md#whole-collection-replacement) against AUD18-02: no new mints during preparation, all original draws finalized before freeze. An unfulfilled request can still block replacement; document postponement/cancellation and provider escalation. No reroll/admin override/pending-request carry is authorized.
@@ -873,6 +901,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
   - [On-chain safety/cost review](reports/onchain-safety/REVIEW.md) and [scoped verification](reports/onchain-safety/VERIFICATION.md): bounded sequencer calls, fresh memory-only Strategy prices, packed contribution bounds and static-loop reward contexts preserve accounting/rounding/final guards. 145 distinct Solidity cases, 83 backend checks and 37 normal object gates are source-scoped; actual dependencies, target-chain gas and independent audit remain open. No new authority or automatic fallback.
   - Review [the October25 internal audit](reports/preproduction-audit-20261025/REVIEW.md): keeper budget/preflight defects, non-vacuous composed accounting/invariants, current native/schema-5 runbooks, pause-versus-custody authority and captured original floors. These fixes do not prove absence of exploits or close actual services and independent audit.
+  - Review [liquidity operations](reports/liquidity-operations-20261025/REVIEW.md): exact2/1/3defaults, actual-state bounded planning, idle ownership/cooldown, explicit inverse ranges, narrow Strategy-only width callback and strict API/observer/keeper version profiles. Near-limit runtime/initcode and unchanged public-signing restrictions remain release boundaries.
 
   </details>
 
@@ -917,7 +946,7 @@ Decisions and rehearsals before real funds.
 
 <a id="task-asset-liveness-dust"></a>
 
-- [ ] **[Approve reward-token liveness and dust economics](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. Optional royalty-token read failures now defer only new eligibility for that currency, while exact unreadable backing can still block handoff. Sub-20-raw-unit owner dust is bounded per settlement, not cumulatively; qualify every asset before admission.
+- [ ] **[Approve reward-token liveness and dust economics](docs/SECURITY_AUDIT_PLAN.md#5-external-dependencies-and-revenue-accounting)** - To do. Review admitted token upgrade, blacklist, rebase and transfer behavior. Optional royalty-token read failures now defer only new eligibility for that currency, while exact unreadable backing can still block handoff. Sub-20-raw-unit owner dust is bounded per settlement, not cumulatively; qualify every asset before admission. The new [idle and dust guide](docs/IDLE_AND_DUST.md) distinguishes attributed principal reinvestment from reserved fractions, fee dust and quarantines; it adds no arbitrary sweep.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -957,6 +986,7 @@ Decisions and rehearsals before real funds.
   - Add/review authenticated freshness-bounded next-check/last-success telemetry for frontend warnings; do not infer an execution promise from a 600-second poll example. Offline, delayed, paused, pending or budget-limited operation must be explicit. Qualify the new aggregate rebalance guard against the exact keeper deployment.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
   - Review [the October25 keeper audit](reports/preproduction-audit-20261025/services/REVIEW.md) and rehearse original fee-review preservation, canonical signed-cap cost, included/separate L1 fees, legacy missing-review recovery and preflight version refusal on actual Linux/chain services. 199 distinct scoped passes and one Unix-only skip are not that qualification; no running journal was upgraded.
+  - Qualify the new strict maintenance settings, per-currency thresholds/idle Budget pins, successful-operation cooldown and optional reviewed two-width policy on actual Linux/services. New retired bridge scheduling is removed; recovery of original pending hashes remains first, without deletion or resend. Configuration updates do not activate a running service.
 
   </details>
 
@@ -978,47 +1008,42 @@ Decisions and rehearsals before real funds.
 
 ## Future migration
 
-A separate phase. Disabled at initial launch.
+Current source-chain custody and destination qualification, plus explicitly deferred future scope. External token/chain conversion does not relocate NFT ownership or reward accounting.
 
 <a id="task-bridge-operation"></a>
 
-- [ ] **[Qualify bridges & remote compounding](docs/GOVERNED_CUSTODY_HANDOFF.md)** - To do. The governed custody candidate replaces old LP v3 bridge/pair paths. Qualify actual recipients, destination backing/finality, recovery, new inventory and remote reward/compounding services. Whole-collection ownership/ledger handoff remains separate.
+- [ ] **[Optional future bridge and remote accounting design](docs/GOVERNED_CUSTODY_HANDOFF.md)** - To do. Deferred, not a current production/sealing requirement. The operator uses explicit source-chain custody for external bridges or token migration. No integrated bridge, remote NAV/reward continuation or cross-chain NFT ownership relocation is claimed.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Old v3 transport implementations and tests are historical, not current deployed functionality. Use the governed custody runbook and new source-bound evidence.
-  - Preserve NFT shares/ownership and original reward liabilities. Require actual local LP or reviewed finalized remote custody proof; no guessed NAV, timeout recovery or double activation.
-  - Independently qualify provider/admission/finality/channel-closure proofs, custody keys and backing, repeated migration and fail/recover operations. External recipients can divert assets; governance explicitly accepts that custody trust.
-  - Complete the updated production inventory, keeper/API diagnostics, funded remote reward/compound flows and future-chain canonical ownership/ledger migration before claiming production support.
+  - If this scope is requested later, independently design reviewed finality/channel closure, asset backing, replay/canonical uniqueness, authenticated transport, remote reward/compound and full return semantics. No multisig/timeout proof override is preauthorized.
+  - Existing optional remote-proof ABI/scaffolding is disabled and unqualified. Sealing fixes implementations; missing bridge/whole-collection cross-chain capabilities cannot be added merely by changing an address. A future compatible reviewed replacement while the source chain works is a separate project; post-halt recovery is unsolved.
 
   </details>
 
 <a id="task-migration-framework"></a>
 
-- [ ] **[Governed migration framework](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. The governed custody candidate replaces old LP v3 bridge/pair paths. Qualify actual recipients, destination backing/finality, recovery, new inventory and remote reward/compounding services. Whole-collection ownership/ledger handoff remains separate.
+- [ ] **[Qualify source-chain pool moves and custody handoff](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. Guarded local moves and explicit external custody are implemented candidates. Qualify actual source-chain recipients, exact outgoing assets/minima, full recovery and funded local completion. No integrated bridge is required for the current release.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Old v3 transport implementations and tests are historical, not current deployed functionality. Use the governed custody runbook and new source-bound evidence.
-  - Preserve NFT shares/ownership and original reward liabilities. Require actual local LP or reviewed finalized remote custody proof; no guessed NAV, timeout recovery or double activation.
-  - Independently qualify provider/admission/finality/channel-closure proofs, custody keys and backing, repeated migration and fail/recover operations. External recipients can divert assets; governance explicitly accepts that custody trust.
-  - Complete the updated production inventory, keeper/API diagnostics, funded remote reward/compound flows and future-chain canonical ownership/ledger migration before claiming production support.
+  - Use the [governed custody procedure](docs/GOVERNED_CUSTODY_HANDOFF.md): ordinary same-actual-pair move, paused all-ZZZ exit or separately approved raw no-swap exit, exact classified backing and full funded return/completion. Preserve original captured minima, NFT shares, accrued LP/royalty liabilities and transaction history.
+  - Current release is source-chain custody only: destinationChain equals the home chain, destinationPool zero for custody-only exit, destinationCustody equals the approved recipient, verifier and verifierCodeHash zero. External custody recipient performs any token exchange or bridge; source cannot force return or prove remote NAV/revenue.
+  - No automatic fallback from a failed normal exit to raw mode, arbitrary sweep, guessed remote value, holder redemption, liability haircut or receipt-based claim of completed migration. Independent custody/key/venue/token and target-chain operating review remain required.
 
   </details>
 
 <a id="task-destination-slots"></a>
 
-- [ ] **[Reserve destination capacity](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. The governed custody candidate replaces old LP v3 bridge/pair paths. Qualify actual recipients, destination backing/finality, recovery, new inventory and remote reward/compounding services. Whole-collection ownership/ledger handoff remains separate.
+- [ ] **[Qualify destination LP capacity and contribution cutover](docs/GOVERNED_CUSTODY_HANDOFF.md)** - In progress. Permanent bucket reservations and one contribution pool at a time are implemented. Qualify actual destination LP, available capacity, preserved bucket shares and deliberate contribution/input-route switches after movement.
 
   <details>
   <summary>Acceptance criteria</summary>
 
-  - Old v3 transport implementations and tests are historical, not current deployed functionality. Use the governed custody runbook and new source-bound evidence.
-  - Preserve NFT shares/ownership and original reward liabilities. Require actual local LP or reviewed finalized remote custody proof; no guessed NAV, timeout recovery or double activation.
-  - Independently qualify provider/admission/finality/channel-closure proofs, custody keys and backing, repeated migration and fail/recover operations. External recipients can divert assets; governance explicitly accepts that custody trust.
-  - Complete the updated production inventory, keeper/API diagnostics, funded remote reward/compound flows and future-chain canonical ownership/ledger migration before claiming production support.
+  - Use the [governed custody procedure](docs/GOVERNED_CUSTODY_HANDOFF.md): ordinary same-actual-pair move, paused all-ZZZ exit or separately approved raw no-swap exit, exact classified backing and full funded return/completion. Preserve original captured minima, NFT shares, accrued LP/royalty liabilities and transaction history.
+  - Reserve/admit the actual local destination, verify custody epoch/accounting currencies, actual minted LP and unchanged shares, then switch the sole contribution pool and qualified routes. Different actual pairs require the supported reviewed external-custody workflow; configuration does not add an atomic pair converter.
 
   </details>
 
@@ -1027,4 +1052,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6a6efd4df675644377aed4ead8e62fef942afd95be9ebb6f190ca48799fe0716`.
+Snapshot SHA-256: `0f3de2cbe4098557f3ae0a54a063058deab0e1e777e18589bcf1825f116dfcc7`.

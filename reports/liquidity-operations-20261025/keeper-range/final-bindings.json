@@ -1,0 +1,29 @@
+{
+  "owned_current_sha256": {
+    "keeper/monitor.py": "43ac06e534b5d5723995b4888f6aea07f6773084f57ae1e6c6d5783b28b0ce8d",
+    "keeper/config.example.json": "c0728cba7e65d040708c7eaa85c4d30888684dc01e09bf47cc4213d805a9bc3f",
+    "docs/RANGE_POLICY_UPDATES.md": "ec14874ac01fd82ecb41381b303672dfd18bd6ef194ff8c80f900e6e6d15b4a3",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZPoolRegistry.sol": "918e7222f6bcb7a5abf6120c81310d121f4a99dac8cd6c97b739c0a5e2df73bc",
+    "test/KeeperRangePolicy.t.sol": "02c31415f38076ed072fc7b858a39515ebaa09f542afedb993a8d11461e133d3",
+    "tests_python/test_keeper.py": "b0888376bd8dbf1d81766a17f46aa7ed6690a024d50ade90551a59c1bd7e0154",
+    "tests_python/test_keeper_canonical.py": "9dca7a563680d33727ee6e493a1e4654a8aa4c33a92efa450e1b3b614592ba1b",
+    "tests_python/test_keeper_preparation.py": "54caf5ebb5e167d22931713ca30fc326048a3e4521e9bc81762d629941e50189",
+    "tests_python/test_keeper_maintenance_policy.py": "b1b2b5b244d545879669e39d92a205cda0c96ac19a3bb0296f12e805d026b787",
+    "tests_python/test_keeper_range_policy.py": "f07c178fd3b95d042a4dcc343eb27bcd04179143ac9b3a723f07f50fa22f0cd9"
+  },
+  "evidence_bindings": {
+    "keeper-final.json": {
+      "count": 39,
+      "mismatches": []
+    },
+    "range-policy-final-inputs.json": {
+      "count": 47,
+      "mismatches": []
+    },
+    "range-size.json": {
+      "count": 42,
+      "mismatches": []
+    }
+  }
+}

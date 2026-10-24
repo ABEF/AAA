@@ -1,0 +1,1171 @@
+{
+  "tests": 278,
+  "passes": 277,
+  "skips": [
+    [
+      "tests_python.test_keeper_recovery.RecoveryTests.test_runtime_permissions_and_symlinks_fail_closed",
+      "Unix runtime ownership and permissions required"
+    ]
+  ],
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 23.64,
+  "source_stable_during_run": true,
+  "inputs": {
+    "keeper/monitor.py": "43ac06e534b5d5723995b4888f6aea07f6773084f57ae1e6c6d5783b28b0ce8d",
+    "keeper/ops.py": "cc8259b31755fdef6a1a4105b8cdcf73413a3cface28fa59e77f4c758349d227",
+    "keeper/probe.py": "fde9ed879569576b58f1a95d14a74866817f7091c00294771de3eb27b7f8cd93",
+    "keeper/royalties.py": "2d28ffc9be3720495fca9c3bffa9dda1d9e8a70b0febc8859613fb3b38e7a91b",
+    "keeper/staging.py": "1c54939a8ea90014203a75f9879e05fe9415823267b7bf0840e8591fce4c7e88",
+    "keeper/staging_observer.py": "f5f5e77aa62605aa54b326e88245ff5d9f8e14bf723dad359786e706cbc021ce",
+    "keeper/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/activation_route.py": "7c45157b284feff04b1ed0e5ddf4e82976ff415fe93474974d78e7a6427e3f83",
+    "zzz_ops/errors.py": "8c7f4a9624cc1f9245d527c42df6acdb7c12fd3b3faab7eb5780eac941b4f4cf",
+    "zzz_ops/ethereum_fees.py": "629826598bb10051c9f0352ff1cbcd48d9ce58a081654ccfcb44a0d71e4f033d",
+    "zzz_ops/holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c",
+    "zzz_ops/price_policy.py": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+    "zzz_ops/production_observer.py": "66357c04853302c8a5ce2e89922b2baa8340c990eb40ff709c1c54258f787250",
+    "zzz_ops/production_v2.py": "bd78deb45e884f4d7519776752a33eea5deaad2e7e6bdf04c6fe79649878bc95",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/revenue_share.py": "e4198531ab3dabddae78583ad1e6b68ef7f30b9aca5a87871d350c51f01b6123",
+    "zzz_ops/rpc.py": "829cdbceafabdf2ba634cfefaa57db1bc7fc6f6a9a80771c7929e131b82be397",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests_python/test_keeper_maintenance_policy.py": "b1b2b5b244d545879669e39d92a205cda0c96ac19a3bb0296f12e805d026b787",
+    "tests_python/test_keeper_range_policy.py": "f07c178fd3b95d042a4dcc343eb27bcd04179143ac9b3a723f07f50fa22f0cd9",
+    "tests_python/test_keeper.py": "b0888376bd8dbf1d81766a17f46aa7ed6690a024d50ade90551a59c1bd7e0154",
+    "tests_python/test_keeper_fees.py": "892d89b92550c59e1bdd3e0fee8d1038a813248edba2e1637de78769f02cc5c8",
+    "tests_python/test_keeper_preparation.py": "54caf5ebb5e167d22931713ca30fc326048a3e4521e9bc81762d629941e50189",
+    "tests_python/test_keeper_canonical.py": "9dca7a563680d33727ee6e493a1e4654a8aa4c33a92efa450e1b3b614592ba1b",
+    "tests_python/test_keeper_native.py": "de3c87393cf62a5b2e2458416e29d50c48a03dc84c3a789fcc3559f87e660e70",
+    "tests_python/test_keeper_reservations.py": "ed31ef44de716607cb66e25d9aa7759c01f89f6d8e8ab755f02fdf66047bfd90",
+    "tests_python/test_keeper_recovery.py": "3d4e26c3f5be168151d672e519a53b82c6144341a9f187f63cd68cfbe61fe2a4",
+    "tests_python/test_keeper_ops.py": "79a944cd7c0844a16f44434886780e4f97920c08b4a6a691e536d766d8bbcc4c",
+    "tests_python/test_metadata_keeper.py": "e57747d3e89888e28be63e447a684fbb7e0a10195ee3c6db40665d9dded90fbe",
+    "tests_python/test_royalty_keeper.py": "4f18a1be9bf7262f51d915744bf3d0db9ab17f853a9cf906cbaaeec7a3df3c5b",
+    "tests_python/test_typed_v4_conversion_keeper.py": "e677005850aa9dac50336870d22321dfca3ded48a5db6269640e49c3bc14461c",
+    "keeper/config.example.json": "c0728cba7e65d040708c7eaa85c4d30888684dc01e09bf47cc4213d805a9bc3f",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZPoolRegistry.sol": "918e7222f6bcb7a5abf6120c81310d121f4a99dac8cd6c97b739c0a5e2df73bc",
+    "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+    "src/ZZZVault.sol": "ad588c01ba2443b6de5a61f632a47887c64139d7aed0d4ef10bcc15d089bb34f"
+  },
+  "cases": [
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_chain_checkpoint_from_another_keeper_and_stronger_pool_cooldown_are_respected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_idle_and_released_reserve_can_reach_same_currency_threshold_together",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_idle_does_not_schedule_by_default_or_below_each_currency_threshold",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_idle_only_schedules_same_compound_without_raw_balance_or_outgoing_value",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_opt_in_requires_explicit_threshold_interval_and_reviewed_pin",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_pause_and_preparation_never_read_idle_capability_or_schedule",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperIdleCompoundingPolicyTests.test_wrong_runtime_capability_parent_or_unrepresentable_checkpoint_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_bad_threshold_maps_fail_before_work",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_configuration_rejects_ambiguous_boolean_and_liquidity_bounds",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_confirmed_compound_checkpoint_controls_optional_interval",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_empty_legacy_route_list_remains_compatible_and_never_reads_bridge",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_missing_currency_threshold_fails_closed_without_simulation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_native_currency_is_explicit_and_versioned",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_pending_receipt_recovery_survives_retired_route_configuration",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_rebalance_remains_eligible_during_compound_interval",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_retired_bridge_configuration_and_direct_submission_are_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_maintenance_policy.KeeperMaintenancePolicyTests.test_thresholds_are_currency_specific_and_not_added_across_decimals",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_configuration_change_or_runtime_mismatch_defers_selection",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_disabled_historical_profile_never_calls_new_getters",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_explicit_version_and_boolean_cannot_be_guessed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_only_pool_is_submitted_not_arbitrary_width_or_other_configuration",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_pause_and_preparation_keep_selection_off",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_policy_abi_and_bounds_failure_never_reaches_signing_or_other_work",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_preparation_guard_covers_direct_range_submission_before_simulation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_range_policy.KeeperRangePolicyTests.test_zero_target_falls_through_to_normal_rebalance",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_bad_chain_state_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_broadcast_state_durable_before_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_cast_cli_accepts_generated_command_without_signing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_changed_code_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_confirmed_cost_is_applied_exactly_once",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_cost_cap",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_default_dry_run_never_signs",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_departed_groups_never_schedule_retired_bridge_operations",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_failed_checkpoint_preserves_in_memory_pending_and_costs",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_failed_tx_not_marked_success",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_gas_cap",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_gas_price_cap",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_head_retreat_below_confirmation_depth_preserves_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_included_policy_rejects_conflicting_extra_fee",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_inclusion_day_cost_blocks_new_day_budget_overspend",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_incomplete_receipt_never_clears_pending_or_assumes_free_gas",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_insufficient_confirmations_waits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_invalid_receipt_status_and_zero_gas_fail_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_live_command_binds_sender_and_removes_ambient_wallet_overrides",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_live_requires_explicit_review",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_missing_and_dormant_groups_do_not_bridge_rewards",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_missing_transaction_identity_and_inclusion_fields_fail_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_noncanonical_receipt_quantities_fail_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_numeric_limits_reject_non_integer_json_values",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_optional_l1_fee_absent_but_explicit_zero_effective_price_supported",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_ordinary_receipt_reorg_after_transaction_read_retains_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_pending_transaction_inclusion_and_gas_limit_match_receipt",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_pending_waits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_receipt_header_number_is_validated",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_receipt_reorg_not_confirmed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_receipt_sender_target_and_hash_are_required_to_match",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_recovery_accepts_verified_pending_transaction",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_recovery_rejects_unknown_transaction_without_overwriting_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_recovery_rejects_wrong_candidate_without_overwriting_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_reverted_action_cannot_immediately_spend_again",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_reviewed_separate_l1_fee_cannot_be_omitted",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_simulation_failure_never_signs",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_stale_head_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_success_accounts_actual_cost",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_timeout_preserves_ambiguous_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_unknown_resolve_hash_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_valid_code_hash_accepted",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_wrong_calldata_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_wrong_receipt_transaction_hash_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_wrong_sender_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_wrong_transaction_hash_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.KeeperTests.test_wrong_value_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_active_group_missing_lp_never_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_bucket_override_changes_bounds_without_manual_inventory",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_compound_reads_actual_local_pool_tokens",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_duplicate_inventory_ids_fail_before_submission",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_empty_external_receiver_does_not_create_transaction",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_empty_inventory_submits_nothing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_pending_rewards_sync_before_lp_maintenance",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_receiver_binding_mismatch_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_receiver_pending_malformed_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_rewards_can_sync_paused_and_remote",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_sync_can_be_explicitly_disabled",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_sync_flag_rejects_non_boolean_configuration",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_sync_keeps_durable_pending_identity_before_signing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_invalid_scan_limits_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_inventory_above_reviewed_limit_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_legacy_manual_nft_config_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_live_submission_persists_advanced_cursor_before_signing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_malformed_group_is_skipped_and_cursor_advances",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_native_pool_uses_wrapped_accounting_asset_without_resorting",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_noncanonical_token_address_never_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_one_bad_group_does_not_starve_other_groups",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_one_pool_operation_does_not_scan_nft_ids",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_outbound_group_never_rebalances_compounds_or_harvests",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_group_keeps_accounting_and_provenance_validation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_group_never_runs_lp_upkeep_even_with_reserves",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_group_with_live_lp_fails_before_any_receiver_submission",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_pending_rewards_sync_while_paused_or_unpaused",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_paused_protocol_scans_receivers_without_lp_or_bridge_operations",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_pending_broadcast_stops_discovery",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_persisted_state_cannot_be_reused_for_another_vault",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_pool_identity_mismatch_never_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_pool_occupancy_mismatch_never_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_repeated_cycles_rotate_even_when_each_pool_needs_work",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_restart_retains_scan_cursor",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_scan_budget_limits_contract_reads",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_unknown_or_legacy_state_is_not_silently_reused",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_wrong_native_wrapper_or_accounting_policy_never_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_zero_inventory_id_fails_before_submission",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_zero_share_group_never_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_base_fee_above_signed_cap_is_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_budget_policy_change_does_not_reinterpret_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_changed_gas_or_fee_review_keeps_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_dynamic_fee_cap_binds_canonical_base_fee",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_dynamic_reported_price_is_not_actual_cost",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_final_canonical_base_fee_change_is_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_invalid_priority_or_unknown_type_is_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_legacy_pending_review_is_not_invented",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_legacy_price_must_match_signed_gas_price",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_original_fee_policy_survives_current_config_change",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_pending_cost_ceiling_cannot_be_malformed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_reorg_during_last_read_preserves_fee_budget",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_revert_charges_gas_once_without_native_value",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_separate_l1_fee_cannot_exceed_captured_allowance",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_signed_chain_does_not_inherit_rpc_chain",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_submit_saves_fee_review_before_external_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_fees.KeeperSignedFeeTests.test_typed_missing_chain_id_is_not_inferred",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_all_new_upkeep_selectors_are_deferred_before_simulation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_harvest_can_use_actual_submission_path_during_preparation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_metadata_refresh_remains_available_during_preparation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_pending_recovery_is_not_blocked_by_unavailable_preparation_getter",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preflight_identifies_intentional_restriction_without_changing_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparation_cancellation_restores_current_maintenance",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparation_observation_logs_only_transitions",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparation_start_during_last_balance_read_prevents_durable_intent",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparation_unknown_at_final_read_prevents_durable_intent",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_keeps_funded_inbox_settlement_available",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_keeps_harvest_available",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_refuses_retired_reward_scheduling_without_sending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_preparing_skips_rebalance_compound_buyback_and_keeps_healthy_observation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_preparation.KeeperPreparationTests.test_unknown_or_malformed_preparation_abi_never_reaches_simulation_or_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_abort_restores_maintenance_without_reinitializing_recovery_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_confirmed_receipt_is_saved_before_unavailable_lifecycle_getter",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_every_locked_state_stops_every_new_action_before_simulation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_frozen_metadata_cycle_never_scans_or_submits",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_lifecycle_observation_logs_transitions_only",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_lock_at_last_balance_read_prevents_durable_intent_and_signing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_lock_during_gas_estimation_stops_before_dry_run_or_intent",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_locked_cycle_never_discovers_pools_or_metadata",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_locked_observation_is_explicit_in_health_without_counting_a_keeper_crash",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_missing_getter_at_final_read_prevents_intent",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_missing_lifecycle_health_field_cannot_assert_compatibility",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_pending_reconciliation_does_not_depend_on_lifecycle_getter",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_preflight_reports_locked_lifecycle_without_writes_or_signing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_canonical.KeeperCanonicalTests.test_unknown_or_malformed_state_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_contract_zero_addresses_and_second_currency_remain_invalid",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_legacy_state_missing_version_is_not_silently_native",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_missing_version_getter_fails_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_buyback_is_a_currency_argument_not_transaction_value",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_pool_compound_reads_zero_currency_without_wrapper",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_profile_rejects_weth_normalized_accounting",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_version_requires_exact_reviewed_runtime_pin",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_only_reviewed_asset_argument_positions_accept_zero",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_pending_reconciliation_precedes_version_gate",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_persisted_version_prevents_reinterpreting_old_pending_journal",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_unsupported_or_bool_versions_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_version_mismatch_stops_before_scheduling",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_reservations.KeeperReservationTests.test_one_slot_scan_persists_progress_past_none_before_next_active_cycle",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_reservations.KeeperReservationTests.test_reserved_none_before_active_is_skipped_without_degradation_or_starvation",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_confirmed_checkpoint_reorg_blocks_all_work",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_corrupt_counters_cannot_reset_budget",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_gas_cap_is_visible_as_degraded_health",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_health_path_cannot_overwrite_recovery_or_lock",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_health_storage_failure_stops_before_work",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_invalid_fee_policy_and_cooldown_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_legacy_state_without_nonce_blocks_live_start",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_live_missing_state_fails_before_signer_or_rpc",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_malformed_gas_fields_never_sign",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_nonce_drift_pending_unknown_or_low_balance_never_signs",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_pending_intent_save_failure_never_invokes_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_pending_receipt_does_not_erase_a_reorged_prior_checkpoint",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_receipt_checkpoint_loss_blocks_used_live_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_restore_keeps_pending_counters_and_cursor",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_rpc_failure_health_and_recovery",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_runtime_permissions_and_symlinks_fail_closed",
+      "status": "skip",
+      "reason": "Unix runtime ownership and permissions required"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_safe_context_has_no_exception_content",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_secret_paths_cannot_be_health_output",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_shutdown_during_preflight_stops_before_intent_and_signing",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_skipped_bucket_is_degraded_and_pending_is_not_healthy",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_unexpected_failure_halts_instead_of_retrying",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_unqualified_network_fees_block_live_before_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_unused_signer_explicit_bootstrap_and_no_overwrite",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_recovery.RecoveryTests.test_used_signer_cannot_initialize",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_dry_run_requires_explicit_health_mode",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_first_pending_cycle_has_actionable_health_reasons",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_future_heartbeat_and_missing_counters_do_not_pass",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_healthy_requires_fresh_live_identity_and_success",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_missing_or_corrupt_health_never_looks_healthy",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_preflight_cannot_approve_wrong_native_accounting_abi",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_preflight_is_read_only_and_never_calls_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_preflight_low_balance_or_revoked_role_cannot_pass",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_preflight_refuses_missing_state_nonce_drift_or_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_preflight_unqualified_fee_or_review_cannot_pass",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_snapshot_corruption_age_configuration_and_identity",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_snapshot_is_exclusive_and_never_overwrites_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_keeper_ops.OpsTests.test_snapshot_preserves_pending_budget_and_omits_secrets",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_all_metadata_getters_use_one_confirmed_block",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_ambiguous_broadcast_blocks_resubmission_and_keeps_snapshots",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_availability_change_triggers_refresh_even_with_same_stage",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_changed_nft_or_identity_rejected_without_resetting_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_configured_refresh_range_limit_is_respected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_confirmation_depth_lost_after_metadata_candidate_preserves_all_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_controller_module_vault_and_chain_bindings_fail_closed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_corrupt_evolution_and_boolean_words_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_corrupt_minted_count_or_extra_abi_word_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_corrupt_persisted_baseline_is_rejected_without_reset",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_corrupt_receipt_snapshot_retains_pending_without_false_checkpoint",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_disabled_by_default_preserves_legacy_state_shape",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_disabling_feature_preserves_ambiguous_pending_and_deployment_identity",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_disabling_feature_still_reconciles_existing_pending_snapshot",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_dry_run_does_not_mark_notified_or_sign",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_empty_collection_has_no_notification",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_failed_metadata_checkpoint_retains_baseline_pending_and_costs",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_gas_and_cost_rejections_do_not_notify_or_sign",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_hashed_ids_are_discovered_but_calldata_contains_ordinals",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_invalid_flags_and_scan_limits_are_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_invalidated_trigger_forgets_prior_fingerprint_before_retry",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_later_reorg_of_confirmed_baseline_triggers_new_notification",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_live_nft_runtime_hash_is_checked_outside_contract_map",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_metadata_notifications_remain_available_during_strategy_pause",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_metadata_priority_alternates_with_pool_maintenance",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_missing_nft_runtime_hash_rejected_in_live_mode",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_observation_reorg_after_submission_does_not_apply_baseline",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_observation_reorg_during_scan_fails_before_submission",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_old_observation_confirmation_is_retried",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_pending_observations_are_durable_before_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_receipt_reorg_during_confirmation_keeps_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_receipt_reorg_retains_pending_and_empty_baseline",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_receipt_snapshot_prevents_return_to_trigger_stage_from_being_suppressed",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_reorg_after_metadata_candidate_preserves_all_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_restart_preserves_bounded_metadata_cursor",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_reverted_transaction_retries_without_advancing_baseline",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_round_robin_cursor_progresses_without_false_success",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_simulation_failure_preserves_empty_notified_baseline",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_simultaneous_observation_and_receipt_reorg_keeps_pending",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_smaller_notification_batches_cannot_starve_unnotified_tail",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_stage_increase_and_decrease_trigger_only_changed_range",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_success_updates_baseline_only_after_matching_confirmed_receipt",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_tampered_pending_range_cannot_commit_other_snapshots",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_trait_reveal_change_is_observed_without_evolution_change",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_unchanged_stage_and_availability_skip_notification",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_wrapping_scan_cannot_starve_low_ordinals_behind_changing_prefix",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_wrong_ordinal_or_duplicate_token_id_rejected",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_metadata_keeper.MetadataKeeperTests.test_wrong_transaction_identity_never_applies_snapshots",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_codec_matches_solidity_dynamic_layout",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_codec_rejects_duplicate_unsorted_empty_or_large_batch",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_currency_failure_rotates_without_destroying_nonce_state",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_default_disabled",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_dry_run_uses_common_simulation_without_signer",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_failed_swap_does_not_broadcast_or_erase_rights",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_missing_pins_and_malformed_config_fail",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_pinned_scan_prepares_exact_batch_and_gas_is_separate",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_preparation_blocks_submission",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_reorg_or_binding_change_rejects",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_royalty_keeper.RoyaltyKeeperTests.test_small_batch_waits_or_recovers_membership",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_bad_native_source_zero_route_or_unknown_profile_rejects_config",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_current_governed_cap_uses_pinned_value_and_zero_is_strict",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_disabled_v4_route_defers_without_native_quote_or_send",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_missing_kind_does_not_fallback_to_legacy_route",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_native_lp_profile_preserves_non_royalty_eligibility_and_gas_budget",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_native_profile_pins_helper_and_its_fixed_parent",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_native_profile_uses_exact_route_helper_pins_and_native_quote",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_new_v3_profile_explicitly_uses_governed_cap_without_v4_route",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_policy_length_source_output_or_validation_mismatch_rejects",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_switching_profile_cannot_reinterpret_existing_scan_identity",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_weth_source_in_explicit_v4_profile_is_swapped_not_unwrapped",
+      "status": "pass"
+    },
+    {
+      "test": "tests_python.test_typed_v4_conversion_keeper.TypedV4ConversionKeeperTests.test_wrong_hard_ceiling_or_excess_operating_cap_rejects",
+      "status": "pass"
+    }
+  ],
+  "scope": "Offline decoded RPC/mock keeper checks plus actual pinned cast help parser; no signing, Unix rehearsal, running service or public network."
+}

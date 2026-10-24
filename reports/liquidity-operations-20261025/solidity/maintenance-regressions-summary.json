@@ -1,0 +1,146 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 267.95,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\liquidity-idle-20261025\\maintenance-regressions-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "VaultAccountingTest|DynamicAccountingTest|MigrationBudgetAdversarialTest|CombinedCapacityGasTest",
+    "--json",
+    "--match-test",
+    "test(Budget|FreshHarvestCompound|FundedReward|CloseCallback|HarvestCallback|MintCallback|Compounding|FeesNotPrincipal|ActivationLeaves|CompoundAndLater|Cold(Activation|IncumbentTopUp))"
+  ],
+  "cases": [
+    {
+      "suite": "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest",
+      "test": "testColdActivationAtCombinedBucketAssetAndReceiverCaps()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest",
+      "test": "testColdActivationWithEveryHistoricalRewardIndexPopulated()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest",
+      "test": "testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest",
+      "test": "testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/DynamicAccounting.t.sol:DynamicAccountingTest",
+      "test": "testCompoundAndLaterContributionKeepIncumbentValueAndEarnedRights()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetCannotBeArmedOrFinalizedByAnotherCaller()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetCountsAttributedIdleAndAllowsExactFivePercentIdle()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetMigrationBlocksCloseCallbackReentry()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetRejectsStackedCloseSwapAndMintLossAtomicallyThenAllowsRetry()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetResumeStartsFromParkedPrincipalAndRollsBackBadMint()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetRetainsFinalLPCustodyCheck()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetRoundsRequiredRetentionUpAtOneWeiBoundary()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testBudgetWeightsLossByCachedAssetPricesRatherThanRawTokenTotals()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testCloseCallbackDoublingOraclePricesCannotEraseFourPercentLoss()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testFreshHarvestCompoundEntersDenominatorInsteadOfMaskingCloseLoss()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testFundedRewardBuybackAndPriorDonationsCannotSubsidizePrincipalLoss()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testHarvestCallbackPrincipalLossAndPriceChangeCannotPrecedeStartingSnapshot()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/MigrationBudgetAdversarial.t.sol:MigrationBudgetAdversarialTest",
+      "test": "testMintCallbackPriceChangeCannotHideExcessAttributedIdle()",
+      "status": "Failure",
+      "reason": "EvmError: Revert"
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "test": "testActivationLeavesExactAttributedIdle()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "test": "testCompoundingAddsOnlyDesignatedShare()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/VaultAccounting.t.sol:VaultAccountingTest",
+      "test": "testFeesNotPrincipal()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

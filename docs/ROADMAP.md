@@ -13,17 +13,18 @@ same-pair moves, explicit external custody and same-chain canonical handoff.
 Read [architecture](ARCHITECTURE.md) and [the internal audit](../reports/preproduction-audit-20261025/REVIEW.md).
 Do not redo completed behavior or unchanged tests merely to increase a pass count.
 
-First add [caller-bound contribution policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open) to the versioned approved activation/growth flow. The current Request does not preserve the maximum cap shown during review. Update Entry/API/trace/inventory and wallet profile coherently before public signing; retain old local deployments under their original profile. Also qualify thin-market quote/planner feasibility without relaxing the deployed-LP floor.
+First add [caller-bound contribution policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open) to the versioned approved activation/growth flow. The current Request does not preserve the maximum cap shown during review. Update Entry/API/trace/inventory and wallet profile coherently before public signing; retain old local deployments under their original profile. The bounded two-pass planner and safe idle reinvestment now have scoped local evidence; qualify actual thin-market quotes/depth without relaxing the captured deployed-LP floor. Explicit inverse orientation and approved two-width keeper policy need real threshold/turnover/MEV and operating qualification.
 
-Before sealing, resolve required future-chain canonical ownership/reward transport,
-finality/closure and lineage semantics. LP custody movement alone cannot supply
-them. Atomic ETH/WETH or other different-pair conversion remains unsupported;
-the approved external-custody workflow is a distinct trusted route, not that
-algorithm. Confirm required release scope explicitly rather than relabeling a
-missing capability as configuration. Post-halt recovery remains deferred.
+The current release uses guarded same-chain pool movement and explicit source-chain
+custody exit to an operator-controlled address. That custodian performs external
+token migration or bridging; integrated bridges and future-chain canonical NFT/
+reward transport are deferred optional scope, not launch gates. Atomic ETH/WETH
+or other different-pair conversion remains unsupported; external custody is a
+distinct trusted workflow, not that algorithm. Retain and qualify same-chain whole-
+collection handoff. It does not solve future-chain or post-halt ownership recovery.
 
-Keep normal runtime/initcode and gas limits. Vault has only 25 bytes of the prior
-measured EIP-170 margin; any bytecode change needs fresh normal gates. Review
+Keep normal runtime/initcode and gas limits. Vault remains close to EIP-170; use the latest exact-source size receipt.
+Any bytecode change needs fresh normal runtime and initcode gates. Review
 complete custody/liability invariants, callbacks and abort/return paths before
 accepting further changes. Immediate governance/external recipients remain trusted.
 

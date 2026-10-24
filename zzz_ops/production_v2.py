@@ -117,9 +117,11 @@ def configuration_hash(value: Any) -> str:
 def pool_configuration(chain, pool):
     values = {key:_obj(pool).get(key) for key in POOL_FIELDS}
     for key in ('minDepositUSD','maxPositionUSD'): values[key] = _numeric(values.get(key))
-    return {'chain_id':_obj(chain).get('chain_id'),'pool_id':_obj(pool).get('pool_id'),
+    result = {'chain_id':_obj(chain).get('chain_id'),'pool_id':_obj(pool).get('pool_id'),
         'configuration':values,'principal_dependencies':{role:{key:_obj(_obj(_obj(chain).get('dependencies')).get(role)).get(key)
             for key in ('address','runtime_hash')} for role in NATIVE_DEPENDENCIES}}
+    if 'range_policy' in _obj(pool): result['range_policy'] = pool['range_policy']
+    return result
 
 
 def governance_configuration(chain):
@@ -130,7 +132,7 @@ def governance_configuration(chain):
             'executors','keeper','guardian','timelock_seconds','sealed','bootstrap')}}
 
 
-def expected_bindings(chain: dict[str, Any]) -> dict[str, dict[str, dict[str, Any]]]:
+def expected_bindings(chain: dict[str, Any], *, range_policy_version=0) -> dict[str, dict[str, dict[str, Any]]]:
     """Finite reviewed zero-argument getter inventory, shared with the observer.
 
     Getter names are code-owned, never supplied as arbitrary RPC methods. Missing
@@ -172,6 +174,7 @@ def expected_bindings(chain: dict[str, Any]) -> dict[str, dict[str, dict[str, An
     result['canonical'].update(SCHEMA=CANONICAL_SCHEMA,phase=canonical.get('phase'),
         incomingSource=canonical.get('incoming_source'))
     result['nft_canonical']['nft'] = m('nft')
+    if range_policy_version == 1: result['strategy']['RANGE_POLICY_VERSION'] = 1
     result['vault_canonical'].update(vault=m('vault'),originChain=canonical.get('origin_chain_id'),
         originVault=canonical.get('origin_vault'))
     result['fees_canonical']['fees'] = m('fees')
@@ -342,7 +345,7 @@ def _policies(g, config):
     g.proof(nft.get('economic_review_evidence'),'nft_policy.economic_review_evidence')
 
 
-def _chain(g, chain, path, home, now):
+def _chain(g, chain, path, home, now, range_policy_version=0):
     g.check(set(chain)-{'_notes'} == set(CHAIN_FIELDS),path,'schema.keys',
         'Use the exact current chain inventory; remove retired transport, pair-migration and legacy-only fields.')
     cid = g.num(chain.get('chain_id'),path+'.chain_id',1)
@@ -383,7 +386,7 @@ def _chain(g, chain, path, home, now):
             g.proof(record.get('review_evidence'),rp+'.review_evidence',independent=True)
     g.check(len(addresses) == len(set(addresses)),path+'.modules','binding.alias',
         'Use distinct module/helper deployments; no ledger, executor, controller or principal recipient may alias.','bindings')
-    expected = expected_bindings(chain)
+    expected = expected_bindings(chain,range_policy_version=range_policy_version)
     for category in ('modules','helpers'):
         for role, values in expected[category].items():
             _bindings(g,_obj((modules if category == 'modules' else helpers).get(role)),values,
@@ -425,7 +428,7 @@ def _chain(g, chain, path, home, now):
     g.proof(ctor.get('recipient_payment_evidence'),path+'.constructor.recipient_payment_evidence')
     deps = _dependencies(g,chain,path,addresses)
     tokens = _tokens(g,chain,path,now,addresses)
-    pools = _pools(g,chain,path,tokens,deps)
+    pools = _pools(g,chain,path,tokens,deps,range_policy_version)
     _routes(g,chain,path,tokens,deps,pools,limits)
     _authority(g,chain,path)
     _canonical(g,chain,path,home)
@@ -582,7 +585,7 @@ def _tokens(g,chain,path,now,addresses):
     return result
 
 
-def _pools(g,chain,path,tokens,deps):
+def _pools(g,chain,path,tokens,deps,range_policy_version=0):
     result = {}
     for i,item in enumerate(g.items(chain.get('pools'),path+'.pools',16,1)):
         pp = f'{path}.pools[{i}]'; pool = g.obj(item,pp)
@@ -625,6 +628,24 @@ def _pools(g,chain,path,tokens,deps):
             'Read and compare the complete Registry PoolConfig at the pinned block.','bindings')
         g.check(_equal(pool.get('observed_accounting'),{'currency0':c0,'currency1':c1}),
             pp+'.observed_accounting','pool.accounting','Verify accounting() preserves actual ETH zero identity.','native')
+        if range_policy_version == 1:
+            from zzz_ops.range_policy import verify
+            try:
+                raw = []
+                for key in POOL_FIELDS:
+                    value = pool[key]
+                    raw.append(f'{int(value,16) if isinstance(value,str) and value.startswith("0x") else int(value):064x}')
+                observed_policy = g.obj(pool.get('observed_range_policy'),pp+'.observed_range_policy')
+                g.check(set(observed_policy) == {'orientation','keeper','last_change_at','target_half_width_bps'},
+                    pp+'.observed_range_policy','range.observation','Read the complete explicit Strategy range policy at the confirmed block.','bindings')
+                metadata = verify(pool.get('range_policy'),observed_policy,raw,chain['observed_block']['timestamp'])
+                g.check(not metadata['keeper']['enabled'] or metadata['configuration_matches'],
+                    pp+'.range_policy','range.configuration','Requalify a stale enabled keeper policy against the exact pool configuration.','bindings')
+            except (ValueError,TypeError,KeyError,OverflowError):
+                g.check(False,pp+'.range_policy','range.policy','Provide matching reviewed/observed orientation and bounded keeper policy; no legacy fallback.','bindings')
+        else:
+            g.check('range_policy' not in pool and 'observed_range_policy' not in pool,
+                pp+'.range_policy','range.profile','Explicit range-policy metadata requires range_policy_version 1.','bindings')
         slot = g.obj(pool.get('slot0'),pp+'.slot0')
         g.num(slot.get('sqrt_price_x96'),pp+'.slot0.sqrt_price_x96',1,2**160-1)
         g.num(slot.get('protocol_fee'),pp+'.slot0.protocol_fee',0,2**24-1)
@@ -1082,7 +1103,7 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     """Validate explicit schema 5 only, preserving every legacy schema boundary."""
     config = copy.deepcopy(config) if isinstance(config,dict) else {}
     g = Gate(config.get('release_commit'))
-    g.check(set(config)-{'_notes'} == set(TOP_FIELDS),'config','schema.keys',
+    g.check(set(config)-{'_notes','range_policy_version'} == set(TOP_FIELDS),'config','schema.keys',
         'Use only explicit schema-5 fields; obsolete bridge approvals cannot accompany this release inventory.')
     g.commit = g.hex(g.commit,'release_commit',20,prefix=False)
     now = int(time.time()) if now is None else now
@@ -1093,6 +1114,9 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     if expected_commit is not None:
         g.check(g.commit == expected_commit,'release_commit','commit.mismatch','Use the exact reviewed release commit.')
     home = g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)
+    range_version = config.get('range_policy_version',0)
+    g.check(type(range_version) is int and range_version in (0,1),'range_policy_version','range.profile',
+        'Use an explicit supported range-policy profile; zero retains historical raw-price semantics.','bindings')
     _policies(g,config)
     evidence = g.obj(config.get('evidence'),'evidence')
     for name in EVIDENCE: g.proof(evidence.get(name),'evidence.'+name)
@@ -1118,14 +1142,17 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
     chains = g.items(config.get('chains'),'chains',1,1)
     for index, value in enumerate(chains):
         chain = g.obj(value,f'chains[{index}]')
-        _chain(g,chain,f'chains[{index}]',home,now)
+        _chain(g,chain,f'chains[{index}]',home,now,range_version)
     groups = {}
     for issue in g.issues:
         groups.setdefault(issue['group'],[]).append({'path':issue['path'],'code':issue['code'],
             'remediation':issue['remediation']})
     return {'schema_version':5,'status':'blocked' if g.issues else 'ready','ready':not g.issues,
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
-        'blockers':groups,'migration_enabled':False,
+        'blockers':groups,'migration_enabled':False,'protocol_bridge_enabled':False,
+        'local_pool_move_supported':True,'source_chain_custody_handoff_supported':True,
         'limitations':['Offline checks cannot authenticate supplied evidence or authorize deployment, sealing, signing, or spending.',
+            'migration_enabled is the legacy protocol-bridge flag. Supported local pool moves and source-chain custody handoffs are code capabilities, not transaction authorization.',
+            'Local pool moves require the same ordered actual currencies. Source-chain custody supports normal all-ZZZ or explicit raw exit to a reviewed recipient, with no forced return and no remote NFT/reward ledger.',
             'This profile covers one active canonical native-V2 deployment; cross-chain activation and ETH/WETH principal conversion are unsupported.',
             'Pinned observations establish consistency only; runtime pins alone do not prove dependency security or detect every proxy configuration change.']}

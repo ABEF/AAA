@@ -10,21 +10,26 @@ source value**. Minting remains **0.05 ETH** in both builds.
 [prepare-dollar-rehearsal.py](../scripts/prepare-dollar-rehearsal.py) copies the
 current Solidity sources and required test fixtures into a **new directory outside
 the repository**. It changes only the gross activation checks in the copied Entry
-and Vault-created budget helper from $100 to $1. Both copied constructors also
+and fixed VaultCanonical validation companion from $100 to $1. Both copied constructors also
 require local chain ID `31337`; their production counterparts are untouched.
 Missing or duplicated replacement anchors fail before output is written.
 
 The generated `REHEARSAL.json` records original/generated source hashes, compiler
-hash, minimum, mint price and execution budget. No deployment scripts, wallet
-keys, RPC configuration or broadcast mechanism are copied or added. A chain-ID
+hash, minimum, mint price and execution budget. The manifest derives contribution default/hard maximum from the byte-identical
+Budget source; it does not invent1% or override operating settings. No deployment
+scripts, wallet keys, RPC configuration or broadcast mechanism are copied or added. A chain-ID
 guard prevents accidental use on normal public networks; it is not a consensus
 proof or protection against someone deliberately modifying the generated code.
 
-The new build retains the original-source **99% marginal deployed-LP** requirement,
-pool-specific contribution bounds, owner checks, shared LP accounting and reward
-rules. Gas remains separate. At $1 of gross input, at least $0.99 must become new
-LP. A low-cost rehearsal can still revert if conversion, rounding or undeployed
-input consumes more than the same 1% limit.
+A newly generated build retains the source candidate's contribution limit: the
+current default is 2%, requiring at least $0.98 marginal deployed LP from $1 of
+input. It also retains pool-specific bounds, owner checks, shared LP and rewards;
+gas is separate. Previously generated 1% builds and their receipts remain
+historical artifacts, not silently updated deployments. The inherited historical
+AtomicActivation test fixture explicitly selects1% to preserve its original
+negative cases; that is an operating override, distinct from the generated
+artifact's default. Read both manifest and actual configured getters. A low-cost rehearsal
+can still revert on costs, rounding or idle exceeding the captured limit.
 
 The pool's `minDepositUSD` must also allow $1. The fixture configures it to $1;
 changing only the Entry check would not be sufficient. A dollar-valued token is

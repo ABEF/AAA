@@ -1,6 +1,8 @@
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. The new candidate defaults are 2% contribution, 1% conversion
+and 3% maintenance; earlier 1% contribution evidence retains its original source
+scope. Existing sealed deployments do not acquire a changed default automatically;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Use the live policy and captured plan floor in the procedures
@@ -10,9 +12,26 @@ Actual routes, services and independent audit remain open.
 # Governed custody handoff
 
 Undeployed candidate. Replaces the old v3 LP bridge stack and typed pair executor;
-the separate whole-collection ownership/reward handoff is retained. See the
+the separate whole-collection ownership/reward handoff is retained. **This release
+does not need a protocol bridge.** Governance can select another supported local
+pool or hand custody to an address on the current chain. Any subsequent token
+migration or bridging is performed externally by that custodian. See the
 [native ETH candidate verification](../reports/native-eth-port/VERIFICATION.md).
 Earlier [custody evidence](../reports/custody-handoff/VERIFICATION.md) retains its original WETH-accounting scope.
+
+## Choose the operation
+
+| Intended action | Supported operation | Result and boundary |
+| --- | --- | --- |
+| Change fee tier or another local ETH/ZZZ pool | Admit/reserve the destination, then `Migration.moveFunds(...)`; `movePool(...)` is its alias. | Atomic pool change inside Vault; the actual ordered currencies must match. NFT shares and accrued rights remain. |
+| Stop providing liquidity without releasing custody | Pause and use reviewed `Migration.park(...)`; later `resume(...)`. | Attributed assets remain in Vault. Resume needs a healthy supported local pool and fresh execution checks. |
+| Perform an issuer exchange, use a different token pair, or move assets to another chain manually | Reviewed custody-only `approve(...)` and paused `exit(...)` to the operator's source-chain EOA/contract. | Normal exit sends ZZZ; explicitly approved raw exit sends the existing pair without a swap. The custodian performs further operations externally and bears custody risk. |
+| Restore assets and LP on this chain | Bind an admitted local destination once and fund `completeLocal(...)`, or return every original sent asset through `recover(...)`. | Actual funding is required; no balance write-off, invented LP, automatic reopening or second claim domain. |
+| Replace the complete collection deployment on this chain | Separate [canonical handoff](CANONICAL_HANDOFF.md). | Moves ownership, shares and both reward ledgers with classified backing. All ordinary external custody must first be resolved. |
+
+Neither a local pool change nor a custody exit moves the canonical NFT collection
+to another chain. Cross-chain NFT ownership/reward accounting is outside this
+release; external bridging alone cannot implement it.
 
 ## Authority and custody guarantee
 
@@ -77,7 +96,8 @@ manual token exchange, bridging or a return to a reviewed different pair.
 ## Ordinary Migration Exit: all principal into ZZZ
 
 1. Independently qualify the selected ZZZ contract, source/destination venue,
-   input/output units, prices, recipient and any destination verifier. Governance
+   input/output units, prices and source-chain recipient. The ordinary custody-only
+   procedure uses no bridge or finality verifier. Governance
    calls `Migration.configureZZZ(token,expectedCodeHash,reviewHash)` with an admitted
    Rewards asset and healthy USD feed. No outstanding principal plan may exist.
    A future replacement ZZZ can be configured after sealing. Review its burn
@@ -114,6 +134,9 @@ manual token exchange, bridging or a return to a reviewed different pair.
    Set `minimumZZZ` to the **greater** of the preserved pre-parking raw minimum
    and the rounded-up minimum required by the parked approval's current value
    and ZZZ price. Never lower the pre-parking minimum to make an exit execute.
+   For a manual external migration, use the custody-only values below: the
+   current chain, zero destination pool, recipient as destination custody and
+   zero verifier fields. A future chain ID is not needed to send to that address.
 5. Simulate approval and the **complete exit**, including the actual available
    source-pool swap after withdrawing PoPL liquidity. Governance approves the
    request. No principal leaves at approval. Keep the system paused and call
@@ -160,6 +183,9 @@ Token counts are not USD values and do not multiply NFT shares.
 For either normal or raw exit, governance may approve local temporary holding
 without selecting a new LP yet: `destinationPool=0`, `destinationChain=block.chainid`,
 `destinationCustody=recipient`, and output identities equal the source pair.
+Set `verifier=address(0)` and `verifierCodeHash=bytes32(0)`. This is the normal
+operator path for an EOA that will subsequently perform an issuer migration or
+bridge externally. The recipient still receives the assets on the source chain.
 Destination minima may be zero in this explicit holding mode; raw **close**
 minima still apply and normal ZZZ/value minima still apply. This does not query
 or require an enabled destination pool, so a stopped source and unavailable
@@ -177,7 +203,8 @@ destination minima. Binding a destination does not reset the approval's budget.
 
 Alternatively, full original-asset `recover` remains available. External bridging
 and issuer operations are the recipient's responsibility; local destination binding
-cannot change chains, waive remote finality or authenticate those operations.
+cannot change chains or attest those operations. There is no protocol-enforced
+return from the custodian and no automatic reward stream from externally held LP.
 
 ## Emergency Exit: send the assets without a swap
 
@@ -263,11 +290,19 @@ canonical freeze, use the canonical handoff/abort procedure, not these ordinary
 custody calls. Resuming principal later requires a fresh reviewed unpaused
 `Migration.resume` and does not occur automatically on return or unpause.
 
-## New-chain boundaries
+## Optional remote-proof scaffolding: outside this release
 
-The recipient is always an address **on the source chain**. It may subsequently
-bridge; sending assets to a numeric address does not itself cross chains.
-Remote approval requires a pinned, reviewed `ICustodyFinality` verifier.
+**Do not select a remote plan for the ordinary custody-address procedure.** Use
+the source-chain custody-only settings above; the operator may then choose an
+external bridge independently. Qualifying a protocol bridge, remote LP ledger or
+finality verifier is not a release requirement for that supported procedure.
+
+The existing ABI also contains an optional remote-plan/proof framework. It has
+no qualified provider or remote accounting implementation and is not an enabled
+operating flow. Its recipient is still an address **on the source chain**:
+sending assets to a numeric address does not itself cross chains. If a later
+separately reviewed design uses this framework, remote approval requires a
+pinned, reviewed `ICustodyFinality` verifier.
 `verifyRemote(id,proof)` verifies the domain-separated `proofCommitment(id,1)`:
 source deployment/plan, bucket/share snapshot, actual departure quantities,
 destination chain/custody/pool/assets/minima, review and departure block are bound.
@@ -281,7 +316,8 @@ quality and recipient security still require independent review. A verified
 remote plan stays outstanding and its source LP stays unavailable; this does
 not invent remote NAV, fund rewards, relocate NFT ownership or enable the old
 two-token v3 messages. Future-chain reward delivery, canonical ownership/ledger
-handoff and repeated remote custody hops remain separate qualification work.
+handoff and repeated remote custody hops are deferred designs, not functionality
+provided by this release or conditions for using source-chain custody-only exit.
 
 ## Marketplace royalty currencies
 
@@ -314,10 +350,51 @@ Unadmitted unsolicited assets are not automatically holder royalties. Follow
 existing admission/prefund quarantine rules; do not relabel them or bypass a
 token that cannot report balances or transfer.
 
+## Idle balances and dust: preserve their owner
+
+Small balance does not mean unowned balance. Never use a generic `clear`,
+`sweep`, or transfer-all-to-operator procedure across these ledgers.
+
+| Balance | Owner or purpose | Permitted handling |
+| --- | --- | --- |
+| `Vault.group(bucket).idle0/idle1` | Principal backing that bucket's NFT shares; included in NAV. | Reuse only for that bucket's guarded LP deployment/maintenance. A deliberately approved custody exit includes its attributed idle. |
+| `Fees.compoundBalance(bucket,asset)` | The collection's allocated LP-compounding reserve. | Release only through the existing compound/maintenance path; it must not fund an operator or a new entrant's minimum LP. |
+| `Fees.buybackBalance(asset)` | The allocated buyback-and-burn reserve. | Use the governed buyback path with its route, price, loss and trade-size guards. |
+| `Fees.dust(bucket,asset)` | Fewer than 20 raw token units awaiting exact 80/10/5/5 allocation or membership settlement. | Existing settlement credits incumbents before membership changes; it is not administrator income. Raw units are not USD. |
+| LP/royalty accrued amounts, index-rounding residuals and per-NFT fractions | Backing for existing NFT entitlements. | Preserve through claims, transfers, conversions and handoffs. Conversion batches already allocate every output wei cumulatively without reallocating source fractions. |
+| Unsupported transfers, constructor prefunds and quarantined/orphaned balances | Unassigned balances under their existing quarantine policy. | Do not invent holder income or subtract them from liabilities. Admission and canonical classified backing retain their existing rules; no arbitrary recovery sweep exists. |
+
+Use reviewed execution and gas thresholds to avoid spending more to swap tiny
+amounts than can reasonably be deployed. Batch conversions without changing the
+beneficiary NFTs. Network gas remains separate from execution-loss limits.
+Inspect the actual post-operation LP and attributed idle; a simulation, token
+approval or transfer to Vault is not proof that liquidity was deployed. Unused
+idle remains principal, not an amount holders or the operator may withdraw.
+
+The idle-compounding candidate advertises
+`Vault.migrationBudget().IDLE_COMPOUNDING_VERSION() == 1`. Its existing
+`Compounder.compound(bucket,minimumLiquidity,deadline)` can reinvest attributed
+idle even when no new compound reserve was released. It increases the existing
+LP rather than closing it, issues no NFT shares and accepts no payout address.
+Require a meaningful positive liquidity minimum and simulate the complete call;
+available attributed idle must have positive value. A maximum of two balancing
+swaps uses actual updated pool state, skipping a planned swap no larger than
+one basis point of its available input balance. This bounds work; it does not
+promise zero dust.
+
+Read `migrationBudget.lastCompound(bucket)` and the pool's
+`minRebalanceInterval`: successful compounding has its own cooldown, separate
+from the last rebalance. The operation captures starting principal/idle prices
+and maintenance policy before external work, includes only actual released
+compound, and checks real deployed backing, the captured aggregate floor and
+the 5% idle ceiling. Venue/output guards can be stricter. Failed execution
+reverts the cooldown update and accounting changes. This is undeployed candidate
+behavior; earlier local fixtures/journals do not acquire it from a config edit.
+
 ## Release and monitoring requirements
 
 Inventory the one Migration runtime/controller, configured ZZZ/code hash,
-outstanding plans, source/destination snapshots, verifier pins and every royalty
+outstanding plans, source/destination snapshots and every royalty
 custody nonce/balance. The removed bridge/pair-helper inventory is historical;
 production inventory/service adaptation must be reviewed for the new layout.
 Use fresh native-accounting version 2 API/keeper profiles with exact reviewed
@@ -327,12 +404,14 @@ and its saved transactions remain unchanged; the public website deployment is
 null and website V2 integration still requires qualification.
 
 Alert on pending custody age, unauthorized state changes, token/recipient code
-changes, proof failures and missing returns. A crash can resume from contract
+changes and missing returns. Optional remote-proof plans require their separate
+pins/alerts if ever independently qualified. A crash can resume from contract
 records; no server-held nonce or timeout decides who owns backing.
 
 Real pool exit depth, target routes/feeds, recipient controls, new-token/burn
-compatibility, target-chain gas, finality providers, royalty operating rehearsals
-and independent audit remain release gates. Track these in the
+compatibility, target-chain gas, royalty operating rehearsals and independent
+audit remain release gates. No integrated bridge/finality provider is required
+for source-chain custody-only exit. Track these in the
 [single Todo](../TODO.md#task-custody-composition).
 
 The immutable `validation()` companion checks request, destination and parking

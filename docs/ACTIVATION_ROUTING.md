@@ -2,7 +2,7 @@
 
 Every admitted source and LP currency needs [two qualified USD sources](PRICE_SECURITY.md).
 The selected agreement tolerance is3%; conservative bounds still must prove the
-separate current execution floor (1% by default). No route can replace original
+separate current contribution execution floor (2% by default). No route can replace original
 source value with a post-swap quote, pool spot, one source or a stable peg.
 Pricing2 preparation verifies the complete Entry/LP trace and all source rounds.
 Live market/provider qualification stays open; historical observations below keep
@@ -10,7 +10,7 @@ their original scope. [Evidence](../reports/price-security/VERIFICATION.md).
 
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -18,13 +18,13 @@ historical/default scope. Actual routes, services and independent audit remain o
 
 # Activation inputs, routes and source provenance
 
-**Current target (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) replaces Pons. Earlier on-chain route observations below remain historical; qualify the complete selected-pool operation. Current conversion execution is single-hop v3; future v4 support must be implemented before sealing. The user retained the1% reward-conversion cap and requires a cheaper route.
+**Current target (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) replaces Pons. Earlier on-chain route observations below remain historical; qualify the complete selected-pool operation. Current conversion supports typed single-hop v3 and static hookless v4; qualify actual routes under explicit profiles. The user retained the1% reward-conversion cap and requires a cheaper route.
 
 The accepted input choices are **USDC, USDG, ETH and ZZZ**. An activation starts
-from at least **$100 of source input value**, with at most **1% total execution
+from at least **$100 of source input value**, with at most **2% total contribution execution
 loss** and network gas paid separately. A $100 source input therefore requires
 at least $99 actually deployed LP. The bound covers the whole conversion and LP
-execution, not a fresh 1% allowance at each step. Inputs and final LP must use
+execution, not a fresh 2% allowance at each step. Inputs and final LP must use
 reviewed prices; neither a stablecoin ticker nor an assumed dollar peg proves
 its value.
 
@@ -173,7 +173,7 @@ one fixed Vault call, binding the owner, NFT, exact calldata, pool and pair amou
 to that original source value. Vault authenticates the context, and Registry uses
 the proven source value in contribution checks. An active context mismatch reverts;
 it cannot fall back to valuing only the smaller post-conversion output. The existing
-Vault therefore enforces one combined 1% loss budget across conversion and final
+Vault enforces one combined captured contribution budget (2% at current default) across conversion and final
 LP deployment, for activation and later additions. Fixed recipients, exact transfers,
 bounded approvals, donation isolation and nonreentrancy remain mandatory.
 

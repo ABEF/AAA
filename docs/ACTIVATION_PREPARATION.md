@@ -1,6 +1,6 @@
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -15,7 +15,7 @@ that eight-argument signature and the explicit historical seven-argument signatu
 unknown/ambiguous calls fail. Historical compound Oracle.value calls are read only
 from the current result frame, verified against reviewed same-block token/feed
 pins and included in incumbent share pricing. They never satisfy new input's
-99% marginal-deployed floor. Missing historical token/price review refuses a draft.
+captured marginal-deployed floor (98% at the current 2% default). Missing historical token/price review refuses a draft.
 Legacy local deployments remain readable; public response shape, exact approvals,
 unsigned preparation and Anvil-only signing policy are unchanged. See
 [verification scope](../reports/pair-composition/VERIFICATION.md).
@@ -34,7 +34,7 @@ actual Robinhood routes, feeds, trace providers and network fees remains in
 | Original contribution value | Actual input amount and reviewed Oracle price/decimals, checked against `ActivationAssets.value`. Native V2 prices actual ETH directly at currency zero; historical V1 retains its wrapper mapping. No assumed stablecoin peg. |
 | New deployed LP | The successful Entry/Vault execution's **marginal** deployment, taken from the fixed budget helper's accounting inputs. Incumbent liquidity, idle and compound cannot subsidize the new contribution. |
 | New share issuance and LP units | Budget output and `SharesAdded`, cross-checked with the one LiquidityManager mint/increase and its PositionManager liquidity readings. Physical LP units belong to the shared pool; NFT shares are reported separately. |
-| Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the 1% execution limit. |
+| Network gas | A separate RPC estimate and observed gas price, with native-currency costs, suggested gas limit and a mandatory fee-policy review identity. It is outside the captured contribution execution limit (2% by default). |
 
 Activation requires at least $100 original input value; increases require at least
 $5. The backend rejects below-floor requests before preparing approvals/traces.
@@ -42,8 +42,8 @@ The effective minimum also respects any higher pool `minDepositUSD`. Entry and
 the fixed Vault helper enforce the same floors, including direct Vault calls.
 See [contribution minimums](CONTRIBUTION_MINIMUMS.md) for configuration and evidence.
 
-For a $5 top-up, at least $4.95 must become new LP. For a $100 original contribution,
-at least $99 must be added as marginal deployed
+At the current 2% default, a $5 top-up requires at least $4.90 of new LP;
+a $100 original contribution requires at least $98 of marginal deployed
 LP. The floor rounds up in raw USD units, as in the contract. Idle input is not
 counted as deployed LP. The NFT's existing marked value can change with prices;
 do not calculate its new total by adding the contribution to lifetime deposits.
@@ -66,7 +66,7 @@ LP/royalty claim balances remain separate. The website still shows examples.
 4. Simulate the complete original-source conversion, balancing and LP addition
    using the built-in `callTracer` with logs. Check original input, helper result,
    share event and actual liquidity delta. The internal probe is never returned
-   for signing and still executes the contract's 99% check.
+   for signing and still executes the contract's captured deployed-LP floor.
 5. Derive conversion-output and liquidity minima using the requested 0..100 bps
    tolerance. Resimulate **exactly the calldata returned to the wallet**. Economic
    outputs must agree at the same snapshot; gas may differ with calldata.

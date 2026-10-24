@@ -3,14 +3,14 @@
 The [current price-security guide](PRICE_SECURITY.md) supersedes older single-feed
 descriptions below. Two sources per asset, a user-selected3% agreement tolerance,
 frozen pre-pull prices/limits and actual marginal LP checks are implemented.
-Agreement tolerance is separate from the default1% execution-loss floor; gas is
+Agreement tolerance is separate from the default2% contribution execution-loss floor; gas is
 separate. Actual feeds/ages/routes remain unqualified. Use explicit pricing2,
 native accounting2/routing2 and the fixed Oracle-created helper, not a relabeled
 legacy deployment. [Scoped evidence](../reports/price-security/VERIFICATION.md).
 
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -22,7 +22,7 @@ Actual ETH funding/accounting is implemented in the undeployed [native V2 candid
 
 # Atomic source activation
 
-**Selected integration (2026-10-24):** [Hookless ETH/ZZZ](POOL_SELECTION.md) supersedes Pons; historical Pons examples below keep their scope. Current Entry remains WETH-accounted and typed single-hop v3 for converted inputs. [Native ETH](NATIVE_ETH_ARCHITECTURE.md) and [future v4 routing](POST_SEAL_POLICY.md) are pre-seal work, not implemented by pool selection.
+**Selected integration (2026-10-24):** [Hookless ETH/ZZZ](POOL_SELECTION.md) supersedes Pons; historical Pons examples below keep their scope. Current Entry uses actual native ETH accounting V2 and typed single-hop v3 or hookless static-fee v4 conversion. [Native scope](NATIVE_ETH_ARCHITECTURE.md) and [typed routes](TYPED_V4_ROUTES.md) describe exact profiles and remaining qualification. Historical Pons/V3 tests below retain their original contracts and 1% fixtures.
 
 `ZZZActivationEntry` is an immutable child created by the canonical Pool Registry,
 alongside `ZZZActivationAssets`. It converts a current NFT owner's admitted source
@@ -33,8 +33,8 @@ custody of the NFT. This source implementation is not a deployed service.
 ## One source value and one execution budget
 
 The owner calls `execute(Request)` directly. ERC20 owners approve only their chosen
-amount to the Entry. Native ETH uses the exact `msg.value`, wrapped into the native
-pool's Registry-verified accounting-slot-zero wrapper. Gas is separate.
+amount to the Entry. Native V2 uses exact `msg.value` and the real zero-address
+ETH currency without wrapping for a compatible native pool. Gas is separate.
 
 Entry measures exact token ingress and asks the governed activation-asset helper
 to value the actual source amount. A stablecoin name is not an assumed dollar peg.
@@ -42,15 +42,14 @@ Activation requires at least $100 gross source value. Later additions retain the
 configured pool minimum. The caller supplies neither a USD valuation nor a custom
 executor, recipient, signature or arbitrary transaction payload.
 
-After a direct pair input, exact native wrapping or an admitted single-hop V3
-conversion, Entry calls exactly one `activate` or `increase` operation. A temporary
+After a direct pair input or an admitted typed single-hop V3/V4 conversion, Entry calls exactly one `activate` or `increase` operation. A temporary
 context binds the owner, NFT, pool, pair amounts and hash of the exact Vault calldata
 to the proven original source USD value. Vault authenticates that context, and
 Registry contribution valuation uses that original value. The existing Vault
-checks therefore enforce one aggregate floor of at least 99% marginal actually
-deployed LP, including conversion and LP execution. Two separate allowances of 1%
-are not created. For example, 0.8% conversion loss plus 0.3% LP loss fails the total
-budget even though each leg individually loses less than 1%.
+checks enforce one captured aggregate marginal-deployed LP floor, including
+conversion and placement: 98% at the current 2% default. This is one budget
+across all legs, not a fresh allowance per swap. Conservative input/output price
+bounds and stricter venue/caller guards also apply; idle is not deployed LP.
 
 The Registry must call `sourceValue` only while evaluating a contribution from its
 canonical Vault. An inactive context returns zero, permitting normal owner-only
@@ -64,6 +63,10 @@ transaction and restore the source funds and NFT ownership.
 
 ## Route policy
 
+[Typed V4 routing](TYPED_V4_ROUTES.md) is the current additional route family.
+The following V3 policy is still supported under its explicit profile; it is
+not the only route kind. No arbitrary router/call or hook is added.
+
 `RoutePolicy` fixes the source/output assets, SwapRouter02, V3 factory, V3 pool,
 fee, exact runtime hashes and a nonzero review reference. The factory's pool
 mapping, pool token ordering, pool factory/fee and router factory must all agree.
@@ -76,15 +79,15 @@ Only SwapRouter02's typed seven-field `exactInputSingle` tuple is emitted: the
 output recipient is Entry, the input amount is exact, and the price-limit argument
 is fixed to zero. Entry independently enforces a deadline no more than ten minutes
 ahead. User `minimumOut` and `minimumLiquidity` may tighten execution but cannot
-relax the Vault's original-source 99% bound. Routes cannot emit arbitrary calldata,
+relax the Vault's captured original-source marginal-LP bound. Routes cannot emit arbitrary calldata,
 use a user-selected receiver, change custody, bridge or invoke unrelated contracts.
 The output must be exactly one of the requested pool's accounting currencies.
 
 Source admission is independent of intermediate currency admission. For example,
 disabling WETH as an original source does not itself disable an admitted USDG input
 that converts into WETH. Pool admission, operations, fresh valuation, dependency
-pins and the final LP budget still apply. Native ETH is normalized to WETH source
-admission. Unsupported USDC conversion remains unavailable until a reviewed,
+pins and the final LP budget still apply. Actual native ETH and WETH have distinct typed source
+admission; native V2 does not normalize ETH into WETH. Unsupported USDC conversion remains unavailable until a reviewed,
 funded route exists; this helper does not invent one.
 
 ## Custody and callbacks
@@ -106,6 +109,11 @@ The Vault independently guards its own mutation paths. Any route, approval,
 ownership, balance, price or LP-budget failure rolls back the whole transaction.
 
 ## Qualification boundaries
+
+The following test counts and 99% examples are historical fixed-1% evidence,
+not proof of current default policy or the newest source. Use the current
+[liquidity operations verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
+for this delta and exact remaining limits.
 
 The 28 focused offline tests use a deterministic V3 fixture and a minimal Vault
 enforcing the original-source 99% rule. They cover context, aggregate loss,

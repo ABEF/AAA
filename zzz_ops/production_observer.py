@@ -54,7 +54,7 @@ UINT_GETTERS = frozenset(('getMinDelay', 'canonicalState', 'ACCOUNTING_VERSION',
     'MAX_SUPPLY', 'subscriptionId', 'requestConfirmations', 'callbackGasLimit', 'outstandingCount',
     'maxTradeUSD', 'operatingTradeUSD', 'phase', 'originChain', 'MAX_LOSS_BPS',
     'contributionLossBps', 'maintenanceLossBps', 'MAX_CLAIMS', 'conversionLossBps',
-    'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION'))
+    'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION', 'RANGE_POLICY_VERSION'))
 HASH_GETTERS = frozenset(('keyHash', 'zzzCodeHash', 'contributionPool', 'SCHEMA'))
 ADDRESS_GETTERS = frozenset(('access', 'canonicalHandoff', 'bootstrap', 'royaltyFactory',
     'migrationBudget', 'mintProceedsRecipient', 'royaltyRewards', 'claimRouter', 'metadataRenderer',
@@ -449,6 +449,11 @@ class Observer:
             wanted = _normalized(POOL_FIELDS,pool)
             if pool['observed_config'] is not None and any(not _same(pool['observed_config'][key], wanted[key]) for key in POOL_FIELDS):
                 self.errors.append({'path': path, 'code': 'pool.mismatch'})
+            if getattr(self,'range_policy_version',0) == 1:
+                from zzz_ops.range_policy import observe
+                strategy = self.chain['modules']['strategy']['address']
+                pool['observed_range_policy'] = self.attempt(path+'.range_policy','range_policy.unavailable',lambda:
+                    observe(lambda method,*args,count: self.read(strategy,method,*args,count=count),pool['pool_id']))
 
     def sequencer(self):
         sequence = self.chain['sequencer']
@@ -673,7 +678,10 @@ def observe(config, rpc):
     chain = output['chains'][0]
     if not isinstance(chain.get('modules'), dict) or not isinstance(chain.get('helpers'), dict) or len(chain['modules']) > 17 or len(chain['helpers']) > 24:
         raise ValueError('Invalid bounded contract inventory')
-    expected = expected_bindings(chain)
+    range_version = config.get('range_policy_version',0)
+    if type(range_version) is not int or range_version not in (0,1):
+        raise ValueError('Unsupported explicit range-policy observation profile')
+    expected = expected_bindings(chain,range_policy_version=range_version)
     for field, limit in (('dependencies', 32), ('tokens', 33), ('pools', 16),
                          ('activation_sources', 64), ('conversion_routes', 64)):
         value = chain.get(field)
@@ -684,6 +692,7 @@ def observe(config, rpc):
         raise ValueError('Unsupported explicit pricing observation profile')
     observer = Observer(rpc, chain)
     observer.pricing_version = pricing_version
+    observer.range_policy_version = range_version
     with request_scope(Budget(seconds=60, calls=1024, posts=2048)):
         chain_id, genesis = observer.anchor()
         observer.records(expected)

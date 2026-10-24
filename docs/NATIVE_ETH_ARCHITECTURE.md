@@ -1,6 +1,6 @@
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -51,7 +51,7 @@ predecessor profiles; that code does not qualify actual deployed services.
 | Rewards | Native owner/collective indices preserve old-weight accrual, fractions and transfers; direct native receipts coexist with previously converted native credits. |
 | ZZZ fee conversion | User reconfirmed the1% limit on2026-10-24; gas stays separate. The selected approximately1.101% venue needs a cheaper route at reference prices; do not invent one or loosen the cap. |
 | Compound/buyback | Spend only the classified5% reserve through typed native settlement. Keeper gas is external. |
-| Fee-tier move | Atomic same-native-pair close/redeploy, actual destination depth and one fixed3% starting-price budget. |
+| Fee-tier move | Atomic same-native-pair close/redeploy, actual destination depth and one captured starting-price maintenance budget (3% default). |
 | ETH/WETH pool move | Not implemented atomically: the actual-currency pair guard rejects ETH/WETH substitution. A future boundary needs explicit exact1:1 reviewed wrapping, distinct asset/idle accounting and historical reserve rights; no implicit normalization. |
 | Normal custody exit | Close actual LP, preserve accrued fees, enforce stricter swap and aggregate floors, consolidate to ZZZ and send only approved principal. |
 | Raw custody exit | Close and send native ETH plus ZZZ without calling WETH, swapping or reading USD prices. Exact reviewed raw minima; no USD guarantee. |

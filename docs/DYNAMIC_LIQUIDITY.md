@@ -1,6 +1,6 @@
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -31,7 +31,7 @@ One shared pool does not require 1,000 independent rebalances.
 
 | Operation | Actual source path | Accounting consequence |
 | --- | --- | --- |
-| Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross for activation and at least 99% marginal deployed value, gas separate. |
+| Activate/top up | [Entry](../src/ZZZActivationEntry.sol), [Vault `_join`](../src/ZZZVault.sol), [budget `contributionResult`](../src/ZZZMigrationBudget.sol) | Original source value, current incumbent NAV and measured marginal LP determine entry; minimum $100 gross for activation and the captured marginal-deployed floor (98% at current default), gas separate. |
 | Select token mix | [Strategy `compoundPlan` / `_plan`](../src/ZZZStrategy.sol) | Existing contributions use the actual current LP ticks. Initial positions use `target` at current oracle prices. |
 | Replace LP | [Vault `rebalance`](../src/ZZZVault.sol) | Harvest, release designated compound, close, balance and mint atomically; update current physical LP ID. Share counts persist. |
 | Read current value | [LiquidityManager `amounts`](../src/ZZZLiquidityManager.sol), [Metadata `currentValue`](../src/ZZZNFTMetadata.sol) | Current position liquidity/ticks/spot determine token amounts; fresh, deviation-checked oracle prices mark those actual amounts. |
@@ -71,10 +71,10 @@ from swap impact, market losses, MEV, dishonest feeds or admitted venue failures
 ## Admission and rebalance timing
 
 The user chose to allow new activations/top-ups outside the current range, with
-an explicit warning and all ordinary custody, oracle, route and 1% checks retained.
+an explicit warning and all ordinary custody, oracle, route and captured contribution-floor checks retained.
 A pending price- or range-triggered rebalance alone does not block a contribution. There is
 no deposit queue, automatic user-triggered rebalance or arbitrary near-edge band.
-If costs cannot meet the 99% floor, the atomic transaction still reverts.
+If costs cannot meet the captured floor (98% at the current 2% default), the atomic transaction still reverts.
 
 The quote's `liquidity_context` uses the same confirmed hash as its prices and
 simulation. It reads the current physical LP ticks, StateView `slot0.tick`,

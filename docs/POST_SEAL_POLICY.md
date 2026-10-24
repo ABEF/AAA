@@ -10,7 +10,7 @@ authorized by this document.
 
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -20,7 +20,7 @@ historical/default scope. Actual routes, services and independent audit remain o
 
 | Category | Requirement | Current boundary |
 | --- | --- | --- |
-| Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
+| Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, explicit price orientation, approved two-width keeper selection, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
 | Assets and conversions | Admit/remove supported input assets and rotate conversion pools when liquidity changes, without redeploying. | Entry and LP/royalty converters support append-only route policies and enable/disable controls. They implement explicit typed single-hop v3 and hookless static-fee v4 routes. Native v4 output needs no wrapper. Real route/service qualification remains open; a route record cannot add an unsupported algorithm. |
 | Pools and pricing | Change the sole contribution pool, reviewed two-source USD policies and supported strategy settings through existing immediate governance. | `Oracle.setDualFeed` appends a policy with two distinct source/independence identities, runtime pins, per-source ages and 0-500 bps disagreement. Both sources must pass; old `setFeed` reverts. No missing-source/spot/peg fallback. Entry freezes prices and operating limits before transfers/conversion; new settings cannot replace that captured basis. Live source independence/proxy/depeg/gas qualification remains open. |
 | Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
@@ -46,7 +46,7 @@ For randomness observations, the blocked production template now distinguishes
 `immutable_configuration` flag is rejected in that NFT record. Capture current
 getters and retain original request transactions when reviewing pending draws.
 
-Defaults remain **1% contribution / 1% conversion / 3% maintenance**, gas separate. Governance may now change each category through the [bounded execution policy](EXECUTION_LOSS_POLICY.md), maximum 10%. The earlier fixed-cap requirement is superseded.
+Defaults remain **2% contribution / 1% conversion / 3% maintenance**, gas separate. Governance may now change each category through the [bounded execution policy](EXECUTION_LOSS_POLICY.md), maximum 10%. The earlier fixed-cap requirement is superseded.
 The selected pool's observed approximately 1.101% swap fee means it is not a
 qualified full-balance conversion route at reference prices. Require a cheaper,
 independently reviewed route; until then keep earned source balances backed and

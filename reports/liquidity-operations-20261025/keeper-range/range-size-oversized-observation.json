@@ -1,0 +1,13 @@
+{
+  "scope": "Observed first normal compiler diagnostic, before consolidating redundant callback lifecycle reads",
+  "command_script": "maintenance-policy-20261025/size-range.py",
+  "registry_runtime": 12513,
+  "registry_creation": 49589,
+  "constructor_arguments": 32,
+  "creation_with_arguments": 49621,
+  "normal_limit": 49152,
+  "result": "fail",
+  "strategy_runtime": 20960,
+  "strategy_creation": 21556,
+  "limitation": "The first script output file was replaced by the justified source-change rerun. This preserves the actual tool observation, not an independently reproducible exact-source compile receipt. The first test profile retains the earlier Registry callback text. Final source has its own complete hash-bound gate."
+}

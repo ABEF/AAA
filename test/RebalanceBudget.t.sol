@@ -18,6 +18,7 @@ contract RebalanceBudgetTest is PooledVaultFixture {
     event MigrationValueChecked(uint256 indexed bucketId,uint256 beforeUSD,uint256 deployedUSD,uint256 idleUSD);
     function _start() private returns(uint256 id){
         adverse=new BudgetAdversarialVenue(address(t0),address(t1));rebalancePolicy=new RebalanceBudgetPolicy();
+        rebalancePolicy.observeVenue(adverse);
         ac.bind(Ids.LIQUIDITY,address(adverse));ac.bind(Ids.STRATEGY,address(rebalancePolicy));
         id=activatedPosition();
     }

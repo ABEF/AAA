@@ -1,0 +1,23 @@
+No files changed, compilation skipped
+2026-10-24T23:27:18.317386Z  WARN traces::etherscan: etherscan config not found
+
+Ran 4 tests for test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest
+[PASS] testColdActivationAtCombinedBucketAssetAndReceiverCaps() (gas: 12362306)
+Logs:
+  combined.4-buckets.32-assets.4-inboxes.17-royalties.activation: 10946281
+
+[PASS] testColdActivationWithEveryHistoricalRewardIndexPopulated() (gas: 14156635)
+Logs:
+  combined.4-buckets.32-indexed-assets.activation: 11509874
+
+[PASS] testColdIncumbentTopUpAtCombinedBucketAssetAndReceiverCaps() (gas: 10069538)
+Logs:
+  combined.4-buckets.32-assets.4-inboxes.17-royalties.top-up: 8314880
+
+[PASS] testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated() (gas: 11832464)
+Logs:
+  combined.4-buckets.32-indexed-assets.top-up: 9225184
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 167.42ms (617.78ms CPU time)
+
+Ran 1 test suite in 169.45ms (167.42ms CPU time): 4 tests passed, 0 failed, 0 skipped (4 total tests)

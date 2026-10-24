@@ -9,14 +9,15 @@
     "Only known source-selected Robinhood native venue/token identities and hard pins are populated. They are intended references, not fresh on-chain observations or a service qualification. Observed fields and review evidence stay unset.",
     "Schema 5 is the explicit native/accounting-V2/routing-V2/governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2.",
     "Pricing version 2 requires two independently reviewed USD sources PER asset, immutable source-runtime pins, full append-only policy and fresh agreed rounds. Two addresses, the target pool spot, a presumed stable peg or correlated test mirrors do not qualify independence. The user-selected disagreement tolerance is 300 bps (3%); source addresses and freshness limits are deliberately unset; no live ZZZ pair of sources is supplied.",
-    "A 3% agreement tolerance does not raise the separate default 1% contribution/conversion loss cap. Upper-input/lower-output conservative valuation can reject an operation within 3% agreement; there is no averaging, one-source fallback or automatic cap increase.",
+    "A 3% agreement tolerance does not raise the separate default 2% contribution and 1% conversion loss caps. Upper-input/lower-output conservative valuation can reject an operation within 3% agreement; there is no averaging, one-source fallback or automatic cap increase.",
     "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
-    "Current policy defaults shown are contribution 1%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
+    "Current policy defaults shown are contribution 2%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
     "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Add USDC/USDG only with reviewed exact addresses, feeds and routes; no stable peg is assumed.",
     "Current qualification scope excludes cross-chain canonical import, legacy V1 ledgers and external creator-reward inboxes. Every omitted or unsupported configuration must stay blocked, not silently treated as empty.",
     "Production minting is intended for OpenSea but chain/product/recipient/VRF compatibility is unqualified. ERC-2981 requests 5%; only royalties actually received can be distributed.",
     "Publish and review the complete 2784-asset content-addressed artwork root. No new artwork generation is implied. Exact quota draw uses verified randomness; live coordinator/subscription/provider qualification remains open.",
-    "Keep credentials and private material outside this inventory. The observer performs only bounded read-only RPC calls and does not set approved pins or evidence. Offline ready means declared inventory consistency only and never authorizes deployment, sealing or spending."
+    "Keep credentials and private material outside this inventory. The observer performs only bounded read-only RPC calls and does not set approved pins or evidence. Offline ready means declared inventory consistency only and never authorizes deployment, sealing or spending.",
+    "Range-policy version 1 is explicit for this candidate. Set Strategy setRangeOrientation(pool,1) for ZZZ priced in ETH. Adaptive selection is disabled until reviewed drift thresholds, cooldown and policy hash are approved; observing a new runtime is not approval. Historical profiles retain their original raw-ratio semantics."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
@@ -274,7 +275,7 @@
             "access": null,
             "vault": null,
             "MAX_LOSS_BPS": 1000,
-            "contributionLossBps": 100,
+            "contributionLossBps": 200,
             "maintenanceLossBps": 300
           }
         },
@@ -502,7 +503,7 @@
         "legacy_v1_import": false
       },
       "execution_loss_policy": {
-        "contribution_bps": 100,
+        "contribution_bps": 200,
         "maintenance_bps": 300,
         "lp_conversion_bps": 100,
         "royalty_conversion_bps": 100,
@@ -531,7 +532,19 @@
           "observed_accounting": null,
           "slot0": null,
           "liquidity": null,
-          "review_evidence": null
+          "review_evidence": null,
+          "range_policy": {
+            "orientation": 1,
+            "keeper": {
+              "enabled": false,
+              "narrow_trigger_bps": 0,
+              "widen_trigger_bps": 0,
+              "minimum_interval_seconds": 0,
+              "configuration_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "review_hash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+            }
+          },
+          "observed_range_policy": null
         }
       ],
       "tokens": [
@@ -822,5 +835,6 @@
       }
     }
   ],
-  "pricing_version": 2
+  "pricing_version": 2,
+  "range_policy_version": 1
 }

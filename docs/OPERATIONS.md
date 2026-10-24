@@ -4,7 +4,7 @@
 and dual-source pricing V2 are implemented. The selected hookless ETH/ZZZ pool
 earns conventional LP fees; Pons creator funding is optional historical scope.
 Typed single-hop v3 and hookless static-fee v4 conversions are supported, subject
-to actual route/feed qualification. Default execution limits are 1% contributions,
+to actual route/feed qualification. Default execution limits are 2% contributions,
 1% earned-balance conversion and 3% maintenance; immediate governance can set
 each to at most 10%. Read the current and captured policy, never assume defaults.
 
@@ -20,6 +20,15 @@ implementation status, [sole Todo](../TODO.md) for acceptance criteria and
 [release record](RELEASE_CHECKLIST.md) for approval. Exact-revision CI, full
 independent static review, actual provider/venue tests and operating rehearsals
 must be checked separately; old green workflows do not verify later sources.
+
+## New liquidity operating profile
+
+The [placement/idle guide](IDLE_AND_DUST.md) and [range policy](RANGE_POLICY_UPDATES.md)
+cover two-pass placement, safe idle-only reinvestment, explicit ZZZ-price orientation
+and disabled-by-default reviewed two-width keeper selection. Use range_policy_version1
+with matching runtime and per-pool metadata for new inverse/adaptive profiles.
+Historical deployments/journals keep their original raw orientation and loss cap.
+No existing service is changed by this source update.
 
 ## Build and configuration
 
@@ -49,12 +58,14 @@ not patch guards or relabel old state to make a template appear production-ready
 Configure reviewed pool/asset/dual-feed policies, fixed helper bindings, randomness
 and permanent artwork before sealing. Read [post-seal controls](POST_SEAL_POLICY.md):
 sealing fixes code, not all supported operating settings. It cannot add a missing
-ETH/WETH boundary, future-chain canonical transport or arbitrary algorithm.
+ETH/WETH algorithm or future-chain canonical transport. The current release uses
+explicit source-chain custody for external token/chain conversion; integrated
+bridging and remote NFT/reward transport are optional future scope, not launch gates.
 
 For activation, enforce at least $100 lower-bound original source value; growth
 requires at least $5 (and any stronger pool minimum). The captured contribution
 limit applies across conversion and marginal LP placement together. At default
-1%, at least 99% of upper-bound input value must be deployed as new lower-bound
+2%, at least 98% of upper-bound input value must be deployed as new lower-bound
 LP value, excluding incumbent idle/compound. Network gas is separate. Direct
 native input forwards exact ETH; v4 has no wrapper dependency. See [Entry](ACTIVATION_ENTRY.md),
 [price security](PRICE_SECURITY.md), [typed routes](TYPED_V4_ROUTES.md) and
@@ -72,7 +83,7 @@ If final execution fails, Entry funds/LP changes revert, but previously mined
 approval and network gas do not. Preserve the existing allowance, avoid repeating
 confirmed approvals and let users revoke obsolete allowances through their wallet.
 
-Public activation preparation/signing must remain blocked pending [review-time cap binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open). Do not promise that a simulated 1% policy is signed into the current Request. A governance change before inclusion can apply a higher cap; caller raw minima are separate.
+Public activation preparation/signing must remain blocked pending [review-time cap binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open). Do not promise that the simulated contribution percentage is signed into the current Request. A governance change before inclusion can apply a higher cap; caller raw minima are separate.
 
 For a source-price outage, [custody parking](CUSTODY_PARKING.md) is a separate governed recovery workflow: pause globally, obtain an exact bucket snapshot and independently review raw close minimums, then schedule the exact Migration request through the zero-delay controller. Execution must fit its ten-minute deadline window. Principal closes into attributed Vault balances, without creator-inbox synchronization or USD valuation. Keep upkeep disabled while Parked; existing funded claims and ownership rights remain. Unpause and use governed resume only after ordinary deployment prices recover, or propose an approved migration retaining remote-liability and backing checks. Actual venue/token/runtime failures may still block parking. Native V2 parking does not call a wrapper.
 

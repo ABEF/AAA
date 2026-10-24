@@ -1,3 +1,17 @@
+## Liquidity operations - 2026-10-25
+
+User-approved contribution default2% (conversion1%, maintenance3%; gas separate).
+Bounded two-pass actual-state placement, guarded attributed-idle reinvestment and
+success-only cooldown; no sweep or operator recipient. Explicit version1 ZZZ-price-
+in-ETH orientation and default-disabled reviewed keeper selection between±25% and
+±50% retain normal guarded rebalance for physical LP changes. API/inventory/keeper
+profiles, typed events and operator guidance are updated; old deployments and
+journals keep their original semantics. Current release uses local pool moves and
+source-chain external custody; integrated bridging/remote ledgers are deferred.
+See [scope and internal review](../reports/liquidity-operations-20261025/REVIEW.md)
+and [verification](../reports/liquidity-operations-20261025/VERIFICATION.md).
+Production NOT APPROVED; no public deployment, service or existing-chain action.
+
 ## 2026-10-25: pre-production internal audit
 
 [Keeper fee-review/preflight fixes and composed venue/accounting evidence](../reports/preproduction-audit-20261025/REVIEW.md); corrected native/pause/loss-cap/retired-path operations, strengthened invariant input domain, and aligned architecture/operator/recovery guidance. Focused verification only; no production approval, public transaction or service change.

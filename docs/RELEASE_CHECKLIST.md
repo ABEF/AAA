@@ -1,3 +1,13 @@
+**Liquidity operating candidate (2026-10-25):** [Scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
+and [review](../reports/liquidity-operations-20261025/REVIEW.md) cover bounded
+two-pass placement, idle-only compound/cooldown and explicit versioned ZZZ-price
+orientation with default-disabled reviewed25%/50% keeper selection. Defaults are
+2% contribution,1% conversion,3% maintenance, gas separate. New runtime/profile
+pins and actual strategy/service qualification are required. Current scope uses
+source-chain custody, not integrated bridges/remote canonical transport; the latter
+is deferred optional work. Caller-bound review cap remains open. This does not
+approve deployment, funds, sealing or existing-service upgrades. **NOT APPROVED.**
+
 **New activation gates (2026-10-25):** selected-fee thin-market feasibility and [signed review-cap binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open) remain open. Current Request has no caller maximum-loss expectation; public activation/growth signing must stay disabled until versioned Entry/API/wallet qualification.
 
 **Internal audit (2026-10-25):** [Keeper budget/preflight fixes, composition
@@ -17,7 +27,7 @@ transport or independent audit gate is closed. Decision remains **NOT APPROVED**
 **Native inventory tooling (2026-10-24):** [Schema-5 preflight and read-only observation](PRODUCTION_PREFLIGHT.md) now target actual native V2/v4 bindings and current governed limits. Legacy schema 4 remains historical. The example has missing public deployment/service/review records and must remain blocked. This tool does not close actual qualification, OpenSea, native website or independent audit gates.
 
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -166,7 +176,7 @@ the independent audit, live services or deployment approval gates.
 | Compiler, dependency lock and bytecode/artifact manifest | No release-specific approved record |
 | Module/helper addresses, authority addresses and immutable bindings | Not selected and independently approved |
 | Evidence bundle and hashes | No final release bundle accepted; development evidence is linked from the implementation reference |
-| Release mode | Intended initial mode: migration disabled; actual configuration not yet approved |
+| Release mode | Current scope: same-chain pool moves and separately approved source-chain custody exit/return; integrated bridges and direct remote canonical activation disabled. Exact configuration unapproved. |
 | Decision date and accountable release owner | Not recorded |
 | Accepted residual risks, limits and rationale | Not approved |
 

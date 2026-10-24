@@ -1,4 +1,5 @@
 import unittest
+import copy
 
 from frontend_api.activation import ActivationTransactions
 from frontend_api.service import Projection, ProjectionError
@@ -126,6 +127,58 @@ class LiquidityContextTests(unittest.TestCase):
         self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(1,))
         r=svc.prepare(self.rpc.request)['liquidity_context']['rebalance']
         self.assertFalse(r['range_update_pending']);self.assertIsNone(r['eligibility_reason'])
+
+    def range_service(self, *, pending=False, mode=1):
+        self.rpc = ActivationRPC(increase=True)
+        self.rpc.config['range_policy_version'] = 1
+        keeper = {'enabled':False,'narrow_trigger_bps':0,'widen_trigger_bps':0,
+            'minimum_interval_seconds':0,'configuration_hash':'0x'+'00'*32,'review_hash':'0x'+'00'*32}
+        self.rpc.config['range_policies'] = [{'pool_id':self.rpc.pool,'orientation':mode,'keeper':keeper}]
+        config = [addr(20)]+self.rpc.pool_values[1:]
+        config[7]=5000;config[8]=2000;config[11]=600
+        for getter in ('get(bytes32)','accounting(bytes32)'):
+            self.rpc.put(self.rpc.pins['pools'],getter,(self.rpc.pool,),config)
+        for getter,values in (('RANGE_POLICY_VERSION()',(1,)),('rangeOrientation(bytes32)',(mode,)),
+                ('keeperRangePolicy(bytes32)',(0,0,0,0,0,0,0)),('keeperRangeTarget(bytes32)',(0,))):
+            self.rpc.put(self.rpc.pins['strategy'],getter,() if getter.endswith('()') else (self.rpc.pool,),values)
+        self.rpc.put(self.rpc.pins['oracle'],'referenceX96(address,address)',(addr(20),addr(21)),(2**96*11//10,))
+        self.rpc.put(self.rpc.pins['strategy'],'rangeUpdatePending(uint256)',(5,),(int(pending),))
+        self.rpc.put(self.rpc.pins['strategy'],'needsRebalance(uint256)',(5,),(int(pending or mode==0),))
+        return ActivationTransactions(Projection(configuration(),self.rpc,clock=lambda:1000),self.rpc.config)
+
+    def test_inverse_price_orientation_recomputes_trigger_and_pending_width(self):
+        for mode,pending,reason in ((0,False,'price_trigger'),(1,False,None),(1,True,'range_update')):
+            with self.subTest(mode=mode,pending=pending):
+                service=self.range_service(mode=mode,pending=pending)
+                context=service.prepare(self.rpc.request)['liquidity_context']
+                # sqrt ratio1.1: direct price moves21%, inverse moves17.36%.
+                self.assertEqual(context['rebalance']['price_trigger_met'],mode==0)
+                self.assertEqual(context['rebalance']['eligibility_reason'],reason)
+                self.assertEqual(context['rebalance']['eligible_at_snapshot'],pending or mode==0)
+                self.assertEqual(context['range_orientation'],mode)
+                self.assertEqual(context['keeper_range_policy']['target_half_width_bps'],0)
+
+    def test_explicit_range_profile_rejects_malformed_or_mismatched_observations(self):
+        cases=[('RANGE_POLICY_VERSION()',(),(2,)),('rangeOrientation(bytes32)',None,(0,)),
+               ('rangeOrientation(bytes32)',None,(2,)),('keeperRangePolicy(bytes32)',None,(2,0,0,0,0,0,0)),
+               ('keeperRangePolicy(bytes32)',None,(0,0,0,0,1001,0,0)),('keeperRangeTarget(bytes32)',None,(1000,))]
+        for getter,args,values in cases:
+            with self.subTest(getter=getter,values=values):
+                service=self.range_service()
+                self.rpc.put(self.rpc.pins['strategy'],getter,(self.rpc.pool,) if args is None else args,values)
+                with self.assertRaises(ProjectionError): service.prepare(self.rpc.request)
+
+    def test_range_profile_intent_and_eligibility_are_not_inferred(self):
+        self.range_service()
+        for version in (True,2):
+            config=copy.deepcopy(self.rpc.config);config['range_policy_version']=version
+            with self.subTest(version=version),self.assertRaises(ValueError):
+                ActivationTransactions(Projection(configuration(),self.rpc),config)
+        config=copy.deepcopy(self.rpc.config);config['range_policies']=[]
+        with self.assertRaises(ValueError):ActivationTransactions(Projection(configuration(),self.rpc),config)
+        service=self.range_service()
+        self.rpc.put(self.rpc.pins['strategy'],'needsRebalance(uint256)',(5,),(1,))
+        with self.assertRaisesRegex(ProjectionError,'eligibility disagrees'):service.prepare(self.rpc.request)
 
 
 class CurrentPositionTests(unittest.TestCase):

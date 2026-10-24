@@ -65,17 +65,14 @@ class KeeperPreparationTests(unittest.TestCase):
         self.fixture.inbox_pending = [100,0]
         self.fixture.invoke().assert_called_once_with('fees','syncExternal(uint256)',(7,),'external_rewards:7')
 
-    def test_preparing_keeps_funded_remote_reward_delivery_available(self):
+    def test_preparing_refuses_retired_reward_scheduling_without_sending(self):
         self.fixture.preparing = True
         self.fixture.group_words[7] = 2
         self.k.maintenance = {'reward_routes':[{'token':fixtures.B,'minimum_units':1,'route_id':fixtures.H}]}
-        def call(method, params):
-            if method == 'eth_call' and params[0]['data'] == calldata('remoteIndividual(uint256,address)',7,fixtures.B):
-                return word(100)
-            return self.original_call(method, params)
-        self.rpc.call = call
-        self.fixture.invoke().assert_called_once_with('fees','bridgeRewards(uint256,address,bytes32)',
-            (7,fixtures.B,fixtures.H),f'bridge_rewards:7:{fixtures.B}',value=0)
+        with patch('keeper.monitor.subprocess.run') as signer:
+            with self.assertRaisesRegex(ValueError,'retired'): self.fixture.invoke()
+            signer.assert_not_called()
+        self.assertIsNone(self.k.state['pending'])
 
     def test_unknown_or_malformed_preparation_abi_never_reaches_simulation_or_signer(self):
         for response in ('0x','0x00',word(2),word(0)+word(0)[2:],None,RpcError('unknown selector')):

@@ -28,6 +28,7 @@ contract BudgetAdversarialVenue is ERC721 {
     uint256 public spend0Bps = 10000;
     uint256 public spend1Bps = 10000;
     uint256 public swapOutput;
+    uint256 public swapCount;
     uint256 public fee0;
     uint256 public fee1;
     uint256 private harvestLoss0;
@@ -98,6 +99,7 @@ contract BudgetAdversarialVenue is ERC721 {
     }
     function swap(bytes32, bool zeroForOne, uint256 input, uint256, uint256) external returns (uint256) {
         require(zeroForOne);
+        ++swapCount;
         require(token0.transferFrom(msg.sender, address(this), input));
         token1.mint(msg.sender, swapOutput);
         return swapOutput;
@@ -105,11 +107,19 @@ contract BudgetAdversarialVenue is ERC721 {
 }
 
 contract BudgetAdversarialPolicy {
+    BudgetAdversarialVenue private venue;
     uint256 private amountIn;
-    function setSwapAmount(uint256 value) external { amountIn = value; }
+    uint256 private plannedAtCount;
+    function observeVenue(BudgetAdversarialVenue observed) external { venue = observed; }
+    function setSwapAmount(uint256 value) external { amountIn = value; plannedAtCount = venue.swapCount(); }
+    function validatePrice(bytes32) external pure returns (uint160) { return uint160(1 << 96); }
     function validateExitPrice(bytes32) external pure returns (uint160) { return uint160(1 << 96); }
     function target(bytes32) external pure returns (int24, int24, uint160) { return (-600, 600, uint160(1 << 96)); }
-    function swapPlan(bytes32, uint256, uint256) external view returns (bool, uint256, uint256) { return (true, amountIn, 1); }
+    // The old synthetic plan prescribed one deliberate swap. Repeating its
+    // fixed amount on a reconciliation pass would invent a second unrelated loss.
+    function swapPlan(bytes32, uint256, uint256) external view returns (bool, uint256, uint256) {
+        return (true, amountIn != 0 && venue.swapCount() == plannedAtCount ? amountIn : 0, 1);
+    }
 }
 
 /// @notice Real Vault/rewards/accounting with fake authority, venue and feeds.
@@ -121,7 +131,7 @@ contract MigrationBudgetAdversarialTest is PooledVaultFixture {
 
     function _setupAdversary() private {
         adversary = new BudgetAdversarialVenue(address(t0), address(t1));
-        adversePolicy = new BudgetAdversarialPolicy();
+        adversePolicy = new BudgetAdversarialPolicy(); adversePolicy.observeVenue(adversary);
         ac.bind(Ids.LIQUIDITY, address(adversary)); ac.bind(Ids.STRATEGY, address(adversePolicy));
     }
     function _destination() private returns (bytes32 nextPool) {

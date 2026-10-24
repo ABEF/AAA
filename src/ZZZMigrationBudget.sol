@@ -24,7 +24,8 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     address public immutable vault;
     IZZZAccess public immutable access;
     uint16 public constant MAX_LOSS_BPS = 1000;
-    uint16 public contributionLossBps = 100;
+    uint256 public constant IDLE_COMPOUNDING_VERSION = 1;
+    uint16 public contributionLossBps = 200;
     uint16 public maintenanceLossBps = 300;
     struct Snapshot {
         uint256 bucketId;
@@ -39,6 +40,8 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
+    /// @notice Local operating cooldown, not an NFT entitlement or imported ledger.
+    mapping(uint256 => uint64) public lastCompound;
     mapping(uint256 => uint64) public compositionEpoch;
     error Unauthorized();
     error InvalidState();
@@ -99,6 +102,15 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         if (phase == 0) _beforeMove(id);
         else if (phase == 1) _includeCompound(id);
         else if (phase == 2) _afterMove(id);
+        else if (phase == 3) {
+            Position memory p = IZZZVault(vault).group(id);
+            if (p.lpTokenId == 0) revert InvalidState();
+            uint256 previous = lastCompound[id];
+            if (previous != 0 && block.timestamp < previous +
+                IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId).minRebalanceInterval) revert InvalidState();
+            _beforeMove(id);
+            lastCompound[id] = uint64(block.timestamp);
+        }
         else revert InvalidState();
     }
     function _beforeMove(uint256 id) private {
@@ -203,6 +215,9 @@ contract ZZZMigrationBudget is ReentrancyGuard {
         IZZZStrategy strategy = IZZZStrategy(access.module(Ids.STRATEGY));
         if (existingRange) (zeroForOne, amountIn, minimumOut) = strategy.compoundPlan(id, p.idle0, p.idle1);
         else (zeroForOne, amountIn, minimumOut) = strategy.swapPlan(p.poolId, p.idle0, p.idle1);
+        // Ignore corrections no greater than one basis point of this bucket's
+        // available input. Precision dust does not justify another fee-bearing swap.
+        if (amountIn <= (zeroForOne ? p.idle0 : p.idle1) / 10000) amountIn = 0;
         input = zeroForOne ? c.key.currency0 : c.key.currency1;
     }
     function poolTokens(bytes32 poolId) public view returns (address token0, address token1) {
@@ -244,7 +259,7 @@ contract ZZZMigrationBudget is ReentrancyGuard {
     }
     function assertIdleLoss(uint256 id, uint256 beforeValue) external view onlyVault {
         uint16 slippage = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId).maxSlippageBps;
-        if (idleValue(id) < Math.mulDiv(beforeValue, 10000 - slippage, 10000)) revert Slippage();
+        if (beforeValue == 0 || idleValue(id) < Math.mulDiv(beforeValue, 10000 - slippage, 10000)) revert Slippage();
     }
     /// @notice The end-to-end custody minimum cannot weaken a swap's own floor.
     /// A looser overall request is tightened here, not passed to an adapter that

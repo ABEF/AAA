@@ -11,6 +11,7 @@ import {PoolId} from "@uniswap/v4-core/src/types/PoolId.sol";
 import {BalanceDelta, BalanceDeltaLibrary} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
 import {ModifyLiquidityParams, SwapParams} from "@uniswap/v4-core/src/types/PoolOperation.sol";
 import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
+import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
 import {PositionManager} from "@uniswap/v4-periphery/src/PositionManager.sol";
 import {IPositionDescriptor} from "@uniswap/v4-periphery/src/interfaces/IPositionDescriptor.sol";
@@ -161,7 +162,8 @@ contract IntegratedEconomicConservationTest is Test {
     function unlockCallback(bytes calldata data) external returns(bytes memory) {
         require(msg.sender==address(core));(uint8 mode,bool direction,uint256 amount)=abi.decode(data,(uint8,bool,uint256));
         BalanceDelta delta;
-        if(mode==0) (delta,)=core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,int256(amount),bytes32(0)),"");
+        if(mode==0 || mode==2) (delta,)=core.modifyLiquidity(key,ModifyLiquidityParams(-60000,60000,
+            mode==0?int256(amount):-int256(amount),bytes32(0)),"");
         else delta=core.swap(key,SwapParams(direction,-int256(amount),direction?TickMath.MIN_SQRT_PRICE+1:TickMath.MAX_SQRT_PRICE-1),"");
         _settle(address(0),delta.amount0());_settle(address(token),delta.amount1());return "";
     }
@@ -184,6 +186,18 @@ contract IntegratedEconomicConservationTest is Test {
         vm.startPrank(owner);token.approve(address(vault),half);
         if(increase)vault.increase{value:half}(id,half,half,1,block.timestamp+100);
         else vault.activate{value:half}(id,pool,half,half,1,block.timestamp+100);
+        vm.stopPrank();
+    }
+    function _targetPair(address owner,uint256 id,uint256 total,bool increase,bool reject) private {
+        (int24 lower,int24 upper,)=ZZZStrategy(access.module(Ids.STRATEGY)).target(pool);
+        uint160 q=manager.spot(pool);
+        uint256 u0=SqrtPriceMath.getAmount0Delta(q,TickMath.getSqrtPriceAtTick(upper),1e18,false);
+        uint256 u1=SqrtPriceMath.getAmount1Delta(TickMath.getSqrtPriceAtTick(lower),q,1e18,false);
+        uint256 a0=total*u0/(u0+u1);uint256 a1=total-a0;
+        vm.startPrank(owner);token.approve(address(vault),a1);
+        if(reject)vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        if(increase)vault.increase{value:a0}(id,a0,a1,1,block.timestamp+100);
+        else vault.activate{value:a0}(id,pool,a0,a1,1,block.timestamp+100);
         vm.stopPrank();
     }
     function _trade(bool nativeInput,uint256 amount) private {core.unlock(abi.encode(uint8(1),nativeInput,amount));}
@@ -298,14 +312,37 @@ contract IntegratedEconomicConservationTest is Test {
         _assertBacking();
     }
 
-    function testActualV4ThinMarketRejectsInsufficientDeployedLPAndRollsBackEveryLedger() public {
+    function testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor() public {
+        uint256 id=_mint(ALICE);
+        assertEq(vault.migrationBudget().contributionLossBps(),200,"approved two-percent default");
+        vault.migrationBudget().setLossLimits(100,300);
+        assertEq(vault.migrationBudget().contributionLossBps(),100,"explicit stricter one-percent proof");
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector),uint64(2));
+        uint256 startGas=gasleft();
+        _contribute(ALICE,id,100 ether,false);
+        emit log_named_uint("actual.v4.shallow.native.two-pass.activation.harness-gas",startGas-gasleft());
+        uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
+        (uint256 deployed,uint256 idle)=vault.migrationBudget().nav(bucket);
+        assertGe(deployed,99 ether,"actual deployed value, not idle-inclusive NAV");
+        assertLt(idle,0.01 ether,"post-swap correction reduces recorded 0.5335 idle");
+        emit log_named_uint("actual.v4.shallow.native.deployed.usd18",deployed);
+        emit log_named_uint("actual.v4.shallow.native.idle.usd18",idle);
+        assertTrue(membership.eligible(id));assertEq(positions.ownerOf(p.lpTokenId),address(vault));
+        assertEq(vault.bucketTotalShares(bucket),vault.sharesOf(id));
+        assertGt(vault.sharesOf(id),0);_assertBacking();
+    }
+
+    function testActualV4UnfeasibleDepthStillRollsBackEveryLedger() public {
+        // Withdraw only external seed liquidity. Protocol custody is untouched;
+        // this market is deliberately too thin for the same guarded $100 input.
+        core.unlock(abi.encode(uint8(2),true,uint256(199_000 ether)));
         uint256 id=_mint(ALICE);uint256 userETH=ALICE.balance;uint256 userToken=token.balanceOf(ALICE);
         uint256 coreETH=address(core).balance;uint256 coreToken=token.balanceOf(address(core));
         (uint160 spotBefore,,uint24 protocol,uint24 lpFee)=state.getSlot0(PoolId.wrap(pool));
         assertEq(protocol,uint24(1000|(1000<<12)));assertEq(lpFee,10020);
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
-        vm.expectCall(address(oracle.contributionPricing()),abi.encodeWithSelector(ZZZContributionPricing.finish.selector));
-        vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.Slippage.selector);entry.execute{value:100 ether}(r);
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector));
+        vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.execute{value:100 ether}(r);
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
         assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);
         (uint160 spotAfter,,,)=state.getSlot0(PoolId.wrap(pool));assertEq(spotAfter,spotBefore);
@@ -318,6 +355,108 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(rewards.liabilities(address(token)),0);assertEq(fees.accounted(address(0)),0);
         assertEq(fees.accounted(address(token)),0);assertTrue(nft.traitsReady(id));
         assertFalse(ZZZContributionPricing(oracle.contributionPricing()).active());_assertBacking();
+    }
+
+    function testActualV4SecondBalancingSwapFailureRollsBackTheFirstSwapAndAllEntitlements() public {
+        uint256 id=_mint(ALICE);uint256 userETH=ALICE.balance;uint256 userToken=token.balanceOf(ALICE);
+        uint256 coreETH=address(core).balance;uint256 coreToken=token.balanceOf(address(core));
+        (uint160 spotBefore,,,)=state.getSlot0(PoolId.wrap(pool));
+        // Native first balances 0 -> 1; its correction reverses 1 -> 0. Inject
+        // only the second dependency failure, preserving the real first swap.
+        bytes memory failure=abi.encodeWithSignature("CorrectionUnavailable()");
+        vm.mockCallRevert(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector,pool,false),failure);
+        vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector),uint64(2));
+        ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
+        vm.prank(ALICE);vm.expectRevert(failure);entry.execute{value:100 ether}(r);
+        vm.clearMockedCalls();vm.getRecordedLogs();vm.recordLogs();
+        assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
+        assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);
+        (uint160 spotAfter,,,)=state.getSlot0(PoolId.wrap(pool));assertEq(spotAfter,spotBefore);
+        assertEq(vault.nftBucket(id),0);assertEq(vault.sharesOf(id),0);assertEq(vault.bucketCount(),0);
+        assertFalse(membership.eligible(id));assertEq(royalties.weightOf(id),0);
+        assertEq(rewards.liabilities(address(0)),0);assertEq(rewards.liabilities(address(token)),0);
+        assertEq(positions.nextTokenId(),1);_assertBacking();
+    }
+
+    function testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth() public {
+        // Independent local source controls intentionally disagree by 1.5%.
+        // Match the tick-rounded LP ratio so this tests the conservative USD
+        // contribution floor rather than failing an unrelated swap minimum.
+        secondary.set(101_500_000,block.timestamp,block.timestamp);
+        uint256 id=_mint(ALICE);assertEq(vault.migrationBudget().contributionLossBps(),200);
+        vault.migrationBudget().setLossLimits(100,300);
+        _targetPair(ALICE,id,100 ether,false,true);
+        assertEq(vault.nftBucket(id),0);assertFalse(membership.eligible(id));_assertBacking();
+        vault.migrationBudget().setLossLimits(200,300);
+        _targetPair(ALICE,id,100 ether,false,false);
+        uint256 bucket=vault.nftBucket(id);uint256 shares=vault.sharesOf(id);
+        assertTrue(membership.eligible(id));assertGt(shares,0);_assertBacking();
+        vault.migrationBudget().setLossLimits(100,300);
+        _targetPair(ALICE,id,5 ether,true,true);
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.contributionUSD(id),100 ether);_assertBacking();
+        vault.migrationBudget().setLossLimits(200,300);
+        _targetPair(ALICE,id,5 ether,true,false);
+        assertGt(vault.sharesOf(id),shares);assertEq(vault.contributionUSD(id),105 ether);_assertBacking();
+    }
+
+    function testActualV4InverseZZZPriceRangeDeploysGrowsAndKeepsFeeAccounting() public {
+        registry.setRange(2500);
+        ZZZStrategy strategy=ZZZStrategy(access.module(Ids.STRATEGY));
+        strategy.setRangeOrientation(pool,1);
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,100 ether,false);
+        uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
+        (int24 lower,int24 upper)=manager.ticks(p.lpTokenId);
+        uint256 lo=TickMath.getSqrtPriceAtTick(lower);uint256 hi=TickMath.getSqrtPriceAtTick(upper);
+        uint256 center=uint256(p.centerX96)*p.centerX96;
+        // ETH is currency0, so ZZZ's ETH price is the inverse raw pool ratio.
+        // Actual installed-position ticks must bracket its requested +/-25%.
+        assertLe(lo*lo*12500,center*10000);
+        assertGe(hi*hi*7500,center*10000);
+        assertFalse(strategy.rangeUpdatePending(bucket));
+        uint256 shares=vault.sharesOf(id);uint128 liquidity=positions.getPositionLiquidity(p.lpTokenId);
+        _trade(true,1 ether);_trade(false,1 ether);vault.collectFees(bucket,block.timestamp+100);
+        _assertBacking();assertGt(credited[0]+credited[1],0,"real LP trading fees");
+        uint256 nativeClaim=rewards.claimable(id,address(0));uint256 tokenClaim=rewards.claimable(id,address(token));
+        _contribute(ALICE,id,5 ether,true);
+        assertGt(positions.getPositionLiquidity(p.lpTokenId),liquidity);assertGt(vault.sharesOf(id),shares);
+        assertGe(rewards.claimable(id,address(0)),nativeClaim);assertGe(rewards.claimable(id,address(token)),tokenClaim);
+        assertEq(positions.ownerOf(p.lpTokenId),address(vault));_assertBacking();
+    }
+
+    function testActualV4IdleOnlyCompoundGrowsLPWithoutMovingSharesOrTakingPrefunds() public {
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,100 ether,false);
+        uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
+        uint128 beforeLiquidity=positions.getPositionLiquidity(p.lpTokenId);
+        uint256 shares=vault.sharesOf(id);
+        assertEq(fees.compoundBalance(bucket,address(0)),0);assertEq(fees.compoundBalance(bucket,address(token)),0);
+        assertGt(p.idle0+p.idle1,0,"non-vacuous idle-only input");
+        _royalty(1 ether);royalties.sync(address(0));uint256 royalty=royalties.claimable(id,address(0));
+        compounder.compound(bucket,1,block.timestamp+100);
+        assertGt(positions.getPositionLiquidity(p.lpTokenId),beforeLiquidity,"actual LP increased");
+        Position memory afterCompound=vault.group(bucket);
+        assertLt(afterCompound.idle0+afterCompound.idle1,p.idle0+p.idle1,"less attributed idle");
+        assertEq(vault.sharesOf(id),shares);assertEq(vault.bucketTotalShares(bucket),shares);
+        assertEq(royalties.claimable(id,address(0)),royalty);
+        assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
+        assertEq(vault.migrationBudget().IDLE_COMPOUNDING_VERSION(),1);_assertBacking();
+        vm.expectRevert();compounder.compound(bucket,1,block.timestamp+100);
+        assertEq(vault.migrationBudget().lastCompound(bucket),block.timestamp);
+    }
+
+    function testActualV4FailedIdleCompoundDoesNotConsumeCooldownOrLeaveBudgetContext() public {
+        uint256 id=_mint(ALICE);_contribute(ALICE,id,100 ether,false);
+        uint256 bucket=vault.nftBucket(id);Position memory p=vault.group(bucket);
+        uint128 beforeLiquidity=positions.getPositionLiquidity(p.lpTokenId);uint256 shares=vault.sharesOf(id);
+        _assertBacking();
+        vm.expectRevert();compounder.compound(bucket,type(uint128).max,block.timestamp+100);
+        // Foundry records logs from reverted calls as well. They are not chain
+        // receipts and must not enter the independent committed-income ghost.
+        vm.getRecordedLogs();vm.recordLogs();
+        assertEq(vault.migrationBudget().lastCompound(bucket),0,"failed attempt cannot consume cooldown");
+        assertEq(positions.getPositionLiquidity(p.lpTokenId),beforeLiquidity);assertEq(vault.sharesOf(id),shares);
+        assertEq(vault.group(bucket).idle0,p.idle0);assertEq(vault.group(bucket).idle1,p.idle1);_assertBacking();
+        compounder.compound(bucket,1,block.timestamp+100);
+        assertGt(positions.getPositionLiquidity(p.lpTokenId),beforeLiquidity);_assertBacking();
     }
 
     function testActualV4SmallReceiptsAndRepeatedClaimsKeepFractionsAndLedgersSeparate() public {

@@ -144,6 +144,7 @@ contract ContributionPriceSecurityTest is PooledVaultFixture {
         vm.clearMockedCalls();
     }
     function testUpperInputLowerLPRejectsHiddenPriceUncertaintyAtLossBoundary() public {
+        vault.migrationBudget().setLossLimits(100,300);
         secondary.set(100_400_000,block.timestamp,block.timestamp);_policy(50);
         venue.setSpendBps(9900);uint256 id=_mint(alice);
         // $100 lower input/$100.40 upper input requires $99.396 lower LP.
@@ -152,6 +153,7 @@ contract ContributionPriceSecurityTest is PooledVaultFixture {
         assertEq(vault.sharesOf(id),0);assertFalse(oracle.contributionPricing().active());
     }
     function testThreePercentAgreementDoesNotOverrideExecutionLossFloor() public {
+        vault.migrationBudget().setLossLimits(100,300);
         secondary.set(103_000_000,block.timestamp,block.timestamp);_policy(300);
         (uint256 lower,uint256 upper,)=oracle.priceBounds(address(t0));
         assertEq(lower,1e18);assertEq(upper,103e16);

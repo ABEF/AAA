@@ -1,0 +1,51 @@
+{
+  "observed_at_utc": "2026-10-24T23:14:26.853852+00:00",
+  "status": "passed",
+  "distinct_test_methods": 13,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 12.378,
+  "test_names": [
+    "tests_python.test_liquidity_context.LiquidityContextTests.test_inverse_price_orientation_recomputes_trigger_and_pending_width",
+    "tests_python.test_liquidity_context.LiquidityContextTests.test_explicit_range_profile_rejects_malformed_or_mismatched_observations",
+    "tests_python.test_liquidity_context.LiquidityContextTests.test_range_profile_intent_and_eligibility_are_not_inferred",
+    "tests_python.test_liquidity_context.LiquidityContextTests.test_due_rebalance_does_not_block_in_range_or_outside_contribution",
+    "tests_python.test_liquidity_context.LiquidityContextTests.test_approved_range_update_can_be_due_at_flat_price",
+    "tests_python.test_production_v2.ProductionV2Tests.test_explicit_range_profile_qualifies_default_disabled_and_bounded_enabled_policy",
+    "tests_python.test_production_v2.ProductionV2Tests.test_range_profile_blocks_observation_intent_and_policy_mismatch",
+    "tests_python.test_production_v2.ProductionV2Tests.test_output_separates_local_custody_capability_from_protocol_bridging",
+    "tests_python.test_production_observer.ObserverGateCompositionTests.test_explicit_range_profile_reads_exact_metadata_and_malformed_abi_stays_unavailable",
+    "tests_python.test_production_observer.ObserverGateCompositionTests.test_legacy_range_profile_does_not_infer_orientation_or_query_new_getters",
+    "tests_python.test_event_schema.EventSchemaTests.test_keeper_range_policy_and_orientation_logs_are_exact_and_bounded",
+    "tests_python.test_event_schema.EventSchemaTests.test_generated_artifact_matches_current_contract_sources",
+    "tests_python.test_event_schema.EventSchemaTests.test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules"
+  ],
+  "source_sha256": {
+    "frontend_api/activation.py": "dc22997410975c3026dc3c3a24afb43c8220f45c16e57c681e130bd858ed25fe",
+    "frontend_api/activation_config.py": "73c4044635444ec67c338c4b9ade128ebea5ef73e32889f4403218f74bc8f839",
+    "frontend_api/liquidity_context.py": "7492395891baf3c167694b355165f9a45c5d325406b832e64ff81184cd1280bb",
+    "zzz_ops/range_policy.py": "4d4d8c1772b45417d98e2aa336e100f59674c7bbbe7f4a35efa8d07f87d90171",
+    "zzz_ops/production_v2.py": "bd78deb45e884f4d7519776752a33eea5deaad2e7e6bdf04c6fe79649878bc95",
+    "zzz_ops/production_observer.py": "66357c04853302c8a5ce2e89922b2baa8340c990eb40ff709c1c54258f787250",
+    "tests_python/test_liquidity_context.py": "1528eb18239c957b19b3f7c562920d35cd1e08128911707a15d2d507624cf03b",
+    "tests_python/test_production_v2.py": "b6f14406ca2651feddc87944edbcc171b04c3f43c87223926b96408ad91df376",
+    "tests_python/test_production_observer.py": "b9f24ceddd212c32c17e9f40021fa638e324c9bb0e450b3138defccd72cb536a",
+    "tests_python/test_event_schema.py": "b769e9796918fbb4e8afef5071e8280bbfc546f307e481e3175dac6ca3c66185",
+    "indexer/event_schema.json": "34a31d054a5e916005c7a62d9d73403e0db6337ce52bdb4e9b5cc4d6fa56223c",
+    "scripts/generate_event_schema.py": "09f3f6dd07ca092d0672b2c4e316ff89ba64df63f186f26b06c6a8e7d329b51c",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZPoolRegistry.sol": "918e7222f6bcb7a5abf6120c81310d121f4a99dac8cd6c97b739c0a5e2df73bc",
+    "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+    "src/ZZZVault.sol": "ad588c01ba2443b6de5a61f632a47887c64139d7aed0d4ef10bcc15d089bb34f",
+    "tests_python/test_frontend_activation.py": "5b00c282c75a9980c7903eefcdfd56f2da50093ba9cff6c954e4abeec25a3afb",
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "docs/GOVERNED_CUSTODY_HANDOFF.md": "a52bae12549a5d26aa4695ceb66cbb13ddb844dd154b5b6076a7f49d059638dd",
+    "docs/SECURITY_AUDIT_PLAN.md": "0a4be40c2c080c59f91f32d846b1a5370cb88865e50af1c553a12acf7a8e2bf1"
+  },
+  "scope_changed_during_run": [],
+  "limitations": [
+    "Focused offline Python/ABI composition checks only; no real provider, signer, extension, chain transaction or release approval.",
+    "No fresh full regression or unchanged Solidity rerun is implied. Prior failed new-fixture setup was corrected; earlier focused output/event negative controls are recorded in conversation output only."
+  ]
+}

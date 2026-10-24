@@ -1,0 +1,15 @@
+{
+  "kind": "actual_installed_v4_protocol_composition_local_harness",
+  "contribution_policy_bps": 100,
+  "production_default_bps": 200,
+  "harness_execution_gas": 6126388,
+  "actual_deployed_usd18": "99378363383283897427",
+  "attributed_idle_usd18": "2217489881065215",
+  "original_source_usd18": "100000000000000000000",
+  "swap_count": 2,
+  "limitations": [
+    "Local substituted governance, dual feeds, token/admission, VRF and Permit2; not target-chain/provider qualification",
+    "Gas delta excludes test setup/mint/intrinsic/calldata and is not maximum-capacity cold gas or a network-cost quote",
+    "This bounded correction is not a guarantee for arbitrary liquidity depths or routes"
+  ]
+}

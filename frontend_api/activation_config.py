@@ -41,6 +41,11 @@ class ActivationConfig:
         if type(self.routing_version) is not int or self.routing_version not in (1, 2):
             raise ValueError('Unsupported explicit activation routing profile')
         if 'routing_version' in config: fields.add('routing_version')
+        self.range_policy_version = config.get('range_policy_version', 0)
+        if type(self.range_policy_version) is not int or self.range_policy_version not in (0,1):
+            raise ValueError('Unsupported explicit activation range-policy profile')
+        if 'range_policy_version' in config: fields.add('range_policy_version')
+        if self.range_policy_version == 1: fields.add('range_policies')
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
@@ -110,6 +115,16 @@ class ActivationConfig:
                 raise ValueError('Ambiguous or unsupported source route')
             self.sources[(pool, source)] = (route, _hash(item['asset_policy_id']))
             self.route_kinds[(pool, source)] = kind
+        self.range_policies = {}
+        if self.range_policy_version == 1:
+            from zzz_ops.range_policy import intended
+            for item in bounded(config['range_policies'],16,'range policies',1):
+                _keys(item, {'pool_id','orientation','keeper'}, 'range policy')
+                pool = _hash(item['pool_id'])
+                if pool in self.range_policies: raise ValueError('Repeated range-policy pool')
+                self.range_policies[pool] = intended({key:item[key] for key in ('orientation','keeper')})
+            if set(self.range_policies) != {pool for pool,_source in self.sources}:
+                raise ValueError('Every reviewed activation pool needs its explicit range policy')
         _keys(config['sequencer'], {'address', 'policy_id'}, 'sequencer')
         self.sequencer = dict(config['sequencer'])
         if self.sequencer['address'] == ZERO:

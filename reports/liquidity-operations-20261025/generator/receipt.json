@@ -1,0 +1,37 @@
+{
+  "observed_at_utc": "2026-10-24T23:31:37.446844+00:00",
+  "python_tests": {
+    "status": "passed",
+    "distinct": 7,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "actual_generation": {
+    "modified_production_sources": [
+      "src/ZZZActivationEntry.sol",
+      "src/ZZZVaultCanonical.sol"
+    ],
+    "budget_byte_identical": true,
+    "constructor_default_bps": 200,
+    "maximum_bps": 1000,
+    "inherited_historical_fixture_bps": 100,
+    "manifest_sha256": "52bed5e27f73b32e29e7eb1c9b92c808c87cb29387b77a2fdb58386e1205b4a4"
+  },
+  "typecheck_status": "passed",
+  "source_sha256": {
+    "scripts/prepare-dollar-rehearsal.py": "9c056789e11a0c0144f67d0bd18fe9a404ae8590c9a3d3cf0613c8f65011e753",
+    "tests_python/test_dollar_rehearsal.py": "427093f0adcab11e511a528a38ff97799484ae66fa07fe4de3b4713fbc3f2997",
+    "rehearsal/one-dollar/DollarActivation.t.sol": "f2be4ce0eb2b2d0a269c5024b4d110176098b8b0eef2b0681ff1ea4cbf6253aa",
+    "test/AtomicActivationIntegration.t.sol": "94886902152cf0c89b10141ddd8f1b03ceb800c75ed6bf6ee513d0e436b5a102",
+    "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
+    "src/ZZZActivationEntry.sol": "3c6af26a96d8bfa33e25ea88cc54d67dad225e1f2020e906ef1750c260a86bc2",
+    "src/ZZZVaultCanonical.sol": "c4ab1d7dd3d4082e385eb5b86565a5a3e96413c822afdfaaa1acd6db826c2191"
+  },
+  "current_hashes_match": true,
+  "duration_seconds": 2.9839999999967404,
+  "limitations": [
+    "No Solidity runtime rehearsal, bytecode/size gate, deployment, signing or public transaction. ABI/typecheck only for the changed isolated fixture and transitive generated inputs.",
+    "An initial focused run exposed the obsolete Budget floor anchor and failed; source ownership/fixture constructor and $5 growth assumptions were corrected before this final run. Initial diagnostic is retained in conversation output."
+  ]
+}

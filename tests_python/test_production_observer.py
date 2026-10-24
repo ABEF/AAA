@@ -375,7 +375,7 @@ class CompositionRPC:
     """Static source-ABI mock for the complete gate fixture, not a live node."""
     def __init__(self, config):
         self.chain = config['chains'][0]
-        self.expected = P.expected_bindings(self.chain)
+        self.expected = P.expected_bindings(self.chain,range_policy_version=config.get('range_policy_version',0))
         self.calls = []
         self.bad = None
         self.overrides = {}
@@ -411,6 +411,15 @@ class CompositionRPC:
                 for role,name in O.MODULE_IDS.items():
                     if data[10:]==O.keccak256(name.encode()).hex(): return encoded(mods.get(role,{}).get('address',O.ZERO))
             if data[:10] in (selector('hasRole(bytes32,address)'),selector('keepers(address)'),selector('guardians(address)')): return encoded(1)
+        if target==mods['strategy']['address']:
+            for pool in chain['pools']:
+                if 'range_policy' not in pool:continue
+                metadata=pool['observed_range_policy'];keeper=metadata['keeper']
+                if data==selector('rangeOrientation(bytes32)')+O._word(pool['pool_id']):return encoded(metadata['orientation'])
+                if data==selector('keeperRangeTarget(bytes32)')+O._word(pool['pool_id']):return encoded(metadata['target_half_width_bps'])
+                if data==selector('keeperRangePolicy(bytes32)')+O._word(pool['pool_id']):return encoded(
+                    int(keeper['enabled']),keeper['narrow_trigger_bps'],keeper['widen_trigger_bps'],
+                    keeper['minimum_interval_seconds'],metadata['last_change_at'],keeper['configuration_hash'],keeper['review_hash'])
         if target==mods['oracle']['address']:
             if data==selector('PRICING_VERSION()'):return encoded(2)
             if data==selector('policyCount()'):return encoded(len(chain['tokens']))
@@ -478,6 +487,31 @@ class CompositionRPC:
 
 
 class ObserverGateCompositionTests(unittest.TestCase):
+    def test_explicit_range_profile_reads_exact_metadata_and_malformed_abi_stays_unavailable(self):
+        mock_deps={role:(address,RUNTIME) for role,(address,_hash) in P.NATIVE_DEPENDENCIES.items()}
+        with patch.object(P,'NATIVE_DEPENDENCIES',mock_deps),patch.object(GATE_FIXTURE,'HASH',RUNTIME):
+            config=GATE_FIXTURE.range_fixture(True);chain=config['chains'][0]
+            rpc=CompositionRPC(config); observed=O.observe(config,rpc)
+            self.assertTrue(observed['chains'][0]['observation']['complete'])
+            self.assertEqual(chain['pools'][0]['range_policy'],observed['chains'][0]['pools'][0]['range_policy'])
+            self.assertTrue(P.validate(observed,expected_commit=GATE_FIXTURE.COMMIT,now=GATE_FIXTURE.NOW)['ready'])
+            self.assertTrue(any(call[0]=='eth_call' and call[1][0]['data'].startswith(selector('keeperRangePolicy(bytes32)')) for call in rpc.calls))
+            rpc=CompositionRPC(config)
+            key=(chain['modules']['strategy']['address'],selector('keeperRangePolicy(bytes32)')+O._word(chain['pools'][0]['pool_id']))
+            rpc.overrides[key]=encoded(2,100,1500,600,0,RUNTIME,RUNTIME)
+            failed=O.observe(config,rpc)
+            self.assertFalse(failed['chains'][0]['observation']['complete'])
+            self.assertIsNone(failed['chains'][0]['pools'][0]['observed_range_policy'])
+            self.assertFalse(P.validate(failed,expected_commit=GATE_FIXTURE.COMMIT,now=GATE_FIXTURE.NOW)['ready'])
+
+    def test_legacy_range_profile_does_not_infer_orientation_or_query_new_getters(self):
+        mock_deps={role:(address,RUNTIME) for role,(address,_hash) in P.NATIVE_DEPENDENCIES.items()}
+        with patch.object(P,'NATIVE_DEPENDENCIES',mock_deps),patch.object(GATE_FIXTURE,'HASH',RUNTIME):
+            config=GATE_FIXTURE.fixture();rpc=CompositionRPC(config);O.observe(config,rpc)
+            forbidden={selector(value) for value in ('RANGE_POLICY_VERSION()','rangeOrientation(bytes32)',
+                'keeperRangePolicy(bytes32)','keeperRangeTarget(bytes32)')}
+            self.assertFalse(any(method=='eth_call' and args[0]['data'][:10] in forbidden for method,args in rpc.calls))
+
     def test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked(self):
         # Runtime preimages for real dependencies are not fabricated. This test
         # explicitly substitutes one known mock runtime in the gate's native

@@ -1,0 +1,17 @@
+{
+  "kind": "scoped_current_source_cold_accounting_workloads_with_mock_strategy_and_venue",
+  "unchanged_local_gate": 12000000,
+  "values": {
+    "combined.4-buckets.32-assets.4-inboxes.17-royalties.activation": 10946281,
+    "combined.4-buckets.32-indexed-assets.activation": 11509874,
+    "combined.4-buckets.32-assets.4-inboxes.17-royalties.top-up": 8314880,
+    "combined.4-buckets.32-indexed-assets.top-up": 9225184
+  },
+  "maximum_execution_gas": 11509874,
+  "minimum_margin": 490126,
+  "limitations": [
+    "Mock strategy returns no balancing swap; does not qualify combined-capacity actual-v4 two-pass gas",
+    "Gasleft deltas exclude setup, intrinsic/calldata gas and refunds",
+    "Reported whole-test gas is different from the explicit operation delta"
+  ]
+}

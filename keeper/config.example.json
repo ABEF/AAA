@@ -15,6 +15,8 @@
   "reviewed_for_live_use": false,
   "royalty_conversion": {"enabled": false},
   "lp_conversion": {"enabled": false},
+  "idle_compounding_budget": null,
+  "adaptive_range": {"enabled": false},
   "code_hashes": {},
   "keystore": "/run/zzz/keystore.json",
   "password_file": "/run/zzz/password",
@@ -38,10 +40,11 @@
     "sync_external_rewards": true,
     "minimum_liquidity": 1,
     "compound": true,
+    "compound_idle": false,
+    "compound_interval_seconds": 3600,
     "minimum_compound_units": 1000,
     "harvest": true,
-    "harvest_interval_seconds": 14400,
-    "reward_routes": []
+    "harvest_interval_seconds": 14400
   },
   "bucket_overrides": {},
   "metadata_refresh": {

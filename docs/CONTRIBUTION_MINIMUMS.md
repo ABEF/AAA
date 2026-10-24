@@ -1,6 +1,6 @@
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -11,17 +11,19 @@ historical/default scope. Actual routes, services and independent audit remain o
 The production candidate requires **$100 original input value to activate** and
 **$5 original input value to increase an already activated NFT's LP**. Values use
 reviewed Oracle prices and token decimals; five tokens do not necessarily equal
-five dollars. Native ETH uses the admitted wrapper's valuation.
+five dollars. Native V2 values actual ETH at address zero using its two-source USD policy; legacy wrapper profiles retain their historical meaning.
 
-Both [Activation Entry](../src/ZZZActivationEntry.sol) and the Vault's fixed
-[contribution budget helper](../src/ZZZMigrationBudget.sol) enforce the floors.
+[Activation Entry](../src/ZZZActivationEntry.sol) checks the original input floor.
+The Vault also checks it through its fixed [Budget](../src/ZZZMigrationBudget.sol)
+and [VaultCanonical validation](../src/ZZZVaultCanonical.sol).
 Direct Vault calls cannot bypass the $5 rule. The effective minimum is the larger
 of the action floor and the pool's configured `minDepositUSD`. The current
 one-contribution-pool policy, owner/lifecycle checks and cumulative maximum remain.
 
-The existing execution budget still requires at least **99% of original value
-as marginal new LP**, with gas separate. Thus a $5 top-up must add at least $4.95
-of LP; a $100 activation must add at least $99. Existing LP, idle or rewards cannot
+At the current 2% default, the captured execution budget requires at least
+**98% of conservative original value as marginal new LP**, with gas separate.
+A $5 top-up therefore needs at least $4.90 of LP and $100 activation at least $98.
+Read the governed cap for the exact deployment; old fixtures may retain 1%. Existing LP, idle or rewards cannot
 subsidize it. A route that cannot meet the limit reverts; the smaller minimum does
 not promise that every route or market condition will support a $5 transaction.
 

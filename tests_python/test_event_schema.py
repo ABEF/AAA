@@ -27,6 +27,22 @@ def log(signature, indexed=(), data=(), emitter=TOKEN):
 
 
 class EventSchemaTests(unittest.TestCase):
+    def test_keeper_range_policy_and_orientation_logs_are_exact_and_bounded(self):
+        pool='0x'+'ab'*32;review='0x'+'cd'*32
+        cases=(('RangeOrientationChanged(bytes32,uint8,uint8)',[word(0,'uint8'),word(1,'uint8')],
+                {'poolId':pool,'previous':'0','current':'1'}),
+            ('KeeperRangePolicyChanged(bytes32,bool,bytes32,bytes32)',[word(True,'bool'),word(pool,'bytes32'),word(review,'bytes32')],
+                {'poolId':pool,'enabled':True,'configurationHash':pool,'reviewHash':review}),
+            ('KeeperRangeSelected(bytes32,uint16,uint16,bytes32)',[word(5000,'uint16'),word(2500,'uint16'),word(review,'bytes32')],
+                {'poolId':pool,'previous':'5000','current':'2500','reviewHash':review}))
+        for signature,data,expected in cases:
+            with self.subTest(signature=signature):
+                self.assertEqual(decode(log(signature,[word(pool,'bytes32')],data)),(signature.split('(')[0],expected))
+        with self.assertRaisesRegex(ValueError,'overflow'):
+            decode(log(cases[0][0],[word(pool,'bytes32')],[word(256,'uint256'),word(1,'uint8')]))
+        with self.assertRaisesRegex(ValueError,'boolean'):
+            decode(log(cases[1][0],[word(pool,'bytes32')],[word(2,'uint256'),word(pool,'bytes32'),word(review,'bytes32')]))
+
     def test_dual_price_and_factual_contribution_events_are_exactly_decodable(self):
         signatures = (
             'DualPolicyRecorded(bytes32,address,address,address,bytes32,bytes32,uint16,bytes32)',

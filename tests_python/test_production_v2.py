@@ -224,6 +224,26 @@ def v3_fixture():
     return config
 
 
+def range_fixture(enabled=False):
+    from zzz_ops.range_policy import fingerprint
+    config=fixture(); config['range_policy_version']=1
+    chain=config['chains'][0];pool=chain['pools'][0]
+    keeper={'enabled':enabled,'narrow_trigger_bps':100 if enabled else 0,
+        'widen_trigger_bps':1500 if enabled else 0,'minimum_interval_seconds':600 if enabled else 0,
+        'configuration_hash':P.ZERO_HASH,'review_hash':HASH if enabled else P.ZERO_HASH}
+    if enabled:
+        pool['rangeBps']=5000;pool['observed_config']['rangeBps']=5000
+        raw=[f'{int(pool[k],16) if isinstance(pool[k],str) and pool[k].startswith("0x") else int(pool[k]):064x}' for k in P.POOL_FIELDS]
+        keeper['configuration_hash']=fingerprint(raw,1)
+    pool['range_policy']={'orientation':1,'keeper':keeper}
+    pool['observed_range_policy']={**copy.deepcopy(pool['range_policy']),
+        'last_change_at':NOW-900 if enabled else 0,'target_half_width_bps':2500 if enabled else 0}
+    strategy=chain['modules']['strategy']
+    strategy['observed_bindings']['RANGE_POLICY_VERSION']=1
+    pool['review_evidence']['configuration_sha256']=P.configuration_hash(P.pool_configuration(chain,pool))
+    return config
+
+
 class ProductionV2Tests(unittest.TestCase):
     def setUp(self): self.config = fixture()
     def result(self): return P.validate(self.config,expected_commit=COMMIT,now=NOW)
@@ -236,10 +256,54 @@ class ProductionV2Tests(unittest.TestCase):
         result = self.result(); self.assertTrue(result['ready'],result['issues'])
         self.assertFalse(result['deployment_authorized']); self.assertEqual({},result['blockers'])
 
+    def test_output_separates_local_custody_capability_from_protocol_bridging(self):
+        for blocked in (False, True):
+            with self.subTest(blocked=blocked):
+                self.config = fixture()
+                if blocked:
+                    self.chain()['custody']['pending_principal_count'] = 1
+                result = self.result()
+                self.assertEqual(not blocked, result['ready'])
+                self.assertIs(result['migration_enabled'], False)
+                self.assertIs(result['protocol_bridge_enabled'], False)
+                self.assertIs(result['local_pool_move_supported'], True)
+                self.assertIs(result['source_chain_custody_handoff_supported'], True)
+                self.assertIs(result['deployment_authorized'], False)
+                boundary = ' '.join(result['limitations'])
+                for phrase in ('legacy protocol-bridge flag', 'same ordered actual currencies',
+                               'normal all-ZZZ', 'explicit raw exit', 'no forced return',
+                               'remote NFT/reward ledger', 'not transaction authorization'):
+                    self.assertIn(phrase, boundary)
+
     def test_current_schema_does_not_accept_legacy_or_implicit_profiles(self):
         for field,value in (('schema_version',4),('accounting_version',1),('routing_version',True),('custody_architecture','v3')):
             with self.subTest(field=field):
                 self.config=fixture();self.config[field]=value;self.blocked('schema.unsupported')
+
+    def test_explicit_range_profile_qualifies_default_disabled_and_bounded_enabled_policy(self):
+        for enabled in (False,True):
+            with self.subTest(enabled=enabled):
+                self.config=range_fixture(enabled)
+                self.assertTrue(self.result()['ready'],self.result()['issues'])
+
+    def test_range_profile_blocks_observation_intent_and_policy_mismatch(self):
+        for key,value in (('orientation',0),('orientation',True),('last_change_at',NOW+1),
+                          ('last_change_at',True),('target_half_width_bps',4999)):
+            with self.subTest(key=key,value=value):
+                self.config=range_fixture();self.chain()['pools'][0]['observed_range_policy'][key]=value
+                self.blocked('range.policy')
+        self.config=range_fixture(True)
+        pool=self.chain()['pools'][0]
+        pool['range_policy']['keeper']['configuration_hash']=HASH
+        pool['observed_range_policy']['keeper']['configuration_hash']=HASH
+        self.blocked('range.policy')
+        for field,value in (('last_change_at',NOW-1),('last_change_at',0),('target_half_width_bps',5000)):
+            with self.subTest(field=field,value=value):
+                self.config=range_fixture(True)
+                self.chain()['pools'][0]['observed_range_policy'][field]=value
+                self.blocked('range.policy')
+        self.config=range_fixture();self.config['range_policy_version']=0;self.blocked('range.profile')
+        self.config=fixture();self.config['range_policy_version']=True;self.blocked('range.profile')
 
     def test_uint256_string_getter_values_normalize_without_truncation(self):
         chain = self.chain(); values=P.expected_bindings(chain)['modules']['buyback']

@@ -1,3 +1,64 @@
+## Liquidity placement and keeper policy - 2026-10-25
+
+Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
+default to2% (98% marginal deployed LP), conversion1%, maintenance3%, gas separate.
+The Vault makes at most two balancing passes using actual post-swap state; tiny
+corrections are skipped. Retained idle still backs the same bucket. There is no
+general clear/sweep or operator dust recipient.
+
+Idle-only reinvestment uses the existing `Compounder.compound(bucket,minLP,deadline)`
+with current prices, actual LP, captured maintenance budget and pool cooldown.
+`Budget.lastCompound(bucket)` changes only on success. Configure keeper opt-in,
+both actual currency thresholds and reviewed Budget pins using the specialist
+[keeper/range guide](RANGE_POLICY_UPDATES.md). Stop scheduling and reconcile pending
+hashes before changing services; do not reset journals or count principal as income.
+
+### Explicit ZZZ-price orientation and two-range selection
+
+1. Read exact Strategy/Registry versions, runtimes, full pool config and physical
+   ticks. New `RANGE_POLICY_VERSION()==1` profiles are explicit. Mode0 preserves
+   historical raw `token1/token0`; mode1 means `token0/token1`, ETH per ZZZ for
+   this native ETH/ZZZ key. Governance calls `setRangeOrientation(pool,1)` only
+   if not already1. The change disables an enabled automatic policy and creates
+   a desired tick mismatch; it does not move funds or instantly change artwork/NAV.
+2. Choose initial `rangeBps`2500 or5000 through full pool configuration. In mode1,
+   ZZZ price `P` in ETH has endpoints `[0.75P,1.25P]` or `[0.50P,1.50P]` before
+   outward ticks. Normal oracle/spot checks still use the actual raw pool ratio.
+3. Review drift thresholds and cadence economically, including MEV/turnover and
+   both widening and narrowing. Governance explicitly calls
+   `setKeeperRangePolicy(pool,true,narrowBps,widenBps,interval,reviewHash)` with
+   `0<=narrowBps<widenBps<2500`,600seconds<=interval<=7days, and interval at
+   least the pool cooldown. Trigger/deviation must fit the narrower width.
+   No default production thresholds or continuous-volatility claim is supplied.
+4. Verify orientation, complete `keeperRangePolicy(pool)` and configuration/review
+   hashes. The fingerprint binds all PoolConfig fields except desired width plus
+   orientation. A changed non-width config makes selection unavailable until
+   governance re-reviews it. `keeperRangeTarget(pool)` returns0 unless all policy,
+   lifecycle, actual-position, cooldown and unapplied-tick checks pass. Malformed or
+   failed dependency reads can revert; report unavailable, never coerce them to0.
+5. Enable reviewed keeper `adaptive_range` only on this matching version/runtime.
+   It calls `Strategy.applyKeeperRange(pool)` with no width argument. The on-chain
+   rule chooses2500 or5000; the fixed Strategy's Registry callback can change
+   only width, never assets, recipient, feeds, pool flags or loss limits.
+6. Selection and LP movement are separate confirmed transactions. The normal
+   `Vault.rebalance` then applies ticks under its cooldown, price/close/swap/deploy
+   and captured maintenance floor. Verify actual LP/ticks/center, retained value,
+   unchanged shares and claims. Failed execution leaves the old physical LP and
+   desired width pending; no automatic raw exit or repeated width selection follows.
+
+To stop automatic selection, governance calls
+`setKeeperRangePolicy(pool,false,0,0,0,bytes32(0))`; disabling needs no healthy
+Oracle/venue. Disable off-chain scheduling too and recover any saved hash before
+restarting. This does not cancel a broadcast selection/rebalance or restore a
+previous physical range. To restore manually, disable policy, review full pool
+config/orientation and use ordinary guarded rebalance. Pause maintenance/disable
+pool operations for containment; funded claims retain their existing rules.
+
+The rule measures current oracle displacement from the last applied center;
+it does not observe every intervening price or prove sustained low volatility.
+The keeper cannot choose arbitrary widths, bypass prices or guarantee always-in-
+range LP. Polling and a target width are not a promised execution time.
+
 # PoPL operator manual
 
 ## Budget feed services and label observations - 2026-10-25
@@ -81,7 +142,7 @@ require a fresh review. Existing nonzero historical compound keeps its starting
 mark; newly discovered historical compound is first marked at the final
 checkpoint only for incumbent backing, never the new LP floor. Source uncertainty
 uses some of the captured execution budget: even agreement inside 3% can fail
-the separate default 1% execution floor. A failed quote does not authorize an
+the separate default 2% contribution execution floor. A failed quote does not authorize an
 automatic cap increase, stablecoin peg, spot price or single-source fallback.
 
 If either source fails, retain unavailable status and disable affected work until
@@ -113,7 +174,7 @@ The public site and existing Anvil/journals are unaffected.
 [Typed v4 route setup](TYPED_V4_ROUTES.md) covers new pools/routes, exact policy
 fields, activation `routing_version: 2`, converter workers and failure/restart.
 [Execution-loss controls](EXECUTION_LOSS_POLICY.md) supersede earlier fixed-cap
-wording in this manual: default **1% / 1% / 3%**, immediate governance **0-10%**,
+wording in this manual: default **2% / 1% / 3%**, immediate governance **0-10%**,
 network gas separate. Never assume an old default is the current on-chain value.
 
 | Change | Exact current control | Preserve / recover |
@@ -248,11 +309,12 @@ Roles can technically share an address, but this combines their compromise and a
 
 ### Example: change the width
 
-`rangeBps` is the approximate percentage **on each side of the oracle reference token1/token0 price**, with outward tick rounding. It is not half the total capital, and the center is not an unchecked spot price.
+`rangeBps` is the approximate half-width around the independent oracle reference, with outward tick rounding. Its units follow explicit Strategy orientation: mode0 raw token1/token0 (historical); mode1 token0/token1 (ETH per ZZZ here). Read the configured mode, not the token label alone. It is not half the capital or an unchecked spot-centered range.
 
 | Intended interval at reference price P | `rangeBps` | Example at P = 1 |
 | --- | --- | --- |
 | +/-50% | `5000` | 0.50 to 1.50 |
+| +/-25% | `2500` | 0.75 to 1.25 |
 | +/-20% | `2000` | 0.80 to 1.20 |
 | Total width 20%, meaning +/-10% | `1000` | 0.90 to 1.10 |
 
@@ -285,7 +347,7 @@ not an immutable percentage. Contributions similarly capture
 `contributionLossBps()` as `C`: both net added backing and marginal deployed LP,
 valued at lower source bounds, must reach
 `U - floor(U * C / 10000)` for upper-bound original input value `U`. The default
-`C=100` means 99%; stronger venue/caller guards remain. Network gas is separate.
+`C=200` means 98%; stronger venue/caller guards remain. Network gas is separate.
 The user retained **per-operation limits only**: repeated permitted operations
 can accumulate losses. Monitor turnover/costs and stop harmful activity; no
 rolling loss breaker or guarantee against impermanent loss exists.
@@ -294,8 +356,8 @@ rolling loss breaker or guarantee against impermanent loss exists.
 
 For normal $5 increases, governance configures `minDepositUSD=5e18` through the
 appropriate full `configure`/`configureNative` call. Activation still requires
-$100; each action must meet the captured contribution-loss floor above (99% at
-the default 100 bps), gas separate. No per-user
+$100; each action must meet the captured contribution-loss floor above (98% at
+the default 200 bps), gas separate. No per-user
 override or new role exists. A higher pool minimum intentionally blocks smaller
 increases. Follow [the exact procedure](CONTRIBUTION_MINIMUMS.md#operator-procedure)
 for authority, simulation, verified getters/receipts, dependency-free stop,
@@ -324,7 +386,7 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 1. Review its exact chain/address, runtime and proxy authorities, decimals, transfers, liquidity, fees and price source. A symbol such as USDC does not identify an asset. Fee-on-transfer/rebasing/blacklisting or malicious callbacks can make an asset incompatible; permission to admit is not proof of compatibility.
 2. Governance configures the reviewed two-source `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`. Independently verify both raw rounds, policy identity, `priceBounds(token)`, decimals and source/proxy independence under [pricing operations](#configure-stop-and-recover-usd-pricing---2026-10-24). Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
 3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The legacy supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. Typed hookless v4 policies are also implemented through `addV4Route(Policy)`; follow [typed route setup](TYPED_V4_ROUTES.md), including explicit version/profile pins. It is not a general multi-hop router or arbitrary external executor.
-4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation against the current captured contribution-loss limit (1% by default), stronger route/venue minima and separate gas. Qualify actual execution before enabling real users.
+4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation against the current captured contribution-loss limit (2% by default), stronger route/venue minima and separate gas. Qualify actual execution before enabling real users.
 
 Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Actual production ETH/ZZZ/USDG/USDC routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
@@ -408,8 +470,8 @@ ownership/reward handoff below is a separate retained feature.
 | Unsafe or missing swap route | Cancel an unsent normal request before parking/reapproval. Use the same reviewed parking and stable-snapshot sequence, then separately approve `rawExit=true` with exact outgoing raw minima. Both attributed assets are sent without a swap. This mode deliberately has no USD-loss guarantee and never activates automatically. |
 | Failed close/swap/transfer | Inspect the reverted receipt: that transaction's custody, balances, epoch and send changes roll back. Separately confirmed parking remains parked. Fix the cause and prepare a fresh approved snapshot if it changed. Never repeat a successful send. |
 | New local pool/token | Approve ordered destination currencies and minima. Recipient performs any issuer exchange externally. If the plan initially selected local holding without a pool, admit/reserve a target for the same bucket and call the one-time `bindLocalDestination(id,pool,min0,min1,reviewHash)`. It preserves the original loss budget and departure. `completeLocal` must actually fund/mint the target LP and preserve shares. Then deliberately switch the sole contribution pool/input routes. |
-| New chain | Recipient is a source-chain address which subsequently uses a reviewed bridge. Require the pinned verifier's finalized delivery proof, not a governance acknowledgement. Actual verifier, bridge and remote reward/ownership services still need qualification; source LP stays unavailable/outstanding. |
-| Recover principal | `recover(id,deadline,proof)` pulls all actually sent assets back and restores parked custody. Remote recovery also needs finalized remote cancellation/closure proof. No timeout, partial funding, balance write-off or resend. |
+| New chain through your custodian | Approve source-chain custody only: `destinationChain=block.chainid`, `destinationPool=0`, `destinationCustody=recipient`, `verifier=0`, `verifierCodeHash=0`. The recipient performs any bridge/token migration externally. No on-protocol bridge is required; source principal remains outstanding/unavailable until a supported funded return/completion. This does not relocate NFTs/reward ledgers or promise remote accrual. See the runbook for exact request/approval fields. |
+| Recover principal | In the current source-chain custody workflow, `recover(id,deadline,proof)` returns every actual sent asset and restores parked custody; use the local proof form from the runbook. No timeout, partial funding, balance write-off or resend. Optional direct remote-proof paths remain disabled/unqualified. |
 | Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `movePool` remains in this one module. |
 | Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD/inbox sync but cannot bypass an unusable venue/token or changed core/runtime binding. Native V2 parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
 | Move royalty currencies as well | Separate `RoyaltyRewards.exitCustody(asset,recipient,expectedBalance,nonce,recipientCodeHash,reviewHash)` while paused. Per-NFT entitlements remain; that currency's claims/valuation wait for exact full `returnCustody(asset,id)`. Native ETH is asset zero. Other currencies, LP principal and royalty quarantine must not be merged. |
@@ -715,7 +777,7 @@ website deployment or paused-monitor restart is part of this procedure update.
 | Creator does not pay / royalties missing | Compare payer agreement, receiver and actual transfers | Process real receipts, resolve external payments; no invented accrual. Keep separate from API history outages. |
 | VRF unfulfilled / ordered reveals blocked | Verify subscription/provider/request; stop new minting if needed | Use the mint-only governance pause, then original authenticated fulfillment and ordered finalize. Resume deliberately after service checks. No reroll; postpone whole-collection replacement if unresolved. |
 | Server/disk/backup failure | Stop unsafe signing; alert off-host, preserve damaged evidence | Restore/reconcile state, permissions and storage; qualify health before new work. |
-| Failed bridge / original chain halted | Disable new exposure, retain authenticated channel/accounting evidence | Use reviewed provider recovery if available; no timeout multisig override or promised post-halt canonical recovery. |
+| External custodian/bridge fails or original chain halts | Stop new exposure, retain approvals/receipts/backing and provider evidence | Custodian handles external recovery; the source cannot force a return. No integrated bridge is required or promised; no post-halt canonical ownership recovery exists. |
 | Bad UI/API release | Roll back the service to a compatible verified build, disable affected UI actions | Verify code/ABI/config/chain/history compatibility before reopening. This does not roll back mined transactions or sealed contracts. |
 
 For contract reverts, decode using the exact release ABI. `Unauthorized` means inspect caller/controller/roles, `Preparing` or `CanonicalLocked` means respect lifecycle, `InvalidConfiguration` may mean invalid bounds or pins, `InvalidPrice` means inspect feed/round/sequencer state, `Slippage` means execution bounds failed, and `Expired` means prepare fresh calldata. A retry is appropriate only after identifying the cause and simulating current state. Save sanitized errors and operation identity; do not log credentials or private signer output.
@@ -820,8 +882,8 @@ ownership, nonce and load controls under the central frontend/service tasks.
 | --- | --- |
 | Supported source tokens, conversion routes, prices, pool parameters, operators | Governed configuration after sealing, within code constraints; immediate authorization, no delay. |
 | Mint price/recipient, supply/rarity quotas, trait draw rules, 80/10/5/5, requested 5% royalty rate/weights | No ordinary post-seal setter. Requires separately reviewed architecture/replacement if changed; not a UI edit. |
-| Randomness provider/settings, canonical artwork base, module bindings, core strategy/adapter implementation | Fixed at or before sealing. No proxy-upgrade or generic patch function. |
-| Lower production activation below $100 or exceed the 10% hard execution-loss ceilings | No such configuration path. Governance can change current limits within 0-10%; defaults remain 1% / 1% / 3%. The separate $1 local test build is not production configuration. |
+| Randomness provider/lane/subscription/payment mode, canonical artwork base, module bindings, core strategy/adapter implementation | Fixed at or before sealing. Future-request confirmations/callback gas have their separate bounded setter; pending draws cannot be changed or rerolled. Range orientation and approved presets are supported policy, not a replacement algorithm. No proxy-upgrade or generic patch function. |
+| Lower production activation below $100 or exceed the 10% hard execution-loss ceilings | No such configuration path. Governance can change current limits within 0-10%; defaults are 2% / 1% / 3%. The separate $1 local test build is not production configuration. |
 | Redeem principal, reroll rarity, overwrite owners/reward balances, sweep liabilities | Not supported. Governance configuration is not permission to manufacture those operations. |
 | Add arbitrary pair conversion, hooks, chains, cross-chain canonical replacement or post-halt recovery | Not made functional just by adding an address. Complete missing design, source support, independent review and rehearsals before relying on it. |
 

@@ -3,10 +3,10 @@ pragma solidity 0.8.26;
 
 // Copied into an isolated test directory by prepare-dollar-rehearsal.py.
 // Never run or deploy as production source. Venue, prices, VRF and authority
-// are fixture dependencies; these tests do not qualify the live Pons route.
+// are fixture dependencies; these tests do not qualify a live activation route.
 import {AtomicActivationIntegrationTest} from "./AtomicActivationIntegration.t.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
-import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
+import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
 import {PoolConfig} from "../src/libraries/ZZZTypes.sol";
 
@@ -77,9 +77,9 @@ contract DollarActivationRehearsalTest is AtomicActivationIntegrationTest {
     function testDollarTopUpKeepsSameSharedLPAndDoesNotAddMembership() public realIntegration {
         uint256 id = _mint(alice); _dollarExecute(id, 1e6, false);
         uint256 bucket = vault.nftBucket(id); uint256 lp = vault.group(bucket).lpTokenId;
-        _dollarExecute(id, 1e6, true);
+        _dollarExecute(id, 5e6, true);
         assertEq(vault.group(bucket).lpTokenId, lp); assertEq(vault.bucketCount(), 1);
-        assertEq(vault.contributionUSD(id), 2e18); assertEq(venue.a0(lp), 198e16);
+        assertEq(vault.contributionUSD(id), 6e18); assertEq(venue.a0(lp), 594e16);
         assertEq(membership.totalEligible(), 1); _dollarClean();
     }
     function testDollarTransferPreservesAccruedLPAndRoyaltyRights() public realIntegration {
@@ -118,7 +118,7 @@ contract DollarActivationRehearsalTest is AtomicActivationIntegrationTest {
     }
     function testDollarConstructorGuardRejectsRobinhoodMainnet() public realIntegration {
         vm.chainId(4663);
-        vm.expectRevert(bytes("LOCAL_REHEARSAL_ONLY")); new ZZZMigrationBudget(address(ac));
+        vm.expectRevert(bytes("LOCAL_REHEARSAL_ONLY")); new ZZZVaultCanonical(address(ac),address(vault),4663);
         vm.expectRevert(bytes("LOCAL_REHEARSAL_ONLY"));
         new ZZZActivationEntry(address(ac), address(registry), address(assets));
     }

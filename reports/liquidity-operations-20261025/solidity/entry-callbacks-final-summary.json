@@ -1,0 +1,44 @@
+{
+  "kind": "six_own_callback_cases_with_explicit_historical_one_percent_policy",
+  "exit_code": 0,
+  "cases": [
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureSurvivesUntilFinalApprovalReset()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "command_scope": "forge test --match-contract ^ContributionEntryPriceSecurityTest$ --match-test ^testEntryPriceCapture --json",
+  "profile": "same isolated maintenance-regressions profile; final source hashes unchanged"
+}

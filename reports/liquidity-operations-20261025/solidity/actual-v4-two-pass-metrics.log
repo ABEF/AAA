@@ -1,0 +1,13 @@
+No files changed, compilation skipped
+2026-10-24T23:19:34.939173Z  WARN traces::etherscan: etherscan config not found
+
+Ran 1 test for test/IntegratedEconomicConservation.t.sol:IntegratedEconomicConservationTest
+[PASS] testActualV4ThinMarketReconcilesActualPostSwapRatioWithinOriginalOnePercentFloor() (gas: 6799402)
+Logs:
+  actual.v4.shallow.native.two-pass.activation.harness-gas: 6126388
+  actual.v4.shallow.native.deployed.usd18: 99378363383283897427
+  actual.v4.shallow.native.idle.usd18: 2217489881065215
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 26.87ms (16.76ms CPU time)
+
+Ran 1 test suite in 29.39ms (26.87ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

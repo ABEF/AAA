@@ -285,23 +285,21 @@ class KeeperTests(unittest.TestCase):
         self.assertEqual(self.k.state,before);self.assertEqual(self.k.path.read_text(),disk)
     def reward_cycle(self,status):
         self.k.maintenance={'minimum_liquidity':1,'harvest':True,'compound':True,
-            'reward_routes':[{'token':B,'route_id':H,'minimum_units':1,'native_fee_wei':3}]}
+            'reward_routes':[]}
         fields=[0]*15;fields[7]=status
         reads={'paused()':0,'preparationActive()':0,'canonicalState()':0,'isSealed()':1,'keepers(address)':1,
             'bucketCount()':1,'bucketAt(uint256)':7,
-            'rewardReceiver(uint256)':0,
-            'remoteIndividual(uint256,address)':10,'remoteCollective(uint256,address)':6}
+            'rewardReceiver(uint256)':0}
         with patch.object(self.k,'_bucket',return_value=([f'{value:064x}' for value in fields],[B,C])), \
              patch.object(self.k,'view',side_effect=lambda name,signature,*args:reads[signature]) as view, \
              patch.object(self.k,'submit',return_value=True) as submit:
             self.k.cycle()
         return view,submit
-    def test_legacy_rewards_delivered_after_principal_departure(self):
+    def test_departed_groups_never_schedule_retired_bridge_operations(self):
         for status in (2,3,4,6):
             with self.subTest(status=status):
                 view,submit=self.reward_cycle(status)
-                submit.assert_called_once_with('fees','bridgeRewards(uint256,address,bytes32)',
-                    (7,B,H),f'bridge_rewards:7:{B}',value=3)
+                submit.assert_not_called()
                 self.assertNotIn('needsRebalance(uint256)',[call.args[1] for call in view.call_args_list])
     def test_missing_and_dormant_groups_do_not_bridge_rewards(self):
         for status in (0,5):

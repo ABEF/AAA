@@ -44,7 +44,7 @@ contract AtomicIntegrationRouter is IActivationV3Router {
 /// @notice Real Vault/Registry-created Entry/Assets/Oracle/reward ownership
 /// integration. LP custody/math and V3 execution are deliberately mocked.
 /// The fixture MockAccess permits post-seal rebinding ONLY for test assembly;
-/// production uses immutable sealed modules and the actual governance timelock.
+/// production uses immutable sealed modules and the actual governance controller.
 contract AtomicActivationIntegrationTest is PooledVaultFixture {
     ZZZPoolRegistry registry;
     ZZZActivationAssets assets;
@@ -63,6 +63,9 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
     // test without changing the shared fixture or its authority semantics.
     modifier realIntegration() { _integrationFixture(); _; }
     function _integrationFixture() private {
+        // This historical boundary suite deliberately exercises a stricter 1%
+        // contribution policy; the production default is independently tested at 2%.
+        vault.migrationBudget().setLossLimits(100,300);
         // Replace only fixture dependencies; the Vault, NFT, Membership,
         // Oracle, Rewards and FeeController remain their real implementations.
         MockToken first = new MockToken(18); MockToken second = new MockToken(18);

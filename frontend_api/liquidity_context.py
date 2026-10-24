@@ -12,7 +12,8 @@ def signed_tick(word):
     return value
 
 
-def contribution_context(p, pins, pool, bucket, position, config, header, block):
+def contribution_context(p, pins, pool, bucket, position, config, header, block,
+                         *, range_policy_version=0, range_policy=None):
     """All RPC reads use the caller's pinned hash, including approval previews."""
     def read(role, method, *args, count=1):
         return p._call(pins[role], method, *args, block=block, words=count)
@@ -25,6 +26,18 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
     # response: a stale price must never be presented as a usable LP quote.
     if int(read('strategy', 'validatePrice(bytes32)', pool)[0], 16) != spot:
         raise ProjectionError('Strategy and pool price observations disagree')
+    policy_metadata = None
+    orientation = 0
+    if range_policy_version == 1:
+        from zzz_ops.range_policy import observe, verify
+        try:
+            observed = observe(lambda method,*args,count: read('strategy',method,*args,count=count),pool)
+            policy_metadata = verify(range_policy,observed,config,header['timestamp'])
+            orientation = policy_metadata['orientation']
+        except (ValueError,TypeError,KeyError) as exc:
+            raise ProjectionError('Confirmed Strategy range policy differs from the reviewed profile') from exc
+    elif range_policy_version != 0:
+        raise ProjectionError('Unsupported explicit range-policy profile')
     existing = position is not None and int(position[7], 16) == 1
     cooldown = int(config[11], 16)
     if existing:
@@ -43,7 +56,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
                        _address_word(config[0], native=p.accounting_version == 2), _address_word(config[1]))[0], 16)
         if not 0 < ref < 2**160:
             raise ProjectionError('Invalid oracle reference price')
-        root_ratio = ref * 10**18 // center
+        root_ratio = (center * 10**18 // ref if orientation == 1 else ref * 10**18 // center)
         movement = abs(root_ratio * root_ratio // 10**18 - 10**18)
         trigger = movement >= int(config[8], 16) * 10**14
         if eligible != (header['timestamp'] >= earliest and (trigger or range_pending)):
@@ -85,6 +98,9 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block)
             'lower_tick': lower, 'upper_tick': upper, 'current_tick': tick,
             'sqrt_price_x96': str(spot), 'in_range': in_range,
             'configured_target_half_width_bps': int(config[7], 16),
+            'range_policy_version':range_policy_version, 'range_orientation':orientation,
+            'range_price_unit':'token0_per_token1' if orientation == 1 else 'token1_per_token0',
+            'keeper_range_policy':policy_metadata,
             'rebalance': {'status': status, 'eligible_at_snapshot': eligible,
                           'last_rebalance_at': last, 'cooldown_seconds': cooldown,
                           'earliest_eligible_at': earliest, 'earliest_eligible_utc': utc,

@@ -56,7 +56,7 @@ a full ZZZ-reward conversion at reference prices; never raise the cap to force i
 
 | Intent | Operation | Boundary |
 | --- | --- | --- |
-| Another fee tier with the identical actual ETH/ZZZ pair | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; old `movePool` remains an alias | Atomic actual destination LP; unchanged NFT shares; one fixed 3% aggregate cap, gas separate; no external custody. |
+| Another fee tier with the identical actual ETH/ZZZ pair | `Migration.moveFunds(bucket,pool,minimumLiquidity,deadline)`; old `movePool` remains an alias | Atomic actual destination LP; unchanged NFT shares; one captured aggregate maintenance cap (3% default, governance maximum10%), gas separate; no external custody. |
 | Send principal to your regular address | Approve request, globally pause, then `Migration.exit(id)` | Normal mode converts all attributed principal to configured ZZZ before sending; recipient custody is explicitly trusted. |
 | Swap impossible / prices unavailable | Separately approve `rawExit=true`, then `exit(id)` | Transfers attributed native ETH/ZZZ under raw close minima; no 3% USD guarantee; never automatic fallback. |
 

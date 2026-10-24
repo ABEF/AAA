@@ -1,3 +1,39 @@
+## Liquidity placement, idle and reviewed keeper ranges - 2026-10-25
+
+The current candidate defaults to **2% contribution /1% conversion /3% maintenance**,
+gas separate, with existing immediate-governance hard10% maxima. [Placement and
+idle accounting](IDLE_AND_DUST.md) use at most two actual-state balancing passes,
+skip precision corrections and permit idle-only guarded compound with success-only
+cooldown. Principal, earned fees/royalties, fractions, reserves and quarantines
+stay distinct; there is no sweep or operator dust recipient.
+
+[Range-policy version1](RANGE_POLICY_UPDATES.md) preserves raw mode0 and explicitly
+opts into ZZZ priced in ETH. Governance may authorize a disabled-by-default
+displacement/cooldown/configuration-pinned rule selecting only±25%/±50%. The keeper
+supplies no arbitrary width/configuration; physical LP changes use ordinary
+guarded rebalance after selection. API, schema5 inventory/observer and typed events
+include explicit reviewed policy metadata; historical profiles keep their meaning.
+
+[Verification](../reports/liquidity-operations-20261025/VERIFICATION.md) and
+[internal review](../reports/liquidity-operations-20261025/REVIEW.md) record actual
+installed-v4 correction/rollback/idle/inverse-range execution, focused range and
+keeper/API checks, rejected oversize drafts and final normal gates. The shallow
+fixture now deploys$99.378 from$100 even at an explicitly retained1% limit;
+that result is not evidence of all real-market route feasibility.
+
+Current migration scope is guarded same-pair pool movement and explicit source-
+chain custody; custodian handles external token/chain conversion. Integrated
+bridges, remote NFT/reward transport and post-halt recovery are deferred optional
+scope, not current launch/sealing requirements. Same-chain whole-collection handoff
+is retained and still needs qualification.
+
+**Open:** caller-bound reviewed contribution cap in Entry.Request, real routes/
+independent feeds, economic thresholds/max-state gas, services/authorities/VRF,
+OpenSea/native website integration, rehearsals and independent audit. Normal
+Vault runtime margin57bytes and Registry initcode margin31bytes require a size-
+safe next design. No public signing/deployment or running-service change.
+Production NOT APPROVED. Older dated evidence below keeps its original source scope.
+
 ## Pre-production composition and keeper audit - 2026-10-25
 
 The [internal audit](../reports/preproduction-audit-20261025/REVIEW.md) fixes

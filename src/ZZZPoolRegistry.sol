@@ -131,6 +131,19 @@ contract ZZZPoolRegistry is ZZZModule {
         if (disableOperations) config.operationsEnabled = false;
         emit PoolDisabled(poolId, config.depositsEnabled, config.operationsEnabled);
     }
+    /// @notice Fixed Strategy may apply only its reviewed two-width policy.
+    /// No keeper can call this directly or change assets, flags or other limits.
+    function applyKeeperRange(bytes32 poolId,uint16 width) external onlyModule(Ids.STRATEGY) {
+        // The fixed controller's moduleAuthorized already enforces sealed and
+        // canonical-operating identity. All remaining calls are static and all
+        // writes below are local: there is no callback requiring a second read.
+        if (access.paused()) revert Paused();
+        if (access.preparationActive()) revert Preparing();
+        PoolConfig storage c = pools[poolId];
+        if (!exists[poolId] || !c.operationsEnabled || (width != 2500 && width != 5000) ||
+            c.triggerBps >= width || c.maxSpotDeviationBps >= width) revert InvalidConfiguration();
+        c.rangeBps = width; // Strategy emits the successful old/new width and review hash.
+    }
     function _configure(PoolConfig calldata config, address token0, address token1) private returns (bytes32 poolId) {
         PoolKey memory k = config.key;
         poolId = keccak256(abi.encode(k));
