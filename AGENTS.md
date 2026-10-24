@@ -1,3 +1,37 @@
+## Operating controls publication checkpoint - 2026-10-24
+
+Contract implementation `143734c` and website memory-only `34f53d6` are pushed
+on main and remote hashes verified. Read [publication](reports/post-seal-controls/PUBLICATION.md),
+[verification](reports/post-seal-controls/VERIFICATION.md) and [internal review](reports/post-seal-controls/REVIEW.md).
+NFT future confirmations/callback gas and Buyback operating ceiling are now
+bounded immediate governance settings. Provider/lane/subscription/payment,
+pending draws, exact traits, rights, allocation and backing remain protected.
+
+Nine new VRF plus six affected existing cases and 35 distinct buyback cases pass
+across scoped runs; only repaired/changed cases were repeated. Twenty-six inventory
+and five final event cases pass. All 34 production size gates pass (32 source
+objects unchanged); 78 compiler bindings and 111 source/test hashes match;
+104 Solidity inputs typecheck. Existing 103 event decoders are retained unchanged,
+with 16 additions including the two controls. Retired descriptors do not enable
+old modules. No full fresh regression, fork or real-service approval is claimed.
+
+Future VRF tuning cannot repair a submitted callback. Qualify actual provider
+bounds/funding/recovery. Zero operatingTradeUSD stops new swaps/direct ZZZ burns
+before oracle/reserve calls; use USD18 per-trade limits and resize/remove fixed
+keeper buyback tasks to avoid intentional failures/backoff. Successor settings
+are independently reviewed local policy, not imported economic rights.
+
+Typed v4 conversion is the next pre-seal implementation slice. Atomic ETH/WETH
+moves, native website/inventory, actual routes/feeds/services and independent
+audit remain open. Preserve 1%/3% execution limits and separate gas. Production
+NOT APPROVED; public DEPLOYMENT null; shared signer Anvil-only.
+
+No website source/build/server, existing 8902/Anvil/NFT/LP/balances/journals/dist
+overlay, services or paused monitoring changed. No private key access or public
+transaction. Main only; preserve older unrelated drafts. Sole Todo, features,
+roadmap, operator guidance and both memories are aligned. This final receipt
+is documentation only; implementation publication is the hash above.
+
 ## Bounded post-seal operating controls - 2026-10-24
 
 The local candidate adds NFT.setRandomnessRequestSettings(uint16,uint32) for
