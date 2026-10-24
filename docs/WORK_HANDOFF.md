@@ -1,3 +1,32 @@
+## Native ETH V2 publication checkpoint - 2026-10-24
+
+Contract implementation `f907733` and website memory-only `cb43349` are pushed
+on main and both remote hashes verified. Read the [publication receipt](../reports/native-eth-port/PUBLICATION.md),
+[scoped verification](../reports/native-eth-port/VERIFICATION.md) and [internal review](../reports/native-eth-port/REVIEW.md).
+The native port is implemented as an undeployed V2 candidate; older unimplemented
+notes below are superseded. Actual ETH spans typed Entry/Vault/manager funding,
+indexed fees, reserves, claims, buyback, raw exit/return and canonical backing/abort.
+Explicit API/keeper accounting versions preserve legacy WETH history and journals.
+
+Focused affected checks pass with documented source scopes and targeted repairs;
+no full fresh regression or new target-chain fork is claimed. All 34 production
+object gates pass; 78 production compiler bindings and 113 final source/test
+hashes match. The final adversarial freeze uses 11,713,754 gas under 12M and
+preserves all 132 companion plus 12 inbox prefunds through funding and abort.
+Vault runtime is 24,504 bytes (72 margin); review size before further changes.
+
+Keep 1% contribution/reward conversion and 3% ordinary maintenance limits, gas
+separate. ZZZ needs a cheaper qualified route. Atomic ETH/WETH conversion, legacy
+V1 import, native website profile, reviewed release inventory, typed v4 conversion,
+post-seal operating extensions, real services and independent audit remain open.
+Production NOT APPROVED; public DEPLOYMENT null; signer remains Anvil-only.
+
+Website source/build/server, existing 8902/Anvil/NFT/LP/balances/journals/dist overlay,
+services and paused monitoring are unchanged. No public transaction/deployment
+or private key access. Main only; preserve older unrelated local drafts. Sole
+Todo, feature reference, roadmap, operator guidance and both memories are aligned.
+This receipt is documentation only; implementation publication is the hash above.
+
 ## Native ETH accounting V2 candidate - 2026-10-24
 
 Native V2 is now implemented locally, superseding the older notes saying no port
