@@ -1,6 +1,8 @@
 {
-  "documentation-checks.json": "b44865a229ad9e4866e9315c84f0ef5bfee3dd38e716e69d2a59ba18d94cd77f",
+  "contract-publication.json": "68671acebaaae37c575d7680898e29dffb4070c6c564eb5625fadc98824d1f0a",
+  "documentation-checks.json": "9c4c509f5a716bda80080eb324d70276e25d30e95043bbf83b65c01c2f6d5077",
   "OBSERVATION.md": "f396983f48b49609986e8151b9e27f92bf995a91e6eed571ce71fd86460a0a60",
-  "PUBLICATION.md": "5850a0588b91041ab43f9b67e5c46ecc51e06eec829bff9881242969ea1a8588",
-  "reference-observation.json": "90b3c50630f1f3bfd94cffbb064ff06b7d617e09fe4815068fcaa3b8aeed8faa"
+  "PUBLICATION.md": "bea243dbad39b9df877a6740ef2802f48b57f75f26a3bca87f80bf1cc047c100",
+  "reference-observation.json": "90b3c50630f1f3bfd94cffbb064ff06b7d617e09fe4815068fcaa3b8aeed8faa",
+  "website-memory-publication.json": "c30290dd8ab6c54a07b266e48f761a13f27c2bd50dc4f7a546de71a63e1a8d9e"
 }

@@ -1,7 +1,7 @@
 {
   "scope": "documentation consistency and saved-observation arithmetic only",
   "unchanged_solidity_bindings": 120,
-  "checked_doc_links": 1168,
+  "checked_doc_links": 1172,
   "source_tests_rerun": false,
   "live_feeds_configured": false,
   "production_approved": false,

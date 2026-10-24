@@ -1,0 +1,15 @@
+{
+  "base": "71762783375c1785cda3f83d2c93154adf30cb1a",
+  "memory_commit": "3a6a69cc86031762485fe0cf52c6d172a6762fe8",
+  "remote_main": "3a6a69cc86031762485fe0cf52c6d172a6762fe8",
+  "contract_documentation": "14ee92e4276380421cac94d5a9be256af2869b77",
+  "files": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md"
+  ],
+  "website_code_build_server_changed": false,
+  "published_blob_sha256": {
+    "AGENTS.md": "e491f9294766da09c1eaa285c825ddb0f1e75fc679fe65e2d6b8668e81f8d8f8",
+    "PROJECT_CONTEXT.md": "5f54b12393d47d984dd851c5433ae9e0211d774c0f0a9c34559522b4fd905013"
+  }
+}

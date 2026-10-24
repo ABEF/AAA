@@ -1,3 +1,17 @@
+## Pricing documentation publication verified - 2026-10-25
+
+Documentation `14ee92e` and website memory-only
+`3a6a69c` are pushed on main; remote hashes verified.
+See [publication](reports/price-reference-20261025/PUBLICATION.md).
+The dated ETH/ZZZ references are not configured PoPL prices. Feed pairs, product/
+proxy independence and service costs remain unqualified. Corrected setDualFeed
+operator/recovery guidance and latest gas margin; sole Todo, features, roadmap
+and both memories align. All 120 Solidity bindings are unchanged; prior tests
+are reused, not rerun. Preserve older drafts, existing8902/Anvil/NFT/LP/journals/
+dist overlay, null public DEPLOYMENT, Anvil-only signing and paused monitoring.
+No website code/build/server/service, public transaction or configuration change.
+Production NOT APPROVED; main only.
+
 ## Price references, fees and qualification status - 2026-10-25
 
 [Saved reference observation](reports/price-reference-20261025/OBSERVATION.md)

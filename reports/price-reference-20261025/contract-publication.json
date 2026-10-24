@@ -1,0 +1,33 @@
+{
+  "base": "3551868d3413f650e07523229b959d3ea7d0f4a8",
+  "documentation_commit": "14ee92e4276380421cac94d5a9be256af2869b77",
+  "remote_main": "14ee92e4276380421cac94d5a9be256af2869b77",
+  "published_file_count": 19,
+  "published_blob_sha256": {
+    "AGENTS.md": "89d856a2504d8781023dcda64cf7be06d9572dc80124c4c53bf9bc011c152213",
+    "PROJECT_CONTEXT.md": "526cd6eef3a21aa1cc917c7a9fbbfbbb6f72cd0e6716fc68f1785b6e734734c3",
+    "README.md": "4da2a2438586262e534c16654bf243b74bc49bc60200c8b8881a79b64d0b6ff9",
+    "TODO.md": "80cf1bd3016146d9992bac0af74a72171335ffd949546df772858c1e07464f5b",
+    "docs/CHANGELOG.md": "858d7624728ac229b103c684d7cfbc86ed672720d839af99372ba20ddb6c73a2",
+    "docs/CHANGE_AND_RECOVERY.md": "1460e9c44687548ad2edbfb8c2784644b9aa642b4ad5676c2923dd1bab8cc18c",
+    "docs/IMPLEMENTATION_STATUS.md": "daec1e73e6b35f5a054ec775a94a0bde46e10f1819e11330cf91d1341ee7220c",
+    "docs/OPERATOR_MANUAL.md": "4851c66c2b97c48e6bf94e4cd43e4a87f0760cac9e62f1b380ebcce71c87aee5",
+    "docs/PRICE_SECURITY.md": "2ab968695599169f8dd497b5308ff95655a885c6a2c352fa810e8cb7c1c1ec27",
+    "docs/PRODUCTION_SERVICES.md": "5afc0ae2a215c98713ac95d60186a0620ca1600410a2b3a129eb097a893143bb",
+    "docs/RELEASE_CHECKLIST.md": "2bb4d2e990544c2d7aadef699a8f319b519f3e3873750de65b8ffb12d0e31ffa",
+    "docs/ROADMAP.md": "915ce103849e61619f64ae2efc79b12f9e1d78e214ddb1af8c51831f76107d3e",
+    "docs/WORK_HANDOFF.md": "8b8322a201a81b03b0c4f930e3d03a2752fcaaf3f040a7649352866e7bb6efda",
+    "docs/project-todo.json": "a8e409c84b0e0460461574ee9c4435ffdcd25448c24d5d525486f3bfe055dc04",
+    "reports/price-reference-20261025/OBSERVATION.md": "f396983f48b49609986e8151b9e27f92bf995a91e6eed571ce71fd86460a0a60",
+    "reports/price-reference-20261025/PUBLICATION.md": "5850a0588b91041ab43f9b67e5c46ecc51e06eec829bff9881242969ea1a8588",
+    "reports/price-reference-20261025/artifact-sha256.json": "fd6346ef756c278f47faeb19cef845b7ca1c634155a215cc223919b23d80e593",
+    "reports/price-reference-20261025/documentation-checks.json": "b44865a229ad9e4866e9315c84f0ef5bfee3dd38e716e69d2a59ba18d94cd77f",
+    "reports/price-reference-20261025/reference-observation.json": "90b3c50630f1f3bfd94cffbb064ff06b7d617e09fe4815068fcaa3b8aeed8faa"
+  },
+  "change_kind": "documentation_only",
+  "live_feeds_configured": false,
+  "source_tests_rerun": false,
+  "production_approved": false,
+  "public_transactions": false,
+  "website_code_build_server_changed": false
+}
