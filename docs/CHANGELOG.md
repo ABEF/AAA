@@ -1,3 +1,12 @@
+## Native V2 inventory and preflight - 2026-10-24
+
+[Current schema-5 preflight](PRODUCTION_PREFLIGHT.md) validates native/V4 bindings,
+actual versus approved runtime pins and current governed limits. A separate
+bounded read-only observer captures a canonical snapshot without upgrading review
+status. Legacy schema 4 stays historical; missing actual public addresses,
+prices/routes/VRF/services and audit evidence remain release blockers. No signer,
+Solidity, website/service, existing Anvil/journal or monitor change follows.
+
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;

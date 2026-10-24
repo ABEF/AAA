@@ -1,0 +1,8 @@
+test_changed_directional_protocol_fee_requires_route_requalification (tests_python.test_production_v2.ProductionV2Tests.test_changed_directional_protocol_fee_requires_route_requalification) ... ok
+test_consistent_synthetic_inventory_is_not_deployment_authorization (tests_python.test_production_v2.ProductionV2Tests.test_consistent_synthetic_inventory_is_not_deployment_authorization) ... ok
+test_v3_wrapper_profile_has_a_real_consistent_acceptance_path (tests_python.test_production_v2.ProductionV2Tests.test_v3_wrapper_profile_has_a_real_consistent_acceptance_path) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.190s
+
+OK

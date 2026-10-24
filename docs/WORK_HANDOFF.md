@@ -1,3 +1,34 @@
+## Native V2 production preflight checkpoint - 2026-10-24
+
+The [schema-5 runbook](PRODUCTION_PREFLIGHT.md), native/accounting-V2/routing-V2/governed inventory and bounded
+read-only observer are implemented. Publication is recorded separately; inspect
+Git and the publication receipt rather than inferring a push from this note.
+The gate checks17 core identities/14 helpers, native-zero semantics, exact
+runtime/getter/parent/ledger bindings, current governed0..10% limits and explicit
+typed source/conversion routes. Approved pins and actual observations stay
+separate. Unavailable reads never become zero or approval.
+
+73 distinct focused Python cases pass across recorded scopes, including mock
+observer-to-gate composition. Repeated cases count once. All131 earlier typed-v4
+source/test hashes match; unchanged Solidity/build/size/fork suites were reused,
+not rerun. Historical qualification keeps its real tested block and current
+configuration/fee scope; fresh admission history must reach the actual anchor.
+These are offline/mock checks, not real provider or independent qualification.
+
+Current scope excludes nonzero external creator-reward inbox inventories,
+cross-chain canonical activation, legacy V1 import and atomic ETH/WETH principal
+conversion. Actual public PoPL/authority addresses, independent feeds, qualified
+routes/RPC/VRF/keeper/API/artwork/OpenSea operation, gas and independent audit
+remain open. The example stays blocked. Production NOT APPROVED.
+
+No Solidity, website source/build/server, existing8902/Anvil/NFT/LP/balances/
+journals/dist overlay, signer, service or monitoring change. Public DEPLOYMENT
+remains null, signing Anvil-only, monitor paused. Main only; preserve older
+unrelated drafts. Sole Todo, features, roadmap, operator guide and memories are
+updated; publication must be verified separately.
+
+[Verification](../reports/native-preflight/VERIFICATION.md) and [internal review](../reports/native-preflight/REVIEW.md).
+
 ## Typed v4 and governed limits publication checkpoint - 2026-10-24
 
 Contract implementation59a2563 and website memory-onlybd2c354 are pushed on

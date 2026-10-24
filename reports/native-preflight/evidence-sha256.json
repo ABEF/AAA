@@ -1,0 +1,20 @@
+{
+  "cli-tests-initial.json": "3422c33650d39e576dc996b8b92299e4ac8acc3f3b7044be88a145c3c3a1833f",
+  "cli-tests-initial.log": "d51497d654c069bacad02aa310dcb46d73dc0fad6f7136214a292a8d742be976",
+  "compatibility.json": "fc7a39d22754a3b6f9398550644bdbf8e9c7f8fe681c79db0e388457e38ba740",
+  "consistency.json": "3716866e84f5dd5c5049309d1c92e9378f5c6110a28e0fd8758307d30505d50a",
+  "example-blockers.json": "64bebfb39dcb2e6c7a89517ba78c6ee0af17c29d5aa571588587bda06933b0bb",
+  "final-integration.json": "e3a8df37dd2eb7264ed4c267aab49019ddf4c2c3d665c43ca6fb978f4f131ee1",
+  "final-integration.log": "155879012b1bfb04a0b14ef0def58dfc760a67d99d8548cdfc0ad3d4c7ccb093",
+  "observer-bounded-gas-final.log": "c9c2ce004928ef433b49881dc81f70a7640aa2eb1d1d0946738117e800099b9b",
+  "observer-composition-fee-final.log": "97d7de3494cc331eb123c2998a91048543bc22936618c8dd69cd014e50d4dad1",
+  "observer-composition-json.log": "0be61fec5f15494da104530ec8217f01e73883ae742c72bf4779f4f48b9c1d40",
+  "observer-final-focused.log": "a9fbc36a47dddac9e573ee2fae80c3cba43bc48766edef9984ca620162310aa6",
+  "observer-io-guards.log": "54d7a1ff7c599572d1414c1d22ced0bc89ad542b063708952bde1e3f0820647c",
+  "observer-tests.json": "bc97e86c75922b3640ff81edf23d67b5fb9660358f17b6082fc3e97370937ff3",
+  "REVIEW.md": "2ebf9cbc19cbf8bd65f756ca0c3094d6c272141fb4533dfae8cdbeb3f82f25fc",
+  "schema-fee-scope-final.log": "123b680a6e143e68f0aba4443c7305adf41a24299c036eba239c9dbd9bae5533",
+  "schema-focused-final.log": "76be6c984b56d159de1014b47f34712f3e250d06dc05f9b525f6d60e4de20214",
+  "source-sha256.json": "f00a6c8dc77f33c9eb870514d2ce5d0e13c13999b382c213f4ace89e176cd1e9",
+  "VERIFICATION.md": "2c97a2422df1b3e02ae9b4aa632ae55f48901d857b1c452d85d776dece4908f8"
+}

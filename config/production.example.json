@@ -1,48 +1,29 @@
 {
-  "schema_version": 4,
-  "accounting_model": "shared-pools-v2",
+  "schema_version": 5,
+  "accounting_model": "shared-pools-native-v2",
+  "accounting_version": 2,
+  "routing_version": 2,
+  "custody_architecture": "governed-v1",
   "_notes": [
-    "NATIVE V2 CANDIDATE: actual ETH custody/rewards/raw exit and versioned API/keeper are implemented locally. This legacy production inventory remains BLOCKED pending reviewed native schema, exact runtime/accounting_version2 pins, actual ETH feed, conversions, website profile and independent qualification. Never reinterpret existing WETH epochs or journals; atomic ETH/WETH moves and V1 canonical import remain unsupported.",
-    "SELECTED POOL 2026-10-24: existing Robinhood hookless v4 native ETH/ZZZ 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b; static LP fee10020 pips, spacing200, zero hook. Observed protocol1000 pips each direction. This is not release approval; the legacy release inventory remains explicitly blocked and pools remain unconfigured.",
-    "GOVERNED CUSTODY CANDIDATE: the v3 bridge/pair inventory is retired. The current release gate explicitly blocks this layout pending an independently reviewed inventory schema update. Recipient EOA/contract custody is a governance trust; normal 3% checks do not guarantee return after sending.",
-    "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",
-    "Current hookless native admission is implemented, but the legacy release schema intentionally keeps native admission blocked pending reviewed inventory/service qualification.",
-    "Fill independently reviewed values; never put credentials, signer keys or RPC secrets in this manifest.",
-    "Evidence records require status=passed, exact release commit, SHA-256 of the retained report, and its reference.",
-    "Principal routes also require bucket_id/source_pool_id plus independently reviewed source and destination bucket_reservations at each chain's observed block.",
-    "An initial migration-disabled launch may leave bucket_reservations empty; future funded routes must prove permanent pool reservations for the canonical bucket.",
-    "Token admission must review the USD value of up to nineteen raw units settled to owners before membership changes and holder-triggered top-up frequency.",
-    "External creator payments are funded revenue only; no creator percentage, payment promise or proportional Pons entitlement is assumed.",
-    "Inventory every immutable canonical reward receiver, exact getter/code observations and native wrapper review; at most4 are reachable under the Vault historical-bucket cap (factory limit16). These are helpers, not new sealed modules.",
-    "Collection supply is capped at 1000 with exact600Commun/300Rare/100Legendary quotas. Verified randomness assigns rarity in mint order without replacement; later odds follow remaining quotas, not fixed 60/30/10 chances.",
-    "Eight base colors form 58 palettes and four patterns covering 2784 artwork states; reviewed immutable production publication remains pending. Metadata uses current attributed LP value; stale/remote valuation is unavailable.",
-    "No verified randomness coordinator, subscription, key hash or staged fulfillment is supplied for Robinhood. Required randomness review and canonical NFT/helper observations remain pending.",
-    "ERC-2981 requests 5% but cannot enforce marketplace payment. All royalties actually received are shared by activated Commun/Rare/Legendary weights 1/2/3 in a separate ledger.",
-    "LP holder rewards require a dedicated pre-seal-bound ZZZLPRewardConverter, reviewed wrapper/routes/feeds and keeper operation; 1% conversion loss maximum with network gas separate. Core sealing does not certify this product setup.",
-    "Ready means offline inventory consistency only. It never authorizes deployment, sealing, signing or spending."
+    "UNQUALIFIED EXAMPLE. No PoPL deployment, approved authority wallets, live price feeds, complete read-only observations or independent production evidence is supplied. Public signing and deployment are not authorized.",
+    "Only known source-selected Robinhood native venue/token identities and hard pins are populated. They are intended references, not fresh on-chain observations or a service qualification. Observed fields and review evidence stay unset.",
+    "Schema 5 is the explicit native/accounting-V2/routing-V2/governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2.",
+    "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
+    "Current policy defaults shown are contribution 1%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
+    "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Add USDC/USDG only with reviewed exact addresses, feeds and routes; no stable peg is assumed.",
+    "Current qualification scope excludes cross-chain canonical import, legacy V1 ledgers and external creator-reward inboxes. Every omitted or unsupported configuration must stay blocked, not silently treated as empty.",
+    "Production minting is intended for OpenSea but chain/product/recipient/VRF compatibility is unqualified. ERC-2981 requests 5%; only royalties actually received can be distributed.",
+    "Publish and review the complete 2784-asset content-addressed artwork root. No new artwork generation is implied. Exact quota draw uses verified randomness; live coordinator/subscription/provider qualification remains open.",
+    "Keep credentials and private material outside this inventory. The observer performs only bounded read-only RPC calls and does not set approved pins or evidence. Offline ready means declared inventory consistency only and never authorizes deployment, sealing or spending."
   ],
   "release_commit": null,
   "canonical_chain_id": 4663,
-  "migration": {
-    "enabled": false,
-    "future_onboarding_evidence": null,
-    "disabled_scope_approval": null
-  },
   "economics": {
-    "reward_model": "collected_venue_fees",
-    "external_reward_policy": {
-      "payment_method": "plain_transfers",
-      "allocation_timing": "processing_time",
-      "owner_weights": "bucket_shares",
-      "collective_weights": "equal_activated_nfts",
-      "revenue_entitlement": "received_funds_only",
-      "source_description": "Optional historical discretionary intake; primary launch revenue is actual fees earned by the selected hookless position, allocated 80/10/5/5.",
-      "terms_evidence": null
-    },
+    "reward_model": "conventional_lp_fees",
     "mint_price_wei": "50000000000000000",
     "minimum_activation_usd18": "100000000000000000000",
+    "minimum_top_up_usd18": "5000000000000000000",
     "activation_minimum_basis": "gross_source_input",
-    "maximum_entry_loss_bps": 100,
     "network_gas_separate": true,
     "fee_split_bps": [
       8000,
@@ -55,8 +36,6 @@
   },
   "nft_policy": {
     "max_supply": 1000,
-    "rarity_distribution": "fixed_quotas_without_replacement",
-    "rarity_randomization": "vrf_mint_order_without_replacement",
     "rarity_counts": [
       600,
       300,
@@ -67,6 +46,8 @@
       3000,
       1000
     ],
+    "rarity_distribution": "fixed_quotas_without_replacement",
+    "rarity_randomization": "vrf_mint_order_without_replacement",
     "marketplace_royalty_bps": 500,
     "received_royalty_distribution_bps": 10000,
     "royalty_weights": [
@@ -78,13 +59,13 @@
     "royalty_entitlement": "received_funds_only",
     "evolution_basis": "current_attributed_lp_value_usd18",
     "unavailable_valuation": "unavailable",
+    "randomness_policy": "verified_coordinator_two_words",
     "evolution_thresholds_usd18": [
       "0",
       "100000000000000000000",
       "1000000000000000000000",
       "10000000000000000000000"
     ],
-    "randomness_policy": "verified_coordinator_two_words",
     "economic_review_evidence": null
   },
   "evidence": {
@@ -92,304 +73,558 @@
     "static_analysis": null,
     "invariants": null,
     "uniswap_fork": null,
-    "multi_chain": null,
     "staging": null,
     "operations_recovery": null,
     "gas_benchmarks": null,
     "deployment_review": null,
     "economic_approval": null,
-    "independent_audit": {
-      "status": "pending",
-      "commit": null,
-      "sha256": null,
-      "reference": null,
-      "kind": "external_security_audit",
-      "auditor": null,
-      "independent": false,
-      "open_critical": null,
-      "open_high": null
-    },
-    "remediation": null
+    "independent_audit": null,
+    "remediation": null,
+    "native_accounting": null,
+    "typed_v4_routes": null,
+    "custody_handoff": null
   },
   "chains": [
     {
       "chain_id": 4663,
+      "genesis_hash": null,
+      "minimum_confirmations": null,
       "observed_block": {
         "number": null,
         "hash": null,
         "timestamp": null
       },
-      "maximum_snapshot_age_seconds": null,
+      "maximum_snapshot_age_seconds": 600,
+      "observation": null,
       "modules": {
         "access": {
           "address": null,
-          "runtime_hash": null
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "vault": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "nft": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "liquidity": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "rewards": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "membership": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "fees": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "strategy": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "compounder": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "buyback": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "migration": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "oracle": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "pools": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "canonical": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "nft_canonical": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "vault_canonical": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         },
         "fees_canonical": {
           "address": null,
           "runtime_hash": null,
-          "controller": null
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null
         }
+      },
+      "helpers": {
+        "activation_assets": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "registry": null
+          }
+        },
+        "activation_entry": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "registry": null,
+            "activationAssets": null,
+            "v4Executor": null
+          }
+        },
+        "migration_budget": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "vault": null,
+            "MAX_LOSS_BPS": 1000,
+            "contributionLossBps": 100,
+            "maintenanceLossBps": 300
+          }
+        },
+        "custody_validation": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "migration": null
+          }
+        },
+        "royalty_rewards": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "nft": null,
+            "canonicalController": null,
+            "converter": null,
+            "custodyCount": 0
+          }
+        },
+        "metadata_renderer": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null
+          }
+        },
+        "claim_router": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "nft": null,
+            "royalties": null,
+            "MAX_CLAIMS": 32
+          }
+        },
+        "royalty_factory": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "controller": null
+          }
+        },
+        "reward_receiver_factory": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "fees": null
+          }
+        },
+        "lp_converter": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "ledger": null,
+            "v4Executor": null,
+            "wrapper": "0x0000000000000000000000000000000000000000",
+            "MAX_LOSS_BPS": 1000,
+            "conversionLossBps": 100,
+            "enabled": true
+          }
+        },
+        "royalty_converter": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "access": null,
+            "ledger": null,
+            "v4Executor": null,
+            "wrapper": "0x0000000000000000000000000000000000000000",
+            "MAX_LOSS_BPS": 1000,
+            "conversionLossBps": 100,
+            "enabled": true
+          }
+        },
+        "entry_v4_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "parent": null
+          }
+        },
+        "lp_v4_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "parent": null
+          }
+        },
+        "royalty_v4_executor": {
+          "address": null,
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "immutable": true,
+          "review_evidence": null,
+          "observed_bindings": null,
+          "bindings": {
+            "parent": null
+          }
+        }
+      },
+      "dependencies": {
+        "pool_manager": {
+          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+          "runtime_hash": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626",
+          "observed_runtime_hash": null,
+          "bindings": {},
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "position_manager": {
+          "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+          "runtime_hash": "0xc873e135dc9aaec88489cfbad146b4cb49d6a32e0d80326377784b7ba17670b2",
+          "observed_runtime_hash": null,
+          "bindings": {
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+            "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3"
+          },
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "state_view": {
+          "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
+          "runtime_hash": "0x7d9c591e0956fd89d98feb4ffcfe8bf1f7a62bd485edd979fa21d104b49878a6",
+          "observed_runtime_hash": null,
+          "bindings": {
+            "poolManager": "0x8366a39cc670b4001a1121b8f6a443a643e40951"
+          },
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "permit2": {
+          "address": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+          "runtime_hash": "0x5208783f52488f7d3493e5e38311ab707c1d75457fe472a19b0b4d57d66a7fca",
+          "observed_runtime_hash": null,
+          "bindings": {},
+          "observed_bindings": null,
+          "authority_review": null
+        },
+        "zzz": {
+          "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          "runtime_hash": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+          "observed_runtime_hash": null,
+          "bindings": {},
+          "observed_bindings": null,
+          "authority_review": null,
+          "burn_model": "burn(uint256):exact_local_supply_reduction",
+          "burn_evidence": null
+        }
+      },
+      "observed_modules": null,
+      "constructor": {
+        "canonical_chain_id": 4663,
+        "mint_proceeds_recipient": null,
+        "maximum_buyback_usd18": null,
+        "nft_base_uri": null,
+        "recipient_payment_evidence": null
+      },
+      "operating_buyback_usd18": null,
+      "native_accounting": {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "decimals": 18,
+        "runtime_hash": null,
+        "version": 2,
+        "canonical_schema": "0xd8234905cc1f62a1bbc2e8da6b748dbbe4fd69a2f258f14d1d4ef98afeddbad4",
+        "wrapper_independent": true,
+        "eth_weth_principal_boundary": false,
+        "legacy_v1_import": false
+      },
+      "execution_loss_policy": {
+        "contribution_bps": 100,
+        "maintenance_bps": 300,
+        "lp_conversion_bps": 100,
+        "royalty_conversion_bps": 100,
+        "hard_maximum_bps": 1000,
+        "gas_separate": true
+      },
+      "contribution_pool": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+      "pools": [
+        {
+          "currency0": "0x0000000000000000000000000000000000000000",
+          "currency1": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          "fee": 10020,
+          "tickSpacing": 200,
+          "hooks": "0x0000000000000000000000000000000000000000",
+          "depositsEnabled": true,
+          "operationsEnabled": true,
+          "rangeBps": null,
+          "triggerBps": null,
+          "maxSpotDeviationBps": null,
+          "maxSlippageBps": null,
+          "minRebalanceInterval": null,
+          "minDepositUSD": "5000000000000000000",
+          "maxPositionUSD": null,
+          "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
+          "observed_config": null,
+          "observed_accounting": null,
+          "slot0": null,
+          "liquidity": null,
+          "review_evidence": null
+        }
+      ],
+      "tokens": [
+        {
+          "address": "0x0000000000000000000000000000000000000000",
+          "kind": "native",
+          "runtime_hash": null,
+          "observed_runtime_hash": null,
+          "decimals": 18,
+          "observed_decimals": null,
+          "non_rebasing": null,
+          "transfer_tax": null,
+          "feed": {
+            "source": null,
+            "runtime_hash": null,
+            "observed_runtime_hash": null,
+            "denomination": "USD",
+            "decimals": null,
+            "maximum_age_seconds": null,
+            "answer": null,
+            "updated_at": null,
+            "round_id": null,
+            "answered_in_round": null,
+            "observed_oracle_feed": null,
+            "review_evidence": null
+          }
+        },
+        {
+          "address": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+          "kind": "erc20",
+          "runtime_hash": "0x3d5ba33c3a94f655c16348011ff2c72f6ce8085239454ce4a6c4bf284e84a597",
+          "observed_runtime_hash": null,
+          "decimals": 18,
+          "observed_decimals": null,
+          "non_rebasing": null,
+          "transfer_tax": null,
+          "feed": {
+            "source": null,
+            "runtime_hash": null,
+            "observed_runtime_hash": null,
+            "denomination": "USD",
+            "decimals": null,
+            "maximum_age_seconds": null,
+            "answer": null,
+            "updated_at": null,
+            "round_id": null,
+            "answered_in_round": null,
+            "observed_oracle_feed": null,
+            "review_evidence": null
+          }
+        }
+      ],
+      "sequencer": {
+        "mode": null,
+        "address": null,
+        "review_evidence": null
+      },
+      "governance": {
+        "multisig": null,
+        "signers": [],
+        "threshold": null,
+        "proposers": [],
+        "executors": [],
+        "keeper": null,
+        "guardian": null,
+        "timelock_seconds": 0,
+        "sealed": null,
+        "bootstrap": null,
+        "role_history_complete": null,
+        "observed_roles": null,
+        "review_evidence": null
       },
       "canonical_handoff": {
         "transport": "same_chain_only",
         "remote_activation_enabled": false,
         "state": null,
         "phase": null,
-        "settling": false,
-        "preparation_active": false,
+        "settling": null,
+        "preparation_active": null,
         "incoming_source": null,
-        "observed_chain_id": 4663,
-        "observed_block_number": null,
         "origin_chain_id": 4663,
         "origin_vault": null,
-        "observed_block_hash": null,
-        "observed_bindings": {
-          "canonical": null,
-          "origin_chain_id": 4663,
-          "origin_vault": null,
-          "nft_canonical": null,
-          "nft_canonical_owner": null,
-          "vault_canonical": null,
-          "vault_canonical_owner": null,
-          "fees_canonical": null,
-          "fees_canonical_owner": null,
-          "royalty_factory": null,
-          "reward_receiver_factory": null
-        },
-        "royalty_factory": {
-          "address": null,
-          "runtime_hash": null,
-          "immutable": true,
-          "owner": null,
-          "controller": null
-        },
-        "reward_receiver_factory": {
-          "address": null,
-          "runtime_hash": null,
-          "immutable": true,
-          "owner": null,
-          "controller": null
-        },
-        "review_evidence": null,
-        "activation_evidence": null
-      },
-      "activation_assets": {
-        "address": null,
-        "runtime_hash": null,
-        "immutable": true,
-        "registry": null,
-        "controller": null,
-        "observed_registry_helper": null,
-        "observed_chain_id": 4663,
-        "observed_block_number": null,
-        "observed_block_hash": null,
         "review_evidence": null
       },
-      "activation_entry": {
-        "address": null,
-        "runtime_hash": null,
-        "immutable": true,
-        "registry": null,
-        "controller": null,
-        "activation_assets": null,
-        "observed_registry_entry": null,
-        "observed_chain_id": 4663,
-        "observed_block_number": null,
-        "observed_block_hash": null,
+      "custody": {
+        "cross_chain_enabled": false,
+        "pending_principal_count": null,
+        "pending_royalty_custody_count": null,
+        "recipient_trust_accepted": null,
+        "normal_floors_preserved": null,
+        "raw_exit_separately_approved": null,
         "review_evidence": null
       },
-      "migration_budget": {
-        "address": null,
-        "runtime_hash": null,
-        "immutable": true,
-        "vault": null,
-        "controller": null,
-        "observed_vault_helper": null,
-        "observed_chain_id": 4663,
-        "observed_block_number": null,
-        "observed_block_hash": null,
-        "review_evidence": null
+      "inventory_history": {
+        "complete": null,
+        "evidence": null
       },
-      "governance": {
-        "multisig": null,
-        "proposers": [],
-        "executors": [],
-        "signers": [],
-        "threshold": null,
-        "keeper": null,
-        "guardian": null,
-        "overlap_review": null,
-        "timelock_seconds": 0,
-        "delay_fixed": true,
-        "migration_delay_seconds": 0,
-        "post_seal_routes_timelocked": false,
-        "sealed": false,
-        "bootstrap": null,
-        "roles_and_seal_evidence": null,
-        "parking_rehearsal": null
-      },
-      "constructor": {
-        "canonical_chain_id": 4663,
-        "mint_proceeds_recipient": null,
-        "recipient_payment_evidence": null,
-        "nft_base_uri": null,
-        "maximum_buyback_usd18": null
+      "reward_assets": {
+        "complete_admission_history": null,
+        "asset_count": null,
+        "observed_asset_count": null,
+        "assets": []
       },
       "nft_inventory": {
-        "royalty_rewards": {
-          "address": null,
-          "runtime_hash": null,
-          "immutable": true,
-          "nft": null,
-          "review_evidence": null
-        },
-        "metadata_renderer": {
-          "address": null,
-          "runtime_hash": null,
-          "immutable": true,
-          "controller": null,
-          "review_evidence": null
-        },
-        "claim_router": {
-          "address": null,
-          "runtime_hash": null,
-          "immutable": true,
-          "nft": null,
-          "controller": null,
-          "royalties": null,
-          "max_claims": 32,
-          "review_evidence": null
-        },
-        "observed_chain_id": 4663,
-        "observed_block_number": null,
-        "observed_block_hash": null,
-        "observed_bindings": {
-          "nft": null,
-          "royaltyRewards": null,
-          "metadataRenderer": null,
-          "royaltyReceiver": null,
-          "royaltyBps": 500,
-          "claimRouter": null,
-          "claimRouterNft": null,
-          "claimRouterController": null,
-          "claimRouterRoyalties": null,
-          "MAX_CLAIMS": 32,
-          "artworkBaseURI": null,
-          "MAX_SUPPLY": 1000,
-          "mintedCount": null,
-          "nextToFinalize": null,
-          "remainingToReveal": null,
-          "rarityRemaining": [],
-          "randomnessConfigured": false,
-          "randomnessCoordinator": null,
-          "keyHash": null,
-          "subscriptionId": null,
-          "requestConfirmations": null,
-          "callbackGasLimit": null,
-          "nativePayment": null
-        },
-        "artwork_publication": {
-          "base_uri": null,
-          "manifest_sha256": null,
-          "asset_count": 2784,
-          "asset_paths": [],
-          "review_evidence": null
-        },
-        "royalty_assets": {
-          "asset_count": null,
-          "complete_admission_history": false,
-          "observation_evidence": null,
-          "assets": [
-            {
-              "address": "0x0000000000000000000000000000000000000000",
-              "observed_asset": null,
-              "observed_is_asset": null,
-              "kind": "native",
-              "decimals": 18,
-              "runtime_hash": null,
-              "admission_evidence": null
-            }
-          ]
-        },
         "randomness": {
           "coordinator": null,
           "runtime_hash": null,
+          "observed_runtime_hash": null,
           "keyHash": null,
           "subscriptionId": null,
           "requestConfirmations": null,
@@ -404,113 +639,82 @@
           "review_evidence": null,
           "integration_evidence": null
         },
-        "observation_evidence": null
-      },
-      "external_rewards": {
-        "receiver_count": null,
-        "observation_evidence": null,
-        "receivers": []
-      },
-      "bucket_reservations": [],
-      "dependencies": {
-        "position_manager": {
-          "address": null,
-          "runtime_hash": null,
-          "authority_review": null,
-          "pool_manager": null,
-          "permit2": null
+        "observed_bindings": null,
+        "artwork_publication": {
+          "base_uri": null,
+          "manifest_sha256": null,
+          "asset_count": 2784,
+          "asset_paths": [],
+          "review_evidence": null
         },
-        "state_view": {
-          "address": "0xf3334192d15450cdd385c8b70e03f9a6bd9e673b",
-          "runtime_hash": null,
-          "authority_review": null,
-          "pool_manager": null
-        },
-        "pool_manager": {
-          "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
-          "runtime_hash": null,
-          "authority_review": null
-        },
-        "permit2": {
-          "address": null,
-          "runtime_hash": null,
-          "authority_review": null
-        },
-        "zzz": {
-          "address": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a",
-          "runtime_hash": null,
-          "authority_review": null,
-          "burn_model": null,
-          "burn_evidence": null
+        "royalty_assets": {
+          "complete_admission_history": null,
+          "asset_count": null,
+          "observed_asset_count": null,
+          "assets": []
         }
       },
-      "tokens": [
-        {
-          "address": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a",
-          "runtime_hash": null,
-          "decimals": 18,
-          "canonical_asset": "ZZZ",
-          "non_rebasing": null,
-          "transfer_tax": null,
-          "reward_asset": false,
-          "feed": {
-            "source": null,
-            "runtime_hash": null,
-            "denomination": "USD",
-            "decimals": null,
-            "maximum_age_seconds": null,
-            "answer": null,
-            "updated_at": null,
-            "round_id": null,
-            "answered_in_round": null,
-            "review": null
-          }
+      "activation_sources": [],
+      "conversion_routes": [],
+      "services": {
+        "rpc": {
+          "status": "unqualified",
+          "profile": "eip1898_hash_pinned_debug_trace",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "pricing": {
+          "status": "unqualified",
+          "profile": "independent_usd_native_v2",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "randomness": {
+          "status": "unqualified",
+          "profile": "verified_coordinator_two_words",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "keeper": {
+          "status": "unqualified",
+          "profile": "native_v2_governed_limits",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "api": {
+          "status": "unqualified",
+          "profile": "accounting_v2_routing_v2",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "metadata": {
+          "status": "unqualified",
+          "profile": "content_addressed_v2",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null
+        },
+        "opensea": {
+          "status": "unqualified",
+          "profile": "primary_mint_current_nft",
+          "chain_id": 4663,
+          "controller": null,
+          "configuration_sha256": null,
+          "evidence": null,
+          "collection_url": null
         }
-      ],
-      "sequencer": {
-        "mode": null,
-        "address": null,
-        "runtime_hash": null,
-        "answer": null,
-        "started_at": null,
-        "observed_oracle_feed": null,
-        "active_policy_id": null,
-        "policy_count": null,
-        "observed_policy": null,
-        "replacement_review": null,
-        "review": null
-      },
-      "pools": [],
-      "custody_handoff": {
-        "configured_zzz": null,
-        "zzz_code_hash": null,
-        "validation_helper": null,
-        "validation_runtime_hash": null,
-        "observed_block_number": null,
-        "observed_block_hash": null,
-        "outstanding_principal_count": null,
-        "outstanding_royalty_count": null,
-        "recipient_trust_approval": null,
-        "normal_exit_evidence": null,
-        "raw_exit_risk_approval": null,
-        "royalty_custody_evidence": null,
-        "finality_verifier_evidence": null,
-        "recovery_evidence": null,
-        "independent_review": null
       }
     }
-  ],
-  "routes": [],
-  "transport_policies": [],
-  "custody_architecture": "governed-v1",
-  "selected_pool_candidate": {
-    "chain_id": 4663,
-    "pool_id": "0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b",
-    "currency0": "0x0000000000000000000000000000000000000000",
-    "currency1": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
-    "fee": 10020,
-    "tick_spacing": 200,
-    "hooks": "0x0000000000000000000000000000000000000000",
-    "qualified": false
-  }
+  ]
 }

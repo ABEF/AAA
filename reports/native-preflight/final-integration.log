@@ -1,0 +1,10 @@
+test_native_schema_dispatch_lists_real_missing_requirements (tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_native_schema_dispatch_lists_real_missing_requirements) ... ok
+test_updated_template_declares_layout_and_does_not_redeploy_retired_modules (tests_python.test_custody_inventory.CustodyInventoryTests.test_updated_template_declares_layout_and_does_not_redeploy_retired_modules) ... ok
+test_template_is_explicitly_blocked (tests_python.test_production_config.ProductionConfigTests.test_template_is_explicitly_blocked) ... ok
+test_cli_emits_blocked_machine_readable_output_without_chain_access (tests_python.test_production_config.ProductionConfigTests.test_cli_emits_blocked_machine_readable_output_without_chain_access) ... ok
+test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked (tests_python.test_production_observer.ObserverGateCompositionTests.test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.109s
+
+OK

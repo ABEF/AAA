@@ -7,10 +7,12 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import os
 from pathlib import Path
 import re
 import sys
 import time
+import tempfile
 from itertools import combinations
 from typing import Any
 
@@ -88,6 +90,9 @@ class Gate:
         return record
 
 def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) -> dict[str,Any]:
+    if isinstance(config,dict) and type(config.get('schema_version')) is int and config['schema_version']==5:
+        from zzz_ops.production_v2 import validate as validate_native
+        return validate_native(config,expected_commit=expected_commit,now=now)
     if isinstance(config,dict) and config.get('custody_architecture') == 'governed-v1':
         return {'schema_version':4,'status':'blocked','ready':False,'deployment_authorized':False,
             'issues':[{'code':'custody.inventory_schema_pending','path':'custody_architecture',
@@ -873,16 +878,47 @@ def validate(config: Any,*,expected_commit: str|None=None,now: int|None=None) ->
         'limitations':['Offline manifest checks do not authenticate evidence, runtime code, authorities, or current chain state.',
             'A complete manifest is not an audit, a safety guarantee, or deployment/sealing/transaction authorization.']}
 
+def read_config(path: Path) -> Any:
+    with path.open('rb') as source:
+        raw=source.read(8*1024*1024+1)
+    if len(raw)>8*1024*1024:raise ValueError('Inventory exceeds bounded file size')
+    def unique(pairs):
+        result={}
+        for key,value in pairs:
+            if key in result:raise ValueError('Repeated inventory key')
+            result[key]=value
+        return result
+    return json.loads(raw.decode('utf-8'),object_pairs_hook=unique,
+        parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Nonfinite JSON number')))
+
+def write_report(path: Path,encoded: str) -> None:
+    temporary=None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',newline='\n',
+                dir=path.parent,prefix='.'+path.name+'.',suffix='.tmp',delete=False) as report:
+            temporary=Path(report.name);report.write(encoded);report.flush();os.fsync(report.fileno())
+        os.replace(temporary,path);temporary=None
+    finally:
+        if temporary is not None:temporary.unlink(missing_ok=True)
+
 def main() -> int:
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',required=True);parser.add_argument('--expected-commit');parser.add_argument('--output')
     args=parser.parse_args()
-    try:result=validate(json.loads(Path(args.config).read_text(encoding='utf-8')),expected_commit=args.expected_commit)
-    except (OSError,UnicodeError,json.JSONDecodeError) as exc:
+    try:result=validate(read_config(Path(args.config)),expected_commit=args.expected_commit)
+    except (OSError,UnicodeError,ValueError,RecursionError) as exc:
         result={'schema_version':4,'status':'blocked','ready':False,'deployment_authorized':False,
             'issues':[{'code':'config.unreadable','path':'config','message':type(exc).__name__}]}
+    if args.output and Path(args.output).resolve()==Path(args.config).resolve():
+        result={'schema_version':result['schema_version'],'status':'blocked','ready':False,'deployment_authorized':False,
+            'issues':[{'code':'output.path_conflict','path':'output','message':'Report must not overwrite the inventory input'}]}
     encoded=json.dumps(result,indent=2,sort_keys=True)+'\n'
-    if args.output:Path(args.output).write_text(encoded,encoding='utf-8')
+    if args.output and not any(i['code']=='output.path_conflict' for i in result['issues']):
+        try:write_report(Path(args.output),encoded)
+        except OSError:
+            print(json.dumps({'status':'blocked','ready':False,'deployment_authorized':False,
+                'issues':[{'code':'output.unavailable','path':'output','message':'Report could not be replaced atomically'}]}))
+            return 1
     print(encoded,end='');return 0 if result['ready'] else 1
 
 if __name__=='__main__':sys.exit(main())

@@ -1,3 +1,17 @@
+## Native V2 production preflight - 2026-10-24
+
+The [current inventory gate and observer](PRODUCTION_PREFLIGHT.md) use explicit
+schema 5 for native V2, typed route V2 and governed custody. They compare exact
+module/helper/runtime/getter observations and current limits at one confirmed
+hash while preserving old schema-4 interpretation. Read-only observations never
+supply independent approvals or automatically become approved runtime pins.
+Missing routes, prices, authority wallets, services and review records are
+reported as actionable blockers. No signer or deployment permission is added. [Scoped verification and internal review](../reports/native-preflight/VERIFICATION.md) record 73 distinct focused Python passes and unchanged prior contract evidence.
+
+Actual target-chain, feed, VRF, route, operating and audit qualification remains
+open. The public website, existing local deployment and wallet journals stay on
+their original profiles. No Solidity or financial flow is changed by these tools.
+
 ## Typed v4 conversion and governed loss policy - 2026-10-24
 
 The [typed-v4 candidate](TYPED_V4_ROUTES.md) implements actual native/ERC20

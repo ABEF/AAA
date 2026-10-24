@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "76376d4b24c0c2a986304336b16e882658162913",
+  "legacy_validation_body_ast_unchanged": true,
+  "new_dispatch_only": true,
+  "prior_bound_files": 131,
+  "prior_source_hashes_match": true,
+  "new_solidity_or_size_tests_run": false,
+  "source_scope": "Prior typed-v4 report reused only for unchanged source; no new full regression or actual service qualification."
+}

@@ -42,3 +42,6 @@ reports/post-seal-controls/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at
 
 # Preserve exact typed-v4 and governed-policy scoped diagnostics.
 reports/typed-v4-routes/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+
+# Preserve exact source-scoped native preflight diagnostics.
+reports/native-preflight/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

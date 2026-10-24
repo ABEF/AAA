@@ -1,0 +1,55 @@
+{
+  "scope": "offline read-only observer and source-ABI/gate composition mocks",
+  "actual_provider_qualification": false,
+  "public_transactions": false,
+  "services_changed": false,
+  "distinct_test_methods": 19,
+  "runs": [
+    {
+      "log": "observer-final-focused.log",
+      "passes": 12,
+      "exit_code": 0,
+      "sha256": "a9fbc36a47dddac9e573ee2fae80c3cba43bc48766edef9984ca620162310aa6"
+    },
+    {
+      "log": "observer-composition-json.log",
+      "passes": 2,
+      "exit_code": 0,
+      "sha256": "0be61fec5f15494da104530ec8217f01e73883ae742c72bf4779f4f48b9c1d40"
+    },
+    {
+      "log": "observer-io-guards.log",
+      "passes": 5,
+      "exit_code": 0,
+      "sha256": "54d7a1ff7c599572d1414c1d22ced0bc89ad542b063708952bde1e3f0820647c"
+    },
+    {
+      "log": "observer-composition-fee-final.log",
+      "passes": 1,
+      "exit_code": 0,
+      "rerun_of_existing_method": true,
+      "sha256": "97d7de3494cc331eb123c2998a91048543bc22936618c8dd69cd014e50d4dad1"
+    },
+    {
+      "log": "observer-bounded-gas-final.log",
+      "passes": 2,
+      "exit_code": 0,
+      "rerun_of_existing_methods": true,
+      "sha256": "c9c2ce004928ef433b49881dc81f70a7640aa2eb1d1d0946738117e800099b9b"
+    }
+  ],
+  "source_sha256": {
+    "zzz_ops/production_observer.py": "adaf17cc80639420778589f548e98be59b833a5cbbfbc029fe1c78c54473152c",
+    "scripts/observe-production-config.py": "3548c49f1c7e8c75a0ab6bed5b5dd4eac6704305d1717c9002a1d89eda974eb5",
+    "tests_python/test_production_observer.py": "77fe376a7149acb0e3241c55452b292a0a212d4bac8e7246e6a4c2dfd0920c21",
+    "zzz_ops/production_v2.py": "f4c051dfdccf3b6897217723e2bae73a6467ff68c782a59fcaa253729e1ae937",
+    "tests_python/test_production_v2.py": "c9a2c6f944a6ab97b6142daa08b7d25c6cc639b6ec4a40689b90789add0f8c04"
+  },
+  "notes": [
+    "Known mock runtime constants are explicitly substituted only in the complete composition test; no actual dependency runtime preimage or provider is qualified.",
+    "Earlier initial mock runs were scoped development checks; final counts above are distinct test methods, not repeated-run sums.",
+    "The first development attempt was blocked by the concurrently written schema module being temporarily non-importable; the observer test cases then passed after it was importable.",
+    "Only the composition case was rerun after the schema fixture added current conversion fee-configuration binding; it passes and is not counted twice.",
+    "Only the complete observation and full composition cases were rerun after adding the fixed one-million gas limit to every read-only getter call. Both pass; distinct count remains19."
+  ]
+}

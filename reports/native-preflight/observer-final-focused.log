@@ -1,0 +1,17 @@
+test_current_sequencer_values_replace_copied_healthy_status (tests_python.test_production_observer.ProductionObserverTests.test_current_sequencer_values_replace_copied_healthy_status) ... ok
+test_unreadable_governance_role_does_not_reuse_copied_grants (tests_python.test_production_observer.ProductionObserverTests.test_unreadable_governance_role_does_not_reuse_copied_grants) ... ok
+test_v3_policy_and_venue_are_observed_separately_from_v4 (tests_python.test_production_observer.ProductionObserverTests.test_v3_policy_and_venue_are_observed_separately_from_v4) ... ok
+test_wrapper_authority_observation_reads_actual_proxy_admin (tests_python.test_production_observer.ProductionObserverTests.test_wrapper_authority_observation_reads_actual_proxy_admin) ... ok
+test_complete_pinned_native_v4_observation_preserves_reviews_and_input (tests_python.test_production_observer.ProductionObserverTests.test_complete_pinned_native_v4_observation_preserves_reviews_and_input) ... ok
+test_noncanonical_boolean_and_address_fail_closed (tests_python.test_production_observer.ProductionObserverTests.test_noncanonical_boolean_and_address_fail_closed) ... ok
+test_disabled_v4_route_is_read_without_calling_validate (tests_python.test_production_observer.ProductionObserverTests.test_disabled_v4_route_is_read_without_calling_validate) ... ok
+test_reorg_discards_whole_observation (tests_python.test_production_observer.ProductionObserverTests.test_reorg_discards_whole_observation) ... ok
+test_runtime_mismatch_does_not_replace_approved_pin (tests_python.test_production_observer.ProductionObserverTests.test_runtime_mismatch_does_not_replace_approved_pin) ... ok
+test_wrong_chain_genesis_hash_and_insufficient_depth_abort (tests_python.test_production_observer.ProductionObserverTests.test_wrong_chain_genesis_hash_and_insufficient_depth_abort) ... ok
+test_failed_getter_is_unavailable_never_zero_and_failure_is_sanitized (tests_python.test_production_observer.ProductionObserverTests.test_failed_getter_is_unavailable_never_zero_and_failure_is_sanitized) ... ok
+test_changed_route_identity_is_reported (tests_python.test_production_observer.ProductionObserverTests.test_changed_route_identity_is_reported) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.093s
+
+OK

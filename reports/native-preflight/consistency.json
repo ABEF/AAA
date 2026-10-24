@@ -1,0 +1,11 @@
+{
+  "documents": 18,
+  "local_links_checked": 1285,
+  "broken_links": [],
+  "current_source_bindings": 15,
+  "prior_unchanged_source_bindings": 131,
+  "distinct_focused_python_passes": 73,
+  "solidity_tests_rerun": false,
+  "full_fresh_regression_claimed": false,
+  "production_approved": false
+}

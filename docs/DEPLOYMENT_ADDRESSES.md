@@ -8,14 +8,13 @@ and deployed runtime hash, plus Vault's Budget and canonical companions. It does
 not hold principal or execute arbitrary calls. `ZZZPairMigration` and its old
 bridge/transport companions are historical components, not current deployment
 addresses. Qualify the actual pools, currencies, feeds and complete runtime/initcode
-sizes; the legacy production gate remains blocked pending an independently reviewed
-inventory update.
+sizes. The [schema-5 preflight](PRODUCTION_PREFLIGHT.md) now describes this layout; actual addresses, reviewed pins, fresh observations and independent qualification remain required. Legacy schema 4 keeps its historical interpretation.
 
 The royalty conversion candidate also requires a separately deployed
 [`ZZZRoyaltyConverter`](../src/ZZZRoyaltyConverter.sol), constructed with the exact
-controller, RoyaltyRewards ledger and WETH wrapper. Governance binds it to the
+controller and RoyaltyRewards ledger. Native-only v4 conversion permits wrapper zero; an explicit v3/unwrap path requires its own reviewed wrapper. Governance binds it to the
 ledger once **before sealing**. Record its runtime hash and bidirectional bindings,
-wrapper proxy/admin/implementation policy and each reviewed conversion route/feed.
+the explicit conversion profile and each reviewed route/feed. If a wrapper is used, retain its proxy/admin/implementation policy separately.
 It is an optional fixed helper, not a replacement sealed controller module. Core
 seal validation alone does not prove this optional feature is configured. Each
 successor needs its own reviewed binding. Production helper-inventory qualification
@@ -32,10 +31,9 @@ configuration, current `requestConfirmations`/`callbackGasLimit`, immutable
 `maxTradeUSD` and current `operatingTradeUSD`. The two request parameters and the
 buyback operating limit are deployment policy, not immutable NFT rights or copied
 canonical records. Refresh observations after configuration; retain old request
-transactions and operation history. The blocked inventory distinguishes
+transactions and operation history. The current inventory distinguishes
 `immutable_provider_configuration` from the exact two-field
-`mutable_request_parameters` list. Actual native release-inventory qualification
-remains separate and open.
+`mutable_request_parameters` list. The schema-5 tooling is implemented; actual native release-inventory qualification remains separate and open.
 
 The [production manifest](../config/production.example.json) records addresses,
 chain IDs, observed blocks, code hashes, immutable bindings and review evidence.
@@ -95,7 +93,7 @@ Record the actual per-chain addresses and exact immutable-specific runtimes.
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
 | `fees_canonical` | `ZZZFeesCanonical` - reserves/inboxes codec bound to Fees |
 
-Nine fixed helpers/factories are created automatically and must also be inventoried:
+The current inventory has **14 fixed helpers**: twelve created by their parent contracts and two separately deployed converters. Every immutable-specific runtime and binding must be inventoried:
 
 | Creator | Helper addresses and bindings |
 | --- | --- |
@@ -105,6 +103,8 @@ Nine fixed helpers/factories are created automatically and must also be inventor
 | Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
 | FeeController constructor | `ZZZRewardReceiverFactory`; verify immutable Fees/controller bindings and `Fees.receiverFactory`. It creates exact bound inboxes and supplies read-only validation/encoding helpers. |
 | Migration constructor | `ZZZCustodyValidation`; verify `Migration.validation`, helper `migration`/`access` bindings and runtime. It is read-only and has no custody/execution authority. |
+| Entry and converter constructors | Each creates a distinct `ZZZV4RouteExecutor`; verify its exact `parent()` and parent `v4Executor()` getter. |
+| Separate LP and royalty converters | Deploy each with its own immutable ledger/controller and explicit optional wrapper; bind each ledger before sealing. |
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
@@ -188,13 +188,8 @@ source/bytecode/binding observations and explicit authorization.
 Native ETH LP fees enter holder/collective accounting directly; they do not
 need wrapping or conversion. ZZZ and other non-native holder fees require a
 separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol), bound
-once to Rewards before sealing. Its current single-hop v3 path uses a reviewed
-WETH wrapper at that explicit conversion boundary. Record controller/ledger,
-wrapper runtime/implementation policy, route/feed review and keeper pins. This
-helper has no custody of LP principal. Retain the 1% maximum ZZZ conversion loss,
-gas separate, and require a cheaper independently qualified route; the selected
-approximately 1.101% pool does not qualify full conversion at reference prices.
-Typed v4 conversion remains pre-seal work. See [setup and recovery](LP_ETH_SETTLEMENT.md).
+once to Rewards before sealing. Its typed hookless v4 path settles actual ETH without a wrapper. The separate v3/unwrap profile still requires its reviewed wrapper. Record controller/ledger, parent-bound executor, current conversion cap, route/feed review and keeper pins. This
+helper has no custody of LP principal. The conversion limit defaults to 1%, governance-adjustable up to 10%, with gas separate. At the default cap the selected approximately 1.101%-fee pool still needs a cheaper independently qualified conversion route. [Schema-5 inventory and observation](PRODUCTION_PREFLIGHT.md) verify actual selected policy; no route is invented. See [setup and recovery](LP_ETH_SETTLEMENT.md).
 
 ## Native accounting and canonical version inventory
 

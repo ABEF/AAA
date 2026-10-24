@@ -1,0 +1,20 @@
+{
+  "scope": "Final native-preflight tools/tests/templates and supporting read boundaries; scoped runs have individual final/reused records.",
+  "files": {
+    "config/production.example.json": "677d02a88ad3aba58078e5c85dd4653ea880eccbdae864583bd1811121da426b",
+    "config/production.legacy-v4.example.json": "32d8707e3ca37744faee8ce8ec766c191beb7d10493b7d705ff27d0fa8f5fbc7",
+    "scripts/validate-production-config.py": "333dfa6ef86b8cf238c1538a73735b54608f92d489ea663b0459216f07206067",
+    "scripts/observe-production-config.py": "3548c49f1c7e8c75a0ab6bed5b5dd4eac6704305d1717c9002a1d89eda974eb5",
+    "zzz_ops/production_v2.py": "f4c051dfdccf3b6897217723e2bae73a6467ff68c782a59fcaa253729e1ae937",
+    "zzz_ops/production_observer.py": "adaf17cc80639420778589f548e98be59b833a5cbbfbc029fe1c78c54473152c",
+    "tests_python/test_production_preflight_cli.py": "c4842316aaf783ac49e85abd92d7d12bfe9a13d887813f068c8baecaeefcecf8",
+    "tests_python/test_production_observer.py": "77fe376a7149acb0e3241c55452b292a0a212d4bac8e7246e6a4c2dfd0920c21",
+    "tests_python/test_production_v2.py": "c9a2c6f944a6ab97b6142daa08b7d25c6cc639b6ec4a40689b90789add0f8c04",
+    "tests_python/test_custody_inventory.py": "cf1142bbf84cfb04e87d677db68a4f03c242d3479392c7b62f92e12d4d9be5dc",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "zzz_ops/rpc.py": "829cdbceafabdf2ba634cfefaa57db1bc7fc6f6a9a80771c7929e131b82be397",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "tests_python/test_production_config.py": "e4fb9c67672b493a03e89b3f8cb7fcc8e9a03426cdeca374ec1cc74fa709b4dd"
+  }
+}

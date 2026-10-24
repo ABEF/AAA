@@ -1,0 +1,10 @@
+test_cli_failure_is_sanitized_and_does_not_overwrite_existing_output (tests_python.test_production_observer.ProductionObserverTests.test_cli_failure_is_sanitized_and_does_not_overwrite_existing_output) ... ok
+test_cli_rejects_same_output_secret_env_and_mismatched_anchor_before_rpc (tests_python.test_production_observer.ProductionObserverTests.test_cli_rejects_same_output_secret_env_and_mismatched_anchor_before_rpc) ... ok
+test_failed_atomic_output_preserves_previous_and_removes_temporary (tests_python.test_production_observer.ProductionObserverTests.test_failed_atomic_output_preserves_previous_and_removes_temporary) ... ok
+test_numeric_and_dynamic_abi_boundaries (tests_python.test_production_observer.ProductionObserverTests.test_numeric_and_dynamic_abi_boundaries) ... ok
+test_rpc_method_allowlist_rejects_writes_before_transport (tests_python.test_production_observer.ProductionObserverTests.test_rpc_method_allowlist_rejects_writes_before_transport) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.059s
+
+OK

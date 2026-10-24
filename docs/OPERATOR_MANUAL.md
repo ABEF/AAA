@@ -1,5 +1,21 @@
 # PoPL operator manual
 
+## Current-version production preflight - 2026-10-24
+
+Use the [schema-5 inventory runbook](PRODUCTION_PREFLIGHT.md) before presenting any
+native/V4 deployment as ready. Fill approved public addresses/runtime pins and
+policy first; collect one bounded canonical read snapshot separately; then run
+the offline gate against the exact release commit. Unknown prices, routes,
+authorities, VRF, services and audit evidence remain named blockers.
+
+The observer cannot approve its own observations or prove route-map completeness
+without creation-to-anchor history. Do not copy actual code into approved pins,
+reuse a stale snapshot after configuration, or overwrite the original inventory.
+On partial/mismatched reads, inspect the existing deployment and fix the cause;
+no automatic reconfiguration, signing, retry transaction, reseal or reset occurs.
+The public site and existing Anvil/journals are unaffected.
+
+
 ## Typed conversion and loss-limit operations - 2026-10-24
 
 [Typed v4 route setup](TYPED_V4_ROUTES.md) covers new pools/routes, exact policy

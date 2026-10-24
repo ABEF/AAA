@@ -1,5 +1,8 @@
 # Engineering roadmap
 
+**Native inventory tooling (2026-10-24):** [Schema-5 preflight and read-only observation](PRODUCTION_PREFLIGHT.md) now target actual native V2/v4 bindings and current governed limits. Legacy schema 4 remains historical. The example has missing public deployment/service/review records and must remain blocked. This tool does not close actual qualification, OpenSea, native website or independent audit gates.
+
+
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;

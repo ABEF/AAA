@@ -1,0 +1,6 @@
+test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked (tests_python.test_production_observer.ObserverGateCompositionTests.test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.930s
+
+OK

@@ -1,0 +1,30 @@
+{
+  "final_affected_reruns": 5,
+  "scope": "Four earlier root/template cases and one earlier composition case; do not add to distinct-case total. Final schema/caps/fee scope used.",
+  "current_example": {
+    "schema": 5,
+    "exit_code": 1,
+    "ready": false,
+    "deployment_authorized": false,
+    "issues": 840,
+    "groups": {
+      "authorities": 5,
+      "bindings": 95,
+      "contracts": 462,
+      "native": 2,
+      "pricing": 10,
+      "randomness": 6,
+      "routes": 6,
+      "security": 237,
+      "services": 17
+    },
+    "final_template_sha256": "677d02a88ad3aba58078e5c85dd4653ea880eccbdae864583bd1811121da426b",
+    "report_refreshed_after_final_known_helper_keys": true
+  },
+  "historical_example": {
+    "schema": 4,
+    "exit_code": 1,
+    "first_code": "custody.inventory_schema_pending"
+  },
+  "actual_rpc_or_financial_actions": false
+}

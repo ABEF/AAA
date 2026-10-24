@@ -1,0 +1,7 @@
+test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked (tests_python.test_production_observer.ObserverGateCompositionTests.test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked) ... ok
+test_duplicate_json_and_file_bounds (tests_python.test_production_observer.ProductionObserverTests.test_duplicate_json_and_file_bounds) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.053s
+
+OK

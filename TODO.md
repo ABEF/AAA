@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**16 To do | 28 In progress | 17 Implemented locally**
+**16 To do | 28 In progress | 18 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -32,7 +32,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-eth-settlement"></a>
 
-- [ ] **[Settle holder LP rewards in ETH](docs/LP_ETH_SETTLEMENT.md)** - In progress. LP holder conversion to native ETH is implemented in the local candidate with the user-approved 1% loss cap and separate gas. Includes fixed converter binding, per-NFT native credits, bounded keeper scheduling, history reconciliation and ETH-default claims. Scoped verification covers 142 distinct affected Solidity cases and 33 local journey assertions; real routes/feeds, operating latency/gas qualification and independent release review remain open. Current typed v4 native conversion is implemented; the conversion cap defaults to1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
+- [ ] **[Settle holder LP rewards in ETH](docs/LP_ETH_SETTLEMENT.md)** - In progress. LP holder conversion to native ETH is implemented in the local candidate with the user-approved 1% loss cap and separate gas. Includes fixed converter binding, per-NFT native credits, bounded keeper scheduling, history reconciliation and ETH-default claims. Scoped verification covers 142 distinct affected Solidity cases and 33 local journey assertions; real routes/feeds, operating latency/gas qualification and independent release review remain open. Current typed v4 native conversion is implemented; the conversion cap defaults to 1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -44,15 +44,15 @@ Custody, ownership and reward accounting.
   - Read API, unsigned claims and today-price earnings replay include LP conversion credits without counting them as new income or payout. Qualify full ingestion/lineage, real conversion receipts and stalled/restarted keepers; measure worst-case conversion waiting time across the collection and minimum economic batches.
   - The earlier [source-only claim audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) describes the pre-conversion revision. Current candidate evidence belongs in [LP ETH verification](reports/lp-eth-settlement/VERIFICATION.md); local fixtures do not qualify public routes or independent security.
   - Local ETH-only default claims, pending source-currency display, exact native backing/abort and current-owner same-chain handoff are verified in the scoped report. Qualify complete real-market conversion and operating latency before closing this task.
-  - User reconfirmed on 2026-10-24: retain 1% maximum ZZZ LP-reward conversion loss, gas separate; require a cheaper qualified route than the selected pool's approximately 1.101% observed fee. Unsupported conversion stays unavailable with source balances backed; do not raise the cap or invent a route.
-  - Native V2 venue ETH fees now enter individual/collective indices directly, without conversion. Already converted ETH credits coexist without new-income double counting. ZZZ still requires a cheaper qualified conversion route; the 1% limit and separate gas are unchanged.
+  - Latest approved policy: LP conversion defaults to 1% loss, governance-adjustable up to 10%, gas separate. At the default cap require a cheaper qualified route than the selected pool's approximately 1.101% observed fee. A governance change is deliberate, never an automatic quote fallback.
+  - Native V2 venue ETH fees now enter individual/collective indices directly, without conversion. Already converted ETH credits coexist without new-income double counting. ZZZ still requires a cheaper qualified conversion route; the limit defaults to 1%, governance maximum 10%, and gas stays separate.
   - [Current typed v4 and governed limits](docs/TYPED_V4_ROUTES.md) preserve earned per-NFT source/native entitlements; explicit worker profiles and current-setting observations are required. Actual route/feed/keeper qualification remains open.
 
   </details>
 
 <a id="task-royalty-eth-settlement"></a>
 
-- [ ] **[Qualify ETH settlement for marketplace royalties](docs/ROYALTY_SETTLEMENT.md)** - In progress. Bounded batch ETH conversion and optional-currency activation failure isolation are implemented, with a 1% execution-loss cap and gas separate. An opt-in keeper job preserves per-NFT entitlements and existing transaction recovery. Qualify exact Robinhood wrapper/routes/feeds, marketplace receipts, UI/history integration and operating behavior. Current typed v4 native conversion is implemented; the conversion cap defaults to1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
+- [ ] **[Qualify ETH settlement for marketplace royalties](docs/ROYALTY_SETTLEMENT.md)** - In progress. Bounded batch ETH conversion and optional-currency activation failure isolation are implemented, with a default 1% execution-loss cap (governance maximum 10%) and gas separate. An opt-in keeper job preserves per-NFT entitlements and existing transaction recovery. Qualify exact Robinhood wrapper/routes/feeds, marketplace receipts, UI/history integration and operating behavior. Current typed v4 native conversion is implemented; the conversion cap defaults to 1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -149,6 +149,7 @@ Custody, ownership and reward accounting.
   - Review normal exit, full recovery, local completion, fee/royalty currencies and future ETH/WETH moves together. Qualify affected code sizes, adverse callbacks and isolated venue execution; no bypass of a broken pool or nontransferable ZZZ can be promised.
   - Broader native redesign design-audit findings are explicit in docs/NATIVE_ETH_ARCHITECTURE.md: zero/unset identities; native indices and existing credits; historical native compound/dust and33-slot loops; two-stage canonical funding/abort; nonduplicated receiver protection; transitive wrapper independence; per-epoch schema/backend/price/trace profiles; and native recipient callbacks. These are implementation/verification blockers, not closed by the current WETH tests.
   - [Native V2 implementation and scoped evidence](reports/native-eth-port/VERIFICATION.md): exact payable ingress, native indices with converted credits, 33-asset historical reserves, distinct receiver protection, two-stage canonical funding/abort and forced-ETH exclusion. Do not combine old WETH modules/epochs with V2 or reset existing local journals. Same-actual-pair fee-tier moves remain supported; atomic ETH/WETH conversion needs a reviewed explicit boundary and currently fails closed.
+  - [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) is implemented as schema-5 inventory and read-only same-block observations. Complete the actual pinned deployment, route/feed/service and independent review records; implementing a checker does not qualify its inputs or authorize release.
 
   </details>
 
@@ -165,6 +166,7 @@ Custody, ownership and reward accounting.
   - Keep ownership, revealed rarity/artwork, accrued balances, backing and allocation guarantees protected. No reset, deletion, arbitrary calls/sweep or holder redemption. New compatible code uses reviewed handoff, not silent reinterpretation of old state.
   - [Typed v4 routes](docs/TYPED_V4_ROUTES.md) are implemented through immutable fixed-parent single-hop helpers with exact native/ERC20 settlement and explicit preparation/keeper profiles. Actual routes, feeds and providers still require qualification; no arbitrary hook/router/recipient/sweep.
   - [Governed execution-loss policy](docs/EXECUTION_LOSS_POLICY.md): Budget setLossLimits(contribution,maintenance) and each converter setConversionLossBps select 0..1000 bps. Defaults 100/100/300. Captured operation policies and original custody approval floors persist; raw emergency remains separate. Verify current settings and reconcile pending reviews; no cumulative cap is added.
+  - [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) is implemented as schema-5 inventory and read-only same-block observations. Complete the actual pinned deployment, route/feed/service and independent review records; implementing a checker does not qualify its inputs or authorize release.
 
   </details>
 
@@ -238,7 +240,7 @@ The data and services behind the app.
 
 <a id="task-activation-quotes"></a>
 
-- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot. Explicit routing version2 supports typed native/ERC20 v4 and reads the current governed contribution cap (1% default, 10% hard maximum). Legacy profiles keep fixed semantics; no fallback.
+- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, governed marginal-deployment floor (1% loss by default), exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot. Explicit routing version2 supports typed native/ERC20 v4 and reads the current governed contribution cap (1% default, 10% hard maximum). Legacy profiles keep fixed semantics; no fallback.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -354,6 +356,19 @@ The data and services behind the app.
   <summary>Acceptance criteria</summary>
 
   - [Scoped verification](reports/holder-preflight/VERIFICATION.md): pinned reads, 1,000-NFT coverage, missing/duplicate/mixed snapshots, reorgs, code/binding drift and limits. Read-only implementation; no actual deployed escrow or marketplace approved.
+
+  </details>
+
+<a id="task-native-production-preflight"></a>
+
+- [x] **[Native V2 production inventory and preflight](docs/PRODUCTION_PREFLIGHT.md)** - Implemented. Schema-5 native accounting/routing V2 inventory and bounded read-only canonical observer are implemented. Exact module/helper/runtime bindings, current governed caps, actual source/route/ledger observations and scoped qualification records are checked. Missing real deployment, prices/routes/services and independent evidence remain release blockers; offline consistency never authorizes deployment or spending.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped verification and internal review](reports/native-preflight/VERIFICATION.md): 73 distinct focused Python cases across source-scoped runs; repeat cases counted once. Complete observer-to-gate composition is synthetic, not actual-provider qualification. Prior 131 contract/source bindings match and unchanged Solidity checks were reused, not rerun.
+  - [Operator runbook](docs/PRODUCTION_PREFLIGHT.md): separate approved pins and actual observations; preserve historical qualification blocks, require current configuration/fee scope and complete creation-to-anchor history. Nonzero creator-inbox inventory and unsupported canonical boundaries fail explicitly.
+  - Populate independently reviewed real addresses, runtime pins, source/conversion routes, feeds, authorities, VRF/hosting/OpenSea/gas/recovery and independent audit records under the corresponding open release tasks. The checked-in current example must remain blocked until those actual inputs are qualified.
 
   </details>
 
@@ -828,7 +843,7 @@ Decisions and rehearsals before real funds.
   - Supply reviewed feeds, decimals, denomination, heartbeat/sequencer/outage policy and admitted tokens on every chain.
   - Independently review and stage sequencer policy replacement through the actual sealed governance controller, including failed old feeds, unchanged healthy feeds, code changes and recovery grace. Bootstrap references are not independent reviews, and proxy runtime pins do not pin their implementations. Confirm an actual supported Robinhood source or explicitly reviewed no-feed chain policy; no ZZZ/USD feed is selected.
   - Select and verify multisig/keeper/guardian/mint-recipient authorities, zero-delay governance controller and fixed module bindings; prohibit mint/LP/royalty receiver collisions.
-  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and agreed creator payer; 21 fixed core contracts (controller plus 20 sealed modules), eight automatically created helpers/factories, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
+  - Complete the address inventory: governance signers/threshold, guardian, keeper, mint recipient, temporary bootstrap, provider-specific VRF subscription ownership and any optional creator payer; 17 fixed core contracts (controller plus 16 sealed modules), 14 fixed helpers including two separately deployed converters, later creator inboxes and reviewed chain-specific dependencies. Observe canonical lifecycle/origin, companion owners and factory bindings. Timelock is a contract, the template executor is open, royalties use NFT.royaltyRewards(), and no burn wallet is required.
   - Record the unresolved independent ZZZ price-feed question and the team's evidence under [creator pricing](TODO.md#task-creator-zzz-price); keep PoPL authority selection under this task.
 
   </details>
@@ -943,4 +958,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `8fd2b6d224a55bbaf1e944d9bd941735beb3553e3d157812782076aa55003ff8`.
+Snapshot SHA-256: `d11a9701600cded349c98194a9abb457655a7fbba9f0adebb0a115bd8936d99f`.

@@ -1,3 +1,12 @@
+## Native V2 inventory and preflight - 2026-10-24
+
+[Current schema-5 preflight](PRODUCTION_PREFLIGHT.md) validates native/V4 bindings,
+actual versus approved runtime pins and current governed limits. A separate
+bounded read-only observer captures a canonical snapshot without upgrading review
+status. Legacy schema 4 stays historical; missing actual public addresses,
+prices/routes/VRF/services and audit evidence remain release blockers. No signer,
+Solidity, website/service, existing Anvil/journal or monitor change follows.
+
 ## Native V2 verification boundary - 2026-10-24
 
 Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.

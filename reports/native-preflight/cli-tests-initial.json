@@ -1,0 +1,6 @@
+{
+  "command": "python -X utf8 -m unittest tests_python.test_production_preflight_cli tests_python.test_custody_inventory tests_python.test_production_config.ProductionConfigTests.test_template_is_explicitly_blocked tests_python.test_production_config.ProductionConfigTests.test_cli_emits_blocked_machine_readable_output_without_chain_access",
+  "returncode": 0,
+  "tests": 13,
+  "scope": "Focused CLI/legacy-dispatch/current-template cases. Output transcribed from completed execution; current schema implementation was still being hardened. Repaired/new schema tests have separate final scope."
+}

@@ -19,7 +19,8 @@ class CustodyInventoryTests(unittest.TestCase):
         for chain in config['chains']:
             self.assertFalse({'bridge','receiver','routes','transport'} & chain['modules'].keys())
             self.assertNotIn('pair_migration',chain)
-            self.assertIn('custody_handoff',chain)
+            self.assertIn('custody',chain)
+        self.assertEqual(config['schema_version'],5)
         self.assertFalse(gate.validate(config)['ready'])
 
     def test_manifest_flags_cannot_self_certify_new_inventory(self):
