@@ -1,5 +1,7 @@
 # Engineering roadmap
 
+**Pool decision 2026-10-24:** new ETH/ZZZ pool replaces the Pons target. The user supplied a 0.25% LP / 0.05% protocol / 0.30% effective fee display; version/hook and actual venue remain undecided. v4 without a custom hook is recommended, not selected. Native admission, actual fee deductions and all new-pool routes need review before sealing. Existing Pons evidence is historical. [Current decision](POOL_SELECTION.md).
+
 **Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
 
 > Reviewed 2026-10-23 against the [central Todo](../TODO.md), [current handoff verification](../reports/canonical-handoff/VERIFICATION.md) and [release approval record](RELEASE_CHECKLIST.md). Release remains NOT APPROVED. This roadmap sets the sequence and dependencies; the Todo alone owns task status and acceptance criteria.

@@ -1,5 +1,7 @@
 # Selected native-ETH/Pons pool adapter candidate
 
+**Pool selection update (2026-10-24):** the user will create a new Uniswap ETH/ZZZ pool. Exact chain/version, native currency, fee and hook are pending. The previous Pons target and evidence below are historical; new native admission and routes require separate qualification. See [current pool decision](POOL_SELECTION.md).
+
 Updated 2026-10-15. This describes undeployed development code. It is not an independent audit, a production deployment approval, a creator-payment agreement or evidence of supported production USD/VRF services. No public-chain transaction is needed to run the fork tests.
 
 ## Venue identity and accounting assets

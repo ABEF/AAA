@@ -1,3 +1,22 @@
+## New ETH/ZZZ pool decision - 2026-10-24
+
+The user plans a new Uniswap ETH/ZZZ pool instead of the former Pons venue.
+Desired displayed fee breakdown: 0.25% LP / 0.05% Uniswap protocol / 0.30%
+effective. Chain confirmation, version, hook and actual new pool identity are
+pending. v4 without a custom hook is a recommendation, not an approved choice.
+Do not assume that v3's displayed split is a v4 setting or that PoPL receives
+Uniswap's protocol fee. Existing native admission is pinned to old Pons; a new
+native hookless pool needs reviewed support before sealing. Ordinary LP income
+would replace the former creator-payment dependency if a standard pool is chosen.
+
+Read [pool decision](POOL_SELECTION.md) and the sole Todo. Old Pons research,
+tests and creator questions are historical/conditional, not new-pool qualification.
+The old pool was removed from the blocked production template's active selection.
+No Solidity, source signing policy, public funds, deployment, website/server,
+existing Anvil/NFT/LP/journal state, service control or paused monitor change.
+Preserve unrelated drafts, use main and maintain the operator guide and memories.
+Production remains NOT APPROVED. Check Git/publication for what was pushed.
+
 ## Governed custody handoff candidate - 2026-10-23
 
 Publication: contract implementation `e36a581` and website memory-only `0c45c28` are pushed on main. Read [publication receipt](../reports/custody-handoff/PUBLICATION.md); no website/server deployment or fresh Anvil custody rehearsal occurred.

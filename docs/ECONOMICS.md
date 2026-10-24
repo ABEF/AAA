@@ -1,5 +1,7 @@
 # Economic rights and allocation rules
 
+**Pool decision 2026-10-24:** new ETH/ZZZ pool planned; the old Pons creator-funding path below is historical. User targets a displayed 0.30% total fee; actual venue deductions, version and hook are pending. PoPL allocates only its actually collected LP fees. [Decision and qualification](POOL_SELECTION.md).
+
 Current accepted rules: $100 activation, 80/10/5/5 revenue, equal activated-NFT collective membership and separate rarity royalties. This is an undeployed candidate; publication is not approval to use real funds.
 
 ## Permanent capital

@@ -1,5 +1,7 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
+**New pool decision (2026-10-24):** a new Uniswap ETH/ZZZ pool replaces the former Pons target. Exact venue details are pending; the previous creator-payment dependency does not automatically apply. [Selection and compatibility work](docs/POOL_SELECTION.md).
+
 **Latest development candidate:** [governed custody handoff](docs/GOVERNED_CUSTODY_HANDOFF.md) replaces the old LP bridge/pair stack. Normal exits consolidate principal into ZZZ; an explicit raw emergency exit avoids swaps. Royalty currencies use separate custody accounting. Whole-collection handoff is retained. [Current verification and limits](reports/custody-handoff/VERIFICATION.md). Undeployed; production approval and updated inventory/provider qualification remain open.
 
 PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT attaches an LP allocation and unlocks two income streams: funded LP revenue and a separate share of NFT-sale royalties.
@@ -53,7 +55,7 @@ flowchart LR
 
 **Custody authority:** holders cannot redeem principal. Governance can send it to an approved external EOA/contract, which is explicitly trusted to preserve/return it. Royalty custody separately suspends the exited currency until full backing returns. The source cannot force an external custodian to return funds.
 
-Many NFTs share **one physical LP per pool/strategy**, with independent share accounts. Maintenance operates on the shared position. The registry permits **one deposits-enabled contribution pool at a time**, initially the reviewed ZZZ/ETH market. Governance can disable it and enable a reviewed replacement without deleting historical pools; [switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). The Vault allows four permanently admitted/historical custody buckets, including reservations and imports. An existing bucket's migration or return reuses its slot. See the [detailed interactions](docs/ARCHITECTURE.md) and [complete module/helper map](docs/COMPONENT_STATUS.md).
+Many NFTs share **one physical LP per pool/strategy**, with independent share accounts. Maintenance operates on the shared position. The registry permits **one deposits-enabled contribution pool at a time**, planned for the new ETH/ZZZ pool after qualification. Governance can disable it and enable a reviewed replacement without deleting historical pools; [switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). The Vault allows four permanently admitted/historical custody buckets, including reservations and imports. An existing bucket's migration or return reuses its slot. See the [detailed interactions](docs/ARCHITECTURE.md) and [complete module/helper map](docs/COMPONENT_STATUS.md).
 
 <a id="backend-components"></a>
 
@@ -117,7 +119,7 @@ The allocation is fixed in the current contracts:
 
 Rarity does not change LP or collective weights; there is no Power multiplier. Actual receipts allocate in batches of 20 raw token units, with a documented sub-20-unit incumbent-dust exception at membership/migration boundaries. Returned remote holder rewards are already allocated and are not split again. See [accounting and timing](docs/ECONOMICS.md).
 
-The selected Robinhood ZZZ/native-ETH Pons pool has **0% conventional LP fees**. Creator/hook revenue is a separate funding path: the reported proportional-liquidity agreement still needs final payment and measurement terms. Adding LP does not by itself fund claims. See [current market qualification](TODO.md#task-pons-qualification) and [creator revenue-sharing proposals](docs/REVENUE_SHARE.md).
+The planned new ETH/ZZZ pool will use its actual configured venue fees; version, hook and fee policy remain pending qualification. The former Pons pool had zero conventional LP fees and required a separate creator-payment arrangement. That historical arrangement does not automatically apply to the new pool. See [pool selection](docs/POOL_SELECTION.md).
 
 ### NFT-sale royalties
 

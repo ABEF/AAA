@@ -1,5 +1,7 @@
 # PoPL operator manual
 
+**Pool decision 2026-10-24:** new ETH/ZZZ pool replaces the Pons target. The user supplied a 0.25% LP / 0.05% protocol / 0.30% effective fee display; version/hook and actual venue remain undecided. v4 without a custom hook is recommended, not selected. Native admission, actual fee deductions and all new-pool routes need review before sealing. Existing Pons evidence is historical. [Current decision](POOL_SELECTION.md).
+
 This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
 
 **Keep this manual current.** Every change to an operator-facing function, permission, default, parameter, lifecycle, service or failure mode must update the affected procedure in the same change, or explicitly record why there is no operator impact. Update the task ledger and feature/evidence reference too. This is a required development/review step, not automatic synchronization. See [maintenance rules](TODO_WORKFLOW.md).

@@ -1,10 +1,10 @@
 # Project Todo
 
-**Reviewed 2026-10-23 | Contracts undeployed | Not approved for production**
+**Reviewed 2026-10-24 | Contracts undeployed | Not approved for production**
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**15 To do | 26 In progress | 15 Implemented locally**
+**16 To do | 25 In progress | 15 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -15,6 +15,21 @@ Implemented means built and locally checked, not deployed or independently audit
 ## Smart contracts
 
 Custody, ownership and reward accounting.
+
+<a id="task-pons-qualification"></a>
+
+- [ ] **[Select and qualify the new ETH/ZZZ pool](docs/POOL_SELECTION.md)** - To do. User decision 2026-10-24: create a new Uniswap ETH/ZZZ pool instead of Pons. Target displayed fees are 0.25% LP / 0.05% Uniswap protocol / 0.30% effective. Version, hook, chain confirmation and actual pool identity remain undecided; v4 without a custom hook is recommended, not approved. Existing Pons tests do not qualify it.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Confirm the chain, Uniswap version, native ETH/WETH identity, swap-fee policy, tick spacing and any hook; record the exact created PoolKey/pool ID or applicable address, initialization transaction, starting price and dependency runtime bindings. Do not assume a fee tier or pool already exists.
+  - Current native admission is pinned to the former Pons pool. Review and implement only the required new-pool compatibility before sealing; never bypass native/hook/price/approval/1% contribution or 3% ordinary maintenance guards. Qualify actual fee collection, source-to-LP routing, exit/rebalance, donations, callbacks, gas and current-owner ETH reward settlement.
+  - Ordinary venue LP fees become the intended funding path only if a conventional LP fee is selected. Keep 80/10/5/5 and separate royalties; do not depend on historical Pons creator-payment terms for an ordinary new pool or carry old volume/TVL as new-pool evidence.
+  - Retain the old [Pons research](docs/ROBINHOOD_POOL.md) and its source-bound fork results as historical only. Complete the new production inventory, provider/feed/seed-liquidity review, focused changed-path tests and isolated Anvil rehearsal. No public creation/funding/admission or existing fixture reset is authorized by this documentation update.
+  - Verify the proposed 0.25% LP / 0.05% Uniswap protocol / 0.30% effective display against actual version/chain policy. Do not treat Uniswap protocol fees as PoPL revenue or a creator-controlled setting; v4 fee composition is not interchangeable with v3 fee-tier fields. Official research and the unapproved v4/no-hook recommendation are in the pool decision record.
+
+  </details>
 
 <a id="task-opensea-mint"></a>
 
@@ -64,20 +79,9 @@ Custody, ownership and reward accounting.
 
   </details>
 
-<a id="task-pons-qualification"></a>
-
-- [ ] **[Qualify the selected Robinhood pool](docs/ROBINHOOD_POOL.md#popl-lp-integration-and-creator-payments)** - In progress. The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Independently qualify the implemented selected native-ETH/Pons boundary, including wrapper implementation/admin upgrades, native settlement, real-key/accounting mapping and actual-pool tests. Keep production inventory native admission blocked until complete; do not broaden it to arbitrary hooks.
-
-  </details>
-
 <a id="task-activation-assets"></a>
 
-- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset controls and entry logic exist. A paced read-only USDG/WETH observation verified four conversion quotes; complete source-to-Pons LP execution and production feeds remain unqualified. USDC still needs a reviewed, funded route.
+- [ ] **[Qualify ETH, ZZZ, USDG & USDC inputs](docs/ACTIVATION_ENTRY.md)** - In progress. Asset controls and Entry logic exist. The new ETH/ZZZ pool selection requires fresh complete route/feed qualification; earlier USDG conversion quotes and Pons execution evidence retain their original scope. USDC still needs a reviewed funded route.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -429,11 +433,12 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-terms"></a>
 
-- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.
+- [ ] **[Agree the creator fee-sharing plan](docs/REVENUE_SHARE.md)** - To do. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - 2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).
   - Ask the creator: what fraction is shared, and is its base total hook revenue, the creator payout after Pons deductions, or another explicitly defined net amount? Are conversion costs, buybacks, refunds or other deductions included? Record the formula with a worked example and an effective start date.
   - Confirm current hook fees, protocol/creator splits, buyback settings and actual creator payout control using dated on-chain evidence. The historical 1% hook / 70% creator observation is not a current payment guarantee. PoPL liquidity alone does not confer hook revenue rights.
   - Record written confirmation from the authorized party, the agreement version and how amendments, suspension or termination are handled. This external agreement does not change PoPL's fixed 80/10/5/5 allocation or create unfunded claims.
@@ -443,11 +448,12 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-measurement"></a>
 
-- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.
+- [ ] **[Agree how PoPL liquidity participation is measured](docs/REVENUE_SHARE.md#proposed-baseline)** - To do. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - 2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).
   - Ask whether fee-weighted sampled active-liquidity share or time-weighted active-liquidity share is accepted. Define the numerator/denominator, treatment of out-of-range LP, parked periods, deposits/top-ups, compounding, rebalances and moves between pools; total USD TVL is not automatically active-liquidity share.
   - Agree epoch length, sample frequency, maximum gaps, confirmation/finality depth, intra-block/tick-crossing approximation, complete raw hook-fee events, per-asset calculation, conversion basis and rounding/carry. Agree what happens if data is incomplete; do not silently impute missing fee history.
   - Name who produces, independently checks and resolves disputes over each report. The current calculator and collector propose amounts only; they do not authenticate creator acceptance, reconstruct exact intra-swap attribution or authorize payment. Technical event/backfill qualification remains under [hosted services](TODO.md#task-host-services) and [dependency review](TODO.md#task-security-dependencies).
@@ -456,11 +462,12 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
 
 <a id="task-creator-payments"></a>
 
-- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.
+- [ ] **[Confirm who pays, in which asset, and when](docs/EXTERNAL_REWARDS.md#payment-and-allocation)** - To do. Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.
 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - 2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).
   - Ask which wallet or contract controls payment/configuration, whether payment is manual or automated, its frequency/minimum amount and its currency/network. Confirm control without requesting a private key. There is no deployed PoPL receiver address to send to yet.
   - After deployment and review, verify the canonical per-bucket RewardReceiver, its immutable bucket/pair and optional native wrapper. Do not use the mint recipient or NFT-sale royalty receiver. Current intake supports only its admitted pair assets and an exact reviewed native wrapper; any other payout asset needs explicit technical qualification.
   - Agree invoice/report IDs, transaction/receipt references, period reconciliation, late/partial/duplicate payments, shortfalls and unpaid residuals. Receipt acceptance does not authenticate the sender; the receiver is permissionless and cannot debit the creator or enforce an off-chain promise.
@@ -490,6 +497,7 @@ Questions and decisions to resolve with the ZZZ token/pool creator. Answers are 
   <details>
   <summary>Acceptance criteria</summary>
 
+  - Confirm the new user-created ETH/ZZZ venue and independent token/pool controllers; the former Pons fee-recipient and hook-control questions are conditional historical research, not assumed new-pool authorities.
   - Confirm intended chain/token/pool/hook identities, published verified sources, deployment provenance and current market plan. Distinguish observations from team commitments; independently match the physical PoolKey and deployed code.
   - Identify the actual controllers for token mint/transfer restrictions or taxes, hook configuration, creator payout, buybacks and upgradeable dependencies, where such capabilities exist. Request exact owner/admin and implementation references plus disclosure of planned changes. Do not assume the ZZZ creator controls Pons, Uniswap, wrappers or oracle providers.
   - Obtain technical contacts for external controllers when required. Team-provided addresses are inputs to [selected-pool qualification](TODO.md#task-pons-qualification) and [external-dependency review](TODO.md#task-security-dependencies), not automatic permission to admit arbitrary hooks or grant PoPL authority.
@@ -852,4 +860,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ef7c4bfc451c7256196f7c6f5ded515e1a3c0832936add0ac3b7d86232025085`.
+Snapshot SHA-256: `167dd4c88cb23db673f63ddab7556f98bded834b38930a10c1153624b634dd12`.

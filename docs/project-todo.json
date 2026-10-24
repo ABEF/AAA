@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "reviewed": "2026-10-23",
+  "reviewed": "2026-10-24",
   "areas": [
     {
       "id": "contracts",
@@ -86,19 +86,23 @@
         },
         {
           "id": "pons-qualification",
-          "status": "progress",
-          "title": "Qualify the selected Robinhood pool",
-          "text": "The native ETH / Pons adapter and ETH / ZZZ Entry fork tests pass. Independent venue, wrapper and gas review remain.",
-          "href": "docs/ROBINHOOD_POOL.md#popl-lp-integration-and-creator-payments",
+          "status": "todo",
+          "title": "Select and qualify the new ETH/ZZZ pool",
+          "text": "User decision 2026-10-24: create a new Uniswap ETH/ZZZ pool instead of Pons. Target displayed fees are 0.25% LP / 0.05% Uniswap protocol / 0.30% effective. Version, hook, chain confirmation and actual pool identity remain undecided; v4 without a custom hook is recommended, not approved. Existing Pons tests do not qualify it.",
+          "href": "docs/POOL_SELECTION.md",
           "acceptance": [
-            "Independently qualify the implemented selected native-ETH/Pons boundary, including wrapper implementation/admin upgrades, native settlement, real-key/accounting mapping and actual-pool tests. Keep production inventory native admission blocked until complete; do not broaden it to arbitrary hooks."
+            "Confirm the chain, Uniswap version, native ETH/WETH identity, swap-fee policy, tick spacing and any hook; record the exact created PoolKey/pool ID or applicable address, initialization transaction, starting price and dependency runtime bindings. Do not assume a fee tier or pool already exists.",
+            "Current native admission is pinned to the former Pons pool. Review and implement only the required new-pool compatibility before sealing; never bypass native/hook/price/approval/1% contribution or 3% ordinary maintenance guards. Qualify actual fee collection, source-to-LP routing, exit/rebalance, donations, callbacks, gas and current-owner ETH reward settlement.",
+            "Ordinary venue LP fees become the intended funding path only if a conventional LP fee is selected. Keep 80/10/5/5 and separate royalties; do not depend on historical Pons creator-payment terms for an ordinary new pool or carry old volume/TVL as new-pool evidence.",
+            "Retain the old [Pons research](docs/ROBINHOOD_POOL.md) and its source-bound fork results as historical only. Complete the new production inventory, provider/feed/seed-liquidity review, focused changed-path tests and isolated Anvil rehearsal. No public creation/funding/admission or existing fixture reset is authorized by this documentation update.",
+            "Verify the proposed 0.25% LP / 0.05% Uniswap protocol / 0.30% effective display against actual version/chain policy. Do not treat Uniswap protocol fees as PoPL revenue or a creator-controlled setting; v4 fee composition is not interchangeable with v3 fee-tier fields. Official research and the unapproved v4/no-hook recommendation are in the pool decision record."
           ]
         },
         {
           "id": "activation-assets",
           "status": "progress",
           "title": "Qualify ETH, ZZZ, USDG & USDC inputs",
-          "text": "Asset controls and entry logic exist. A paced read-only USDG/WETH observation verified four conversion quotes; complete source-to-Pons LP execution and production feeds remain unqualified. USDC still needs a reviewed, funded route.",
+          "text": "Asset controls and Entry logic exist. The new ETH/ZZZ pool selection requires fresh complete route/feed qualification; earlier USDG conversion quotes and Pons execution evidence retain their original scope. USDC still needs a reviewed funded route.",
           "href": "docs/ACTIVATION_ENTRY.md",
           "acceptance": [
             "Independently verify $100 original source value with at least 99% marginal actually deployed LP, separate network gas, incumbent NAV pricing, all conversion-leg costs, callbacks, pending/dust barriers, top-ups and nonredeemability. Review the immutable Entry's exact owner/calldata context, inactive approval window, Registry-only valuation and callback cleanup; a post-conversion pair value cannot replace original source value.",
@@ -418,9 +422,10 @@
           "id": "creator-terms",
           "status": "todo",
           "title": "Agree the creator fee-sharing plan",
-          "text": "Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.",
+          "text": "Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Confirm the percentage and exact revenue base shared with PoPL. The user reports an intention to share according to LP participation; the detailed agreement is still unresolved.",
           "href": "docs/REVENUE_SHARE.md",
           "acceptance": [
+            "2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).",
             "Ask the creator: what fraction is shared, and is its base total hook revenue, the creator payout after Pons deductions, or another explicitly defined net amount? Are conversion costs, buybacks, refunds or other deductions included? Record the formula with a worked example and an effective start date.",
             "Confirm current hook fees, protocol/creator splits, buyback settings and actual creator payout control using dated on-chain evidence. The historical 1% hook / 70% creator observation is not a current payment guarantee. PoPL liquidity alone does not confer hook revenue rights.",
             "Record written confirmation from the authorized party, the agreement version and how amendments, suspension or termination are handled. This external agreement does not change PoPL's fixed 80/10/5/5 allocation or create unfunded claims.",
@@ -431,9 +436,10 @@
           "id": "creator-measurement",
           "status": "todo",
           "title": "Agree how PoPL liquidity participation is measured",
-          "text": "Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.",
+          "text": "Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Choose the sharing method with the creator: sampled fee-weighted active liquidity is proposed; no method has been accepted yet.",
           "href": "docs/REVENUE_SHARE.md#proposed-baseline",
           "acceptance": [
+            "2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).",
             "Ask whether fee-weighted sampled active-liquidity share or time-weighted active-liquidity share is accepted. Define the numerator/denominator, treatment of out-of-range LP, parked periods, deposits/top-ups, compounding, rebalances and moves between pools; total USD TVL is not automatically active-liquidity share.",
             "Agree epoch length, sample frequency, maximum gaps, confirmation/finality depth, intra-block/tick-crossing approximation, complete raw hook-fee events, per-asset calculation, conversion basis and rounding/carry. Agree what happens if data is incomplete; do not silently impute missing fee history.",
             "Name who produces, independently checks and resolves disputes over each report. The current calculator and collector propose amounts only; they do not authenticate creator acceptance, reconstruct exact intra-swap attribution or authorize payment. Technical event/backfill qualification remains under [hosted services](TODO.md#task-host-services) and [dependency review](TODO.md#task-security-dependencies)."
@@ -443,9 +449,10 @@
           "id": "creator-payments",
           "status": "todo",
           "title": "Confirm who pays, in which asset, and when",
-          "text": "Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.",
+          "text": "Conditional historical Pons work: the user now plans a new Uniswap ETH/ZZZ pool. Agree payer authority, payout currency/network, cadence, receiver verification and reconciliation of delayed or missing payments.",
           "href": "docs/EXTERNAL_REWARDS.md#payment-and-allocation",
           "acceptance": [
+            "2026-10-24 scope change: this is not a primary launch blocker if the confirmed new pool uses ordinary LP fees without creator/hook sharing. Preserve unanswered historical questions; reopen as an active dependency only for an explicitly selected external revenue arrangement. See [new pool decision](docs/POOL_SELECTION.md).",
             "Ask which wallet or contract controls payment/configuration, whether payment is manual or automated, its frequency/minimum amount and its currency/network. Confirm control without requesting a private key. There is no deployed PoPL receiver address to send to yet.",
             "After deployment and review, verify the canonical per-bucket RewardReceiver, its immutable bucket/pair and optional native wrapper. Do not use the mint recipient or NFT-sale royalty receiver. Current intake supports only its admitted pair assets and an exact reviewed native wrapper; any other payout asset needs explicit technical qualification.",
             "Agree invoice/report IDs, transaction/receipt references, period reconciliation, late/partial/duplicate payments, shortfalls and unpaid residuals. Receipt acceptance does not authenticate the sender; the receiver is permissionless and cannot debit the creator or enforce an off-chain promise.",
@@ -473,6 +480,7 @@
           "text": "Obtain the team's authoritative market references and identify who can alter tokens, hook fees, payout recipients or dependencies.",
           "href": "docs/ROBINHOOD_POOL.md#network-and-pool-identity",
           "acceptance": [
+            "Confirm the new user-created ETH/ZZZ venue and independent token/pool controllers; the former Pons fee-recipient and hook-control questions are conditional historical research, not assumed new-pool authorities.",
             "Confirm intended chain/token/pool/hook identities, published verified sources, deployment provenance and current market plan. Distinguish observations from team commitments; independently match the physical PoolKey and deployed code.",
             "Identify the actual controllers for token mint/transfer restrictions or taxes, hook configuration, creator payout, buybacks and upgradeable dependencies, where such capabilities exist. Request exact owner/admin and implementation references plus disclosure of planned changes. Do not assume the ZZZ creator controls Pons, Uniswap, wrappers or oracle providers.",
             "Obtain technical contacts for external controllers when required. Team-provided addresses are inputs to [selected-pool qualification](TODO.md#task-pons-qualification) and [external-dependency review](TODO.md#task-security-dependencies), not automatic permission to admit arbitrary hooks or grant PoPL authority."

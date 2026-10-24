@@ -2,6 +2,7 @@
   "schema_version": 4,
   "accounting_model": "shared-pools-v2",
   "_notes": [
+    "POOL SELECTION 2026-10-24: new Uniswap ETH/ZZZ venue planned; chain/version/native identity/fee/hook and actual PoolKey are pending. Previous Pons pool is no longer an active selection. Native adapter and economics/inventory fields below retain legacy template scope; reviewed-v1 production gate remains explicitly blocked. No automatic creator-payment dependency or fee tier is assumed.",
     "GOVERNED CUSTODY CANDIDATE: the v3 bridge/pair inventory is retired. The current release gate explicitly blocks this layout pending an independently reviewed inventory schema update. Recipient EOA/contract custody is a governance trust; normal 3% checks do not guarantee return after sending.",
     "UNREADY TEMPLATE: no PoPL deployment, governance wallets, audit or production transport is supplied.",
     "The selected Robinhood native-ETH/Pons boundary is a new development candidate; this production validator deliberately keeps native/hooked pool admission closed pending complete release qualification and mapping observations.",
@@ -474,25 +475,7 @@
         "replacement_review": null,
         "review": null
       },
-      "pools": [
-        {
-          "pool_id": "0x6538e2c223ed70228114983afecbe5e69fe627e2fafdf367bdd6bdeff2ad391f",
-          "currency0": "0x0000000000000000000000000000000000000000",
-          "currency1": "0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a",
-          "fee": 0,
-          "tickSpacing": 200,
-          "hooks": "0xE5e702641Ea86F4ae6cC3cDaeD2B886f976Be044",
-          "depositsEnabled": false,
-          "operationsEnabled": false,
-          "rangeBps": null,
-          "triggerBps": null,
-          "maxSpotDeviationBps": null,
-          "maxSlippageBps": null,
-          "minRebalanceInterval": null,
-          "minDepositUSD": null,
-          "maxPositionUSD": null
-        }
-      ],
+      "pools": [],
       "custody_handoff": {
         "configured_zzz": null,
         "zzz_code_hash": null,

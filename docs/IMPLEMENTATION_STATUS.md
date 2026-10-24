@@ -1,5 +1,7 @@
 ## Governed principal and royalty custody - 2026-10-23
 
+**Pool decision 2026-10-24:** new ETH/ZZZ pool replaces the Pons target. The user supplied a 0.25% LP / 0.05% protocol / 0.30% effective fee display; version/hook and actual venue remain undecided. v4 without a custom hook is recommended, not selected. Native admission, actual fee deductions and all new-pool routes need review before sealing. Existing Pons evidence is historical. [Current decision](POOL_SELECTION.md).
+
 The [custody candidate](GOVERNED_CUSTODY_HANDOFF.md) replaces the old LP v3
 bridge/router/receiver/registry and pair executor. Ordinary exit consolidates
 principal into ZZZ; explicit raw emergency exit skips swaps and carries no USD

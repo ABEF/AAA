@@ -1,5 +1,7 @@
 # Requested Robinhood ETH / ZZZ pool
 
+**Pool selection update (2026-10-24):** the user will create a new Uniswap ETH/ZZZ pool. Exact chain/version, native currency, fee and hook are pending. The previous Pons target and evidence below are historical; new native admission and routes require separate qualification. See [current pool decision](POOL_SELECTION.md).
+
 The user selected this market for future PoPL liquidity. Its identity and fee policy were checked on **2026-10-14** with read-only public RPC requests and verified source. No transactions were sent. That read predates the selected native-ETH/Pons adapter now implemented in the candidate. [Scoped selected-pool fork evidence](../reports/range-policy/VERIFICATION.md) covers settlement mechanics with synthetic pricing; it does not qualify a production ZZZ feed or complete live activation. The market addresses and fee settings below retain their historical observation date, not a new live verification.
 
 ## Network and pool identity
