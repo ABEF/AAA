@@ -1,3 +1,32 @@
+## Typed v4 and governed limits publication checkpoint - 2026-10-24
+
+Contract implementation59a2563 and website memory-onlybd2c354 are pushed on
+main; exact remote hashes verified. Read [publication](reports/typed-v4-routes/PUBLICATION.md),
+[verification](reports/typed-v4-routes/VERIFICATION.md) and [internal review](reports/typed-v4-routes/REVIEW.md).
+Typed v4 Entry/LP/royalty conversion is implemented as an undeployed candidate.
+All three loss categories are immediate governance settings0..10%, defaults
+1%/1%/3%; this latest user decision supersedes old fixed-cap requirements.
+Gas, stronger caller/venue minima, captured operations and original approved
+normal custody floors remain. See [operator policy](docs/EXECUTION_LOSS_POLICY.md).
+
+83 distinct scoped Solidity and112 Python passes,35 normal object gates,
+79 matching production compiler inputs,109 ABI/typecheck inputs and131 final
+source/test hashes are recorded. Current125 event descriptors retain all119
+previous entries. No full fresh regression, actual-provider qualification or
+independent approval is claimed. Vault runtime24,508 and creation48,444including
+arguments pass normal limits; keep its68-byte runtime margin under review.
+Budget read-only validation delegates to existingfixed-VaultCanonical under
+actualBudget authentication, with no new custody authority or codec change.
+
+Actual routes/feeds/services, native website/inventory, ETH/WETH principal
+boundary, OpenSea mint, future-chain handoff and independent audit remain open.
+Production NOT APPROVED. Public DEPLOYMENT null; shared signer Anvil-only;
+monitor paused. No source website/build/server, existing8902/Anvil/NFT/LP/
+balances/journals/dist overlay, service or public transaction changed. Older
+unrelated drafts remain local. Main only; sole Todo/features/roadmap/operator
+guidance and both memories are aligned. This final receipt changes docs only;
+implementation publication is59a2563 above.
+
 ## Typed v4 conversion and governed execution limits - 2026-10-24
 
 Current local candidate implements typed hookless static exact-input v4 routing
