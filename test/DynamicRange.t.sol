@@ -70,6 +70,20 @@ contract DynamicRangeTest is Test {
         p.centerX96=uint160(1<<96);p.homeChain=block.chainid;p.locationChain=block.chainid;
         p.homeVault=address(ledger);p.locationVault=address(ledger);ledger.set(p);
     }
+    function _assertNetDeployment(Vectors.V memory v,bool direction,uint256 input,uint256 swap) private view {
+        // Value the real post-fee pair using the independent Decimal position
+        // vector. No strategy weight or target helper supplies this expectation.
+        uint256 output=oracle.quote(direction?T0:T1,direction?T1:T0,swap)*997000/1_000_000;
+        uint256 a0=direction?input-swap:output;
+        uint256 a1=direction?output:input-swap;
+        uint256 unit0=oracle.value(T0,v.a0);uint256 unit1=oracle.value(T1,v.a1);
+        uint256 value0=oracle.value(T0,a0);uint256 value1=oracle.value(T1,a1);
+        assertApproxEqAbs(Math.mulDiv(value0,1_000_000,value0+value1),v.weight0,2);
+        uint256 scale=v.a0==0?Math.mulDiv(a1,1e18,v.a1):v.a1==0?Math.mulDiv(a0,1e18,v.a0):
+            Math.min(Math.mulDiv(a0,1e18,v.a0),Math.mulDiv(a1,1e18,v.a1));
+        uint256 deployed=Math.mulDiv(scale,unit0+unit1,1e18);
+        assertGe(deployed,oracle.value(direction?T0:T1,input)*99/100);
+    }
     function testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals() public {
         for(uint256 i;i<36;++i){
             Vectors.V memory v=_load(i);(uint256 x,uint256 y)=manager.amounts(1);
@@ -80,15 +94,18 @@ contract DynamicRangeTest is Test {
                 uint256 amount0=size*1e18*10**v.d0/oracle.price(T0);
                 uint256 amount1=size*1e18*10**v.d1/oracle.price(T1);
                 (bool direction,uint256 swap,)=strategy.compoundPlan(1,amount0,0);
-                // Single-token0 contribution must swap only its excess over the
-                // independently derived current-range token0 target weight.
+                // Solve the independently derived target ratio after the actual
+                // 3000-pip LP charge, rather than treating the swap as free.
                 if(swap>0)assertTrue(direction);
-                uint256 expected=amount0*(1_000_000-v.weight0)/1_000_000;
+                uint256 unit0=oracle.value(T0,v.a0);uint256 unit1=oracle.value(T1,v.a1);
+                uint256 expected=Math.mulDiv(amount0,unit1*1_000_000,(unit0+unit1)*1_000_000-unit0*3000);
                 assertApproxEqAbs(swap,expected,amount0/1_000_000+2);
+                _assertNetDeployment(v,true,amount0,swap);
                 (direction,swap,)=strategy.compoundPlan(1,0,amount1);
                 if(swap>0)assertFalse(direction);
-                expected=amount1*v.weight0/1_000_000;
+                expected=Math.mulDiv(amount1,unit0*1_000_000,(unit0+unit1)*1_000_000-unit1*3000);
                 assertApproxEqAbs(swap,expected,amount1/1_000_000+2);
+                _assertNetDeployment(v,false,amount1,swap);
                 // A proportional dual-token entry requires at most rounding dust.
                 (direction,swap,)=strategy.compoundPlan(1,amount0*v.weight0/1_000_000,amount1*(1_000_000-v.weight0)/1_000_000);
                 assertLe(oracle.value(direction?T0:T1,swap),size*1e18/100000+2e12);

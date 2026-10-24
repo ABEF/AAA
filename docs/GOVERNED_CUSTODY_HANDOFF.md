@@ -18,7 +18,7 @@ These are separate custody domains:
 
 | Domain | Exit and completion |
 | --- | --- |
-| Bucket principal | `Migration.approve(Request)` then paused `exit(id)`. Only the bucket's current LP and attributed Vault idle leave. |
+| Bucket principal | Pause and use reviewed `Migration.park(ParkingRequest)` before approving the stable parked snapshot, then `exit(id)`. Only the bucket's attributed principal leaves. |
 | Holder LP rewards, pending compound, buyback reserves | Stay in their existing ledgers; not swept or subsidizing principal conversion. Consolidate pending compound separately through supported upkeep before planning if desired. |
 | Marketplace royalties | Per-currency `RoyaltyRewards.exitCustody(...)`; original NFT liabilities and quarantine remain. Full same-currency restoration is required by `returnCustody(...)`. |
 | Whole collection | Existing canonical handoff carries NFT ownership, shares and both complete ledgers to one reviewed same-chain successor. It cannot freeze while external custody is outstanding. |
@@ -62,29 +62,63 @@ Use the distinct external exit below for token migration or manual bridging.
    Rewards asset and healthy USD feed. No outstanding principal plan may exist.
    A future replacement ZZZ can be configured after sealing. Review its burn
    interface and update `Buyback.setZZZ(...)` separately; neither setter moves funds.
-2. For a planned local destination, governance first calls `Vault.reservePool(destinationPool,bucket)` and verifies its permanent alias belongs to that bucket. This prevents a competing activation from consuming the destination while custody is outside. Read `Migration.sourceSnapshot(bucket)` at the confirmed reviewed block, the
-   complete `Vault.group`, total NFT shares and exact venue/idle quantities.
+   Before parking, record the reviewed principal-plus-idle USD value and the
+   configured ZZZ price/decimals at the same block. Compute the original raw ZZZ
+   minimum by rounding **up** the quantity needed to retain at least 97% of that
+   value at those prices. Preserve this amount through the later approval.
+2. For a planned local destination, governance first calls
+   `Vault.reservePool(destinationPool,bucket)` and verifies its permanent alias
+   belongs to that bucket. This prevents a competing activation from consuming
+   the destination while custody is outside.
+3. Pause globally. If an unsent custody plan already exists, governance must
+   cancel it before parking: `activePlan(bucket)` must be zero. Review and execute
+   `Migration.park(ParkingRequest)` with the current pool, LP token ID, total
+   shares, recorded `depositUSD`, custody epoch, parking nonce, ordered accounting
+   currencies, raw close minima, deadline and nonzero review hash. At least one
+   close minimum must be positive. The deadline must be current and at most ten
+   minutes away. Verify `ParkingExecuted`, `PositionStatus.Parked`, zero LP token
+   ID and actual attributed idle amounts. Existing idle, donations and separately
+   collected fees cannot satisfy the parking close minima. See
+   [the exact parking checks](CUSTODY_PARKING.md#authority-and-exact-authorization).
+4. Read `Migration.sourceSnapshot(bucket)` and the complete parked `Vault.group`
+   at a fresh confirmed block, including total NFT shares and exact idle amounts.
    Build `Request` binding that snapshot, recipient/code hash, destination chain,
    custody, pool, ordered output tokens, exact raw output minima, `minimumZZZ`,
    deadline (at most ten minutes), and review hash. Set `rawExit=false`.
    The source pair must contain the configured ZZZ. Output asset identities are
    the Registry's accounting currencies, e.g. native ETH normalized as WETH.
-3. Simulate approval and the **complete exit**, including the actual available
+   Set `minimumZZZ` to the **greater** of the preserved pre-parking raw minimum
+   and the rounded-up minimum required by the parked approval's current value
+   and ZZZ price. Never lower the pre-parking minimum to make an exit execute.
+5. Simulate approval and the **complete exit**, including the actual available
    source-pool swap after withdrawing PoPL liquidity. Governance approves the
-   request. No principal moves at approval. Cancel stale approvals explicitly.
-4. Pause globally, then governance calls `exit(id)` before its deadline. Within
-   one transaction the Vault collects venue fees into their own ledgers, closes
-   the LP, swaps the entire other principal side into ZZZ, clears temporary
-   approvals and sends exactly the resulting ZZZ to the approved recipient.
-   The explicit ZZZ minimum must retain at least 97% of starting LP plus idle at
-   the review's fixed price vector, rounding against excess loss. Gas is separate.
-   Failed close, swap, minimum, transfer or snapshot checks revert this entire exit.
-5. Verify `CustodyAssetsSent`, actual recipient transfers, source `Outbound`
+   request. No principal leaves at approval. Keep the system paused and call
+   `exit(id)` before its deadline. The exit swaps the entire other attributed
+   principal side into ZZZ, clears temporary approvals and sends exactly the
+   resulting ZZZ to the approved recipient. It does not close an already parked
+   LP again. Failed swap, minimum, transfer or snapshot checks revert the exit;
+   they do not undo the earlier, separately confirmed parking transaction.
+   The contract enforces at least 97% of the parked principal value at approval,
+   rounding against excess loss; gas is separate. Parking has its own raw close
+   minima and venue guards. The preserved, no-loosening `minimumZZZ` above is
+   required to retain the reviewed 3% budget across parking and conversion.
+   The contract does not autonomously combine separate parking and approval
+   transactions into one pre-parking cached price-vector budget.
+6. Verify `CustodyAssetsSent`, actual recipient transfers, source `Outbound`
    status, zero source LP/idle, unchanged NFT ownership/shares and reward ledgers.
    Record the actual sent amount, not merely the minimum. Never resend a
    successful exit. Source LP valuation is unavailable, not zero. Growth and
    upkeep cannot run on this outbound bucket; existing funded claims/transfers
    and original creator inboxes retain their existing rights.
+
+**Why park before the snapshot?** An active source snapshot commits the LP's live
+token quantities. External Uniswap swaps can change those quantities even while
+PoPL is globally paused. A separately mined active approval and exit can therefore
+become incompatible. Parking first removes this moving quantity from the snapshot
+without weakening its exactness. If using the supported direct active exit instead,
+review approval and exit as one controller batch; it still fails closed if the
+reviewed snapshot changed before inclusion, and its original 3% budget includes
+the in-transaction close and conversion. Never bypass a stale snapshot check.
 
 An issuer's 1:1 or 1:10 migration can be performed by the approved recipient
 outside the source contracts. No standard issuer ABI is assumed. Approval must
@@ -118,9 +152,14 @@ cannot change chains, waive remote finality or authenticate those operations.
 
 When no safe swap route exists, governance can instead approve a **separate**
 request with `rawExit=true` and explicit `exitMinimum0/exitMinimum1` close minima.
-It closes and sends both attributed pool currencies, without a conversion or
-source USD read. At least one close minimum must be positive. The ordinary
-request never falls back to this mode automatically.
+Use the same pause, reviewed parking and stable-snapshot sequence above. Cancel
+an existing unsent plan before parking or replacing its approval. For an already
+parked source, `exitMinimum0/exitMinimum1` bound the total attributed currencies
+sent, including existing idle; the preceding parking request separately bounds
+the actual LP close proceeds. A direct active exit closes and sends in one
+transaction, subject to the active-snapshot limitation above. No conversion or
+source USD read is required, and at least one raw exit minimum must be positive.
+The ordinary request never falls back to this mode automatically.
 
 This is an explicit acceptance of raw-token custody and valuation risk: **the
 ordinary 3% USD execution guarantee does not apply**. The close minima, exact

@@ -1,3 +1,36 @@
+## Internal audit and native-design review - 2026-10-24
+
+Read [audit findings and scoped evidence](reports/daily-security-20261024/REVIEW.md).
+Today's implementation fix extends actual directional static fee sizing to native
+and ERC20 v4 pools; floors and authority are unchanged. Four new regressions pass.
+Affected existing tests:58 pass plus2 stale fixture failures; only the two repaired
+fixtures were rerun, both pass. Final source/test snapshot95 matches; no full fresh
+regression or fork is claimed. Strategy runtime12,862/initcode13,318 passes normal
+gates;32 unchanged object gates reused. Nine offline observer cases pass; the
+reader now has bounded strict hash-pinned reads, runtime pins, sanitized failures
+and atomic output. No real provider is qualified by those mocks.
+
+The broader native ETH redesign WAS included as a design audit. It is still NOT
+implemented. Explicit requirements now cover zero/unset identity, native reward
+indices/converted credits, historical native reserves, two-stage canonical
+funding/abort, nonduplicated receiver protection, transitive wrapper-independent
+exit/recovery, versioned per-epoch accounting/backend profiles and typed child
+call values. Raw royalty donations follow receipt/cohort policy; sender provenance
+cannot be invented. These are pre-seal implementation/verification blockers.
+
+Exit procedure now uses pause, reviewed park, stable parked snapshot, approval
+and exit, keeping original rounded-up pre-parking ZZZ minima. No strict snapshot
+was bypassed; parking and later approval do not automatically share one cached
+on-chain budget. Normal3% and raw explicit minima remain distinct. Selected
+hookless LP fees replace mandatory Pons creator funding; optional history remains.
+
+Maintain sole Todo/features/roadmap/operator manual and both memories. Production
+NOT APPROVED; WETH remains until the versioned port is implemented. Preserve
+8902/Anvil/NFT/LP/balances/journals/dist overlay, Anvil-only signing/null public
+DEPLOYMENT and paused monitoring. No public transaction/deployment, website/server
+code/build or service action. Older unrelated drafts remain local; main only.
+Publication must be verified from Git and the separate audit publication receipt.
+
 ## Publication checkpoint and resume priorities - 2026-10-24
 
 Contract checkpoint `7a1d564` and website memory-only `5c5a1de` are pushed on

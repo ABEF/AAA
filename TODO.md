@@ -77,6 +77,8 @@ Custody, ownership and reward accounting.
   - Qualify complete ETH/ZZZ/USDG/USDC quotes with independent prices and actual conversion depth. A higher pool fee applies only to swapped amounts but may make some full input routes unavailable; fail closed rather than subsidize execution from incumbents.
   - Qualify actual current-owner ETH settlement, keeper/API configuration, one contribution pool at a time, release inventory and operating gas. Native/WETH or fee-tier moves require initialized admitted destinations, actual Vault-owned LP and a deliberate contribution/route cutover.
   - Retain [historical Pons research](docs/ROBINHOOD_POOL.md) and source-bound old evidence. Use [current evidence](reports/hookless-pool/VERIFICATION.md) for changed-source checks; synthetic fork prices, authorities/VRF and locally initialized destinations are not production service qualification. No public deployment/transaction or existing 8902 reset is authorized.
+  - The 2026-10-24 internal audit fixes fee-aware planning for both native and ERC20 v4 destinations, retaining99% contribution and3% maintenance limits. Four new regressions pass;58 affected existing cases passed, and only two corrected fixture cases were rerun successfully. Read reports/daily-security-20261024/REVIEW.md; actual markets/services and independent audit remain open.
+  - The standalone pool observer now enforces reviewed runtimes, strict bounded replies, canonical hash state selectors and atomic secret-safe output. Nine mocked RPC/filesystem cases pass; qualify real provider support separately. It does not qualify token proxy authorities, feeds or liquidity economics.
 
   </details>
 
@@ -126,12 +128,13 @@ Custody, ownership and reward accounting.
   - A sent local holding plan can bind one admitted and permanently reserved destination through `bindLocalDestination`, retaining the original mode, departure quantities and loss denominator. Qualify issuer exchanges, target token units/decimals and actual local LP completion; this is not a remote proof bypass.
   - The immutable read-only custody validator and all normal runtime/initcode gates must be bound to exact source evidence. The latest custody work needs its own fresh Anvil rehearsal; earlier Anvil tests do not qualify it.
   - Selected hookless pool: verify actual native ETH to WETH and fee-tier LP moves, source/destination ownership, fixed-price 3% cap, recipient segregation and separate contribution cutover. The moveFunds alias adds no arbitrary external transfer capability; regular-address custody uses the existing reviewed exit request.
+  - Use the audited park-first procedure for separately mined exit approvals: external swaps can change an Active snapshot despite PoPL pause. Preserve the original rounded-up pre-parking ZZZ minimum as well as the parked approval floor. Separate parking/approval does not automatically share one cached on-chain budget; snapshot and raw/normal safeguards stay strict.
 
   </details>
 
 <a id="task-native-custody-recovery"></a>
 
-- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. The user prioritizes robustness and efficiency over preserving existing code for the selected native ETH/ZZZ pool. Native-accounting specification is prepared; the implementation remains WETH-based and is not wrapper-independent. Port custody, fee/reward backing, Entry and recovery together; wrap only at a genuinely required optional boundary.
+- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native ETH architecture and its cross-contract/backend threat model are specified and internally reviewed. The implementation remains WETH-based; raw exit is still wrapper-dependent. Implement the complete versioned native port with exact funding, indexed rewards, historical backing, canonical transfer/abort and native-aware service traces; qualify it before sealing.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -139,6 +142,7 @@ Custody, ownership and reward accounting.
   - Specify how actual native principal and separately accrued fees are classified and preserved if WETH deposit/withdraw or its proxy policy fails; do not label the existing raw path wrapper-independent.
   - Implement the native architecture with exact payable ingress and ETH/token deltas, explicit custody authorization, immutable NFT shares and backed liabilities. Handle recipient failure atomically and prohibit sweeping prefunds, unsolicited ETH or another ledger.
   - Review normal exit, full recovery, local completion, fee/royalty currencies and future ETH/WETH moves together. Qualify affected code sizes, adverse callbacks and isolated venue execution; no bypass of a broken pool or nontransferable ZZZ can be promised.
+  - Broader native redesign design-audit findings are explicit in docs/NATIVE_ETH_ARCHITECTURE.md: zero/unset identities; native indices and existing credits; historical native compound/dust and33-slot loops; two-stage canonical funding/abort; nonduplicated receiver protection; transitive wrapper independence; per-epoch schema/backend/price/trace profiles; and native recipient callbacks. These are implementation/verification blockers, not closed by the current WETH tests.
 
   </details>
 
@@ -727,6 +731,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - The new metadata spot/oracle guard and fixed-price rebalance cap require independent review. A per-operation 3% ceiling is not a target cost or a cumulative loss budget. Qualify real close/swap/mint execution, oracle/venue honesty, range/trigger/cooldown choices and outages before funding.
   - Independently qualify the implemented [range-policy application](docs/RANGE_POLICY_UPDATES.md): the governance-approved pool config authorizes a current-tick mismatch at the stored center through ordinary rebalance, preserving cooldown, oracle/minima, 3% aggregate/idle limits and NFT rights. Review repeated-change costs and current-config execution/resimulation; no separately privileged force path or config-version lock is added. [Scoped evidence](reports/range-policy/VERIFICATION.md) is not live strategy qualification.
   - User decision 2026-10-19: keep the 3% per-operation cap only, no rolling/cumulative loss breaker. Monitor cumulative turnover/MEV/gas costs and rehearse operator pause/parameter recovery; see [range management](docs/OPERATOR_MANUAL.md#range-and-strategy).
+  - Internal 2026-10-24 review found and fixed ERC20 destination fee sizing; no new cap or authorization bypass was found in the reviewed diff. Earlier fork receipts retain their old source scope; use the new focused source-bound audit evidence rather than treating older passes as a current full regression.
 
   </details>
 
@@ -908,4 +913,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `222e48dc17c94dbe5082c09691d97edcb85125ffd848b8da0cb7c62d2c377158`.
+Snapshot SHA-256: `c0a6bac57f0d7b239c71c76d8b31d275d27ec95fed4db82338b427c66d2434b4`.

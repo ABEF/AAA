@@ -47,8 +47,11 @@ transaction, deployment or existing Anvil state change is implied by this candid
 
 The current raw exit bypasses swaps and USD prices, but still calls native venue
 collection/close through the wrapper. A failed WETH deposit/withdraw, policy or
-proxy can therefore block it. Keeping internal WETH is a change-risk decision,
-not a claim that wrapping is intrinsically safer. A wrapper-independent native
-emergency custody path remains a pre-seal design/review task. It must classify
+proxy can therefore block it. The user requires robustness and efficiency over
+preserving existing code;
+[native ETH custody/accounting](NATIVE_ETH_ARCHITECTURE.md) is the requested
+architecture direction and remains unimplemented pre-seal work. It must classify
 principal and fees separately and preserve every liability; a generic payable
-withdraw/sweep would not satisfy it. No full native-ledger redesign is approved.
+withdraw/sweep would not satisfy it. Wrapping should remain only at a separately
+reviewed boundary for an operation that actually uses WETH, without making native
+LP recovery depend on it.

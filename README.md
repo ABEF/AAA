@@ -108,7 +108,7 @@ Target activation assets are **ETH, ZZZ, USDG and USDC**, admitted by reviewed a
 
 ## Revenue and claims
 
-### LP and creator revenue
+### LP revenue and optional funding
 
 The allocation is fixed in the current contracts:
 
@@ -121,7 +121,7 @@ The allocation is fixed in the current contracts:
 
 Rarity does not change LP or collective weights; there is no Power multiplier. Actual receipts allocate in batches of 20 raw token units, with a documented sub-20-unit incumbent-dust exception at membership/migration boundaries. Returned remote holder rewards are already allocated and are not split again. See [accounting and timing](docs/ECONOMICS.md).
 
-The planned new ETH/ZZZ pool will use its actual configured venue fees; version, hook and fee policy remain pending qualification. The former Pons pool had zero conventional LP fees and required a separate creator-payment arrangement. That historical arrangement does not automatically apply to the new pool. See [pool selection](docs/POOL_SELECTION.md).
+The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL allocates only actual fees earned by its own position; Uniswap's separate protocol fee is not PoPL revenue. The observed combined swap fee is approximately 1.101%. Historical Pons creator payments are optional external funding, not a launch dependency. The current checkpoint wraps venue ETH into WETH for accounting; native ETH accounting remains [pre-seal work](docs/NATIVE_ETH_ARCHITECTURE.md). ZZZ reward conversion keeps the **1% loss cap**, gas separate, and needs a cheaper qualified route. See [pool selection](docs/POOL_SELECTION.md).
 
 ### NFT-sale royalties
 

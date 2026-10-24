@@ -1,0 +1,11 @@
+{
+  "scope": "Offline mocked RPC and filesystem only; no live provider reads or production qualification.",
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 0,
+  "sources": {
+    "scripts/verify-hookless-pool.py": "5b267e95b167c84c079bb1e716bbc5779e611801338dcc296809116a1c0f6b80",
+    "tests_python/test_hookless_observer.py": "f3c353d261b856ef9efd867518f360c49248cbe09263ff6057840d8a400ead05",
+    "zzz_ops/abi.py": "ec687cbb9812dd43e6ae3544c6a7e9c43d96669a1dd56c41e79a038c90863209"
+  }
+}

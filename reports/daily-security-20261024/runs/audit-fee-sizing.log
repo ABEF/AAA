@@ -1,0 +1,18 @@
+Compiling 3 files with Solc 0.8.26
+Solc 0.8.26 finished in 19.26s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 4 tests for test/StrategyFeeSizing.t.sol:StrategyFeeSizingTest
+[PASS] testERC20MismatchedStaticFeeAndInvalidDirectionalProtocolFailClosed() (gas: 451396)
+[PASS] testERC20OneSidedInputsDeployNinetyNinePercentWithActualFees() (gas: 715438)
+[PASS] testERC20ProtocolFeeSizingUsesOnlyTheSwapDirection() (gas: 787294)
+[PASS] testERC20UnavailableFeeStateCannotFallBackToAnUnpricedSwap() (gas: 150717)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 6.22ms (10.49ms CPU time)
+
+Ran 1 test suite in 7.97ms (6.22ms CPU time): 4 tests passed, 0 failed, 0 skipped (4 total tests)

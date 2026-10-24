@@ -1,0 +1,14 @@
+test_changed_dependency_runtime_is_rejected (tests_python.test_hookless_observer.HooklessObserverTests.test_changed_dependency_runtime_is_rejected) ... ok
+test_cli_sanitizes_failure_and_preserves_existing_evidence (tests_python.test_hookless_observer.HooklessObserverTests.test_cli_sanitizes_failure_and_preserves_existing_evidence) ... ok
+test_expected_hash_and_block_are_validated_before_network (tests_python.test_hookless_observer.HooklessObserverTests.test_expected_hash_and_block_are_validated_before_network) ... ok
+test_failed_output_replacement_preserves_old_record_and_cleans_temporary (tests_python.test_hookless_observer.HooklessObserverTests.test_failed_output_replacement_preserves_old_record_and_cleans_temporary) ... ok
+test_hash_pinned_reads_and_real_fee_composition (tests_python.test_hookless_observer.HooklessObserverTests.test_hash_pinned_reads_and_real_fee_composition) ... ok
+test_initialization_origin_and_reorg_are_rejected (tests_python.test_hookless_observer.HooklessObserverTests.test_initialization_origin_and_reorg_are_rejected) ... ok
+test_malformed_abi_or_fee_state_is_rejected (tests_python.test_hookless_observer.HooklessObserverTests.test_malformed_abi_or_fee_state_is_rejected) ... ok
+test_rpc_limits_and_read_only_method_guard (tests_python.test_hookless_observer.HooklessObserverTests.test_rpc_limits_and_read_only_method_guard) ... ok
+test_rpc_reorders_exact_ids_and_rejects_ambiguous_envelopes (tests_python.test_hookless_observer.HooklessObserverTests.test_rpc_reorders_exact_ids_and_rejects_ambiguous_envelopes) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.228s
+
+OK

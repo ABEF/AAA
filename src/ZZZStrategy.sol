@@ -7,7 +7,7 @@ import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolConfig, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {IZZZPools, IZZZOracle, IZZZLiquidity, IZZZVault, IStateViewMinimal} from "./interfaces/IZZZ.sol";
 
-interface INativeFeeState { function stateView() external view returns (IStateViewMinimal); }
+interface IV4FeeState { function stateView() external view returns (IStateViewMinimal); }
 
 /// @notice Stateless policy. Only the vault can commit position state changes.
 contract ZZZStrategy is ZZZModule {
@@ -112,10 +112,11 @@ contract ZZZStrategy is ZZZModule {
         address input = zeroForOne ? c.key.currency0 : c.key.currency1;
         address output = zeroForOne ? c.key.currency1 : c.key.currency0;
         uint256 excess = zeroForOne ? v0 - desired0 : desired0 - v0;
-        if (IZZZPools(access.module(Ids.POOLS)).get(poolId).key.currency0 == address(0)) {
-            // Native admission is static and hookless. Account for the actual
-            // directional protocol + LP fee, not the superseded Pons hook charge.
-            (,, uint24 protocol, uint24 lpFee) = INativeFeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
+        {
+            // Every admitted v4 pool is static and hookless. Size the net pair
+            // after its actual directional protocol + LP fee, including ERC20
+            // destinations reached by a native-to-WETH pool move.
+            (,, uint24 protocol, uint24 lpFee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId);
             uint256 pf = zeroForOne ? protocol & 0xfff : protocol >> 12;
             if (c.key.hooks != address(0) || lpFee != c.key.fee || pf > 1000) revert InvalidConfiguration();
             uint256 fee = pf + uint256(lpFee) - Math.mulDiv(pf, lpFee, 1_000_000);

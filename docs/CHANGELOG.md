@@ -1,5 +1,18 @@
 # Local $1 activation rehearsal - 2026-10-18
 
+## 2026-10-24 - internal audit and native design requirements
+
+Fee-aware planning now covers all supported hookless v4 pairs, including WETH
+pool destinations, without weakening execution limits. The operator exit procedure
+parks first for stable approval snapshots and preserves pre-parking minima. The
+read-only observer uses strict bounded canonical-hash reads/runtime checks and
+atomic secret-safe output. [Scoped evidence and limitations](../reports/daily-security-20261024/REVIEW.md).
+
+The broader [native redesign](NATIVE_ETH_ARCHITECTURE.md) is included as a design
+audit; its cross-contract/backend requirements are now explicit but the port
+remains unimplemented. No production approval, public transaction, website/server
+change or existing Anvil-state change follows from this internal review.
+
 ## 2026-10-24 - selected hookless pool and operating boundaries
 
 The candidate supports static hookless Robinhood native ETH/ZZZ fee tiers, actual directional fee planning and atomic `moveFunds`; normal custody exit now respects both the stricter per-swap minimum and unchanged aggregate3% floor. [Source-bound checks](../reports/hookless-pool/VERIFICATION.md) retain failed attempts and distinguish corrected-path reruns from older evidence.

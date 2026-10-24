@@ -1,5 +1,7 @@
 # Engineering roadmap
 
+**Internal audit follow-up (2026-10-24):** [Fee-sizing and operational fixes](../reports/daily-security-20261024/REVIEW.md) are implemented with focused evidence. The broader [native design audit](NATIVE_ETH_ARCHITECTURE.md) identifies pre-seal implementation blockers; it does not qualify an unimplemented port. Continue the native versioned accounting/custody/service work before sealing; actual services and independent audit remain open.
+
 **Pre-seal flexibility (2026-10-24):** [Operational configuration](../TODO.md#task-post-seal-configuration) and the [native ETH architecture](NATIVE_ETH_ARCHITECTURE.md) must be implemented/reviewed before sealing if these future controls are required. [Real-funds rehearsal planning](../TODO.md#task-mainnet-rehearsal-retirement) uses a separate deployment followed by a fresh final collection, not a reset. No public execution is authorized.
 
 **Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.

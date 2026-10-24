@@ -12,7 +12,7 @@ Shares are nonredeemable. They are priced against the pool's current principal N
 
 [Governed paused parking](CUSTODY_PARKING.md) closes LP into bucket-attributed Vault balances without holder redemption or a USD price read. Independently reviewed raw-token minimums bound only actual LP-close proceeds. NFT shares, equal membership, royalty eligibility and funded claims persist; no ongoing LP revenue is fabricated while closed. Resume restores ordinary valuation/deployment guards, and parked migration retains authenticated funding and remote-liability barriers.
 
-## Collected LP and creator funding
+## Collected LP fees and optional funding
 
 | Purpose | Share | Weight or destination |
 | --- | --- | --- |
@@ -25,9 +25,9 @@ Twenty raw units split 16/2/1/1; smaller receipts carry forward. Before membersh
 
 All registered creator inboxes are processed and their old dust settled before a new membership or shares can be issued. Late receipts during entry are settled under old weights with a final pending-funds barrier. New members get no earlier published/pending income. Payments delivered later use processing-time membership and shares; no historical creator entitlement is reconstructed.
 
-The selected native/Pons pool has zero core LP fees. Creator payments, if actually received and processed, fund the above allocation. No creator percentage or TVL-derived hook entitlement is assumed. Native receipts may be wrapped by an admitted exact one-for-one pair wrapper; LP claims are ERC20, including WETH. The separate intake does not implement native/hooked LP custody.
+The selected hookless native ETH/ZZZ pool has a static 1.002% LP fee. Fees actually earned by PoPL's position fund the allocation above when harvested; the separate Uniswap protocol fee is not PoPL revenue. Historical Pons creator payments are optional funding, not a prerequisite for this selected pool. No creator percentage or TVL-derived entitlement is assumed. The current adapter wraps native venue receipts into WETH for the ERC20 LP ledger. ETH-default claims require the separately bound conversion helper: WETH unwraps exactly 1:1, while ZZZ needs a cheaper qualified conversion route under the unchanged 1% loss cap, gas separate. The selected pool's approximately 1.101% combined swap fee does not qualify that full conversion at reference prices. [Native ETH accounting](NATIVE_ETH_ARCHITECTURE.md) is requested pre-seal work and is not implemented.
 
-Satellites reserve the already-allocated **90% owner+collective** portion for canonical delivery. It is never split again. Lifetime remote counters, historical token provenance and complete funding barriers remain in force across onward migration/return. Home external funding never discharges remote liabilities. New contributions remain blocked while custody is away, migration is scheduled, or earlier remote liabilities remain unfunded.
+Historical already-allocated remote owner/collective liabilities are not split again or erased. Their token provenance, funding barriers and old evidence retain their original scope. The old bridge/pair execution stack is removed; current principal movement uses [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). External inbox funding does not discharge remote liabilities, and new contributions remain blocked while principal custody is away or its plan remains outstanding.
 
 ## Equal collective membership
 
@@ -47,4 +47,4 @@ Evolution follows current marked LP share NAV, including attributed idle and com
 
 ## Strategy and migrations
 
-Rebalancing uses configured range/deviation/cooldown, fresh valuation and bounded swaps. It does not eliminate impermanent loss or guarantee capital/returns. Buyback supports approved direct routes or direct ZZZ burn, not arbitrary multi-hop conversion. Equivalent-asset migrations preserve canonical NFT/share/membership and old funded fee paths; actual provider finality/backing, gas/MEV, payment timing and independent economic/security review remain release gates.
+Rebalancing uses configured range/deviation/cooldown, fresh valuation and bounded swaps. It does not eliminate impermanent loss or guarantee capital/returns. Buyback supports approved direct routes or direct ZZZ burn, not arbitrary multi-hop conversion. Atomic same-accounting-pair moves preserve NFT shares and apply one fixed 3% aggregate loss floor. Separately approved custody exits trust the external recipient: normal exit consolidates principal to ZZZ under the floor, while explicit raw exit bypasses swaps/USD valuation and sends the current WETH/ZZZ accounting assets under raw minimums. Native raw exit still depends on wrapper health. Whole-collection handoff is separate; real finality/backing, gas/MEV and independent economic/security review remain release gates.

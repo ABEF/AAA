@@ -1,3 +1,20 @@
+## Internal hookless and native-design audit - 2026-10-24
+
+[Scoped findings and evidence](../reports/daily-security-20261024/REVIEW.md) cover
+today's selected-pool code and the broader native ETH architecture. Fee-aware
+planning now covers supported ERC20 as well as native v4 pools. The standalone
+observer has bounded strict hash-pinned reads, runtime checks and atomic output.
+Exit guidance now avoids moving Active snapshots while preserving exact guards.
+Four new Solidity regressions pass;58 affected cases passed and the two corrected
+fixture cases passed on targeted rerun. Nine observer cases pass. The changed
+Strategy runtime is12,862 bytes;32 unchanged object gates are reused.
+
+The native redesign remains unimplemented. Its [design review](NATIVE_ETH_ARCHITECTURE.md)
+now includes accounting/schema and per-epoch backend compatibility, native indices,
+historical reserves, two-stage handoff/abort and wrapper-independent recovery.
+Those requirements are not closed by current WETH evidence. No independent audit,
+full final-source regression, public deployment or production approval is claimed.
+
 ## Post-seal configurability review - 2026-10-24
 
 [Source inventory and rehearsal boundaries](POST_SEAL_POLICY.md) distinguish existing post-seal controls from unimplemented extensions. Routine assets/routes/feeds/pool/role settings are configurable; VRF request settings and buyback maximum remain fixed, and conversion executors remain v3-only. The native ETH redesign is specified, not implemented. There is no public burn/reset or standalone empty retirement. This documentation-only review adds no runtime verification or deployment approval.

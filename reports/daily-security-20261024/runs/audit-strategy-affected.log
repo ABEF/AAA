@@ -1,0 +1,139 @@
+Compiling 6 files with Solc 0.8.26
+Solc 0.8.26 finished in 185.68s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (5159): "selfdestruct" has been deprecated. Note that, starting from the Cancun hard fork, the underlying opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+   --> test/NativeLiquidity.t.sol:121:75:
+    |
+121 | contract BoundaryForce { constructor(address payable recipient) payable { selfdestruct(recipient); } }
+    |                                                                           ^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:107:5:
+    |
+107 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:217:5:
+    |
+217 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> test/RewardsAndFees.t.sol:111:5:
+    |
+111 |     function testNFTSupportsStandardERC721() public { assertTrue(nft.supportsInterface(0x80ac58cd)); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Ran 5 tests for test/DynamicRange.t.sol:DynamicRangeTest
+[PASS] testDisabledOperationsStillPermitHonestValuation() (gas: 1904885)
+[FAIL: assertion failed: 664923418365284616 !~= 663000000000000000 (max delta: 200000000000002, real delta: 1923418365284616)] testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals() (gas: 4546235)
+[PASS] testInitialRangeRecentersButExistingEntryUsesOldRange() (gas: 2187332)
+[PASS] testMetadataRejectsManipulatedSpotEvenWithFreshUsdFeeds() (gas: 1840830)
+[PASS] testStaleOracleAndFailedVenueCannotBecomeVerifiedZero() (gas: 3078730)
+Suite result: FAILED. 4 passed; 1 failed; 0 skipped; finished in 29.80ms (24.87ms CPU time)
+
+Ran 24 tests for test/NativeLiquidity.t.sol:NativeLiquidityTest
+[PASS] testNativeAmountsRemainUint128BoundedWithoutPermitApproval() (gas: 41828)
+[PASS] testNativeBrokenDepositRollsBackCredits() (gas: 701017)
+[PASS] testNativeBrokenWithdrawRollsBack() (gas: 288487)
+[PASS] testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault() (gas: 771177)
+[PASS] testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees() (gas: 785742)
+[PASS] testNativeDisabledPoolExitDoesNotReadUnavailableOracle() (gas: 889004)
+[PASS] testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap() (gas: 1035987)
+[PASS] testNativeDynamicFeeRejected() (gas: 103440)
+[PASS] testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle() (gas: 2801987)
+[PASS] testNativeForcedETHDuringTakeCannotBeClaimed() (gas: 478221)
+[PASS] testNativeIncorrectWrapperRejectedBeforePull() (gas: 94662)
+[PASS] testNativeIncreaseReusesPositionAndClearsApprovals() (gas: 816921)
+[PASS] testNativeInputSwapResetsDirtySyncAndUsesNetDelta() (gas: 330584)
+[PASS] testNativeLiquidityCallbackHookMaskRejected() (gas: 120650)
+[PASS] testNativeMinOutIncludesExecutionFees() (gas: 301840)
+[PASS] testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds() (gas: 654706)
+[PASS] testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH() (gas: 422180)
+[PASS] testNativePartialInputRejectedAtomically() (gas: 336406)
+[PASS] testNativePlanBalancesNetAmountsWithinOnePercentBudget() (gas: 2861815)
+[PASS] testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee() (gas: 3161982)
+[PASS] testNativeRegistryAdmissionRejectsUnreviewedDependencies() (gas: 6341533)
+[PASS] testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping() (gas: 483599)
+[PASS] testNativeUnexpectedSenderAndCallbackRejected() (gas: 24359)
+[PASS] testNativeWrapperReentryFailsWhileCreditStillSucceeds() (gas: 406399)
+Suite result: ok. 24 passed; 0 failed; 0 skipped; finished in 1.66s (45.54ms CPU time)
+
+Ran 22 tests for test/BuybackExecution.t.sol:BuybackExecutionTest
+[PASS] testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances() (gas: 1390100)
+[PASS] testApprovedWrongPairCannotDivertBuybackFunds() (gas: 1853745)
+[PASS] testBelowMinimumSwapRollsBackAndCanRetry() (gas: 1969950)
+[PASS] testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole() (gas: 910882)
+[PASS] testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations() (gas: 929350)
+[PASS] testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn() (gas: 1896715)
+[PASS] testExpiredAndOverlongDeadlineCannotReleaseReserve() (gas: 841376)
+[PASS] testFuzzSplitBurnCannotConsumeIndividualOrCompoundReserve(uint96) (runs: 1000, μ: 928142, ~: 930787)
+[PASS] testManipulatedSpotRejectedByRealStrategyGuard() (gas: 1527547)
+[PASS] testNoOpBurnRejectsAndRestoresEverythingBeforeRetry() (gas: 2032627)
+[PASS] testPartialBurnRejectsAndRestoresEverythingBeforeRetry() (gas: 1151453)
+[PASS] testPausedBuybackLeavesFundedClaimsAvailable() (gas: 1507234)
+[PASS] testPostSwapPriceDeviationRollsBackSettledSwapAndReserve() (gas: 2137080)
+[PASS] testReserveTransferFailureRestoresAccountingAndCanRetry() (gas: 1578521)
+[PASS] testRevertingBurnDoesNotBlockLPClaims() (gas: 2029953)
+[PASS] testStaleFeedRejectsWithoutReleasingFundsAndRecoversAfterRefresh() (gas: 1564690)
+[PASS] testStaleOutputFeedRollsBackReleasedInputReserve() (gas: 1085590)
+[PASS] testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable() (gas: 1851593)
+[PASS] testUnapprovedRouteCannotReleaseReserve() (gas: 1031014)
+[PASS] testUnauthorizedCallerAndDirectReserveReleaseRejected() (gas: 727676)
+[PASS] testVenueReentryCannotSpendASecondBudgetEvenWithKeeperRole() (gas: 1390282)
+[PASS] testZeroOverReserveAndOverTradeBudgetRejected() (gas: 862169)
+Suite result: ok. 22 passed; 0 failed; 0 skipped; finished in 1.66s (1.75s CPU time)
+
+Ran 9 tests for test/RangePolicy.t.sol:RangePolicyTest
+[PASS] testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed() (gas: 718329)
+[PASS] testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility() (gas: 460146)
+[PASS] testFuzzAppliedWidthHasNoPersistentMismatch(uint16) (runs: 1000, μ: 534339, ~: 537778)
+[PASS] testInactiveAndMissingIdentityCannotAuthorizeRebalance() (gas: 594333)
+[PASS] testNarrowingWaitsForCooldownThenAppliesOnce() (gas: 828837)
+[FAIL: InvalidConfiguration()] testRealSealedGovernanceCanImmediatelyApproveRangeChange() (gas: 25425461)
+[PASS] testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance() (gas: 752661)
+[PASS] testSmallMarketMoveDoesNotCreateRangeUpdateChurn() (gas: 696409)
+[PASS] testWideningAndReturningToDeployedPolicy() (gas: 814203)
+Suite result: FAILED. 8 passed; 1 failed; 0 skipped; finished in 1.66s (1.19s CPU time)
+
+Ran 4 test suites in 1.68s (5.02s CPU time): 58 tests passed, 2 failed, 0 skipped (60 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/DynamicRange.t.sol:DynamicRangeTest
+[FAIL: assertion failed: 664923418365284616 !~= 663000000000000000 (max delta: 200000000000002, real delta: 1923418365284616)] testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals() (gas: 4546235)
+
+Encountered 1 failing test in test/RangePolicy.t.sol:RangePolicyTest
+[FAIL: InvalidConfiguration()] testRealSealedGovernanceCanImmediatelyApproveRangeChange() (gas: 25425461)
+
+Encountered a total of 2 failing tests, 58 tests succeeded

@@ -1,5 +1,16 @@
 # Security audit plan
 
+## Selected-pool and broader native-design review - 2026-10-24
+
+The [internal audit](../reports/daily-security-20261024/REVIEW.md) fixes fee-aware
+ERC20/native sizing and evidence-reader robustness, and corrects exit operations.
+It also audits the broader [native ETH design](NATIVE_ETH_ARCHITECTURE.md): currency
+identity, native indices, historical reserves, two-stage canonical funding/abort,
+nonduplicated receiver backing and versioned backend traces. The port remains
+unimplemented; no native implementation qualification or independent approval is
+claimed. The WETH checkpoint, accepted custody trust and real-service release
+gates remain explicit.
+
 ## Current governed-custody scope (2026-10-23)
 
 Review the [governed handoff](GOVERNED_CUSTODY_HANDOFF.md) and [current evidence](../reports/custody-handoff/VERIFICATION.md). The user explicitly accepts sending principal and separately tracked royalty funds to an external EOA/contract chosen by governance. This is a public authority/trust boundary, not an enforced guarantee of return. Normal 3% source/final LP limits do not protect funds while outside protocol control; raw emergency mode has explicit raw minima and no USD-loss guarantee.
@@ -117,24 +128,24 @@ journals and budgets supplement on-chain controls, not replace them.
 **Current controls:** exact balance deltas, admitted assets and selected runtime/
 configuration pins constrain transfers. Conventional fees, actual creator inbox
 receipts, royalties, principal and mint proceeds have separate accounting paths.
-The selected Pons pool's zero conventional LP fee is not a creator-payment promise.
+The selected hookless pool earns conventional LP fees for its position; protocol fees are not PoPL revenue. Historical Pons creator intake is optional and not a launch dependency.
 
-- Review v4/Pons, token and wrapper upgrade/admin powers, transfer taxes, rebases,
+- Review selected v4 dependencies, optional historical hooks, token and wrapper upgrade/admin powers, transfer taxes, rebases,
   blacklist/freeze behavior, oracles, VRF proof verification and provider outages.
   Code hashes alone do not describe mutable proxy/storage behavior.
 - Reconcile actual receipts per asset; test prefund quarantine, duplicate/delayed
   funding, partial/no-op burns, failed swaps and rollback with healthy claims intact.
-- Finalize creator payout basis/asset/frequency; validate authorized funding and
+- If optional creator intake is used, finalize its payout basis/asset/frequency; validate authorized funding and
   liquidity-share measurement without fabricating claimable revenue.
 - Qualify live VRF fulfillment and blocked ordered reveal. An admitted broken
-  royalty asset can block activation; test and approve this liveness risk before admission.
+  optional royalty asset defers only new eligibility for that currency; verify old-cohort receipts, successful activation and recovery. Exact unreadable backing can still block canonical handoff.
 
 ## 6. Protocol availability and long-term recoverability
 
 **Current controls:** parking retains attributed principal in Vault; governed
 resumption/migration has explicit guards. Local pool moves require the same
 ordered accounting currencies. The current manager supports hookless ERC20 v4
-pools and the specifically pinned Robinhood native/Pons key, not arbitrary new
+pools and admitted static hookless native ETH/ZZZ keys on pinned Robinhood dependencies, not arbitrary new
 DEXs/hooks. A future compatible destination needs separate code/dependency review.
 
 - The selected direction is [controlled whole-protocol migration while the source

@@ -1,0 +1,64 @@
+{
+  "contract": "ZZZStrategy",
+  "runtime": 12862,
+  "initcode": 13318,
+  "source_sha256": "0fe056642c2312c236001f91563ba6db6f5e46a992ed433633f3e36845861e18",
+  "compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "settings": {
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "ds-test/=node_modules/@uniswap/v4-core/lib/solmate/lib/ds-test/",
+      "erc4626-tests/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/lib/erc4626-tests/",
+      "forge-gas-snapshot/=node_modules/@uniswap/v4-periphery/lib/permit2/lib/forge-gas-snapshot/",
+      "forge-std/=lib/forge-std/src/",
+      "openzeppelin-contracts/=node_modules/@uniswap/v4-core/lib/openzeppelin-contracts/",
+      "permit2/=node_modules/@uniswap/v4-periphery/lib/permit2/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/",
+      "v4-core/=node_modules/@uniswap/v4-periphery/lib/v4-core/"
+    ],
+    "optimizer": {
+      "runs": 1,
+      "details": {
+        "peephole": true,
+        "inliner": true,
+        "jumpdestRemover": true,
+        "orderLiterals": true,
+        "deduplicate": true,
+        "cse": true,
+        "constantOptimizer": true,
+        "yul": false,
+        "simpleCounterForLoopUncheckedIncrement": true
+      }
+    },
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "compilationTarget": {
+      "src/ZZZStrategy.sol": "ZZZStrategy"
+    },
+    "evmVersion": "cancun",
+    "libraries": {},
+    "viaIR": true
+  },
+  "compiled_dependencies_verified": [
+    "node_modules/@openzeppelin/contracts/utils/Panic.sol",
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+    "node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/BitMath.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/CustomRevert.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/FixedPoint96.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/SafeCast.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol",
+    "node_modules/@uniswap/v4-core/src/libraries/UnsafeMath.sol",
+    "src/ZZZStrategy.sol",
+    "src/base/ZZZModule.sol",
+    "src/interfaces/IZZZ.sol",
+    "src/libraries/ZZZTypes.sol"
+  ]
+}

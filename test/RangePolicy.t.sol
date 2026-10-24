@@ -136,8 +136,8 @@ contract RangePolicyTest is Test {
         address[] memory roles = new address[](1); roles[0] = address(this);
         ZZZAccessController access = new ZZZAccessController(0, roles, roles, address(0x20), address(0x21));
         _system(address(access));
-        bytes32[10] memory rest = [Ids.NFT, Ids.MEMBERSHIP, Ids.FEES, Ids.COMPOUNDER, Ids.BUYBACK,
-            Ids.MIGRATION, Ids.BRIDGE, Ids.RECEIVER, Ids.ROUTES, Ids.TRANSPORT];
+        // The removed LP bridge/transport identities are intentionally unbindable.
+        bytes32[6] memory rest = [Ids.NFT, Ids.MEMBERSHIP, Ids.FEES, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION];
         for (uint256 i; i < rest.length; ++i) access.bind(rest[i], address(new BoundDummy(address(access))));
         CanonicalFixture.bind(address(access)); access.seal();
         config.rangeBps = 1000;

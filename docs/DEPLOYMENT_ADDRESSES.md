@@ -1,14 +1,15 @@
 # Deployment address inventory
 
-**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+**Current candidate (2026-10-24):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor is removed; whole-collection handoff remains separate. The current native adapter still accounts and exits in WETH/ZZZ. [Native ETH accounting](NATIVE_ETH_ARCHITECTURE.md), real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier evidence retains its original scope. [Current verification](../reports/hookless-pool/VERIFICATION.md).
 
-The local pair-conversion candidate also creates an immutable
-[`ZZZPairMigration`](https://github.com/ABEF/AAA/blob/4830cc92c905581fe898cd33317695f9b42f885c/src/ZZZPairMigration.sol) in Migration's constructor.
-Record `Migration.pairMigration()`, its controller/migration immutables and runtime
-hash, plus Vault's Budget and canonical companion bindings. This helper can
-temporarily hold only the bucket's attributed conversion assets; it has no
-configurable router or recipient. Qualify actual pools, currencies, feeds and
-normal object sizes including constructor arguments. See [operator setup](PAIR_MIGRATION.md).
+Migration creates the immutable read-only [`ZZZCustodyValidation`](../src/ZZZCustodyValidation.sol)
+companion. Record `Migration.validation()`, its `migration()`/`access()` bindings
+and deployed runtime hash, plus Vault's Budget and canonical companions. It does
+not hold principal or execute arbitrary calls. `ZZZPairMigration` and its old
+bridge/transport companions are historical components, not current deployment
+addresses. Qualify the actual pools, currencies, feeds and complete runtime/initcode
+sizes; the legacy production gate remains blocked pending an independently reviewed
+inventory update.
 
 The royalty conversion candidate also requires a separately deployed
 [`ZZZRoyaltyConverter`](../src/ZZZRoyaltyConverter.sol), constructed with the exact
@@ -39,7 +40,8 @@ An address alone does not establish the right chain, code or authority.
 | Mint proceeds recipient | Select the immutable recipient of exactly 0.05 ETH per successful dormant mint. A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
 | Deployment/bootstrap signer | Select the temporary deployment account. It performs write-once bindings and configuration before seal; sealing permanently clears bootstrap. |
 | VRF subscription owner/funder | Identify the selected service's subscription ownership, authorized consumers and funding arrangements. These depend on the qualified coordinator, not a PoPL administrator setter. |
-| External creator payer | Record the agreed payer or payment-authorizing identity and terms. The creator sends actual funds to the immutable protocol inbox; a calculator cannot authorize payments. |
+| Optional external payer | Only if separate discretionary funding is used, record the payer/authorizing identity and terms for its immutable inbox. The selected hookless pool earns actual LP fees without a Pons creator agreement; a calculator cannot authorize payments. |
+| External custody recipient | For each approved principal/royalty exit, review the exact recipient, chain, EOA/contract status and code hash, custody controls and recovery plan. Recipient custody/liveness is a governance trust, not a holder redemption right. |
 
 The **governance controller is a deployed contract**, `ZZZAccessController`, rather than another
 wallet to create. The local template sets `GOVERNANCE_MULTISIG` as proposer and
@@ -57,8 +59,10 @@ The LP allocation remains 80/10/5/5 with no automatic governance/keeper salary.
 
 ## PoPL contracts produced by deployment
 
-The fixed core consists of 21 contracts (controller plus 20 sealed modules). These are recorded per participating
-chain; `Ids.TRANSPORT` names the fixed router, not a selected bridge provider.
+The current fixed core consists of **17 contracts: one controller plus the 16 required
+sealed modules** below, matching `ZZZAccessController.seal()`. The four retired
+bridge/receiver/routes/transport IDs cannot be bound by the current controller.
+Record the actual per-chain addresses and exact immutable-specific runtimes.
 
 | Manifest name | Contract |
 | --- | --- |
@@ -73,18 +77,14 @@ chain; `Ids.TRANSPORT` names the fixed router, not a selected bridge provider.
 | `compounder` | `ZZZCompounder` — bounded keeper compounding coordination |
 | `buyback` | `ZZZBuyback` — reviewed purchase and supply-reducing burn |
 | `migration` | `ZZZMigration` — governed custody plans, parking and resume |
-| `bridge` | `ZZZBridgeAdapter` — fixed economic message boundary |
-| `receiver` | `ZZZMigrationReceiver` — authenticated arrival, finalization and ACKs |
 | `oracle` | `ZZZOracle` — configured price and uptime policy |
 | `pools` | `ZZZPoolRegistry` — eligible pools, wrapper and input helpers |
-| `routes` | `ZZZMigrationRegistry` — immutable economic route identities |
-| `transport` | `ZZZBridgeRouter` — immutable provider-policy routing |
 | `canonical` | `ZZZCanonicalHandoff` - fixed canonical lifecycle and exact handoff coordinator |
 | `nft_canonical` | `ZZZNFTCanonical` - NFT inventory/ownership codec bound to the NFT |
 | `vault_canonical` | `ZZZVaultCanonical` - shares, origin lineage and parked custody codec bound to Vault |
 | `fees_canonical` | `ZZZFeesCanonical` - reserves/inboxes codec bound to Fees |
 
-Eight fixed helpers/factories are created automatically and must also be inventoried:
+Nine fixed helpers/factories are created automatically and must also be inventoried:
 
 | Creator | Helper addresses and bindings |
 | --- | --- |
@@ -93,6 +93,7 @@ Eight fixed helpers/factories are created automatically and must also be invento
 | NFT constructor | `ZZZRoyaltyRewards` through the controller's fixed factory, plus `ZZZClaimRouter` and `ZZZNFTMetadata`; verify NFT/controller/royalty bindings. |
 | Vault constructor | `ZZZMigrationBudget`; verify `Vault.migrationBudget`, helper `vault`/`access` bindings and deployed runtime. It has no custody or configurable executor. |
 | FeeController constructor | `ZZZRewardReceiverFactory`; verify immutable Fees/controller bindings and `Fees.receiverFactory`. It creates exact bound inboxes and supplies read-only validation/encoding helpers. |
+| Migration constructor | `ZZZCustodyValidation`; verify `Migration.validation`, helper `migration`/`access` bindings and runtime. It is read-only and has no custody/execution authority. |
 
 The royalty receiver is **`NFT.royaltyRewards()` (`ZZZRoyaltyRewards`)**, not an
 administrator wallet. ERC-2981 requests 5% there; actual admitted receipts go to
@@ -101,8 +102,10 @@ eligible holders under the separate 1/2/3 rarity-weighted ledger.
 Later governance may create immutable per-bucket `ZZZRewardReceiver` creator
 payment inboxes through the fee controller's fixed factory. Record every inbox and its fixed
 fee-controller, bucket, token-pair and optional native-wrapper bindings. They are
-not interchangeable with the royalty ledger, mint recipient or bridge receiver.
-These additional inboxes are not new sealed module IDs.
+not interchangeable with the royalty ledger, mint recipient or external custody recipient.
+These optional inboxes are not new sealed module IDs. The current Vault permits
+at most four historical local buckets, limiting reachable per-bucket inboxes to
+four even though the factory retains a separate ceiling of 16.
 
 ## Existing network dependencies
 
@@ -113,43 +116,51 @@ identities, not ticker symbols or addresses copied from another chain.
 | --- | --- |
 | Uniswap v4 settlement | PoolManager, PositionManager, StateView and Permit2; verify every constructor/getter relationship. |
 | Assets | ZZZ, WETH/native wrapper, every admitted activation input, LP currency, reward asset and royalty asset. Review decimals, backing, transfer behavior and proxy powers. Native ETH uses the native currency convention, not an ERC-20 address. |
-| Selected native/Pons venue | Hook, factory, wrapper proxy, implementation, admin and admin owner; complete reviewed runtime and policy history. Pons creator/protocol/escrow recipients are external identities, not PoPL authority wallets. |
+| Selected hookless native venue | Exact ETH/ZZZ PoolKey/ID, static fee and spacing, zero hook, pinned core/position/state/Permit2 runtimes and wiring; current WETH proxy/implementation/admin/owner policy. Record Uniswap's protocol-fee controller separately. No Pons hook/factory/creator payout is required. |
 | Valuation | Each token's actual USD feed/proxy and relevant implementation/admin authorities; genuine sequencer-status source or explicitly approved chain-specific initial policy. |
 | Randomness | Qualified VRF coordinator and its implementation/admin/operator identities, subscription consumers and payment asset where applicable. A matching ABI is not qualification. |
 | Optional input conversion | Each admitted single-hop V3 router, factory, pool and input/output token address; reviewed code pins, fee and immutable route identity. |
 
-Known selected-market identities and dated observations are retained in
-[pool research](ROBINHOOD_POOL.md), [activation routing](ACTIVATION_ROUTING.md)
-and [service decisions](PRODUCTION_SERVICES.md). They are not production approval.
-In particular, a v4 **pool ID is a bytes32 identity**, not a wallet or a separate
-pool-contract address. The current code admits only its selected pinned native
-exception plus supported conventional pools; registration is not permission to
-execute arbitrary venues. No production ZZZ/USD or VRF choice is invented here.
+Current selected-market identities and dated observations are retained in
+[pool selection](POOL_SELECTION.md) and the [pinned pool observation](../reports/hookless-pool/observed-pool.json).
+Earlier [Pons research](ROBINHOOD_POOL.md) retains its historical scope.
+[Activation routing](ACTIVATION_ROUTING.md) and [service decisions](PRODUCTION_SERVICES.md)
+record remaining qualification; none is production approval. A v4 **pool ID is a
+bytes32 identity**, not a wallet or a separate pool-contract address. Native
+admission supports initialized static, hookless ETH/ZZZ fee tiers on the pinned
+Robinhood deployment; supported ERC20 pools use ordinary admission. Registration
+does not enable arbitrary venues. Production ZZZ/USD pricing and VRF remain unset.
 
-## Optional future cross-chain dependencies
+## External custody and future-chain dependencies
 
-An initial reviewed launch can leave migration disabled with no provider or
-transport routes. The fixed bridge adapter/router still exist in the core.
+Atomic supported local moves need no external recipient. A separately approved
+external exit records the exact recipient, recipient code hash (including an EOA's
+actual code hash), destination chain/custody and optional destination pool, snapshot,
+raw minimums, mode and review hash. Normal exit sends configured ZZZ; explicit raw
+exit sends both current accounting assets. In this checkpoint those native-pool
+assets are WETH/ZZZ, not native ETH. Record actual departure amounts and outstanding
+liabilities; no blanket sweep or automatic raw fallback is available.
 
-Before any actual bridge use, inventory each physical provider wrapper/SDK
-endpoint on each chain, its router and channel bindings, relevant external
-validator/admin/upgrade authorities, and its counterpart contracts. Record the
-destination's PoPL modules, immutable helpers, equivalent backed token addresses,
-pools, feeds and custody governance, as well as confirmed permanent bucket
-admission. The source does not authenticate remote reservation proof automatically.
+For cross-chain verification/return, additionally inventory the exact verifier and
+runtime, finalized source/destination facts, authenticated custody/backing and
+channel-closure proof scheme. There is no multisig/timeout substitute and no
+production verifier, bridge provider or remote ledger is supplied. The old bridge
+router/adapter/registry/receiver stack is removed; its historical channel/policy
+instructions must not be used to configure this candidate.
 
-Transport-policy IDs must bind the exact source/destination chains, providers,
-routers, code/configuration hashes and reviewed channel. Principal, completion
-ACK, canonical-location ACK and old reward routes retain their original endpoint
-identities. A destination address or nonzero review hash is not proof of safe
-custody or token backing. No production provider is selected by this reference.
+Whole-collection ownership/reward relocation is a separate canonical handoff,
+currently implemented only as a same-chain candidate. It cannot capture while
+principal or royalty custody is outstanding. A destination address or a review
+hash alone proves neither return funding nor safe remote accounting. See the
+[governed custody procedure](GOVERNED_CUSTODY_HANDOFF.md) and [canonical handoff](CANONICAL_HANDOFF.md).
 
 ## Configuration that is not a wallet address
 
 Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities;
 multisig threshold; zero governance and migration delays; VRF key hash, subscription ID,
-confirmations and callback budget; pool keys/IDs and strategy bounds; provider
-channel/policy/route IDs; content CIDs and metadata URI; RPC URLs; API/indexer
+confirmations and callback budget; pool keys/IDs and strategy bounds; conversion
+route IDs; custody request/snapshot/review identities and any qualified finality
+proof boundary; content CIDs and metadata URI; RPC URLs; API/indexer
 origins; keeper monitoring, backup and alert endpoints. Secrets and private keys
 must remain outside source, manifests and Git.
 
@@ -161,4 +172,4 @@ source/bytecode/binding observations and explicit authorization.
 
 ## LP settlement helper
 
-ETH-default LP claims require a separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol) bound once to Rewards before sealing. Record controller, ledger, fixed WETH wrapper, runtime/implementation hashes, route/feed review and keeper pins. This is distinct from the royalty converter and has no custody of LP principal. Require the binding and route evidence in the release inventory; see [setup and recovery](LP_ETH_SETTLEMENT.md).
+ETH-default LP claims currently require a separately deployed [ZZZLPRewardConverter](../src/ZZZLPRewardConverter.sol) bound once to Rewards before sealing. Record controller, ledger, fixed WETH wrapper, runtime/implementation hashes, route/feed review and keeper pins. This is distinct from the royalty converter and has no custody of LP principal. Retain the 1% maximum ZZZ conversion loss, gas separate, and require a cheaper independently qualified route; the selected approximately 1.101% pool is not qualified for full conversion at reference prices. Current converted-input execution is single-hop v3; typed v4 conversion and native accounting remain pre-seal work. Require binding and route evidence in the release inventory; see [setup and recovery](LP_ETH_SETTLEMENT.md).

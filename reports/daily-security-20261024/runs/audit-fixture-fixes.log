@@ -1,0 +1,54 @@
+Compiling 2 files with Solc 0.8.26
+Solc 0.8.26 finished in 82.27s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+  --> src/ZZZNFTCanonical.sol:56:13:
+   |
+56 |             CanonicalNFTRecord memory value = abi.decode(record,(CanonicalNFTRecord));
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+  --> src/ZZZNFTCanonical.sol:62:36:
+   |
+62 |         (uint8 rarity,uint256 item,uint16 value) = abi.decode(record,(uint8,uint256,uint16));
+   |                                    ^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/base/ZZZCanonicalLedger.sol:35:5:
+   |
+35 |     function _canonicalBeginImport() internal {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:16:5:
+   |
+16 |     function canonicalCapture() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> src/ZZZNFTCanonical.sol:81:5:
+   |
+81 |     function canonicalActivate() external onlyHandoff {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:107:5:
+    |
+107 |     function canonicalSettle() external onlyHandoff { if (!captured) revert InvalidState(); }
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> src/ZZZVaultCanonical.sol:217:5:
+    |
+217 |     function canonicalActivate() external onlyHandoff {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 1 test for test/RangePolicy.t.sol:RangePolicyTest
+[PASS] testRealSealedGovernanceCanImmediatelyApproveRangeChange() (gas: 38609039)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 9.31ms (5.45ms CPU time)
+
+Ran 1 test for test/DynamicRange.t.sol:DynamicRangeTest
+[PASS] testIndependentAmountsAndExistingRangePlanAcrossPricesAndDecimals() (gas: 107887608)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 224.50ms (221.74ms CPU time)
+
+Ran 2 test suites in 226.34ms (233.81ms CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)
