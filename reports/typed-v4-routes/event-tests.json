@@ -1,0 +1,14 @@
+{
+  "command": "python -X utf8 -m unittest tests_python.test_event_schema -q",
+  "tests": 16,
+  "failures": 0,
+  "errors": 0,
+  "reported_duration_seconds": 0.107,
+  "observed_result": "OK",
+  "scope": "Observed tool stdout summary; current125 descriptors retain119exact prior entries",
+  "sources": {
+    "scripts/generate_event_schema.py": "09f3f6dd07ca092d0672b2c4e316ff89ba64df63f186f26b06c6a8e7d329b51c",
+    "tests_python/test_event_schema.py": "31e9d4d5001e97e558d8d35f310672cc81fa618fb306cab11987eb2bcf62d6e9",
+    "indexer/event_schema.json": "fb71d7cc7c7813cc598cfc5c5ef062cd8a7440a19e05397501631bb2ab4a7dd6"
+  }
+}

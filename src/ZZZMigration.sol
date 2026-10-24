@@ -11,9 +11,11 @@ import {ExactToken} from "./libraries/ExactToken.sol";
 import {Ids,Position,PositionStatus,PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZVault,IZZZPools,IZZZOracle,IZZZLiquidity,IZZZRewards} from "./interfaces/IZZZ.sol";
 interface ICustodyVault is IZZZVault {
+    function migrationBudget() external view returns(address);
     function consolidateHandoff(uint256,address,uint256,uint256) external;
     function acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) external payable;
 }
+interface IMaintenanceLossPolicy { function maintenanceLossBps() external view returns(uint16); }
 /// Must prove finality, exact destination custody/backing, and closure for returns.
 interface ICustodyFinality { function verifyCustody(bytes32,bytes calldata) external view returns(bool); }
 /// @notice Governed custody handoff; recipient custody/liveness are explicitly trusted.
@@ -37,6 +39,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         Request request; bytes32 sourcePool; PositionStatus sourceStatus; Status status; uint256 shares;
         address zzz; address token0; address token1; uint256 sentZZZ;
         uint256 startingUSD;
+        uint256 minimumRetainedUSD;
         uint256 sent0; uint256 sent1;
         uint256 outputPrice0; uint256 outputPrice1; uint256 outputScale0; uint256 outputScale1; uint256 departureBlock;
     }
@@ -71,6 +74,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function state(bytes32 id) external view returns(Status,uint256,uint256,uint256,uint256) {
         Plan storage q=plans[id]; return(q.status,q.sent0,q.sent1,q.startingUSD,q.departureBlock);
     }
+    function minimumRetainedUSD(bytes32 id) external view returns(uint256) { return plans[id].minimumRetainedUSD; }
     /// Configure the future actual token after sealing; never relabel in-flight custody.
     /// Buyback target is a separate explicit governed operation.
     function configureZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external onlyGovernance nonReentrant {
@@ -97,7 +101,8 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         IZZZOracle oracle=IZZZOracle(access.module(Ids.ORACLE)); (uint256 a0,uint256 a1)=_amounts(p);
         if(!r.rawExit) {
             q.startingUSD=oracle.value(q.token0,a0+p.idle0)+oracle.value(q.token1,a1+p.idle1);
-            if(q.startingUSD==0 || oracle.value(currentZZZ,r.minimumZZZ)<_floor(q.startingUSD)) revert Slippage();
+            q.minimumRetainedUSD=_currentFloor(q.startingUSD);
+            if(q.startingUSD==0 || oracle.value(currentZZZ,r.minimumZZZ)<q.minimumRetainedUSD) revert Slippage();
         }
         if(custodyOnly) {
             if(r.output0!=q.token0 || r.output1!=q.token1 || r.verifier!=address(0) || r.verifierCodeHash!=bytes32(0)) revert InvalidConfiguration();
@@ -151,7 +156,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         Plan storage q=plans[id]; if(q.status!=Status.Approved) revert InvalidState();
         q.status=Status.Cancelled; _close(q,id); emit CustodyCancelled(id);
     }
-    /// Actual funding + LP mint + final fixed-price 3% check in one transaction.
+    /// Actual funding + LP mint + original fixed-price approved budget in one transaction.
     function completeLocal(bytes32 id,uint256 a0,uint256 a1,uint128 minimumLiquidity,uint256 deadline)
         external payable live operating nonReentrant {
         _deadline(deadline); Plan storage q=plans[id]; Request memory r=q.request;
@@ -167,7 +172,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
             if(x+p.idle0<r.minimum0 || y+p.idle1<r.minimum1) revert Slippage();
         } else {
             uint256 retained=Math.mulDiv(x+p.idle0,q.outputPrice0,q.outputScale0)+Math.mulDiv(y+p.idle1,q.outputPrice1,q.outputScale1);
-            if(retained<_floor(q.startingUSD)) revert Slippage();
+            if(retained<q.minimumRetainedUSD) revert Slippage();
         }
         if(p.status!=PositionStatus.Active || _vault().bucketTotalShares(r.bucket)!=q.shares) revert InvalidState();
         q.status=Status.Completed; _close(q,id); emit CustodyCompleted(id,r.bucket,p.lpTokenId);
@@ -191,7 +196,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function proofCommitment(bytes32 id,uint8 kind) public view returns(bytes32) {
         Plan storage q=plans[id]; if((kind!=1 && kind!=2) || (q.sent0==0 && q.sent1==0)) revert InvalidState();
         return keccak256(abi.encode("ZZZ_CUSTODY_FINALITY_V1",kind,block.chainid,address(access),address(this),id,
-            q.request,q.sourcePool,q.sourceStatus,q.shares,q.zzz,q.sent0,q.sent1,_floor(q.startingUSD),q.departureBlock));
+            q.request,q.sourcePool,q.sourceStatus,q.shares,q.zzz,q.sent0,q.sent1,q.minimumRetainedUSD,q.departureBlock));
     }
     function _verify(Plan storage q,bytes32 commitment,bytes calldata proof) private view {
         address verifier=q.request.verifier;
@@ -217,13 +222,17 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function _close(Plan storage q,bytes32 id) private {
         if(activePlan[q.request.bucket]!=id) revert InvalidState(); delete activePlan[q.request.bucket]; --outstandingCount;
     }
-    function _floor(uint256 value) private pure returns(uint256) {return value-Math.mulDiv(value,300,10000);}
+    function _currentFloor(uint256 value) private view returns(uint256) {
+        uint16 limit=IMaintenanceLossPolicy(_vault().migrationBudget()).maintenanceLossBps();
+        if(limit>1000) revert InvalidConfiguration();
+        return value-Math.mulDiv(value,limit,10000);
+    }
     function _amounts(Position memory p) private view returns(uint256,uint256) {
         if(p.lpTokenId==0) return(0,0); return IZZZLiquidity(access.module(Ids.LIQUIDITY)).amounts(p.lpTokenId);
     }
     /// @notice Atomic pool-to-pool move. Never transfers principal to an external custodian.
     /// Only identical actual currencies are accepted; native ETH and WETH are distinct.
-    /// One 3% aggregate loss budget, unchanged NFT shares, actual destination LP.
+    /// One captured governed loss budget, unchanged NFT shares, actual destination LP.
     function moveFunds(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) public onlyGovernance live nonReentrant {
         if(activePlan[id]!=bytes32(0)) revert InvalidState(); _vault().movePool(id,pool,minimum,deadline);
     }

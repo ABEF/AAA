@@ -5,6 +5,7 @@ import re
 
 from frontend_api.activation_config import ActivationConfig, ZERO_HASH, NATIVE_ASSET_CODE_HASH
 from frontend_api.activation_trace import measure, request_data
+from frontend_api.activation_v4 import route_output
 from frontend_api.liquidity_context import contribution_context
 from frontend_api.service import ProjectionError, UnknownNFT, ZERO, _address_word, _bool, _hash, _keys, _quantity, token_id
 from zzz_ops.abi import address, calldata, decode_words, keccak256
@@ -29,8 +30,8 @@ def parse(payload):
         identifier = token_id(payload['token_id'])
         if not re.fullmatch(r'[1-9][0-9]{0,77}', payload['amount_in']) or int(payload['amount_in']) >= 2**128:
             raise ValueError('Contribution amount exceeds supported bounds')
-        if type(payload['slippage_bps']) is not int or not 0 <= payload['slippage_bps'] <= 100:
-            raise ValueError('Slippage must be 0..100 basis points')
+        if type(payload['slippage_bps']) is not int or not 0 <= payload['slippage_bps'] <= 1000:
+            raise ValueError('Slippage must be 0..1000 basis points')
         return {'id':identifier,'owner':address(payload['wallet']),'pool':_hash(payload['pool_id']),
                 'source':ZERO if payload['source_asset']==ZERO else address(payload['source_asset']),
                 'amount':int(payload['amount_in']),'increase':payload['action']=='increase',
@@ -71,6 +72,7 @@ class ActivationTransactions:
         p=self.p; cfg=self.config
         route,policy_id=cfg.sources[(req['pool'],req['source'])]
         req['route']=route
+        req['route_kind']=cfg.route_kinds[(req['pool'],req['source'])]
         if '0x'+p._call(pins['activation_assets'],'activePolicy(address)',source,block=block)[0] != policy_id:
             raise ProjectionError('Active source policy differs from the reviewed policy')
         policy=p._call(pins['activation_assets'],'policies(bytes32)',policy_id,block=block,words=6)
@@ -84,9 +86,13 @@ class ActivationTransactions:
                 raise ActivationInputError('Source has no reviewed conversion route')
             return source
         entry=pins['entry']
+        if cfg.routing_version == 2 and int(p._call(entry,'routeKind(bytes32)',route,block=block)[0],16) != req['route_kind']:
+            raise ProjectionError('Reviewed route kind changed')
         for getter in ('routeExists(bytes32)','routeEnabled(bytes32)'):
             if not _bool(p._call(entry,getter,route,block=block)[0]):
                 raise ProjectionError('Reviewed route is absent or disabled')
+        if req['route_kind'] == 2:
+            return route_output(p,cfg,req,pins,block)
         data=p._call(entry,'route(bytes32)',route,block=block,words=12)
         if '0x'+keccak256(bytes.fromhex(''.join(data))).hex()!=route:
             raise ProjectionError('Append-only route contents differ from their reviewed identity')
@@ -122,6 +128,9 @@ class ActivationTransactions:
     def prepare(self, payload):
         req=parse(payload); p=self.p; cfg=self.config
         req['accounting_version'] = p.accounting_version
+        req['routing_version'] = cfg.routing_version
+        if cfg.routing_version == 1 and req['slippage'] > 100:
+            raise ActivationInputError('Legacy preparation allows at most 100 basis points of caller slippage')
         if (req['pool'],req['source']) not in cfg.sources:
             raise ActivationInputError('No explicitly reviewed route for this source and pool')
         header,head,block=p._snapshot(); now=self._fresh(header)
@@ -154,7 +163,7 @@ class ActivationTransactions:
             if actual != account:
                 raise ProjectionError('Native accounting cannot substitute currency identities')
             source = req['source']
-            if req['source'] == ZERO and (req['token0'] != ZERO or not _bool(
+            if req['source'] == ZERO and cfg.route_kinds[(req['pool'],req['source'])] == 0 and (req['token0'] != ZERO or not _bool(
                     p._call(registry.address,'isNativePool(bytes32)',req['pool'],block=block)[0])):
                 raise ActivationInputError('Native input is unsupported for this pool')
         else:
@@ -165,6 +174,13 @@ class ActivationTransactions:
             if req['source']!=ZERO and actual[0]!=account[0] and int(actual[0],16)!=0:
                 raise ProjectionError('Unexpected accounting token substitution')
         pins,prices=cfg.verify(p,block,(source,req['token0'],req['token1']))
+        req['execution_loss_bps'] = 100
+        if cfg.routing_version == 2:
+            maximum=int(p._call(pins['budget'],'MAX_LOSS_BPS()',block=block)[0],16)
+            loss=int(p._call(pins['budget'],'contributionLossBps()',block=block)[0],16)
+            if maximum != 1000 or not 0 <= loss <= maximum:
+                raise ProjectionError('Contribution execution-loss policy is invalid')
+            req['execution_loss_bps']=loss
         req['output']=self._route(req,source,pins,block)
         gross=req['amount']*prices[source]//10**cfg.tokens[source]['decimals']
         measured=int(p._call(pins['activation_assets'],'value(address,uint256)',source,req['amount'],block=block)[0],16)
@@ -219,8 +235,8 @@ class ActivationTransactions:
                 return {'from':req['owner'],'to':pins['entry'],'value':hex(req['amount'] if req['source']==ZERO else 0),
                         'data':request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
                                             req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'])}
-            # Probe is NEVER returned to the wallet. The actual contract's 99%
-            # marginal-deployed floor applies even to this internal simulation.
+            # Probe is NEVER returned to the wallet. The actual contract's
+            # current contribution floor also applies to internal simulation.
             initial=self._trace(tx(),pins,req,gross,int(account[10],16),block)
             ceil_floor=lambda value:max(1,(value*(10000-req['slippage'])+9999)//10000)
             req['minimum_lp']=ceil_floor(initial['lp_liquidity_added_raw'])
@@ -242,7 +258,8 @@ class ActivationTransactions:
                 'current_attached_value':current_value,
                 'liquidity_context':liquidity_context,
                 'contribution':None if result is None else {k:str(v) for k,v in result.items()},
-                'execution_limit_bps':100,'minimum_deployed_usd_18':str(gross-gross//100),
+                'execution_limit_bps':req['execution_loss_bps'],
+                'minimum_deployed_usd_18':str(gross-gross*req['execution_loss_bps']//10000),
                 'minimum_liquidity_raw':str(req['minimum_lp']) if result else None,
                 'minimum_conversion_output_raw':str(req['minimum_out']) if result else None,
                 'network_gas':gas,'prepared_at':prepared,'expires_at':req['deadline'],
@@ -251,11 +268,11 @@ class ActivationTransactions:
                               'block_timestamp':header['timestamp'],'observed_head':head,'confirmations':p.confirmations,
                               'eip1898_require_canonical':True,'protocol_finalized':False,
                               'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity,
-                              'accounting_version':p.accounting_version},
+                              'accounting_version':p.accounting_version,'routing_version':cfg.routing_version},
                 'wallet_revalidation_required':True,'state_overrides':False,
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '
                         'deadline, live simulation and gas. Approval is a separate transaction; reprepare after confirmation. '
-                        'The on-chain 1% bound excludes gas. Future execution and production qualification are not guaranteed.'}
+                        'The reported on-chain execution bound excludes gas. Future execution and production qualification are not guaranteed.'}
 
 
 def main():

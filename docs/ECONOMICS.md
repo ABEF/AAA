@@ -1,5 +1,8 @@
 # Economic rights and allocation rules
 
+**Current execution policy (2026-10-24):** governance may configure contribution, conversion and maintenance loss limits within hard10% ceilings; defaults remain1%/1%/3%, with gas separate. Captured operation policy, original approved custody floors, stronger caller/venue minima and backing remain. [Exact controls and risks](EXECUTION_LOSS_POLICY.md), [typed v4 routes](TYPED_V4_ROUTES.md). Earlier fixed-limit descriptions are default/historical scope. The candidate remains undeployed and production NOT APPROVED.
+
+
 **Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
 
 Current accepted rules: $100 activation, 80/10/5/5 revenue, equal activated-NFT collective membership and separate rarity royalties. This is an undeployed candidate; publication is not approval to use real funds.

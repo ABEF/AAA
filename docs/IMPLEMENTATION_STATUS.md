@@ -1,3 +1,25 @@
+## Typed v4 conversion and governed loss policy - 2026-10-24
+
+The [typed-v4 candidate](TYPED_V4_ROUTES.md) implements actual native/ERC20
+single-hop conversion through an immutable parent-bound helper for Entry and
+both earned-balance converters. Runtime/PoolKey pins, exact settlement, callback
+and prefund guards preserve original-source contribution/share accounting and
+per-NFT ETH credits. V3 policy identities remain separately typed; no arbitrary
+executor, hook, sweep or wrapper fallback is introduced.
+
+[Loss policy](EXECUTION_LOSS_POLICY.md) defaults to **1% contribution / 1%
+conversion / 3% maintenance**, adjustable by immediate governance up to a hard
+**10%**. Captured contribution/maintenance policy and original normal custody
+approval floors cannot be weakened by later changes. Current backend/keeper
+profiles and reporting explicitly read governed policy; historical profiles
+retain fixed semantics. [Scoped evidence](../reports/typed-v4-routes/VERIFICATION.md)
+separates actual installed-core conversion from substituted LP/feed/VRF fixtures.
+
+Actual routes/feeds, services, native website/release inventory, atomic ETH/WETH
+principal moves, OpenSea mint, future-chain handoff and independent audit remain
+open. These are undeployed candidates; no public signing/service change occurred.
+Earlier dated fixed-cap and v3-only descriptions retain their historical scope.
+
 ## Bounded post-seal controls - 2026-10-24
 
 The [operating-control candidate](../reports/post-seal-controls/VERIFICATION.md)

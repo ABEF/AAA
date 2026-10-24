@@ -11,11 +11,18 @@ from zzz_ops.state import integer
 
 BATCH = 'convertBatch(address,uint256[],bytes32,uint256,uint256)'
 ZERO = '0x' + '00'*32
+NATIVE = '0x' + '00'*20
 
 def number(value, name, maximum=None):
     value = integer(value, name, minimum=1)
     if maximum is not None and value > maximum: raise ValueError('Royalty setting exceeds bound: '+name)
     return value
+
+def native_quote(asset, amount):
+    # Native identity is allowed only in this typed output slot. The shared
+    # generic address codec intentionally continues to reject zero addresses.
+    signature='quote(address,address,uint256)'
+    return '0x'+keccak256(signature.encode()).hex()[:8]+word(asset,'address')+word(0,'uint256')+word(amount,'uint256')
 
 def encode_batch(asset, ids, route, minimum, deadline):
     if not isinstance(ids,(list,tuple)) or not 1 <= len(ids) <= 32:
@@ -35,12 +42,18 @@ class RoyaltyAutomation:
         self.converter = 'lp_converter' if lp else 'royalty_converter'
         self.nft = 'lp_nft' if lp else 'royalty_nft'
         self.wrapper = 'lp_wrapper' if lp else 'royalty_wrapper'
-        self.names = (self.ledger,self.converter,self.nft,self.wrapper,'oracle')
+        self.executor = 'lp_v4_executor' if lp else 'royalty_v4_executor'
         cfg = keeper.config.get(self.key,{})
         if not isinstance(cfg,dict) or type(cfg.get('enabled',False)) is not bool:
             raise ValueError('royalty_conversion requires an explicit enabled boolean')
         self.enabled = cfg.get('enabled',False)
         if not self.enabled: return
+        self.profile = cfg.get('profile','v3_wrapper')
+        if self.profile not in ('v3_wrapper','v3_wrapper_configurable','v4_native'):
+            raise ValueError('Unsupported royalty conversion profile')
+        self.native_v4 = self.profile == 'v4_native'
+        self.configurable_loss = self.profile != 'v3_wrapper'
+        self.names = (self.ledger,self.converter,self.nft,'oracle',self.executor if self.native_v4 else self.wrapper)
         self.scan = number(cfg.get('max_nfts_per_cycle',32),'max_nfts_per_cycle',32)
         self.gas_bps = number(cfg.get('max_gas_to_output_bps',100),'max_gas_to_output_bps',10000)
         self.routes = cfg.get('assets')
@@ -53,6 +66,8 @@ class RoyaltyAutomation:
             seen.add(p['asset'])
             if not re.fullmatch(r'0x[0-9a-fA-F]{64}',p.get('route_id','')): raise ValueError('Malformed royalty route')
             p['route_id']=p['route_id'].lower()
+            if self.native_v4 and (p['asset'] == NATIVE or p['route_id'] == ZERO):
+                raise ValueError('Native v4 conversion requires an ERC20 source and explicit route')
             p['minimum_source_units']=number(p['minimum_source_units'],'minimum_source_units')
             p['minimum_output_wei']=number(p['minimum_output_wei'],'minimum_output_wei')
         for name in self.names:
@@ -61,6 +76,10 @@ class RoyaltyAutomation:
                 raise ValueError('Missing royalty runtime pin: '+name)
         identity={'ledger':keeper.contracts[self.ledger],'nft':keeper.contracts[self.nft],
             'assets':[p['asset'] for p in self.routes]}
+        if self.configurable_loss:
+            # Old wrapper jobs/journals must not silently adopt new route semantics.
+            identity.update(profile=self.profile)
+            if self.native_v4: identity.update(executor=keeper.contracts[self.executor])
         state=keeper.state.get(self.key)
         if state is None:
             keeper.state[self.key]={'identity':identity,'asset':0,'ordinal':1,'next_first':True}
@@ -82,13 +101,18 @@ class RoyaltyAutomation:
             raise RpcError('Invalid royalty anchor')
         selector={'blockHash':header['hash'],'requireCanonical':True}
         def read(name,sig,*args):
-            words=decode_words(k.rpc.call('eth_call',[{'to':contracts[name],'data':calldata(sig,*args)},selector]))
+            data=native_quote(args[0],args[2]) if self.native_v4 and sig=='quote(address,address,uint256)' and args[1]==NATIVE else calldata(sig,*args)
+            words=decode_words(k.rpc.call('eth_call',[{'to':contracts[name],'data':data},selector]))
             if len(words)!=1: raise RpcError('Unexpected royalty getter ABI')
             return int(words[0],16)
         checks=[(self.ledger,'access()' if self.lp else 'canonicalController()',contracts['access']),
             (self.ledger,'converter()',contracts[self.converter]),(self.converter,'ledger()',contracts[self.ledger]),
-            (self.converter,'access()',contracts['access']),(self.converter,'wrapper()',contracts[self.wrapper]),
+            (self.converter,'access()',contracts['access']),
             (self.nft,'access()',contracts['access'])]
+        if self.native_v4:
+            checks += [(self.converter,'v4Executor()',contracts[self.executor]),
+                (self.executor,'parent()',contracts[self.converter])]
+        else: checks += [(self.converter,'wrapper()',contracts[self.wrapper])]
         if not self.lp:
             checks += [(self.ledger,'nft()',contracts[self.nft]),(self.nft,'royaltyRewards()',contracts[self.ledger])]
         for name,sig,expected in checks:
@@ -100,7 +124,9 @@ class RoyaltyAutomation:
                 raise RpcError('Royalty code pin mismatch')
         for key,name in [('ZZZNFT',self.nft),('ZZZOracle','oracle')] + ([('ZZZRewards',self.ledger)] if self.lp else []):
             if read('access','module(bytes32)','0x'+keccak256(key.encode()).hex())!=int(contracts[name],16): raise RpcError('Royalty module mismatch')
-        if read(self.ledger,'MAX_CONVERSION_NFTS()')!=32 or read(self.converter,'MAX_LOSS_BPS()')!=100:
+        ceiling=read(self.converter,'MAX_LOSS_BPS()')
+        loss=read(self.converter,'conversionLossBps()') if self.configurable_loss else 100
+        if read(self.ledger,'MAX_CONVERSION_NFTS()')!=32 or ceiling!=(1000 if self.configurable_loss else 100) or not 0<=loss<=ceiling:
             raise RpcError('Royalty protocol limit mismatch')
         if read(self.converter,'enabled()')!=1: return False
         count=read(self.nft,'mintedCount()')
@@ -115,7 +141,19 @@ class RoyaltyAutomation:
         k.save()
         asset=policy['asset'];route=policy['route_id']
         if read(self.ledger,'isAsset(address)',asset)!=1: raise RpcError('Royalty currency is not admitted')
-        if asset!=contracts[self.wrapper]:
+        unwrap = not self.native_v4 and asset == contracts[self.wrapper]
+        if self.native_v4:
+            if read(self.converter,'routeKind(bytes32)',route)!=2: raise RpcError('Royalty route kind mismatch')
+            if read(self.converter,'routeEnabled(bytes32)',route)!=1: return False
+            values=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.converter],
+                'data':calldata('v4Route(bytes32)',route)},selector]))
+            # The fixed helper's validate checks key, static hookless venue,
+            # initialization and every runtime pin at this same confirmed block.
+            checked=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.executor],
+                'data':calldata('validate(bytes32)',route)},selector]))
+            if len(values)!=14 or values!=checked or int(values[0],16)!=int(asset,16) or int(values[1],16)!=0:
+                raise RpcError('Royalty native v4 policy mismatch')
+        elif not unwrap:
             if read(self.converter,'routeEnabled(bytes32)',route)!=1: return False
             values=decode_words(k.rpc.call('eth_call',[{'to':contracts[self.converter],'data':calldata('route(bytes32)',route)},selector]))
             if len(values)!=10 or int(values[0],16)!=int(asset,16): raise RpcError('Royalty route currency mismatch')
@@ -136,9 +174,10 @@ class RoyaltyAutomation:
         if total<policy['minimum_source_units']:
             if recover: return k.submit(self.ledger,'sync(address)',(asset,),f'royalty_sync:{asset}')
             return False
-        expected=total if asset==contracts[self.wrapper] else read('oracle','quote(address,address,uint256)',asset,contracts[self.wrapper],total)
+        quote_output=NATIVE if self.native_v4 else contracts[self.wrapper]
+        expected=total if unwrap else read('oracle','quote(address,address,uint256)',asset,quote_output,total)
         if expected<policy['minimum_output_wei']: return False
-        minimum=expected if asset==contracts[self.wrapper] else (expected*9900+9999)//10000
+        minimum=expected if unwrap else (expected*(10000-loss)+9999)//10000
         # Recheck after the last price read; the contract repeats its own floor.
         if k.rpc.call('eth_getBlockByNumber',[hex(block),False])!=header: raise RpcError('Royalty anchor changed')
         return k.submit(self.ledger,BATCH,(asset,sorted(ids),route,minimum,now+180),

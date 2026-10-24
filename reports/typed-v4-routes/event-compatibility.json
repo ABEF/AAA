@@ -1,0 +1,13 @@
+{
+  "previous": 119,
+  "current": 125,
+  "old_entries_byte_equivalent": true,
+  "added": [
+    "ConversionLossLimitChanged(uint16,uint16)",
+    "MaintenanceLossLimitChanged(uint16,uint16)",
+    "V4RouteRecorded(bytes32,address,bytes32)",
+    "RouteRecorded(bytes32,address,address,bytes32)",
+    "ContributionLossLimitChanged(uint16,uint16)",
+    "Executed(bytes32,uint256,uint256)"
+  ]
+}

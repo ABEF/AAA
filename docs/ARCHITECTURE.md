@@ -1,5 +1,8 @@
 # Shared permanent-liquidity architecture
 
+**Current execution policy (2026-10-24):** governance may configure contribution, conversion and maintenance loss limits within hard10% ceilings; defaults remain1%/1%/3%, with gas separate. Captured operation policy, original approved custody floors, stronger caller/venue minima and backing remain. [Exact controls and risks](EXECUTION_LOSS_POLICY.md), [typed v4 routes](TYPED_V4_ROUTES.md). Earlier fixed-limit descriptions are default/historical scope. The candidate remains undeployed and production NOT APPROVED.
+
+
 The collection uses one shared contribution pool at a time, initially the [selected hookless native ETH/ZZZ pool](POOL_SELECTION.md), not one pool per NFT. Historical buckets and supported future venue moves retain their original accounting identities. `ZZZVault.MAX_BUCKETS = 4` limits all historical bucket registrations on a vault, including imports; returning an existing bucket or migrating it to another reviewed pool does not allocate a new bucket. This bounds combined funded-dust and inbox settlement before new membership. The prior 16-bucket limit failed the combined distinct-asset/inbox workload; four retains local headroom without changing reward accounting or the 1,000-NFT cap. Actual Entry, venue, token and target-chain gas still require staging verification.
 
 Pool reservations now permanently admit a bucket into the same four-slot set.

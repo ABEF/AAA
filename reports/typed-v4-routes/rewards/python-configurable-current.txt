@@ -1,0 +1,43 @@
+{"active": true, "event": "canonical_preparation_observed", "time": "2026-10-24T19:14:44.417083+00:00"}
+{"active": true, "event": "canonical_preparation_observed", "time": "2026-10-24T19:14:44.976913+00:00"}
+..............FFF............................F..
+======================================================================
+FAIL: test_oversized_cap_or_malformed_getter_rejects (tests_python.test_conversion_limit_reporting.ConversionLimitReportingTests.test_oversized_cap_or_malformed_getter_rejects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_conversion_limit_reporting.py", line 52, in test_oversized_cap_or_malformed_getter_rejects
+    with self.assertRaisesRegex(ProjectionError,'limit mismatch'):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_schema_one_cannot_describe_new_governed_converter_as_fixed_one_percent (tests_python.test_conversion_limit_reporting.ConversionLimitReportingTests.test_schema_one_cannot_describe_new_governed_converter_as_fixed_one_percent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_conversion_limit_reporting.py", line 34, in test_schema_one_cannot_describe_new_governed_converter_as_fixed_one_percent
+    with self.assertRaisesRegex(ProjectionError,'limit mismatch'):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_schema_two_does_not_accept_historical_fixed_module (tests_python.test_conversion_limit_reporting.ConversionLimitReportingTests.test_schema_two_does_not_accept_historical_fixed_module)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_conversion_limit_reporting.py", line 38, in test_schema_two_does_not_accept_historical_fixed_module
+    with self.assertRaisesRegex(ProjectionError,'limit mismatch'):self.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ProjectionError not raised
+
+======================================================================
+FAIL: test_reporting_config_strict_and_no_implicit_old_abi_probe (tests_python.test_royalty_reporting.ReportingTests.test_reporting_config_strict_and_no_implicit_old_abi_probe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_royalty_reporting.py", line 149, in test_reporting_config_strict_and_no_implicit_old_abi_probe
+    with self.assertRaises(ValueError): Projection(cfg, self.rpc)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 48 tests in 6.861s
+
+FAILED (failures=4)

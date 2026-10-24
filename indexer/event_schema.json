@@ -381,6 +381,22 @@
     "name": "PrincipalBridged",
     "signature": "PrincipalBridged(uint256,bytes32,uint256,uint256)"
   },
+  "0x29d647091aed56a3ac526b0fe16b864f369d39a66cbdeeef79b767d2999af6ae": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      }
+    ],
+    "name": "ConversionLossLimitChanged",
+    "signature": "ConversionLossLimitChanged(uint16,uint16)"
+  },
   "0x2bddd8f58a6133908776d5052ff3ce5fc8444f2e866ad2392152000a8323ce91": {
     "fields": [
       {
@@ -522,6 +538,22 @@
     "name": "CustodyCompleted",
     "signature": "CustodyCompleted(bytes32,uint256,uint256)"
   },
+  "0x3250e278e36a79630802af2a047d997852a9e1f1048d715606c2b7f79d5ea98c": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      }
+    ],
+    "name": "MaintenanceLossLimitChanged",
+    "signature": "MaintenanceLossLimitChanged(uint16,uint16)"
+  },
   "0x33e79962e8d633cf34bd5e370ee8d12f6c74799825aa236c2d51338fb3e54a42": {
     "fields": [
       {
@@ -605,6 +637,27 @@
     ],
     "name": "LocationRecorded",
     "signature": "LocationRecorded(uint256,uint64,uint256,address)"
+  },
+  "0x3cf0e0730d97aaa1328a5d722e1603ee7b2518dc9c3889da97195522751e9b82": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "routeId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "V4RouteRecorded",
+    "signature": "V4RouteRecorded(bytes32,address,bytes32)"
   },
   "0x465cc2dc0625be46d859c4c26505717b9f6a4a8ef6ff7d72fb3afb8669c92244": {
     "fields": [
@@ -1810,6 +1863,32 @@
     "name": "Bridged",
     "signature": "Bridged(bytes32,bytes32)"
   },
+  "0xae91a2cf129d5eacd0414380a6b626b754af93b54a3a38c6d54dcad6ef69fab7": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "output",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RouteRecorded",
+    "signature": "RouteRecorded(bytes32,address,address,bytes32)"
+  },
   "0xb11ad1e7eddb5d475279e30a30e8580b78e8f7417a169ac42d626c06bc94f923": {
     "fields": [
       {
@@ -1910,6 +1989,22 @@
     ],
     "name": "FeedConfigured",
     "signature": "FeedConfigured(address,address,uint32)"
+  },
+  "0xc65b5f7efa8dc64afd7b12f2d443113f5dcb463b7b892d280b4bca5bf9cd72b5": {
+    "fields": [
+      {
+        "indexed": false,
+        "name": "previous",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "name": "current",
+        "type": "uint16"
+      }
+    ],
+    "name": "ContributionLossLimitChanged",
+    "signature": "ContributionLossLimitChanged(uint16,uint16)"
   },
   "0xcb2b99b8db573d53242a46f147b62926d703660f3d9bfcd6ddefe0d70c87d950": {
     "fields": [
@@ -2546,5 +2641,26 @@
     ],
     "name": "AcknowledgementSent",
     "signature": "AcknowledgementSent(bytes32,bytes32)"
+  },
+  "0xfe95c3832c12555e6bdb94254f0062f3fef9fb21554e39a02734ac465105930b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "input",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "output",
+        "type": "uint256"
+      }
+    ],
+    "name": "Executed",
+    "signature": "Executed(bytes32,uint256,uint256)"
   }
 }

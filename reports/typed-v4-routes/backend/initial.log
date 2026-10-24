@@ -1,0 +1,18 @@
+======================================================================
+ERROR: test_helper_binding_runtime_and_route_kind_fail_closed (tests_python.test_typed_v4_activation.TypedV4ActivationTests.test_helper_binding_runtime_and_route_kind_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_typed_v4_activation.py", line 132, in test_helper_binding_runtime_and_route_kind_fail_closed
+    rpc.put(rpc.pins[target],method,*((rpc.route,) if method.startswith('routeKind') else ()),values=(value,))
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 63, in put
+    data = native_claim_data(arguments[0]) if signature == 'claimable(uint256,address)' and arguments[1] == ZERO else calldata(signature, *arguments)
+                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 64, in calldata
+    if len(types) != len(args): raise ValueError('Argument count mismatch')
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Argument count mismatch
+
+----------------------------------------------------------------------
+Ran 46 tests in 39.745s
+
+FAILED (errors=1)

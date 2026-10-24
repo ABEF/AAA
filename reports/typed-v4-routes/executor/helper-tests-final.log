@@ -1,0 +1,27 @@
+Compiling 71 files with Solc 0.8.26
+Solc 0.8.26 finished in 16.32s
+Compiler run successful with warnings:
+Warning (5159): "selfdestruct" has been deprecated. Note that, starting from the Cancun hard fork, the underlying opcode no longer deletes the code and data associated with an account and only transfers its Ether to the beneficiary, unless executed in the same transaction in which the contract was created (see EIP-6780). Any use in newly deployed contracts is strongly discouraged even if the new behavior is taken into account. Future changes to the EVM might further reduce the functionality of the opcode.
+  --> C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/TypedV4Executor.t.sol:21:78:
+   |
+21 | contract V4RouteForcedETH { constructor(address payable recipient) payable { selfdestruct(recipient); } }
+   |                                                                              ^^^^^^^^^^^^
+
+2026-10-24T19:14:44.103312Z  WARN traces::etherscan: etherscan config not found
+
+Ran 12 tests for C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/test/TypedV4Executor.t.sol:TypedV4ExecutorTest
+[PASS] testActualCoreERC20BothDirectionsAndDirtySyncBeforeNativeSettlement() (gas: 2035748)
+[PASS] testActualCoreNativeBothDirectionsPreserveAllPrefundsAndExactTransfers() (gas: 1311938)
+[PASS] testActualCorePartialFillRevertsAllMarketAndCallerState() (gas: 6813826)
+[PASS] testDisableWithoutDependenciesAndReenableRequiresFreshPins() (gas: 476801)
+[PASS] testExactValueSignedBoundsAndDeadlinesCannotSpendPrefunds() (gas: 946049)
+[PASS] testFaultCoreDirtySyncStillSettlesNativeWithNoWrapperOrLPRegistry() (gas: 2070940)
+[PASS] testFaultCorePartialDirtyDeltaShortSettleAndFalseNativeCreditsRevertAtomically() (gas: 5105722)
+[PASS] testForcedETHDuringERC20PullOrActualCoreOutputCannotAlterAccounting() (gas: 1169914)
+[PASS] testParentAuthorityRouteDomainAndNoUnauthenticatedNativeOrCallback() (gas: 3021351)
+[PASS] testParentCannotReenterRouteMutationWhileNativeOutputIsDelivered() (gas: 682139)
+[PASS] testPolicyAdmissionRejectsAmbiguousNativeHooksDynamicFeesAndWrongIdentities() (gas: 6192851)
+[PASS] testRejectedNativeParentRollsBackActualSwapAndAllBalances() (gas: 758158)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 24.34ms (63.40ms CPU time)
+
+Ran 1 test suite in 25.89ms (24.34ms CPU time): 12 tests passed, 0 failed, 0 skipped (12 total tests)

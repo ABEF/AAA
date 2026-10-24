@@ -11,6 +11,7 @@ from zzz_ops.abi import address, calldata, decode_words, keccak256
 EXECUTE = 'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))'
 LEGACY_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
 RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
+CONFIGURABLE_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)'
 VALUE = 'value(address,uint256)'
 MINT = 'mint(bytes32,int24,int24,uint256,uint256,uint128,uint256)'
 INCREASE = 'increase(bytes32,uint256,uint256,uint256,uint128,uint256)'
@@ -107,6 +108,12 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         raise ProjectionError('Invalid converted output')
     if req['route'] == '0x' + '0' * 64 and acquired != req['amount']:
         raise ProjectionError('Direct input did not preserve its exact amount')
+    if req.get('route_kind') == 2:
+        converted=child(root,pins['entry'],req['v4_executor'],'execute(bytes32,uint256,uint256,uint256)','CALL')
+        expected=calldata('execute(bytes32,uint256,uint256,uint256)',req['route'],req['amount'],req['minimum_out'],req['deadline'])
+        if (converted['input'].lower()!=expected or int(words(converted.get('output'),1)[0],16)!=acquired or
+                _quantity(converted.get('value','0x0'))!=(req['amount'] if req['source']==ZERO else 0)):
+            raise ProjectionError('Typed v4 child call differs from exact reviewed conversion')
     a0, a1 = (acquired, 0) if req['output'] == req['token0'] else (0, acquired)
     signature = ('increase(uint256,uint256,uint256,uint128,uint256)' if req['increase'] else
                  'activate(uint256,bytes32,uint256,uint256,uint128,uint256)')
@@ -119,11 +126,14 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         raise ProjectionError('Vault child call does not carry the exact declared native contribution')
     candidates = [x for x in vault.get('calls', []) if x.get('from','').lower()==pins['vault'] and
                   x.get('to','').lower()==pins['budget'] and
-                  x.get('input','')[:10].lower() in (selector(RESULT),selector(LEGACY_RESULT))]
+                  x.get('input','')[:10].lower() in (selector(RESULT),selector(LEGACY_RESULT),selector(CONFIGURABLE_RESULT))]
     if len(candidates)!=1 or candidates[0].get('type')!='STATICCALL':
         raise ProjectionError('Missing or ambiguous reviewed contribution result')
     check = successful(candidates[0])
-    current = check['input'][:10].lower()==selector(RESULT)
+    configurable = req.get('routing_version',1)==2
+    if configurable != (check['input'][:10].lower()==selector(CONFIGURABLE_RESULT)):
+        raise ProjectionError('Contribution result differs from explicit execution-policy profile')
+    current = check['input'][:10].lower()!=selector(LEGACY_RESULT)
     values = words('0x'+check['input'][10:],8 if current else 7)
     if current:
         if int(values[0],16)!=req['bucket']:
@@ -131,6 +141,13 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         values=values[1:]
     input_usd, supply, incumbent_nav, incumbent_deployed, deployed, idle, slippage = [
         int(x, 16) for x in values]
+    loss=req.get('execution_loss_bps',100)
+    if configurable:
+        if slippage >= 2**32 or slippage >> 16 != loss:
+            raise ProjectionError('Contribution execution-loss snapshot differs from reviewed policy')
+        slippage &= 65535
+    if not 0 <= loss <= (1000 if configurable else 100):
+        raise ProjectionError('Invalid reviewed contribution loss cap')
     # In the pinned current Budget implementation these direct Oracle.value
     # calls are exclusively historicalCompoundValue's non-current currencies.
     # Nested oracle calls from other modules never form part of this witness.
@@ -154,13 +171,13 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         if verify_historical is None:raise ProjectionError('Historical compound feeds are not reviewed')
         verify_historical(historical)
     issued, net = [int(x, 16) for x in words(check.get('output'), 2)]
-    floor = gross - gross // 100
+    floor = gross - gross * loss // 10000
     if (input_usd != gross or slippage != max_slippage or not 0 < slippage <= 200 or
             deployed < incumbent_deployed + floor or net != deployed + idle - incumbent_nav or
             net < floor or net < gross * (10000 - slippage) // 10000 or
             idle > (deployed + idle) * 500 // 10000 or deployed == 0 or
             supply and incumbent_nav == 0):
-        raise ProjectionError('Simulated contribution violates its original-source 1% budget')
+        raise ProjectionError('Simulated contribution violates its original-source execution budget')
     expected_shares = supply * net // (incumbent_nav + historical_value) if supply else net
     if issued != expected_shares or issued == 0 or issued + supply > 10**36:
         raise ProjectionError('Invalid contribution share issuance')

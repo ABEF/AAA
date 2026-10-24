@@ -204,7 +204,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         Position storage p = positions[bucket];
         IZZZFees fees = IZZZFees(_moduleFees());
         uint256 inputUSD = IZZZPools(_modulePools()).contributionValue(p.poolId, amount0, amount1);
-        (address token0, address token1, uint16 maxSlippageBps) = migrationBudget.validateContribution(id, bucket, inputUSD, amount0 + amount1, minimumLiquidity, activation);
+        (address token0, address token1, uint32 limits) = migrationBudget.validateContribution(id, bucket, inputUSD, amount0 + amount1, minimumLiquidity, activation);
         uint256 supply = bucketTotalShares[bucket];
         // Other inboxes also fund the global collective index. Settle ALL before entry.
         fees.syncAllExternal();
@@ -243,11 +243,11 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         // A transfer callback during the final pull may queue more receipts/dust.
         // All remaining dependency calls are static reads or fixed checkpoints.
         IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(id);
-        // A $100 gross contribution may deploy $99; network gas is separate.
-        // Apply the same 1% execution/undeployed limit to later contributions.
+        // The captured governed contribution limit applies to activation and
+        // growth. Network gas is separate; later callbacks cannot widen this budget.
         // Incumbent idle/compound assets cannot subsidize this contribution.
         (uint256 issued, uint256 netUSD) = migrationBudget.contributionResult(bucket, inputUSD, supply, incumbentNAV,
-            oldLP + oldIdle + freshCompound, newLP, newIdle, maxSlippageBps);
+            oldLP + oldIdle + freshCompound, newLP, newIdle, limits);
         sharesOf[id] += issued; bucketTotalShares[bucket] = supply + issued;
         contributionUSD[id] += inputUSD; p.depositUSD += inputUSD;
         if (activation) IZZZMembership(access.module(Ids.MEMBERSHIP)).activate(id);

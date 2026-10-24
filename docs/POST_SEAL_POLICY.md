@@ -8,10 +8,20 @@ authorized by this document.
 
 ## Configuration boundary
 
+**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
+undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+immediate governance may set each category up to a hard 10%. Existing stricter
+venue/caller minima remain. Pending normal custody approvals retain their original
+absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
+historical/default scope. Actual routes, services and independent audit remain open.
+
+
+
 | Category | Requirement | Current boundary |
 | --- | --- | --- |
 | Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
-| Assets and conversions | Admit/remove supported input assets and rotate conversion pools when liquidity changes, without redeploying. | Entry and LP/royalty converters support append-only route policies and enable/disable controls. Their execution code supports single-hop v3 only. v4 conversion support is pre-seal implementation work; a route record cannot add a new algorithm. |
+| Assets and conversions | Admit/remove supported input assets and rotate conversion pools when liquidity changes, without redeploying. | Entry and LP/royalty converters support append-only route policies and enable/disable controls. They implement explicit typed single-hop v3 and hookless static-fee v4 routes. Native v4 output needs no wrapper. Real route/service qualification remains open; a route record cannot add an unsupported algorithm. |
 | Pools and pricing | Change the sole contribution pool, qualified feeds and supported strategy settings through governance. | Existing validation, exact asset/key/runtime checks, fresh prices, accounting and execution floors remain mandatory. New unimplemented venues are not enabled by configuration alone. |
 | Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
 | Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
@@ -36,7 +46,7 @@ For randomness observations, the blocked production template now distinguishes
 `immutable_configuration` flag is rejected in that NFT record. Capture current
 getters and retain original request transactions when reviewing pending draws.
 
-The user reconfirmed the **1% maximum ZZZ LP-reward conversion loss, gas separate**.
+Defaults remain **1% contribution / 1% conversion / 3% maintenance**, gas separate. Governance may now change each category through the [bounded execution policy](EXECUTION_LOSS_POLICY.md), maximum 10%. The earlier fixed-cap requirement is superseded.
 The selected pool's observed approximately 1.101% swap fee means it is not a
 qualified full-balance conversion route at reference prices. Require a cheaper,
 independently reviewed route; until then keep earned source balances backed and
@@ -58,7 +68,7 @@ WETH are distinct: moving between those pools needs an explicit reviewed boundar
 that is not implemented. Admitting a WETH destination or changing a route cannot
 supply missing code. A separately approved external custody exit/manual conversion
 and actual funded local completion is a different, governed path. Typed v4
-conversion remains pre-seal work. The two bounded controls are implemented as a
+conversion is implemented with [scoped qualification limits](TYPED_V4_ROUTES.md). The two bounded controls are implemented as a
 candidate; they do not qualify actual VRF, routes, inventory or services.
 
 See [native verification scope](../reports/native-eth-port/VERIFICATION.md) for the

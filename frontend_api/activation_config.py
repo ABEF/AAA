@@ -31,11 +31,19 @@ def hex_bytes(value, maximum):
 
 class ActivationConfig:
     def __init__(self, config, projection):
-        _keys(config, {'schema', 'contracts', 'tokens', 'dependencies', 'sources', 'sequencer',
-                       'call_pins', 'storage_pins', 'fee_policy'}, 'activation configuration')
+        fields = {'schema', 'contracts', 'tokens', 'dependencies', 'sources', 'sequencer',
+                  'call_pins', 'storage_pins', 'fee_policy'}
+        self.routing_version = config.get('routing_version', 1)
+        if type(self.routing_version) is not int or self.routing_version not in (1, 2):
+            raise ValueError('Unsupported explicit activation routing profile')
+        if 'routing_version' in config: fields.add('routing_version')
+        _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
-        _keys(config['contracts'], set(MODULES) | HELPERS, 'activation contracts')
+        if self.routing_version == 2 and projection.accounting_version != 2:
+            raise ValueError('Typed routing requires native accounting version 2')
+        _keys(config['contracts'], set(MODULES) | HELPERS |
+              ({'v4_executor'} if self.routing_version == 2 else set()), 'activation contracts')
         self.contracts = {}
         for role, item in config['contracts'].items():
             _keys(item, {'address', 'code_hash'}, 'activation contract')
@@ -75,14 +83,21 @@ class ActivationConfig:
                 raise ValueError('Repeated or colliding dependency')
             self.dependencies[target] = _hash(item['code_hash'])
         self.sources = {}
+        self.route_kinds = {}
         for item in bounded(config['sources'], 64, 'source routes', 1):
-            _keys(item, {'pool_id', 'source_asset', 'route_id', 'asset_policy_id'}, 'source route')
+            _keys(item, {'pool_id', 'source_asset', 'route_id', 'asset_policy_id'} |
+                  ({'route_kind'} if self.routing_version == 2 else set()), 'source route')
             pool = _hash(item['pool_id'])
             source = ZERO if item['source_asset'] == ZERO else address(item['source_asset'])
             route = ZERO_HASH if item['route_id'] == ZERO_HASH else _hash(item['route_id'])
-            if (pool, source) in self.sources or source != ZERO and source not in self.tokens or source == ZERO and route != ZERO_HASH:
+            kind = item['route_kind'] if self.routing_version == 2 else (0 if route == ZERO_HASH else 1)
+            if type(kind) is not int or kind not in (0, 1, 2) or ((kind == 0) != (route == ZERO_HASH)):
+                raise ValueError('Invalid explicit route kind')
+            if ((pool, source) in self.sources or source != ZERO and source not in self.tokens or
+                    source == ZERO and route != ZERO_HASH and kind != 2):
                 raise ValueError('Ambiguous or unsupported source route')
             self.sources[(pool, source)] = (route, _hash(item['asset_policy_id']))
+            self.route_kinds[(pool, source)] = kind
         _keys(config['sequencer'], {'address', 'policy_id'}, 'sequencer')
         self.sequencer = dict(config['sequencer'])
         if self.sequencer['address'] == ZERO:
@@ -120,7 +135,7 @@ class ActivationConfig:
             return p._call(pins[role], signature, *args, block=block, words=count)
         for role, contract in self.contracts.items():
             p._code(contract.address, contract.code_hash, block)
-            if _address_word(read(role, 'access()')[0]) != pins['access']:
+            if role != 'v4_executor' and _address_word(read(role, 'access()')[0]) != pins['access']:
                 raise ProjectionError('Activation controller binding changed')
             if role in MODULES and _address_word(read('access', 'module(bytes32)', '0x'+keccak256(MODULES[role].encode()).hex())[0]) != contract.address:
                 raise ProjectionError('Activation module differs from sealed binding')
@@ -128,6 +143,8 @@ class ActivationConfig:
                     ('entry','registry()','pools'), ('entry','activationAssets()','activation_assets'),
                     ('activation_assets','registry()','pools'), ('vault','migrationBudget()','budget'),
                     ('budget','vault()','vault')]
+        if self.routing_version == 2:
+            bindings += [('entry', 'v4Executor()', 'v4_executor'), ('v4_executor', 'parent()', 'entry')]
         for role, method, expected in bindings:
             if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Activation helper binding changed')
         for target, digest in self.dependencies.items(): p._code(target, digest, block)

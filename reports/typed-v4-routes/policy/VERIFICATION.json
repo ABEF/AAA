@@ -1,0 +1,170 @@
+{
+  "scope": "Final governed loss policy and read-only helper extraction",
+  "result": {
+    "passed": 18,
+    "failed": 0,
+    "new": 12,
+    "affected_existing": 6
+  },
+  "tests": [
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "test": "testLocalEndToEndBudgetIncludesExitAndRedeployment()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "test": "testThreePercentBudgetCannotBeRelaxedByRequest()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testActivationAndGrowthUseGovernedContributionLimitWithVenueFloorRetained()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testAtomicMoveUsesSamePolicyAndPreservesStrongPoolChecks()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testDefaultsHardMaximumZeroAndGovernanceEvents()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testGovernanceCallbackCannotWidenActiveMaintenanceSnapshot()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testLaterContributionsUseSamePolicyWithoutBorrowingIncumbentIdle()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testLoweringPolicyDoesNotRewriteAnApprovedCustodyBudget()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testNormalCustodyApprovalCannotBeWeakenedAfterPolicyIncrease()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testOnlyGovernanceAndOperatingLifecycleCanChangeLimits()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testPackedContributionCapStaysFixedDespiteLaterGovernanceChange()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testRawEmergencyRetainsExplicitMinimaAndNoUSDBudget()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testRebalanceUsesCurrentBoundedPolicyAndPreservesShares()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "test": "testRetainedValueRoundsUpAndCannotExceedHardMaximum()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/MigrationExecutionBudget.t.sol:MigrationExecutionBudgetTest",
+      "test": "testReceiptIncludesOldAndNewDesignatedCompoundWithoutCountingRewardsBuybackOrDonations()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "test": "testNativeActivationGrowthAndCurrentValueAreBackedWithoutWrapper()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/NativeVaultFlows.t.sol:NativeVaultFlowsTest",
+      "test": "testNativeFeesFollowOwnerThroughGrowthAndRepeatedRebalances()",
+      "status": "Success"
+    },
+    {
+      "suite": "test/RebalanceBudget.t.sol:RebalanceBudgetTest",
+      "test": "testStackedCloseSwapMintLossRejectedThenExactThreePercentAccepted()",
+      "status": "Success"
+    }
+  ],
+  "source_bindings": {
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "53cc134a1b1bf60082fdb975b0423e728d11c7e94262c2e1edaf4386b3b97bd2",
+      "compiler_keccak256": "0x8eaf0bf46599f23d68b5d51c6fc3f7a55d575c15aa88559402f2edbb6f1b8832",
+      "matches": true
+    },
+    "src/ZZZVault.sol": {
+      "sha256": "190cd1a374f8ade1ad6b5585c8057b2cb9df9d9ef224c3228f4f16f218626fc3",
+      "compiler_keccak256": "0x379bb1e8a6f55dde50230634d0bee993b80c1442488cf96f184c7e20719a72ec",
+      "matches": true
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "de16a53238670ac21616ea3784feced8a932cc2a0cde7b5601c42e13a8985a55",
+      "compiler_keccak256": "0x80791f5f9e3aa14635d8921d457d30995a35355fde9bdc570f0280c834bb385e",
+      "matches": true
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "c4ab1d7dd3d4082e385eb5b86565a5a3e96413c822afdfaaa1acd6db826c2191",
+      "compiler_keccak256": "0x6a7635c1c45c98247079b7bb9c0859a3c065fb8c7e432efed1a15d49629588c7",
+      "matches": true
+    },
+    "test/GovernedExecutionLoss.t.sol": {
+      "sha256": "9787dc3cbca50f7aa14ca55ae7cb02b51809ec515d0aa55bfb80433a65e2df6e",
+      "compiler_keccak256": "0x7d311b95f5d62a13dd42e6e79dcf91dadd1047fa4248f94639e14891e4b571fe",
+      "matches": true
+    }
+  },
+  "sizes": {
+    "ZZZVault": {
+      "runtime": 24508,
+      "initcode": 48348,
+      "constructor_argument_bytes": 96,
+      "initcode_with_arguments": 48444,
+      "runtime_margin": 68,
+      "initcode_margin": 708
+    },
+    "ZZZMigrationBudget": {
+      "runtime": 21735,
+      "initcode": 22796,
+      "constructor_argument_bytes": 32,
+      "initcode_with_arguments": 22828,
+      "runtime_margin": 2841,
+      "initcode_margin": 26324
+    },
+    "ZZZMigration": {
+      "runtime": 24360,
+      "initcode": 33824,
+      "constructor_argument_bytes": 32,
+      "initcode_with_arguments": 33856,
+      "runtime_margin": 216,
+      "initcode_margin": 15296
+    },
+    "ZZZVaultCanonical": {
+      "runtime": 19990,
+      "initcode": 21407,
+      "constructor_argument_bytes": 96,
+      "initcode_with_arguments": 21503,
+      "runtime_margin": 4586,
+      "initcode_margin": 27649
+    }
+  },
+  "limits": [
+    "Deterministic venue, feeds and authority fixtures; not real provider or venue qualification",
+    "No unchanged broad suite rerun; earlier scoped evidence retains its original source scope",
+    "No service, chain, wallet, website or public transaction action",
+    "The initial12-case pre-extraction run had8passes and4fixture sequencing failures; fixtures corrected before this final18-case run"
+  ],
+  "command": "forge test --use solc0.8.26 --match-contract 'GovernedExecutionLossTest|RebalanceBudgetTest|MigrationExecutionBudgetTest|CustodyHandoffTest|NativeVaultFlowsTest' --match-test '^test(Defaults|OnlyGovernance|ActivationAnd|LaterContributions|PackedContribution|RetainedValue|RebalanceUses|AtomicMove|GovernanceCallback|NormalCustodyApproval|LoweringPolicy|RawEmergency|StackedClose|ReceiptIncludes|ThreePercentBudget|LocalEndToEnd|NativeActivationGrowth|NativeFeesFollowOwner)' --json (external out/cache)",
+  "raw_result_sha256": "7b55794be4c4150374560b0d293b8cc04d7746dc1e1385f37334ff35f7a93955"
+}

@@ -1,3 +1,11 @@
+**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
+undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+immediate governance may set each category up to a hard 10%. Existing stricter
+venue/caller minima remain. Pending normal custody approvals retain their original
+absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
+historical/default scope. Actual routes, services and independent audit remain open.
+
 # Activation inputs, routes and source provenance
 
 **Current target (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) replaces Pons. Earlier on-chain route observations below remain historical; qualify the complete selected-pool operation. Current conversion execution is single-hop v3; future v4 support must be implemented before sealing. The user retained the1% reward-conversion cap and requires a cheaper route.

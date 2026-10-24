@@ -1,0 +1,336 @@
+{
+  "generated_utc": "2026-10-24T19:41:10.156806+00:00",
+  "scopes": {
+    "helper": {
+      "passed": 12,
+      "reused": true,
+      "bound_sources": 86,
+      "mismatches": [],
+      "bindings_file": "helper-source-bindings-final.json",
+      "log": "helper-tests-final.log"
+    },
+    "entry-final": {
+      "passed": 3,
+      "reused": false,
+      "bound_sources": 135,
+      "mismatches": [],
+      "bindings_file": "entry-source-bindings-final.json",
+      "log": "entry-tests-final.log"
+    }
+  },
+  "distinct_new_passes": 15,
+  "full_fresh_regression_claimed": false,
+  "sizes": {
+    "ZZZV4RouteExecutor": {
+      "runtime_bytes": 11164,
+      "creation_bytes": 11322,
+      "runtime_margin": 13412,
+      "creation_margin_before_constructor_args": 37830,
+      "constructor_arg_bytes": 0,
+      "creation_bytes_with_args": 11322,
+      "creation_margin_with_args": 37830,
+      "compiler": {
+        "version": "0.8.26+commit.8a97fa7a"
+      },
+      "normal_profile": {
+        "remappings": [
+          "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+          "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/"
+        ],
+        "optimizer": {
+          "runs": 1,
+          "details": {
+            "peephole": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "deduplicate": true,
+            "cse": true,
+            "constantOptimizer": true,
+            "yul": false,
+            "simpleCounterForLoopUncheckedIncrement": true
+          }
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZV4RouteExecutor.sol": "ZZZV4RouteExecutor"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "source_mismatches": [],
+      "artifact_sha256": "9ed733a72a278c40b2978cd761c803cfd465773a6a62e41a2f90c6c108a686b6",
+      "method_identifiers": {
+        "NATIVE_ASSET_CODE_HASH()": "ae2793f7",
+        "ROUTE_DOMAIN()": "00edb3c5",
+        "addRoute((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": "6cda829c",
+        "execute(bytes32,uint256,uint256,uint256)": "6e0cc40b",
+        "parent()": "60f96a8f",
+        "route(bytes32)": "95bc81be",
+        "routeEnabled(bytes32)": "2e59691a",
+        "routeExists(bytes32)": "1ea6d003",
+        "setRouteEnabled(bytes32,bool)": "f15f48d4",
+        "unlockCallback(bytes)": "91dd7346",
+        "validate(bytes32)": "2e012698"
+      }
+    },
+    "ZZZActivationEntry": {
+      "runtime_bytes": 16343,
+      "creation_bytes": 28845,
+      "runtime_margin": 8233,
+      "creation_margin_before_constructor_args": 20307,
+      "constructor_arg_bytes": 96,
+      "creation_bytes_with_args": 28941,
+      "creation_margin_with_args": 20211,
+      "compiler": {
+        "version": "0.8.26+commit.8a97fa7a"
+      },
+      "normal_profile": {
+        "remappings": [
+          "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+          "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/",
+          "solmate/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/lib/solmate/"
+        ],
+        "optimizer": {
+          "runs": 1,
+          "details": {
+            "peephole": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "deduplicate": true,
+            "cse": true,
+            "constantOptimizer": true,
+            "yul": false,
+            "simpleCounterForLoopUncheckedIncrement": true
+          }
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZActivationEntry.sol": "ZZZActivationEntry"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "source_mismatches": [],
+      "artifact_sha256": "02ac40c2e85f7e9914ffa3b7926158d5a63c844ef9407d98280fa3f1d480c248"
+    },
+    "ZZZPoolRegistry": {
+      "runtime_bytes": 11283,
+      "creation_bytes": 47337,
+      "runtime_margin": 13293,
+      "creation_margin_before_constructor_args": 1815,
+      "constructor_arg_bytes": 32,
+      "creation_bytes_with_args": 47369,
+      "creation_margin_with_args": 1783,
+      "compiler": {
+        "version": "0.8.26+commit.8a97fa7a"
+      },
+      "normal_profile": {
+        "remappings": [
+          "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+          "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/",
+          "solmate/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/lib/solmate/"
+        ],
+        "optimizer": {
+          "runs": 1,
+          "details": {
+            "peephole": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "deduplicate": true,
+            "cse": true,
+            "constantOptimizer": true,
+            "yul": false,
+            "simpleCounterForLoopUncheckedIncrement": true
+          }
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZPoolRegistry.sol": "ZZZPoolRegistry"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "source_mismatches": [],
+      "artifact_sha256": "f060b7684a2de45214b6cdac8573c7222d00b7cedaf4b9dbad79045dae76a3f1"
+    },
+    "ZZZVault": {
+      "runtime_bytes": 24508,
+      "creation_bytes": 48348,
+      "runtime_margin": 68,
+      "creation_margin_before_constructor_args": 804,
+      "constructor_arg_bytes": 96,
+      "creation_bytes_with_args": 48444,
+      "creation_margin_with_args": 708,
+      "compiler": {
+        "version": "0.8.26+commit.8a97fa7a"
+      },
+      "normal_profile": {
+        "remappings": [
+          "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+          "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/",
+          "solmate/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/lib/solmate/"
+        ],
+        "optimizer": {
+          "runs": 1,
+          "details": {
+            "peephole": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "deduplicate": true,
+            "cse": true,
+            "constantOptimizer": true,
+            "yul": false,
+            "simpleCounterForLoopUncheckedIncrement": true
+          }
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVault.sol": "ZZZVault"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "source_mismatches": [],
+      "artifact_sha256": "bb1ebfc493aff9a987cb0d42d49d7d75bb6c2964272c1b73d0545e4cb17668fa"
+    },
+    "ZZZMigrationBudget": {
+      "runtime_bytes": 21735,
+      "creation_bytes": 22796,
+      "runtime_margin": 2841,
+      "creation_margin_before_constructor_args": 26356,
+      "constructor_arg_bytes": null,
+      "creation_bytes_with_args": null,
+      "creation_margin_with_args": null,
+      "compiler": {
+        "version": "0.8.26+commit.8a97fa7a"
+      },
+      "normal_profile": {
+        "remappings": [
+          "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+          "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/",
+          "solmate/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/lib/solmate/"
+        ],
+        "optimizer": {
+          "runs": 1,
+          "details": {
+            "peephole": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "deduplicate": true,
+            "cse": true,
+            "constantOptimizer": true,
+            "yul": false,
+            "simpleCounterForLoopUncheckedIncrement": true
+          }
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZMigrationBudget.sol": "ZZZMigrationBudget"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "source_mismatches": [],
+      "artifact_sha256": "215d3df41692311bc5b07174467dcd7ab3486223165be77079055040a10ce139"
+    },
+    "ZZZVaultCanonical": {
+      "runtime_bytes": 19990,
+      "creation_bytes": 21407,
+      "runtime_margin": 4586,
+      "creation_margin_before_constructor_args": 27745,
+      "constructor_arg_bytes": null,
+      "creation_bytes_with_args": null,
+      "creation_margin_with_args": null,
+      "compiler": {
+        "version": "0.8.26+commit.8a97fa7a"
+      },
+      "normal_profile": {
+        "remappings": [
+          "@openzeppelin/contracts/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@openzeppelin/contracts/",
+          "@uniswap/v4-core/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/",
+          "@uniswap/v4-periphery/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-periphery/",
+          "forge-std/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/lib/forge-std/src/",
+          "solmate/=C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/node_modules/@uniswap/v4-core/lib/solmate/"
+        ],
+        "optimizer": {
+          "runs": 1,
+          "details": {
+            "peephole": true,
+            "inliner": true,
+            "jumpdestRemover": true,
+            "orderLiterals": true,
+            "deduplicate": true,
+            "cse": true,
+            "constantOptimizer": true,
+            "yul": false,
+            "simpleCounterForLoopUncheckedIncrement": true
+          }
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "C:/Users/Ali/Desktop/2.x holas/Oto/zzz-protocol-v2-reviewed/zzz-protocol-v2/src/ZZZVaultCanonical.sol": "ZZZVaultCanonical"
+        },
+        "evmVersion": "cancun",
+        "libraries": {},
+        "viaIR": true
+      },
+      "source_mismatches": [],
+      "artifact_sha256": "e3a90f4b46159d47c0eb9b02d569ae9f2b5c22bc3b037e759e3370936ff8a051"
+    }
+  },
+  "normal_gate_environment_note": "Final normal compilation/size tables succeeded; Forge exits only afterward on unavailable global cache_dir for local signatures. Ordinary compiler/profile/24576 and49152-byte object limits were not relaxed. Constructor arguments recorded separately.",
+  "initial_scope_note": "The earlier Entry three-case pass retains its earlier scope. After compact Vault/Budget changes, only those three cases were rerun; unchanged helper12 were reused with86 exact current source bindings. Initial Entry comment-only change did not itself require rerun.",
+  "test_environment_note": "Actual installed Uniswap v4 PoolManager+StateView execute native/ERC20 conversions. Hostile core/token fixtures are explicit adversarial tests. Entry integration uses real Vault/Entry/Strategy/manager/NFT/ledgers with synthetic LP settlement/admission, prices and VRF; not Robinhood provider qualification.",
+  "tooling_note": "Initial test compile failed only because external harness omitted installed solmate remapping; fixed externally without source changes. Repository remappings already resolve installed solmate.",
+  "logs": {
+    "helper-size-initial.log": "7c251328f3790a7a8fa5c0af6b09deed1468fdd6a79fd702018785bdf85970ef",
+    "helper-tests-initial.log": "6e76e687b0bb16f5409fdba6bbf0887ac61197492a22d451c9620c7a12af8723",
+    "helper-tests-final.log": "fa301199e7a372c44678177c7cd00e5245daf1e78ef9d4c188207d1b300dae38",
+    "embedded-size.log": "6c88f9a23aa2d06905febe5fdb511509da01cde20e4135626c1e85e52def9dfa",
+    "entry-tests.log": "4e5d144975f871c9beee3f4598db77f71ae6ec5866fa5b1224a094a72ae7c2b0",
+    "entry-tests-final.log": "117ac1b278eb238f868d501245c55a0d40be6beb3a65d96164f17f9197edc7c3",
+    "embedded-size-final.log": "a37cc814560f5622748233aaf5b1be4ef20e0d9e6996fa6c869e9a570062bdb2"
+  },
+  "owned_sources": {
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\src\\ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\test\\TypedV4Executor.t.sol": "bcef3eb49f9b7c3c9bb67f967ed6e10f1e95344d10dbe59e1f4e7f1c37084cb1",
+    "C:\\Users\\Ali\\Desktop\\2.x holas\\Oto\\zzz-protocol-v2-reviewed\\zzz-protocol-v2\\test\\TypedV4Entry.t.sol": "139b89dad34b1b02bd4f3869ddb28664e245ff87a604ac40d9e2fa14a22a729c"
+  },
+  "boundaries": [
+    "Parent facades retain governance/lifecycle/economic caps; executor has no independent oracle or management role.",
+    "Real cheaper routes, independent prices, assets, services, gas and external qualification remain open.",
+    "No public transactions/deployments, signing, website/services or existing Anvil state were changed."
+  ]
+}

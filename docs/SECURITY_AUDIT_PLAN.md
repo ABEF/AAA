@@ -1,5 +1,8 @@
 # Security audit plan
 
+**Current execution policy (2026-10-24):** governance may configure contribution, conversion and maintenance loss limits within hard10% ceilings; defaults remain1%/1%/3%, with gas separate. Captured operation policy, original approved custody floors, stronger caller/venue minima and backing remain. [Exact controls and risks](EXECUTION_LOSS_POLICY.md), [typed v4 routes](TYPED_V4_ROUTES.md). Earlier fixed-limit descriptions are default/historical scope. The candidate remains undeployed and production NOT APPROVED.
+
+
 ## Selected-pool and broader native-design review - 2026-10-24
 
 The [internal audit](../reports/daily-security-20261024/REVIEW.md) fixes fee-aware

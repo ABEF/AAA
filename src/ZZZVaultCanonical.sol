@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZFees, IZZZMigration} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZFees, IZZZMigration, IZZZNFT} from "./interfaces/IZZZ.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
@@ -58,9 +58,35 @@ contract ZZZVaultCanonical {
     }
     receive() external payable {}
     modifier onlyVault() { if (msg.sender != address(vault)) revert Unauthorized(); _; }
+    modifier onlyBudget() {
+        if (msg.sender != address(vault.migrationBudget())) revert Unauthorized();
+        _;
+    }
     modifier onlyHandoff() {
         if (msg.sender != IZZZCanonicalAccess(address(access)).canonicalHandoff()) revert Unauthorized();
         _;
+    }
+    /// @notice Read-only custody checks delegated by this fixed Vault's Budget.
+    /// These views cannot write ownership, approve tokens or move backing.
+    function validateOwner(uint256 id,address caller,bool minted,bool activation)
+        external view onlyBudget returns(address entry) {
+        if (block.chainid != vault.canonicalChainId() || !minted) revert Unauthorized();
+        if (activation && (vault.nftBucket(id) != 0 || !IZZZNFT(access.module(Ids.NFT)).traitsReady(id))) revert InvalidState();
+        if (IZZZNFT(access.module(Ids.NFT)).ownerOf(id) == caller) return address(0);
+        entry = IZZZPools(access.module(Ids.POOLS)).activationEntry();
+        if (entry == address(0) || caller != entry) revert Unauthorized();
+    }
+    function validateContribution(uint256 id,uint256 bucket,uint256 inputUSD,uint256 inputTotal,
+        uint128 minimumLiquidity,bool activation) external view onlyBudget returns(address,address,uint16) {
+        Position memory p = vault.group(bucket);
+        if (p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != address(vault) ||
+            !IZZZFees(access.module(Ids.FEES)).remoteSettled(bucket) ||
+            IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
+        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+        if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
+            (activation && inputUSD < 100e18) || (!activation && inputUSD < 5e18) || inputUSD < c.minDepositUSD ||
+            vault.contributionUSD(id) + inputUSD > c.maxPositionUSD) revert InvalidAmount();
+        return(c.key.currency0,c.key.currency1,c.maxSlippageBps);
     }
     function mintIdentity(uint256 ordinal) external view returns (uint256) {
         return uint256(keccak256(abi.encode(originChain, originVault, ordinal)));

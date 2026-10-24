@@ -1,5 +1,8 @@
 # Verification evidence
 
+Current scoped candidate: [typed v4 conversion and governed loss policy](typed-v4-routes/VERIFICATION.md), [internal review](typed-v4-routes/REVIEW.md). Defaults1%/1%/3%, governance maximum10%; local evidence is not release approval. Earlier reports retain their source scope.
+
+
 The [local pair-conversion review](pair-composition/VERIFICATION.md) records the
 current typed conversion, historical reserve accounting, backend ABI updates and
 normal size gates. Its incremental source scope and remaining qualification are

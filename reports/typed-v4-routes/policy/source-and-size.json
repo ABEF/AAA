@@ -1,0 +1,63 @@
+{
+  "scope": "Final governed contribution/maintenance/custody policy and read-only extraction; normal size limits, no public or service action",
+  "source_bindings": {
+    "src/ZZZVault.sol": {
+      "sha256": "190cd1a374f8ade1ad6b5585c8057b2cb9df9d9ef224c3228f4f16f218626fc3",
+      "compiler_keccak256": "0x379bb1e8a6f55dde50230634d0bee993b80c1442488cf96f184c7e20719a72ec",
+      "matches": true
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "sha256": "53cc134a1b1bf60082fdb975b0423e728d11c7e94262c2e1edaf4386b3b97bd2",
+      "compiler_keccak256": "0x8eaf0bf46599f23d68b5d51c6fc3f7a55d575c15aa88559402f2edbb6f1b8832",
+      "matches": true
+    },
+    "src/ZZZMigration.sol": {
+      "sha256": "de16a53238670ac21616ea3784feced8a932cc2a0cde7b5601c42e13a8985a55",
+      "compiler_keccak256": "0x80791f5f9e3aa14635d8921d457d30995a35355fde9bdc570f0280c834bb385e",
+      "matches": true
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "sha256": "c4ab1d7dd3d4082e385eb5b86565a5a3e96413c822afdfaaa1acd6db826c2191",
+      "compiler_keccak256": "0x6a7635c1c45c98247079b7bb9c0859a3c065fb8c7e432efed1a15d49629588c7",
+      "matches": true
+    }
+  },
+  "sizes": {
+    "ZZZVault": {
+      "runtime": 24508,
+      "initcode": 48348,
+      "constructor_argument_bytes": 96,
+      "initcode_with_arguments": 48444,
+      "runtime_margin": 68,
+      "initcode_margin": 708
+    },
+    "ZZZMigrationBudget": {
+      "runtime": 21735,
+      "initcode": 22796,
+      "constructor_argument_bytes": 32,
+      "initcode_with_arguments": 22828,
+      "runtime_margin": 2841,
+      "initcode_margin": 26324
+    },
+    "ZZZMigration": {
+      "runtime": 24360,
+      "initcode": 33824,
+      "constructor_argument_bytes": 32,
+      "initcode_with_arguments": 33856,
+      "runtime_margin": 216,
+      "initcode_margin": 15296
+    },
+    "ZZZVaultCanonical": {
+      "runtime": 19990,
+      "initcode": 21407,
+      "constructor_argument_bytes": 96,
+      "initcode_with_arguments": 21503,
+      "runtime_margin": 4586,
+      "initcode_margin": 27649
+    }
+  },
+  "normal_runtime_limit": 24576,
+  "normal_initcode_limit": 49152,
+  "compile_note": "Normal compiler and size table completed; forge later reported known global signature cache_dir permission failure.",
+  "test_source_sha256": "9787dc3cbca50f7aa14ca55ae7cb02b51809ec515d0aa55bfb80433a65e2df6e"
+}

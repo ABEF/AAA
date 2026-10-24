@@ -1,3 +1,11 @@
+**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
+undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+immediate governance may set each category up to a hard 10%. Existing stricter
+venue/caller minima remain. Pending normal custody approvals retain their original
+absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
+historical/default scope. Actual routes, services and independent audit remain open.
+
 ## Native V2 implementation candidate - 2026-10-24
 
 Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.

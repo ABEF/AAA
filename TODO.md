@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**16 To do | 28 In progress | 15 Implemented locally**
+**16 To do | 28 In progress | 17 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -32,13 +32,13 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-eth-settlement"></a>
 
-- [ ] **[Settle holder LP rewards in ETH](docs/LP_ETH_SETTLEMENT.md)** - In progress. LP holder conversion to native ETH is implemented in the local candidate with the user-approved 1% loss cap and separate gas. Includes fixed converter binding, per-NFT native credits, bounded keeper scheduling, history reconciliation and ETH-default claims. Scoped verification covers 142 distinct affected Solidity cases and 33 local journey assertions; real routes/feeds, operating latency/gas qualification and independent release review remain open.
+- [ ] **[Settle holder LP rewards in ETH](docs/LP_ETH_SETTLEMENT.md)** - In progress. LP holder conversion to native ETH is implemented in the local candidate with the user-approved 1% loss cap and separate gas. Includes fixed converter binding, per-NFT native credits, bounded keeper scheduling, history reconciliation and ETH-default claims. Scoped verification covers 142 distinct affected Solidity cases and 33 local journey assertions; real routes/feeds, operating latency/gas qualification and independent release review remain open. Current typed v4 native conversion is implemented; the conversion cap defaults to1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Preserve the fixed 80/10/5/5 allocation. Convert only the already-earned individual and collective holder balances; never spend principal, compounding/buyback reserves, quarantines or another NFT backing. Preserve each NFT entitlement before conversion, not current shares/membership at conversion time.
-  - User approved 1% maximum LP conversion loss with gas separate on 2026-10-20. The candidate unwraps reviewed WETH exactly or uses pinned routes, fresh independent prices, exact deltas/approvals, caller minimum and deadline. Qualify actual target-chain routes, token/wrapper behavior and complete gas costs.
+  - User approved a default 1% LP conversion loss (governance maximum 10%) with gas separate on 2026-10-20. The candidate unwraps reviewed WETH exactly or uses pinned routes, fresh independent prices, exact deltas/approvals, caller minimum and deadline. Qualify actual target-chain routes, token/wrapper behavior and complete gas costs.
   - Bind the dedicated converter before sealing; the implementation supports bounded keeper execution, ETH ledger/current-owner claims and reentrancy/lifecycle guards. Qualify and record actual deployment bindings; core sealing alone does not prove conversion readiness.
   - Define ETH-only default claim behavior and explicit source-currency outage recovery. Failed conversion must leave original backed entitlements intact; never display an unconverted token balance as ETH. Preserve dust/fractions, transfer rights, complete handoff/abort/backing and historical claims.
   - Read API, unsigned claims and today-price earnings replay include LP conversion credits without counting them as new income or payout. Qualify full ingestion/lineage, real conversion receipts and stalled/restarted keepers; measure worst-case conversion waiting time across the collection and minimum economic batches.
@@ -46,12 +46,13 @@ Custody, ownership and reward accounting.
   - Local ETH-only default claims, pending source-currency display, exact native backing/abort and current-owner same-chain handoff are verified in the scoped report. Qualify complete real-market conversion and operating latency before closing this task.
   - User reconfirmed on 2026-10-24: retain 1% maximum ZZZ LP-reward conversion loss, gas separate; require a cheaper qualified route than the selected pool's approximately 1.101% observed fee. Unsupported conversion stays unavailable with source balances backed; do not raise the cap or invent a route.
   - Native V2 venue ETH fees now enter individual/collective indices directly, without conversion. Already converted ETH credits coexist without new-income double counting. ZZZ still requires a cheaper qualified conversion route; the 1% limit and separate gas are unchanged.
+  - [Current typed v4 and governed limits](docs/TYPED_V4_ROUTES.md) preserve earned per-NFT source/native entitlements; explicit worker profiles and current-setting observations are required. Actual route/feed/keeper qualification remains open.
 
   </details>
 
 <a id="task-royalty-eth-settlement"></a>
 
-- [ ] **[Qualify ETH settlement for marketplace royalties](docs/ROYALTY_SETTLEMENT.md)** - In progress. Bounded batch ETH conversion and optional-currency activation failure isolation are implemented, with a 1% execution-loss cap and gas separate. An opt-in keeper job preserves per-NFT entitlements and existing transaction recovery. Qualify exact Robinhood wrapper/routes/feeds, marketplace receipts, UI/history integration and operating behavior.
+- [ ] **[Qualify ETH settlement for marketplace royalties](docs/ROYALTY_SETTLEMENT.md)** - In progress. Bounded batch ETH conversion and optional-currency activation failure isolation are implemented, with a 1% execution-loss cap and gas separate. An opt-in keeper job preserves per-NFT entitlements and existing transaction recovery. Qualify exact Robinhood wrapper/routes/feeds, marketplace receipts, UI/history integration and operating behavior. Current typed v4 native conversion is implemented; the conversion cap defaults to1% and governance may set up to 10%, gas separate. Historical verification retains its original fixed-cap source scope.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -63,6 +64,7 @@ Custody, ownership and reward accounting.
   - Review [scoped tests and internal findings](reports/royalty-conversion/VERIFICATION.md). Rehearse automatic dry/live keeper conversion, gas economics, failed currency/route recovery, mixed claims and successor configuration on the target network; do not infer production readiness from local mocks.
   - Implemented [backend conversion and currency-eligibility reporting](docs/ROYALTY_REPORTING.md), verified across owners and complete pinned same-chain predecessors. Integrate the website and qualify live ingestion/availability recovery. RoyaltyConverted is not Claimed or new earnings; only actual payouts increase lifetime paid totals. Independent audit/remediation remains required.
   - This converter applies only to royalties. It neither converts the LP ledger nor guarantees native ETH for all claims; direct source-currency claims remain supported. See [LP ETH settlement](TODO.md#task-lp-eth-settlement).
+  - [Current typed v4 and governed limits](docs/TYPED_V4_ROUTES.md) preserve earned per-NFT source/native entitlements; explicit worker profiles and current-setting observations are required. Actual route/feed/keeper qualification remains open.
 
   </details>
 
@@ -152,17 +154,17 @@ Custody, ownership and reward accounting.
 
 <a id="task-post-seal-configuration"></a>
 
-- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Bounded future VRF gas/confirmation tuning and the buyback operating ceiling are implemented with immediate governance, lifecycle/reentry guards and events. Fixed provider settings, pending draws, earned rights and backing remain protected. Actual service qualification and typed v4 conversion support remain open before sealing.
+- [ ] **[Keep operational settings configurable after sealing](docs/POST_SEAL_POLICY.md#configuration-boundary)** - In progress. Bounded future VRF tuning, buyback ceilings, typed v3/v4 conversion routes and governance-adjustable loss limits are implemented locally. Defaults are 1% / 1% / 3%, hard maximum 10%, immediate authority, captured in-progress/approved minima and separate gas. Actual route/service/native inventory qualification and independent review remain open before sealing.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Inventory every fixed setting and setter. Preserve supported asset/route/feed/pool/role/range changes after sealing, with exact authorization, events, bounds, dependency checks, pending-operation handling and canonical locks; no governance waiting period.
   - Implemented NFT.setRandomnessRequestSettings(uint16,uint32) affects only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/lane, subscription and payment mode remain fixed; pending request provenance, ordered exact-quota draws and immutable results persist. It cannot repair a past callback, retry, reroll or select traits. Independently qualify actual provider limits and operator recovery.
-  - Implemented Buyback.setOperatingTradeUSD(uint256) selects zero through immutable maxTradeUSD, defaulting to that hard maximum. Zero stops execution before oracle/reserve calls; both setters allow ordinary pause and reject preparation/canonical locks/reentry. Resize/remove keeper tasks after lowering/stopping. No allocation, reserve or execution-loss cap is relaxed.
-  - Implement and qualify typed v4 conversion routing before sealing if future v4 markets must be usable. Current Entry and LP/royalty converters are single-hop v3 only and fixed bindings cannot gain a new executor from a route record.
+  - Implemented Buyback.setOperatingTradeUSD(uint256) selects zero through immutable maxTradeUSD, defaulting to that hard maximum. Zero stops execution before oracle/reserve calls; both setters allow ordinary pause and reject preparation/canonical locks/reentry. Resize/remove keeper tasks after lowering/stopping. Allocation and reserves stay fixed; the separately approved governed execution policy is described below.
   - Keep ownership, revealed rarity/artwork, accrued balances, backing and allocation guarantees protected. No reset, deletion, arbitrary calls/sweep or holder redemption. New compatible code uses reviewed handoff, not silent reinterpretation of old state.
-  - [Scoped verification and internal review](reports/post-seal-controls/VERIFICATION.md) cover the two setters, pending continuity, lifecycle/callback boundaries, current-setting inventory checks and compatible current/historical event decoding. Operator manual, features, roadmap and memories are updated. Source-local evidence is not actual VRF/route/service qualification or independent approval; typed v4 support remains unfinished.
+  - [Typed v4 routes](docs/TYPED_V4_ROUTES.md) are implemented through immutable fixed-parent single-hop helpers with exact native/ERC20 settlement and explicit preparation/keeper profiles. Actual routes, feeds and providers still require qualification; no arbitrary hook/router/recipient/sweep.
+  - [Governed execution-loss policy](docs/EXECUTION_LOSS_POLICY.md): Budget setLossLimits(contribution,maintenance) and each converter setConversionLossBps select 0..1000 bps. Defaults 100/100/300. Captured operation policies and original custody approval floors persist; raw emergency remains separate. Verify current settings and reconcile pending reviews; no cumulative cap is added.
 
   </details>
 
@@ -190,7 +192,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-nft-lifecycle"></a>
 
-- [x] **[Minting, activation & NFT ownership](src/ZZZVault.sol)** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with at least 99% deployed as LP. Rights follow the NFT.
+- [x] **[Minting, activation & NFT ownership](src/ZZZVault.sol)** - Implemented. 1,000-NFT cap, 0.05 ETH mint and $100 gross-value activation with a governed deployed-LP floor (99% by default, maximum 10% execution loss). Rights follow the NFT.
 
 <a id="task-reward-ledgers"></a>
 
@@ -207,6 +209,28 @@ Custody, ownership and reward accounting.
 
   </details>
 
+<a id="task-typed-v4-conversion"></a>
+
+- [x] **[Typed v4 contribution and reward-conversion routes](docs/TYPED_V4_ROUTES.md)** - Implemented. Parent-bound static hookless single-hop conversion is implemented for Entry and earned LP/royalty balances, with actual native settlement, exact prefunds/callback guards and explicit backend/keeper profiles. Real market, feed and operating qualification remain under the existing input/service tasks.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - [Scoped evidence](reports/typed-v4-routes/VERIFICATION.md) separates actual installed-core conversion and real Vault/ledger flows from LP/feed/VRF/provider substitutes. No arbitrary executor, hooks, sweep, public signing or live route approval.
+
+  </details>
+
+<a id="task-governed-loss-limits"></a>
+
+- [x] **[Governance-adjustable execution-loss ceilings](docs/EXECUTION_LOSS_POLICY.md)** - Implemented. All three categories are configurable after sealing by immediate governance, up to a hard 10%. Defaults stay 1% contribution, 1% conversion and 3% maintenance. Captured policy, original pending custody floors, independent caller/venue guards and separate gas remain.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - Budget.setLossLimits sets both contribution/maintenance values; each converter.setConversionLossBps is separate. Values are 0-1000 bps, with events, authorization/lifecycle guards and focused callback/floor/approval tests. Stronger venue/caller minima can still block execution.
+
+  </details>
+
 
 ## Backend
 
@@ -214,18 +238,19 @@ The data and services behind the app.
 
 <a id="task-activation-quotes"></a>
 
-- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot.
+- [ ] **[Complete activation & top-up quotes](docs/ACTIVATION_PREPARATION.md)** - In progress. Full Entry activation/top-up preparation is implemented and locally verified: original-source-to-LP simulation, 1% marginal-deployment floor, exact unsigned calldata and gas separate. Actual production routes, providers and fee semantics still need qualification. Confirmed range and rebalance eligibility/cooldown warnings are included; out-of-range entry remains allowed under normal execution guards. Range-update and price-trigger causes are now distinguished at the confirmed snapshot. Explicit routing version2 supports typed native/ERC20 v4 and reads the current governed contribution cap (1% default, 10% hard maximum). Legacy profiles keep fixed semantics; no fallback.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - Implemented: typed owner request, exact source admission/route/feed/runtime/module pins, one confirmed canonical hash, two full Entry simulations, contract-budget/share/event/LP reconciliation and tighter final conversion/liquidity minima. Missing allowance produces only an exact approval/reset draft and requires re-preparation after confirmation; no state overrides, signer or broadcast.
-  - Qualify actual ETH/ZZZ/USDG/USDC original-source-to-selected hookless ETH/ZZZ paths and reviewed feeds at $100 gross value, with at least 99% new marginal LP and gas separate. Current local fixtures and trace/budget probe do not constitute a complete live-route rehearsal. Reject or revert when the limit cannot be met; reverted transactions can still spend gas.
+  - Qualify actual ETH/ZZZ/USDG/USDC original-source-to-selected hookless ETH/ZZZ paths and reviewed feeds at $100 gross value, with the current governed marginal-LP floor (99% by default) and gas separate. Current local fixtures and trace/budget probe do not constitute a complete live-route rehearsal. Reject or revert when the limit cannot be met; reverted transactions can still spend gas.
   - Verify intended RPC providers support canonical-hash callTracer with logs and complete gas estimation. Approve network fee accounting (including every applicable data/L1 component), source/proxy/storage pins and actual gas/latency bounds. No latest/state-override fallback on unsupported/stale/future/reorg responses.
   - Integrate approval confirmation/requote and freshly validated wallet signing/receipts under the frontend task. Display NFT.currentLPValue at the confirmed block separately from marginal new LP and claimable LP/royalty balances; unavailable current value must stay unavailable. Local HTTP preparation is loopback-only; hosting remains under hosted services.
   - Qualify range/timing output against real StateView ticks and current physical LP IDs. Show cooldown end or eligible-now/waiting state; unknown/stale keeper next-check and execution times must remain unavailable. Reprepare after LP/range/policy changes; Entry calldata has economic minima/deadline, not an LP-version lock. See [dynamic liquidity](docs/DYNAMIC_LIQUIDITY.md).
   - Implemented request-wide monotonic/expiry/RPC budgets and supervised HTTP workers; [scoped remediation](reports/api-work-limits/VERIFICATION.md) addresses AUD18-03. Qualify actual Linux/RPC/trace workloads and ingress limits under [host-services](TODO.md#task-host-services); keep final canonicality and on-chain deadlines.
   - Preparation now checks the $5 top-up / $100 activation floor and any higher pool minimum before approvals or traces. [Focused evidence](reports/topup-and-reward-review/VERIFICATION.md) covers exact/below limits and units. Actual route/feed/fee qualification remains open.
+  - [Typed v4 preparation](docs/TYPED_V4_ROUTES.md) verifies the helper/parent and 14-word domain-bound policy, exact child calldata/value/output and current cap against the packed uint32 Budget trace; actual market/trace/network qualification remains open.
 
   </details>
 
@@ -918,4 +943,4 @@ A separate phase. Disabled at initial launch.
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `ea8e370c330b2824cd14feaadf327ea9cdfd7fcdba867df48da30599303c694d`.
+Snapshot SHA-256: `8fd2b6d224a55bbaf1e944d9bd941735beb3553e3d157812782076aa55003ff8`.

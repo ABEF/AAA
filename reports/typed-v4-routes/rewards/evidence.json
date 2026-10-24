@@ -1,0 +1,927 @@
+{
+  "recorded_at": "2026-10-24T19:21:14.715094+00:00",
+  "scope": "Typed v4 LP/royalty conversion and bounded current conversion policy",
+  "solidity": {
+    "solidity-current.json": [
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testCallbacksCannotPauseOrExposePartialBalances()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1784462
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testCanonicalAbortReturnsETHAndSourceBacking()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 12873928
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testCanonicalNativeBackingImportClaimsAndPrefunds()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 12821597
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testEarnedOnlyConservationAndNoNewcomerRedistribution()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1279514
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testExactUnwrapWithoutPriceAndFailureRecovery()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 892259
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testFuzzOutputAndSourceFractionsConserved(uint96,uint96)",
+        "status": "Success",
+        "kind": {
+          "Fuzz": {
+            "first_case": {
+              "calldata": "0xa42a1470000000000000000000000000000000000000000000000000000000000000f4e90000000000000000000000000000000000000000000260ad5cd93b6dd9e376c3",
+              "gas": 1179180,
+              "stipend": 21476
+            },
+            "runs": 1001,
+            "mean_gas": 1149764,
+            "median_gas": 1157704,
+            "failed_corpus_replays": 0
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testInvalidBatchDeadlineAndNativeInput()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 787174
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testMaximumBatchConservesOutputWithinGasBudget()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 11520476
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testNativeRecipientRevertRestoresLiabilityAndClaimsIgnorePause()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1175643
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testOnePercentBoundaryAndAtomicRollback()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1449980
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testRolesLifecycleAndOriginalBinding()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 326983
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testSourceRecoveryDoesNotPayAgain()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1248006
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testStaleOracleAndRouteDisableLeaveBalances()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 928277
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testStrongerMinimumAndLyingRouterRevert()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1396969
+          }
+        }
+      },
+      {
+        "suite": "test/LPRewardConversion.t.sol:LPRewardConversionTest",
+        "test": "testTransferBeforeAndAfterConversionAndShareGrowth()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1079152
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testBadTokenActivationRecoveryExcludesOlderReceipts()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1204231
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testBatchConvertsOnlyEarnedBalancesAndKeepsNativeEntitlement()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1125416
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testBoundedBatchAndFullNativeAllocation()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 8285907
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testCallbackPauseRollsBackConversion()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 769148
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testCallbackReentryCannotClaimOrDuplicateConversion()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 904096
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testCanonicalExportFlattensRecoveryBaseline()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 850458
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testConvertedAndDeferredRightsSurviveCanonicalImport()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 15110574
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testDeadlineRoleBindingAndDuplicateGuards()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 558252
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testDisabledRouteAndConverterStopWithoutDependencyReads()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 372823
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testExactUnwrapNoSwapOrOracle()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 521979
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testFuzzBatchConservation(uint96)",
+        "status": "Success",
+        "kind": {
+          "Fuzz": {
+            "first_case": {
+              "calldata": "0xa446ff4800000000000000000000000000000000000000000000000000000000000049da",
+              "gas": 748502,
+              "stipend": 21216
+            },
+            "runs": 1000,
+            "mean_gas": 779422,
+            "median_gas": 806511,
+            "failed_corpus_replays": 0
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testGasBurningOptionalTokenCannotBlockActivation()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 479856
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testLossOverOnePercentRollsBackEverythingAndRetryWorks()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1272100
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testNoOldEligibleMembersRecoveryQuarantinesReceipts()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 6704384
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testPartialBatchDoesNotConvertOtherNFTOrQuarantinedBalance()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 822409
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testPausePreparationAndCanonicalStopConversionsButNotNativeClaims()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 337049
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testReadOnlyCallbacksCannotObserveIntermediateClaimableBalances()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 949732
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testRepeatedOutagesJoinAtDifferentBaselines()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 871847
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testStaleOracleRejectsWithoutConsumingRights()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 454830
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testTransferBeforeAndAfterConversionPreservesRights()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 795284
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testUserMinimumCannotBeRelaxedAndRouterReturnIsMeasured()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1196387
+          }
+        }
+      },
+      {
+        "suite": "test/RoyaltyConversion.t.sol:RoyaltyConversionTest",
+        "test": "testWrapperFailureDoesNotBlockActivationOrNativeClaims()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1114395
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testActualV4LPConversionPreservesIndividualCollectiveAndExistingETH()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1382398
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testActualV4RoyaltyConversionPreservesNFTWeightsAndEveryPrefund()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1184073
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testChangedCapEnforcesCurrentCeilFloorAndStillHonorsStrongerMinimum()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 2726089
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testConversionLossPolicyAuthorityPauseAndCanonicalBoundaries()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 117966
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testConversionLossPolicyDefaultsBoundsAndImmediateEvents()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 79445
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testNativeOnlyConverterRejectsV3AndUnexpectedETH()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 424023
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testOnePercentRoundedUpFloorCannotBeWeakenedByCaller()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1409902
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testStrongerMinimumAndStalePricesRevertWithAllRightsBacked()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1009127
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testV4DoesNotRequireAnAvailableWrapperOrItsFeed()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 7312566
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testV4RoutesRejectWrongCurrencyAndGovernanceLifecycleChanges()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1240911
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testZeroLossPolicyRequiresFullReferenceValue()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1452618
+          }
+        }
+      }
+    ],
+    "solidity-callback-current.json": [
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testActualV4LPConversionPreservesIndividualCollectiveAndExistingETH()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1382420
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testActualV4RoyaltyConversionPreservesNFTWeightsAndEveryPrefund()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1184095
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testAuthorizedGovernanceCallbackCannotChangeCapDuringNativePayout()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 6617293
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testChangedCapEnforcesCurrentCeilFloorAndStillHonorsStrongerMinimum()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 2726089
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testConversionLossPolicyAuthorityPauseAndCanonicalBoundaries()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 117966
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testConversionLossPolicyDefaultsBoundsAndImmediateEvents()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 79467
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testLegacyV3RouteUsesCurrentCapAndExactUnwrapWhilePreservingABI()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 9874883
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testNativeOnlyConverterRejectsV3AndUnexpectedETH()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 424045
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testOnePercentRoundedUpFloorCannotBeWeakenedByCaller()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1409924
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testStrongerMinimumAndStalePricesRevertWithAllRightsBacked()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1009149
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testV4DoesNotRequireAnAvailableWrapperOrItsFeed()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 7315321
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testV4RoutesRejectWrongCurrencyAndGovernanceLifecycleChanges()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1240928
+          }
+        }
+      },
+      {
+        "suite": "test/TypedV4Rewards.t.sol:TypedV4RewardsTest",
+        "test": "testZeroLossPolicyRequiresFullReferenceValue()",
+        "status": "Success",
+        "kind": {
+          "Unit": {
+            "gas": 1452640
+          }
+        }
+      }
+    ]
+  },
+  "python": {
+    "distinct_passes": 48,
+    "new_keeper_cases": 12,
+    "new_reporting_cases": 6,
+    "existing_royalty_keeper_cases": 11,
+    "existing_lp_keeper_cases": 7,
+    "existing_reporting_cases": 12,
+    "records": [
+      "python-configurable-current.txt",
+      "python-reporting-current.txt"
+    ],
+    "note": "The first record has 44 passes and 4 initial reporting expectation/profile failures. Only the 18 reporting cases were rerun after fixing the explicit v2 pin requirement and unavailable expectations; all18 pass. Thirty keeper passes retain the unchanged final keeper source."
+  },
+  "behavior": {
+    "v4_output": "native ETH directly; no wrapper dependency",
+    "ledger_changes": false,
+    "default_conversion_loss_bps": 100,
+    "hard_maximum_conversion_loss_bps": 1000,
+    "policy": "Immediate existing governance, operating and nonReentrant guards, zero is a strict 100% oracle floor, stronger caller minimum retained, gas separate",
+    "keeper_profiles": [
+      "v3_wrapper (historical fixed 100)",
+      "v3_wrapper_configurable",
+      "v4_native"
+    ],
+    "reporting": "royalty_reporting.schema2 with nonnull pinned converter; schema1 remains historical fixed100; no missing-getter fallback"
+  },
+  "limits": [
+    "Synthetic token/feed/access/NFT/share fixtures; actual Uniswap v4 core and StateView locally.",
+    "No Robinhood provider, venue, feed, wrapper proxy, marketplace, gas or service qualification.",
+    "No public transactions, deployments, credentials, signing changes, Anvil resets, services or website edits.",
+    "Production not approved. Existing external routes/services and independent audit remain open."
+  ],
+  "source_sha256": {
+    "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZRewards.sol": "18a02fc74dde2c6d878123de69ca17054eeeb8ee3adabb71ae1ece704dd75f37",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "keeper/royalties.py": "2d28ffc9be3720495fca9c3bffa9dda1d9e8a70b0febc8859613fb3b38e7a91b",
+    "frontend_api/royalty_reporting.py": "04d025faa99c700bc878c7c61af036a2d2ac19a5b21b04d663c88c1b5041d317",
+    "test/TypedV4Rewards.t.sol": "bd27fdec412ad9edc3cbb283869978ba083a18dfb42b3230d786e68f5bf156a2",
+    "test/RoyaltyConversion.t.sol": "8fb3535373ff071a940e34d2688e96ed2d9dbb332436fb2be01450f24f92e572",
+    "test/LPRewardConversion.t.sol": "0f1d6b192b9ab1ddc4fb3085fd180fed5ace144c9460dd455bfd29ff47fc0fa0",
+    "tests_python/test_typed_v4_conversion_keeper.py": "e677005850aa9dac50336870d22321dfca3ded48a5db6269640e49c3bc14461c",
+    "tests_python/test_conversion_limit_reporting.py": "2aa932bdfbc4cad0cd578798bccf4a13036ef798addfd5fe97440377012c23ae",
+    "tests_python/test_royalty_keeper.py": "4f18a1be9bf7262f51d915744bf3d0db9ab17f853a9cf906cbaaeec7a3df3c5b",
+    "tests_python/test_lp_conversion.py": "80347c4777751fc1161aa136dde2d7fe9a02c1cfc9dc7be8f4aaee8e83f79ec2",
+    "tests_python/test_royalty_reporting.py": "e62e9291c68c4d6ae25f940a29adad99bd48d518d8c2cbb4f0bd6dbd64e462d2"
+  },
+  "objects": {
+    "ZZZRoyaltyConverter": {
+      "runtime_bytes": 16952,
+      "initcode_bytes": 29301,
+      "method_identifiers": {
+        "MAX_LOSS_BPS()": "c187241c",
+        "access()": "71907f17",
+        "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": "45b22448",
+        "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": "b0e22c52",
+        "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": "effe93de",
+        "conversionLossBps()": "1d41ead8",
+        "convert(address,uint256,bytes32,uint256,uint256)": "7038abfa",
+        "enabled()": "238dafe0",
+        "ledger()": "56397c35",
+        "route(bytes32)": "95bc81be",
+        "routeEnabled(bytes32)": "2e59691a",
+        "routeExists(bytes32)": "1ea6d003",
+        "routeKind(bytes32)": "2e4c02f3",
+        "setConversionLossBps(uint16)": "dcc361b6",
+        "setEnabled(bool)": "328d8f72",
+        "setRouteEnabled(bytes32,bool)": "f15f48d4",
+        "v4Executor()": "0502e8d4",
+        "v4Route(bytes32)": "a4dd5b7c",
+        "wrapper()": "ac210cc7",
+        "wrapperPolicy()": "07bf1545"
+      }
+    },
+    "ZZZLPRewardConverter": {
+      "runtime_bytes": 16952,
+      "initcode_bytes": 29312,
+      "method_identifiers": {
+        "MAX_LOSS_BPS()": "c187241c",
+        "access()": "71907f17",
+        "addRoute((address,address,address,address,uint24,bytes32,bytes32,bytes32,bytes32,bytes32))": "45b22448",
+        "addV4Route((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": "b0e22c52",
+        "configureWrapper((bytes32,address,address,address,bytes32,bytes32,bytes32))": "effe93de",
+        "conversionLossBps()": "1d41ead8",
+        "convert(address,uint256,bytes32,uint256,uint256)": "7038abfa",
+        "enabled()": "238dafe0",
+        "ledger()": "56397c35",
+        "route(bytes32)": "95bc81be",
+        "routeEnabled(bytes32)": "2e59691a",
+        "routeExists(bytes32)": "1ea6d003",
+        "routeKind(bytes32)": "2e4c02f3",
+        "setConversionLossBps(uint16)": "dcc361b6",
+        "setEnabled(bool)": "328d8f72",
+        "setRouteEnabled(bytes32,bool)": "f15f48d4",
+        "v4Executor()": "0502e8d4",
+        "v4Route(bytes32)": "a4dd5b7c",
+        "wrapper()": "ac210cc7",
+        "wrapperPolicy()": "07bf1545"
+      }
+    },
+    "ZZZV4RouteExecutor": {
+      "runtime_bytes": 11164,
+      "initcode_bytes": 11322,
+      "method_identifiers": {
+        "NATIVE_ASSET_CODE_HASH()": "ae2793f7",
+        "ROUTE_DOMAIN()": "00edb3c5",
+        "addRoute((address,address,(address,address,uint24,int24,address),address,address,bytes32,bytes32,bytes32,bytes32,bytes32))": "6cda829c",
+        "execute(bytes32,uint256,uint256,uint256)": "6e0cc40b",
+        "parent()": "60f96a8f",
+        "route(bytes32)": "95bc81be",
+        "routeEnabled(bytes32)": "2e59691a",
+        "routeExists(bytes32)": "1ea6d003",
+        "setRouteEnabled(bytes32,bool)": "f15f48d4",
+        "unlockCallback(bytes)": "91dd7346",
+        "validate(bytes32)": "2e012698"
+      }
+    }
+  },
+  "compiler_bindings_match": true,
+  "compiler_bindings": [
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/ZZZActivationAssets.sol",
+      "expected": "0x7ecb614d80cc146bb4f8d7d25e2b6135d2a81d37a4216684f02e123a59636df5",
+      "actual": "0x7ecb614d80cc146bb4f8d7d25e2b6135d2a81d37a4216684f02e123a59636df5",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/ZZZActivationEntry.sol",
+      "expected": "0x3802ecbb2ccd8d85d721cfd306dd67c910340dc80782e0a2d1c3b5a3d00b0c97",
+      "actual": "0x3802ecbb2ccd8d85d721cfd306dd67c910340dc80782e0a2d1c3b5a3d00b0c97",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/ZZZRoyaltyConverter.sol",
+      "expected": "0x2211b72915f7ccf5db474b28b5674a57647dbd21c92bae8974fc33693a9b9bd7",
+      "actual": "0x2211b72915f7ccf5db474b28b5674a57647dbd21c92bae8974fc33693a9b9bd7",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "expected": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+      "actual": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/base/ZZZModule.sol",
+      "expected": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "actual": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/interfaces/IZZZ.sol",
+      "expected": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "actual": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/libraries/ExactAsset.sol",
+      "expected": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "actual": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/libraries/ExactToken.sol",
+      "expected": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "actual": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZRoyaltyConverter",
+      "source": "src/libraries/ZZZTypes.sol",
+      "expected": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "actual": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/ZZZActivationAssets.sol",
+      "expected": "0x7ecb614d80cc146bb4f8d7d25e2b6135d2a81d37a4216684f02e123a59636df5",
+      "actual": "0x7ecb614d80cc146bb4f8d7d25e2b6135d2a81d37a4216684f02e123a59636df5",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/ZZZActivationEntry.sol",
+      "expected": "0x3802ecbb2ccd8d85d721cfd306dd67c910340dc80782e0a2d1c3b5a3d00b0c97",
+      "actual": "0x3802ecbb2ccd8d85d721cfd306dd67c910340dc80782e0a2d1c3b5a3d00b0c97",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/ZZZLPRewardConverter.sol",
+      "expected": "0xa2703117a3a8fd5b3928f73b2af5c117944b3055fbfba29867d21a452a857ea5",
+      "actual": "0xa2703117a3a8fd5b3928f73b2af5c117944b3055fbfba29867d21a452a857ea5",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/ZZZRoyaltyConverter.sol",
+      "expected": "0x2211b72915f7ccf5db474b28b5674a57647dbd21c92bae8974fc33693a9b9bd7",
+      "actual": "0x2211b72915f7ccf5db474b28b5674a57647dbd21c92bae8974fc33693a9b9bd7",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "expected": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+      "actual": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/base/ZZZModule.sol",
+      "expected": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "actual": "0x8aaa4e7fe1628e67b24541155a061f00d465169bf897cead4334524013cb2b7f",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/interfaces/IZZZ.sol",
+      "expected": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "actual": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/libraries/ExactAsset.sol",
+      "expected": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "actual": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/libraries/ExactToken.sol",
+      "expected": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "actual": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZLPRewardConverter",
+      "source": "src/libraries/ZZZTypes.sol",
+      "expected": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "actual": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZV4RouteExecutor",
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "expected": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+      "actual": "0x16249e041bf81e3961ccdeb5b51428daf2a6143f3dfade0376fb55696a79a7fb",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZV4RouteExecutor",
+      "source": "src/interfaces/IZZZ.sol",
+      "expected": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "actual": "0xa72ffc22756b479ea63d4ee2cec6b7f2f1e37257b0e857cb56f356ccb0047810",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZV4RouteExecutor",
+      "source": "src/libraries/ExactAsset.sol",
+      "expected": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "actual": "0x0d8207ade7d66c46ccdea6a6800ed711886412ec631f036d9c0fa70480cf4314",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZV4RouteExecutor",
+      "source": "src/libraries/ExactToken.sol",
+      "expected": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "actual": "0x9e9cd7242e2414d0bf9e33848379d57fd86181217732c66cecfaef242410c26e",
+      "matches": true
+    },
+    {
+      "artifact": "ZZZV4RouteExecutor",
+      "source": "src/libraries/ZZZTypes.sol",
+      "expected": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "actual": "0x596e5ec6a7027653ced417cb6fc13a16105fb14708a02c2f01b2ae667b8f2a6c",
+      "matches": true
+    }
+  ]
+}

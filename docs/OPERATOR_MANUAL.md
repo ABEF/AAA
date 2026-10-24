@@ -1,5 +1,28 @@
 # PoPL operator manual
 
+## Typed conversion and loss-limit operations - 2026-10-24
+
+[Typed v4 route setup](TYPED_V4_ROUTES.md) covers new pools/routes, exact policy
+fields, activation `routing_version: 2`, converter workers and failure/restart.
+[Execution-loss controls](EXECUTION_LOSS_POLICY.md) supersede earlier fixed-cap
+wording in this manual: default **1% / 1% / 3%**, immediate governance **0-10%**,
+network gas separate. Never assume an old default is the current on-chain value.
+
+| Change | Exact current control | Preserve / recover |
+| --- | --- | --- |
+| Contribution or maintenance limit | Budget `setLossLimits(uint16 contribution,uint16 maintenance)` | Read both current values; preserve the other when changing one. Captured per-operation policy and pending custody approval floors never relax automatically. |
+| LP or royalty conversion limit | Respective converter `setConversionLossBps(uint16)` | Each converter is independent. Keep stronger caller minima, fresh independent quotes and exact source/native backing. |
+| Add v4 conversion pool | Parent `addV4Route(Policy)` | Static hookless exact-input, pinned manager/StateView/assets, immutable parent output; separate from principal pool admission. |
+| Stop/reopen conversion route | Parent `setRouteEnabled(id,bool)` | Stop has no dependency reads. Reopen requires exact dependency validation. Reconcile submitted transactions before replacing worker config. |
+| Read current conversion limit | Royalty reporting schema 2 and reviewed converter pin | Reports current cap and hard maximum separately. Legacy schema 1 stays fixed-1%; no missing-getter fallback. |
+
+Verify previous/new events and getters, then regenerate current reviews. An
+ordinary pause allows policy changes; preparation/canonical locks and reentry do
+not. Caps are per operation, not cumulative. Other venue guards can still be
+stricter than 10%; raising a cap does not bypass those guards or guarantee a swap.
+The public site remains simulated and signing remains Anvil-only.
+
+
 **Post-seal settings and real-funds rehearsals (2026-10-24):** [Configuration policy and cleanup boundaries](POST_SEAL_POLICY.md) distinguish existing setters from required pre-seal extensions. Use a separate mainnet rehearsal deployment; no reset/burn or general sweep exists. No public action is authorized by this design record.
 
 **Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](POOL_SELECTION.md). Production remains NOT APPROVED.
@@ -26,7 +49,7 @@ helpers to the existing WETH-accounted local deployment or reset its journals.
 - **Fees and claims:** native fees receive the same 80/10/5/5 allocation and
   individual/equal-collective checkpoints as tokens. Current owners claim ETH
   directly; already converted credits remain separate earned balances. ZZZ still
-  needs a qualified conversion route under the unchanged 1% cap; gas is separate.
+  needs a qualified conversion route under the current cap (1% default, governance maximum 10%); gas is separate.
 - **Pool moves:** `moveFunds` accepts identical actual currencies only, including
   another native ETH/ZZZ fee tier. ETH/WETH atomic conversion is unfinished and
   fails closed. Reviewed external custody completion remains a separate procedure.
@@ -138,7 +161,7 @@ Before execution, restoring the old configuration may clear the width mismatch; 
 | `triggerBps` | At least 100 and less than range | Price movement from recorded center which can trigger upkeep. |
 | `minRebalanceInterval` | 600 seconds-7 days | Minimum time between rebalances; a safety cooldown, not a governance delay. |
 | `maxSpotDeviationBps` | 1-500 and less than range | Spot/reference discrepancy permitted by guarded execution. Do not widen it simply to accept a manipulated market. |
-| `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected LP fee 10020 pips therefore requires at least 101 bps; actual protocol fee, impact and complete quote must also pass execution checks. This venue guard does **not** weaken the 1% complete contribution-loss ceiling. |
+| `maxSlippageBps` | 1-200; pool fee must be strictly below it in equivalent units | Selected LP fee 10020 pips therefore requires at least 101 bps; actual protocol fee, impact and complete quote must also pass execution checks. This independent venue guard and the current governed contribution-loss ceiling must both pass. |
 | `minDepositUSD`, `maxPositionUSD` | Positive minimum; maximum at least minimum | Minimum for each contribution and maximum cumulative gross contribution per NFT, in 18-decimal USD units; not a live market-value ceiling or total pool cap. Lowering them cannot remove the fixed $100 activation / $5 top-up floors. The effective minimum is the larger of the action floor and configured minimum. Check existing NFT contributions/top-ups. |
 | `depositsEnabled`, `operationsEnabled` | Full configure for enabling; `disablePool` can only clear flags | Different controls; see below. |
 
@@ -176,7 +199,7 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 
 1. Review its exact chain/address, runtime and proxy authorities, decimals, transfers, liquidity, fees and price source. A symbol such as USDC does not identify an asset. Fee-on-transfer/rebasing/blacklisting or malicious callbacks can make an asset incompatible; permission to admit is not proof of compatibility.
 2. Governance configures the reviewed `Oracle.setFeed(token,feed,maxAge)`. Independently verify `price(token)` and decimals. Admit the source with `ActivationAssets.setAsset(token,true,expectedCodeHash,reviewHash)` at the registry's immutable `activationAssets()` child.
-3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The current supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. It is not a general multi-hop router or arbitrary external executor.
+3. If conversion is needed, governance calls `ActivationEntry.addRoute(RoutePolicy)`. The legacy supported path is typed **single-hop V3** into one accounting-pair asset, with pinned source/output/router/factory/pool code and fee; direct ERC20/native input is separate. Typed hookless v4 policies are also implemented through `addV4Route(Policy)`; follow [typed route setup](TYPED_V4_ROUTES.md), including explicit version/profile pins. It is not a general multi-hop router or arbitrary external executor.
 4. Verify route ID, enabled status and exact factory/pool/token bindings; update reviewed backend route/feed pins and available UI choices. Simulate the complete input-to-LP operation, including the 1% limit and separate gas. Qualify actual execution before enabling real users.
 
 Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Actual production ETH/ZZZ/USDG/USDC routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
@@ -557,7 +580,7 @@ website deployment or paused-monitor restart is part of this procedure update.
 | Suspected governance compromise | Guardian pause, secure multisig/signers, cancel unauthorized pending operations where authorized | Pause alone cannot defeat malicious governance, which can unpause/reconfigure immediately. Recover role control through legitimate admins and independent review; no guaranteed rescue. |
 | Oracle stale/depegged/wrong or sequencer down | Stop affected contribution/maintenance; preserve claims; consider parking if exact close can succeed | Reviewed new feed/policy, healthy rounds/grace and fresh full simulations; never blind unpause. |
 | Out of range | Warn that conventional swap fees may be absent; show observed eligibility/next-check telemetry only if real | Eligible keeper rebalance with guards. Wide range/ten-minute polling cannot guarantee always in range; no fabricated ETA. |
-| Repeated slippage/loss/minimum failure | Retain old position; inspect actual conversion, venue costs, liquidity and oracle | Better route/timing or legitimate parameter review inside fixed limits; do not weaken accounting/aggregate limits to force success. |
+| Repeated slippage/loss/minimum failure | Retain old position; inspect actual conversion, venue costs, liquidity and oracle | Inspect route/timing and accounting first. Governance may deliberately review loss limits within the 10% hard bound; exact approved custody/caller minima remain. A higher limit authorizes more loss and does not repair a failed dependency. |
 | Gas spike/low keeper funds/daily budget reached | Stop new submissions; continue receipt reconciliation/alerts | Refill reviewed signer or revise operating budget after analysis; gas is not taken from arbitrary holder balances. |
 | Unknown broadcast/nonce drift/reorg | Stop new signing, retain exact intent/hash and canonical anchors | Reconcile confirmed/pending transactions through recovery path; no blind resend or nonce reset. |
 | Token blacklist/pause, optional wrapper upgrade or venue unusable | Stop the affected exposure, preserve ledger, review the actual dependency and exact exit | Policy update only where implemented and safe; venue/token/runtime failure can block parking/claim/abort. A wrapper failure affects an explicitly wrapped operation, not native V2 custody. No blanket rescue function. |
@@ -670,7 +693,7 @@ ownership, nonce and load controls under the central frontend/service tasks.
 | Supported source tokens, conversion routes, prices, pool parameters, operators | Governed configuration after sealing, within code constraints; immediate authorization, no delay. |
 | Mint price/recipient, supply/rarity quotas, trait draw rules, 80/10/5/5, requested 5% royalty rate/weights | No ordinary post-seal setter. Requires separately reviewed architecture/replacement if changed; not a UI edit. |
 | Randomness provider/settings, canonical artwork base, module bindings, core strategy/adapter implementation | Fixed at or before sealing. No proxy-upgrade or generic patch function. |
-| Lower production activation below $100 or exceed 1%/3% execution caps | Not an operator setting. The separate $1 local test build is not production configuration. |
+| Lower production activation below $100 or exceed the 10% hard execution-loss ceilings | No such configuration path. Governance can change current limits within 0-10%; defaults remain 1% / 1% / 3%. The separate $1 local test build is not production configuration. |
 | Redeem principal, reroll rarity, overwrite owners/reward balances, sweep liabilities | Not supported. Governance configuration is not permission to manufacture those operations. |
 | Add arbitrary pair conversion, hooks, chains, cross-chain canonical replacement or post-halt recovery | Not made functional just by adding an address. Complete missing design, source support, independent review and rehearsals before relying on it. |
 

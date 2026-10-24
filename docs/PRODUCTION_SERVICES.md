@@ -1,3 +1,11 @@
+**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
+undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+immediate governance may set each category up to a hard 10%. Existing stricter
+venue/caller minima remain. Pending normal custody approvals retain their original
+absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
+historical/default scope. Actual routes, services and independent audit remain open.
+
 # Production service decisions still open
 
 **Current service scope (2026-10-24):** [Selected hookless ETH/ZZZ](POOL_SELECTION.md) earns conventional LP fees; Pons creator-payment terms are historical/optional rather than launch prerequisites. Independent feeds, supported VRF, real routes and operating qualification remain open. [Post-seal policy](POST_SEAL_POLICY.md) records current fixed settings and required extensions; native accounting remains a specification.

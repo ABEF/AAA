@@ -2,6 +2,7 @@
 pragma solidity 0.8.26;
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IZZZFees, IZZZMigration, IPositionManagerMinimal, IZZZNFT, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
 interface IPairAssets { function assetCount() external view returns(uint256); function assets(uint256) external view returns(address); }
@@ -10,12 +11,20 @@ import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 
 interface IMigrationContribution { function contributionUSD(uint256 id) external view returns (uint256); }
 interface IMigrationIdle { function totalIdle(address) external view returns(uint256); }
+interface IBudgetVaultValidation {
+    function validateOwner(uint256,address,bool,bool) external view returns(address);
+    function validateContribution(uint256,uint256,uint256,uint256,uint128,bool)
+        external view returns(address,address,uint16);
+}
 
-/// @notice Fixed execution budget for atomic rebalances and same-pair custody moves.
-/// Created by its only caller, Vault. No token custody, configuration or executor.
-contract ZZZMigrationBudget {
+/// @notice Bounded execution policy for contributions and principal maintenance.
+/// Created by Vault; governance can change future loss limits, never custody or recipients.
+contract ZZZMigrationBudget is ReentrancyGuard {
     address public immutable vault;
     IZZZAccess public immutable access;
+    uint16 public constant MAX_LOSS_BPS = 1000;
+    uint16 public contributionLossBps = 100;
+    uint16 public maintenanceLossBps = 300;
     struct Snapshot {
         uint256 bucketId;
         uint256 value;
@@ -25,6 +34,7 @@ contract ZZZMigrationBudget {
         uint256 scale1;
         uint256 idle0;
         uint256 idle1;
+        uint16 lossBps;
     }
     Snapshot private snapshot;
     bool private compoundIncluded;
@@ -34,11 +44,27 @@ contract ZZZMigrationBudget {
     error InvalidAmount();
     error InvalidConfiguration();
     error Slippage();
+    error Preparing();
+    error CanonicalLocked();
     event MigrationValueChecked(uint256 indexed bucketId, uint256 beforeUSD, uint256 deployedUSD, uint256 idleUSD);
+    event ContributionLossLimitChanged(uint16 previous, uint16 current);
+    event MaintenanceLossLimitChanged(uint16 previous, uint16 current);
 
     constructor(address controller) {
         vault = msg.sender;
         access = IZZZAccess(controller);
+    }
+    /// @notice One bounded immediate governance update. After the static access
+    /// checks, only local writes/events occur: no callback can alter authority.
+    function setLossLimits(uint16 contribution, uint16 maintenance) external nonReentrant {
+        if (!access.canConfigure(msg.sender)) revert Unauthorized();
+        if (access.preparationActive()) revert Preparing();
+        if (access.canonicalState() != 0) revert CanonicalLocked();
+        if (contribution > MAX_LOSS_BPS || maintenance > MAX_LOSS_BPS || snapshot.value != 0) revert InvalidConfiguration();
+        emit ContributionLossLimitChanged(contributionLossBps, contribution);
+        emit MaintenanceLossLimitChanged(maintenanceLossBps, maintenance);
+        contributionLossBps = contribution;
+        maintenanceLossBps = maintenance;
     }
     modifier onlyVault() {
         if (msg.sender != vault) revert Unauthorized();
@@ -48,11 +74,7 @@ contract ZZZMigrationBudget {
         ++compositionEpoch[id];
     }
     function validateOwner(uint256 id,address caller,bool minted,bool activation) external view onlyVault returns (address entry) {
-        if (block.chainid != IZZZVault(vault).canonicalChainId() || !minted) revert Unauthorized();
-        if (activation && (IZZZVault(vault).nftBucket(id) != 0 || !IZZZNFT(access.module(Ids.NFT)).traitsReady(id))) revert InvalidState();
-        if (IZZZNFT(access.module(Ids.NFT)).ownerOf(id) == caller) return address(0);
-        entry = IZZZPools(access.module(Ids.POOLS)).activationEntry();
-        if (entry == address(0) || caller != entry) revert Unauthorized();
+        return IBudgetVaultValidation(access.module(Ids.VAULT_CANONICAL)).validateOwner(id,caller,minted,activation);
     }
     function importComposition(uint256 id, uint64 epoch) external {
         if (msg.sender != access.module(Ids.VAULT_CANONICAL) ||
@@ -85,6 +107,7 @@ contract ZZZMigrationBudget {
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
         Snapshot memory s;
         s.bucketId = id;
+        s.lossBps = maintenanceLossBps;
         // Price validates feed/sequencer freshness. Reuse this exact vector after
         // close, swap and mint; callbacks cannot reprice away execution loss.
         s.price0 = oracle.price(c.key.currency0);
@@ -113,10 +136,11 @@ contract ZZZMigrationBudget {
         if (s.value == 0 || s.bucketId != id || !compoundIncluded) revert InvalidState();
         (uint256 deployed, uint256 idle) = _values(IZZZVault(vault).group(id), s);
         uint256 retained = deployed + idle;
-        // ceil(97%): rounding never permits more than 3% aggregate loss. Gas is
+        // Round the captured retained-value floor up. Later policy changes cannot
+        // weaken this operation's aggregate budget. Gas is
         // outside these custody ledgers. Keep the existing 5% idle ceiling under
         // this same vector, including when an admitted feed changes mid-call.
-        if (retained < s.value - Math.mulDiv(s.value, 300, 10000) || deployed == 0 ||
+        if (retained < s.value - Math.mulDiv(s.value, s.lossBps, 10000) || deployed == 0 ||
             idle > Math.mulDiv(retained, 500, 10000)) revert Slippage();
         delete snapshot;
         delete compoundIncluded;
@@ -228,7 +252,7 @@ contract ZZZMigrationBudget {
     }
     /// @notice The end-to-end custody minimum cannot weaken a swap's own floor.
     /// A looser overall request is tightened here, not passed to an adapter that
-    /// must reject it. This never relaxes the original Migration 97% guarantee.
+    /// must reject it. This never relaxes the original approved Migration budget.
     function handoffMinimum(uint256 id,address input,address output,uint256 amount,uint256 requested)
         public view onlyVault returns(uint256) {
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(IZZZVault(vault).group(id).poolId);
@@ -251,26 +275,27 @@ contract ZZZMigrationBudget {
             minimumZZZ > plan.held ? minimumZZZ-plan.held : 1);
     }
     function validateContribution(uint256 id, uint256 bucket, uint256 inputUSD, uint256 inputTotal,
-        uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint16 maxSlippageBps) {
-        Position memory p = IZZZVault(vault).group(bucket);
-        if (p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != vault ||
-            !IZZZFees(access.module(Ids.FEES)).remoteSettled(bucket) ||
-            IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
-        PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-        if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
-            (activation && inputUSD < 100e18) || (!activation && inputUSD < 5e18) || inputUSD < c.minDepositUSD ||
-            IMigrationContribution(vault).contributionUSD(id) + inputUSD > c.maxPositionUSD) revert InvalidAmount();
-        return (c.key.currency0, c.key.currency1, c.maxSlippageBps);
+        uint128 minimumLiquidity, bool activation) external view onlyVault returns (address token0, address token1, uint32 limits) {
+        uint16 captured = contributionLossBps;
+        uint16 venue;
+        (token0,token1,venue) = IBudgetVaultValidation(access.module(Ids.VAULT_CANONICAL)).validateContribution(
+            id,bucket,inputUSD,inputTotal,minimumLiquidity,activation);
+        // Carry both limits in the existing third ABI word: low 16 bits are the
+        // venue limit; high 16 bits freeze the contribution policy before callbacks.
+        limits = uint32(venue) | (uint32(captured) << 16);
     }
     function contributionResult(uint256 bucket, uint256 inputUSD, uint256 supply, uint256 incumbentNAV,
-        uint256 incumbentDeployed, uint256 deployed, uint256 idle, uint16 maxSlippageBps)
+        uint256 incumbentDeployed, uint256 deployed, uint256 idle, uint32 limits)
         external view returns (uint256 issued, uint256 netUSD) {
+        uint16 maxSlippageBps = uint16(limits);
+        uint16 contributionLimit = uint16(limits >> 16);
+        if (maxSlippageBps > MAX_LOSS_BPS || contributionLimit > MAX_LOSS_BPS) revert InvalidConfiguration();
         if (IZZZFees(access.module(Ids.FEES)).hasPendingExternal()) revert InvalidState();
         if (deployed == 0 || idle > Math.mulDiv(deployed + idle, 500, 10000)) revert Slippage();
         if (deployed + idle <= incumbentNAV) revert InvalidAmount();
         netUSD = deployed + idle - incumbentNAV;
         if (netUSD < Math.mulDiv(inputUSD, 10000 - maxSlippageBps, 10000)) revert Slippage();
-        uint256 minimumNet = inputUSD - inputUSD / 100;
+        uint256 minimumNet = inputUSD - Math.mulDiv(inputUSD, contributionLimit, 10000);
         if (netUSD < minimumNet || deployed < incumbentDeployed + minimumNet) revert Slippage();
         issued = supply == 0 ? netUSD : Math.mulDiv(supply, netUSD, incumbentNAV + historicalCompoundValue(bucket));
         if (issued == 0 || supply + issued > 1e36) revert InvalidAmount();

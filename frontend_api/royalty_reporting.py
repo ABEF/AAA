@@ -12,8 +12,11 @@ class Reporting:
     def __init__(self, config, projection):
         from frontend_api.service import Contract, _hash, _keys
         _keys(config, {'schema', 'converter'}, 'royalty_reporting')
-        if type(config['schema']) is not int or config['schema'] != 1:
+        if type(config['schema']) is not int or config['schema'] not in (1, 2):
             raise ValueError('Unsupported royalty reporting profile')
+        self.schema = config['schema']
+        if self.schema == 2 and config['converter'] is None:
+            raise ValueError('Governed converter reporting requires an explicit runtime pin')
         self.p = projection
         self.converter = None
         if config['converter'] is not None:
@@ -46,7 +49,7 @@ class Reporting:
         bound = p._addr('royalties', 'converter()', block=block, native=True)
         result = {'address': None if bound == ZERO else bound, 'available': False,
                   'enabled': None, 'reason': None, 'next_execution_at': None,
-                  'scope': 'Binding and enable control only; routes, prices, gas and keeper timing are not qualified by this read.'}
+                  'scope': 'Binding, enable control and configured execution-loss policy only; routes, prices, gas and keeper timing are not qualified by this read.'}
         if bound == ZERO:
             result['reason'] = 'converter_not_bound'
             return result
@@ -59,8 +62,17 @@ class Reporting:
                                   ('access()', p.contracts['access'].address)):
                 if _address_word(p._call(bound, sig, block=block)[0]) != expected:
                     raise ProjectionError('Converter binding mismatch')
-            loss = int(p._call(bound, 'MAX_LOSS_BPS()', block=block)[0], 16)
-            if loss != 100:
+            raw = p._call(bound, 'MAX_LOSS_BPS()', block=block)
+            if len(raw) != 1:
+                raise ProjectionError('Converter execution limit ABI mismatch')
+            ceiling = int(raw[0], 16)
+            loss = ceiling
+            if self.schema == 2:
+                raw = p._call(bound, 'conversionLossBps()', block=block)
+                if len(raw) != 1:
+                    raise ProjectionError('Converter operating limit ABI mismatch')
+                loss = int(raw[0], 16)
+            if ceiling != (1000 if self.schema == 2 else 100) or not 0 <= loss <= ceiling:
                 raise ProjectionError('Converter execution limit mismatch')
             enabled = _bool(p._call(bound, 'enabled()', block=block)[0])
         except WorkLimit:
@@ -69,6 +81,8 @@ class Reporting:
             result['reason'] = 'converter_verification_unavailable'
             return result
         result.update(available=True, enabled=enabled, maximum_execution_loss_bps=loss, gas_separate=True)
+        if self.schema == 2:
+            result.update(hard_maximum_execution_loss_bps=ceiling, loss_policy='governed')
         return result
 
     def read(self, token_id, weight, assets, health, block):
@@ -94,7 +108,7 @@ class Reporting:
                         settlement_currency='ETH' if asset == ZERO else 'source_asset',
                         unconverted_raw=item['raw'] if asset != ZERO else None)
             balances.append(item)
-        return {'available': True, 'schema': 1, 'activation_ordinal': ordinal,
+        return {'available': True, 'schema': self.schema, 'activation_ordinal': ordinal,
                 'balances_complete': all(item['available'] for item in balances),
                 'balances': balances, 'converter': self._converter(block),
                 'scope': 'Eligibility is per currency; deferred NFTs join only future receipts after recovery. Non-ETH balances may be converted or claimed directly; they are not queued ETH payments.'}

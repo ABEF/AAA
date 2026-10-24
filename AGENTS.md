@@ -1,3 +1,36 @@
+## Typed v4 conversion and governed execution limits - 2026-10-24
+
+Current local candidate implements typed hookless static exact-input v4 routing
+for Entry and earned LP/royalty balances through immutable parent-bound helpers.
+Native v4 settlement needs no wrapper; v3 descriptors remain separate. Read
+[route setup](docs/TYPED_V4_ROUTES.md) and [loss policy](docs/EXECUTION_LOSS_POLICY.md).
+The user's latest decision supersedes earlier fixed1%/3% requirements: default
+contribution100bps/conversion100bps/maintenance300bps, immediate governance with
+hard1000bps (10%) maximum for each. Gas remains separate. Budget.setLossLimits
+sets contribution/maintenance; each converter.setConversionLossBps is separate.
+Captured contribution/maintenance policy and original normal custody approval
+floors persist despite later changes. Stronger venue/caller minimums still apply;
+raw emergency remains explicit, not an automatic downgrade or USD guarantee.
+
+Budget's read-only owner/contribution validation delegates to the existing bound
+VaultCanonical, authenticated to actual vault.migrationBudget(), to stay inside
+normal creation-size limits. No canonical codecs/funding or new custody authority
+is added. Explicit activation routing_version2 and converter/worker/reporting
+profiles read current governed policy; historical profiles retain old semantics.
+
+[Scoped verification and review](reports/typed-v4-routes/VERIFICATION.md) separate
+real installed v4 conversion from mocked LP/feed/VRF fixtures and reused checks.
+No full fresh regression or real-provider qualification is claimed. Actual routes,
+feeds, native website/inventory, ETH/WETH principal boundary, OpenSea mint, future
+chain transport and independent audit remain open. Production NOT APPROVED.
+
+No website source/build/server, existing8902/Anvil/NFT/LP/balances/journals/dist
+repair overlay, service/monitor or public transaction change. Public DEPLOYMENT
+remains null; shared signer Anvil-only; monitoring paused. Preserve older unrelated
+drafts and use main only. Sole Todo/features/roadmap/operator guidance and both
+memories must stay aligned. Check Git and the separate publication receipt before
+claiming this candidate committed/pushed.
+
 ## Operating controls publication checkpoint - 2026-10-24
 
 Contract implementation `143734c` and website memory-only `34f53d6` are pushed

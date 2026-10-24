@@ -1,5 +1,14 @@
 # Engineering roadmap
 
+**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
+undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+immediate governance may set each category up to a hard 10%. Existing stricter
+venue/caller minima remain. Pending normal custody approvals retain their original
+absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
+historical/default scope. Actual routes, services and independent audit remain open.
+
+
 **Internal audit follow-up (2026-10-24):** [Fee-sizing and operational fixes](../reports/daily-security-20261024/REVIEW.md) are implemented with focused evidence. The broader [native design audit](NATIVE_ETH_ARCHITECTURE.md) identifies pre-seal implementation blockers; the [native V2 implementation](../reports/native-eth-port/VERIFICATION.md) now has scoped local evidence. Complete its explicit ETH/WETH boundary, versioned service/frontend and target-chain qualification before sealing; actual services and independent audit remain open.
 
 **Pre-seal flexibility (2026-10-24):** [Operational configuration](../TODO.md#task-post-seal-configuration) and the [native ETH architecture](NATIVE_ETH_ARCHITECTURE.md) must be implemented/reviewed before sealing if these future controls are required. [Real-funds rehearsal planning](../TODO.md#task-mainnet-rehearsal-retirement) uses a separate deployment followed by a fresh final collection, not a reset. No public execution is authorized.
