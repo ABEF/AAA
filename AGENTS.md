@@ -1,3 +1,21 @@
+## Simplification source publication - 2026-10-25
+
+Contract implementation `82ba6ed` and website memory-only `ce1f31e` are pushed on
+main; both exact remote heads verified. Read contract
+[publication receipt](reports/simplification-20261025/PUBLICATION.md) and its
+source-scoped review/verification. Normal exit uses the fixed deployment ZZZ;
+the seal check only prevents omitted/mismatched duplicate setup. Raw exit skips
+swaps and sends ETH/ZZZ. No post-seal ZZZ identity replacement exists.
+
+GitHub publication is NOT deployment. The user explicitly reiterated no deployment
+was requested. No contract deployment/public transaction, website source/build/server,
+8902/Anvil/NFT/LP/balance/journal, signing policy or paused monitor change occurred.
+Public DEPLOYMENT remains null; signing Anvil-only; production NOT APPROVED.
+All41 production hashes match.89 distinct Solidity behaviors span two scopes;
+actual release authority-array initcode still needs qualification (29-byte minimal
+margin). Current fork/services/OpenSea/rehearsals/independent audit remain open.
+Older unrelated drafts remain local. Main only; maintain sole Todo/features/operator.
+
 ## Simplified ETH/ZZZ candidate - 2026-10-25
 
 Latest user scope: native ETH and fixed ZZZ only for activation/growth. ZZZ is
