@@ -1,3 +1,23 @@
+## Day-audit source publication verified - 2026-10-25
+
+Contract implementation `fbf31c6` and website memory-only `e1bcccc`
+are pushed on main; exact remote heads verified. Read [publication](reports/day-readiness-20261025/PUBLICATION.md),
+[review](reports/day-readiness-20261025/REVIEW.md) and
+[verification](reports/day-readiness-20261025/VERIFICATION.md).
+Native custody reader/history, evidence coherence and guard-sensitive tests are
+fixed. Production44Solidity sources unchanged.3project EVM/4gas comparisons and
+83distinct Python methods retain exact scopes;37normal gates/75inputs reused;
+265AST inputs refreshed for one test. No full regression or fresh Slither.
+Snapshot3 is evidence format, not an on-chain profile upgrade.
+
+Slither triage is stale: FAIL release gate. Feeds/routes/VRF/authorities/OpenSea/
+native website3/services/gas/operations and independent audit remain open.
+Production NOT APPROVED. All14unrelated drafts remain. Main only; preserve
+existing8902/Anvil/NFT/LP/balances/journals/dist overlay. Website source/build/
+server, signer/services and paused monitor unchanged; public DEPLOYMENT null,
+signing Anvil-only. No public RPC/transaction/deployment/seal. Publication is
+source only; this later receipt checkpoint changes documentation only.
+
 ## Day-change readiness audit - 2026-10-25
 
 User prompt was challenged/adapted and executed against reference35007db,
