@@ -1,3 +1,16 @@
+## One-ZZZ audit publication verified - 2026-10-25
+
+Contract `edb99c8` and website memory-only `e245e00` are pushed on main; exact
+remote heads verified. Read [publication](reports/daily-security-20261025/PUBLICATION.md),
+review and scoped verification.28distinct Solidity behaviors across three fixture
+scopes,35Python methods,124-input ABI/AST and36normal gates pass.41production
+hashes and report artifacts match; no full regression/independent approval.
+One fixed ZZZ for source/pool/immutable Buyback/normal exit; no retarget setter.
+31contracts/643functions. Access29-byte minimal initcode margin and real release
+arguments/services/OpenSea/audit stay open. No deployment/public tx, website
+code/build/server,8902/Anvil/NFT/LP/balances/journals, signer/service/monitor change.
+Unrelated drafts preserved; main only. Production NOT APPROVED.
+
 ## One-ZZZ and day security review - 2026-10-25
 
 User confirmed there is ONE ZZZ. The same fixed identity is used by source
