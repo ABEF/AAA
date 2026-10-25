@@ -1,0 +1,22 @@
+{
+  "reason": "Self-contained PoolRegistry wrapper-policy bookkeeping has no operational consumer after native accounting; converter-specific wrapper safety is independent and retained.",
+  "archive": "retired-test-fixtures/NativeWrapperPolicy.t.sol.txt",
+  "archive_sha256": "da88a8bb92d1a4014c52d1e4f5a5a3c017a49e46ed8eac191d437fa014e10393",
+  "retired_methods": [
+    "testWrapperPolicyUnauthorizedApprovalAndActivationRejected",
+    "testWrapperPolicyAppendOnlyAndHistoricalRecordSurvivesActivation",
+    "testWrapperPolicyMustMatchCurrentCodeOwnerAndReportedImplementation",
+    "testWrapperPolicyActivationRechecksCurrentObservation",
+    "testWrapperPolicyRejectsZeroOrEOAImplementationAndDoesNotAcceptNativeFunds",
+    "testWrapperPolicyAfterSealRequiresBothImmediateGovernanceActions",
+    "testWrapperPolicyRenouncedOwnerCanBeReviewedThroughImmediateGovernance"
+  ],
+  "retained_assertion": "Registry cannot accept native ETH, extracted from testWrapperPolicyRejectsZeroOrEOAImplementationAndDoesNotAcceptNativeFunds; no wrapper-only test counted as current coverage.",
+  "native_safety_preserved": [
+    "test/NativeAssetFoundation.t.sol",
+    "test/NativeCustody.t.sol",
+    "test/RoyaltyConversion.t.sol",
+    "test/LPRewardConversion.t.sol",
+    "test/TypedV4Rewards.t.sol"
+  ]
+}

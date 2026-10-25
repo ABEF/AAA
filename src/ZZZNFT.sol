@@ -286,7 +286,6 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
             value[2] == ":" && value[3] == "/" && value[4] == "/";
         if (!ipfs && !arweave) revert InvalidConfiguration();
     }
-    function _baseURI() internal view override returns (string memory) { return metadataBase; }
     function _requestKey(uint256 epoch, uint256 requestId) private pure returns (bytes32) {
         return keccak256(abi.encode(epoch, requestId));
     }

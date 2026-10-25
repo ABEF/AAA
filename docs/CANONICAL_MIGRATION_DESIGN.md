@@ -1,5 +1,14 @@
 # Whole-protocol canonical migration design
 
+> **Historical wider proposal, not the current operating specification.**
+> The release retains [funded same-chain collection handoff](CANONICAL_HANDOFF.md)
+> and [source-chain external custody](GOVERNED_CUSTODY_HANDOFF.md), with no
+> integrated bridge, remote-proof API or remote ownership/reward ledger.
+> Cross-chain ideas below are deferred requirements for a separately proposed
+> implementation; they are **not current launch or sealing prerequisites**.
+> Use [the simplified release scope](SIMPLIFIED_RELEASE.md) and sole
+> [Todo](../TODO.md) for present behavior and release gates.
+
 Design direction recorded 2026-10-17. The current candidate implements a
 [same-chain handoff](CANONICAL_HANDOFF.md): freeze, complete bounded export/import,
 exact backing, cancellation and atomic single-successor activation. **Cross-chain
@@ -49,22 +58,26 @@ code through the governance controller, accepting that trust instead of an ident
 This is a constrained protocol-evolution authority, not an immutability guarantee
 under unrestricted governance replacement.
 
-## Capabilities must exist before sealing
+## Current sealing boundary and deferred wider proposal
 
-The current [controller](../src/ZZZAccessController.sol) permanently fixes module
-addresses at `seal`. The NFT, LP and royalty ledgers now enforce canonical lifecycle
-guards and fixed export/import interfaces. The same-chain coordinator carries
-their complete state and classified backing. Operational pause still deliberately
-leaves claims available; the separate canonical freeze disables them until exact
-restoration or replacement activation. The current v3 bridge protocol preserves
-the original home identity and cannot carry cross-chain canonical migration.
-The supported path therefore rejects historic bridge activity and prevents an
-imported successor from initiating legacy v3 principal sends.
+The current [controller](../src/ZZZAccessController.sol) fixes module addresses at
+`seal`. Implemented NFT, LP and royalty lifecycle guards and the same-chain
+coordinator preserve complete state and exact classified backing. Ordinary pause
+preserves supported claims; canonical freeze separately stops ownership/ledger
+writes until funded restoration or replacement activation.
 
-The remaining cross-chain state machine, verified-finality/transport boundaries,
-lineage version and late-receipt compatibility must be implemented and audited
-**before the initial deployment is sealed**. A future compatible LP destination
-does not retrofit these abilities into the original NFT or ledgers.
+The old v3 bridge protocol and remote-proof custody branches are removed.
+Historical event and journal profiles do not re-enable them. Source-chain custody
+accepts an external custodian's trust; full return or funded local completion is
+checked through actual assets, not a remote finality assertion.
+
+If cross-chain canonical relocation is proposed later, its additional state
+machine, independently verified finality, lineage and late-receipt compatibility
+need a new reviewed implementation and operating qualification before **that
+capability** is enabled. Nothing in this historical proposal requires adding a
+bridge to the current release, nor promises retrofit after its modules are sealed.
+The source chain must remain usable for the implemented planned handoff;
+post-halt ownership reconstruction remains deferred.
 
 ## Identity and epoch model
 

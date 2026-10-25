@@ -24,11 +24,9 @@ contract EntryReviewPolicyTest is AtomicActivationIntegrationTest {
         assertFalse(membership.eligible(id));assertEq(nft.royaltyRewards().weightOf(id),0);
         assertFalse(oracle.contributionPricing().active());assertEq(nft.ownerOf(id),alice);
     }
-    function testReviewVersionsAndUnsetWrapperMetadataAreExplicit() public realIntegration {
+    function testReviewVersionsAreExplicit() public realIntegration {
         assertEq(entry.REVIEW_POLICY_VERSION(),1);
         assertEq(oracle.contributionPricing().ENTRY_REVIEW_VERSION(),1);
-        assertEq(registry.activeWrapperPolicy(),bytes32(0));
-        assertFalse(registry.wrapperPolicyExists(bytes32(0)));
     }
     function testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap() public realIntegration {
         uint256 id=_mint(alice);uint256 balance=stable.balanceOf(alice);

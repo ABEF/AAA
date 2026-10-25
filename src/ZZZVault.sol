@@ -8,7 +8,7 @@ import {ZZZVaultCanonical} from "./ZZZVaultCanonical.sol";
 import {Ids, Position, PositionStatus} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
-import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZStrategy, IZZZLiquidity,
+import {IZZZNFT, IZZZMembership, IZZZFees, IZZZPools, IZZZLiquidity,
     IPositionManagerMinimal, IZZZRewards, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
 
 /// @notice Non-upgradeable custody. Holders cannot redeem principal.
@@ -414,8 +414,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         migrationBudget.recordComposition(id);
         emit PrincipalReturned(id,p.lpTokenId,minimumLiquidity!=0);
     }
-    /// @dev Retired v3 import selector fails closed. Other removed bridge
-    /// selectors have no handler and revert; no receiver/bridge can be bound.
     /// @notice Only the fixed Migration module can park an LP. Its governed
     /// request binds exact custody and raw close minimums. No assets leave Vault.
     function park(uint256 id, uint256 deadline) external onlyModule(Ids.MIGRATION) nonReentrant canonicalAccounting {

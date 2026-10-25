@@ -1,5 +1,12 @@
 # Release approval record - NOT APPROVED
 
+
+[Residual cleanup](../reports/obsolete-code-20261025/REVIEW.md) removes unused
+Registry wrapper records and creator-payment tooling. This source candidate's
+Registry storage is fresh-deployment only; no existing deployment is upgraded.
+The current caller reference is31contracts/644functions. Exact Access constructor
+arguments and all independent release gates remain open; no deployment is authorized.
+
 ## Simplified current release - 2026-10-25
 
 [Current candidate boundary](SIMPLIFIED_RELEASE.md): fixed pre-seal ZZZ identity

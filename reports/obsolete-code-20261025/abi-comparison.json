@@ -1,0 +1,64 @@
+{
+  "scope": "Exact compiler ABI comparison against previous simplification build; not current full regression or upgrade authorization.",
+  "unchanged_project_abis": 104,
+  "changed": [
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "INativeVenueBindings",
+      "removed": [
+        "function:WETH9()",
+        "function:getProxyAdmin(address)",
+        "function:getProxyImplementation(address)",
+        "function:owner()"
+      ],
+      "added": [],
+      "modified": []
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "removed": [
+        "event:WrapperPolicyActivated(bytes32,bytes32)",
+        "event:WrapperPolicyApproved(bytes32,address,address,address,bytes32,bytes32)",
+        "function:activateWrapperPolicy(bytes32)",
+        "function:activeWrapperPolicy()",
+        "function:approveWrapperPolicy((address,address,address,bytes32,bytes32))",
+        "function:wrapperPolicies(bytes32)",
+        "function:wrapperPolicyExists(bytes32)"
+      ],
+      "added": [],
+      "modified": []
+    }
+  ],
+  "removed_interface": "IZZZCanonicalFinality (no production/test/service caller)",
+  "registry_storage": [
+    {
+      "astId": 24530,
+      "contract": "src/ZZZPoolRegistry.sol:ZZZPoolRegistry",
+      "label": "pools",
+      "offset": 0,
+      "slot": "0",
+      "type": "t_mapping(t_bytes32,t_struct(PoolConfig)44446_storage)"
+    },
+    {
+      "astId": 24534,
+      "contract": "src/ZZZPoolRegistry.sol:ZZZPoolRegistry",
+      "label": "exists",
+      "offset": 0,
+      "slot": "1",
+      "type": "t_mapping(t_bytes32,t_bool)"
+    },
+    {
+      "astId": 24537,
+      "contract": "src/ZZZPoolRegistry.sol:ZZZPoolRegistry",
+      "label": "contributionPool",
+      "offset": 0,
+      "slot": "2",
+      "type": "t_bytes32"
+    }
+  ],
+  "fresh_deployment_only": true,
+  "warning": "contributionPool moves from old slot5 to slot2; do not install this source into an existing registry or change old Anvil storage.",
+  "old_compiler_output_sha256": "5ab83af3c981dc06a6ddd2939a349a7bcc225b9af4947ebe8d408d069d68a7f0",
+  "new_compiler_output_sha256": "7ade95110391aeb57937fc61bb33b2e26313bb1aefd326267c6abf993726712f"
+}

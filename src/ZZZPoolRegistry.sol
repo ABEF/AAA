@@ -11,10 +11,6 @@ interface INativeVenueBindings {
     function poolManager() external view returns (address);
     function stateView() external view returns (address);
     function permit2() external view returns (address);
-    function WETH9() external view returns (address);
-    function owner() external view returns (address);
-    function getProxyImplementation(address proxy) external view returns (address);
-    function getProxyAdmin(address proxy) external view returns (address);
 }
 
 /// @notice Append-only pool identities; bounded strategy parameters are governed.
@@ -23,71 +19,23 @@ interface INativeVenueBindings {
 contract ZZZPoolRegistry is ZZZModule {
     ZZZActivationAssets public immutable activationAssets;
     ZZZActivationEntry public immutable activationEntry;
-    struct WrapperPolicy {
-        address admin;
-        address implementation;
-        address adminOwner;
-        bytes32 adminCodeHash;
-        bytes32 implementationCodeHash;
-    }
     bytes32 public constant SELECTED_NATIVE_POOL = 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b;
     address private constant CORE = 0x8366a39CC670B4001A1121B8F6A443A643e40951;
     address private constant POSM = 0x58daec3116aae6D93017bAAea7749052E8a04fA7;
     address private constant STATE = 0xF3334192D15450CdD385c8B70e03f9A6bD9E673b;
     address private constant PERMIT2 = 0x000000000022D473030F116dDEE9F6B43aC78BA3;
-    address private constant WETH = 0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73;
     address private constant ZZZ = 0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a;
     mapping(bytes32 => PoolConfig) private pools;
     mapping(bytes32 => bool) public exists;
-    mapping(bytes32 => WrapperPolicy) public wrapperPolicies;
-    mapping(bytes32 => bool) public wrapperPolicyExists;
-    bytes32 public activeWrapperPolicy;
     /// @notice Zero means contributions are stopped. Historical/maintenance
     /// pools remain admitted, but at most one pool can enable new contributions.
     bytes32 public contributionPool;
     event PoolConfigured(bytes32 indexed poolId, address indexed token0, address indexed token1);
     event PoolDisabled(bytes32 indexed poolId, bool depositsEnabled, bool operationsEnabled);
     event ContributionPoolChanged(bytes32 indexed previousPool, bytes32 indexed currentPool);
-    event WrapperPolicyApproved(bytes32 indexed policyId, address indexed admin, address indexed implementation,
-        address adminOwner, bytes32 adminCodeHash, bytes32 implementationCodeHash);
-    event WrapperPolicyActivated(bytes32 indexed previousPolicy, bytes32 indexed activePolicy);
     constructor(address controller) ZZZModule(controller) {
         activationAssets = ZZZActivationAssets(ZZZActivationAssetsFactory(access.activationAssetsFactory()).create());
         activationEntry = new ZZZActivationEntry(controller, address(this), address(activationAssets));
-        // Native accounting does not use WETH. Optional wrapper metadata starts
-        // unset and requires a fresh, fully validated governance approval.
-    }
-    /// @notice Append-only review of the same canonical WETH address after a dependency upgrade.
-    /// After sealing, only controller governance can approve/activate a policy.
-    function approveWrapperPolicy(WrapperPolicy calldata policy) external onlyGovernance returns (bytes32 id) {
-        _checkWrapperPolicy(policy);
-        return _recordWrapperPolicy(policy);
-    }
-    function activateWrapperPolicy(bytes32 id) external onlyGovernance {
-        if (!wrapperPolicyExists[id] || id == activeWrapperPolicy) revert InvalidConfiguration();
-        _checkWrapperPolicy(wrapperPolicies[id]);
-        bytes32 previous = activeWrapperPolicy;
-        activeWrapperPolicy = id;
-        emit WrapperPolicyActivated(previous, id);
-    }
-    function _recordWrapperPolicy(WrapperPolicy memory policy) private returns (bytes32 id) {
-        id = keccak256(abi.encode(policy));
-        if (wrapperPolicyExists[id]) revert InvalidConfiguration();
-        wrapperPolicyExists[id] = true;
-        wrapperPolicies[id] = policy;
-        emit WrapperPolicyApproved(id, policy.admin, policy.implementation, policy.adminOwner,
-            policy.adminCodeHash, policy.implementationCodeHash);
-    }
-    function _checkWrapperPolicy(WrapperPolicy memory policy) private view {
-        if (policy.admin == address(0) || policy.implementation == address(0) ||
-            policy.admin.code.length == 0 || policy.implementation.code.length == 0 ||
-            policy.adminCodeHash == bytes32(0) || policy.implementationCodeHash == bytes32(0) ||
-            policy.admin.codehash != policy.adminCodeHash || policy.implementation.codehash != policy.implementationCodeHash ||
-            INativeVenueBindings(policy.admin).owner() != policy.adminOwner ||
-            INativeVenueBindings(policy.admin).getProxyAdmin(WETH) != policy.admin ||
-            INativeVenueBindings(policy.admin).getProxyImplementation(WETH) != policy.implementation) {
-            revert InvalidConfiguration();
-        }
     }
     function configure(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
         PoolKey memory k = config.key;

@@ -1,0 +1,3643 @@
+{
+  "schema": 1,
+  "purpose": "Bounded AST-selected execution, not full regression.",
+  "compiler_input_sha256": "b96a0aee14ce439b365fdbfae047434e7661ea6d32e750484edfd70e2b8cf3b8",
+  "compiler_output_sha256": "801ba255b8cc526e7593fcd382b1024976c671c427a6cde1d2f72b47021e6302",
+  "size_evidence_sha256": "a678ccf8041ae857c40ff8aa2cf05b519e69ec7ea1fc8620dd8bae7fda839d7a",
+  "production_sources": {
+    "src/ZZZAccessController.sol": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+    "src/ZZZBuyback.sol": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+    "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+    "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+    "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+    "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+    "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZMembership.sol": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+    "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+    "src/ZZZMigrationBudget.sol": "d5036a5f11eb38a9e49720263fb62454382b545e123a3fe4dee7235a0882246e",
+    "src/ZZZNFT.sol": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
+    "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+    "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+    "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+    "src/ZZZPoolRegistry.sol": "c07189fe112ad5aa8e18672d2d536529c5e8967cfed0495d46b873cdd97ace68",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "47f68ab99d9ed945d2f93bb24b86e217eefe2e7ef244b31cb3f03a8a89a31af7",
+    "src/ZZZVaultCanonical.sol": "cccd8f08a0d6263c966ccf0a44642e3f48e70a30ce732790f19c25e57b582675",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+    "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e"
+  },
+  "selection": {
+    "RegistryNativeFundsBoundaryTest": {
+      "source": "test/NativeWrapperPolicy.t.sol",
+      "methods": [
+        "testRegistryDoesNotAcceptNativeFunds"
+      ]
+    },
+    "OperatorControlsTest": {
+      "source": "test/OperatorControls.t.sol",
+      "methods": [
+        "testOnlyApprovedGovernanceCanToggleControlsAfterSeal",
+        "testPoolStopOnlyClearsSelectedFlagsAndIsIdempotent",
+        "testPoolStopWorksWhenPriceTokenAndVenueCallsFail"
+      ]
+    },
+    "EntryReviewPolicyTest": {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "methods": [
+        "testReviewVersionsAreExplicit",
+        "testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap"
+      ]
+    },
+    "NativeCanonicalFundingTest": {
+      "source": "test/NativeCustody.t.sol",
+      "methods": [
+        "testCanonicalLedgerNativeTwoStageFundingPartialAbortAndPrefund",
+        "testVaultCanonicalNativeForwardAndAbortUseZeroValueAcknowledgment"
+      ]
+    },
+    "NFTMetadataTest": {
+      "source": "test/NFTMetadata.t.sol",
+      "methods": [
+        "testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment",
+        "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert"
+      ]
+    }
+  },
+  "selected_methods": 10,
+  "omitted_methods": [
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testFiveDollarConvertedTopUpRetainsNinetyNinePercentFloor",
+      "ast_id": 50967,
+      "start": 9113,
+      "length": 1044,
+      "original_sha256": "f795669cb3494da9ae49eb37e6096096e6fae3934e8a8208d539f4a31257025a"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testTopUpFloorUsesSourceUSDNotTokenCountOrStablePeg",
+      "ast_id": 51121,
+      "start": 10163,
+      "length": 847,
+      "original_sha256": "37c50824aef10c2b89e2dd551148e9cfcfd8cbbef0f41f78a99b6a2ccfe7aff2"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testDirectVaultTopUpCannotBypassFiveDollarMinimum",
+      "ast_id": 51244,
+      "start": 11016,
+      "length": 654,
+      "original_sha256": "5439fd608a3df422357a8d61158db6c6cb37358c65e7ad3fdf2028d066ec42fa"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testGovernedPoolFloorCanTightenButCannotRelaxTopUpFloor",
+      "ast_id": 51425,
+      "start": 11676,
+      "length": 895,
+      "original_sha256": "c8d74f1b5ca262a576889e47d0646db4909fd5ecac9fd61edf0a214af420a149"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent",
+      "ast_id": 51596,
+      "start": 12577,
+      "length": 1008,
+      "original_sha256": "20a9151f55daaf2127fee201054ba1bd9119dfdab9a3684e6a6b598b5054d895"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testOnePercentConversionPlusOnePercentDeploymentExceedsSharedBudgetAndRollsBack",
+      "ast_id": 51674,
+      "start": 13590,
+      "length": 662,
+      "original_sha256": "51bfa8e89b6acef692360a16480a6ffa3019519e790e53f59793d12f1de66246"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testDirectPairPathKeepsItsOwnHundredGrossAndNinetyNinePercentFloor",
+      "ast_id": 51850,
+      "start": 14257,
+      "length": 979,
+      "original_sha256": "3f74a83f67d2ead1e36b181fdff6a54010598cae28c2b5a1beb7d5d5a60387bf"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testTopUpsUseOriginalSourceBudgetAndPreserveSingleLPAndMembership",
+      "ast_id": 52029,
+      "start": 15241,
+      "length": 1076,
+      "original_sha256": "546b77a1d8000df2dc8d25b8c42384e4502c80cc09fba242dc8a1d838312880f"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testActualRewardsAndSourceContributionRightsFollowCurrentNFTOwner",
+      "ast_id": 52241,
+      "start": 16322,
+      "length": 1362,
+      "original_sha256": "a1f38a3aaa2c0aff613113e1eb41d4ee4ae04dbc449831cf7af6a641569623fb"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testNFTApprovalAndOperatorAuthorityCannotFundAnotherOwnersPosition",
+      "ast_id": 52328,
+      "start": 17689,
+      "length": 495,
+      "original_sha256": "0662798dbc1d79a8b41dd1426dd70842e2a31cc8d0c5447376eea1470afaabec"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testConversionOwnershipChangeRollsBackSourceTokensAndNFTTransfer",
+      "ast_id": 52398,
+      "start": 18189,
+      "length": 420,
+      "original_sha256": "07ef011dccdaf43dfe6ea146b4ca8f7dc0f475f73a00e0486dff7f5b71571c53"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testInactiveContextCannotAuthorizeSpoofedVaultCallerOrForgeGrossInput",
+      "ast_id": 52516,
+      "start": 18614,
+      "length": 615,
+      "original_sha256": "cbc511d5fb83a4d129b9b9bd93a262f355aecfa9326437fd374c36f2ae22b682"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar",
+      "ast_id": 52567,
+      "start": 19234,
+      "length": 366,
+      "original_sha256": "73dd5912a3efc10a853a9bf163daed40aed57655c5fd02900a11e0e631c7b7a4"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testDisabledOriginalSourceRejectsActivationAndTopUpWithoutChangingExistingPosition",
+      "ast_id": 52858,
+      "start": 19605,
+      "length": 2013,
+      "original_sha256": "9e28f42fbd5011855e85b8c4cf83922483f932fcd5a022a8d519dedaee8d56a0"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testDisabledIntermediateRejectsDirectInputButPreservesAdmittedSourceRouteAndPolicyHistory",
+      "ast_id": 53214,
+      "start": 21623,
+      "length": 2066,
+      "original_sha256": "6264668931a65150b1ae581e07e35fcfd384d579b4f19a91d71a92ed3a388d29"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "testDisablingAllInputsAndRoutePreservesFundedLPAndRoyaltyRightsForNewOwner",
+      "ast_id": 53644,
+      "start": 23694,
+      "length": 2236,
+      "original_sha256": "5be1a07ea51ca554ee0c86c6bcd7915f2a62c573100e2cb90b4451a41c652847"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testSignedMaximumAllowsTighterGovernedPolicyButNeverWidensActualFloor",
+      "ast_id": 97512,
+      "start": 2907,
+      "length": 575,
+      "original_sha256": "ce7b0ab0817935e1bb05589880971cf8bae854ec8ac33152dbb105f6e1b32b5b"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testZeroMaximumRequiresZeroGovernedCapAndLosslessActualDeployment",
+      "ast_id": 97633,
+      "start": 3487,
+      "length": 720,
+      "original_sha256": "72874400da0a19c7249d4dce1010ae6062afe269fa6b229690a4dd4a09206a53"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testMaximumAboveTenPercentAndLegacySelectorsFailClosed",
+      "ast_id": 97766,
+      "start": 4212,
+      "length": 1137,
+      "original_sha256": "19d5282f7686a31c98e4914ce7cc75d46a0f6e1b629e3bf9d144cfd6a0dff061"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testMalformedMaximumABIRevertsWithoutSpendingPrefundsOrUserAllowance",
+      "ast_id": 97927,
+      "start": 5354,
+      "length": 899,
+      "original_sha256": "6bf5ede2a49205725afde1ad76e6dfcbe9b5019042d2a1a4324727582063e701"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testTenPercentMaximumCannotOverrideStrongerPhysicalVenueMinimum",
+      "ast_id": 98017,
+      "start": 6258,
+      "length": 623,
+      "original_sha256": "18894b46c92e2981a52467be8623c815e80eef2e01062a2e53de129b4f73e979"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testGrowthReviewRejectsWideningAndPreservesExistingSharesAndClaims",
+      "ast_id": 98243,
+      "start": 6886,
+      "length": 1302,
+      "original_sha256": "23e66cde82f80167c11ab46cabbb637da1ce17ad54ac62dbdf1502a665608faa"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testPriceGuardFailureReportsUnavailableAndPreservesOwnershipAndRoyaltyEligibility",
+      "ast_id": 119117,
+      "start": 5792,
+      "length": 703,
+      "original_sha256": "158c9c6f23bcce1eccecdb7ee7eb072539c83714e5f88974b343fd4827b63b38"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testMintRequiresFixedVRFAndRollbackLeavesNoRequest",
+      "ast_id": 119217,
+      "start": 6501,
+      "length": 521,
+      "original_sha256": "11be4d409c7d55afb30b3970e266d3c4ee916a1b55c6b20b136e03fff543b77c"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testVRFConfigurationAndRequestTupleAreFixed",
+      "ast_id": 119361,
+      "start": 7028,
+      "length": 764,
+      "original_sha256": "7f6d8a9d035273d9bb064aef52ab43da541fb1951d693622d5536a1079f180ea"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testMintRecipientCannotDivertMintProceedsIntoRoyaltyLedgerOrNFT",
+      "ast_id": 119454,
+      "start": 7798,
+      "length": 514,
+      "original_sha256": "3c0c8480446e0761273142fef6a3abaedabe1f2c01ae3a6f87b14d29c39e4553"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testUnsealedConfigurationRejectsUnauthorizedInvalidAndSecondConfiguration",
+      "ast_id": 119683,
+      "start": 8318,
+      "length": 1109,
+      "original_sha256": "0df9d83ba31e40d3cb1e06607b3c891a1e492531262bbbfd13ba0bd24ea5b767"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testOnlyCoordinatorMayFulfillKnownRequestOnceWithTwoWords",
+      "ast_id": 119870,
+      "start": 9433,
+      "length": 919,
+      "original_sha256": "0ca74f34ec4cb66a1f3f55ff98cbbece13533eae7bce1d6ff50b7346fb76685b"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testPendingTraitsCannotActivateAndTransferCannotReroll",
+      "ast_id": 119997,
+      "start": 10358,
+      "length": 621,
+      "original_sha256": "b3cae9fd0c6d44835567726c5fe1bfd9bf4914dd67e722b55f19dcfa4e56ac0f"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testOutOfOrderCallbackCannotReorderQuotaConsumption",
+      "ast_id": 120114,
+      "start": 10985,
+      "length": 602,
+      "original_sha256": "dddd1eb618acba42c81fa01d48f01e599877fe40d3e3af0bf858c1b9656dd7cb"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testFuzzInitialRarityOddsAndIndependentArtwork",
+      "ast_id": 120206,
+      "start": 11593,
+      "length": 564,
+      "original_sha256": "40f17a35d8400418eb1b0794a07d8585e959486d85fcfd54e3c53ab9a25121c6"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testInitialRarityBoundaries",
+      "ast_id": 120287,
+      "start": 12163,
+      "length": 431,
+      "original_sha256": "f12e79ccdb30cbb0a48c36dc3582ac64f1105d3d463008779565b96239ece9a1"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testFullSupplyConsumesExactQuotasAndCannotRequestMint1001",
+      "ast_id": 120569,
+      "start": 12600,
+      "length": 1390,
+      "original_sha256": "83fef9c79ad437fbc07ef62643b387f838d527e7964b79ca80b4509b09ed8a9a"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testTraitsStayFixedThroughActivationTopUpAndTransfer",
+      "ast_id": 120715,
+      "start": 13996,
+      "length": 722,
+      "original_sha256": "eaccc5c0758c4157709ec780179d561bbc09c9d09839eb5a345eeb994449ea3c"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRevealedDormantMetadataShowsFixedRarityWeightWithoutRewardEligibility",
+      "ast_id": 120902,
+      "start": 14724,
+      "length": 1200,
+      "original_sha256": "6b5c843289098543b6c19f3944dde7fccfb55373b96a05d85753aa7c5aae774b"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testMetadataActivationFlagChangesWithoutChangingRarityWeightOrFeeRightsOnTransfer",
+      "ast_id": 121093,
+      "start": 15930,
+      "length": 1343,
+      "original_sha256": "a6c94a93ae540dcd88b1eeeb03d1a1ce0dd6693a19e4d4f38beb55a1c375bbf8"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights",
+      "ast_id": 121224,
+      "start": 17279,
+      "length": 618,
+      "original_sha256": "3b7a731d0edd5d9a82f031e2ff1a98c2b709176bb14d05397e56cc4ee7454d1a"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testCurrentNAVIncludesIdleAndCompoundAndAttributesOnlyNFTShares",
+      "ast_id": 121298,
+      "start": 17903,
+      "length": 407,
+      "original_sha256": "0755e523f85bf26c477fd85d322305844a809c05cf8d7ec61c8df810b7dac8aa"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testStaleOracleDoesNotBreakURIOrRoyaltyClaimsOrFabricateDormantState",
+      "ast_id": 121440,
+      "start": 18316,
+      "length": 1007,
+      "original_sha256": "d2c2d0b4f25bacc791dd80359dfa417fa928f3b42a4a87529109926a119ec2c4"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata",
+      "ast_id": 121597,
+      "start": 19329,
+      "length": 969,
+      "original_sha256": "301cb5cdb8688d5e37dc60787319b223f489065254c848f6942119d86c200f22"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testERC2981UsesFivePercentSingleImmutableReceiverAndERC4906IsSupported",
+      "ast_id": 121780,
+      "start": 20304,
+      "length": 1043,
+      "original_sha256": "cda6e2b97efd414fe79e28be952f08665f40971607d36f935e8a21214f503d99"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRefreshMetadataRangeEmitsActualHashedIDsInMintOrder",
+      "ast_id": 122141,
+      "start": 23202,
+      "length": 408,
+      "original_sha256": "60fcdd199271412d9f18f98581e110da6a1a075f05c7665cbf1f654024d4bbcf"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRefreshMetadataRangeAcceptsOneAndMaximumFifty",
+      "ast_id": 122234,
+      "start": 23616,
+      "length": 733,
+      "original_sha256": "49cac3eaeb3948d5af6f87c3a2b67e0034e281b4ca55da0aefe430fc044c55b3"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRefreshMetadataRangeRejectsEmptyZeroReversedAndUnmintedBoundsAtomically",
+      "ast_id": 122285,
+      "start": 24355,
+      "length": 378,
+      "original_sha256": "8ae3488d8e954de9578da8d389783c7659e13136c835610b761c929af5d192cf"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRefreshMetadataRangeRejectsFiftyOneBeforeAnyNotification",
+      "ast_id": 122298,
+      "start": 24739,
+      "length": 139,
+      "original_sha256": "817a5b1df30832e8d28dfd46c650472c9056f8e8c21e6424af5e72708e45e540"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRefreshMetadataRangeIgnoresPauseTransferAndUnavailableValuation",
+      "ast_id": 122431,
+      "start": 24884,
+      "length": 725,
+      "original_sha256": "14a386d5b87438cffb50af0c0c244e4887d7e512ba1f4e742b77bf8dc263e960"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testRefreshMetadataRangeDoesNotCacheOrChangePriceDrivenEvolution",
+      "ast_id": 122564,
+      "start": 25615,
+      "length": 697,
+      "original_sha256": "954907043d351f7f047220dbd0f1a64c4ba0800d8582875d4346b59a94e7ef04"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testZeroWordsConsumeTheFullInventoryWithoutArtworkRerollsOrQuotaLoss",
+      "ast_id": 122845,
+      "start": 27522,
+      "length": 669,
+      "original_sha256": "401e3f47782a437199d0c3e404c59c5bef1950832f6b93b815d50a5dacb4b66b"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight",
+      "ast_id": 122991,
+      "start": 28197,
+      "length": 1182,
+      "original_sha256": "f85adc29491ba68185f0616d33b6edb6759662ccb96f4ea3f08c3fcbcd2d6f23"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "testRawNativeExitHasNoZZZOrWrapperDependencyAndPreservesPrefund",
+      "ast_id": 135761,
+      "start": 6303,
+      "length": 544,
+      "original_sha256": "4e38fb8041c023d0cb004bad2aa03d50d2e24f1253c9bb3922c3ba6e64a840ad"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "testRecoveryRequiresExactNativeValueDespitePrefunds",
+      "ast_id": 135867,
+      "start": 6852,
+      "length": 552,
+      "original_sha256": "aa5cbed0fb2f504a88ba63d438e12c7b94a69391642c0a01a42ff6ec8021090d"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "testLocalCompletionForwardsExactNativeBudgetAndPreservesShares",
+      "ast_id": 135958,
+      "start": 7409,
+      "length": 532,
+      "original_sha256": "75040fcf42b731aec59a8cf4a3f84529b360bb5f86ed83e8767b19a8e8cd4de9"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "testRecoveryFailureRollsBackETHAndTokens",
+      "ast_id": 136037,
+      "start": 7946,
+      "length": 413,
+      "original_sha256": "3685bf6c2b0e292f55564ddcaf62e692d1720764b2872c6a6b9e8123a36c77b8"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "testRejectingRecipientRollsBackWholeNativeExit",
+      "ast_id": 136112,
+      "start": 8364,
+      "length": 394,
+      "original_sha256": "48eea4759e0ccd210d4be934c5059a8265996920dc948f2dc72d219e5b8e026c"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "testUnsolicitedNativeTransferToMigrationFails",
+      "ast_id": 136132,
+      "start": 8763,
+      "length": 144,
+      "original_sha256": "6825ecc99ed1254c1a4a4155837599a88948773b847cbf49f85f9548418e3f9d"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testDuplicateNativeBackingCannotCreateTwoLiabilityRows",
+      "ast_id": 136405,
+      "start": 10106,
+      "length": 273,
+      "original_sha256": "c9078d8b6bc05b69f7d9c767045960d937feb2ce7fdeed78a7ba32606626e85b"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testImportedVaultCompanionCanBecomeSourceAndRestoreWithoutOldImporterBaseline",
+      "ast_id": 137008,
+      "start": 12047,
+      "length": 1649,
+      "original_sha256": "933963c7de534194ed62fc776a606bae5820fdef2e67921c1dac4a97503c5577"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testNativeImporterRejectsAnOldAccountingSchema",
+      "ast_id": 137105,
+      "start": 13701,
+      "length": 607,
+      "original_sha256": "bc4878bd75a56c5cee89e53ad124ee074b3cb7eea0f9d7a47b72452d3d67abfe"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testCanonicalSchemaNamesNativeAccountingVersion",
+      "ast_id": 137154,
+      "start": 14313,
+      "length": 428,
+      "original_sha256": "e953682ee661170b4427f205be4e5502c057b240714517948acee40974d01394"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testLPOnlyImporterRejectsTheOldNativeFeeCodec",
+      "ast_id": 137251,
+      "start": 14746,
+      "length": 606,
+      "original_sha256": "01f32184ccb17ec2195ad12bb8158dc8de5efd8fdd49204f824119bd79041721"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeMigrationBudgetTest",
+      "function": "testHistoricalNativeCompoundIncludesFullThirtyThreeAssetBound",
+      "ast_id": 137496,
+      "start": 16074,
+      "length": 783,
+      "original_sha256": "c435ca4dd1307d4de69b7e050036935efe05a591d01afb10129a1c9ff819ee99"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeMigrationBudgetTest",
+      "function": "testNativeIdleBackingReadsBalanceWithoutERC20Call",
+      "ast_id": 137639,
+      "start": 16862,
+      "length": 569,
+      "original_sha256": "ab37121b8601284613ecacce59c59e8cd2d695769ad9f824fffd2102d319170b"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testUnknownPoolAndEmptyStopRejectedWithoutAdmission",
+      "ast_id": 149544,
+      "start": 5259,
+      "length": 374,
+      "original_sha256": "fd8471b14e3ea403046612a15aeec3b1e99d550b2fd6017dc298ae57903c3b42"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testGlobalPauseDoesNotPreventGovernanceStopsOrGetCleared",
+      "ast_id": 149724,
+      "start": 6221,
+      "length": 379,
+      "original_sha256": "de15455784967d8d9bde7844c6ce0c9db7749d1323d700ec70a65120f685cea8"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testCanonicalLockCannotBeBypassedThroughNewControls",
+      "ast_id": 149786,
+      "start": 6605,
+      "length": 316,
+      "original_sha256": "8049b3b48807bd5c4056cb02db1851509444b0b9dfcfed7190474ae5b106ccd9"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testMintCallbackPauseRollsBackOriginalRequestAndOwnership",
+      "ast_id": 149929,
+      "start": 6926,
+      "length": 850,
+      "original_sha256": "939ccbc1cd36d6eca582570570d796ce0730d805ca193c4a2a454dbe4f59549e"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "MintControlIntegrationTest",
+      "function": "testPausedMintCannotSpendPaymentOrCreateRequestAndResumeWorks",
+      "ast_id": 150068,
+      "start": 8203,
+      "length": 566,
+      "original_sha256": "ba5a500e9571f82af7931dea57325f01549a4bdf8afbbb522bfe691beef87a86"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "MintControlIntegrationTest",
+      "function": "testPendingFulfillmentAndRevealContinueWhileMintPaused",
+      "ast_id": 150135,
+      "start": 8774,
+      "length": 379,
+      "original_sha256": "72d92ccfcf3fc63b74d91cc93e0ea060eea0d58e18a85b4e2522efc313d7cd83"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "MintControlIntegrationTest",
+      "function": "testExistingActivationTopUpMaintenanceTransfersAndBothClaimsContinue",
+      "ast_id": 150302,
+      "start": 9158,
+      "length": 924,
+      "original_sha256": "79b99af9d56ebdab29f3a097d66a4daf181fec641d9dca95037d66ff34530660"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "MintControlIntegrationTest",
+      "function": "testUnpausingMintCannotBypassGlobalPauseOrPreparation",
+      "ast_id": 150390,
+      "start": 10087,
+      "length": 462,
+      "original_sha256": "c0200cbbfae5848c6bc7859558d1937246b782167e8933f74720ce681832823a"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "PoolStopEconomicIntegrationTest",
+      "function": "testDepositStopBlocksActivationAndTopUpWithoutTouchingExistingRights",
+      "ast_id": 150682,
+      "start": 10622,
+      "length": 1371,
+      "original_sha256": "3b248dd87c7c01cff1f4391584b94a96bdd557dd52454689f65f67e2f60b84a2"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testNarrowingWaitsForCooldownThenAppliesOnce",
+      "ast_id": 165709,
+      "start": 4588,
+      "length": 570,
+      "original_sha256": "8c7835114ef3e5ced1d91c756aedfe8b3a064d163de8c7f0a151227778099cad"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testWideningAndReturningToDeployedPolicy",
+      "ast_id": 165765,
+      "start": 5163,
+      "length": 366,
+      "original_sha256": "1f9ba3e5c192bba3e566006e85fbb72e813a9dd61ee9c93c22f4cace787dee36"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testSmallMarketMoveDoesNotCreateRangeUpdateChurn",
+      "ast_id": 165833,
+      "start": 5534,
+      "length": 457,
+      "original_sha256": "478011bccc484fed2050a1df154b94a28c88242fa9f6ba4065a061e72381f679"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testRoundedIdenticalTicksAndUnrelatedConfigurationDoNotRebalance",
+      "ast_id": 165896,
+      "start": 5996,
+      "length": 421,
+      "original_sha256": "0fe03cb390e07494c052f8900c41969796ffb85591b30fff3828f8e1c5e54aa6"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testDisabledOperationsAndStaleOracleCannotBypassNormalEligibility",
+      "ast_id": 165976,
+      "start": 6422,
+      "length": 520,
+      "original_sha256": "5ab57d9693e9bcca5de00ff148ac7e14008234563c776e2c2c8a5a584cdf303b"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testInactiveAndMissingIdentityCannotAuthorizeRebalance",
+      "ast_id": 166106,
+      "start": 6947,
+      "length": 799,
+      "original_sha256": "b0c1cc6dc9fc094a580b5ccd38630a523915410143a8fb523aa36f8457ed4866"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testCurrentPhysicalPositionIsReadAndMalformedTicksFailClosed",
+      "ast_id": 166191,
+      "start": 7751,
+      "length": 503,
+      "original_sha256": "2c430e5543ccd34b4891fa29853d55fc9bec3f0f41d6f0883037c34524c7a9f2"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testFuzzAppliedWidthHasNoPersistentMismatch",
+      "ast_id": 166237,
+      "start": 8259,
+      "length": 303,
+      "original_sha256": "a1b5b9151a54da911c8a3fbca92d0963213d11e3e7ef46a7b1233d1a9de1f684"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "testRealSealedGovernanceCanImmediatelyApproveRangeChange",
+      "ast_id": 166501,
+      "start": 8567,
+      "length": 1643,
+      "original_sha256": "0eced6d467c1d59173821e6d982569e9c049b87ad3c00cb839224e495dbdacde"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationLeavesExactAttributedIdle",
+      "ast_id": 193030,
+      "start": 10210,
+      "length": 458,
+      "original_sha256": "8537393ff4ecfcfa3b0d690e8d6f9b51f694c255e2ddcf89765f56742292beb8"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testMostlyIdleActivationRejected",
+      "ast_id": 193101,
+      "start": 10673,
+      "length": 351,
+      "original_sha256": "a5d9844467496cd96e1f86156b84a463bc42bf0e377ce127ce71bed85da3e92b"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testVenueFailureRollsBackActivationKeepsPaidDormantNFT",
+      "ast_id": 193228,
+      "start": 11029,
+      "length": 635,
+      "original_sha256": "77995c13878f06cef11fe0fd35ac9daed42137f7bd6b645a79ee27ab2879ca44"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDonationNeverBecomesAnotherNFTPrincipal",
+      "ast_id": 193283,
+      "start": 11669,
+      "length": 295,
+      "original_sha256": "cc6161ccadf86592e341d3fabbfa55d5f8c9eca42b9cbf4e48d6a71ceb084ade"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testFeesNotPrincipal",
+      "ast_id": 193349,
+      "start": 11969,
+      "length": 334,
+      "original_sha256": "3989ec2fcc615a5504c81dad2ffb659140ed387496f1e90e32f1baf354e442b0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testCompoundingAddsOnlyDesignatedShare",
+      "ast_id": 193434,
+      "start": 12308,
+      "length": 445,
+      "original_sha256": "7e9c5665c970f4ee3daafefd6434c1b58946e1ad5d7ab595f7f5a3cd2ea0ee41"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testRebalanceReplacesLPButPreservesEconomicNFT",
+      "ast_id": 193507,
+      "start": 12758,
+      "length": 386,
+      "original_sha256": "4f348d3bb5a268b0ed3642816827724fdf9bdb412eff16a1319ccf2ff435dc35"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testOnlyKeeperCanRebalance",
+      "ast_id": 193539,
+      "start": 13149,
+      "length": 161,
+      "original_sha256": "acd1b2e58bef4b3aeee575d39c01ddeafd344fcbd1e62a110253887322be3fda"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testNoOwnerWithdrawalEntrypoint",
+      "ast_id": 193572,
+      "start": 13315,
+      "length": 209,
+      "original_sha256": "6bcd52352e425d8c7a1ffbd419fb372afb8ca22a8806043e3a09eb3620856a7a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testNFTUserCannotTransferUnderlyingLP",
+      "ast_id": 193610,
+      "start": 13529,
+      "length": 223,
+      "original_sha256": "fd64e1e9bc7adcdab1fa4e50b0a1a9523c6cac06c199914e0470642a8849f1a9"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testTopUpKeepsBothNFTsAndCheckpointsFees",
+      "ast_id": 193687,
+      "start": 13757,
+      "length": 407,
+      "original_sha256": "2477ceca5abe9ff9654b933aef85170c5d9d94c9edaaa21053b956f670dd7dc2"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testMigrationReleaseOnlyGoesToBoundModule",
+      "ast_id": 193807,
+      "start": 14169,
+      "length": 592,
+      "original_sha256": "90cbd8e2cecd413e259b684f2752865894be828a1d6254487699815c5c39cb71"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testSatelliteCannotIssueAnotherCollection",
+      "ast_id": 193845,
+      "start": 14766,
+      "length": 214,
+      "original_sha256": "8477ad1d476980106930fa75f6be5d99d823fa9a7d9a78b5f6fe42ae7fd1baad"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testPauseBlocksMint",
+      "ast_id": 193880,
+      "start": 14985,
+      "length": 183,
+      "original_sha256": "d61cac05498bbdc36e8fef320ecedcd36f3c079efe04737289622dbf8f502f47"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDormantMintForwardsPriceWithoutLiquidityOrRewards",
+      "ast_id": 194123,
+      "start": 15173,
+      "length": 1315,
+      "original_sha256": "80015669951b110df68f995c93578617af479bd5b898cb4e3f77603f32995199"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testFuzzMintRejectsAnyUnderpayment",
+      "ast_id": 194186,
+      "start": 16493,
+      "length": 390,
+      "original_sha256": "cc703eae48181cbd2ade21a2d8d2b3ccf35934fe2b52bc8809ff59d20fe5e3a5"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testFuzzMintRejectsAnyOverpayment",
+      "ast_id": 194249,
+      "start": 16888,
+      "length": 395,
+      "original_sha256": "37af30cb4150796d19ec6c42da477700469912af36bd700812e9698271a7cd02"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testRejectingNFTReceiverRollsBackMintAndPayment",
+      "ast_id": 194348,
+      "start": 17288,
+      "length": 588,
+      "original_sha256": "9a0ac0799c4e4dec042dc6623e062e5229bb402453cc31e7a6292b7eee1f195f"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testRejectingTreasuryRollsBackNFTAndPayment",
+      "ast_id": 194471,
+      "start": 17881,
+      "length": 662,
+      "original_sha256": "bdbd431163c57983763d550bb3b219fd8db6283982ef54191821c81e4e15d380"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testReceiverReentrancyCannotMintSecondNFT",
+      "ast_id": 194553,
+      "start": 18548,
+      "length": 524,
+      "original_sha256": "4f891caf1dc115ed0bdb86e4dd27cc169aaf196ba34c1960d43aa39716c5a7df"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testTreasuryReentrancyCannotMintSecondNFT",
+      "ast_id": 194644,
+      "start": 19077,
+      "length": 552,
+      "original_sha256": "f43b0d05db162f3763e8fc616c7899c415c0826eb3c5ba51f719e751a1ec167a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testZeroProceedsRecipientRejected",
+      "ast_id": 194671,
+      "start": 19634,
+      "length": 146,
+      "original_sha256": "37bb4e1d1d8c75cdc5a0e3a0b1f564b740ff93f303ed43201d3df8323fbc0b12"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testSelfProceedsRecipientRejected",
+      "ast_id": 194712,
+      "start": 19785,
+      "length": 238,
+      "original_sha256": "579e4de724b380c2a2c4cdddf326a338e7c8b4e2e132a100433f5db7ac050f94"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testUnsealedSystemCannotMint",
+      "ast_id": 194764,
+      "start": 20028,
+      "length": 292,
+      "original_sha256": "924c58605b8133adc4b1edf666f68ba58fa8365451816fcfd3b49452ff17542c"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDormantTransferOnlyNewOwnerCanActivate",
+      "ast_id": 194865,
+      "start": 20325,
+      "length": 503,
+      "original_sha256": "f6fbddebf315b31168808cafa6552ea5e42f1acc06db162e6f400f31940bc8fa"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationCannotIssueSecondNFTOrChargeAnotherMintFee",
+      "ast_id": 194967,
+      "start": 20833,
+      "length": 558,
+      "original_sha256": "2d5c4969903cf0a8d93e0aed12783734e53bb70d411ab2d88c00f1716b797b87"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testDormantCannotTopUpCollectCompoundRebalanceOrMigrate",
+      "ast_id": 195089,
+      "start": 21396,
+      "length": 626,
+      "original_sha256": "564d6d644d3f5e0f63341bfced52a5e56b3bef9590f68692e69301f89e112493"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationRequiresAtLeast100USDInput",
+      "ast_id": 195153,
+      "start": 22027,
+      "length": 337,
+      "original_sha256": "8a375c6a6adfa5f18ce68c62c9fa8fcbd5ed4334c6c53195a37cf86c7fb677bf"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationRejects100InputWhenActualLPIsBelow99",
+      "ast_id": 195242,
+      "start": 22369,
+      "length": 554,
+      "original_sha256": "d6d2e1e54e9d93eaefe96be83de68ae9e95727ccf1572149ec8e6990de75a8a2"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testExactly100ActualLPActivates",
+      "ast_id": 195317,
+      "start": 22928,
+      "length": 384,
+      "original_sha256": "5988b8e9cdf5ec724ea3d7a444115b62d768f3b266f1ca4ce0107f43927fe152"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationHonorsStricterPoolMinimum",
+      "ast_id": 195388,
+      "start": 23317,
+      "length": 358,
+      "original_sha256": "dcdd9dbc8ab81dade3103e22ad766d299cc5243e6d07525ec0584c5c2f90c3d0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testPauseBlocksActivationKeepsDormantNFT",
+      "ast_id": 195452,
+      "start": 23680,
+      "length": 330,
+      "original_sha256": "889e7c53c01e0aa35eb13412cd29e100b6088095605fb611f40d5c3d25eb83e0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testWrongChainCannotActivateCanonicalDormantNFT",
+      "ast_id": 195518,
+      "start": 24015,
+      "length": 351,
+      "original_sha256": "0140e2558e9a2c9de04ab03639c336e6c9753d1da4a05702838fb6df2cd27291"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testOldDepositSelectorCannotBypassPaidMint",
+      "ast_id": 195579,
+      "start": 24371,
+      "length": 373,
+      "original_sha256": "100d3437570cbc322c8461b72acd0e9be6322a5ba7da740cc9bcaf6e17397df0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultAccountingTest",
+      "function": "testActivationCannotCollectHistoricalSharedRewards",
+      "ast_id": 195741,
+      "start": 24749,
+      "length": 841,
+      "original_sha256": "63683fe800bcf2193504a42525ee8ef33c9cc599b220fbedf9b79dfd6e09f9d0"
+    }
+  ],
+  "retained_function_bodies_and_helpers": [
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicIntegrationRouter",
+      "function": "",
+      "ast_id": 49744,
+      "start": 1482,
+      "length": 67,
+      "original_sha256": "0a9211c74cb385d00059951a576f4d2655fc72d6a7e3660c63c6756b37a0d3f5",
+      "selected_test": false,
+      "body_sha256": "9ef123347335b884f2453c243cd950006fa4f7fb44a32b740aea999ef5e09884"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicIntegrationRouter",
+      "function": "setOutputBps",
+      "ast_id": 49754,
+      "start": 1554,
+      "length": 64,
+      "original_sha256": "6dc4428a9b58d3f86cc1523fffdf195d7d20744a2848a4c3ecacce16e102e314",
+      "selected_test": false,
+      "body_sha256": "63f18ae184f71253cb28657f27820349460cf3f5ccc929f85cdb49bb9184daea"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicIntegrationRouter",
+      "function": "transferNFTDuringSwap",
+      "ast_id": 49783,
+      "start": 1623,
+      "length": 180,
+      "original_sha256": "02d5c0829ddea03f7555a8521b678fcbca900ba53d11977cea10c093c85f4a3f",
+      "selected_test": false,
+      "body_sha256": "de729d14f585b8afb3b21e19fba22fafaea7d558d275213abe1b5fa199e13e80"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicIntegrationRouter",
+      "function": "exactInputSingle",
+      "ast_id": 49876,
+      "start": 1808,
+      "length": 605,
+      "original_sha256": "c05acc7ec4a0b7f85bbc320bb4e47b5b3faec51ebaa01c07e1e8e75876759c90",
+      "selected_test": false,
+      "body_sha256": "feeb402c03592c3715d02822ea08024ba445fb4358b425d9d3c6dda0a99bce2c"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_integrationFixture",
+      "ast_id": 50373,
+      "start": 3667,
+      "length": 2969,
+      "original_sha256": "340df4c17450a604c1ebaa10f4519efd73affc5959019c4889f203c4d610b62c",
+      "selected_test": false,
+      "body_sha256": "25d8f77b310cc51f5f9260aaa42ad0ad620b8ecccc4d66d0efec849f0ce49efb"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_fundIntegrationOwner",
+      "ast_id": 50453,
+      "start": 6641,
+      "length": 365,
+      "original_sha256": "a58db61ef62715e4cba55fba13686141d133c4b160789c2b0055e7abe1b96692",
+      "selected_test": false,
+      "body_sha256": "50c531017fc9be91487ae84f31cb190eb8707b971c84ecec579a43cdec231e07"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_request",
+      "ast_id": 50483,
+      "start": 7011,
+      "length": 252,
+      "original_sha256": "9fed9ecd8301e12957976b9e117fedf4480c5f593e45bca531698e8b6c849c31",
+      "selected_test": false,
+      "body_sha256": "7d30a6e3806bbb16a4864379b18ab3fa252a115191219c3ef2ad4d3460db29b6"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_execute",
+      "ast_id": 50505,
+      "start": 7268,
+      "length": 153,
+      "original_sha256": "00227667125ddba99b87e3290d6817046c92493f71976a9cee59edb8a987be90",
+      "selected_test": false,
+      "body_sha256": "0d955ec102a6236d8c79af73d57a706b571f47b1e6987fe1632c7d9fc0d253bf"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_cleanEntry",
+      "ast_id": 50606,
+      "start": 7426,
+      "length": 480,
+      "original_sha256": "4f37e386de23b6f68f637fcb7b540153e85e28ff70fed51d67658557dd973e0e",
+      "selected_test": false,
+      "body_sha256": "27874ebb684f4c4cdb543f12da4e29253e151d12c368c2ccca01e10aa9e3f828"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_cleanContextAndApprovals",
+      "ast_id": 50679,
+      "start": 7911,
+      "length": 600,
+      "original_sha256": "aa94afa104ebcd315ac685a5f77ed2759b5a4dc19638c5e5b43094fc43842d96",
+      "selected_test": false,
+      "body_sha256": "a6639c10fd076bf742d01676c6049db4822063f61a0c591fda2eacb783fa7c42"
+    },
+    {
+      "source": "test/AtomicActivationIntegration.t.sol",
+      "contract": "AtomicActivationIntegrationTest",
+      "function": "_assertDormantAndUnspent",
+      "ast_id": 50785,
+      "start": 8516,
+      "length": 591,
+      "original_sha256": "4adc9976d01f2858605c1bf169d13c82cc72dffb0bb6986d557aaa33490f613e",
+      "selected_test": false,
+      "body_sha256": "69bcaee797fc739be95173f3126a95a2469511963c90a2e46b38250775e10369"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "_review",
+      "ast_id": 97106,
+      "start": 514,
+      "length": 243,
+      "original_sha256": "ec130308bbb0376828650ac4091538bee9ca80ff667b3227c6180ea05dffc991",
+      "selected_test": false,
+      "body_sha256": "c93f9c7290f8081995b7be107ba6c83afc24b4f3cd4faa408a53ca17bbeddcc1"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "_assertNotSpent",
+      "ast_id": 97249,
+      "start": 762,
+      "length": 763,
+      "original_sha256": "d803c5df04d80fd1c3819c0cd2772b3f6113ef539735575f78e4572bd29a4f4e",
+      "selected_test": false,
+      "body_sha256": "6835ff71dba5c7ce31b953781ab6d793b5f912af0a6b17fb0ffa9392d1a01dcf"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testReviewVersionsAreExplicit",
+      "ast_id": 97271,
+      "start": 1530,
+      "length": 195,
+      "original_sha256": "d09360f0707415bb3015ba7f7f8d881799da86d27a1b408c605161c9a0ea07ec",
+      "selected_test": true,
+      "body_sha256": "fc3d391954902620ae147d16af6b8777c32b9815dcb698bb85fabc6b9ce7b0df"
+    },
+    {
+      "source": "test/EntryReviewPolicy.t.sol",
+      "contract": "EntryReviewPolicyTest",
+      "function": "testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap",
+      "ast_id": 97423,
+      "start": 1730,
+      "length": 1172,
+      "original_sha256": "4cb5faa9f75f02ccb9e2e1e59aad92fb98400fac268c5b61887864f92488514e",
+      "selected_test": true,
+      "body_sha256": "db32fc4c55be028f37b8737021d2878b784026e6baba45770af8c60af7651d9c"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "migrationBudget",
+      "ast_id": 118244,
+      "start": 938,
+      "length": 80,
+      "original_sha256": "16862e1d96dd28a39bcd8225249dd2961934dde64a43d05ac8f0e95502328a20",
+      "selected_test": false,
+      "body_sha256": "603ccb3f2d25561b841a76a1ec851351be93d31307b2407a32a8ef65d5ab9519"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "historicalCompoundValue",
+      "ast_id": 118254,
+      "start": 1023,
+      "length": 83,
+      "original_sha256": "f1eb477ff1946ad990ed39393e291271006b728c9185efe478c7ba80c85c29c8",
+      "selected_test": false,
+      "body_sha256": "dee9d3f8e6e594b4f62871b99b13f7d18a7e97e1591baa3ac8c965d49a4f2b6a"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "setNFT",
+      "ast_id": 118292,
+      "start": 1399,
+      "length": 63,
+      "original_sha256": "925039ad5a5a346a7a541fd52b65a5ad5983fee5ea2f893395a72359b7801510",
+      "selected_test": false,
+      "body_sha256": "ef986ec197b405fa16b92d4e821fc65613658f8cb07d401c4f43a9c73820425a"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "setMintRecipient",
+      "ast_id": 118305,
+      "start": 1467,
+      "length": 101,
+      "original_sha256": "254179259ca422ced9f40b0cb7563a693a1825301536bcd2594278357254f367",
+      "selected_test": false,
+      "body_sha256": "889bcfe4213f74988f1d58ae8eb409fd6564d763bfccb7f04529d47cd3b08fd6"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "mint",
+      "ast_id": 118320,
+      "start": 1573,
+      "length": 74,
+      "original_sha256": "725630289162365d050557e3ac1cb75c738bc866fc7982eec1df5ed1315363cf",
+      "selected_test": false,
+      "body_sha256": "58dcb419bf7d5a2e6ac5c2cc6aaac3cb70659dbdeb715a00143a189efc21c2d1"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "setPosition",
+      "ast_id": 118331,
+      "start": 1652,
+      "length": 82,
+      "original_sha256": "c76e3ff0c57c4786e1cae58685374a60f5589f3e7794e0e7be76cde20979947f",
+      "selected_test": false,
+      "body_sha256": "c7b131e3e211e9ba9d38caea9a27873d1f17165773963f1566f36983a3308441"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "group",
+      "ast_id": 118342,
+      "start": 1739,
+      "length": 84,
+      "original_sha256": "83d611edb122d50e970f7e2cbbfdbdea316cfee7bebcc2faa6c378be7990c269",
+      "selected_test": false,
+      "body_sha256": "a73db267620332c7b0972a3e78910eef13de24638c7ad5f3b7b733b3cebb788d"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVaultMock",
+      "function": "contribute",
+      "ast_id": 118376,
+      "start": 1828,
+      "length": 197,
+      "original_sha256": "b750719c4f81cb9e24047339df1cbfd7bf698b6f9cfeadd7c7ca7e5c5aac266c",
+      "selected_test": false,
+      "body_sha256": "98bb3071cb5c408732de0a78ce0970bc26a4ca23f1bff34c885e34f5e36f4357"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVenueMock",
+      "function": "set",
+      "ast_id": 118399,
+      "start": 2128,
+      "length": 63,
+      "original_sha256": "d94146b88ce369563a0742c3a860441bb9a76a2f9c94138810cc393dabaed193",
+      "selected_test": false,
+      "body_sha256": "30828990ef33b0fafb19585ecd315432abe91d50f5a18865435cf8bff616f788"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVenueMock",
+      "function": "setFail",
+      "ast_id": 118409,
+      "start": 2196,
+      "length": 56,
+      "original_sha256": "2eb8a1e93b902038bf30d2c20fab775001bb0f5f52c326d1d064ecaebbccfd8a",
+      "selected_test": false,
+      "body_sha256": "276560b40d5272fede16d87447eb95df5ac587827d34676d48d5592820243cd5"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataVenueMock",
+      "function": "amounts",
+      "ast_id": 118428,
+      "start": 2257,
+      "length": 106,
+      "original_sha256": "7ea0064ff3bcecd5c6617ba4c00c47d94bf0d7f75875a4d44ef871877fba8a4a",
+      "selected_test": false,
+      "body_sha256": "0f08367b5249458398257d2541101327522f9869f7bed56b3cc6f2a703e8f686"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataFeesMock",
+      "function": "set",
+      "ast_id": 118451,
+      "start": 2475,
+      "length": 92,
+      "original_sha256": "e860e02ad9d13ad3bfa296b67de4599fe4f7a946e4d10005381cda1e182e9b58",
+      "selected_test": false,
+      "body_sha256": "9ecf80009d424d41ead6dbcdae82700069a6167da8455f8ee25b89946555f87c"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataPricePolicyMock",
+      "function": "setFail",
+      "ast_id": 118464,
+      "start": 2708,
+      "length": 51,
+      "original_sha256": "2b63dbe8489faf018045c3c3120f7ca4449cb536fe1308e1935f9fb49117b3cb",
+      "selected_test": false,
+      "body_sha256": "aba47c2ca9a161de4b852b39792e12edee4a34f6a5a57c9737c247cf6cdabdca"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "MetadataPricePolicyMock",
+      "function": "validateExitPrice",
+      "ast_id": 118484,
+      "start": 2764,
+      "length": 106,
+      "original_sha256": "03700e56ffa15f4f42a0d21a2ac717342d4ce14648756c84687a2cd51c23e5cb",
+      "selected_test": false,
+      "body_sha256": "4a1ad42357ed2dc7c979aa2d49437bdf08de068392d34d4cb967acd4c202dfbe"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "setUp",
+      "ast_id": 118908,
+      "start": 3615,
+      "length": 1605,
+      "original_sha256": "c794aeb06838fc602753ca1de924c891bf7ad7b774fffb90a81e5a1b8ffbd8ff",
+      "selected_test": false,
+      "body_sha256": "69bb6004257d2f097d5a38a89217868c8be558cfddb67dfe6db0091968a3edfb"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_reveal",
+      "ast_id": 118948,
+      "start": 5226,
+      "length": 216,
+      "original_sha256": "29a00815d3a9817ec88ea1acb81f3f20f4388b699c4b82d38b692b3eb56e231c",
+      "selected_test": false,
+      "body_sha256": "df623223ebaa9acab6f95d6b03a9ac134bbaf8d89267f7db199a5047ae3d3a71"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_active",
+      "ast_id": 118972,
+      "start": 5447,
+      "length": 159,
+      "original_sha256": "19e4314126c4a52b3053f016eb19930ce75a01e8b4f8446946be5dd1c9c705c9",
+      "selected_test": false,
+      "body_sha256": "71b82bab9a262c101f2f4d3f79becebccbca010796b99af997ab8bebb197b8c1"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_stage",
+      "ast_id": 118998,
+      "start": 5611,
+      "length": 175,
+      "original_sha256": "4fd45f40f223108c0efd4ab7a6ae73b054418cb461d2ec358643151ac1277e5b",
+      "selected_test": false,
+      "body_sha256": "192f38520da9f76951ef319f465a86ef5158ba1e754bc91042aa5d00f0489596"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment",
+      "ast_id": 121892,
+      "start": 21353,
+      "length": 691,
+      "original_sha256": "0f7b64e10ee135d9289d9e70e2256244dee4e80d0f183689f1d0aca8785a0aad",
+      "selected_test": true,
+      "body_sha256": "7dad4696099871791a0f5bc2d0e5f313532ef5cb38224ea1e15f29d92563ae74"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_hashedId",
+      "ast_id": 121916,
+      "start": 22050,
+      "length": 161,
+      "original_sha256": "669266acb0a169a3328e7b64b953e0b44b6b88cc58871c2654d797a111cf5d2d",
+      "selected_test": false,
+      "body_sha256": "e0769342cacf94edffe2f0c51e414f26fa375bdcb06caade1660c2da167d422c"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_mintHashed",
+      "ast_id": 121942,
+      "start": 22217,
+      "length": 153,
+      "original_sha256": "b86bfab966c0d6f7548735127ecf2add440c5b8b1747a5faaead3a4000609eb9",
+      "selected_test": false,
+      "body_sha256": "837d19fcec431ac0ee9c43828fac15d2c98c811a565bca92bb61730570e58911"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_assertRefreshLogs",
+      "ast_id": 122032,
+      "start": 22376,
+      "length": 528,
+      "original_sha256": "a788fb5757815068067e48d52ecd26135c6b3a2a52ed924dd6ea0c82b6c96208",
+      "selected_test": false,
+      "body_sha256": "fadce73589b17ce8ccfe8783b14b557aaa2fd3b438b570087ba66d7df115039e"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_rejectRefreshRange",
+      "ast_id": 122071,
+      "start": 22910,
+      "length": 286,
+      "original_sha256": "e6e6c68416b859cc37e22a271edf98c900ad50a491001f11740d168a9d444e3a",
+      "selected_test": false,
+      "body_sha256": "27b1f6ac95a3b17024d919097a676837627b9c08cae148c5466d5ebfdbf87496"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert",
+      "ast_id": 122725,
+      "start": 26318,
+      "length": 1198,
+      "original_sha256": "05fb3cbc3cce7f6bac4efa1bd6c5b727a747a169972ee2330ef60856a74e7e93",
+      "selected_test": true,
+      "body_sha256": "66ccfd789de7e72dbd06fd2838d4cae26609c4fba3f12043ef22dfbb61dae9df"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_attributeIndex",
+      "ast_id": 123060,
+      "start": 29385,
+      "length": 479,
+      "original_sha256": "774e5d497f3aafa69fd00a88bc7992dab4154ca861e89458785e463ac2184f10",
+      "selected_test": false,
+      "body_sha256": "1e7fcda04c9480b75c409f92fdf9d0a2c0e61d0171a3362aec283ec818a991c9"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_stringAttribute",
+      "ast_id": 123079,
+      "start": 29869,
+      "length": 182,
+      "original_sha256": "6b42f100f850f5adc540287ea2904d5e450679acc02382eabaf56fd3f8637991",
+      "selected_test": false,
+      "body_sha256": "152150e41f357db6c3f5758a7a1a778c14e51bacf8164ec1a070a127a5dddc1c"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_uintAttribute",
+      "ast_id": 123098,
+      "start": 30056,
+      "length": 172,
+      "original_sha256": "1f4f7a2aae89fd53ac206e93369682d57d9015bb010db9a0f30b0da33ea5f42d",
+      "selected_test": false,
+      "body_sha256": "87de8f9192f79f9fc31c0a257d699849f1a8e1f28f9def83bfe6b8e9604fdf9f"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_json",
+      "ast_id": 123282,
+      "start": 30234,
+      "length": 803,
+      "original_sha256": "90a50fea0a71d75e41e1f78e459e1e53605cec6b38e4d2b9f6e060e53a2e46fd",
+      "selected_test": false,
+      "body_sha256": "f14b82041728fa009e1e7698615f729bd397b69fc3900c047fe14cb2e5eb8654"
+    },
+    {
+      "source": "test/NFTMetadata.t.sol",
+      "contract": "NFTMetadataTest",
+      "function": "_digit",
+      "ast_id": 123347,
+      "start": 31042,
+      "length": 379,
+      "original_sha256": "1d61f8936812da4dbba68356ec916b6d2346e213298bf0a9293e367da7728962",
+      "selected_test": false,
+      "body_sha256": "1fe61ffbbf4ad20c1c1d1062f151a9819a35e5ae2d0c95c685946b508fe13170"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyAssets",
+      "function": "isAsset",
+      "ast_id": 134762,
+      "start": 914,
+      "length": 67,
+      "original_sha256": "7070f64f7579aede816dc90edb9df4c28b7614c41fde5dde21a34e84b804a930",
+      "selected_test": false,
+      "body_sha256": "952bae82e5d61e632d81adb7a1ba7e9e4281932510d698cb72b53045462f5396"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyAssets",
+      "function": "assetCount",
+      "ast_id": 134770,
+      "start": 986,
+      "length": 63,
+      "original_sha256": "b3d449546830bc31bf8c1047a98078b4f125c73ef1473abdcf6ad20f35495d51",
+      "selected_test": false,
+      "body_sha256": "b3ec6e23aa03d9dc1b6b6d6ebc42a97d8a74c729dcfc8073c9836ff8a22c6956"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyAssets",
+      "function": "assets",
+      "ast_id": 134783,
+      "start": 1054,
+      "length": 75,
+      "original_sha256": "66f1c577d9206b84625b461504a588c163b954d0ce06064f97f34fa99c5c5006",
+      "selected_test": false,
+      "body_sha256": "7f4c3cad4d3ac15fdf8dfa30a1bb9e84033afdf104674e40b289e0748a76f5a6"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyOracle",
+      "function": "price",
+      "ast_id": 134794,
+      "start": 1167,
+      "length": 68,
+      "original_sha256": "e371c31f53e7821d78e0cd5bb3b68112e3b0b130d14b95a4145e3065182bef72",
+      "selected_test": false,
+      "body_sha256": "500102bdc496653a5a639bd2293755fbb4f2135130ef3848c65445a47e537579"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyOracle",
+      "function": "tokenDecimals",
+      "ast_id": 134804,
+      "start": 1240,
+      "length": 71,
+      "original_sha256": "f7c9290fe55da0e7864b6ef5400467a98f546c0eeb03b71af9520e37559a3351",
+      "selected_test": false,
+      "body_sha256": "dee9d3f8e6e594b4f62871b99b13f7d18a7e97e1591baa3ac8c965d49a4f2b6a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyOracle",
+      "function": "value",
+      "ast_id": 134818,
+      "start": 1316,
+      "length": 90,
+      "original_sha256": "ff34e28be6a0d47725f85dc87afd6d5aeb8bbcf1056f4a13c7118bea198ba1ee",
+      "selected_test": false,
+      "body_sha256": "c8360db87c4865552c8f0ec5a2f5dc6dfd913a04c8bf1daabd1e97a9b9cb6adf"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "",
+      "ast_id": 134844,
+      "start": 1625,
+      "length": 34,
+      "original_sha256": "db80b1a1136ebeb3d04ccb04026d97bb80a79404fa65b15779f4ff41ecafd412",
+      "selected_test": false,
+      "body_sha256": "95ea7f81bf9de80c1da87a05a3bcb9fa26561b4165d5b288bc4dfd9cf50c9328"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "",
+      "ast_id": 134848,
+      "start": 1664,
+      "length": 29,
+      "original_sha256": "b9676583f2b3ee2765223d7c42e19e458bf18e81b9b025ea720a60253885a58d",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "set",
+      "ast_id": 134859,
+      "start": 1698,
+      "length": 53,
+      "original_sha256": "0657a60a8ea5cb63d02e6af25a98a3dda27852bfc2a3e80e16d807fdb75cba87",
+      "selected_test": false,
+      "body_sha256": "f8285857b85122a0ed3b2b5fbfa440d88224c8b3840a4cbd5e51da9799f5d32d"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "setReject",
+      "ast_id": 134869,
+      "start": 1756,
+      "length": 55,
+      "original_sha256": "d1396b02e76f3cfde1547461b59ac3facc50922d0ab086231197cded7ee2705e",
+      "selected_test": false,
+      "body_sha256": "37ba5d5c48d185cb4b62de0b59682e8ee1c9124978aff737ff1f692e9aac72e7"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "group",
+      "ast_id": 134880,
+      "start": 1816,
+      "length": 73,
+      "original_sha256": "2de80aa260d2c03ee19ab3ac83caba3d4fad90aeef8fa147649ab3ded108a235",
+      "selected_test": false,
+      "body_sha256": "570b2945e13b506061da281cdf0354f7b36087e60c093307ba15c14fa9102ee1"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "bucketTotalShares",
+      "ast_id": 134890,
+      "start": 1894,
+      "length": 77,
+      "original_sha256": "2cf2dfcaa2b8f14ca8a5e6db35d63fc597f32a0717c30585428e2dd0dac1c81a",
+      "selected_test": false,
+      "body_sha256": "66187358d3ae252550ce4d83c72f1da4d3fd4b22da0544f6ba1bea5be968a4bf"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "poolBucket",
+      "ast_id": 134900,
+      "start": 1976,
+      "length": 70,
+      "original_sha256": "81e89e6afbf9c0044140dd6b1a16aeaf7d194199893e96a1bc413ecc78de1645",
+      "selected_test": false,
+      "body_sha256": "b3ec6e23aa03d9dc1b6b6d6ebc42a97d8a74c729dcfc8073c9836ff8a22c6956"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "releaseForMigration",
+      "ast_id": 134967,
+      "start": 2051,
+      "length": 275,
+      "original_sha256": "3f9e42f9340c7fe43a551fb319e1bc047ba728584cc2ad8556d4980a0a61a64c",
+      "selected_test": false,
+      "body_sha256": "75f1e3499d40087da1ab8cedbac1aa6f92c37b08da793aa55edbd38539bac9b2"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyVault",
+      "function": "acceptHandoff",
+      "ast_id": 135043,
+      "start": 2331,
+      "length": 374,
+      "original_sha256": "1afa02dd88a9120655134868435f14a1a1931a38cf97e3174f7507445c323f66",
+      "selected_test": false,
+      "body_sha256": "3eefd555ca651539dc1b3c4d416a76640f91a7fad5dd933841807f7ce68d012d"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalVault",
+      "function": "totalIdle",
+      "ast_id": 135064,
+      "start": 2888,
+      "length": 69,
+      "original_sha256": "1f5f75a4d08f58cff49196004b24edffd7bd3b2d9cfea130cb36da77f80450a3",
+      "selected_test": false,
+      "body_sha256": "dee9d3f8e6e594b4f62871b99b13f7d18a7e97e1591baa3ac8c965d49a4f2b6a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalVault",
+      "function": "canonicalBarrier",
+      "ast_id": 135068,
+      "start": 2962,
+      "length": 39,
+      "original_sha256": "cb60afadb8e0f3dca439b9d62259090abb013a3f8ff155c3d78971570d780cc2",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalVault",
+      "function": "canonicalWrite",
+      "ast_id": 135076,
+      "start": 3006,
+      "length": 57,
+      "original_sha256": "7005f1041877dc80c30c106fd9d3d402a62eda8e8e9650ce413d881fb0bc1098",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalVault",
+      "function": "canonicalSend",
+      "ast_id": 135094,
+      "start": 3068,
+      "length": 126,
+      "original_sha256": "7543ae2298af6688509b7be084c95fc0bdf421be07c9931857b0250bae713d5b",
+      "selected_test": false,
+      "body_sha256": "ab98ca4b838fd8fde75e1043780c1c4b9c661611db2637a9b1f5ccd341877068"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalVault",
+      "function": "",
+      "ast_id": 135098,
+      "start": 3199,
+      "length": 29,
+      "original_sha256": "b9676583f2b3ee2765223d7c42e19e458bf18e81b9b025ea720a60253885a58d",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "",
+      "ast_id": 135113,
+      "start": 3330,
+      "length": 37,
+      "original_sha256": "539b9d6298957fb39fc619b8911c1bbb8e1ea29cdd8f1e65acd9afb1635f8635",
+      "selected_test": false,
+      "body_sha256": "e9b00ad37dc1fe7e19f16a22da67044692eb189fde123d6560d7d19af0c64d2b"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "",
+      "ast_id": 135117,
+      "start": 3372,
+      "length": 29,
+      "original_sha256": "b9676583f2b3ee2765223d7c42e19e458bf18e81b9b025ea720a60253885a58d",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "_canonicalAccess",
+      "ast_id": 135126,
+      "start": 3406,
+      "length": 87,
+      "original_sha256": "bb632ce4b6c824468c4d087022de4474c3bf3c2482ffec2232a2946d52772c96",
+      "selected_test": false,
+      "body_sha256": "8c607d4c10f102355cf7ff3d97a27c0df8f0490c4d6960815553c0ba08159424"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "captureNative",
+      "ast_id": 135146,
+      "start": 3498,
+      "length": 111,
+      "original_sha256": "f99d2af6cb7a9a9fb83d5f3cbb36d7d3ced596c34f54004fe441cc09a0c421b6",
+      "selected_test": false,
+      "body_sha256": "6dfac98955be42fe5e5a38db6deea586a8a35b9c3787a1fcbe067c446cce59ab"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "importNative",
+      "ast_id": 135177,
+      "start": 3614,
+      "length": 194,
+      "original_sha256": "551a8a95ea6b03193da2d522e9b0a84fb46a6a08dfe840af1dc674b776cc9b61",
+      "selected_test": false,
+      "body_sha256": "1d2f9f2f943085a52fcf6f7d1c5579fa0efb4783ad8f056a058fd34fb0701806"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "validate",
+      "ast_id": 135184,
+      "start": 3813,
+      "length": 64,
+      "original_sha256": "41becee9148ef5f7a35d023e05472b946a825dac7073854228969c4cf0fae4c1",
+      "selected_test": false,
+      "body_sha256": "eb0c335f6a512b7b3e20592e5eef8c40d3b725edf89e2dce2a9833230bff64a8"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeLedgerHarness",
+      "function": "duplicateNative",
+      "ast_id": 135197,
+      "start": 3882,
+      "length": 68,
+      "original_sha256": "0b711aeaa8d4b93ee42d515cf8544519c03789bd8f2fce64a707a720b950c5f7",
+      "selected_test": false,
+      "body_sha256": "030dd59bcdff469a15b03772f87fe355a8f9cde883f7975df8d7ae2d083ca7f3"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeVersionAccess",
+      "function": "canonicalTransition",
+      "ast_id": 135222,
+      "start": 4053,
+      "length": 118,
+      "original_sha256": "0e69bc39fad84fd9bde01309dbe0989f92dcee10a31f55e4fa7bedac366a422e",
+      "selected_test": false,
+      "body_sha256": "b75fe2a4b092a743aeb56dd0173f8bbf038af34872c0b98bf5e609bc3c3974f9"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "RejectNativeCustody",
+      "function": "",
+      "ast_id": 135243,
+      "start": 4429,
+      "length": 57,
+      "original_sha256": "15c243caf7567647b668bdda08df686a955d724c1849ae4e4c569a85f91674e2",
+      "selected_test": false,
+      "body_sha256": "a9354d512b928cd2db84ec9abb0a25dd3d09cd129470f0e7dbc9c4ca0d6acfd9"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "setUp",
+      "ast_id": 135530,
+      "start": 4727,
+      "length": 945,
+      "original_sha256": "ab82e5b30948b4711a9b53424d5a26a980a724d17c464f8a6cf2e438613c7868",
+      "selected_test": false,
+      "body_sha256": "9791001ff5b564bb443cf30a3a123fb324f561847f06c51f71452271b7cab1c4"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "_request",
+      "ast_id": 135622,
+      "start": 5677,
+      "length": 397,
+      "original_sha256": "0dabf1b0d8d3db3f6422b9c8b728efa655cf6f6cfbc846a8e8ddb3ad3b7b83be",
+      "selected_test": false,
+      "body_sha256": "df4557ef04f645f584536d4c769b6be69bac6b1fe0d071599afbbb703f0e2ccc"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "_exit",
+      "ast_id": 135648,
+      "start": 6079,
+      "length": 117,
+      "original_sha256": "4774134eed7925f20ee880bacf215db95b717eeae507fcba881c8dc9c1aa7982",
+      "selected_test": false,
+      "body_sha256": "6c8e40ec319f8744cc25e6cec58f68602de03a47c0393a0f581f3b674eb12c47"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCustodyTest",
+      "function": "_tokens",
+      "ast_id": 135672,
+      "start": 6201,
+      "length": 97,
+      "original_sha256": "9010e955f19e83bc9dc9750083fb485ccd95447a3e4c7ea63692c44cad898511",
+      "selected_test": false,
+      "body_sha256": "9792e601eee51a6506833d4322a679fdffaee73ebe89e8ef7da773d3be3f2187"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "_access",
+      "ast_id": 136160,
+      "start": 8961,
+      "length": 105,
+      "original_sha256": "c12636d3e99b2f2f873c221cf2454afd5ad2b6bfad4f603198eeebfd7fb925a5",
+      "selected_test": false,
+      "body_sha256": "8431a0463b6009a8c00aec88ca643e8dfc17945f9659fc9b213d5164ff83928e"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testCanonicalLedgerNativeTwoStageFundingPartialAbortAndPrefund",
+      "ast_id": 136362,
+      "start": 9071,
+      "length": 1030,
+      "original_sha256": "7cdf99830f08ab4ef233871e66bef0dfef8e6097747e51f91991ba9aaabadc82",
+      "selected_test": true,
+      "body_sha256": "18fb98e0ef12cc7571f3464e183ea9b63e0192a5d5d7d6dea97d821a6fd38485"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeCanonicalFundingTest",
+      "function": "testVaultCanonicalNativeForwardAndAbortUseZeroValueAcknowledgment",
+      "ast_id": 136727,
+      "start": 10384,
+      "length": 1658,
+      "original_sha256": "fdc49e305735d9f7d4de096193af27f0610fd74c09e97dacf637d9440016379e",
+      "selected_test": true,
+      "body_sha256": "2dcf23966dbf7c87e7abecd66e4fb9a957a2819d276ed0ba5bfd8502cf31d920"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeHistoricalAssets",
+      "function": "setCount",
+      "ast_id": 137266,
+      "start": 15587,
+      "length": 61,
+      "original_sha256": "8edcf408c115b25e51280fd391bce54445a34f27fef7aa651d5892022b1879ed",
+      "selected_test": false,
+      "body_sha256": "43af6d610f5926cdeceed4dda49f4ac73b56318490510b109c28a93f6cabee8a"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeHistoricalAssets",
+      "function": "assets",
+      "ast_id": 137292,
+      "start": 15653,
+      "length": 105,
+      "original_sha256": "bec96aca95f239d60e3d59b1a8cc539262e8bdcb324be7d736029852e75209b5",
+      "selected_test": false,
+      "body_sha256": "9c2a81cc8a34a1a34188a05004f10ff8c00b384e9a4b602f221140a7fef6d2ba"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeHistoricalAssets",
+      "function": "compoundBalance",
+      "ast_id": 137312,
+      "start": 15763,
+      "length": 109,
+      "original_sha256": "368d2b1862d8ca908d45ff9093be3885a2a8f5534a27933570368c570378f4f3",
+      "selected_test": false,
+      "body_sha256": "c2b0846be9454fbd6f5da65b09efb91446bcd88a1f48b7492bb0347042a91c06"
+    },
+    {
+      "source": "test/NativeCustody.t.sol",
+      "contract": "NativeMigrationBudgetTest",
+      "function": "group",
+      "ast_id": 137333,
+      "start": 15996,
+      "length": 73,
+      "original_sha256": "2de80aa260d2c03ee19ab3ac83caba3d4fad90aeef8fa147649ab3ded108a235",
+      "selected_test": false,
+      "body_sha256": "570b2945e13b506061da281cdf0354f7b36087e60c093307ba15c14fa9102ee1"
+    },
+    {
+      "source": "test/NativeWrapperPolicy.t.sol",
+      "contract": "RegistryNativeFundsBoundaryTest",
+      "function": "testRegistryDoesNotAcceptNativeFunds",
+      "ast_id": 148599,
+      "start": 498,
+      "length": 392,
+      "original_sha256": "aeef5fbe6a9cb057f39da2f26ed394d47d2e00a608dc5ca3e6304f7b79e8850b",
+      "selected_test": true,
+      "body_sha256": "65263e95eb4999f484ebad4046df6b6fe869f0a4a67612501cbbbcfbca91ff6e"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "setUp",
+      "ast_id": 149126,
+      "start": 1465,
+      "length": 1921,
+      "original_sha256": "8cf291efe5b0c4e9ecb427a1f4d717c02153a9386b1c5cea063c329a6fa74a71",
+      "selected_test": false,
+      "body_sha256": "1cf887b6f83b743fa2e13f8478f42dfb973cbf0e66eea054cbc88bbf2da8eeb5"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "_gov",
+      "ast_id": 149169,
+      "start": 3391,
+      "length": 199,
+      "original_sha256": "1a4a021a3c087c2042365858b34ea60f2d7221de7105d7af7a5dd4648d05dba1",
+      "selected_test": false,
+      "body_sha256": "d9370f8ca4ac7cdfb8eaf2f12e71f52578caebbe39a68640c8408df08afa6b6d"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testPoolStopWorksWhenPriceTokenAndVenueCallsFail",
+      "ast_id": 149372,
+      "start": 3595,
+      "length": 1065,
+      "original_sha256": "f9f1f4ebc4c80b5f86c7e27038908977e31e31468fc17d599a36f919a2d7a764",
+      "selected_test": true,
+      "body_sha256": "93def54e77c34185afa66a97c606cc69d1200ac454a032f6b79fdb5513103845"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testPoolStopOnlyClearsSelectedFlagsAndIsIdempotent",
+      "ast_id": 149469,
+      "start": 4665,
+      "length": 589,
+      "original_sha256": "be583562ec7d81a1fe016af9cffafe1494d7e8617cda897d9b1bcddb891ea42a",
+      "selected_test": true,
+      "body_sha256": "b6e3dc06b95e2978f96f3e50c07490d31d0dd2ac36259ee8b8ed9b0b66920a6e"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "testOnlyApprovedGovernanceCanToggleControlsAfterSeal",
+      "ast_id": 149658,
+      "start": 5638,
+      "length": 578,
+      "original_sha256": "01a4e7038c5301f5ac4b7e6c555d3c75b1e4985ae301107546a8f65354db318a",
+      "selected_test": true,
+      "body_sha256": "c0e9f79f1f67f8043722f0320ef7bf9ccdb47bacc2c1874a6b2e89c1247fe5dd"
+    },
+    {
+      "source": "test/OperatorControls.t.sol",
+      "contract": "OperatorControlsTest",
+      "function": "onERC721Received",
+      "ast_id": 149971,
+      "start": 7781,
+      "length": 276,
+      "original_sha256": "1e2ab61c2df2eb061bdd413677e40454888bea9087fce0d94248bdb326c9278f",
+      "selected_test": false,
+      "body_sha256": "0f3e12d29819bbb9480156791404de30be14c285f2c477bef2b9dd7a606490eb"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "IRangeBinder",
+      "function": "bind",
+      "ast_id": 164981,
+      "start": 777,
+      "length": 51,
+      "original_sha256": "9f98bcf9b1dc9b806af882b38aaac4d0cc3cdd4e40b8e24de78733b40ebbd631",
+      "selected_test": false
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyRecord",
+      "function": "",
+      "ast_id": 165006,
+      "start": 1157,
+      "length": 57,
+      "original_sha256": "e746fe615b6c5857d04ab4b991e07c31f8e69bc39fa0482c12788a6d438f6f77",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyRecord",
+      "function": "set",
+      "ast_id": 165017,
+      "start": 1219,
+      "length": 56,
+      "original_sha256": "5567ad432bc60b23719a69da789ca8e4f026b074c9c3611be197cad9b19380f2",
+      "selected_test": false,
+      "body_sha256": "f4a7318cb0252871107597ae5a4f73ea082458475656811ec192a9b1283db0f6"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyRecord",
+      "function": "group",
+      "ast_id": 165028,
+      "start": 1280,
+      "length": 82,
+      "original_sha256": "f992b2670d19265c2b7e181b7ed9621371b04e0edd146a575e1c14f8c0cee085",
+      "selected_test": false,
+      "body_sha256": "2199495e373fcc88b8f93698c9020035a8d29ac619a781fcceae47c615f62d3c"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyRecord",
+      "function": "setTicks",
+      "ast_id": 165052,
+      "start": 1367,
+      "length": 115,
+      "original_sha256": "d9a7abccc7d30f8592a8167b7a5ba203c949c25546b98902e882a14f25664bb1",
+      "selected_test": false,
+      "body_sha256": "b4dc260afeeb9281fdf7c98d933c073b9dbf8bb29f967e9041c1f1a3eba2301a"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyRecord",
+      "function": "ticks",
+      "ast_id": 165081,
+      "start": 1487,
+      "length": 158,
+      "original_sha256": "a42de79b4f57c5b2968566c8b7422d5bd4a17f5a8d697e60d1d721d67fe551d1",
+      "selected_test": false,
+      "body_sha256": "96554bd4de0ce7d0ed1fc8f6b3479de10108ade65539a70a65b26e1d324df87c"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangeRewardAdmission",
+      "function": "",
+      "ast_id": 165093,
+      "start": 1698,
+      "length": 57,
+      "original_sha256": "e746fe615b6c5857d04ab4b991e07c31f8e69bc39fa0482c12788a6d438f6f77",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangeRewardAdmission",
+      "function": "isAsset",
+      "ast_id": 165103,
+      "start": 1760,
+      "length": 71,
+      "original_sha256": "cde6888c576efb648b6aff342bdd83201797b9c9579177e5a55074ffef416417",
+      "selected_test": false,
+      "body_sha256": "b48df3a0d50249a5a6977b8a461d1f0e024d031643d2223a4f834663b2690762"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "setUp",
+      "ast_id": 165176,
+      "start": 2182,
+      "length": 140,
+      "original_sha256": "affabb02c729a1e6eb1f4c426d7ad95847625bb47cb5407484b0303c8afbdbab",
+      "selected_test": false,
+      "body_sha256": "a6c2a602d6c376338e00b560528daaaf210ee12e6cea8467a8ffa01ad4afce20"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "_system",
+      "ast_id": 165502,
+      "start": 2327,
+      "length": 1560,
+      "original_sha256": "aecbbeffb5b80bea66ecd36598fe1163198ccedc22b08be43c6aa33f298d89aa",
+      "selected_test": false,
+      "body_sha256": "c1f7a26d3eb1fba40845eb8ec6a7cd045ad66b41ac371f620e6d76d680d96d01"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "_replace",
+      "ast_id": 165552,
+      "start": 3892,
+      "length": 299,
+      "original_sha256": "797638a04946e376ba1f3bbc5a9cc4fe3c7173e2efa0771e591aee3ca7be4426",
+      "selected_test": false,
+      "body_sha256": "31cef1b756309fa3fa661c408ec2cf2d520c60969f46ab2e3f29590dc3aacd42"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "_width",
+      "ast_id": 165596,
+      "start": 4196,
+      "length": 233,
+      "original_sha256": "6540b07d24a51655677af551630fb53e60d125312edc89f56f32521947aa6015",
+      "selected_test": false,
+      "body_sha256": "54fdfa1b6fa1723cf653cceafbf22ba2fa5e9f5f004dd6a8b0351a1871a20c47"
+    },
+    {
+      "source": "test/RangePolicy.t.sol",
+      "contract": "RangePolicyTest",
+      "function": "_price",
+      "ast_id": 165622,
+      "start": 4434,
+      "length": 149,
+      "original_sha256": "0e14b3eeeb1c27af7c686084aa7aa0c19f8cfdb85b1a73a134b656e9c2c137bb",
+      "selected_test": false,
+      "body_sha256": "5332b8ad79f61f57265c7fd1a9045b75decff1dc883bf85fb9b05d3713caf43c"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "setSwapAmount",
+      "ast_id": 191330,
+      "start": 1334,
+      "length": 68,
+      "original_sha256": "4b39f974954836642de1b449d9d397983c1933d235031fa1b91689250f1d3770",
+      "selected_test": false,
+      "body_sha256": "bd245cd468e1c7d29aa4bdfc189735d6a4247f0a0aa54841faadd346898dea81"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "setNeed",
+      "ast_id": 191340,
+      "start": 1407,
+      "length": 43,
+      "original_sha256": "3ebe6c21469ea7da22d00dbe0bd6f361aa25d707f7936e9f6784d2aaedc6d18f",
+      "selected_test": false,
+      "body_sha256": "29ae41c07d29a8e362bcea766cd134b5b4658a74d25b558f56b1794c1a48d24d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "needsRebalance",
+      "ast_id": 191350,
+      "start": 1455,
+      "length": 74,
+      "original_sha256": "56054ca441b45fda02cc4ba4102948b2e26ce44aad2e1f4dade60ce6560f4365",
+      "selected_test": false,
+      "body_sha256": "64e8917c9ade3c74485aa26235c6aa940363302bd7fe794999dec60fa794c8be"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "target",
+      "ast_id": 191373,
+      "start": 1534,
+      "length": 101,
+      "original_sha256": "684ed2ba521c1857fbe8c461a422fd5c02f785dae8a0887f322f173257387e80",
+      "selected_test": false,
+      "body_sha256": "12547fa1265fe570a6166d110a2962c283fb8cbb0af3d2e99f38944d0936ec85"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "validatePrice",
+      "ast_id": 191388,
+      "start": 1640,
+      "length": 86,
+      "original_sha256": "a39e00d82a7da391839def03b0fa7b9e80c60c26d576d1e1b8ee00b83b1384d3",
+      "selected_test": false,
+      "body_sha256": "8a975eb7833e2ddc5838960747bd69407d3db2e17e0b4bc7c4dfd935edaf1a0d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "validateExitPrice",
+      "ast_id": 191403,
+      "start": 1731,
+      "length": 90,
+      "original_sha256": "e8cbc2e381b73b36150697a4ebfbd525adbdacb2c81b8f39e8c59482e5663115",
+      "selected_test": false,
+      "body_sha256": "8a975eb7833e2ddc5838960747bd69407d3db2e17e0b4bc7c4dfd935edaf1a0d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "compoundPlan",
+      "ast_id": 191424,
+      "start": 1826,
+      "length": 127,
+      "original_sha256": "37f907930483e2014f8489e37eb3ea9c783d65463c3d5321685e71c9645d6be9",
+      "selected_test": false,
+      "body_sha256": "8d9acc4dcd6505ec90a0925d714e17e67f49c8ada459ab3e73a756db1a752aca"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultPolicyMock",
+      "function": "swapPlan",
+      "ast_id": 191445,
+      "start": 1958,
+      "length": 106,
+      "original_sha256": "1494c730e060c8abbff2cb9b801393fffc2bd4dd892aafaeb0dd43528459b292",
+      "selected_test": false,
+      "body_sha256": "9e98ed52054da9adcdc9de820eb644dd711a0f88eb8b38d69d262d2d6c6b3d87"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setCloseLossBps",
+      "ast_id": 191488,
+      "start": 2609,
+      "length": 92,
+      "original_sha256": "02b788733f655a29665a429e0df2cae03b10c7d238125e016eaf49b877629bd8",
+      "selected_test": false,
+      "body_sha256": "38f5dd448a12201af81b5561a9fbefb9651d7d3de0d0d67f8b7da88be25002c0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "",
+      "ast_id": 191520,
+      "start": 2783,
+      "length": 91,
+      "original_sha256": "5f1ce018d7358abeeb266f330e02928a4c9dc67125b23735cac15ea73dc4514b",
+      "selected_test": false,
+      "body_sha256": "9fc4e2d1d8f6422dd0522137d4e382c1cf9869f771c00808cbcd139b9b83fa5d"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "positionManager",
+      "ast_id": 191531,
+      "start": 2879,
+      "length": 80,
+      "original_sha256": "327afd76ac9e14a49cc6633327c963d681d2384496a913be8e983ee15657e821",
+      "selected_test": false,
+      "body_sha256": "603ccb3f2d25561b841a76a1ec851351be93d31307b2407a32a8ef65d5ab9519"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setFees",
+      "ast_id": 191547,
+      "start": 2964,
+      "length": 63,
+      "original_sha256": "7a4cf8ce340ed187be3c7487bd7ad9f565c87bb824c619c708baddb6981659be",
+      "selected_test": false,
+      "body_sha256": "abe0ac91616eeec210ab8ebb046a8fd5b361f58ec07d80b96e8bd7f21c666d35"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setSpendBps",
+      "ast_id": 191557,
+      "start": 3032,
+      "length": 54,
+      "original_sha256": "30863faa1d29433cdbde5c21adf6ceedee21182fcce09d23ccbcff832f021582",
+      "selected_test": false,
+      "body_sha256": "7debfdc5699797ff9b5a24add7adc061d385505f675e6a711fedc60461aa3ce4"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setRepricing",
+      "ast_id": 191573,
+      "start": 3091,
+      "length": 92,
+      "original_sha256": "14cf957129e4ea1dbf629a64acaad4a9f8029adfd1e732acde7b94b18a34e7f1",
+      "selected_test": false,
+      "body_sha256": "748531fd41bc7941e87017c996bd677ac66ecb5786eaa518b8b903b20e3c3229"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "swap",
+      "ast_id": 191658,
+      "start": 3351,
+      "length": 433,
+      "original_sha256": "a9fbad817422fbabaf16dc9557e05905b8dea0510abb7933d03cfc2b18abb24e",
+      "selected_test": false,
+      "body_sha256": "f61606d1b3dd771c0f26c493081492b78149bd5c64d8518acfa232081ae1a88e"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "amounts",
+      "ast_id": 191676,
+      "start": 3789,
+      "length": 91,
+      "original_sha256": "70a4075f6830e089f79cd7cd1b1f48abb7c8c051443f74b1bf8e53b3c073f074",
+      "selected_test": false,
+      "body_sha256": "3dad3673ec75f5a309f431f9dad7cc60c8f0fa81e65e3e0f24c7778e46ae9ccb"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "setFail",
+      "ast_id": 191686,
+      "start": 3885,
+      "length": 47,
+      "original_sha256": "a46535c021f8e9f85382fd910a4e2cf3a263ddcf1493e4426958fc915b4b59bf",
+      "selected_test": false,
+      "body_sha256": "36f7acd3166c0ca709cee105ac3d6c25dbf591fdc9c2d2c6289d806de6dddee3"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "mint",
+      "ast_id": 191736,
+      "start": 3937,
+      "length": 208,
+      "original_sha256": "b7006d62033ce14415b7977ad859203e2c3976ac609901da1b0e81f93e3f95e9",
+      "selected_test": false,
+      "body_sha256": "e799657a77bad56166177c74cce16b6bff0440aab936e5eaeb4dcaa5dcff8c8a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "increase",
+      "ast_id": 191762,
+      "start": 4150,
+      "length": 130,
+      "original_sha256": "13f607ffad9e7dcee9a83f5f91107df2bfae4629b98a262cb3728ae04827b2fa",
+      "selected_test": false,
+      "body_sha256": "2e4c6d6c527e38011fafd134465885723298ef09294d8e32b933d5fdcf5186a7"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "_fund",
+      "ast_id": 191830,
+      "start": 4285,
+      "length": 280,
+      "original_sha256": "ecaa778e82110b3fb55a5221ff927108c28282d6891a5bdd47d3b0b8d2fddbab",
+      "selected_test": false,
+      "body_sha256": "d6a46f1900c2be2d093d647c7adb4c3a60d64d1c11df41c185b83947b48ecfd0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "collect",
+      "ast_id": 191872,
+      "start": 4570,
+      "length": 141,
+      "original_sha256": "5310eb7902aa8007961a1beaa919c77c8f51692e082f5438c78a881b837d204e",
+      "selected_test": false,
+      "body_sha256": "ca028d7c0c862305bad2487dfb198eefaf4313faa0e53b3bc3100ba34ffa962f"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "VaultLiquidityMock",
+      "function": "close",
+      "ast_id": 191940,
+      "start": 4716,
+      "length": 250,
+      "original_sha256": "1cefd14a25db4a5453d5ce2a3e81c45490050a03fa085016bb2592aad06f54af",
+      "selected_test": false,
+      "body_sha256": "d9df9e15ec9081f61803d56c9498215c74fef44f09d0aa30d36b4c6f2b161bd8"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "RejectingMintReceiver",
+      "function": "mint",
+      "ast_id": 191957,
+      "start": 5006,
+      "length": 112,
+      "original_sha256": "f959b07e5d2aa6230f5d0c49376fb6ac991c8ddd016b56d9a7c9431f1a18b55a",
+      "selected_test": false,
+      "body_sha256": "c4747e0a701a353d10272f2d89ccf1131d802856a08ee2586adc38a661afeddb"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "RejectingMintTreasury",
+      "function": "",
+      "ast_id": 191966,
+      "start": 5154,
+      "length": 55,
+      "original_sha256": "c62cbec23435caf30854e0618918570c1daf7ad186fdf2c40f115b33d0906428",
+      "selected_test": false,
+      "body_sha256": "29044332f44b5dccded957fd81ab08463633acbab3d960257d49a20bc256d2bb"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintReceiver",
+      "function": "",
+      "ast_id": 191989,
+      "start": 5383,
+      "length": 43,
+      "original_sha256": "e10e9d4df57aa23d2e6b6629d1ecab391d60e403263caf1c2274f6144b47262f",
+      "selected_test": false,
+      "body_sha256": "04407ebb72099508762648e2e895a00ee72721a0b4a84533a17c905e28f8b838"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintReceiver",
+      "function": "mint",
+      "ast_id": 192002,
+      "start": 5431,
+      "length": 95,
+      "original_sha256": "811fcc2180bcb903b3157fef6bdafa3ee9d917a0aaf378699b57c0495fdec5fa",
+      "selected_test": false,
+      "body_sha256": "977cb7d03a94c4966a70272d42ab1c90217b7c4e7b81e2c91279c5b5609fb41e"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintReceiver",
+      "function": "onERC721Received",
+      "ast_id": 192063,
+      "start": 5531,
+      "length": 423,
+      "original_sha256": "3b22801db962ffa0494457b4b3df5ce501cf9920d8ef49893ecaf4a6187bc165",
+      "selected_test": false,
+      "body_sha256": "df4a7160fc8135743a64f16fb5c1ceb737db715a7533038cf1358aac4766e4c0"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintTreasury",
+      "function": "configure",
+      "ast_id": 192086,
+      "start": 6118,
+      "length": 60,
+      "original_sha256": "d7aa2d440bdce92041c03256074cdb8230113886465a2ab87fda625177d9e08d",
+      "selected_test": false,
+      "body_sha256": "04407ebb72099508762648e2e895a00ee72721a0b4a84533a17c905e28f8b838"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintTreasury",
+      "function": "",
+      "ast_id": 192133,
+      "start": 6183,
+      "length": 301,
+      "original_sha256": "ef437749803121ef01a1428ac42c690518af9af71ed7480541c87dd1d7a67174",
+      "selected_test": false,
+      "body_sha256": "80309f7cae007e0a869f5e1c480c7bd59e28d0e6578604d77bef33b6de6e8925"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "ReentrantMintTreasury",
+      "function": "onERC721Received",
+      "ast_id": 192151,
+      "start": 6489,
+      "length": 161,
+      "original_sha256": "91fb72fb054f3b0a59cae6f19628a090e1a5fab0a1f762c3ac479626e481b482",
+      "selected_test": false,
+      "body_sha256": "7d5b1b837979faacf968590eecdd72b8641457bfd18ee357fe1efda1eefb5cd3"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_record",
+      "ast_id": 192264,
+      "start": 7092,
+      "length": 243,
+      "original_sha256": "521907768d756c9cab0de1cf688ba5dc224745b2bb3656c59b645658d8eedd66",
+      "selected_test": false,
+      "body_sha256": "ca2f1bb61f269adddc9355cc7be4d916b5983b64b5cd107f72b14c9d1e96ac0f"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_bucket",
+      "ast_id": 192286,
+      "start": 7340,
+      "length": 127,
+      "original_sha256": "3f2c2709964530e558bdb055fb1e4055c544a2023e3b5cef5fdb6e9bc0f0fab1",
+      "selected_test": false,
+      "body_sha256": "25538d1eeef5c5ba09cf5e23c60823278e5ae072c003eeba5da46c4c996c12c4"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "activePlan",
+      "ast_id": 192299,
+      "start": 7472,
+      "length": 80,
+      "original_sha256": "479b4cb876d82a7ef5948d0695543034a1ab9653aea3ea358019f1b62bc29dc6",
+      "selected_test": false,
+      "body_sha256": "37d52ff4b84966fe795610c00af5d5a58aea379c4879e8af7520d317c0a67e8c"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "setUp",
+      "ast_id": 192307,
+      "start": 7557,
+      "length": 55,
+      "original_sha256": "556d7f40a67f95628e8767dc07f0da201aa6c7b58e04e0a81f99bcfbc3408865",
+      "selected_test": false,
+      "body_sha256": "902125c8a22df349bf164b164d9c528670e2dfd629e59081ff19ed11674afac5"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_fixture",
+      "ast_id": 192785,
+      "start": 7617,
+      "length": 1790,
+      "original_sha256": "9f53b74c3a4aefa6619ec7d491d4791245b86f5810e63f99dedb73b12357a7fa",
+      "selected_test": false,
+      "body_sha256": "f3e2ef4a028e0a06e149b4f5f31173434ca6a4f06cc3b6b99495d89b31855030"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_fundUser",
+      "ast_id": 192851,
+      "start": 9412,
+      "length": 261,
+      "original_sha256": "645649e48e05db5cd93eb83517dd157ccdb4d89e508569a5761a96c47bc49c5c",
+      "selected_test": false,
+      "body_sha256": "2408a7d6a4edfc58dc33c18267f1507239e6b9a9322e6f0c0bce9e5af3cc68bf"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_mint",
+      "ast_id": 192890,
+      "start": 9678,
+      "length": 175,
+      "original_sha256": "50e54f3f23707a518400565240a654c3c42848e7fc6d6400d4e0c1fc760b5d6b",
+      "selected_test": false,
+      "body_sha256": "348ce911935bd49d900d2bbc9bdd0d9b4785892dc0176a848124c1b795f3430a"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "_activate",
+      "ast_id": 192922,
+      "start": 9858,
+      "length": 182,
+      "original_sha256": "ff0f45dd077970750a26fa04bae2bb5ea481457afb2f892e39158e496699a4f9",
+      "selected_test": false,
+      "body_sha256": "494c5e0b59a1fa790e34de2ce03b067e48f3f060844cab3f4d94ed48624b4a53"
+    },
+    {
+      "source": "test/VaultAccounting.t.sol",
+      "contract": "PooledVaultFixture",
+      "function": "activatedPosition",
+      "ast_id": 192941,
+      "start": 10045,
+      "length": 105,
+      "original_sha256": "0ff916f1e27a79bfbfc88e4832376801c818a9f03499a00825884e0ff7ab9c79",
+      "selected_test": false,
+      "body_sha256": "1ae1478202167cbfcd2e10a12c6c4520a22037e8a6f50367eb75d8adc561c1ff"
+    },
+    {
+      "source": "test/helpers/ActivationRouteFixture.sol",
+      "contract": "EntryFactoryFixture",
+      "function": "set",
+      "ast_id": 195757,
+      "start": 265,
+      "length": 60,
+      "original_sha256": "a985fe09c2d1eb5f0c9080bd29a7a107f67654a7269d1518e2e4db60c55e6de9",
+      "selected_test": false,
+      "body_sha256": "2f0473f3880e0cf3f5ea1b26fe9910b3bebcd8504d59f4dd82b06bd427648d23"
+    },
+    {
+      "source": "test/helpers/ActivationRouteFixture.sol",
+      "contract": "EntryFactoryFixture",
+      "function": "getPool",
+      "ast_id": 195771,
+      "start": 330,
+      "length": 95,
+      "original_sha256": "c6c25856167b74f2e273853bd35faa7a3197699c39d3ed7afd6d461fe3ae10d2",
+      "selected_test": false,
+      "body_sha256": "df3ecfa6b2864493b91e650330a2ec2427f318c8b35c5b71cdc98f2314134873"
+    },
+    {
+      "source": "test/helpers/ActivationRouteFixture.sol",
+      "contract": "EntryPoolFixture",
+      "function": "",
+      "ast_id": 195813,
+      "start": 611,
+      "length": 135,
+      "original_sha256": "24d3cf0d0b495d5598d21a3e144497e7d190716585dfd603f6acb38161822b6e",
+      "selected_test": false,
+      "body_sha256": "62e5876df847994e106295e915d05a9740a6f3d5406472670c03b98fe168d070"
+    },
+    {
+      "source": "test/helpers/CanonicalFixture.sol",
+      "contract": "ICanonicalFixtureBinder",
+      "function": "bind",
+      "ast_id": 195836,
+      "start": 487,
+      "length": 59,
+      "original_sha256": "10b3f9128b5589d67ac69edc70a9ae6bb26325914788a14d6e2d91768ab8e5f6",
+      "selected_test": false
+    },
+    {
+      "source": "test/helpers/CanonicalFixture.sol",
+      "contract": "CanonicalFixture",
+      "function": "bind",
+      "ast_id": 195990,
+      "start": 820,
+      "length": 980,
+      "original_sha256": "81710dd10e8e8d35f925ee73b0fd458cc73f92c2d5554034b4934ceb30b1cde8",
+      "selected_test": false,
+      "body_sha256": "f1c02bbe7656223a077c9c7f4f4c36f813a0845ab974c5640bea51c1bd612489"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "CorrelatedFixtureFeed",
+      "function": "",
+      "ast_id": 196013,
+      "start": 535,
+      "length": 62,
+      "original_sha256": "59b1d2bf861ab200ab16bf0dca45d8ccb1277bab1b5a4ca0247b1c61cf212e4e",
+      "selected_test": false,
+      "body_sha256": "feab8105297887f02224def71d58ec730717d8d9cd8db45d644e937b7dd31d22"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "CorrelatedFixtureFeed",
+      "function": "decimals",
+      "ast_id": 196023,
+      "start": 602,
+      "length": 80,
+      "original_sha256": "2fcd9d261efba079d38b6ef92a40210b9c3fa287d965345cc47784f379156197",
+      "selected_test": false,
+      "body_sha256": "af4061de946699b4274191909faf4f3497d58bfc7c522c18927bb9b705067f51"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "CorrelatedFixtureFeed",
+      "function": "latestRoundData",
+      "ast_id": 196041,
+      "start": 687,
+      "length": 137,
+      "original_sha256": "1d311c3c6fc133aadcfa509183e48cd68164f4b5eaf49d5f98e51e543865ce5a",
+      "selected_test": false,
+      "body_sha256": "ef1e7d111699c7b753a3fef18c1e0b52622ca5bec3694991597c91d5dece9cd7"
+    },
+    {
+      "source": "test/helpers/DualOracleFixture.sol",
+      "contract": "DualOracleFixture",
+      "function": "setTestFeed",
+      "ast_id": 196114,
+      "start": 859,
+      "length": 594,
+      "original_sha256": "ea621a0357a915c2fd359047b9aaf2bfc288af8b3c6969fa86de659557e7482f",
+      "selected_test": false,
+      "body_sha256": "420c8e9d5a766f93f6aad132b8035ed0146dcd4b5de71813de18c9be48e561ea"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "IMockVRFConsumer",
+      "function": "rawFulfillRandomWords",
+      "ast_id": 199102,
+      "start": 147,
+      "length": 85,
+      "original_sha256": "f614f148e92a1834f3b713b229438bab314e75e16da4a83489086bc4d98ea25c",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "setFailRequests",
+      "ast_id": 199136,
+      "start": 727,
+      "length": 69,
+      "original_sha256": "1f16a7a0783dff03715f20c6804a89ab629d4983e2decb95c1fbc19ae7acd898",
+      "selected_test": false,
+      "body_sha256": "d3345a96cc2d1d0b9f837d28c79a4b6f5919bcb97c6a324b55c0e93611ab5b77"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "requestRandomWords",
+      "ast_id": 199193,
+      "start": 801,
+      "length": 490,
+      "original_sha256": "109798b0578972f3675bcb00d1b12ce7ff7b5f245f3432509a05d3900ce6d8d5",
+      "selected_test": false,
+      "body_sha256": "c6f7512e4343f0ea361f023552221722c00645a8cb5408b019d45dbab2653b06"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "fulfill",
+      "ast_id": 199236,
+      "start": 1296,
+      "length": 256,
+      "original_sha256": "0f2f77ab8aa0adfcabc70be47b1760458f0b6fcc1c31fc002a78ff7eeb8f7c49",
+      "selected_test": false,
+      "body_sha256": "00f20ae08fabdf991fa361c3311b6f705a27100310c7f7a9275b95b6e9f0fb8d"
+    },
+    {
+      "source": "test/mocks/MockVRF.sol",
+      "contract": "MockVRF",
+      "function": "fulfillMalformed",
+      "ast_id": 199258,
+      "start": 1557,
+      "length": 180,
+      "original_sha256": "177a615a2d3beb73e57e0dd1c916f3fe9d08297e78c1995436e8a713f7b6176b",
+      "selected_test": false,
+      "body_sha256": "34f6aa4760e070d380d2b2359e368ae4dc60f2d8308fedd59974af88d11d21a7"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "IMockCallerAccess",
+      "function": "access",
+      "ast_id": 199286,
+      "start": 761,
+      "length": 50,
+      "original_sha256": "ad46054df4ee1b02619f93c232bca2fafb47f65659f60e1c972a4d62b1b3ef48",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "IMockSealRegistry",
+      "function": "activationAssets",
+      "ast_id": 199292,
+      "start": 844,
+      "length": 59,
+      "original_sha256": "9e67414e9c8637e6907a03253e134f64a12c59d96c8c540318b3a30dfd4ea0d0",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "IMockSealIdentity",
+      "function": "zzz",
+      "ast_id": 199298,
+      "start": 936,
+      "length": 46,
+      "original_sha256": "c6ac57caed6634fb8eba57494bce7a32df44d2288e042f5b31d6125dcc87b158",
+      "selected_test": false
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "",
+      "ast_id": 199352,
+      "start": 1372,
+      "length": 149,
+      "original_sha256": "e153f17deaf4b84e6805219f90e91e0580e00b02946e94c3e116ebf40e610f3b",
+      "selected_test": false,
+      "body_sha256": "66159c62b6d435ae14e97b79c826001189c4ba9262d05df453e3929b08388e4a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "canonicalHandoff",
+      "ast_id": 199363,
+      "start": 1526,
+      "length": 89,
+      "original_sha256": "474dd0fb36fc69812e90ff1222a840a2ab94435cf75d089d4baa118a24ea3601",
+      "selected_test": false,
+      "body_sha256": "ff0ced310a50e8ff2f021f638b80715cc3f262a8bc588ee18cbef7d55f38f488"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "moduleAuthorized",
+      "ast_id": 199385,
+      "start": 1620,
+      "length": 155,
+      "original_sha256": "b53d5cdc0bbc11cc69929ecb50a02bba984a1fe09006488585451dd0631dc2e4",
+      "selected_test": false,
+      "body_sha256": "c08f704f8c93f0c645b542c0d282c9f1a792f3b5a7a1bb8a9b3901dcd1b832ea"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "keeperAuthorized",
+      "ast_id": 199403,
+      "start": 1780,
+      "length": 141,
+      "original_sha256": "b496e15cc74a014b4c0b5b5c36fcb42acb92e90446f9a4629ebec348f266b735",
+      "selected_test": false,
+      "body_sha256": "3d519c5fd84e1c58bceef4639ce1c9813f8b1727502c3dabc88915e805052a7d"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "canConfigure",
+      "ast_id": 199418,
+      "start": 1926,
+      "length": 103,
+      "original_sha256": "61263b5fb6a217aefe02e08ee992a088bb452813e4ae0f97def0d8dbe5a02c33",
+      "selected_test": false,
+      "body_sha256": "5138f94e6bc3418c143ea69b1b2303f68027694f10d48b651f48951208ef26d9"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setPreparation",
+      "ast_id": 199428,
+      "start": 2034,
+      "length": 73,
+      "original_sha256": "233ef6bee25f9e95950e909051b9559f895e5953edc9a3e480c6b25de8992468",
+      "selected_test": false,
+      "body_sha256": "aba6ded9a56cd7f964ec8a1f789e58c0b2c6aceec5d30601363896fc51a6d096"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setCanonicalState",
+      "ast_id": 199438,
+      "start": 2112,
+      "length": 72,
+      "original_sha256": "073d8ff0b2eb27b342a01ab04b7a920b9d93a579f72fdb8693e01d8babdb32da",
+      "selected_test": false,
+      "body_sha256": "7c277b3ba9ed8537b1fb779415f250b985d7654c1631fe8e5d920bcc266acbcc"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "bind",
+      "ast_id": 199452,
+      "start": 2189,
+      "length": 60,
+      "original_sha256": "864363061e45f8ac6e12895d44da0481537d6747b6fd4ffe16317bfd1b304813",
+      "selected_test": false,
+      "body_sha256": "77964d9cdeb7000f5bcb610dbed370f670b8e2c49a4c30b24a342ffeea9ae28f"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "seal",
+      "ast_id": 199460,
+      "start": 2254,
+      "length": 41,
+      "original_sha256": "084344cbb16ffa2c96fed9eba3f5702bef4c49184cd5aca0f826f4b9d17d8656",
+      "selected_test": false,
+      "body_sha256": "2511ab2f0218e8ea740e6d627700536a7fabda502fc5e88108968bb0ced268e9"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "beginBootstrap",
+      "ast_id": 199468,
+      "start": 2446,
+      "length": 52,
+      "original_sha256": "a077cb24542d6766e5632b1f41ad4e2aac70cb8bba8f4d4d76b8b171d4899b33",
+      "selected_test": false,
+      "body_sha256": "da97f50192c9f0cccc3f5d782d426197f5d84437b56cdba575cca04fe48e8a25"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setPaused",
+      "ast_id": 199478,
+      "start": 2503,
+      "length": 47,
+      "original_sha256": "5d83ea67d9a6790164332011f8c7d10c2baf0d5e0f9f10d7781455484dba0acf",
+      "selected_test": false,
+      "body_sha256": "b5d476218f6e9084b196719b2b76c4c4ab4e47c72d2f831099d5fbde1d5e8b21"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockAccess",
+      "function": "setKeeper",
+      "ast_id": 199492,
+      "start": 2555,
+      "length": 61,
+      "original_sha256": "6c09f9e733397909cbd8c9e0c36449ed35e94a94afe9d047394c02a10d7db830",
+      "selected_test": false,
+      "body_sha256": "5c351dadef47638379e4f5a9ef2ac7ebf5346f989be1c01d398b6fb509ff30e4"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "",
+      "ast_id": 199511,
+      "start": 2689,
+      "length": 52,
+      "original_sha256": "0a48e296055cee2e3c0400f228ff75129dda2edd66d11b81e58fbb71e90ed180",
+      "selected_test": false,
+      "body_sha256": "2d2fac52f5288cd0d2d1a25bc597070559d99d1b8abe57134c9918de6ead34ef"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "decimals",
+      "ast_id": 199520,
+      "start": 2746,
+      "length": 71,
+      "original_sha256": "940b9f990efe5922f3b6a9ce952bb1ac2b3a73ffd11fbe7d0261f2d7a2253b1b",
+      "selected_test": false,
+      "body_sha256": "4e6b3e413ee48e67dacceb6b7740ce6e991bd0f0ca92ec3a242129d38ffe0144"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "mint",
+      "ast_id": 199533,
+      "start": 2822,
+      "length": 57,
+      "original_sha256": "b5cd9c7ba7a178ae29c0107e236001604d782f5dfa27ed3eacf542f91b4712d8",
+      "selected_test": false,
+      "body_sha256": "e02034b3daa8c239ce1226bee9094402f63b7f73d4ba4714b7b9feb2e0182f4e"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockToken",
+      "function": "burn",
+      "ast_id": 199545,
+      "start": 2884,
+      "length": 56,
+      "original_sha256": "eee8262a99a3d9a213d0a5965b84dc369650ebdc503cc12c8ba3358c42ab55d3",
+      "selected_test": false,
+      "body_sha256": "c176e1c303973ae45c925f991a554a0f82abceda22e77be2dc3e8849b0a7627e"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "TaxToken",
+      "function": "",
+      "ast_id": 199555,
+      "start": 2980,
+      "length": 29,
+      "original_sha256": "8175a225388ade020a5215f8a7c46a6c859196689d404c78d48c4801ece8456a",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "TaxToken",
+      "function": "_update",
+      "ast_id": 199612,
+      "start": 3014,
+      "length": 194,
+      "original_sha256": "dcf8c293e0029f88a92483dfff21499fdfe30bbb418c3ec5e583b373c75204b6",
+      "selected_test": false,
+      "body_sha256": "da2eeae54ba741684ca050c243e1df96136d003f03e964c87e16c87c6606ba94"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "ExtraTaxToken",
+      "function": "",
+      "ast_id": 199622,
+      "start": 3253,
+      "length": 29,
+      "original_sha256": "8175a225388ade020a5215f8a7c46a6c859196689d404c78d48c4801ece8456a",
+      "selected_test": false,
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "ExtraTaxToken",
+      "function": "_update",
+      "ast_id": 199672,
+      "start": 3287,
+      "length": 184,
+      "original_sha256": "54885fa40c4d6fe9448d943261432e12a13a9718fc81b650ac197f359f539183",
+      "selected_test": false,
+      "body_sha256": "418da4eb32f00925638ae416780dfb032a01a51e4a14ff44e96d54a520d46813"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "",
+      "ast_id": 199707,
+      "start": 3660,
+      "length": 81,
+      "original_sha256": "ecb752356cc452e8f9449d26e41b9f9b19a2bcfb2e74ffa5b76e465978d920f9",
+      "selected_test": false,
+      "body_sha256": "d9b0a914f788bda8a18c98b1aa85cf14c94d42a3e833d23afe0fd278540c72e3"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "set",
+      "ast_id": 199729,
+      "start": 3746,
+      "length": 81,
+      "original_sha256": "0123a54315e8e2925e1ee3e3764678872ad75ba554f6d39f3a33370f7df6cf1e",
+      "selected_test": false,
+      "body_sha256": "ff4c65478e17c94b79e08f76d71d1ad20e85f33407654890b80267b2bf9a00d1"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "rounds",
+      "ast_id": 199745,
+      "start": 3832,
+      "length": 72,
+      "original_sha256": "f2b625db0f572c446cbfb461a6733f4975270883e32e5b217fdabe4a8b16d43b",
+      "selected_test": false,
+      "body_sha256": "9ace845870645705d6770547866e8af8dd7edfca6b55cf2d33132a10bab85c3c"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockFeed",
+      "function": "latestRoundData",
+      "ast_id": 199766,
+      "start": 3909,
+      "length": 139,
+      "original_sha256": "7a3ec2c681808f065b1945591a8830d1b900a7fa4cb6444f762cadd49e0b0c5a",
+      "selected_test": false,
+      "body_sha256": "537878c8f7d495fa4bdacc17c6c5623d89ca0a72bc9ffa9969ef0ed859c9c7c7"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "setActivationAssets",
+      "ast_id": 199781,
+      "start": 4149,
+      "length": 80,
+      "original_sha256": "33ef757b7dd71b2215c6199bcb87b7ef9aa68352f2d7abb1d13c03e75a3f98e8",
+      "selected_test": false,
+      "body_sha256": "3e225bb67862b943e9cf93db83e1e400735f58da0bd393690f6d6d7aa91adcee"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "set",
+      "ast_id": 199801,
+      "start": 4284,
+      "length": 70,
+      "original_sha256": "1b9be72ddb35a57733dde87997622177276910f0956ed62f6ac02acad09ca653",
+      "selected_test": false,
+      "body_sha256": "ba290009c7fc6717e93fd9ae575ceead31f1247c721ef550d453eed1f564458f"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "get",
+      "ast_id": 199814,
+      "start": 4359,
+      "length": 86,
+      "original_sha256": "376c1b465b79e51c795a1aed82d1890faab31e263f4484afc0aaf98d7f8613fa",
+      "selected_test": false,
+      "body_sha256": "56a54f678ff1d067b024506ed263fc1a791597dd850577544fccefd41ba11170"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "accounting",
+      "ast_id": 199827,
+      "start": 4450,
+      "length": 93,
+      "original_sha256": "ba617a94cf8ed92adb135aed62a529e92ec06439940b087450beb65b16a92f79",
+      "selected_test": false,
+      "body_sha256": "56a54f678ff1d067b024506ed263fc1a791597dd850577544fccefd41ba11170"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockPools",
+      "function": "contributionValue",
+      "ast_id": 199885,
+      "start": 4548,
+      "length": 383,
+      "original_sha256": "03bdf2be4c4445d21c2f8a282d74e7ea2a8f419873d9c7f94186e3e8f4bced70",
+      "selected_test": false,
+      "body_sha256": "b801c9a847dc5d8d22bf1a8622ff4df9462aab8ef8c22461823b89c9a24162ed"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockVaultRecord",
+      "function": "set",
+      "ast_id": 199900,
+      "start": 4989,
+      "length": 47,
+      "original_sha256": "02a0a8e7fdde7fc4a32850194b378d5522591c94cb122699c0871b3d8ff2ddc3",
+      "selected_test": false,
+      "body_sha256": "23960daaf069d3825318c4dbc1485151d764ede7dd8c02c74f0f1020a15f2edc"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "MockVaultRecord",
+      "function": "position",
+      "ast_id": 199911,
+      "start": 5041,
+      "length": 76,
+      "original_sha256": "f33dd63f8d00bd448f2deb4fa47ed66c5c80ba95536f16ffac06f75bac4d21b4",
+      "selected_test": false,
+      "body_sha256": "570b2945e13b506061da281cdf0354f7b36087e60c093307ba15c14fa9102ee1"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "",
+      "ast_id": 199939,
+      "start": 5255,
+      "length": 63,
+      "original_sha256": "a07b1ab015c7e02c3115ce259ee587479528b7f55e2202922dcdd44cd3ab5736",
+      "selected_test": false,
+      "body_sha256": "61cf9fecbf0e36a024465fee61f761abf86dcebefe882d3bdb53b189e5591e92"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "FEE_INTAKE_VERSION",
+      "ast_id": 199947,
+      "start": 5400,
+      "length": 71,
+      "original_sha256": "ab35ff05360f813bbe4fae49357b1a4545189c691d157ec869fd61bce5b8d053",
+      "selected_test": false,
+      "body_sha256": "b3ec6e23aa03d9dc1b6b6d6ebc42a97d8a74c729dcfc8073c9836ff8a22c6956"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "activationAssets",
+      "ast_id": 199958,
+      "start": 5476,
+      "length": 81,
+      "original_sha256": "070bdcc1b492866a0bbcda0dabc899c8d01b3a025a4529f65a04e9fac0c033eb",
+      "selected_test": false,
+      "body_sha256": "603ccb3f2d25561b841a76a1ec851351be93d31307b2407a32a8ef65d5ab9519"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "setTestZZZIdentity",
+      "ast_id": 199968,
+      "start": 5562,
+      "length": 64,
+      "original_sha256": "7f246f0e8986e2673bf4e2f5ac902397b9a9178adf49e58af99bb2874d778c23",
+      "selected_test": false,
+      "body_sha256": "39b67c6a097ea2ed64efced2b7d413de77149bafd46f8c9d770d41cd602e6b5a"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "currentZZZ",
+      "ast_id": 199988,
+      "start": 5631,
+      "length": 164,
+      "original_sha256": "6aed1dfee51b130c6a3293df62527277785dc1ae2a5d87f82b515781207e392c",
+      "selected_test": false,
+      "body_sha256": "90ef43416cc86a69cfc589b57ea5025fbd33a34f44984763cc57706f5ff073cd"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "transport",
+      "ast_id": 200000,
+      "start": 5800,
+      "length": 89,
+      "original_sha256": "acba930c60538427228b710112409b383bbf9481684cd3fe4a56f22cf95df6d9",
+      "selected_test": false,
+      "body_sha256": "589e86143a01fd40427bd05881d3fe5ba534cb53eb49cf6ababf175a51f33279"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "canonicalChainId",
+      "ast_id": 200009,
+      "start": 5894,
+      "length": 81,
+      "original_sha256": "224797c8cb405ebed5b3e8253174a976dc74a25db543a8d6fd1089affc3e3800",
+      "selected_test": false,
+      "body_sha256": "ebd092ddcec03f47136faf6aa54a2414c092f595374342cc04360bcf52ab9fac"
+    },
+    {
+      "source": "test/mocks/Mocks.sol",
+      "contract": "BoundDummy",
+      "function": "setRandomnessConfigured",
+      "ast_id": 200019,
+      "start": 5980,
+      "length": 83,
+      "original_sha256": "a97a36e45f14091e8657ea79efbbf0ec75e632663867346914f6ebaa4fd5556d",
+      "selected_test": false,
+      "body_sha256": "c29a04ed2c21803350c34797acd56ddbd540bcbe616e5002cfda6ff92f6f6a3f"
+    }
+  ],
+  "profile": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\obsolete-code-audit-20261025\\solidity\\selected\\ast-focused-profile-003jirtf",
+  "sources": {
+    "src/ZZZAccessController.sol": {
+      "original_sha256": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+      "transformed_sha256": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+      "bytes": 11886,
+      "changed": false
+    },
+    "src/ZZZActivationAssets.sol": {
+      "original_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "transformed_sha256": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+      "bytes": 7913,
+      "changed": false
+    },
+    "src/ZZZActivationAssetsFactory.sol": {
+      "original_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "transformed_sha256": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+      "bytes": 707,
+      "changed": false
+    },
+    "src/ZZZActivationEntry.sol": {
+      "original_sha256": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+      "transformed_sha256": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+      "bytes": 16955,
+      "changed": false
+    },
+    "src/ZZZBuyback.sol": {
+      "original_sha256": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+      "transformed_sha256": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+      "bytes": 5037,
+      "changed": false
+    },
+    "src/ZZZCanonicalHandoff.sol": {
+      "original_sha256": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+      "transformed_sha256": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+      "bytes": 19095,
+      "changed": false
+    },
+    "src/ZZZClaimRouter.sol": {
+      "original_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "transformed_sha256": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+      "bytes": 3490,
+      "changed": false
+    },
+    "src/ZZZCompounder.sol": {
+      "original_sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "transformed_sha256": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+      "bytes": 668,
+      "changed": false
+    },
+    "src/ZZZContributionPricing.sol": {
+      "original_sha256": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+      "transformed_sha256": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+      "bytes": 13591,
+      "changed": false
+    },
+    "src/ZZZCustodyValidation.sol": {
+      "original_sha256": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+      "transformed_sha256": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+      "bytes": 5354,
+      "changed": false
+    },
+    "src/ZZZFeeController.sol": {
+      "original_sha256": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+      "transformed_sha256": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+      "bytes": 9149,
+      "changed": false
+    },
+    "src/ZZZFeesCanonical.sol": {
+      "original_sha256": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+      "transformed_sha256": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+      "bytes": 7802,
+      "changed": false
+    },
+    "src/ZZZLPRewardConverter.sol": {
+      "original_sha256": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+      "transformed_sha256": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+      "bytes": 482,
+      "changed": false
+    },
+    "src/ZZZLiquidityManager.sol": {
+      "original_sha256": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+      "transformed_sha256": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+      "bytes": 18303,
+      "changed": false
+    },
+    "src/ZZZMembership.sol": {
+      "original_sha256": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+      "transformed_sha256": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
+      "bytes": 5132,
+      "changed": false
+    },
+    "src/ZZZMigration.sol": {
+      "original_sha256": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+      "transformed_sha256": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
+      "bytes": 17275,
+      "changed": false
+    },
+    "src/ZZZMigrationBudget.sol": {
+      "original_sha256": "d5036a5f11eb38a9e49720263fb62454382b545e123a3fe4dee7235a0882246e",
+      "transformed_sha256": "d5036a5f11eb38a9e49720263fb62454382b545e123a3fe4dee7235a0882246e",
+      "bytes": 18119,
+      "changed": false
+    },
+    "src/ZZZNFT.sol": {
+      "original_sha256": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
+      "transformed_sha256": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
+      "bytes": 19620,
+      "changed": false
+    },
+    "src/ZZZNFTCanonical.sol": {
+      "original_sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "transformed_sha256": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+      "bytes": 5434,
+      "changed": false
+    },
+    "src/ZZZNFTMetadata.sol": {
+      "original_sha256": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+      "transformed_sha256": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+      "bytes": 8883,
+      "changed": false
+    },
+    "src/ZZZOracle.sol": {
+      "original_sha256": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+      "transformed_sha256": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+      "bytes": 14298,
+      "changed": false
+    },
+    "src/ZZZPoolRegistry.sol": {
+      "original_sha256": "c07189fe112ad5aa8e18672d2d536529c5e8967cfed0495d46b873cdd97ace68",
+      "transformed_sha256": "c07189fe112ad5aa8e18672d2d536529c5e8967cfed0495d46b873cdd97ace68",
+      "bytes": 10480,
+      "changed": false
+    },
+    "src/ZZZPythPriceFeed.sol": {
+      "original_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "transformed_sha256": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+      "bytes": 3558,
+      "changed": false
+    },
+    "src/ZZZRewards.sol": {
+      "original_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "transformed_sha256": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+      "bytes": 18858,
+      "changed": false
+    },
+    "src/ZZZRoyaltyConverter.sol": {
+      "original_sha256": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+      "transformed_sha256": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+      "bytes": 12563,
+      "changed": false
+    },
+    "src/ZZZRoyaltyFactory.sol": {
+      "original_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "transformed_sha256": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+      "bytes": 583,
+      "changed": false
+    },
+    "src/ZZZRoyaltyRewards.sol": {
+      "original_sha256": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+      "transformed_sha256": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+      "bytes": 29159,
+      "changed": false
+    },
+    "src/ZZZStrategy.sol": {
+      "original_sha256": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+      "transformed_sha256": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+      "bytes": 16867,
+      "changed": false
+    },
+    "src/ZZZV4RouteExecutor.sol": {
+      "original_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "transformed_sha256": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+      "bytes": 9694,
+      "changed": false
+    },
+    "src/ZZZVault.sol": {
+      "original_sha256": "47f68ab99d9ed945d2f93bb24b86e217eefe2e7ef244b31cb3f03a8a89a31af7",
+      "transformed_sha256": "47f68ab99d9ed945d2f93bb24b86e217eefe2e7ef244b31cb3f03a8a89a31af7",
+      "bytes": 28385,
+      "changed": false
+    },
+    "src/ZZZVaultCanonical.sol": {
+      "original_sha256": "cccd8f08a0d6263c966ccf0a44642e3f48e70a30ce732790f19c25e57b582675",
+      "transformed_sha256": "cccd8f08a0d6263c966ccf0a44642e3f48e70a30ce732790f19c25e57b582675",
+      "bytes": 15569,
+      "changed": false
+    },
+    "src/base/ZZZCanonicalLedger.sol": {
+      "original_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "transformed_sha256": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+      "bytes": 4124,
+      "changed": false
+    },
+    "src/base/ZZZModule.sol": {
+      "original_sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "transformed_sha256": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+      "bytes": 2801,
+      "changed": false
+    },
+    "src/interfaces/IZZZ.sol": {
+      "original_sha256": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+      "transformed_sha256": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+      "bytes": 9313,
+      "changed": false
+    },
+    "src/interfaces/IZZZCanonical.sol": {
+      "original_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "transformed_sha256": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+      "bytes": 1362,
+      "changed": false
+    },
+    "src/interfaces/IZZZNFTCanonical.sol": {
+      "original_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "transformed_sha256": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+      "bytes": 1872,
+      "changed": false
+    },
+    "src/libraries/ExactAsset.sol": {
+      "original_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "transformed_sha256": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+      "bytes": 1265,
+      "changed": false
+    },
+    "src/libraries/ExactToken.sol": {
+      "original_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "transformed_sha256": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+      "bytes": 1437,
+      "changed": false
+    },
+    "src/libraries/ZZZArtwork.sol": {
+      "original_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "transformed_sha256": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+      "bytes": 5570,
+      "changed": false
+    },
+    "src/libraries/ZZZPriceMath.sol": {
+      "original_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "transformed_sha256": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+      "bytes": 830,
+      "changed": false
+    },
+    "src/libraries/ZZZTypes.sol": {
+      "original_sha256": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e",
+      "transformed_sha256": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e",
+      "bytes": 2496,
+      "changed": false
+    },
+    "test/AtomicActivationIntegration.t.sol": {
+      "original_sha256": "ea07c57b439243c5248e37c635b328075e8881de8465c5e5160401b8b683abea",
+      "transformed_sha256": "56de45f0767006168ccc2f09d259f3b8654082dd92a3824ed1c3e6db4c754b25",
+      "bytes": 25933,
+      "changed": true
+    },
+    "test/EntryReviewPolicy.t.sol": {
+      "original_sha256": "072d105b6f03a230db8a287e334ba6ed8dd4049d71688592bbf4059d815d8ead",
+      "transformed_sha256": "1a6bc2167891d9466dfcf21c77888cac111df84b7a7265d341b4e961aa31d659",
+      "bytes": 8191,
+      "changed": true
+    },
+    "test/NFTMetadata.t.sol": {
+      "original_sha256": "510ff816df9f59bd1845d3a2dfdc65cdc50de56b815e187ab38d251f3934fbd6",
+      "transformed_sha256": "d1f86c30750218f928add37b5bd1180cacf614bc2c0618509cabe4c019ad6510",
+      "bytes": 31424,
+      "changed": true
+    },
+    "test/NativeCustody.t.sol": {
+      "original_sha256": "5c8600f41e138031c18c91e63c6ae9cce614aa1516b191d9d81072832cefea9c",
+      "transformed_sha256": "a9faff7bac36f0cd117b71e08f57e4d2ff301ef70870ce18474262f2015b5ba4",
+      "bytes": 17434,
+      "changed": true
+    },
+    "test/NativeWrapperPolicy.t.sol": {
+      "original_sha256": "8936884571cf0ccbb8433a1a0674e40b3624f603d6144a646ab73c8637c36fdd",
+      "transformed_sha256": "8936884571cf0ccbb8433a1a0674e40b3624f603d6144a646ab73c8637c36fdd",
+      "bytes": 893,
+      "changed": false
+    },
+    "test/OperatorControls.t.sol": {
+      "original_sha256": "239aa84480f45e22e70c4739ba184f9d79db8aaa249a9d737db6b2ca0a2f726b",
+      "transformed_sha256": "f3a74461213268af83785b1250a394b5b0c3652c5b436f3575e624283e3e14ee",
+      "bytes": 11996,
+      "changed": true
+    },
+    "test/RangePolicy.t.sol": {
+      "original_sha256": "8afae32a41c7c9505f55e445551223dcf844f6f1e2a6c9b97bec23ad5317960b",
+      "transformed_sha256": "49a6d02e7643ae9d85eed0cafed0425a41fca953ab1b41814a3ce6294693b9bd",
+      "bytes": 10213,
+      "changed": true
+    },
+    "test/VaultAccounting.t.sol": {
+      "original_sha256": "527ba1877ba7d7fc17a983eb205a33e69cc29a57fd679a33aac654c88b39ba90",
+      "transformed_sha256": "ac920f0c1187e2517abcc9afeb7fddb4e1f54e4c7a814a845b96c05abce36f6a",
+      "bytes": 25593,
+      "changed": true
+    },
+    "test/helpers/ActivationRouteFixture.sol": {
+      "original_sha256": "120deab9ad264884c41da911e5dda71b32756c7f43d60268ef560d775ba2473a",
+      "transformed_sha256": "120deab9ad264884c41da911e5dda71b32756c7f43d60268ef560d775ba2473a",
+      "bytes": 749,
+      "changed": false
+    },
+    "test/helpers/CanonicalFixture.sol": {
+      "original_sha256": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+      "transformed_sha256": "11083c645d87fafb92700c5dceb186aea2794c4f80b3fccefb58b093c97e4ec2",
+      "bytes": 1803,
+      "changed": false
+    },
+    "test/helpers/DualOracleFixture.sol": {
+      "original_sha256": "bbc2c9f9a6395ca68a1f9855edf34872374c6691541a23ea7dfc111f9a6a54a0",
+      "transformed_sha256": "bbc2c9f9a6395ca68a1f9855edf34872374c6691541a23ea7dfc111f9a6a54a0",
+      "bytes": 1456,
+      "changed": false
+    },
+    "test/mocks/MockVRF.sol": {
+      "original_sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "transformed_sha256": "1d0b672d8959ccce0530e7062f54e69ce843764e0280a5be769b12d3ac3f1d51",
+      "bytes": 1740,
+      "changed": false
+    },
+    "test/mocks/Mocks.sol": {
+      "original_sha256": "4f3d97e9f19fda0103b088213f2537dcd4192a2c0ec7c5ed0ff47578af98d876",
+      "transformed_sha256": "4f3d97e9f19fda0103b088213f2537dcd4192a2c0ec7c5ed0ff47578af98d876",
+      "bytes": 6221,
+      "changed": false
+    }
+  },
+  "limitations": [
+    "Only unselected project test function/attached-documentation spans are whitespace omitted.",
+    "Every selected method and retained helper is byte-identical, but unexecuted tests are not verified.",
+    "No compiler/optimizer/gas/size limit is relaxed; normal production gates are separate reused evidence.",
+    "No real provider, live market, wallet or service qualification is inferred."
+  ]
+}

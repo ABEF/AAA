@@ -32,9 +32,6 @@ abstract contract ZZZCanonicalLedger {
         delete canonicalAssets; delete canonicalAmounts; delete canonicalPrefunds;
         canonicalCaptured = true;
     }
-    function _canonicalBeginImport() internal {
-        if (_state() != 2 || canonicalCursor != 0) revert CanonicalState();
-    }
     function _canonicalNext(uint256 row) internal {
         if (_state() != 2 || canonicalCursor != row) revert CanonicalState();
         ++canonicalCursor;

@@ -25,10 +25,3 @@ interface IZZZCanonicalAccess {
     function canonicalSettling() external view returns (bool);
 }
 
-/// @dev A cross-chain implementation must authenticate consensus finality and
-/// the complete typed statement. No signature/governance/timeout fallback exists.
-/// An interface is not a qualified verifier; unsupported routes stay disabled.
-interface IZZZCanonicalFinality {
-    function verifyFinalized(uint256 chainId, address emitter, bytes32 statement, bytes calldata proof)
-        external view returns (bool);
-}

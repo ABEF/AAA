@@ -1,0 +1,17 @@
+{
+  "scope": "Existing current/historical API-profile separation cases after current LP-scope wording cleanup; no wallet, service, chain or public RPC operation.",
+  "observed_at_utc": "2026-10-25T16:48:10.033127+00:00",
+  "modules": [
+    "tests_python.test_lp_only_services.LPOnlyProjectionTests"
+  ],
+  "tests_run": 3,
+  "errors": 0,
+  "failures": 0,
+  "skipped": 0,
+  "passed": true,
+  "source_sha256": {
+    "frontend_api/service.py": "71ffb2f6fc49fb4451f370a43bc4d52d0f1815f6049d5a51568fbf9c73c7c71f",
+    "frontend_api/activation_config.py": "f194b4c5da7d695517db8482260c9c50085be8918d8973d94499a14e56fbb790",
+    "tests_python/test_lp_only_services.py": "d21c83a6c078259ba28384e77dc775665e34ae2dc8f42f0cb3fac0cd3aea0ec6"
+  }
+}

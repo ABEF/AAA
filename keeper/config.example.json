@@ -1,7 +1,9 @@
 {
   "chain_id": 31337,
   "accounting_model": "shared-pools-v2",
-  "rpc_urls": ["http://127.0.0.1:8545"],
+  "rpc_urls": [
+    "http://127.0.0.1:8545"
+  ],
   "sender": "0x1111111111111111111111111111111111111111",
   "contracts": {
     "access": "0x2222222222222222222222222222222222222222",
@@ -13,10 +15,16 @@
     "pools": "0x8888888888888888888888888888888888888888"
   },
   "reviewed_for_live_use": false,
-  "royalty_conversion": {"enabled": false},
-  "lp_conversion": {"enabled": false},
+  "royalty_conversion": {
+    "enabled": false
+  },
+  "lp_conversion": {
+    "enabled": false
+  },
   "idle_compounding_budget": null,
-  "adaptive_range": {"enabled": false},
+  "adaptive_range": {
+    "enabled": false
+  },
   "code_hashes": {},
   "keystore": "/run/zzz/keystore.json",
   "password_file": "/run/zzz/password",
@@ -29,17 +37,16 @@
   "l1_fee_allowance_wei": "0",
   "receipt_fee_policy": "unverified",
   "revert_cooldown_seconds": 3600,
-  "state_path": "var/keeper.json",
-  "health_path": "var/keeper.health.json",
-  "lock_path": "var/keeper.lock",
+  "state_path": "var/keeper-native-v2-lp-only.json",
+  "health_path": "var/keeper-native-v2-lp-only.health.json",
+  "lock_path": "var/keeper-native-v2-lp-only.lock",
   "bucket_discovery": {
     "maximum_count": 10000,
     "max_per_cycle": 32
   },
   "maintenance": {
-    "sync_external_rewards": true,
     "minimum_liquidity": 1,
-    "compound": true,
+    "compound": false,
     "compound_idle": false,
     "compound_interval_seconds": 3600,
     "minimum_compound_units": 1000,
@@ -55,5 +62,7 @@
     "max_refresh_batch": 50,
     "maximum_observation_age_blocks": 256
   },
-  "buybacks": []
+  "buybacks": [],
+  "accounting_version": 2,
+  "fee_intake_version": 1
 }

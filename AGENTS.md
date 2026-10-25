@@ -1,3 +1,29 @@
+## Residual obsolete-code cleanup - 2026-10-25
+
+Read [review](reports/obsolete-code-20261025/REVIEW.md) and
+[verification](reports/obsolete-code-20261025/VERIFICATION.md), with publication
+status checked separately in Git/receipt. Removed Registry-only WETH metadata
+bookkeeping (five selectors/twoevents), orphan creator-payment measurement/tool
+tests, unused finality/import declarations/imports and unreachable NFT_baseURI.
+Actual converter wrapper checks, historical events/journals, Position/status ABI,
+source/exit ZZZ pins, preparation lifecycle, same-chain handoff and custody remain.
+
+Registry runtime9,987/creation41,366 saves2,040bytes. Its contributionPool storage
+moves slot5to2: fresh-deployment source only, never patch existing Anvil/storage.
+NFT/Vault/Rewards and four other runtime bodies match excluding compiler metadata.
+31contracts/644functions; zero missing purpose/caller/value or top-level input notes.
+10selected Solidity cases,3keeper-example and3API-profile cases pass.122inputs
+ABI/AST compile and36normal gates pass. No fresh full regression/real-provider or
+independent-audit approval. Access's29-byte minimal argument margin remains open.
+
+Current keeper example explicitly uses accounting2/fee1 with separate journal
+paths, no creator job, missing pins and live review still blocked. Operator/docs/
+security/Todo requirements are current;65taskIDs/statuses preserved, no external
+gate closed. Historical source and tests are archived, not current passing cases.
+Preserve unrelated drafts, main only,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signer/null public DEPLOYMENT and paused monitoring. No deployment,
+public transaction, website code/build/server or service operation. Production NOT APPROVED.
+
 ## Simplification source publication - 2026-10-25
 
 Contract implementation `82ba6ed` and website memory-only `ce1f31e` are pushed on

@@ -1,0 +1,32 @@
+{
+  "scope": "Owned published-candidate Markdown local file-target existence only; not URL reachability or anchor verification.",
+  "files": [
+    "docs/RELEASE_CHECKLIST.md",
+    "AGENTS.md",
+    "docs/SIMPLIFIED_RELEASE.md",
+    "docs/ROADMAP.md",
+    "docs/OPERATOR_MANUAL.md",
+    "docs/SECURITY.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "TODO.md",
+    "docs/CHANGE_AND_RECOVERY.md",
+    "README.md",
+    "docs/COMPONENT_STATUS.md",
+    "docs/WORK_HANDOFF.md",
+    "docs/OPERATIONS.md",
+    "docs/CANONICAL_MIGRATION_DESIGN.md",
+    "docs/CONTRACT_FUNCTIONS.md",
+    "reports/obsolete-code-20261025/SERVICE_REVIEW.md",
+    "docs/POST_SEAL_POLICY.md",
+    "reports/README.md",
+    "reports/obsolete-code-20261025/VERIFICATION.md",
+    "reports/obsolete-code-20261025/retired-tools/README.md",
+    "reports/obsolete-code-20261025/REVIEW.md",
+    "PROJECT_CONTEXT.md",
+    "docs/REVENUE_SHARE.md",
+    "docs/DEVELOPMENT.md",
+    "docs/SECURITY_AUDIT_PLAN.md"
+  ],
+  "local_targets_checked": 1525,
+  "errors": []
+}

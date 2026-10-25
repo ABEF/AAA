@@ -355,7 +355,7 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 | Stop everything possible, recover and restart safely | [Stop controls](#stop-controls) and [incident recovery](#incident-recovery) |
 | Move existing LP, close it temporarily, or change chains | [Custody and LP migration](#custody-and-lp-migration) |
 | Change prices, sequencer checks or wrapper policy | [Dependencies and pricing](#dependencies-and-pricing) |
-| Collect fees, compound, burn, receive creator payments or royalties | [Revenue operations](#revenue-operations) |
+| Collect LP fees, compound, burn or process royalties | [Revenue operations](#revenue-operations) |
 | Resolve pending artwork reveals or replace all contracts | [Mint and metadata](#mint-and-metadata), [whole-collection replacement](#whole-collection-replacement) |
 | Change managers/keys, replace a server, update software | [Authorities](#authorities), [services](#services-and-server-recovery) |
 | Use a browser wallet locally, recover pending transactions or inspect exact approvals | [Browser-wallet signing and recovery](BROWSER_WALLET.md) |
@@ -557,7 +557,7 @@ ownership/reward handoff below is a separate retained feature.
 | Failed close/swap/transfer | Inspect the reverted receipt: that transaction's custody, balances, epoch and send changes roll back. Separately confirmed parking remains parked. Fix the cause and prepare a fresh approved snapshot if it changed. Never repeat a successful send. |
 | New local pool/token | Approve ordered destination currencies and minima. Recipient performs any issuer exchange externally. If the plan initially selected local holding without a pool, admit/reserve a target for the same bucket and call the one-time `bindLocalDestination(id,pool,min0,min1,reviewHash)`. It preserves the original loss budget and departure. `completeLocal` must actually fund/mint the target LP and preserve shares. Then deliberately switch the sole contribution pool/input routes. |
 | New chain through your custodian | Approve source-chain custody only: `destinationPool=0`, `destinationCustody=recipient` in the current local-only request. The recipient performs any bridge/token migration externally. No on-protocol bridge is required; source principal remains outstanding/unavailable until a supported funded return/completion. This does not relocate NFTs/reward ledgers or promise remote accrual. See the runbook for exact request/approval fields. |
-| Recover principal | In the current source-chain custody workflow, `recover(id,deadline,proof)` returns every actual sent asset and restores parked custody; use the local proof form from the runbook. No timeout, partial funding, balance write-off or resend. Optional direct remote-proof paths remain disabled/unqualified. |
+| Recover principal | In the current source-chain custody workflow, `recover(id,deadline)` returns every actual sent asset and restores parked custody. Supply the exact sent native value and ERC20 approvals; no proof parameter or remote verifier exists. No timeout, partial funding, balance write-off or resend. |
 | Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `movePool` remains in this one module. |
 | Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD/inbox sync but cannot bypass an unusable venue/token or changed core/runtime binding. Native V2 parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
 | Move royalty currencies as well | Separate `RoyaltyRewards.exitCustody(asset,recipient,expectedBalance,nonce,recipientCodeHash,reviewHash)` while paused. Per-NFT entitlements remain; that currency's claims/valuation wait for exact full `returnCustody(asset,id)`. Native ETH is asset zero. Other currencies, LP principal and royalty quarantine must not be merged. |
@@ -590,7 +590,6 @@ Follow the
 | --- | --- | --- |
 | USD source pair / freshness / disagreement | Governance `Oracle.setDualFeed(token,primary,secondary,maxDeviationBps,reviewHash)`; verify two independent reviewed sources, exact runtimes/decimals, valid current rounds, append-only identity and `priceBounds` fingerprint | Both sources are mandatory. No single-source, stale/spot or $1 fallback. Disable affected work and follow the [pricing recovery procedure](#configure-stop-and-recover-usd-pricing---2026-10-24); raw funded claims and explicitly approved raw custody retain separate rules. |
 | Sequencer feed replacement | `setSequencerFeed(source,expectedCodeHash,reviewHash)` after reviewing the new nonzero source | Replacement does not require the failed old feed to work. Existing recovery grace remains. No setter removes the protection by setting zero. |
-| Optional/legacy WETH review record | Retained `PoolRegistry.approveWrapperPolicy(policy)`, then `activateWrapperPolicy(id)` after code/getter/authority review | Same fixed WETH address only; native V2 admission, parking and exit do not consult this record. It neither repairs a hostile proxy nor changes a converter's independent immutable wrapper/route bindings. Review an explicitly wrapped operation separately. |
 | Pool manager, token, router or optional historical hook change | Compare actual code/config/authorities to the deployment pins; stop affected work | Some source/route policies can be replaced, but immutable venue bindings cannot be patched by changing a manifest. New unsupported implementations require compatible reviewed replacement work. |
 | RPC/trace/archive outage | Use chain-checked reviewed endpoints with required hash-pinned reads and trace/receipt semantics | Never fall back to latest/unconfirmed state or a wrong chain. Serve unavailable status; retain indexes/state. |
 
@@ -612,9 +611,9 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 
 A holder can claim both streams in a **1-32 operation atomic ClaimRouter batch**, or claim individually. One failed operation reverts the whole batch; simulate and split by asset/NFT if needed. No operator can choose a different beneficiary or claim just because it holds ERC721 approval. All unclaimed rights follow the current NFT owner; already paid funds do not travel with it. An escrow that owns the NFT is the contract-level holder. Lifetime claimed display requires complete confirmed index history, including predecessors after replacement.
 
-Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees, proposed creator invoices and UI estimates.
+Pause generally preserves claims and transfers while canonical state is operating. A frozen/retired deployment has different rules; follow lifecycle status rather than presenting a failing claim button. Failed payout tokens, blacklists or recipient callbacks may still block their claims. There is no generic admin seizure/sweep/rewrite to clear a liability. Keep actual funded balances distinct from unharvested fees and UI estimates.
 
-Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. Change creator commercial terms off-chain and reconcile payments, while royalty-only conversion uses the separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. See [external revenue](EXTERNAL_REWARDS.md), [royalty/claim behavior](CLAIM_ROUTER.md) and [measurement proposals](REVENUE_SHARE.md).
+Stop scheduled compounding/buybacks using reviewed keeper configuration or by stopping/revoking the keeper. Accumulated reserves remain classified on-chain; no automatic transfer to the operator is allowed. LP/royalty conversion uses its separately bound guarded converter; LP payouts and the fixed 80/10/5/5 allocation are unchanged. Creator-payment inboxes and measurement jobs are retired. See [royalty/claim behavior](CLAIM_ROUTER.md).
 
 ### Tune or stop buyback trading
 
@@ -648,13 +647,26 @@ canonical locks and reentry prevent it. A replacement reviews its own limit;
 handoff does not copy the source's operating policy. The immutable hard maximum
 cannot be raised by this setter. [Evidence and limits](../reports/post-seal-controls/VERIFICATION.md).
 
-### Coordinate the creator agreement
+### Coordinate token and market dependencies
 
-Use [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) as the meeting agenda and decision record. For each answer, record its date, authorized contact, precise terms or public addresses, effective period and supporting evidence. Keep unresolved answers open. Request public identifiers and proof of control where relevant; never request a signing key.
+Use [Creator tasks / ZZZ team](../TODO.md#creator-tasks--zzz-team) to record public
+ZZZ token controls, independent price sources and market continuity evidence.
+Record each answer's date, authorized contact and supporting identifiers. Request
+proof of control where relevant; never request a signing key. Creator-payment
+terms, per-bucket funding receivers and measurement invoices no longer form part
+of the selected hookless-pool operation. Marketplace royalties remain separate.
 
-Commercial agreement alone performs no contract call. Before accepting funding, independently verify the current canonical per-bucket receiver, admitted pair/wrapper and payer instructions using [external funding](EXTERNAL_REWARDS.md). Explain processing-time allocation and keep the marketplace royalty receiver separate. A proposed invoice or missing payment must not become a funded claim.
+### Start a current keeper configuration
 
-Changes to the agreement require reconciliation of old/new periods and verified payment destinations. Stop an unqualified new configuration, retain existing funded liabilities and use the applicable pool/asset/incident procedure; do not sweep or redirect a fixed receiver. Reopen only after the changed dependency and payment flow are reviewed. This coordination procedure adds no authority, setter, timelock or automatic payout.
+The shipped `keeper/config.example.json` selects native accounting version2 and
+LP-only fee-intake version1 explicitly. It has no creator-sync or bridge jobs,
+uses separate native/profile-specific state paths and leaves live review/runtime
+pins unset. It must fail closed until actual deployment pins and operating limits
+are reviewed. Compounding, conversions and adaptive ranges are off in this
+example; enable each only with reviewed currency-specific thresholds/routes.
+Do not apply this profile to an existing legacy journal or reuse an old state path.
+Preserve old hashes/nonces and follow [keeper recovery](KEEPER_RECOVERY.md).
+Changing the example does not alter any installed service or saved journal.
 
 ### Marketplace currency and ETH payouts
 
@@ -787,7 +799,7 @@ Run the [read-only holder inventory and escrow cutover procedure](HOLDER_PREFLIG
 3. Finish existing provider responses and ordered `finalizeTraits` calls; confirm `unfinished_draws=0`. This is the selected simple policy: reliable funded provider plus draining before replacement. Do not remove the fully-revealed check if a request is stuck. Cancel the exact notice via `cancelPreparation(noticeHash)` if postponing, then restore ordinary controls deliberately.
 4. Drain/park custody and resolve plans. Governance `freeze()` stops ownership/accounting before capture. Complete six ordered `settle(slot)` domains; relay all `exportRows`/`importRows` batches of at most eight, `completeImport()`, then exact classified `fund(slot,index)` legs. Resume interrupted progress from on-chain cursors/roots, never from an assumed last successful terminal command.
 5. Verify every root, owner, trait, share, liability, reserve and exact backing. Governance `commit()` atomically retires the source and activates one successor. Finality remains required before service/marketplace cutover. Update canonical address/runtime and complete predecessor-history configuration, payout routing and marketplace collection records; old ERC721 approvals are not imported.
-6. Before commit, `abort()` cancels the importer; return every funded leg via `returnFunds`, then `finishAbort()` only after full restoration. This is not immediate unlock. After successful commit the source cannot be revived by unpausing or cancelling preparation. Late creator/royalty receipts forward one successor at a time through the supported forwarding functions.
+6. Before commit, `abort()` cancels the importer; return every funded leg via `returnFunds`, then `finishAbort()` only after full restoration. This is not immediate unlock. After successful commit the source cannot be revived by unpausing or cancelling preparation. Late royalty receipts forward one successor at a time through the supported royalty forwarding function. There is no creator-inbox forwarding path.
 
 A successful same-chain handoff does not qualify cross-chain finality, transport or post-halt recovery. Do not promise these are solved by external principal custody. The retired v3 principal bridge stack is not bound in new deployments. Resolve outstanding principal and royalty custody before whole-collection capture; imported local buckets retain the reviewed custody controls. Track the remaining design in the [canonical recovery task](../TODO.md#task-security-chain-recovery).
 
@@ -867,7 +879,7 @@ website deployment or paused-monitor restart is part of this procedure update.
 | Gas spike/low keeper funds/daily budget reached | Stop new submissions; continue receipt reconciliation/alerts | Refill reviewed signer or revise operating budget after analysis; gas is not taken from arbitrary holder balances. |
 | Unknown broadcast/nonce drift/reorg | Stop new signing, retain exact intent/hash and canonical anchors | Reconcile confirmed/pending transactions through recovery path; no blind resend or nonce reset. |
 | Token blacklist/pause, optional wrapper upgrade or venue unusable | Stop the affected exposure, preserve ledger, review the actual dependency and exact exit | Policy update only where implemented and safe; venue/token/runtime failure can block parking/claim/abort. A wrapper failure affects an explicitly wrapped operation, not native V2 custody. No blanket rescue function. |
-| Creator does not pay / royalties missing | Compare payer agreement, receiver and actual transfers | Process real receipts, resolve external payments; no invented accrual. Keep separate from API history outages. |
+| Marketplace royalties missing | Check sale consideration, the exact royalty helper and confirmed transfers | Only payments actually received fund holder claims. Marketplace payment is not universally enforced; do not invent accrual or treat an API outage as a missing payment. |
 | VRF unfulfilled / ordered reveals blocked | Verify subscription/provider/request; stop new minting if needed | Use the mint-only governance pause, then original authenticated fulfillment and ordered finalize. Resume deliberately after service checks. No reroll; postpone whole-collection replacement if unresolved. |
 | Server/disk/backup failure | Stop unsafe signing; alert off-host, preserve damaged evidence | Restore/reconcile state, permissions and storage; qualify health before new work. |
 | External custodian/bridge fails or original chain halts | Stop new exposure, retain approvals/receipts/backing and provider evidence | Custodian handles external recovery; the source cannot force a return. No integrated bridge is required or promised; no post-halt canonical ownership recovery exists. |

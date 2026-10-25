@@ -1,6 +1,15 @@
 ## Pricing-V2 component delta - 2026-10-24
 
 
+## Residual obsolete-code cleanup - 2026-10-25
+
+[Review and removal boundaries](../reports/obsolete-code-20261025/REVIEW.md): unused
+Registry wrapper records and creator-payment measurement tooling are retired;
+actual converter wrappers, historical decoding/recovery, same-chain handoff and
+custody rights remain. Current reference:31contracts/644functions. New Registry
+runtime9,987bytes; Access's29-byte minimal initcode margin remains a release gate.
+No running deployment/service or website changed; production NOT APPROVED.
+
 ## Current release simplification - 2026-10-25
 
 [Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
@@ -125,14 +134,13 @@ The [website-alignment evidence](../reports/website-alignment/README.md), [rewar
 | `ZZZAccessController.sol` | Zero-delay governed configuration, keeper/guardian permissions and 16 fixed sealed module bindings; retired LP bridge roles cannot be bound | Governance and external dependencies remain trust boundaries; no ordinary implementation rebinding after seal |
 | `ZZZOracle.sol` / `ZZZPoolRegistry.sol` | USD normalization and freshness checks; explicit runtime-pinned native-pool admission; real `get` and actual-currency `accounting` assets, with native ETH at zero | Reliable denominated feeds/outage policy; actual native markets and production inventory remain unqualified |
 | `frontend_api/` | Unhosted confirmed NFT/wallet/collection reads; complete same-chain allocation/claim/conversion history, bounded 24h/lifetime earnings at current prices and typed unsigned preparation | Native schema-2 read/unsigned and schema-5 inventory tooling implemented; actual native deployment/provider/history/price/trace and proxy/recovery staging remain open; no API signer |
-| `zzz_ops/revenue_share.py` | Exact time-weighted and per-asset fee-weighted sampled active-liquidity proposals, receipt/dust reports and pinned actual-position collector | Creator approval, complete hook-event parser, source authenticity/completeness, receipt reconciliation and operating tests |
 
 ## Off-chain operation and integration boundaries
 
-The keeper discovers buckets and performs maintenance once per physical LP group, rather than once per NFT. Entry settlement additionally scans bounded canonical bucket dust and creator inboxes; this does not turn ongoing rebalancing into 1,000 NFT transactions. Keeper configuration/state now identifies `shared-pools-v2`; old state requires deliberate reconciliation without deleting pending transactions. Real signing and recovery still need staged network evidence.
+The keeper discovers buckets and performs maintenance once per physical LP group, rather than once per NFT. Entry settlement additionally settles bounded canonical bucket dust; this does not turn ongoing rebalancing into 1,000 NFT transactions. Keeper configuration/state now identifies `shared-pools-v2`; old state requires deliberate reconciliation without deleting pending transactions. Real signing and recovery still need staged network evidence.
 
 The reorg-aware indexer, [confirmed API](FRONTEND_API.md) and optional [wallet/lifetime-claims replay](FRONTEND_HISTORY.md) are implemented but unhosted. The API pins deployment/helpers/runtime and EIP-1898 blocks; history requires actual NFT-creation coverage through the exact target. Missing history is unavailable, not zero. Bounded lifetime/24h allocated earnings and current-price USD reporting are implemented candidates; actual complete history/pricing remains unqualified, and SQLite ingestion completeness remains an operator trust boundary. The public website is still simulated. Notifications/watcher exist but need real runtime/feed/signer staging and marketplace testing. The verified artwork bundle is prepared, **not uploaded or pinned**. Migration remains deliberate governance/operator work.
 
-Published/indexed rewards, pending creator inboxes and funded canonical dust are settled for incumbents before entry. Unharvested venue fees and undelivered remote rewards retain collection/delivery-time collective membership; creator funds use processing-time membership. Separate royalty receipts use their activated rarity weights. Historical USD estimates are not funded liabilities or proof of entitlement.
+Published/indexed rewards and funded canonical dust are settled for incumbents before entry. Unharvested venue fees use collection-time collective membership. Separate royalty receipts use activated rarity weights and their documented eligibility cohorts. Historical USD estimates are not funded liabilities or proof of entitlement.
 
-The selected Robinhood hookless native ETH/ZZZ adapter is implemented as a candidate, with production admission still blocked by release gates. Target inputs are ZZZ, ETH, USDC and USDG. The immutable [Entry](ACTIVATION_ENTRY.md) now authenticates original-source value through an admitted typed route into actual native ETH/ZZZ accounting; a quote or separate swap cannot substitute for this atomic binding. Actual route funding and fees must meet the captured whole-route contribution limit (default2%, governed maximum10%). USDC routing remains unavailable pending a funded reviewed route. Conventional fees earned by this LP fund its 80/10/5/5 allocation. Historical creator-sharing [measurement proposals](REVENUE_SHARE.md) are optional and are not launch dependencies. Production VRF, authorities, deployment and independent audit remain open; integrated bridge backing and remote ledgers are deferred optional scope. Equivalent-asset migrations do not move the NFT or permit arbitrary conversion.
+The selected Robinhood hookless native ETH/ZZZ adapter is implemented as a candidate, with production admission still blocked by release gates. Contribution inputs are native ETH and the deployment's fixed pre-seal ZZZ only. The immutable [Entry](ACTIVATION_ENTRY.md) now authenticates original-source value through an admitted typed route into actual native ETH/ZZZ accounting; a quote or separate swap cannot substitute for this atomic binding. Actual route funding and fees must meet the captured whole-route contribution limit (default2%, governed maximum10%). Conventional fees earned by this LP fund its 80/10/5/5 allocation. Former creator-sharing measurements are [retired historical material](REVENUE_SHARE.md). Production VRF, authorities, deployment and independent audit remain open; integrated bridge backing and remote ledgers are deferred optional scope. Equivalent-asset migrations do not move the NFT or permit arbitrary conversion.

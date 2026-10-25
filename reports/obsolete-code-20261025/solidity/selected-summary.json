@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 352.75,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\obsolete-code-audit-20261025\\solidity\\selected\\ast-focused-profile-003jirtf",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(RegistryNativeFundsBoundaryTest|OperatorControlsTest|EntryReviewPolicyTest|NativeCanonicalFundingTest|NFTMetadataTest)$",
+    "--json"
+  ],
+  "selected_methods": 10,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testReviewVersionsAreExplicit()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 18300912
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 22491158
+        }
+      }
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "method": "testBaseURICannotChangeAfterSealOrOverwriteConstructorCommitment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 20252791
+        }
+      }
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "method": "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 5610808
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testCanonicalLedgerNativeTwoStageFundingPartialAbortAndPrefund()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 16402014
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCanonicalFundingTest",
+      "method": "testVaultCanonicalNativeForwardAndAbortUseZeroValueAcknowledgment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 23830739
+        }
+      }
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:RegistryNativeFundsBoundaryTest",
+      "method": "testRegistryDoesNotAcceptNativeFunds()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 16259797
+        }
+      }
+    },
+    {
+      "suite": "test/OperatorControls.t.sol:OperatorControlsTest",
+      "method": "testOnlyApprovedGovernanceCanToggleControlsAfterSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 274014
+        }
+      }
+    },
+    {
+      "suite": "test/OperatorControls.t.sol:OperatorControlsTest",
+      "method": "testPoolStopOnlyClearsSelectedFlagsAndIsIdempotent()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 285941
+        }
+      }
+    },
+    {
+      "suite": "test/OperatorControls.t.sol:OperatorControlsTest",
+      "method": "testPoolStopWorksWhenPriceTokenAndVenueCallsFail()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 471116
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "dd03eaaff2b05945c8808a9c4283247d57fadde106be9e62ca66f3f42cfd5293"
+}

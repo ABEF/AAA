@@ -1,0 +1,29 @@
+{
+  "scope": "Exact historical copies; not current runtime code or executed current tests. Existing historical results keep their source scope.",
+  "files": [
+    {
+      "original_path": "zzz_ops/revenue_share.py",
+      "archive_path": "reports/obsolete-code-20261025/retired-tools/zzz_ops__revenue_share.py.txt",
+      "sha256": "e4198531ab3dabddae78583ad1e6b68ef7f30b9aca5a87871d350c51f01b6123",
+      "reason": "Creator-payment measurement subsystem removed from current architecture"
+    },
+    {
+      "original_path": "tests_python/test_revenue_share.py",
+      "archive_path": "reports/obsolete-code-20261025/retired-tools/tests_python__test_revenue_share.py.txt",
+      "sha256": "7b7cbb95aef088c6f062e64834126fd1a4928c4eb4b6d12799198a0f9345e0dd",
+      "reason": "Creator-payment measurement subsystem removed from current architecture"
+    },
+    {
+      "original_path": "docs/REVENUE_SHARE.md",
+      "archive_path": "reports/obsolete-code-20261025/retired-tools/docs__REVENUE_SHARE.md.txt",
+      "sha256": "4b1d5a8aa57b46dd1c1667f4af7e1c42302faf8325ed3f2ee395993800f569f5",
+      "reason": "Creator-payment measurement subsystem removed from current architecture"
+    },
+    {
+      "original_path": "keeper/config.example.json",
+      "archive_path": "reports/obsolete-code-20261025/retired-tools/keeper__config.example.json.txt",
+      "sha256": "c0728cba7e65d040708c7eaa85c4d30888684dc01e09bf47cc4213d805a9bc3f",
+      "reason": "Keeper example was implicit legacy accounting/fee profile with retired creator job"
+    }
+  ]
+}

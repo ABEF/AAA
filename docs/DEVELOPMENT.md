@@ -106,21 +106,20 @@ The earlier metadata-notification candidate passed 342 offline Solidity tests, o
 forge test --match-contract NFTMetadataTest -vv
 forge test --match-contract NFTRoyaltiesTest -vv
 forge test --match-contract PooledSecurityTest -vv
-forge test --match-contract ExternalRewardsTest -vv
 forge test --match-contract ClaimRouterTest -vv
-forge test --match-contract NativeLiquidityTest -vv
-python3 -m unittest tests_python.test_frontend_api tests_python.test_frontend_history tests_python.test_revenue_share -v
+forge test --match-contract NativeAssetFoundationTest -vv
+python3 -m unittest tests_python.test_frontend_api tests_python.test_frontend_history -v
 ```
 
 The NFT tests use an explicitly non-proof-verifying `MockVRF`: they cover request binding/authentication, strict mint-order finalization, exact quota exhaustion, cap rejection, immutable traits, separate royalties, current-value evolution/downgrades and unavailable valuation. Complete 1,000-mint inventory tests cover 58 palettes, four patterns, fixed style/rarity quotas, at most four identical finishes and unique Legendary looks. Generated catalogue checks bind the 2,784 supported artwork paths to the immutable inventory. These tests do not establish live VRF, subscription backing or Robinhood support. Test-only venue/feed fixtures are not actual selected-market evidence. Preserve equal-member timing, all-bucket funded-dust barriers and token-callback regression coverage when changing entry accounting.
 
 ## Local-only deployment and services
 
-[DeployCore.s.sol](../script/DeployCore.s.sol) is a local-only template. It creates the fixed router with no provider policies. It does not seal module bindings or open deposits. No bridge endpoint environment variable is required; add reviewed provider policies and policy-bound routes separately when needed. [.env.example](../.env.example) contains placeholders, not deployment credentials.
+[DeployCore.s.sol](../script/DeployCore.s.sol) is a local-only template. It does not seal module bindings, open deposits or configure a production venue. No integrated bridge is part of this release. Existing V1 local fixtures must retain their original artifacts and journals; they do not become native V2 by recompiling current source. [.env.example](../.env.example) contains placeholders, not deployment credentials.
 
 The canonical NFT requires a reviewed VRF-v2.5-compatible coordinator before `seal()`; actual selected-chain provider support is still unverified. Mint requests two words once; activation waits for authenticated mint-order finalization, without fallback/reroll. Record immutable royalty, metadata and new `claimRouter()` helper bindings/runtime hashes. `scripts/prepare_ipfs_bundle.py` now prepares and independently verifies a reproducible artwork upload archive; the bundle is prepared but not uploaded/pinned, and no production CID is approved.
 
-`MINT_PROCEEDS_RECIPIENT` is immutable and must accept native ETH; minting costs exactly `0.05 ether`. Activation requires $100 original gross source value and at least 99% as marginal deployed LP, excluding incumbents; later contributions retain the same execution/undeployed bound. Gas is separate. The Pool Registry constructs immutable `activationAssets()` and `activationEntry()` helpers automatically; they are not additional sealed modules. [Entry](ACTIVATION_ENTRY.md) binds admitted source value through typed conversion or exact native wrapping into the Vault's WETH/ZZZ accounting. Actual ZZZ/ETH/USDG routes/feeds need qualification and USDC requires a funded reviewed route. An external stablecoin swap followed by direct Vault activation cannot establish the original entire-route budget. The deployment template remains local-only; no public transaction is authorized.
+`MINT_PROCEEDS_RECIPIENT` is immutable and must accept native ETH. The current direct-mint contract costs exactly `0.05 ether`; compatible OpenSea primary mint remains unfinished. Native V2 contributions accept only ETH/fixed ZZZ: $100 activation and $5 growth minima, with a captured 2% default marginal deployed-LP limit (governed maximum10%, tighter caller/venue minima retained). Gas is separate. Entry binds the original source to actual ETH/ZZZ accounting; stablecoin or WETH inputs are not user options. See [current source policy](SIMPLIFIED_RELEASE.md), [Entry](ACTIVATION_ENTRY.md) and [execution guards](EXECUTION_LOSS_POLICY.md). No public transaction is authorized by these commands.
 
 [Paused parking](CUSTODY_PARKING.md) adds `PositionStatus.Parked = 6` without renumbering old statuses. Tests must preserve exact raw close minimums, governance/pause/nonce checks, source-oracle/inbox independence, ordinary resume price checks and funded claims/legacy migration barriers. Keeper and API validate local custody/zero physical LP while Parked; they must not treat it as an Active position or invent current LP value.
 
@@ -133,7 +132,7 @@ python3 -m indexer.monitor --config indexer/config.example.json --once
 
 Example addresses are placeholders. Live signing uses an encrypted external Foundry `cast` keystore, a private password file, reviewed-deployment consent, bytecode hashes, and spending limits. See [operations](OPERATIONS.md).
 
-The unhosted [frontend API](FRONTEND_API.md) runs with `python3 -m frontend_api.server --config YOUR_REVIEWED_CONFIG --port 8787`. It exposes confirmed NFT state/claimable balances; optional [indexer history](FRONTEND_HISTORY.md) adds wallet inventory and cumulative LP-plus-royalty claims through the same block. Gross fee/USD histories remain unavailable. The [revenue tool](REVENUE_SHARE.md) runs offline with `python3 -m zzz_ops.revenue_share calculate --input WINDOW.json --output REPORT.json`; `snapshot` reads an actual pinned position. Both measurement policies remain creator-unapproved and move no funds. Website wallet operations remain simulations.
+The unhosted [frontend API](FRONTEND_API.md) serves confirmed holdings, current LP and funded claims. Optional complete [history](FRONTEND_HISTORY.md) and [earnings](EARNINGS_HISTORY.md) supply lifetime/24h LP-plus-royalty earnings and reviewed current-price values. Missing history/prices stay unavailable. The former creator-payment measurement CLI and tests are [retired](REVENUE_SHARE.md), not executable current tooling. Public website transactions remain simulated; the isolated existing local-wallet profile remains Anvil-only.
 
 Complete the three required release layers: local mint/activation/reward/royalty/transfer/security tests; a Robinhood mainnet fork using the actual selected pool/hook/dependencies; and Robinhood Testnet wallet/website/keeper/deployment rehearsals. Sepolia is supplementary. These local commands do not deploy to a public testnet or close those gates.
 

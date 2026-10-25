@@ -18,12 +18,12 @@
       "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
       "src/ZZZMembership.sol": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
       "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
-      "src/ZZZMigrationBudget.sol": "eb1ddebb1c31fa69644f97be29f7aaac0e0580b4e5fed34eb1a6397a86be6a04",
-      "src/ZZZNFT.sol": "50b1eb8f5142b1f9b55542014abf391baead56509fb256872f505f9d0ca2a4e6",
+      "src/ZZZMigrationBudget.sol": "d5036a5f11eb38a9e49720263fb62454382b545e123a3fe4dee7235a0882246e",
+      "src/ZZZNFT.sol": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
       "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
       "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
       "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
-      "src/ZZZPoolRegistry.sol": "10c776bd25b7308aa821615bc11672795aede856ef2be197532c452d26fec3af",
+      "src/ZZZPoolRegistry.sol": "c07189fe112ad5aa8e18672d2d536529c5e8967cfed0495d46b873cdd97ace68",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
@@ -31,12 +31,12 @@
       "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
       "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "70f27b707ac269d5f8ef06460d21d6d54561af4830f57e1ec116873ef1463b96",
-      "src/ZZZVaultCanonical.sol": "735010a389b2c6d8c6e9dc80170635bebb64586291e7671a56e5e104e23e3a48",
-      "src/base/ZZZCanonicalLedger.sol": "e9d8a26e72407b9ea1750d66e35b3e992fcf0c3f6302318d989f1c7cda8f7b19",
+      "src/ZZZVault.sol": "47f68ab99d9ed945d2f93bb24b86e217eefe2e7ef244b31cb3f03a8a89a31af7",
+      "src/ZZZVaultCanonical.sol": "cccd8f08a0d6263c966ccf0a44642e3f48e70a30ce732790f19c25e57b582675",
+      "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
       "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
       "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
-      "src/interfaces/IZZZCanonical.sol": "ab77913f68d333e4445306090bd38d7f9fc183db65ec7de346703e372766ccf9",
+      "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
@@ -65,15 +65,16 @@
         "*": {
           "*": [
             "abi",
+            "storageLayout",
             "evm.bytecode.object",
             "evm.deployedBytecode.object"
           ]
         }
       }
     },
-    "compiler_input_sha256": "216479c464e5421968fc54dddcad87a16ead36817654e347fb69b00c2200e605",
-    "compiler_output_sha256": "5ab83af3c981dc06a6ddd2939a349a7bcc225b9af4947ebe8d408d069d68a7f0",
-    "size_evidence_sha256": "32f3e35edb025afc95b5820baf8fe3f00fc302a4e5440bb42f16809cd77f8c7a"
+    "compiler_input_sha256": "f0661254a1123a342ab7d4ec0cd01b1ec4f8977c02848a6a8b964a0f651a2b91",
+    "compiler_output_sha256": "7ade95110391aeb57937fc61bb33b2e26313bb1aefd326267c6abf993726712f",
+    "size_evidence_sha256": "a678ccf8041ae857c40ff8aa2cf05b519e69ec7ea1fc8620dd8bae7fda839d7a"
   },
   "abi_snapshot": {
     "ZZZAccessController": {
@@ -12652,68 +12653,6 @@
           "type": "event"
         },
         {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "previousPolicy",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "activePolicy",
-              "type": "bytes32"
-            }
-          ],
-          "name": "WrapperPolicyActivated",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "policyId",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "admin",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "implementation",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "adminOwner",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "adminCodeHash",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "implementationCodeHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "WrapperPolicyApproved",
-          "type": "event"
-        },
-        {
           "inputs": [],
           "name": "SELECTED_NATIVE_POOL",
           "outputs": [
@@ -12838,19 +12777,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "activateWrapperPolicy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "activationAssets",
           "outputs": [
@@ -12877,19 +12803,6 @@
           "type": "function"
         },
         {
-          "inputs": [],
-          "name": "activeWrapperPolicy",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
           "inputs": [
             {
               "internalType": "bytes32",
@@ -12904,52 +12817,6 @@
           ],
           "name": "applyKeeperRange",
           "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "components": [
-                {
-                  "internalType": "address",
-                  "name": "admin",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "implementation",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "adminOwner",
-                  "type": "address"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "adminCodeHash",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "implementationCodeHash",
-                  "type": "bytes32"
-                }
-              ],
-              "internalType": "struct ZZZPoolRegistry.WrapperPolicy",
-              "name": "policy",
-              "type": "tuple"
-            }
-          ],
-          "name": "approveWrapperPolicy",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -13368,67 +13235,9 @@
           ],
           "stateMutability": "view",
           "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "name": "wrapperPolicies",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "admin",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "implementation",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "adminOwner",
-              "type": "address"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "adminCodeHash",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "implementationCodeHash",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "name": "wrapperPolicyExists",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
         }
       ],
-      "abi_sha256": "a23e8c975fb8e192e20203657e2f594f6827c6f652e8e60e362772522d8cdf82"
+      "abi_sha256": "df452c5a1f0cb55baa3de578d1fa9dd710bb4f7470976ee672f807c2a2e5424c"
     },
     "ZZZPythPriceFeed": {
       "source": "src/ZZZPythPriceFeed.sol",
@@ -19827,7 +19636,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "4a2305353ca5db3d7615278cd56741239e02e9bb7769076b66ce2fa58db0e03e",
+  "notes_sha256": "5f24b77463f55bfc4fc1565787bfd17fd90ec46c79ba715324ab7132682a2b92",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -36417,29 +36226,6 @@
           "notes": null
         },
         {
-          "signature": "activateWrapperPolicy(bytes32)",
-          "kind": "function",
-          "name": "activateWrapperPolicy",
-          "state_mutability": "nonpayable",
-          "purpose": "Select a previously approved optional wrapper policy after revalidation. Unknown or already active policy reverts. Does not convert ETH to WETH or authorize an unsupported principal-pair move.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is an approved WrapperPolicy hash."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
           "signature": "activationAssets()",
           "kind": "function",
           "name": "activationAssets",
@@ -36486,29 +36272,6 @@
           "notes": null
         },
         {
-          "signature": "activeWrapperPolicy()",
-          "kind": "function",
-          "name": "activeWrapperPolicy",
-          "state_mutability": "view",
-          "purpose": "Read the selected optional canonical-WETH policy; zero means unset.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
           "signature": "applyKeeperRange(bytes32,uint16)",
           "kind": "function",
           "name": "applyKeeperRange",
@@ -36537,86 +36300,6 @@
             }
           ],
           "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "approveWrapperPolicy((address,address,address,bytes32,bytes32))",
-          "kind": "function",
-          "name": "approveWrapperPolicy",
-          "state_mutability": "nonpayable",
-          "purpose": "Append an optional reviewed policy for the canonical WETH proxy/admin dependency. Native custody does not require this policy. Exact admin/implementation/runtime/owner bindings are checked; no arbitrary wrapper address is admitted by this tuple.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "policy",
-              "label": "policy",
-              "type": "tuple",
-              "canonical_type": "(address,address,address,bytes32,bytes32)",
-              "internal_type": "struct ZZZPoolRegistry.WrapperPolicy",
-              "explanation": "WrapperPolicy(admin, implementation, adminOwner, adminCodeHash, implementationCodeHash).",
-              "components": [
-                {
-                  "position": 0,
-                  "name": "admin",
-                  "label": "admin",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 1,
-                  "name": "implementation",
-                  "label": "implementation",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 2,
-                  "name": "adminOwner",
-                  "label": "adminOwner",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 3,
-                  "name": "adminCodeHash",
-                  "label": "adminCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                },
-                {
-                  "position": 4,
-                  "name": "implementationCodeHash",
-                  "label": "implementationCodeHash",
-                  "type": "bytes32",
-                  "canonical_type": "bytes32",
-                  "internal_type": "bytes32",
-                  "explanation": null
-                }
-              ]
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Immutable policy ID; approval does not activate it."
-            }
-          ],
           "native_value": null,
           "notes": null
         },
@@ -37345,108 +37028,6 @@
               "canonical_type": "address",
               "internal_type": "address",
               "explanation": "address(0), meaning native ETH, not WETH."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "wrapperPolicies(bytes32)",
-          "kind": "function",
-          "name": "wrapperPolicies",
-          "state_mutability": "view",
-          "purpose": "Read the recorded wrapper admin, implementation, owner and code pins.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Recorded optional wrapper policy ID."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "admin",
-              "label": "admin",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": null
-            },
-            {
-              "position": 1,
-              "name": "implementation",
-              "label": "implementation",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": null
-            },
-            {
-              "position": 2,
-              "name": "adminOwner",
-              "label": "adminOwner",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": null
-            },
-            {
-              "position": 3,
-              "name": "adminCodeHash",
-              "label": "adminCodeHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            },
-            {
-              "position": 4,
-              "name": "implementationCodeHash",
-              "label": "implementationCodeHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "wrapperPolicyExists(bytes32)",
-          "kind": "function",
-          "name": "wrapperPolicyExists",
-          "state_mutability": "view",
-          "purpose": "Check whether an immutable wrapper-policy ID was approved.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Recorded optional wrapper policy ID."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": null
             }
           ],
           "native_value": null,
@@ -46110,12 +45691,12 @@
   "gaps": [],
   "counts": {
     "contracts": 31,
-    "functions": 649,
+    "functions": 644,
     "constructors": 31,
     "receive_hooks": 14,
     "fallback_hooks": 0,
     "explanation_gaps": 0,
     "unannotated_inputs": 0,
-    "unannotated_outputs": 144
+    "unannotated_outputs": 137
   }
 }

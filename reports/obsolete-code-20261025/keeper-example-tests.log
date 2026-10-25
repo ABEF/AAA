@@ -1,0 +1,8 @@
+test_example_selects_current_intake_without_retired_jobs (tests_python.test_keeper_example.KeeperExampleTests.test_example_selects_current_intake_without_retired_jobs) ... ok
+test_missing_deployment_review_and_pins_block_example (tests_python.test_keeper_example.KeeperExampleTests.test_missing_deployment_review_and_pins_block_example) ... ok
+test_reintroducing_creator_job_is_rejected_before_rpc (tests_python.test_keeper_example.KeeperExampleTests.test_reintroducing_creator_job_is_rejected_before_rpc) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.027s
+
+OK

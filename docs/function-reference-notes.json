@@ -458,10 +458,6 @@
           "purpose": "Read the immutable reviewed contribution Entry.",
           "access": "Anyone; read-only."
         },
-        "activeWrapperPolicy()": {
-          "purpose": "Read the selected optional canonical-WETH policy; zero means unset.",
-          "access": "Anyone; read-only."
-        },
         "contributionPool()": {
           "purpose": "Read the sole pool admitting new contributions; zero means stopped.",
           "access": "Anyone; read-only."
@@ -471,20 +467,6 @@
           "access": "Anyone; read-only.",
           "inputs": {
             "0": "Exact pool ID."
-          }
-        },
-        "wrapperPolicyExists(bytes32)": {
-          "purpose": "Check whether an immutable wrapper-policy ID was approved.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Recorded optional wrapper policy ID."
-          }
-        },
-        "wrapperPolicies(bytes32)": {
-          "purpose": "Read the recorded wrapper admin, implementation, owner and code pins.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Recorded optional wrapper policy ID."
           }
         },
         "get(bytes32)": {
@@ -542,23 +524,6 @@
           "inputs": {
             "poolId": "PoolKey-derived admitted pool ID.",
             "width": "Exactly 2500 or 5000 BPS (±25%/±50% in approved orientation); internal Strategy-selected target, not user-chosen width."
-          }
-        },
-        "approveWrapperPolicy((address,address,address,bytes32,bytes32))": {
-          "purpose": "Append an optional reviewed policy for the canonical WETH proxy/admin dependency. Native custody does not require this policy. Exact admin/implementation/runtime/owner bindings are checked; no arbitrary wrapper address is admitted by this tuple.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
-          "inputs": {
-            "policy": "WrapperPolicy(admin, implementation, adminOwner, adminCodeHash, implementationCodeHash)."
-          },
-          "outputs": {
-            "id": "Immutable policy ID; approval does not activate it."
-          }
-        },
-        "activateWrapperPolicy(bytes32)": {
-          "purpose": "Select a previously approved optional wrapper policy after revalidation. Unknown or already active policy reverts. Does not convert ETH to WETH or authorize an unsupported principal-pair move.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
-          "inputs": {
-            "id": "id is an approved WrapperPolicy hash."
           }
         },
         "contributionValue(bytes32,uint256,uint256)": {

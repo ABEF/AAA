@@ -5,7 +5,7 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IZZZFees, IZZZMigration, IPositionManagerMinimal, IZZZNFT, IZZZActivationEntry} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZOracle, IZZZLiquidity, IZZZStrategy, IPositionManagerMinimal} from "./interfaces/IZZZ.sol";
 interface IPairAssets { function assetCount() external view returns(uint256); function assets(uint256) external view returns(address); }
 interface IPairVault { function migrationBudget() external view returns(ZZZMigrationBudget); }
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";

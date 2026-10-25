@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {IZZZAccess, IZZZVault, IZZZPools, IZZZFees, IZZZMigration, IZZZNFT} from "./interfaces/IZZZ.sol";
+import {IZZZAccess, IZZZVault, IZZZPools, IZZZMigration, IZZZNFT} from "./interfaces/IZZZ.sol";
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";

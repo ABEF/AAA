@@ -71,9 +71,9 @@ Todo tasks; it does not close these workstreams or authorize production.
 | Gate | Required decision or evidence |
 | --- | --- |
 | Before sealing | Approve immutable economics, authorities, dependency/recovery design and canonical-chain-loss policy. Resolve any requirement needing code changes before fixing bindings. |
-| Before launch or real funds | Independent review and remediation of frozen source/configuration; all three testing layers; qualified tokens, routes, feeds, VRF and operating rehearsals. Creator-payment qualification is required only if optional external creator revenue is enabled; it is not a dependency of selected hookless LP fees. |
+| Before launch or real funds | Independent review and remediation of frozen source/configuration; all three testing layers; qualified tokens, routes, feeds, VRF and operating rehearsals. Creator-payment intake is removed; selected hookless LP fees come from actual venue collections. Token-issuer powers still require review. |
 | Before an external custody handoff | Review the source-chain recipient, exact plan/minima and explicit loss-of-custody risk. Rehearse successful departure, failure rollback, missing return and actual funded local completion/recovery. The custodian's later bridge/token migration is external; the protocol does not guarantee it. |
-| Only if future protocol-managed remote operation is proposed | A separately reviewed design would need destination obligations, authenticated finality/channel closure, backing and transport qualification. Existing proof scaffolding supplies no qualified verifier/remote ledger. This is deferred, not a release gate for source-chain custody-only handoff. |
+| Only if future protocol-managed remote operation is proposed | A separately reviewed implementation would need destination obligations, authenticated finality/channel closure, backing and transport qualification. No integrated proof intake or remote ledger remains. This is outside this release, not a gate for source-chain custody-only handoff. |
 
 For each gate retain source/configuration hashes, exact commands and results,
 failure reproductions, reviewer and unresolved risks. Use local adversarial tests,
@@ -93,7 +93,7 @@ function. Governance and migration delays are fixed at zero; there is no advance
 - Build and test a complete role/call matrix, including bootstrap, callbacks,
   compromised keepers/guardians, governance operations and forbidden module rebinding.
 - Verify all post-seal changes preserve custody and historical liabilities. Audit
-  destination/provider admission: an unsafe approved destination or malicious feed
+  pool/custodian admission: an unsafe approved destination or malicious feed
   can lose funds despite the absence of a wallet-sweep function.
 - Rehearse multisig/key rotation, lost signer quorum and emergency pause/parking.
   Verify that global pause stops ordinary work but still permits separately
@@ -145,11 +145,11 @@ fixed 5% request cannot force marketplace payment.
 
 - Verify both claim/transfer orderings, operators, contract recipients, callbacks,
   batch rollback, multiple NFTs per wallet and pending receipt synchronization.
-- Verify equal collective membership, no retrospective entry claims, and accepted
-  processing-time membership for unharvested/delayed optional creator receipts.
-  One-hop predecessor creator receipts remain unsplit until allocated by the
-  active deployment; allocated or converted balances must not receive another
-  80/10/5/5 split. Legacy remote-message records do not enable the retired bridge.
+- Verify equal collective membership, no retrospective entry claims, and the
+  collection-time membership policy for previously unharvested venue fees.
+  Current-pool entry fees and funded dust must settle under incumbent weights;
+  allocated or converted balances must not receive another 80/10/5/5 split.
+  Historical creator/remote event decoders must not enable new current intake.
 - Qualify each asset's dust value and entry-frequency incentives; test actual
   royalty receipt, transfer and payout on the selected marketplace.
 - Evaluate configurable splits **as a design proposal only**: possible incentive
@@ -177,17 +177,21 @@ journals and budgets supplement on-chain controls, not replace them.
 ## 5. External dependencies and revenue accounting
 
 **Current controls:** exact balance deltas, admitted assets and selected runtime/
-configuration pins constrain transfers. Conventional fees, actual creator inbox
-receipts, royalties, principal and mint proceeds have separate accounting paths.
-The selected hookless pool earns conventional LP fees for its position; protocol fees are not PoPL revenue. Historical Pons creator intake is optional and not a launch dependency.
+configuration pins constrain transfers. Actual local LP fees, royalties,
+principal and mint proceeds have separate accounting paths. The selected
+hookless pool earns conventional LP fees for its position; protocol fees are not
+PoPL revenue. Pons creator inboxes and remote fee intake are removed from current
+contracts; historical readers/evidence do not re-enable them.
 
-- Review selected v4 dependencies, optional historical hooks, token and wrapper upgrade/admin powers, transfer taxes, rebases,
+- Review selected static hookless v4 dependencies, token-issuer and optional conversion-wrapper upgrade/admin powers, transfer taxes, rebases,
   blacklist/freeze behavior, oracles, VRF proof verification and provider outages.
   Code hashes alone do not describe mutable proxy/storage behavior.
 - Reconcile actual receipts per asset; test prefund quarantine, duplicate/delayed
   funding, partial/no-op burns, failed swaps and rollback with healthy claims intact.
-- If optional creator intake is used, finalize its payout basis/asset/frequency; validate authorized funding and
-  liquidity-share measurement without fabricating claimable revenue.
+- Verify current fee intake cannot classify a donation, principal transfer or
+  historical creator message as newly received LP fees. Separately review ZZZ
+  issuer upgrade, freeze, blacklist and migration powers; removing creator-payment
+  integration does not remove those dependency risks.
 - Qualify live VRF fulfillment and blocked ordered reveal. An admitted broken
   optional royalty asset defers only new eligibility for that currency; verify old-cohort receipts, successful activation and recovery. Exact unreadable backing can still block canonical handoff.
 
@@ -220,8 +224,9 @@ DEXs/hooks. A future compatible destination needs separate code/dependency revie
   complete local return. Local permanent pool reservations prevent alias
   reassignment; they do not authenticate an external bridge, remote LP value or
   remote rewards. Timeouts alone cannot authorize write-offs or fabricated
-  backing. A future remote-plan feature must independently qualify the existing
-  optional proof framework before use; no real verifier/remote ledger is supplied.
+  backing. Any future protocol-managed remote feature requires a separately
+  implemented and reviewed transport/proof/accounting design; no integrated
+  proof framework or remote ledger remains in this release.
 - Document unrecoverable external failure cases; backups cannot restart a stopped
   chain, thaw a token or upgrade sealed code. Do not promise universal recovery.
 
@@ -254,7 +259,7 @@ guarantee and does not migrate canonical ownership by itself.
 
 Review the current Vault/Budget/canonical interfaces, exact transient native/
 token balances and allowances, other-bucket/donation isolation, current and
-historical compound, entry marginal NAV, old-inbox dust/late receipts, composition
+historical compound, entry marginal NAV, local fee dust/late venue receipts, composition
 epochs and successor import. Authenticate complete records and exact classified
 backing; native receiver protection must not be counted twice. Whole-collection
 capture rejects outstanding principal or royalty custody. Repeated successor and

@@ -19,7 +19,7 @@ Anvil deployments retain their original code; public signing remains disabled.
 
 The native website read/unsigned profile is implemented locally. The [simplification audit](reports/simplification-20261025/REVIEW.md) removes
 obsolete intake/transport paths and leaves687 Vault runtime bytes. The source-bound
-reference now covers31 contracts and649 functions. Access construction is tight:
+reference now covers31 contracts and644 functions. Access construction is tight:
 one proposer/one executor needs49,123 total initcode bytes (29 bytes below the
 limit); exact release role-array arguments require qualification. [Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
 
@@ -99,7 +99,6 @@ Read services serve confirmed chain state. Transaction preparation returns an un
 | **Activation preparation** | Checks asset/route/feed bindings, simulates the complete Entry call, measures new LP, and returns exact unsigned calldata and separate gas. Missing approval produces an approval step before re-quoting. | [Preparation](frontend_api/activation.py), [opt-in endpoint](frontend_api/activation_server.py), [integration sequence](docs/ACTIVATION_PREPARATION.md) |
 | **Keeper** | Discovers shared buckets, checks eligibility, simulates and submits authorized upkeep. Persists intents, receipts and budgets for recovery; optional metadata watching uses the same bounded transaction path. | [Monitor](keeper/monitor.py), [execution](keeper/ops.py), [recovery runbook](docs/KEEPER_RECOVERY.md) |
 | **Release preflight** | Explicit current native-V2 inventory validation and bounded read-only same-block observation. Actual service/evidence qualification stays separate; no signer or deployment authority. | [Gate](scripts/validate-production-config.py), [observer](scripts/observe-production-config.py), [operator sequence](docs/PRODUCTION_PREFLIGHT.md) |
-| **Revenue measurement** | Calculates proposed active-liquidity shares for creator-payment reconciliation. Measurements do not collect money or create claimable rewards. | [Measurement tool](zzz_ops/revenue_share.py), [agreement and calculation model](docs/REVENUE_SHARE.md) |
 
 These services require qualified RPC/archive providers, feeds, configuration and operating procedures. Hosting and live integration remain open. The API does not hold user keys; the contracts still enforce transaction permissions and accounting.
 
@@ -146,7 +145,7 @@ The allocation is fixed in the current contracts:
 
 Rarity does not change LP or collective weights; there is no Power multiplier. Actual receipts allocate in batches of 20 raw token units, with a documented sub-20-unit incumbent-dust exception at membership/migration boundaries. Returned remote holder rewards are already allocated and are not split again. See [accounting and timing](docs/ECONOMICS.md).
 
-The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL allocates only actual fees earned by its own position; Uniswap's separate protocol fee is not PoPL revenue. The observed combined swap fee is approximately 1.101%. Historical Pons creator payments are optional external funding. Native V2 accounts for ETH directly; already-native holder fees need no conversion. ZZZ reward conversion defaults to a **1% loss cap** (governed maximum 10%), gas separate, and needs a cheaper qualified route. See [pool selection](docs/POOL_SELECTION.md).
+The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL allocates only actual fees earned by its own position; Uniswap's separate protocol fee is not PoPL revenue. The observed combined swap fee is approximately 1.101%. Native V2 accounts for ETH directly; already-native holder fees need no conversion. ZZZ reward conversion defaults to a **1% loss cap** (governed maximum 10%), gas separate, and needs a cheaper qualified route. See [pool selection](docs/POOL_SELECTION.md).
 
 ### NFT-sale royalties
 
@@ -237,7 +236,7 @@ The keeper **defaults to dry run**. Full keeper/state-lock operation requires **
 
 Remaining work is tracked only in the [Project Todo](TODO.md). It includes:
 
-- **Dependencies and configuration:** qualified market/input routes, tokens, feeds and VRF; authority addresses and creator-payment terms.
+- **Dependencies and configuration:** qualified market/input routes, tokens, feeds and VRF; authority addresses and reviewed operating configuration.
 - **Integration and operations:** live frontend/backend flows, target-chain gas/strategy qualification and operating rehearsals.
 - **Independent assurance:** external audit, remediation and final configuration/release review.
 

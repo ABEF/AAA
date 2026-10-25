@@ -1,0 +1,40 @@
+{
+  "scope": "Compiler-produced runtime with trailing CBOR metadata excluded; constructor/immutable deployment arguments still require qualification.",
+  "objects": [
+    {
+      "file": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "runtime_identical_excluding_metadata": true
+    },
+    {
+      "file": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "runtime_identical_excluding_metadata": true
+    },
+    {
+      "file": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "runtime_identical_excluding_metadata": true
+    },
+    {
+      "file": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "runtime_identical_excluding_metadata": true
+    },
+    {
+      "file": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "runtime_identical_excluding_metadata": true
+    },
+    {
+      "file": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "runtime_identical_excluding_metadata": true
+    },
+    {
+      "file": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "runtime_identical_excluding_metadata": true
+    }
+  ]
+}

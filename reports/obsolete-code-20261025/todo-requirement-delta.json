@@ -1,0 +1,62 @@
+{
+  "scope": "Source-led requirement alignment only; all task IDs/statuses and independent external release gates remain unchanged. No test or operating qualification claim.",
+  "changed_tasks": {
+    "lp-only-simplification": [
+      "acceptance"
+    ],
+    "pons-qualification": [
+      "text",
+      "acceptance"
+    ],
+    "custody-composition": [
+      "text",
+      "acceptance"
+    ],
+    "post-seal-configuration": [
+      "acceptance"
+    ],
+    "native-production-preflight": [
+      "acceptance"
+    ],
+    "mainnet-fork": [
+      "text",
+      "acceptance"
+    ],
+    "audit-release": [
+      "acceptance"
+    ],
+    "security-governance": [
+      "acceptance"
+    ],
+    "security-share-accounting": [
+      "acceptance"
+    ],
+    "security-ownership-rewards": [
+      "acceptance"
+    ],
+    "security-strategy": [
+      "acceptance"
+    ],
+    "security-dependencies": [
+      "text",
+      "acceptance"
+    ],
+    "security-chain-recovery": [
+      "acceptance"
+    ],
+    "authorities-prices": [
+      "acceptance"
+    ],
+    "dual-price-qualification": [
+      "acceptance"
+    ]
+  },
+  "same_task_count": 65,
+  "same_statuses": true,
+  "documents_sha256": {
+    "docs/project-todo.json": "a91d0f8105904d6ae9c1289d8ae9a9c6115f6a575f37309bceffcd461f65fa36",
+    "docs/CHANGE_AND_RECOVERY.md": "9b3440244997296994babf17d4c413496aab0d7f40fdef3319dd5483557125aa",
+    "docs/CANONICAL_MIGRATION_DESIGN.md": "da627d847885cfb128dba8086cbf448ddc609df05f1cf6d9d48cc5ef802da377",
+    "docs/POST_SEAL_POLICY.md": "eb8827d156251b76b8e88a91f5f82087e0cff189b7cc28d4c7ae53419ea24ee8"
+  }
+}

@@ -1,6 +1,15 @@
 # Engineering roadmap
 
 
+## Residual obsolete-code cleanup - 2026-10-25
+
+[Review and removal boundaries](../reports/obsolete-code-20261025/REVIEW.md): unused
+Registry wrapper records and creator-payment measurement tooling are retired;
+actual converter wrappers, historical decoding/recovery, same-chain handoff and
+custody rights remain. Current reference:31contracts/644functions. New Registry
+runtime9,987bytes; Access's29-byte minimal initcode margin remains a release gate.
+No running deployment/service or website changed; production NOT APPROVED.
+
 ## Current release simplification - 2026-10-25
 
 [Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
@@ -60,7 +69,7 @@ distinct trusted workflow, not that algorithm. Retain and qualify same-chain who
 collection handoff. It does not solve future-chain or post-halt ownership recovery.
 
 Keep normal runtime/initcode and gas limits. The [private Vault refactor](../reports/native-readiness-20261025/vault/VERIFICATION.md)
-leaves313 runtime bytes; this remains limited headroom. Use the latest exact-source receipt.
+historically left313 runtime bytes. The current [simplification](../reports/simplification-20261025/VERIFICATION.md) leaves687; Access exact constructor arguments still need qualification. Use the latest exact-source receipt.
 Any bytecode change needs fresh normal runtime and initcode gates. Review
 complete custody/liability invariants, callbacks and abort/return paths before
 accepting further changes. Immediate governance/external recipients remain trusted.

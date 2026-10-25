@@ -1,0 +1,14 @@
+{
+  "scope": "Current shipped keeper example only: exact profile selection, retired creator job rejection and missing-review/pin fail-closed behavior. Mock RPC; no public or local-chain/service/signing operation. Unchanged keeper recovery/history suites reused, not rerun.",
+  "observed_at_utc": "2026-10-25T16:36:01.375732+00:00",
+  "source_sha256": {
+    "keeper/config.example.json": "477e054a80cbbdd57a2f313d8085d94735033c3ae293f914b01bba57c5f9d8f8",
+    "keeper/monitor.py": "97988b05ef87fa97a0763b2969e9fc227b16a6725eb170cea5bc78ff5f51e6da",
+    "tests_python/test_keeper_example.py": "7019cb882d49faa5c43cec5f971cefac9c5a5765d8f363d78d4cdcffe24b1402"
+  },
+  "tests_run": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true
+}

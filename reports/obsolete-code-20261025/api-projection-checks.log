@@ -1,0 +1,8 @@
+test_activation_sources_are_bound_to_the_onchain_zzz_identity (tests_python.test_lp_only_services.LPOnlyProjectionTests.test_activation_sources_are_bound_to_the_onchain_zzz_identity) ... ok
+test_current_schema_is_explicit_and_cannot_read_legacy_as_current (tests_python.test_lp_only_services.LPOnlyProjectionTests.test_current_schema_is_explicit_and_cannot_read_legacy_as_current) ... ok
+test_unknown_profiles_never_coerce_or_downgrade (tests_python.test_lp_only_services.LPOnlyProjectionTests.test_unknown_profiles_never_coerce_or_downgrade) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.206s
+
+OK

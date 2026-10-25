@@ -1,5 +1,13 @@
 # Verification evidence
 
+
+Latest residual cleanup: [review](obsolete-code-20261025/REVIEW.md),
+[verification](obsolete-code-20261025/VERIFICATION.md). Unused Registry wrapper
+metadata and creator-payment measurement are removed; current converter safety,
+rights and historical recovery remain.10selected Solidity/6scoped Python cases,
+122-input typecheck/36normal object gates; no full regression or deployment.
+Earlier reports below keep their original source scope and defaults.
+
 Current service work: [review](release-services-20261025/REVIEW.md) and
 [verification](release-services-20261025/VERIFICATION.md) cover optional Pyth
 reader, current mint/VRF qualification and frozen-review tooling.17 new Solidity,

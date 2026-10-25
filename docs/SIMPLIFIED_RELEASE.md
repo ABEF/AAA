@@ -24,6 +24,15 @@ limits. Combining them solely to reduce the contract count would not simplify
 economic verification. Historical readers and old event decoders remain because
 removing old income or transaction history would corrupt recovery and reporting.
 
+## Residual cleanup
+
+The [follow-up review](../reports/obsolete-code-20261025/REVIEW.md) removes unused
+Registry wrapper-review records, creator-payment measurement tooling and orphaned
+internal declarations. Converter-specific wrapping checks remain active. New
+Registry storage is for a fresh deployment only; existing Anvil code/journals
+retain their original layouts. Current source/fee/custody/schema identities and
+economic rights are otherwise unchanged.
+
 ## Operator changes
 
 1. Configure the reviewed ZZZ identity in `PoolRegistry.activationAssets()` with

@@ -1,0 +1,34 @@
+{
+  "scope": "Registry-only obsolete wrapper-bookkeeping removal; static caller analysis, not executed tests or production approval.",
+  "changed_sha256": {
+    "src/ZZZPoolRegistry.sol": "c07189fe112ad5aa8e18672d2d536529c5e8967cfed0495d46b873cdd97ace68",
+    "test/NativeWrapperPolicy.t.sol": "8936884571cf0ccbb8433a1a0674e40b3624f603d6144a646ab73c8637c36fdd",
+    "test/EntryReviewPolicy.t.sol": "072d105b6f03a230db8a287e334ba6ed8dd4049d71688592bbf4059d815d8ead"
+  },
+  "retained_native_checks": [
+    "Exact Robinhood native CORE/POSM/STATE/PERMIT2/ZZZ runtime pins",
+    "LiquidityManager positionManager/poolManager/stateView/permit2 getter bindings",
+    "Initialized native pool/static LP fee admission",
+    "Native ETH accounting identity",
+    "Generic hookless ERC20 pool admission and future same-token pools"
+  ],
+  "independent_converter_controls": "ZZZRoyaltyConverter.configureWrapper/checks remain unchanged; LPRewardConverter inherits the real conversion policy. These receive and unwrap actual WETH where a reviewed route needs it.",
+  "no_operational_consumer": "The deleted Registry wrapper fields were read/written only by their own optional governance functions. Native accounting and admission did not consult them. Production observer/gate wrapper checks target converter policies, not Registry fields.",
+  "retained_history": "Indexer WrapperPolicyApproved/Activated descriptors remain for historical source profiles. No running code/state/journal is reset.",
+  "removed_surface": [
+    "WrapperPolicy tuple",
+    "wrapperPolicies mapping/getter",
+    "wrapperPolicyExists mapping/getter",
+    "activeWrapperPolicy storage/getter",
+    "approveWrapperPolicy",
+    "activateWrapperPolicy",
+    "_recordWrapperPolicy",
+    "_checkWrapperPolicy",
+    "2 events",
+    "fixed unused WETH constant",
+    "4 unused INativeVenueBindings wrapper/admin methods"
+  ],
+  "test_scope": "Original 7-method optional-policy suite is archived byte-for-byte, not counted as current passing coverage. Existing mixed native-funds rejection assertion survives as RegistryNativeFundsBoundaryTest.testRegistryDoesNotAcceptNativeFunds, with sender/registry balances checked. EntryReviewPolicy keeps both actual reviewed-policy version assertions. NativeAssetFoundation, NativeCustody and real conversion safety suites are unchanged.",
+  "tests_executed": false,
+  "git_services_or_transactions_modified": false
+}

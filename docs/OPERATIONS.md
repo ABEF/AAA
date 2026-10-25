@@ -12,7 +12,7 @@ be recovered under their original profile; never rewrite or delete them.
 
 **Current candidate, reviewed 2026-10-25:** actual native ETH accounting/routing V2
 and dual-source pricing V2 are implemented. The selected hookless ETH/ZZZ pool
-earns conventional LP fees; Pons creator funding is optional historical scope.
+earns conventional LP fees; the former Pons creator-payment operating model is retired.
 Typed single-hop v3 and hookless static-fee v4 conversions are supported, subject
 to actual route/feed qualification. Default execution limits are 2% contributions,
 1% earned-balance conversion and 3% maintenance; immediate governance can set
@@ -55,8 +55,7 @@ The example has deliberately unset public identities/services/evidence and must
 fail. The offline validator checks supplied records, not their authenticity.
 Use independent confirmed observations, complete event histories, exact deployed
 runtime/initcode and dependency/proxy reviews. Inventory 17 core contracts and
-all 15 schema-5 helper bindings, configured converters/executors and any optional
-per-bucket inboxes as described in [addresses](DEPLOYMENT_ADDRESSES.md). Include
+all 15 current-profile helper bindings and configured converters/executors as described in [addresses](DEPLOYMENT_ADDRESSES.md). Include
 explicit accounting/routing/pricing versions, chain/genesis/block anchors, assets,
 source pairs/ages/independence, current loss limits and complete route policies.
 
@@ -93,9 +92,9 @@ If final execution fails, Entry funds/LP changes revert, but previously mined
 approval and network gas do not. Preserve the existing allowance, avoid repeating
 confirmed approvals and let users revoke obsolete allowances through their wallet.
 
-Public activation preparation/signing must remain blocked pending [review-time cap binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open). Do not promise that the simulated contribution percentage is signed into the current Request. A governance change before inclusion can apply a higher cap; caller raw minima are separate.
+Reviewed Entry V1 captures the caller maximum before pulling or converting funds; a higher execution-time policy rejects that review. Use [the current review binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding). Public signing remains disabled pending separate integration and release qualification; this implemented guard is not deployment approval.
 
-For a source-price outage, [custody parking](CUSTODY_PARKING.md) is a separate governed recovery workflow: pause globally, obtain an exact bucket snapshot and independently review raw close minimums, then schedule the exact Migration request through the zero-delay controller. Execution must fit its ten-minute deadline window. Principal closes into attributed Vault balances, without creator-inbox synchronization or USD valuation. Keep upkeep disabled while Parked; existing funded claims and ownership rights remain. Unpause and use governed resume only after ordinary deployment prices recover, or propose an approved migration retaining remote-liability and backing checks. Actual venue/token/runtime failures may still block parking. Native V2 parking does not call a wrapper.
+For a source-price outage, [custody parking](CUSTODY_PARKING.md) is a separate governed recovery workflow: pause globally, obtain an exact bucket snapshot and independently review raw close minimums, then schedule the exact Migration request through the zero-delay controller. Execution must fit its ten-minute deadline window. Principal closes into attributed Vault balances, without creator-inbox synchronization or USD valuation. Keep upkeep disabled while Parked; existing funded claims and ownership rights remain. Unpause and use governed resume only after ordinary deployment prices recover, or prepare a reviewed current custody exit with exact backing checks. Actual venue/token/runtime failures may still block parking. Native V2 parking does not call a wrapper.
 
 ## NFT randomness, artwork and royalty setup
 
@@ -105,32 +104,20 @@ Paid mint creates an unrevealed Dormant NFT and one request for two words. Monit
 
 The second VRF word consumes a fixed-inventory entry without replacement. Verify 58 palettes, four patterns, 200/500/300 color-style slots and all 2,784 renderer SVG paths. `scripts/prepare_ipfs_bundle.py` now prepares a verified reproducible upload archive, but its prepared bundle is **not uploaded or pinned**. Choose redundant pinning, independently verify the CID/import settings and every renderer path, and record retrieval/recovery evidence before configuring the immutable root. Website HTTP publication is not content-addressed production hosting.
 
-The fixed 5% `royaltyInfo` receiver is `NFT.royaltyRewards()`, distinct from the mint recipient and LP creator inboxes. Marketplaces may decline royalty payments. Native ETH is admitted directly to this helper; additional exact-transfer ERC20 assets require reviewed governance-approved `NFT.addRoyaltyAsset(token)` admission, bounded to 16 ERC20s plus native ETH. All eligible royalties actually received go to activated Commun/Rare/Legendary at 1/2/3 weights, without an LP revenue split. Pending royalties are settled before new eligibility. Unclaimed funds follow current NFT ownership; prefunds and zero-eligibility receipts are reserved without an administrator sweep.
+The fixed 5% `royaltyInfo` receiver is `NFT.royaltyRewards()`, distinct from the mint recipient and LP fee ledgers. Marketplaces may decline royalty payments. Native ETH is admitted directly to this helper; additional exact-transfer ERC20 assets require reviewed governance-approved `NFT.addRoyaltyAsset(token)` admission, bounded to 16 ERC20s plus native ETH. All eligible royalties actually received go to activated Commun/Rare/Legendary at 1/2/3 weights, without an LP revenue split. Pending royalties are settled before new eligibility. Unclaimed funds follow current NFT ownership; prefunds and zero-eligibility receipts are reserved without an administrator sweep.
 
 For OpenSea, after deployment independently verify the helper returned by `royaltyRewards()` and `royaltyInfo(id,salePrice)`, then configure that exact same-chain contract address and 5% in the collection's Creator Earnings settings. OpenSea documents a recipient/percentage setting; the current ERC-721/ERC-2981 candidate does not implement its ERC-721-C enforcement path, so payments remain optional. When a fulfilled Seaport order includes royalty consideration to that helper, the transfer occurs in the sale transaction. Verify collection-administration access and an actual staged paid sale, receipt, weighted holder claim and NFT transfer before launch. Admit each expected ERC20 payment currency, such as the reviewed WETH, before trading; pre-admission receipts are quarantined. Primary references: [OpenSea creator settings](https://support.opensea.io/en/articles/8867026-how-do-i-set-creator-earnings-on-opensea) and [Seaport consideration recipients](https://docs.opensea.io/docs/seaport-models). No production helper address exists yet.
 
 Use `currentLPValue(id)` and `evolution(id)` availability flags rather than treating unavailable as zero live NAV. Home-chain marked LP/idle/compound share values can cross artwork thresholds upward or downward. Remote/in-flight or stale dependency states return explicitly unavailable valuation and labelled fallback artwork. Activation and royalty eligibility persist even below $100. `tokenURI` is dynamic, and reveal/contributions emit ERC-4906 events. Permissionless `refreshMetadata(id)` and `refreshMetadataRange(firstOrdinal,lastOrdinal)` emit notifications without reading prices. The inclusive range accepts at most 50 mint ordinals and emits individual events for their actual hashed token IDs. The optional keeper watcher described below detects market-driven stage/availability changes. Actual marketplace rendering/cache refresh and production operation remain unverified; Uniswap does not update these NFT caches. Claims and custody operations remain independent from metadata evaluation.
 
-## External creator-payment setup
+## Current LP-fee intake
 
-The creator sends funds to a dedicated per-bucket receiver rather than enumerating NFT holders. After sealing and activating a canonical bucket, governance schedules `FeeController.createRewardReceiver(bucketId, wrappedNative)` through its zero-delay controller. Review the bucket's permanent original currency pair and optional 18-decimal native wrapper first. One receiver per bucket is enforced; the factory's ceiling is sixteen but current Vault capacity permits at most four reachable home inboxes. These immutable helpers do not add a module binding or permit replacement after creation. No deployment or actual recipient address has been supplied here.
-
-The selected pool uses conventional LP income. Only if discretionary external
-funding is chosen, declare its reviewed plain-transfer/processing-time policy and
-`received_funds_only` entitlement. Do not invent creator volume percentages or
-turn [measurement proposals](REVENUE_SHARE.md) into payment authority. The creator
-agreement/measurement tasks are conditional; authenticating any actual funding,
-its currency and the complete receiver history is still required.
-
-For historical fee profile0 only, the canonical chain's `external_rewards` inventory must include `receiver_count`, complete `receivers` and exact-release `observation_evidence`. Derive the complete list from confirmed `RewardReceiverCreated` history and reconcile `Fees.rewardReceiverCount()`/`rewardReceiver(bucketId)` at the manifest observation block. External mode requires at least one canonical receiver; satellites contain none. Conventional-only mode cannot hide registered external receivers under the conventional label.
-
-Each record includes `address`, immutable-specific `runtime_hash`, `bucket_id`, `home_pool_id`, `fees`, `token0`, `token1`, `wrapped_native`, `immutable_configuration=true` and `upgradeable=false`. The bucket hashes canonical chain/vault/original pool; the pair matches that original pool. Retain `observed_chain_id`, `observed_receiver`, `observed_fee_receiver`, `observed_block_number`, `observed_block_hash`, positive `observed_total_shares`, and `observed_bindings` for all five immutable getters. All observations use the same confirmed manifest block. `review_evidence` requires a named independent reviewer and exact release identity. For nonzero wrapping, `wrapper_review` includes the matching asset/address/runtime, `upgradeable=false`, `conversion=deposit:exact_1_to_1`, and release-specific evidence. A zero wrapper requires `wrapper_review=null`. Independently authenticate the underlying code, getters, event completeness and reviews; the offline validator only compares supplied records.
-
-Published/indexed rewards and already funded local dust are checkpointed for incumbents. Unharvested venue fees and undelivered remote rewards retain collection/delivery-time collective membership; creator funds use processing-time membership. Review timing incentives separately from displayed historical fee estimates.
-
-Publish only the checked immutable receiver and admitted currencies for the correct bucket. Native V2 sends actual ETH into the fee ledger without wrapping; an explicitly selected historical wrapper path retains its own dependency and currency identity. Direct ERC20/native receipt is pending until anyone calls receiver `sync()` or Fees `syncExternal(bucketId)`. Monitor `pending()`, processed `totalExternalFunded`, claim liabilities and segregated reserves separately. Processing remains allowed during pause and while LP is away; home compounding waits for compatible maintenance after return. Payments do not increment or clear remote transport obligations.
-
-Before entry the Vault settles canonical dust across at most four historical buckets and processes registered inboxes under incumbent weights. Four home inboxes are reachable; the receiver factory separately permits sixteen. Checkpoint inventory supports 32 ERC20 LP currencies plus native ETH (33), and 16 ERC20 royalty currencies plus ETH (17). A stopped admitted LP asset or inbox dependency can still block entry. Qualify the combined workload and actual venue gas; raw prefunds/unsupported receipts follow quarantine rules and have no arbitrary rescue. See [funding semantics](EXTERNAL_REWARDS.md).
+The selected hookless pool funds fees through actual local venue collections.
+There is no creator receiver, creator payment agreement or creator-sync keeper
+job in fee-intake profile1. LP rewards, compound and buyback balances stay in
+their separate funded ledgers. Royalty marketplace receipts remain a separate
+accounting system. See [current scope](SIMPLIFIED_RELEASE.md) and
+[retired measurement history](REVENUE_SHARE.md).
 
 ## Principal movement and future chains
 
@@ -189,7 +176,7 @@ Royalty `claimable` includes pending admitted receipts at current weights; direc
 
 The shared-pool keeper discovers every on-chain group using `bucketCount()` and `bucketAt(index)`. There is no NFT list: one active pool containing 1,000 NFTs is maintained through one group operation. Configure `bucket_discovery.maximum_count` and `max_per_cycle` as reviewed inventory and scan bounds. A durable round-robin cursor advances before a live submission, so a busy first pool cannot starve the others. Scanning and RPC work grow with the number of groups rather than NFT supply; the current Vault caps all historical local groups at 4, including imported custody. Returning an existing bucket reuses its slot. The keeper also retains a separate defensive ceiling of 1,000 groups per cycle; that ceiling does not enlarge the contract limit.
 
-`maintenance` supplies defaults for all discovered groups: `sync_external_rewards`, `minimum_liquidity`, `compound`, `minimum_compound_units`, `harvest`, `harvest_interval_seconds`, and reviewed `reward_routes`. Optional `bucket_overrides` uses decimal bucket IDs only to override these defaults; it does not limit discovery. The keeper verifies the group ABI, positive shares, pool occupancy, pool-key hash, and actual local assets from the pool registry before attempting work. It never trusts caller-supplied token lists or canonical home-token addresses for satellite compounding. External synchronization defaults to enabled and requires an explicit boolean. The keeper reads the receiver from Fees, validates fees/bucket bindings and its two-amount pending ABI, then targets Fees.syncExternal only when funded amounts are pending. It continues this bounded scan during pause and remote custody; while paused it suppresses ordinary LP maintenance and buybacks. It does not initiate a governed custody exit. The existing nonce, signer, simulation, confirmation and budget guards apply unchanged. The example uses a minimal liquidity floor of 1; review per-pool bounds and raw-token compound thresholds for the deployment. On-chain oracle, price and slippage guards remain mandatory.
+For current accounting2/fee-intake1, `maintenance` supplies bounded shared-bucket harvest, compound and idle-compound settings; `bucket_overrides` uses exact decimal bucket IDs. The shipped example omits retired creator jobs and uses separate current-profile state/health/lock paths. Missing runtime pins, actual review and fee qualification still block live use. Old profile0 journals may retain creator synchronization for recovery; never reinterpret them as the current example. Reconcile pending transactions before switching profiles. The minimal example liquidity floor is illustrative; review actual venue minima and economic thresholds.
 
 Buyback tasks supply a fee token, exact amount and direct approved pool ID. Legacy remote counters or configuration cannot re-enable removed transport selectors. LP maintenance runs only for Active groups; do not configure new remote reward routes on this candidate. Principal migrations and import acknowledgements remain deliberate reviewed operator calls. Discovery does not approve new routes or sign migration proposals.
 
@@ -244,11 +231,11 @@ Logs, block headers and the cursor commit atomically. Orphan blocks/logs are rol
 
 The SQLite database is an off-chain cache, not proof of ownership. Claims and custody must rely on contracts. Back up the database/configuration; a confirmed-block rescan must reproduce it. Verify multiple RPC sources for sensitive operational decisions.
 
-### Confirmed read API and revenue measurement
+### Confirmed reads and earnings history
 
 The unhosted [read API](FRONTEND_API.md) serves exact confirmed NFT state/claimable balances on loopback. Optional [history configuration](FRONTEND_HISTORY.md) adds `GET /v1/wallets/{address}/nfts` and cumulative per-asset LP-plus-royalty claims. Keep indexer creation/start/parent/contract identity fixed and its full block/log coverage complete through the API target; compare wallet count/owners to on-chain state and preserve raw receipt evidence. Missing config is explicit unavailability; stale/orphan/malformed history fails the whole request. Processed lifetime/24h earnings and optional current-price USD are implemented; see [earnings history](EARNINGS_HISTORY.md). Use the read-only [independent-provider comparison](HISTORY_AUDIT.md) before serving live history. Actual full ingestion, prices and provider/load qualification remain open. Stage HTTPS proxy/load/rate limits, independent backfill comparisons, finality/reorg handling and recovery before live website integration.
 
-Use `python3 -m zzz_ops.revenue_share snapshot --config COLLECTOR.json --block BLOCK --output SNAPSHOT.json` for a reviewed local-position sample; `calculate --input WINDOW.json --output REPORT.json` evaluates a complete window without signing or moving funds. Archive block/hash/tick/liquidity provenance and full raw fee receipts; sampled ratios do not reconstruct within-swap tick crossings. Obtain creator approval before using either proposed policy and reconcile real payments independently.
+The former creator-payment measurement CLI is retired. Its exact historical sources and proposal are archived under [retired tools](../reports/obsolete-code-20261025/retired-tools/). It is not a current command or a production revenue dependency.
 
 ## Incident and alert rehearsal
 

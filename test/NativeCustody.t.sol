@@ -62,7 +62,10 @@ contract NativeLedgerHarness is ZZZCanonicalLedger {
     receive() external payable {}
     function _canonicalAccess() internal view override returns(address){return controller;}
     function captureNative() external {_canonicalBeginCapture();_canonicalAdd(address(0),address(this).balance,0);}
-    function importNative(uint256 amount) external {_canonicalBeginImport();_canonicalAdd(address(0),amount,address(this).balance);}
+    function importNative(uint256 amount) external {
+        if (_state() != 2 || canonicalCursor != 0) revert CanonicalState();
+        _canonicalAdd(address(0),amount,address(this).balance);
+    }
     function validate() external view {_canonicalValidateBacking();}
     function duplicateNative() external {_canonicalAdd(address(0),0,0);}
 }
