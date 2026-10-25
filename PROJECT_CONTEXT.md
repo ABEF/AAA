@@ -1,3 +1,18 @@
+## Architecture pruning publication verified - 2026-10-25
+
+Contract implementation144d3c9 and website memory-onlydbd1018 are pushed onmain;
+exact remote heads verified. Read
+[publication](reports/architecture-pruning-20261025/PUBLICATION.md), review and
+verification.49distinct Solidity/512distinct Python across recorded scopes,
+127ABIinputs/36normal gates; no freshfullregression or independent approval.
+41production/report/website hashesmatch.31contracts/608functions/13receive;
+accounting3/local8words/directgovernance2/canonicalV4 arefreshdeploymentonly.
+Access42177/6975margin; Vault22852/1724margin; Factory69tight. OldAnvil/journals/
+website2profile unchanged; newwebsite3/services/realdependencies/OpenSea/operations/
+audit stayopen. No deployment/publictx/websitecode/build/server/service/signer/
+monitoraction. Unrelateddraftspreserved; retiredunpublisheddraftsbackedup.
+Main only; production NOT APPROVED.
+
 ## Smaller local architecture - 2026-10-25
 
 User approved removing obsolete Position fields via a new profile and asked to
