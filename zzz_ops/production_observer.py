@@ -56,12 +56,12 @@ UINT_GETTERS = frozenset(('getMinDelay', 'canonicalState', 'ACCOUNTING_VERSION',
     'contributionLossBps', 'maintenanceLossBps', 'MAX_CLAIMS', 'conversionLossBps',
     'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION', 'RANGE_POLICY_VERSION',
     'REVIEW_POLICY_VERSION', 'ENTRY_REVIEW_VERSION', 'FEE_INTAKE_VERSION', 'CUSTODY_VERSION',
-    'SOURCE_POLICY_VERSION'))
+    'SOURCE_POLICY_VERSION', 'GOVERNANCE_VERSION'))
 HASH_GETTERS = frozenset(('keyHash', 'zzzCodeHash', 'contributionPool', 'SCHEMA'))
 ADDRESS_GETTERS = frozenset(('access', 'canonicalHandoff', 'bootstrap', 'royaltyFactory',
     'migrationBudget', 'mintProceedsRecipient', 'royaltyRewards', 'claimRouter', 'metadataRenderer',
     'randomnessCoordinator', 'positionManager', 'stateView', 'poolManager', 'permit2', 'converter',
-    'activationAssetsFactory',
+    'activationAssetsFactory', 'governance', 'pendingGovernance',
     'receiverFactory', 'validation', 'currentZZZ', 'activationAssets', 'activationEntry', 'sequencerFeed',
     'zzz', 'incomingSource', 'nft', 'vault', 'originVault', 'fees', 'registry', 'v4Executor',
     'migration', 'canonicalController', 'royalties', 'controller', 'parent', 'ledger', 'wrapper',
@@ -498,6 +498,22 @@ class Observer:
     def governance(self):
         governance = self.chain['governance']
         access = self.chain['modules']['access']['address']
+        if self.accounting_version == 3:
+            observed = {}
+            for key,getter in (('governance','governance'),('pending_governance','pendingGovernance')):
+                observed[key] = self.attempt('governance.'+key,'authority.unavailable',lambda g=getter:
+                    _decode(self.read(access,g+'()')[0],ZERO))
+                expected = governance.get('multisig') if key == 'governance' else ZERO
+                if observed[key] is not None and observed[key] != expected:
+                    self.errors.append({'path':'governance.'+key,'code':'authority.mismatch'})
+            for role,getter in (('keeper','keepers'),('guardian','guardians')):
+                observed[role] = governance.get(role)
+                observed[role+'_enabled'] = self.attempt('governance.'+role,'authority.unavailable',lambda g=getter,r=role:
+                    _decode(self.read(access,g+'(address)',_address(governance.get(r)))[0],False))
+                if observed[role+'_enabled'] is not None and observed[role+'_enabled'] is not True:
+                    self.errors.append({'path':'governance.'+role,'code':'authority.mismatch'})
+            governance['observed_roles'] = observed
+            return
         for key in ('proposers','executors'):
             if not isinstance(governance.get(key),list) or not 1 <= len(governance[key]) <= 64:
                 raise ValueError('Unbounded governance role inventory')
@@ -692,6 +708,9 @@ def observe(config, rpc):
     fee_version = config.get('fee_intake_version',0)
     if type(fee_version) is not int or fee_version not in (0,1):
         raise ValueError('Unsupported explicit fee-intake observation profile')
+    accounting_version = config.get('accounting_version')
+    if type(accounting_version) is not int or accounting_version != (3 if fee_version == 1 else 2):
+        raise ValueError('Observation requires explicit accounting3 for current fee1, or historical accounting2 for fee0')
     expected = expected_bindings(chain,range_policy_version=range_version,
         fee_intake_version=fee_version)
     if fee_version == 1 and set(chain['helpers']) != set(expected['helpers']):
@@ -705,6 +724,7 @@ def observe(config, rpc):
     if type(pricing_version) is not int or pricing_version not in (1,2):
         raise ValueError('Unsupported explicit pricing observation profile')
     observer = Observer(rpc, chain)
+    observer.accounting_version = accounting_version
     observer.pricing_version = pricing_version
     observer.range_policy_version = range_version
     with request_scope(Budget(seconds=60, calls=1024, posts=2048)):

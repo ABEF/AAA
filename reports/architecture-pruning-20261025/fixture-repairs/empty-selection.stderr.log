@@ -1,0 +1,4 @@
+Warning: no tests match the provided pattern:
+	match-test: `^(testMissingFixedZZZRejectsGenericPoolBeforeDependencyAdmission|testNativeAdmissionRetainsItsSeparateFixedIdentityGuard|testPairWithoutFixedZZZRejectsBeforeDependencyAdmission|testNativePartialFundingAbortRequiresAndRestoresExactBacking|testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine)$`
+	match-contract: `^(FixedZZZPoolTest|NativeCanonicalIntegrationTest)$`
+

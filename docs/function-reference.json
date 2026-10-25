@@ -2,28 +2,28 @@
   "schema": 1,
   "source_snapshot": {
     "source_sha256": {
-      "src/ZZZAccessController.sol": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+      "src/ZZZAccessController.sol": "7c9303335d1cf668b264b9be5d89a6f9d526300e815ba9dc8b8b7df7c9e69600",
       "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
       "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
-      "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+      "src/ZZZCanonicalHandoff.sol": "05b21a64d6a92419ca87587d66bd03d0706e5f6299217e4f219c9c3f5b495d88",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
       "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
-      "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
-      "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
-      "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+      "src/ZZZCustodyValidation.sol": "9343deb8edcfaab900979cd1e27716826700810eeef40ba7d6657fa41380ae58",
+      "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+      "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
       "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
       "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
-      "src/ZZZMembership.sol": "b07df8f7b000dd15c055522380e6e50792f0da88a49f78c265401159bda726eb",
-      "src/ZZZMigration.sol": "ca88ada6015fe220462e145864e1d9b870082b4869130a6895bc7db9650f1922",
-      "src/ZZZMigrationBudget.sol": "aa9fc2e05885bdf94aa09d7e08c5dedbfc880263fb5c4949ab1f2fad6782b369",
-      "src/ZZZNFT.sol": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
-      "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
-      "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
-      "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
-      "src/ZZZPoolRegistry.sol": "397363122abef6b14d0b1fb7335bc47cc2c0a6375a9b9928587248f8b6d0498f",
+      "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+      "src/ZZZMigration.sol": "ebe354445635759a1f47b09f878a969bdab9ad427d3bad57f48312d13e9937e5",
+      "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+      "src/ZZZNFT.sol": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+      "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+      "src/ZZZNFTMetadata.sol": "b1ca53e94e0f4bd642eff3b49c200b4edb56f803d2b30f7ea9e7e913786ed8bf",
+      "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+      "src/ZZZPoolRegistry.sol": "967775732b0848988ab111fd9e5ae9dade3a8ba99f6a1d043e6a0bce5cb28bc2",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
@@ -31,18 +31,18 @@
       "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
       "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
       "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
-      "src/ZZZVault.sol": "47f68ab99d9ed945d2f93bb24b86e217eefe2e7ef244b31cb3f03a8a89a31af7",
-      "src/ZZZVaultCanonical.sol": "cccd8f08a0d6263c966ccf0a44642e3f48e70a30ce732790f19c25e57b582675",
+      "src/ZZZVault.sol": "d394f833686176558b7781531ffe2598e057c4691d7bb7faefc65ef2e318f651",
+      "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
       "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
-      "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
-      "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+      "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+      "src/interfaces/IZZZ.sol": "f8145db63e811487a6bb75d90e1d228c0ce4a783f789b5e11b41fc389b16206b",
       "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
       "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
       "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
       "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
       "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
       "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
-      "src/libraries/ZZZTypes.sol": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e"
+      "src/libraries/ZZZTypes.sol": "a1f4523d3668e7620013e626bd51f71cadd9ee82168dbfbc0070b82f97656a0d"
     },
     "compiler_settings": {
       "evmVersion": "cancun",
@@ -72,9 +72,9 @@
         }
       }
     },
-    "compiler_input_sha256": "e39b105926dca2ab51c4b475536d1fee51a26b6a65563f294219148110f32389",
-    "compiler_output_sha256": "3939db201f0b70ee4fa9432c5d964e7eefbb9d26196482a05addeb2df608f2d3",
-    "size_evidence_sha256": "d20a62f3274747f46324901dfd061f4d4a169f05195fa4b0548f43b639effd7c"
+    "compiler_input_sha256": "1c5d2b6b50b195a59bc4b337bd66e88cd7791b08707be7e88bfe40369a9cce1e",
+    "compiler_output_sha256": "2d593cb67c834a59f0c6aea4384c365c8d0f7c525a4970962946cd8af24b884a",
+    "size_evidence_sha256": "f2816d48d9414614d952d6ee23d04743fbe7f4e62d9598cc15aee5bbc59862ed"
   },
   "abi_snapshot": {
     "ZZZAccessController": {
@@ -83,19 +83,9 @@
         {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "delay",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address[]",
-              "name": "proposers",
-              "type": "address[]"
-            },
-            {
-              "internalType": "address[]",
-              "name": "executors",
-              "type": "address[]"
+              "internalType": "address",
+              "name": "initialGovernance",
+              "type": "address"
             },
             {
               "internalType": "address",
@@ -113,108 +103,7 @@
         },
         {
           "inputs": [],
-          "name": "AccessControlBadConfirmation",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "neededRole",
-              "type": "bytes32"
-            }
-          ],
-          "name": "AccessControlUnauthorizedAccount",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "FailedCall",
-          "type": "error"
-        },
-        {
-          "inputs": [],
           "name": "InvalidConfiguration",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "delay",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "minDelay",
-              "type": "uint256"
-            }
-          ],
-          "name": "TimelockInsufficientDelay",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "targets",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "payloads",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "values",
-              "type": "uint256"
-            }
-          ],
-          "name": "TimelockInvalidOperationLength",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "caller",
-              "type": "address"
-            }
-          ],
-          "name": "TimelockUnauthorizedCaller",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "predecessorId",
-              "type": "bytes32"
-            }
-          ],
-          "name": "TimelockUnexecutedPredecessor",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "operationId",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "expectedStates",
-              "type": "bytes32"
-            }
-          ],
-          "name": "TimelockUnexpectedOperationState",
           "type": "error"
         },
         {
@@ -227,117 +116,37 @@
           "inputs": [
             {
               "indexed": true,
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "index",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
               "internalType": "address",
-              "name": "target",
+              "name": "previous",
               "type": "address"
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes",
-              "name": "data",
-              "type": "bytes"
-            }
-          ],
-          "name": "CallExecuted",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
               "indexed": true,
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            }
-          ],
-          "name": "CallSalt",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "index",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
               "internalType": "address",
-              "name": "target",
+              "name": "current",
+              "type": "address"
+            }
+          ],
+          "name": "GovernanceAccepted",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "governance",
               "type": "address"
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes",
-              "name": "data",
-              "type": "bytes"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "delay",
-              "type": "uint256"
-            }
-          ],
-          "name": "CallScheduled",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
               "indexed": true,
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
+              "internalType": "address",
+              "name": "pending",
+              "type": "address"
             }
           ],
-          "name": "Cancelled",
+          "name": "GovernanceProposed",
           "type": "event"
         },
         {
@@ -357,25 +166,6 @@
             }
           ],
           "name": "KeeperChanged",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "oldDuration",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "newDuration",
-              "type": "uint256"
-            }
-          ],
-          "name": "MinDelayChange",
           "type": "event"
         },
         {
@@ -468,93 +258,18 @@
         },
         {
           "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "previousAdminRole",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "newAdminRole",
-              "type": "bytes32"
-            }
-          ],
-          "name": "RoleAdminChanged",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
-          ],
-          "name": "RoleGranted",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            }
-          ],
-          "name": "RoleRevoked",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
           "inputs": [],
           "name": "SystemSealed",
           "type": "event"
         },
         {
           "inputs": [],
-          "name": "CANCELLER_ROLE",
+          "name": "GOVERNANCE_VERSION",
           "outputs": [
             {
-              "internalType": "bytes32",
+              "internalType": "uint256",
               "name": "",
-              "type": "bytes32"
+              "type": "uint256"
             }
           ],
           "stateMutability": "view",
@@ -562,41 +277,9 @@
         },
         {
           "inputs": [],
-          "name": "DEFAULT_ADMIN_ROLE",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "EXECUTOR_ROLE",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "PROPOSER_ROLE",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
+          "name": "acceptGovernance",
+          "outputs": [],
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -660,19 +343,6 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "cancel",
-          "outputs": [],
-          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -751,157 +421,16 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "target",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes",
-              "name": "payload",
-              "type": "bytes"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            }
-          ],
-          "name": "execute",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address[]",
-              "name": "targets",
-              "type": "address[]"
-            },
-            {
-              "internalType": "uint256[]",
-              "name": "values",
-              "type": "uint256[]"
-            },
-            {
-              "internalType": "bytes[]",
-              "name": "payloads",
-              "type": "bytes[]"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            }
-          ],
-          "name": "executeBatch",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
           "inputs": [],
-          "name": "getMinDelay",
+          "name": "governance",
           "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "getOperationState",
-          "outputs": [
-            {
-              "internalType": "enum TimelockController.OperationState",
-              "name": "",
-              "type": "uint8"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            }
-          ],
-          "name": "getRoleAdmin",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "getTimestamp",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
             {
               "internalType": "address",
-              "name": "account",
+              "name": "",
               "type": "address"
             }
           ],
-          "name": "grantRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
+          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -913,184 +442,6 @@
             }
           ],
           "name": "guardians",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "hasRole",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "target",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes",
-              "name": "data",
-              "type": "bytes"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            }
-          ],
-          "name": "hashOperation",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "pure",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address[]",
-              "name": "targets",
-              "type": "address[]"
-            },
-            {
-              "internalType": "uint256[]",
-              "name": "values",
-              "type": "uint256[]"
-            },
-            {
-              "internalType": "bytes[]",
-              "name": "payloads",
-              "type": "bytes[]"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            }
-          ],
-          "name": "hashOperationBatch",
-          "outputs": [
-            {
-              "internalType": "bytes32",
-              "name": "",
-              "type": "bytes32"
-            }
-          ],
-          "stateMutability": "pure",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "isOperation",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "isOperationDone",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "isOperationPending",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "id",
-              "type": "bytes32"
-            }
-          ],
-          "name": "isOperationReady",
           "outputs": [
             {
               "internalType": "bool",
@@ -1196,118 +547,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256[]",
-              "name": "",
-              "type": "uint256[]"
-            },
-            {
-              "internalType": "uint256[]",
-              "name": "",
-              "type": "uint256[]"
-            },
-            {
-              "internalType": "bytes",
-              "name": "",
-              "type": "bytes"
-            }
-          ],
-          "name": "onERC1155BatchReceived",
-          "outputs": [
-            {
-              "internalType": "bytes4",
-              "name": "",
-              "type": "bytes4"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes",
-              "name": "",
-              "type": "bytes"
-            }
-          ],
-          "name": "onERC1155Received",
-          "outputs": [
-            {
-              "internalType": "bytes4",
-              "name": "",
-              "type": "bytes4"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes",
-              "name": "",
-              "type": "bytes"
-            }
-          ],
-          "name": "onERC721Received",
-          "outputs": [
-            {
-              "internalType": "bytes4",
-              "name": "",
-              "type": "bytes4"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "paused",
           "outputs": [
@@ -1315,6 +554,19 @@
               "internalType": "bool",
               "name": "",
               "type": "bool"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "pendingGovernance",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
             }
           ],
           "stateMutability": "view",
@@ -1416,35 +668,12 @@
         {
           "inputs": [
             {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
-            {
               "internalType": "address",
-              "name": "callerConfirmation",
+              "name": "candidate",
               "type": "address"
             }
           ],
-          "name": "renounceRole",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "role",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "revokeRole",
+          "name": "proposeGovernance",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -1460,82 +689,6 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "target",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes",
-              "name": "data",
-              "type": "bytes"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "delay",
-              "type": "uint256"
-            }
-          ],
-          "name": "schedule",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address[]",
-              "name": "targets",
-              "type": "address[]"
-            },
-            {
-              "internalType": "uint256[]",
-              "name": "values",
-              "type": "uint256[]"
-            },
-            {
-              "internalType": "bytes[]",
-              "name": "payloads",
-              "type": "bytes[]"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "predecessor",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "salt",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint256",
-              "name": "delay",
-              "type": "uint256"
-            }
-          ],
-          "name": "scheduleBatch",
-          "outputs": [],
-          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -1628,45 +781,9 @@
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes4",
-              "name": "interfaceId",
-              "type": "bytes4"
-            }
-          ],
-          "name": "supportsInterface",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "updateDelay",
-          "outputs": [],
-          "stateMutability": "pure",
-          "type": "function"
-        },
-        {
-          "stateMutability": "payable",
-          "type": "receive"
         }
       ],
-      "abi_sha256": "11c60c6d876970e935b354f971b9d0bbb93d2243f6adf4758d5d77c7ce41497d"
+      "abi_sha256": "45c1dd56ba3359d000e6b7931db2cac2b9df25ad7b1cd88cd0c7cd63388e027f"
     },
     "ZZZActivationAssets": {
       "source": "src/ZZZActivationAssets.sol",
@@ -7118,11 +6235,6 @@
         },
         {
           "inputs": [],
-          "name": "NativeTransferFailed",
-          "type": "error"
-        },
-        {
-          "inputs": [],
           "name": "NotReady",
           "type": "error"
         },
@@ -7137,17 +6249,6 @@
           "type": "error"
         },
         {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            }
-          ],
-          "name": "SafeERC20FailedOperation",
-          "type": "error"
-        },
-        {
           "inputs": [],
           "name": "Slippage",
           "type": "error"
@@ -7155,17 +6256,6 @@
         {
           "inputs": [],
           "name": "Unauthorized",
-          "type": "error"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            }
-          ],
-          "name": "UnsupportedToken",
           "type": "error"
         },
         {
@@ -7208,24 +6298,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalAccept",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "canonicalActivate",
           "outputs": [],
@@ -7236,30 +6308,6 @@
           "inputs": [],
           "name": "canonicalAssetCount",
           "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            }
-          ],
-          "name": "canonicalBacking",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
             {
               "internalType": "uint256",
               "name": "",
@@ -7327,42 +6375,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "destination",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalRelease",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "i",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalRestore",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "canonicalSettle",
           "outputs": [],
@@ -7416,7 +6428,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "c9ebaee5438a9493a3489fd7adb7d974d52558658c60254ac64afc8990148920"
+      "abi_sha256": "5b651e7a974de392205020d4fe03d8e183f09a89bf4d50fdc21aeec97a5e8457"
     },
     "ZZZMigration": {
       "source": "src/ZZZMigration.sol",
@@ -8148,34 +7160,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "pool",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "uint128",
-              "name": "minimum",
-              "type": "uint128"
-            },
-            {
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "name": "movePool",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "outstandingCount",
           "outputs": [
@@ -8536,7 +7520,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "ebebc7df966764c1d4342bd6966c976ee0bf24349dd155ad3c5b5aea44c61fdf"
+      "abi_sha256": "3c864e238c7f294674a4a356857d6c330879ebdf453a6253466399477adf5077"
     },
     "ZZZMigrationBudget": {
       "source": "src/ZZZMigrationBudget.sol",
@@ -8957,45 +7941,6 @@
             }
           ],
           "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "input",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "output",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "requested",
-              "type": "uint256"
-            }
-          ],
-          "name": "handoffMinimum",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
           "type": "function"
         },
         {
@@ -9524,7 +8469,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "08fdfce0486c1b2e7243d194afbc785e0b6bc0cd4cc0768948c22e512515ecab"
+      "abi_sha256": "7b52f012379dcd2986dee9501be6a578ca1588271bf0af548246a4a0d9387111"
     },
     "ZZZNFT": {
       "source": "src/ZZZNFT.sol",
@@ -11268,24 +10213,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalAccept",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "canonicalActivate",
           "outputs": [],
@@ -11296,30 +10223,6 @@
           "inputs": [],
           "name": "canonicalAssetCount",
           "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "pure",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "canonicalBacking",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            },
             {
               "internalType": "uint256",
               "name": "",
@@ -11387,42 +10290,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalRelease",
-          "outputs": [],
-          "stateMutability": "pure",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "canonicalRestore",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "canonicalSettle",
           "outputs": [],
@@ -11450,7 +10317,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "0b8cdc9f4d770b7e327f7879d1102c321e784bdf32b28bbbdbab4c73e7983998"
+      "abi_sha256": "51be06fbefe64258858537da8d07e5db42415b7205ec29ac843ff855710bc631"
     },
     "ZZZNFTMetadata": {
       "source": "src/ZZZNFTMetadata.sol",
@@ -11753,31 +10620,6 @@
           "inputs": [
             {
               "indexed": true,
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "source",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint32",
-              "name": "maxAge",
-              "type": "uint32"
-            }
-          ],
-          "name": "FeedConfigured",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
               "internalType": "bytes32",
               "name": "previousPolicy",
               "type": "bytes32"
@@ -11947,40 +10789,6 @@
               "internalType": "contract ZZZContributionPricing",
               "name": "",
               "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "feeds",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "source",
-              "type": "address"
-            },
-            {
-              "internalType": "uint32",
-              "name": "maxAge",
-              "type": "uint32"
-            },
-            {
-              "internalType": "uint8",
-              "name": "feedDecimals",
-              "type": "uint8"
-            },
-            {
-              "internalType": "uint8",
-              "name": "assetDecimals",
-              "type": "uint8"
             }
           ],
           "stateMutability": "view",
@@ -12469,7 +11277,7 @@
           "type": "function"
         }
       ],
-      "abi_sha256": "093bc33312404d42ebb0a39b5afa1c4e8a525f1b948302ad475e68a7eb1fae91"
+      "abi_sha256": "ffb29380e60fa875e473684e39df38aaf6a1fdfdd921074dda45734fbb1c1521"
     },
     "ZZZPoolRegistry": {
       "source": "src/ZZZPoolRegistry.sol",
@@ -13168,28 +11976,9 @@
           ],
           "stateMutability": "view",
           "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "bytes32",
-              "name": "poolId",
-              "type": "bytes32"
-            }
-          ],
-          "name": "nativeAsset",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
         }
       ],
-      "abi_sha256": "df452c5a1f0cb55baa3de578d1fa9dd710bb4f7470976ee672f807c2a2e5424c"
+      "abi_sha256": "0eafa3166df2862f7c8d7a4207cf4f19c31a93f4c4a15422ce26cc36a4369702"
     },
     "ZZZPythPriceFeed": {
       "source": "src/ZZZPythPriceFeed.sol",
@@ -18626,41 +17415,6 @@
                   "internalType": "enum PositionStatus",
                   "name": "status",
                   "type": "uint8"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "homeChain",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "address",
-                  "name": "homeVault",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "homeReceiver",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "homeToken0",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "homeToken1",
-                  "type": "address"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "locationChain",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "address",
-                  "name": "locationVault",
-                  "type": "address"
                 }
               ],
               "internalType": "struct Position",
@@ -19058,7 +17812,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "28adee79e5aa118e807e9b13e08da9a6f640a2526fe044b2ac4e04c0074d763b"
+      "abi_sha256": "93fced74daeba679db3fc9de87292656776843e13281dbf25d68790b3da2ee1d"
     },
     "ZZZVaultCanonical": {
       "source": "src/ZZZVaultCanonical.sol",
@@ -19588,67 +18342,49 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "384f1c1244d19167076f2c77cbedd7e256b4e7b44dd3ab7a37614a0520664283",
+  "notes_sha256": "a851620abd7d6e6b07cc672e66de08fd36265d88b025882cc979a47da6255400",
   "contracts": [
     {
       "name": "ZZZAccessController",
       "source": "src/ZZZAccessController.sol",
-      "purpose": "Immediate scheduled governance, fixed module identity, independent pause/keeper roles and whole-collection lifecycle authorization.",
+      "purpose": "Direct governance-wallet authorization, fixed module binding/sealing, independent keeper/guardian roles and canonical lifecycle. No timelock, role scheduler or generic transaction executor.",
       "category": "Project contract",
       "functions": [
         {
-          "signature": "constructor(uint256,address[],address[],address,address)",
+          "signature": "constructor(address,address,address)",
           "kind": "constructor",
           "name": "constructor",
           "state_mutability": "nonpayable",
-          "purpose": "Deploy the zero-delay controller and initialize proposer/executor/keeper/guardian roles. Deployer becomes temporary bootstrap.",
-          "access": "Deployment only; creates the immutable RoyaltyFactory. Sealing later permanently clears bootstrap.",
+          "purpose": "Select governance, keeper and guardian; deploy fixed helper factories. Deployer holds temporary bootstrap only until seal.",
+          "access": "Deployment only; three static nonzero address arguments. A governance wallet cannot be the controller itself.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "delay",
-              "label": "delay",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Must be 0; no future delay change is supported."
+              "name": "initialGovernance",
+              "label": "initialGovernance",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
+              "explanation": "Reviewed governance wallet, typically a multisig; after sealing it calls configuration targets directly. Its own signatures/nonce authorize transactions."
             },
             {
               "position": 1,
-              "name": "proposers",
-              "label": "proposers",
-              "type": "address[]",
-              "canonical_type": "address[]",
-              "internal_type": "address[]",
-              "explanation": "Nonempty nonzero proposer addresses; initial proposers also receive cancellation role."
-            },
-            {
-              "position": 2,
-              "name": "executors",
-              "label": "executors",
-              "type": "address[]",
-              "canonical_type": "address[]",
-              "internal_type": "address[]",
-              "explanation": "Nonempty executor list; zero address opens execution of exact scheduled operations, not proposal authority."
-            },
-            {
-              "position": 3,
               "name": "initialKeeper",
               "label": "initialKeeper",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Nonzero bounded-maintenance operator."
+              "explanation": "Nonzero initial bounded-maintenance operator; role changes separately from governance."
             },
             {
-              "position": 4,
+              "position": 2,
               "name": "initialGuardian",
               "label": "initialGuardian",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Nonzero pause-only emergency role."
+              "explanation": "Nonzero initial pause-only guardian; governance handover does not automatically rotate this role."
             }
           ],
           "outputs": [],
@@ -19656,11 +18392,11 @@
           "notes": null
         },
         {
-          "signature": "CANCELLER_ROLE()",
+          "signature": "GOVERNANCE_VERSION()",
           "kind": "function",
-          "name": "CANCELLER_ROLE",
+          "name": "GOVERNANCE_VERSION",
           "state_mutability": "view",
-          "purpose": "Read the role identifier permitted to cancel scheduled operations.",
+          "purpose": "Read direct-governance profile2; older scheduling controllers have a different ABI and must not be reinterpreted.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -19669,9 +18405,9 @@
               "position": 0,
               "name": "",
               "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
+              "type": "uint256",
+              "canonical_type": "uint256",
+              "internal_type": "uint256",
               "explanation": null
             }
           ],
@@ -19679,71 +18415,15 @@
           "notes": null
         },
         {
-          "signature": "DEFAULT_ADMIN_ROLE()",
+          "signature": "acceptGovernance()",
           "kind": "function",
-          "name": "DEFAULT_ADMIN_ROLE",
-          "state_mutability": "view",
-          "purpose": "Read the administrator-role identifier controlling role grants/revocations.",
-          "access": "Anyone; read-only.",
+          "name": "acceptGovernance",
+          "state_mutability": "nonpayable",
+          "purpose": "The exact proposed wallet accepts authority atomically and clears the proposal. No delay or controller-held transaction funds. Old governance loses authority.",
+          "access": "Pending nonzero governance wallet only, operating canonical state and no preparation.",
           "status": "documented",
           "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "EXECUTOR_ROLE()",
-          "kind": "function",
-          "name": "EXECUTOR_ROLE",
-          "state_mutability": "view",
-          "purpose": "Read the role identifier permitted to execute exact scheduled operations.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "PROPOSER_ROLE()",
-          "kind": "function",
-          "name": "PROPOSER_ROLE",
-          "state_mutability": "view",
-          "purpose": "Read the role identifier permitted to schedule operations.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            }
-          ],
+          "outputs": [],
           "native_value": null,
           "notes": null
         },
@@ -19775,7 +18455,7 @@
           "kind": "function",
           "name": "bind",
           "state_mutability": "nonpayable",
-          "purpose": "Bind one previously empty module slot during deployment. One-time slot binding; rejected for retired bridge/receiver/routes/transport IDs. The implementation must have code and the same controller.",
+          "purpose": "Bind one of the16 supported core module slots exactly once before seal, verifying deployed code and matching controller. Unknown/retired module identities reject.",
           "access": "Bootstrap only, before seal.",
           "status": "documented",
           "inputs": [
@@ -19786,7 +18466,7 @@
               "type": "bytes32",
               "canonical_type": "bytes32",
               "internal_type": "bytes32",
-              "explanation": "Exact Ids module identity hash to bind; retired bridge/receiver/routes/transport identities are rejected."
+              "explanation": "One of the16 supported current core Ids; arbitrary or removed bridge IDs reject."
             },
             {
               "position": 1,
@@ -19852,32 +18532,9 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
-              "explanation": "False during preparation; bootstrap before seal or controller self-call during normal canonical operation otherwise."
+              "explanation": "False during preparation; bootstrap before sealing, or the current governance wallet after sealing in canonical state0. No controller self-call bypass."
             }
           ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "cancel(bytes32)",
-          "kind": "function",
-          "name": "cancel",
-          "state_mutability": "nonpayable",
-          "purpose": "Cancel a pending scheduled governance operation.",
-          "access": "CANCELLER_ROLE.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the exact operation commitment; completed/unset operations cannot be cancelled."
-            }
-          ],
-          "outputs": [],
           "native_value": null,
           "notes": null
         },
@@ -19887,7 +18544,7 @@
           "name": "cancelPreparation",
           "state_mutability": "nonpayable",
           "purpose": "Cancel the exact active preparation notice while the source is still operating. Does not rewind a frozen/retired handoff or move custody. Exact noticeHash prevents cancelling a later announcement.",
-          "access": "Controller self-call.",
+          "access": "Current governance directly while the exact preparation is active and canonical state is operating.",
           "status": "documented",
           "inputs": [
             {
@@ -20015,129 +18672,11 @@
           "notes": null
         },
         {
-          "signature": "execute(address,uint256,bytes,bytes32,bytes32)",
+          "signature": "governance()",
           "kind": "function",
-          "name": "execute",
-          "state_mutability": "payable",
-          "purpose": "Execute the exact previously scheduled operation or atomic batch. Cannot alter approved target/value/calldata/salt. Failed target/predecessor checks revert; generic execution does not make the controller the Vault or bypass target permissions.",
-          "access": "EXECUTOR_ROLE, or anyone if the zero address has the open executor role.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "target",
-              "label": "target",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Exact destination contract/account whose address is committed in the scheduled operation."
-            },
-            {
-              "position": 1,
-              "name": "value",
-              "label": "value",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Native ETH amount in wei delivered to target; distinct from caller msg.value and network gas."
-            },
-            {
-              "position": 2,
-              "name": "payload",
-              "label": "payload",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Exact target function selector plus ABI-encoded arguments, byte-identical to the scheduled payload."
-            },
-            {
-              "position": 3,
-              "name": "predecessor",
-              "label": "predecessor",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact prerequisite operation ID, or bytes32 zero for no prerequisite; a nonzero predecessor must be completed before execution."
-            },
-            {
-              "position": 4,
-              "name": "salt",
-              "label": "salt",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Caller-chosen bytes32 operation discriminator, included in the operation hash and required unchanged at execution."
-            }
-          ],
-          "outputs": [],
-          "native_value": "msg.value may top up controller ETH used for scheduled calls. Each target receives exactly its scheduled wei value; no equality-to-msg.value guard exists, existing controller balance may fund calls, and excess remains in the controller without an automatic refund. Supply only the needed top-up; gas is separate.",
-          "notes": null
-        },
-        {
-          "signature": "executeBatch(address[],uint256[],bytes[],bytes32,bytes32)",
-          "kind": "function",
-          "name": "executeBatch",
-          "state_mutability": "payable",
-          "purpose": "Execute the exact previously scheduled operation or atomic batch. Cannot alter approved target/value/calldata/salt. Failed target/predecessor checks revert; generic execution does not make the controller the Vault or bypass target permissions.",
-          "access": "EXECUTOR_ROLE, or anyone if the zero address has the open executor role.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "targets",
-              "label": "targets",
-              "type": "address[]",
-              "canonical_type": "address[]",
-              "internal_type": "address[]",
-              "explanation": "Ordered list of exact destinations; index must correspond to the values and payloads arrays."
-            },
-            {
-              "position": 1,
-              "name": "values",
-              "label": "values",
-              "type": "uint256[]",
-              "canonical_type": "uint256[]",
-              "internal_type": "uint256[]",
-              "explanation": "Ordered native ETH amounts in wei, one per target; not gas amounts or USD values."
-            },
-            {
-              "position": 2,
-              "name": "payloads",
-              "label": "payloads",
-              "type": "bytes[]",
-              "canonical_type": "bytes[]",
-              "internal_type": "bytes[]",
-              "explanation": "Ordered exact selector/ABI calldata for each target; array lengths must match, and execution is atomic."
-            },
-            {
-              "position": 3,
-              "name": "predecessor",
-              "label": "predecessor",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Required completed operation ID, or zero for no prerequisite."
-            },
-            {
-              "position": 4,
-              "name": "salt",
-              "label": "salt",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Bytes32 discriminator committed to the entire ordered batch; preserve it exactly through execution."
-            }
-          ],
-          "outputs": [],
-          "native_value": "msg.value may top up controller ETH used for scheduled calls. Each target receives exactly its scheduled wei value; no equality-to-msg.value guard exists, existing controller balance may fund calls, and excess remains in the controller without an automatic refund. Supply only the needed top-up; gas is separate.",
-          "notes": null
-        },
-        {
-          "signature": "getMinDelay()",
-          "kind": "function",
-          "name": "getMinDelay",
+          "name": "governance",
           "state_mutability": "view",
-          "purpose": "Read the fixed zero governance delay, in seconds.",
+          "purpose": "Read the current governance wallet. It may approve trusted custody exits/configuration but cannot silently change sealed module identities.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -20146,143 +18685,12 @@
               "position": 0,
               "name": "",
               "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "getOperationState(bytes32)",
-          "kind": "function",
-          "name": "getOperationState",
-          "state_mutability": "view",
-          "purpose": "Read an operation state: unset, waiting, ready or done.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint8",
-              "canonical_type": "uint8",
-              "internal_type": "enum TimelockController.OperationState",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "getRoleAdmin(bytes32)",
-          "kind": "function",
-          "name": "getRoleAdmin",
-          "state_mutability": "view",
-          "purpose": "Read which role may grant or revoke a selected role.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "role",
-              "label": "role",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "role is a role identifier; output is its administrator-role hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "getTimestamp(bytes32)",
-          "kind": "function",
-          "name": "getTimestamp",
-          "state_mutability": "view",
-          "purpose": "Read an operation timestamp: zero unset, one completed, otherwise its scheduled readiness time.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "grantRole(bytes32,address)",
-          "kind": "function",
-          "name": "grantRole",
-          "state_mutability": "nonpayable",
-          "purpose": "Grant a governance role membership. Changing proposer/executor/admin membership changes governance control; avoid removing the last usable governance path.",
-          "access": "Administrator role returned by getRoleAdmin(role).",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "role",
-              "label": "role",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact OpenZeppelin role identifier, e.g. PROPOSER_ROLE or EXECUTOR_ROLE."
-            },
-            {
-              "position": 1,
-              "name": "account",
-              "label": "account",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Account receiving/removing/being checked for the selected role. Zero address has special open-executor meaning only for EXECUTOR_ROLE."
+              "explanation": null
             }
           ],
-          "outputs": [],
           "native_value": null,
           "notes": null
         },
@@ -20303,318 +18711,6 @@
               "canonical_type": "address",
               "internal_type": "address",
               "explanation": "Public account address whose stored role flag is inspected."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "hasRole(bytes32,address)",
-          "kind": "function",
-          "name": "hasRole",
-          "state_mutability": "view",
-          "purpose": "Check an OpenZeppelin governance role membership.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "role",
-              "label": "role",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact OpenZeppelin role identifier, e.g. PROPOSER_ROLE or EXECUTOR_ROLE."
-            },
-            {
-              "position": 1,
-              "name": "account",
-              "label": "account",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Account receiving/removing/being checked for the selected role. Zero address has special open-executor meaning only for EXECUTOR_ROLE."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "hashOperation(address,uint256,bytes,bytes32,bytes32)",
-          "kind": "function",
-          "name": "hashOperation",
-          "state_mutability": "pure",
-          "purpose": "Compute the exact operation commitment used for scheduling, execution and cancellation.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "target",
-              "label": "target",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Exact destination contract/account whose address is committed in the scheduled operation."
-            },
-            {
-              "position": 1,
-              "name": "value",
-              "label": "value",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Native ETH amount in wei delivered to target; distinct from caller msg.value and network gas."
-            },
-            {
-              "position": 2,
-              "name": "data",
-              "label": "data",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Exact target function selector plus ABI-encoded arguments committed to this operation."
-            },
-            {
-              "position": 3,
-              "name": "predecessor",
-              "label": "predecessor",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact prerequisite operation ID, or bytes32 zero for no prerequisite; a nonzero predecessor must be completed before execution."
-            },
-            {
-              "position": 4,
-              "name": "salt",
-              "label": "salt",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Caller-chosen bytes32 operation discriminator, included in the operation hash and required unchanged at execution."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "bytes32 operation ID; does not schedule or send anything."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "hashOperationBatch(address[],uint256[],bytes[],bytes32,bytes32)",
-          "kind": "function",
-          "name": "hashOperationBatch",
-          "state_mutability": "pure",
-          "purpose": "Compute the exact operation commitment used for scheduling, execution and cancellation.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "targets",
-              "label": "targets",
-              "type": "address[]",
-              "canonical_type": "address[]",
-              "internal_type": "address[]",
-              "explanation": "Ordered list of exact destinations; index must correspond to the values and payloads arrays."
-            },
-            {
-              "position": 1,
-              "name": "values",
-              "label": "values",
-              "type": "uint256[]",
-              "canonical_type": "uint256[]",
-              "internal_type": "uint256[]",
-              "explanation": "Ordered native ETH amounts in wei, one per target; not gas amounts or USD values."
-            },
-            {
-              "position": 2,
-              "name": "payloads",
-              "label": "payloads",
-              "type": "bytes[]",
-              "canonical_type": "bytes[]",
-              "internal_type": "bytes[]",
-              "explanation": "Ordered exact selector/ABI calldata for each target; array lengths must match, and execution is atomic."
-            },
-            {
-              "position": 3,
-              "name": "predecessor",
-              "label": "predecessor",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Required completed operation ID, or zero for no prerequisite."
-            },
-            {
-              "position": 4,
-              "name": "salt",
-              "label": "salt",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Bytes32 discriminator committed to the entire ordered batch; preserve it exactly through execution."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "bytes32 operation ID; does not schedule or send anything."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "isOperation(bytes32)",
-          "kind": "function",
-          "name": "isOperation",
-          "state_mutability": "view",
-          "purpose": "Check whether an operation ID is registered.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "isOperationDone(bytes32)",
-          "kind": "function",
-          "name": "isOperationDone",
-          "state_mutability": "view",
-          "purpose": "Check whether the exact operation already executed.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "isOperationPending(bytes32)",
-          "kind": "function",
-          "name": "isOperationPending",
-          "state_mutability": "view",
-          "purpose": "Check whether the registered operation is not yet completed.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "isOperationReady(bytes32)",
-          "kind": "function",
-          "name": "isOperationReady",
-          "state_mutability": "view",
-          "purpose": "Check whether the exact scheduled operation may execute now.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
             }
           ],
           "outputs": [
@@ -20796,204 +18892,6 @@
           "notes": null
         },
         {
-          "signature": "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)",
-          "kind": "function",
-          "name": "onERC1155BatchReceived",
-          "state_mutability": "nonpayable",
-          "purpose": "Return the standard token-receiver acceptance selector. Token receipt support is not an asset sweep, LP withdrawal or royalty distribution path.",
-          "access": "Callable receiver callback; no administrative privilege.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "ERC1155 transfer operator supplied by the token callback; ignored by this acceptance-only receiver."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Previous ERC1155 token owner (zero for a mint); ignored by this receiver."
-            },
-            {
-              "position": 2,
-              "name": "",
-              "label": "input2",
-              "type": "uint256[]",
-              "canonical_type": "uint256[]",
-              "internal_type": "uint256[]",
-              "explanation": "ERC1155 token ID array, ordered to match amounts."
-            },
-            {
-              "position": 3,
-              "name": "",
-              "label": "input3",
-              "type": "uint256[]",
-              "canonical_type": "uint256[]",
-              "internal_type": "uint256[]",
-              "explanation": "Raw ERC1155 quantity array matching the token IDs; not wei or USD."
-            },
-            {
-              "position": 4,
-              "name": "",
-              "label": "input4",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Opaque callback data, ignored by this acceptance-only receiver."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes4",
-              "canonical_type": "bytes4",
-              "internal_type": "bytes4",
-              "explanation": "The exact ERC receiver magic selector; no economic accounting is performed here."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "onERC1155Received(address,address,uint256,uint256,bytes)",
-          "kind": "function",
-          "name": "onERC1155Received",
-          "state_mutability": "nonpayable",
-          "purpose": "Return the standard token-receiver acceptance selector. Token receipt support is not an asset sweep, LP withdrawal or royalty distribution path.",
-          "access": "Callable receiver callback; no administrative privilege.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "ERC1155 transfer operator supplied by the token callback; ignored by this acceptance-only receiver."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Previous ERC1155 token owner (zero for a mint); ignored by this receiver."
-            },
-            {
-              "position": 2,
-              "name": "",
-              "label": "input2",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "ERC1155 token ID supplied by the callback."
-            },
-            {
-              "position": 3,
-              "name": "",
-              "label": "input3",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Raw ERC1155 token quantity; not wei or USD."
-            },
-            {
-              "position": 4,
-              "name": "",
-              "label": "input4",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Opaque callback data, ignored by this acceptance-only receiver."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes4",
-              "canonical_type": "bytes4",
-              "internal_type": "bytes4",
-              "explanation": "The exact ERC receiver magic selector; no economic accounting is performed here."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "onERC721Received(address,address,uint256,bytes)",
-          "kind": "function",
-          "name": "onERC721Received",
-          "state_mutability": "nonpayable",
-          "purpose": "Return the standard token-receiver acceptance selector. Token receipt support is not an asset sweep, LP withdrawal or royalty distribution path.",
-          "access": "Callable receiver callback; no administrative privilege.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "ERC721 transfer operator supplied by the callback; ignored by this acceptance-only receiver."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Previous ERC721 owner, or zero for a mint; not treated as an authorized protocol caller."
-            },
-            {
-              "position": 2,
-              "name": "",
-              "label": "input2",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "ERC721 token ID supplied by the callback; no LP or reward record is created."
-            },
-            {
-              "position": 3,
-              "name": "",
-              "label": "input3",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Opaque callback bytes, ignored by this receiver."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bytes4",
-              "canonical_type": "bytes4",
-              "internal_type": "bytes4",
-              "explanation": "The exact ERC receiver magic selector; no economic accounting is performed here."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
           "signature": "paused()",
           "kind": "function",
           "name": "paused",
@@ -21010,6 +18908,29 @@
               "type": "bool",
               "canonical_type": "bool",
               "internal_type": "bool",
+              "explanation": null
+            }
+          ],
+          "native_value": null,
+          "notes": null
+        },
+        {
+          "signature": "pendingGovernance()",
+          "kind": "function",
+          "name": "pendingGovernance",
+          "state_mutability": "view",
+          "purpose": "Read the proposed next governance wallet, or zero if no proposal. It has no governance authority until accepting.",
+          "access": "Anyone; read-only.",
+          "status": "documented",
+          "inputs": [],
+          "outputs": [
+            {
+              "position": 0,
+              "name": "",
+              "label": "output0",
+              "type": "address",
+              "canonical_type": "address",
+              "internal_type": "address",
               "explanation": null
             }
           ],
@@ -21182,63 +19103,22 @@
           "notes": null
         },
         {
-          "signature": "renounceRole(bytes32,address)",
+          "signature": "proposeGovernance(address)",
           "kind": "function",
-          "name": "renounceRole",
+          "name": "proposeGovernance",
           "state_mutability": "nonpayable",
-          "purpose": "Remove the caller’s own governance role. Can permanently remove governance access if remaining roles cannot restore it; not a way to transfer a role.",
-          "access": "Role holder; callerConfirmation must equal msg.sender.",
+          "purpose": "Propose a governance-wallet replacement without a delay; zero cancels a proposal. Existing authority remains until the exact candidate accepts. Keeper/guardian/mint-recipient roles do not change.",
+          "access": "Current governance only, canonical operating state and no preparation. Controller-self/current-wallet candidates reject.",
           "status": "documented",
           "inputs": [
             {
               "position": 0,
-              "name": "role",
-              "label": "role",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Role hash the caller intends to relinquish."
-            },
-            {
-              "position": 1,
-              "name": "callerConfirmation",
-              "label": "callerConfirmation",
+              "name": "candidate",
+              "label": "candidate",
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Must equal msg.sender; confirms removal of the caller’s own role, not another account’s role."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "revokeRole(bytes32,address)",
-          "kind": "function",
-          "name": "revokeRole",
-          "state_mutability": "nonpayable",
-          "purpose": "Revoke a governance role membership. Changing proposer/executor/admin membership changes governance control; avoid removing the last usable governance path.",
-          "access": "Administrator role returned by getRoleAdmin(role).",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "role",
-              "label": "role",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact OpenZeppelin role identifier, e.g. PROPOSER_ROLE or EXECUTOR_ROLE."
-            },
-            {
-              "position": 1,
-              "name": "account",
-              "label": "account",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Account receiving/removing/being checked for the selected role. Zero address has special open-executor meaning only for EXECUTOR_ROLE."
+              "explanation": "Proposed wallet; address zero cancels. Review its keys/signers/threshold independently before accepting."
             }
           ],
           "outputs": [],
@@ -21269,142 +19149,6 @@
           "notes": null
         },
         {
-          "signature": "schedule(address,uint256,bytes,bytes32,bytes32,uint256)",
-          "kind": "function",
-          "name": "schedule",
-          "state_mutability": "nonpayable",
-          "purpose": "Register an exact governance operation or atomic batch, ready immediately. delay must be 0. Scheduling does not execute calls. A predecessor must finish before execution; no automatic fee or keeper payment.",
-          "access": "PROPOSER_ROLE.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "target",
-              "label": "target",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Exact destination contract/account whose address is committed in the scheduled operation."
-            },
-            {
-              "position": 1,
-              "name": "value",
-              "label": "value",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Native ETH amount in wei delivered to target; distinct from caller msg.value and network gas."
-            },
-            {
-              "position": 2,
-              "name": "data",
-              "label": "data",
-              "type": "bytes",
-              "canonical_type": "bytes",
-              "internal_type": "bytes",
-              "explanation": "Exact target function selector plus ABI-encoded arguments committed to this operation."
-            },
-            {
-              "position": 3,
-              "name": "predecessor",
-              "label": "predecessor",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact prerequisite operation ID, or bytes32 zero for no prerequisite; a nonzero predecessor must be completed before execution."
-            },
-            {
-              "position": 4,
-              "name": "salt",
-              "label": "salt",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Caller-chosen bytes32 operation discriminator, included in the operation hash and required unchanged at execution."
-            },
-            {
-              "position": 5,
-              "name": "delay",
-              "label": "delay",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Governance delay in seconds; this controller requires exactly 0 and does not permit a later waiting period."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "scheduleBatch(address[],uint256[],bytes[],bytes32,bytes32,uint256)",
-          "kind": "function",
-          "name": "scheduleBatch",
-          "state_mutability": "nonpayable",
-          "purpose": "Register an exact governance operation or atomic batch, ready immediately. delay must be 0. Scheduling does not execute calls. A predecessor must finish before execution; no automatic fee or keeper payment.",
-          "access": "PROPOSER_ROLE.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "targets",
-              "label": "targets",
-              "type": "address[]",
-              "canonical_type": "address[]",
-              "internal_type": "address[]",
-              "explanation": "Ordered list of exact destinations; index must correspond to the values and payloads arrays."
-            },
-            {
-              "position": 1,
-              "name": "values",
-              "label": "values",
-              "type": "uint256[]",
-              "canonical_type": "uint256[]",
-              "internal_type": "uint256[]",
-              "explanation": "Ordered native ETH amounts in wei, one per target; not gas amounts or USD values."
-            },
-            {
-              "position": 2,
-              "name": "payloads",
-              "label": "payloads",
-              "type": "bytes[]",
-              "canonical_type": "bytes[]",
-              "internal_type": "bytes[]",
-              "explanation": "Ordered exact selector/ABI calldata for each target; array lengths must match, and execution is atomic."
-            },
-            {
-              "position": 3,
-              "name": "predecessor",
-              "label": "predecessor",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Required completed operation ID, or zero for no prerequisite."
-            },
-            {
-              "position": 4,
-              "name": "salt",
-              "label": "salt",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Bytes32 discriminator committed to the entire ordered batch; preserve it exactly through execution."
-            },
-            {
-              "position": 5,
-              "name": "delay",
-              "label": "delay",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Governance delay in seconds; this controller requires exactly 0 and does not permit a later waiting period."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
           "signature": "seal()",
           "kind": "function",
           "name": "seal",
@@ -21423,7 +19167,7 @@
           "name": "setGuardian",
           "state_mutability": "nonpayable",
           "purpose": "Enable or disable a guardian address. Guardians may pause immediately; they cannot unpause solely by holding this role.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -21455,7 +19199,7 @@
           "name": "setKeeper",
           "state_mutability": "nonpayable",
           "purpose": "Enable or disable a keeper address. Keepers can run bounded maintenance but cannot rewrite governance policy or redeem holder principal.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -21487,7 +19231,7 @@
           "name": "setPaused",
           "state_mutability": "nonpayable",
           "purpose": "Set or clear ordinary global pause. Pause does not retire the collection, freeze every claim/settlement path or move assets. Clearing pause does not bypass preparation/canonical locks.",
-          "access": "Controller self-call, bootstrap before seal, or an enabled guardian only when state=true.",
+          "access": "Current governance, bootstrap before seal, or an enabled guardian for state=true only. Canonical lifecycle guards remain independent.",
           "status": "documented",
           "inputs": [
             {
@@ -21509,8 +19253,8 @@
           "kind": "function",
           "name": "startPreparation",
           "state_mutability": "nonpayable",
-          "purpose": "Announce and lock ordinary new work for a planned whole-collection replacement. Public commitments do not authenticate a remote deployment or authorize export. A same-chain deployed successor must already be sealed/importing and bound to this source.",
-          "access": "Controller self-call after seal, normal canonical state.",
+          "purpose": "Announce a cancellable same-chain replacement/draining window; no custody or rights leave. A deployed successor must already be sealed/importing and committed to this source.",
+          "access": "Current governance directly, sealed canonical operating state.",
           "status": "documented",
           "inputs": [
             {
@@ -21520,7 +19264,7 @@
               "type": "tuple",
               "canonical_type": "(uint256,address,bytes32,bytes32)",
               "internal_type": "struct ZZZAccessController.PreparationNotice",
-              "explanation": "PreparationNotice: destinationChain (nonzero chain ID), successorController, deploymentCommitment and reviewHash. The current deployment cannot be its own successor.",
+              "explanation": "Explicit current chain ID, successor controller distinct from source, deployment commitment and nonzero review hash. A notice alone never authorizes a freeze/import.",
               "components": [
                 {
                   "position": 0,
@@ -21563,75 +19307,6 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "supportsInterface(bytes4)",
-          "kind": "function",
-          "name": "supportsInterface",
-          "state_mutability": "view",
-          "purpose": "Check supported governance/receiver interface IDs.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "interfaceId",
-              "label": "interfaceId",
-              "type": "bytes4",
-              "canonical_type": "bytes4",
-              "internal_type": "bytes4",
-              "explanation": "interfaceId is an ERC-165 bytes4 identifier."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "bool",
-              "canonical_type": "bool",
-              "internal_type": "bool",
-              "explanation": "Boolean interface support, not service/security qualification."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "updateDelay(uint256)",
-          "kind": "function",
-          "name": "updateDelay",
-          "state_mutability": "pure",
-          "purpose": "Retired delay-changing interface; always reverts. The zero governance delay is fixed for this controller; the argument cannot introduce a timelock.",
-          "access": "No caller can use it successfully.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Ignored proposed delay in seconds; every value, including zero, reverts because the deployed delay is fixed."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "receive()",
-          "kind": "receive",
-          "name": "receive",
-          "state_mutability": "payable",
-          "purpose": "Accept native ETH into controller custody for explicitly scheduled native-value calls. This does not create LP or holder rewards.",
-          "access": "Payable receiver; governance still controls any scheduled spend. Do not send LP principal or royalties here.",
-          "status": "documented",
-          "inputs": [],
-          "outputs": [],
-          "native_value": "Any native wei value is accepted into controller balance; there is no automatic distribution, LP attachment or refund. Avoid sending holder principal/royalties to this endpoint.",
           "notes": null
         }
       ]
@@ -23804,7 +21479,7 @@
           "name": "abort",
           "state_mutability": "nonpayable",
           "purpose": "Begin pre-commit cancellation of a frozen handoff and permanently cancel the importer.",
-          "access": "Governance via source controller.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
@@ -23954,7 +21629,7 @@
           "name": "commit",
           "state_mutability": "nonpayable",
           "purpose": "Atomically retire the source and activate its one fully funded compatible successor.",
-          "access": "Governance via sealed source controller.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
@@ -24124,7 +21799,7 @@
           "name": "finishAbort",
           "state_mutability": "nonpayable",
           "purpose": "Reactivate the original source only after every sent leg is fully restored and validated.",
-          "access": "Governance via source controller.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
@@ -24137,7 +21812,7 @@
           "name": "freeze",
           "state_mutability": "nonpayable",
           "purpose": "Freeze ownership/accounting and atomically capture six source-domain cutoffs for the reviewed sealed importer.",
-          "access": "Governance via sealed controller after valid preparation.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "status": "documented",
           "inputs": [],
           "outputs": [],
@@ -28728,38 +26403,6 @@
           "notes": "One-time eligibility; rarity, contribution size and age do not change its collective weight."
         },
         {
-          "signature": "canonicalAccept(uint256,address)",
-          "kind": "function",
-          "name": "canonicalAccept",
-          "state_mutability": "payable",
-          "purpose": "Reject funding acknowledgment because Membership has no asset legs to accept.",
-          "access": "Only fixed Handoff could attempt it; no valid membership asset index.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-            }
-          ],
-          "outputs": [],
-          "native_value": "Exactly zero, including native legs: the authenticated handoff transfers actual backing first, then calls this zero-value acknowledgment. Direct payable funding is rejected.",
-          "notes": null
-        },
-        {
           "signature": "canonicalActivate()",
           "kind": "function",
           "name": "canonicalActivate",
@@ -28777,7 +26420,7 @@
           "kind": "function",
           "name": "canonicalAssetCount",
           "state_mutability": "view",
-          "purpose": "Report that equal collective-membership records have no separate fungible backing legs.",
+          "purpose": "Return zero: Membership migrates eligibility records only and never owns financial backing. No asset-transfer hooks are exposed.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -28794,48 +26437,6 @@
           ],
           "native_value": null,
           "notes": "Returns: Zero; funded collective assets are held by Rewards, not Membership."
-        },
-        {
-          "signature": "canonicalBacking(uint256)",
-          "kind": "function",
-          "name": "canonicalBacking",
-          "state_mutability": "view",
-          "purpose": "Reject backing access because Membership has no populated asset-leg inventory.",
-          "access": "No successful asset index in this membership-only domain.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "No successful output: this domain owns no canonical fungible backing leg."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "output1",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "No successful output: this domain owns no canonical fungible backing leg."
-            }
-          ],
-          "native_value": null,
-          "notes": null
         },
         {
           "signature": "canonicalCapture()",
@@ -28937,70 +26538,6 @@
           "outputs": [],
           "native_value": null,
           "notes": "Enforces ordering, bounds and compatible schema; no arbitrary ledger rewrite."
-        },
-        {
-          "signature": "canonicalRelease(uint256,address)",
-          "kind": "function",
-          "name": "canonicalRelease",
-          "state_mutability": "nonpayable",
-          "purpose": "Reject funding release because Membership owns no canonical asset legs.",
-          "access": "No successful asset index; handoff never funds this domain.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
-            },
-            {
-              "position": 1,
-              "name": "destination",
-              "label": "destination",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Exact module/backing destination selected by authenticated canonical logic."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "canonicalRestore(uint256,address)",
-          "kind": "function",
-          "name": "canonicalRestore",
-          "state_mutability": "payable",
-          "purpose": "Reject restoration acknowledgment because Membership has no funded asset legs.",
-          "access": "Only fixed Handoff could attempt it; no valid membership asset index.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "i",
-              "label": "i",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based captured backing leg index."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-            }
-          ],
-          "outputs": [],
-          "native_value": "Exactly zero, including native legs: the authenticated handoff transfers actual backing first, then calls this zero-value acknowledgment. Direct payable funding is rejected.",
-          "notes": null
         },
         {
           "signature": "canonicalSettle()",
@@ -29752,56 +27289,6 @@
           "outputs": [],
           "native_value": null,
           "notes": "Never sends assets to an external custodian; one captured maintenance budget and unchanged NFT shares. ETH≠WETH."
-        },
-        {
-          "signature": "movePool(uint256,bytes32,uint128,uint256)",
-          "kind": "function",
-          "name": "movePool",
-          "state_mutability": "nonpayable",
-          "purpose": "Compatibility alias for the same governed atomic same-pair moveFunds operation.",
-          "access": "Same governance/live checks as moveFunds.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-            },
-            {
-              "position": 1,
-              "name": "pool",
-              "label": "pool",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact admitted destination/reserved pool identity."
-            },
-            {
-              "position": 2,
-              "name": "minimum",
-              "label": "minimum",
-              "type": "uint128",
-              "canonical_type": "uint128",
-              "internal_type": "uint128",
-              "explanation": "Minimum actual Uniswap liquidity units on movement/resume."
-            },
-            {
-              "position": 3,
-              "name": "deadline",
-              "label": "deadline",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Not the retired cross-chain migration function."
         },
         {
           "signature": "outstandingCount()",
@@ -31006,75 +28493,6 @@
           "notes": "Excludes incumbent principal/idle/historical compound subsidies; closes the matching pricing context. Returns: Issued nonredeemable shares and verified netUSD in USD18."
         },
         {
-          "signature": "handoffMinimum(uint256,address,address,uint256,uint256)",
-          "kind": "function",
-          "name": "handoffMinimum",
-          "state_mutability": "view",
-          "purpose": "Tighten the requested custody swap minimum to at least the venue/Oracle floor.",
-          "access": "Only fixed Vault; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "id",
-              "label": "id",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID."
-            },
-            {
-              "position": 1,
-              "name": "input",
-              "label": "input",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual ordered input currency address."
-            },
-            {
-              "position": 2,
-              "name": "output",
-              "label": "output",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual ordered output currency address."
-            },
-            {
-              "position": 3,
-              "name": "amount",
-              "label": "amount",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Raw units of the actual specified currency; not its USD value."
-            },
-            {
-              "position": 4,
-              "name": "requested",
-              "label": "requested",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Caller-requested minimum raw swap output; tightened to the stronger venue/Oracle minimum."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Tighten the requested custody swap minimum to at least the venue/Oracle floor."
-            }
-          ],
-          "native_value": null,
-          "notes": "An aggregate custody cap cannot weaken per-swap protection."
-        },
-        {
           "signature": "handoffPlan(uint256,address,uint256)",
           "kind": "function",
           "name": "handoffPlan",
@@ -32114,7 +29532,7 @@
           "name": "addRoyaltyAsset",
           "state_mutability": "nonpayable",
           "purpose": "Append an admitted ERC20 royalty payment currency to the NFT-bound ledger. Reviewed non-rebasing/exact-transfer currency required; prefunds are quarantined and append-only history/old cohort entitlements persist. This does not admit an activation token or force marketplace payment.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -32707,7 +30125,7 @@
           "name": "configureRandomness",
           "state_mutability": "nonpayable",
           "purpose": "Set the original verified randomness provider/lane/subscription/payment policy once before sealing. Irreversible provider choice after one-time configuration: no replacement, cancellation, reroll or administrator trait setter. An ABI match does not prove provider security/liveness.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -33836,7 +31254,7 @@
           "name": "setBaseURI",
           "state_mutability": "nonpayable",
           "purpose": "Populate an initially empty immutable artwork root once before sealing. Reverts after seal, if a root was already configured, or for empty/non-IPFS/non-Arweave input. Does not upload or verify content availability by itself.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -33859,7 +31277,7 @@
           "name": "setMintPaused",
           "state_mutability": "nonpayable",
           "purpose": "Stop or resume new NFT issuance/randomness requests independently. Does not cancel pending draws or select traits. Existing callbacks/finalization, transfer/claim/LP availability follow their separate guards.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -33882,7 +31300,7 @@
           "name": "setRandomnessRequestSettings",
           "state_mutability": "nonpayable",
           "purpose": "Tune only confirmations and callback gas for future original requests. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Allowed while ordinary pause is set; cannot repair a previously submitted callback or change provider/lane/subscription/payment mode.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -34191,38 +31609,6 @@
           "notes": "Reading the controller address grants no authority."
         },
         {
-          "signature": "canonicalAccept(uint256,address)",
-          "kind": "function",
-          "name": "canonicalAccept",
-          "state_mutability": "payable",
-          "purpose": "Reject funding sent to the ownership-only codec.",
-          "access": "No successful caller; always reverts.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based canonical backing-leg index; this ownership-only domain has no valid backing leg."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-            }
-          ],
-          "outputs": [],
-          "native_value": "Always reverts; no ETH value is accepted.",
-          "notes": null
-        },
-        {
           "signature": "canonicalActivate()",
           "kind": "function",
           "name": "canonicalActivate",
@@ -34257,48 +31643,6 @@
           ],
           "native_value": null,
           "notes": "Returns: Always zero; actual principal/rewards belong to other domains."
-        },
-        {
-          "signature": "canonicalBacking(uint256)",
-          "kind": "function",
-          "name": "canonicalBacking",
-          "state_mutability": "pure",
-          "purpose": "Reject a backing lookup because this codec owns no fungible asset domain.",
-          "access": "No successful index; always reverts.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Unused compatibility argument; this ownership-only codec has no fungible backing and always reverts."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "No successful output: this domain owns no canonical fungible backing leg."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "output1",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "No successful output: this domain owns no canonical fungible backing leg."
-            }
-          ],
-          "native_value": null,
-          "notes": null
         },
         {
           "signature": "canonicalCapture()",
@@ -34400,70 +31744,6 @@
           "outputs": [],
           "native_value": null,
           "notes": "Enforces ordering, bounds and compatible schema; no arbitrary ledger rewrite."
-        },
-        {
-          "signature": "canonicalRelease(uint256,address)",
-          "kind": "function",
-          "name": "canonicalRelease",
-          "state_mutability": "pure",
-          "purpose": "Reject an asset release because ownership records contain no fungible backing.",
-          "access": "No successful caller; always reverts.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Unused compatibility argument; this ownership-only codec has no fungible backing and always reverts."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused compatibility argument; this ownership-only codec has no fungible backing and always reverts."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "canonicalRestore(uint256,address)",
-          "kind": "function",
-          "name": "canonicalRestore",
-          "state_mutability": "payable",
-          "purpose": "Reject a fungible funding restore to the ownership-only codec.",
-          "access": "No successful caller; always reverts.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "uint256",
-              "canonical_type": "uint256",
-              "internal_type": "uint256",
-              "explanation": "Zero-based canonical backing-leg index; this ownership-only domain has no valid backing leg."
-            },
-            {
-              "position": 1,
-              "name": "",
-              "label": "input1",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-            }
-          ],
-          "outputs": [],
-          "native_value": "Always reverts; no ETH value is accepted.",
-          "notes": null
         },
         {
           "signature": "canonicalSettle()",
@@ -34977,66 +32257,6 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "contract ZZZContributionPricing",
-              "explanation": null
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "feeds(address)",
-          "kind": "function",
-          "name": "feeds",
-          "state_mutability": "view",
-          "purpose": "Read legacy primary-feed metadata only; insufficient to qualify pricing version 2.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "input0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual asset address; zero means native ETH."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "source",
-              "label": "source",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": null
-            },
-            {
-              "position": 1,
-              "name": "maxAge",
-              "label": "maxAge",
-              "type": "uint32",
-              "canonical_type": "uint32",
-              "internal_type": "uint32",
-              "explanation": null
-            },
-            {
-              "position": 2,
-              "name": "feedDecimals",
-              "label": "feedDecimals",
-              "type": "uint8",
-              "canonical_type": "uint8",
-              "internal_type": "uint8",
-              "explanation": null
-            },
-            {
-              "position": 3,
-              "name": "assetDecimals",
-              "label": "assetDecimals",
-              "type": "uint8",
-              "canonical_type": "uint8",
-              "internal_type": "uint8",
               "explanation": null
             }
           ],
@@ -35604,7 +32824,7 @@
           "name": "setDualFeed",
           "state_mutability": "nonpayable",
           "purpose": "Append and immediately activate a fully reviewed independent two-source USD policy for an asset. Both current positive fresh rounds, runtime/decimals, distinct source/independence IDs and agreement are checked. Two addresses or IDs do not prove independence. Bad/stale/divergent sources fail closed; no peg/pool-spot/single-source fallback.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -35767,7 +32987,7 @@
           "name": "setSequencerFeed",
           "state_mutability": "nonpayable",
           "purpose": "Replace the uptime dependency with a newly reviewed nonzero source without reading the broken old source. Cannot remove an existing safeguard with source=zero. A down/recovering new source still blocks price reads until up beyond one-hour grace. Runtime pin alone does not pin a proxy implementation.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -36220,7 +33440,7 @@
           "name": "configure",
           "state_mutability": "nonpayable",
           "purpose": "Admit/update a hookless ERC20 pool and its governed operating parameters. Both currencies must have code and ascending addresses. Prices/reward currencies and limits must validate. At most one pool may enable contributions; disable the previous contribution pool first. Configuration does not itself migrate or rebalance physical LP.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -36392,7 +33612,7 @@
           "name": "configureNative",
           "state_mutability": "nonpayable",
           "purpose": "Admit or reconfigure a static hookless native ETH/ZZZ pool. The source ZZZ identity must already match the pinned native token; initialized venue, runtime, prices, assets, bounds and one-contribution-pool checks remain.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -36638,7 +33858,7 @@
           "name": "disablePool",
           "state_mutability": "nonpayable",
           "purpose": "Stop new deposits and/or ordinary operations on an admitted pool without querying external tokens, venue or prices. True means DISABLE, false leaves the existing state unchanged. At least one flag must be true. Disabling deposits clears this pool as contributionPool. Re-enable only through full configure/configureNative.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -36906,39 +34126,6 @@
               "canonical_type": "bool",
               "internal_type": "bool",
               "explanation": "True for native ETH/ZZZ; false for an admitted ERC20-only pair."
-            }
-          ],
-          "native_value": null,
-          "notes": null
-        },
-        {
-          "signature": "nativeAsset(bytes32)",
-          "kind": "function",
-          "name": "nativeAsset",
-          "state_mutability": "view",
-          "purpose": "Compatibility currency getter returning the native sentinel. Always returns zero after validation, including ERC20 pools; use isNativePool to distinguish pool type.",
-          "access": "Anyone; read-only.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "poolId",
-              "label": "poolId",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Admitted exact pool ID to validate; use isNativePool(poolId) to distinguish native from ERC20-only pools because this compatibility getter returns zero."
-            }
-          ],
-          "outputs": [
-            {
-              "position": 0,
-              "name": "",
-              "label": "output0",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "address(0), meaning native ETH, not WETH."
             }
           ],
           "native_value": null,
@@ -42178,7 +39365,7 @@
           "name": "setKeeperRangePolicy",
           "state_mutability": "nonpayable",
           "purpose": "Enable/disable reviewed on-chain switching between ±25% and ±50% in the approved price orientation. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Disabling needs no healthy Oracle/venue read. Enabling requires orientation 1, current width 2500/5000, ordered narrow/widen thresholds, consistent config and reviewHash. No keeper-selected arbitrary volatility model.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -42246,7 +39433,7 @@
           "name": "setRangeOrientation",
           "state_mutability": "nonpayable",
           "purpose": "Select explicit raw or inverse price orientation for future target range calculations. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Validates fresh range feasibility; disables an enabled keeper width policy so it must be reviewed again. Does not itself replace current LP ticks.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
             {
@@ -43322,7 +40509,7 @@
           "kind": "function",
           "name": "ACCOUNTING_VERSION",
           "state_mutability": "view",
-          "purpose": "Identify native-ETH accounting V2 compatibility.",
+          "purpose": "Read accounting profile3, with eight-word local Position and local statuses; old accounting1/2 rows require their separate historical codecs.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -43927,7 +41114,7 @@
           "kind": "function",
           "name": "group",
           "state_mutability": "view",
-          "purpose": "Read one shared bucket’s pool, LP NFT, attributed idle, status, identity and location record.",
+          "purpose": "Read the eight-word accounting3 local shared Position: pool, LP ID, attributed idle pair, deposit mark, center, rebalance time and local status. No home/satellite/location fields.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -43947,7 +41134,7 @@
               "name": "",
               "label": "output0",
               "type": "tuple",
-              "canonical_type": "(bytes32,uint256,uint256,uint256,uint256,uint160,uint64,uint8,uint256,address,address,address,address,uint256,address)",
+              "canonical_type": "(bytes32,uint256,uint256,uint256,uint256,uint160,uint64,uint8)",
               "internal_type": "struct Position",
               "explanation": "One shared bucket’s pool, LP NFT, attributed idle, status, identity and location record.",
               "components": [
@@ -44021,69 +41208,6 @@
                   "type": "uint8",
                   "canonical_type": "uint8",
                   "internal_type": "enum PositionStatus",
-                  "explanation": null
-                },
-                {
-                  "position": 8,
-                  "name": "homeChain",
-                  "label": "homeChain",
-                  "type": "uint256",
-                  "canonical_type": "uint256",
-                  "internal_type": "uint256",
-                  "explanation": null
-                },
-                {
-                  "position": 9,
-                  "name": "homeVault",
-                  "label": "homeVault",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 10,
-                  "name": "homeReceiver",
-                  "label": "homeReceiver",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 11,
-                  "name": "homeToken0",
-                  "label": "homeToken0",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 12,
-                  "name": "homeToken1",
-                  "label": "homeToken1",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
-                  "explanation": null
-                },
-                {
-                  "position": 13,
-                  "name": "locationChain",
-                  "label": "locationChain",
-                  "type": "uint256",
-                  "canonical_type": "uint256",
-                  "internal_type": "uint256",
-                  "explanation": null
-                },
-                {
-                  "position": 14,
-                  "name": "locationVault",
-                  "label": "locationVault",
-                  "type": "address",
-                  "canonical_type": "address",
-                  "internal_type": "address",
                   "explanation": null
                 }
               ]
@@ -44341,7 +41465,7 @@
           "kind": "function",
           "name": "nftStatus",
           "state_mutability": "view",
-          "purpose": "Read the NFT’s dormant or attached bucket custody status.",
+          "purpose": "Read local status:0None,1Active,2Outbound external custody,3Dormant,4Parked. Status meanings are selected by accounting3, never inferred from row length.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [
@@ -45602,12 +42726,12 @@
   "gaps": [],
   "counts": {
     "contracts": 31,
-    "functions": 643,
+    "functions": 608,
     "constructors": 31,
-    "receive_hooks": 14,
+    "receive_hooks": 13,
     "fallback_hooks": 0,
     "explanation_gaps": 0,
     "unannotated_inputs": 0,
-    "unannotated_outputs": 137
+    "unannotated_outputs": 123
   }
 }

@@ -65,7 +65,8 @@ new source/adapter identities still require reviewed policy admission.
 ## Native website profile and service qualification - 2026-10-25
 
 Use the [explicit native website profile](NATIVE_WEBSITE_PROFILE.md) for current
-accounting2/pricing2/routing2/review1 deployments. Never run the old WETH manifest
+accounting3/pricing2/routing2/review1 deployments with fee-intake1, local eight-word
+Positions and LP-only V4 canonical schema. Never run the old WETH manifest
 against current code or reinterpret existing Anvil journals. The public build
 still has null DEPLOYMENT and nonlocal sends remain disabled. A local source
 update is not a static-server rollout or approval to enable signing.
@@ -76,12 +77,15 @@ endpoint configuration. A timeout is not proof of missing-block rejection. A
 getter accepting withLog is not proof of event traces. Preserve failed reports;
 do not turn an unavailable observation into a provider approval.
 
-The current Vault is a pre-deployment private refactor with identical ABI/storage,
-not an upgrade to an existing address. Rebuild and check normal bytecode gates
-after every source change;313 bytes is still limited room. Update exact artifact
+The current Position3 Vault changes its Position ABI/storage and canonical codec;
+it is a fresh-deployment candidate, not an upgrade to an existing address.
+Rebuild and check normal runtime/initcode gates with exact constructor arguments
+after every source change. Earlier byte margins do not qualify changed objects. Update exact artifact
 pins only in an independently reviewed deployment inventory. Current cap defaults
-remain2/1/3%, immediate-governance maxima10%, gas separate. No permissions,
-custody/reward rights, source-chain exit or recovery policy changed.
+remain2/1/3%, immediate-governance maxima10%, gas separate. Economic rights and
+custody trust remain; direct governance calls and explicit Position3 profiles
+replace the older controller forwarding and Position layout described in
+historical evidence.
 
 ## Reviewed contributions and indexer incidents - 2026-10-25
 
@@ -312,13 +316,18 @@ The public site remains simulated and signing remains Anvil-only.
 
 This is the management guide for the **current undeployed candidate**. It describes available controls, their effects and recovery boundaries; it does not approve a production deployment. Use the [central Todo](../TODO.md) for outstanding work and the [release record](RELEASE_CHECKLIST.md) for deployment approval. Production addresses, services and several migration capabilities remain unqualified.
 
-## Native accounting V2 deployment boundary
+## Current accounting3 deployment boundary
 
-The [native V2 candidate](../reports/native-eth-port/VERIFICATION.md) uses actual ETH
-at currency `address(0)`. Read `Vault.ACCOUNTING_VERSION() == 2` and the handoff's
-`SCHEMA() == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2")`, then verify every
-module/helper runtime and binding. Deploy a coherent new set; do not attach V2
+The current candidate uses actual ETH at currency `address(0)`. Read
+`Vault.ACCOUNTING_VERSION() == 3`, `Access.GOVERNANCE_VERSION() == 2` and the handoff's
+`SCHEMA() == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")`, then verify every
+module/helper runtime and binding. Deploy a coherent new set; do not attach new
 helpers to the existing WETH-accounted local deployment or reset its journals.
+`group()`/`position()` decode eight words in order: pool ID, physical LP token ID,
+idle0, idle1, depositUSD, centerX96, lastRebalance, status. Current statuses are
+None0, Active1, Outbound2, Dormant3 and Parked4. Historical accounting1/2 still use
+their original fifteen-word rows and status meanings; never infer a profile from
+row length or treat their Remote3 as current Dormant3.
 
 - **Prices and input admission:** govern the reviewed two-source policy with
   `Oracle.setDualFeed(address(0),primary,secondary,maxDeviationBps,reviewHash)`
@@ -347,14 +356,14 @@ helpers to the existing WETH-accounted local deployment or reset its journals.
 - Creator-payment inboxes are removed; harvest actual local LP fees.
 
 - **Services and replacement:** API and keeper configurations explicitly select
-  `accounting_version: 2`; keeper configuration requires the reviewed deployed
+  `accounting_version: 3`; keeper configuration requires the reviewed deployed
   runtime hash at `code_hashes.vault` and its actual `contracts.vault`. Review
   all other runtime bindings, the actual ETH feed and per-predecessor
-  versions. Old journal files must not be reinterpreted as V2. Canonical funding
+  versions. Old journal files must not be reinterpreted as accounting3. Canonical funding
   transfers backing first, then sends a zero-value acknowledgment; never pay it
-  twice. V1-to-V2 import is rejected pending a reviewed bridge between schemas.
+  twice. Historical V1/V2 schemas cannot be imported into current V4; reviewed peers must match the exact codec.
 
-The website's native V2 profile, full release inventory, real feeds/routes,
+The website's explicit accounting3 read/unsigned profile, full release inventory, real feeds/routes,
 target-chain rehearsals and independent audit remain open. Public signing stays
 Anvil-only and the public deployment configuration remains null.
 
@@ -401,17 +410,33 @@ stop/rollback these reports through the read-service profile, not a chain reset.
 
 ### How governance calls work
 
-After sealing, a governed module expects the **AccessController**, not your personal address or a Safe owner, as `msg.sender`. The authorized governance multisig registers the exact operation using `schedule(target,value,data,predecessor,salt,0)` (or `scheduleBatch(...,0)`); an authorized executor executes the unchanged operation. Registration and execution can occur in the same block; a suitably configured multisig can batch them. **There is no governance waiting period.** An unfinished predecessor, failed target check or wrong role still blocks execution. An open executor can execute approved calldata only.
+After sealing, the wallet returned by `Access.governance()` calls the governed
+module **directly**. The module authenticates it through `Access.canConfigure`.
+The controller has `GOVERNANCE_VERSION=2`; it has no scheduling, generic forwarding
+executor or Timelock roles. A Safe owner uses the Safe's transaction flow so the
+Safe itself is the target caller; a personal owner address is not authorized.
+Review exact target, value, calldata and wallet nonce, simulate from that wallet,
+then verify the finalized receipt and resulting getters. **There is no governance
+waiting period.** A wallet proposal is not an executed target call. Cancel or
+replace an unexecuted proposal using that wallet's own supported process; do not
+retry a confirmed successful call. Lifecycle/preparation guards still apply.
 
-Use `hashOperation`/`hashOperationBatch` and operation status to verify the exact target, value, calldata, predecessor and salt. Cancel an unexecuted operation with the controller's `cancel(operationId)` using its canceller role; changing parameters requires a new operation. Never blindly retry a successfully executed operation. See [governance semantics](GOVERNANCE.md) and [controller source](../src/ZZZAccessController.sol).
+To change the governance wallet, the current wallet calls
+`Access.proposeGovernance(candidate)` and the candidate calls
+`Access.acceptGovernance()`, with no cooldown. Verify `GovernanceAccepted`, the
+new getter and zero `pendingGovernance()`. Proposing zero cancels a pending
+handover; the current authority remains until acceptance. Both calls require
+operating canonical state and inactive preparation. Keeper/guardian grants and
+the immutable mint recipient do not change. See [governance semantics](GOVERNANCE.md)
+and [controller source](../src/ZZZAccessController.sol).
 
 ## Authorities
 
 | Authority | Management action | Rotation/recovery |
 | --- | --- | --- |
-| Governance proposer/executor/canceller/admin roles | Governed configuration, custody changes and replacement admission | Inspect inherited role administrators and current `hasRole` values. Use authorized `grantRole`/`revokeRole` operations; verify the replacement before removing the last usable authority. Changing owners/threshold of the same Safe changes its governance without changing the controller address. |
+| Governance wallet | Direct governed configuration, custody changes and replacement admission | Verify `governance()` and the wallet's own signers/threshold. Rotate via `proposeGovernance` then candidate `acceptGovernance`; zero proposal cancels. Changing owners/threshold of the same Safe uses that Safe's own process. No controller-admin recovery exists if governance is lost. |
 | Guardian | Direct `AccessController.setPaused(true)` | Governance uses `setGuardian(address,bool)`. A guardian cannot unpause, choose a new pool, withdraw LP or repair lost governance. |
-| Keeper | Eligible maintenance and approved migration execution | Governance uses `setKeeper(address,bool)`. Isolate/revoke a compromised signer, reconcile its pending transactions, then qualify a new signer and state. No salary, gas reimbursement or bounty is automatic. |
+| Keeper | Eligible bounded maintenance; cannot approve or execute discretionary custody exits or same-pair pool moves | Governance uses `setKeeper(address,bool)`. Isolate/revoke a compromised signer, reconcile its pending transactions, then qualify a new signer and state. No salary, gas reimbursement or bounty is automatic. |
 | Bootstrap | Initial bindings and sealing | `bind` and `seal` only before sealing; bootstrap is erased. Do not retain deployment keys as a supposed recovery backdoor. |
 | Mint recipient | Current direct mint pays 0.05 ETH; required OpenSea path pays net after its actual platform fee from the same buyer total | Immutable Vault constructor address; receiving money grants no management authority. No post-seal setter. |
 
@@ -502,7 +527,7 @@ An **activation route** converts a user's contribution into the LP pair. It is d
 3. To stop either input, append its disabled `setAsset` policy; this stop requires no healthy token/feed. Re-enabling requires full review/validation. The helper cannot enable a third contribution currency.
 4. A supported future target pair can need an internal conversion route even though user inputs remain ETH/ZZZ. Pin its exact venue, code, route and prices, simulate the full Entry operation and verify its captured contribution floor before admission. Pool/route reconfiguration does not reopen a disabled source.
 
-Native V2 uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Only native ETH and the explicitly reviewed ZZZ identity may be user inputs. Actual ETH/ZZZ routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
+Current native accounting uses explicitly admitted ETH at `address(0)`, with an independent feed and exact call value. It is never an ERC20 approval target. Accepting a new **input** does not automatically admit an LP or royalty payout currency. Only native ETH and the explicitly reviewed ZZZ identity may be user inputs. Actual ETH/ZZZ routes and services remain subject to [qualification](ACTIVATION_PREPARATION.md).
 
 ### Replace a swap route when market liquidity moves
 
@@ -533,16 +558,17 @@ To switch contributions after sealing:
    `configureNative`. When moving an existing shared bucket, **move it before
    enabling destination deposits**: admit the target with deposits=false and
    operations=true, disable source deposits, execute the guarded same-pair
-   `Migration.movePool(bucket,target,minLiquidity,deadline)`, then enable target
+   `Migration.moveFunds(bucket,target,minLiquidity,deadline)`, then enable target
    deposits. The existing move guard requires target operations, not deposits.
-   An exact `scheduleBatch(...,0)` / `executeBatch(...)` can include this ordered
-   sequence; failure rolls it all back. Enabling first lets another activation
+   If the governance wallet supports a reviewed atomic batch that preserves it
+   as each target's caller, it can include this ordered sequence; target failure
+   must revert the whole batch. Access does not supply a batch executor. Enabling first lets another activation
    occupy the destination bucket and block the intended move. If intentionally
    stopping first in a separate transaction, a failed enable leaves deposits
    stopped; retry only after resolving validation failures.
 3. Verify `ContributionPoolChanged`, the getter, old flag=false and new flag=true
    at a confirmed block. Update the API's reviewed target/runtime pins and UI;
-   discard old quotes and simulate fresh ones. Cancel obsolete governance calls.
+   discard old quotes and simulate fresh ones. Cancel obsolete wallet proposals.
 4. A selection-only switch does not move LP. Existing NFTs in the old pool cannot top up until their shared bucket is moved
    to the selected destination, or governance switches contributions back. The
    selection alone does not move liquidity. Use the guarded migration/parking
@@ -587,7 +613,7 @@ ownership/reward handoff below is a separate retained feature.
 | New chain through your custodian | Approve source-chain custody only: `destinationPool=0`, `destinationCustody=recipient` in the current local-only request. The recipient performs any bridge/token migration externally. No on-protocol bridge is required; source principal remains outstanding/unavailable until a supported funded return/completion. This does not relocate NFTs/reward ledgers or promise remote accrual. See the runbook for exact request/approval fields. |
 | Recover principal | In the current source-chain custody workflow, `recover(id,deadline)` returns every actual sent asset and restores parked custody. Supply the exact sent native value and ERC20 approvals; no proof parameter or remote verifier exists. No timeout, partial funding, balance write-off or resend. |
 | Restart recovered/parked LP | Revalidate prices, venue, policy and current snapshot. Unpause and govern `Migration.resume(bucket,pool,minLP,deadline)`; verify actual active LP and unchanged shares. Ordinary supported same-pair `movePool` remains in this one module. |
-| Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD/inbox sync but cannot bypass an unusable venue/token or changed core/runtime binding. Native V2 parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
+| Park without sending | Pause, verify `activePlan(bucket)=0`, then use exact `Migration.park(ParkingRequest)` with current pool/LP/shares/recorded contribution value/custody epoch/parking nonce/accounting currencies and raw close minima. At least one minimum must be positive; deadline is at most ten minutes. It omits source USD checks but cannot bypass an unusable venue/token or changed core/runtime binding. Current native parking does not call WETH or its policy. Invalidate unused parking authorization with `invalidateParking`. |
 | Move royalty currencies as well | Separate `RoyaltyRewards.exitCustody(asset,recipient,expectedBalance,nonce,recipientCodeHash,reviewHash)` while paused. Per-NFT entitlements remain; that currency's claims/valuation wait for exact full `returnCustody(asset,id)`. Native ETH is asset zero. Other currencies, LP principal and royalty quarantine must not be merged. |
 
 Record every plan/nonce, approval, exact recipient, source/destination bindings,
@@ -647,7 +673,7 @@ Stop scheduled compounding/buybacks using reviewed keeper configuration or by st
 
 Read `Buyback.maxTradeUSD()` (immutable hard ceiling) and `operatingTradeUSD()`
 (current limit), both USD18. The deployment default is the hard ceiling. Through
-the existing immediate governance controller, call
+the current governance wallet, call the target directly:
 `Buyback.setOperatingTradeUSD(limit)`, with `0 <= limit <= maxTradeUSD`.
 Confirm `OperatingTradeLimitChanged(previous,current)` and the getter. Zero stops
 new execution without querying the oracle or releasing reserves; it does not stop
@@ -792,7 +818,7 @@ Monitor `RandomnessRequested`, `RandomnessReceived`, `TraitsFinalized`, subscrip
 
 The read API offers `GET /v1/mint-readiness`: confirmed minted/revealed counts, unfinished draws, earliest request/epoch, whether it awaits randomness or finalization, and the separate on-chain `mint_paused` flag. `new_minting_stopped` combines this flag with lifecycle controls; it is not a provider or gas-availability check. It checks inventory consistency and canonical deployment. It does **not** verify subscription funds, provider liveness, elapsed pending time, escrow compatibility or full handoff readiness; those fields are explicitly unverified. Correlate request/fulfillment events for latency and alert thresholds. The endpoint does not deploy a monitoring service or resume the paused chat monitor.
 
-For a provider outage, governance calls `NFT.setMintPaused(true)` through the controller, with no waiting period. Verify `NFT.mintPaused()` and `MintPauseChanged(true)`. This blocks new NFT mint/randomness requests, including direct Vault callers; the complete transaction reverts without spending the mint payment. Pending original fulfillment and ordered finalization continue. Existing revealed NFTs can still activate/top up, transfer, claim and undergo LP maintenance when their independent guards permit. Pausing during the NFT receiver callback also rolls back that mint atomically.
+For a provider outage, governance calls `NFT.setMintPaused(true)` directly, with no waiting period. Verify `NFT.mintPaused()` and `MintPauseChanged(true)`. This blocks new NFT mint/randomness requests, including direct Vault callers; the complete transaction reverts without spending the mint payment. Pending original fulfillment and ordered finalization continue. Existing revealed NFTs can still activate/top up, transfer, claim and undergo LP maintenance when their independent guards permit. Pausing during the NFT receiver callback also rolls back that mint atomically.
 
 To restart, qualify provider funding/liveness and reconcile pending requests; governance calls `NFT.setMintPaused(false)`, verifies the event/getter and simulates the complete mint. It does not clear global pause, preparation, canonical locks, exhausted supply or broken provider conditions. The mint switch is an operational setting, not an exported economic entitlement: for a replacement explicitly set/review the successor's desired state before locking it for import (fresh deployment default is `false`). It is not copied from the source and is not automatically cleared by handoff/abort. Existing sealed deployments without this function cannot acquire it by configuration.
 
@@ -894,13 +920,13 @@ website deployment or paused-monitor restart is part of this procedure update.
 | Symptom | First response | Safe return to service |
 | --- | --- | --- |
 | Compromised keeper / excessive rebalance cost | Pause or revoke signer, fence host, retain receipts/state | Reconcile pending transactions and losses, rotate key, review strategy/budgets; one tested signer only. |
-| Suspected governance compromise | Guardian pause, secure multisig/signers, cancel unauthorized pending operations where authorized | Pause alone cannot defeat malicious governance, which can unpause/reconfigure immediately. Recover role control through legitimate admins and independent review; no guaranteed rescue. |
+| Suspected governance compromise | Guardian pause, secure the governance wallet/signers, cancel unauthorized wallet proposals where supported | Pause alone cannot defeat malicious governance, which can unpause/reconfigure immediately. Use the current wallet's legitimate recovery/rotation process and independent review; there is no controller-admin override or guaranteed rescue. |
 | Oracle stale/depegged/wrong or sequencer down | Stop affected contribution/maintenance; preserve claims; consider parking if exact close can succeed | Reviewed new feed/policy, healthy rounds/grace and fresh full simulations; never blind unpause. |
 | Out of range | Warn that conventional swap fees may be absent; show observed eligibility/next-check telemetry only if real | Eligible keeper rebalance with guards. Wide range/ten-minute polling cannot guarantee always in range; no fabricated ETA. |
 | Repeated slippage/loss/minimum failure | Retain old position; inspect actual conversion, venue costs, liquidity and oracle | Inspect route/timing and accounting first. Governance may deliberately review loss limits within the 10% hard bound; exact approved custody/caller minima remain. A higher limit authorizes more loss and does not repair a failed dependency. |
 | Gas spike/low keeper funds/daily budget reached | Stop new submissions; continue receipt reconciliation/alerts | Refill reviewed signer or revise operating budget after analysis; gas is not taken from arbitrary holder balances. |
 | Unknown broadcast/nonce drift/reorg | Stop new signing, retain exact intent/hash and canonical anchors | Reconcile confirmed/pending transactions through recovery path; no blind resend or nonce reset. |
-| Token blacklist/pause, optional wrapper upgrade or venue unusable | Stop the affected exposure, preserve ledger, review the actual dependency and exact exit | Policy update only where implemented and safe; venue/token/runtime failure can block parking/claim/abort. A wrapper failure affects an explicitly wrapped operation, not native V2 custody. No blanket rescue function. |
+| Token blacklist/pause, optional wrapper upgrade or venue unusable | Stop the affected exposure, preserve ledger, review the actual dependency and exact exit | Policy update only where implemented and safe; venue/token/runtime failure can block parking/claim/abort. A wrapper failure affects an explicitly wrapped operation, not native ETH custody. No blanket rescue function. |
 | Marketplace royalties missing | Check sale consideration, the exact royalty helper and confirmed transfers | Only payments actually received fund holder claims. Marketplace payment is not universally enforced; do not invent accrual or treat an API outage as a missing payment. |
 | VRF unfulfilled / ordered reveals blocked | Verify subscription/provider/request; stop new minting if needed | Use the mint-only governance pause, then original authenticated fulfillment and ordered finalize. Resume deliberately after service checks. No reroll; postpone whole-collection replacement if unresolved. |
 | Server/disk/backup failure | Stop unsafe signing; alert off-host, preserve damaged evidence | Restore/reconcile state, permissions and storage; qualify health before new work. |
@@ -1184,7 +1210,7 @@ receipt first. A reverted Entry preserves input tokens but costs gas and can lea
 an earlier allowance. A successful Entry creates nonredeemable LP even when the
 API subsequently fails. Separately wrapped local ETH remains wallet-owned WETH
 if contribution fails. The pre-V2 native-input fixture wrapped inside Entry
-atomically; native V2 Entry uses actual ETH and does not wrap. See the
+atomically; current native Entry uses actual ETH and does not wrap. See the
 [failure evidence](../reports/topup-and-reward-review/contribution-rollback.json).
 
 ## Convert LP holder fees to ETH
@@ -1226,7 +1252,7 @@ The holder approves exactly the required ERC20 amount once, then explicitly conf
 Entry. Direct approval must simulate successfully; a reset-only token is unsupported
 rather than silently adding a third send. Already sufficient allowance needs no
 approval. ETH wrapped atomically inside Entry in that pre-V2 native-input fixture;
-the older WETH-only pool could not offer that path. Current native V2 Entry and
+the older WETH-only pool could not offer that path. Current native Entry and
 pool custody instead use actual ETH without wrapping. The local fixed activation is
 $100; top-ups start at $5. This does not change production Entry's $100 minimum.
 

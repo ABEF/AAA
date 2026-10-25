@@ -1,0 +1,611 @@
+{
+  "schema": 1,
+  "exit_code": 1,
+  "elapsed_seconds": 470.875,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-pruning-20261025\\solidity\\selected\\ast-focused-profile-q7m9ybft",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(DirectGovernanceTest|ZeroAssetCanonicalTest|FixedZZZPoolTest|DualOracleSecurityTest|EntryReviewPolicyTest|CustodyHandoffTest|NativeCustodyTest|CanonicalPreparationTest|CanonicalHandoffTest|GlobalMembershipDustTest|NativeCanonicalIntegrationTest)$",
+    "--json"
+  ],
+  "selected_methods": 49,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testAbortAfterFundingRequiresExactReturnedBacking()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 108051276
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testAccountingV3UsesEightWordPositionAndRejectsLegacyOrTrailingGroupRows()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 12144104
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testCompleteHandoffPreservesOwnersSharesTraitsAndBothRewardLedgers()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 107537691
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testFullHandoffCarriesConvertedNativeLPRewardsToCurrentOwner()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 247559907
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 104792973
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testPartialFundingCannotActivateAndFundingCannotReplay()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 104550362
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalHandoff.t.sol:CanonicalHandoffTest",
+      "method": "testRetiredSourceCannotAbortRecommitOrReopenThroughUnpause()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 106942229
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testClaimsTransfersPendingRevealAndLPFeeCollectionStayAvailable()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4544204
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testDirectConfigurationCannotBypassPreparationButPauseControlRemains()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 824482
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testGovernanceAnnouncementInFinalTreasuryCallbackCannotBypassVaultEndGuard()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1084060
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testGovernanceAnnouncementInNFTCallbackRollsBackTheEntireMint()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1386277
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testHarvestAndGovernanceParkingRemainAvailableWithoutSourcePrice()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4133153
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testImmediatePreparationAndCancellationRequireGovernanceAndExactNotice()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 289192
+        }
+      }
+    },
+    {
+      "suite": "test/CanonicalPreparation.t.sol:CanonicalPreparationTest",
+      "method": "testPreparationIsCanonicalOnlyAndDoesNotAcceptAnEmptyNotice()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 40328
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testEmergencyRawExitWorksWithFailedSwapAndStalePrices()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4102615
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4656436
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testLocalEndToEndBudgetIncludesExitAndRedeployment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6691391
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testRecoveredCustodyNeedsFullActualSentZZZAndCanRemainPaused()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4817645
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4452578
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testGuardianMayPauseButCannotUnpauseConfigureOrReplaceGovernance()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 322933
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testPreparationAndFrozenLifecycleBlockPendingGovernanceHandover()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 508814
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testRetiredTimelockSelectorsCannotExecuteScheduleOrGrantAuthority()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 309068
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testSelectedGovernanceConfiguresImmediatelyAfterSealAndBootstrapLosesAuthority()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 327084
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testTwoStepGovernancePreservesCurrentAuthoritySupportsCancellationAndRejectsWrongAcceptors()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 391620
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testUnknownBindingsZeroModuleCallersAndTerminalRetirementCannotReopenConfiguration()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 686007
+        }
+      }
+    },
+    {
+      "suite": "test/DirectGovernance.t.sol:DirectGovernanceTest",
+      "method": "testZeroRolesAndControllerSelfGovernanceCannotCreateADeployment()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 197185
+        }
+      }
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "method": "testDualBoundsUseLowerForThresholdAndUpperForConversionQuote()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1439790
+        }
+      }
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "method": "testPolicyHistoryAppendOnlyEvenWhenReturningToSameParameters()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 469091
+        }
+      }
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "method": "testRetiredSingleFeedGetterCannotMasqueradeAsDualPricePolicy()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 145078
+        }
+      }
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "method": "testSpreadExactBoundaryAndOneRawUnitAbove()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 143568
+        }
+      }
+    },
+    {
+      "suite": "test/DualOracleSecurity.t.sol:DualOracleSecurityTest",
+      "method": "testStaleEitherSourceCannotFallBackToHealthySource()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 215719
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testGrowthReviewRejectsWideningAndPreservesExistingSharesAndClaims()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 22957438
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 21194507
+        }
+      }
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "method": "testTenPercentMaximumCannotOverrideStrongerPhysicalVenueMinimum()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 23069649
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testFixedZZZPairAndLaterFeeTierRemainAdmissibleWithoutThirdSource()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 847195
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testMissingFixedZZZRejectsGenericPoolBeforeDependencyAdmission()",
+      "status": "Failure",
+      "reason": "expected call to 0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8 with data 0xa4dff0a2 to be called 1 time, but was called 2 times",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 114922
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testNativeAdmissionRetainsItsSeparateFixedIdentityGuard()",
+      "status": "Failure",
+      "reason": "expected call to 0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8 with data 0xa4dff0a2 to be called 1 time, but was called 2 times",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 269116
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZPool.t.sol:FixedZZZPoolTest",
+      "method": "testPairWithoutFixedZZZRejectsBeforeDependencyAdmission()",
+      "status": "Failure",
+      "reason": "expected call to 0x671ceF55a1373E85D4522dacE6eea7Cf52B573c8 with data 0xa4dff0a2 to be called 1 time, but was called 2 times",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 320776
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6135833
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4895754
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testMembershipSkipsInactiveBucketAndFeeControllerRejectsItsDustFlush()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 3425883
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest",
+      "method": "testNativePartialFundingAbortRequiresAndRestoresExactBacking()",
+      "status": "Failure",
+      "reason": "Expired()",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 5146770
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCanonicalIntegration.t.sol:NativeCanonicalIntegrationTest",
+      "method": "testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine()",
+      "status": "Failure",
+      "reason": "Expired()",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 5146726
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testLocalCompletionForwardsExactNativeBudgetAndPreservesShares()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1168149
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testRawNativeExitHasNoZZZOrWrapperDependencyAndPreservesPrefund()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 845349
+        }
+      }
+    },
+    {
+      "suite": "test/NativeCustody.t.sol:NativeCustodyTest",
+      "method": "testRecoveryRequiresExactNativeValueDespitePrefunds()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 999359
+        }
+      }
+    },
+    {
+      "suite": "test/ZeroAssetCanonical.t.sol:ZeroAssetCanonicalTest",
+      "method": "testMembershipKeepsVaultOnlySingleEqualEnrollmentAndFreezeChecks()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 295138
+        }
+      }
+    },
+    {
+      "suite": "test/ZeroAssetCanonical.t.sol:ZeroAssetCanonicalTest",
+      "method": "testMembershipRecordHandoffPreservesOrdinalsWeightsAndAuthorization()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 9939062
+        }
+      }
+    },
+    {
+      "suite": "test/ZeroAssetCanonical.t.sol:ZeroAssetCanonicalTest",
+      "method": "testZeroAssetModulesRejectRemovedBackingHooksAndNativeFunding()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 2251980
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "7e762ea3140f0805fe61a6b2c2294d37222572327f7c5205c82b67338309666f"
+}

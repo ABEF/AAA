@@ -52,24 +52,23 @@ interface ICanonicalHandoffTest {
 /// @dev TEST ONLY: exact-transfer token with an armed external callback. This
 /// exercises cross-module lifecycle reentry, not an approved production asset.
 contract HandoffTransitionToken is MockToken {
-    ZZZAccessController private callbackController;
     address private callbackTarget;
     address private triggerFrom;
     address private triggerTo;
     bytes private callbackData;
-    bytes32 private callbackSalt;
     bool private armed;
     constructor() MockToken(0) {}
-    function arm(ZZZAccessController controller, address target, bytes calldata data, bytes32 salt,
-        address from, address to) external {
-        callbackController = controller; callbackTarget = target; callbackData = data;
-        callbackSalt = salt; triggerFrom = from; triggerTo = to; armed = true;
+    function acceptGovernance(ZZZAccessController controller) external { controller.acceptGovernance(); }
+    function arm(address target, bytes calldata data, address from, address to) external {
+        callbackTarget = target; callbackData = data;
+        triggerFrom = from; triggerTo = to; armed = true;
     }
     function _update(address from, address to, uint256 amount) internal override {
         super._update(from, to, amount);
         if (armed && from == triggerFrom && to == triggerTo) {
             armed = false;
-            callbackController.execute(callbackTarget, 0, callbackData, bytes32(0), callbackSalt);
+            (bool ok, bytes memory result) = callbackTarget.call(callbackData);
+            if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
         }
     }
 }
@@ -105,7 +104,6 @@ contract CanonicalHandoffTest is Test {
     MockToken private token1;
     MockFeed private feed;
     bytes32 private poolId;
-    uint256 private governanceNonce;
     uint256 private constant HANDOFF_CALL_GAS_BUDGET = 12_000_000;
     uint256 private peakExportGas;
     uint256 private peakSettlementGas;
@@ -139,9 +137,7 @@ contract CanonicalHandoffTest is Test {
         return _deploySystemWithChain(sealNow, admitAssets, block.chainid);
     }
     function _deploySystemWithChain(bool sealNow, bool admitAssets, uint256 homeChain) private returns (System memory s) {
-        address[] memory proposers = new address[](1); proposers[0] = address(this);
-        address[] memory executors = new address[](1); executors[0] = address(0);
-        s.ac = new ZZZAccessController(0, proposers, executors, address(this), GUARDIAN);
+        s.ac = new ZZZAccessController(address(this), address(this), GUARDIAN);
         s.pools = new PreparationPools(address(s.ac));
         s.venue = new PreparationVenue(address(s.ac), address(token0), address(token1));
         s.vault = new ZZZVault(address(s.ac), homeChain, TREASURY);
@@ -186,12 +182,12 @@ contract CanonicalHandoffTest is Test {
         vm.stopPrank();
     }
     function _govern(System memory s, address target, bytes memory data) private {
-        bytes32 salt = bytes32(++governanceNonce);
-        s.ac.schedule(target, 0, data, bytes32(0), salt, 0);
-        vm.warp(block.timestamp + 1 days);
         _fresh();
+        address governor = s.ac.governance();
+        vm.prank(governor);
         uint256 beforeGas = gasleft();
-        s.ac.execute(target, 0, data, bytes32(0), salt);
+        (bool ok, bytes memory result) = target.call(data);
+        if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
         uint256 used = beforeGas - gasleft();
         if (target == address(s.handoff)) {
             assertLt(used, HANDOFF_CALL_GAS_BUDGET, "Canonical governance operation exceeds local per-call budget");
@@ -200,10 +196,10 @@ contract CanonicalHandoffTest is Test {
         }
     }
     function _governReject(System memory s, address target, bytes memory data) private {
-        bytes32 salt = bytes32(++governanceNonce);
-        s.ac.schedule(target, 0, data, bytes32(0), salt, 0);
-        vm.warp(block.timestamp + 1 days);
-        vm.expectRevert(); s.ac.execute(target, 0, data, bytes32(0), salt);
+        address governor = s.ac.governance();
+        vm.prank(governor);
+        (bool ok,) = target.call(data);
+        assertFalse(ok, "Invalid governance operation unexpectedly succeeded");
     }
     function _fresh() private { feed.set(1e8, block.timestamp, block.timestamp); }
     function _mint(System memory s, uint256 rarityWord, uint256 artworkWord) private returns (uint256 id) {
@@ -232,7 +228,7 @@ contract CanonicalHandoffTest is Test {
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, p.poolId, p.lpTokenId,
             source.vault.bucketTotalShares(bucket), p.depositUSD, source.migration.custodyEpoch(bucket),
             source.migration.parkingNonce(bucket), address(token0), address(token1), 1, 1,
-            block.timestamp + 1 days + 100, keccak256("handoff parking fixture"));
+            block.timestamp + 100, keccak256("handoff parking fixture"));
         _govern(source, address(source.migration), abi.encodeCall(source.migration.park, (request)));
     }
     function _freeze(uint256 activeId) private {
@@ -320,21 +316,22 @@ contract CanonicalHandoffTest is Test {
             ZZZOracle.DualPolicy memory p=oracle.policy(oracle.activePolicy(pair[i]));
             vm.cool(p.primary.source);vm.cool(p.secondary.source);
         }
-        bytes32[20] memory ids = [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,
-            Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,
-            Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT,Ids.CANONICAL,Ids.NFT_CANONICAL,Ids.VAULT_CANONICAL,Ids.FEES_CANONICAL];
+        bytes32[16] memory ids = [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,
+            Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.ORACLE,Ids.POOLS,
+            Ids.CANONICAL,Ids.NFT_CANONICAL,Ids.VAULT_CANONICAL,Ids.FEES_CANONICAL];
         for (uint256 i; i < s.rewards.assetCount(); ++i) vm.cool(s.rewards.assets(i));
         vm.cool(address(s.royalties));
         for (uint256 i; i < ids.length; ++i) vm.cool(s.ac.module(ids[i]));
         vm.cool(address(s.ac));
     }
     function _governColdHandoff(bytes memory data) private returns (uint256 used) {
-        bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 0);
-        vm.warp(block.timestamp + 1 days); feed.set(1e8, block.timestamp, block.timestamp);
+        _fresh();
+        address governor = source.ac.governance();
         _coolSystem(source); _coolSystem(destination);
+        vm.prank(governor);
         uint256 beforeGas = gasleft();
-        source.ac.execute(address(source.handoff), 0, data, bytes32(0), salt);
+        (bool ok, bytes memory result) = address(source.handoff).call(data);
+        if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
         used = beforeGas - gasleft();
         assertLt(used, HANDOFF_CALL_GAS_BUDGET, "Cold canonical governance call exceeds unchanged 12M budget");
     }
@@ -383,9 +380,9 @@ contract CanonicalHandoffTest is Test {
         vm.prank(BOB);vm.expectRevert();source.rewards.claim(id,address(0));
     }
 
-    function testFreezeRequiresTimelockAndFullyRevealedMintInventory() public {
+    function testFreezeRequiresGovernanceAndFullyRevealedMintInventory() public {
         vm.prank(ALICE); source.vault.mintDormant{value: 0.05 ether}(); _prepare();
-        vm.expectRevert(); source.handoff.freeze();
+        vm.prank(ALICE); vm.expectRevert(); source.handoff.freeze();
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         assertEq(source.ac.canonicalState(), 0);
         assertEq(source.nft.mintedCount(), 1); assertEq(source.nft.nextToFinalize(), 1);
@@ -468,6 +465,28 @@ contract CanonicalHandoffTest is Test {
         assertEq(source.ac.canonicalState(), 1); assertEq(destination.ac.canonicalState(), 2);
     }
 
+    function testAccountingV3UsesEightWordPositionAndRejectsLegacyOrTrailingGroupRows() public {
+        (uint256 first,,) = _seed(); _freeze(first);
+        assertEq(source.vault.ACCOUNTING_VERSION(), 3);
+        IZZZCanonicalModule from = IZZZCanonicalModule(source.handoff.moduleAt(1));
+        IZZZCanonicalModule to = IZZZCanonicalModule(destination.handoff.moduleAt(1));
+        bytes memory header = from.canonicalExport(0);
+        bytes memory groupRecord = from.canonicalExport(1);
+        assertEq(header.length, 192); assertEq(groupRecord.length, 384);
+        // Isolate the new companion codec behind its real coordinator caller.
+        // The ordinary handoff tests additionally verify authenticated row roots.
+        vm.prank(address(destination.handoff)); to.canonicalImport(0, header);
+        bytes memory legacyWidth = bytes.concat(groupRecord, new bytes(224));
+        assertEq(legacyWidth.length, 608);
+        vm.prank(address(destination.handoff)); vm.expectRevert(); to.canonicalImport(1, legacyWidth);
+        vm.prank(address(destination.handoff)); vm.expectRevert(); to.canonicalImport(1, bytes.concat(groupRecord, hex"00"));
+        vm.prank(address(destination.handoff)); to.canonicalImport(1, groupRecord);
+        uint256 bucket = source.vault.nftBucket(first);
+        assertEq(abi.encode(destination.vault.group(bucket)), abi.encode(source.vault.group(bucket)));
+        assertEq(uint256(destination.vault.group(bucket).status), 4);
+        assertEq(destination.vault.bucketTotalShares(bucket), source.vault.bucketTotalShares(bucket));
+    }
+
     function testPartialFundingCannotActivateAndFundingCannotReplay() public {
         (uint256 first,,) = _seed(); _freeze(first); _exportAll(); _importAll();
         source.handoff.fund(3, 0); // One LP reward asset; principal and royalty backing are absent.
@@ -504,10 +523,7 @@ contract CanonicalHandoffTest is Test {
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.abort, ()));
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.commit, ()));
         // Governance may keep incident pause tooling, but cannot regain ownership authority.
-        bytes memory unpause = abi.encodeCall(source.ac.setPaused, (false));
-        bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.ac), 0, unpause, bytes32(0), salt, 0); vm.warp(block.timestamp + 1 days);
-        try source.ac.execute(address(source.ac), 0, unpause, bytes32(0), salt) {} catch {}
+        _govern(source, address(source.ac), abi.encodeCall(source.ac.setPaused, (false)));
         assertEq(source.ac.canonicalState(), 3);
         vm.prank(ALICE); vm.expectRevert(); source.nft.transferFrom(ALICE, BOB, first);
         vm.prank(ALICE); vm.expectRevert(); source.vault.mintDormant{value: 0.05 ether}();
@@ -653,7 +669,7 @@ contract CanonicalHandoffTest is Test {
         (uint256 first,, uint256 dormant) = _seed(); _migrate(first);
         uint256 bucket = destination.vault.nftBucket(first);
         _govern(destination, address(destination.migration), abi.encodeCall(destination.migration.resume,
-            (bucket, poolId, 1, block.timestamp + 1 days + 100)));
+            (bucket, poolId, 1, block.timestamp + 100)));
         _activate(destination, dormant, 100);
         assertEq(destination.vault.nftBucket(dormant), bucket); assertEq(destination.vault.bucketCount(), 1);
         assertEq(destination.membership.totalEligible(), 3); assertGt(destination.vault.sharesOf(dormant), 0);
@@ -663,7 +679,7 @@ contract CanonicalHandoffTest is Test {
         (uint256 first,,) = _seed(); _migrate(first);
         uint256 bucket = destination.vault.nftBucket(first);
         _govern(destination, address(destination.migration), abi.encodeCall(destination.migration.resume,
-            (bucket, poolId, 1, block.timestamp + 1 days + 100)));
+            (bucket, poolId, 1, block.timestamp + 100)));
         uint256 newId = _mint(destination, 27, 87); _activate(destination, newId, 100);
         vm.prank(ALICE); destination.vault.increase(first, 50, 50, 1, block.timestamp + 100);
         uint256 expectedShares = destination.vault.sharesOf(first);
@@ -676,11 +692,12 @@ contract CanonicalHandoffTest is Test {
         assertEq(destination.nft.mintOrdinalOf(newId), 4);
     }
 
-    function testCrossChainNoticeDoesNotAuthorizeUnverifiedFreezeOrExport() public {
+    function testCrossChainNoticeIsRejectedWithoutFreezingOrExporting() public {
         _mint(source, 0, 0);
         ZZZAccessController.PreparationNotice memory notice = ZZZAccessController.PreparationNotice(
             block.chainid + 1, address(0xCA11), keccak256("unqualified remote deployment"), keccak256("notice only"));
-        _govern(source, address(source.ac), abi.encodeCall(source.ac.startPreparation, (notice)));
+        _governReject(source, address(source.ac), abi.encodeCall(source.ac.startPreparation, (notice)));
+        assertFalse(source.ac.preparationActive());
         _governReject(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         assertEq(source.ac.canonicalState(), 0); assertEq(source.handoff.stateRoot(), bytes32(0));
         vm.expectRevert(); source.handoff.exportRows(0, 1);
@@ -752,19 +769,21 @@ contract CanonicalHandoffTest is Test {
     }
 
     function testFundingCallbackCannotAbortHalfwayThroughExactPrincipalTransfer() public {
+        // TEST ONLY: a malicious asset is also the explicitly selected
+        // governance contract, so the callback has real governance authority.
+        source.ac.proposeGovernance(address(token0));
+        HandoffTransitionToken(address(token0)).acceptGovernance(source.ac);
         (uint256 first,,) = _seed(); _freeze(first); _exportAll(); _importAll();
-        bytes memory data = abi.encodeCall(source.handoff.abort, ()); bytes32 salt = bytes32(++governanceNonce);
-        source.ac.schedule(address(source.handoff), 0, data, bytes32(0), salt, 0);
-        vm.warp(block.timestamp + 1 days);
+        bytes memory data = abi.encodeCall(source.handoff.abort, ());
         uint256 principal = token0.balanceOf(address(source.vault));
-        HandoffTransitionToken(address(token0)).arm(source.ac, address(source.handoff), data, salt,
+        HandoffTransitionToken(address(token0)).arm(address(source.handoff), data,
             address(source.vault), destination.handoff.moduleAt(1));
         vm.expectRevert(); source.handoff.fund(1, 1);
         assertFalse(source.handoff.funded(1, 1));
         assertEq(token0.balanceOf(address(source.vault)), principal);
         assertEq(token0.balanceOf(address(destination.vault)), 0);
         assertEq(source.ac.canonicalState(), 1); assertEq(destination.ac.canonicalState(), 2);
-        source.ac.execute(address(source.handoff), 0, data, bytes32(0), salt);
+        _govern(source, address(source.handoff), data);
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.finishAbort, ()));
         assertEq(source.ac.canonicalState(), 0); assertEq(destination.ac.canonicalState(), 4);
     }

@@ -4,18 +4,16 @@ import {DualOracleFixture} from "./helpers/DualOracleFixture.sol";
 import {ZZZOracle as FixtureOracleType} from "../src/ZZZOracle.sol";
 using DualOracleFixture for FixtureOracleType;
 
-import {CanonicalFixture} from "./helpers/CanonicalFixture.sol";
 
 import {Test} from "forge-std/Test.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
-import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
-import {MockFeed, BoundDummy} from "./mocks/Mocks.sol";
+import {MockFeed} from "./mocks/Mocks.sol";
 
 /// @notice Real Vault/Migration/reward accounting, but a fake LP venue and mock
-/// authority. The separate governance test below covers actual authorization.
+/// authority. Actual direct-governance authorization has separate coverage.
 contract CustodyParkingTest is PooledVaultFixture {
     function _migration() private returns (ZZZMigration migration) {
         migration = new ZZZMigration(address(ac)); ac.bind(Ids.MIGRATION, address(migration));
@@ -84,11 +82,10 @@ contract CustodyParkingTest is PooledVaultFixture {
             assertEq(uint8(vault.group(_bucket()).status), uint8(PositionStatus.Active));
         }
     }
-    function testParkingRejectsNonlocalCustodyEvenWithMatchingLPAndShareSnapshot() public {
+    function testParkingRejectsOutboundCustodyEvenWithMatchingLPAndShareSnapshot() public {
         activatedPosition(); ZZZMigration migration = _migration(); ac.setPaused(true);
         ZZZMigration.ParkingRequest memory r = _request(migration, _bucket());
-        Position memory p = vault.group(_bucket()); p.locationChain = block.chainid + 1;
-        vm.mockCall(address(vault), abi.encodeCall(vault.group, (_bucket())), abi.encode(p));
+        Position memory p = vault.group(_bucket()); p.status = PositionStatus.Outbound; vm.mockCall(address(vault), abi.encodeCall(vault.group, (_bucket())), abi.encode(p));
         vm.expectRevert(); migration.park(r); vm.clearMockedCalls();
         assertEq(migration.parkingNonce(_bucket()), 0);
     }
@@ -157,30 +154,3 @@ contract CustodyParkingTest is PooledVaultFixture {
 
 }
 
-/// @dev Role-only fixture: real sealed timelock and Migration, synthetic custody
-/// record. Physical principal accounting is tested in CustodyParkingTest above.
-contract ParkingRoleVault {
-    ZZZAccessController public immutable access;
-    Position private record;
-    constructor(ZZZAccessController controller, address token0, address token1) {
-        access = controller; record.poolId = bytes32(uint256(7)); record.lpTokenId = 99; record.depositUSD = 200e18;
-        record.status = PositionStatus.Active; record.locationChain = block.chainid; record.locationVault = address(this);
-        record.homeChain = block.chainid; record.homeVault = address(this); record.homeToken0 = token0; record.homeToken1 = token1;
-    }
-    function canonicalChainId() external view returns (uint256) { return block.chainid; }
-    function group(uint256) external view returns (Position memory) { return record; }
-    function bucketTotalShares(uint256) external pure returns (uint256) { return 200e18; }
-    function park(uint256, uint256) external {
-        require(msg.sender == access.module(Ids.MIGRATION) && access.paused());
-        record.lpTokenId = 0; record.status = PositionStatus.Parked; record.idle0 += 100; record.idle1 += 100;
-    }
-}
-contract ParkingRolePools {
-    ZZZAccessController public immutable access;
-    address immutable token0; address immutable token1;
-    constructor(ZZZAccessController controller, address a, address b) { access = controller; token0 = a; token1 = b; }
-    function accounting(bytes32) external view returns (PoolConfig memory c) { c.key.currency0 = token0; c.key.currency1 = token1; }
-}
-contract CustodyParkingGovernanceTest is Test {
-
-}

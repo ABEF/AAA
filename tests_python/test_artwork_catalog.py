@@ -16,7 +16,8 @@ def module(name, path):
     return result
 
 GENERATOR = module('artwork_generator', ROOT / 'scripts/generate-artwork-library.py')
-GATE = module('artwork_production_gate', ROOT / 'scripts/validate-production-config.py')
+from zzz_ops import production_v2 as GATE
+NATIVE_PATTERNS = tuple(dict.fromkeys(name.rsplit('-', 3)[1] for name in GATE.ARTWORK_FILES))
 
 class ArtworkCatalogTests(unittest.TestCase):
     @classmethod
@@ -29,10 +30,10 @@ class ArtworkCatalogTests(unittest.TestCase):
 
     def test_palette_rules_have_exactly_eight_22_and_28_unique_palettes(self):
         colors = [color['id'] for color in self.catalog['colors']]
-        self.assertEqual(colors, list(GATE.ARTWORK_COLORS))
+        self.assertEqual(colors, list(GATE.COLORS))
         palettes = self.catalog['palettes']
         self.assertEqual(collections.Counter(len(p['colorIds']) for p in palettes), {1:8, 2:22, 3:28})
-        self.assertEqual([p['id'] for p in palettes], list(GATE.ARTWORK_PALETTES))
+        self.assertEqual([p['id'] for p in palettes], list(GATE.PALETTES))
         self.assertEqual(len({p['id'] for p in palettes}), 58)
         for palette, packed in zip(palettes, self.packed['paletteOrder']):
             self.assertEqual(palette['id'], packed['id'])
@@ -44,7 +45,7 @@ class ArtworkCatalogTests(unittest.TestCase):
         inventory = self.catalog['inventory']
         palettes = [palette['id'] for palette in self.catalog['palettes']]
         patterns = [pattern['id'] for pattern in self.catalog['patterns']]
-        self.assertEqual(patterns, list(GATE.ARTWORK_PATTERNS))
+        self.assertEqual(patterns, list(NATIVE_PATTERNS))
         self.assertEqual([entry['tokenId'] for entry in inventory], list(range(1,1001)))
         for rarity, expected in (('commun',600), ('rare',300), ('legendary',100)):
             entries = [entry for entry in inventory if entry['rarity']==rarity]
@@ -71,7 +72,7 @@ class ArtworkCatalogTests(unittest.TestCase):
         for rarity in ('commun','rare','legendary'):
             entries = [entry for entry in inventory if entry['rarity']==rarity]
             self.assertEqual({entry['paletteId'] for entry in entries}, {p['id'] for p in self.catalog['palettes']})
-            self.assertEqual({entry['pattern'] for entry in entries}, set(GATE.ARTWORK_PATTERNS))
+            self.assertEqual({entry['pattern'] for entry in entries}, set(NATIVE_PATTERNS))
 
     def test_production_publication_requires_every_2784_svg_state(self):
         expected = {f'{palette["id"]}-{pattern["id"]}-{rarity["id"]}-{stage}.svg'

@@ -37,9 +37,9 @@
   "l1_fee_allowance_wei": "0",
   "receipt_fee_policy": "unverified",
   "revert_cooldown_seconds": 3600,
-  "state_path": "var/keeper-native-v2-lp-only.json",
-  "health_path": "var/keeper-native-v2-lp-only.health.json",
-  "lock_path": "var/keeper-native-v2-lp-only.lock",
+  "state_path": "var/keeper-local-position-v3-lp-only.json",
+  "health_path": "var/keeper-local-position-v3-lp-only.health.json",
+  "lock_path": "var/keeper-local-position-v3-lp-only.lock",
   "bucket_discovery": {
     "maximum_count": 10000,
     "max_per_cycle": 32
@@ -63,6 +63,6 @@
     "maximum_observation_age_blocks": 256
   },
   "buybacks": [],
-  "accounting_version": 2,
+  "accounting_version": 3,
   "fee_intake_version": 1
 }

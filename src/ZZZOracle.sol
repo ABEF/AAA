@@ -39,10 +39,6 @@ contract ZZZOracle is ZZZModule {
     mapping(bytes32 => DualPolicy) private policies;
     mapping(address => bytes32) public activePolicy;
     bytes32[] private history;
-    // Historical ABI only: primary metadata cannot establish V2 readiness.
-    // Current consumers must inspect PRICING_VERSION and the complete dual policy.
-    struct Feed { address source; uint32 maxAge; uint8 feedDecimals; uint8 assetDecimals; }
-    mapping(address => Feed) public feeds;
     struct SequencerPolicy { address source; bytes32 expectedCodeHash; bytes32 reviewHash; bool bootstrapAdmission; }
     // The getter ABI is unchanged. Only governed, reviewed nonzero replacements
     // are possible; configuration never removes an existing uptime safeguard.
@@ -51,7 +47,6 @@ contract ZZZOracle is ZZZModule {
     bytes32 public activeSequencerPolicy;
     bytes32[] private sequencerHistory;
     uint256 public constant SEQUENCER_GRACE = 1 hours;
-    event FeedConfigured(address indexed token, address indexed source, uint32 maxAge);
     event DualPolicyRecorded(bytes32 indexed id, address indexed token, address indexed primary,
         address secondary, bytes32 primaryIndependenceId, bytes32 secondaryIndependenceId,
         uint16 maxDeviationBps, bytes32 reviewHash);
@@ -134,8 +129,6 @@ contract ZZZOracle is ZZZModule {
         policies[id] = next;
         history.push(id);
         activePolicy[token] = id;
-        feeds[token] = Feed(primary.source, primary.maxAge, primary.feedDecimals, assetDecimals);
-        emit FeedConfigured(token, primary.source, primary.maxAge);
         emit DualPolicyRecorded(id, token, primary.source, secondary.source, primary.independenceId,
             secondary.independenceId, maxDeviationBps, reviewHash);
         emit DualPolicyActivated(token, previous, id);

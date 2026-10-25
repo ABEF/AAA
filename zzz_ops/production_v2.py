@@ -1,4 +1,4 @@
-"""Offline current native-V2 release inventory; never signs or contacts a chain.
+"""Offline current local-Position release inventory; never signs or contacts a chain.
 
 Schema 5 is a new, explicit compatibility boundary. Observations never replace
 approved pins. A consistent manifest cannot authenticate its own evidence and
@@ -22,7 +22,8 @@ ZERO_HASH = '0x' + '00' * 32
 NATIVE_HASH = '0x' + keccak256(b'ZZZ_NATIVE_ETH_V1').hex()
 V4_DOMAIN = '0x' + keccak256(b'ZZZ_TYPED_V4_ROUTE_V1').hex()
 CANONICAL_SCHEMA = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2').hex()
-LP_ONLY_CANONICAL_SCHEMA = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3').hex()
+HISTORICAL_LP_ONLY_CANONICAL_SCHEMA = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3').hex()
+LP_ONLY_CANONICAL_SCHEMA = '0x' + keccak256(b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4').hex()
 MODULES = ('access', 'vault', 'nft', 'liquidity', 'rewards', 'membership', 'fees',
            'strategy', 'compounder', 'buyback', 'migration', 'oracle', 'pools',
            'canonical', 'nft_canonical', 'vault_canonical', 'fees_canonical')
@@ -135,10 +136,12 @@ def pool_configuration(chain, pool):
 
 def governance_configuration(chain):
     gov = _obj(_obj(chain).get('governance'))
+    direct = _obj(_obj(chain).get('native_accounting')).get('version') == 3
+    keys = ('multisig','signers','threshold','keeper','guardian','sealed','bootstrap') if direct else (
+        'multisig','signers','threshold','proposers','executors','keeper','guardian','timelock_seconds','sealed','bootstrap')
     return {'chain_id':_obj(chain).get('chain_id'),
         'controller':_obj(_obj(_obj(chain).get('modules')).get('access')).get('address'),
-        'policy':{key:gov.get(key) for key in ('multisig','signers','threshold','proposers',
-            'executors','keeper','guardian','timelock_seconds','sealed','bootstrap')}}
+        'policy':{key:gov.get(key) for key in keys}}
 
 
 def fee_intake_profile(version):
@@ -172,7 +175,10 @@ def expected_bindings(chain: dict[str, Any], *, range_policy_version=0,
         'royaltyFactory':h('royalty_factory')}
     if fee_intake_version == 1:
         result['access']['activationAssetsFactory'] = h('activation_assets_factory')
-    result['vault'].update(ACCOUNTING_VERSION=2, migrationBudget=h('migration_budget'),
+        result['access'].pop('getMinDelay')
+        result['access'].update(GOVERNANCE_VERSION=2,
+            governance=_obj(chain.get('governance')).get('multisig'),pendingGovernance=ZERO)
+    result['vault'].update(ACCOUNTING_VERSION=3 if fee_intake_version == 1 else 2, migrationBudget=h('migration_budget'),
         canonicalChainId=chain.get('chain_id'),mintProceedsRecipient=ctor.get('mint_proceeds_recipient'))
     result['nft'].update(royaltyRewards=h('royalty_rewards'), claimRouter=h('claim_router'),
         metadataRenderer=h('metadata_renderer'), MAX_SUPPLY=1000, randomnessConfigured=True,mintPaused=False,
@@ -447,10 +453,10 @@ def _chain(g, chain, path, home, now, range_policy_version=0, fee_intake_version
         g.hex(_obj(_obj(helpers.get(role)).get('bindings')).get('wrapper'),
             path+'.helpers.'+role+'.bindings.wrapper',20,zero=True)
     native = g.obj(chain.get('native_accounting'),path+'.native_accounting')
-    g.check(_equal(native,{'version':2,'asset':ZERO,'decimals':18,'runtime_hash':None,
+    g.check(_equal(native,{'version':3 if fee_intake_version == 1 else 2,'asset':ZERO,'decimals':18,'runtime_hash':None,
         'canonical_schema':canonical_schema,'wrapper_independent':True,
         'eth_weth_principal_boundary':False,'legacy_v1_import':False}),path+'.native_accounting',
-        'native.profile','Review actual ETH currency zero/native V2; do not substitute WETH, legacy ledgers or unsupported principal conversions.','native')
+        'native.profile','Review actual ETH currency zero and the explicit Position/canonical codec; do not substitute WETH, legacy ledgers or unsupported principal conversions.','native')
     ctor = g.obj(chain.get('constructor'),path+'.constructor')
     recipient = g.hex(ctor.get('mint_proceeds_recipient'),path+'.constructor.mint_proceeds_recipient',20)
     g.check(recipient is not None and recipient not in addresses,path+'.constructor.mint_proceeds_recipient',
@@ -466,7 +472,7 @@ def _chain(g, chain, path, home, now, range_policy_version=0, fee_intake_version
     tokens = _tokens(g,chain,path,now,addresses)
     pools = _pools(g,chain,path,tokens,deps,range_policy_version)
     _routes(g,chain,path,tokens,deps,pools,limits,fee_intake_version)
-    _authority(g,chain,path)
+    _authority(g,chain,path,direct=fee_intake_version == 1)
     _canonical(g,chain,path,home)
     _nft(g,chain,path,tokens)
     history = g.obj(chain.get('inventory_history'),path+'.inventory_history')
@@ -474,7 +480,7 @@ def _chain(g, chain, path, home, now, range_policy_version=0, fee_intake_version
         'Reconstruct complete admitted pools, source policies, all three parents\' route histories and both ledgers\' asset lists.','routes')
     _bound_proof(g,history.get('evidence'),path+'.inventory_history.evidence',chain,
         kind='complete_deployment_inventory',exact_block=True)
-    _services(g,chain,path)
+    _services(g,chain,path,local_position=fee_intake_version == 1)
 
 
 def _dependencies(g,chain,path,addresses):
@@ -941,27 +947,35 @@ def _wrapper(g,chain,path,role,tokens,deps):
             ap,'wrapper.proxy','Read and match wrapper ProxyAdmin, implementation, owner and runtime pins; runtime code alone is insufficient.','bindings')
 
 
-def _authority(g,chain,path):
+def _authority(g,chain,path,*,direct=False):
     gov = g.obj(chain.get('governance'),path+'.governance')
     address = g.hex(gov.get('multisig'),path+'.governance.multisig',20)
     signers = [g.hex(v,path+'.governance.signers',20) for v in g.items(gov.get('signers'),path+'.governance.signers',64,1)]
     g.check(len(signers) == len(set(signers)),path+'.governance.signers','authority.duplicate',
         'Review unique multisig signers and threshold.','authorities')
     g.num(gov.get('threshold'),path+'.governance.threshold',1,len(signers))
-    proposers = [g.hex(v,path+'.governance.proposers',20) for v in g.items(gov.get('proposers'),path+'.governance.proposers',64,1)]
-    executors = [g.hex(v,path+'.governance.executors',20,zero=True) for v in g.items(gov.get('executors'),path+'.governance.executors',64,1)]
     keeper = g.hex(gov.get('keeper'),path+'.governance.keeper',20)
     guardian = g.hex(gov.get('guardian'),path+'.governance.guardian',20)
-    g.check(address in proposers and address is not None and len(proposers) == len(set(proposers)) and
-        len(executors) == len(set(executors)),path+'.governance','authority.roles',
-        'Read governance proposer/executor membership and approve each operator role.','authorities')
-    g.check(_equal(gov.get('observed_roles'),{'proposers':proposers,'executors':executors,'cancellers':proposers,
-        'keeper':keeper,'keeper_enabled':True,'guardian':guardian,'guardian_enabled':True,'controller_admin':True}),
+    expected_roles = {'keeper':keeper,'keeper_enabled':True,'guardian':guardian,'guardian_enabled':True}
+    if direct:
+        g.check(not {'proposers','executors','timelock_seconds','controller_admin'} & set(gov),
+            path+'.governance','authority.retired_roles',
+            'Use the direct-governance version2 inventory; do not invent Timelock roles or scheduled operations.','authorities')
+        expected_roles.update(governance=address,pending_governance=ZERO)
+    else:
+        proposers = [g.hex(v,path+'.governance.proposers',20) for v in g.items(gov.get('proposers'),path+'.governance.proposers',64,1)]
+        executors = [g.hex(v,path+'.governance.executors',20,zero=True) for v in g.items(gov.get('executors'),path+'.governance.executors',64,1)]
+        g.check(address in proposers and address is not None and len(proposers) == len(set(proposers)) and
+            len(executors) == len(set(executors)),path+'.governance','authority.roles',
+            'Read historical proposer/executor membership and approve each operator role.','authorities')
+        expected_roles.update(proposers=proposers,executors=executors,cancellers=proposers,controller_admin=True)
+    g.check(_equal(gov.get('observed_roles'),expected_roles),
         path+'.governance.observed_roles','authority.observation',
         'Observe every declared role and full role-grant/revocation history at the pinned block.','authorities')
     if keeper in (address,guardian) or guardian == address:
         g.text(gov.get('overlap_review'),path+'.governance.overlap_review')
-    g.check(type(gov.get('timelock_seconds')) is int and gov.get('timelock_seconds') == 0 and
+    delay_ok = direct or type(gov.get('timelock_seconds')) is int and gov.get('timelock_seconds') == 0
+    g.check(delay_ok and
         gov.get('sealed') is True and gov.get('bootstrap') == ZERO and gov.get('role_history_complete') is True,
         path+'.governance','authority.seal','Confirm immediate governance, revoked bootstrap, sealed modules and complete operator/role history.','authorities')
     review = _bound_proof(g,gov.get('review_evidence'),path+'.governance.review_evidence',chain,
@@ -1109,12 +1123,15 @@ def _nft(g,chain,path,tokens):
     _ledger_assets(g,chain,np+'.royalty_assets',nft.get('royalty_assets'),tokens,17,True)
 
 
-def _services(g,chain,path):
+def _services(g,chain,path,*,local_position=False):
     services = g.obj(chain.get('services'),path+'.services')
     g.keys(services,SERVICES,path+'.services')
     profiles = {'rpc':'eip1898_hash_pinned_debug_trace','pricing':'independent_dual_usd_v2',
         'randomness':'verified_coordinator_two_words','keeper':'native_v2_governed_limits',
         'api':'accounting_v2_routing_v2_pricing_v2_review_v1','metadata':'content_addressed_v2','opensea':'primary_mint_current_nft'}
+    if local_position:
+        profiles.update(keeper='local_position_v3_governed_limits',
+            api='accounting_v3_routing_v2_pricing_v2_review_v1')
     access = _obj(_obj(chain.get('modules')).get('access')).get('address')
     nft = _obj(_obj(chain.get('modules')).get('nft')).get('address')
     for role in SERVICES:
@@ -1200,10 +1217,11 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
         'Use only explicit schema-5 fields; obsolete bridge approvals cannot accompany this release inventory.')
     g.commit = g.hex(g.commit,'release_commit',20,prefix=False)
     now = int(time.time()) if now is None else now
-    for key,value in {'schema_version':5,'accounting_version':2,'routing_version':2,'pricing_version':2,'review_policy_version':1,
+    current_position = type(config.get('fee_intake_version')) is int and config.get('fee_intake_version') == 1
+    for key,value in {'schema_version':5,'accounting_version':3 if current_position else 2,'routing_version':2,'pricing_version':2,'review_policy_version':1,
         'accounting_model':'shared-pools-native-v2','custody_architecture':'governed-v1'}.items():
         g.check(_equal(config.get(key),value),key,'schema.unsupported',
-            'Use explicit current schema 5/native accounting 2/typed routing 2/dual pricing 2/review policy 1; legacy profiles cannot be reinterpreted.')
+            'Use schema5, explicit accounting3 for the current LP-only Position/canonical codec (historical fee0 uses accounting2), routing2, pricing2 and review1; never reinterpret legacy rows.')
     if expected_commit is not None:
         g.check(g.commit == expected_commit,'release_commit','commit.mismatch','Use the exact reviewed release commit.')
     home = g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)
@@ -1255,15 +1273,15 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
         'release_commit':g.commit,'deployment_authorized':False,'issues':g.issues,
         'mint_integration_version':mint_version,
         'fee_intake_version':fee_version,
-        'approval_scope':'current_native_v2_lp_only_mint_integration_v1' if mint_version == 1 and mint_profile_valid and fee_version == 1 and fee_profile_valid else 'legacy_manifest_consistency_only',
-        'production_qualification_supported':mint_version == 1 and mint_profile_valid and fee_version == 1 and fee_profile_valid,
+        'approval_scope':'current_native_v3_lp_only_mint_integration_v1' if mint_version == 1 and mint_profile_valid and current_position and config.get('accounting_version') == 3 else 'legacy_manifest_consistency_only',
+        'production_qualification_supported':mint_version == 1 and mint_profile_valid and current_position and type(config.get('accounting_version')) is int and config.get('accounting_version') == 3,
         'primary_mint_implementation':MINT_IMPLEMENTATION_PROFILE,
         'opensea_primary_mint_supported':False,
         'blockers':groups,'migration_enabled':False,'protocol_bridge_enabled':False,
         'local_pool_move_supported':True,'source_chain_custody_handoff_supported':True,
         'limitations':['Offline checks cannot authenticate supplied evidence or authorize deployment, sealing, signing, or spending.',
             'Historical mint/fee-intake profile zero may be internally consistent but is not current production qualification; current release runners require explicit mint and fee-intake profile one.',
-            'Fee-intake profile one removes creator inboxes and uses the LP-only V3 canonical schema; old inbox-capable snapshots keep their original schema and are not reinterpreted.',
+            'Current fee1/accounting3 uses eight-word local Positions, direct governance version2 and LP-only V4 canonical schema. Earlier accounting1/2 rows, statuses and snapshots retain their original profile and cannot qualify this release.',
             'Current source supports paid Vault direct mint only. OpenSea primary-drop integration is not implemented, regardless of supplied staged proof flags.',
             'migration_enabled is the legacy protocol-bridge flag. Supported local pool moves and source-chain custody handoffs are code capabilities, not transaction authorization.',
             'Local pool moves require the same ordered actual currencies. Source-chain custody supports normal all-ZZZ or explicit raw exit to a reviewed recipient, with no forced return and no remote NFT/reward ledger.',

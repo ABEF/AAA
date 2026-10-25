@@ -2,7 +2,9 @@
 
 ## Current role and custody boundary - 2026-10-25
 
-Governance multisig signers authorize exact zero-delay controller operations.
+The selected governance multisig calls each target module directly. The Access
+controller authenticates that wallet through `canConfigure(caller)`; it does not
+schedule or forward the transaction.
 The multisig can approve assets/pools/routes/feeds, strategy and keeper policies,
 roles, and contribution/conversion/maintenance caps up to10%. It can pause and
 unpause, authorize same-pair pool moves, and separately approve paused external
@@ -37,32 +39,41 @@ delayed versions; they are not verification of this change.
 
 ## Authorization without a waiting period
 
-`ZZZAccessController` keeps OpenZeppelin's operation hashing, proposer/executor/
-canceller roles, exact calldata, predecessor ordering and replay protection.
-Its inherited Solidity type is named `TimelockController`, but PoPL requires
-**zero** constructor delay, **zero** per-operation delay and rejects every
-`updateDelay` call. Neither single nor batch scheduling can introduce a wait.
+The current `ZZZAccessController.GOVERNANCE_VERSION()` is **2**. Its constructor
+takes `initialGovernance`, `initialKeeper` and `initialGuardian`, each a nonzero
+address. It has no Timelock inheritance, proposer/executor/canceller roles,
+operation queue or generic transaction executor. Submit reviewed target/value/
+calldata through the governance wallet's own signature and nonce process.
+If using a Safe, the Safe is the target call's sender; a Safe owner calling from
+their personal account does not inherit that authority. Target failure reverts
+that transaction. A wallet proposal alone proves neither submission nor execution.
 
-An authorized proposer registers the exact operation with `schedule(..., 0)` or
-`scheduleBatch(..., 0)`. An authorized executor can execute it immediately, in the
-same block. A multisig can batch registration and execution in one transaction.
-Registration is an authorization record, not a cooling-off period. An unfinished
-predecessor still prevents execution; elapsed time cannot substitute for completion.
+Before sealing, configuration belongs to bootstrap. After sealing, the current
+`governance()` wallet configures modules directly while canonical state is
+operating and preparation is inactive. Bootstrap is erased; fixed module bindings
+cannot be replaced. The controller also keeps the separate guardian/keeper and
+canonical lifecycle controls.
 
-The local template uses the governance multisig as proposer and an open executor.
-Anyone may submit the **unchanged approved operation** in that configuration;
-they cannot choose new calldata or receive governance permissions. A cancelled,
-unknown, changed or completed operation cannot execute. Target failure rolls back
-its effects; a failed operation remains available for cancellation or retry.
+### Rotate the governance wallet
 
-After sealing, governed modules still accept configuration only from the
-controller, not directly from a multisig member, keeper, guardian or NFT holder.
-Bootstrap is erased and fixed module bindings cannot be replaced.
+1. Inspect `governance()`, `pendingGovernance()`, lifecycle and the proposed wallet's
+   actual address, chain, signer/threshold configuration and recovery controls.
+2. The current wallet calls `Access.proposeGovernance(candidate)`. There is no
+   delay. Passing zero cancels a pending proposal; the controller and current
+   governance address cannot be proposed.
+3. The proposed wallet itself calls `Access.acceptGovernance()`. Confirm the
+   `GovernanceAccepted` event, new `governance()` and zero `pendingGovernance()`.
+   Proposing an address does not remove the current wallet's authority.
+
+Both steps require operating canonical state and no active preparation; freeze or
+retirement cannot be bypassed by rotation. This does **not** rotate keepers,
+guardians, bootstrap or the immutable mint recipient. Rotate those separately
+where supported. Lost governance keys have no controller-admin rescue path.
 
 | Action | Permission and timing |
 | --- | --- |
 | Select an existing enabled activation route | The transaction/quote selects it; no new governance action is needed. |
-| Add/disable activation assets, routes or supported pools | Exact governance operation; no waiting period. Token, factory, code, price and venue checks still apply. |
+| Enable/disable ETH or the fixed ZZZ, rotate approved routes or select a supported pool | Direct governance call; no waiting period. No third contribution currency or ZZZ retargeting. Token, factory, code, price and venue checks still apply. |
 | Change feeds, wrapper policies, operators or strategy parameters | Exact governance operation; no waiting period. Existing parameter and binding restrictions remain. |
 | Global pause | Guardian or governance, immediately. Only governance can unpause. |
 | Stop a pool / pause only NFT minting | Governance `PoolRegistry.disablePool` clears flags without dependency reads; `NFT.setMintPaused` controls new mints. No waiting period or new role. Reopening a pool uses full validation; resuming minting does not override global/lifecycle controls. |
@@ -79,7 +90,7 @@ algorithms, pair conversion or cross-chain canonical migration capabilities.
 ## What is not a governance timelock
 
 Keeper rebalance cooldowns, transaction deadlines, oracle freshness and sequencer
-recovery checks, confirmations and verified cross-chain finality serve execution
+recovery checks and confirmation/finality policies serve execution
 or accounting safety. They remain. Approval cannot skip missing funding, pause/
 preparation/frozen-state checks, ownership checks, approved-route checks or the
 captured execution limits: defaults2% contribution/1% conversion/3% maintenance,
@@ -89,9 +100,8 @@ raw minima instead of a fabricated USD guarantee.
 
 The current launch scope uses same-chain pool moves and source-chain external
 custody. The recipient handles external token migration or bridging; integrated
-bridges and remote NFT/reward-ledger transport are deferred optional scope. The
-remaining remote-proof interface does not supply a provider, verifier or remote
-ledger. An approved plan does not guarantee token, venue or custodian availability.
+bridges and remote NFT/reward-ledger transport are not implemented. No remote-proof
+interface remains. An approved plan does not guarantee token, venue or custodian availability.
 
 ## Accepted trust boundary and release evidence
 
@@ -102,13 +112,16 @@ not make those choices safe. Multisig signer security, transaction simulation,
 independent dependency/replacement review and monitoring remain necessary.
 The user accepts different reviewed successor code; no identical-code rule is added.
 
-The manifest retains legacy keys for compatibility: `timelock_seconds: 0`,
-`delay_fixed: true`, `post_seal_routes_timelocked: false`,
-`migration_delay_seconds: 0`. Its authority evidence must explicitly review
-immediate operations/migration and accept the absence of notice. Existing delayed
-deployment manifests cannot qualify this release. No production authority address
-or release approval is supplied by this decision.
+The current accounting3 release inventory binds `GOVERNANCE_VERSION=2`, the actual
+governance wallet, zero pending governance, operator grants, reviewed multisig
+signers/threshold and complete history. It has no Timelock role/delay fields.
+Historical manifests retain their original interpretation only through explicit
+historical inspection; they do not qualify the current release. Authority review
+must accept immediate operations and custody trust. No production authority
+address or release approval is supplied by this decision.
 
-See [scoped verification](../reports/immediate-governance/VERIFICATION.md), the
+The [earlier zero-delay review](../reports/immediate-governance/VERIFICATION.md)
+describes its original scheduled-controller source, not this direct-governance
+implementation. See the
 [central security task](../TODO.md#task-security-governance) and the
 [release approval record](RELEASE_CHECKLIST.md).

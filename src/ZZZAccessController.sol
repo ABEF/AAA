@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {TimelockController} from "@openzeppelin/contracts/governance/TimelockController.sol";
 import {IZZZBound, IZZZAccess, IZZZVault, IZZZNFT} from "./interfaces/IZZZ.sol";
 import {Ids} from "./libraries/ZZZTypes.sol";
 import {ZZZCanonicalHandoff} from "./ZZZCanonicalHandoff.sol";
@@ -16,10 +15,13 @@ interface IContributionIdentity { function zzz() external view returns (address)
 interface IContributionRegistry { function activationAssets() external view returns (IContributionIdentity); }
 interface IExitIdentity { function currentZZZ() external view returns (address); }
 
-/// @notice Immediate role-authorized governance; module bindings are fixed at seal().
-/// OpenZeppelin's operation hashes, roles, replay and predecessor checks remain,
-/// but scheduling has no waiting period. This controller cannot act as the Vault.
-contract ZZZAccessController is TimelockController {
+/// @notice The selected governance wallet calls configuration directly. Its own
+/// signature/nonce policy authorizes operations; there is no timelock or generic
+/// transaction executor here. Module bindings are fixed at seal().
+contract ZZZAccessController {
+    uint256 public constant GOVERNANCE_VERSION = 2;
+    address public governance;
+    address public pendingGovernance;
     mapping(bytes32 => address) public module;
     mapping(address => bool) public keepers;
     mapping(address => bool) public guardians;
@@ -51,43 +53,43 @@ contract ZZZAccessController is TimelockController {
     event PreparationStarted(bytes32 indexed noticeHash, uint256 indexed nonce,
         uint256 indexed destinationChain, address successorController, bytes32 deploymentCommitment, bytes32 reviewHash);
     event PreparationCancelled(bytes32 indexed noticeHash);
+    event GovernanceProposed(address indexed governance, address indexed pending);
+    event GovernanceAccepted(address indexed previous, address indexed current);
     error Unauthorized();
     error InvalidConfiguration();
 
-    constructor(uint256 delay, address[] memory proposers, address[] memory executors, address initialKeeper,
-        address initialGuardian) TimelockController(delay, proposers, executors, address(0)) {
-        if (delay != 0 || proposers.length == 0 || executors.length == 0 ||
+    constructor(address initialGovernance, address initialKeeper, address initialGuardian) {
+        if (initialGovernance == address(0) || initialGovernance == address(this) ||
             initialKeeper == address(0) || initialGuardian == address(0)) revert InvalidConfiguration();
-        for (uint256 i; i < proposers.length; ++i) {
-            if (proposers[i] == address(0)) revert InvalidConfiguration();
-        }
+        governance = initialGovernance;
         bootstrap = msg.sender;
         royaltyFactory = address(new ZZZRoyaltyFactory());
         activationAssetsFactory = address(new ZZZActivationAssetsFactory());
         keepers[initialKeeper] = true;
         guardians[initialGuardian] = true;
     }
-    /// @notice Exact authorized operations are ready immediately. Retain the
-    /// audited scheduling/execution primitives without permitting delayed calls.
-    function schedule(address target, uint256 value, bytes calldata data,
-        bytes32 predecessor, bytes32 salt, uint256 delay) public override {
-        // OZ reserves timestamp 1 for completed operations, and 0 for unset.
-        if (delay != 0 || block.timestamp <= 1) revert InvalidConfiguration();
-        super.schedule(target, value, data, predecessor, salt, 0);
-    }
-    function scheduleBatch(address[] calldata targets, uint256[] calldata values,
-        bytes[] calldata payloads, bytes32 predecessor, bytes32 salt, uint256 delay) public override {
-        if (delay != 0 || block.timestamp <= 1) revert InvalidConfiguration();
-        super.scheduleBatch(targets, values, payloads, predecessor, salt, 0);
-    }
     function canConfigure(address account) public view returns (bool) {
-        return !preparationActive && ((canonicalState == 0 && account == address(this)) ||
+        return !preparationActive && ((isSealed && canonicalState == 0 && account == governance) ||
             (!isSealed && account == bootstrap));
+    }
+    /// @notice No delay. The current wallet proposes; the new wallet must accept
+    /// to prevent an address typo silently destroying governance. Zero cancels.
+    function proposeGovernance(address candidate) external {
+        if (msg.sender != governance || canonicalState != 0 || preparationActive) revert Unauthorized();
+        if (candidate == address(this) || candidate == governance) revert InvalidConfiguration();
+        pendingGovernance = candidate;
+        emit GovernanceProposed(governance,candidate);
+    }
+    function acceptGovernance() external {
+        if (msg.sender != pendingGovernance || msg.sender == address(0) ||
+            canonicalState != 0 || preparationActive) revert Unauthorized();
+        address previous=governance;governance=msg.sender;pendingGovernance=address(0);
+        emit GovernanceAccepted(previous,msg.sender);
     }
     function canonicalHandoff() public view returns (address) { return module[Ids.CANONICAL]; }
     /// @dev One fail-closed authorization read keeps the immutable modules small.
     function moduleAuthorized(bytes32 id, address caller) external view returns (bool) {
-        return isSealed && canonicalState == 0 && caller == module[id];
+        return isSealed && canonicalState == 0 && caller != address(0) && caller == module[id];
     }
     function keeperAuthorized(address caller) external view returns (bool) {
         return isSealed && canonicalState == 0 && keepers[caller];
@@ -105,9 +107,9 @@ contract ZZZAccessController is TimelockController {
     /// @notice Announce a cancellable preparation window through the existing
     /// controller, without a waiting period. The source remains the sole canonical authority.
     function startPreparation(PreparationNotice calldata notice) external {
-        if (msg.sender != address(this) || !isSealed || preparationActive || canonicalState != 0) revert Unauthorized();
+        if (msg.sender != governance || !isSealed || preparationActive || canonicalState != 0) revert Unauthorized();
         if (IZZZVault(module[Ids.VAULT]).canonicalChainId() != block.chainid ||
-            notice.destinationChain == 0 || notice.successorController == address(0) ||
+            notice.destinationChain != block.chainid || notice.successorController == address(0) ||
             (notice.destinationChain == block.chainid && notice.successorController == address(this)) ||
             notice.deploymentCommitment == bytes32(0) || notice.reviewHash == bytes32(0)) revert InvalidConfiguration();
         preparationReadyDestination = false;
@@ -135,14 +137,16 @@ contract ZZZAccessController is TimelockController {
     /// @notice No custody or rights leave during preparation, so cancellation
     /// needs no remote proof. Exact notice binding prevents cancelling a later notice.
     function cancelPreparation(bytes32 noticeHash) external {
-        if (msg.sender != address(this) || !preparationActive || canonicalState != 0) revert Unauthorized();
+        if (msg.sender != governance || !preparationActive || canonicalState != 0) revert Unauthorized();
         if (noticeHash != preparationHash) revert InvalidConfiguration();
         preparationActive = false;
         emit PreparationCancelled(noticeHash);
     }
     function bind(bytes32 id, address implementation) external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
-        if (id == Ids.BRIDGE || id == Ids.RECEIVER || id == Ids.ROUTES || id == Ids.TRANSPORT) revert InvalidConfiguration();
+        bytes32[16] memory supported=_moduleIds();bool known;
+        for(uint256 i;i<supported.length;++i)if(id==supported[i]){known=true;break;}
+        if(!known)revert InvalidConfiguration();
         if (implementation.code.length == 0 || module[id] != address(0) ||
             address(IZZZBound(implementation).access()) != address(this)) revert InvalidConfiguration();
         module[id] = implementation;
@@ -150,10 +154,7 @@ contract ZZZAccessController is TimelockController {
     }
     function seal() external {
         if (msg.sender != bootstrap || isSealed) revert Unauthorized();
-        bytes32[16] memory required = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP,
-            Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION,
-            Ids.ORACLE, Ids.POOLS, Ids.CANONICAL,
-            Ids.NFT_CANONICAL, Ids.VAULT_CANONICAL, Ids.FEES_CANONICAL];
+        bytes32[16] memory required = _moduleIds();
         for (uint256 i; i < required.length; ++i) {
             if (module[required[i]].code.length == 0) revert InvalidConfiguration();
             for (uint256 j; j < i; ++j) {
@@ -189,13 +190,14 @@ contract ZZZAccessController is TimelockController {
     function setPaused(bool state) external {
         // Pause control remains available to drain incoming custody and park it.
         // Unpausing never bypasses the separate preparation guards.
-        if (msg.sender != address(this) && !(!isSealed && msg.sender == bootstrap) &&
+        if (msg.sender != governance && !(!isSealed && msg.sender == bootstrap) &&
             !(state && guardians[msg.sender])) revert Unauthorized();
         paused = state;
         emit PauseChanged(state);
     }
-    /// @notice Zero governance delay is fixed for this deployment's lifetime.
-    function updateDelay(uint256) external pure override {
-        revert InvalidConfiguration();
+    function _moduleIds() private pure returns(bytes32[16] memory) {
+        return [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,
+            Ids.FEES,Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,
+            Ids.ORACLE,Ids.POOLS,Ids.CANONICAL,Ids.NFT_CANONICAL,Ids.VAULT_CANONICAL,Ids.FEES_CANONICAL];
     }
 }

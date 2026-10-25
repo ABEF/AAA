@@ -32,8 +32,7 @@ contract FixedZZZBindingTest is Test {
 
     function setUp() public {
         vm.warp(1_000_000);
-        address[] memory roles=new address[](1);roles[0]=address(this);
-        access=new ZZZAccessController(0,roles,roles,address(this),address(0x600D));
+        access=new ZZZAccessController(address(this), address(this), address(0x600D));
         token=new MockToken(18);other=new MockToken(18);
         pools=new ZZZPoolRegistry(address(access));oracle=new ZZZOracle(address(access),address(0));
         rewards=new ZZZRewards(address(access));migration=new ZZZMigration(address(access));
@@ -90,10 +89,10 @@ contract FixedZZZBindingTest is Test {
         (bool bootstrapChanged,)=address(buyback).call(payload);
         assertFalse(bootstrapChanged);assertEq(buyback.zzz(),address(token));
         _configureExit();_fillOtherModules();access.seal();
-        vm.prank(address(access));(bool governanceChanged,)=address(buyback).call(payload);
+        vm.prank(access.governance());(bool governanceChanged,)=address(buyback).call(payload);
         assertFalse(governanceChanged);assertEq(buyback.zzz(),address(token));
         assertEq(migration.currentZZZ(),address(token));assertEq(pools.activationAssets().zzz(),address(token));
         address replacement=address(new BoundDummy(address(access)));
-        vm.prank(address(access));vm.expectRevert();access.bind(Ids.BUYBACK,replacement);
+        vm.prank(access.governance());vm.expectRevert();access.bind(Ids.BUYBACK,replacement);
     }
 }

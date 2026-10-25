@@ -20,11 +20,12 @@ historical/default scope. Actual routes, services and independent audit remain o
 
 | Category | Requirement | Current boundary |
 | --- | --- | --- |
+| Governance wallet | Current `GOVERNANCE_VERSION=2` wallet calls target modules directly, with no Timelock queue or generic executor. | `proposeGovernance(candidate)` by the current wallet, then `acceptGovernance()` by the candidate, has no delay. Zero proposal cancels. Operating canonical state and inactive preparation are mandatory. Keeper/guardian grants and the immutable mint recipient do not rotate with governance. Bootstrap is erased at seal; lost governance has no hidden admin rescue. |
 | Routine operations | Change keepers/guardians, pause/reopen activity, tune supported LP ranges, explicit price orientation, approved two-width keeper selection, triggers, cooldowns and operational limits within reviewed bounds. | Role, pause and pool configuration controls exist. `Buyback.setOperatingTradeUSD` sets a USD18 execution ceiling from zero through immutable `maxTradeUSD`; zero stops buybacks before prices or reserves are queried. |
 | Assets and conversions | Enable/disable/re-enable native ETH and the fixed pre-seal ZZZ input; rotate reviewed routes when liquidity changes. Marketplace royalty admission is separate. | No third contribution currency or post-seal ZZZ replacement is supported. Bind matching contribution/normal-exit ZZZ identities before sealing; issuer migration uses custody exit and a fresh reviewed deployment. Entry and LP/royalty converters retain pinned append-only typed v3/v4 route controls. Native v4 output needs no wrapper; v3 converters keep their own wrapper checks. Real qualification remains open; routes do not add a new input identity or algorithm. |
 | Pools and pricing | Change the sole contribution pool, reviewed two-source USD policies and supported strategy settings through existing immediate governance. | `Oracle.setDualFeed` appends a policy with two distinct source/independence identities, runtime pins, per-source ages and 0-500 bps disagreement. Both sources must pass; old `setFeed` is not a current callable function. No missing-source/spot/peg fallback. Entry freezes prices and operating limits before transfers/conversion; new settings cannot replace that captured basis. Live source independence/proxy/depeg/gas qualification remains open. |
 | Randomness operation | Tune future callback gas and confirmations within contract and actual provider bounds; preserve pending requests and ordered draws. | After initial configuration, `NFT.setRandomnessRequestSettings` changes only future confirmations (3-200) and callback gas (200,000-10,000,000). Coordinator, key/gas lane, subscription and payment mode stay fixed. It cannot repair or reroll an old request. |
-| Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
+| Services | Rotate qualified RPCs, hosting and compatible API/keeper settings without resetting transaction journals or changing deployment identity. | Current accounting3/fee1 uses eight-word local Positions and LP-only V4 canonical schema, with distinct state paths. Historical accounting1/2 rows/statuses/journals retain their original profile; changing a version field is not migration. Off-chain configuration does not alter sealed bytecode. Keep the shared signer Anvil-only and public `DEPLOYMENT` null until separately authorized and qualified. |
 | Economic rights and safety | Preserve supply/rarity inventory, revealed traits, ownership, earned rewards, backing, the 80/10/5/5 allocation and approved execution-loss limits. | No reset, confiscation, arbitrary sweep, generic executor or unbounded upgrade is introduced. A reviewed replacement uses the explicit handoff and preserves rights; it is not a way to erase them. |
 
 Adding a route or feed is security-sensitive even when it is configurable.
@@ -67,7 +68,7 @@ work; raw funded claims and explicit raw custody paths retain their own rules.
 
 ## Native implementation versus configurable policy
 
-The native V2 candidate implements actual ETH custody, fee indices, principal
+The current native candidate implements actual ETH custody, fee indices, principal
 return and same-chain canonical funding. Its schema rejects old V1 handoff codecs;
 existing WETH deployments/journals are not upgraded by changing configuration.
 Record exact version 2 Vault/runtime pins in fresh API/keeper profiles and retain
@@ -110,7 +111,7 @@ After the campaign:
 2. Use the approved paused custody exit to close attributed LP principal if the
    venue and assets remain usable. Normal all-ZZZ and explicit raw exits have
    different guarantees; a failed normal exit never selects raw mode automatically.
-   The native-accounting V2 candidate sends actual ETH/ZZZ in a raw exit without
+   The current accounting3 candidate sends actual ETH/ZZZ in a raw exit without
    calling WETH. Core/token runtime bindings, usable settlement and a recipient
    that accepts ETH remain required; wrapper independence is not a guarantee
    against every external failure. See [native scope](NATIVE_ETH_ARCHITECTURE.md).

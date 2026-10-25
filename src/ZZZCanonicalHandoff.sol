@@ -27,7 +27,7 @@ interface ICanonicalHelpers {
 contract ZZZCanonicalHandoff is ReentrancyGuard {
     uint256 public constant SLOTS = 6;
     uint256 public constant MAX_ROWS = 8;
-    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3");
+    bytes32 public constant SCHEMA = keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4");
     ICanonicalController public immutable access;
     // 0 idle, 1 frozen/exporting, 2 imported, 3 retired, 4 importing,
     // 5 active replacement, 6 aborting, 7 cancelled replacement, 8 captured/settling.
@@ -68,7 +68,7 @@ contract ZZZCanonicalHandoff is ReentrancyGuard {
 
     constructor(address controller) { access = ICanonicalController(controller); }
     modifier governance() {
-        if (msg.sender != address(access) || !access.isSealed()) revert Unauthorized();
+        if (msg.sender != access.governance() || !access.isSealed()) revert Unauthorized();
         _;
     }
     function moduleAt(uint8 slot) public view returns (address) {

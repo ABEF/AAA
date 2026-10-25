@@ -1,0 +1,7 @@
+error: unexpected argument '--jso\(\)$' found
+
+  tip: a similar argument exists: '--json'
+
+Usage: forge.exe test --root <PATH> --use <SOLC_VERSION> --match-contract <REGEX> --match-test <REGEX> --json [PATH]
+
+For more information, try '--help'.

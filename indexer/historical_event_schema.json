@@ -25,6 +25,38 @@
     "name": "Received",
     "signature": "Received(bytes32,bytes32,uint256,uint8)"
   },
+  "0x084db70deeccf6fa32645575c7b3e115fcf775e58be7aaa0cd24cf7605fc74d8": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previousPolicy",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "activePolicy",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperPolicyActivated",
+    "signature": "WrapperPolicyActivated(bytes32,bytes32)"
+  },
+  "0x0a01aa3720ec96a52c0ada9bee0d361401583226065e4b1ce5c9cb601902c1b3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "lpTokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ImportFinalized",
+    "signature": "ImportFinalized(uint256,uint256)"
+  },
   "0x1cf892622deaf3baa98c77c1a49ef92ccaef9f6a8db08af1183119a38be2bca8": {
     "fields": [
       {
@@ -40,6 +72,37 @@
     ],
     "name": "OutboundEnabled",
     "signature": "OutboundEnabled(bytes32,bool)"
+  },
+  "0x1d2e285e80bbc4843999840aeb2fc3209e7ae9b3444c62861aa62f14a418b6d3": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "canonicalToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "individual",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "collective",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "canonical",
+        "type": "bool"
+      }
+    ],
+    "name": "RemoteAccountingImported",
+    "signature": "RemoteAccountingImported(uint256,address,uint256,uint256,bool)"
   },
   "0x1f9a280b429e275456caba36ae05580d4846000396d10ea85b8a4f756f22df8a": {
     "fields": [
@@ -93,6 +156,27 @@
     "name": "Scheduled",
     "signature": "Scheduled(bytes32,uint256,bytes32,uint64)"
   },
+  "0x2e125cc8a61920c78e25125bcdf5c78e92c591e249c0de7b6cad501625f7ea17": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "destinationVault",
+        "type": "address"
+      }
+    ],
+    "name": "LocationConfirmed",
+    "signature": "LocationConfirmed(uint256,uint256,address)"
+  },
   "0x35f2c394d2dc25fafb1b477d5744e3903afd28415142c68afc549eca0193181c": {
     "fields": [
       {
@@ -135,6 +219,69 @@
     "name": "LocationRecorded",
     "signature": "LocationRecorded(uint256,uint64,uint256,address)"
   },
+  "0x4f9da6a7e022cf8b647c0e7081de9755744c61d6d1bdc467b0b71e4319eaf6e6": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "ExternalRewardsFunded",
+    "signature": "ExternalRewardsFunded(uint256,address,uint256)"
+  },
+  "0x573ecbd82bb44aa34b4cfe9a63c5beccf84cfbdbe01028c886f25d5c3183e725": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "NativeRewardWrapped",
+    "signature": "NativeRewardWrapped(uint256,address,uint256)"
+  },
+  "0x611a3c9f6297a5b31704c72866974accfdcb169fe090b94913217b0036c2eb8b": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "homeChain",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "homeVault",
+        "type": "address"
+      }
+    ],
+    "name": "ImportPending",
+    "signature": "ImportPending(uint256,uint256,address)"
+  },
   "0x634cfec248f825718064d5e1b53bdb5adac343bc794418e90e8c5b4f6142926c": {
     "fields": [
       {
@@ -171,6 +318,32 @@
     ],
     "name": "RouteRegistered",
     "signature": "RouteRegistered(bytes32,uint256,uint256)"
+  },
+  "0x6c14af358924863cae69834eaf828a9888cedddd9b2cf5c37d3b418ab020c20d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "bucket",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "destinationChain",
+        "type": "uint256"
+      }
+    ],
+    "name": "CustodyApproved",
+    "signature": "CustodyApproved(bytes32,uint256,address,uint256)"
   },
   "0x7ba23be9189f8ae1184a411b958e9993e217a63818ceefdb0fccfbc4456b5edf": {
     "fields": [
@@ -223,6 +396,43 @@
     ],
     "name": "TransportReceived",
     "signature": "TransportReceived(bytes32,bytes32,uint256,bytes32)"
+  },
+  "0x94ce596172b9e09c39761fa5c18994d4758b1d99845c10da3ad20b86b7b8a8af": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "canonicalToken",
+        "type": "address"
+      }
+    ],
+    "name": "RemoteAssetBound",
+    "signature": "RemoteAssetBound(uint256,address,address)"
+  },
+  "0x988ee065d38ad534405e167016c5cbd6bbe0811ae4e52dcce374fde02e86f999": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "commitment",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CustodyRemoteVerified",
+    "signature": "CustodyRemoteVerified(bytes32,bytes32)"
   },
   "0xa8456eb5cd823feca8f5635ef5c39ef504d80aba38683292cc84b8913924a8bb": {
     "fields": [
@@ -318,6 +528,27 @@
     "name": "Cancelled",
     "signature": "Cancelled(bytes32)"
   },
+  "0xbec38d5c557a9d03c3351219f69425cac909678d25a05e382f9bde53719a0b59": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "maxAge",
+        "type": "uint32"
+      }
+    ],
+    "name": "FeedConfigured",
+    "signature": "FeedConfigured(address,address,uint32)"
+  },
   "0xcb2b99b8db573d53242a46f147b62926d703660f3d9bfcd6ddefe0d70c87d950": {
     "fields": [
       {
@@ -344,6 +575,105 @@
     "name": "TransportSent",
     "signature": "TransportSent(bytes32,bytes32,uint256,bytes32)"
   },
+  "0xcedec81f3f012d2915063601f70397807b26384a162e654fd13575a2aa1806ab": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previous",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "current",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "reviewHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "BuybackTargetChanged",
+    "signature": "BuybackTargetChanged(address,address,bytes32)"
+  },
+  "0xd99b076a34941b2d36ccab51cfc066547e4fcb8750f0451a2c58806038b56c1d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "token0",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "token1",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "wrappedNative",
+        "type": "address"
+      }
+    ],
+    "name": "RewardReceiverCreated",
+    "signature": "RewardReceiverCreated(uint256,address,address,address,address)"
+  },
+  "0xe045ba3da819552536723fc6e859bd077201e06022bfee8e17aa628f32894b84": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "transportId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "RemoteRewardsSent",
+    "signature": "RemoteRewardsSent(uint256,address,uint256,bytes32)"
+  },
+  "0xe604aa747eea4821f00cd60f5f79481faa41c309238fe760e998e6983fe1c50d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "bucketId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "RewardPaymentProcessed",
+    "signature": "RewardPaymentProcessed(uint256,uint256,uint256)"
+  },
   "0xf04377ec608a4bbb0d427fc9e7329fd3350e839e65ae8548532c7fe9fae4dd1b": {
     "fields": [
       {
@@ -359,6 +689,42 @@
     ],
     "name": "RouteTransportBound",
     "signature": "RouteTransportBound(bytes32,bytes32)"
+  },
+  "0xfa52367867acff4a12c8d11f2c1e1eee45f2d0be3b36d754b7a70241df84bace": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "policyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "implementation",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "adminOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "adminCodeHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "implementationCodeHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "WrapperPolicyApproved",
+    "signature": "WrapperPolicyApproved(bytes32,address,address,address,bytes32,bytes32)"
   },
   "0xfc4f5fcc8d06289fc47194fce7eb3a1a1b253724834a7f6eb882419f4679011d": {
     "fields": [

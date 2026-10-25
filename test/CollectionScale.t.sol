@@ -264,7 +264,7 @@ contract CollectionScaleTest is PooledVaultFixture {
 
     function _cool(address owner) private {
         vm.cool(address(vault.migrationBudget()));
-        (address feed,,,) = oracle.feeds(address(t0));
+        address feed = oracle.policy(oracle.activePolicy(address(t0))).primary.source;
         vm.cool(address(ac)); vm.cool(address(vault)); vm.cool(address(membership));
         vm.cool(address(rewards)); vm.cool(address(fees)); vm.cool(address(compounder)); vm.cool(address(oracle));
         vm.cool(address(pools)); vm.cool(address(policy)); vm.cool(address(venue)); vm.cool(address(vrf));

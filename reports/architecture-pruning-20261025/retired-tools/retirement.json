@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "original": "scripts/verify-robinhood-integration.py",
+      "archive": "reports/architecture-pruning-20261025/retired-tools/verify-robinhood-integration.py.txt",
+      "sha256": "f9d2f6068c21ee1c9ceb3a82a2f8a091d6150df9cba7bd60e13b5c28777acf4e",
+      "reason": "Pinned former Pons/creator-market inspection; no current runtime/test caller. Current market uses verify-hookless-pool.py. Removed from active scripts; original source/evidence preserved."
+    },
+    {
+      "original": "tests_python/test_models.py",
+      "archive": "reports/architecture-pruning-20261025/retired-tools/test_models.py.txt",
+      "sha256": "93b8322d0e027130359654ded8f0bddfb619654f9465e6530597c7562aa91532",
+      "removed_methods": [
+        "test_bridge_message_nonce_domain",
+        "test_migration_no_timeout_exit",
+        "test_split_remote_and_local_conservation"
+      ],
+      "reason": "Toy bridge nonce/domain, remote-only transition graph and remote allocation arithmetic did not execute production behavior and describe removed functionality. Other accounting/range specifications retained; no replacement fake passes."
+    }
+  ]
+}

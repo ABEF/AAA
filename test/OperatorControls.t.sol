@@ -27,16 +27,13 @@ contract OperatorControlsTest is Test, IERC721Receiver {
     MockVRF vrf;
     MockToken t0; MockToken t1; MockFeed feed;
     PoolConfig config; bytes32 pool;
-    uint256 nonce;
     bool pauseOnReceive;
-    bytes32 callbackSalt;
     address constant GUARDIAN = address(0x600D);
     address constant KEEPER = address(0xBEEF);
 
     function setUp() public {
         vm.warp(1000000);
-        address[] memory roles = new address[](1); roles[0] = address(this);
-        ac = new ZZZAccessController(0, roles, roles, KEEPER, GUARDIAN);
+        ac = new ZZZAccessController(address(this), KEEPER, GUARDIAN);
         registry = new ZZZPoolRegistry(address(ac)); nft = new ZZZNFT(address(ac), "");
         oracle = new ZZZOracle(address(ac), address(0)); vrf = new MockVRF();
         nft.configureRandomness(address(vrf), bytes32(uint256(1)), 1, 3, 500000, false);
@@ -46,10 +43,8 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         oracle.setTestFeed(address(t0), address(feed), 3600); oracle.setTestFeed(address(t1), address(feed), 3600);
         ac.bind(Ids.NFT,address(nft)); ac.bind(Ids.POOLS,address(registry)); ac.bind(Ids.ORACLE,address(oracle));
         ac.bind(Ids.REWARDS,address(new RangeRewardAdmission(address(ac))));
-        bytes32[12] memory ids = [Ids.VAULT,Ids.LIQUIDITY,Ids.MEMBERSHIP,Ids.FEES,Ids.STRATEGY,
-            Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ROUTES,Ids.TRANSPORT];
+        bytes32[8] memory ids = [Ids.VAULT, Ids.LIQUIDITY, Ids.MEMBERSHIP, Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION];
         for(uint256 i; i<ids.length; ++i) {
-            if (ids[i] == Ids.BRIDGE || ids[i] == Ids.RECEIVER || ids[i] == Ids.ROUTES || ids[i] == Ids.TRANSPORT) continue;
             ac.bind(ids[i],address(new BoundDummy(address(ac))));
         }
         config.key=PoolKey(address(t0),address(t1),3000,60,address(0));
@@ -61,8 +56,8 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         CanonicalFixture.bind(address(ac)); ac.seal();
     }
     function _gov(address target, bytes memory data) private {
-        bytes32 salt=bytes32(++nonce);ac.schedule(target,0,data,bytes32(0),salt,0);
-        ac.execute(target,0,data,bytes32(0),salt);
+        (bool ok, bytes memory result) = target.call(data);
+        if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
     }
     function testPoolStopWorksWhenPriceTokenAndVenueCallsFail() public {
         vm.mockCallRevert(address(oracle),bytes(""),bytes("price unavailable"));
@@ -71,11 +66,9 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         _gov(address(registry),abi.encodeCall(registry.disablePool,(pool,true,true)));
         PoolConfig memory c=registry.get(pool);assertFalse(c.depositsEnabled);assertFalse(c.operationsEnabled);
         c.depositsEnabled=true;c.operationsEnabled=true;
-        bytes32 salt=bytes32(++nonce);bytes memory data=abi.encodeCall(registry.configure,(c));
-        ac.schedule(address(registry),0,data,bytes32(0),salt,0);
-        vm.expectRevert();ac.execute(address(registry),0,data,bytes32(0),salt);
+        vm.expectRevert();registry.configure(c);
         assertFalse(registry.get(pool).depositsEnabled);
-        vm.clearMockedCalls();ac.execute(address(registry),0,data,bytes32(0),salt);
+        vm.clearMockedCalls();registry.configure(c);
         assertTrue(registry.get(pool).depositsEnabled);assertTrue(registry.get(pool).operationsEnabled);
     }
     function testPoolStopOnlyClearsSelectedFlagsAndIsIdempotent() public {
@@ -87,12 +80,12 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         expected.operationsEnabled=false;assertEq(abi.encode(registry.get(pool)),abi.encode(expected));
     }
     function testUnknownPoolAndEmptyStopRejectedWithoutAdmission() public {
-        vm.prank(address(ac));vm.expectRevert();registry.disablePool(bytes32(uint256(55)),true,true);
-        vm.prank(address(ac));vm.expectRevert();registry.disablePool(pool,false,false);
+        vm.prank(ac.governance());vm.expectRevert();registry.disablePool(bytes32(uint256(55)),true,true);
+        vm.prank(ac.governance());vm.expectRevert();registry.disablePool(pool,false,false);
         assertFalse(registry.exists(bytes32(uint256(55))));assertTrue(registry.get(pool).depositsEnabled);
     }
     function testOnlyApprovedGovernanceCanToggleControlsAfterSeal() public {
-        address[4] memory callers=[address(this),GUARDIAN,KEEPER,address(0xBAD)];
+        address[4] memory callers=[address(0xA0A0),GUARDIAN,KEEPER,address(0xBAD)];
         for(uint256 i;i<callers.length;++i){
             vm.prank(callers[i]);vm.expectRevert();registry.disablePool(pool,true,true);
             vm.prank(callers[i]);vm.expectRevert();nft.setMintPaused(true);
@@ -108,12 +101,12 @@ contract OperatorControlsTest is Test, IERC721Receiver {
     }
     function testCanonicalLockCannotBeBypassedThroughNewControls() public {
         vm.prank(ac.canonicalHandoff());ac.canonicalTransition(1,false,false);
-        vm.prank(address(ac));vm.expectRevert();registry.disablePool(pool,true,true);
-        vm.prank(address(ac));vm.expectRevert();nft.setMintPaused(false);
+        vm.prank(ac.governance());vm.expectRevert();registry.disablePool(pool,true,true);
+        vm.prank(ac.governance());vm.expectRevert();nft.setMintPaused(false);
     }
     function testMintCallbackPauseRollsBackOriginalRequestAndOwnership() public {
-        bytes memory data=abi.encodeCall(nft.setMintPaused,(true));callbackSalt=bytes32(++nonce);
-        ac.schedule(address(nft),0,data,bytes32(0),callbackSalt,0);
+        // The NFT recipient is the configured governance contract. Its direct
+        // callback mutation must roll back with the failed in-progress mint.
         // The bound test vault's getter is supplied explicitly for this boundary.
         address vault=ac.module(Ids.VAULT);
         vm.mockCall(vault,abi.encodeWithSignature("mintProceedsRecipient()"),abi.encode(address(0x1234)));
@@ -121,10 +114,9 @@ contract OperatorControlsTest is Test, IERC721Receiver {
         vm.prank(vault);vm.expectRevert(bytes4(keccak256("Paused()")));nft.mint(address(this),44);
         assertEq(nft.mintedCount(),0);assertEq(vrf.sequence(),0);assertEq(nft.requestOf(44),0);
         assertFalse(nft.mintPaused());
-        assertTrue(ac.isOperationReady(ac.hashOperation(address(nft),0,data,bytes32(0),callbackSalt)));
     }
     function onERC721Received(address,address,uint256,bytes calldata) external returns(bytes4) {
-        if(pauseOnReceive) ac.execute(address(nft),0,abi.encodeCall(nft.setMintPaused,(true)),bytes32(0),callbackSalt);
+        if(pauseOnReceive) nft.setMintPaused(true);
         return IERC721Receiver.onERC721Received.selector;
     }
 }
@@ -171,7 +163,9 @@ contract PoolStopEconomicIntegrationTest is PooledVaultFixture {
         PoolConfig memory c=pools.get(poolId);
         if(c.key.currency0>c.key.currency1) (c.key.currency0,c.key.currency1)=(c.key.currency1,c.key.currency0);
         c.rangeBps=2000;c.triggerBps=500;c.maxSpotDeviationBps=100;c.minRebalanceInterval=600;
-        ac.bind(Ids.POOLS,address(actual));poolId=actual.configure(c);
+        ac.bind(Ids.POOLS,address(actual));
+        actual.activationAssets().configureZZZ(address(t1),address(t1).codehash,keccak256("economic stop fixed ZZZ"));
+        poolId=actual.configure(c);
         uint256 id=activatedPosition();uint256 other=_mint(bob);uint256 bucket=vault.nftBucket(id);
         uint256 shares=vault.sharesOf(id);uint256 lp=vault.group(bucket).lpTokenId;
         venue.setFees(100,100);vault.collectFees(bucket,block.timestamp+100);

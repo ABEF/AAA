@@ -91,8 +91,7 @@ contract NativeCustodyTest is Test {
         ac.bind(Ids.ORACLE,address(new NativeCustodyOracle()));ac.seal();
         PoolConfig memory c;c.key=PoolKey(address(0),address(token),3000,60,address(0));c.operationsEnabled=true;
         pool=keccak256(abi.encode(c.key));pools.set(pool,c);
-        Position memory p;p.poolId=pool;p.status=PositionStatus.Parked;p.homeChain=block.chainid;
-        p.homeVault=address(vault);p.locationChain=block.chainid;p.locationVault=address(vault);p.idle0=100;p.idle1=100;vault.set(p);
+        Position memory p;p.poolId=pool;p.status=PositionStatus.Parked;p.idle0=100;p.idle1=100;vault.set(p);
         vm.deal(address(vault),100);token.mint(address(vault),100);vm.deal(address(this),1 ether);
     }
     function _request() private view returns(ZZZMigration.Request memory r){

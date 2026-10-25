@@ -52,9 +52,6 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
     }
     function canonicalState() public view returns (uint8) { return access.canonicalState(); }
     function _vault() private view returns (IZZZVault) { return IZZZVault(access.module(Ids.VAULT)); }
-    function _requireHome(Position memory p, IZZZVault vault) private view {
-        if (p.homeChain != block.chainid || p.homeVault != address(vault)) revert InvalidState();
-    }
     function _credit(uint256 id, address token, uint256 personal, uint256 shared) private {
         address rewards = access.module(Ids.REWARDS);
         _approve(token, rewards, personal + shared);
@@ -72,7 +69,6 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         if (amount == 0) revert InvalidAmount();
         Position memory p = IZZZVault(msg.sender).group(id);
         if (p.status != PositionStatus.Active) revert InvalidState();
-        _requireHome(p, IZZZVault(msg.sender));
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (token != c.key.currency0 && token != c.key.currency1) revert InvalidConfiguration();
         _pull(token, amount);
@@ -96,7 +92,6 @@ contract ZZZFeeController is ZZZModule, ReentrancyGuard {
         IZZZVault vault = _vault();
         if (!access.isSealed() || (msg.sender != address(vault) && msg.sender != access.module(Ids.MEMBERSHIP))) revert Unauthorized();
         Position memory p = vault.group(id);
-        _requireHome(p, vault);
         if (p.status != PositionStatus.Outbound && p.status != PositionStatus.Active && p.status != PositionStatus.Parked) revert InvalidState();
         _flushHomeDust(id, token);
     }

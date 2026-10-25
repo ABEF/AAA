@@ -1,0 +1,7 @@
+test_current_dormant_three_cannot_report_unknown_lp (tests_python.test_collection.CollectionTests.test_current_dormant_three_cannot_report_unknown_lp) ... ok
+test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules (tests_python.test_event_schema.EventSchemaTests.test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.024s
+
+OK

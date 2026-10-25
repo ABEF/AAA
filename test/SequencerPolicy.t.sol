@@ -151,9 +151,8 @@ contract SequencerPolicyTest is Test {
         _replace(_healthy());
         assertEq(oracle.price(address(token)), 2e18);
     }
-    function testActualSealedTimelockControlsReplacementAndCannotDisable() public {
-        address[] memory actors = new address[](1); actors[0] = address(this);
-        ZZZAccessController controller = new ZZZAccessController(0, actors, actors, address(0x111), address(0x222));
+    function testActualSealedDirectGovernanceControlsReplacementAndCannotDisable() public {
+        ZZZAccessController controller = new ZZZAccessController(address(0xA0A0), address(0x111), address(0x222));
         RecoverableUptimeFeed oldSource = new RecoverableUptimeFeed(block.timestamp - 2 hours);
         ZZZOracle governed = new ZZZOracle(address(controller), address(oldSource));
         governed.setTestFeed(address(token), address(usd), 1 days);
@@ -170,18 +169,12 @@ contract SequencerPolicyTest is Test {
         oldSource.setFail(true);
         MockFeed next = _healthy();
         vm.expectRevert(); governed.setSequencerFeed(address(next), address(next).codehash, REVIEW);
-        bytes memory data = abi.encodeCall(governed.setSequencerFeed, (address(next), address(next).codehash, REVIEW));
-        bytes32 salt = keccak256("replace retired sequencer");
-        controller.schedule(address(governed), 0, data, bytes32(0), salt, 0);
-        controller.execute(address(governed), 0, data, bytes32(0), salt);
+        vm.prank(controller.governance()); governed.setSequencerFeed(address(next), address(next).codehash, REVIEW);
         usd.set(2e8, block.timestamp, block.timestamp);
         assertEq(governed.price(address(token)), 2e18);
         assertEq(governed.sequencerFeed(), address(next));
-        data = abi.encodeCall(governed.setSequencerFeed, (address(0), bytes32(0), REVIEW));
-        salt = keccak256("cannot disable safety");
-        controller.schedule(address(governed), 0, data, bytes32(0), salt, 0);
         vm.warp(block.timestamp + 1 days);
-        vm.expectRevert(); controller.execute(address(governed), 0, data, bytes32(0), salt);
+        vm.prank(controller.governance()); vm.expectRevert(); governed.setSequencerFeed(address(0), bytes32(0), REVIEW);
         assertEq(governed.sequencerFeed(), address(next));
     }
 }

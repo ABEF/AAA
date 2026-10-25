@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
-import {Ids, PoolConfig, PositionStatus} from "../src/libraries/ZZZTypes.sol";
+import {Ids, PoolConfig, Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 
 /// @notice Real Vault/NFT/Membership/Fees/Rewards accounting with two distinct
 /// pools and the existing local venue mock. No public pool/bridge is exercised.
@@ -135,13 +135,22 @@ contract GlobalMembershipDustTest is PooledVaultFixture {
         vm.prank(address(vault)); membership.settleDust();
     }
 
-    function testMembershipCannotFlushForeignCustodyDust() public {
+    function testMembershipSkipsInactiveBucketAndFeeControllerRejectsItsDustFlush() public {
         uint256 first = activatedPosition(); uint256 bucket = vault.nftBucket(first);
         venue.setFees(19, 0); vault.collectFees(bucket, block.timestamp + 100);
-        vm.chainId(block.chainid + 1);
+        Position memory observed = vault.group(bucket); assertEq(uint8(observed.status), uint8(PositionStatus.Active));
+        // Controlled malformed/inactive observation only: the actual Vault has
+        // no administrator setter for replacing an active bucket's state.
+        observed.status = PositionStatus.None;
+        vm.mockCall(address(vault), abi.encodeCall(vault.group, (bucket)), abi.encode(observed));
         vm.prank(address(vault)); membership.settleDust();
         assertEq(fees.dust(bucket, address(t0)), 19);
         vm.prank(address(membership)); vm.expectRevert(); fees.flushDust(bucket, address(t0));
         assertEq(fees.dust(bucket, address(t0)), 19); assertEq(rewards.liabilities(address(t0)), 0);
+        vm.clearMockedCalls();
+        // Positive control: restoring the genuine active observation settles
+        // the same funded dust, so the rejection is not an unrelated outage.
+        vm.prank(address(vault)); membership.settleDust();
+        assertEq(fees.dust(bucket, address(t0)), 0); assertEq(rewards.claimable(first, address(t0)), 19);
     }
 }

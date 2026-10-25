@@ -147,7 +147,12 @@ class FeeIntakeProfileTests(unittest.TestCase):
         config=current_fixture()
         old=F.fixture()['chains'][0]
         config.pop('fee_intake_version')
+        config['accounting_version']=2
         chain=config['chains'][0]
+        chain['native_accounting']['version']=2
+        chain['governance']=copy.deepcopy(old['governance'])
+        for role in ('keeper','api'):
+            chain['services'][role]=copy.deepcopy(old['services'][role])
         chain['helpers'].pop('activation_assets_factory')
         chain['helpers']['reward_receiver_factory']=old['helpers']['reward_receiver_factory']
         chain['native_accounting']['canonical_schema']=P.CANONICAL_SCHEMA

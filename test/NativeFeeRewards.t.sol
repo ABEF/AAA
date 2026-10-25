@@ -99,7 +99,7 @@ contract NativeFeeRewardsTest is Test {
         ac.seal();
         PoolConfig memory c; c.key.currency1 = address(token); pools.set(POOL, c);
         Position memory p; p.poolId = POOL; p.status = PositionStatus.Active;
-        p.homeChain = block.chainid; p.homeVault = address(vault); p.homeToken1 = address(token); vault.set(p);
+        vault.set(p);
         vm.deal(address(vault), 100 ether); vm.deal(address(fees), 0); vm.deal(address(this), 100 ether);
     }
     function _seed(uint256 id, address owner, uint256 shares, bool active) private {
@@ -275,11 +275,11 @@ contract NativeFeeRewardsTest is Test {
         assertEq(fees.buybackBalance(address(0)), 50);
         assertEq(address(rewards).balance, 900); assertEq(address(next).balance, 13);
     }
-    function testLPOnlyFeesRejectForeignHomeIdentityAndRetiredIntakeSelectors() public {
+    function testLPOnlyFeesRejectInactiveBucketsAndRetiredIntakeSelectors() public {
         _seed(1, ALICE, 100, true);
-        Position memory p = vault.group(11); p.homeChain = block.chainid + 1; vault.set(p);
+        Position memory p = vault.group(11); p.status = PositionStatus.Outbound; vault.set(p);
         vm.prank(address(vault)); vm.expectRevert(); fees.allocate{value: 100}(11, address(0), 100);
-        p.homeChain = block.chainid; p.homeVault = BOB; vault.set(p);
+        p.status = PositionStatus.Parked; vault.set(p);
         vm.prank(address(vault)); vm.expectRevert(); fees.allocate{value: 100}(11, address(0), 100);
         assertEq(fees.accounted(address(0)), 0); assertEq(rewards.liabilities(address(0)), 0);
         (bool creator,) = address(fees).call{value: 100}(abi.encodeWithSignature("allocateExternal(uint256,address,uint256)",11,address(0),100));

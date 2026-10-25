@@ -22,7 +22,7 @@ class KeeperExampleTests(unittest.TestCase):
         self.rpc.call.side_effect = AssertionError('Example validation must not contact a chain')
 
     def test_example_selects_current_intake_without_retired_jobs(self):
-        self.assertEqual(self.cfg['accounting_version'], 2)
+        self.assertEqual(self.cfg['accounting_version'], 3)
         self.assertEqual(self.cfg['fee_intake_version'], 1)
         self.assertNotIn('sync_external_rewards', self.cfg['maintenance'])
         self.assertNotIn('reward_routes', self.cfg['maintenance'])
@@ -34,7 +34,7 @@ class KeeperExampleTests(unittest.TestCase):
         self.assertEqual(self.cfg['code_hashes'], {})
         keeper = Keeper(self.cfg, rpc=self.rpc)
         self.assertFalse(keeper.live)
-        self.assertEqual(keeper.state['accounting_version'], 2)
+        self.assertEqual(keeper.state['accounting_version'], 3)
         self.assertEqual(keeper.state['fee_intake_version'], 1)
         self.assertFalse(keeper.path.exists())
         self.rpc.call.assert_not_called()

@@ -1,3 +1,4 @@
+from zzz_ops.position import status_name
 """Read-only collection chunks, pinned to one complete ownership inventory.
 
 LP is read from NFT.currentLPValue, including attributed idle/compound. Chunk
@@ -52,7 +53,7 @@ def read(p, block_number, offset):
         bucket = p._uint('vault', 'nftBucket(uint256)', identifier, block=block)
         shares = p._uint('vault', 'sharesOf(uint256)', identifier, block=block)
         weight = p._uint('royalties', 'weightOf(uint256)', identifier, block=block)
-        if not 1 <= status < len(STATUS) or weight > 3 or (weight > 0) != (shares > 0) or (shares > 0) != (bucket > 0) or (status == 5) != (weight == 0):
+        if not 1 <= status < (5 if p.accounting_version == 3 else len(STATUS)) or weight > 3 or (weight > 0) != (shares > 0) or (shares > 0) != (bucket > 0) or (status == p.dormant_status) != (weight == 0):
             raise ProjectionError('Collection activation state differs')
         if weight and (not ready or weight != rarity + 1):
             raise ProjectionError('Collection royalty weight differs from rarity')
@@ -65,14 +66,14 @@ def read(p, block_number, offset):
             if not weight:
                 raise
             available, amount = False, 0
-        if (not available and amount) or (status not in (1, 5) and available) or (status == 5 and (not available or amount)):
+        if (not available and amount) or (status not in (1, p.dormant_status) and available) or (status == p.dormant_status and (not available or amount)):
             raise ProjectionError('Collection LP valuation contradicts custody')
         stage = 0 if not weight else 3 if available and amount >= 10000 * 10**18 else 2 if available and amount >= 1000 * 10**18 else 1
         active += bool(weight)
         total += amount
         all_available = all_available and available
         rows.append(dict(token_id=str(identifier), mint_ordinal=ordinal, owner=owner, traits_ready=ready, traits=traits,
-            position=dict(status=STATUS[status], activated=bool(weight), royalty_weight=weight,
+            position=dict(status=status_name(p.accounting_version,status), activated=bool(weight), royalty_weight=weight,
                 principal_redeemable=False, current_lp_value=dict(available=available, raw=str(amount) if available else None,
                 decimals=18, unit='USD', source='NFT.currentLPValue'), evolution=EVOLUTION[stage], evolution_value_available=available)))
     p._finish(header)
@@ -86,4 +87,4 @@ def read(p, block_number, offset):
             block_timestamp=header['timestamp'], observed_head=head, confirmations=p.confirmations,
             configuration_sha256=p.identity, finality='confirmation_depth_only'),
         scope='Chunk only. All inventory chunks at the same block are required for total attached LP. '
-              'Activated counts eligibility, including parked/remote NFTs. Missing valuation is not zero.')
+              'Activated counts eligibility, including parked/externally held NFTs. Missing valuation is not zero.')

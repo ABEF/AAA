@@ -216,8 +216,19 @@ contract DualOracleSecurityTest is Test {
         assertEq(oracle.policyAt(0), old); assertEq(oracle.policyAt(1), next);
         assertEq(abi.encode(oracle.policy(old)), abi.encode(beforePolicy));
         assertEq(next, keccak256(abi.encode(address(oracle), uint256(1), oracle.policy(next))));
-        (address primary, uint32 age, uint8 fd, uint8 td) = oracle.feeds(address(token));
-        assertEq(primary, address(first)); assertEq(age, 3600); assertEq(fd, 8); assertEq(td, 6);
+        ZZZOracle.DualPolicy memory active = oracle.policy(next);
+        assertEq(active.primary.source, address(first)); assertEq(active.primary.maxAge, 3600);
+        assertEq(active.primary.feedDecimals, 8); assertEq(active.assetDecimals, 6);
+        assertEq(active.secondary.source,address(second));
+    }
+    function testRetiredSingleFeedGetterCannotMasqueradeAsDualPricePolicy() public {
+        (uint256 lower,uint256 upper,bytes32 fingerprint)=oracle.priceBounds(address(token));
+        bytes32 active=oracle.activePolicy(address(token));
+        (bool ok,)=address(oracle).staticcall(abi.encodeWithSignature("feeds(address)",address(token)));
+        assertFalse(ok);
+        (uint256 afterLower,uint256 afterUpper,bytes32 afterFingerprint)=oracle.priceBounds(address(token));
+        assertEq(afterLower,lower);assertEq(afterUpper,upper);assertEq(afterFingerprint,fingerprint);
+        assertEq(oracle.activePolicy(address(token)),active);
     }
     function testFingerprintBindsCompleteRoundsPolicyAndOracleDomain() public {
         (,, bytes32 original) = oracle.priceBounds(address(token));

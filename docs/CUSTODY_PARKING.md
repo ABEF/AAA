@@ -1,114 +1,82 @@
 # Paused custody parking
 
-Parking closes a shared LP into its underlying accounting currencies and retains
-those assets inside the immutable Vault. It is a governed recovery operation when
-normal oracle-dependent upkeep cannot run. It creates no holder or administrator
-withdrawal, redemption or arbitrary execution permission.
+Parking closes a shared LP and keeps its actual underlying currencies inside the
+immutable Vault. It is a governed recovery action when normal price-dependent
+upkeep cannot run. Parking itself pays no holder or administrator; the separate
+[trusted custody exit](GOVERNED_CUSTODY_HANDOFF.md) has different authorization.
 
-`PositionStatus.Parked` is appended as enum value **6**. Existing status values do
-not change. The bucket, NFT shares, home identity, membership and reward rights
-remain attached; the physical LP token ID becomes zero and principal is attributed
-to that bucket's Vault idle ledger. No new LP fees are earned from a closed LP.
+Current [Position3](POSITION_V3.md) uses None0/Active1/Outbound2/Dormant3/Parked4.
+`Parked` is value4, not historical value6. Bucket identity, NFT shares, membership
+and accrued rights remain attached; LP token ID becomes zero and returned
+principal is attributed to that bucket's idle ledger. Closed LP earns no fees.
 
-## Authority and exact authorization
+## Authorization and input review
 
-The system must be sealed and paused. A guardian can pause quickly, but cannot
-close an LP or receive its assets. After sealing, the existing governance controller
-must execute the exact `ZZZMigration.park(ParkingRequest)` call. The focused
-governance test uses immediate exact-call authorization with zero waiting period.
-Parking adds no administrator withdrawal mechanism.
+The system must be sealed, canonically operating and paused. The actual selected
+governance wallet calls `Migration.park(ParkingRequest)` directly; Access has no
+scheduler, executor or canceller role. Guardian can pause, but cannot park or
+receive assets. Reviewed parking may drain preparation while canonical freeze
+still blocks ordinary custody mutation.
 
-The request binds:
+The request binds bucket/pool, exact LP token ID, total shares, contribution USD,
+custody epoch, parking nonce, ordered accounting currencies, raw close minima,
+deadline and nonzero review hash. At least one raw minimum must be positive for
+a genuinely one-sided LP. Deadline must be current and no more than ten minutes
+ahead. The review hash records provenance, not automatic independent approval.
 
-- Bucket and pool identities, the exact LP token ID and local Vault location.
-- Current total shares, recorded contribution value, custody epoch and parking nonce.
-- Exact ordered accounting currencies and minimum close proceeds in raw token units.
-- A deadline and nonzero review reference identifying the reviewed close evidence.
+A pending custody plan blocks parking. LP rebalancing, changed shares, epoch,
+contributions, pool/currencies or nonce invalidates stale authorization. There
+are no remote home/location fields to copy into the request. Nonce increments
+before external work; failure reverts nonce, principal and fee changes together.
 
-At least one currency minimum must be nonzero, allowing a genuine one-sided LP.
-The runtime deadline must be current and no more than ten minutes ahead. When
-authorizing through the controller, use a current narrow execution window; an expired request cannot execute. The review hash is
-provenance supplied by governance, not automatic proof of an independent audit.
+Governance may advance `invalidateParking(bucket)` to invalidate unused request
+data. To abandon an unsent custody plan use `Migration.cancel(id)`; to end a
+preparation notice use `AccessController.cancelPreparation(hash)`. None reverses
+completed transfers or restarts an LP, and no queued-operation cancellation exists.
 
-A pending migration plan prevents parking. A rebalanced LP, changed share supply,
-custody epoch, contribution record, ordered currencies, nonce or local location
-invalidates an old snapshot. The parking nonce is consumed before external calls,
-and failure rolls back the nonce, all custody changes and fee accounting.
+## Exact price-independent close
 
-Governance can call `invalidateParking(bucket)` to advance the nonce and invalidate
-older request data. After sealing, that call follows the same governance controller. Pending
-governance operations may also be cancelled through the controller's authorized
-canceller role. Cancellation does not produce an alternative execution or payout
-path. A successfully executed request cannot be replayed.
+Parking reads no USD or sequencer price. Creator-payment inbox synchronization
+has been removed. Native close/harvest/parking does not call WETH or its policy.
+Actual venue bindings, position ownership/key and typed settlement still apply.
 
-## Price-independent close, exact proceeds
+Vault harvests old fees into their existing reward/reserve domains, closes the
+LP, and records the actual new attributed idle. Migration compares only those
+close deltas with the reviewed raw minima. Prior idle, Vault donations and
+compound held in Fees cannot fill a close shortfall. Fees are not relabelled as
+principal. Any failed token transfer, settlement or callback reverts the operation.
 
-Parking omits USD price and sequencer-feed reads. It also omits creator-inbox
-synchronization, so an unrelated broken reward inbox does not prevent this custody
-close. The selected Registry/venue/wrapper bindings are still validated.
+## Resume or choose another action
 
-Vault first collects existing venue fees and allocates them through the normal
-fee ledger. It then closes the LP and records the actual increase in each token's
-attributed idle balance. Migration checks those close deltas against the reviewed
-raw minima. Old idle balances, direct Vault donations and compound reserves held
-in the fee controller cannot satisfy those minima. Collected venue fees remain
-allocated rewards/reserves rather than becoming principal close proceeds.
+While parked, activation into the bucket, top-ups, compounding and keeper
+rebalancing remain disabled. Existing principal remains nonredeemable.
 
-The liquidity manager retains its typed position checks and venue-level close
-minima derived from current position amounts and configured slippage. Parking is
-independent of an external USD feed; it does not bypass position ownership, pool
-identity, venue settlement, exact token transfers or native-wrapper conservation.
-Any failure reverts the complete operation and leaves the original LP state.
-
-## Resume or migrate
-
-While parked, ordinary activation into that bucket, additions, compounding and
-keeper rebalancing remain disabled. Existing principal stays nonredeemable.
-Governance has two paths after the system is unpaused:
-
-| Path | Required protections |
+| Next action | Requirements |
 | --- | --- |
-| `Migration.resume` | No pending migration plan; reviewed enabled destination pool with the same ordered currencies; recovered valid valuation; normal swap/slippage, minimum-liquidity and idle checks. The original pool may be reused. |
-| Proposed migration of a parked bucket | Approved route/transport and frozen custody snapshot; immediate proposal/execution eligibility; funded historical remote liabilities; exact token provenance, custody transfers, nonce/epoch and receipt checks. No old source LP exists to close, so source USD recovery is unnecessary. |
+| `Migration.resume` | Unpaused operating state, no pending custody plan, enabled reviewed destination with the same ordered pair, fresh prices/strategy and normal deployment/loss/idle guards. It may reuse the old pool. |
+| Normal custody `approve` / `exit` | Separately reviewed paused source snapshot, exact custodian and original aggregate/output floors. Convert attributed principal to fixed ZZZ; actual swaps/feeds must work. |
+| Explicit raw custody `approve` / `exit` | Separate raw approval and positive raw minima; sends actual ETH/ZZZ without swap or USD reads. Custodian risk is accepted; no normal USD floor is promised. |
+| Same-chain whole-collection handoff | Resolve external custody, freeze/export local V4 ownership and both reward ledgers, preserve exact backing, then activate one reviewed successor. This is not a bridge. |
 
-Resume brings designated compound reserves into the bucket and redeploys the
-principal under current oracle and strategy guards. It cannot bypass a stale or
-broken feed. A failed resume leaves the bucket parked with the same shares and
-assets. This does not authorize changing the accounting pair through an arbitrary
-swap or moving assets to an administrator wallet.
+Resume releases only designated compound and redeploys actual principal; stale
+prices or venue failure leave the bucket parked with unchanged shares. Returning
+external custody restores parked assets and does not automatically unpause or
+reopen the LP. External issuer migration/bridging happens under the chosen
+custodian's control; a replacement ZZZ requires fresh reviewed deployment.
 
-For a parked cross-chain migration, `releaseForMigration` retains the
-`remoteSettled` funding barrier, includes designated compound reserves and sends
-only the bucket's attributed currencies to the fixed migration module. A stale
-source USD feed therefore need not trap already parked principal, while missing
-historical remote reward backing still blocks departure. Destination deployment,
-price validation, bridge backing/finality and receipt authentication remain
-independent requirements. A timeout alone is not proof that a bridge transfer was
-cancelled, and cannot authorize duplicate principal release.
+## Holder rights and limits
 
-## NFT and reward behavior
+Parking preserves ownership, fixed traits, LP shares, rarity royalty weight and
+equal collective eligibility. Current holders retain funded LP/royalty claims;
+transfers carry accrued unclaimed and future rights. No creator-payment inbox or
+synthetic continued LP income exists. Current marked LP value is unavailable
+while parked; metadata uses its labelled Activated fallback without inventing a
+USD value or revoking activation.
 
-Parking preserves NFT ownership, immutable traits, LP shares, royalty weights and
-collective membership. Funded LP rewards and admitted royalties remain claimable
-by the current holder, including through the bounded claim router. A transfer
-continues to carry the attached shares and unclaimed/future rights. Existing or
-newly admitted creator funding can be processed under the parked reward policy;
-parking itself does not fabricate continued LP revenue.
-
-Current marked LP valuation is explicitly unavailable while parked. Metadata uses
-the labelled Activated artwork fallback, rather than showing a made-up USD value
-or revoking activation and royalty eligibility.
-
-## Limits and release evidence
-
-Parking cannot force a failed or malicious PoolManager, position manager, token,
-native wrapper or chain to return assets. Reviewed wrapper/feed policy replacement
-can restore compatible dependencies, but incompatible immutable venue failure,
-issuer blacklisting, token confiscation and bridge insolvency remain real risks.
-There is no universal recovery guarantee or hidden rescue wallet.
-
-Earlier scoped custody, delayed-governance, parked-reward and native-pool tests are recorded
-separately from the final full regression and current-source static review.
-Actual operating requests need freshly reviewed raw minima and snapshots,
-authority review, staging, realistic gas/strategy qualification and independent
-audit/remediation. This document authorizes neither deployment nor transactions.
+No contract can force a failed PoolManager, frozen/nontransferable token, broken
+recipient or halted chain to return assets. Raw mode avoids price/swap dependency,
+not venue settlement or exact-token requirements. Historical custody/native2/
+delayed-governance evidence retains its recorded source scope; [current review](../reports/architecture-pruning-20261025/REVIEW.md)
+records later changes separately. Actual raw minima/snapshots, authority review,
+real operating gas/recovery and independent audit remain release gates. This
+manual authorizes no deployment or public transaction.

@@ -47,8 +47,7 @@ contract RewardsAndFeesTest is Test, IERC721Receiver {
         ac.bind(Ids.BUYBACK, address(this)); rewards.addAsset(address(token));
         nft.configureRandomness(address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
         PoolConfig memory c; c.key.currency0 = address(token); c.key.currency1 = address(token1); pools.set(POOL, c);
-        Position memory p; p.poolId = POOL; p.homeChain = block.chainid; p.homeVault = address(vault);
-        p.homeToken0 = address(token); p.homeToken1 = address(token1); p.status = PositionStatus.Active; vault.set(BUCKET, p);
+        Position memory p; p.poolId = POOL; p.status = PositionStatus.Active; vault.set(BUCKET, p);
         vm.prank(address(vault)); nft.mint(alice, 1); vm.prank(address(vault)); nft.mint(bob, 2);
         vault.join(1, BUCKET, 100); _activate(1);
     }

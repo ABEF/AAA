@@ -112,7 +112,8 @@ contract ContributionEntryPriceSecurityTest is AtomicActivationIntegrationTest {
     }
     function testEntryPriceCaptureSurvivesUntilFinalApprovalReset() public realIntegration {
         EntryFinalResetToken replacement=new EntryFinalResetToken();vm.etch(address(t0),address(replacement).code);
-        (address source,,,)=oracle.feeds(address(t0));MockFeed feed=MockFeed(source);
+        address source=oracle.policy(oracle.activePolicy(address(t0))).primary.source;
+        MockFeed feed=MockFeed(source);
         EntryFinalResetToken(address(t0)).configure(address(entry),source,
             abi.encodeCall(feed.set,(101e6,block.timestamp,block.timestamp)));
         (EntryPriceCallbackRouter selected,bytes32 route)=_callbackRoute();

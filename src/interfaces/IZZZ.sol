@@ -3,6 +3,7 @@ pragma solidity 0.8.26;
 import {PoolKey, PoolConfig, Position, PositionStatus} from "../libraries/ZZZTypes.sol";
 
 interface IZZZAccess {
+    function governance() external view returns (address);
     function module(bytes32 key) external view returns (address);
     function isSealed() external view returns (bool);
     function paused() external view returns (bool);
@@ -126,7 +127,6 @@ interface IPositionManagerMinimal {
     function getPoolAndPositionInfo(uint256 id) external view returns (PoolKey memory, uint256);
     function ownerOf(uint256 id) external view returns (address);
     function approve(address spender, uint256 id) external;
-    function getApproved(uint256 id) external view returns (address);
     function poolManager() external view returns (address);
     function permit2() external view returns (address);
 }

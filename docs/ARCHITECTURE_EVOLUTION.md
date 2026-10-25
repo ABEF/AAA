@@ -8,7 +8,30 @@ No retired feature is admitted by retaining this evidence.
 
 # Architecture evolution and trust boundaries
 
-**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+## Current boundary - 2026-10-25
+
+The current candidate is local [Position3](POSITION_V3.md), eight words,
+accounting3 and `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. Governance calls
+modules directly through its selected wallet; no Access scheduler, role arrays
+or generic executor remains. ETH and one fixed ZZZ are contribution inputs.
+`Migration.moveFunds` is the supported same-ordered-pair local move; its old
+Migration `movePool` alias is removed. Normal exit consolidates to fixed ZZZ;
+explicit raw exit sends the actual ETH/ZZZ pair to the trusted source-chain
+custodian. A replacement ZZZ requires custody exit and fresh deployment.
+
+Same-chain whole-collection handoff preserves NFT ownership and both funded
+ledgers. Integrated bridges, remote position/reward fields, creator inboxes and
+issuer-token replacement inside this deployment are removed. Old accounting1/2
+readers and evidence remain historical, without journal upgrades or cross-codec
+V4 import. See [current custody procedures](GOVERNED_CUSTODY_HANDOFF.md),
+[simplified release](SIMPLIFIED_RELEASE.md) and the [current source-scoped review](../reports/architecture-pruning-20261025/REVIEW.md).
+No production approval follows from the historical discussion below.
+
+## Historical October16 review and later historical checkpoints
+
+The remainder records its original design/evidence only. Words such as
+"current", "implemented", "timelock", "remote" and `movePool` below describe the
+recorded source scope, not callable current behavior or operating instructions.
 
 Design reviewed 2026-10-16 against baseline `37bf0d2`. This document separates
 current capabilities from proposed changes. The [central Todo](../TODO.md) owns

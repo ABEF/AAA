@@ -1,0 +1,68 @@
+{
+  "removed_function_notes": {
+    "ZZZAccessController": [
+      "CANCELLER_ROLE()",
+      "DEFAULT_ADMIN_ROLE()",
+      "EXECUTOR_ROLE()",
+      "PROPOSER_ROLE()",
+      "cancel(bytes32)",
+      "execute(address,uint256,bytes,bytes32,bytes32)",
+      "executeBatch(address[],uint256[],bytes[],bytes32,bytes32)",
+      "getMinDelay()",
+      "getOperationState(bytes32)",
+      "getRoleAdmin(bytes32)",
+      "getTimestamp(bytes32)",
+      "grantRole(bytes32,address)",
+      "hasRole(bytes32,address)",
+      "hashOperation(address,uint256,bytes,bytes32,bytes32)",
+      "hashOperationBatch(address[],uint256[],bytes[],bytes32,bytes32)",
+      "isOperation(bytes32)",
+      "isOperationDone(bytes32)",
+      "isOperationPending(bytes32)",
+      "isOperationReady(bytes32)",
+      "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)",
+      "onERC1155Received(address,address,uint256,uint256,bytes)",
+      "onERC721Received(address,address,uint256,bytes)",
+      "renounceRole(bytes32,address)",
+      "revokeRole(bytes32,address)",
+      "schedule(address,uint256,bytes,bytes32,bytes32,uint256)",
+      "scheduleBatch(address[],uint256[],bytes[],bytes32,bytes32,uint256)",
+      "supportsInterface(bytes4)",
+      "updateDelay(uint256)"
+    ],
+    "ZZZPoolRegistry": [
+      "nativeAsset(bytes32)"
+    ],
+    "ZZZOracle": [
+      "feeds(address)"
+    ],
+    "ZZZMembership": [
+      "canonicalAccept(uint256,address)",
+      "canonicalBacking(uint256)",
+      "canonicalRelease(uint256,address)",
+      "canonicalRestore(uint256,address)"
+    ],
+    "ZZZMigration": [
+      "movePool(uint256,bytes32,uint128,uint256)"
+    ],
+    "ZZZMigrationBudget": [
+      "handoffMinimum(uint256,address,address,uint256,uint256)"
+    ],
+    "ZZZNFTCanonical": [
+      "canonicalAccept(uint256,address)",
+      "canonicalBacking(uint256)",
+      "canonicalRelease(uint256,address)",
+      "canonicalRestore(uint256,address)"
+    ]
+  },
+  "counts": {
+    "contracts": 31,
+    "functions": 608,
+    "constructors": 31,
+    "receive_hooks": 13,
+    "fallback_hooks": 0,
+    "explanation_gaps": 0,
+    "unannotated_inputs": 0,
+    "unannotated_outputs": 123
+  }
+}

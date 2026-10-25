@@ -293,7 +293,7 @@ contract UniswapV4ForkTest is Test, IERC721Receiver {
         access.bind(Ids.VAULT, address(s.vault)); access.bind(Ids.NFT, address(canonicalNFT));
         access.bind(Ids.MEMBERSHIP, address(s.membership)); access.bind(Ids.REWARDS, address(s.rewards));
         access.bind(Ids.FEES, address(s.fees)); access.bind(Ids.MIGRATION, address(this));
-        access.bind(Ids.RECEIVER, address(this)); access.bind(Ids.BUYBACK, address(this));
+        access.bind(keccak256("ZZZMigrationReceiver"), address(this)); access.bind(Ids.BUYBACK, address(this));
         access.bind(Ids.COMPOUNDER, address(this)); access.setKeeper(address(this), true);
         CanonicalFixture.bind(address(access));
         s.rewards.addAsset(WETH); s.rewards.addAsset(ZZZ);

@@ -1,0 +1,23 @@
+{
+  "scope": "Only the two failed methods from api-tests: fixed current Dormant3 valuation invariant and updated historical descriptor inventory assertion with explicit retirement subset plus full semantic field decoding. No passed method rerun; initial failures remain retained. Initial174passes and these2repairs are source-scoped, not a fresh176-final-source regression.",
+  "observed_at_utc": "2026-10-25T19:16:55.579997+00:00",
+  "tests": [
+    "tests_python.test_collection.CollectionTests.test_current_dormant_three_cannot_report_unknown_lp",
+    "tests_python.test_event_schema.EventSchemaTests.test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules"
+  ],
+  "source_sha256": {
+    "frontend_api/collection.py": "c08c9688343fe826be7cf11c3654b09fa569424f8fed7c9f44996da1fbe8b1bb",
+    "tests_python/test_collection.py": "56b932fc3c7521fa8edcc9459258cd6b6d17599c0b526a2e2fa8fca9e8cb1e87",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "indexer/event_schema.json": "7be74762f4d65c2073c79355f0bba5c7f46f23c457ec2e7addf8ef7f61433187",
+    "indexer/historical_event_schema.json": "2ae2effbe5c009eb71c942ed76b2bb4f876650bc913d876fb3a324efc3dd96ad",
+    "tests_python/test_event_schema.py": "a897c140fffcd93b02f701728dea809eb3875d6640aed21f009bcfc9643219a8",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea"
+  },
+  "elapsed_seconds": 0.23499999998603016,
+  "tests_run": 2,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true
+}

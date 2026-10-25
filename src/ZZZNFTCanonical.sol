@@ -71,10 +71,6 @@ contract ZZZNFTCanonical is ZZZModule {
         return (2,row - 900);
     }
     function canonicalAssetCount() external pure returns (uint256) { return 0; }
-    function canonicalBacking(uint256) external pure returns (address,uint256) { revert InvalidState(); }
-    function canonicalRelease(uint256,address) external pure { revert InvalidState(); }
-    function canonicalAccept(uint256,address) external payable { revert InvalidState(); }
-    function canonicalRestore(uint256,address) external payable { revert InvalidState(); }
     function canonicalValidate() external view {
         if (access.canonicalState() == 2 && cursor != canonicalCount()) revert InvalidState();
     }

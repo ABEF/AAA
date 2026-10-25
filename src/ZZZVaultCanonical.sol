@@ -79,7 +79,7 @@ contract ZZZVaultCanonical {
     function validateContribution(uint256 id,uint256 bucket,uint256 inputUSD,uint256 inputTotal,
         uint128 minimumLiquidity,bool activation) external view onlyBudget returns(address,address,uint16) {
         Position memory p = vault.group(bucket);
-        if (p.status != PositionStatus.Active || p.homeChain != block.chainid || p.homeVault != address(vault) ||
+        if (p.status != PositionStatus.Active ||
             IZZZMigration(access.module(Ids.MIGRATION)).activePlan(bucket) != bytes32(0)) revert InvalidState();
         PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
         if (!c.depositsEnabled || inputTotal == 0 || minimumLiquidity == 0 ||
@@ -117,8 +117,7 @@ contract ZZZVaultCanonical {
             Position memory p = vault.group(id);
             if (p.status == PositionStatus.None) {
                 if (p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0 || vault.bucketTotalShares(id) != 0) revert InvalidState();
-            } else if (p.status != PositionStatus.Parked || p.lpTokenId != 0 || p.homeChain != block.chainid ||
-                p.homeVault != address(vault) || p.locationChain != block.chainid || p.locationVault != address(vault)) revert InvalidState();
+            } else if (p.status != PositionStatus.Parked || p.lpTokenId != 0) revert InvalidState();
             if (IZZZMigration(access.module(Ids.MIGRATION)).activePlan(id) != bytes32(0)) revert InvalidState();
         }
         ICanonicalVaultRewards rewards = ICanonicalVaultRewards(access.module(Ids.REWARDS));
@@ -164,6 +163,7 @@ contract ZZZVaultCanonical {
     function canonicalImport(uint256 row, bytes calldata record) external onlyHandoff {
         if (IZZZCanonicalAccess(address(access)).canonicalState() != 2 || row != cursor++) revert InvalidState();
         if (row == 0) {
+            if (record.length != 192) revert InvalidState();
             if (vault.sequence() != 0 || vault.bucketCount() != 0 || aliases.length != 0) revert InvalidState();
             uint256 assetCount;
             (originChain, originVault, nftCount, groupCount, aliasCount, assetCount) =
@@ -177,14 +177,16 @@ contract ZZZVaultCanonical {
         }
         --row;
         if (row < groupCount) {
+            if (record.length != 384) revert InvalidState();
             (uint256 id, Position memory p, uint256 shares, bytes32 homePool, uint64 epoch) =
                 abi.decode(record, (uint256,Position,uint256,bytes32,uint64));
             if (p.status != PositionStatus.None && p.status != PositionStatus.Parked) revert InvalidState();
             if (p.status == PositionStatus.Parked) {
-                PoolConfig memory c = IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
-                if ((epoch == 0 && (c.key.currency0 != p.homeToken0 || c.key.currency1 != p.homeToken1)) || p.lpTokenId != 0) revert InvalidState();
-                p.homeChain = block.chainid; p.homeVault = address(vault); p.homeReceiver = access.module(Ids.MIGRATION);
-                p.locationChain = block.chainid; p.locationVault = address(vault);
+                // The admitted pool key supplies the actual local currencies.
+                // Exact backing rows below must fund their attributed idle;
+                // there is no remote/home token identity to reinterpret.
+                IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId);
+                if (p.lpTokenId != 0) revert InvalidState();
             }
             vault.canonicalWrite(2, abi.encode(id, p, shares, homePool));
             vault.migrationBudget().importComposition(id,epoch);
@@ -192,6 +194,7 @@ contract ZZZVaultCanonical {
         }
         row -= groupCount;
         if (row < aliasCount) {
+            if (record.length != 64) revert InvalidState();
             (bytes32 pool, uint256 id) = abi.decode(record, (bytes32,uint256));
             if (pool == bytes32(0) || id == 0 || aliasBucket[pool] != 0) revert InvalidState();
             aliases.push(pool); aliasBucket[pool] = id;
@@ -200,6 +203,7 @@ contract ZZZVaultCanonical {
         }
         row -= aliasCount;
         if (row < nftCount) {
+            if (record.length != 128) revert InvalidState();
             (uint256 id, uint256 bucket, uint256 shares, uint256 contribution) = abi.decode(record, (uint256,uint256,uint256,uint256));
             if (id != uint256(keccak256(abi.encode(originChain, originVault, row + 1))) ||
                 (bucket == 0 ? shares != 0 || contribution != 0 : shares == 0)) revert InvalidState();
@@ -209,6 +213,7 @@ contract ZZZVaultCanonical {
         }
         row -= nftCount;
         if (row >= backingAssets.length) revert InvalidState();
+        if (record.length != 96) revert InvalidState();
         (address asset, uint256 amount, uint256 principal) = abi.decode(record, (address,uint256,uint256));
         if (principal != vault.totalIdle(asset) || amount < principal) revert InvalidState();
         for (uint256 i; i < row; ++i) if (backingAssets[i] == asset) revert InvalidState();

@@ -1,4 +1,4 @@
-# Native V2 production inventory and read-only preflight
+# Current native production inventory and read-only preflight
 
 
 ## Current release simplification - 2026-10-25
@@ -11,7 +11,8 @@ explicit; old deployments/journals keep historical profiles.
 
 ## Current mint qualification boundary - 2026-10-25
 
-Current release CLI validation requires **schema5 and mint_integration_version1**.
+Current release CLI validation requires **schema5, accounting_version3,
+fee_intake_version1 and mint_integration_version1**.
 Missing/zero/boolean profiles and schema4 are blocked by default. Only explicit
 `--historical-consistency` inspects historical layouts, with current_release_gate
 false and no production qualification. Library-level legacy consistency remains
@@ -33,12 +34,12 @@ funds move, retaining all final price/LP/policy checks. Legacy execute is disabl
 on the new code; historical pricing-V1/local deployments retain original ABI.
 Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
 and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
-Native-V2 read/unsigned browser integration is implemented; actual native
+Explicit-profile native read/unsigned browser integration is implemented; actual native
 deployment/provider/wallet qualification remains open;
 no existing chain, website build, journal or public signer was upgraded.
 
 
-The current candidate uses **schema 5**, native accounting V2, typed routing V2,
+The current candidate uses **schema5**, local Position accounting3, typed routing2,
 explicit **`pricing_version: 2`** and governed custody. The offline validator checks declared policy against a
 complete pinned observation and required qualification records. A separate
 observer reads deployed contracts. Neither tool signs, deploys, seals, moves funds
@@ -47,25 +48,27 @@ or authorizes a release. The checked-in example is deliberately unqualified.
 Legacy schema 4 keeps its historical interpretation, including its refusal to
 approve the governed/native layout. Its previous blocked template is preserved as
 [production.legacy-v4.example.json](../config/production.legacy-v4.example.json). Do not relabel old WETH contracts, state or
-journals as native V2. Start a separate current-version inventory with exact
+journals as the current profile. Accounting2/LP-only V3 snapshots likewise remain
+historical and are not current V4 snapshots. Start a separate current-version inventory with exact
 deployment-specific runtime hashes, including immutable constructor values.
 
 ## What is inventoried
 
 | Area | Current checks |
 | --- | --- |
-| Core | Access plus its 16 current sealed modules, exact controller/owner bindings, unique addresses, active canonical state and no bootstrap authority. Retired bridge/receiver/routes/transport slots must be zero. |
+| Core | Access plus its 16 current sealed modules, exact bindings, unique addresses, active canonical state and no bootstrap authority. Access `GOVERNANCE_VERSION=2`, actual `governance()` and zero `pendingGovernance()`; keeper/guardian grants and independently reviewed multisig signers/threshold. No current Timelock roles, schedule/execute methods or delay fields. Retired bridge/receiver/routes/transport slots must be zero. |
 | Helpers | Fifteen fixed helpers: activation assets/Entry, Oracle-created contribution pricing, Budget, custody validation, royalty ledger/renderer/claim router, two factories, two converters and three parent-bound v4 executors. Verify pricing `oracle`/`access`, inactive context and every actual getter; do not assume all helpers expose `access()`. |
 | USD pricing | Explicit pricing V2, full append-only two-source policies, active IDs/ordinals, source runtime/precision/round/freshness checks and independently recomputed lower/upper/fingerprint. Independent source and proxy/common-mode reviews remain required for each asset; observing agreement never approves it. |
-| Native identity | Vault accounting version 2, exact native canonical schema, native currency zero with 18 decimals and no runtime hash, separate reward/royalty admission inventories, no wrapper substitution or duplicated native protection. |
+| Native identity | Vault accounting version3, eight-word local Positions and exact `ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4` canonical schema. Current statuses None0/Active1/Outbound2/Dormant3/Parked4. Native currency zero has18decimals and no runtime hash; reward/royalty admission stays separate. No wrapper substitution, invented remote fields or legacy-codec import. |
 | Governed policy | Current contribution, maintenance, LP-conversion and royalty-conversion limits must match the reviewed settings at the same block. Hard maxima are 1,000 bps; defaults are not substituted for missing observations. Gas, caller/venue minimums and original custody approval floors remain separate. |
 | Principal and conversion | One selected contribution pool, actual ordered currencies, hook/fee/spacing/runtime bindings and independent prices. Direct, typed v3 and typed v4 routes retain separate identities. Conversion pools do not become principal pools merely by being listed. |
 | Qualification | Exact-chain asset/feed review, complete inventory history, governance, VRF, content publication, services, gas/recovery rehearsals and independent audit/remediation. Missing decisions remain blockers. |
 
 Current scope is the explicitly supported canonical native deployment and reviewed
-same-chain lineage without external creator-reward inboxes. A nonzero
-`Fees.rewardReceiverCount()` is explicitly outside this inventory profile and
-blocks qualification; it is not silently treated as an empty inventory. Future-chain
+same-chain lineage without external creator-reward inboxes. Current Fees exposes
+`FEE_INTAKE_VERSION=1`; removed receiver factory/count selectors and helpers cannot
+be added to its inventory. The separate historical fee0 inspection still checks
+its original zero-receiver requirement; it does not qualify current code. Future-chain
 canonical handoff, atomic ETH/WETH principal
 moves and legacy-schema import are not enabled by this inventory. External custody
 recipients still require explicit governance trust and their own actual recovery

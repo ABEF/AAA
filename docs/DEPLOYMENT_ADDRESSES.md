@@ -12,7 +12,8 @@ entry cannot create it. [Integration requirements](MINT_INTEGRATION_QUALIFICATIO
 ## Governance authority versus custody recipient - 2026-10-25
 
 These are distinct identities. Governance authorizes exact configuration, pool
-movement and paused custody exits through the zero-delay controller. The reviewed
+movement and paused custody exits by calling their modules directly. Access
+authenticates the current governance wallet; it does not forward the call. The reviewed
 exit recipient receives and controls assets, without gaining protocol governance.
 They can use the same wallet only as an explicit reviewed custody/security choice.
 
@@ -27,7 +28,7 @@ They can use the same wallet only as an explicit reviewed custody/security choic
 Authority addresses, multisig threshold/signers and provider-specific subscription
 ownership remain unselected. No public role or wallet was configured by this update.
 
-**Current candidate (2026-10-25):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor and optional remote-proof custody paths are removed; whole-collection handoff remains separate. The native-accounting V2 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. A reviewed source-chain custodian may bridge externally; no integrated bridge or remote ownership/reward ledger is supplied. Actual production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Native accounting verification](../reports/native-eth-port/VERIFICATION.md).
+**Current candidate (2026-10-25):** [selected hookless native ETH/ZZZ](POOL_SELECTION.md) supports atomic same-accounting-pair moves and the separate [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md). The old LP bridge/pair executor and optional remote-proof custody paths are removed; whole-collection handoff remains separate. The current accounting3 candidate holds and sends actual ETH/ZZZ; native ETH is asset zero, not WETH. Atomic ETH/WETH moves remain unsupported until an explicit conversion boundary is implemented. A reviewed source-chain custodian may bridge externally; no integrated bridge or remote ownership/reward ledger is supplied. Actual production inventory, services and independent qualification remain open. Earlier evidence retains its original scope. [Native accounting verification](../reports/native-eth-port/VERIFICATION.md).
 
 Migration creates the immutable read-only [`ZZZCustodyValidation`](../src/ZZZCustodyValidation.sol)
 companion. Record `Migration.validation()`, its `migration()`/`access()` bindings
@@ -70,7 +71,7 @@ An address alone does not establish the right chain, code or authority.
 
 | Identity | Configuration and responsibility |
 | --- | --- |
-| Governance multisig | Select its public address, signer public addresses and threshold. It initially receives proposer and canceller roles; NFT ownership is not a governance vote. |
+| Governance multisig | Select its public address, signer public addresses, threshold and recovery controls. This wallet is `Access.governance()` and directly calls governed modules; NFT ownership is not a governance vote. |
 | Guardian | Select the emergency pause account. It cannot unpause or withdraw principal. |
 | Keeper | Select a dedicated signer, fund its native gas balance and restrict it to keeper operations. Separate it from governance in production; role separation is an operating recommendation, not a general on-chain prohibition on reusing an address. |
 | Mint proceeds recipient | Select the immutable proceeds recipient: current direct mint pays exactly 0.05 ETH; the required OpenSea path pays net of its actual platform fee from the same 0.05 ETH buyer total. A treasury may fill this role; it has no custody authority merely by receiving mint payments. |
@@ -78,14 +79,17 @@ An address alone does not establish the right chain, code or authority.
 | VRF subscription owner/funder | Identify the selected service's subscription ownership, authorized consumers and funding arrangements. These depend on the qualified coordinator, not a PoPL administrator setter. |
 | External custody recipient | For each approved principal/royalty exit, review the exact recipient, chain, EOA/contract status and code hash, custody controls and recovery plan. Recipient custody/liveness is a governance trust, not a holder redemption right. |
 
-The **governance controller is a deployed contract**, `ZZZAccessController`, rather than another
-wallet to create. The local template sets `GOVERNANCE_MULTISIG` as proposer and
-`address(0)` as executor, meaning anyone can execute only the exact already
-approved operation, immediately. A dedicated executor wallet is unnecessary for that
-configuration. Initial proposers also receive the canceller role. Additional
-role memberships must appear in the reviewed manifest and complete role history.
-Multisig members, guardian and keeper may have external wallet administration
-and recovery arrangements that require separate review.
+The **governance controller is a deployed contract**, `ZZZAccessController`, not
+another wallet. Its version2 constructor takes exactly three nonzero addresses:
+initial governance, initial keeper and initial guardian. There are no proposer,
+executor or canceller accounts/arrays and no scheduling/execution queue. The
+governance wallet calls targets directly using its own signing/nonce policy.
+Changing that wallet requires `proposeGovernance` from the current wallet and
+`acceptGovernance` from the proposed wallet, without a time delay. A zero proposal
+cancels. This does not rotate keeper/guardian grants or the immutable mint
+recipient. Record `GOVERNANCE_VERSION=2`, `governance()` and zero
+`pendingGovernance()` in the release snapshot. Multisig, guardian and keeper
+recovery arrangements still need independent review.
 
 No dedicated **burn wallet** is required: [Buyback](../src/ZZZBuyback.sol) invokes
 `ZZZ.burn` and checks the token supply reduction. Compounding and buyback reserves
@@ -208,7 +212,7 @@ hash alone proves neither return funding nor safe remote accounting. See the
 ## Configuration that is not a wallet address
 
 Record chain IDs; deployment/confirmed block hashes; runtime/initcode identities; the accounting version and canonical schema;
-multisig threshold; zero governance and migration delays; VRF key hash, subscription ID,
+multisig signers/threshold and direct governance version2; VRF key hash, subscription ID,
 confirmations and callback budget; pool keys/IDs and strategy bounds; conversion
 route IDs; source-chain custody version/request/snapshot/review identities;
 content CIDs and metadata URI; RPC URLs; API/indexer
@@ -231,35 +235,38 @@ helper has no custody of LP principal. The conversion limit defaults to 1%, gove
 
 ## Native accounting and canonical version inventory
 
-Record `Vault.ACCOUNTING_VERSION() == 2` and the canonical coordinator's
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3")` with their exact
+Record `Vault.ACCOUNTING_VERSION() == 3` and the canonical coordinator's
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")` with their exact
 runtime pins. Current release inventory also declares `fee_intake_version: 1`,
 with the current 15-helper layout and Fees `FEE_INTAKE_VERSION() == 1`. Absent/zero retains
-the historical 15-helper Native V2 inventory for inspection only. Neither that
-older inbox-capable codec nor V1 WETH accounting can be imported into this current
+the historical 15-helper accounting2/fee0 inventory for inspection only. Earlier
+accounting2/fee1 uses the distinct LP-only V3 schema. Neither historical codec
+nor V1 WETH accounting can be imported into this current
 handoff. Both reviewed peers must expose the same schema. Native principal,
 LP-fee reserves, Rewards and royalties
 are independently captured and funded. Handoff transfers each asset to its peer
 companion first, then acknowledges it with zero `msg.value`; the companion forwards
 already transferred native funding once. Abort reverses the same classified legs.
 
-Use fresh version 2 API/keeper configuration and state for a native deployment.
+Current Position rows contain eight words: pool ID, LP token ID, idle0, idle1,
+depositUSD, centerX96, lastRebalance and status. Their status meanings are None0,
+Active1, Outbound2, Dormant3, Parked4; no home/location cross-chain fields exist.
+Use fresh accounting3 API/keeper configuration and distinct state paths.
 Keep per-deployment predecessor profiles, original currencies and saved journals;
 never reinterpret old WETH as ETH or reset pending transactions to change versions.
 The existing 8902 fixture remains on its old profile. Public `DEPLOYMENT` remains
-null, shared browser signing remains Anvil-only and website V2 qualification is open.
+null, shared browser signing remains Anvil-only and actual current-profile qualification is open.
 
 ## Exact controller constructor size
 
-The current source has48,835 bytes of Access creation code. Its five-argument
-ABI with one proposer and one executor adds288 bytes:49,123 total, leaving29
-bytes below EIP-3860. A second constructor array element adds32 bytes and may
-exceed the limit. Qualify exact ABI arguments for the frozen release; an object
-report alone is insufficient for dynamic constructors.
+The current direct controller has three static address arguments, adding96 ABI
+bytes to creation code. It has no dynamic role arrays. Qualify the exact frozen
+creation code plus these actual arguments against EIP-3860 and its runtime
+against EIP-170; the earlier scheduled-controller 29-byte margin is historical.
 
-Use the actual governance multisig **contract address** in the role array, rather
-than listing that wallet's internal signers. Its signer threshold is managed by
-the multisig. Additional reviewed controller role holders can use the existing
-authorized `grantRole` procedure after deployment; retain exact operation/role
-review and confirm the final authority inventory. This is not permission to skip
-role, code, bootstrap or source/exit identity checks, or to alter compiler limits.
+Use the actual multisig **contract address** as initial governance, not its
+internal signer addresses. Its threshold is managed by that wallet. Additional
+keeper/guardian grants use `setKeeper`/`setGuardian`; governance wallet rotation
+uses the two-step handover. Preserve full reviewed authority history and exact
+runtime/bootstrap/source/exit bindings. Removing obsolete role arrays does not
+relax compiler limits or qualify the new deployment automatically.

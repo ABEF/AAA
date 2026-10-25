@@ -26,8 +26,7 @@ contract PooledRewardsTest is Test {
         rewards.addAsset(address(token0)); rewards.addAsset(address(token1));
         nft.configureRandomness(address(new MockVRF()),bytes32(uint256(1)),1,3,500000,false); ac.seal();
         PoolConfig memory c; c.key.currency0 = address(token0); c.key.currency1 = address(token1); pools.set(POOL, c);
-        Position memory p; p.poolId = POOL; p.homeChain = block.chainid; p.homeVault = address(vault);
-        p.homeToken0 = address(token0); p.homeToken1 = address(token1); p.status = PositionStatus.Active;
+        Position memory p; p.poolId = POOL; p.status = PositionStatus.Active;
         vault.set(BUCKET, p); vault.set(SECOND, p);
     }
     function _seed(uint256 id, address owner, uint256 bucket, uint256 shares, bool activated) private {

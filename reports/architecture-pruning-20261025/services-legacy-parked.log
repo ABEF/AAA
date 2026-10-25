@@ -1,0 +1,8 @@
+test_historical_parked_position_preserves_original_home_provenance (tests_python.test_local_position_services.LocalPositionKeeperTests.test_historical_parked_position_preserves_original_home_provenance) ... ok
+test_dormant_three_is_skipped_and_parked_four_never_runs_maintenance (tests_python.test_local_position_services.LocalPositionKeeperTests.test_dormant_three_is_skipped_and_parked_four_never_runs_maintenance) ... ok
+test_active_and_parked_physical_position_invariants_stay_enforced (tests_python.test_local_position_services.LocalPositionKeeperTests.test_active_and_parked_physical_position_invariants_stay_enforced) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.521s
+
+OK

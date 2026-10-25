@@ -225,8 +225,8 @@ contract ZZZNFT is ERC721, ZZZModule, ReentrancyGuard {
         return interfaceId == 0x2a55205a || interfaceId == 0x49064906 || super.supportsInterface(interfaceId);
     }
 
-    /// @notice Current home-chain marked principal, idle and compound NAV share.
-    /// Remote/in-flight custody or stale dependencies reports unavailable.
+    /// @notice Current local marked principal, idle and compound NAV share.
+    /// External/parked custody or stale dependencies report unavailable.
     function currentLPValue(uint256 id) public view returns (bool available, uint256 valueUSD) {
         _requireOwned(id);
         if (royaltyRewards.weightOf(id) == 0) return (true, 0);

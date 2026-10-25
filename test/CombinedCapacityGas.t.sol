@@ -129,7 +129,7 @@ contract CombinedCapacityGasTest is Test {
         access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.ORACLE, address(oracle));
         access.bind(Ids.MIGRATION, address(this));
-        access.bind(Ids.RECEIVER, address(0x987));
+        access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
         for (uint256 i; i < 32; ++i) {
             MockToken token = new MockToken(0);
             tokens.push(token);

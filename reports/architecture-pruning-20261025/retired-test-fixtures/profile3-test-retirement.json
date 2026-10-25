@@ -1,0 +1,62 @@
+{
+  "source_commit": "280fb28d8a848425283dc3129de50fe5ddbea7f5",
+  "archives": {
+    "AccessController.t.sol.pre-profile3.txt": "421a35c2ff3368e13bc86e1cfea7661439678693ea1bff01e8490522355b867a",
+    "ActivationAssets.t.sol.pre-profile3.txt": "425619f699861f3a9f7bcab304e299d43e28b7329f9f29aaa0585f3f1ec7bc21",
+    "ContributionPool.t.sol.pre-profile3.txt": "3d7f22ba62132658562f448febd3f616036e99c0cd3d41eb74c5e56ea1080520",
+    "CustodyParking.t.sol.pre-profile3.txt": "be2a3bdc8ba678d990e55233a82aafee99e6a1532f8c0bab2176ba4bfde2f921",
+    "NativeCanonicalIntegration.t.sol.pre-profile3.txt": "a6ca0ccea164369cd4e8162551f20a7bfac3f1b8384d2a19f5bc14ec79e85733",
+    "NativeFeeRewards.t.sol.pre-profile3.txt": "92631d4e3072a4d236c7e79c967ab0dffd137c00e80880ad30a5fd4b98d8d98d",
+    "NFTMetadata.t.sol.pre-profile3.txt": "510ff816df9f59bd1845d3a2dfdc65cdc50de56b815e187ab38d251f3934fbd6",
+    "RandomnessRequestSettings.t.sol.pre-profile3.txt": "9eef0eaa9230f1f3d0f1b72c69ee61d43c647df7ff1c5010622dddcbe93d037a",
+    "RangePolicy.t.sol.pre-profile3.txt": "8afae32a41c7c9505f55e445551223dcf844f6f1e2a6c9b97bec23ad5317960b",
+    "SequencerPolicy.t.sol.pre-profile3.txt": "a7a7bd3eb2199376b1fb8fa940ec95bc13e7f50046523ec5891338db4a158caf",
+    "GlobalMembershipDust.t.sol.pre-profile3.txt": "ddbbcc9e07310ce90c5fae46e50ab02a5caef36ba6562a1de53b53ec8ebcd932",
+    "CustodyHandoff.t.sol.pre-profile3.txt": "31d1d6a1198d05cb687575d69a2f883a88ca179dba0fb06690b3b2cdf2d7df1c",
+    "testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue.sol.txt": "7567132d51a656fc2dddd2ad2548c25c3e15c8d8f9d916bb77643a40121c32a6"
+  },
+  "retired_oz_methods": [
+    "testZeroDelayCannotBeChanged",
+    "testImmediateGovernanceKeeperChange",
+    "testFuzzNonzeroConstructorAndOperationDelayRejected",
+    "testAuthorizedGovernanceCannotIntroduceDelay",
+    "testNoUnscheduledAlteredCancelledOrRepeatedExecution",
+    "testProposerAndExecutorPermissionsRemainSeparate",
+    "testImmediateBatchIsAtomicAndRoleGated",
+    "testPredecessorStillRequiresCompletionNotElapsedTime",
+    "testReservedTimestampCannotMislabelZeroDelayOperation"
+  ],
+  "scope": "Exact pre-profile3 original file archives only; no test execution by this fixture adaptation. Retired scheduling/replay/delay/executor and deleted remote-field semantics are not passing current behaviors. Root records final compile/selected execution separately.",
+  "other_retired_methods": [
+    {
+      "file": "test/RandomnessRequestSettings.t.sol",
+      "method": "testRequestCallbackCannotExecuteReadyGovernanceChangeDuringMint",
+      "reason": "Open-executor queued Access.execute callback is absent under direct governance. Separate new method tests unprivileged coordinator cannot mutate configuration; it is not the same historical executor/reentrancy behavior."
+    },
+    {
+      "file": "test/GlobalMembershipDust.t.sol",
+      "method": "testMembershipCannotFlushForeignCustodyDust",
+      "reason": "Per-position chain/location fields are absent in profile3. New method tests inactive observation skip and exact same-dust positive control, not a remote-custody invariant."
+    },
+    {
+      "file": "test/CustodyHandoff.t.sol",
+      "method": "testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue",
+      "reason": "MockPools allowed replacement ZZZ, but current fixed-token Registry explicitly rejects a new token identity. This old positive token-replacement assertion is retired; current rejection is covered independently, with no fake replacement success."
+    }
+  ],
+  "ported_current_fixtures": {
+    "AtomicActivationIntegration": "Six-decimal fixed ZZZ is now one target-pair asset; conversion/18-decimal output/exact input/funding and owner rights remain real Entry/Vault paths with explicit fake router/LP math. Generic stablecoin activation is retired.",
+    "ActivationAssets": "One fixed ZZZ configured first; native ETH is the other source. Generic target-pair admission cannot add external source currencies. Precision/runtime tests that need other ZZZ use separate helper instances.",
+    "ContributionPool": "Actual governance test contract executes two Registry writes atomically via its self-only helper; no scheduler/batch executor substitute is placed in production.",
+    "OperatorControls": "Actual configured governance recipient may call mint pause from NFT callback; original mint must revert and roll back request, ownership and pause state.",
+    "NativeSourceIdentity": "Generic non-native pool must contain fixed ZZZ; unset or unrelated fixed identity rejects without admission. Positive generic pair case does not qualify native venue pins.",
+    "RangePolicy/SequencerPolicy/RandomnessRequestSettings": "Distinct governance address calls real sealed modules directly. Bootstrap, keeper and guardian authorization failures remain separate.",
+    "NativeCanonicalIntegration": "Actual governance directly performs whole handoff and abort; exact backing remains checked with deterministic local native venue.",
+    "CustodyParking/NativeFeeRewards/NFTMetadata": "Deleted remote-location assertions are archived. Current Outbound/Parked unavailability and inactive-bucket rejection are retained. No cross-chain status coverage is claimed."
+  },
+  "dead_test_helpers_removed": [
+    "test/CustodyParking.t.sol:ParkingRoleVault",
+    "test/CustodyParking.t.sol:ParkingRolePools",
+    "test/CustodyParking.t.sol:CustodyParkingGovernanceTest (empty)"
+  ]
+}

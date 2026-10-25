@@ -39,7 +39,9 @@ contract ZZZPoolRegistry is ZZZModule {
     }
     function configure(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
         PoolKey memory k = config.key;
-        if (k.currency0 >= k.currency1 || k.currency0.code.length == 0 || k.currency1.code.length == 0 ||
+        address fixedZZZ=activationAssets.zzz();
+        if (fixedZZZ==address(0) || (k.currency0!=fixedZZZ && k.currency1!=fixedZZZ) ||
+            k.currency0 >= k.currency1 || k.currency0.code.length == 0 || k.currency1.code.length == 0 ||
             k.hooks != address(0)) revert InvalidConfiguration();
         return _configure(config, k.currency0, k.currency1);
     }
@@ -47,7 +49,7 @@ contract ZZZPoolRegistry is ZZZModule {
     /// The selected launch identity does not prevent governed moves after sealing.
     /// Bind the fixed contribution/exit ZZZ before native admission. Otherwise
     /// matching but wrong source/exit settings could strand normal all-ZZZ exit.
-    /// Runtime/wiring are rechecked on every accounting/nativeAsset read.
+    /// Runtime/wiring are rechecked on every accounting/isNativePool read.
     function configureNative(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
         PoolKey memory key = config.key;
         if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 ||
@@ -140,12 +142,7 @@ contract ZZZPoolRegistry is ZZZModule {
         PoolConfig memory c = accounting(poolId);
         return activationAssets.value(c.key.currency0, amount0) + activationAssets.value(c.key.currency1, amount1);
     }
-    /// @notice Legacy currency getter. Zero is native ETH, not a wrapper.
-    /// Use isNativePool to distinguish native identity from an ERC20-only pool.
-    function nativeAsset(bytes32 poolId) external view returns (address) {
-        isNativePool(poolId);
-        return address(0);
-    }
+    /// @notice Whether an admitted pool settles its first currency as native ETH.
     function isNativePool(bytes32 poolId) public view returns (bool) {
         if (!exists[poolId]) revert InvalidConfiguration();
         if (pools[poolId].key.currency0 != address(0)) return false;

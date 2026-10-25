@@ -1,26 +1,33 @@
 # Keeper outage and server recovery
 
-Native V2 configurations explicitly set `accounting_version: 2`, the independently
+Current local-Position configurations explicitly set `accounting_version: 3`, the independently
 reviewed deployed runtime hash at `code_hashes.vault`, the actual address at
 `contracts.vault`, and the matching chain/deployment identity. A compiler template
 hash is not a deployed runtime pin. Every new-work/submission
 boundary verifies the version; pending receipt recovery runs first. A missing
 version in an old journal means legacy1, and a mismatch stops without rewriting
 pending transactions, nonces or receipts. Restore the matching profile/state;
-never convert the existing Anvil journal into V2 by editing its version number.
+never convert an existing Anvil journal by editing its version number.
 Native reserve compounding/buyback uses currency zero with zero user call value;
 the fee controller funds its own classified reserve. Native venue fees need no
 conversion worker. Explicit WETH conversion remains separately configured.
-See [native implementation evidence](../reports/native-eth-port/VERIFICATION.md).
+See [historical native implementation evidence](../reports/native-eth-port/VERIFICATION.md).
 
 Fresh current LP-only deployments also require explicit `fee_intake_version: 1`,
 the actual `contracts.fees` address and its reviewed deployed runtime at
 `code_hashes.fees`. The keeper checks `FEE_INTAKE_VERSION() == 1` before new work.
-This profile is persisted separately from accounting version2: historical fee0
-journals and pending hashes must not be reinterpreted by copying current settings
+This profile is persisted separately from accounting version3: historical
+accounting1/2 and fee0/fee1 journals and pending hashes must not be reinterpreted by copying current settings
 or editing a version field. Restore their original deployment/profile for reviewed
 reconciliation. The current example uses separate native/profile-specific state
-paths; it does not upgrade an installed service or provide reviewed runtime pins.
+paths (`var/keeper-local-position-v3-lp-only.*`); it does not upgrade an installed
+service or provide reviewed runtime pins. The current eight-word Position layout
+uses None0/Active1/Outbound2/Dormant3/Parked4 and the LP-only V4 canonical schema.
+Historical rows remain fifteen words with their original remote/status meanings.
+The keeper checks the configured exact version/runtime before new work; it never
+guesses a codec from response length or fabricates chain provenance. In particular,
+historical Remote3 is not current Dormant3. Only Active1 runs ordinary LP upkeep;
+outbound/parked states keep their separate recovery procedures.
 
 Hardened keeper candidate. See [the internal review](../reports/keeper-recovery/REVIEW.md). Staging and independent approval remain required before funded operation.
 

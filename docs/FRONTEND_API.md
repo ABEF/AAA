@@ -1,14 +1,27 @@
-## Native accounting V2 profile - 2026-10-24
+## Current local Position V3 profile - 2026-10-25
 
-Select top-level `accounting_version: 2` for the [native candidate](../reports/native-eth-port/VERIFICATION.md).
-The service verifies the pinned Vault's `ACCOUNTING_VERSION() == 2` and native
-canonical schema. Omitted version remains legacy1. Explicit per-predecessor
-versions prevent successor currency semantics from rewriting WETH history.
-Currency zero is accepted only in reviewed currency argument positions, never
-as a contract target. Native price profiles use `priced_token: zero` and
-`token_code_hash: null` with an independent pinned ETH feed. No runtime is invented
-for ETH. Actual native providers, hosting and website profile remain unqualified.
-No signing, existing deployment/journal rewrite or public activation is added.
+Current deployments require explicit `accounting_version: 3` and
+`fee_intake_version: 1` in the existing **schema 2** read configuration.
+The service verifies `Vault.ACCOUNTING_VERSION() == 3`, direct
+`AccessController.GOVERNANCE_VERSION() == 2`, actual governance identity and
+`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. The [Position codec](POSITION_V3.md)
+is eight words; dormant/parked codes are 3/4. Response field names and large
+integer decimal strings stay unchanged; no removed remote-position fields are
+fabricated. Local custody is established by the pinned chain/Vault/controller
+and canonical lifecycle, rather than legacy satellite fields.
+
+Explicit accounting 1/2 readers remain for their reviewed historical profiles;
+omitting the version selects legacy1, never the current release. Do not rewrite
+old deployments, transaction journals or predecessor codecs. V4 handoff rejects
+older schemas, and current lineage rejects a predecessor with a different
+Position codec. An operator must not claim automatic cross-codec migration.
+
+Currency zero is native ETH only in reviewed currency argument positions, never
+as a contract target. Both LP and royalty ledgers can hold native ETH. Native
+price profiles use `priced_token: zero` and `token_code_hash: null` with reviewed
+independent USD sources. No runtime is invented for ETH. Actual feed/route/provider,
+hosting and wallet qualification remain open; signing stays Anvil-only and the
+public website deployment remains null.
 
 ## Confirmed collection extension - 2026-10-23
 
@@ -88,8 +101,8 @@ The response contains:
   predecessor/successor information at the same confirmed hash.
 - Canonical vault state, shared-bucket identity, nonredeemable shares and persistent
   activation/royalty eligibility.
-- Explicit `parked` custody (appended on-chain status 6), authenticated local
-  Vault location and zero physical LP ID. Claims and eligibility remain available;
+- Explicit `parked` custody (current on-chain status 4), the authenticated local
+  Vault and zero physical LP ID. Claims and eligibility remain available;
   current LP valuation is unavailable, and the API does not invent continued
   revenue from a closed position.
 - Current marked LP value from `ZZZNFT.currentLPValue`, in USD with 18 decimals.
@@ -97,7 +110,7 @@ The response contains:
   zero. Evolution can decrease with current value, independently of activation.
 - Actual `ZZZRewards.claimable` amounts for every admitted LP reward asset.
   This is the combined individual and collective balance already allocated by
-  the contracts. Pending creator-receiver funds are **not** preview-synchronized.
+  the contracts. The hookless release has no creator-payment inbox or remote fee intake.
 - Actual `ZZZRoyaltyRewards.claimable` amounts for every admitted royalty asset,
   including address-zero native ETH. This contract view includes pending
   admitted receipts at current membership weights. LP and royalties are separate
@@ -143,6 +156,8 @@ specified in [history configuration](FRONTEND_HISTORY.md#configuration-and-genui
 ```json
 {
   "schema": 2,
+  "accounting_version": 3,
+  "fee_intake_version": 1,
   "chain_id": 46630,
   "rpc_urls": ["https://<reviewed-provider>"],
   "deployment_block": 123,
@@ -182,7 +197,8 @@ authority: their governance/implementation policy still needs separate review.
 The asset descriptors must match the **exact union** of both admitted on-chain
 asset lists; no silently omitted assets or unreviewed decimal/symbol guesses are
 allowed. Native ETH has address zero, 18 decimals and `code_hash: null`; it is
-valid only in the royalty list. LP rewards remain admitted ERC20s. Symbols are
+valid in both current native LP and royalty ledgers. Historical accounting1
+profiles retain their original ERC20-only LP boundary. Symbols are
 reviewed display labels, not prices. An on-chain asset addition requires updating
 and reviewing this configuration before the endpoint becomes available again.
 ERC20 `decimals()` must match its configured descriptor at the same pinned block.

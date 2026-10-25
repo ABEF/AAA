@@ -91,18 +91,30 @@ contract NativeSourceIdentityTest is Test {
         // This fake token is intentionally not the pinned production runtime.
         _unchanged(c, 1);
     }
-    function testGenericERC20AdmissionKeepsItsIndependentIdentityPolicy() public {
+    function testGenericERC20AdmissionRejectsUnsetOrUnrelatedFixedZZZ() public {
         MockToken a = new MockToken(18); MockToken b = new MockToken(18);
         PoolConfig memory c = _config();
         (address first, address second) = address(a) < address(b)
             ? (address(a), address(b)) : (address(b), address(a));
         c.key = PoolKey(first, second, 10020, 200, address(0));
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector); registry.configure(c);
+        _unchanged(c, 0);
+        MockToken unrelated = new MockToken(18);
+        assets.configureZZZ(address(unrelated), address(unrelated).codehash, REVIEW);
+        vm.expectRevert(ZZZModule.InvalidConfiguration.selector); registry.configure(c);
+        _unchanged(c, 1);
+    }
+    function testGenericERC20AdmissionAllowsFixedZZZPairWithoutAddingThirdSource() public {
+        MockToken a = new MockToken(18); MockToken b = new MockToken(18);
+        assets.configureZZZ(address(a), address(a).codehash, REVIEW);
+        PoolConfig memory c = _config();
+        (address first, address second) = address(a) < address(b)
+            ? (address(a), address(b)) : (address(b), address(a));
+        c.key = PoolKey(first, second, 10020, 200, address(0));
         bytes32 id = registry.configure(c);
-        assertTrue(registry.exists(id));
-        assertEq(registry.contributionPool(), id);
-        assertEq(assets.zzz(), address(0));
-        // Pair accounting admission does not turn either token into a source.
-        assertFalse(assets.isContributionAsset(first));
-        assertFalse(assets.isContributionAsset(second));
+        assertTrue(registry.exists(id)); assertEq(registry.contributionPool(), id);
+        assertEq(assets.zzz(), address(a));
+        assertTrue(assets.isContributionAsset(address(a)));
+        assertFalse(assets.isContributionAsset(address(b)));
     }
 }

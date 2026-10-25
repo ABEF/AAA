@@ -40,7 +40,7 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
         ZZZMigration migration = _migration();
         vm.expectEmit(true, false, false, true, address(vault.migrationBudget()));
         emit MigrationValueChecked(bucket, 2045e18, 2045e18, 0);
-        migration.movePool(bucket, target, 1, block.timestamp + 100);
+        migration.moveFunds(bucket, target, 1, block.timestamp + 100);
         Position memory p = vault.group(bucket);
         assertEq(venue.a0(p.lpTokenId), 1015);
         assertEq(venue.a1(p.lpTokenId), 1030);
@@ -60,13 +60,13 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
         venue.setSpendBps(9500);
         vm.expectEmit(true, false, false, true, address(vault.migrationBudget()));
         emit MigrationValueChecked(bucket, 2000e18, 1900e18, 100e18);
-        migration.movePool(bucket, target, 1, block.timestamp + 100);
+        migration.moveFunds(bucket, target, 1, block.timestamp + 100);
         assertEq(vault.group(bucket).idle0, 50);
         assertEq(vault.group(bucket).idle1, 50);
         venue.setSpendBps(10000);
         vm.expectEmit(true, false, false, true, address(vault.migrationBudget()));
         emit MigrationValueChecked(bucket, 2000e18, 2000e18, 0);
-        migration.movePool(bucket, poolId, 1, block.timestamp + 100);
+        migration.moveFunds(bucket, poolId, 1, block.timestamp + 100);
         assertEq(vault.group(bucket).idle0, 0);
         assertEq(vault.group(bucket).idle1, 0);
     }
@@ -79,7 +79,7 @@ contract MigrationExecutionBudgetTest is PooledVaultFixture {
         ZZZMigration migration = _migration();
         vm.warp(block.timestamp + 3601);
         vm.expectRevert();
-        migration.movePool(bucket, target, 1, block.timestamp + 100);
+        migration.moveFunds(bucket, target, 1, block.timestamp + 100);
         assertEq(venue.fee0(), 100);
         assertEq(venue.fee1(), 200);
         assertEq(vault.group(bucket).lpTokenId, beforePosition.lpTokenId);

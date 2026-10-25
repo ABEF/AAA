@@ -71,8 +71,7 @@ contract DynamicRangeTest is Test {
         oracle.setTestFeed(T0,address(feed0),3600);oracle.setTestFeed(T1,address(feed1),3600);
         pools.set(pool,config);posm.set(config.key,v.lower,v.upper);state.set(v.spot);
         Position memory p;p.poolId=pool;p.lpTokenId=1;p.status=PositionStatus.Active;
-        p.centerX96=uint160(1<<96);p.homeChain=block.chainid;p.locationChain=block.chainid;
-        p.homeVault=address(ledger);p.locationVault=address(ledger);ledger.set(p);
+        p.centerX96=uint160(1<<96);ledger.set(p);
     }
     function _assertNetDeployment(Vectors.V memory v,bool direction,uint256 input,uint256 swap) private view {
         // Value the real post-fee pair using the independent Decimal position

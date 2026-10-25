@@ -8,7 +8,7 @@ import {Ids} from "./libraries/ZZZTypes.sol";
 import {ExactToken} from "./libraries/ExactToken.sol";
 
 /// @notice LP-only fee/reserve export with exact classified backing.
-/// Native-LP-only V3 handoff rows are incompatible with older inbox/bridge rows.
+/// Local-position LP-only V4 handoff rows are incompatible with older position/inbox/bridge rows.
 contract ZZZFeesCanonical is ZZZModule {
     ZZZFeeController public immutable fees;
     address[] private assets;

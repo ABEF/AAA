@@ -1,0 +1,17 @@
+{
+  "scope": "Read-only descriptor retention comparison against the local committed baseline, plus the recorded retirement map. No test rerun, network or chain action.",
+  "observed_at_utc": "2026-10-25T19:17:42.161836+00:00",
+  "previous_count": 133,
+  "current_count": 135,
+  "historical_count": 33,
+  "all_previous_descriptors_exact": true,
+  "all_retired_descriptors_exact": true,
+  "new_signatures": [
+    "GovernanceAccepted(address,address)",
+    "GovernanceProposed(address,address)"
+  ],
+  "baseline_event_schema_sha256": "e358e5c127b545b304749991ea70478eeea0d0194290bb92a81ea91efae6e928",
+  "current_event_schema_sha256": "7be74762f4d65c2073c79355f0bba5c7f46f23c457ec2e7addf8ef7f61433187",
+  "historical_event_schema_sha256": "2ae2effbe5c009eb71c942ed76b2bb4f876650bc913d876fb3a324efc3dd96ad",
+  "retirement_record_sha256": "364c2176f8a718dc1702e1f3c4307b5560bd57b0d93a888257220e94997b08cd"
+}

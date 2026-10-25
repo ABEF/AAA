@@ -6,7 +6,12 @@ was updated. Remaining work belongs to the [read API task](../TODO.md#task-read-
 
 ## Configuration and response version
 
-Configuration and read responses now require **schema 2**. Existing schema-1
+Configuration and read responses use **schema 2**. The current release explicitly
+selects `accounting_version: 3`, `fee_intake_version: 1`, direct governance V2
+and the local V4 canonical schema. Its [Position codec](POSITION_V3.md) has eight
+words and statuses None0/Active1/Outbound2/Dormant3/Parked4. Legacy accounting1/2
+readers keep their original profile; no old journal is upgraded or reinterpreted.
+Existing schema-1
 configurations fail closed. Add independently reviewed runtime/address pins for
 `contracts.handoff` and `contracts.vault_canonical`, using the same object format
 as the other six contracts. Eight distinct contracts are required. Every request
@@ -57,18 +62,22 @@ previous deployments. With the optional [complete predecessor configuration](FRO
 the API now verifies same-chain retirement/activation links and replays all prior
 LP/royalty claims. Without it, imported successor lifetime totals remain
 unavailable, even if current history contains nonzero claims. Invalid configured
-lineage fails closed; zero and partial totals are never substituted.
+lineage fails closed; zero and partial totals are never substituted. V4 source
+and successor must use the same canonical schema and Position3 codec; historical
+reader support does not add cross-codec import compatibility.
 
 Wallet inventory describes current ownership only and does not classify imported
-transfers as paid sales. Cross-chain history, marketplace cutover and operating
-qualification remain in the [central Todo](../TODO.md).
+transfers as paid sales. Cross-chain collection relocation is outside this release;
+source-chain custody exit alone cannot move the NFT or reward ledgers. Marketplace
+cutover and operating qualification remain in the [central Todo](../TODO.md).
 
 ## Verification and operational scope
 
-See the [source-bound verification](../reports/frontend-lifecycle/VERIFICATION.md)
-for boundary, HTTP, real local indexer/history and regression checks. Production
-Solidity is unchanged. Existing compiler ABIs are checked against matching source
-identities rather than recompiling unchanged contracts.
+The earlier [source-bound verification](../reports/frontend-lifecycle/VERIFICATION.md)
+records its original lifecycle/API candidate. It does not qualify later Position3,
+direct-governance or V4 changes. Current verification is recorded separately in
+the [architecture-pruning review](../reports/architecture-pruning-20261025/REVIEW.md);
+no production operating approval or broad fresh regression is inferred.
 
 Every read uses EIP-1898 `requireCanonical` with one block hash. Final checks
 revalidate the full header, deployment anchor, chain, confirmation depth and age

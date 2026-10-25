@@ -76,7 +76,7 @@ class ActivationTransactions:
         if '0x'+p._call(pins['activation_assets'],'activePolicy(address)',source,block=block)[0] != policy_id:
             raise ProjectionError('Active source policy differs from the reviewed policy')
         policy=p._call(pins['activation_assets'],'policies(bytes32)',policy_id,block=block,words=6)
-        if (_address_word(policy[0],native=p.accounting_version==2)!=source or not _bool(policy[1]) or
+        if (_address_word(policy[0],native=p.accounting_version in (2, 3))!=source or not _bool(policy[1]) or
                 '0x'+policy[2]!=(NATIVE_ASSET_CODE_HASH if source==ZERO else cfg.tokens[source]['code_hash']) or
                 int(policy[3],16)==0 or int(policy[4],16)!=cfg.tokens[source]['decimals']):
             raise ProjectionError('Source asset is disabled or its admission changed')
@@ -160,7 +160,7 @@ class ActivationTransactions:
         if ('0x'+keccak256(bytes.fromhex(''.join(actual[:5]))).hex()!=req['pool'] or actual[1:]!=account[1:] or
                 not _bool(account[5]) or not _bool(account[6])):
             raise ProjectionError('Pool identity/configuration is invalid or contributions are disabled')
-        native_profile = p.accounting_version == 2
+        native_profile = p.accounting_version in (2, 3)
         req['token0'] = _address_word(account[0], native=native_profile)
         req['token1'] = _address_word(account[1])
         if req['token0']==req['token1']: raise ProjectionError('Invalid accounting pair')
@@ -206,7 +206,7 @@ class ActivationTransactions:
         req['old_lp_id']=0
         position=None
         if bucket:
-            position=p._call(pins['vault'],'group(uint256)',bucket,block=block,words=15)
+            position=p._position(bucket,block)
             if int(position[7],16) not in (0,1): raise ActivationInputError('Shared custody is unavailable for contributions')
             req['old_lp_id']=int(position[1],16)
             if int(position[7],16)==1 and '0x'+position[0]!=req['pool']:

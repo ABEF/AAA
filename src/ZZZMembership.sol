@@ -3,7 +3,6 @@ pragma solidity 0.8.26;
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {IZZZRewards, IZZZNFT, IZZZVault, IZZZFees, IZZZPools} from "./interfaces/IZZZ.sol";
 import {Ids, Position, PositionStatus, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {ZZZCanonicalLedger} from "./base/ZZZCanonicalLedger.sol";
 import {IPairVault, IPairAssets} from "./ZZZMigrationBudget.sol";
 interface IZZZMembershipOrdinals {
     function mintedCount() external view returns (uint256);
@@ -13,12 +12,25 @@ interface IZZZMembershipOrdinals {
 /// @notice Each activated canonical NFT has one equal collective-reward share.
 /// Eligibility belongs to the NFT, persists through transfers and LP migration,
 /// and never increases when its attached LP receives an additional contribution.
-contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
+contract ZZZMembership is ZZZModule {
     mapping(uint256 => bool) public eligible;
     uint256 public totalEligible;
     event MembershipActivated(uint256 indexed nftId);
+    error CanonicalState();
     constructor(address controller) ZZZModule(controller) {}
-    function _canonicalAccess() internal view override returns (address) { return address(access); }
+    // Membership exports eligibility records, not assets. Keep its lifecycle
+    // checks without inheriting custody storage or asset-transfer entrypoints.
+    modifier canonicalOnly() {
+        if (msg.sender != access.canonicalHandoff()) revert CanonicalState();
+        _;
+    }
+    modifier economic() { _economic(); _; _economic(); }
+    function _state() private view returns (uint8) { return access.canonicalState(); }
+    function _economic() private view { if (_state() != 0) revert CanonicalState(); }
+    function _canonicalNext(uint256 row) private {
+        if (_state() != 2 || canonicalCursor != row) revert CanonicalState();
+        ++canonicalCursor;
+    }
     /// @notice Settle funded fee dust in every canonical bucket before an entry.
     /// The Vault caps all historical local buckets, including imported custody.
     /// Unharvested venue fees retain receipt-time policy.
@@ -31,9 +43,8 @@ contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
         for (uint256 i; i < count; ++i) {
             uint256 bucket = vault.bucketAt(i);
             Position memory position = vault.group(bucket);
-            if (position.homeChain != block.chainid || position.homeVault != address(vault) ||
-                (position.status != PositionStatus.Active && position.status != PositionStatus.Outbound &&
-                    position.status != PositionStatus.Parked)) continue;
+            if (position.status != PositionStatus.Active && position.status != PositionStatus.Outbound &&
+                position.status != PositionStatus.Parked) continue;
             // Dust uses immutable admitted currency identities, not a live venue
             // observation. A broken historical venue must not block healthy new
             // entry when its funded dust can still settle exactly. Current-pool
@@ -62,8 +73,9 @@ contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
     }
     uint256 private canonicalNFTs;
     uint256 private canonicalEligible;
+    uint256 private canonicalCursor;
     function canonicalCapture() external canonicalOnly {
-        _canonicalBeginCapture();
+        if (_state() != 1) revert CanonicalState();
         canonicalNFTs = IZZZMembershipOrdinals(access.module(Ids.NFT)).mintedCount();
         canonicalEligible = totalEligible;
     }
@@ -90,5 +102,9 @@ contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
     }
     function canonicalValidate() external view {
         if (_state() == 2 && (canonicalCursor != canonicalCount() || totalEligible != canonicalEligible)) revert CanonicalState();
+    }
+    function canonicalAssetCount() external view returns (uint256) { return 0; }
+    function canonicalActivate() external canonicalOnly {
+        if (_state() != 2) revert CanonicalState();
     }
 }

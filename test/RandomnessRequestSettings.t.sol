@@ -2,7 +2,6 @@
 pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
-import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZNFT, IZZZVRFCoordinator} from "../src/ZZZNFT.sol";
 import {ZZZNFTCanonical} from "../src/ZZZNFTCanonical.sol";
@@ -84,8 +83,8 @@ contract RandomnessRequestSettingsTest is Test {
         ZZZNFTCanonical codec;
     }
     System private current;
-    uint256 private governanceNonce;
     address private constant ALICE = address(0xA11CE);
+    address private constant GOVERNANCE = address(0xA0A0);
     address private constant GUARDIAN = address(0x600D);
     event RandomnessRequestSettingsChanged(uint16 previousConfirmations, uint32 previousCallbackGasLimit,
         uint16 confirmations, uint32 callbackGasLimit);
@@ -93,9 +92,7 @@ contract RandomnessRequestSettingsTest is Test {
     function setUp() public { vm.warp(1_000_000); current = _deploy(3, 500000, true); }
 
     function _deploy(uint16 confirmations, uint32 gasLimit, bool sealNow) private returns (System memory s) {
-        address[] memory proposers = new address[](1); proposers[0] = address(this);
-        address[] memory executors = new address[](1); executors[0] = address(0);
-        s.access = new ZZZAccessController(0, proposers, executors, address(this), GUARDIAN);
+        s.access = new ZZZAccessController(GOVERNANCE, address(this), GUARDIAN);
         s.nft = new ZZZNFT(address(s.access), "ipfs://request-settings-fixture/");
         s.coordinator = new RecordedRequestCoordinator();
         s.nft.configureRandomness(address(s.coordinator), keccak256("fixed gas lane"), 17, confirmations, gasLimit, true);
@@ -113,20 +110,17 @@ contract RandomnessRequestSettingsTest is Test {
             address(new RequestSettingsCompanion(address(s.access), s.access.module(Ids.FEES))));
         if (sealNow) s.access.seal();
     }
-    function _schedule(System memory s, address target, bytes memory data) private returns (bytes32 salt) {
-        salt = bytes32(++governanceNonce); s.access.schedule(target, 0, data, bytes32(0), salt, 0);
-    }
     function _govern(System memory s, address target, bytes memory data) private {
-        bytes32 salt = _schedule(s, target, data);
-        s.access.execute(target, 0, data, bytes32(0), salt);
+        vm.prank(s.access.governance());
+        (bool ok, bytes memory result) = target.call(data);
+        if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
     }
     function _tune(System memory s, uint16 confirmations, uint32 gasLimit) private {
         _govern(s, address(s.nft), abi.encodeCall(s.nft.setRandomnessRequestSettings, (confirmations, gasLimit)));
     }
     function _expectTuneRevert(System memory s, uint16 confirmations, uint32 gasLimit, bytes4 selector) private {
-        bytes memory data = abi.encodeCall(s.nft.setRandomnessRequestSettings, (confirmations, gasLimit));
-        bytes32 salt = _schedule(s, address(s.nft), data); vm.expectRevert(selector);
-        s.access.execute(address(s.nft), 0, data, bytes32(0), salt);
+        vm.prank(s.access.governance()); vm.expectRevert(selector);
+        s.nft.setRandomnessRequestSettings(confirmations, gasLimit);
     }
     function _assertFixedDependencies(System memory s) private view {
         assertEq(s.nft.randomnessCoordinator(), address(s.coordinator)); assertEq(s.nft.keyHash(), keccak256("fixed gas lane"));
@@ -148,11 +142,9 @@ contract RandomnessRequestSettingsTest is Test {
     function testImmediateGovernanceChangesOnlyFutureRequestArgumentsAndEmitsExactEvent() public {
         current.vault.mint(ALICE, 444); bytes32 oldRequest = keccak256(abi.encode(current.coordinator.request(1)));
         uint256 timestamp = block.timestamp;
-        bytes memory data = abi.encodeCall(current.nft.setRandomnessRequestSettings, (200, 10000000));
-        bytes32 salt = _schedule(current, address(current.nft), data);
         vm.expectEmit(false, false, false, true, address(current.nft));
         emit RandomnessRequestSettingsChanged(3, 500000, 200, 10000000);
-        current.access.execute(address(current.nft), 0, data, bytes32(0), salt);
+        vm.prank(current.access.governance()); current.nft.setRandomnessRequestSettings(200, 10000000);
         assertEq(block.timestamp, timestamp); assertEq(current.nft.requestConfirmations(), 200);
         assertEq(current.nft.callbackGasLimit(), 10000000); _assertFixedDependencies(current);
         assertEq(keccak256(abi.encode(current.coordinator.request(1))), oldRequest);
@@ -201,11 +193,8 @@ contract RandomnessRequestSettingsTest is Test {
         System memory bootstrap = _deploy(5, 600000, false);
         bootstrap.nft.setRandomnessRequestSettings(6, 700000);
         bootstrap.access.seal(); bootstrap.vault.mint(ALICE, 444); _assertRequest(bootstrap, 1, 6, 700000);
-        bytes memory replacement = abi.encodeCall(bootstrap.nft.configureRandomness,
-            (address(current.coordinator), bytes32(uint256(2)), 18, 3, 500000, false));
-        bytes32 salt = _schedule(bootstrap, address(bootstrap.nft), replacement);
-        vm.expectRevert(ZZZModule.InvalidConfiguration.selector);
-        bootstrap.access.execute(address(bootstrap.nft), 0, replacement, bytes32(0), salt);
+        vm.prank(bootstrap.access.governance()); vm.expectRevert(ZZZModule.InvalidConfiguration.selector);
+        bootstrap.nft.configureRandomness(address(current.coordinator), bytes32(uint256(2)), 18, 3, 500000, false);
         _assertFixedDependencies(bootstrap);
     }
 
@@ -235,7 +224,7 @@ contract RandomnessRequestSettingsTest is Test {
     function testPreparationAndAllCanonicalLocksRejectTuningWhileRevealMayDrain() public {
         current.vault.mint(ALICE, 444);
         ZZZAccessController.PreparationNotice memory notice = ZZZAccessController.PreparationNotice(
-            block.chainid + 1, address(0xCA11), keccak256("reviewed deployment"), keccak256("review material"));
+            block.chainid, address(0xCA11), keccak256("reviewed deployment"), keccak256("review material"));
         _govern(current, address(current.access), abi.encodeCall(current.access.startPreparation, (notice)));
         _expectTuneRevert(current, 4, 600000, ZZZModule.Unauthorized.selector);
         current.coordinator.fulfill(1, 0, 0); current.nft.finalizeTraits(444); assertTrue(current.nft.traitsReady(444));
@@ -248,18 +237,16 @@ contract RandomnessRequestSettingsTest is Test {
         _tune(current, 4, 600000); assertEq(current.nft.requestConfirmations(), 4);
     }
 
-    function testRequestCallbackCannotExecuteReadyGovernanceChangeDuringMint() public {
-        bytes memory data = abi.encodeCall(current.nft.setRandomnessRequestSettings, (20, 2000000));
-        bytes32 salt = _schedule(current, address(current.nft), data);
-        current.coordinator.setCallback(address(current.access), abi.encodeCall(current.access.execute,
-            (address(current.nft), 0, data, bytes32(0), salt)));
+    function testUnprivilegedCoordinatorCallbackCannotChangeGovernanceSettingsDuringMint() public {
+        current.coordinator.setCallback(address(current.nft),
+            abi.encodeCall(current.nft.setRandomnessRequestSettings, (20, 2000000)));
         current.vault.mint(ALICE, 444);
         assertFalse(current.coordinator.callbackSucceeded());
-        assertEq(current.coordinator.callbackResult(), abi.encodeWithSelector(ReentrancyGuard.ReentrancyGuardReentrantCall.selector));
+        assertEq(current.coordinator.callbackResult(), abi.encodeWithSelector(ZZZModule.Unauthorized.selector));
         assertEq(current.nft.requestConfirmations(), 3); assertEq(current.nft.callbackGasLimit(), 500000);
         assertEq(current.coordinator.sequence(), 1); _assertRequest(current, 1, 3, 500000);
         current.coordinator.setCallback(address(0), "");
-        current.access.execute(address(current.nft), 0, data, bytes32(0), salt);
+        _tune(current, 20, 2000000);
         current.vault.mint(ALICE, 445); _assertRequest(current, 2, 20, 2000000);
     }
 

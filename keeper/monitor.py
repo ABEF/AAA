@@ -22,6 +22,7 @@ from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import atomic_json, integer, process_lock, read_json
 from zzz_ops.ethereum_fees import execution_price, fee_cap, transaction_chain_id
 from zzz_ops.range_policy import observe as observe_range_policy, verify as verify_range_policy
+from zzz_ops.position import decode_position
 from keeper.royalties import RoyaltyAutomation, BATCH as ROYALTY_BATCH, encode_batch
 
 ACCOUNTING_MODEL = 'shared-pools-v2'
@@ -83,11 +84,12 @@ class Keeper:
     def __init__(self, config: dict[str,Any], *, live: bool = False, rpc: Rpc | None = None):
         self.config, self.live = config, live
         self.accounting_version = config.get('accounting_version',1)
-        if type(self.accounting_version) is not int or self.accounting_version not in (1,2):
+        if type(self.accounting_version) is not int or self.accounting_version not in (1,2,3):
             raise ValueError('Unsupported keeper accounting version')
         self.fee_intake_version = config.get('fee_intake_version',0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0,1) or \
-                (self.fee_intake_version == 1 and self.accounting_version != 2):
+                (self.fee_intake_version == 1 and self.accounting_version not in (2,3)) or \
+                (self.accounting_version == 3 and self.fee_intake_version != 1):
             raise ValueError('Unsupported keeper fee-intake profile')
         self.chain = positive(config['chain_id'],'chain_id')
         self.rpc = rpc or Rpc(config['rpc_urls'],self.chain)
@@ -357,7 +359,7 @@ class Keeper:
         for override in ({},*self.overrides.values()):
             settings = {**self.maintenance,**override}
             if settings.get('compound_idle',False):
-                if self.accounting_version != 2 or not settings.get('compound_thresholds') or \
+                if self.accounting_version not in (2,3) or not settings.get('compound_thresholds') or \
                         not 600 <= positive(settings.get('compound_interval_seconds',0),'compound_interval_seconds',zero=True) <= 604800:
                     raise ValueError('Idle compounding requires native V2, currency thresholds and an explicit 600-604800-second interval')
                 address(self.config.get('idle_compounding_budget'))
@@ -436,7 +438,7 @@ class Keeper:
         return uint_result(self.rpc.eth_call(self.contracts[name],self._calldata(signature,*args)))
 
     def _asset(self,value: Any) -> str:
-        if self.accounting_version == 2 and isinstance(value,str) and value.lower() == NATIVE_ASSET:
+        if self.accounting_version in (2,3) and isinstance(value,str) and value.lower() == NATIVE_ASSET:
             return NATIVE_ASSET
         return address(value)
 
@@ -1041,26 +1043,28 @@ class Keeper:
 
     def _bucket(self,bucket: int) -> tuple[list[str],list[str]]:
         fields = decode_words(self.rpc.eth_call(self.contracts['vault'],calldata('group(uint256)',bucket)))
-        if len(fields) != 15: raise RpcError('Unexpected vault group ABI')
-        status = int(fields[7],16)
-        if status not in (1,2,3,4,6): return fields,[]
-        if int(fields[0],16) == 0 or int(fields[5],16) >= 1 << 160 or int(fields[6],16) >= 1 << 64:
+        try: position = decode_position(fields,self.accounting_version)
+        except ValueError as exc: raise RpcError('Unexpected or malformed vault group ABI') from exc
+        status = position['status']
+        if status in ('none','dormant'): return fields,[]
+        if int(fields[0],16) == 0:
             raise RpcError('Malformed shared-pool state')
-        if int(fields[8],16) == 0 or int(fields[13],16) == 0:
-            raise RpcError('Missing shared-pool provenance')
-        for index in (9,10,12,14): self._address_word(fields[index])
-        self._asset_word(fields[11])
+        if self.accounting_version != 3:
+            if int(fields[8],16) == 0 or int(fields[13],16) == 0:
+                raise RpcError('Missing shared-pool provenance')
+            for index in (9,10,12,14): self._address_word(fields[index])
+            self._asset_word(fields[11])
         if self.view('vault','bucketTotalShares(uint256)',bucket) == 0:
             raise RpcError('Shared pool has no shares')
         pool_id = '0x'+fields[0]
         if self.view('vault','poolBucket(bytes32)',pool_id) != bucket:
             raise RpcError('Pool occupancy does not match discovered bucket')
-        if status == 1 and int(fields[1],16) == 0:
+        if status == 'active' and int(fields[1],16) == 0:
             raise RpcError('Active shared pool has no LP position')
-        if status == 6 and int(fields[1],16) != 0:
+        if status == 'parked' and int(fields[1],16) != 0:
             raise RpcError('Parked shared pool still has an LP position')
-        if status == 6 and (int(fields[13],16) != self.chain or
-                self._address_word(fields[14]) != self.contracts['vault']):
+        if status == 'parked' and self.accounting_version != 3 and (
+                position['location_chain'] != self.chain or position['location_vault'] != self.contracts['vault']):
             raise RpcError('Parked principal is not in this local vault')
         config = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('get(bytes32)',pool_id)))
         if len(config) != 14 or '0x'+keccak256(bytes.fromhex(''.join(config[:5]))).hex() != pool_id:
@@ -1070,7 +1074,7 @@ class Keeper:
         if len(accounting) != 14 or accounting[1:] != config[1:]:
             raise RpcError('Accounting configuration differs from the venue policy')
         tokens = [self._asset_word(accounting[0]),self._address_word(accounting[1])]
-        if self.accounting_version == 2:
+        if self.accounting_version in (2,3):
             if accounting != config: raise RpcError('Native accounting currencies differ from actual venue currencies')
         elif int(config[0],16) == 0:
             wrapper = decode_words(self.rpc.eth_call(self.contracts['pools'],calldata('nativeAsset(bytes32)',pool_id)))
@@ -1078,7 +1082,7 @@ class Keeper:
                 raise RpcError('Native accounting wrapper mismatch')
         elif accounting[0] != config[0]:
             raise RpcError('ERC20 accounting asset differs from the venue')
-        # Legacy WETH normalization is confined to version1; native version2
+        # Legacy WETH normalization is confined to version1; native versions2/3
         # keeps assetzero and never consults the optional wrapper getter.
         return fields,tokens
 
@@ -1144,13 +1148,13 @@ class Keeper:
             try:
                 self._validate_maintenance_settings(item)
                 fields,tokens = self._bucket(bucket)
-                status = int(fields[7],16)
-                if status not in (1,2,3,4,6): continue
+                status = decode_position(fields,self.accounting_version)['status']
+                if status in ('none','dormant'): continue
                 # Canonical funded revenue and claims remain available during
                 # pauses and while the physical LP is away. No principal moves.
                 if self.fee_intake_version == 0 and item.get('sync_external_rewards',True) and self._sync_external(bucket): return
                 if paused: continue
-                if status == 1:
+                if status == 'active':
                     minimum = positive(item.get('minimum_liquidity',1),'minimum_liquidity')
                     _,fresh = self._head(); deadline = fresh+180
                     if not preparing and self.adaptive_range_enabled and self._adaptive_range_target('0x'+fields[0],fresh):

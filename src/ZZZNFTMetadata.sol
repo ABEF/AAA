@@ -25,7 +25,7 @@ struct NFTMetadataInput {
 }
 
 /// @notice Read-only renderer. It never changes custody or reward eligibility.
-/// Valuation fails closed while custody is remote/in-flight or dependencies are
+/// Valuation fails closed while custody is external/parked or dependencies are
 /// unavailable; the NFT explicitly reports an unavailable marked LP value.
 contract ZZZNFTMetadata {
     IZZZAccess public immutable access;
@@ -38,8 +38,6 @@ contract ZZZNFTMetadata {
         uint256 shares = vault.sharesOf(id); uint256 supply = vault.bucketTotalShares(bucket);
         Position memory position = vault.group(bucket);
         if (bucket == 0 || shares == 0 || supply < shares || position.status != PositionStatus.Active ||
-            position.homeChain != block.chainid || position.homeVault != address(vault) ||
-            position.locationChain != block.chainid || position.locationVault != address(vault) ||
             position.lpTokenId == 0) revert ValuationUnavailable();
         PoolConfig memory config = IZZZPools(access.module(Ids.POOLS)).accounting(position.poolId);
         // Mark actual concentrated-liquidity amounts only when their spot price

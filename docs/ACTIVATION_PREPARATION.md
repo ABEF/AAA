@@ -148,8 +148,10 @@ examples deliberately contain placeholders, not purported live addresses.
 
 All top-level fields below are required; additional fields are rejected.
 
-The parent read-service configuration explicitly selects `accounting_version: 2`
-for native deployments and verifies Vault version2 and the V2 canonical schema.
+The current parent read-service configuration explicitly selects `accounting_version: 3`,
+`fee_intake_version: 1`, Vault version3 and the local V4 canonical schema. It also
+checks direct governance2. New activation requires routing2/pricing2/review1;
+old accounting1/2 profiles remain separate historical configurations.
 The nested activation schema number stays1. Native V2 permits32 ERC20s plus ETH
 (`address: zero`, `code_hash: null`, decimals18, independently pinned ETH feed).
 Native admission uses `NATIVE_ASSET_CODE_HASH()`, not a WETH runtime. Legacy V1

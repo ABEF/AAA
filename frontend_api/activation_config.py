@@ -57,10 +57,13 @@ class ActivationConfig:
         _keys(config, fields, 'activation configuration')
         if type(config['schema']) is not int or config['schema'] != 1:
             raise ValueError('Unsupported activation configuration schema')
-        if self.pricing_version == 2 and (self.routing_version != 2 or projection.accounting_version != 2):
+        if self.pricing_version == 2 and (self.routing_version != 2 or projection.accounting_version not in (2, 3)):
             raise ValueError('Dual pricing requires explicit native accounting and typed routing profiles')
-        if self.routing_version == 2 and projection.accounting_version != 2:
+        if self.routing_version == 2 and projection.accounting_version not in (2, 3):
             raise ValueError('Typed routing requires native accounting version 2')
+        if projection.accounting_version == 3 and (self.routing_version != 2 or
+                self.pricing_version != 2 or self.review_policy_version != 1):
+            raise ValueError('Local Position V3 requires typed routing, dual pricing and caller-bound review')
         _keys(config['contracts'], set(MODULES) | HELPERS |
               ({'v4_executor'} if self.routing_version == 2 else set()) |
               ({'contribution_pricing'} if self.pricing_version == 2 else set()), 'activation contracts')
@@ -73,11 +76,11 @@ class ActivationConfig:
             raise ValueError('Activation protocol bindings must have distinct addresses')
         self.accounting_version = projection.accounting_version
         self.tokens = {}
-        for token in bounded(config['tokens'], 33 if self.accounting_version == 2 else 32, 'token inventory', 2):
+        for token in bounded(config['tokens'], 33 if self.accounting_version in (2, 3) else 32, 'token inventory', 2):
             _keys(token, {'address', 'code_hash', 'decimals'} | ({'price_policy'} if self.pricing_version == 2 else
                 {'feed', 'feed_code_hash', 'feed_decimals', 'max_age'}), 'activation token')
             token = dict(token)
-            native = self.accounting_version == 2 and token['address'] == ZERO
+            native = self.accounting_version in (2, 3) and token['address'] == ZERO
             token['address'] = ZERO if native else address(token['address'])
             if self.pricing_version == 1: token['feed'] = address(token['feed'])
             if native:

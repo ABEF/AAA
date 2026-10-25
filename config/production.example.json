@@ -1,7 +1,7 @@
 {
   "schema_version": 5,
   "accounting_model": "shared-pools-native-v2",
-  "accounting_version": 2,
+  "accounting_version": 3,
   "routing_version": 2,
   "custody_architecture": "governed-v1",
   "_notes": [
@@ -13,7 +13,7 @@
     "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
     "Current policy defaults shown are contribution 2%, LP/royalty conversion 1%, maintenance 3%, each governance-configurable up to 10%. Observe and review actual values; do not assume defaults or raise caps automatically. Gas is separate.",
     "A cheaper independently qualified ZZZ-to-ETH route is still required at the default 1% limit. Empty conversion routes, missing source policies or unknown prices block this example. Activation and LP growth accept only native ETH or the reviewed current ZZZ. Marketplace royalty currencies and their separate conversions do not add user contribution inputs.",
-    "Current fee_intake_version 1 uses the LP-only controller and 15 current helpers (including ActivationAssetsFactory, with no RewardReceiverFactory) and the Native LP-only V3 canonical schema. Creator-payment inboxes and remote-fee intake are removed. Absent/zero is a historical 15-helper Native V2 layout only; never reinterpret its snapshots. Cross-chain canonical import and legacy V1 ledgers remain unsupported.",
+    "Current fee_intake_version1 requires accounting3: eight-word local Positions, direct governance version2 and Native LP-only V4 canonical schema, with15helpers including ActivationAssetsFactory. Creator inboxes and remote-fee intake are removed. Historical accounting1/2 rows, statuses, snapshots and journals retain their original schema; no automatic upgrade or reinterpretation is supported. Cross-chain canonical import and legacy V1 ledgers remain unsupported.",
     "Production minting is intended for OpenSea but chain/product/recipient/VRF compatibility is unqualified. ERC-2981 requests 5%; only royalties actually received can be distributed.",
     "Publish and review the complete 2784-asset content-addressed artwork root. No new artwork generation is implied. Exact quota draw uses verified randomness; live coordinator/subscription/provider qualification remains open.",
     "Keep credentials and private material outside this inventory. The observer performs only bounded read-only RPC calls and does not set approved pins or evidence. Offline ready means declared inventory consistency only and never authorizes deployment, sealing or spending.",
@@ -500,8 +500,8 @@
         "asset": "0x0000000000000000000000000000000000000000",
         "decimals": 18,
         "runtime_hash": null,
-        "version": 2,
-        "canonical_schema": "0x5087292a4ba3332c54b7ac9a5c9a25ff5fdb6d9f8891551f11c25925b97cf6ef",
+        "version": 3,
+        "canonical_schema": "0x9b5a59d6f91788ab6de97291bf61eab0a5eeee8b439b7c976b8f278e06e34368",
         "wrapper_independent": true,
         "eth_weth_principal_boundary": false,
         "legacy_v1_import": false
@@ -700,11 +700,8 @@
         "multisig": null,
         "signers": [],
         "threshold": null,
-        "proposers": [],
-        "executors": [],
         "keeper": null,
         "guardian": null,
-        "timelock_seconds": 0,
         "sealed": null,
         "bootstrap": null,
         "role_history_complete": null,
@@ -810,7 +807,7 @@
         },
         "keeper": {
           "status": "unqualified",
-          "profile": "native_v2_governed_limits",
+          "profile": "local_position_v3_governed_limits",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -818,7 +815,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting_v2_routing_v2_pricing_v2_review_v1",
+          "profile": "accounting_v3_routing_v2_pricing_v2_review_v1",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,

@@ -56,6 +56,7 @@ contract KeeperRangePolicyTest is Test {
         oracle.setTestFeed(address(t1),address(f1),1 days);
         config = PoolConfig(PoolKey(address(t0),address(t1),3000,200,address(0)),
             true,true,5000,500,100,100,600,100e18,1e30);
+        registry.activationAssets().configureZZZ(address(t1), address(t1).codehash, REVIEW);
         pool = registry.configure(config); vault.bindPool(pool);
         position.poolId=pool; position.status=PositionStatus.Active;
         controller.setKeeper(KEEPER,true); controller.seal();

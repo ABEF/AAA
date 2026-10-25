@@ -73,9 +73,16 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         vault.migrationBudget().setLossLimits(100,300);
         // Replace only fixture dependencies; the Vault, NFT, Membership,
         // Oracle, Rewards and FeeController remain their real implementations.
-        MockToken first = new MockToken(18); MockToken second = new MockToken(18);
-        t0 = address(first) < address(second) ? first : second;
-        t1 = address(first) < address(second) ? second : first;
+        // Keep actual constructor-created tokens sorted while the reviewed ZZZ
+        // uses six decimals and the conversion output uses eighteen. The fixed
+        // ZZZ is also a target-pair currency, never an unrelated source asset.
+        uint256 nonce = vm.getNonce(address(this));
+        bool outputFirst = vm.computeCreateAddress(address(this), nonce) <
+            vm.computeCreateAddress(address(this), nonce + 1);
+        if (outputFirst) { t0 = new MockToken(18); stable = new MockToken(6); }
+        else { stable = new MockToken(6); t0 = new MockToken(18); }
+        t1 = stable;
+        require(address(t0) < address(t1), "fixture token order");
         venue = new VaultLiquidityMock(address(t0), address(t1));
         ac.bind(Ids.LIQUIDITY, address(venue));
         MockFeed pairFeed = new MockFeed(8, 1e8);
@@ -84,17 +91,17 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         rewards.addAsset(address(t0)); rewards.addAsset(address(t1));
         registry = new ZZZPoolRegistry(address(ac)); ac.bind(Ids.POOLS, address(registry));
         assets = registry.activationAssets(); entry = registry.activationEntry();
+        // Historical variable name only: stable is this fixture's fixed ZZZ,
+        // not a stablecoin accepted by the production source policy.
+        stableFeed = new MockFeed(8, 1e8);
+        oracle.setTestFeed(address(stable), address(stableFeed), 3600);
+        MockToken reviewed = directSource ? t0 : stable;
+        assets.configureZZZ(address(reviewed), address(reviewed).codehash, REVIEW);
         PoolConfig memory config = PoolConfig(PoolKey(address(t0), address(t1), 3000, 60, address(0)),
             true, true, 1000, 300, 100, 100, 600, 1e18, 1e30);
         poolId = registry.configure(config);
         assertEq(assets.policyCount(), 2);
         assertEq(entry.registry(), address(registry)); assertEq(address(entry.activationAssets()), address(assets));
-        // Historical variable name only: this six-decimal token is explicitly
-        // the fixture's reviewed ZZZ identity, not an admitted stablecoin input.
-        stable = new MockToken(6); stableFeed = new MockFeed(8, 1e8);
-        oracle.setTestFeed(address(stable), address(stableFeed), 3600);
-        MockToken reviewed=directSource?t0:stable;
-        assets.configureZZZ(address(reviewed),address(reviewed).codehash,REVIEW);
         factory = new EntryFactoryFixture(); router = new AtomicIntegrationRouter(address(factory));
         conversionPool = new EntryPoolFixture(address(factory), address(stable), address(t0)); factory.set(address(conversionPool));
         if (!directSource) routeId = entry.addRoute(ZZZActivationEntry.RoutePolicy(address(stable), address(t0), address(router),
@@ -105,7 +112,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         ac.seal();
     }
     function _fundIntegrationOwner(address owner) private {
-        stable.mint(owner, 10000e6); t0.mint(owner, 10000e18); t1.mint(owner, 10000e18);
+        stable.mint(owner, 10000e6); t0.mint(owner, 10000e18);
         vm.startPrank(owner);
         stable.approve(address(entry), type(uint256).max);
         t0.approve(address(vault), type(uint256).max); t1.approve(address(vault), type(uint256).max);
@@ -297,7 +304,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         vm.prank(address(vault));vm.expectRevert();registry.contributionValue(poolId,1e18,0);
         _assertDormantAndUnspent(id);
     }
-    function testOriginalStableValueUsesRealOracleFeedInsteadOfAssumingOneDollar() public realIntegration {
+    function testOriginalZZZValueUsesRealOracleFeedInsteadOfAssumingOneDollar() public realIntegration {
         uint256 id = _mint(alice); stableFeed.set(98e6, block.timestamp, block.timestamp);
         assertEq(oracle.value(address(stable), 100e6), 98e18);
         vm.expectRevert(); _execute(alice, _request(id, false));
@@ -367,7 +374,7 @@ contract AtomicActivationIntegrationTest is PooledVaultFixture {
         assets.setAsset(address(stable), false, bytes32(0), REVIEW);
         assets.setAsset(address(0),false,assets.NATIVE_ASSET_CODE_HASH(),REVIEW);
         assets.setAsset(address(t0), false, bytes32(0), REVIEW);
-        assets.setAsset(address(t1), false, bytes32(0), REVIEW); entry.setRouteEnabled(routeId, false);
+        entry.setRouteEnabled(routeId, false);
         vm.prank(alice); nft.transferFrom(alice, bob, id);
         assertTrue(membership.eligible(id)); assertEq(membership.totalEligible(), 1);
         assertEq(royalties.weightOf(id), weight); assertEq(vault.sharesOf(id), 99e18);

@@ -1,135 +1,104 @@
 # Release approval record - NOT APPROVED
 
-## October25 consistency and security fixes
-
-The [day review](../reports/daily-security-20261025/REVIEW.md) fixes native-pool
-identity admission, makes Buyback use the same immutable ZZZ as activation and
-normal exit, removes historical venue reads from funded incumbent dust settlement,
-and rejects poisoned indexer log provenance before committing a batch. No new
-custody right, token migration setter or automatic history repair is introduced.
-
-[Scoped verification](../reports/daily-security-20261025/VERIFICATION.md):28 distinct
-Solidity behaviors across recorded fixture scopes,35 affected Python methods,
-124-input ABI/AST and36 normal object gates. Current reference:31 contracts,
-643 functions. Registry runtime10,131; Vault23,889 with687 bytes of headroom.
-Access retains only29 bytes with minimal role arguments; actual release arrays
-remain unqualified. Older sections below retain their original source scope.
-Real services, marketplace/authority rehearsals and independent audit remain open.
-Production NOT APPROVED; no running deployment, website or service changed.
-
-[Residual cleanup](../reports/obsolete-code-20261025/REVIEW.md) removes unused
-Registry wrapper records and creator-payment tooling. This source candidate's
-Registry storage is fresh-deployment only; no existing deployment is upgraded.
-The current caller reference is31contracts/643functions. Exact Access constructor
-arguments and all independent release gates remain open; no deployment is authorized.
-
-## Simplified current release - 2026-10-25
-
-[Current candidate boundary](SIMPLIFIED_RELEASE.md): fixed pre-seal ZZZ identity
-plus native ETH only for contributions; LP-only fee intake; no creator inbox or
-integrated cross-chain/proof path. Keep separate royalty currencies, source-chain
-custody exit/full return and whole-collection same-chain handoff. Explicit current
-fee/custody/helper/schema pins must match; old local profiles are not upgraded.
-Scoped evidence belongs to the [simplification review](../reports/simplification-20261025/REVIEW.md).
-Final normal size/constructor gates, exact source bindings and deployment rehearsal
-remain mandatory; no previous pass or document generation supplies release approval.
-
-
-## New capabilities do not close service approval - 2026-10-25
-
-[Service readiness work](../reports/release-services-20261025/VERIFICATION.md)
-adds an optional immutable Pyth reader, stricter current mint/VRF qualification
-and frozen-source review packaging. No actual provider, updater, wallet authority,
-OpenSea primary mint, current native operating service or independent audit is
-approved. Current schema5/mint profile1 correctly blocks incompatible OpenSea
-minting; historical mode is inspection only. Buyer gross0.05ETH/net recipient
-after actual platform fee is the required future OpenSea behavior, gas separate.
-The current direct mint has not changed. Final package export is not sign-off.
-
-Reviewed 2026-10-25. This file records approval of **one frozen release**, not a
-second Todo or a chronological development log. The [sole Todo](../TODO.md)
-owns tasks; the [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns
-implemented behavior and historical source-scoped checks. No production contract
-deployment, sealing or real-fund action is authorized by this record.
+This records approval of **one frozen release**, not another Todo or a development
+log. The [sole Todo](../TODO.md) owns tasks; [features and evidence](IMPLEMENTATION_STATUS.md)
+record implemented behavior. Local passes, publication or this document do not
+authorize deployment, sealing or public financial transactions.
 
 ## Current candidate and evidence limits
 
 | Boundary | Current status |
 | --- | --- |
-| Native contracts | Actual ETH accounting V2, typed v3/v4 routes, dual-source pricing V2 and reviewed Entry policy V1 are locally implemented. Require exact module/helper/runtime/ABI/configuration inventory; old WETH/local profiles are not interchangeable. |
-| Economic controls | Defaults 2% contribution / 1% conversion / 3% maintenance, gas separate; immediate governance maxima 10%. Reviewed Entry rejects policy above the caller maximum before pulls. Per-operation floors do not bound future price loss or repeated turnover. |
-| Readiness improvements | [Native integration, strict RPC capability checks and Vault headroom](../reports/native-readiness-20261025/VERIFICATION.md): locally verified scopes; actual service/extension qualification remains open. |
-| Latest local review | [Comprehensive improvements](../reports/comprehensive-improvement-20261025/REVIEW.md) and [verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md) record reviewed-cap, indexed-history, metadata, buyback and transport boundaries. Normal size/gas gates and explicit source scope remain mandatory. |
-| Market and services | Selected hookless ETH/ZZZ pool, real input/conversion routes, independent feeds/VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and complete target-chain gas remain unqualified. |
-| Website and wallets | Public simulation/null DEPLOYMENT; shared signer Anvil-only. Native-V2 read/unsigned review is implemented locally; actual native chain/extension acceptance, public signing approval and service rollout remain open. Preserve historical journals and local deployments. |
-| Operations and audit | Linux/target-chain recovery rehearsals, frozen-release verification and independent audit/remediation/sign-off remain required. Existing local evidence does not approve services or funds. |
+| Accounting and identity | Native ETH/fixed ZZZ, accounting V3 with 8-field local Position and `None=0`, `Active=1`, `Outbound=2`, `Dormant=3`, `Parked=4`. Routing2/pricing2/review1 remain distinct; canonical LP-only V4 rejects older layouts. Historical Anvil/journals keep their original profiles. [Profile](POSITION_V3.md). |
+| Governance | Governance V2 is the selected wallet/Safe calling functions directly. No timelock, queued/predecessor executor or OpenZeppelin role grants. Two-step governance handover; separate guardian/keeper and immutable mint recipient. 16 module bindings fixed at seal. |
+| Economic controls | Defaults 2% contribution/1% conversion/3% maintenance, each maximum 10%, gas separate. Caller-reviewed Entry maximum and stronger venue minima remain. Approved normal custody floors cannot be weakened later. Per-operation limits do not cap future market loss or repeated turnover. |
+| Pool/input policy | User input is only native ETH or fixed ZZZ. All Registry LP pairs must contain that ZZZ; reviewed future WETH/ZZZ/fee-tier replacements remain possible. One contribution pool at a time. Stablecoins may be separate royalty currencies, not contribution inputs. |
+| Current source checks | [Pruning review](../reports/architecture-pruning-20261025/REVIEW.md):31 contracts / 608 functions / 13 receive hooks;36 normal object gates and 127-input ABI checks pass.512 distinct Python methods pass across recorded scopes. EVM evidence is limited to its completed source-bound receipt; pending work is not passed coverage. No fresh full regression is claimed. |
+| Code-size qualification | Registry runtime 10,269 bytes. Vault 22,852 leaves 1,724. Access creation 42,081 plus fixed 96-byte arguments totals 42,177, leaving 6,975 below 49,152. The old 29-byte variable-role-array constraint is removed; exact release artifacts/configuration still require approval. |
+| Actual dependencies | Selected-pool lifecycle, conversion routes, independent feeds, VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and maximal target-chain gas remain unqualified. |
+| Website/wallets | Public simulation/null DEPLOYMENT; signing Anvil-only. Native read/unsigned source is implemented, but current-profile/provider/wallet acceptance and authorized public rollout remain open. Existing local deployments/journals are unchanged. |
+| Operations/audit | Target-chain/Linux failure and recovery rehearsals, independent audit/remediation, frozen-source review and final configuration/sign-off remain required. |
 
+The [earlier daily review](../reports/daily-security-20261025/REVIEW.md) records
+fixed-ZZZ binding, funded-dust and indexer-provenance changes. Older native,
+simplification and handoff reports retain their original code/evidence scope;
+they do not verify the later ABI/governance/codec changes. See the [report index](../reports/README.md).
 The user-reported [local two-wallet acceptance](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
-does not prove production capacity. The dedicated 10/25/100-user campaign remains
-explicitly deferred, not passed. Historical [reports](../reports/README.md) retain
-their own commit/source scope. No fresh full regression, uninterrupted uptime or
-independent security approval is inferred from internal checks.
+is not production capacity. The 10/25/100-user campaign remains deferred, not passed.
 
 ## Release identity
 
 | Approval field | Recorded value |
-|---|---|
-| Exact release commit | Not selected; current development HEAD is not release approval |
+| --- | --- |
+| Exact release commit | Not selected; development HEAD is not release approval |
 | Network and chain ID | Not approved |
-| Deployment/configuration manifest and content hash | Not approved; example addresses/settings are not production choices |
+| Deployment/configuration manifest and content hash | Not approved; examples are not production choices |
 | Compiler, dependency lock and bytecode/artifact manifest | No release-specific approved record |
-| Module/helper addresses, authority addresses and immutable bindings | Not selected and independently approved |
-| Evidence bundle and hashes | No final release bundle accepted; development evidence is linked from the implementation reference |
-| Release mode | Current scope: same-chain pool moves and separately approved source-chain custody exit/return; integrated bridges and direct remote canonical activation disabled. Exact configuration unapproved. |
+| Actual module/helper/authority addresses and immutable bindings | Not selected and independently approved |
+| Source-bound evidence bundle and hashes | No final release bundle accepted |
+| Release mode | Same-chain pool moves and explicit source-chain custody exit/return; compatible same-chain whole-collection handoff. No integrated bridge or remote ledger. Exact configuration unapproved. |
 | Decision date and accountable release owner | Not recorded |
-| Accepted residual risks, limits and rationale | Not approved |
+| Accepted residual risks and rationale | Not approved |
 
 ## Required sign-off record
 
 | Review responsibility | Named reviewer / independence | Exact evidence and decision |
-|---|---|---|
-| Frozen source, economics, security audit and remediation | Not recorded | No approval |
+| --- | --- | --- |
+| Frozen source, economics, independent security audit/remediation | Not recorded | No approval |
 | Deployment configuration, dependencies, authorities and sealing | Not recorded | No approval |
 | Target-chain integration, operating recovery and monitoring | Not recorded | No approval |
 
-Approval requires independent reviewers to confirm the applicable initial-launch
-acceptance criteria in the [audit/release task](../TODO.md#task-audit-release)
-against the exact commit, network, manifests and evidence above. The three test
-layers, service qualification and unresolved risks must be assessed within that
-same release scope. Local tests, internal Slither triage, old CI, or a successful
-configuration validator do not supply this sign-off. Any non-applicable criterion
-needs a recorded reason tied to the chosen release mode; it cannot silently
-remove an acceptance requirement from the Todo.
+Independent reviewers must assess the applicable launch acceptance criteria in
+[the audit/release task](../TODO.md#task-audit-release) against the same commit,
+network, manifests and evidence. Missing criteria need an explicit scope-based
+reason, not silent removal. A passing validator, local mocks, internal static
+review, an exported audit package or old CI does not supply independent sign-off.
+
+The exact release inventory must bind governance2/accounting3/routing2/pricing2/
+review1 and canonical V4 to actual runtime/helper/parent identities. Service
+observations remain separate from reviewed provider policy. Governance multisig
+signers/threshold, guardian/keeper gas and recovery, feeds/routes/updaters and VRF
+funding must all be real selected choices, not example addresses.
+
+OpenSea primary mint requires a compatible reviewed integration: buyer gross
+0.05 ETH, recipient net after the actual platform fee, gas separate. Current direct
+mint still forwards all 0.05 ETH. ERC-2981 only requests secondary-sale royalties;
+actual marketplace receipt, refresh and ownership/cutover behavior require evidence.
+Neither platform support nor a live randomness provider is implied by local mocks.
 
 Changes to deployed code, dependency implementations, bindings, economics,
 network or operating configuration require review of the affected approval and
-an updated release identity. A recorded approval is separate from explicit
-authorization to submit public transactions.
+an updated release identity. Sign-off is separate from explicit authorization
+to submit public transactions.
 
-## Initial launch and later movement
+## Initial launch and movement boundary
 
-Current scope is same-chain pool moves and separately approved **source-chain**
-custody exit/return. Normal all-ZZZ exit uses its captured retained-value floor;
-explicit raw exit transfers the admitted assets under exact raw minima without
-a USD-loss promise. There is no automatic fallback. The external recipient may
-be an EOA/contract and is trusted; source contracts cannot force its return.
+Principal belongs to its independently accounted NFT shares; holders cannot
+redeem it. `moveFunds` atomically moves between admitted pools with the same
+ordered actual assets. Another ETH/ZZZ fee tier is compatible after review;
+ETH/WETH or other pair conversion is not an atomic move.
+
+Normal paused custody exit converts attributed principal to fixed ZZZ under its
+captured floor. Explicit raw exit sends actual pair assets under reviewed raw
+minima, without a USD-loss promise or automatic fallback. The external EOA/contract
+is trusted: source contracts cannot prevent diversion or compel return. Completion
+requires actual funded LP; recovery requires full actual sent assets. Royalty
+custody has a separate paused currency path retaining liabilities and suspension.
 
 No integrated bridge/provider, remote destination ledger or cross-chain canonical
-activation is required for this release. Their deferred [future tasks](../TODO.md#future-migration)
-are not closed by disabling a legacy configuration. External custody can support
-an operator's bridge or issuer migration, but does not move NFT ownership or
-rewards to another chain and does not establish remote NAV or fees.
+activation is required or retained. The custodian can independently bridge or
+perform an issuer exchange, but this does not relocate NFT ownership or reward
+ledgers. Issuer migration requires a fresh reviewed deployment of the new fixed
+ZZZ; there is no post-seal identity replacement setter.
 
-Retain and qualify same-chain whole-collection handoff, including frozen owners,
-both ledgers, actual backing, abort/late receipts and compatible contract holders.
-Atomic ETH/WETH/different-pair conversion and post-halt ownership recovery remain
-unsupported. If future cross-chain canonical activation is built, the selected
-policy requires verified finality with no multisig-only override. These future
-capabilities cannot be retrofitted into immutable code merely by configuration.
-See [custody procedure](GOVERNED_CUSTODY_HANDOFF.md),
+Qualify complete same-chain handoff of frozen owners, both ledgers and classified
+backing, with full abort, late receipts, contract-holder compatibility and atomic
+retirement/activation. Current V4 rejects older rows; no automatic storage/journal
+upgrade exists. Future-chain transport, old-schema import and post-halt ownership
+recovery are outside this release. See [custody procedure](GOVERNED_CUSTODY_HANDOFF.md),
 [canonical scope](CANONICAL_HANDOFF.md) and [architecture evolution](ARCHITECTURE_EVOLUTION.md).
 
-## Moved requirement links
+## Acceptance references
 
 <a id="required-testing-layers"></a>
 The three required layers are maintained in
@@ -144,15 +113,10 @@ Market, wallet and operating acceptance is maintained under
 [transaction journey](../TODO.md#task-transaction-ui) and
 [keeper recovery](../TODO.md#task-keeper-recovery).
 
-The [holder preflight](HOLDER_PREFLIGHT.md) supplies a pinned ownership/code inventory,
-not escrow or replacement approval. Include complete frozen coverage plus exact
-contract-holder release/claim and marketplace cutover evidence in release review.
-
-The 2026-10-19 payout audit identified missing native-ETH LP settlement in its
-source-only revision. The dedicated LP candidate below addresses implementation;
-live qualification and independent review remain required. See [historical audit](../reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md)
-and [owning task](../TODO.md#task-lp-eth-settlement). Approval remains NOT APPROVED.
-
-## LP settlement candidate scope
-
-The [LP ETH candidate](LP_ETH_SETTLEMENT.md) adds native reward credits, a fixed helper and a native asset slot in the Rewards handoff domain. Require current source-bound sizes/tests, source/successor schema compatibility, exact converter/wrapper bindings, qualified swap/feed/unwrap and keeper gas/latency/recovery evidence, complete ingestion and independent review. Older source-only receipts do not qualify these changes. The release decision remains **NOT APPROVED**.
+[Holder preflight](HOLDER_PREFLIGHT.md) supplies a pinned ownership/code inventory,
+not escrow or replacement approval. Include frozen coverage, exact contract-holder
+release/claim and marketplace cutover evidence. [LP settlement](LP_ETH_SETTLEMENT.md)
+and [royalty settlement](ROYALTY_SETTLEMENT.md) need actual source/route/feed and
+recipient behavior, current native backing, conversion/claim timing, keeper gas
+and failure/recovery evidence. Earlier missing-native-payout findings and later
+source-only repairs keep their historical boundaries; neither supplies release approval.

@@ -2,24 +2,8 @@
   "schema": 1,
   "contracts": {
     "ZZZAccessController": {
-      "purpose": "Immediate scheduled governance, fixed module identity, independent pause/keeper roles and whole-collection lifecycle authorization.",
+      "purpose": "Direct governance-wallet authorization, fixed module binding/sealing, independent keeper/guardian roles and canonical lifecycle. No timelock, role scheduler or generic transaction executor.",
       "functions": {
-        "CANCELLER_ROLE()": {
-          "purpose": "Read the role identifier permitted to cancel scheduled operations.",
-          "access": "Anyone; read-only."
-        },
-        "DEFAULT_ADMIN_ROLE()": {
-          "purpose": "Read the administrator-role identifier controlling role grants/revocations.",
-          "access": "Anyone; read-only."
-        },
-        "EXECUTOR_ROLE()": {
-          "purpose": "Read the role identifier permitted to execute exact scheduled operations.",
-          "access": "Anyone; read-only."
-        },
-        "PROPOSER_ROLE()": {
-          "purpose": "Read the role identifier permitted to schedule operations.",
-          "access": "Anyone; read-only."
-        },
         "bootstrap()": {
           "purpose": "Read the temporary deployment/bootstrap authority; zero after seal.",
           "access": "Anyone; read-only."
@@ -34,10 +18,6 @@
         },
         "canonicalState()": {
           "purpose": "Read canonical lifecycle: 0 operating, 1 frozen, 2 importing, 3 retired, 4 cancelled.",
-          "access": "Anyone; read-only."
-        },
-        "getMinDelay()": {
-          "purpose": "Read the fixed zero governance delay, in seconds.",
           "access": "Anyone; read-only."
         },
         "isSealed()": {
@@ -76,48 +56,6 @@
           "purpose": "Read the immutable factory for NFT-bound royalty ledgers.",
           "access": "Anyone; read-only."
         },
-        "getOperationState(bytes32)": {
-          "purpose": "Read an operation state: unset, waiting, ready or done.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "id": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-          }
-        },
-        "getTimestamp(bytes32)": {
-          "purpose": "Read an operation timestamp: zero unset, one completed, otherwise its scheduled readiness time.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "id": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-          }
-        },
-        "isOperation(bytes32)": {
-          "purpose": "Check whether an operation ID is registered.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "id": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-          }
-        },
-        "isOperationDone(bytes32)": {
-          "purpose": "Check whether the exact operation already executed.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "id": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-          }
-        },
-        "isOperationPending(bytes32)": {
-          "purpose": "Check whether the registered operation is not yet completed.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "id": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-          }
-        },
-        "isOperationReady(bytes32)": {
-          "purpose": "Check whether the exact scheduled operation may execute now.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "id": "id is the hashOperation/hashOperationBatch commitment, not a transaction hash."
-          }
-        },
         "canConfigure(address)": {
           "purpose": "Check whether an address may currently call governed configuration.",
           "access": "Anyone; read-only.",
@@ -125,7 +63,7 @@
             "account": "account is the immediate caller being checked."
           },
           "outputs": {
-            "0": "False during preparation; bootstrap before seal or controller self-call during normal canonical operation otherwise."
+            "0": "False during preparation; bootstrap before sealing, or the current governance wallet after sealing in canonical state0. No controller self-call bypass."
           }
         },
         "module(bytes32)": {
@@ -173,133 +111,11 @@
             "0": "Requires sealed normal canonical state; does not replace other function guards."
           }
         },
-        "hasRole(bytes32,address)": {
-          "purpose": "Check an OpenZeppelin governance role membership.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "role": "Exact OpenZeppelin role identifier, e.g. PROPOSER_ROLE or EXECUTOR_ROLE.",
-            "account": "Account receiving/removing/being checked for the selected role. Zero address has special open-executor meaning only for EXECUTOR_ROLE."
-          }
-        },
-        "getRoleAdmin(bytes32)": {
-          "purpose": "Read which role may grant or revoke a selected role.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "role": "role is a role identifier; output is its administrator-role hash."
-          }
-        },
-        "hashOperation(address,uint256,bytes,bytes32,bytes32)": {
-          "purpose": "Compute the exact operation commitment used for scheduling, execution and cancellation.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "target": "Exact destination contract/account whose address is committed in the scheduled operation.",
-            "value": "Native ETH amount in wei delivered to target; distinct from caller msg.value and network gas.",
-            "predecessor": "Exact prerequisite operation ID, or bytes32 zero for no prerequisite; a nonzero predecessor must be completed before execution.",
-            "salt": "Caller-chosen bytes32 operation discriminator, included in the operation hash and required unchanged at execution.",
-            "data": "Exact target function selector plus ABI-encoded arguments committed to this operation."
-          },
-          "outputs": {
-            "0": "bytes32 operation ID; does not schedule or send anything."
-          }
-        },
-        "hashOperationBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
-          "purpose": "Compute the exact operation commitment used for scheduling, execution and cancellation.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "targets": "Ordered list of exact destinations; index must correspond to the values and payloads arrays.",
-            "values": "Ordered native ETH amounts in wei, one per target; not gas amounts or USD values.",
-            "payloads": "Ordered exact selector/ABI calldata for each target; array lengths must match, and execution is atomic.",
-            "predecessor": "Required completed operation ID, or zero for no prerequisite.",
-            "salt": "Bytes32 discriminator committed to the entire ordered batch; preserve it exactly through execution."
-          },
-          "outputs": {
-            "0": "bytes32 operation ID; does not schedule or send anything."
-          }
-        },
-        "schedule(address,uint256,bytes,bytes32,bytes32,uint256)": {
-          "purpose": "Register an exact governance operation or atomic batch, ready immediately. delay must be 0. Scheduling does not execute calls. A predecessor must finish before execution; no automatic fee or keeper payment.",
-          "access": "PROPOSER_ROLE.",
-          "inputs": {
-            "target": "Exact destination contract/account whose address is committed in the scheduled operation.",
-            "value": "Native ETH amount in wei delivered to target; distinct from caller msg.value and network gas.",
-            "predecessor": "Exact prerequisite operation ID, or bytes32 zero for no prerequisite; a nonzero predecessor must be completed before execution.",
-            "salt": "Caller-chosen bytes32 operation discriminator, included in the operation hash and required unchanged at execution.",
-            "data": "Exact target function selector plus ABI-encoded arguments committed to this operation.",
-            "delay": "Governance delay in seconds; this controller requires exactly 0 and does not permit a later waiting period."
-          }
-        },
-        "scheduleBatch(address[],uint256[],bytes[],bytes32,bytes32,uint256)": {
-          "purpose": "Register an exact governance operation or atomic batch, ready immediately. delay must be 0. Scheduling does not execute calls. A predecessor must finish before execution; no automatic fee or keeper payment.",
-          "access": "PROPOSER_ROLE.",
-          "inputs": {
-            "targets": "Ordered list of exact destinations; index must correspond to the values and payloads arrays.",
-            "values": "Ordered native ETH amounts in wei, one per target; not gas amounts or USD values.",
-            "payloads": "Ordered exact selector/ABI calldata for each target; array lengths must match, and execution is atomic.",
-            "predecessor": "Required completed operation ID, or zero for no prerequisite.",
-            "salt": "Bytes32 discriminator committed to the entire ordered batch; preserve it exactly through execution.",
-            "delay": "Governance delay in seconds; this controller requires exactly 0 and does not permit a later waiting period."
-          }
-        },
-        "execute(address,uint256,bytes,bytes32,bytes32)": {
-          "purpose": "Execute the exact previously scheduled operation or atomic batch. Cannot alter approved target/value/calldata/salt. Failed target/predecessor checks revert; generic execution does not make the controller the Vault or bypass target permissions.",
-          "access": "EXECUTOR_ROLE, or anyone if the zero address has the open executor role.",
-          "inputs": {
-            "target": "Exact destination contract/account whose address is committed in the scheduled operation.",
-            "value": "Native ETH amount in wei delivered to target; distinct from caller msg.value and network gas.",
-            "predecessor": "Exact prerequisite operation ID, or bytes32 zero for no prerequisite; a nonzero predecessor must be completed before execution.",
-            "salt": "Caller-chosen bytes32 operation discriminator, included in the operation hash and required unchanged at execution.",
-            "payload": "Exact target function selector plus ABI-encoded arguments, byte-identical to the scheduled payload."
-          },
-          "value": "msg.value may top up controller ETH used for scheduled calls. Each target receives exactly its scheduled wei value; no equality-to-msg.value guard exists, existing controller balance may fund calls, and excess remains in the controller without an automatic refund. Supply only the needed top-up; gas is separate."
-        },
-        "executeBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
-          "purpose": "Execute the exact previously scheduled operation or atomic batch. Cannot alter approved target/value/calldata/salt. Failed target/predecessor checks revert; generic execution does not make the controller the Vault or bypass target permissions.",
-          "access": "EXECUTOR_ROLE, or anyone if the zero address has the open executor role.",
-          "inputs": {
-            "targets": "Ordered list of exact destinations; index must correspond to the values and payloads arrays.",
-            "values": "Ordered native ETH amounts in wei, one per target; not gas amounts or USD values.",
-            "payloads": "Ordered exact selector/ABI calldata for each target; array lengths must match, and execution is atomic.",
-            "predecessor": "Required completed operation ID, or zero for no prerequisite.",
-            "salt": "Bytes32 discriminator committed to the entire ordered batch; preserve it exactly through execution."
-          },
-          "value": "msg.value may top up controller ETH used for scheduled calls. Each target receives exactly its scheduled wei value; no equality-to-msg.value guard exists, existing controller balance may fund calls, and excess remains in the controller without an automatic refund. Supply only the needed top-up; gas is separate."
-        },
-        "cancel(bytes32)": {
-          "purpose": "Cancel a pending scheduled governance operation.",
-          "access": "CANCELLER_ROLE.",
-          "inputs": {
-            "id": "id is the exact operation commitment; completed/unset operations cannot be cancelled."
-          }
-        },
-        "grantRole(bytes32,address)": {
-          "purpose": "Grant a governance role membership. Changing proposer/executor/admin membership changes governance control; avoid removing the last usable governance path.",
-          "access": "Administrator role returned by getRoleAdmin(role).",
-          "inputs": {
-            "role": "Exact OpenZeppelin role identifier, e.g. PROPOSER_ROLE or EXECUTOR_ROLE.",
-            "account": "Account receiving/removing/being checked for the selected role. Zero address has special open-executor meaning only for EXECUTOR_ROLE."
-          }
-        },
-        "revokeRole(bytes32,address)": {
-          "purpose": "Revoke a governance role membership. Changing proposer/executor/admin membership changes governance control; avoid removing the last usable governance path.",
-          "access": "Administrator role returned by getRoleAdmin(role).",
-          "inputs": {
-            "role": "Exact OpenZeppelin role identifier, e.g. PROPOSER_ROLE or EXECUTOR_ROLE.",
-            "account": "Account receiving/removing/being checked for the selected role. Zero address has special open-executor meaning only for EXECUTOR_ROLE."
-          }
-        },
-        "renounceRole(bytes32,address)": {
-          "purpose": "Remove the caller’s own governance role. Can permanently remove governance access if remaining roles cannot restore it; not a way to transfer a role.",
-          "access": "Role holder; callerConfirmation must equal msg.sender.",
-          "inputs": {
-            "role": "Role hash the caller intends to relinquish.",
-            "callerConfirmation": "Must equal msg.sender; confirms removal of the caller’s own role, not another account’s role."
-          }
-        },
         "bind(bytes32,address)": {
-          "purpose": "Bind one previously empty module slot during deployment. One-time slot binding; rejected for retired bridge/receiver/routes/transport IDs. The implementation must have code and the same controller.",
+          "purpose": "Bind one of the16 supported core module slots exactly once before seal, verifying deployed code and matching controller. Unknown/retired module identities reject.",
           "access": "Bootstrap only, before seal.",
           "inputs": {
-            "id": "Exact Ids module identity hash to bind; retired bridge/receiver/routes/transport identities are rejected.",
+            "id": "One of the16 supported current core Ids; arbitrary or removed bridge IDs reject.",
             "implementation": "Deployed compatible module with code, access() bound to this controller, and an unused module slot."
           }
         },
@@ -309,7 +125,7 @@
         },
         "setKeeper(address,bool)": {
           "purpose": "Enable or disable a keeper address. Keepers can run bounded maintenance but cannot rewrite governance policy or redeem holder principal.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "who": "Nonzero account to add to or remove from this protocol role.",
             "enabled": "True enables the recorded role; false revokes it. Existing transactions and separate lifecycle checks are not bypassed."
@@ -317,7 +133,7 @@
         },
         "setGuardian(address,bool)": {
           "purpose": "Enable or disable a guardian address. Guardians may pause immediately; they cannot unpause solely by holding this role.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "who": "Nonzero account to add to or remove from this protocol role.",
             "enabled": "True enables the recorded role; false revokes it. Existing transactions and separate lifecycle checks are not bypassed."
@@ -325,21 +141,21 @@
         },
         "setPaused(bool)": {
           "purpose": "Set or clear ordinary global pause. Pause does not retire the collection, freeze every claim/settlement path or move assets. Clearing pause does not bypass preparation/canonical locks.",
-          "access": "Controller self-call, bootstrap before seal, or an enabled guardian only when state=true.",
+          "access": "Current governance, bootstrap before seal, or an enabled guardian for state=true only. Canonical lifecycle guards remain independent.",
           "inputs": {
             "state": "state=true pauses; state=false resumes ordinary live work when other guards permit."
           }
         },
         "startPreparation((uint256,address,bytes32,bytes32))": {
-          "purpose": "Announce and lock ordinary new work for a planned whole-collection replacement. Public commitments do not authenticate a remote deployment or authorize export. A same-chain deployed successor must already be sealed/importing and bound to this source.",
-          "access": "Controller self-call after seal, normal canonical state.",
+          "purpose": "Announce a cancellable same-chain replacement/draining window; no custody or rights leave. A deployed successor must already be sealed/importing and committed to this source.",
+          "access": "Current governance directly, sealed canonical operating state.",
           "inputs": {
-            "notice": "PreparationNotice: destinationChain (nonzero chain ID), successorController, deploymentCommitment and reviewHash. The current deployment cannot be its own successor."
+            "notice": "Explicit current chain ID, successor controller distinct from source, deployment commitment and nonzero review hash. A notice alone never authorizes a freeze/import."
           }
         },
         "cancelPreparation(bytes32)": {
           "purpose": "Cancel the exact active preparation notice while the source is still operating. Does not rewind a frozen/retired handoff or move custody. Exact noticeHash prevents cancelling a later announcement.",
-          "access": "Controller self-call.",
+          "access": "Current governance directly while the exact preparation is active and canonical state is operating.",
           "inputs": {
             "noticeHash": "noticeHash must equal preparationHash()."
           }
@@ -353,87 +169,45 @@
             "clearPreparation": "True clears preparationActive during this authenticated transition; false preserves the current flag."
           }
         },
-        "updateDelay(uint256)": {
-          "purpose": "Retired delay-changing interface; always reverts. The zero governance delay is fixed for this controller; the argument cannot introduce a timelock.",
-          "access": "No caller can use it successfully.",
-          "inputs": {
-            "0": "Ignored proposed delay in seconds; every value, including zero, reverts because the deployed delay is fixed."
-          }
-        },
-        "onERC721Received(address,address,uint256,bytes)": {
-          "purpose": "Return the standard token-receiver acceptance selector. Token receipt support is not an asset sweep, LP withdrawal or royalty distribution path.",
-          "access": "Callable receiver callback; no administrative privilege.",
-          "outputs": {
-            "0": "The exact ERC receiver magic selector; no economic accounting is performed here."
-          },
-          "inputs": {
-            "0": "ERC721 transfer operator supplied by the callback; ignored by this acceptance-only receiver.",
-            "1": "Previous ERC721 owner, or zero for a mint; not treated as an authorized protocol caller.",
-            "2": "ERC721 token ID supplied by the callback; no LP or reward record is created.",
-            "3": "Opaque callback bytes, ignored by this receiver."
-          }
-        },
-        "onERC1155Received(address,address,uint256,uint256,bytes)": {
-          "purpose": "Return the standard token-receiver acceptance selector. Token receipt support is not an asset sweep, LP withdrawal or royalty distribution path.",
-          "access": "Callable receiver callback; no administrative privilege.",
-          "outputs": {
-            "0": "The exact ERC receiver magic selector; no economic accounting is performed here."
-          },
-          "inputs": {
-            "0": "ERC1155 transfer operator supplied by the token callback; ignored by this acceptance-only receiver.",
-            "1": "Previous ERC1155 token owner (zero for a mint); ignored by this receiver.",
-            "2": "ERC1155 token ID supplied by the callback.",
-            "3": "Raw ERC1155 token quantity; not wei or USD.",
-            "4": "Opaque callback data, ignored by this acceptance-only receiver."
-          }
-        },
-        "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": {
-          "purpose": "Return the standard token-receiver acceptance selector. Token receipt support is not an asset sweep, LP withdrawal or royalty distribution path.",
-          "access": "Callable receiver callback; no administrative privilege.",
-          "outputs": {
-            "0": "The exact ERC receiver magic selector; no economic accounting is performed here."
-          },
-          "inputs": {
-            "0": "ERC1155 transfer operator supplied by the token callback; ignored by this acceptance-only receiver.",
-            "1": "Previous ERC1155 token owner (zero for a mint); ignored by this receiver.",
-            "2": "ERC1155 token ID array, ordered to match amounts.",
-            "3": "Raw ERC1155 quantity array matching the token IDs; not wei or USD.",
-            "4": "Opaque callback data, ignored by this acceptance-only receiver."
-          }
-        },
-        "supportsInterface(bytes4)": {
-          "purpose": "Check supported governance/receiver interface IDs.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "interfaceId": "interfaceId is an ERC-165 bytes4 identifier."
-          },
-          "outputs": {
-            "0": "Boolean interface support, not service/security qualification."
-          }
-        },
         "activationAssetsFactory()": {
           "purpose": "Return the immutable noncustodial ActivationAssets factory created by this controller.",
           "access": "Read-only; any caller.",
           "outputs": {
             "0": "Fixed factory address. Its access() must equal this controller, and assetsOf(Registry) must equal the Registry's bound ActivationAssets child."
           }
+        },
+        "GOVERNANCE_VERSION()": {
+          "purpose": "Read direct-governance profile2; older scheduling controllers have a different ABI and must not be reinterpreted.",
+          "access": "Anyone; read-only."
+        },
+        "governance()": {
+          "purpose": "Read the current governance wallet. It may approve trusted custody exits/configuration but cannot silently change sealed module identities.",
+          "access": "Anyone; read-only."
+        },
+        "pendingGovernance()": {
+          "purpose": "Read the proposed next governance wallet, or zero if no proposal. It has no governance authority until accepting.",
+          "access": "Anyone; read-only."
+        },
+        "proposeGovernance(address)": {
+          "purpose": "Propose a governance-wallet replacement without a delay; zero cancels a proposal. Existing authority remains until the exact candidate accepts. Keeper/guardian/mint-recipient roles do not change.",
+          "access": "Current governance only, canonical operating state and no preparation. Controller-self/current-wallet candidates reject.",
+          "inputs": {
+            "candidate": "Proposed wallet; address zero cancels. Review its keys/signers/threshold independently before accepting."
+          }
+        },
+        "acceptGovernance()": {
+          "purpose": "The exact proposed wallet accepts authority atomically and clears the proposal. No delay or controller-held transaction funds. Old governance loses authority.",
+          "access": "Pending nonzero governance wallet only, operating canonical state and no preparation."
         }
       },
       "constructor": {
-        "purpose": "Deploy the zero-delay controller and initialize proposer/executor/keeper/guardian roles. Deployer becomes temporary bootstrap.",
-        "access": "Deployment only; creates the immutable RoyaltyFactory. Sealing later permanently clears bootstrap.",
+        "purpose": "Select governance, keeper and guardian; deploy fixed helper factories. Deployer holds temporary bootstrap only until seal.",
+        "access": "Deployment only; three static nonzero address arguments. A governance wallet cannot be the controller itself.",
         "inputs": {
-          "delay": "Must be 0; no future delay change is supported.",
-          "proposers": "Nonempty nonzero proposer addresses; initial proposers also receive cancellation role.",
-          "executors": "Nonempty executor list; zero address opens execution of exact scheduled operations, not proposal authority.",
-          "initialKeeper": "Nonzero bounded-maintenance operator.",
-          "initialGuardian": "Nonzero pause-only emergency role."
+          "initialGovernance": "Reviewed governance wallet, typically a multisig; after sealing it calls configuration targets directly. Its own signatures/nonce authorize transactions.",
+          "initialKeeper": "Nonzero initial bounded-maintenance operator; role changes separately from governance.",
+          "initialGuardian": "Nonzero initial pause-only guardian; governance handover does not automatically rotate this role."
         }
-      },
-      "receive": {
-        "purpose": "Accept native ETH into controller custody for explicitly scheduled native-value calls. This does not create LP or holder rewards.",
-        "access": "Payable receiver; governance still controls any scheduled spend. Do not send LP principal or royalties here.",
-        "value": "Any native wei value is accepted into controller balance; there is no automatic distribution, LP attachment or refund. Avoid sending holder principal/royalties to this endpoint."
       }
     },
     "ZZZPoolRegistry": {
@@ -491,7 +265,7 @@
         },
         "configure(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))": {
           "purpose": "Admit/update a hookless ERC20 pool and its governed operating parameters. Both currencies must have code and ascending addresses. Prices/reward currencies and limits must validate. At most one pool may enable contributions; disable the previous contribution pool first. Configuration does not itself migrate or rebalance physical LP.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum governed pool/position value in USD18, at least minDepositUSD."
           },
@@ -501,7 +275,7 @@
         },
         "configureNative(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))": {
           "purpose": "Admit or reconfigure a static hookless native ETH/ZZZ pool. The source ZZZ identity must already match the pinned native token; initialized venue, runtime, prices, assets, bounds and one-contribution-pool checks remain.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum governed pool/position value in USD18, at least minDepositUSD."
           },
@@ -511,7 +285,7 @@
         },
         "disablePool(bytes32,bool,bool)": {
           "purpose": "Stop new deposits and/or ordinary operations on an admitted pool without querying external tokens, venue or prices. True means DISABLE, false leaves the existing state unchanged. At least one flag must be true. Disabling deposits clears this pool as contributionPool. Re-enable only through full configure/configureNative.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "poolId": "Admitted exact PoolKey hash.",
             "disableDeposits": "True only disables; false retains current flag. True also clears this current contribution pool.",
@@ -546,16 +320,6 @@
           },
           "outputs": {
             "0": "True for native ETH/ZZZ; false for an admitted ERC20-only pair."
-          }
-        },
-        "nativeAsset(bytes32)": {
-          "purpose": "Compatibility currency getter returning the native sentinel. Always returns zero after validation, including ERC20 pools; use isNativePool to distinguish pool type.",
-          "access": "Anyone; read-only.",
-          "outputs": {
-            "0": "address(0), meaning native ETH, not WETH."
-          },
-          "inputs": {
-            "poolId": "Admitted exact pool ID to validate; use isNativePool(poolId) to distinguish native from ERC20-only pools because this compatibility getter returns zero."
           }
         }
       },
@@ -1032,7 +796,7 @@
         },
         "configureRandomness(address,bytes32,uint256,uint16,uint32,bool)": {
           "purpose": "Set the original verified randomness provider/lane/subscription/payment policy once before sealing. Irreversible provider choice after one-time configuration: no replacement, cancellation, reroll or administrator trait setter. An ABI match does not prove provider security/liveness.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "coordinator": "Exact reviewed deployed original VRF coordinator; cannot later be changed.",
             "gasLane": "Fixed nonzero lane/key identity; no automatic zero-lane provider adaptation.",
@@ -1044,7 +808,7 @@
         },
         "setRandomnessRequestSettings(uint16,uint32)": {
           "purpose": "Tune only confirmations and callback gas for future original requests. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Allowed while ordinary pause is set; cannot repair a previously submitted callback or change provider/lane/subscription/payment mode.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "confirmations": "3..200 future request confirmations.",
             "gasLimit": "200000..10000000 future callback gas units. Pending requests keep original recorded arguments."
@@ -1052,7 +816,7 @@
         },
         "setMintPaused(bool)": {
           "purpose": "Stop or resume new NFT issuance/randomness requests independently. Does not cancel pending draws or select traits. Existing callbacks/finalization, transfer/claim/LP availability follow their separate guards.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "state": "state=true stops new mints; false resumes only when other lifecycle/global/provider conditions permit."
           }
@@ -1089,7 +853,7 @@
         },
         "addRoyaltyAsset(address)": {
           "purpose": "Append an admitted ERC20 royalty payment currency to the NFT-bound ledger. Reviewed non-rebasing/exact-transfer currency required; prefunds are quarantined and append-only history/old cohort entitlements persist. This does not admit an activation token or force marketplace payment.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "token": "token is the actual ERC20 royalty currency; native ETH is already admitted."
           }
@@ -1155,7 +919,7 @@
         },
         "setBaseURI(string)": {
           "purpose": "Populate an initially empty immutable artwork root once before sealing. Reverts after seal, if a root was already configured, or for empty/non-IPFS/non-Arweave input. Does not upload or verify content availability by itself.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "baseURI": "baseURI begins ipfs:// or ar:// and must match the separately reviewed complete publication."
           }
@@ -1372,13 +1136,6 @@
           "purpose": "Read the immutable contribution price-freezing/execution-policy helper.",
           "access": "Anyone; read-only."
         },
-        "feeds(address)": {
-          "purpose": "Read legacy primary-feed metadata only; insufficient to qualify pricing version 2.",
-          "access": "Anyone; read-only.",
-          "inputs": {
-            "0": "Actual asset address; zero means native ETH."
-          }
-        },
         "policy(bytes32)": {
           "purpose": "Read a complete recorded dual-source policy, including both sources and independence/review pins.",
           "access": "Anyone; read-only.",
@@ -1428,7 +1185,7 @@
         },
         "setDualFeed(address,(address,bytes32,bytes32,uint32,uint8),(address,bytes32,bytes32,uint32,uint8),uint16,bytes32)": {
           "purpose": "Append and immediately activate a fully reviewed independent two-source USD policy for an asset. Both current positive fresh rounds, runtime/decimals, distinct source/independence IDs and agreement are checked. Two addresses or IDs do not prove independence. Bad/stale/divergent sources fail closed; no peg/pool-spot/single-source fallback.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "token": "Actual asset address, zero for ETH.",
             "primary": "SourcePolicy(source,expectedCodeHash,independenceId,maxAge,feedDecimals); exact AggregatorV3 runtime/independent source identity, original round age 1..86400 seconds and precision <=18.",
@@ -1442,7 +1199,7 @@
         },
         "setSequencerFeed(address,bytes32,bytes32)": {
           "purpose": "Replace the uptime dependency with a newly reviewed nonzero source without reading the broken old source. Cannot remove an existing safeguard with source=zero. A down/recovering new source still blocks price reads until up beyond one-hour grace. Runtime pin alone does not pin a proxy implementation.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "source": "New nonzero reviewed uptime contract; old dependency is not read.",
             "expectedCodeHash": "Exact source runtime; proxy implementation/administrator review remains external.",
@@ -1551,7 +1308,7 @@
         },
         "setRangeOrientation(bytes32,uint8)": {
           "purpose": "Select explicit raw or inverse price orientation for future target range calculations. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Validates fresh range feasibility; disables an enabled keeper width policy so it must be reviewed again. Does not itself replace current LP ticks.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "poolId": "Exact admitted pool ID.",
             "orientation": "0 raw token1/token0 or1 inverse token0/token1. Native ETH/ZZZ uses1 for ZZZ price in ETH; existing physical ticks do not change immediately."
@@ -1559,7 +1316,7 @@
         },
         "setKeeperRangePolicy(bytes32,bool,uint16,uint16,uint32,bytes32)": {
           "purpose": "Enable/disable reviewed on-chain switching between ±25% and ±50% in the approved price orientation. Preparation/canonical-operation locks apply; simulation and current qualified dependencies are still required. Disabling needs no healthy Oracle/venue read. Enabling requires orientation 1, current width 2500/5000, ordered narrow/widen thresholds, consistent config and reviewHash. No keeper-selected arbitrary volatility model.",
-          "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
+          "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "poolId": "Admitted pool ID with explicit orientation 1.",
             "enabled": "False disables without price/venue reads; true validates and binds reviewed rules.",
@@ -1749,7 +1506,7 @@
       "purpose": "Custody of shared physical LPs, independent nonredeemable NFT shares, actual contributions and typed principal maintenance.",
       "functions": {
         "ACCOUNTING_VERSION()": {
-          "purpose": "Identify native-ETH accounting V2 compatibility.",
+          "purpose": "Read accounting profile3, with eight-word local Position and local statuses; old accounting1/2 rows require their separate historical codecs.",
           "access": "Anyone; read-only.",
           "notes": "Returns: Version number 2; do not reinterpret WETH-era state or journals as V2.",
           "outputs": {
@@ -1916,7 +1673,7 @@
           }
         },
         "group(uint256)": {
-          "purpose": "Read one shared bucket’s pool, LP NFT, attributed idle, status, identity and location record.",
+          "purpose": "Read the eight-word accounting3 local shared Position: pool, LP ID, attributed idle pair, deposit mark, center, rebalance time and local status. No home/satellite/location fields.",
           "access": "Anyone; read-only.",
           "notes": "Use current NFT valuation for its fractional NAV; the bucket record is not one NFT’s individual LP.",
           "inputs": {
@@ -1996,7 +1753,7 @@
           }
         },
         "nftStatus(uint256)": {
-          "purpose": "Read the NFT’s dormant or attached bucket custody status.",
+          "purpose": "Read local status:0None,1Active,2Outbound external custody,3Dormant,4Parked. Status meanings are selected by accounting3, never inferred from row length.",
           "access": "Anyone; read-only.",
           "notes": "An activated NFT can remain eligible while its bucket is parked/outbound; status is not a claimable amount.",
           "inputs": {
@@ -2896,37 +2653,17 @@
             "0": "Canonical PoPL NFT ID, not mint ordinal or shared bucket ID."
           }
         },
-        "canonicalAccept(uint256,address)": {
-          "purpose": "Reject funding acknowledgment because Membership has no asset legs to accept.",
-          "access": "Only fixed Handoff could attempt it; no valid membership asset index.",
-          "inputs": {
-            "0": "Zero-based captured backing leg index.",
-            "1": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-          },
-          "value": "Exactly zero, including native legs: the authenticated handoff transfers actual backing first, then calls this zero-value acknowledgment. Direct payable funding is rejected."
-        },
         "canonicalActivate()": {
           "purpose": "Activate the validated imported equal activated-NFT collective eligibility state.",
           "access": "Only fixed CanonicalHandoff.",
           "notes": "Requires its authenticated funded cutover; cannot be used as a generic unpause."
         },
         "canonicalAssetCount()": {
-          "purpose": "Report that equal collective-membership records have no separate fungible backing legs.",
+          "purpose": "Return zero: Membership migrates eligibility records only and never owns financial backing. No asset-transfer hooks are exposed.",
           "access": "Anyone; read-only.",
           "notes": "Returns: Zero; funded collective assets are held by Rewards, not Membership.",
           "outputs": {
             "0": "Zero; funded collective assets are held by Rewards, not Membership."
-          }
-        },
-        "canonicalBacking(uint256)": {
-          "purpose": "Reject backing access because Membership has no populated asset-leg inventory.",
-          "access": "No successful asset index in this membership-only domain.",
-          "inputs": {
-            "0": "Zero-based captured backing leg index."
-          },
-          "outputs": {
-            "0": "No successful output: this domain owns no canonical fungible backing leg.",
-            "1": "No successful output: this domain owns no canonical fungible backing leg."
           }
         },
         "canonicalCapture()": {
@@ -2961,23 +2698,6 @@
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal.",
             "1": "Exact versioned ABI-encoded canonical record authenticated against its source."
           }
-        },
-        "canonicalRelease(uint256,address)": {
-          "purpose": "Reject funding release because Membership owns no canonical asset legs.",
-          "access": "No successful asset index; handoff never funds this domain.",
-          "inputs": {
-            "0": "Zero-based captured backing leg index.",
-            "1": "Exact module/backing destination selected by authenticated canonical logic."
-          }
-        },
-        "canonicalRestore(uint256,address)": {
-          "purpose": "Reject restoration acknowledgment because Membership has no funded asset legs.",
-          "access": "Only fixed Handoff could attempt it; no valid membership asset index.",
-          "inputs": {
-            "0": "Zero-based captured backing leg index.",
-            "1": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-          },
-          "value": "Exactly zero, including native legs: the authenticated handoff transfers actual backing first, then calls this zero-value acknowledgment. Direct payable funding is rejected."
         },
         "canonicalSettle()": {
           "purpose": "Complete ordered cutoff settlement for equal activated-NFT collective eligibility.",
@@ -4247,17 +3967,6 @@
             "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
           }
         },
-        "movePool(uint256,bytes32,uint128,uint256)": {
-          "purpose": "Compatibility alias for the same governed atomic same-pair moveFunds operation.",
-          "access": "Same governance/live checks as moveFunds.",
-          "notes": "Not the retired cross-chain migration function.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Exact admitted destination/reserved pool identity.",
-            "2": "Minimum actual Uniswap liquidity units on movement/resume.",
-            "3": "Unix timestamp in seconds; must satisfy this operation’s freshness/deadline guards."
-          }
-        },
         "outstandingCount()": {
           "purpose": "Count approved or sent principal plans still requiring cancellation/completion/recovery.",
           "access": "Anyone; read-only.",
@@ -4526,21 +4235,6 @@
           "outputs": {
             "0": "New nonredeemable shares issued at incumbent NAV.",
             "1": "Verified net contribution value in USD18."
-          }
-        },
-        "handoffMinimum(uint256,address,address,uint256,uint256)": {
-          "purpose": "Tighten the requested custody swap minimum to at least the venue/Oracle floor.",
-          "access": "Only fixed Vault; read-only.",
-          "notes": "An aggregate custody cap cannot weaken per-swap protection.",
-          "inputs": {
-            "0": "Canonical shared bucket ID, not an individual NFT or physical LP NFT ID.",
-            "1": "Actual ordered input currency address.",
-            "2": "Actual ordered output currency address.",
-            "3": "Raw units of the actual specified currency; not its USD value.",
-            "4": "Caller-requested minimum raw swap output; tightened to the stronger venue/Oracle minimum."
-          },
-          "outputs": {
-            "0": "Tighten the requested custody swap minimum to at least the venue/Oracle floor."
           }
         },
         "handoffPlan(uint256,address,uint256)": {
@@ -4877,7 +4571,7 @@
         },
         "abort()": {
           "purpose": "Begin pre-commit cancellation of a frozen handoff and permanently cancel the importer.",
-          "access": "Governance via source controller.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "notes": "Does not immediately unlock source custody; funded legs must return first."
         },
         "acceptFunding(uint8,uint256)": {
@@ -4926,7 +4620,7 @@
         },
         "commit()": {
           "purpose": "Atomically retire the source and activate its one fully funded compatible successor.",
-          "access": "Governance via sealed source controller.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "notes": "Requires matching deployment commitment, complete roots and every funded leg. No source resurrection after success."
         },
         "completeImport()": {
@@ -4980,12 +4674,12 @@
         },
         "finishAbort()": {
           "purpose": "Reactivate the original source only after every sent leg is fully restored and validated.",
-          "access": "Governance via source controller.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "notes": "Not available after committed retirement; no partial-backing override."
         },
         "freeze()": {
           "purpose": "Freeze ownership/accounting and atomically capture six source-domain cutoffs for the reviewed sealed importer.",
-          "access": "Governance via sealed controller after valid preparation.",
+          "access": "Selected source governance wallet directly, with the function's exact sealed/canonical phase and backing guards.",
           "notes": "Requires parked backing/no outstanding custody and compatible source/destination; no holder/guardian escape hatch."
         },
         "fund(uint8,uint256)": {
@@ -5176,15 +4870,6 @@
             "0": "The fixed controller that supplies this component’s module, governance and lifecycle authorization."
           }
         },
-        "canonicalAccept(uint256,address)": {
-          "purpose": "Reject funding sent to the ownership-only codec.",
-          "access": "No successful caller; always reverts.",
-          "inputs": {
-            "0": "Zero-based canonical backing-leg index; this ownership-only domain has no valid backing leg.",
-            "1": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-          },
-          "value": "Always reverts; no ETH value is accepted."
-        },
         "canonicalActivate()": {
           "purpose": "Activate the validated imported NFT ownership, immutable traits and remaining artwork inventory state.",
           "access": "Only fixed CanonicalHandoff.",
@@ -5196,17 +4881,6 @@
           "notes": "Returns: Always zero; actual principal/rewards belong to other domains.",
           "outputs": {
             "0": "Always zero; actual principal/rewards belong to other domains."
-          }
-        },
-        "canonicalBacking(uint256)": {
-          "purpose": "Reject a backing lookup because this codec owns no fungible asset domain.",
-          "access": "No successful index; always reverts.",
-          "inputs": {
-            "0": "Unused compatibility argument; this ownership-only codec has no fungible backing and always reverts."
-          },
-          "outputs": {
-            "0": "No successful output: this domain owns no canonical fungible backing leg.",
-            "1": "No successful output: this domain owns no canonical fungible backing leg."
           }
         },
         "canonicalCapture()": {
@@ -5241,23 +4915,6 @@
             "0": "Zero-based versioned canonical record row, not necessarily an NFT ordinal.",
             "1": "Exact versioned ABI-encoded canonical record authenticated against its source."
           }
-        },
-        "canonicalRelease(uint256,address)": {
-          "purpose": "Reject an asset release because ownership records contain no fungible backing.",
-          "access": "No successful caller; always reverts.",
-          "inputs": {
-            "0": "Unused compatibility argument; this ownership-only codec has no fungible backing and always reverts.",
-            "1": "Unused compatibility argument; this ownership-only codec has no fungible backing and always reverts."
-          }
-        },
-        "canonicalRestore(uint256,address)": {
-          "purpose": "Reject a fungible funding restore to the ownership-only codec.",
-          "access": "No successful caller; always reverts.",
-          "inputs": {
-            "0": "Zero-based canonical backing-leg index; this ownership-only domain has no valid backing leg.",
-            "1": "Unused source/destination-address argument retained by the common canonical ABI; authority comes from the fixed Handoff caller."
-          },
-          "value": "Always reverts; no ETH value is accepted."
         },
         "canonicalSettle()": {
           "purpose": "Complete ordered cutoff settlement for NFT ownership, immutable traits and remaining artwork inventory.",

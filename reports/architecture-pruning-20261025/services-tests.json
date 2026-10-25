@@ -1,0 +1,1403 @@
+{
+  "scope": "One focused current Position3/direct-governance/CLI-isolation campaign, with affected historical reader/gate compatibility checks. Offline mocks/temp files only; no full repository regression, service, RPC, signer or chain operation.",
+  "observed_at_utc": "2026-10-25T19:05:50.534356+00:00",
+  "python": "3.12.14",
+  "invocation": "Python -X utf8 stdin scoped unittest harness (modules enumerated below)",
+  "modules": [
+    "tests_python.test_production_config",
+    "tests_python.test_custody_inventory",
+    "tests_python.test_production_preflight_cli",
+    "tests_python.test_artwork_catalog",
+    "tests_python.test_local_position_services",
+    "tests_python.test_keeper_native",
+    "tests_python.test_keeper_example",
+    "tests_python.test_fee_intake_profile",
+    "tests_python.test_production_observer",
+    "tests_python.test_production_v2",
+    "tests_python.test_mint_integration_qualification",
+    "tests_python.test_keeper.PoolKeeperTests",
+    "tests_python.test_lp_only_services.LPOnlyKeeperTests"
+  ],
+  "source_sha256": {
+    "keeper/monitor.py": "4987f2b6479dbb6d9f5c7f950b0f676461f4d182053294c1f4932ae6bdf13e64",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff",
+    "zzz_ops/production_observer.py": "670210e66a5b7854a4bea374dd3c650da59f4d9aa87ddbe3df117db19ab17953",
+    "zzz_ops/historical_production.py": "daa3edd9f539e4e60722169fa5c29154b982e049788c3d42f1296c2e8dc4cd3f",
+    "scripts/validate-production-config.py": "b240161e9b660cc8b38bca5f8416b2190cd7c2f9a93781de42e0a1cb948292e1",
+    "config/production.example.json": "ee131d44bccc04dabfe716a9ff6e0f818e34d6753ab7a8e4e325323e3250c0b1",
+    "keeper/config.example.json": "02ad7b05d1a967bbf3c37af768b87bd34112dbe22dbfa30ba6e5a8079ee45295",
+    "tests_python/fee_intake_fixtures.py": "96c3075fefe1b54da122b7836be309e7386955c33cbc86db65db1ab8ce650a33",
+    "tests_python/test_local_position_services.py": "b3b3f6e712665188941fa9b45617dd5e6ea7256690105695cf07d5b62d145ff2",
+    "tests_python/test_keeper_example.py": "6b061e49fcc271fc48a83a8482825b8adb0dba40f4129c02cf882cbfbaf9528f",
+    "tests_python/test_production_observer.py": "d9dcd6eb41375d0b1db64ee646ceb1f34493952ad4f924100bee13e7dbd7312a",
+    "tests_python/test_fee_intake_profile.py": "7224f6d31f6401fa8507c6a71aeb44ed0a575bd0cd14379277c39dd4d29cf71a",
+    "tests_python/test_production_preflight_cli.py": "7465970357ca1a231477536dafce7ea86a4b7896796b31535c143e613ecf95e1",
+    "tests_python/test_production_config.py": "663012440e42653c15768547b33725618fe4f5fb80e756705e4f2927a8058d35",
+    "tests_python/test_custody_inventory.py": "009f499ba0db5b39cb5ad9a9a6564013363522ca3ce03e2423d5cb27d8556a3d",
+    "tests_python/test_artwork_catalog.py": "617f11614516548a042b483c463b0c18c30689ad52664d64e123dfa76a70ee83",
+    "tests_python/test_production_v2.py": "b6f14406ca2651feddc87944edbcc171b04c3f43c87223926b96408ad91df376",
+    "tests_python/test_mint_integration_qualification.py": "9fb63be16927e5a786be671793b0aec5d2bb25fc12a898577d3fc4c735f376aa",
+    "tests_python/test_keeper_native.py": "de3c87393cf62a5b2e2458416e29d50c48a03dc84c3a789fcc3559f87e660e70",
+    "tests_python/test_keeper.py": "b0888376bd8dbf1d81766a17f46aa7ed6690a024d50ade90551a59c1bd7e0154",
+    "tests_python/test_lp_only_services.py": "d21c83a6c078259ba28384e77dc775665e34ae2dc8f42f0cb3fac0cd3aea0ec6",
+    "src/ZZZAccessController.sol": "7c9303335d1cf668b264b9be5d89a6f9d526300e815ba9dc8b8b7df7c9e69600",
+    "src/libraries/ZZZTypes.sol": "a1f4523d3668e7620013e626bd51f71cadd9ee82168dbfbc0070b82f97656a0d",
+    "src/ZZZVault.sol": "d394f833686176558b7781531ffe2598e057c4691d7bb7faefc65ef2e318f651",
+    "src/ZZZCanonicalHandoff.sol": "05b21a64d6a92419ca87587d66bd03d0706e5f6299217e4f219c9c3f5b495d88"
+  },
+  "source_unchanged_after": true,
+  "elapsed_seconds": 71.64000000001397,
+  "legacy_validator_ast_identity": {
+    "original_ast_nodes": 15,
+    "historical_ast_nodes": 15,
+    "exact_ast_identity": true
+  },
+  "tests_run": 335,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "test_statuses": [
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_boolean_observed_origin_chain_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_factory_cannot_alias_creator_receiver_even_with_mixed_case",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_factory_cannot_alias_module_or_mint_recipient",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_frozen_importing_retired_cancelled_and_boolean_states_are_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_genesis_cannot_have_previous_source",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_internal_review_cannot_replace_independent_review",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_malformed_lineage_and_missing_inventory_fail_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_missing_canonical_inventory_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_missing_onward_and_abort_evidence_are_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_remote_override_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_stale_canonical_observation_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_successor_creator_bucket_uses_preserved_origin_vault",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_successor_requires_retired_source_and_backing_evidence",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.CanonicalHandoffConfigTests.test_wrong_owner_or_bound_helper_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_complete_external_inventory_is_consistent_but_never_authorizes_deployment",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_conventional_fee_model_rejects_zero_core_fee_pool",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_conventional_only_mode_cannot_hide_receivers",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_discretionary_funding_does_not_require_an_invented_creator_percentage",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_erc20_only_receiver_has_no_native_wrapper_review",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_external_mode_accepts_zero_fee_hookless_erc20_pool_with_funded_receivers",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_external_mode_preserves_selected_native_pons_pool_rejection",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_external_mode_requires_nonempty_canonical_inventory",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_external_policy_cannot_claim_historical_swap_time_or_guaranteed_revenue",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_external_terms_must_be_exact_release_reviewed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_mutable_receiver_or_unreviewed_getters_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_cannot_point_at_wrong_fee_controller_or_bucket",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_count_cannot_exceed_four_bucket_capacity_even_with_matching_length",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_duplicate_bucket_or_address_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_inventory_count_and_bound_must_match",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_is_separate_from_mint_and_protocol_custody",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_pair_must_match_original_home_pool",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_requires_positive_observed_share_supply",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_receiver_review_cannot_be_internal_or_stale",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_satellite_cannot_register_external_receiver",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_snapshot_must_match_receiver_and_factory_getters",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_wrapper_must_be_one_original_admitted_18_decimal_asset",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ExternalRewardConfigTests.test_wrapper_runtime_or_conversion_or_authority_drift_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_alias_modules_entry_or_assets_helper",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_alias_nft_helper_or_creator_inbox",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_cannot_receive_mint_proceeds",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_mixed_case_cannot_alias_creator_inbox",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_budget_required_even_when_bridging_disabled",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_helper_observation_must_match_exact_inventory",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_omitted_independent_budget_review_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.MigrationBudgetConfigTests.test_wrong_vault_controller_or_mutability_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_artwork_base_and_all_seventy_two_content_paths_are_reviewed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_artwork_getter_must_match_reviewed_frozen_content_root",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_artwork_rejects_mutable_http_malformed_content_root_and_missing_slash",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_claim_router_binding_limit_and_independent_review_are_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_complete_reveal_can_exhaust_all_exact_quotas",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_current_future_request_settings_may_change_with_matching_observation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_future_request_policy_cannot_claim_provider_rotation_or_full_immutability",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_helper_bindings_code_and_independent_reviews_are_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_live_lp_evolution_cannot_use_historical_contributions_or_stale_fallback",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_malformed_nft_records_fail_closed_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_mint_recipient_cannot_be_the_royalty_receiver",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_missing_or_stale_randomness_evidence_is_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_mock_or_wrong_chain_randomness_evidence_cannot_pass_staging",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_native_plus_sixteen_erc20_asset_bound_is_enforced",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_nft_policy_requires_exact_supply_quotas_and_received_royalties",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_nft_snapshot_must_match_confirmed_chain_inventory",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_randomness_configuration_and_observed_getters_must_match",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_randomness_configuration_must_satisfy_immutable_nft_bounds",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_randomness_review_must_name_actual_chain_coordinator_and_independent_reviewer",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_remaining_quotas_and_mint_order_are_conserved",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_royalty_admission_count_history_order_and_getters_must_match",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_royalty_asset_review_covers_actual_chain_authority_and_activation_griefing",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_royalty_assets_require_exact_transfer_semantics_and_runtime_code",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_royalty_receiver_and_rate_getters_must_match",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_royalty_tokens_need_not_be_lp_assets_but_require_their_own_admission",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.NFTProductionConfigTests.test_verified_randomness_cannot_be_replaced_with_admin_entropy",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.PairMigrationInventoryTest.test_bindings_and_mutability",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.PairMigrationInventoryTest.test_helper_cannot_alias_other_custody_or_mint_recipient",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.PairMigrationInventoryTest.test_independent_review_and_gas_are_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.PairMigrationInventoryTest.test_required_when_bridging_is_disabled",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.PairMigrationInventoryTest.test_stale_or_nonempty_atomic_context",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_accounting_model_must_explicitly_match_shared_pools",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_activation_helper_cannot_receive_mint_proceeds_or_alias_nft_helper",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_activation_helper_inventory_requires_fixed_registry_binding_and_observation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_activation_helper_policy_and_recovery_review_is_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_adapter_must_bind_fixed_router_and_all_seventeen_modules",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_atomic_entry_cannot_alias_other_helpers_or_mint_proceeds",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_atomic_entry_requires_exact_immutable_registry_source_and_context_review",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_bucket_identity_must_hash_canonical_origin",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_canonical_only_sealed_launch_without_providers_is_consistent",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_canonical_remote_policy_registration_requires_complete_reviewed_graph",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_cli_emits_blocked_machine_readable_output_without_chain_access",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_cli_invalid_json_is_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_cli_nonstring_route_kind_is_blocked_with_machine_readable_output",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_cli_reads_utf8_inventory_and_writes_utf8_report",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_collective_allocation_must_use_equal_activated_membership",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_complete_synthetic_manifest_is_consistent_without_deployment_authorization",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_deferred_or_unimplemented_reward_decision_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_disabled_initial_launch_can_have_no_pool_reservations",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_disabled_launch_rejects_any_observed_or_declared_provider_policies",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_disabled_launch_requires_future_architecture_evidence_and_scope_approval",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_disabled_migration_does_not_waive_existing_release_gates",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_disabled_policy_is_not_usable_for_new_outbound_route",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_duplicate_module_binding_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_duplicate_or_conflicting_pool_reservation_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_duplicate_registration_ids_and_count_mismatch_are_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_duplicate_route_and_mutated_identity_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_enabled_migration_requires_active_principal_and_active_settlement_paths",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_enabled_migration_requires_real_provider_delivery_evidence",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_float_boolean_integer_fields_are_not_truncated",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_gate_output_declares_current_schema_four",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_governance_threshold_and_keeper_separation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_guardian_governance_overlap_requires_review_and_is_allowed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_internal_audit_or_unresolved_high_findings_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_legacy_per_nft_manifest_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_legacy_power_module_is_rejected_even_alongside_membership",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_local_policy_missing_from_complete_registration_history_is_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_malformed_nested_objects_fail_closed_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_malformed_reservation_inventory_fails_closed_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_mint_recipient_cannot_be_protocol_custody",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_missing_ack_or_historical_reward_route_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_missing_every_release_evidence_gate_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_missing_module_hash_or_wrong_binding_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_missing_transport_authentication_backing_or_replay_protection_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_new_policy_creates_new_route_identity_without_mutating_old_route",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_noncanonical_chain_cannot_register_remote_only_policy",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_nonstring_route_kind_is_blocked_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_nonzero_delay_mutable_delay_or_unsealed_bootstrap_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_observed_pool_reservation_must_match_exact_inventory_snapshot",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_onward_satellite_requires_canonical_graph_and_home_location_ack",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_policy_review_pin_and_observed_enabled_count_must_match",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_pool_bounds_must_allow_hundred_dollar_activation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_previous_power_weighted_schema_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_principal_route_cannot_claim_another_cohort_or_source_pool",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_principal_route_requires_both_exact_bucket_reservations",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_principal_route_requires_explicit_source_pool_and_bucket",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_provider_rotation_retains_disabled_old_routes_and_complete_policy_history",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_proxy_wrapper_configuration_drift_and_policy_rebinding_are_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_recovery_requires_complete_independent_parking_resume_and_claim_rehearsal",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_reservation_assets_cannot_change_canonical_group_identity",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_reservation_evidence_must_be_independent_and_for_exact_release",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_reservation_origin_must_be_the_actual_canonical_vault_and_pool",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_selected_robinhood_native_hooked_zero_fee_pool_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_stale_evidence_or_wrong_commit_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_stale_snapshot_and_oracle_round_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_template_is_explicitly_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_twenty_unit_basket_dust_limit_is_explicit",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_unequal_asset_decimals_or_provenance_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_uniswap_dependency_mismatch_and_burn_semantics_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_unknown_registered_policy_cannot_hide_an_inbound_provider",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_wrong_feed_denomination_or_sequencer_grace_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_wrong_price_activation_or_split_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_zero_delay_manifest_requires_strict_values_and_current_review",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_config.ProductionConfigTests.test_zero_unreserved_pool_or_malformed_bucket_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_custody_inventory.CustodyInventoryTests.test_manifest_flags_cannot_self_certify_new_inventory",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_custody_inventory.CustodyInventoryTests.test_new_layout_is_explicitly_blocked_not_validated_as_legacy_bridge",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_custody_inventory.CustodyInventoryTests.test_updated_template_declares_layout_and_does_not_redeploy_retired_modules",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_refuses_to_overwrite_inventory_with_report",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_cli_sanitizes_invalid_input_and_unavailable_output",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_gate_requires_explicit_lp_only_fee_intake_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_current_profile_still_blocks_unimplemented_opensea_primary_mint",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_default_cli_rejects_historical_manifest_without_importing_engine",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_default_current_gate_rejects_omitted_zero_boolean_or_legacy_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_default_validation_never_imports_historical_engine",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_duplicate_keys_and_nonfinite_numbers_are_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_explicit_historical_mode_can_only_report_consistency",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_float_version_cannot_enter_new_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_governed_layout_keeps_exact_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_historical_opt_in_does_not_erase_current_source_incompatibility",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_inventory_file_size_is_bounded_before_parsing",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_native_schema_dispatch_lists_real_missing_requirements",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_preflight_cli.ProductionPreflightCLITests.test_report_replacement_is_atomic_and_cleans_failed_temporary",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_all_1000_inventory_entries_round_trip_the_solidity_encoding",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_every_palette_and_pattern_is_available_across_all_rarities",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_exact_style_rarity_quotas_and_four_copy_cap",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_generated_solidity_is_exactly_the_committed_catalogue",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_palette_rules_have_exactly_eight_22_and_28_unique_palettes",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_artwork_catalog.ArtworkCatalogTests.test_production_publication_requires_every_2784_svg_state",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionInventoryTests.test_current_bindings_require_local_codec_and_direct_governance",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionInventoryTests.test_current_profile_never_relabels_old_accounting_or_canonical_schema",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionInventoryTests.test_direct_observer_never_calls_removed_timelock_selectors",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionInventoryTests.test_observer_rejects_profile_mismatch_before_network",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionInventoryTests.test_observer_wrong_or_unreadable_governor_cannot_reuse_declared_address",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionInventoryTests.test_retired_roles_pending_governance_or_wrong_governor_block_release",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_active_and_parked_physical_position_invariants_stay_enforced",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_current_active_position_compounds_native_currency_without_legacy_reads",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_current_eight_word_profile_rejects_legacy_rows_and_remote_statuses",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_current_position_requires_explicit_lp_only_fee_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_dormant_three_is_skipped_and_parked_four_never_runs_maintenance",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_pending_recovery_precedes_current_runtime_gate",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_runtime_profile_mismatch_stops_before_scheduling",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_local_position_services.LocalPositionKeeperTests.test_saved_old_or_new_journal_cannot_be_relabelled",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_contract_zero_addresses_and_second_currency_remain_invalid",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_legacy_state_missing_version_is_not_silently_native",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_missing_version_getter_fails_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_buyback_is_a_currency_argument_not_transaction_value",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_pool_compound_reads_zero_currency_without_wrapper",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_profile_rejects_weth_normalized_accounting",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_native_version_requires_exact_reviewed_runtime_pin",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_only_reviewed_asset_argument_positions_accept_zero",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_pending_reconciliation_precedes_version_gate",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_persisted_version_prevents_reinterpreting_old_pending_journal",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_unsupported_or_bool_versions_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_native.NativeKeeperTests.test_version_mismatch_stops_before_scheduling",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_example.KeeperExampleTests.test_example_selects_current_intake_without_retired_jobs",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_example.KeeperExampleTests.test_missing_deployment_review_and_pins_block_example",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper_example.KeeperExampleTests.test_reintroducing_creator_job_is_rejected_before_rpc",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_activation_factory_mapping_uses_exact_registry_and_fails_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_controller_version_missing_wrong_or_boolean_never_qualifies",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_current_observer_rejects_missing_or_retired_helpers_before_rpc",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_fixed_zzz_identity_requires_matching_exit_target_and_code_pin",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_legacy_absent_and_zero_keep_original_helpers_and_codec",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_manifest_requires_actual_local_only_custody_version",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_rejects_extra_factory_and_legacy_getter_claims",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_lp_only_profile_requires_exact_helper_and_controller_inventory",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_mint_profile_one_does_not_promote_historical_fee_layout",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_missing_or_wrong_version_is_unavailable_without_legacy_fallback",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_observer_queries_current_version_and_never_removed_factory_getters",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_old_and_new_snapshots_are_not_reinterpreted_in_either_direction",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_source_policy_version_and_reviewed_zzz_identity_are_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_unsupported_profile_is_rejected_without_inference",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_fee_intake_profile.FeeIntakeProfileTests.test_valid_third_source_remains_historical_but_cannot_extend_current_contributions",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ObserverGateCompositionTests.test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ObserverGateCompositionTests.test_explicit_range_profile_reads_exact_metadata_and_malformed_abi_stays_unavailable",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ObserverGateCompositionTests.test_legacy_range_profile_does_not_infer_orientation_or_query_new_getters",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_changed_route_identity_is_reported",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_cli_failure_is_sanitized_and_does_not_overwrite_existing_output",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_cli_rejects_same_output_secret_env_and_mismatched_anchor_before_rpc",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_complete_pinned_native_v4_observation_preserves_reviews_and_input",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_current_sequencer_values_replace_copied_healthy_status",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_disabled_v4_route_is_read_without_calling_validate",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_duplicate_json_and_file_bounds",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_failed_atomic_output_preserves_previous_and_removes_temporary",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_failed_getter_is_unavailable_never_zero_and_failure_is_sanitized",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_noncanonical_boolean_and_address_fail_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_numeric_and_dynamic_abi_boundaries",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_reorg_discards_whole_observation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_rpc_method_allowlist_rejects_writes_before_transport",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_runtime_mismatch_does_not_replace_approved_pin",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_unreadable_governance_role_does_not_reuse_copied_grants",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_v3_policy_and_venue_are_observed_separately_from_v4",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_wrapper_authority_observation_reads_actual_proxy_admin",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ProductionObserverTests.test_wrong_chain_genesis_hash_and_insufficient_depth_abort",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_all_governed_caps_accept_zero_through_ten_percent",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_approved_runtime_is_not_replaced_by_observation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_artwork_and_royalty_receiver_are_exact",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_bool_cap_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_canonical_successor_requires_retirement_and_backing_evidence",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_changed_directional_protocol_fee_requires_route_requalification",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_consistent_synthetic_inventory_is_not_deployment_authorization",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_current_schema_does_not_accept_legacy_or_implicit_profiles",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_empty_or_disabled_zzz_conversion_does_not_satisfy_eth_product",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_explicit_range_profile_qualifies_default_disabled_and_bounded_enabled_policy",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_feed_review_cannot_be_reused_for_another_price_source",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_helper_parent_ledger_and_hard_caps_are_exact",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_history_cannot_be_claimed_complete_at_wrong_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_independent_audit_and_exact_release_evidence_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_malformed_nested_inputs_fail_closed_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_missing_services_are_actionable_and_do_not_become_blanket_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_mutable_pool_and_governance_configuration_change_needs_review",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_native_eth_cannot_be_a_wrapper_or_fake_runtime",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_native_route_sentinel_and_hook_are_enforced",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_observed_route_existence_and_version_cannot_be_guessed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_output_separates_local_custody_capability_from_protocol_bridging",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_paused_and_legacy_inbox_deployments_are_explicitly_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_pending_principal_and_royalty_custody_block_release",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_pool_identity_accounting_flags_and_bounds_are_verified",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_pool_settings_must_allow_five_dollar_growth",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_production_gas_and_normal_creation_limits_need_scoped_evidence",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_range_profile_blocks_observation_intent_and_policy_mismatch",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_required_zzz_feed_missing_stale_depegged_or_misbound_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_retired_modules_cannot_be_reintroduced",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_role_overlap_requires_acceptance_not_new_onchain_rule",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_route_current_execution_loss_and_scope_are_qualified",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_route_execution_proof_cannot_name_another_cap_or_helper",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_sequencer_policy_status_round_and_grace_are_current_observations",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_source_must_be_current_policy_and_direct_pair_input",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_source_policy_hash_includes_helper_and_ordinal",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_source_qualification_is_exact_not_generic_passed_evidence",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_stale_wrong_genesis_or_incomplete_observation_blocks",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_uint256_string_getter_values_normalize_without_truncation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_unchanged_historical_qualification_does_not_need_relabeling",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_unknown_legacy_fields_cannot_be_ignored",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_v3_wrapper_cannot_claim_unobserved_proxy_configuration",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_v3_wrapper_profile_has_a_real_consistent_acceptance_path",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_v4_route_domain_parent_and_policy_cannot_be_swapped",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_vrf_needs_actual_coordinator_consumer_and_original_recovery",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_cannot_claim_a_different_implementation_or_secondary_product",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_malformed_integration_records_fail_closed_without_exception",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_profile_cannot_invent_unsupported_opensea_mint",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_current_template_declares_real_implementation_and_unselected_provider",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_exact_request_abi_profile_and_two_words_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_irreversible_expiry_refund_or_reroll_does_not_qualify_original_draw",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_legacy_consistency_is_preserved_but_never_production_qualification",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_native_payment_choice_does_not_authorize_locked_principal_funding",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_negative_proof_and_callback_evidence_are_not_omitted",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_profile_type_cannot_silently_select_legacy_or_current",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_mint_integration_qualification.MintIntegrationQualificationTests.test_recovery_must_preserve_original_request_and_actual_result",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_active_group_missing_lp_never_submits",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_bucket_override_changes_bounds_without_manual_inventory",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_compound_reads_actual_local_pool_tokens",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_duplicate_inventory_ids_fail_before_submission",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_empty_external_receiver_does_not_create_transaction",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_empty_inventory_submits_nothing",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_pending_rewards_sync_before_lp_maintenance",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_receiver_binding_mismatch_fails_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_receiver_pending_malformed_fails_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_rewards_can_sync_paused_and_remote",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_sync_can_be_explicitly_disabled",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_sync_flag_rejects_non_boolean_configuration",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_external_sync_keeps_durable_pending_identity_before_signing",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_invalid_scan_limits_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_inventory_above_reviewed_limit_fails_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_legacy_manual_nft_config_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_live_submission_persists_advanced_cursor_before_signing",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_malformed_group_is_skipped_and_cursor_advances",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_native_pool_uses_wrapped_accounting_asset_without_resorting",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_noncanonical_token_address_never_submits",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_one_bad_group_does_not_starve_other_groups",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_one_pool_operation_does_not_scan_nft_ids",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_outbound_group_never_rebalances_compounds_or_harvests",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_group_keeps_accounting_and_provenance_validation",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_group_never_runs_lp_upkeep_even_with_reserves",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_group_with_live_lp_fails_before_any_receiver_submission",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_parked_pending_rewards_sync_while_paused_or_unpaused",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_paused_protocol_scans_receivers_without_lp_or_bridge_operations",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_pending_broadcast_stops_discovery",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_persisted_state_cannot_be_reused_for_another_vault",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_pool_identity_mismatch_never_submits",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_pool_occupancy_mismatch_never_submits",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_repeated_cycles_rotate_even_when_each_pool_needs_work",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_restart_retains_scan_cursor",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_scan_budget_limits_contract_reads",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_unknown_or_legacy_state_is_not_silently_reused",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_wrong_native_wrapper_or_accounting_policy_never_submits",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_zero_inventory_id_fails_before_submission",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_keeper.PoolKeeperTests.test_zero_share_group_never_submits",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_lp_only_services.LPOnlyKeeperTests.test_current_fee_runtime_and_version_are_required",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_lp_only_services.LPOnlyKeeperTests.test_journal_version_cannot_be_silently_reinterpreted",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_lp_only_services.LPOnlyKeeperTests.test_retired_job_and_direct_submission_fail_before_any_rpc",
+      "status": "passed"
+    }
+  ]
+}

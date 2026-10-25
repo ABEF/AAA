@@ -94,16 +94,6 @@ class AccountingModelTests(unittest.TestCase):
             used=rng.randrange(idle[i]+1);idle[i]-=used;lp[i]+=used;total-=used
             self.assertEqual(sum(idle.values()),total)
             self.assertEqual(sum(deposited.values()),sum(idle.values())+sum(lp.values()))
-    def test_bridge_message_nonce_domain(self):
-        used=set()
-        def accept(chain,adapter,nonce):
-            key=(chain,adapter,nonce)
-            if key in used:return False
-            used.add(key);return True
-        self.assertTrue(accept(1,'a',1));self.assertFalse(accept(1,'a',1));self.assertTrue(accept(2,'a',1));self.assertTrue(accept(1,'b',1))
-    def test_migration_no_timeout_exit(self):
-        allowed={'active':{'outbound'},'outbound':{'remote'},'inbound':{'active'},'remote':set()}
-        for state in allowed:self.assertNotIn('withdrawn',allowed[state])
     def test_oracle_freshness_boundaries(self):
         def valid(answer,updated,now,age):return answer>0 and updated>0 and updated<=now and now-updated<=age
         self.assertTrue(valid(1,100,160,60));self.assertFalse(valid(1,99,160,60));self.assertFalse(valid(0,100,160,60));self.assertFalse(valid(1,161,160,60))
@@ -123,8 +113,3 @@ class AccountingModelTests(unittest.TestCase):
         scale=10**16;lo=math.isqrt(9000*10**28);hi=math.isqrt(11000*10**28)
         self.assertLessEqual(Fraction(lo*lo,scale*scale),Fraction(9,10))
         self.assertLess(abs(Fraction(hi*hi,scale*scale)-Fraction(11,10)),Fraction(1,10**14))
-    def test_split_remote_and_local_conservation(self):
-        for total in range(0,1000):
-            u,d=divmod(total,20);remote=u*18;compound=u;buyback=u
-            self.assertEqual(remote+compound+buyback+d,total)
-            self.assertEqual(u*16+u*2,remote)

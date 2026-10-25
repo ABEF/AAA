@@ -1,3 +1,11 @@
+## Scope: published native2 website profile
+
+This document records the existing published website read/unsigned profile2.
+The newer contract candidate uses [accounting3/localV4](POSITION_V3.md); it needs
+an explicitly matching website integration and qualification. Do not relabel the
+profile2 table below or any existing Anvil journal as version3. Public DEPLOYMENT
+remains null and signing Anvil-only; no website build/server change is implied.
+
 # Native-V2 website read and unsigned reviews
 
 

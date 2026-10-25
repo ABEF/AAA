@@ -1,0 +1,20 @@
+{
+  "scope": "Read-through compatibility correction: legacy parked home provenance remains original while its actual custody location must be local. One new regression and two directly affected current parked guards only; no broad rerun. Earlier335-case campaign remains scoped to its original source.",
+  "observed_at_utc": "2026-10-25T19:07:41.937583+00:00",
+  "tests": [
+    "tests_python.test_local_position_services.LocalPositionKeeperTests.test_historical_parked_position_preserves_original_home_provenance",
+    "tests_python.test_local_position_services.LocalPositionKeeperTests.test_dormant_three_is_skipped_and_parked_four_never_runs_maintenance",
+    "tests_python.test_local_position_services.LocalPositionKeeperTests.test_active_and_parked_physical_position_invariants_stay_enforced"
+  ],
+  "source_sha256": {
+    "keeper/monitor.py": "cf13b3ad3f9270947ad2ffd7673b6531d44e18a4956a6bf00d81c5fad092cdd5",
+    "zzz_ops/position.py": "129f8070c887792991bcfab6fd2a8993c673eb9560e27efd4a26964754371cea",
+    "tests_python/test_local_position_services.py": "2a5543286d3e7e4746c9d2393c857ed7c5dfb531340ffe7a66e115e14ffd5347"
+  },
+  "elapsed_seconds": 0.6870000000053551,
+  "tests_run": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true
+}

@@ -1,5 +1,27 @@
 # Security audit plan
 
+## Current smaller architecture - 2026-10-25
+
+Read [the pruning review](../reports/architecture-pruning-20261025/REVIEW.md),
+[verification](../reports/architecture-pruning-20261025/VERIFICATION.md) and
+[Position3 guide](POSITION_V3.md). Current source removes the zero-delay scheduler,
+seven Position provenance fields, unused remote states, zero-asset backing hooks,
+single-feed shadow storage and obsolete research/bridge tooling. Direct governance2,
+accounting3 and local canonicalV4 are explicit; old deployments/journals stay old.
+
+The source-bound reference now has31contracts/608functions/13receive hooks.
+49distinct selected Solidity behaviors and512distinct Python methods pass across
+recorded source scopes, not a fresh full regression.127inputs typecheck and36normal
+object gates pass. Access total initcode42,177 leaves6,975bytes; Vault runtime22,852
+leaves1,724bytes. RoyaltyFactory's69-byte runtime margin remains tight. The two
+runtime increases are individually explained in the exact bytecode comparison.
+
+Native website3 integration, actual feeds/routes/VRF/authorities/OpenSea/services,
+operating and economic/gas qualification plus independent audit stay open. No
+deployment, public transaction, website source/build/server, existing Anvil/NFT/
+LP/balance/journal or monitor action. Production NOT APPROVED. The dated sections
+below retain their original source/evidence scope and do not qualify newer code.
+
 ## October25 consistency and security fixes
 
 The [day review](../reports/daily-security-20261025/REVIEW.md) fixes native-pool

@@ -12,12 +12,8 @@ library Ids {
     bytes32 internal constant COMPOUNDER = keccak256("ZZZCompounder");
     bytes32 internal constant BUYBACK = keccak256("ZZZBuyback");
     bytes32 internal constant MIGRATION = keccak256("ZZZMigration");
-    bytes32 internal constant BRIDGE = keccak256("ZZZBridgeAdapter");
-    bytes32 internal constant RECEIVER = keccak256("ZZZMigrationReceiver");
     bytes32 internal constant ORACLE = keccak256("ZZZOracle");
     bytes32 internal constant POOLS = keccak256("ZZZPoolRegistry");
-    bytes32 internal constant ROUTES = keccak256("ZZZMigrationRegistry");
-    bytes32 internal constant TRANSPORT = keccak256("ZZZBridgeRouter");
     bytes32 internal constant CANONICAL = keccak256("ZZZCanonicalHandoff");
     bytes32 internal constant NFT_CANONICAL = keccak256("ZZZNFTCanonical");
     bytes32 internal constant VAULT_CANONICAL = keccak256("ZZZVaultCanonical");
@@ -46,8 +42,9 @@ struct PoolConfig {
     uint256 maxPositionUSD;
 }
 
-// Append new states so existing migration status values remain stable.
-enum PositionStatus { None, Active, Outbound, Remote, Inbound, Dormant, Parked }
+// Accounting V3 is local custody only. Historical V2 decoders retain their own
+// fifteen-word Position and status meanings; never reinterpret them as this ABI.
+enum PositionStatus { None, Active, Outbound, Dormant, Parked }
 struct Position {
     bytes32 poolId;
     uint256 lpTokenId;
@@ -57,12 +54,5 @@ struct Position {
     uint160 centerX96;
     uint64 lastRebalance;
     PositionStatus status;
-    uint256 homeChain;
-    address homeVault;
-    address homeReceiver;
-    address homeToken0;
-    address homeToken1;
-    uint256 locationChain;
-    address locationVault;
 }
 

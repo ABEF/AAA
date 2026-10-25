@@ -22,6 +22,7 @@ contract MockAccess {
     address public immutable activationAssetsFactory;
     address public governor;
     constructor(){governor=msg.sender;royaltyFactory=address(new ZZZRoyaltyFactory());activationAssetsFactory=address(new ZZZActivationAssetsFactory());}
+    function governance() external view returns(address){return governor;}
     function canonicalHandoff() external view returns(address){return module[Ids.CANONICAL];}
     function moduleAuthorized(bytes32 id,address caller) external view returns(bool){
         return isSealed && canonicalState==0 && caller==module[id];
@@ -100,7 +101,6 @@ contract BoundDummy {
     function currentZZZ() external view returns(address) {
         return IMockSealIdentity(IMockSealRegistry(access.module(Ids.POOLS)).activationAssets()).zzz();
     }
-    function transport() external view returns(address){return access.module(Ids.TRANSPORT);}
     function canonicalChainId() external view returns(uint256){return block.chainid;}
     function setRandomnessConfigured(bool ready) external {randomnessConfigured=ready;}
 }

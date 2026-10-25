@@ -1,0 +1,680 @@
+{
+  "solc_exit_code": 0,
+  "elapsed_seconds": 65.8,
+  "errors": [],
+  "gates": [
+    {
+      "path": "src/ZZZAccessController.sol",
+      "name": "ZZZAccessController",
+      "runtime": 9207,
+      "runtime_margin": 15369,
+      "creation": 42081,
+      "constructor_types": [
+        "address",
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 7071,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZActivationAssets.sol",
+      "name": "ZZZActivationAssets",
+      "runtime": 5849,
+      "runtime_margin": 18727,
+      "creation": 6660,
+      "constructor_types": [
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 64,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 42492,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZActivationAssetsFactory.sol",
+      "name": "ZZZActivationAssetsFactory",
+      "runtime": 7480,
+      "runtime_margin": 17096,
+      "creation": 7534,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 41618,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZActivationEntry.sol",
+      "name": "ZZZActivationEntry",
+      "runtime": 17985,
+      "runtime_margin": 6591,
+      "creation": 30529,
+      "constructor_types": [
+        "address",
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 18623,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZBuyback.sol",
+      "name": "ZZZBuyback",
+      "runtime": 7367,
+      "runtime_margin": 17209,
+      "creation": 8059,
+      "constructor_types": [
+        "address",
+        "address",
+        "uint256"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 41093,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZCanonicalHandoff.sol",
+      "name": "ZZZCanonicalHandoff",
+      "runtime": 20895,
+      "runtime_margin": 3681,
+      "creation": 21525,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 27627,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZClaimRouter.sol",
+      "name": "ZZZClaimRouter",
+      "runtime": 2885,
+      "runtime_margin": 21691,
+      "creation": 3443,
+      "constructor_types": [
+        "address",
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 45709,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZCompounder.sol",
+      "name": "ZZZCompounder",
+      "runtime": 2017,
+      "runtime_margin": 22559,
+      "creation": 2402,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 46750,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZContributionPricing.sol",
+      "name": "ZZZContributionPricing",
+      "runtime": 14804,
+      "runtime_margin": 9772,
+      "creation": 15451,
+      "constructor_types": [
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 64,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 33701,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZCustodyValidation.sol",
+      "name": "ZZZCustodyValidation",
+      "runtime": 7847,
+      "runtime_margin": 16729,
+      "creation": 8282,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 40870,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZFeeController.sol",
+      "name": "ZZZFeeController",
+      "runtime": 9702,
+      "runtime_margin": 14874,
+      "creation": 10179,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 38973,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZFeesCanonical.sol",
+      "name": "ZZZFeesCanonical",
+      "runtime": 10223,
+      "runtime_margin": 14353,
+      "creation": 11231,
+      "constructor_types": [
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 64,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 37921,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZLPRewardConverter.sol",
+      "name": "ZZZLPRewardConverter",
+      "runtime": 16952,
+      "runtime_margin": 7624,
+      "creation": 29312,
+      "constructor_types": [
+        "address",
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 19840,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZLiquidityManager.sol",
+      "name": "ZZZLiquidityManager",
+      "runtime": 21113,
+      "runtime_margin": 3463,
+      "creation": 22581,
+      "constructor_types": [
+        "address",
+        "address",
+        "address",
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 160,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 26571,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZMembership.sol",
+      "name": "ZZZMembership",
+      "runtime": 7389,
+      "runtime_margin": 17187,
+      "creation": 7838,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 41314,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZMigration.sol",
+      "name": "ZZZMigration",
+      "runtime": 22099,
+      "runtime_margin": 2477,
+      "creation": 31043,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 18109,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZMigrationBudget.sol",
+      "name": "ZZZMigrationBudget",
+      "runtime": 20245,
+      "runtime_margin": 4331,
+      "creation": 21264,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 27888,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZNFT.sol",
+      "name": "ZZZNFT",
+      "runtime": 23929,
+      "runtime_margin": 647,
+      "creation": 43809,
+      "constructor_types": [
+        "address",
+        "string"
+      ],
+      "static_argument_bytes": null,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 5343,
+      "dynamic_constructor_exact_argument_qualification_required": true
+    },
+    {
+      "path": "src/ZZZNFTCanonical.sol",
+      "name": "ZZZNFTCanonical",
+      "runtime": 10600,
+      "runtime_margin": 13976,
+      "creation": 11513,
+      "constructor_types": [
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 64,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 37639,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZNFTMetadata.sol",
+      "name": "ZZZNFTMetadata",
+      "runtime": 12543,
+      "runtime_margin": 12033,
+      "creation": 12867,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 36285,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZOracle.sol",
+      "name": "ZZZOracle",
+      "runtime": 10242,
+      "runtime_margin": 14334,
+      "creation": 28255,
+      "constructor_types": [
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 64,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 20897,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZPoolRegistry.sol",
+      "name": "ZZZPoolRegistry",
+      "runtime": 10269,
+      "runtime_margin": 14307,
+      "creation": 41662,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 7490,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZPythPriceFeed.sol",
+      "name": "ZZZPythPriceFeed",
+      "runtime": 2193,
+      "runtime_margin": 22383,
+      "creation": 3259,
+      "constructor_types": [
+        "address",
+        "bytes32",
+        "bytes32",
+        "int32",
+        "uint32",
+        "uint16",
+        "bytes32"
+      ],
+      "static_argument_bytes": 224,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 45893,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZRewards.sol",
+      "name": "ZZZRewards",
+      "runtime": 21311,
+      "runtime_margin": 3265,
+      "creation": 22332,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 26820,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZRoyaltyConverter.sol",
+      "name": "ZZZRoyaltyConverter",
+      "runtime": 16952,
+      "runtime_margin": 7624,
+      "creation": 29301,
+      "constructor_types": [
+        "address",
+        "address",
+        "address"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 19851,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZRoyaltyFactory.sol",
+      "name": "ZZZRoyaltyFactory",
+      "runtime": 24507,
+      "runtime_margin": 69,
+      "creation": 24560,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 24592,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZRoyaltyRewards.sol",
+      "name": "ZZZRoyaltyRewards",
+      "runtime": 22960,
+      "runtime_margin": 1616,
+      "creation": 23897,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 25255,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZStrategy.sol",
+      "name": "ZZZStrategy",
+      "runtime": 20820,
+      "runtime_margin": 3756,
+      "creation": 21416,
+      "constructor_types": [
+        "address"
+      ],
+      "static_argument_bytes": 32,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 27736,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZV4RouteExecutor.sol",
+      "name": "ZZZV4RouteExecutor",
+      "runtime": 11164,
+      "runtime_margin": 13412,
+      "creation": 11322,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 37830,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZVault.sol",
+      "name": "ZZZVault",
+      "runtime": 22852,
+      "runtime_margin": 1724,
+      "creation": 45132,
+      "constructor_types": [
+        "address",
+        "uint256",
+        "address"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 4020,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/ZZZVaultCanonical.sol",
+      "name": "ZZZVaultCanonical",
+      "runtime": 18622,
+      "runtime_margin": 5954,
+      "creation": 19983,
+      "constructor_types": [
+        "address",
+        "address",
+        "uint256"
+      ],
+      "static_argument_bytes": 96,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 29169,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/libraries/ExactAsset.sol",
+      "name": "ExactAsset",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "creation": 93,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 49059,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/libraries/ExactToken.sol",
+      "name": "ExactToken",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "creation": 93,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 49059,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/libraries/ZZZArtwork.sol",
+      "name": "ZZZArtwork",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "creation": 93,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 49059,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/libraries/ZZZPriceMath.sol",
+      "name": "ZZZPriceMath",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "creation": 93,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 49059,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    },
+    {
+      "path": "src/libraries/ZZZTypes.sol",
+      "name": "Ids",
+      "runtime": 62,
+      "runtime_margin": 24514,
+      "creation": 93,
+      "constructor_types": [],
+      "static_argument_bytes": 0,
+      "runtime_ok": true,
+      "creation_ok": true,
+      "maximum_total_argument_bytes": 49059,
+      "dynamic_constructor_exact_argument_qualification_required": false
+    }
+  ],
+  "all_pass": true,
+  "settings": {
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": {
+      "enabled": true,
+      "runs": 1,
+      "details": {
+        "yul": false
+      }
+    },
+    "remappings": [
+      "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+      "@uniswap/v4-core/=node_modules/@uniswap/v4-core/",
+      "@uniswap/v4-periphery/=node_modules/@uniswap/v4-periphery/",
+      "forge-std/=lib/forge-std/src/",
+      "solmate/=node_modules/@uniswap/v4-core/lib/solmate/"
+    ],
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "storageLayout",
+          "evm.bytecode.object",
+          "evm.deployedBytecode.object"
+        ]
+      }
+    }
+  },
+  "unchanged_during_build": true,
+  "source_sha256": {
+    "src/ZZZAccessController.sol": "7c9303335d1cf668b264b9be5d89a6f9d526300e815ba9dc8b8b7df7c9e69600",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/ZZZCanonicalHandoff.sol": "05b21a64d6a92419ca87587d66bd03d0706e5f6299217e4f219c9c3f5b495d88",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
+    "src/ZZZCustodyValidation.sol": "9343deb8edcfaab900979cd1e27716826700810eeef40ba7d6657fa41380ae58",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZMigration.sol": "ebe354445635759a1f47b09f878a969bdab9ad427d3bad57f48312d13e9937e5",
+    "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+    "src/ZZZNFT.sol": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+    "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+    "src/ZZZNFTMetadata.sol": "b1ca53e94e0f4bd642eff3b49c200b4edb56f803d2b30f7ea9e7e913786ed8bf",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/ZZZPoolRegistry.sol": "967775732b0848988ab111fd9e5ae9dade3a8ba99f6a1d043e6a0bce5cb28bc2",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "d394f833686176558b7781531ffe2598e057c4691d7bb7faefc65ef2e318f651",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+    "src/interfaces/IZZZ.sol": "f8145db63e811487a6bb75d90e1d228c0ce4a783f789b5e11b41fc389b16206b",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "a1f4523d3668e7620013e626bd51f71cadd9ee82168dbfbc0070b82f97656a0d"
+  },
+  "compiler_content_sha256": {
+    "src/ZZZAccessController.sol": "7c9303335d1cf668b264b9be5d89a6f9d526300e815ba9dc8b8b7df7c9e69600",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/ZZZCanonicalHandoff.sol": "05b21a64d6a92419ca87587d66bd03d0706e5f6299217e4f219c9c3f5b495d88",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
+    "src/ZZZCustodyValidation.sol": "9343deb8edcfaab900979cd1e27716826700810eeef40ba7d6657fa41380ae58",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZMigration.sol": "ebe354445635759a1f47b09f878a969bdab9ad427d3bad57f48312d13e9937e5",
+    "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+    "src/ZZZNFT.sol": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+    "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+    "src/ZZZNFTMetadata.sol": "b1ca53e94e0f4bd642eff3b49c200b4edb56f803d2b30f7ea9e7e913786ed8bf",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/ZZZPoolRegistry.sol": "967775732b0848988ab111fd9e5ae9dade3a8ba99f6a1d043e6a0bce5cb28bc2",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "d394f833686176558b7781531ffe2598e057c4691d7bb7faefc65ef2e318f651",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+    "src/interfaces/IZZZ.sol": "f8145db63e811487a6bb75d90e1d228c0ce4a783f789b5e11b41fc389b16206b",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "a1f4523d3668e7620013e626bd51f71cadd9ee82168dbfbc0070b82f97656a0d"
+  },
+  "qualification": "Normal EIP-170/EIP-3860 object gates; dynamic release constructor arguments require exact ABI-encoded qualification. No deployment or live-service approval."
+}

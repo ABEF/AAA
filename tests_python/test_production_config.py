@@ -1,6 +1,5 @@
 """Synthetic offline manifest tests; fixtures are never deployment configurations."""
 import copy
-import importlib.util
 import json
 from pathlib import Path
 import subprocess
@@ -10,8 +9,7 @@ import time
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-SPEC=importlib.util.spec_from_file_location('production_gate',ROOT/'scripts/validate-production-config.py')
-GATE=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(GATE)
+from zzz_ops import historical_production as GATE
 COMMIT='ab'*20;NOW=int(time.time());HASH='0x'+'11'*32
 ARTWORK_BASE='ipfs://bafy'+'a'*55+'/'
 def addr(number):return '0x'+f'{number:040x}'
@@ -673,7 +671,7 @@ class ProductionConfigTests(unittest.TestCase):
         self.config['routes'][0]['kind']={"untrusted":"principal"}
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'malformed.json';path.write_text(json.dumps(self.config),encoding='utf-8')
-            result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),'--config',str(path)],
+            result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),'--config',str(path),'--historical-consistency'],
                 capture_output=True,text=True,encoding='utf-8',check=False)
             self.assertEqual(result.returncode,1,result.stderr)
             self.assertIn('route.kind',[issue['code'] for issue in json.loads(result.stdout)['issues']])
@@ -693,7 +691,7 @@ class ProductionConfigTests(unittest.TestCase):
     def test_cli_invalid_json_is_blocked(self):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'invalid.json';path.write_text('{broken')
-            result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),'--config',str(path)],capture_output=True,text=True,check=False)
+            result=subprocess.run([sys.executable,str(ROOT/'scripts/validate-production-config.py'),'--config',str(path),'--historical-consistency'],capture_output=True,text=True,check=False)
             self.assertEqual(result.returncode,1);report=json.loads(result.stdout)
             self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],4)
 

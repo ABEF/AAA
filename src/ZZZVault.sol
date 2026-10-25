@@ -37,7 +37,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
     address payable public immutable mintProceedsRecipient;
     ZZZMigrationBudget public immutable migrationBudget;
     uint256 public constant MINT_PRICE = 0.05 ether;
-    uint256 public constant ACCOUNTING_VERSION = 2;
+    uint256 public constant ACCOUNTING_VERSION = 3;
     event DormantMinted(uint256 indexed nftId, address indexed owner, uint256 mintPrice);
     event Activated(uint256 indexed nftId, address indexed owner, bytes32 indexed poolId, uint256 amount0, uint256 amount1);
     event LiquidityAdded(uint256 indexed nftId, uint256 amount0, uint256 amount1);
@@ -170,11 +170,7 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
             _reserve(poolId, bucket);
             homePoolId[bucket] = poolId;
             Position storage p = positions[bucket];
-            (address token0, address token1) = migrationBudget.poolTokens(poolId);
             p.poolId = poolId; p.status = PositionStatus.Active;
-            p.homeChain = block.chainid; p.homeVault = address(this); p.homeReceiver = access.module(Ids.MIGRATION);
-            p.homeToken0 = token0; p.homeToken1 = token1;
-            p.locationChain = block.chainid; p.locationVault = address(this);
         }
         if (positions[bucket].poolId != poolId) revert InvalidState();
         nftBucket[id] = bucket; // Set the fee-index domain BEFORE checkpointing zero shares.
@@ -404,7 +400,6 @@ contract ZZZVault is ZZZModule, ReentrancyGuard, IERC721Receiver {
         (address token0,address token1) = _tokens(id);
         _receiveAssets(token0,token1,amount0,amount1);
         _idle(id,amount0,amount1);
-        p.locationChain = block.chainid; p.locationVault = address(this);
         p.status = PositionStatus.Parked;
         if (minimumLiquidity != 0) {
             if (access.paused()) revert Paused();

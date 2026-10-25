@@ -162,18 +162,7 @@ contract CustodyHandoffTest is PooledVaultFixture {
         vm.expectRevert();migration.completeLocal(id,970,969,1,block.timestamp+100); // raw minima pass; original USD budget fails.
         _return(id,970,970);
     }
-    function testOneToTenReplacementWithDifferentDecimalsPreservesSharesAndValue() public {
-        uint256 nftId=activatedPosition();MockToken nextZZZ=new MockToken(6);MockFeed feed=new MockFeed(8,1e7);
-        oracle.setTestFeed(address(nextZZZ),address(feed),3600);rewards.addAsset(address(nextZZZ));
-        PoolConfig memory c=pools.get(poolId);c.key.currency1=address(nextZZZ);bytes32 target=keccak256(abi.encode(c.key));pools.set(target,c);vault.reservePool(target,_bucket());
-        ZZZMigration.Request memory r=_r(false);r.destinationPool=target;r.output1=address(nextZZZ);r.minimum1=9700e6;
-        bytes32 id=migration.approve(r);ac.setPaused(true);migration.exit(id);ac.setPaused(false);
-        t0.mint(address(this),1000);nextZZZ.mint(address(this),10000e6);t0.approve(address(migration),1000);nextZZZ.approve(address(migration),10000e6);
-        migration.completeLocal(id,1000,10000e6,1,block.timestamp+100);
-        assertEq(vault.sharesOf(nftId),2000e18);(bool available,uint256 value)=nft.currentLPValue(nftId);assertTrue(available);assertEq(value,2000e18);
-        vm.expectRevert();migration.configureZZZ(address(nextZZZ),address(nextZZZ).codehash,review);
-        assertEq(migration.currentZZZ(),address(t1)); // The old deployment never relabels ZZZ.
-    }
+
     function testFuzzExitSwapLossLimit(uint16 loss) public {
         loss=uint16(bound(loss,0,10000));activatedPosition();bytes32 id=migration.approve(_r(false));
         handoffVenue.configure(loss,false);ac.setPaused(true);

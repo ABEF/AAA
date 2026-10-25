@@ -31,7 +31,7 @@ data as custody V2.
 
 | Intended action | Supported operation | Result and boundary |
 | --- | --- | --- |
-| Change fee tier or another local ETH/ZZZ pool | Admit/reserve the destination, then `Migration.moveFunds(...)`; `movePool(...)` is its alias. | Atomic pool change inside Vault; the actual ordered currencies must match. NFT shares and accrued rights remain. |
+| Change fee tier or another local ETH/ZZZ pool | Admit/reserve the destination, then `Migration.moveFunds(...)`. | Atomic pool change inside Vault; the actual ordered currencies must match. NFT shares and accrued rights remain. |
 | Stop providing liquidity without releasing custody | Pause and use reviewed `Migration.park(...)`; later `resume(...)`. | Attributed assets remain in Vault. Resume needs a healthy supported local pool and fresh execution checks. |
 | Perform an issuer exchange, use a different token pair, or move assets to another chain manually | Reviewed custody-only `approve(...)` and paused `exit(...)` to the operator's source-chain EOA/contract. | Normal exit sends ZZZ; explicitly approved raw exit sends the existing pair without a swap. The custodian performs further operations externally and bears custody risk. |
 | Restore assets and LP on this chain | Bind an admitted local destination once and fund `completeLocal(...)`, or return every original sent asset through `recover(...)`. | Actual funding is required; no balance write-off, invented LP, automatic reopening or second claim domain. |
@@ -42,6 +42,14 @@ to another chain. Cross-chain NFT ownership/reward accounting is outside this
 release; external bridging alone cannot implement it.
 
 ## Authority and custody guarantee
+
+The selected governance wallet calls Migration and royalty-custody functions
+directly after sealing. Access has no scheduled operation queue or canceller
+role. Cancel an unsent custody plan through its typed `Migration.cancel`,
+invalidate unused parking with `invalidateParking`, and cancel a preparation
+notice with `AccessController.cancelPreparation(hash)` from actual governance.
+These are distinct operations; none reverses a completed transfer.
+
 
 The sealed `ZZZMigration` implementation authorizes exact principal handoffs to
 future recipients chosen by immediate governance. A recipient can be an EOA or
@@ -64,9 +72,11 @@ These are separate custody domains:
 
 Use `Migration.moveFunds(bucket,destinationPool,minimumLiquidity,deadline)` for a
 new fee tier with the **same actual ordered currencies**, such as another native
-ETH/ZZZ pool. The older `movePool` selector is an alias with the same authority/guards. It never sends principal to your wallet.
+ETH/ZZZ pool. The obsolete Migration `movePool` alias is removed. `moveFunds`
+never sends principal to your wallet.
 
-1. Governance reviews and admits the initialized, hookless destination with
+1. With the source ZZZ already bound once, governance reviews and admits the
+   initialized, hookless destination with
    `PoolRegistry.configureNative` (static native ETH/ZZZ on the pinned Robinhood
    core) or ordinary `configure` (WETH/ZZZ). Set destination deposits disabled;
    operations must be enabled. Verify real key, fees, spacing, reference
@@ -75,8 +85,8 @@ ETH/ZZZ pool. The older `movePool` selector is an alias with the same authority/
    needed for these supported venue changes after sealing.
 2. Stop new source deposits and review a fresh confirmed snapshot. Preserve source
    operations if balancing needs them. Simulate the complete move with an actual
-   positive minimum liquidity and deadline at most ten minutes away. Execute via
-   controller governance while unpaused. No new holder approval is required.
+   positive minimum liquidity and deadline at most ten minutes away. The selected governance wallet calls Migration directly
+   while unpaused; Access does not schedule or execute the call. No new holder approval is required.
 3. Read `Vault.migrationBudget().maintenanceLossBps()` and review that value as
    `L` basis points. The atomic operation harvests old fees, includes designated
    compound, closes source LP, balances and creates destination LP owned by Vault.
@@ -88,7 +98,7 @@ ETH/ZZZ pool. The older `movePool` selector is an alias with the same authority/
    after seal within 0-1000 bps. Gas is separate; stronger venue/caller minima and
    the 5% idle ceiling remain. Any failed settlement or limit rolls back the
    whole move, including closing the old LP.
-4. Verify actual destination LP, pool ID, unchanged NFT shares/home identity,
+4. Verify actual destination LP, pool ID, unchanged NFT shares and stable bucket identity,
    existing reward liabilities and cleared allowances. Governance then enables
    this sole contribution pool and separately updates reviewed input routes/API/
    keeper configuration. Do not reactivate the old physical pool for new entries.
@@ -99,7 +109,8 @@ reviewed conversion/accounting boundary before it can be supported; admitting a
 new pool does not supply that algorithm. Other different tokens, reversed pairs,
 another bucket's reservation, unsupported hooks and dynamic native pools also
 fail closed. Use the separately approved external custody procedure below for
-manual token exchange, bridging or a return to a reviewed different pair.
+manual token exchange or bridging. An admitted local return pool must still
+contain this deployment's fixed ZZZ; a new ZZZ contract requires fresh deployment.
 
 ## Ordinary Migration Exit: all principal into ZZZ
 
@@ -196,9 +207,9 @@ An issuer's 1:1 or 1:10 migration can be performed by the approved recipient
 outside the source contracts. No standard issuer ABI is assumed. Approval must
 bind the reviewed destination assets, raw units/decimals and minimum backing.
 Token counts are not USD values and do not multiply NFT shares.
-`completeLocal` retains reviewed, actually funded different-pair return support;
-this does not change the deployment's fixed contribution or normal-exit ZZZ
-identity. For a ZZZ contract migration, the chosen operating approach is custody
+`completeLocal` requires reviewed, actually funded output assets from an admitted
+local pool containing the same fixed ZZZ. It cannot return a replacement ZZZ
+contract through a permissive pool fixture or change contribution/exit identity. For a ZZZ contract migration, the chosen operating approach is custody
 exit, external issuer exchange and a fresh reviewed deployment. Moving the tokens
 alone does not move the canonical NFT collection or its reward accounting.
 
@@ -221,9 +232,9 @@ This binding is one-time and available only to a sent local holding plan. It
 preserves the source snapshot, actual departure amounts, raw/normal mode and
 original loss budget; it derives output currencies from the admitted pool.
 `completeLocal` then requires actual destination-token funding and deployed LP.
-This supports an issuer's token exchange without requiring burned old tokens
-back, while preserving the normal original `minimumRetainedUSD(id)` or raw
-destination minima. Binding a destination does not reset the approval's budget.
+This can support an externally performed accounting-pair change while retaining
+the same fixed ZZZ, preserving the normal original `minimumRetainedUSD(id)` or
+raw destination minima. It does not support an issuer replacement ZZZ in this deployment. Binding a destination does not reset the approval's budget.
 
 Alternatively, full original-asset `recover` remains available. External bridging
 and issuer operations are the recipient's responsibility; local destination binding
@@ -251,7 +262,7 @@ buckets, rewards, royalty assets and fee reserves are not included.
 
 ### Native ETH versus WETH at exit
 
-The native-accounting V2 candidate sends **native ETH and ZZZ** for a raw exit
+The current Position3 native candidate sends **native ETH and ZZZ** for a raw exit
 from this pool. Normal exit still consolidates principal into ZZZ. Native pool
 settlement, fee classification, parking, raw exit and full native recovery do not
 call WETH or its policy. An optional broken wrapper therefore does not block
@@ -410,7 +421,7 @@ custody nonce/balance. The removed bridge/pair-helper inventory is historical;
 production inventory/service adaptation must be reviewed for the new layout.
 Current release inventory requires explicit `fee_intake_version: 1`, 15 current helpers,
 `Fees.FEE_INTAKE_VERSION() == 1`, `Migration.CUSTODY_VERSION() == 2`, and canonical
-`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3")`.
+`SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4")`.
 `ActivationAssets.SOURCE_POLICY_VERSION() == 1` and its reviewed `zzz()` identity
 bound the ETH/ZZZ contribution inputs; royalty currencies remain separate. That
 ZZZ is selected once before sealing and must equal immutable `Buyback.zzz()`
@@ -422,17 +433,20 @@ relabeling historical balances or changing any of these ZZZ identities.
 The current helper set includes the controller-created ActivationAssetsFactory;
 verify its fixed controller and `assetsOf(Registry)` binding. It excludes the old
 RewardReceiverFactory even though the historical inventory also counted 15 helpers.
-Use fresh native-accounting version 2 API/keeper profiles with exact reviewed
-runtime pins and `Vault.ACCOUNTING_VERSION() == 2`. Version 1 WETH journals and
-predecessor history must not be reinterpreted or reset. The existing 8902 fixture
+Use explicit `accounting_version: 3` API/keeper profiles with exact reviewed
+runtime pins, `Vault.ACCOUNTING_VERSION() == 3` and
+`AccessController.GOVERNANCE_VERSION() == 2`. [Position3](POSITION_V3.md) is
+eight words and the canonical schema is local V4. Legacy Position1/2 readers
+and saved journals retain their exact historical profile; neither automatic
+codec upgrade nor V4 import from an older schema exists. The existing 8902 fixture
 and its saved transactions remain unchanged; the public website deployment is
-null and website V2 integration still requires qualification.
+null and actual current-profile wallet/service integration still requires qualification.
 
 Alert on pending custody age, unauthorized state changes, token/recipient code
 changes and missing returns. There is no remote-proof service to operate. A crash can resume from contract
 records; no server-held nonce or timeout decides who owns backing.
 
-Real pool exit depth, target routes/feeds, recipient controls, new-token/burn
+Real pool exit depth, target routes/feeds, recipient controls, fixed-token/burn
 compatibility, target-chain gas, royalty operating rehearsals and independent
 audit remain release gates. No integrated bridge/finality provider is required
 for source-chain custody-only exit. Track these in the

@@ -181,9 +181,9 @@ contract BuybackExecutionTest is Test {
         access.bind(Ids.ORACLE, address(oracle)); access.bind(Ids.POOLS, address(pools));
         access.bind(Ids.STRATEGY, address(strategy)); access.bind(Ids.LIQUIDITY, address(manager));
         rewards.addAsset(address(input)); rewards.addAsset(address(zzz));
+        pools.activationAssets().configureZZZ(address(zzz), address(zzz).codehash, keccak256("buyback fixture fixed ZZZ"));
         PoolConfig memory c = _configuration(address(input), address(zzz)); pool = pools.configure(c);
-        Position memory p; p.poolId = pool; p.homeChain = block.chainid; p.homeVault = address(vault);
-        p.homeToken0 = c.key.currency0; p.homeToken1 = c.key.currency1; p.status = PositionStatus.Active;
+        Position memory p; p.poolId = pool; p.status = PositionStatus.Active;
         vault.set(BUCKET, p); access.setKeeper(address(this), true); access.seal();
         vm.prank(address(vault)); nft.mint(ALICE, 1); vault.join(1, BUCKET, 100);
         vm.prank(address(vault)); membership.activate(1);

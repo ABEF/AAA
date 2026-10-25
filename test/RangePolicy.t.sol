@@ -63,8 +63,6 @@ contract RangePolicyTest is Test {
         registry.activationAssets().configureZZZ(address(t1),address(t1).codehash,keccak256("range policy fixture ZZZ"));
         pool = registry.configure(config);
         position.poolId = pool; position.lpTokenId = 1; position.status = PositionStatus.Active;
-        position.homeChain = block.chainid; position.locationChain = block.chainid;
-        position.homeVault = address(vault); position.locationVault = address(vault);
         _replace();
     }
     function _replace() private {
@@ -138,8 +136,7 @@ contract RangePolicyTest is Test {
         assertFalse(strategy.needsRebalance(BUCKET));
     }
     function testRealSealedGovernanceCanImmediatelyApproveRangeChange() public {
-        address[] memory roles = new address[](1); roles[0] = address(this);
-        ZZZAccessController access = new ZZZAccessController(0, roles, roles, address(0x20), address(0x21));
+        ZZZAccessController access = new ZZZAccessController(address(0xA0A0), address(0x20), address(0x21));
         _system(address(access));
         // The removed LP bridge/transport identities are intentionally unbindable.
         bytes32[6] memory rest = [Ids.NFT, Ids.MEMBERSHIP, Ids.FEES, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION];
@@ -148,11 +145,9 @@ contract RangePolicyTest is Test {
         config.rangeBps = 1000;
         vm.expectRevert(); registry.configure(config); // Bootstrap has been revoked.
         vm.prank(address(0x20)); vm.expectRevert(); registry.configure(config); // Keeper has no configuration power.
-        bytes memory data = abi.encodeCall(registry.configure, (config)); bytes32 salt = keccak256("range 10 percent");
-        access.schedule(address(registry), 0, data, bytes32(0), salt, 0);
         assertFalse(strategy.rangeUpdatePending(BUCKET));
         _price(1e8);
-        access.execute(address(registry), 0, data, bytes32(0), salt);
+        vm.prank(access.governance()); registry.configure(config);
         assertTrue(strategy.rangeUpdatePending(BUCKET));
         // Immediate governance does not bypass the unchanged maintenance cooldown.
         assertFalse(strategy.needsRebalance(BUCKET));

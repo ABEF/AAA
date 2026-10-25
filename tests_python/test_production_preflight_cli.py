@@ -24,10 +24,10 @@ class ProductionPreflightCLITests(unittest.TestCase):
     def test_historical_governed_layout_keeps_exact_block(self):
         report=gate.validate({'custody_architecture':'governed-v1','ready':True})
         self.assertFalse(report['ready']);self.assertFalse(report['deployment_authorized'])
-        self.assertEqual(report['issues'][0]['code'],'custody.inventory_schema_pending')
+        self.assertEqual(report['issues'][0]['code'],'current_profile_required')
 
     def test_native_schema_dispatch_lists_real_missing_requirements(self):
-        report=gate.validate({'schema_version':5,'custody_architecture':'governed-v1'})
+        report=gate.validate({'schema_version':5,'accounting_version':3,'mint_integration_version':1,'fee_intake_version':1,'custody_architecture':'governed-v1'})
         self.assertEqual(report['schema_version'],5)
         self.assertFalse(report['ready']);self.assertFalse(report['deployment_authorized'])
         self.assertNotIn('custody.inventory_schema_pending',[i['code'] for i in report['issues']])
@@ -35,7 +35,43 @@ class ProductionPreflightCLITests(unittest.TestCase):
 
     def test_float_version_cannot_enter_new_profile(self):
         report=gate.validate({'schema_version':5.0,'custody_architecture':'governed-v1'})
-        self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],4)
+        self.assertFalse(report['ready']);self.assertEqual(report['schema_version'],5)
+        self.assertEqual(report['issues'][0]['code'],'current_profile_required')
+
+    def test_default_validation_never_imports_historical_engine(self):
+        import builtins
+        original=builtins.__import__
+        def current_only(name,*args,**kwargs):
+            if name=='zzz_ops.historical_production' or name.startswith('zzz_ops.historical_production.'):
+                raise AssertionError('Current validation imported historical bridge/creator code')
+            return original(name,*args,**kwargs)
+        inputs=({'schema_version':4,'custody_architecture':'governed-v1'},
+                {'schema_version':5,'mint_integration_version':0,'fee_intake_version':0},
+                {'schema_version':5,'accounting_version':3,'mint_integration_version':1,'fee_intake_version':1})
+        with patch('builtins.__import__',side_effect=current_only):
+            for config in inputs:
+                with self.subTest(config=config):
+                    report=gate.validate(config)
+                    self.assertFalse(report['ready'])
+                    self.assertFalse(report['deployment_authorized'])
+                    self.assertTrue(report['current_release_gate'])
+
+    def test_default_cli_rejects_historical_manifest_without_importing_engine(self):
+        import builtins
+        original=builtins.__import__
+        def current_only(name,*args,**kwargs):
+            if name=='zzz_ops.historical_production' or name.startswith('zzz_ops.historical_production.'):
+                raise AssertionError('Default CLI imported historical bridge/creator code')
+            return original(name,*args,**kwargs)
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'historical.json';path.write_text('{"schema_version":4}',encoding='utf-8')
+            output=io.StringIO()
+            with patch.object(sys,'argv',[str(SCRIPT),'--config',str(path)]), \
+                    patch('builtins.__import__',side_effect=current_only), redirect_stdout(output):
+                self.assertEqual(gate.main(),1)
+            report=json.loads(output.getvalue())
+            self.assertEqual(report['issues'][0]['code'],'current_profile_required')
+            self.assertFalse(report['deployment_authorized'])
 
     def test_duplicate_keys_and_nonfinite_numbers_are_rejected(self):
         with tempfile.TemporaryDirectory() as folder:

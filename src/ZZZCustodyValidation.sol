@@ -35,8 +35,7 @@ contract ZZZCustodyValidation {
         address token=state.currentZZZ();
         bool custodyOnly=r.destinationPool==bytes32(0) && r.destinationCustody==r.recipient;
         if(!access.isSealed() || r.bucket==0 || state.activePlan(r.bucket)!=bytes32(0) ||
-            (p.status!=PositionStatus.Active && p.status!=PositionStatus.Parked) || p.homeChain!=block.chainid ||
-            p.homeVault!=address(v) || p.locationChain!=block.chainid || p.locationVault!=address(v) ||
+            (p.status!=PositionStatus.Active && p.status!=PositionStatus.Parked) ||
             v.bucketTotalShares(r.bucket)==0 || r.sourceSnapshot!=state.sourceSnapshot(r.bucket) || (!r.rawExit && (token==address(0) ||
             token.codehash!=state.zzzCodeHash())) || r.recipient==address(0) || r.recipient==migration || r.recipient==address(this) ||
             r.recipient==address(v) || r.recipient.codehash!=r.recipientCodeHash ||
@@ -65,8 +64,8 @@ contract ZZZCustodyValidation {
         if(!access.isSealed() || !access.paused() || r.reviewHash==bytes32(0) || (r.minimum0==0 && r.minimum1==0) ||
             r.lpTokenId==0 || state.activePlan(r.bucketId)!=bytes32(0) || r.nonce!=state.parkingNonce(r.bucketId) ||
             r.custodyEpoch!=state.custodyEpoch(r.bucketId) || p.status!=PositionStatus.Active || p.poolId!=r.poolId ||
-            p.lpTokenId!=r.lpTokenId || p.depositUSD!=r.depositUSD || p.locationChain!=block.chainid ||
-            p.locationVault!=address(v) || r.totalShares==0 || v.bucketTotalShares(r.bucketId)!=r.totalShares ||
+            p.lpTokenId!=r.lpTokenId || p.depositUSD!=r.depositUSD ||
+            r.totalShares==0 || v.bucketTotalShares(r.bucketId)!=r.totalShares ||
             c.key.currency0!=r.token0 || c.key.currency1!=r.token1) revert InvalidState();
     }
 }

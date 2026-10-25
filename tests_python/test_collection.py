@@ -21,6 +21,8 @@ from tests_python.test_frontend_api import addr
 class CollectionSnapshot(Snapshot):
     def __init__(self, count=33):
         super().__init__(count)
+        self.accounting_version = 1
+        self.dormant_status = 5
         self.corrupt = None
         self.overrides = {}
     def _uint(self, role, method, *args, block):
@@ -108,6 +110,10 @@ class CollectionTests(unittest.TestCase):
     def test_dormant_cannot_report_unknown_lp(self):
         p = CollectionSnapshot(); p.lp_missing = 4
         with self.assertRaises(ProjectionError): read(p, 90, 0)
+    def test_current_dormant_three_cannot_report_unknown_lp(self):
+        p=CollectionSnapshot(4);p.accounting_version=3;p.dormant_status=3
+        p.overrides['nftStatus(uint256)',4]=3;p.lp_missing=4
+        with self.assertRaises(ProjectionError):read(p,90,0)
     def test_remote_eligibility_persists_without_fabricated_local_value(self):
         p = CollectionSnapshot(2); p.lp_missing = 2; p.overrides['nftStatus(uint256)', 2] = 3
         out = read(p, 90, 0)

@@ -19,6 +19,7 @@ from zzz_ops.rpc import Rpc, RpcError
 from zzz_ops.state import integer
 from zzz_ops.work_budget import BudgetedRPC, bounded_request, expire_at
 from zzz_ops.errors import WorkLimit
+from zzz_ops.position import decode_position, position_word_count, status_name, is_local_position
 
 ZERO = '0x' + '0' * 40
 ROLES = ('access', 'nft', 'vault', 'rewards', 'royalties', 'claim_router', 'handoff', 'vault_canonical')
@@ -131,12 +132,16 @@ class Projection:
         if type(config['schema']) is not int or config['schema'] != 2:
             raise ValueError('Unsupported frontend API configuration schema')
         self.accounting_version = config.get('accounting_version', 1)
-        if type(self.accounting_version) is not int or self.accounting_version not in (1, 2):
+        if type(self.accounting_version) is not int or self.accounting_version not in (1, 2, 3):
             raise ValueError('Unsupported deployment accounting version')
         self.fee_intake_version = config.get('fee_intake_version', 0)
         if type(self.fee_intake_version) is not int or self.fee_intake_version not in (0, 1) or \
-                (self.fee_intake_version == 1 and self.accounting_version != 2):
+                (self.fee_intake_version == 1 and self.accounting_version not in (2, 3)):
             raise ValueError('Unsupported LP fee-intake profile')
+        if self.accounting_version == 3 and self.fee_intake_version != 1:
+            raise ValueError('Local Position V3 requires LP-only fee intake')
+        self.dormant_status = 3 if self.accounting_version == 3 else 5
+        self.parked_status = 4 if self.accounting_version == 3 else 6
         self.chain = integer(config['chain_id'], 'chain_id', minimum=1)
         self.start = integer(config['deployment_block'], 'deployment_block')
         self.start_hash = _hash(config['deployment_block_hash'])
@@ -224,7 +229,7 @@ class Projection:
             'ownerIndex(uint256,address)': {1}, 'eligibleCount(address)': {0},
             'eligibleWeight(address)': {0}, 'index(address)': {0}, 'pending(address)': {0},
         }
-        if self.accounting_version == 2:
+        if self.accounting_version in (2, 3):
             native_slots.update({
                 'feeds(address)': {0}, 'price(address)': {0}, 'tokenDecimals(address)': {0},
                 'priceBounds(address)': {0},
@@ -247,6 +252,15 @@ class Projection:
             raise ProjectionError('Unexpected static ABI result length')
         return result
 
+    def _position(self, bucket: int, block: dict[str, Any]) -> list[str]:
+        raw = self._call(self.contracts['vault'].address, 'group(uint256)', bucket,
+                         block=block, words=position_word_count(self.accounting_version))
+        try:
+            decode_position(raw, self.accounting_version)
+        except ValueError as exc:
+            raise ProjectionError('Invalid versioned Position response') from exc
+        return raw
+
     def _uint(self, role: str, signature: str, *args: Any, block: dict[str, Any]) -> int:
         return int(self._call(self.contracts[role].address, signature, *args, block=block)[0], 16)
 
@@ -264,15 +278,22 @@ class Projection:
         for item in self.contracts.values():
             self._code(item.address, item.code_hash, block)
         access = self.contracts['access'].address
-        if self.accounting_version == 2:
-            if self._uint('vault', 'ACCOUNTING_VERSION()', block=block) != 2:
+        if self.accounting_version in (2, 3):
+            if self._uint('vault', 'ACCOUNTING_VERSION()', block=block) != self.accounting_version:
                 raise ProjectionError('Native accounting profile differs from the deployed Vault version')
-            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3' if self.fee_intake_version == 1
+            domain = (b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4' if self.accounting_version == 3 else
+                      b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3' if self.fee_intake_version == 1
                       else b'ZZZ_CANONICAL_SAME_CHAIN_NATIVE_V2')
             native_schema = '0x' + keccak256(domain).hex()
             actual = '0x' + self._call(self.contracts['handoff'].address, 'SCHEMA()', block=block)[0]
             if actual != native_schema:
                 raise ProjectionError('Native canonical schema differs from the reviewed profile')
+        if self.accounting_version == 3:
+            if self._uint('access','GOVERNANCE_VERSION()',block=block) != 2:
+                raise ProjectionError('Local profile requires direct governance V2')
+            governor = self._addr('access','governance()',block=block)
+            if governor == access:
+                raise ProjectionError('Governance cannot be the controller itself')
         sealed = _bool(self._call(access, 'isSealed()', block=block)[0])
         if not sealed:
             raise ProjectionError('Deployment is not sealed')
@@ -459,22 +480,22 @@ class Projection:
                 raise ProjectionError('Traits exceed the immutable artwork catalogue')
             traits = {'rarity': ('Commun', 'Rare', 'Legendary')[rarity], 'palette': palette, 'pattern': pattern}
         status = self._uint('vault', 'nftStatus(uint256)', nft_id, block=block)
-        if status == 0 or status >= len(STATUS):
+        if status == 0 or status >= (5 if self.accounting_version == 3 else len(STATUS)):
             raise ProjectionError('Missing or unsupported canonical vault state')
         bucket = self._uint('vault', 'nftBucket(uint256)', nft_id, block=block)
         shares = self._uint('vault', 'sharesOf(uint256)', nft_id, block=block)
         weight = self._uint('royalties', 'weightOf(uint256)', nft_id, block=block)
         if weight > 3 or (weight > 0) != (shares > 0) or (shares > 0) != (bucket > 0):
             raise ProjectionError('Inconsistent activation/royalty/share state')
-        if weight > 0 and (not ready or weight != rarity + 1) or (status == 5) != (shares == 0):
+        if weight > 0 and (not ready or weight != rarity + 1) or (status == self.dormant_status) != (shares == 0):
             raise ProjectionError('Activation differs from the canonical revealed NFT state')
         custody = None
-        if status in (1, 6):
-            group = self._call(self.contracts['vault'].address, 'group(uint256)', bucket, block=block, words=15)
+        if status in (1, self.parked_status):
+            group = self._position(bucket, block)
+            decoded = decode_position(group, self.accounting_version)
             supply = self._uint('vault', 'bucketTotalShares(uint256)', bucket, block=block)
-            if (int(group[0], 16) == 0 or (int(group[1], 16) == 0) != (status == 6) or int(group[7], 16) != status or
-                    int(group[8], 16) != self.chain or _address_word(group[9]) != self.contracts['vault'].address or
-                    int(group[13], 16) != self.chain or _address_word(group[14]) != self.contracts['vault'].address or
+            if (int(group[0], 16) == 0 or (int(group[1], 16) == 0) != (status == self.parked_status) or int(group[7], 16) != status or
+                    not is_local_position(decoded,self.accounting_version,self.chain,self.contracts['vault'].address) or
                     supply < shares):
                 raise ProjectionError('Local principal differs from its canonical custody state')
             custody = {'pool_id': '0x' + group[0],
@@ -487,16 +508,16 @@ class Projection:
         value = self._call(self.contracts['nft'].address, 'currentLPValue(uint256)', nft_id, block=block, words=2)
         available = _bool(value[0])
         raw_usd = int(value[1], 16)
-        if status not in (1, 5) and available:
+        if status not in (1, self.dormant_status) and available:
             raise ProjectionError('Unavailable custody cannot report an active LP valuation')
-        if status == 5 and (not available or raw_usd != 0 or contribution != 0):
+        if status == self.dormant_status and (not available or raw_usd != 0 or contribution != 0):
             raise ProjectionError('Dormant NFT must have verified zero LP and contributions')
         if not available and raw_usd != 0:
             raise ProjectionError('Unavailable valuation contains a fabricated amount')
         lp_value = {'available': available, 'raw': str(raw_usd) if available else None, 'decimals': 18,
                     'unit': 'USD', 'source': 'NFT.currentLPValue',
                     'reason': None if available else 'Principal is parked in the Vault; current LP valuation is unavailable.'
-                    if status == 6 else 'Remote/in-flight custody or unavailable valuation dependency.'}
+                    if status == self.parked_status else 'External custody or unavailable valuation dependency.'}
         # Derive precisely the same four-state display from the single current
         # value read. Activation eligibility persists independently of its mark.
         stage = 0 if weight == 0 else 3 if available and raw_usd >= 10000 * 10**18 else 2 if available and raw_usd >= 1000 * 10**18 else 1
@@ -512,7 +533,7 @@ class Projection:
             'schema': 2, 'chain_id': self.chain, 'token_id': str(nft_id), 'mint_ordinal': ordinal,
             'lifecycle': lifecycle,
             'owner': owner, 'traits_ready': ready, 'traits': traits,
-            'position': {'status': STATUS[status], 'bucket_id': str(bucket), 'shares_raw': str(shares),
+            'position': {'status': status_name(self.accounting_version,status), 'bucket_id': str(bucket), 'shares_raw': str(shares),
                          'local_custody': custody,
                          'cumulative_gross_contribution_usd_18': str(contribution),
                          'activated': weight != 0, 'royalty_weight': weight, 'current_lp_value': lp_value,

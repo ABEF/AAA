@@ -20,16 +20,14 @@ import {ZZZNFTCanonical} from "../src/ZZZNFTCanonical.sol";
 import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
 import {ZZZFeesCanonical} from "../src/ZZZFeesCanonical.sol";
 /// @notice LOCAL DEVELOPMENT ONLY. This script cannot deploy on public-chain IDs.
-/// Requires reviewed local Uniswap dependencies. Bridge policies start empty.
+/// Requires reviewed local Uniswap dependencies; no integrated bridge exists.
 contract DeployCore is Script {
     function run() external {
         require(block.chainid == 31337 || block.chainid == 31338, "local chains only");
         require(vm.envBool("ALLOW_UNAUDITED_LOCAL_DEPLOYMENT"), "explicit local consent required");
         uint256 home=vm.envUint("CANONICAL_CHAIN_ID");
-        address[] memory proposers=new address[](1);proposers[0]=vm.envAddress("GOVERNANCE_MULTISIG");
-        address[] memory executors=new address[](1);executors[0]=address(0);
         vm.startBroadcast();
-        ZZZAccessController a=new ZZZAccessController(0,proposers,executors,
+        ZZZAccessController a=new ZZZAccessController(vm.envAddress("GOVERNANCE_MULTISIG"),
             vm.envAddress("KEEPER_ADDRESS"),vm.envAddress("GUARDIAN_ADDRESS"));
         address controller=address(a);
         a.bind(Ids.VAULT,address(new ZZZVault(controller,home,payable(vm.envAddress("MINT_PROCEEDS_RECIPIENT")))));
@@ -63,6 +61,6 @@ contract DeployCore is Script {
         string memory encoded=vm.serializeUint("local-deployment","chainId",block.chainid);
         vm.writeJson(encoded,string.concat("deployments/",vm.toString(block.chainid),".json"));
         // Deliberately NOT sealed. Configure feeds/assets/pools/routes, validate both
-        // chains and all bindings, then consciously seal. Never broadcast mainnet.
+        // local dependencies and all bindings, then consciously seal. Never broadcast mainnet.
     }
 }

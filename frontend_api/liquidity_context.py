@@ -1,3 +1,4 @@
+from zzz_ops.position import decode_position, is_local_position
 """Confirmed range and maintenance context, never a promised keeper schedule."""
 from datetime import datetime, timezone
 
@@ -42,8 +43,8 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
     cooldown = int(config[11], 16)
     if existing:
         lp = int(position[1], 16)
-        if (lp == 0 or int(position[8], 16) != p.chain or int(position[13], 16) != p.chain or
-                _address_word(position[9]) != pins['vault'] or _address_word(position[14]) != pins['vault']):
+        decoded = decode_position(position,p.accounting_version)
+        if lp == 0 or not is_local_position(decoded,p.accounting_version,p.chain,pins['vault']):
             raise ProjectionError('Active shared position has invalid local custody')
         lower, upper = map(signed_tick, read('liquidity', 'ticks(uint256)', lp, count=2))
         last, center = int(position[6], 16), int(position[5], 16)
@@ -53,7 +54,7 @@ def contribution_context(p, pins, pool, bucket, position, config, header, block,
         eligible = _bool(read('strategy', 'needsRebalance(uint256)', bucket)[0])
         range_pending = _bool(read('strategy', 'rangeUpdatePending(uint256)', bucket)[0])
         ref = int(read('oracle', 'referenceX96(address,address)',
-                       _address_word(config[0], native=p.accounting_version == 2), _address_word(config[1]))[0], 16)
+                       _address_word(config[0], native=p.accounting_version in (2, 3)), _address_word(config[1]))[0], 16)
         if not 0 < ref < 2**160:
             raise ProjectionError('Invalid oracle reference price')
         root_ratio = (center * 10**18 // ref if orientation == 1 else ref * 10**18 // center)

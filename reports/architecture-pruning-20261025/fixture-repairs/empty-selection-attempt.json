@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-10-25T19:32:32.221731+00:00",
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-pruning-20261025\\solidity\\selected\\ast-focused-profile-q7m9ybft",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(FixedZZZPoolTest|NativeCanonicalIntegrationTest)$",
+    "--match-test",
+    "^(testMissingFixedZZZRejectsGenericPoolBeforeDependencyAdmission|testNativeAdmissionRetainsItsSeparateFixedIdentityGuard|testPairWithoutFixedZZZRejectsBeforeDependencyAdmission|testNativePartialFundingAbortRequiresAndRestoresExactBacking|testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine)$",
+    "--json"
+  ],
+  "elapsed_seconds": 263.094,
+  "exit_code": 0,
+  "timed_out": false,
+  "selected_methods": 5,
+  "complete_selection_executed": false,
+  "missing": [
+    "testMissingFixedZZZRejectsGenericPoolBeforeDependencyAdmission",
+    "testNativeAdmissionRetainsItsSeparateFixedIdentityGuard",
+    "testNativePartialFundingAbortRequiresAndRestoresExactBacking",
+    "testNativeWholeHandoffCarriesPrincipalIndicesRoyaltiesAndFeeDonationQuarantine",
+    "testPairWithoutFixedZZZRejectsBeforeDependencyAdmission"
+  ],
+  "unexpected": [],
+  "production41_unchanged": true,
+  "cases": [],
+  "manifest_sha256": "93e60c541060bbf791085987dbd851886926a28ab23e4c4a8f53b272328bc957",
+  "results_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "74fa024f3edd255b92b2edd469b0758ef26de2ba3a915755055d9817a89b0f3f",
+  "scope": "Rerun only five previously failed methods after fixture-only repair. Earlier44 passes are reused, not rerun or counted twice; unchanged production41 sources. AST-reduced focused profile, not normal release build/full regression/live qualification."
+}

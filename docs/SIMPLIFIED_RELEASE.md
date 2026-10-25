@@ -30,8 +30,19 @@ The [follow-up review](../reports/obsolete-code-20261025/REVIEW.md) removes unus
 Registry wrapper-review records, creator-payment measurement tooling and orphaned
 internal declarations. Converter-specific wrapping checks remain active. New
 Registry storage is for a fresh deployment only; existing Anvil code/journals
-retain their original layouts. Current source/fee/custody/schema identities and
-economic rights are otherwise unchanged.
+retain their original layouts. That earlier follow-up retained its recorded
+profile. The subsequent [Position3 cleanup](POSITION_V3.md) changes the fresh
+deployment ABI/storage and V4 schema while preserving economic rights; old
+local runtimes are not upgraded by this source change.
+
+## Direct governance
+
+After sealing, the selected governance wallet calls approved module functions
+directly. Access has no timelock scheduler, proposer/executor/canceller roles or
+generic execution function. Its own multisig policy supplies signatures/nonces.
+Governance replacement is two-step (`proposeGovernance` / `acceptGovernance`);
+sealing permanently removes bootstrap and fixes module bindings. Guardian pause
+and keeper maintenance remain separate powers.
 
 ## Operator changes
 
@@ -41,7 +52,7 @@ economic rights are otherwise unchanged.
    Native ETH uses its explicit native identity. Disable/re-enable these two
    inputs through their append-only source policies. Deploy/bind immutable Buyback with the same ZZZ before calling
    `Migration.configureZZZ`; this one-time binding validates both identities.
-   Configure the source before native pool admission and before sealing; seal rejects unset/mismatched bindings.
+   Configure the source before any pool admission and before sealing; seal rejects unset/mismatched bindings.
    Changing the token identity
    requires custody exit and a fresh deployment.
 2. Keep contribution, conversion and maintenance defaults at **2%, 1% and 3%**,
@@ -58,7 +69,7 @@ economic rights are otherwise unchanged.
    reviewed local completion path to deploy funded assets. An externally bridged
    balance is outside PoPL custody and is not reported as redeemable remote LP.
    There is no built-in finality verifier, remote completion or bridge operator.
-6. Do not schedule creator-inbox synchronization. LP harvesting, compounding,
+6. No creator-inbox synchronization exists. LP harvesting, compounding,
    buyback and royalty conversion remain separate bounded keeper jobs.
 
 A fresh deployment does not automatically move existing NFTs or erase earned
@@ -68,10 +79,17 @@ custody first. External exit alone is not collection migration or a reset.
 
 ## Explicit compatibility boundary
 
-Current profiles require `fee_intake_version: 1`, `Fees.FEE_INTAKE_VERSION() == 1`,
+Current profiles require explicit `accounting_version: 3`,
+`Vault.ACCOUNTING_VERSION() == 3`, `AccessController.GOVERNANCE_VERSION() == 2`,
+`fee_intake_version: 1`, `Fees.FEE_INTAKE_VERSION() == 1`,
 `Migration.CUSTODY_VERSION() == 2`, and canonical schema
-`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3`. There are 15 current inventory helpers, including the fixed noncustodial source-policy factory;
+`ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V4`. There are 15 current inventory helpers, including the fixed noncustodial source-policy factory;
 the deleted reward-receiver factory is not a zero-address placeholder.
+
+The Position is eight words with None0/Active1/Outbound2/Dormant3/Parked4.
+The canonical Vault group row is twelve words; it has no remote home/location
+fields. Older Position1/2 codecs remain read-only historical profiles, not V4
+importers or upgrade paths.
 
 The fee header is two words and each fee bucket row four words. Old inbox/remote
 rows cannot be imported under this schema. Old local deployments, journals and

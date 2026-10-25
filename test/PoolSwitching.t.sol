@@ -22,10 +22,7 @@ contract PoolSwitchingTest is PooledVaultFixture {
         uint256 bucket = vault.nftBucket(id); Position memory current = vault.group(bucket);
         assertEq(bucket, _bucket()); assertEq(vault.homePoolId(bucket), poolId);
         assertEq(vault.sharesOf(id), shares); assertEq(vault.bucketTotalShares(bucket), supply);
-        assertEq(current.homeChain, home.homeChain); assertEq(current.homeVault, home.homeVault);
-        assertEq(current.homeReceiver, home.homeReceiver); assertEq(current.homeToken0, home.homeToken0);
-        assertEq(current.homeToken1, home.homeToken1); assertEq(current.depositUSD, home.depositUSD);
-        assertEq(current.locationChain, block.chainid); assertEq(current.locationVault, address(vault));
+        assertEq(current.depositUSD, home.depositUSD);
         assertEq(uint256(current.status), uint256(PositionStatus.Active));
         assertTrue(membership.eligible(id));
     }
@@ -64,10 +61,10 @@ contract PoolSwitchingTest is PooledVaultFixture {
         uint256 shares = vault.sharesOf(id); Position memory home = vault.group(bucket);
         for (uint256 i = 1; i < vault.MAX_BUCKETS(); ++i) vault.reservePool(_poolAt(i), 10000 + i);
         bytes32 target = _poolAt(10); ZZZMigration migration = _migration();
-        migration.movePool(bucket, target, 1, block.timestamp + 100);
+        migration.moveFunds(bucket, target, 1, block.timestamp + 100);
         uint256 middle = vault.group(bucket).lpTokenId;
         assertEq(vault.bucketCount(), 4); assertEq(vault.poolBucket(target), bucket);
-        migration.movePool(bucket, poolId, 1, block.timestamp + 100);
+        migration.moveFunds(bucket, poolId, 1, block.timestamp + 100);
         _assertIdentity(id, shares, shares, home);
         assertEq(vault.bucketCount(), 4); assertEq(vault.group(bucket).poolId, poolId);
         assertTrue(vault.group(bucket).lpTokenId != middle); vm.expectRevert(); venue.ownerOf(middle);
@@ -95,7 +92,7 @@ contract PoolSwitchingTest is PooledVaultFixture {
         uint256 id = activatedPosition(); Position memory beforePosition = vault.group(_bucket());
         uint256 shares = vault.sharesOf(id); venue.setFees(100, 100); venue.setFail(true);
         bytes32 target = _poolAt(1); ZZZMigration migration = _migration();
-        vm.expectRevert(); migration.movePool(_bucket(), target, 1, block.timestamp + 100);
+        vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 100);
         _assertIdentity(id, shares, shares, beforePosition);
         assertEq(vault.group(_bucket()).lpTokenId, beforePosition.lpTokenId); assertEq(vault.group(_bucket()).poolId, poolId);
         assertEq(venue.ownerOf(beforePosition.lpTokenId), address(vault)); assertEq(venue.a0(beforePosition.lpTokenId), 1000);
@@ -113,7 +110,7 @@ contract PoolSwitchingTest is PooledVaultFixture {
         uint256 firstBucket = vault.nftBucket(first); uint256 secondBucket = vault.nftBucket(second);
         uint256 firstLP = vault.group(firstBucket).lpTokenId; uint256 secondLP = vault.group(secondBucket).lpTokenId;
         ZZZMigration migration = _migration(); vm.expectRevert(bytes4(keccak256("InvalidState()")));
-        migration.movePool(firstBucket, target, 1, block.timestamp + 100);
+        migration.moveFunds(firstBucket, target, 1, block.timestamp + 100);
         assertEq(vault.poolBucket(target), secondBucket); assertEq(vault.poolBucket(poolId), firstBucket);
         assertEq(vault.group(firstBucket).lpTokenId, firstLP); assertEq(vault.group(secondBucket).lpTokenId, secondLP);
         assertEq(venue.ownerOf(firstLP), address(vault)); assertEq(venue.ownerOf(secondLP), address(vault));
@@ -123,14 +120,14 @@ contract PoolSwitchingTest is PooledVaultFixture {
     function testRolePauseDeadlineMinimumAndSamePoolGuardsPreserveCustody() public {
         uint256 id = activatedPosition(); Position memory home = vault.group(_bucket());
         uint256 shares = vault.sharesOf(id); bytes32 target = _poolAt(1); ZZZMigration migration = _migration();
-        vm.prank(alice); vm.expectRevert(); migration.movePool(_bucket(), target, 1, block.timestamp + 100);
+        vm.prank(alice); vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 100);
         vm.prank(alice); vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 100);
         vm.prank(alice); vm.expectRevert(); vault.movePool(_bucket(), target, 1, block.timestamp + 100);
-        vm.expectRevert(); migration.movePool(_bucket(), target, 0, block.timestamp + 100);
-        vm.expectRevert(); migration.movePool(_bucket(), target, 1, block.timestamp - 1);
-        vm.expectRevert(); migration.movePool(_bucket(), target, 1, block.timestamp + 601);
-        vm.expectRevert(); migration.movePool(_bucket(), poolId, 1, block.timestamp + 100);
-        ac.setPaused(true); vm.expectRevert(); migration.movePool(_bucket(), target, 1, block.timestamp + 100);
+        vm.expectRevert(); migration.moveFunds(_bucket(), target, 0, block.timestamp + 100);
+        vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp - 1);
+        vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 601);
+        vm.expectRevert(); migration.moveFunds(_bucket(), poolId, 1, block.timestamp + 100);
+        ac.setPaused(true); vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 100);
         vm.expectRevert(); migration.moveFunds(_bucket(), target, 1, block.timestamp + 100);
         _assertIdentity(id, shares, shares, home);
         assertEq(vault.group(_bucket()).lpTokenId, home.lpTokenId); assertEq(vault.bucketCount(), 1);

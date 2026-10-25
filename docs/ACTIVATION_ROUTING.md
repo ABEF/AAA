@@ -1,3 +1,23 @@
+# Current ETH/ZZZ contribution routing
+
+The current release accepts native ETH or the one fixed ZZZ only. Contributions
+use the reviewed Entry, two-source prices and actual marginal LP verification;
+the API prepares the complete unsigned operation with a caller loss maximum.
+See [preparation](ACTIVATION_PREPARATION.md), [price security](PRICE_SECURITY.md)
+and the [current profile](POSITION_V3.md). Network gas is separate.
+
+USDC/USDG activation research and its conversion-only reader/tests are retired.
+They are not a cheaper-route qualification or a supported activation option.
+Committed sources and unpublished draft hashes are preserved in the
+[retirement record](../reports/architecture-pruning-20261025/retired-tools/stable-research-retirement.json).
+WETH and admitted stablecoin marketplace royalties are a separate settlement
+requirement; this retirement does not discard their existing NFT entitlements.
+
+## Historical routing research (superseded)
+
+The text below is retained as historical context, not current commands or
+production input support. The old standalone reader is no longer executable.
+
 # Current and historical contribution routing
 
 Current source inputs are native ETH and explicitly reviewed ZZZ only.

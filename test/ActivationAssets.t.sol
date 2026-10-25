@@ -55,19 +55,17 @@ contract ActivationAssetsTest is Test {
 
     function setUp() public {
         vm.warp(1000000);
-        address[] memory auth = new address[](1); auth[0] = address(this);
-        access = new ZZZAccessController(0, auth, auth, address(0xBEEF), GUARDIAN);
+        access = new ZZZAccessController(address(0xA0A0), address(0xBEEF), GUARDIAN);
         oracle = new ZZZOracle(address(access), address(0));
         registry = new ActivationRegistryFixture(address(access)); assets = registry.assets();
         access.bind(Ids.ORACLE, address(oracle)); access.bind(Ids.POOLS, address(registry));
         token = new MockToken(6); feed = new MockFeed(8, 1e8);
         oracle.setTestFeed(address(token), address(feed), 1 days);
+        assets.configureZZZ(address(token), address(token).codehash, REVIEW);
     }
 
     function _seal() private {
-        bytes32[16] memory ids = [Ids.VAULT,Ids.NFT,Ids.LIQUIDITY,Ids.REWARDS,Ids.MEMBERSHIP,Ids.FEES,
-            Ids.STRATEGY,Ids.COMPOUNDER,Ids.BUYBACK,Ids.MIGRATION,Ids.BRIDGE,Ids.RECEIVER,Ids.ORACLE,
-            Ids.POOLS,Ids.ROUTES,Ids.TRANSPORT];
+        bytes32[12] memory ids = [Ids.VAULT, Ids.NFT, Ids.LIQUIDITY, Ids.REWARDS, Ids.MEMBERSHIP, Ids.FEES, Ids.STRATEGY, Ids.COMPOUNDER, Ids.BUYBACK, Ids.MIGRATION, Ids.ORACLE, Ids.POOLS];
         for (uint256 i; i < ids.length; ++i) {
             if (access.module(ids[i]) == address(0)) access.bind(ids[i], address(new BoundDummy(address(access))));
         }
@@ -75,29 +73,32 @@ contract ActivationAssetsTest is Test {
         access.seal();
     }
 
-    function _execute(bytes memory payload, bytes32 salt) private {
-        access.schedule(address(assets), 0, payload, bytes32(0), salt, 0);
+    function _execute(bytes memory payload, bytes32) private {
         feed.set(1e8, block.timestamp, block.timestamp);
-        access.execute(address(assets), 0, payload, bytes32(0), salt);
+        vm.prank(access.governance());
+        (bool ok, bytes memory result) = address(assets).call(payload);
+        if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
     }
-
     function testImmutableRegistryAndInitialReviewedAdmission() public {
         assertEq(assets.registry(), address(registry)); assertEq(address(assets.access()), address(access));
-        bytes32 id = assets.setAsset(address(token), true, address(token).codehash, REVIEW);
-        assertEq(assets.activePolicy(address(token)), id); assertEq(assets.policyCount(), 1);
+        bytes32 id = assets.activePolicy(address(token));
+        assertEq(assets.zzz(), address(token)); assertEq(assets.policyCount(), 1);
         assertEq(assets.policyAt(0), id); assertEq(assets.value(address(token), 100e6), 100e18);
         (address asset, bool enabled, bytes32 codeHash, bytes32 reviewHash, uint8 decimals, bool poolAdmission) = assets.policies(id);
         assertEq(asset, address(token)); assertTrue(enabled); assertEq(codeHash, address(token).codehash);
         assertEq(reviewHash, REVIEW); assertEq(decimals, 6); assertFalse(poolAdmission);
     }
 
-    function testOnlyImmutableRegistryCanBootstrapPoolAssets() public {
-        vm.prank(ATTACKER); vm.expectRevert(); assets.admitPoolAsset(address(token));
-        vm.prank(address(this)); vm.expectRevert(); assets.admitPoolAsset(address(token));
-        bytes32 id = registry.admit(address(token));
-        (,,,,,bool poolAdmission) = assets.policies(id); assertTrue(poolAdmission);
-        assertEq(assets.value(address(token), 1e6), 1e18);
-        assertEq(registry.admit(address(token)), id); assertEq(assets.policyCount(), 1);
+    function testOnlyImmutableRegistryCanBootstrapPoolAssetsWithoutNewContributionCurrency() public {
+        MockToken pairCurrency = new MockToken(18);
+        oracle.setTestFeed(address(pairCurrency), address(feed), 1 days);
+        vm.prank(ATTACKER); vm.expectRevert(); assets.admitPoolAsset(address(pairCurrency));
+        vm.prank(address(this)); vm.expectRevert(); assets.admitPoolAsset(address(pairCurrency));
+        bytes32 id = registry.admit(address(pairCurrency));
+        (,bool enabled,,,,bool poolAdmission) = assets.policies(id);
+        assertTrue(poolAdmission); assertFalse(enabled);
+        vm.expectRevert(); assets.value(address(pairCurrency), 1e18);
+        assertEq(registry.admit(address(pairCurrency)), id); assertEq(assets.policyCount(), 2);
     }
 
     function testPoolReconfigurationNeverReenablesDisabledPolicyOrUpdatesOldPin() public {
@@ -112,7 +113,7 @@ contract ActivationAssetsTest is Test {
     function testUnknownDisabledPolicyBlocksAutomaticPoolAdmissionWithoutDependencyReads() public {
         address futureToken = address(0xF0777);
         bytes32 id = assets.setAsset(futureToken, false, bytes32(0), REVIEW);
-        assertEq(registry.admit(futureToken), id); assertEq(assets.policyCount(), 1);
+        assertEq(registry.admit(futureToken), id); assertEq(assets.policyCount(), 2);
         vm.expectRevert(); assets.value(futureToken, 1);
         assertEq(assets.value(futureToken, 0), 0);
     }
@@ -133,12 +134,12 @@ contract ActivationAssetsTest is Test {
         assertEq(assets.value(address(token), 0), 0);
     }
 
-    function testDisableOneAssetLeavesAnotherSourceUsableAndDoesNotChangeOracleValuation() public {
-        MockToken other = new MockToken(18); MockFeed secondFeed = new MockFeed(8, 2e8);
-        oracle.setTestFeed(address(other), address(secondFeed), 1 days);
-        registry.admit(address(token)); registry.admit(address(other));
+    function testDisablingZZZLeavesNativeSourceUsableAndDoesNotChangeOracleValuation() public {
+        MockFeed nativeFeed = new MockFeed(8, 2e8);
+        oracle.setTestFeed(address(0), address(nativeFeed), 1 days);
+        registry.admit(address(0));
         assets.setAsset(address(token), false, address(token).codehash, REVIEW);
-        assertEq(assets.value(address(other), 5e18), 10e18);
+        assertEq(assets.value(address(0), 5e18), 10e18);
         assertEq(oracle.value(address(token), 100e6), 100e18);
         vm.expectRevert(); assets.value(address(token), 100e6);
     }
@@ -149,7 +150,7 @@ contract ActivationAssetsTest is Test {
         vm.expectRevert(); assets.setAsset(address(token), true, bytes32(0), REVIEW);
         vm.expectRevert(); assets.setAsset(address(token), true, bytes32(uint256(1)), REVIEW);
         vm.expectRevert(); assets.setAsset(ATTACKER, true, ATTACKER.codehash, REVIEW);
-        vm.expectRevert(); registry.admit(address(0)); assertEq(assets.policyCount(), 0);
+        vm.expectRevert(); registry.admit(address(0)); assertEq(assets.policyCount(), 1);
     }
 
     function testMissingStaleOrZeroFeedCannotEnableOrAdmitNewSource() public {
@@ -158,7 +159,7 @@ contract ActivationAssetsTest is Test {
         vm.warp(block.timestamp + 1 days + 1);
         vm.expectRevert(); assets.setAsset(address(token), true, address(token).codehash, REVIEW);
         feed.set(0, block.timestamp, block.timestamp);
-        vm.expectRevert(); registry.admit(address(token)); assertEq(assets.policyCount(), 0);
+        vm.expectRevert(); assets.setAsset(address(token), true, address(token).codehash, REVIEW); assertEq(assets.policyCount(), 1);
     }
 
     function testBadMetadataAndOracleDecimalMismatchRejectNewSource() public {
@@ -167,7 +168,7 @@ contract ActivationAssetsTest is Test {
         changed.configure(19, false); vm.expectRevert(); registry.admit(address(changed));
         changed.configure(6, false); vm.expectRevert(); registry.admit(address(changed));
         changed.configure(18, true); vm.expectRevert(); registry.admit(address(changed));
-        assertEq(assets.policyCount(), 0);
+        assertEq(assets.policyCount(), 1);
     }
 
     function testHistoryNeverOverwritesEvenWhenReturningToSameParameters() public {
@@ -175,7 +176,7 @@ contract ActivationAssetsTest is Test {
         bytes32 first = assets.setAsset(address(token), true, pin, REVIEW);
         bytes32 second = assets.setAsset(address(token), false, pin, REVIEW);
         bytes32 third = assets.setAsset(address(token), true, pin, REVIEW);
-        assertTrue(first != second && first != third && second != third); assertEq(assets.policyCount(), 3);
+        assertTrue(first != second && first != third && second != third); assertEq(assets.policyCount(), 4);
         (,bool oldEnabled,bytes32 oldPin,bytes32 oldReview,uint8 oldDecimals,) = assets.policies(first);
         assertTrue(oldEnabled); assertEq(oldPin, pin); assertEq(oldReview, REVIEW); assertEq(oldDecimals, 6);
         assertEq(assets.activePolicy(address(token)), third);
@@ -195,14 +196,17 @@ contract ActivationAssetsTest is Test {
 
     function testOracleDecimalReconfigurationInvalidatesOldAdmissionUntilReviewedAgain() public {
         ActivationMetadataToken changed = new ActivationMetadataToken();
-        oracle.setTestFeed(address(changed), address(feed), 1 days); registry.admit(address(changed));
+        oracle.setTestFeed(address(changed), address(feed), 1 days);
+        ActivationRegistryFixture otherRegistry = new ActivationRegistryFixture(address(access));
+        ZZZActivationAssets otherAssets = otherRegistry.assets();
+        otherAssets.configureZZZ(address(changed), address(changed).codehash, REVIEW);
         changed.configure(6, false); oracle.setTestFeed(address(changed), address(feed), 1 days);
-        vm.expectRevert(); assets.value(address(changed), 1e6);
-        assets.setAsset(address(changed), true, address(changed).codehash, REVIEW);
-        assertEq(assets.value(address(changed), 1e6), 1e18);
+        vm.expectRevert(); otherAssets.value(address(changed), 1e6);
+        otherAssets.setAsset(address(changed), true, address(changed).codehash, REVIEW);
+        assertEq(otherAssets.value(address(changed), 1e6), 1e18);
     }
 
-    function testImmediateGovernanceStillRequiresControllerAfterSeal() public {
+    function testImmediateGovernanceRequiresSelectedGovernanceAfterSeal() public {
         registry.admit(address(token)); _seal();
         bytes memory payload = abi.encodeCall(assets.setAsset, (address(token), false, address(token).codehash, REVIEW));
         vm.expectRevert(); assets.setAsset(address(token), false, address(token).codehash, REVIEW);
@@ -213,13 +217,11 @@ contract ActivationAssetsTest is Test {
     }
 
     function testGovernanceEnableRequiresFreshFeedAndCorrectRuntimeAtExecution() public {
-        _seal(); bytes memory payload = abi.encodeCall(assets.setAsset, (address(token), true, address(token).codehash, REVIEW));
-        bytes32 salt = keccak256("enable token");
-        access.schedule(address(assets), 0, payload, bytes32(0), salt, 0);
-        vm.warp(block.timestamp + 2 days);
-        vm.expectRevert(); access.execute(address(assets), 0, payload, bytes32(0), salt);
-        assertEq(assets.policyCount(), 0); feed.set(1e8, block.timestamp, block.timestamp);
-        access.execute(address(assets), 0, payload, bytes32(0), salt);
+        _seal(); vm.warp(block.timestamp + 2 days);
+        vm.prank(access.governance()); vm.expectRevert();
+        assets.setAsset(address(token), true, address(token).codehash, REVIEW);
+        assertEq(assets.policyCount(), 1); feed.set(1e8, block.timestamp, block.timestamp);
+        vm.prank(access.governance()); assets.setAsset(address(token), true, address(token).codehash, REVIEW);
         assertEq(assets.value(address(token), 100e6), 100e18);
     }
 
@@ -249,7 +251,10 @@ contract ActivationAssetsTest is Test {
     function testAdmissionDoesNotBypassExistingExactTransferExecutionGuard() public {
         TaxToken taxed = new TaxToken(); oracle.setTestFeed(address(taxed), address(feed), 1 days);
         // Governance's review attestation is not proof of transfer semantics.
-        registry.admit(address(taxed)); assertEq(assets.value(address(taxed), 100), 100);
+        ActivationRegistryFixture otherRegistry = new ActivationRegistryFixture(address(access));
+        ZZZActivationAssets otherAssets = otherRegistry.assets();
+        otherAssets.configureZZZ(address(taxed), address(taxed).codehash, REVIEW);
+        assertEq(otherAssets.value(address(taxed), 100), 100);
         ActivationPullFixture puller = new ActivationPullFixture(); taxed.mint(address(this), 100);
         taxed.approve(address(puller), 100); vm.expectRevert(); puller.pull(address(taxed), 100);
         assertEq(taxed.balanceOf(address(this)), 100); assertEq(taxed.balanceOf(address(puller)), 0);

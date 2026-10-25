@@ -4,7 +4,7 @@
 
 The single task list for the whole PoPL project. Open a task's acceptance criteria for the detailed release requirements. There is no Todo page on the public website.
 
-**10 To do | 32 In progress | 23 Implemented locally**
+**9 To do | 33 In progress | 23 Implemented locally**
 
 Implemented means built and locally checked, not deployed or independently audited. This list includes the current local development candidate; some code changes still await their own publication. Publishing this checklist does not publish or qualify that code.
 
@@ -147,7 +147,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-native-custody-recovery"></a>
 
-- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native accounting V2 is implemented in the undeployed candidate: actual ETH funding/custody, indexed fee rewards, reserves, raw exit/return and versioned canonical backing/abort. Focused local evidence and explicit API/keeper version profiles exist. Qualify the native website profile, final fork/gas/services and independent review. Atomic ETH/WETH moves and legacy-schema import remain unsupported; approved external custody is the selected route for external token/chain conversion, not an integrated bridge requirement.
+- [ ] **[Implement native ETH accounting and wrapper-independent recovery](docs/NATIVE_ETH_ARCHITECTURE.md)** - In progress. Native ETH accounting now uses explicit accounting3 and eight-word local Positions. Normal/raw custody, exact native backing/return and same-chain V4 handoff are implemented; actual services, matching website/wallet profile, routes and independent review remain open. No integrated bridge or automatic issuer-token exchange.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -196,7 +196,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-lp-only-simplification"></a>
 
-- [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. ETH/ZZZ-only fixed pre-seal identity, LP-only fee intake and source-chain custody V2 are implemented. Creator inboxes and integrated cross-chain/proof paths are removed; royalties, same-chain moves/recovery and complete handoff remain. Targeted execution, explicit service profiles, callable docs and normal size/argument gates are verified within their recorded scopes.
+- [x] **[Simplify the current ETH/ZZZ release](docs/SIMPLIFIED_RELEASE.md)** - Implemented. Accounting3/local8-word Position and direct governance2 remove cross-chain fields, scheduler machinery, zero-asset custody hooks, primary-feed shadow storage and obsolete tooling. Same-chain handoff uses explicit LP-only V4; historical readers/journals remain separate.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -205,17 +205,19 @@ Custody, ownership and reward accounting.
   - [Verification](reports/simplification-20261025/VERIFICATION.md):89 distinct Solidity behaviors across two source scopes,40 backend plus6 API/keeper scoped methods,122-input ABI/AST and36 normal object gates. Current real fork qualification is blocked until its retired wrapped fixture is replaced; actual services and independent audit remain open. Access exact release constructor arguments still need qualification (29-byte minimal margin).
   - The [residual-code review](reports/obsolete-code-20261025/REVIEW.md) removes unconsumed Registry wrapper records and orphan creator-payment measurement tools, aligns current keeper examples and corrects stale operating/audit requirements. Historical event/journal readers and actual converter wrapper checks remain; no external release gate closes. Use that report for final source scope and verification rather than adding earlier counts.
   - [Day consistency audit](reports/daily-security-20261025/REVIEW.md): one fixed ZZZ now binds source, native admission, immutable Buyback and normal exit; the old buyback retarget setter is removed. Registry admission prevents mismatched native identity. This is fresh-deployment source only; 28 distinct selected behaviors across recorded fixture scopes, 35 indexer methods and 36 normal gates are source-scoped, not external qualification.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
 <a id="task-immediate-governance"></a>
 
-- [x] **[Immediate governance without timelocks](docs/GOVERNANCE.md)** - Implemented. Zero controller delay and no additional LP migration wait are implemented and locally verified. Roles, exact operations, sealing and execution/custody safeguards remain. Independent review, authority selection and live qualification remain open.
+- [x] **[Immediate governance without timelocks](docs/GOVERNANCE.md)** - Implemented. The governance wallet now calls target modules directly. No timelock, scheduling/executor roles or generic controller executor remains. Two-step no-delay governance handover, guardian/keeper separation, immutable bindings and lifecycle/custody guards remain.
 
   <details>
   <summary>Acceptance criteria</summary>
 
   - [Scoped evidence](reports/immediate-governance/VERIFICATION.md): 228 distinct affected Solidity passes, 142 configuration passes, 30 size gates and fresh internal static review. No deployment or independent approval; there is no advance warning window for governance changes.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -263,6 +265,7 @@ Custody, ownership and reward accounting.
 
   - Use [the one-pool switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). Verify initial ZZZ/ETH selection, full destination validation, exact atomic switch/rollback and operator/runtime pins. Local evidence does not approve real destination liquidity or future-chain transport.
   - [Incumbent dust liveness fix](reports/daily-security-20261025/REVIEW.md): historical admitted currencies come from stored Registry identity, not unavailable old venue accounting. Exact nonzero dust funding/settlement and current-pool validation still apply; newcomers receive no earlier rewards.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -317,7 +320,7 @@ Custody, ownership and reward accounting.
 
 <a id="task-callable-reference"></a>
 
-- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Source-bound reference covers32 concrete contracts and698 functions, with purpose, caller, every top-level input, exact output types/tuple fields, constructors and ETH receive conditions. Linked at the operator manual end; the normal verifier rejects stale or incomplete function/input documentation.
+- [x] **[Explain callable contract reads and writes](docs/CONTRACT_FUNCTIONS.md)** - Implemented. Source-bound reference covers31 contracts/608 functions,31 constructors/13 receive hooks with exact types, inputs, outputs, purpose and authority. Removed selectors and direct-governance procedures are reflected; internal-only helpers are not operator entrypoints.
 
   <details>
   <summary>Acceptance criteria</summary>
@@ -326,6 +329,7 @@ Custody, ownership and reward accounting.
   - Keep editable explanations and ABI/source snapshot in sync after source, behavior, permission, input or output changes. Run python scripts/generate-function-reference.py --check; missing purpose/caller/payable-value/input notes or stale generated/source data must fail. A correct signature is not transaction authorization.
   - See the [operator appendix](docs/OPERATOR_MANUAL.md#callable-contract-reference) and [scoped verification](reports/release-services-20261025/function-reference/VERIFICATION.md). Normal verification now checks both Todo and this reference before running broader checks; no fresh full CI pass is claimed.
   - Current source-bound catalog is31contracts/643functions. The removed Buyback setter/event, immutable getter and matching setup order are reflected in exact compiler/reference notes. Maintain all callable purpose, authority and input/output explanations for future changes.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -371,6 +375,7 @@ The data and services behind the app.
   - The [NFT calculation audit](reports/topup-and-reward-review/REWARD_CALCULATION.md) traces individual LP + equal collective + royalties, distinguishes earned from unpaid totals and guards invalid aggregates. Six focused display cases and 37 affected client cases pass; real ingestion/pricing qualification remains open.
   - [Scoped outage regression](reports/comprehensive-improvement-20261025/VERIFICATION.md) prevents archive outages from erasing history. Source-currency rewards and conversions/claims remain distinct; complete actual historical ingestion and honest current-price availability still require qualification.
   - [Read-integrity fixes](reports/native-readiness-20261025/REVIEW.md) reject missing native claim rows rather than presenting a partial sum; per-NFT history now uses the existing complete-currency/current-price/period arithmetic validator. Failed history remains unavailable without discarding valid LP. Synthetic parser/actual API DTO browser evidence does not qualify actual ingestion or feed services.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -398,6 +403,7 @@ The data and services behind the app.
   - Use the stricter [RPC qualification procedure](docs/RPC_PREPARATION_QUALIFICATION.md): timeouts/rate limits/ambiguous errors do not prove unknown-hash rejection; the opt-in preparation profile requires reviewed genesis/runtime and a real discarded Approval(0) log witness. Keep basic public-read observations, actual preparation capability and independent operating approval separate.
   - [Current observation](reports/release-services-20261025/vrf-opensea/VERIFICATION.md) obtained16 logical canonical runtime/storage reads using32 HTTP posts from one public provider. Separate feed probing later failed429/403. Neither result supplies redundant operating approval, continuous uptime or preparation-trace qualification.
   - [Indexer provenance fix and scoped evidence](reports/daily-security-20261025/SERVICE_REVIEW.md): reject invalid/duplicate log identities atomically before inserting a new batch/cursor. Preserve rejected or previously poisoned database evidence; no silent deletion/repair, and full confirmed-history coverage remains required after an approved separate rebuild.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -476,6 +482,7 @@ The data and services behind the app.
   - Populate independently reviewed real addresses, runtime pins, source/conversion routes, feeds, authorities, VRF/hosting/OpenSea/gas/recovery and independent audit records under the corresponding open release tasks. The checked-in current example must remain blocked until those actual inputs are qualified.
   - Current [pricing-V2 extension](docs/PRICE_SECURITY.md) verifies the fixed Oracle pricing companion and complete two-source policy/bounds/fingerprints at the same confirmed timestamp. Its new source-scoped evidence is [separate](reports/price-security/VERIFICATION.md) from the earlier 73-case preflight publication; neither qualifies live providers.
   - Current CLI requires schema5/current mint profile1 by default; explicit historical mode is never qualification. [68 distinct affected Python methods](reports/release-services-20261025/vrf-opensea/VERIFICATION.md) include legacy/type/downgrade/unsupported-mint and exact original-randomness recovery boundaries. Current source correctly blocks OpenSea qualification until compatible code exists.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -538,6 +545,7 @@ What holders see and use.
   - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
   - [Reviewed Entry V1](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding) now binds the caller maximum in contract/preparation/trace/inventory. Complete matching native website/wallet and real deployment/provider qualification before public activation/growth; historical clients remain incompatible, no silent fallback.
   - [Native schema-2 website profile](docs/NATIVE_WEBSITE_PROFILE.md) is implemented locally for accounting2/routing2/pricing2/review1: native-zero pricing, policy/parent/runtime pins, current caller-bound cap and conservative upper-input floor; exact native LP+royalty claims. Both native ledgers are mandatory, and NFT history uses raw/price/period arithmetic validation. Public DEPLOYMENT stays null; shared signer/client/coordinator unchanged and Anvil-only. Actual native extension/chain acceptance, public signing approval and rollout remain open.
+  - The published website native2 profile is historical relative to the new contract candidate. Implement/qualify a matching accounting3/local8-word reader and review profile without relabelling existing deployments or enabling public signing. Existing Anvil fixtures and saved actions remain their original profiles.
 
   </details>
 
@@ -561,6 +569,7 @@ What holders see and use.
   - Main website now also hides dormant fee/claim sections, shows fixed dormant rarity multipliers, separates Claim/Grow controls and preserves artwork through unrelated refreshes. Only its target NFT shows activation/top-up progress. Default data remains a simulation; local and live adapter boundaries remain explicit.
   - [Actual local API evidence](reports/api-chain-rehearsal/VERIFICATION.md): five holder transactions, real HTTP APIs, 18-NFT aggregation and same-hash claim recovery; 46 Python and70 JS scoped cases. RPC wallet shim and mock markets/feeds/VRF do not establish actual extension or production qualification.
   - Governed custody candidate: surface source principal and royalty-currency in-transit states as unavailable, preserve funding/claim history and never count restoration as new income. Update services/inventory/operator alerts and holder disclosures for explicit external EOA/contract custody trust; no auto resend, timeout recovery, invented remote NAV or legacy v3 migration calls.
+  - The published website native2 profile is historical relative to the new contract candidate. Implement/qualify a matching accounting3/local8-word reader and review profile without relabelling existing deployments or enabling public signing. Existing Anvil fixtures and saved actions remain their original profiles.
 
   </details>
 
@@ -593,6 +602,7 @@ What holders see and use.
   - [Pending nonce diagnosis](reports/browser-wallet/PENDING_NONCE.md): 175 affected cases, two mocked browser scenarios and six actual read-only recovery observations pass. Queued or wallet-changed nonces now stop the wait immediately; journals and local-only signing remain. The actual nonce 35 mint is unmined; controlled queue reconciliation and extension acceptance remain open.
   - [Authorized local mint reconciliation](reports/browser-wallet/local-mint-reconciliation/RECONCILIATION.md): exact queued nonce35 mint removed after identity/pool checks; complete stateRoot and both account balances/nonces unchanged.13 focused checks and an isolated browser scenario pass. User MetaMask nonce-history reset, exact saved-journal archival and temporary local-overlay removal remain pending. Public signing/source unchanged.
   - [Reviewed Entry V1](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding) now binds the caller maximum in contract/preparation/trace/inventory. Complete matching native website/wallet and real deployment/provider qualification before public activation/growth; historical clients remain incompatible, no silent fallback.
+  - The published website native2 profile is historical relative to the new contract candidate. Implement/qualify a matching accounting3/local8-word reader and review profile without relabelling existing deployments or enabling public signing. Existing Anvil fixtures and saved actions remain their original profiles.
 
   </details>
 
@@ -891,6 +901,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review [liquidity operations](reports/liquidity-operations-20261025/REVIEW.md): exact2/1/3defaults, actual-state bounded planning, idle ownership/cooldown, explicit inverse ranges, narrow Strategy-only width callback and strict API/observer/keeper version profiles. Near-limit runtime/initcode and unchanged public-signing restrictions remain release boundaries.
   - [Comprehensive review/coverage](reports/comprehensive-improvement-20261025/COVERAGE.md) and [findings](reports/comprehensive-improvement-20261025/REVIEW.md) distinguish fresh fixes from reused evidence and external gates. Review-cap, metadata, buyback, RPC transport and indexer atomicity improvements do not replace independent audit or qualify all48areas exhaustively.
   - [25October internal combined review](reports/daily-security-20261025/REVIEW.md) includes financial/custody/service paths, native source consistency, immutable burn target, funded historical dust and indexer provenance. No new unprivileged theft/dilution/double-claim path was confirmed in inspected scope; this is not an independent audit or guarantee of exploit absence.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
 
   </details>
 
@@ -927,18 +938,6 @@ Decisions and rehearsals before real funds.
   - Approve admitted-token outage/upgrade/blacklist behavior and economic value of repeated sub-20-raw-unit incumbent dust settlements.
   - Before issuer migration or external custody, inventory principal/current and historical compound, holder liabilities, royalty liabilities, buyback reserves, fractions, quarantines and accidental assets separately. Principal/royalty exit is not an arbitrary sweep of every contract balance; old-denomination purpose-bound reserves need an explicitly reviewed path or compatible whole-collection recovery. Unsupported-token failure may prevent exact recovery; never invent backing or relabel funds.
   - [Historical venue outage cases](reports/daily-security-20261025/VERIFICATION.md) verify healthy new entry with zero dust, funded incumbent-only dust payout, atomic failure for current venue or old dust payment. No sweep or skipped unbacked reward is permitted.
-
-  </details>
-
-<a id="task-deployment-initcode"></a>
-
-- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - To do. Final object gates pass, but Access creation plus one proposer/one executor uses 49,123 of 49,152 initcode bytes (29 margin). Qualify exact release ABI arguments, not bytecode alone; larger constructor role arrays may not fit.
-
-  <details>
-  <summary>Acceptance criteria</summary>
-
-  - Use the governance multisig contract address as a role holder, not every internal Safe signer. Review bootstrap, all fixed helpers, exact deployment/calldata, constructor arguments, chain fee/gas and post-deployment role/setup actions. Never waive EIP-170/EIP-3860 or weaken sealing to force deployment.
-  - Extra reviewed role holders can be configured through existing authorized role-management after deployment; that is distinct from changing the multisig own threshold/signers. Keep exact release inventory and independent approval.
 
   </details>
 
@@ -1009,6 +1008,19 @@ Decisions and rehearsals before real funds.
   - Finish and review sustained multi-day staging; preserve observation gaps. The 30-minute desktop-dependent chat health monitor was paused at the user's request on 2026-10-17. It supplies no subsequent observations; do not restart it without authorization. The isolated server service was not stopped by pausing the monitor.
   - Rehearse [operator manual](docs/OPERATOR_MANUAL.md) scenarios with exact production roles/configuration: asset/pool stops, range changes, dependency outage/parking/resume, host/key recovery, reveal drain and whole-collection abort. Manual updates are required for every management behavior change under [maintenance rules](docs/TODO_WORKFLOW.md); a written runbook is not rehearsal evidence.
   - Before upgrading a signer with pending work, stage [fee-review journal recovery](docs/KEEPER_RECOVERY.md#fee-review-upgrades-and-legacy-pending-intents). Preserve original review, hash, signed transaction and inclusion-day budgets; no inferred historical limits, automatic reset or blind resend. Independently qualify real L1 reporting and old-host fencing.
+  - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
+
+  </details>
+
+<a id="task-deployment-initcode"></a>
+
+- [ ] **[Qualify exact constructor arguments and deployment size](docs/DEPLOYMENT_ADDRESSES.md)** - In progress. The old role-array size blocker is resolved: Access uses three static address arguments,42,177 total initcode bytes with6,975 headroom. All36 normal object gates pass. Final actual deployment inventory, constructor bindings and gas/rehearsal approval remain required; RoyaltyFactory retains only69 runtime bytes.
+
+  <details>
+  <summary>Acceptance criteria</summary>
+
+  - The new3-address controller constructor has fixed96-byte ABI arguments; no proposer/executor arrays remain. Review governance wallet signers/threshold separately from the controller address. [Exact sizes](reports/architecture-pruning-20261025/bytecode-comparison.json) use unchanged normal compiler/EVM limits.
+  - Qualify actual bootstrap, module/helper/authority bindings, deployment calldata, source/runtime pins, chain gas and setup/sealing procedures. No deployment follows from local gates; never waive EIP-170/EIP-3860.
 
   </details>
 
@@ -1027,6 +1039,7 @@ Current source-chain custody and destination qualification, plus explicitly defe
   - Use the [governed custody procedure](docs/GOVERNED_CUSTODY_HANDOFF.md): ordinary same-actual-pair move, paused all-ZZZ exit or separately approved raw no-swap exit, exact classified backing and full funded return/completion. Preserve original captured minima, NFT shares, accrued LP/royalty liabilities and transaction history.
   - No automatic fallback from a failed normal exit to raw mode, arbitrary sweep, guessed remote value, holder redemption, liability haircut or receipt-based claim of completed migration. Independent custody/key/venue/token and target-chain operating review remain required.
   - Current custody version2 has only source-chain requests, no finality verifier or remote completion/proof ABI. Custody-only destinationPool is zero and destinationCustody is the recipient. Full recover(id,deadline) restores actually-sent assets; external custody is trusted.
+  - Before an external issuer exchange/chain cutover, review how existing NFT ownership and both reward ledgers continue. Original-currency recovery can become impossible after burning/exchanging old ZZZ; custody exit plus fresh deployment is not a proven automatic collection relocation. Do not promise a universal replacement-token/bridge import.
 
   </details>
 
@@ -1047,4 +1060,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `6178970a626952f7d193f63b9e3f0f23c9e75ee6d06558813669f58de6718778`.
+Snapshot SHA-256: `c98ebbcb9ae4afc3e69b28e05fe6bbee6493e6058d0298ded03d03937cc45385`.

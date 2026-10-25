@@ -72,7 +72,7 @@ contract ProductionGasTest is Test {
         access.bind(Ids.ORACLE, address(oracle));
         access.bind(Ids.MIGRATION, address(this));
         access.setKeeper(address(this),true);
-        access.bind(Ids.RECEIVER, address(0x987));
+        access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
         for (uint256 i; i < assetCount; ++i) rewards.addAsset(address(tokens[i]));
         PoolConfig memory c;
         c.key = PoolKey(address(tokens[0]), address(tokens[1]), 3000, 60, address(0));

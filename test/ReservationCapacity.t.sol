@@ -16,13 +16,8 @@ contract ReservationCapacityTest is PooledVaultFixture {
     }
 
     function _origin(uint256 index) private view returns (uint256 bucket, Position memory origin) {
-        origin.homeChain = vault.canonicalChainId();
-        origin.homeVault = address(uint160(0x10000 + index));
-        origin.homeReceiver = address(0xABCD);
-        origin.homeToken0 = address(t0);
-        origin.homeToken1 = address(t1);
         origin.depositUSD = 2000e18;
-        bucket = uint256(keccak256(abi.encode(origin.homeChain, origin.homeVault, poolId)));
+        bucket = uint256(keccak256(abi.encode("local reservation fixture", block.chainid, address(vault), poolId, index)));
     }
 
     function _fundReceiver(address receiver) private {
@@ -37,7 +32,6 @@ contract ReservationCapacityTest is PooledVaultFixture {
         assertEq(vault.poolBucket(pool), bucket);
         assertEq(uint256(p.status), uint256(PositionStatus.None));
         assertEq(p.lpTokenId, 0); assertEq(p.idle0, 0); assertEq(p.idle1, 0);
-        assertEq(p.homeChain, 0); assertEq(p.homeVault, address(0));
         assertEq(vault.bucketTotalShares(bucket), 0); assertEq(vault.homePoolId(bucket), bytes32(0));
     }
 

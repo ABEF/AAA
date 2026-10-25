@@ -1,3 +1,36 @@
+## Smaller local architecture - 2026-10-25
+
+User approved removing obsolete Position fields via a new profile and asked to
+remove unnecessary architecture together, including zero-delay timelock machinery.
+Current accounting3/local8wordPosition/status0..4, directgovernance2 and canonical
+LP_ONLY_V4 remove old remote provenance, scheduler/roles/generic executor, empty
+Membership/NFT backing hooks, single-feed shadow storage, aliases and obsolete
+stablecoin/Pons research. One fixedZZZ; ETH/ZZZ inputs only. WETH/stables remain
+only for actual royalty/conversion duties and historical readers. No integrated
+bridge. Same-chain handoff and normal/raw custody retain financial protections.
+
+Read [review](../reports/architecture-pruning-20261025/REVIEW.md),
+[verification](../reports/architecture-pruning-20261025/VERIFICATION.md) and
+[profile guide](POSITION_V3.md).49distinct Solidity and512distinct Python
+methods pass across documented source/fixture scopes, not a fresh full regression.
+127inputs typecheck,36normal gates and41production hashes pass.31contracts/
+608functions/13receive hooks. Access total initcode42177/6975margin; Vault
+runtime22852/1724margin; RoyaltyFactory69bytes remains tight. Exact settings match;
+13runtimes shrink,16same,2guard-related growths explained. No gas-optimality claim.
+
+Direct multisig calls targets; no scheduled-controller workflow. Governance
+handover is propose/accept with no delay; guardian/keeper/recipient stay separate.
+Old Anvil/API/wallet profiles/journals are never relabelled. Matching native3
+website integration, services/feeds/routes/VRF/authorities/OpenSea, actual gas/
+strategy/operating qualification and independent audit remain open. External
+issuer/chain custody cutover has no automatic NFT/ledger migration guarantee.
+
+No deployment/public transaction, website source/build/server,8902/Anvil/NFT/LP/
+balances/journals/dist overlay, signer or paused-monitor action. Public DEPLOYMENT
+null; signer Anvil-only; main only. Unpublished retired routing drafts are backed
+up outside Git, other unrelated drafts preserved. Publication requires its own
+Git/remote receipt. Production NOT APPROVED.
+
 ## One-ZZZ and day security review - 2026-10-25
 
 User confirmed there is ONE ZZZ. The same fixed identity is used by source

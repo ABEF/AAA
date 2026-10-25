@@ -9,29 +9,22 @@ contract SingleContributionPoolTest is OperatorControlsTest {
     function _other(bool enabled) private view returns (PoolConfig memory c) {
         c = config; c.key.fee = 500; c.depositsEnabled = enabled;
     }
-    function _configure(PoolConfig memory c) private {
-        bytes memory data = abi.encodeCall(registry.configure, (c));
-        bytes32 salt = bytes32(++nonce);
-        ac.schedule(address(registry), 0, data, bytes32(0), salt, 0);
-        ac.execute(address(registry), 0, data, bytes32(0), salt);
+    function _configure(PoolConfig memory c) private { registry.configure(c); }
+    /// Test-only contract-governance batch: both writes originate from the actual
+    /// governance address and rollback atomically if admission fails.
+    function governanceSwitch(PoolConfig calldata c) external {
+        require(msg.sender == address(this), "self only");
+        registry.disablePool(pool, true, false); registry.configure(c);
     }
     function _switch(PoolConfig memory c, bool shouldRevert) private {
-        address[] memory targets = new address[](2);
-        uint256[] memory values = new uint256[](2);
-        bytes[] memory payloads = new bytes[](2);
-        targets[0] = address(registry); targets[1] = address(registry);
-        payloads[0] = abi.encodeCall(registry.disablePool, (pool, true, false));
-        payloads[1] = abi.encodeCall(registry.configure, (c));
-        bytes32 salt = bytes32(++nonce);
-        ac.scheduleBatch(targets, values, payloads, bytes32(0), salt, 0);
         if (shouldRevert) vm.expectRevert();
-        ac.executeBatch(targets, values, payloads, bytes32(0), salt);
+        this.governanceSwitch(c);
     }
     function testSecondEnabledPoolRejectedWithoutAdmissionOrChangingFirst() public {
         assertEq(registry.contributionPool(), pool);
         PoolConfig memory c = _other(true);
         bytes32 second = keccak256(abi.encode(c.key));
-        vm.prank(address(ac)); vm.expectRevert(); registry.configure(c);
+        vm.prank(ac.governance()); vm.expectRevert(); registry.configure(c);
         assertFalse(registry.exists(second)); assertTrue(registry.get(pool).depositsEnabled);
         assertEq(registry.contributionPool(), pool);
     }
@@ -39,10 +32,10 @@ contract SingleContributionPoolTest is OperatorControlsTest {
         PoolConfig memory c = _other(false); _configure(c);
         bytes32 second = keccak256(abi.encode(c.key));
         assertTrue(registry.get(second).operationsEnabled);
-        vm.prank(address(ac)); registry.disablePool(second, true, true);
+        vm.prank(ac.governance()); registry.disablePool(second, true, true);
         assertEq(registry.contributionPool(), pool);
         c.depositsEnabled = true;
-        vm.prank(address(ac)); vm.expectRevert(); registry.configure(c);
+        vm.prank(ac.governance()); vm.expectRevert(); registry.configure(c);
     }
     function testCurrentPoolReconfigurationAndExplicitStopAndReopen() public {
         config.rangeBps = 1500; _configure(config);
@@ -53,9 +46,9 @@ contract SingleContributionPoolTest is OperatorControlsTest {
         assertEq(registry.contributionPool(), pool);
     }
     function testOperationsStopAloneDoesNotReleaseContributionSelection() public {
-        vm.prank(address(ac)); registry.disablePool(pool, false, true);
+        vm.prank(ac.governance()); registry.disablePool(pool, false, true);
         assertEq(registry.contributionPool(), pool);
-        vm.prank(address(ac)); vm.expectRevert(); registry.configure(_other(true));
+        vm.prank(ac.governance()); vm.expectRevert(); registry.configure(_other(true));
     }
     function testAtomicGovernanceSwitchPreservesOldPoolMaintenanceAndIdentity() public {
         PoolConfig memory c = _other(true); _switch(c, false);
@@ -65,9 +58,9 @@ contract SingleContributionPoolTest is OperatorControlsTest {
         assertTrue(registry.get(pool).operationsEnabled);
         assertTrue(registry.get(second).depositsEnabled);
         assertTrue(registry.exists(pool));
-        vm.prank(address(ac)); vm.expectRevert(); registry.configure(config);
+        vm.prank(ac.governance()); vm.expectRevert(); registry.configure(config);
         // Stopping an old historical pool again cannot unset the selected pool.
-        vm.prank(address(ac)); registry.disablePool(pool, true, false);
+        vm.prank(ac.governance()); registry.disablePool(pool, true, false);
         assertEq(registry.contributionPool(), second);
     }
     function testAtomicSwitchFailureRestoresFirstPool() public {
@@ -79,9 +72,9 @@ contract SingleContributionPoolTest is OperatorControlsTest {
     }
     function testDependencyFailureStopClearsSelectionButFailedOpenDoesNotSelect() public {
         vm.mockCallRevert(address(oracle), bytes(""), bytes("unavailable"));
-        vm.prank(address(ac)); registry.disablePool(pool, true, false);
+        vm.prank(ac.governance()); registry.disablePool(pool, true, false);
         assertEq(registry.contributionPool(), bytes32(0));
-        vm.prank(address(ac)); vm.expectRevert(); registry.configure(_other(true));
+        vm.prank(ac.governance()); vm.expectRevert(); registry.configure(_other(true));
         assertEq(registry.contributionPool(), bytes32(0));
         vm.clearMockedCalls(); _configure(_other(true));
         assertFalse(registry.get(pool).depositsEnabled);

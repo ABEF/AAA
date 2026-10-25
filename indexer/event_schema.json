@@ -403,8 +403,6 @@
     "signature": "PrincipalBridged(uint256,bytes32,uint256,uint256)"
   },
   "0x21bb0e30918ff3a95214cfdb2066c88f751c1b10307f34ec69a9b9f463f85c4f": {
-    "name": "ZZZIdentityConfigured",
-    "signature": "ZZZIdentityConfigured(address,bytes32,bytes32)",
     "fields": [
       {
         "indexed": true,
@@ -421,7 +419,9 @@
         "name": "reviewHash",
         "type": "bytes32"
       }
-    ]
+    ],
+    "name": "ZZZIdentityConfigured",
+    "signature": "ZZZIdentityConfigured(address,bytes32,bytes32)"
   },
   "0x255d9461222a8a158eada0b4467a6921d765c79d919f6d425ee64c2e894ba6d8": {
     "fields": [
@@ -1203,6 +1203,22 @@
     "name": "BatchClaimed",
     "signature": "BatchClaimed(address,uint256)"
   },
+  "0x6a6d1ba684804417c9f9397574713c5d48626964e9c276d705d2788475adec3d": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "previous",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "current",
+        "type": "address"
+      }
+    ],
+    "name": "GovernanceAccepted",
+    "signature": "GovernanceAccepted(address,address)"
+  },
   "0x6a8647c0ce95597269047ae2b6080bab49f7544a9958874c2e1ebb410abbeb13": {
     "fields": [
       {
@@ -1452,6 +1468,22 @@
     ],
     "name": "Sent",
     "signature": "Sent(bytes32,bytes32,uint256,uint8)"
+  },
+  "0x7c4d96924f12913ea4497be340c588e727913bc71595eb2f44cdb892bdc6f337": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "governance",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "pending",
+        "type": "address"
+      }
+    ],
+    "name": "GovernanceProposed",
+    "signature": "GovernanceProposed(address,address)"
   },
   "0x7fe300b33b19dde90c9453f43bacc5f6fd4c3baced6906ea7df18ca516dbd716": {
     "fields": [
@@ -2682,8 +2714,6 @@
     "signature": "CustodyRecovered(bytes32,uint256,uint256)"
   },
   "0xf5a85f6bd22231f5f3fc3492eb53e86cafdea16c71ca2726359e7a885ba87d0a": {
-    "name": "CustodyApproved",
-    "signature": "CustodyApproved(bytes32,uint256,address,address)",
     "fields": [
       {
         "indexed": true,
@@ -2705,7 +2735,9 @@
         "name": "destinationCustody",
         "type": "address"
       }
-    ]
+    ],
+    "name": "CustodyApproved",
+    "signature": "CustodyApproved(bytes32,uint256,address,address)"
   },
   "0xf7125f47bfec080d93292ccc76a20bf0cb1b51903f5188cbf5909e05fbd258d9": {
     "fields": [

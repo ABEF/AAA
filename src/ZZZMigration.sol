@@ -40,7 +40,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     struct Plan {
         Request request; bytes32 sourcePool; PositionStatus sourceStatus; Status status; uint256 shares;
-        address zzz; address token0; address token1; uint256 sentZZZ;
+        address token0; address token1;
         uint256 startingUSD;
         uint256 minimumRetainedUSD;
         uint256 sent0; uint256 sent1;
@@ -102,7 +102,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         if(!r.rawExit && source.key.currency0!=currentZZZ && source.key.currency1!=currentZZZ) revert InvalidConfiguration();
         id=keccak256(abi.encode("ZZZ_CUSTODY_V2",block.chainid,address(access),address(this),++sequence,r));
         Plan storage q=plans[id]; q.request=r; q.sourcePool=p.poolId; q.sourceStatus=p.status; q.status=Status.Approved;
-        q.shares=v.bucketTotalShares(r.bucket); q.zzz=currentZZZ;
+        q.shares=v.bucketTotalShares(r.bucket);
         q.token0=source.key.currency0; q.token1=source.key.currency1;
         IZZZOracle oracle=IZZZOracle(access.module(Ids.ORACLE)); (uint256 a0,uint256 a1)=_amounts(p);
         if(!r.rawExit) {
@@ -139,22 +139,22 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function exit(bytes32 id) external onlyGovernance operating nonReentrant {
         Plan storage q=plans[id]; Request memory r=q.request; _deadline(r.deadline);
         if(q.status!=Status.Approved || !access.paused() || r.sourceSnapshot!=sourceSnapshot(r.bucket) ||
-            r.recipient.codehash!=r.recipientCodeHash || (!r.rawExit && q.zzz.codehash!=zzzCodeHash)) revert InvalidState();
+            r.recipient.codehash!=r.recipientCodeHash || (!r.rawExit && currentZZZ.codehash!=zzzCodeHash)) revert InvalidState();
         ICustodyVault v=_vault();
         uint256 b0=_balance(q.token0); uint256 b1=_balance(q.token1);
         q.status=Status.Sent; q.departureBlock=block.number; ++custodyEpoch[r.bucket];
         if(q.sourceStatus==PositionStatus.Active) v.park(r.bucket,r.deadline);
-        if(!r.rawExit) v.consolidateHandoff(r.bucket,q.zzz,r.minimumZZZ,r.deadline);
+        if(!r.rawExit) v.consolidateHandoff(r.bucket,currentZZZ,r.minimumZZZ,r.deadline);
         (uint256 a0,uint256 a1)=v.releaseForMigration(r.bucket,id,r.deadline);
         if(r.rawExit) {
             if(a0<r.exitMinimum0 || a1<r.exitMinimum1) revert Slippage();
-        } else if((q.zzz==q.token0?a1:a0)!=0 || (q.zzz==q.token0?a0:a1)<r.minimumZZZ) revert Slippage();
+        } else if((currentZZZ==q.token0?a1:a0)!=0 || (currentZZZ==q.token0?a0:a1)<r.minimumZZZ) revert Slippage();
         if(_balance(q.token0)!=b0+a0 || _balance(q.token1)!=b1+a1) revert InvalidState();
-        q.sent0=a0; q.sent1=a1; q.sentZZZ=q.zzz==address(0)?0:(q.zzz==q.token0?a0:(q.zzz==q.token1?a1:0));
+        q.sent0=a0; q.sent1=a1;
         ExactAsset.push(q.token0,r.recipient,a0); ExactAsset.push(q.token1,r.recipient,a1);
         if(_balance(q.token0)!=b0 || _balance(q.token1)!=b1 ||
             v.bucketTotalShares(r.bucket)!=q.shares) revert InvalidState();
-        emit CustodySent(id,r.bucket,r.recipient,q.sentZZZ);
+        emit CustodySent(id,r.bucket,r.recipient,_sentZZZ(q));
         emit CustodyAssetsSent(id,q.token0,a0,q.token1,a1,r.rawExit);
     }
     function cancel(bytes32 id) external onlyDrainGovernance nonReentrant {
@@ -190,7 +190,7 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
         uint256 a0=q.sent0; uint256 a1=q.sent1;
         _receive(q,q.sourcePool,q.token0,q.token1,a0,a1,0,deadline);
         if(_vault().bucketTotalShares(q.request.bucket)!=q.shares) revert InvalidState();
-        q.status=Status.Recovered; _close(q,id); emit CustodyRecovered(id,q.request.bucket,q.sentZZZ);
+        q.status=Status.Recovered; _close(q,id); emit CustodyRecovered(id,q.request.bucket,_sentZZZ(q));
     }
     function _receive(Plan storage q,bytes32 pool,address t0,address t1,uint256 a0,uint256 a1,uint128 minimum,uint256 deadline) private {
         ICustodyVault v=_vault(); if(v.group(q.request.bucket).status!=PositionStatus.Outbound ||
@@ -211,6 +211,12 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     function _close(Plan storage q,bytes32 id) private {
         if(activePlan[q.request.bucket]!=id) revert InvalidState(); delete activePlan[q.request.bucket]; --outstandingCount;
     }
+    /// @dev ZZZ is fixed once before seal. Report its original sent amount from
+    /// the exact source-currency quantities; no duplicate per-plan token/balance.
+    function _sentZZZ(Plan storage q) private view returns(uint256) {
+        address token=currentZZZ;
+        return token==address(0)?0:(token==q.token0?q.sent0:(token==q.token1?q.sent1:0));
+    }
     function _currentFloor(uint256 value) private view returns(uint256) {
         uint16 limit=IMaintenanceLossPolicy(_vault().migrationBudget()).maintenanceLossBps();
         if(limit>1000) revert InvalidConfiguration();
@@ -224,10 +230,6 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     /// One captured governed loss budget, unchanged NFT shares, actual destination LP.
     function moveFunds(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) public onlyGovernance live nonReentrant {
         if(activePlan[id]!=bytes32(0)) revert InvalidState(); _vault().movePool(id,pool,minimum,deadline);
-    }
-    // Retain the existing selector with exactly the same authority and safeguards.
-    function movePool(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) external {
-        moveFunds(id,pool,minimum,deadline);
     }
     function resume(uint256 id,bytes32 pool,uint128 minimum,uint256 deadline) external onlyGovernance live nonReentrant {
         if(activePlan[id]!=bytes32(0)) revert InvalidState(); _vault().resume(id,pool,minimum,deadline);

@@ -62,7 +62,9 @@ class EventSchemaTests(unittest.TestCase):
 
     def test_reviewed_retired_topics_remain_decodable_without_enabling_old_modules(self):
         historical=json.loads((ROOT/'indexer/historical_event_schema.json').read_text())
-        self.assertEqual(len(historical),17)
+        self.assertEqual(len(historical),33)  # 17 earlier plus 16 retired source descriptors.
+        self.assertTrue({'FeedConfigured','BuybackTargetChanged','WrapperPolicyApproved',
+            'ExternalRewardsFunded','RemoteAccountingImported'} <= {entry['name'] for entry in historical.values()})
         for event_topic,entry in historical.items():
             with self.subTest(signature=entry['signature']):
                 self.assertEqual(SCHEMA[event_topic],entry)

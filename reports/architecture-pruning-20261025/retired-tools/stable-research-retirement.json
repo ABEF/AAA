@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "original": "zzz_ops/activation_route.py",
+      "committed_archive": "reports/architecture-pruning-20261025/retired-tools/activation_route.py.HEAD.txt",
+      "committed_sha256": "df8c52f71db49667bf1f643aec3d05a01702ba1aa4028851c318f0bbae8d6dc4",
+      "unpublished_draft_sha256": "7c45157b284feff04b1ed0e5ddf4e82976ff415fe93474974d78e7a6427e3f83",
+      "local_draft_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-pruning-20261025\\retired-local-drafts\\activation_route.py.working-draft.txt",
+      "reason": "Obsolete external stablecoin activation research. No production service caller; single-source/conversion-only quote does not qualify current ETH/ZZZ Entry. Preserve unpublished work separately, not publish as a current feature."
+    },
+    {
+      "original": "tests_python/test_activation_route.py",
+      "committed_archive": "reports/architecture-pruning-20261025/retired-tools/test_activation_route.py.HEAD.txt",
+      "committed_sha256": "f2983acd591a4e2cccec8a0fe411f9d6c9a6acde4d8de54d3fe2ddec4456ab6c",
+      "unpublished_draft_sha256": "8ffe5ee90ef1c278d7b5b47ed76e49e418f31c02605802eb5aca4759228c493a",
+      "local_draft_backup": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\architecture-pruning-20261025\\retired-local-drafts\\test_activation_route.py.working-draft.txt",
+      "reason": "Obsolete external stablecoin activation research. No production service caller; single-source/conversion-only quote does not qualify current ETH/ZZZ Entry. Preserve unpublished work separately, not publish as a current feature."
+    }
+  ]
+}

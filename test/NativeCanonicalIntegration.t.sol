@@ -84,7 +84,6 @@ contract NativeCanonicalIntegrationTest is Test {
     MockToken private token;
     MockFeed private feed;
     bytes32 private poolId;
-    uint256 private nonce;
     address private constant ALICE = address(0xA11CE);
     address private constant BOB = address(0xB0B);
     address private constant GUARDIAN = address(0x600D);
@@ -102,9 +101,7 @@ contract NativeCanonicalIntegrationTest is Test {
         token.approve(address(destination.vault), type(uint256).max); vm.stopPrank();
     }
     function _deploy(bool sealNow) private returns (System memory s) {
-        address[] memory proposers = new address[](1); proposers[0] = address(this);
-        address[] memory executors = new address[](1); executors[0] = address(0);
-        s.access = new ZZZAccessController(0, proposers, executors, address(this), GUARDIAN);
+        s.access = new ZZZAccessController(address(this), address(this), GUARDIAN);
         s.pools = new PreparationPools(address(s.access)); s.venue = new CanonicalNativeVenue(address(s.access), address(token));
         s.vault = new ZZZVault(address(s.access), block.chainid, TREASURY);
         s.nft = new ZZZNFT(address(s.access), "ipfs://native-canonical-fixture/"); s.royalties = s.nft.royaltyRewards();
@@ -129,9 +126,10 @@ contract NativeCanonicalIntegrationTest is Test {
         if (sealNow) s.access.seal();
     }
     function _govern(System memory s, address target, bytes memory data) private {
-        bytes32 salt = bytes32(++nonce); s.access.schedule(target, 0, data, bytes32(0), salt, 0);
-        vm.warp(block.timestamp + 1 days); feed.set(1e8, block.timestamp, block.timestamp);
-        s.access.execute(target, 0, data, bytes32(0), salt);
+        feed.set(1e8, block.timestamp, block.timestamp);
+        assertEq(s.access.governance(), address(this));
+        (bool ok, bytes memory result) = target.call(data);
+        if (!ok) assembly ("memory-safe") { revert(add(result, 32), mload(result)) }
     }
     function _mint() private returns (uint256 id) {
         vm.prank(ALICE); id = source.vault.mintDormant{value: 0.05 ether}();
@@ -157,7 +155,7 @@ contract NativeCanonicalIntegrationTest is Test {
         ZZZMigration.ParkingRequest memory request = ZZZMigration.ParkingRequest(bucket, p.poolId, p.lpTokenId,
             source.vault.bucketTotalShares(bucket), p.depositUSD, source.migration.custodyEpoch(bucket),
             source.migration.parkingNonce(bucket), address(0), address(token), 1, 1,
-            block.timestamp + 1 days + 100, keccak256("native parked fixture"));
+            block.timestamp + 100, keccak256("native parked fixture"));
         _govern(source, address(source.migration), abi.encodeCall(source.migration.park, (request)));
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.freeze, ()));
         for (uint8 slot; slot < 6; ++slot) source.handoff.settle(slot);
@@ -206,9 +204,7 @@ contract NativeCanonicalIntegrationTest is Test {
         source.handoff.fund(3, 0); // Independently classified native LP liability backing.
         assertEq(address(destination.vault).balance, principal); assertEq(address(source.vault).balance, 0);
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.abort, ()));
-        bytes32 salt = bytes32(++nonce); bytes memory finish = abi.encodeCall(source.handoff.finishAbort, ());
-        source.access.schedule(address(source.handoff), 0, finish, bytes32(0), salt, 0);
-        vm.expectRevert(); source.access.execute(address(source.handoff), 0, finish, bytes32(0), salt);
+        vm.expectRevert(); source.handoff.finishAbort();
         source.handoff.returnFunds(1, 0); source.handoff.returnFunds(3, 0);
         _govern(source, address(source.handoff), abi.encodeCall(source.handoff.finishAbort, ()));
         assertEq(source.access.canonicalState(), 0); assertEq(destination.access.canonicalState(), 4);

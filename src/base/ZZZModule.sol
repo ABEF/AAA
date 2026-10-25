@@ -33,7 +33,7 @@ abstract contract ZZZModule {
     function _checkGovernance() private view {
         if (!access.canConfigure(msg.sender)) revert Unauthorized();
     }
-    /// @dev Only the existing timelock may drain during preparation. This does
+    /// @dev Only the selected governance wallet may drain during preparation. This does
     /// not grant a caller generic configuration or execution authority.
     modifier onlyDrainGovernance() {
         _checkDrainGovernance();
@@ -41,10 +41,10 @@ abstract contract ZZZModule {
     }
     function _checkDrainGovernance() private view {
         _checkAccounting();
-        if (msg.sender != address(access) && !access.canConfigure(msg.sender)) revert Unauthorized();
+        if (msg.sender != access.governance() && !access.canConfigure(msg.sender)) revert Unauthorized();
     }
-    /// @dev Check again after callbacks: a matured timelock announcement cannot
-    /// be executed inside new work and let that work finish after preparation.
+    /// @dev Check again after callbacks: a governance announcement cannot start
+    /// inside new work and let that work finish after preparation.
     modifier operating() {
         _checkOperating();
         _;

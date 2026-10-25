@@ -88,8 +88,6 @@ contract NFTMetadataTest is Test {
         pricePolicy = new MetadataPricePolicyMock(); access.bind(Ids.STRATEGY, address(pricePolicy));
         PoolConfig memory config; config.key = PoolKey(address(token0), address(token1), 3000, 60, address(0));
         home.poolId = keccak256(abi.encode(config.key)); home.lpTokenId = 1; home.status = PositionStatus.Active;
-        home.homeChain = block.chainid; home.homeVault = address(vault);
-        home.locationChain = block.chainid; home.locationVault = address(vault);
         pools.set(home.poolId, config); vault.setPosition(home); venue.set(1000, 1000);
         access.seal(); vm.deal(ALICE, 10 ether);
     }
@@ -325,17 +323,15 @@ contract NFTMetadataTest is Test {
 
     function testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata() public {
         _active(1, 0, 0);
-        PositionStatus[3] memory states = [PositionStatus.Outbound, PositionStatus.Remote, PositionStatus.Inbound];
+        PositionStatus[2] memory states = [PositionStatus.Outbound, PositionStatus.Parked];
         for (uint256 i; i < states.length; ++i) {
             home.status = states[i]; vault.setPosition(home);
             (bool available,) = nft.currentLPValue(1); assertFalse(available);
             assertFalse(vm.parseJsonBool(_json(1), ".valuation_available"));
             assertEq(nft.royaltyRewards().weightOf(1), 1);
         }
-        home.status = PositionStatus.Active; home.locationChain = block.chainid + 1; vault.setPosition(home);
+        home.status = PositionStatus.Active; vault.setPosition(home); venue.setFail(true);
         (bool available,) = nft.currentLPValue(1); assertFalse(available);
-        home.locationChain = block.chainid; vault.setPosition(home); venue.setFail(true);
-        (available,) = nft.currentLPValue(1); assertFalse(available);
         assertGt(bytes(nft.tokenURI(1)).length, 0);
     }
 
