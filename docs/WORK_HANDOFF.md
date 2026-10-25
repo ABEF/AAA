@@ -1,3 +1,22 @@
+## Comprehensive review publication verified - 2026-10-25
+
+Contract implementation `5790763` and website memory-only `92c090b` are
+pushed on main; remote hashes verified. Read [publication receipt](../reports/comprehensive-improvement-20261025/PUBLICATION.md),
+[findings](../reports/comprehensive-improvement-20261025/REVIEW.md) and
+[verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+77distinct scoped Solidity behaviors,148backend methods and37normal object gates
+pass with explicit failures/repairs/reuse.42published production source hashes
+match; no fresh full-regression/green-CI/real-service or independent-audit claim.
+Registry818initcode margin; Vault57runtime margin. Production NOT APPROVED.
+
+Next: matching native reviewed EntryV1 website/wallet integration; actual independent
+feeds/input and cheaper ZZZ-conversion routes/VRF/authorities/OpenSea/artwork/services;
+strategy economics/maximal real gas, operating rehearsals and independent audit.
+Preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signing/null public DEPLOYMENT and paused monitor. No public tx,
+deployment, service/server/build change. Main only; sole Todo/features/operator/
+roadmap and both repository memories remain aligned.
+
 ## Comprehensive improvement candidate - 2026-10-25
 
 Read [improved executable prompt](../reports/comprehensive-improvement-20261025/PROMPT.md),

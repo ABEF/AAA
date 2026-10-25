@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-25T00:16:31.107356+00:00",
+  "branch": "main",
+  "contract_implementation_commit": "5790763730e1a05440930ce3643105118bca79bc",
+  "contract_remote_verified": true,
+  "website_memory_commit": "92c090beba3155cb7f1dbfd2093018cdc1ddc92e",
+  "website_remote_verified": true,
+  "website_memory_only": true,
+  "published_production_source_bindings_match": 42,
+  "staged_manifest_sha256": "b04476c21bff85be3a8f2dd3500349498beb61c9fcef53fa8ab1f0b2656f2802",
+  "website_source_build_server_changed": false,
+  "public_deployment": false,
+  "public_signing": "disabled/Anvil-only",
+  "existing_8902_chain_and_journals": "preserved",
+  "monitoring": "paused/preserved",
+  "production_approved": false
+}
