@@ -1,3 +1,27 @@
+## Deep cleanup publication verified - 2026-10-25
+
+Contract implementation `35007db` and website memory-only
+`af56a07` are pushed on main; exact remote heads,
+44 source/31 dependency/4 build hashes and owned evidence blobs verified. Read
+[publication](reports/deep-cleanup-20261025/PUBLICATION.md), review, adapted prompt
+and verification. 32 selected Solidity/41 Python methods; 37 normal object gates;
+75 explicit production inputs and 265 final AST inputs. No full regression,
+current Slither, real market/service or independent approval claimed.
+
+Only three production files change: royalty balance reuse, v3 error declaration
+reuse and guardian/initial keeper+guardian logs. No new authority, custody right,
+rate, asset or public function encoding/storage change. Event/error metadata
+exceptions explicit. Only Access size grows 45 runtime/ 175 creation; total initcode
+42352/6800 margin. Vault 22852/1724 unchanged; RoyaltyFactory 69 tight. Source graph
+compiler applicability is conditional, not proof. Reference snapshot 2 binds the
+complete dependency/build closure; old profiles/journals stay distinct.
+
+Unrelated drafts preserved via exact partial staging. No deployment/public tx/
+RPC/website source/build/server/service/Anvil/journal/signer/monitor change.
+Main only; actual website3/services/feeds/routes/VRF/authorities/OpenSea,
+operating/gas qualification, full frozen release and independent audit stay open.
+Production NOT APPROVED.
+
 ## Deep cleanup checkpoint - 2026-10-25
 
 Adapted user prompt to current shared LP/accounting3/direct governance2/local
