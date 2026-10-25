@@ -1,3 +1,21 @@
+## Auditability refactor publication verified - 2026-10-25
+
+Contract implementation `ea2a70c` and website memory-only
+`2461e6e` are pushed on main; exact remote heads and
+44 production/owned evidence/website hashes verified. Read
+[publication](reports/auditability-refactor-20261025/PUBLICATION.md), review and
+verification. 26 distinct selected Solidity methods across two scopes, 20 schema
+methods, 131 final ABI/AST inputs and 37 normal gates; no full regression or
+independent approval. 31 concrete contracts/608 functions/13 receive hooks.
+Wire encodings/storage and financial ordering preserved; neutral struct
+provenance and duplicate ABI errors explicit. Liquidity runtime -344 bytes,
+Entry -29, each converter -122; Handoff +139 is a recorded compiler tradeoff.
+Vault 22,852/1,724 margin; Access 42,177/6,975 margin; Factory 69 still tight.
+Current profiles, source custody and separate ledgers remain. No deployment/
+public tx/website source/build/server/service/Anvil/journal/signer/monitor change.
+Unrelated drafts preserved. Main only; actual website3/services/OpenSea/
+authorities/operations/audit remain open. Production NOT APPROVED.
+
 ## Auditability refactor - 2026-10-25
 
 User authorized four source refactors: private collect/close settlement, shared

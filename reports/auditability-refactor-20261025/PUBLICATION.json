@@ -1,0 +1,31 @@
+{
+  "observed_at_utc": "2026-10-25T20:36:01.018146+00:00",
+  "contract_commit": "ea2a70c443eb40845e87f08cf0dbeeb1a25fe8b5",
+  "website_memory_commit": "2461e6eb5d4166cd9f89a7eca0e440daae4f21e9",
+  "remote_heads_verified": true,
+  "branch": "main",
+  "website_deployed": false,
+  "contract_deployed": false,
+  "production_approved": false,
+  "verified_at_utc": "2026-10-25T20:37:51.373894+00:00",
+  "baseline_commit": "ba91651805051a974070b8a07543fa18d20d3551",
+  "production_source_bindings": 44,
+  "source_blobs_match": true,
+  "candidate_blobs_match": true,
+  "artifact_hashes_match": true,
+  "website_source_files_unchanged": true,
+  "unrelated_drafts_preserved": true,
+  "final_scope_sha256": "4c993a4384e5139bbff039dcf2b01e985f5f3d2ebd046067cc5e9ba84efbae84",
+  "artifact_manifest_sha256": "dc413ff086aaea378c5a648dafdc60b4c4b608a7e7ed6f22b6417619761b0aa9",
+  "distinct_scoped_solidity_behaviors": 26,
+  "scoped_event_schema_methods": 20,
+  "normal_object_gates": 37,
+  "final_typecheck_inputs": 131,
+  "full_regression": false,
+  "independent_audit": false,
+  "website_change_scope": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md"
+  ],
+  "no_public_transaction_deployment_service_server_build_chain_journal_monitor_change": true
+}
