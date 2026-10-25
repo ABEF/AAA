@@ -1,3 +1,29 @@
+## Service and callable-reference publication verified - 2026-10-25
+
+Contract implementation `03a0d76` and website memory-only `e96cc38` are pushed
+on main; remote hashes verified. Read [publication](reports/release-services-20261025/PUBLICATION.md)
+and [verification](reports/release-services-20261025/VERIFICATION.md). Optional
+Pyth reader, hardblocked current OpenSea/VRF qualification, frozen review tool
+and32-contract/698-function reference are implemented. All top-level inputs
+have notes; exact outputs/types/tuple fields and permissions are preserved.
+17new Solidity/68gate+19package Python across scoped runs/10generator/38normal
+object gates retain their exact scope. No broad fresh regression/audit claimed.
+
+Frozen external review archive source is `03a0d76f086d3d789d03ca0fe4a8c80d0af08d46` with SHA-256
+`6d57a653101f67cbb0ecf40ab2f814a8d126e2c25085dc8d4ea05b35bd0950d0`; separately verified, dependencies not bundled,
+no tests executed by export and no final release approval. The docs-only receipt
+checkpoint does not alter that source identity. Current actual sources/routes/
+updater/VRF/authorities/OpenSea/native operating qualification and external audit
+remain open. User OpenSea price is0.05ETH gross; recipient net of actual platform
+fee, gas separate. Current direct mint remains all0.05ETH; integration unfinished.
+
+Maintain function notes/reference for changes to ABI/behavior/permissions/params;
+normal verification rejects stale or incomplete function/input docs. Sole Todo,
+feature evidence, operator/roadmap and both memories are aligned. Main only;
+preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signer/null public DEPLOYMENT and paused monitoring. No website
+source/build/server, service, public tx/deployment or seal. Production NOT APPROVED.
+
 ## Service qualification and function-reference handoff - 2026-10-25
 
 Read [service review](reports/release-services-20261025/REVIEW.md),

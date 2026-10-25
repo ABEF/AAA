@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-25T02:43:52.241516+00:00",
+  "branch": "main",
+  "contract_implementation_commit": "03a0d76f086d3d789d03ca0fe4a8c80d0af08d46",
+  "contract_remote_verified": true,
+  "website_memory_commit": "e96cc381e91567bd80e7505962d50944ac7f9e6d",
+  "website_remote_verified": true,
+  "staged_manifest_sha256": "4eccd96fa7d883973dfad44ca63c2a3d61f234d14df46cb14f3e041bbc9f0bac",
+  "public_deployment": null,
+  "public_signing": "unchanged/Anvil-only",
+  "production_approved": false,
+  "website_source_build_server": "unchanged; memory-only commit",
+  "existing_local_chain_nfts_lp_balances_journals_services_monitor": "preserved/no action",
+  "external_review_bundle": {
+    "path": "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\release-services-20261025\\popl-03a0d76f086d-review.zip",
+    "sha256": "6d57a653101f67cbb0ecf40ab2f814a8d126e2c25085dc8d4ea05b35bd0950d0",
+    "source_commit": "03a0d76f086d3d789d03ca0fe4a8c80d0af08d46",
+    "export": {
+      "archive_sha256": "6d57a653101f67cbb0ecf40ab2f814a8d126e2c25085dc8d4ea05b35bd0950d0",
+      "dependencies_bundled": false,
+      "ok": true,
+      "production_approved": false,
+      "source_commit": "03a0d76f086d3d789d03ca0fe4a8c80d0af08d46",
+      "source_files": 401,
+      "source_tree_sha1": "a2c752f5ad4486192ba141ac2cb9e6e74544101b",
+      "tests_executed": false
+    },
+    "verification": {
+      "archive_sha256": "6d57a653101f67cbb0ecf40ab2f814a8d126e2c25085dc8d4ea05b35bd0950d0",
+      "dependencies_bundled": false,
+      "ok": true,
+      "production_approved": false,
+      "source_commit": "03a0d76f086d3d789d03ca0fe4a8c80d0af08d46",
+      "source_files": 401,
+      "source_tree_sha1": "a2c752f5ad4486192ba141ac2cb9e6e74544101b",
+      "tests_executed": false
+    },
+    "dependencies_bundled": false,
+    "tests_executed_by_export": false,
+    "final_release_approved": false
+  }
+}
