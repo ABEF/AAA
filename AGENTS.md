@@ -1,3 +1,16 @@
+## Residual cleanup publication verified - 2026-10-25
+
+Contract `f802872` and website memory-only `a7af872` are pushed on main;
+exact remote heads verified. Read
+[publication](reports/obsolete-code-20261025/PUBLICATION.md), review and scoped
+verification.10selected Solidity/6Python,122-input typecheck/36normal gates pass;
+no fresh full regression or independent approval. Registry runtime saves2,040bytes;
+fresh-deployment storage only.31contracts/644functions. Access29-byte minimal
+argument margin and actual release/services/marketplace/audit gates stay open.
+No deployment/public transaction, website source/build/server,8902/Anvil/NFT/LP/
+balances/journals, signer or paused-monitor change. Production NOT APPROVED.
+Unrelated drafts preserved; main only. Sole Todo/operator/features stay current.
+
 ## Residual obsolete-code cleanup - 2026-10-25
 
 Read [review](reports/obsolete-code-20261025/REVIEW.md) and
