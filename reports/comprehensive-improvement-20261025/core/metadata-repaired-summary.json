@@ -1,0 +1,32 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 70.69,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-improvement-20261025\\metadata-repaired-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "NFTMetadataTest",
+    "--json",
+    "--match-test",
+    "test(RevealedDormantMetadata|MetadataActivationFlag)"
+  ],
+  "cases": [
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testMetadataActivationFlagChangesWithoutChangingRarityWeightOrFeeRightsOnTransfer()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testRevealedDormantMetadataShowsFixedRarityWeightWithoutRewardEligibility()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

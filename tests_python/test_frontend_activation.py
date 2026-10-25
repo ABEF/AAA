@@ -98,7 +98,7 @@ class ActivationRPC(MockRPC):
     def digest(self,target):return '0x'+keccak256(bytes.fromhex(self.codes[target][2:])).hex()
 
     def trace(self,tx):
-        q=[int(w,16) for w in decode_words('0x'+tx['data'][10:])]
+        q=[int(w,16) for w in decode_words('0x'+tx['data'][10:])][:9]
         nft,_,_,amount,route,minout,minlp,deadline,increase=q
         gross=amount*USD//10**self.source_decimals
         acquired=gross-gross//1000 if route else amount

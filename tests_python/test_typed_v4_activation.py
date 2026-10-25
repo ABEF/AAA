@@ -56,7 +56,7 @@ class TypedActivationRPC(NativeActivationRPC):
         mutation=self.trace_mutation;self.trace_mutation=None
         result=ActivationRPC.trace(self,tx)
         self.trace_mutation=mutation
-        values=[int(w,16) for w in decode_words('0x'+tx['data'][10:])]
+        values=[int(w,16) for w in decode_words('0x'+tx['data'][10:])][:9]
         nft,_,_,amount,_,minimum,_,deadline,_=values
         acquired=amount-amount//1000 if self.routed else amount
         vault=result['calls'][0];vault['value']=hex(acquired if self.output==ZERO else 0)

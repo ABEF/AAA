@@ -1,0 +1,30 @@
+{
+  "observed_utc": "2026-10-24T23:55:01.471375+00:00",
+  "baseline_commit": "80d330ea51abacdfb825af24730badb26e6bd83d",
+  "branch": "main",
+  "original_prompt_sha256": "b6fc490e3774989ab8805087db74aaac1683054bc14636594ad1655145b69bc9",
+  "original_prompt_bytes": 39331,
+  "production_approved": false,
+  "public_broadcast": false,
+  "existing_8902_state_touched": false,
+  "monitoring": "paused/preserved",
+  "baseline_unrelated_dirty": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "docs/ACTIVATION_ENTRY.md",
+    "docs/ACTIVATION_ROUTING.md",
+    "docs/CHANGELOG.md",
+    "docs/CLAIM_ROUTER.md",
+    "docs/DEVELOPMENT.md",
+    "docs/FRONTEND_HISTORY.md",
+    "docs/OPERATIONS.md",
+    "docs/PRODUCTION_SERVICES.md",
+    "reports/source-checks.json",
+    "scripts/run-fork-checks.py",
+    "tests_python/test_activation_route.py",
+    "tests_python/test_fork_runner.py",
+    "tests_python/test_frontend_history.py",
+    "zzz_ops/activation_route.py"
+  ],
+  "scope": "Local source, evidence and documentation only; exact preservation and source bindings in final receipt."
+}

@@ -1,0 +1,67 @@
+{
+  "baseline": "80d330ea51abacdfb825af24730badb26e6bd83d",
+  "final_sha256": {
+    "zzz_ops/rpc.py": "f1636cf447077851c0051ec6ec60caf29669a07b02a1977ad85564a77aaf2bf5",
+    "tests_python/test_rpc.py": "396ceb1b64ba366b8dfe76d6bfde41827691519f4f2b2f65fea7737e2f2663d7",
+    "tests_python/test_request_limits.py": "83d514f0ca09c6b769dd3563435cefc35a17da5386811438eaac2078c6815997"
+  },
+  "negative_control": {
+    "methods": 1,
+    "expected_failed_subcases": 3,
+    "statuses_with_actual_trap_requests": [
+      301,
+      302,
+      303
+    ],
+    "log": "baseline-negative-control.log"
+  },
+  "first_verification": {
+    "methods": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsed_seconds": 0.813,
+    "names": [
+      "tests_python.test_rpc",
+      "tests_python.test_request_limits.RequestBudgetTests.test_post_budget_includes_chain_checks_and_retries",
+      "tests_python.test_request_limits.RequestBudgetTests.test_timeout_and_backoff_use_only_remaining_budget"
+    ]
+  },
+  "final_verification": {
+    "methods": 3,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 0.61,
+    "scope": "Only affected redirect class rerun after closing refused response handles; other RPC/budget methods reused from the first scoped pass.",
+    "log": "final-redirect-verification.log"
+  },
+  "distinct_passed_methods": 22,
+  "actual_effect": "All tested 3xx statuses refused before reaching the unreviewed loopback trap; configured fallback alone receives chain ID check then requested read. Per-instance opener leaves urllib global state unchanged.",
+  "scope_boundaries": "Ephemeral loopback HTTP fixtures only, no actual provider/observer/server/service, public request, signing, fund, website, journal, or deployment action. Shared production observer CLI already uses Rpc and inherits this policy. Independent direct urllib tools remain outside this fix.",
+  "unmodified_security_controls": [
+    "configured HTTPS/loopback policy",
+    "read-only methods",
+    "chain rechecks",
+    "bounded retries/failover",
+    "per-request call/post/timeout budgets",
+    "8MiB response ceiling"
+  ],
+  "note": "No test repeat was counted twice; no broad backend/Solidity/live service qualification is claimed.",
+  "http_error_followup": {
+    "negative_control": {
+      "methods": 1,
+      "failed_subcases": 2,
+      "statuses": [
+        429,
+        500
+      ],
+      "log": "http-error-before.log"
+    },
+    "final_methods": 4,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 0.609,
+    "log": "http-error-after.log",
+    "scope": "One new resource-close/failover method plus three previously passed redirect methods, counted once. Every HTTPError closes before preserved non-3xx reraise or sanitized 3xx refusal."
+  }
+}

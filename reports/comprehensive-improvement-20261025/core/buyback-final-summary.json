@@ -1,0 +1,258 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 191.47,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-improvement-20261025\\buyback-final-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "Buyback(OperatingLimit|Execution)Test",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testApprovedWrongPairCannotDivertBuybackFunds()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testBelowMinimumSwapRollsBackAndCanRetry()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testDisabledPoolStopsSwapWithoutBlockingClaimsOrDirectBurn()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testExpiredAndOverlongDeadlineCannotReleaseReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testFuzzSplitBurnCannotConsumeIndividualOrCompoundReserve(uint96)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testManipulatedSpotRejectedByRealStrategyGuard()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testNoOpBurnRejectsAndRestoresEverythingBeforeRetry()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testPartialBurnRejectsAndRestoresEverythingBeforeRetry()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testPausedBuybackLeavesFundedClaimsAvailable()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testPostSwapPriceDeviationRollsBackSettledSwapAndReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testReserveTransferFailureRestoresAccountingAndCanRetry()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testRevertingBurnDoesNotBlockLPClaims()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testStaleFeedRejectsWithoutReleasingFundsAndRecoversAfterRefresh()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testStaleOutputFeedRollsBackReleasedInputReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testSwapFailureRollsBackThenClaimsAndRetryRemainAvailable()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testUnapprovedRouteCannotReleaseReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testUnauthorizedCallerAndDirectReserveReleaseRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testVenueReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "test": "testZeroOverReserveAndOverTradeBudgetRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testAuthorizedGovernanceCallbackCannotChangePolicyDuringBurn()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testBootstrapAndPostSealGovernanceCanAdjustImmediatelyWithExactEvents()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testCannotRaiseOperatingLimitBeyondHardCeiling()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testFuzzGovernanceOperatingLimitAlwaysWithinHardCeiling(uint256)",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testHolderAndKeeperCannotChangeOperatingPolicy()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testInitialOperatingLimitMatchesImmutableHardCeiling()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testLoweredPolicyRejectsPreviouslyReviewedTradeAtExecution()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testMissingDualBoundsCannotFallBackToLowerOnlyValue()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testNativeExactLimitWorksAndOverLimitPreservesReservesAndDonations()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testNativeInputAlsoUsesUpperBoundBeforeReleaseOrSwap()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testOperatingLimitIsPerTradeNotAnInventedCumulativeBudget()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testOrdinaryPauseAllowsPolicyChangeButNotExecution()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testPreparationAndEveryCanonicalLockBlockPolicyChanges()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testUnavailableSecondarySourceCannotReleaseBuybackReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testUpperBoundBudgetCeilRoundingProtectsSubUnitValue()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testUpperBoundBudgetRejectsThreePercentSpreadBeforeReleasingReserve()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testUpperBoundExactCeilingSucceedsAndOneRawUnitOverReverts()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "test": "testZeroStopsWithoutPriceOrReserveCallsAndCanBeReopened()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

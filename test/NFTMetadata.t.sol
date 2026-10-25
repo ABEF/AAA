@@ -245,6 +245,48 @@ contract NFTMetadataTest is Test {
         assertEq(vrf.sequence(), 1); assertEq(nft.mintedCount(), 1);
     }
 
+    function testRevealedDormantMetadataShowsFixedRarityWeightWithoutRewardEligibility() public {
+        ZZZRoyaltyRewards receiver = nft.royaltyRewards();
+        uint256[3] memory words = [uint256(0), uint256(600), uint256(900)];
+        uint256[3] memory weights = [uint256(1), uint256(2), uint256(3)];
+        string[3] memory names = ["Commun", "Rare", "Legendary"];
+        for (uint256 i; i < words.length; ++i) {
+            uint256 id = i + 1; _reveal(id, words[i], 0);
+            assertEq(nft.rarityOf(id), i, "fixture must draw the intended rarity");
+            string memory json = _json(id);
+            assertEq(_stringAttribute(json, "Rarity"), names[i]);
+            assertEq(_uintAttribute(json, "NFT-sale royalty weight"), weights[i]);
+            assertFalse(vm.parseJsonBool(json, ".royalty_activated"));
+            assertEq(_stringAttribute(json, "Evolution"), "Dormant");
+            assertEq(nft.royaltyRewards().weightOf(id), 0, "a displayed trait must not activate rewards");
+            assertEq(nft.royaltyRewards().totalWeight(), 0);
+            vm.deal(address(receiver), 1 ether);
+            vm.prank(ALICE); assertEq(receiver.claim(id, address(0)), 0);
+        }
+    }
+
+    function testMetadataActivationFlagChangesWithoutChangingRarityWeightOrFeeRightsOnTransfer() public {
+        ZZZRoyaltyRewards receiver = nft.royaltyRewards();
+        _reveal(1, 950, 5);
+        string memory json = _json(1);
+        assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 3);
+        assertFalse(vm.parseJsonBool(json, ".royalty_activated"));
+        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/crimson-panels-legendary-dormant.svg");
+        vault.contribute(1, 100, 100); venue.set(1000, 0);
+        json = _json(1);
+        assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 3);
+        assertTrue(vm.parseJsonBool(json, ".royalty_activated"));
+        assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/crimson-panels-legendary-enhanced.svg");
+        assertEq(nft.royaltyRewards().weightOf(1), 3);
+        vm.deal(address(receiver), 1 ether);
+        vm.prank(ALICE); nft.transferFrom(ALICE, BOB, 1);
+        string memory afterTransfer = _json(1);
+        assertEq(afterTransfer, json, "ownership must not change static traits, eligibility or artwork");
+        vm.prank(ALICE); vm.expectRevert(); receiver.claim(1, address(0));
+        vm.prank(BOB); assertEq(receiver.claim(1, address(0)), 1 ether - 1);
+        assertTrue(vm.parseJsonBool(_json(1), ".royalty_activated"));
+    }
+
     function testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights() public {
         _active(1, 0, 0);
         venue.set(100, 0); _stage(1, 1);
@@ -272,6 +314,7 @@ contract NFTMetadataTest is Test {
         uint8 state; (available, state) = nft.evolution(1); assertFalse(available); assertEq(state, 1);
         string memory json = _json(1);
         assertFalse(vm.parseJsonBool(json, ".valuation_available"));
+        assertTrue(vm.parseJsonBool(json, ".royalty_activated"));
         assertEq(_stringAttribute(json, "Evolution"), "Valuation unavailable");
         assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/crimson-panels-legendary-activated.svg");
         assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 3);
@@ -409,13 +452,16 @@ contract NFTMetadataTest is Test {
         vault.mint(ALICE, 1); string memory json = _json(1);
         assertEq(vm.parseJsonString(json, ".attributes[0].value"), "Unrevealed");
         assertEq(_stringAttribute(json, "Evolution"), "Dormant");
-        assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 0);
+        assertEq(_stringAttribute(json, "NFT-sale royalty weight"), "Unrevealed");
+        assertFalse(vm.parseJsonBool(json, ".royalty_activated"));
         vrf.fulfill(nft.requestOf(1), 0, 54); nft.finalizeTraits(1); json = _json(1);
         assertEq(vm.parseJsonString(json, ".image"), "ipfs://example/cyan-orbits-commun-dormant.svg");
         assertEq(_stringAttribute(json, "Color style"), "Monochrome");
         assertEq(_stringAttribute(json, "Palette"), "Cyan");
         assertEq(_stringAttribute(json, "Color 1"), "Cyan");
         assertEq(_stringAttribute(json, "Circuit pattern"), "Orbital rings");
+        assertEq(_uintAttribute(json, "NFT-sale royalty weight"), 1);
+        assertFalse(vm.parseJsonBool(json, ".royalty_activated"));
         assertEq(vm.parseJsonString(json, ".lp_value_usd_18"), "0");
         vm.expectRevert(); nft.tokenURI(2); vm.expectRevert(); nft.evolution(2);
     }

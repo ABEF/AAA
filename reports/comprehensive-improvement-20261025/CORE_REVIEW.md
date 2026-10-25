@@ -1,0 +1,56 @@
+# Core contracts and economic-rights review - 2026-10-25
+
+Baseline: `80d330e`. This is a scoped internal source review and targeted improvement record, not an independent audit or production approval. Entry caller-intent binding is reviewed separately in the main report. No existing chain, NFTs, LP, journal, service, monitor or public transaction was changed.
+
+## Confirmed improvements
+
+### Core-C1: dormant metadata confused the rarity trait with activation
+
+`ZZZNFT.tokenURI` passes the actual royalty ledger weight to the read-only renderer. The ledger correctly stores zero before activation. The renderer incorrectly used that zero as the NFT's rarity-weight trait, so a revealed dormant Legendary advertised weight zero instead of its fixed weight three. Unrevealed metadata also presented zero as though a trait had already been assigned.
+
+The renderer now publishes numeric rarity weights 1/2/3 once revealed, and the string `Unrevealed` before the draw is known. A separate top-level `royalty_activated` boolean reports whether the NFT's actual activation entitlement exists. This flag does not promise that every optional royalty currency is currently readable, enrolled or funded. The ledger, eligibility, reward amounts, image paths and pattern identifiers are unchanged. This is a metadata-correctness issue; displaying a trait does not create a claim.
+
+Sources: [NFT tokenURI](../../src/ZZZNFT.sol), [renderer](../../src/ZZZNFTMetadata.sol), [decoded metadata checks](../../test/NFTMetadata.t.sol).
+
+### Core-C2: the buyback maximum used the lower input USD mark
+
+`ZZZBuyback.execute` previously compared `Oracle.value` with `operatingTradeUSD`. `Oracle.value` deliberately returns the lower of the two admitted USD bounds. With accepted prices of $1.00 and $1.03, a $20 lower-mark trade could pass a $20 ceiling while its upper-mark input value was $20.60. This understated the configured maximum spend; it did not by itself bypass the separate conservative swap minimum or redirect holder rewards.
+
+The maximum now uses the upper input price, rounded upward in USD18 units. A zero ceiling still stops before source/reserve calls. Missing, stale or invalid dual-source output does not fall back to the historical lower-only interface. Oracle display/minimum semantics, the existing upper-input/lower-output swap quote, actual reserve release, burn verification, allocations and permissions are unchanged. Acceptance is narrower so the reviewed per-trade ceiling holds at either admitted input price. This is a per-trade ceiling, not a new cumulative budget.
+
+Sources: [Buyback](../../src/ZZZBuyback.sol), [Oracle semantics](../../src/ZZZOracle.sol), [operating and boundary checks](../../test/BuybackOperatingLimit.t.sol), [composed execution checks](../../test/BuybackExecution.t.sol).
+
+## Category coverage and limits
+
+| Requested category | Inspected implementation and conclusion | Remaining boundary |
+| --- | --- | --- |
+| 17: execution/security | Exact typed value, authenticated module calls, reentrancy/lifecycle guards and post-callback checks were inspected across Vault, Manager, rewards, royalties, custody and canonical handoff. No new unprivileged theft/replay path was confirmed in these inspected paths. | This is source review, not proof of absence of bugs; Entry intent binding has separate evidence. |
+| 18: token/NFT interoperability | ERC721 ownership/approval paths, ERC2981's fixed requested royalty, exact native/ERC20 movement and actual burn reduction were inspected. Unsupported fee-on-transfer/rebasing/failed currencies fail rather than being treated as funded. | Actual token/proxy behavior, OpenSea mint/royalty operation and contract-owner successor compatibility require qualification. |
+| 19: adversaries/griefing | Donation separation, exact funding, callback owners, duplicate claims, batch bounds and failure rollback were inspected. The added tests deliberately exercise unavailable/missing upper-bound data and unauthorized old-owner claims. | Approved external dependencies may still become unavailable; fail-closed rejection can cost the submitting account gas. |
+| 20: oracle integrity | Two-source admission, bounds, fingerprints, source call bounds and no single-price/spot fallback were inspected in the affected paths. Core-C2 fixes use of the wrong bound for a maximum budget. | Two addresses/declared independence IDs do not prove independent products or prevent common-mode failures. Real sources remain unqualified. |
+| 21: MEV and transaction ordering | Mint/reveal order, pre-membership settlement, owner-at-claim checks, contribution repricing/fingerprints and exact swap output floors were inspected. | Loss caps and simulations do not promise best execution or eliminate sandwiching, reorgs or venue outages. Actual route/MEV qualification remains open. |
+| 22: economics | Fixed 80/10/5/5 distribution and separately rarity-weighted, actual-receipt royalties were inspected. The buyback budget fix does not change allocations. | Governance/external-custodian trust is explicit. Source discrepancies and fees can make an otherwise useful transaction infeasible. |
+| 23: principal/reward accounting | Attributed principal/idle, compound and buyback reserves, indexed holder liabilities, royalty backing and raw donations remain separate. Conversion credits are not new income. | Index division dust remains backed; no arbitrary sweep is added. Future low-decimal/high-unit-price assets need rounding qualification. |
+| 24: shares/dilution | Incumbent NAV, harvest before new shares, owner checkpoint before increases, membership checkpoint before its first collective share and exact actual LP increase were inspected. | Finite accounting limits and operating floors require testing with actual configured assets and target-chain gas. |
+| 25: ownership continuity | Unclaimed amounts/fractions remain keyed by NFT ID; current ownership is checked again at payout, including router batches. Metadata changes do not change rights. | Lost/dead-address ownership has no administrator recovery. Contract owners must be compatible with transfers and successor NFTs. |
+| 26: eligibility abuse | Dormant NFTs have neither collective eligibility nor activated royalty weight. Activated rarity weight cannot be increased by top-ups or transferred to a separate account. Optional-currency deferred cohorts preserve older receipts. | `royalty_activated` is a global activation fact, not proof of per-currency enrollment or available money. |
+| 27: AMM lifecycle | Manager checks Vault position ownership, pool key, ticks, liquidity delta, final price, exact debts/credits and approval cleanup. Custody parking/raw exit does not silently use a normal swap-loss waiver. | Actual installed pool/dependency behavior, liquidity depth and target-chain venue/gas qualification remain open. |
+| 28: maintenance/buybacks | Captured per-operation budget, attributed idle-only compounding/cooldown, bounded correction passes, source-price checks and actual burn were inspected. Core-C2 narrows buyback admission. | The user chose per-operation limits only; repeated permitted losses can accumulate. Keeper economics/strategy performance are not proven by access controls. |
+| 29: keepers | Existing range policy is opt-in, two reviewed widths only, explicit price orientation and configuration fingerprint/cooldown. A keeper cannot choose arbitrary policy or a recipient. | Drift thresholds are not a continuous volatility measurement. Existing services were not changed or qualified in this review. |
+| 30: governance | Immediate role-authorized governance, preparation/canonical locks, sealed bindings, guardian pause and keeper separation were inspected. | No waiting period is promised. Compromised governance can use powers deliberately accepted by the user. |
+| 31: custody/indirect extraction | Principal normal/raw exits are exact approved snapshot operations. Royalty full-currency custody is separate. Holder claims are not included in principal-only exit. | Approved external addresses take custody; on-chain code cannot force an EOA to return funds. This is an explicit trust/liveness boundary. |
+| 32: upgrades | Core implementations/bindings are fixed at seal; governed configuration and separately reviewed canonical replacements remain distinct. | Reviewed different replacement code is accepted governance trust, not an invariant that automatically preserves economics. |
+| 33: migration | Pool move, external custody and whole-collection handoff were inspected as separate mechanisms. Same-chain handoff requires exact backing and atomically retires/activates; abort restores actual funds. | External bridging principal does not move NFT ownership/ledgers. Future-chain canonical transport/finality is unfinished; post-halt recovery is deferred. |
+| 34: on-chain finality/transactions | Exact source/domain/row commitments, custody nonces, canonical replay boundaries and irreversible retirement were inspected. | Real chain finality, sequencer/RPC independence and frontend submitted-transaction recovery require separate operating evidence. |
+| 47: continuity | Claims preserve current ownership, royalty failure cohorts preserve historical rights, canonical abort is funded, and external custody separates asset movement from NFT authority. | A missing ordered VRF result can block later reveals, activation of affected NFTs and whole-collection freeze. Existing LP/pool maintenance is independent. Provider qualification and original-request recovery remain critical. |
+
+## Explicit residual risks, not invented fixes
+
+- The fixed provider has no administrator reroll, cancellation or random fallback. Future request tuning cannot repair an old failed callback. Provider/subscription/lane/finality/funding qualification is a real release gate; no safety bypass was added.
+- Native payouts to an owner contract that refuses ETH revert. The contract does not redirect that owner's entitlement to a different address. Moving the NFT to a compatible owner is the normal recovery when the owner contract can do so.
+- Optional royalty tokens can defer new currency enrollment while activation succeeds. A currency with an unreadable or deficient actual balance cannot be migrated by pretending its backing is known.
+- Current FeeController buyback and historical compound reserves have specific purpose-bound release paths. Principal or royalty custody is not a generic sweep over those reserves or unknown donations. Issuer-specific token changes require a reviewed path or compatible whole-collection recovery, not an arbitrary public executor.
+- Tiny fixed-split raw remainders are settled to incumbent holder rewards at membership boundaries. For current ETH/ZZZ units this is tiny; it must not be described as exact 80/10/5/5 for every individual sub-20-unit receipt or assumed harmless for every future low-decimal asset.
+- Unharvested historical-bucket fees retain the documented receipt-time collective eligibility rule. Claim history must not invent a precise trading timestamp that the ledger never recorded.
+
+Targeted verification, diagnostics, exact source hashes, compiler settings and unchanged-evidence reuse are recorded separately. No full unchanged regression, actual provider qualification or independent audit approval is implied.

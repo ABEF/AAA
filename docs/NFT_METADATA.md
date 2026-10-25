@@ -1,5 +1,16 @@
 # NFT traits, royalties and live artwork
 
+## Fixed royalty trait versus activation - 2026-10-25
+
+Revealed metadata always reports the fixed rarity weight (Commun1 / Rare2 /
+Legendary3), including while Dormant. Unrevealed weight is the string
+`Unrevealed`, not zero or an invented rarity. Top-level `royalty_activated` reports
+whether the economic ledger has registered activation; it is not per-currency
+readiness or a payment promise. The dormant ledger remains weight0 and cannot
+claim older royalties. No rarity, art path, allocation or ownership rule changes.
+[Review/evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+
+
 The development candidate caps minting at **1,000 NFTs** with **600 Commun / 300 Rare / 100 Legendary**. Eight base colors form 58 palettes and four circuit patterns. The renderer supports 2,784 SVG artwork states (58×4×3×4), separate from minted identities. The earlier six-color/72-PNG library remains historical artwork.
 
 ## Fixed visual inventory
@@ -25,7 +36,7 @@ cannot repair an already-submitted callback or create another draw. Ordinary
 pause permits tuning; preparation/canonical locks and reentry do not. Review
 [operator steps](OPERATOR_MANUAL.md#mint-and-metadata) and [scoped evidence](../reports/post-seal-controls/VERIFICATION.md).
 
-Traits remain bound to the NFT through transfers, additions and migration. `paletteOf` and `patternOf` identify the immutable visual entry; the compatibility getter `colorOf` reports its first canonical color. Metadata publishes Color style, Palette, Color 1/2/3 as applicable, Circuit pattern, Rarity, Evolution and current NFT-sale royalty weight. Unrevealed NFTs return an embedded placeholder. Revealed SVG filenames are `palette-pattern-rarity-evolution.svg`, such as `cyan-amber-onyx-arcs-rare-enhanced.svg`. The root can only be populated once before sealing; it is not a post-seal governance image switch. Production admission requires the entire supported 2,784-path publication with independent content-root/manifest review. No SVG publication, website preview or local VRF mock establishes deployment readiness.
+Traits remain bound to the NFT through transfers, additions and migration. `paletteOf` and `patternOf` identify the immutable visual entry; the compatibility getter `colorOf` reports its first canonical color. Metadata publishes Color style, Palette, Color 1/2/3 as applicable, Circuit pattern, Rarity, Evolution and fixed revealed NFT-sale royalty weight (activation is separate). Unrevealed NFTs return an embedded placeholder. Revealed SVG filenames are `palette-pattern-rarity-evolution.svg`, such as `cyan-amber-onyx-arcs-rare-enhanced.svg`. The root can only be populated once before sealing; it is not a post-seal governance image switch. Production admission requires the entire supported 2,784-path publication with independent content-root/manifest review. No SVG publication, website preview or local VRF mock establishes deployment readiness.
 
 ## Current LP value and ERC-4906
 

@@ -46,11 +46,12 @@ contract NativeWrapperPolicyTest is Test {
     }
     function testWrapperPolicyAppendOnlyAndHistoricalRecordSurvivesActivation() public {
         bytes32 bootstrap = registry.activeWrapperPolicy();
+        assertEq(bootstrap, bytes32(0)); assertFalse(registry.wrapperPolicyExists(bootstrap));
         ZZZPoolRegistry.WrapperPolicy memory p = _policy(address(first)); bytes32 id = registry.approveWrapperPolicy(p);
         vm.expectRevert(); registry.approveWrapperPolicy(p);
         registry.activateWrapperPolicy(id); assertEq(registry.activeWrapperPolicy(), id);
         admin.setImplementation(address(second)); bytes32 next = registry.approveWrapperPolicy(_policy(address(second)));
-        registry.activateWrapperPolicy(next); assertTrue(registry.wrapperPolicyExists(id)); assertTrue(registry.wrapperPolicyExists(bootstrap));
+        registry.activateWrapperPolicy(next); assertTrue(registry.wrapperPolicyExists(id)); assertFalse(registry.wrapperPolicyExists(bootstrap));
         (address oldAdmin, address oldImplementation, address oldOwner, bytes32 oldAdminCode, bytes32 oldImplementationCode) = registry.wrapperPolicies(id);
         assertEq(oldAdmin, p.admin); assertEq(oldImplementation, address(first)); assertEq(oldOwner, p.adminOwner);
         assertEq(oldAdminCode, p.adminCodeHash); assertEq(oldImplementationCode, p.implementationCodeHash);

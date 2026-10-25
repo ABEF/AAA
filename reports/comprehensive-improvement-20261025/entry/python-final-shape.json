@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-24T23:57:25.408720+00:00",
+  "elapsed_seconds": 9.687000000005355,
+  "tests_run": 4,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "cases": [
+    {
+      "test": "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_explicit_legacy_profile_keeps_its_original_selector_and_response_shape",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_prepared_calldata_binds_captured_cap_and_explicit_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_typed_v4_activation.TypedV4ActivationTests.test_exact_approval_then_fresh_review_is_not_automatic_execution",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases",
+      "status": "passed"
+    }
+  ],
+  "source_sha256": {
+    "frontend_api/activation.py": "869c177521c055bdde7b0c644ea25e2cfa97c993d9c276dca8cb43a9d13bf8fd",
+    "frontend_api/activation_config.py": "a4dbcb81d0df6c8c12f1f37fc0a3504d0e12b8f767b7c989a58a638e79eeb919",
+    "frontend_api/activation_trace.py": "5b9641fcd9da88f783648b29182696c111cea93e59b75973cb2ac1090ad53858",
+    "zzz_ops/production_observer.py": "119906d52c8377632b9a98c815e59bca4365d1f85b30fb9f77f5dd3a1d18c572",
+    "zzz_ops/production_v2.py": "05dcc2e54d389ae7386afae7116d9d4ddb926a25fb13a354f5944f2b57ddd139",
+    "tests_python/test_entry_review_policy.py": "2c393b3e422593a40505c5f1a55dbb002c312031060f03a421df48aaa5feac9d",
+    "tests_python/test_dual_price_integration.py": "4499983a9254a5ea0cf0d64a22d59a7ed2c59d494f4578e82719078362e9e7d1",
+    "tests_python/test_frontend_activation.py": "b786987370327064fa927d3cfa3e82a04dd02cc8e1d6d52f9f0ff23e77b750cd",
+    "tests_python/test_typed_v4_activation.py": "09c07a9a237b3c12ca5e82b96c0765af17906b1338bc526a4acac9422dd1dc85",
+    "tests_python/dual_price_fixtures.py": "0d86e4aacddadac73ad36df90143959c9de686b9f1c6245a2703da40c70e2276",
+    "tests_python/test_production_observer.py": "1a87b60cb388097ca700dcde86060ce77bb64c81fa46c1fb927039601b54ea56",
+    "tests_python/test_production_v2.py": "b6f14406ca2651feddc87944edbcc171b04c3f43c87223926b96408ad91df376"
+  },
+  "scope": "Focused Python mocked RPC/trace/profile cases, not Solidity execution or actual service qualification."
+}

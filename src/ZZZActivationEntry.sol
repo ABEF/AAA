@@ -44,6 +44,8 @@ interface IActivationV3Router {
 /// user-supplied USD value, NFT custody, permit or token rescue path exists.
 contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
     using SafeERC20 for IERC20;
+    /// @notice Signed contribution policy: no legacy unbounded entry fallback.
+    uint256 public constant REVIEW_POLICY_VERSION = 1;
     address public immutable registry;
     ZZZActivationAssets public immutable activationAssets;
     ZZZV4RouteExecutor public immutable v4Executor;
@@ -219,7 +221,13 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         nativeReceived = 0;
     }
 
-    function execute(Request calldata request) external payable live operating nonReentrant {
+    /// @notice Retired selector. Old reviews cannot silently use a newer governed cap.
+    function execute(Request calldata) external payable { revert InvalidState(); }
+
+    /// @notice The signed maximum includes conversion and placement loss; gas is separate.
+    /// A tighter execution-time policy is allowed, but never a wider one than reviewed.
+    function executeReviewed(Request calldata request, uint16 maximumLossBps)
+        external payable live operating nonReentrant {
         _deadline(request.deadline);
         address vault = _vault();
         if (request.amountIn == 0 || request.minimumLiquidity == 0 || _owner(request.nftId) != msg.sender) revert Unauthorized();
@@ -256,7 +264,7 @@ contract ZZZActivationEntry is ZZZModule, ReentrancyGuard {
         // Admit and freeze source + LP-pair prices BEFORE a token pull, approval
         // or conversion can call external code. Both bounds come from two sources.
         uint256 grossUSD = activationAssets.value(source, request.amountIn);
-        if (_pricing().beginEntry(request.nftId,request.poolId,source,request.amountIn) != grossUSD) revert InvalidState();
+        if (_pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps) != grossUSD) revert InvalidState();
         if (source != address(0)) ExactToken.pull(source, msg.sender, request.amountIn);
         if (grossUSD == 0 || (!request.increase && grossUSD < 100e18) ||
             (request.increase && grossUSD < 5e18)) revert InvalidAmount();

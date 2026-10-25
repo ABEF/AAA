@@ -1,0 +1,8 @@
+test_opener_is_private_and_does_not_change_global_urlopen (tests_python.test_rpc.RedirectTransportTests.test_opener_is_private_and_does_not_change_global_urlopen) ... ok
+test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) ... ok
+test_refused_redirect_fails_over_only_to_a_configured_chain_checked_endpoint (tests_python.test_rpc.RedirectTransportTests.test_refused_redirect_fails_over_only_to_a_configured_chain_checked_endpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.412s
+
+OK

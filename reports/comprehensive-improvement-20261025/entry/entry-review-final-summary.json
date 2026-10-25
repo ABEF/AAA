@@ -1,0 +1,39 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 402.4530000000086,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\review-policy-20261025\\entry-review-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "EntryReviewPolicyTest|TypedV4EntryTest",
+    "--match-test",
+    "testMaximumAboveTenPercentAndLegacySelectorsFailClosed|testMalformedMaximumABI|testNativeReviewedCap",
+    "--json"
+  ],
+  "cases": [
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testMalformedMaximumABIRevertsWithoutSpendingPrefundsOrUserAllowance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testMaximumAboveTenPercentAndLegacySelectorsFailClosed()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/TypedV4Entry.t.sol:TypedV4EntryTest",
+      "test": "testNativeReviewedCapRejectsBeforeConversionAndReturnsValueAtomically()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null,
+  "notice": "Incremental same production compiler profile; reruns one repaired test plus two later-added cases only. No unchanged suite repetition."
+}

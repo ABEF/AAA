@@ -1,5 +1,19 @@
 # Price security and factual LP verification
 
+## Reviewed Entry policy V1 - 2026-10-25
+
+The current undeployed pricing-V2 candidate uses
+`executeReviewed(Request,uint16 maximumLossBps)` with explicit
+`review_policy_version: 1` in activation/release profiles and matching Entry/Pricing
+getters. It rejects a captured governed cap above the caller maximum before
+funds move, retaining all final price/LP/policy checks. Legacy execute is disabled
+on the new code; historical pricing-V1/local deployments retain original ABI.
+Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
+and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+Native-V2 browser integration and actual provider/wallet qualification remain open;
+no existing chain, website build, journal or public signer was upgraded.
+
+
 ## Status and security boundary
 
 The undeployed pricing-V2 candidate combines two-source USD checks with factual

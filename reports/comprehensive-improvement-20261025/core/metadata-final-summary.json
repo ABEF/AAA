@@ -1,0 +1,80 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 69.65,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\comprehensive-improvement-20261025\\metadata-final-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "NFTMetadataTest",
+    "--json",
+    "--match-test",
+    "test(RevealedDormantMetadata|MetadataActivationFlag|PendingAndRevealedToken|TraitsStayFixed|LiveEvolution|StaleOracle|MigrationStates|IvoryOnyx|CurrentNAV|PriceGuardFailure)"
+  ],
+  "cases": [
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testCurrentNAVIncludesIdleAndCompoundAndAttributesOnlyNFTShares()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testIvoryOnyxBicolorAndTricolorMetadataNeverAffectRarityRoyaltyWeight()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testLiveEvolutionThresholdsAndDownwardMarketMovesDoNotRemoveRights()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testMetadataActivationFlagChangesWithoutChangingRarityWeightOrFeeRightsOnTransfer()",
+      "status": "Failure",
+      "reason": "next call did not revert as expected"
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testMigrationStatesAndUnavailableVenueKeepRightsAndReadableMetadata()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testPendingAndRevealedTokenURIsAreValidJSONAndNonexistentIDsRevert()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testPriceGuardFailureReportsUnavailableAndPreservesOwnershipAndRoyaltyEligibility()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testRevealedDormantMetadataShowsFixedRarityWeightWithoutRewardEligibility()",
+      "status": "Failure",
+      "reason": "Unauthorized()"
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testStaleOracleDoesNotBreakURIOrRoyaltyClaimsOrFabricateDormantState()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NFTMetadata.t.sol:NFTMetadataTest",
+      "test": "testTraitsStayFixedThroughActivationTopUpAndTransfer()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

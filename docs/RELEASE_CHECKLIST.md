@@ -1,170 +1,27 @@
-**Liquidity operating candidate (2026-10-25):** [Scoped verification](../reports/liquidity-operations-20261025/VERIFICATION.md)
-and [review](../reports/liquidity-operations-20261025/REVIEW.md) cover bounded
-two-pass placement, idle-only compound/cooldown and explicit versioned ZZZ-price
-orientation with default-disabled reviewed25%/50% keeper selection. Defaults are
-2% contribution,1% conversion,3% maintenance, gas separate. New runtime/profile
-pins and actual strategy/service qualification are required. Current scope uses
-source-chain custody, not integrated bridges/remote canonical transport; the latter
-is deferred optional work. Caller-bound review cap remains open. This does not
-approve deployment, funds, sealing or existing-service upgrades. **NOT APPROVED.**
-
-**New activation gates (2026-10-25):** selected-fee thin-market feasibility and [signed review-cap binding](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open) remain open. Current Request has no caller maximum-loss expectation; public activation/growth signing must stay disabled until versioned Entry/API/wallet qualification.
-
-**Internal audit (2026-10-25):** [Keeper budget/preflight fixes, composition
-coverage and operator corrections](../reports/preproduction-audit-20261025/REVIEW.md)
-have scoped evidence. No existing public service/journal was upgraded, and no
-real dependencies, Linux host recovery, native website/OpenSea, future-chain
-transport or independent audit gate is closed. Decision remains **NOT APPROVED**.
-
-**Price-service observation (2026-10-25):** [Public ETH candidate and ZZZ pool estimate](../reports/price-reference-20261025/OBSERVATION.md) are dated research only. Actual dual policies, independent providers, proxy/product terms, costs and target-chain gas remain unqualified. No production addresses or approval changed; decision stays **NOT APPROVED**. Unchanged test evidence is reused.
-
-**Optimized-source review (2026-10-24):** [Bounded uptime reads and cost improvements](../reports/onchain-safety/VERIFICATION.md) have focused local evidence. Re-pin the exact current runtimes, independently review price/proxy/market assumptions and qualify actual max-state gas. No loss/size/gas gate is relaxed; no live source pair is approved. Decision remains **NOT APPROVED**.
-
-**Pricing-V2 release gate (2026-10-24):** [Dual USD sources and factual LP verification](PRICE_SECURITY.md) are implemented in the undeployed candidate. This does not select or qualify real ETH/ZZZ/USDG/USDC feeds. Require explicit `pricing_version: 2`, the current Oracle/runtime plus its fixed `contributionPricing()` helper (15 helpers total), both raw observations and approved append-only policies, independent market/provider/proxy review, qualified ages and the user-selected3% tolerance, depeg/outage/recovery/full-route gas rehearsal and independent audit. Earlier single-feed evidence cannot qualify this runtime. **Decision remains NOT APPROVED.** [Scope and internal review](../reports/price-security/REVIEW.md).
-
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
-
-**Native inventory tooling (2026-10-24):** [Schema-5 preflight and read-only observation](PRODUCTION_PREFLIGHT.md) now target actual native V2/v4 bindings and current governed limits. Legacy schema 4 remains historical. The example has missing public deployment/service/review records and must remain blocked. This tool does not close actual qualification, OpenSea, native website or independent audit gates.
-
-[governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
-immediate governance may set each category up to a hard 10%. Existing stricter
-venue/caller minima remain. Pending normal custody approvals retain their original
-absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
-historical/default scope. Actual routes, services and independent audit remain open.
-
 # Release approval record - NOT APPROVED
 
-**Bounded operating controls (2026-10-24):** [future VRF gas/confirmation tuning and
-buyback operating limits](../reports/post-seal-controls/VERIFICATION.md) now have
-scoped implementation evidence and internal review. Fixed provider settings,
-pending requests and economic rights remain protected. Actual provider limits,
-current runtime/configuration observations, keeper operating rehearsal and
-independent audit remain unqualified. This does not change the NOT APPROVED decision.
+Reviewed 2026-10-25. This file records approval of **one frozen release**, not a
+second Todo or a chronological development log. The [sole Todo](../TODO.md)
+owns tasks; the [feature/evidence reference](IMPLEMENTATION_STATUS.md) owns
+implemented behavior and historical source-scoped checks. No production contract
+deployment, sealing or real-fund action is authorized by this record.
 
-**Native V2 candidate (2026-10-24):** [actual ETH custody/accounting](../reports/native-eth-port/VERIFICATION.md)
-now has focused implementation evidence, including indexed fees, raw exit and
-two-stage canonical funding/abort. [Internal findings](../reports/native-eth-port/REVIEW.md)
-do not close native website/inventory, real routes/feeds/VRF, selected-chain
-rehearsals or independent audit. Atomic ETH/WETH conversion and legacy V1 import
-remain unsupported. Existing local deployments are unchanged. **Decision remains
-NOT APPROVED**; no production deployment or sealing is authorized.
+## Current candidate and evidence limits
 
-**Current candidate (2026-10-23):** [governed custody handoff](GOVERNED_CUSTODY_HANDOFF.md) replaces the legacy LP v3 bridge/pair executor. Whole-collection handoff remains separate. Normal all-ZZZ exit, explicitly approved raw emergency exit and separate royalty-currency custody are local candidates; real finality/remote accounting, the updated production inventory and independent qualification remain open. Earlier descriptions/evidence retain their historical scope. [Verification](../reports/custody-handoff/VERIFICATION.md).
+| Boundary | Current status |
+| --- | --- |
+| Native contracts | Actual ETH accounting V2, typed v3/v4 routes, dual-source pricing V2 and reviewed Entry policy V1 are locally implemented. Require exact module/helper/runtime/ABI/configuration inventory; old WETH/local profiles are not interchangeable. |
+| Economic controls | Defaults 2% contribution / 1% conversion / 3% maintenance, gas separate; immediate governance maxima 10%. Reviewed Entry rejects policy above the caller maximum before pulls. Per-operation floors do not bound future price loss or repeated turnover. |
+| Latest local review | [Comprehensive improvements](../reports/comprehensive-improvement-20261025/REVIEW.md) and [verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md) record reviewed-cap, indexed-history, metadata, buyback and transport boundaries. Normal size/gas gates and explicit source scope remain mandatory. |
+| Market and services | Selected hookless ETH/ZZZ pool, real input/conversion routes, independent feeds/VRF, authority wallets, marketplace settlement, API/keeper hosting, strategy economics and complete target-chain gas remain unqualified. |
+| Website and wallets | Public simulation/null DEPLOYMENT; shared signer Anvil-only. Native-V2 reviewed Entry browser integration and actual extensions remain open. Preserve historical journals and local deployments. |
+| Operations and audit | Linux/target-chain recovery rehearsals, frozen-release verification and independent audit/remediation/sign-off remain required. Existing local evidence does not approve services or funds. |
 
-The historical [local pair-conversion candidate](../reports/pair-composition/VERIFICATION.md)
-predates the governed-custody replacement. Its retired pair helper is not a
-current deployment dependency. Its source-bound checks do not qualify the later
-custody/native candidate, actual routes, cross-chain accounting or independent audit.
-
-The [static demo publication](../reports/browser-wallet/PUBLICATION.md) updates website
-files only. It does not deploy contracts, enable public wallet transactions,
-qualify production services or change this decision.
-
-**Decision: NOT APPROVED.** No production deployment, sealing or use of real
-funds is authorized by this document. Reviewed 2026-10-25.
-
-The [2026-10-20 manual acceptance and priority decision](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
-records six user-reported local two-wallet passes and defers the dedicated
-10/25/100-user load campaign. Production capacity remains **unverified**; this
-is not a release approval or a waiver of independent wallet signing, bounded
-service work, transaction/accounting safety, recovery or dependency qualification.
-The [local browser-wallet candidate](BROWSER_WALLET.md) now implements independent
-signing and recovery, with scoped checks and local adapter receipts. Actual
-extension acceptance and reviewed production deployment/service qualification
-remain next; public transactions are disabled and this release is NOT APPROVED.
-
-The [client admission and proxy candidate](API_INGRESS.md) has local
-[scoped verification](../reports/api-admission/VERIFICATION.md). It does not close
-Linux/TLS/host policy, live RPC budgets, distributed ingress or alert/recovery
-qualification. No public service was changed; the release decision remains unchanged.
-
-The [$5 contribution-floor and NFT reward display candidate](CONTRIBUTION_MINIMUMS.md)
-has [scoped verification and an internal daily review](../reports/topup-and-reward-review/VERIFICATION.md).
-These change the reviewed source candidate, not this NOT APPROVED decision.
-Qualify exact $5 routes under the unchanged 1% limit, final runtime/constructor
-sizes, real priced history, concurrent services and independent audit. Public
-services and existing disposable deployments were not upgraded.
-
-The [unsigned wallet preparer](FRONTEND_TRANSACTIONS.md) now has current lifecycle,
-selected-currency checks, bounded work and separately reviewed fee estimation.
-[Scoped evidence](../reports/wallet-preparation/VERIFICATION.md) is internal backend
-verification; deployment manifests, provider fee/hash support, VRF, public ingress,
-browser authorization/receipts and independent audit remain unqualified. No
-Solidity, website, server, public transaction or monitor change occurred.
-
-The [earnings extension](EARNINGS_HISTORY.md) implements read-only processed
-all-time/24h LP and royalty history, complete configured same-chain continuity and
-optional current-price USD marks. [Scoped evidence](../reports/earnings-history/VERIFICATION.md)
-covers 186 affected tests across recorded runs, with unchanged contract evidence
-reused. Actual feeds, backfill completeness, archival/load/reorg operation and
-frontend labels/availability remain unqualified. This does not approve production.
-
-The [royalty reporting extension](ROYALTY_REPORTING.md) adds explicit optional
-ABI/configuration and partial currency-availability semantics to single-NFT reads,
-plus complete same-chain conversion history separated from claims. Review actual
-runtime pins, archive ingestion, client null/eligibility behavior and deployment
-compatibility before hosting or enabling UI actions. Local backend tests and
-unchanged contract evidence do not qualify live services; earned/USD reporting
-has its own profile and operating requirements above. No website/server or deployment change occurred.
-
-The [royalty conversion candidate](ROYALTY_SETTLEMENT.md) adds a fixed pre-seal
-converter binding, batch ETH accounting, optional-token failure isolation and an
-opt-in keeper job. Independent wrapper/route/feed and runtime-inventory review,
-marketplace settlement, live keeper/UI rehearsals and audit remain required.
-This feature is not activated on any server or public chain.
-
-The [internal review of October 18 changes](../reports/daily-security-20261018/REVIEW.md)
-leaves this decision unchanged. Resolve the VRF/handoff liveness dependency and
-contract-holder successor compatibility before qualifying recovery. Total API
-work is now bounded in the [local remediation](../reports/api-work-limits/VERIFICATION.md); qualify actual Linux workers, ingress and RPCs before public hosting. Immediate governance trust and
-per-operation rather than cumulative loss protection require explicit release
-review. The [operator manual](OPERATOR_MANUAL.md) is maintained with behavior changes;
-its scenarios still require actual operating qualification. No independent audit or complete current-source regression is claimed.
-
-The [local $1 rehearsal](ONE_DOLLAR_REHEARSAL.md) is a separate generated test
-artifact with mocked venue/services and local-chain guards. It does not change
-the production $100 minimum or this approval decision. Its evidence cannot stand
-in for the production binary, actual route/gas qualification or live operations.
-
-Development tasks, progress and detailed acceptance criteria have one home:
-the [central Todo](../TODO.md), generated from [its ledger](project-todo.json).
-The [feature and evidence reference](IMPLEMENTATION_STATUS.md) describes source and
-evidence. This file records the final go/no-go decision for one frozen release;
-it is not another task checklist.
-
-The [2026-10-18 development verification](WORK_HANDOFF.md) closes the saved
-bridge-fixture and cold-gas regression reruns. It does not approve independent
-audit, current operating rehearsals, real dependencies or cross-chain migration.
-Exact-commit Ubuntu CI remains separate from local evidence. The separately
-verified [activation preparation](../reports/activation-preparation/VERIFICATION.md)
-adds 38 focused backend checks and a local trace/budget probe; it does not qualify
-production activation routes, oracles, RPC providers, network fees or wallet UX.
-
-The [dynamic-liquidity delta](../reports/dynamic-liquidity/VERIFICATION.md)
-changes production Vault/metadata code and backend projections. Its scoped tests,
-normal sizes and internal review do not approve live services, operating parameters,
-independent audit or funds. Prior full-regression receipts are not current-source
-qualification of this delta.
-
-The subsequent [range-policy delta](../reports/range-policy/VERIFICATION.md)
-changes Strategy eligibility and confirmed API context. It adds no force role or
-Vault code change. Its timelock/cooldown/rollback and accounting checks do not
-qualify chosen production widths, repeated-operation costs, live prices or keeper
-operation. Exact-release module runtime pins must include this Strategy version.
-
-The [immediate-governance change](GOVERNANCE.md) removes both mandatory controller
-and migration waiting periods. Earlier delayed-operation evidence does not qualify
-this authority policy. Exact-release approval must review zero-delay roles and
-operations, absence of advance notice, custody guards, runtime identities and
-current operating procedures. [Scoped evidence](../reports/immediate-governance/VERIFICATION.md)
-is internal development verification; this release remains NOT APPROVED.
-
-The [independent stop-controls candidate](../reports/operator-controls/VERIFICATION.md)
-changes NFT/Registry runtimes and the read API. Production inventories, authority
-operation rehearsals, provider outage/restart and successor mint-state review
-must use these exact implementations. Scoped local verification does not close
-the independent audit, live services or deployment approval gates.
+The user-reported [local two-wallet acceptance](../reports/local-wallet-concurrency/MANUAL_ACCEPTANCE.md)
+does not prove production capacity. The dedicated 10/25/100-user campaign remains
+explicitly deferred, not passed. Historical [reports](../reports/README.md) retain
+their own commit/source scope. No fresh full regression, uninterrupted uptime or
+independent security approval is inferred from internal checks.
 
 ## Release identity
 
@@ -202,32 +59,28 @@ network or operating configuration require review of the affected approval and
 an updated release identity. A recorded approval is separate from explicit
 authorization to submit public transactions.
 
-## Initial launch and later migration
+## Initial launch and later movement
 
-An initial launch may be approved with `migration.enabled=false`, empty
-provider/policy/route inventories and observed zero registered/outbound policy
-counts, as specified in the
-[operations runbook](OPERATIONS.md#migration-disabled-initial-launch).
-[Destination capacity](../TODO.md#task-destination-slots) and
-[real bridge operation](../TODO.md#task-bridge-operation) remain open future
-activation gates; disabled migration is not evidence that they are implemented
-or safe. Enabling migration needs a separate approved configuration and review.
-The [canonical migration requirement](../TODO.md#task-security-chain-recovery)
-remains a pre-seal gate even for a migration-disabled launch: the user selected
-controlled whole-protocol migration while the source works, deferring post-halt
-recovery. The current code cannot gain that capability after sealing.
+Current scope is same-chain pool moves and separately approved **source-chain**
+custody exit/return. Normal all-ZZZ exit uses its captured retained-value floor;
+explicit raw exit transfers the admitted assets under exact raw minima without
+a USD-loss promise. There is no automatic fallback. The external recipient may
+be an EOA/contract and is trusted; source contracts cannot force its return.
 
-Different-pair conversion and canonical portability require pre-seal design,
-implementation and qualification; disabling bridges does not add those capabilities to sealed code. The
-accepted 3% migration execution budget is enforced only for supported atomic local
-move/resume and ordinary rebalance in the current candidate; it is not an asynchronous bridge guarantee.
-Reversible preparation and a same-chain handoff candidate are implemented. Full
-cross-chain canonical handoff remains absent: same-chain atomic activation is not
-a proof/transport implementation for another chain. Historic bridge channels,
-v3 lineage, successor template admission and escrow/marketplace compatibility
-require explicit review. See [the implemented boundary](CANONICAL_HANDOFF.md).
-The selected finality policy forbids a multisig-only override. See
-[migration safety](MIGRATION_SAFETY.md) and [architecture evolution](ARCHITECTURE_EVOLUTION.md).
+No integrated bridge/provider, remote destination ledger or cross-chain canonical
+activation is required for this release. Their deferred [future tasks](../TODO.md#future-migration)
+are not closed by disabling a legacy configuration. External custody can support
+an operator's bridge or issuer migration, but does not move NFT ownership or
+rewards to another chain and does not establish remote NAV or fees.
+
+Retain and qualify same-chain whole-collection handoff, including frozen owners,
+both ledgers, actual backing, abort/late receipts and compatible contract holders.
+Atomic ETH/WETH/different-pair conversion and post-halt ownership recovery remain
+unsupported. If future cross-chain canonical activation is built, the selected
+policy requires verified finality with no multisig-only override. These future
+capabilities cannot be retrofitted into immutable code merely by configuration.
+See [custody procedure](GOVERNED_CUSTODY_HANDOFF.md),
+[canonical scope](CANONICAL_HANDOFF.md) and [architecture evolution](ARCHITECTURE_EVOLUTION.md).
 
 ## Moved requirement links
 

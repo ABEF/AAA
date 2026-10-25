@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-25T00:13:55.488676+00:00",
+  "baseline": "80d330ea51abacdfb825af24730badb26e6bd83d",
+  "coverage_areas": 48,
+  "normal_object_gates": 37,
+  "production_source_bindings": 42,
+  "entry_backend_passes": 98,
+  "backend_indexer_rpc_distinct": 50,
+  "solidity_distinct_underlying_methods": 77,
+  "relative_document_links_checked": 1096,
+  "broken_relative_links": [],
+  "preserved_unpublished_history_test_body_proof": "HISTORY_REUSE.json",
+  "scope": "Local content/source consistency only; no fresh tests, live qualification, service control or publication implied."
+}

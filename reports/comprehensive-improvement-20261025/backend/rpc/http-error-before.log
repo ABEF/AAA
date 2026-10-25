@@ -1,0 +1,24 @@
+test_http_error_responses_close_before_preserved_error_and_configured_failover (tests_python.test_rpc.RpcTests.test_http_error_responses_close_before_preserved_error_and_configured_failover) ... 
+  test_http_error_responses_close_before_preserved_error_and_configured_failover (tests_python.test_rpc.RpcTests.test_http_error_responses_close_before_preserved_error_and_configured_failover) (status=429) ... FAIL
+  test_http_error_responses_close_before_preserved_error_and_configured_failover (tests_python.test_rpc.RpcTests.test_http_error_responses_close_before_preserved_error_and_configured_failover) (status=500) ... FAIL
+
+======================================================================
+FAIL: test_http_error_responses_close_before_preserved_error_and_configured_failover (tests_python.test_rpc.RpcTests.test_http_error_responses_close_before_preserved_error_and_configured_failover) (status=429)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_rpc.py", line 95, in test_http_error_responses_close_before_preserved_error_and_configured_failover
+    self.assertTrue(body.closed,'Refused provider response must not retain its connection')
+AssertionError: False is not true : Refused provider response must not retain its connection
+
+======================================================================
+FAIL: test_http_error_responses_close_before_preserved_error_and_configured_failover (tests_python.test_rpc.RpcTests.test_http_error_responses_close_before_preserved_error_and_configured_failover) (status=500)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_rpc.py", line 95, in test_http_error_responses_close_before_preserved_error_and_configured_failover
+    self.assertTrue(body.closed,'Refused provider response must not retain its connection')
+AssertionError: False is not true : Refused provider response must not retain its connection
+
+----------------------------------------------------------------------
+Ran 1 test in 0.091s
+
+FAILED (failures=2)

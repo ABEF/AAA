@@ -1,0 +1,60 @@
+{
+  "recorded_at": "2026-10-24T23:50:48.543368+00:00",
+  "scope": "offline disposable SQLite and fake RPC; no services, real databases, chain state, signing, website or public calls touched",
+  "baseline_commit": "80d330ea51abacdfb825af24730badb26e6bd83d",
+  "baseline_indexer_sha256": "f2e4a1cbd970e33f898655c755ca00a1a1a42c8459c64c270b85020d5e64f53d",
+  "final_sha256": {
+    "indexer/monitor.py": "88ca293e3c413281d74d051e5accd186c804e518fd84cd0212eab91679f11697",
+    "tests_python/test_indexer.py": "6e5477b686a6f8e1f8ee0ab1980c429dea511616292785504be4d081dfc90708",
+    "docs/INDEXER_RECOVERY.md": "e3c35e66d2830d7c8a2076b8230578a92625d5d0c9e1a9c233ed1b997178c9c4",
+    "tests_python/test_frontend_history.py": "361f6a56153a4b3041b5b6f7eaaf399fea063bae9f46299da71397a08540c7eb"
+  },
+  "negative_control": {
+    "methods": 2,
+    "failed_subcases": 12,
+    "errors": 0,
+    "result": "expected failure reproduced from isolated original baseline module, without reverting or editing the working tree",
+    "baseline_indexer_sha256": "f2e4a1cbd970e33f898655c755ca00a1a1a42c8459c64c270b85020d5e64f53d",
+    "log": "baseline-negative-control.log",
+    "note": "Supersedes the earlier conversation-only reproduction limitation. The 12 failed subcases remain 2 test methods, not 12 distinct method counts."
+  },
+  "verification": [
+    {
+      "command": "python -X utf8 -m unittest tests_python.test_indexer -v",
+      "methods_passed": 25,
+      "elapsed_seconds": 0.845,
+      "scope": "Final monitor source; test file before addition of the two further boundary methods; original output in conversation."
+    },
+    {
+      "command": "python -X utf8 -m unittest tests_python.test_indexer.IndexerTests.test_exact_configured_reorg_depth_still_recovers tests_python.test_indexer.IndexerTests.test_changed_genesis_is_not_treated_as_an_empty_history tests_python.test_frontend_history.ConfirmedHistoryTests.test_transfer_replay_and_lifetime_claims_across_past_owners -v",
+      "methods_passed": 3,
+      "elapsed_seconds": 0.147,
+      "scope": "Only two new boundary methods and one real SQLite-to-API fixture integration. Frontend history test file has unrelated pre-existing drafts and is included by exact hash, not claimed as published baseline."
+    }
+  ],
+  "distinct_passed_methods": 28,
+  "unchanged_suites_not_rerun": [
+    "Solidity/build/size/gas",
+    "keeper",
+    "full backend regression",
+    "public fork/provider",
+    "live service/recovery"
+  ],
+  "observed_assertions": {
+    "outage_or_malformed_at_tip_or_deeper": "Logical database dump and cursor exactly unchanged after failure; not a bytewise WAL backup claim.",
+    "real_shallow_reorg": "Atomic orphan deletion and cursor rollback followed by confirmed re-index succeeds.",
+    "start_anchor": "Full bounded rollback requires the original explicit start parent; missing/changed anchor or changed genesis preserves history.",
+    "concurrency": "Rollback takes BEGIN IMMEDIATE and compares the read plan/cursor before deleting; normal process lock remains required.",
+    "read_costs": {
+      "unchanged_tip_headers": 1,
+      "one_block_reorg_headers": 3
+    },
+    "depth_boundary": "Exactly two removed blocks accepted at depth two; existing three-block rejection retained."
+  },
+  "review_limits": "RPC/provider completeness and actual finality remain trusted external boundaries. A malicious provider can fabricate a self-consistent chain; these checks do not constitute consensus proofs or independent production qualification.",
+  "documentation_links_checked": [
+    "FRONTEND_HISTORY.md",
+    "HISTORY_AUDIT.md",
+    "FRONTEND_HISTORY.md"
+  ]
+}

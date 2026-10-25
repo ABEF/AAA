@@ -1,3 +1,26 @@
+# PoPL operator manual
+
+## Reviewed contributions and indexer incidents - 2026-10-25
+
+Use [reviewed Entry policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
+for new pricing-V2 deployments: require explicit version1 getters/configuration,
+new exact selector, current runtime pins and complete simulation. A governed cap
+above the encoded caller maximum rejects before funds move; prepare a new quote
+instead of widening an old signed review. Other configuration is not locked by
+that maximum. Old Anvil/website ABI and journals keep their original policy.
+
+For missing/malformed/unstable indexer ancestry, follow [indexer recovery](INDEXER_RECOVERY.md).
+Preserve the DB/WAL, cursor, anchors and event history. Switch only to a reviewed
+configured endpoint and retry; never clear history to make an outage look current.
+RPC redirects are refused, including same-host redirects: configure the actual
+reviewed final endpoint explicitly. Normal bounded failover still applies.
+
+Revealed NFT metadata now distinguishes fixed royalty trait weight from activation;
+the `royalty_activated` flag is not proof every optional payment currency is ready.
+Buyback's operating/max USD ceiling uses upper input bounds rounded upward;
+disagreeing valid prices can require a smaller batch. Execution floors and gas
+remain separate. Re-read/re-simulate after any policy/provider change.
+
 ## Liquidity placement and keeper policy - 2026-10-25
 
 Use [idle and dust ownership](IDLE_AND_DUST.md) before any cleanup. Contributions
@@ -59,7 +82,6 @@ it does not observe every intervening price or prove sustained low volatility.
 The keeper cannot choose arbitrary widths, bypass prices or guarantee always-in-
 range LP. Polling and a target width are not a promised execution time.
 
-# PoPL operator manual
 
 ## Budget feed services and label observations - 2026-10-25
 
@@ -543,6 +565,15 @@ new execution without querying the oracle or releasing reserves; it does not sto
 LP maintenance, claims or royalty processing, and does not move accumulated funds.
 Reopen by selecting a positive reviewed limit within the hard ceiling.
 This is a per-trade USD limit, not a token quantity or daily/cumulative budget.
+Current pricingV2 checks the upper admitted input price, rounded upward at token
+precision. Reduce the raw task amount if disagreement makes it exceed the ceiling;
+never switch to the lower mark just to make a batch pass.
+Current pricingV2 checks the upper admitted input price, rounded upward at token
+precision. Reduce the raw task amount if disagreement makes it exceed the ceiling;
+never switch to the lower mark just to make a batch pass.
+Current pricingV2 checks the upper admitted input price, rounded upward at token
+precision. Reduce the raw task amount if disagreement makes it exceed the ceiling;
+never switch to the lower mark just to make a batch pass.
 Zero also stops direct ZZZ burns; it leaves the 5% buyback reserve backed in Fees.
 
 Remove or resize the keeper's fixed `buybacks[].amount` tasks after lowering or

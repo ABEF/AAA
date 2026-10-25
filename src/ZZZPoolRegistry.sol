@@ -36,9 +36,6 @@ contract ZZZPoolRegistry is ZZZModule {
     address private constant PERMIT2 = 0x000000000022D473030F116dDEE9F6B43aC78BA3;
     address private constant WETH = 0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73;
     address private constant ZZZ = 0x7dbf38976f6D3b9c529e7D9484A71898B409eE6a;
-    address private constant WETH_ADMIN = 0xa3Acd31AFb851B4eB9DAD00F5204c01D924267dF;
-    address private constant WETH_IMPLEMENTATION = 0xC6B81b429797E0f555440b70cD99e032D7AE947e;
-    address private constant WETH_ADMIN_OWNER = 0x2A153c6A1B66DBc930a8d7017230ab0253005C09;
     mapping(bytes32 => PoolConfig) private pools;
     mapping(bytes32 => bool) public exists;
     mapping(bytes32 => WrapperPolicy) public wrapperPolicies;
@@ -56,13 +53,8 @@ contract ZZZPoolRegistry is ZZZModule {
     constructor(address controller) ZZZModule(controller) {
         activationAssets = new ZZZActivationAssets(controller, address(this));
         activationEntry = new ZZZActivationEntry(controller, address(this), address(activationAssets));
-        // Bootstrap observation, checked against actual code/getters before native admission.
-        WrapperPolicy memory policy = WrapperPolicy(WETH_ADMIN, WETH_IMPLEMENTATION, WETH_ADMIN_OWNER,
-            0xa4b2186ab82fa36fb4ae158582e5615ea519e757c26c13ba4a33daaaed8902a7,
-            0xbe1295f37be34ffe03ad779bda0ef278907e1856b51a3be2f35ee541d75d4650);
-        bytes32 id = _recordWrapperPolicy(policy);
-        activeWrapperPolicy = id;
-        emit WrapperPolicyActivated(bytes32(0), id);
+        // Native accounting does not use WETH. Optional wrapper metadata starts
+        // unset and requires a fresh, fully validated governance approval.
     }
     /// @notice Append-only review of the same canonical WETH address after a dependency upgrade.
     /// After sealing, only controller governance can approve/activate a policy.

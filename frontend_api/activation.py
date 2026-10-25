@@ -132,6 +132,7 @@ class ActivationTransactions:
         req['accounting_version'] = p.accounting_version
         req['routing_version'] = cfg.routing_version
         req['pricing_version'] = cfg.pricing_version
+        req['review_policy_version'] = cfg.review_policy_version
         if cfg.routing_version == 1 and req['slippage'] > 100:
             raise ActivationInputError('Legacy preparation allows at most 100 basis points of caller slippage')
         if (req['pool'],req['source']) not in cfg.sources:
@@ -186,6 +187,10 @@ class ActivationTransactions:
             if maximum != 1000 or not 0 <= loss <= maximum:
                 raise ProjectionError('Contribution execution-loss policy is invalid')
             req['execution_loss_bps']=loss
+        if cfg.review_policy_version == 1:
+            # Bind the review's current policy in the wallet calldata. Governance
+            # may tighten before inclusion; widening beyond this value reverts.
+            req['maximum_loss_bps']=req['execution_loss_bps']
         req['output']=self._route(req,source,pins,block)
         gross=req['amount']*prices[source]//10**cfg.tokens[source]['decimals']
         req['upper_input_usd'] = ((req['amount']*price_bounds[source]['upper']+10**cfg.tokens[source]['decimals']-1)//10**cfg.tokens[source]['decimals'] if cfg.pricing_version == 2 else gross)
@@ -242,7 +247,9 @@ class ActivationTransactions:
             def tx():
                 return {'from':req['owner'],'to':pins['entry'],'value':hex(req['amount'] if req['source']==ZERO else 0),
                         'data':request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
-                                            req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'])}
+                                            req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
+                                            review_policy_version=cfg.review_policy_version,
+                                            maximum_loss_bps=req.get('maximum_loss_bps'))}
             # Probe is NEVER returned to the wallet. The actual contract's
             # current contribution floor also applies to internal simulation.
             initial=self._trace(tx(),pins,req,gross,int(account[10],16),block)
@@ -267,6 +274,7 @@ class ActivationTransactions:
                 'liquidity_context':liquidity_context,
                 'contribution':None if result is None else {k:str(v) for k,v in result.items()},
                 'execution_limit_bps':req['execution_loss_bps'],
+                **({'reviewed_maximum_loss_bps':req['maximum_loss_bps']} if cfg.review_policy_version == 1 else {}),
                 'minimum_deployed_usd_18':str(req['upper_input_usd']-req['upper_input_usd']*req['execution_loss_bps']//10000),
                 'minimum_liquidity_raw':str(req['minimum_lp']) if result else None,
                 'minimum_conversion_output_raw':str(req['minimum_out']) if result else None,
@@ -276,10 +284,15 @@ class ActivationTransactions:
                               'block_timestamp':header['timestamp'],'observed_head':head,'confirmations':p.confirmations,
                               'eip1898_require_canonical':True,'protocol_finalized':False,
                               'deployment_configuration_sha256':p.identity,'activation_configuration_sha256':cfg.identity,
-                              'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,'pricing_version':cfg.pricing_version},
+                              'accounting_version':p.accounting_version,'routing_version':cfg.routing_version,
+                              'pricing_version':cfg.pricing_version,
+                              **({'review_policy_version':1} if cfg.review_policy_version == 1 else {})},
                 'wallet_revalidation_required':True,'state_overrides':False,
                 'scope':'Confirmed-block unsigned preview. Wallet must recheck owner/network, exact calldata, '
                         'deadline, live simulation and gas. Approval is a separate transaction; reprepare after confirmation. '
+                        + ('Review-policy 1 encodes the reviewed maximum only in the Entry transaction; '
+                           'a stricter execution-time cap remains binding, and a wider cap requires a fresh review. '
+                           if cfg.review_policy_version == 1 else '') +
                         'The reported on-chain execution bound excludes gas. Future execution and production qualification are not guaranteed.'}
 
 

@@ -1,0 +1,574 @@
+# Comprehensive project review and improvement
+
+Perform a comprehensive improvement pass across this project. Evaluate whether it is functionally complete, correct, secure, economically coherent, reliable, observable, operable, recoverable, understandable, efficient, and maintainable.
+
+Find both defects and worthwhile improvements. Examine normal behavior as carefully as exceptional and adversarial behavior. Improve the implementation, design, configuration, interfaces, automation, instrumentation, documentation, and operating procedures where the evidence justifies a change.
+
+Testing supports this work. The objective is demonstrably better project behavior and fewer material risks, not more tests, more code, or a longer list of hypothetical problems.
+
+## A. Establish the project and the working rules
+
+Inspect our project context, requirements, decisions, repository instructions, implementation, tests, configuration, dependencies, deployment scripts, documentation, and known issues. Compare deployed behavior and effective configuration when relevant read-only access is available and authorized.
+
+Record the revision, environment, versions, scope, and limitations of the review. Distinguish verified behavior, documented intentions, assumptions, unresolved questions, and proposed changes. Prior discussion does not establish that a feature is implemented.
+
+Identify:
+
+- The purpose and promised user journeys.
+- Components, actors, assets, data, economic rights, and trust boundaries.
+- Authoritative sources of state and the responsibilities of each component.
+- Essential correctness, security, accounting, availability, and recovery invariants.
+- Privileged powers and dependencies on trusted behavior.
+- Existing baselines for behavior, reliability, cost, and performance.
+- Features that are complete, incomplete, unused, obsolete, or only planned.
+
+This request authorizes justified local improvements to the project within its established goals. Preserve unrelated work and existing user changes. Continue through investigation, prioritization, implementation, verification, and documentation; do not stop at an audit report when useful improvements are authorized and feasible.
+
+Do not silently redefine ownership, custody, economic rights, intended financial policy, or irreversible behavior to make the code easier to fix. For consequential unresolved decisions, prepare concrete alternatives and continue independent work.
+
+Production deployments, asset movements, live governance actions, and destructive operations require the authorization already applicable to those actions. Local investigation and improvements should continue without repeatedly asking for permission.
+
+## B. Apply the coverage map intelligently
+
+For every relevant area below, answer:
+
+1. What should this part of the project accomplish?
+2. What does it actually do?
+3. What is missing, incorrect, confusing, fragile, unsafe, unnecessarily complex, or inefficient?
+4. What concrete change would improve it?
+5. What evidence supports that change?
+6. What tradeoffs or new failure modes could the change introduce?
+7. What is the least expensive convincing way to verify the improvement?
+
+A remedy may be a code correction, simpler design, clearer policy, narrower permission, better algorithm, configuration change, improved interface, better error message, useful log, reconciliation process, alert, runbook, or removal of unnecessary complexity. Do not default to adding a test or introducing a new dependency.
+
+The map is a starting point. Add project-specific review areas discovered during inspection. Treat blockchain, financial, AI, and other specialized sections as conditional. Mark genuinely irrelevant sections as not applicable with a reason.
+
+### 1. Purpose, requirements, and functional completeness
+
+- Confirm that the implemented product can achieve its stated purpose.
+- Trace important requirements and user promises to implementation and evidence.
+- Find missing steps, placeholders, unfinished integrations, dead ends, and contradictory requirements.
+- Distinguish bugs from unclear policy, missing features, and optional enhancements.
+- Assess whether simplifying or removing a feature would improve the project.
+
+### 2. Architecture, boundaries, and complexity
+
+- Map components, dependencies, data flows, asset flows, and trust boundaries.
+- Check responsibility boundaries, coupling, circular dependencies, hidden shared state, and single points of failure.
+- Identify duplicated business rules and inconsistent sources of truth.
+- Examine assumptions that different components make about each other.
+- Prefer coherent simplification when it removes entire classes of problems.
+
+### 3. Normal behavior and complete user journeys
+
+- Follow each important workflow from its initial user action through its final durable result.
+- Include new users, returning users, repeated actions, different roles, and changed ownership.
+- Compare interface wording, validation, execution, stored state, and displayed results.
+- Check whether users can tell what happened and what they should do next.
+- Improve unnecessary steps, ambiguous outcomes, and legitimate workflows that are difficult to complete.
+
+### 4. State machines and lifecycle correctness
+
+- Enumerate states, valid transitions, forbidden transitions, and terminal states.
+- Include initialization, activation, updates, suspension, resumption, completion, recovery, migration, and retirement.
+- Inspect stuck states, unreachable states, missing transitions, and invalid combinations of flags.
+- Define when each operation is actually complete.
+- Ensure emergency and maintenance paths preserve the required invariants.
+
+### 5. Input validation and boundary conditions
+
+- Check missing, empty, null, zero, negative, minimum, maximum, malformed, oversized, and unexpected inputs.
+- Include empty collections, one item, many items, duplicate identifiers, and exhausted capacity.
+- Examine normalization, encoding, Unicode, parsing differences, and validation across component boundaries.
+- Verify supported inputs remain usable when validation is strengthened.
+- Check first-use, first-user, last-user, and entirely empty-system behavior.
+
+### 6. Mathematics, precision, and units
+
+- Review formulas, denominators, signedness, casts, overflow, underflow, truncation, and division by zero.
+- Check decimals, base and quote orientation, scaling, percentages, basis points, and unit conversions.
+- Examine rounding direction, accumulated rounding, dust, and repeated small-operation extraction.
+- Derive expected financial results independently from the implementation.
+- Check consistency between calculations, stored values, APIs, and displayed amounts.
+
+### 7. Time, ordering, and temporal behavior
+
+- Review timestamps, durations, expiry, deadlines, epochs, snapshots, cooldowns, and scheduling.
+- Check boundary comparisons, clock differences, delayed processing, and future or stale timestamps.
+- Examine actions around distribution, ownership, configuration, and eligibility changes.
+- Include prolonged inactivity and resumption after an outage.
+- Determine whether timing assumptions can be manipulated or become invalid.
+
+### 8. Concurrency, atomicity, and idempotency
+
+- Inspect races, stale reads, lost updates, conflicting writes, and validation becoming stale before execution.
+- Identify atomic steps and independently committed effects.
+- Check duplicate requests, duplicate events, retries, concurrent workers, and competing transactions.
+- Handle successful execution followed by lost acknowledgement.
+- Ensure repeated or reordered actions cannot duplicate value, lose state, or corrupt accounting.
+
+### 9. Error handling, retries, and failure semantics
+
+- Distinguish invalid input, expected rejection, transient failure, permanent failure, internal defects, and unknown outcomes.
+- Preserve root causes and useful context; find swallowed exceptions and misleading success responses.
+- Review retry eligibility, bounds, backoff, cancellation, cleanup, and resource release.
+- Prevent retry storms and poison tasks from blocking unrelated work.
+- Make user and operator error messages actionable and consistent with actual recoverability.
+
+### 10. Data authority, persistence, and reconciliation
+
+- Identify the authoritative source for each important datum.
+- Review database constraints, transactions, caches, events, indexes, snapshots, and derived views.
+- Include missing, duplicated, delayed, reordered, and conflicting records.
+- Check partial writes, interrupted backfills, corrupted or incomplete history, and stale restores.
+- Provide detection and safe reconciliation of disagreements instead of permitting silent divergence.
+
+### 11. APIs, interfaces, schemas, and compatibility
+
+- Inspect request and response contracts, units, identifiers, ordering, pagination, versioning, and error codes.
+- Compare frontend, backend, worker, SDK, contract, and integration assumptions.
+- Check stale clients, mixed versions, optional fields, and schema changes.
+- Ensure limits and idempotency semantics are explicit.
+- Verify compatibility claims against actual supported environments.
+
+### 12. External dependencies and fallback behavior
+
+- Examine timeouts, outages, rate limits, stale data, malformed responses, and partial success.
+- Check changes in dependency behavior, ownership, versions, permissions, and service availability.
+- Detect contradictory provider responses and common underlying failure sources.
+- Review fallback precedence and whether fallback weakens correctness or security.
+- Verify assumptions against exact dependency versions and authoritative documentation or source.
+
+### 13. Authentication, authorization, and isolation
+
+- Check every protected action and every path to sensitive state.
+- Review role scope, privilege escalation, cross-user access, and tenant isolation where relevant.
+- Include account changes, revoked permissions, expired sessions, recovery, and ownership transfer.
+- Verify access checks remain valid at execution time.
+- Remove permissions that exceed actual responsibilities.
+
+### 14. Secrets, keys, signatures, and permission lifecycle
+
+- Review secret storage, loading, access, rotation, revocation, and accidental exposure.
+- Inspect signature validation, signer identity, nonce handling, expiry, replay protection, and domain binding.
+- Check approvals and authorizations surviving ownership or configuration changes.
+- Include compromised, lost, unavailable, and replaced keys.
+- Assess signing and transaction intent without exposing secrets or using live funds during local investigation.
+
+### 15. Application and infrastructure security
+
+- Examine injection, unsafe deserialization, SSRF, unsafe file handling, path traversal, browser security, and untrusted content.
+- Review API exposure, debug endpoints, service permissions, containers, host access, network boundaries, and transport configuration.
+- Check insecure defaults, authentication bypasses, resource exhaustion, and information leaks.
+- Inspect administrative and support interfaces as well as ordinary user interfaces.
+- Connect every concern to the actual technology and reachable attack surface.
+
+### 16. Supply chain, builds, and delivery integrity
+
+- Review dependency provenance, pinning, integrity, maintenance, and unnecessary packages.
+- Inspect build scripts, install hooks, CI permissions, release credentials, and artifact provenance.
+- Check frontend distribution, DNS, third-party scripts, and configuration delivery where relevant.
+- Confirm that reviewed source corresponds to the artifact actually used.
+- Assess actual license and distribution constraints where they affect the project.
+
+### 17. Smart-contract execution and protocol security
+
+- Review external calls, callbacks, reentrancy across functions and contracts, and read-path assumptions.
+- Check delegate execution, initialization, reinitialization, storage layout, and implementation changes.
+- Inspect return values, revert handling, native-asset handling, refunds, and residual balances.
+- Review hook permissions, callback authentication, settlement obligations, and configurable execution routes.
+- Verify the exact protocol version rather than assuming behavior from a similar integration.
+
+### 18. Token, NFT, and asset interoperability
+
+- Check supported standards and unusual token behavior: transfer fees, rebasing, callbacks, pausing, blocklists, and return values.
+- Inspect approvals, permits, operator permissions, native versus wrapped assets, and unsupported assets.
+- Review NFT transfer and receiver behavior, metadata updates, and integration expectations.
+- Check external governance or upgrades that could change asset behavior.
+- Define compatibility limits and reject unsupported combinations explicitly.
+
+### 19. Adversarial actors, abuse, collusion, and griefing
+
+- Model malicious users, bots, insiders, compromised administrators, keepers, integrations, and colluding participants.
+- Examine both rule-breaking and profitable or harmful behavior that follows the implemented rules.
+- Include Sybil activity, spam, resource exhaustion, subsidized abuse, and low-cost actions that impose large costs elsewhere.
+- Consider attackers who seek disruption rather than profit.
+- Assess required capabilities, cost, repeatability, exposure, and combined attack paths.
+
+### 20. Oracles, price integrity, and valuation abuse
+
+- Review source selection, base and quote orientation, decimals, normalization, freshness, and provenance.
+- Check zero, negative, missing, stale, delayed, discontinuous, future-dated, and contradictory values.
+- Examine TWAP windows, observation history, observation gaps, liquidity assumptions, and manipulation cost.
+- Include same-block, flash-liquidity, low-liquidity, and sustained manipulation where applicable.
+- Identify circular valuation and dependence on the same market whose action is being validated.
+- Check depegs, wrapped-asset divergence, cross-chain prices, sequencer conditions, and provider disagreement.
+- Define which operations stop or continue when prices are invalid, and how safe operation resumes.
+- Improve source policy, deviation limits, fallback rules, circuit breakers, and monitoring where justified.
+
+### 21. MEV, transaction ordering, and execution quality
+
+- Examine front-running, back-running, sandwiches, just-in-time liquidity, and adversarial ordering where relevant.
+- Check predictable schedules, stale quotes, deadlines, minimum output, maximum input, and price-impact limits.
+- Review route selection, intermediary assets, recipients, approvals, and execution parameters.
+- Determine whether an attacker can trigger unfavorable or unnecessary trades.
+- Measure economic results after execution costs; a successful transaction must still satisfy its intended economic constraints.
+
+### 22. Economic model, incentives, and sustainability
+
+- Check whether the model achieves its purpose under realistic operating and market conditions.
+- Evaluate fees, subsidies, dilution, inventory risk, execution losses, adverse selection, and operating costs.
+- Examine volatility, thin liquidity, drawdowns, depegs, inactivity, and correlated dependencies.
+- Identify dependence on continuously increasing usage, token prices, or external funding.
+- Compare strategies using explicit objectives and defensible assumptions.
+- Improve unsustainable behavior through justified limits, batching, simpler mechanisms, or revised operating policy.
+
+### 23. Asset, principal, fee, and reward accounting
+
+- Distinguish deposited principal, trading fees, rewards, compounded assets, protocol revenue, and unrealized value.
+- Reconcile active assets, idle assets, pending transfers, external custody, liabilities, and claimable balances.
+- Check fee splits, denominators, bounds, settlement order, and parameter changes.
+- Examine double counting, missing accruals, excess claims, insolvency, and incorrect classifications.
+- Ensure recoverable tokens, dust, refunds, and fees cannot become a route for extracting principal.
+
+### 24. Deposits, shares, dilution, and allocation fairness
+
+- Review share issuance and valuation before and after gains, losses, fee accrual, and rebalances.
+- Check first deposits, empty vaults, direct donations, extreme share prices, and negligible assets.
+- Examine whether new participants capture historical value or existing participants bear unfair costs.
+- Review minimum deposits, rounding direction, repeated tiny operations, and concentration.
+- Define who bears transaction costs, losses, and pending liabilities at every transition.
+
+### 25. NFT ownership and economic-right continuity
+
+- Establish exactly what each NFT represents and how those rights are enforced.
+- Check accrued versus future rewards on transfer, pending claims, approvals, and signatures.
+- Examine transfers during fee collection, queued operations, migration, and rebalancing.
+- Verify correct ownership shares, updated position values, and preserved reward history after replacing an underlying LP position.
+- Check splitting, merging, upgrading, activating, and topping up where supported.
+- Separate contractual entitlements from external marketplace assumptions, including royalties.
+
+### 26. Rewards, scoring, gamification, and eligibility abuse
+
+- Review age, productivity, power, tier, ranking, and eligibility calculations.
+- Check wash trading, circular activity, self-funded fees, flash participation, and snapshot timing.
+- Examine Sybil splitting, merging, concentration, and threshold gaming.
+- Verify that new capital does not inherit historical age or productivity incorrectly.
+- Check resets or preservation of history across transfers, rebalances, and migrations.
+- Align measurable rewards with the behavior the project intends to encourage.
+
+### 27. Liquidity provision and AMM position lifecycle
+
+- Review pool identity, asset ordering, fee settings, tick spacing, ranges, and position ownership.
+- Check creation, increase, decrease, fee collection, replacement, and retirement of positions.
+- Examine out-of-range behavior, single-sided inventory, thin liquidity, and extreme prices.
+- Verify valuation and fee-allocation assumptions against the actual AMM mechanics.
+- Inspect obsolete position references, uncollected fees, stranded balances, and incorrect integration permissions.
+
+### 28. Rebalancing, compounding, buybacks, and strategy execution
+
+- Evaluate triggers, range selection, frequency, cooldowns, hysteresis, and net expected benefit.
+- Account for gas, slippage, price impact, execution losses, and keeper costs.
+- Examine forced rebalances, repeated uneconomic actions, unsafe routes, and unfavorable timing.
+- Check preservation of ownership, accounting history, and principal restrictions through the entire execution path.
+- For compounding or buybacks, verify funding source, allocation, destination, and the resulting state.
+- Prefer measurable strategy improvements over activity that merely appears productive.
+
+### 29. Automation, keepers, and background workers
+
+- Review scheduling, duplicate or missed jobs, overlapping execution, leases, locks, and leader coordination.
+- Check deadlines, checkpoints, startup, graceful shutdown, backlog recovery, and poison-job handling.
+- Examine keeper incentives, reimbursements, competition, availability, and permission scope.
+- Ensure catching up after an outage does not create unsafe or uneconomic bursts.
+- Make progress, failure, and manual recovery observable without continuous operator attention.
+
+### 30. Governance, multisigs, and administrative authority
+
+- Map every privileged capability and dangerous combination of capabilities.
+- Review signer thresholds, signer independence, rotation, loss, unavailability, and collusion.
+- Check timelocks, modules, guards, delegates, batch execution, cancellation, and emergency bypasses where present.
+- Examine parameter changes during pending operations and retroactive changes to economic rights.
+- Assess deadlocks, unsafe initialization, irreversible role loss, and emergency resumption.
+- Distinguish code-enforced guarantees from reliance on trusted people.
+
+### 31. Permanent locking, custody, and indirect extraction
+
+- Define precisely what is permanently locked and what control each actor retains.
+- Inspect ordinary functions, rescue functions, arbitrary calls, approvals, upgrades, adapters, and configurable destinations.
+- Check principal reclassification as fees, rewards, refunds, or dust.
+- Examine swaps into unsupported assets, transfers of position ownership, and permissions surviving manager replacement.
+- Determine whether the developer, administrator, multisig, or another actor retains practical custody or withdrawal power.
+- Verify whether EOA or multisig handoffs preserve the intended restrictions.
+- Align technical authority with user-facing promises about custody and permanence.
+
+### 32. Upgrades and backward compatibility
+
+- Review mixed-version execution, old clients, queued jobs, pending transactions, and changed interfaces.
+- Check schema changes, event changes, storage compatibility, initialization, and migration sequencing.
+- Assess changes in external implementations and permissions after initial validation.
+- Distinguish code rollback from recovery of effects already committed elsewhere.
+- Preserve ownership, balances, liabilities, and user rights through partial upgrade completion.
+
+### 33. Pool, contract, chain, and custody migrations
+
+- Validate destination chain, contract, implementation, pool, assets, permissions, and preserved guarantees.
+- Define source freeze, snapshot, ownership, claim, transfer, and deposit behavior during migration.
+- Review message authentication, unique operation IDs, replay protection, and context binding.
+- Examine asset arrival without accounting, accounting without assets, duplicate delivery, delayed delivery, and partial completion.
+- Preserve historical rewards, shares, NFT rights, residual balances, and outstanding liabilities.
+- Identify custody and recovery authority at every stage.
+- Require end-to-end reconciliation and explicit completion criteria, including when one side has committed irreversibly.
+
+### 34. Blockchain transactions, RPCs, indexers, and finality
+
+- Review submission, nonce allocation, replacement, cancellation, dropped transactions, and uncertain outcomes.
+- Distinguish submitted, included, confirmed, finalized, reverted, and reorganized states as applicable.
+- Check inconsistent RPC views, indexer lag, missing events, backfills, and provider failure.
+- Examine chain ID, address, ABI, block reference, and network mismatches.
+- Reconcile chain state with local jobs and records before retrying actions with economic effects.
+
+### 35. Performance, capacity, and resource exhaustion
+
+- Measure relevant latency, throughput, CPU, memory, storage, database, RPC, and gas baselines.
+- Review unbounded loops, queues, scans, histories, and per-user or per-position growth.
+- Include realistic peaks and cheaply generated adversarial workloads.
+- Examine backpressure, fairness, contention, starvation, and block or service limits.
+- Remove demonstrated bottlenecks while preserving correctness, security, and diagnostic visibility.
+
+### 36. Cost efficiency and resource allocation
+
+- Review transaction costs, failed transactions, hosting, storage, logs, APIs, indexing, and manual operating effort.
+- Include model and tool usage costs where AI is involved.
+- Find redundant work, unnecessary polling, over-frequent jobs, and cost amplification by users.
+- Assess caching, batching, consolidation, or simpler policies against freshness and correctness requirements.
+- Prioritize improvements by actual benefit and operating cost rather than technical novelty.
+
+### 37. Logs, traces, audit trails, and diagnostics
+
+- Verify that records distinguish intent, attempt, submission, execution, confirmation, failure, and unknown outcome.
+- Correlate relevant requests, jobs, actors, transactions, assets, positions, and stages.
+- Preserve useful error causes, amounts and units, effective configuration, timestamps, and chain references where needed.
+- Record consequential administrative, permission, configuration, migration, and asset movements.
+- Check missing logs, misleading messages, duplicate noise, log injection, secret leakage, retention, rotation, and access.
+- Ensure instrumentation failure or volume does not corrupt or overwhelm primary operations.
+- Demonstrate that a representative incident can be reconstructed from the evidence recorded.
+
+### 38. Metrics, dashboards, and meaningful health
+
+- Monitor useful progress and domain correctness alongside infrastructure health.
+- Include accounting drift, pending-operation age, indexer lag, oracle freshness, source disagreement, and keeper effectiveness.
+- Track execution costs, slippage, reward anomalies, and economically unsuccessful automation where relevant.
+- Check units, denominators, aggregation, cardinality, sampling, missing data, and stale dashboards.
+- Distinguish healthy, idle, delayed, degraded, and failed states.
+- Define signals that support decisions instead of adding metrics without an operational purpose.
+
+### 39. Alerts, incident detection, and response
+
+- Connect material failure modes to actionable detection.
+- Review severity, thresholds, deduplication, routing, escalation, ownership, and runbooks.
+- Detect stalled workflows, missing data, broken monitoring, and abnormal privileged activity.
+- Base thresholds on requirements or observed behavior rather than invented numbers.
+- Check containment, evidence preservation, communication responsibilities, and safe resumption.
+- Verify the alert path in a controlled environment when necessary; do not contact people without authorization.
+
+### 40. Resilience, failover, backups, and restoration
+
+- Examine process, network, DNS, certificate, clock, disk, database, hosting, and dependency failures.
+- Identify correlated failures hidden behind apparently independent providers.
+- Define safe degraded operation and conditions requiring suspension.
+- Determine what must be backed up, what can be reconstructed, and what cannot.
+- Verify restoration or reconstruction, including consistency with effects committed outside the restored system.
+- Assess realistic recovery time, data loss, and remaining authority after compromise.
+
+### 41. Configuration, deployment, and release provenance
+
+- Inspect defaults, overrides, environment variables, feature flags, and effective runtime settings.
+- Check configuration validation, bounds, compatibility, and drift between components.
+- Verify network, address, asset, permissions, and initialization configuration.
+- Confirm that deployed artifacts match reviewed source and documented versions.
+- Review staged release, startup checks, partial deployment, and rollback or recovery procedures.
+- Ensure local, test, and production assumptions are explicitly distinguished.
+
+### 42. User experience, accessibility, and financial clarity
+
+- Review loading, empty, partial, stale, pending, success, and error states.
+- Check wallet connection, account or chain switching, approval prompts, rejection, refresh, and navigation recovery.
+- Verify amounts, decimals, units, dates, ownership percentages, accrued rewards, claimable rewards, and position values.
+- Distinguish estimates from settled values and show material costs and consequences.
+- Examine keyboard access, assistive technology, responsive layouts, and supported devices where applicable.
+- Reduce accidental duplicate submissions and make irreversible actions understandable.
+
+### 43. Privacy, data handling, and support access
+
+- Identify what sensitive information the project actually handles.
+- Review collection purpose, minimization, access, retention, export, deletion, backups, and support tooling.
+- Check leakage through logs, analytics, caches, URLs, public metadata, and diagnostic exports.
+- Examine unintended linking of identities or activity.
+- Apply actual project obligations and documented requirements; flag unresolved specialist questions without inventing compliance requirements.
+
+### 44. Maintainability, simplification, and technical debt
+
+- Inspect duplicated logic, hidden coupling, misleading abstractions, inconsistent conventions, and unclear state ownership.
+- Find dead code, obsolete flags, outdated scripts, temporary workarounds, and unfinished TODOs.
+- Prefer fixes that remove root causes and unnecessary complexity.
+- Avoid broad rewrites or cosmetic refactors without a concrete benefit.
+- Make future changes easier to understand and safer to review.
+
+### 45. Developer workflow, CI, and verification quality
+
+- Check reproducible setup, deterministic fixtures, useful diagnostics, and environment parity.
+- Review flaky checks, skipped tests, stale fixtures, weak assertions, hidden network dependencies, and misleading mocks.
+- Check whether existing tests encode an incorrect requirement or merely repeat the implementation.
+- Improve relevant static analysis, dependency checks, and CI gates when they address real risks.
+- Keep verification fast enough to use consistently and failures specific enough to diagnose.
+
+### 46. Documentation, operator usability, and handover
+
+- Review README, architecture notes, API contracts, configuration references, runbooks, and decision records.
+- Separate current behavior from plans and remove contradictory instructions.
+- Verify that a new operator can start, inspect, stop, resume, diagnose, and recover the system.
+- Remove reliance on undocumented personal knowledge.
+- Update relevant project plans and existing project memory when decisions or behavior change.
+- Document trust assumptions, economic rights, limitations, and remaining risks accurately.
+
+### 47. Long-term continuity and retirement
+
+- Consider loss of team availability, funding, domains, frontends, indexers, keepers, and external integrations.
+- Review feature deprecation, dependency retirement, and maintainership handover.
+- Determine whether users can still exercise promised rights without the original operator.
+- For permanent assets, examine the long-term availability of maintenance and claim mechanisms.
+- Avoid retirement or recovery procedures that silently weaken custody or accounting guarantees.
+
+### 48. AI agents and automated decision systems, if present
+
+- Review untrusted instructions, prompt injection, tool permissions, retrieval provenance, and model-output validation.
+- Check hallucinated inputs, fabricated success, unsafe tool arguments, and decisions based on stale context.
+- Inspect memory contamination, data exposure, excessive autonomy, and feedback loops.
+- Bound action scope, cost, retries, and the effects of uncertain output.
+- Preserve deterministic enforcement of critical permissions and invariants outside probabilistic decisions where required by the design.
+
+## C. Investigate interactions, not just isolated categories
+
+Use a coverage matrix across:
+
+- Subsystems: interface, API, contracts, accounting, workers, storage, indexers, infrastructure, and deployment.
+- Actors: new and existing users, operators, administrators, keepers, integrators, attackers, and compromised trusted actors.
+- Lifecycle: initialization, ordinary use, modification, interruption, retry, upgrade, migration, recovery, and retirement.
+- Conditions: empty, normal, boundary, large-scale, stale, degraded, inconsistent, and adversarial.
+- External context: permissions, configuration, dependency state, transaction ordering, liquidity, and market conditions.
+
+Select meaningful reachable combinations according to consequences. Do not mechanically generate tests for the entire Cartesian product.
+
+Investigate project-relevant combinations such as:
+
+- An NFT transfer while fees accrue and an underlying LP position is replaced.
+- A stale or manipulated oracle during an automated rebalance.
+- A worker crashing after a transaction succeeds but before the local record is updated.
+- A database restore that predates already-finalized chain operations.
+- A governance change while claims, migrations, or keepers are active.
+- A depeg combined with thin liquidity and a weaker fallback price source.
+- A migration where assets and accounting arrive separately.
+- An emergency pause that blocks the recovery action needed to restore service.
+
+Look for vulnerabilities or operational failures that appear only when individually reasonable mechanisms interact.
+
+## D. Investigate, prioritize, improve, and integrate
+
+For each material item:
+
+1. Establish the intended behavior and current baseline.
+2. Gather evidence through inspection, reproduction, calculation, or measurement.
+3. Classify it as a confirmed defect, improvement opportunity, accepted tradeoff, unresolved policy decision, or unverified hypothesis.
+4. Identify the root cause and affected workflows.
+5. Propose the smallest coherent improvement, including removal or simplification when appropriate.
+6. Assess impact, exposure, exploitability, confidence, expected benefit, effort, dependencies, and implementation risk.
+7. Implement justified local changes consistent with the established project goals.
+8. Verify the result and check affected invariants and interactions.
+9. Update the relevant configuration, monitoring, documentation, and operating procedures.
+10. Record what improved, how it was verified, and what remains uncertain.
+
+Prioritize material risks and high-value improvements. Distinguish release blockers, necessary correctness fixes, reliability improvements, usability improvements, maintainability work, and optional enhancements.
+
+Group repeated symptoms of one root cause. Do not inflate severity, invent probabilities, or turn every missing test into a defect.
+
+If a decision blocks one change, prepare concrete alternatives with consequences and continue independent work.
+
+## E. Use evidence and proportionate verification
+
+For each material finding or improvement, record:
+
+- The affected requirement, invariant, user journey, or operating objective.
+- Relevant files, functions, configurations, components, and version.
+- Current behavior and evidence.
+- Preconditions, actor capabilities, and trigger sequence when applicable.
+- Impact and affected assets, users, data, or operations.
+- Proposed or completed change and expected benefit.
+- Tradeoffs and possible new failure modes.
+- A concrete acceptance criterion.
+- Verification actually performed, its result, and its limits.
+- Residual risk and status.
+
+Choose verification to answer a specific question. Examples:
+
+- Does retrying after lost confirmation duplicate an economic action?
+- Can a new deposit capture rewards accrued before it arrived?
+- Does a custody path preserve the intended restrictions?
+- Can the operator identify the failed stage using existing records?
+- Does the revised strategy improve the chosen objective after all execution costs?
+- Does validation reject unsupported input while preserving supported behavior?
+- Can restored infrastructure reconcile with authoritative external state?
+
+Use the least expensive convincing method: inspection, independent calculations, accounting reconciliation, targeted reproductions, unit or integration checks, property or invariant tests, state-machine tests, fault injection, benchmarks, interface exercises, or recovery drills.
+
+For relevant defect fixes, demonstrate failure before and success after when feasible. For improvements, compare an appropriate before-and-after outcome. State when evidence is limited to inspection, simulation, mocks, or a particular environment.
+
+Do not:
+
+- Add tests solely to increase test counts or coverage percentages.
+- Use copied implementation logic as the only expected result.
+- Treat mock-only results as proof of external integration correctness.
+- Run repeated broad suites without a concrete remaining risk or required gate.
+- Build elaborate tests for trivial reversible changes.
+- Claim an unexecuted check passed.
+- Make speculative changes without a demonstrated problem or clear improvement objective.
+
+Once an item is sufficiently verified, complete its integration and move to the next justified improvement.
+
+## F. Challenge the completed changes
+
+Perform a focused final review:
+
+- Did any fix silently change the intended product, custody, or economic policy?
+- Did narrowing one path leave another equivalent path open?
+- Do the changes preserve legitimate workflows and important invariants?
+- Do fixes conflict or move the problem to another component?
+- Are logs, metrics, alerts, interfaces, and documentation consistent with the new behavior?
+- Could an attacker satisfy the checks while still violating the objective?
+- Is recovery as well-defined as normal operation?
+- Which conclusions depend on unverified external assumptions?
+- What evidence would change the assessment?
+
+Use independent reviewers where they add value. Reconcile their findings and verify evidence rather than merely combining lists.
+
+## G. Deliver an improvement report and the actual changes
+
+Provide:
+
+1. An outcome summary: what materially improved and why it matters.
+2. The reviewed scope, revision, environment, and important assumptions.
+3. A coverage map showing reviewed, partially reviewed, not reviewed, and not applicable areas.
+4. An improvement ledger: baseline weakness, evidence, change, benefit, verification, residual limitation, and status.
+5. Important findings and remaining release blockers, ordered by risk.
+6. Changes made to code, configuration, interfaces, instrumentation, documentation, and procedures.
+7. Checks actually executed, results, and unverified areas.
+8. Consequential decisions still required, with concrete alternatives and tradeoffs.
+9. A prioritized plan for remaining useful work.
+
+Clearly distinguish completed improvements, implemented but unverified changes, proposals, blocked decisions, accepted tradeoffs, and uninvestigated concerns.
+
+Completion means the relevant scope has been assessed, material authorized improvements have been implemented and integrated, verification addresses the real remaining uncertainty, and limitations are explicit.
+
+Do not stop after an arbitrary number of findings. Do not continue optional testing after its concrete purpose is satisfied. If access, time, or context prevents completion, provide a precise checkpoint and remaining work without calling the review complete.
+
+The final measure of success is a better project: more correct behavior, stronger protection of assets and rights, sounder economics, clearer interfaces, useful diagnostics, reliable operations, credible recovery, lower unnecessary cost, and simpler maintenance.

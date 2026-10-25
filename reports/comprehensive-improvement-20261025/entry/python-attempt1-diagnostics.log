@@ -1,0 +1,17 @@
+Sanitized transcript of the initial targeted Python run (not a repeated execution).
+Command: python -X utf8 -m unittest tests_python.test_entry_review_policy tests_python.test_dual_price_integration tests_python.test_production_v2 tests_python.test_production_observer
+Ran 97 tests in 49.662 seconds: 95 passed; 2 fixture errors.
+
+ERROR test_prepared_calldata_binds_captured_cap_and_explicit_profile, subtest loss=0:
+  tests_python/test_entry_review_policy.py, line29
+    rpc.economics[4]=rpc.economics[2]+100*10**18
+  TypeError: 'tuple' object does not support item assignment
+Repair: replace the tuple using an explicitly rebuilt tuple; do not weaken the zero-loss assertion.
+
+ERROR test_wrong_or_unavailable_version_getters_fail_before_approval:
+  frontend_api/activation_config.py, line206, read REVIEW_POLICY_VERSION()
+  tests_python/test_frontend_api.py, line138, dictionary-only fake RPC
+  KeyError: ('0x000000000000000000000000000000000000002f', '0x96b09228')
+Repair: model a missing ABI getter with a successful empty '0x' response rather than an unhandled fake-dictionary KeyError. Production's exact ABI read rejects it; no legacy or unavailable-value fallback added.
+
+The original initial Python source-input snapshot was not captured. These are retained transcript observations, not fabricated historical bindings. The later final-bound98-case receipt includes real final-source SHA256, full stdout, zero failures/errors/skips.

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import signal
 import sqlite3
 import time
@@ -11,6 +12,24 @@ from indexer.events import decode
 from zzz_ops.abi import address
 from zzz_ops.rpc import Rpc,RpcError
 from zzz_ops.state import integer, process_lock
+
+class IndexerSafetyError(RpcError):
+    """A public, fixed diagnostic; provider payloads and URLs are never included."""
+    def __init__(self,code:str,message:str):
+        super().__init__(message);self.code=code
+
+def _header_hash(value:Any,*,nonzero:bool=False)->str:
+    if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',value) or (nonzero and int(value,16)==0):
+        raise IndexerSafetyError('invalid_header','Malformed block header; retained history is unchanged')
+    return value.lower()
+
+def _header_quantity(value:Any)->int:
+    if not isinstance(value,str) or not re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)',value):
+        raise IndexerSafetyError('invalid_header','Malformed block header quantity; retained history is unchanged')
+    number=int(value,16)
+    if number>2**63-1:
+        raise IndexerSafetyError('invalid_header','Block header exceeds the supported database range')
+    return number
 
 class Indexer:
     def __init__(self,config:dict[str,Any],rpc:Rpc|None=None):
@@ -49,22 +68,52 @@ class Indexer:
     @property
     def next_block(self)->int:
         return self.db.execute('SELECT next_block FROM cursors WHERE chain=?',(self.chain,)).fetchone()[0]
-    def header(self,number:int)->dict[str,Any]|None:
-        return self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+    def header(self,number:int)->dict[str,Any]:
+        value=self.rpc.call('eth_getBlockByNumber',[hex(number),False])
+        if value is None:
+            raise IndexerSafetyError('header_unavailable','RPC block history is unavailable; retry a reviewed endpoint without resetting the database')
+        if not isinstance(value,dict) or _header_quantity(value.get('number'))!=number:
+            raise IndexerSafetyError('invalid_header','Missing or misnumbered block header; retained history is unchanged')
+        return {'number':hex(number),'hash':_header_hash(value.get('hash'),nonzero=True),
+            'parentHash':_header_hash(value.get('parentHash')),'timestamp':hex(_header_quantity(value.get('timestamp')))}
     def reconcile(self)->int:
-        rows=self.db.execute('SELECT number,hash FROM blocks WHERE chain=? ORDER BY number DESC LIMIT ?',
+        rows=self.db.execute('SELECT number,hash,parent,timestamp FROM blocks WHERE chain=? ORDER BY number DESC LIMIT ?',
             (self.chain,self.max_reorg+1)).fetchall()
         if not rows:return 0
-        ancestor=None;removed=0
-        for number,stored_hash in rows:
+        tip=self.next_block-1
+        if rows[0][0]!=tip:
+            raise IndexerSafetyError('database_boundary','Stored blocks and cursor disagree; preserve the database for operator review')
+        ancestor=None;removed=0;child_parent=None;proof=None
+        for number,stored_hash,stored_parent,stored_timestamp in rows:
+            if number!=tip-removed:
+                raise IndexerSafetyError('database_boundary','Stored history is not contiguous; preserve the database for operator review')
             remote=self.header(number)
-            if remote and remote['hash'].lower()==stored_hash:
-                ancestor=number;break
+            if child_parent is not None and remote['hash']!=child_parent:
+                raise IndexerSafetyError('unstable_ancestry','RPC ancestry changed during reconciliation; retry without resetting the database')
+            if remote['hash']==stored_hash:
+                if remote['parentHash']!=stored_parent or int(remote['timestamp'],16)!=stored_timestamp:
+                    raise IndexerSafetyError('inconsistent_header','RPC metadata disagrees for the same block hash; preserve the database and review the endpoint')
+                ancestor=number;proof=remote;break
             removed+=1
-            if removed>self.max_reorg:raise RpcError('Reorg exceeds configured safety bound; manual reconciliation required')
+            if removed>self.max_reorg:
+                raise IndexerSafetyError('reorg_depth','Reorg exceeds configured safety bound; manual reconciliation required')
+            child_parent=remote['parentHash'];proof=remote
         if removed==0:return 0
+        if ancestor is None:
+            anchor=self.config.get('start_parent_hash')
+            if rows[-1][0]!=self.start or self.start==0 or anchor is None or proof['parentHash']!=_header_hash(anchor):
+                raise IndexerSafetyError('unproved_ancestor','No reviewed common ancestor was proved; preserve the database for operator reconciliation')
+        boundary=ancestor if ancestor is not None else self.start
+        if self.header(boundary)!=proof:
+            raise IndexerSafetyError('unstable_ancestry','RPC ancestry changed during reconciliation; retry without resetting the database')
         rollback=self.start if ancestor is None else ancestor+1
+        # All RPC reads and the complete ancestry proof precede any destructive write.
         with self.db:
+            self.db.execute('BEGIN IMMEDIATE')
+            current=self.db.execute('SELECT number,hash,parent,timestamp FROM blocks WHERE chain=? ORDER BY number DESC LIMIT ?',
+                (self.chain,self.max_reorg+1)).fetchall()
+            if current!=rows or self.next_block!=tip+1:
+                raise IndexerSafetyError('database_changed','Indexer state changed during reconciliation; retry with one writer')
             self.db.execute('DELETE FROM blocks WHERE chain=? AND number>=?',(self.chain,rollback))
             self.db.execute('UPDATE cursors SET next_block=? WHERE chain=?',(rollback,self.chain))
         return removed
@@ -88,11 +137,10 @@ class Indexer:
         parent=previous[0] if previous else self.config.get('start_parent_hash')
         for number in range(start,end+1):
             h=self.header(number)
-            if h is None or int(h['number'],16)!=number:raise RpcError('Missing or misnumbered block')
             if parent is not None and h['parentHash'].lower()!=parent.lower():raise RpcError('Non-contiguous block ancestry')
             headers[number]=h;parent=h['hash']
         last=self.header(end)
-        if last is None or last['hash'].lower()!=headers[end]['hash'].lower():raise RpcError('Chain changed during log fetch')
+        if last!=headers[end]:raise RpcError('Chain changed during log fetch')
         prepared=[]
         for item in logs:
             number=int(item['blockNumber'],16)
@@ -139,7 +187,9 @@ def main()->None:
                     count=index.step()
                     print(json.dumps({'event':'indexed','blocks':count,'next_block':index.next_block}),flush=True)
                 except Exception as exc:
-                    print(json.dumps({'event':'indexer_error','error_type':type(exc).__name__}),flush=True)
+                    error={'event':'indexer_error','error_type':type(exc).__name__}
+                    if isinstance(exc,IndexerSafetyError):error['reason']=exc.code
+                    print(json.dumps(error),flush=True)
                     if args.once:raise
                     count=0
                 if args.once:break

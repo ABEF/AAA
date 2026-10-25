@@ -13,7 +13,18 @@ same-pair moves, explicit external custody and same-chain canonical handoff.
 Read [architecture](ARCHITECTURE.md) and [the internal audit](../reports/preproduction-audit-20261025/REVIEW.md).
 Do not redo completed behavior or unchanged tests merely to increase a pass count.
 
-First add [caller-bound contribution policy](EXECUTION_LOSS_POLICY.md#review-time-policy-binding-remains-open) to the versioned approved activation/growth flow. The current Request does not preserve the maximum cap shown during review. Update Entry/API/trace/inventory and wallet profile coherently before public signing; retain old local deployments under their original profile. The bounded two-pass planner and safe idle reinvestment now have scoped local evidence; qualify actual thin-market quotes/depth without relaxing the captured deployed-LP floor. Explicit inverse orientation and approved two-width keeper policy need real threshold/turnover/MEV and operating qualification.
+The [reviewed Entry V1 implementation](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
+now binds the caller maximum through Entry/Pricing, exact preparation/trace and
+inventory profiles. Qualify the matching native website/wallet profile before
+public signing; historical clients must reject the new ABI rather than silently
+fall back. Retain old local deployments and journals unchanged. [Latest review](../reports/comprehensive-improvement-20261025/REVIEW.md).
+
+Bounded two-pass placement and safe idle reinvestment have scoped local evidence;
+qualify actual thin-market depth/quotes without relaxing captured LP floors.
+Explicit inverse orientation and reviewed two-width keeper policy still need
+real threshold/turnover/MEV and operating qualification. Indexed-history outage
+handling and fixed rarity-weight metadata are separately improved; actual
+provider/backfill/marketplace acceptance remains open.
 
 The current release uses guarded same-chain pool movement and explicit source-chain
 custody exit to an operator-controlled address. That custodian performs external

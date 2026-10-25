@@ -38,12 +38,14 @@ def bounds(record,oracle,chain=31337,answer=10**8,stamp=980,seq=D.ZERO_HASH):
 
 
 def install(rpc):
-    oracle = rpc.pins['oracle']; rpc.config['pricing_version']=2
+    oracle = rpc.pins['oracle']; rpc.config['pricing_version']=2; rpc.config['review_policy_version']=1
     helper=addr(91);rpc.pins['contribution_pricing']=helper;rpc.codes[helper]='0x600091'
     rpc.config['contracts']['contribution_pricing']={'address':helper,'code_hash':rpc.digest(helper)}
     rpc.put(helper,'access()',values=(addr(1),));rpc.put(helper,'oracle()',values=(oracle,));rpc.put(helper,'active()',values=(0,))
     rpc.put(oracle,'contributionPricing()',values=(helper,))
     rpc.put(oracle,'PRICING_VERSION()',values=(2,))
+    rpc.put(rpc.pins['entry'],'REVIEW_POLICY_VERSION()',values=(1,))
+    rpc.put(helper,'ENTRY_REVIEW_VERSION()',values=(1,))
     rpc.put(oracle,'policyCount()',values=(len(rpc.config['tokens']),))
     for i,token in enumerate(rpc.config['tokens']):
         token.update(price_policy=make_policy(token['address'],token['decimals'],oracle,i,8000+2*i,
@@ -129,14 +131,14 @@ class DualActivationRPC(TypedActivationRPC):
         mutation=self.trace_mutation;self.trace_mutation=None
         root=super().trace(tx);self.trace_mutation=mutation
         q=[int(w,16) for w in T.decode_words('0x'+tx['data'][10:])]
-        nft,_,_,amount,_,_,minimum,_,increase=q
+        nft,_,_,amount,_,_,minimum,_,increase=q[:9]
         vault=next(frame for frame in root['calls'] if frame['to']==addr(3));mint,check=vault['calls'];helper=self.pins['contribution_pricing'];budget=self.pins['budget']
         conversions=[frame for frame in root['calls'] if frame is not vault]
         economics=[int(w,16) for w in T.decode_words('0x'+check['input'][10:])][1:]
         gross,supply,incumbent,old_deployed,deployed,idle,limits=economics
         def frame(caller,target,sig,args=(),output='0x',kind='CALL'):
             return {'type':kind,'from':caller,'to':target,'input':T.static_data(sig,*args),'output':output,'value':'0x0','calls':[]}
-        begin=frame(self.pins['entry'],helper,T.BEGIN_ENTRY,(nft,self.pool,self.source,amount),words(gross))
+        begin=frame(self.pins['entry'],helper,T.BEGIN_ENTRY_REVIEWED,(nft,self.pool,self.source,amount,q[9]),words(gross))
         for token in self.config['tokens']:
             if token['address'] not in (self.source,D.ZERO,addr(21)) and not (self.historical and token['address']==addr(22)):continue
             value=bounds(token['price_policy'],self.pins['oracle'])

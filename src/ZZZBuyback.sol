@@ -47,7 +47,12 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         _deadline(deadline);
         if (amount == 0 || operatingTradeUSD == 0) revert InvalidAmount();
         IZZZOracle oracle = IZZZOracle(access.module(Ids.ORACLE));
-        if (oracle.value(token, amount) > operatingTradeUSD) revert InvalidAmount();
+        // The maximum spend must hold at either admitted source price. Ordinary
+        // Oracle.value is the lower mark for minimum contributions/display; it
+        // can understate a trade budget. Round the upper input value upward.
+        (, uint256 upper,) = oracle.priceBounds(token);
+        if (Math.mulDiv(amount, upper, 10 ** oracle.tokenDecimals(token), Math.Rounding.Ceil) > operatingTradeUSD)
+            revert InvalidAmount();
         uint256 beforeZZZ = IERC20(zzz).balanceOf(address(this));
         uint256 beforeInput = ExactAsset.balance(token,address(this));
         IZZZFees(access.module(Ids.FEES)).releaseBuyback(token, amount);

@@ -24,6 +24,7 @@ import {ZZZFeeController} from "../src/ZZZFeeController.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {ZZZActivationEntry} from "../src/ZZZActivationEntry.sol";
+import {ZZZContributionPricing} from "../src/ZZZContributionPricing.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
 import {ZZZV4RouteExecutor} from "../src/ZZZV4RouteExecutor.sol";
 import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";
@@ -144,11 +145,11 @@ contract TypedV4EntryTest is Test {
 
     function testActualV4SourceToNativeActivationAndSourceToZZZGrowthReachRealVault() public {
         uint256 id = _mint(); vm.prank(ALICE); source.approve(address(entry), 105 ether);
-        vm.prank(ALICE); entry.execute(_request(id, address(source), 100 ether, toETH, false));
+        vm.prank(ALICE); entry.executeReviewed(_request(id, address(source), 100 ether, toETH, false), 200);
         uint256 shares = vault.sharesOf(id); assertGt(shares, 0); assertTrue(membership.eligible(id));
         assertEq(vault.contributionUSD(id), 100 ether); assertEq(nft.ownerOf(id), ALICE);
         (bool available, uint256 value) = nft.currentLPValue(id); assertTrue(available); assertGe(value, 99 ether); _assertClean();
-        vm.prank(ALICE); entry.execute(_request(id, address(source), 5 ether, toZZZ, true));
+        vm.prank(ALICE); entry.executeReviewed(_request(id, address(source), 5 ether, toZZZ, true), 200);
         assertGt(vault.sharesOf(id), shares); assertEq(vault.contributionUSD(id), 105 ether);
         assertEq(vault.bucketCount(), 1); assertEq(source.allowance(ALICE, address(entry)), 0);
         (available, value) = nft.currentLPValue(id); assertTrue(available); assertGe(value, 103.95 ether); _assertClean();
@@ -157,23 +158,37 @@ contract TypedV4EntryTest is Test {
         uint256 id = _mint(); vm.prank(ALICE); source.approve(address(entry), 100 ether);
         ZZZActivationEntry.Request memory r = _request(id, address(source), 100 ether, toETH, false);
         uint256 beforeSource = source.balanceOf(ALICE); uint256 beforeETH = ALICE.balance;
-        positions.retain(true); vm.prank(ALICE); vm.expectRevert(); entry.execute(r);
+        positions.retain(true); vm.prank(ALICE); vm.expectRevert(); entry.executeReviewed(r, 200);
         assertEq(source.balanceOf(ALICE), beforeSource); assertEq(ALICE.balance, beforeETH); assertEq(vault.sharesOf(id), 0);
         assertFalse(membership.eligible(id)); assertTrue(nft.traitsReady(id)); assertEq(nft.ownerOf(id), ALICE);
         assertEq(source.allowance(ALICE, address(entry)), 100 ether); _assertClean();
         (uint160 price,,,) = conversionState.getSlot0(PoolId.wrap(keccak256(abi.encode(sourceETH))));
         assertEq(price, uint160(1 << 96));
         positions.retain(false); r.minimumOut = 100 ether;
-        vm.prank(ALICE); vm.expectRevert(); entry.execute(r);
+        vm.prank(ALICE); vm.expectRevert(); entry.executeReviewed(r, 200);
         assertEq(source.balanceOf(ALICE), beforeSource); assertEq(vault.sharesOf(id), 0); _assertClean();
         (price,,,) = conversionState.getSlot0(PoolId.wrap(keccak256(abi.encode(sourceETH)))); assertEq(price, uint160(1 << 96));
     }
     function testActualV4NativeInputToZZZUsesExactValueAndOriginalValueBudget() public {
         uint256 id = _mint(); uint256 beforeETH = ALICE.balance;
         ZZZActivationEntry.Request memory r = _request(id, address(0), 100 ether, nativeToZZZ, false);
-        vm.prank(ALICE); entry.execute{value: 100 ether}(r);
+        vm.prank(ALICE); entry.executeReviewed{value: 100 ether}(r, 200);
         assertEq(ALICE.balance, beforeETH - 100 ether); assertEq(vault.contributionUSD(id), 100 ether);
         assertGt(vault.sharesOf(id), 0); assertTrue(membership.eligible(id));
         (bool available, uint256 value) = nft.currentLPValue(id); assertTrue(available); assertGe(value, 99 ether); _assertClean();
+    }
+    function testNativeReviewedCapRejectsBeforeConversionAndReturnsValueAtomically() public {
+        uint256 id=_mint();uint256 beforeETH=ALICE.balance;
+        ZZZActivationEntry.Request memory request=_request(id,address(0),100 ether,nativeToZZZ,false);
+        assertEq(vault.migrationBudget().contributionLossBps(),200);
+        vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.Slippage.selector);
+        entry.executeReviewed{value:100 ether}(request,100);
+        assertEq(ALICE.balance,beforeETH);assertEq(vault.sharesOf(id),0);
+        assertFalse(membership.eligible(id));_assertClean();
+        (uint160 price,,,)=conversionState.getSlot0(PoolId.wrap(keccak256(abi.encode(nativeZZZ))));
+        assertEq(price,uint160(1<<96));
+        vault.migrationBudget().setLossLimits(100,300);
+        vm.prank(ALICE);entry.executeReviewed{value:100 ether}(request,100);
+        assertEq(ALICE.balance,beforeETH-100 ether);assertGt(vault.sharesOf(id),0);_assertClean();
     }
 }

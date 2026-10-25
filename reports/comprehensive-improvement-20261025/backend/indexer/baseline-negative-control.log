@@ -1,0 +1,124 @@
+test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch (tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch) ... 
+  test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch (tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch) (missing=5) ... FAIL
+  test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch (tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch) (missing=4) ... FAIL
+test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) ... 
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'number': '0x4'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'hash': '0x1'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'hash': '0x0000000000000000000000000000000000000000000000000000000000000000'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'parentHash': 'not-a-hash'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'timestamp': '0x00'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'number': '0x4'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'hash': '0x1'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'hash': '0x0000000000000000000000000000000000000000000000000000000000000000'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'parentHash': 'not-a-hash'}) ... FAIL
+  test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'timestamp': '0x00'}) ... FAIL
+
+======================================================================
+FAIL: test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch (tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch) (missing=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 83, in test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[896 chars]4);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[896 chars]4);\nINSERT INTO "blocks" VALUES(1,5,\'0x00000[2827 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch (tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch) (missing=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 83, in test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[714 chars]3);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[714 chars]3);\nINSERT INTO "blocks" VALUES(1,4,\'0x00000[3009 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'number': '0x4'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 106, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertIsNotNone(error)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'hash': '0x1'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[896 chars]4);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[896 chars]4);\nINSERT INTO "blocks" VALUES(1,5,\'0x00000[2827 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'hash': '0x0000000000000000000000000000000000000000000000000000000000000000'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[896 chars]4);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[896 chars]4);\nINSERT INTO "blocks" VALUES(1,5,\'0x00000[2827 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'parentHash': 'not-a-hash'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 106, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertIsNotNone(error)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=False, change={'timestamp': '0x00'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 106, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertIsNotNone(error)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'number': '0x4'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[896 chars]4);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[896 chars]4);\nINSERT INTO "blocks" VALUES(1,5,\'0x00000[2827 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'hash': '0x1'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[714 chars]3);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[714 chars]3);\nINSERT INTO "blocks" VALUES(1,4,\'0x00000[3009 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'hash': '0x0000000000000000000000000000000000000000000000000000000000000000'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[714 chars]3);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[714 chars]3);\nINSERT INTO "blocks" VALUES(1,4,\'0x00000[3009 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'parentHash': 'not-a-hash'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[896 chars]4);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[896 chars]4);\nINSERT INTO "blocks" VALUES(1,5,\'0x00000[2827 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) (deeper=True, change={'timestamp': '0x00'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer.py", line 105, in test_malformed_or_misnumbered_header_preserves_database_and_cursor
+    self.assertEqual(self.database_snapshot(index),before)
+AssertionError: 'BEGI[896 chars]4);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;' != 'BEGI[896 chars]4);\nINSERT INTO "blocks" VALUES(1,5,\'0x00000[2827 chars]MIT;'
+Diff is 4020 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.306s
+
+FAILED (failures=12)

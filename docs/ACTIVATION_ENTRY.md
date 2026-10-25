@@ -1,3 +1,18 @@
+# Atomic source activation
+
+## Reviewed Entry policy V1 - 2026-10-25
+
+The current undeployed pricing-V2 candidate uses
+`executeReviewed(Request,uint16 maximumLossBps)` with explicit
+`review_policy_version: 1` in activation/release profiles and matching Entry/Pricing
+getters. It rejects a captured governed cap above the caller maximum before
+funds move, retaining all final price/LP/policy checks. Legacy execute is disabled
+on the new code; historical pricing-V1/local deployments retain original ABI.
+Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
+and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+Native-V2 browser integration and actual provider/wallet qualification remain open;
+no existing chain, website build, journal or public signer was upgraded.
+
 ## Pricing-V2 contribution security - 2026-10-24
 
 The [current price-security guide](PRICE_SECURITY.md) supersedes older single-feed
@@ -20,7 +35,6 @@ historical/default scope. Actual routes, services and independent audit remain o
 
 Actual ETH funding/accounting is implemented in the undeployed [native V2 candidate](../reports/native-eth-port/VERIFICATION.md). Use explicit version2 API/keeper profiles and fresh runtime pins; preserve old WETH deployments and journals. Exact payable values, separate backing and current-owner claims remain mandatory. Atomic ETH/WETH conversion, V1 schema import, actual native services/market qualification and independent approval remain open. The website source/build/server, Anvil state and shared Anvil-only signer are unchanged. Earlier dated entries retain their original source scope.
 
-# Atomic source activation
 
 **Selected integration (2026-10-24):** [Hookless ETH/ZZZ](POOL_SELECTION.md) supersedes Pons; historical Pons examples below keep their scope. Current Entry uses actual native ETH accounting V2 and typed single-hop v3 or hookless static-fee v4 conversion. [Native scope](NATIVE_ETH_ARCHITECTURE.md) and [typed routes](TYPED_V4_ROUTES.md) describe exact profiles and remaining qualification. Historical Pons/V3 tests below retain their original contracts and 1% fixtures.
 
@@ -32,7 +46,9 @@ custody of the NFT. This source implementation is not a deployed service.
 
 ## One source value and one execution budget
 
-The owner calls `execute(Request)` directly. ERC20 owners approve only their chosen
+For current reviewed EntryV1 the owner calls
+`executeReviewed(Request,uint16 maximumLossBps)` directly; legacy `execute`
+reverts on this code. ERC20 owners approve only their chosen
 amount to the Entry. Native V2 uses exact `msg.value` and the real zero-address
 ETH currency without wrapping for a compatible native pool. Gas is separate.
 

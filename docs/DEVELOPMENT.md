@@ -1,3 +1,20 @@
+## Focused verification selection - 2026-10-25
+
+The Linux keeper workflow now explicitly includes
+`tests_python.test_keeper_maintenance_policy` and
+`tests_python.test_keeper_range_policy`. A workflow edit is not a completed CI
+run. Preserve normal runtime/initcode and gas gates; run only changed-surface
+checks during development, then qualify a frozen release comprehensively.
+[Current evidence and limits](../reports/comprehensive-improvement-20261025/VERIFICATION.md)
+retain failed attempts, fixture repairs and exact reused-source boundaries;
+do not overwrite historical evidence with an unsupported full-regression claim.
+
+In Foundry fixtures, cache external helper/receiver getters before arming
+one-shot `vm.prank` or `vm.expectRevert`: the next external getter can consume the
+cheatcode instead of the intended action. Keep test preparation distinct from
+the action/assertion, and retain original failed diagnostics when repairing a
+harness. Do not change production guards to satisfy a stale mock.
+
 ## Current-source local rehearsal compatibility - 2026-10-24
 
 The historical local-stack bootstrap is not a qualified pricing-V2 deployment

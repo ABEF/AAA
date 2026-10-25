@@ -1,3 +1,23 @@
+## Comprehensive improvement candidate - 2026-10-25
+
+Read [improved executable prompt](../reports/comprehensive-improvement-20261025/PROMPT.md),
+[coverage/decision review](../reports/comprehensive-improvement-20261025/COVERAGE.md),
+[findings](../reports/comprehensive-improvement-20261025/REVIEW.md) and
+[verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+Reviewed Entry/Pricing/ABI policy binding, indexer ancestry preservation, no-redirect
+RPC, fixed rarity metadata and conservative buyback ceilings are implemented locally.
+Publication must be read from Git and the separate receipt; local saves alone
+are not proof of push. Production NOT APPROVED.
+
+Next: exact native-V2 website/wallet version integration, independent actual feeds,
+input/cheaper ZZZ-conversion routes, VRF/authority/OpenSea/artwork/services, strategy
+economics/real maximum gas, operating rehearsals and independent audit. Do not
+repeat unchanged tests for counts. Keep historical scope and ordinary size gates.
+Preserve unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signing/null public DEPLOYMENT and paused monitor. No public tx,
+deployment, service or server/build change. Main only; sole Todo/features/operator
+and both memories must stay aligned.
+
 ## Liquidity operations publication verified - 2026-10-25
 
 Contract implementation `593a212` and website memory-only `1e1a9ba`

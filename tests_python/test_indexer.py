@@ -1,4 +1,5 @@
 import copy,tempfile,unittest
+from unittest.mock import patch
 from pathlib import Path
 from indexer.monitor import Indexer
 from zzz_ops.abi import keccak256
@@ -57,6 +58,118 @@ class IndexerTests(unittest.TestCase):
         self.idx.max_reorg=2;self.idx.step();self.chain.fork(3)
         with self.assertRaises(RpcError):self.idx.step()
         self.assertEqual(self.idx.next_block,6)
+    def seeded_copy(self,**overrides):
+        directory=tempfile.TemporaryDirectory();self.addCleanup(directory.cleanup)
+        chain=Chain();chain.transfer(2,B);chain.transfer(5,C)
+        index=Indexer(dict(self.config,database=str(Path(directory.name)/'copy.sqlite'),**overrides),chain)
+        self.addCleanup(index.close);index.step()
+        return index,chain
+    @staticmethod
+    def database_snapshot(index):
+        return '\n'.join(index.db.iterdump())
+    def test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch(self):
+        for missing in (5,4):
+            with self.subTest(missing=missing):
+                index,chain=self.seeded_copy();before=self.database_snapshot(index)
+                if missing==4:chain.fork(5)
+                original=chain.call
+                def call(method,params):
+                    if method=='eth_getBlockByNumber' and params[0]==hex(missing):return None
+                    return original(method,params)
+                error=None
+                with patch.object(chain,'call',side_effect=call):
+                    try:index.reconcile()
+                    except RpcError as exc:error=exc
+                self.assertEqual(self.database_snapshot(index),before)
+                self.assertIsNotNone(error)
+                self.assertEqual(index.next_block,6)
+    def test_malformed_or_misnumbered_header_preserves_database_and_cursor(self):
+        changes=({'number':'0x4'},{'hash':'0x1'},{'hash':'0x'+'00'*32},
+                 {'parentHash':'not-a-hash'},{'timestamp':'0x00'})
+        for deeper in (False,True):
+            for change in changes:
+                with self.subTest(deeper=deeper,change=change):
+                    index,chain=self.seeded_copy();before=self.database_snapshot(index)
+                    if deeper:chain.fork(5)
+                    number=4 if deeper else 5
+                    wrong={**chain.blocks[number],**change}
+                    if 'number' in change:wrong['number']=hex(number+1)
+                    original=chain.call
+                    def call(method,params):
+                        if method=='eth_getBlockByNumber' and params[0]==hex(number):return copy.deepcopy(wrong)
+                        return original(method,params)
+                    error=None
+                    with patch.object(chain,'call',side_effect=call):
+                        try:index.reconcile()
+                        except RpcError as exc:error=exc
+                    self.assertEqual(self.database_snapshot(index),before)
+                    self.assertIsNotNone(error)
+                    self.assertEqual(index.next_block,6)
+    def test_same_hash_inconsistent_metadata_does_not_authorize_rollback(self):
+        for field,value in (('parentHash',h(999)),('timestamp','0x999')):
+            with self.subTest(field=field):
+                index,chain=self.seeded_copy();before=self.database_snapshot(index)
+                chain.blocks[5][field]=value
+                with self.assertRaisesRegex(RpcError,'same block hash'):index.reconcile()
+                self.assertEqual(self.database_snapshot(index),before)
+    def test_ancestor_must_remain_stable_until_rollback(self):
+        index,chain=self.seeded_copy();before=self.database_snapshot(index);chain.fork(5)
+        original=chain.call;reads=0
+        def call(method,params):
+            nonlocal reads
+            result=original(method,params)
+            if method=='eth_getBlockByNumber' and params[0]=='0x4':
+                reads+=1
+                if reads==2:result['hash']=h(4,2)
+            return result
+        with patch.object(chain,'call',side_effect=call),self.assertRaisesRegex(RpcError,'changed during reconciliation'):
+            index.reconcile()
+        self.assertEqual(reads,2);self.assertEqual(self.database_snapshot(index),before)
+    def test_inconsistent_remote_ancestry_preserves_history(self):
+        index,chain=self.seeded_copy();before=self.database_snapshot(index);chain.fork(5)
+        chain.blocks[5]['parentHash']=h(999)
+        with self.assertRaisesRegex(RpcError,'ancestry changed'):index.reconcile()
+        self.assertEqual(self.database_snapshot(index),before)
+    def test_full_bounded_reorg_requires_the_original_start_anchor(self):
+        for anchored in (True,False):
+            for changed_parent in (False,True):
+                with self.subTest(anchored=anchored,changed_parent=changed_parent):
+                    index,chain=self.seeded_copy(**({} if anchored else {'start_parent_hash':None}))
+                    before=self.database_snapshot(index);chain.fork(1)
+                    if changed_parent:chain.blocks[1]['parentHash']=h(999)
+                    if anchored and not changed_parent:
+                        self.assertEqual(index.reconcile(),5);self.assertEqual(index.next_block,1)
+                        self.assertEqual(index.nft_owners(A),{})
+                        self.assertEqual(index.step(),5)
+                    else:
+                        with self.assertRaisesRegex(RpcError,'No reviewed common ancestor'):index.reconcile()
+                        self.assertEqual(self.database_snapshot(index),before)
+    def test_reconciliation_read_cost_is_bounded_and_idle_path_unchanged(self):
+        self.idx.step()
+        with patch.object(self.chain,'call',wraps=self.chain.call) as observed:
+            self.assertEqual(self.idx.reconcile(),0)
+            self.assertEqual(observed.call_count,1)
+        self.chain.fork(5)
+        with patch.object(self.chain,'call',wraps=self.chain.call) as observed:
+            self.assertEqual(self.idx.reconcile(),1)
+            self.assertEqual(observed.call_count,3)
+    def test_exact_configured_reorg_depth_still_recovers(self):
+        self.idx.max_reorg=2;self.idx.step();self.chain.fork(4)
+        self.assertEqual(self.idx.reconcile(),2)
+        self.assertEqual(self.idx.next_block,4)
+        self.assertEqual(self.idx.step(),2)
+    def test_changed_genesis_is_not_treated_as_an_empty_history(self):
+        directory=tempfile.TemporaryDirectory();self.addCleanup(directory.cleanup)
+        chain=Chain();chain.blocks[0]={'number':'0x0','hash':h(0,2),'parentHash':h(0),'timestamp':'0x0'}
+        chain.blocks[1]['parentHash']=chain.blocks[0]['hash']
+        index=Indexer(dict(self.config,start_block=0,start_parent_hash=None,max_reorg_depth=6,
+                           database=str(Path(directory.name)/'genesis.sqlite')),chain)
+        self.addCleanup(index.close);index.step();before=self.database_snapshot(index)
+        for number in range(9):
+            chain.blocks[number]['hash']=h(number,3)
+            chain.blocks[number]['parentHash']=chain.blocks[number-1]['hash'] if number else h(0)
+        with self.assertRaisesRegex(RpcError,'No reviewed common ancestor'):index.reconcile()
+        self.assertEqual(self.database_snapshot(index),before)
     def test_reduce_rpc_range(self):
         self.chain.max_range=2
         self.assertEqual(self.idx.step(),2);self.assertEqual(self.idx.next_block,3)

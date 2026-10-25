@@ -105,7 +105,7 @@ class RequestBudgetTests(unittest.TestCase):
         def response(req,timeout):
             request=json.loads(req.data)
             return io.BytesIO(json.dumps({'id':request['id'],'jsonrpc':'2.0','result':'0x1'}).encode())
-        with patch('urllib.request.urlopen',side_effect=response) as opened:
+        with patch.object(rpc._opener,'open',side_effect=response) as opened:
             with self.assertRaises(WorkLimit), request_scope(Budget(posts=1)):
                 rpc.call('eth_blockNumber')
         self.assertEqual(opened.call_count,1)
@@ -116,7 +116,7 @@ class RequestBudgetTests(unittest.TestCase):
         def fail(req,timeout):
             observed.append(timeout);raise OSError('SECRET')
         def sleep(seconds):mono[0]+=seconds
-        with patch('urllib.request.urlopen',side_effect=fail),patch('zzz_ops.rpc.time.sleep',side_effect=sleep):
+        with patch.object(rpc._opener,'open',side_effect=fail),patch('zzz_ops.rpc.time.sleep',side_effect=sleep):
             with self.assertRaises(WorkLimit),request_scope(Budget(seconds=.1,clock=lambda:mono[0])):
                 rpc.call('eth_blockNumber')
         self.assertEqual(len(observed),1)

@@ -1,3 +1,19 @@
+## 2026-10-25 - Reviewed contributions and resilient indexed history
+
+Reviewed EntryV1 and Pricing bind the caller loss maximum before asset pulls,
+with explicit ABI/trace/configuration/inventory capabilities. Remove stale
+automatic wrapper-policy seeding; retain fresh governed admission. Preserve
+indexed history on missing/malformed/unstable ancestry and refuse RPC redirects.
+Separate fixed revealed royalty weight from activation in metadata; use upper
+input bounds for buyback USD ceilings. Add maintenance/range suites to focused
+Linux CI and consolidate current README/release/operator status.
+
+[Review](../reports/comprehensive-improvement-20261025/REVIEW.md) and
+[source-scoped verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md)
+distinguish actual local evidence, historical reuse and external gates. No
+website build/server, existing Anvil/journal, public signer/transaction or
+monitor change. Production NOT APPROVED.
+
 ## Liquidity operations - 2026-10-25
 
 User-approved contribution default2% (conversion1%, maintenance3%; gas separate).

@@ -13,6 +13,11 @@ from zzz_ops.errors import RpcError, WorkLimit
 
 class WrongChain(RpcError): pass
 
+class _RejectRedirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self,req,fp,code,msg,headers,newurl):
+        fp.close()
+        raise RpcError('RPC redirects are not permitted; configure the reviewed endpoint explicitly')
+
 class Rpc:
     READ_METHODS = frozenset({
         'eth_chainId','eth_blockNumber','eth_call','eth_estimateGas','eth_gasPrice',
@@ -35,6 +40,8 @@ class Rpc:
         self.timeout, self.retries = timeout, retries
         self.active = 0
         self._ids = itertools.count(1)
+        # Per-client policy only: never install or mutate urllib's global opener.
+        self._opener = urllib.request.build_opener(_RejectRedirects())
 
     @property
     def active_url(self) -> str: return self.urls[self.active]
@@ -42,8 +49,16 @@ class Rpc:
     def _read_http(self, url: str, raw: bytes) -> bytes:
         """Transport hook; response identity, limits and budgets stay in _post."""
         request = urllib.request.Request(url, data=raw, headers={'Content-Type':'application/json'})
-        with urllib.request.urlopen(request,timeout=timeout(self.timeout)) as response:
-            return response.read(8 * 1024 * 1024 + 1)
+        try:
+            with self._opener.open(request,timeout=timeout(self.timeout)) as response:
+                return response.read(8 * 1024 * 1024 + 1)
+        except urllib.error.HTTPError as exc:
+            # Error responses own sockets too; release them before bounded retry.
+            exc.close()
+            # Other 3xx codes also fail closed without exposing the Location/URL.
+            if 300 <= exc.code < 400:
+                raise RpcError('RPC redirects are not permitted; configure the reviewed endpoint explicitly') from None
+            raise
 
     def _post(self, url: str, method: str, params: list[Any]) -> Any:
         consume('posts')

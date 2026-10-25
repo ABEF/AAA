@@ -41,6 +41,14 @@ class ActivationConfig:
         if type(self.routing_version) is not int or self.routing_version not in (1, 2):
             raise ValueError('Unsupported explicit activation routing profile')
         if 'routing_version' in config: fields.add('routing_version')
+        self.review_policy_version = config.get('review_policy_version', 0)
+        if type(self.review_policy_version) is not int or self.review_policy_version not in (0,1):
+            raise ValueError('Unsupported explicit activation review-policy profile')
+        if 'review_policy_version' in config: fields.add('review_policy_version')
+        if self.pricing_version == 2 and self.review_policy_version != 1:
+            raise ValueError('Dual-price activation preparation requires explicit review_policy_version 1; update the reviewed Entry/Pricing bindings')
+        if self.review_policy_version == 1 and self.pricing_version != 2:
+            raise ValueError('Reviewed Entry requires explicit dual pricing version 2')
         self.range_policy_version = config.get('range_policy_version', 0)
         if type(self.range_policy_version) is not int or self.range_policy_version not in (0,1):
             raise ValueError('Unsupported explicit activation range-policy profile')
@@ -193,6 +201,10 @@ class ActivationConfig:
             for role,method,expected in bindings[-2:]:
                 if _address_word(read(role,method)[0]) != pins[expected]: raise ProjectionError('Contribution pricing helper binding differs')
             if _bool(read('contribution_pricing','active()')[0]): raise ProjectionError('Contribution pricing context is unexpectedly active')
+        if self.review_policy_version == 1:
+            for role,method in (('entry','REVIEW_POLICY_VERSION()'),('contribution_pricing','ENTRY_REVIEW_VERSION()')):
+                if int(read(role,method)[0],16) != 1:
+                    raise ProjectionError('Reviewed Entry/Pricing version is unsupported; no legacy fallback is permitted')
         prices = {}; bounds = {}
         for target in set(used_tokens):
             if target not in self.tokens: raise ProjectionError('Input/pool currency is not reviewed')

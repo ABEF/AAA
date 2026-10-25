@@ -4,7 +4,8 @@ pragma solidity 0.8.26;
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {ZZZBuyback} from "../src/ZZZBuyback.sol";
-import {MockAccess, MockPools} from "./mocks/Mocks.sol";
+import {ZZZOracle} from "../src/ZZZOracle.sol";
+import {MockAccess, MockPools, MockFeed} from "./mocks/Mocks.sol";
 import {Ids, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 
 // TEST ONLY: deterministic authority, price, funded reserve and native swap
@@ -19,9 +20,17 @@ contract OperatingLimitOracle {
     function value(address, uint256 amount) external view returns (uint256) {
         require(!unavailable, "fixture price unavailable"); return amount;
     }
+    function priceBounds(address) external view returns (uint256, uint256, bytes32) {
+        require(!unavailable, "fixture price unavailable"); return (1 ether, 1 ether, keccak256("TEST_ONLY_EQUAL_BOUNDS"));
+    }
+    function tokenDecimals(address) external pure returns (uint8) { return 18; }
     function quote(address, address, uint256 amount) external view returns (uint256) {
         require(!unavailable, "fixture price unavailable"); return amount;
     }
+}
+// TEST ONLY: historical lower-value interface, deliberately missing dual bounds.
+contract OperatingLimitLegacyOracle {
+    function value(address, uint256 amount) external pure returns (uint256) { return amount; }
 }
 contract OperatingLimitToken is ERC20 {
     ZZZBuyback public callback;
@@ -99,6 +108,62 @@ contract BuybackOperatingLimitTest is Test {
     }
     function _execute(address asset, uint256 amount) private {
         vm.prank(KEEPER); buyback.execute(asset, amount, POOL, block.timestamp + 100);
+    }
+    function _useIndependentFixtureBounds(address asset) private returns (ZZZOracle source, MockFeed secondary) {
+        // Separate controllable sources exercise the real admission/round path;
+        // fixture identity declarations are not live-provider qualification.
+        source = new ZZZOracle(address(access), address(0));
+        MockFeed primary = new MockFeed(8, 100_000_000); secondary = new MockFeed(8, 103_000_000);
+        source.setDualFeed(asset,
+            ZZZOracle.SourcePolicy(address(primary), address(primary).codehash, keccak256("FIXTURE_A"), 3600, 8),
+            ZZZOracle.SourcePolicy(address(secondary), address(secondary).codehash, keccak256("FIXTURE_B"), 3600, 8),
+            300, keccak256("TEST_ONLY_BUDGET_BOUND_REVIEW"));
+        access.bind(Ids.ORACLE, address(source));
+    }
+    function testUpperBoundBudgetRejectsThreePercentSpreadBeforeReleasingReserve() public {
+        (ZZZOracle source,) = _useIndependentFixtureBounds(address(token)); access.seal();
+        buyback.setOperatingTradeUSD(20 ether);
+        assertEq(source.value(address(token), 20 ether), 20 ether, "old lower-bound check would accept");
+        uint256 supply = token.totalSupply();
+        vm.expectRevert(bytes4(keccak256("InvalidAmount()"))); _execute(address(token), 20 ether);
+        assertEq(fees.releases(), 0); assertEq(fees.tokenReserve(), 200 ether);
+        assertEq(token.totalSupply(), supply); assertEq(token.balanceOf(address(buyback)), 0);
+    }
+    function testUpperBoundExactCeilingSucceedsAndOneRawUnitOverReverts() public {
+        _useIndependentFixtureBounds(address(token)); access.seal(); buyback.setOperatingTradeUSD(20.6 ether);
+        vm.expectRevert(bytes4(keccak256("InvalidAmount()"))); _execute(address(token), 20 ether + 1);
+        assertEq(fees.releases(), 0); assertEq(fees.tokenReserve(), 200 ether);
+        uint256 supply = token.totalSupply(); _execute(address(token), 20 ether);
+        assertEq(fees.releases(), 1); assertEq(fees.tokenReserve(), 180 ether);
+        assertEq(token.totalSupply(), supply - 20 ether);
+    }
+    function testUpperBoundBudgetCeilRoundingProtectsSubUnitValue() public {
+        (ZZZOracle source,) = _useIndependentFixtureBounds(address(token)); access.seal();
+        assertEq(source.value(address(token), 1), 1);
+        buyback.setOperatingTradeUSD(1);
+        vm.expectRevert(bytes4(keccak256("InvalidAmount()"))); _execute(address(token), 1);
+        assertEq(fees.releases(), 0);
+        buyback.setOperatingTradeUSD(2); _execute(address(token), 1);
+        assertEq(fees.releases(), 1); assertEq(fees.tokenReserve(), 200 ether - 1);
+    }
+    function testNativeInputAlsoUsesUpperBoundBeforeReleaseOrSwap() public {
+        (ZZZOracle source,) = _useIndependentFixtureBounds(address(0)); access.seal();
+        buyback.setOperatingTradeUSD(20 ether);
+        assertEq(source.tokenDecimals(address(0)), 18);
+        vm.expectRevert(bytes4(keccak256("InvalidAmount()"))); _execute(address(0), 20 ether);
+        assertEq(fees.releases(), 0); assertEq(fees.nativeReserve(), 200 ether); assertEq(manager.nativeSpent(), 0);
+    }
+    function testMissingDualBoundsCannotFallBackToLowerOnlyValue() public {
+        access.bind(Ids.ORACLE, address(new OperatingLimitLegacyOracle())); access.seal();
+        vm.expectRevert(); _execute(address(token), 1 ether);
+        assertEq(fees.releases(), 0); assertEq(fees.tokenReserve(), 200 ether);
+    }
+    function testUnavailableSecondarySourceCannotReleaseBuybackReserve() public {
+        (, MockFeed secondary) = _useIndependentFixtureBounds(address(token)); access.seal();
+        secondary.set(0, block.timestamp, block.timestamp);
+        vm.expectRevert(abi.encodeWithSelector(bytes4(keccak256("InvalidPrice(address)")), address(token)));
+        _execute(address(token), 1 ether);
+        assertEq(fees.releases(), 0); assertEq(fees.tokenReserve(), 200 ether);
     }
     function testInitialOperatingLimitMatchesImmutableHardCeiling() public view {
         assertEq(buyback.maxTradeUSD(), HARD); assertEq(buyback.operatingTradeUSD(), HARD);

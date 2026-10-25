@@ -1,0 +1,26 @@
+test_opener_is_private_and_does_not_change_global_urlopen (tests_python.test_rpc.RedirectTransportTests.test_opener_is_private_and_does_not_change_global_urlopen) ... ok
+test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) ... ok
+test_refused_redirect_fails_over_only_to_a_configured_chain_checked_endpoint (tests_python.test_rpc.RedirectTransportTests.test_refused_redirect_fails_over_only_to_a_configured_chain_checked_endpoint) ... ok
+test_accept_loopback (tests_python.test_rpc.RpcTests.test_accept_loopback) ... ok
+test_boolean_response_id_is_not_an_integer_id (tests_python.test_rpc.RpcTests.test_boolean_response_id_is_not_an_integer_id) ... ok
+test_bounds_reject_invalid_transport_configuration (tests_python.test_rpc.RpcTests.test_bounds_reject_invalid_transport_configuration) ... ok
+test_chain_rechecked_every_call (tests_python.test_rpc.RpcTests.test_chain_rechecked_every_call) ... ok
+test_endpoint_failover (tests_python.test_rpc.RpcTests.test_endpoint_failover) ... ok
+test_error_message_sanitized (tests_python.test_rpc.RpcTests.test_error_message_sanitized) ... ok
+test_incomplete_http_body_falls_back (tests_python.test_rpc.RpcTests.test_incomplete_http_body_falls_back) ... ok
+test_noninteger_error_code_is_not_reflected (tests_python.test_rpc.RpcTests.test_noninteger_error_code_is_not_reflected) ... ok
+test_reject_broadcast (tests_python.test_rpc.RpcTests.test_reject_broadcast) ... ok
+test_reject_empty (tests_python.test_rpc.RpcTests.test_reject_empty) ... ok
+test_reject_insecure_remote (tests_python.test_rpc.RpcTests.test_reject_insecure_remote) ... ok
+test_request_and_response_identity (tests_python.test_rpc.RpcTests.test_request_and_response_identity) ... ok
+test_response_id_mismatch (tests_python.test_rpc.RpcTests.test_response_id_mismatch) ... ok
+test_response_size_limit (tests_python.test_rpc.RpcTests.test_response_size_limit) ... ok
+test_unknown_and_bundler_methods_rejected (tests_python.test_rpc.RpcTests.test_unknown_and_bundler_methods_rejected) ... ok
+test_wrong_chain_never_executes_read (tests_python.test_rpc.RpcTests.test_wrong_chain_never_executes_read) ... ok
+test_post_budget_includes_chain_checks_and_retries (tests_python.test_request_limits.RequestBudgetTests.test_post_budget_includes_chain_checks_and_retries) ... ok
+test_timeout_and_backoff_use_only_remaining_budget (tests_python.test_request_limits.RequestBudgetTests.test_timeout_and_backoff_use_only_remaining_budget) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.814s
+
+OK

@@ -1,3 +1,25 @@
+# Activation and top-up preparation
+
+The current native service profile is
+`accounting_v2_routing_v2_pricing_v2_review_v1`. Reviewed responses include
+`reviewed_maximum_loss_bps` and `provenance.review_policy_version`; existing
+`execution_limit_bps` remains the actual captured cap. Explicit legacy review0
+responses retain their original shape and selector. No null new field or
+runtime-error fallback is used to impersonate compatibility.
+
+## Reviewed Entry policy V1 - 2026-10-25
+
+The current undeployed pricing-V2 candidate uses
+`executeReviewed(Request,uint16 maximumLossBps)` with explicit
+`review_policy_version: 1` in activation/release profiles and matching Entry/Pricing
+getters. It rejects a captured governed cap above the caller maximum before
+funds move, retaining all final price/LP/policy checks. Legacy execute is disabled
+on the new code; historical pricing-V1/local deployments retain original ABI.
+Read [policy and exact compatibility boundaries](EXECUTION_LOSS_POLICY.md#review-time-policy-binding)
+and [scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+Native-V2 browser integration and actual provider/wallet qualification remain open;
+no existing chain, website build, journal or public signer was upgraded.
+
 **Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
 undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
@@ -6,7 +28,6 @@ venue/caller minima remain. Pending normal custody approvals retain their origin
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
 historical/default scope. Actual routes, services and independent audit remain open.
 
-# Activation and top-up preparation
 
 ## Composed-bucket share pricing - 2026-10-23
 

@@ -1,0 +1,33 @@
+test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) ... 
+  test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) (status=301) ... FAIL
+  test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) (status=302) ... FAIL
+  test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) (status=303) ... FAIL
+
+======================================================================
+FAIL: test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) (status=301)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_rpc.py", line 120, in test_redirect_destinations_never_receive_rpc_requests
+    self.assertEqual(len(trapped),before,'A redirect must not reach the unreviewed target')
+AssertionError: 1 != 0 : A redirect must not reach the unreviewed target
+
+======================================================================
+FAIL: test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) (status=302)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_rpc.py", line 120, in test_redirect_destinations_never_receive_rpc_requests
+    self.assertEqual(len(trapped),before,'A redirect must not reach the unreviewed target')
+AssertionError: 2 != 1 : A redirect must not reach the unreviewed target
+
+======================================================================
+FAIL: test_redirect_destinations_never_receive_rpc_requests (tests_python.test_rpc.RedirectTransportTests.test_redirect_destinations_never_receive_rpc_requests) (status=303)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_rpc.py", line 120, in test_redirect_destinations_never_receive_rpc_requests
+    self.assertEqual(len(trapped),before,'A redirect must not reach the unreviewed target')
+AssertionError: 3 != 2 : A redirect must not reach the unreviewed target
+
+----------------------------------------------------------------------
+Ran 1 test in 0.081s
+
+FAILED (failures=3)

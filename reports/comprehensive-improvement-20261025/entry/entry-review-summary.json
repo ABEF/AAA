@@ -1,0 +1,170 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 593.56,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\review-policy-20261025\\entry-review-profile",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "EntryReviewPolicyTest|ContributionEntryPriceSecurityTest|TypedV4EntryTest|NativeWrapperPolicyTest",
+    "--json",
+    "--match-test",
+    "testReview|testSigned|testZeroMaximum|testMaximumAbove|testTenPercent|testGrowthReview|testEntryPrice|testActualV4|testRealVault|testWrapperPolicy"
+  ],
+  "cases": [
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureHonestReviewedRouteCommitsAndClearsBasis()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsSourceRoundChangeDuringConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsTighterLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsVenueFloorChangeDuringConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureRejectsWiderLossPolicyDuringSourceConversion()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testEntryPriceCaptureSurvivesUntilFinalApprovalReset()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/ContributionEntryPriceSecurity.t.sol:ContributionEntryPriceSecurityTest",
+      "test": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testGrowthReviewRejectsWideningAndPreservesExistingSharesAndClaims()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testMaximumAboveTenPercentAndLegacySelectorsFailClosed()",
+      "status": "Failure",
+      "reason": "next call did not revert as expected"
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testRealVaultActivationBindsHundredGrossToNinetyNineActualLPAndOwnerEvent()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testReviewVersionsAndUnsetWrapperMetadataAreExplicit()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testReviewedMaximumRejectsRaisedGovernedCapBeforeSourcePullAndSwap()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testSignedMaximumAllowsTighterGovernedPolicyButNeverWidensActualFloor()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testTenPercentMaximumCannotOverrideStrongerPhysicalVenueMinimum()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/EntryReviewPolicy.t.sol:EntryReviewPolicyTest",
+      "test": "testZeroMaximumRequiresZeroGovernedCapAndLosslessActualDeployment()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyActivationRechecksCurrentObservation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyAfterSealRequiresBothImmediateGovernanceActions()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyAppendOnlyAndHistoricalRecordSurvivesActivation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyMustMatchCurrentCodeOwnerAndReportedImplementation()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyRejectsZeroOrEOAImplementationAndDoesNotAcceptNativeFunds()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyRenouncedOwnerCanBeReviewedThroughImmediateGovernance()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/NativeWrapperPolicy.t.sol:NativeWrapperPolicyTest",
+      "test": "testWrapperPolicyUnauthorizedApprovalAndActivationRejected()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/TypedV4Entry.t.sol:TypedV4EntryTest",
+      "test": "testActualV4NativeInputToZZZUsesExactValueAndOriginalValueBudget()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/TypedV4Entry.t.sol:TypedV4EntryTest",
+      "test": "testActualV4SourceToNativeActivationAndSourceToZZZGrowthReachRealVault()",
+      "status": "Success",
+      "reason": null
+    },
+    {
+      "suite": "test/TypedV4Entry.t.sol:TypedV4EntryTest",
+      "test": "testRealVaultFailureAndConversionMinimumFailureRevertActualSwapAndUserFunds()",
+      "status": "Success",
+      "reason": null
+    }
+  ],
+  "diagnostic": null
+}

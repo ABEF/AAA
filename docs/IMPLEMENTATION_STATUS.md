@@ -1,3 +1,27 @@
+# Feature and evidence reference
+
+## Reviewed Entry, truthful metadata and resilient history - 2026-10-25
+
+[Review and scope](../reports/comprehensive-improvement-20261025/REVIEW.md) and
+[verification](../reports/comprehensive-improvement-20261025/VERIFICATION.md) cover:
+
+- Reviewed Entry V1 binds a caller maximum loss cap before funds move, with
+  explicit Pricing/configuration/trace/inventory versions and no legacy fallback.
+  Stale automatic wrapper admission is removed; explicit validated admission stays.
+- Revealed metadata shows rarity weight 1/2/3 while dormant; activation is a
+  separate flag. Actual dormant royalty ledger weight stays zero. Unknown reveal
+  traits remain unknown, image mapping and economic rights are unchanged.
+- Missing/malformed/unstable RPC ancestry preserves indexed history. Destructive
+  rollback requires proven bounded ancestry and one guarded database transaction.
+- RPC transport cannot redirect to an unreviewed endpoint; configured failover
+  and request budgets remain. Buyback ceilings use conservative upper input value.
+- Focused Linux keeper CI now includes maintenance/range policy checks.
+
+The new native website/wallet profile, real services/markets, operating economics,
+rehearsals and independent audit remain open. Old historical sections below retain
+their original source/status, including formerly open review binding. No service,
+chain, public website build, journal or deployment was changed. Production NOT APPROVED.
+
 ## Liquidity placement, idle and reviewed keeper ranges - 2026-10-25
 
 The current candidate defaults to **2% contribution /1% conversion /3% maintenance**,
@@ -27,11 +51,11 @@ bridges, remote NFT/reward transport and post-halt recovery are deferred optiona
 scope, not current launch/sealing requirements. Same-chain whole-collection handoff
 is retained and still needs qualification.
 
-**Open:** caller-bound reviewed contribution cap in Entry.Request, real routes/
+**Open:** matching native website/wallet integration for reviewed EntryV1, real routes/
 independent feeds, economic thresholds/max-state gas, services/authorities/VRF,
 OpenSea/native website integration, rehearsals and independent audit. Normal
-Vault runtime margin57bytes and Registry initcode margin31bytes require a size-
-safe next design. No public signing/deployment or running-service change.
+Vault runtime remains near its normal limit; use the latest combined size
+receipt for Registry headroom after the reviewed Entry change. No public signing/deployment or running-service change.
 Production NOT APPROVED. Older dated evidence below keeps its original source scope.
 
 ## Pre-production composition and keeper audit - 2026-10-25
@@ -645,7 +669,6 @@ No new test execution or code change is claimed by that earlier acceptance recor
 The dedicated 10/25/100-user load campaign is deferred. Production
 capacity is unverified and release remains NOT APPROVED.
 
-# Feature and evidence reference
 
 Reviewed 2026-10-19; the architecture repair and evidence were first recorded in
 `4fbd4c0`. The user subsequently requested integration into `main` and use of

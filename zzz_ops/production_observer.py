@@ -54,7 +54,8 @@ UINT_GETTERS = frozenset(('getMinDelay', 'canonicalState', 'ACCOUNTING_VERSION',
     'MAX_SUPPLY', 'subscriptionId', 'requestConfirmations', 'callbackGasLimit', 'outstandingCount',
     'maxTradeUSD', 'operatingTradeUSD', 'phase', 'originChain', 'MAX_LOSS_BPS',
     'contributionLossBps', 'maintenanceLossBps', 'MAX_CLAIMS', 'conversionLossBps',
-    'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION', 'RANGE_POLICY_VERSION'))
+    'rewardReceiverCount', 'custodyCount', 'PRICING_VERSION', 'RANGE_POLICY_VERSION',
+    'REVIEW_POLICY_VERSION', 'ENTRY_REVIEW_VERSION'))
 HASH_GETTERS = frozenset(('keyHash', 'zzzCodeHash', 'contributionPool', 'SCHEMA'))
 ADDRESS_GETTERS = frozenset(('access', 'canonicalHandoff', 'bootstrap', 'royaltyFactory',
     'migrationBudget', 'mintProceedsRecipient', 'royaltyRewards', 'claimRouter', 'metadataRenderer',
@@ -674,6 +675,8 @@ def observe(config, rpc):
     if (not isinstance(config, dict) or type(config.get('schema_version')) is not int or config.get('schema_version') != 5 or
             not isinstance(config.get('chains'), list) or len(config['chains']) != 1):
         raise ValueError('Current observer requires the explicit single-chain schema 5')
+    if type(config.get('review_policy_version')) is not int or config.get('review_policy_version') != 1:
+        raise ValueError('Current schema-5 observation requires explicit review_policy_version 1')
     output = copy.deepcopy(config)
     chain = output['chains'][0]
     if not isinstance(chain.get('modules'), dict) or not isinstance(chain.get('helpers'), dict) or len(chain['modules']) > 17 or len(chain['helpers']) > 24:

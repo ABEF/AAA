@@ -7,7 +7,7 @@
   "_notes": [
     "UNQUALIFIED EXAMPLE. No PoPL deployment, approved authority wallets, live price feeds, complete read-only observations or independent production evidence is supplied. Public signing and deployment are not authorized.",
     "Only known source-selected Robinhood native venue/token identities and hard pins are populated. They are intended references, not fresh on-chain observations or a service qualification. Observed fields and review evidence stay unset.",
-    "Schema 5 is the explicit native/accounting-V2/routing-V2/governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2.",
+    "Schema 5 is the explicit native/accounting-V2/routing-V2/pricing-V2/review-policy-V1 governed profile. The preserved schema-4 example remains historical and blocked for this layout; never relabel WETH ledgers or existing journals as native V2. Current Entry requires executeReviewed with a caller maximum; legacy execute fails closed.",
     "Pricing version 2 requires two independently reviewed USD sources PER asset, immutable source-runtime pins, full append-only policy and fresh agreed rounds. Two addresses, the target pool spot, a presumed stable peg or correlated test mirrors do not qualify independence. The user-selected disagreement tolerance is 300 bps (3%); source addresses and freshness limits are deliberately unset; no live ZZZ pair of sources is supplied.",
     "A 3% agreement tolerance does not raise the separate default 2% contribution and 1% conversion loss caps. Upper-input/lower-output conservative valuation can reject an operation within 3% agreement; there is no averaging, one-source fallback or automatic cap increase.",
     "One ETH/ZZZ contribution pool at a time. The selected static hookless pool is 0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b, fee 10020 pips, spacing 200. Actual fees/state/liquidity must be read and independently qualified.",
@@ -261,7 +261,8 @@
             "access": null,
             "registry": null,
             "activationAssets": null,
-            "v4Executor": null
+            "v4Executor": null,
+            "REVIEW_POLICY_VERSION": 1
           }
         },
         "migration_budget": {
@@ -430,7 +431,8 @@
           "bindings": {
             "access": null,
             "oracle": null,
-            "active": false
+            "active": false,
+            "ENTRY_REVIEW_VERSION": 1
           }
         }
       },
@@ -809,7 +811,7 @@
         },
         "api": {
           "status": "unqualified",
-          "profile": "accounting_v2_routing_v2_pricing_v2",
+          "profile": "accounting_v2_routing_v2_pricing_v2_review_v1",
           "chain_id": 4663,
           "controller": null,
           "configuration_sha256": null,
@@ -836,5 +838,6 @@
     }
   ],
   "pricing_version": 2,
+  "review_policy_version": 1,
   "range_policy_version": 1
 }

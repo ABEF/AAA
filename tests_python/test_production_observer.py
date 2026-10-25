@@ -73,7 +73,7 @@ def fixture():
                          'randomness':{'coordinator':addr(32),'runtime_hash':RUNTIME}},
         'sequencer':{'mode':'not_applicable','address':O.ZERO},
         'governance':{'proposers':[addr(40)],'executors':[O.ZERO],'keeper':addr(41),'guardian':addr(42)}}
-    return {'schema_version':5,'chains':[chain],'release_approved':False}, expected
+    return {'schema_version':5,'review_policy_version':1,'chains':[chain],'release_approved':False}, expected
 
 
 class FakeRPC:

@@ -1,0 +1,38 @@
+{
+  "record_kind": "sanitized transcript observation, not a new rerun",
+  "tests_run": 7,
+  "passed": 7,
+  "errors": 0,
+  "elapsed_seconds": 14.213,
+  "cases": [
+    {
+      "test": "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_prepared_calldata_binds_captured_cap_and_explicit_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_wrong_or_unavailable_version_getters_fail_before_approval",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_consistent_synthetic_inventory_is_not_deployment_authorization",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_v2.ProductionV2Tests.test_missing_services_are_actionable_and_do_not_become_blanket_block",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_production_observer.ObserverGateCompositionTests.test_complete_observer_output_passes_only_consistency_and_failures_remain_blocked",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_production_inventory_requires_exact_current_review_bindings",
+      "status": "passed"
+    },
+    {
+      "test": "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_observer_reads_versions_and_does_not_reuse_missing_success",
+      "status": "passed"
+    }
+  ],
+  "source_scope": "After two fixture repairs and final API service-profile label, before conditional legacy DTO-shape refinement. No original source-hash snapshot retained; final DTO paths rerun separately."
+}

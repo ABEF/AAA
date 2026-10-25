@@ -18,6 +18,7 @@ interface IPricingBudget {
 /// @notice Fixed Oracle-created accounting companion. No funds, approvals, user
 /// setter, arbitrary call or sweep. A whole contribution uses one price vector.
 contract ZZZContributionPricing {
+    uint256 public constant ENTRY_REVIEW_VERSION = 1;
     IZZZAccess public immutable access;
     IZZZOracle public immutable oracle;
     // Oracle USD18 prices are at most 1e36, below uint128.max. Packing the
@@ -96,11 +97,17 @@ contract ZZZContributionPricing {
     }
     /// @dev Entry calls BEFORE token pulls, approvals or conversion. No later
     /// quote can replace this original-source value or LP-pair price basis.
-    function beginEntry(uint256 nft,bytes32 pool,address source,uint256 amount) external returns(uint256 lowerUSD) {
+    /// @notice Retired initializer; current Entry must supply its signed maximum.
+    function beginEntry(uint256,bytes32,address,uint256) external pure returns(uint256) { revert InvalidState(); }
+    function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps)
+        external returns(uint256 lowerUSD) {
         if (msg.sender != _entry()) revert Unauthorized();
         _live(); if (basis.phase != 0 || amount == 0) revert InvalidState();
+        if (maximumLossBps > 1000) revert InvalidAmount();
         basis.phase = 1; basis.entry = true; basis.nft = nft;
-        _pair(pool); _mark(source);
+        _pair(pool);
+        if (uint16(basis.limits >> 16) > maximumLossBps) revert Slippage();
+        _mark(source);
         Mark memory m = marks[source];
         lowerUSD = Math.mulDiv(amount,m.lower,m.scale);
         basis.lowerInput = lowerUSD;

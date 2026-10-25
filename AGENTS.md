@@ -1,3 +1,23 @@
+## Comprehensive improvement candidate - 2026-10-25
+
+Read [review](reports/comprehensive-improvement-20261025/REVIEW.md),
+[coverage](reports/comprehensive-improvement-20261025/COVERAGE.md) and
+[verification](reports/comprehensive-improvement-20261025/VERIFICATION.md).
+Current local candidate implements caller maximum in reviewed EntryV1/Pricing,
+explicit preparation/inventory/trace versioning, strict RPC/indexer history
+preservation, fixed revealed rarity metadata and conservative buyback input cap.
+No economic allocation, dormant eligibility, holder custody right or government
+delay changed. Defaults2/1/3%, maxima10%, gas separate. Legacy Entry selector is
+disabled on new code; old pricing1/local runtime/journals remain original. New
+native website/public signing and real services/independent audit remain open.
+Use exact final size/evidence receipts; no fresh full regression claim.
+
+Preserve all unrelated drafts,8902/Anvil/NFT/LP/balances/journals/dist overlay,
+Anvil-only signer/null public DEPLOYMENT and paused monitoring. No public tx,
+deployment, service/server/build action. Main only; keep sole Todo/features/
+roadmap/operator and both memories aligned. Local saves/commit/push are distinct;
+verify Git/publication receipt. Production NOT APPROVED.
+
 ## Liquidity operations publication verified - 2026-10-25
 
 Contract implementation `593a212` and website memory-only `1e1a9ba`

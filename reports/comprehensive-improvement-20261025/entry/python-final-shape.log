@@ -1,0 +1,9 @@
+test_explicit_legacy_profile_keeps_its_original_selector_and_response_shape (tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_explicit_legacy_profile_keeps_its_original_selector_and_response_shape) ... ok
+test_prepared_calldata_binds_captured_cap_and_explicit_profile (tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_prepared_calldata_binds_captured_cap_and_explicit_profile) ... ok
+test_exact_approval_then_fresh_review_is_not_automatic_execution (tests_python.test_typed_v4_activation.TypedV4ActivationTests.test_exact_approval_then_fresh_review_is_not_automatic_execution) ... ok
+test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases (tests_python.test_dual_price_integration.DualPriceIntegrationTests.test_routed_erc20_new_lp_and_growth_use_dual_pricing_phases) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 9.678s
+
+OK

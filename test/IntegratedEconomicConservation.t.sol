@@ -180,7 +180,7 @@ contract IntegratedEconomicConservationTest is Test {
     }
     function _contribute(address owner,uint256 id,uint256 amount,bool increase) private {
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),amount,bytes32(0),0,1,block.timestamp+100,increase);
-        vm.prank(owner);entry.execute{value:amount}(r);
+        vm.prank(owner);entry.executeReviewed{value:amount}(r, 200);
     }
     function _balanced(address owner,uint256 id,uint256 half,bool increase) private {
         vm.startPrank(owner);token.approve(address(vault),half);
@@ -304,7 +304,7 @@ contract IntegratedEconomicConservationTest is Test {
         token.arm(address(entry),2,address(this),abi.encodeCall(this.changePriceDuringFinalReset,()));
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(token),100 ether,bytes32(0),0,1,block.timestamp+100,false);
         vm.expectCall(address(primary),abi.encodeCall(primary.set,(100_100_000,block.timestamp,block.timestamp)));
-        vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.InvalidState.selector);entry.execute(r);
+        vm.prank(ALICE);vm.expectRevert(ZZZContributionPricing.InvalidState.selector);entry.executeReviewed(r, 200);
         assertEq(ALICE.balance,beforeETH);assertEq(token.balanceOf(ALICE),beforeToken);
         assertEq(token.allowance(ALICE,address(entry)),100 ether);assertEq(vault.nftBucket(id),0);
         assertEq(vault.sharesOf(id),0);assertFalse(membership.eligible(id));assertEq(royalties.weightOf(id),0);
@@ -342,7 +342,7 @@ contract IntegratedEconomicConservationTest is Test {
         assertEq(protocol,uint24(1000|(1000<<12)));assertEq(lpFee,10020);
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector));
-        vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.execute{value:100 ether}(r);
+        vm.prank(ALICE);vm.expectRevert(bytes4(keccak256("Slippage()")));entry.executeReviewed{value:100 ether}(r, 200);
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
         assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);
         (uint160 spotAfter,,,)=state.getSlot0(PoolId.wrap(pool));assertEq(spotAfter,spotBefore);
@@ -367,7 +367,7 @@ contract IntegratedEconomicConservationTest is Test {
         vm.mockCallRevert(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector,pool,false),failure);
         vm.expectCall(address(manager),abi.encodeWithSelector(ZZZLiquidityManager.swap.selector),uint64(2));
         ZZZActivationEntry.Request memory r=ZZZActivationEntry.Request(id,pool,address(0),100 ether,bytes32(0),0,1,block.timestamp+100,false);
-        vm.prank(ALICE);vm.expectRevert(failure);entry.execute{value:100 ether}(r);
+        vm.prank(ALICE);vm.expectRevert(failure);entry.executeReviewed{value:100 ether}(r, 200);
         vm.clearMockedCalls();vm.getRecordedLogs();vm.recordLogs();
         assertEq(ALICE.balance,userETH);assertEq(token.balanceOf(ALICE),userToken);
         assertEq(address(core).balance,coreETH);assertEq(token.balanceOf(address(core)),coreToken);

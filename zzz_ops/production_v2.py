@@ -42,7 +42,7 @@ EVIDENCE = ('toolchain', 'static_analysis', 'invariants', 'uniswap_fork', 'stagi
             'economic_approval', 'independent_audit', 'remediation',
             'native_accounting', 'typed_v4_routes', 'custody_handoff')
 SERVICES = ('rpc', 'pricing', 'randomness', 'keeper', 'api', 'metadata', 'opensea')
-TOP_FIELDS = frozenset(('schema_version','accounting_version','routing_version','pricing_version',
+TOP_FIELDS = frozenset(('schema_version','accounting_version','routing_version','pricing_version','review_policy_version',
     'accounting_model','custody_architecture','release_commit','canonical_chain_id',
     'economics','nft_policy','evidence','chains'))
 CHAIN_FIELDS = frozenset(('chain_id','genesis_hash','observed_block',
@@ -196,6 +196,8 @@ def expected_bindings(chain: dict[str, Any], *, range_policy_version=0) -> dict[
         'entry_v4_executor': {'parent':h('activation_entry')},
         'lp_v4_executor': {'parent':h('lp_converter')},
         'royalty_v4_executor': {'parent':h('royalty_converter')}}
+    helper['activation_entry']['REVIEW_POLICY_VERSION'] = 1
+    helper['contribution_pricing']['ENTRY_REVIEW_VERSION'] = 1
     for role, ledger in (('lp','rewards'),('royalty','royalty_rewards')):
         name = role + '_converter'
         bindings = _obj(_obj(helpers.get(name)).get('bindings'))
@@ -1073,7 +1075,7 @@ def _services(g,chain,path):
     g.keys(services,SERVICES,path+'.services')
     profiles = {'rpc':'eip1898_hash_pinned_debug_trace','pricing':'independent_dual_usd_v2',
         'randomness':'verified_coordinator_two_words','keeper':'native_v2_governed_limits',
-        'api':'accounting_v2_routing_v2_pricing_v2','metadata':'content_addressed_v2','opensea':'primary_mint_current_nft'}
+        'api':'accounting_v2_routing_v2_pricing_v2_review_v1','metadata':'content_addressed_v2','opensea':'primary_mint_current_nft'}
     access = _obj(_obj(chain.get('modules')).get('access')).get('address')
     nft = _obj(_obj(chain.get('modules')).get('nft')).get('address')
     for role in SERVICES:
@@ -1107,10 +1109,10 @@ def validate(config: Any, *, expected_commit: str | None = None, now: int | None
         'Use only explicit schema-5 fields; obsolete bridge approvals cannot accompany this release inventory.')
     g.commit = g.hex(g.commit,'release_commit',20,prefix=False)
     now = int(time.time()) if now is None else now
-    for key,value in {'schema_version':5,'accounting_version':2,'routing_version':2,'pricing_version':2,
+    for key,value in {'schema_version':5,'accounting_version':2,'routing_version':2,'pricing_version':2,'review_policy_version':1,
         'accounting_model':'shared-pools-native-v2','custody_architecture':'governed-v1'}.items():
         g.check(_equal(config.get(key),value),key,'schema.unsupported',
-            'Use explicit current schema 5/native accounting 2/typed routing 2/dual pricing 2; legacy profiles cannot be reinterpreted.')
+            'Use explicit current schema 5/native accounting 2/typed routing 2/dual pricing 2/review policy 1; legacy profiles cannot be reinterpreted.')
     if expected_commit is not None:
         g.check(g.commit == expected_commit,'release_commit','commit.mismatch','Use the exact reviewed release commit.')
     home = g.num(config.get('canonical_chain_id'),'canonical_chain_id',1)

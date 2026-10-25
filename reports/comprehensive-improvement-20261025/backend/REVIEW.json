@@ -1,0 +1,158 @@
+{
+  "recorded_at": "2026-10-24T23:57:24.180292+00:00",
+  "baseline": "80d330ea51abacdfb825af24730badb26e6bd83d",
+  "reviewer": "custody_dust_scope_20261025",
+  "file_sha256": {
+    "indexer/monitor.py": "88ca293e3c413281d74d051e5accd186c804e518fd84cd0212eab91679f11697",
+    "zzz_ops/rpc.py": "f1636cf447077851c0051ec6ec60caf29669a07b02a1977ad85564a77aaf2bf5",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/worker.py": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/server.py": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "keeper/monitor.py": "43ac06e534b5d5723995b4888f6aea07f6773084f57ae1e6c6d5783b28b0ce8d",
+    "keeper/zzz-keeper.service": "72e4edee1150077a8d8dd909ee3f595e61707c06f811d5c6c95718f610797f81",
+    "config/nginx/popl-api-common.conf": "24fb7a7de3e717934a1092645b02189a88123755a1716b91176ce8ac1e9e7e9f",
+    "config/nginx/popl-api-http.conf": "d68ff54ab9bf3ed43fa85df14e2a5ec54708c419f523ef486d36b0d10fd80097",
+    "config/nginx/popl-api-locations.conf": "0cac88acf93b684c16b2cf5b6717897e4c692ac7f896cf62a52e5aed48d1d6d7",
+    ".github/workflows/verify.yml": "7dfa3ad653fd4d033250f06b3292f61c1c7c0f464ffb245ee11f6cd045c99358",
+    ".github/workflows/keeper-safety.yml": "bbce6b414b6e641252a8ac9df934ab9e09137e2a58ceb3d111456f06836993ed",
+    "src/ZZZActivationEntry.sol": "b11c5ef8e0dc546bdff99755e311ee7205db8100fb04c75bd00c05bbc7e6d05a",
+    "src/ZZZContributionPricing.sol": "f7c6bc87542e12d8f388955fc553e92fc817e1cc40a471b42b267602e1efe8be",
+    "src/ZZZPoolRegistry.sol": "86307c3290bfd5560403b22c898100d52d0e4840b76dbe66c6bbc5bbd8738642",
+    "frontend_api/activation.py": "869c177521c055bdde7b0c644ea25e2cfa97c993d9c276dca8cb43a9d13bf8fd",
+    "frontend_api/activation_config.py": "a4dbcb81d0df6c8c12f1f37fc0a3504d0e12b8f767b7c989a58a638e79eeb919",
+    "frontend_api/activation_trace.py": "5b9641fcd9da88f783648b29182696c111cea93e59b75973cb2ac1090ad53858",
+    "zzz_ops/production_v2.py": "05dcc2e54d389ae7386afae7116d9d4ddb926a25fb13a354f5944f2b57ddd139",
+    "zzz_ops/production_observer.py": "119906d52c8377632b9a98c815e59bca4365d1f85b30fb9f77f5dd3a1d18c572"
+  },
+  "coverage": {
+    "9": {
+      "status": "reviewed in affected service paths",
+      "evidence": "Bounded Rpc failover/backoff, terminal WorkLimit, worker cleanup/quarantine and fixed indexer failure reason codes; two concrete fixes implemented."
+    },
+    "10": {
+      "status": "reviewed and improved",
+      "evidence": "Proved-ancestor-before-write indexer rollback, fixed cursor identity, foreign-key logs, atomic ingestion, raw history/API authority boundaries."
+    },
+    "11": {
+      "status": "partially reviewed",
+      "evidence": "Read-only API ingress/schema limits and new reviewed Entry ABI/profile/trace integration inspected. No full endpoint or all-version qualification."
+    },
+    "12": {
+      "status": "reviewed local paths; actual services unqualified",
+      "evidence": "No-redirect transport, exact chain checks, malformed/missing header refusal, bounded retries; no real external endpoint qualification."
+    },
+    "13": {
+      "status": "partially reviewed",
+      "evidence": "API proxy origin/Host/method constraints and admission isolation; keeper role/calldata/code controls inspected. Full infrastructure access management not observed."
+    },
+    "14": {
+      "status": "partially reviewed without accessing secrets",
+      "evidence": "Keeper write-before-sign intent, nonce/receipt checkpoints, original fee reviews, no resend on ambiguous result and keystore-path protections preserved. No actual key/rotation rehearsal."
+    },
+    "15": {
+      "status": "reviewed local ingress/transport candidates",
+      "evidence": "HTTP size/time/connection bounds, read-only method allowlist, fixed-origin proxy, no-redirect fix; production network/TLS/server config not inspected."
+    },
+    "16": {
+      "status": "partially reviewed",
+      "evidence": "CI action SHA pins/minimal permissions/dependency hash install reviewed. No fresh build, package provenance audit or published CI check."
+    },
+    "29": {
+      "status": "reused source-bound review plus current targeted inspection",
+      "evidence": "Keeper monitor unchanged SHA256 43ac06e534b5d5723995b4888f6aea07f6773084f57ae1e6c6d5783b28b0ce8d; prior independent range/idle review reused. Current fee review/submission recovery excerpt inspected; no new keeper execution."
+    },
+    "34": {
+      "status": "reviewed and improved",
+      "evidence": "Indexer unavailable-history rollback defect fixed and reproduced, reorg depth boundary checked; keeper confirmed receipt/nonce recovery source inspected."
+    },
+    "35": {
+      "status": "partially reviewed with narrow measurements",
+      "evidence": "HTTP/worker/admission/call budgets inspected. Normal reconcile remains one header request; proved one-block reorg three. No new throughput/load or full collection benchmark."
+    },
+    "36": {
+      "status": "partially reviewed",
+      "evidence": "No added polling on unchanged tip, bounded no-redirect fallback and early refusal prevent extra unreviewed requests. No actual hosting/gas budget qualification."
+    },
+    "37": {
+      "status": "reviewed affected diagnostics",
+      "evidence": "Indexer fixed reason codes preserve actionable cause without raw provider data; keeper original intent/review/receipt audit trail retained; no global logging rewrite."
+    },
+    "38": {
+      "status": "partially reviewed; hosted monitoring unqualified",
+      "evidence": "Keeper progress/pending/status fields inspected; no new dashboard or claim of running health. Monitoring remains paused."
+    },
+    "39": {
+      "status": "partially reviewed; no notification sent",
+      "evidence": "Reason-code recovery runbook links concrete retry/manual-review actions. Actual off-host alert routing/thresholds not exercised."
+    },
+    "40": {
+      "status": "reviewed local recovery semantics",
+      "evidence": "Outage leaves DB/cursor unchanged, bounded verified reorg resumes, full rollback needs original parent, genesis mismatch refuses; keeper unknown submissions remain durable. Real backup/restore/provider rehearsal still open."
+    },
+    "41": {
+      "status": "partially reviewed",
+      "evidence": "Explicit schema/profile versions, native identities and reviewed maximum bindings inspected; service unit is dry-run. Actual deployment/runtime pins and release approval remain open."
+    },
+    "42": {
+      "status": "API financial-state boundary only",
+      "evidence": "Unavailable history is not zero, exact signed caps/unsigned traces inspected. Browser UX/accessibility is root review scope, not independently requalified here."
+    },
+    "43": {
+      "status": "partially reviewed",
+      "evidence": "Proxy candidate omits URI/IP/wallet logs and strips caller headers; fixed diagnostics omit endpoint payloads/secrets. No legal/compliance claim or actual host retention inspection."
+    },
+    "44": {
+      "status": "reviewed affected paths",
+      "evidence": "One shared header parser, per-instance urllib policy, no new dependency/global monkeypatch, focused recovery instructions. Broader legacy/dead-code refactor deferred."
+    },
+    "45": {
+      "status": "reviewed targeted verification quality",
+      "evidence": "Original isolated source reproduces indexer failure; real loopback trap reproduces redirects, focused assertions measure before/after. No full or unchanged suite rerun."
+    },
+    "46": {
+      "status": "improved specialist runbook; root integrates central docs",
+      "evidence": "docs/INDEXER_RECOVERY.md explains anchors, outage vs reorg, WAL-consistent backup, separate rebuild and no automatic history reset."
+    }
+  },
+  "new_entry_cross_review": {
+    "result": "No new actionable finding in observed candidate; exact hashes above bound this read-only review.",
+    "checked": [
+      "signed maximum bound before token pull/conversion",
+      "captured limits matched by Budget and finish across callback policy changes",
+      "pre-inclusion stricter cap allowed, widening rejected",
+      "old execute/beginEntry selectors fail closed",
+      "pricing2 requires explicit review1; legacy pricing1 remains pinned distinct",
+      "trace exact executeReviewed selector/10th static word and matching beginEntryReviewed child",
+      "schema5 getter and API service-profile upgrade explicit",
+      "native wrapper bootstrap removal does not alter actual _nativeBindings"
+    ],
+    "scope_boundary": "Direct raw Vault activation/increase retains raw caller minimumLiquidity/deadline plus execution-time policy, not a new caller USD-max argument. Prepared Entry calls are the protected reviewed flow."
+  },
+  "completed_improvements": [
+    "Confirmed indexer outage/malformed-header rollback defect corrected",
+    "Reviewed read-only RPC endpoints cannot redirect requests outside approved inventory",
+    "All HTTPError response handles close before retry/reraise, including rate-limit and provider-error responses"
+  ],
+  "distinct_focused_methods": 50,
+  "not_claimed": [
+    "independent audit",
+    "production approval",
+    "host/service installation",
+    "live provider validation",
+    "uninterrupted monitoring",
+    "fresh full backend or Solidity regression",
+    "universal malicious-provider or consensus proof"
+  ],
+  "preserved": [
+    "all actual Anvil/NFT/LP/balance/journal state",
+    "Anvil-only signer",
+    "null public deployment",
+    "paused monitoring",
+    "existing unrelated drafts",
+    "website sources/build/server unchanged"
+  ]
+}

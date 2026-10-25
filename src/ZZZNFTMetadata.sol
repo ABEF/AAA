@@ -18,6 +18,8 @@ struct NFTMetadataInput {
     bool traitsReady;
     bool valuationAvailable;
     uint256 valueUSD;
+    // Actual activated ledger weight, not the fixed rarity trait. This does not
+    // establish readiness of any individual royalty payment currency.
     uint8 royaltyWeight;
     string baseURI;
 }
@@ -73,10 +75,12 @@ contract ZZZNFTMetadata {
         bytes memory json = abi.encodePacked('{"name":"PoPL #', Strings.toString(input.id),
             '","description":"', description, '","image":"', Strings.escapeJSON(image),
             '","valuation_available":', input.valuationAvailable ? "true" : "false",
+            ',"royalty_activated":', input.royaltyWeight != 0 ? "true" : "false",
             ',"lp_value_usd_18":', input.valuationAvailable ? string.concat('"', Strings.toString(input.valueUSD), '"') : "null",
             ',"attributes":[{"trait_type":"Rarity","value":"', rarity,
             '"}', _visualAttributes(input), ',{"trait_type":"Evolution","value":"', state,
-            '"},{"trait_type":"NFT-sale royalty weight","value":', Strings.toString(input.royaltyWeight), '}]}');
+            '"},{"trait_type":"NFT-sale royalty weight","value":',
+            input.traitsReady ? Strings.toString(uint256(input.rarity) + 1) : '"Unrevealed"', '}]}');
         return string.concat("data:application/json;base64,", Base64.encode(json));
     }
 

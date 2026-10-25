@@ -4,6 +4,11 @@ from zzz_ops import price_policy as D
 
 
 def upgrade_inventory(config, proof):
+    config['review_policy_version'] = 1
+    chain=config['chains'][0]
+    for role,getter in (('activation_entry','REVIEW_POLICY_VERSION'),('contribution_pricing','ENTRY_REVIEW_VERSION')):
+        for key in ('bindings','observed_bindings'):
+            chain['helpers'][role].setdefault(key,{})[getter]=1
     if config.get('pricing_version') == 2:
         return config
     config['pricing_version'] = 2
@@ -33,8 +38,8 @@ def upgrade_inventory(config, proof):
         token['price_policy']={'ordinal':ordinal,'policy':policy,'sources':sources,
             'observed_pricing_version':2,'observed_policy_count':len(chain['tokens'])}
         rebind_token(chain,token,proof)
-    chain['services']['api']['profile']='accounting_v2_routing_v2_pricing_v2'
-    chain['services']['api']['evidence']['profile']='accounting_v2_routing_v2_pricing_v2'
+    chain['services']['api']['profile']='accounting_v2_routing_v2_pricing_v2_review_v1'
+    chain['services']['api']['evidence']['profile']='accounting_v2_routing_v2_pricing_v2_review_v1'
     chain['services']['pricing']['profile']='independent_dual_usd_v2'
     chain['services']['pricing']['evidence']['profile']='independent_dual_usd_v2'
     return config

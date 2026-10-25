@@ -1,0 +1,12 @@
+{
+  "file": "tests_python/test_frontend_history.py",
+  "excluded_unexecuted_draft_methods": [
+    "test_slow_history_cannot_release_expired_nft_or_wallet_snapshot",
+    "test_wallet_history_losing_confirmation_depth_is_not_returned"
+  ],
+  "all_other_module_class_harness_and_method_ast_identical_to_head": true,
+  "ast_sha256": "387d87ad3d169b18096d067b5f9f700291c6058699e55a4aa4edc5fd98332fea",
+  "working_file_not_published": true,
+  "executed_case": "ConfirmedHistoryTests.test_transfer_replay_and_lifetime_claims_across_past_owners",
+  "scope": "Single integration method and all module/helper/class code unchanged; two unrelated unexecuted draft methods excluded. No test repeated."
+}

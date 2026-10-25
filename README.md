@@ -1,24 +1,25 @@
 # ZZZ Collection - Proof of Permanent Liquidity (PoPL)
 
-**Selected pool (2026-10-24):** Robinhood Uniswap v4 native ETH/ZZZ `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`, static 1.002% LP fee, no hook. The observed protocol fee makes the combined fee about 1.101%. Hookless native admission and atomic `moveFunds` are the current candidate; external `exit` remains separately approved and paused. [Selection and limits](docs/POOL_SELECTION.md). Production remains NOT APPROVED.
+PoPL connects transferable NFTs to vault-managed liquidity. Activation attaches
+an LP allocation and unlocks funded LP fees plus a separate share of NFT-sale
+royalties. Holders cannot redeem principal; governance can approve trusted
+external custody for recovery or migration.
 
-**Liquidity operations (2026-10-25):** contribution default **2%**, conversion **1%**, maintenance **3%**, gas separate. [Placement and idle](docs/IDLE_AND_DUST.md) preserve attributed backing without a sweep. [Versioned range policy](docs/RANGE_POLICY_UPDATES.md) supports ZZZ priced in ETH and default-disabled keeper selection between reviewed +/-25% / +/-50% ranges. Current migration scope is same-chain pool moves plus explicit source-chain custody; integrated bridging and cross-chain NFT/reward transport are deferred optional scope. [Scoped verification](reports/liquidity-operations-20261025/VERIFICATION.md); production remains NOT APPROVED.
+**Status: undeployed candidate; production NOT APPROVED.** The
+[public website](https://popldemo.0xwave.com) simulates transactions. Existing
+Anvil deployments retain their original code; public signing remains disabled.
 
-**Latest development candidate:** [governed custody handoff](docs/GOVERNED_CUSTODY_HANDOFF.md) replaces the old LP bridge/pair stack. Normal exits consolidate principal into ZZZ; an explicit raw emergency exit avoids swaps. Royalty currencies use separate custody accounting. Whole-collection handoff is retained. [Current verification and limits](reports/custody-handoff/VERIFICATION.md). Undeployed; production approval and updated inventory/provider qualification remain open.
+| Current design | Implementation and remaining boundary |
+| --- | --- |
+| Market and custody | Robinhood v4 native ETH/ZZZ, selected pool `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`: static 1.002% LP fee, no hook; observed combined fee about 1.101%. Native V2 accounts for actual ETH. [Pool decision](docs/POOL_SELECTION.md), [native scope](docs/NATIVE_ETH_ARCHITECTURE.md). |
+| Contributions and prices | $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
+| Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
+| Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ or explicit raw custody exit. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridging/remote ledgers are deferred. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native website/OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest improvement review](reports/comprehensive-improvement-20261025/REVIEW.md). |
 
-PoPL connects transferable NFTs to vault-managed liquidity. Activating an NFT attaches an LP allocation and unlocks two income streams: funded LP revenue and a separate share of NFT-sale royalties.
-
-**Status: undeployed contract candidate; not approved for real funds.** The [website demo](https://popldemo.0xwave.com) uses simulated balances and transactions.
-
-**Current development work (2026-10-24):** the [native accounting V2 candidate](reports/native-eth-port/VERIFICATION.md) carries actual ETH through Entry, Vault, LP settlement, fee reserves, indexed rewards and raw custody exits. Same-actual-pair fee-tier moves default to a 3% loss cap, now governance-adjustable up to 10%. ETH and WETH are distinct: atomic moves between them await an explicit conversion boundary. The separate custody `exit` supports reviewed external migration. Existing Anvil deployments remain on their original code.
-
-**Before sealing:** qualify the [native V2 implementation and remaining boundaries](docs/NATIVE_ETH_ARCHITECTURE.md), qualify the [typed v4 conversion candidate](docs/TYPED_V4_ROUTES.md), native profiles and real services, then complete independent security review. [Bounded operating controls](docs/POST_SEAL_POLICY.md) now allow future VRF gas/confirmation tuning and a buyback execution ceiling below its immutable maximum. [Execution-loss policy](docs/EXECUTION_LOSS_POLICY.md) retains 2% / 1% / 3% defaults; governance may change each category up to a hard 10%, with gas separate and original pending-custody minima preserved. At the default 1%, ZZZ conversion still needs a cheaper qualified route. Mainnet rehearsal must use a separate deployment; there is no collection reset.
-
-**Price security (2026-10-24):** [Two-source pricing and factual LP checks](docs/PRICE_SECURITY.md) are implemented in the undeployed candidate. Every priced asset requires two independently qualified USD sources. Entry freezes source/pair prices and operating limits before transfers/conversion; actual LP increments, raw spending and unchanged deployment spot are verified separately. Missing or stale prices, or disagreement above the selected **3%**, stop the contribution. The separate default **2% contribution execution-loss cap** still applies; disagreement within 3% does not guarantee acceptance. No live feed pair is selected or qualified; production remains NOT APPROVED.
-
-The [on-chain safety and cost review](reports/onchain-safety/REVIEW.md) adds bounded sequencer reads and reduces repeated strategy, contribution-storage and reward-checkpoint work. Final execution checks and economic limits remain; [scoped measurements](reports/onchain-safety/VERIFICATION.md) are local evidence, not live-provider qualification or independent audit.
-
-**Pricing follow-up (2026-10-25):** [Dated reference readings and costs](reports/price-reference-20261025/OBSERVATION.md) are research only. Production source pairs remain unset; a pool-derived ZZZ estimate is not an independent oracle.
+Source-scoped local evidence establishes particular behavior, not production
+qualification. Dated [price research](reports/price-reference-20261025/OBSERVATION.md)
+does not select independent feeds or provide live prices.
 
 ## Project navigation
 
@@ -31,7 +32,7 @@ The [on-chain safety and cost review](reports/onchain-safety/REVIEW.md) adds bou
 | System design | [Architecture](docs/ARCHITECTURE.md) for interactions; [evolution and trust boundaries](docs/ARCHITECTURE_EVOLUTION.md) for migration limits; [Component map](docs/COMPONENT_STATUS.md) for each module's responsibilities |
 | Production inventory | [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit pricing V2, 15 helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest internal audit](reports/preproduction-audit-20261025/REVIEW.md), including open activation feasibility/review-cap gaps; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest improvement review](reports/comprehensive-improvement-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 
@@ -57,7 +58,7 @@ flowchart LR
 | Component group | Responsibility and relationship | Source / design |
 | --- | --- | --- |
 | **NFT identity and artwork** | Records the current owner and immutable revealed traits. Metadata reads the NFT's current attached LP value to select its evolution. | [NFT](src/ZZZNFT.sol), [metadata](src/ZZZNFTMetadata.sol), [trait/reveal design](docs/NFT_METADATA.md) |
-| **Activation and admission** | Entry authenticates the owner, checks admitted assets/routes, converts the contribution and binds its original value to the exact Vault call. The registry admits venues and enforces one contribution pool at a time. | [Entry](src/ZZZActivationEntry.sol), [typed v4 helper](src/ZZZV4RouteExecutor.sol), [asset policies](src/ZZZActivationAssets.sol), [pool registry](src/ZZZPoolRegistry.sol) |
+| **Activation and admission** | Reviewed Entry authenticates the owner, bounds the captured loss policy by the caller maximum, checks admitted assets/routes and binds original contribution value to the exact Vault call. The registry admits venues and enforces one contribution pool at a time. | [Entry](src/ZZZActivationEntry.sol), [typed v4 helper](src/ZZZV4RouteExecutor.sol), [asset policies](src/ZZZActivationAssets.sol), [pool registry](src/ZZZPoolRegistry.sol) |
 | **Custody and per-NFT shares** | Vault owns the physical LP and records each NFT's nonredeemable shares. LiquidityManager executes typed venue operations; the budget helper checks contribution and maintenance loss limits. | [Vault](src/ZZZVault.sol), [LiquidityManager](src/ZZZLiquidityManager.sol), [budget helper](src/ZZZMigrationBudget.sol) |
 | **LP revenue accounting** | Creator inboxes and venue collections feed FeeController. It allocates receipts to holder/collective balances and separate compound/buyback reserves. Membership gives each activated NFT one collective share. | [FeeController](src/ZZZFeeController.sol), [Rewards](src/ZZZRewards.sol), [Membership](src/ZZZMembership.sol), [creator intake](docs/EXTERNAL_REWARDS.md) |
 | **Royalties and claims** | RoyaltyRewards preserves per-NFT entitlements, isolates optional currency outages and credits batch-converted ETH to the same NFTs. Current owners claim through either ledger or ClaimRouter. | [RoyaltyRewards](src/ZZZRoyaltyRewards.sol), [converter](src/ZZZRoyaltyConverter.sol), [ClaimRouter](src/ZZZClaimRouter.sol), [operator flow](docs/ROYALTY_SETTLEMENT.md) |

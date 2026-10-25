@@ -9,6 +9,7 @@ from frontend_api.service import ProjectionError, ZERO, _address_word, _quantity
 from zzz_ops.abi import address, calldata, decode_words, keccak256
 
 EXECUTE = 'execute((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool))'
+EXECUTE_REVIEWED = 'executeReviewed((uint256,bytes32,address,uint256,bytes32,uint256,uint128,uint256,bool),uint16)'
 LEGACY_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
 RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint16)'
 CONFIGURABLE_RESULT = 'contributionResult(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)'
@@ -19,6 +20,7 @@ SOURCE = '0x' + keccak256(b'SourceContributed(address,uint256,bytes32,address,ui
 SHARES = '0x' + keccak256(b'SharesAdded(uint256,uint256,uint256,uint256)').hex()
 VERIFIED = '0x' + keccak256(b'ContributionVerified(uint256,uint256,uint256,uint256,uint256,uint256,uint160,bytes32)').hex()
 BEGIN_ENTRY = 'beginEntry(uint256,bytes32,address,uint256)'
+BEGIN_ENTRY_REVIEWED = 'beginEntryReviewed(uint256,bytes32,address,uint256,uint16)'
 BEGIN_PRICING = 'begin(uint256,uint256,uint256,uint256,uint32)'
 FINISH_PRICING = 'finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)'
 NAV_PRICING = 'contributionNav(uint256)'
@@ -37,12 +39,21 @@ def words(raw, length):
     return result
 
 
-def request_data(identifier, pool, source, amount, route, minimum_out, minimum_lp, deadline, increase):
+def request_data(identifier, pool, source, amount, route, minimum_out, minimum_lp, deadline, increase,
+                 *, review_policy_version=0, maximum_loss_bps=None):
     # One STATIC tuple has no dynamic offset. Zero source is native ETH.
     values = (identifier, int(pool, 16), int(source, 16), amount, int(route, 16),
               minimum_out, minimum_lp, deadline, int(increase))
     if any(type(x) is not int or not 0 <= x < 2**256 for x in values) or not 0 < minimum_lp < 2**128:
         raise ValueError('Invalid Entry tuple')
+    if type(review_policy_version) is not int or review_policy_version not in (0,1):
+        raise ValueError('Unsupported Entry review-policy profile')
+    if review_policy_version == 1:
+        if type(maximum_loss_bps) is not int or not 0 <= maximum_loss_bps <= 1000:
+            raise ValueError('Invalid reviewed Entry maximum loss')
+        return selector(EXECUTE_REVIEWED) + ''.join(f'{x:064x}' for x in (*values,maximum_loss_bps))
+    if maximum_loss_bps is not None:
+        raise ValueError('Legacy Entry cannot encode a reviewed maximum')
     return selector(EXECUTE) + ''.join(f'{x:064x}' for x in values)
 
 
@@ -80,8 +91,11 @@ def pricing_witness(root,vault,check,pins,req,gross,economics,verify_historical)
     helper=pins['contribution_pricing'];budget=pins['budget'];bucket=req['bucket']
     input_usd,supply,incumbent_nav,incumbent_deployed,deployed,idle,limits=economics
     if check.get('type')!='CALL':raise ProjectionError('Dual-price result must execute its authenticated phase transition')
-    begun=child(root,pins['entry'],helper,BEGIN_ENTRY,'CALL')
-    if (begun['input'].lower()!=static_data(BEGIN_ENTRY,req['id'],req['pool'],req['source'],req['amount']) or
+    reviewed=req.get('review_policy_version',0)==1
+    begin_signature=BEGIN_ENTRY_REVIEWED if reviewed else BEGIN_ENTRY
+    begin_args=(req['id'],req['pool'],req['source'],req['amount'])+((req['maximum_loss_bps'],) if reviewed else ())
+    begun=child(root,pins['entry'],helper,begin_signature,'CALL')
+    if (begun['input'].lower()!=static_data(begin_signature,*begin_args) or
             int(words(begun.get('output'),1)[0],16)!=gross):
         raise ProjectionError('Original source was not captured before external contribution calls')
     changing=[x for x in root.get('calls',[]) if x.get('type') not in ('STATICCALL',)]
@@ -219,6 +233,12 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
     if not 0 < gas_used <= int(tx['gas'], 16):
         raise ProjectionError('Invalid simulated gas use')
     req = request
+    reviewed=req.get('review_policy_version',0)
+    expected_data=request_data(req['id'],req['pool'],req['source'],req['amount'],req['route'],
+        req['minimum_out'],req['minimum_lp'],req['deadline'],req['increase'],
+        review_policy_version=reviewed,maximum_loss_bps=req.get('maximum_loss_bps'))
+    if tx['data'].lower()!=expected_data:
+        raise ProjectionError('Unsigned Entry selector or reviewed maximum differs from its explicit profile')
     native_profile = req.get('accounting_version', 1) == 2
     dual_pricing = req.get('pricing_version',1)==2
     topic_word = lambda n: '0x' + f'{n:064x}'
@@ -271,6 +291,9 @@ def measure(trace, tx, pins, request, gross, max_slippage, verify_historical=Non
         int(x, 16) for x in values]
     packed_limits=slippage
     loss=req.get('execution_loss_bps',100)
+    if reviewed == 1 and (type(req.get('maximum_loss_bps')) is not int or
+            not 0 <= loss <= req['maximum_loss_bps'] <= 1000):
+        raise ProjectionError('Execution policy exceeds the signed reviewed maximum')
     if configurable:
         if slippage >= 2**32 or slippage >> 16 != loss:
             raise ProjectionError('Contribution execution-loss snapshot differs from reviewed policy')

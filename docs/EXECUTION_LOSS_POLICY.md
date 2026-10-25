@@ -41,8 +41,8 @@ The Budget snapshots contribution policy before stateful Vault work, carrying it
 with venue slippage in a typed `uint32`: low 16 bits venue slippage, high 16 bits
 contribution loss. The final Budget check uses that captured policy. Maintenance
 captures its ceiling at the initial checkpoint. A later callback cannot silently
-weaken the in-progress check. A quote is not a lock on future governance: policy
-may change before inclusion; user calldata minimums remain unchanged.
+weaken the in-progress check. The reviewed Entry path additionally rejects inclusion-time policy above
+the caller maximum; other governance configuration is not frozen by a quote.
 
 For normal external custody, approval stores an absolute minimum retained value.
 Raising the global limit later does **not** weaken that plan's exit/completion or
@@ -77,26 +77,38 @@ The public website is not switched to this policy. Its native-V2/live profile an
 review of current limits remain explicit release work; the existing local
 deployment and its journals keep their original contract/configuration semantics.
 
-### Review-time policy binding remains open
+<a id="review-time-policy-binding-remains-open"></a>
 
-The current Entry captures the **execution-time** loss policy before transfers,
-not the policy previously displayed in a wallet review. Its Request has amount,
-route, minimum output/liquidity and deadline, but no caller maximum-loss field.
-If governance raises the cap before inclusion, the new value can apply. Raw
-caller minima still constrain the result, but do not prove the earlier USD loss
-percentage, particularly after range/price changes. A pinned preparation trace
-only proves its observation block; it cannot control later inclusion.
+### Review-time policy binding
 
-Before public activation/growth signing, implement a versioned reviewed Entry
-path binding the caller's maximum contribution-loss BPS (or equivalently rigorous
-minimum-value expectation). Compare it to the actual captured execution policy
-before any transfer; preserve final callback/price/policy checks. Update exact
-calldata/trace/API/inventory/wallet handling together, with no silent legacy or
-direct-Vault fallback claiming the stronger guarantee. A lower configured cap
-may be stricter; raising governance's maximum must not override the caller limit.
-Preserve old Anvil deployments/journals under their explicit historical profile.
+The undeployed candidate adds `REVIEW_POLICY_VERSION()==1` on Entry and
+`ENTRY_REVIEW_VERSION()==1` on its fixed Pricing helper. The owner calls
+`executeReviewed(Request,uint16 maximumLossBps)`; the original nine-field Request
+is retained. The maximum is 0..1,000 bps and is encoded in signed calldata.
 
-This is an [open release task](../TODO.md#task-reviewed-contribution-policy), not
-an implemented guard. Immediate governance remains deliberately trusted, and no
-new delay is proposed. Pausing/reviewing new work does not cancel transactions
-already signed and broadcast by users. Current public signing remains disabled.
+Before pulling tokens or converting funds, Pricing captures the current governed
+contribution cap and rejects it if greater than the caller maximum. A lower
+governed cap can tighten the operation. Existing final checks enforce the captured
+actual policy; callbacks cannot weaken it mid-operation. Legacy `execute(Request)`
+and the old Entry basis initializer fail closed on this new code.
+
+This binds a maximum loss policy, not a future USD price, range, strategy setting,
+venue configuration or assured execution. Exact output/liquidity minima, deadline,
+fresh independent prices and all physical/balance checks remain. Immediate
+governance can still approve dangerous dependencies; this guard does not remove
+that accepted trust. Direct owner-to-Vault calls do not acquire a reviewed-Entry
+guarantee, and the preparer never silently falls back to them.
+
+Current pricing-V2 activation preparation and schema-5 release inventory require
+explicit `review_policy_version: 1`, matching getters, runtime pins and exact new
+selector/trace. The response carries `reviewed_maximum_loss_bps` separately from
+the captured `execution_limit_bps`; provenance includes the policy version.
+Historical pricing-V1/local profiles keep their old semantics. Old native-V2
+activation configurations require an explicit upgrade; missing getters/RPC errors
+never mean legacy support. Read-only historical profiles remain separate.
+
+The website's historical Anvil/unsigned profile still uses its original 1% and
+old Entry selector. It must reject this new runtime, not relax its validation or
+reinterpret saved journals. Native-V2 browser/preparer integration and real wallet
+acceptance remain [open](../TODO.md#task-reviewed-contribution-policy). Public
+signing stays disabled. [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

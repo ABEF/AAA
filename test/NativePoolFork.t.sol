@@ -257,7 +257,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         if (request.sourceAsset != address(0)) {
             vm.prank(owner); IERC20(request.sourceAsset).approve(address(entry), request.amountIn);
         }
-        vm.prank(owner); entry.execute{value: request.sourceAsset == address(0) ? request.amountIn : 0}(request);
+        vm.prank(owner); entry.executeReviewed{value: request.sourceAsset == address(0) ? request.amountIn : 0}(request, 200);
     }
     function _entryClean(SharedSystem memory s, ZZZActivationEntry entry, uint256 id) private {
         assertEq(address(entry).balance, 0); assertEq(IERC20(WETH).balanceOf(address(entry)), 0);
@@ -314,7 +314,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         vm.prank(owner); IERC20(ZZZ).approve(address(entry), amount);
         vm.expectEmit(true, true, true, true, address(entry));
         emit SourceContributed(owner, id, POOL, ZZZ, amount, gross, ZZZ, amount, false);
-        vm.prank(owner); entry.execute(_entryRequest(id, ZZZ, amount, false));
+        vm.prank(owner); entry.executeReviewed(_entryRequest(id, ZZZ, amount, false), 200);
         uint256 bucket = s.vault.nftBucket(id); Position memory p = s.vault.group(bucket);
         assertEq(gross, 100 ether); assertEq(IERC20(ZZZ).balanceOf(owner), zzzBefore - amount);
         assertEq(owner.balance, nativeBefore); assertEq(IERC20(ZZZ).allowance(owner, address(entry)), 0);
@@ -353,7 +353,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         ZZZActivationEntry.Request memory request = _entryRequest(id, address(0), amount, false);
         request.minimumLiquidity = type(uint128).max;
         uint256 nativeBefore = owner.balance; uint160 priceBefore = manager.spot(POOL); uint256 next = positions.nextTokenId();
-        vm.prank(owner); vm.expectRevert(bytes4(keccak256("Slippage()"))); entry.execute{value: amount}(request);
+        vm.prank(owner); vm.expectRevert(bytes4(keccak256("Slippage()"))); entry.executeReviewed{value: amount}(request, 200);
         assertEq(owner.balance, nativeBefore); assertEq(manager.spot(POOL), priceBefore); assertEq(positions.nextTokenId(), next);
         assertEq(s.vault.nftBucket(id), 0); assertEq(s.vault.bucketCount(), 0); assertEq(s.vault.sharesOf(id), 0);
         assertEq(s.vault.contributionUSD(id), 0); assertEq(s.membership.totalEligible(), 0);
@@ -366,7 +366,7 @@ contract NativePoolForkTest is Test, IERC721Receiver {
         priceBefore = manager.spot(POOL); next = positions.nextTokenId();
         request = _entryRequest(id, ZZZ, 100 ether, true); request.minimumLiquidity = type(uint128).max;
         vm.prank(owner); IERC20(ZZZ).approve(address(entry), request.amountIn);
-        vm.prank(owner); vm.expectRevert(bytes4(keccak256("Slippage()"))); entry.execute(request);
+        vm.prank(owner); vm.expectRevert(bytes4(keccak256("Slippage()"))); entry.executeReviewed(request, 200);
         assertEq(IERC20(ZZZ).balanceOf(owner), zzzBefore); assertEq(IERC20(ZZZ).allowance(owner, address(entry)), request.amountIn);
         assertEq(manager.spot(POOL), priceBefore); assertEq(positions.nextTokenId(), next);
         assertEq(positions.getPositionLiquidity(p.lpTokenId), liquidityBefore); assertEq(s.vault.sharesOf(id), sharesBefore);
