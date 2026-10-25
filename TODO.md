@@ -51,6 +51,7 @@ Custody, ownership and reward accounting.
   - Implemented [backend conversion and currency-eligibility reporting](docs/ROYALTY_REPORTING.md), verified across owners and complete pinned same-chain predecessors. Integrate the website and qualify live ingestion/availability recovery. RoyaltyConverted is not Claimed or new earnings; only actual payouts increase lifetime paid totals. Independent audit/remediation remains required.
   - This converter applies only to royalties. It neither converts the LP ledger nor guarantees native ETH for all claims; direct source-currency claims remain supported. See [LP ETH settlement](TODO.md#task-lp-eth-settlement).
   - [Current typed v4 and governed limits](docs/TYPED_V4_ROUTES.md) preserve earned per-NFT source/native entitlements; explicit worker profiles and current-setting observations are required. Actual route/feed/keeper qualification remains open.
+  - Before marketplace launch, admit reviewed expected settlement currencies. Unknown pre-admission balances are quarantined, not retroactive NFT income; define provenance/policy before proposing any different treatment. Preserve current healthy/native currency eligibility while optional currency faults defer only that registration. [Operator guidance](docs/OPERATOR_MANUAL.md#deep-cleanup-review---2026-10-25).
 
   </details>
 
@@ -207,6 +208,7 @@ Custody, ownership and reward accounting.
   - [Day consistency audit](reports/daily-security-20261025/REVIEW.md): one fixed ZZZ now binds source, native admission, immutable Buyback and normal exit; the old buyback retarget setter is removed. Registry admission prevents mismatched native identity. This is fresh-deployment source only; 28 distinct selected behaviors across recorded fixture scopes, 35 indexer methods and 36 normal gates are source-scoped, not external qualification.
   - [Remaining-architecture review](reports/architecture-pruning-20261025/REVIEW.md) and [scoped verification](reports/architecture-pruning-20261025/VERIFICATION.md): current Position3/localV4/direct governance2 are explicit.49 distinct selected Solidity behaviors and512 distinct Python methods pass across recorded source scopes; neither count is a fresh full-regression or real-service approval. Preserve old profiles/journals and unsupported cross-codec boundaries.
   - [Auditability refactor](reports/auditability-refactor-20261025/REVIEW.md) and [verification](reports/auditability-refactor-20261025/VERIFICATION.md): shared private settlement, read-only v3 identity checks, separate converters over a neutral abstract base, named phases and explicit private NFT/bucket identifiers. No new authority, economic policy or deployment profile. Compiler equivalence and affected execution retain exact scopes; actual services and independent audit remain open.
+  - [Deep cleanup review](reports/deep-cleanup-20261025/REVIEW.md) and [verification](reports/deep-cleanup-20261025/VERIFICATION.md): inherited royalty balance/error reuse, guardian and initial role logs, dependency-bound evidence and obsolete native/outage fixtures. 32 scoped Solidity methods,41 Python methods and37 normal gates pass; 75 production/265 AST inputs are explicit. No economic/authority/storage change; new logs and ABI metadata differences are documented. Actual release gates remain open.
 
   </details>
 
@@ -750,6 +752,7 @@ Three required testing layers, with source-bound evidence.
   - Keep fork inventory assertions aligned with actual published fixtures and preserve normal assertion failures. Earlier [CI fixture correction](reports/architecture-evolution-ci/README.md) covers historical24native/Pons plus9hookless cases only. Current fixture retirement and source profiles must not be hidden by a mock, renamed pass or stale inventory count.
   - Review explicitly archived obsolete pre-pricing ActivationEntry/creator/bridge fixtures and their source receipts; retain actual current Entry/Pricing security assertions in active integrations. Qualify the final frozen repository workflow without treating a targeted pass or retired test as a green full regression.
   - Implemented [frozen review package and strict verification](docs/FROZEN_REVIEW_BUNDLE.md): committed blobs, source/tree/dependency identities, required inputs and excluded-path inventory; no extraction, arbitrary execution, overwritten output or forged approval.19 distinct focused Python methods across recorded scopes. Regenerate for the final exact release commit and independently verify its hash; dependencies, operating rehearsals and external audit are not bundled or passed.
+  - Run fresh complete frozen-release regression and source-bound static analysis/triage; the deep-cleanup campaign is targeted local evidence, not a green full workflow, live provider qualification, operating rehearsal or independent audit. The new reference snapshot2 requires exact imported dependency and build-file bindings.
 
   </details>
 
@@ -862,6 +865,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - The [royalty conversion and outage candidate](docs/ROYALTY_SETTLEMENT.md) isolates optional-token activation failures and preserves earned balances. Actual token/wrapper/route behavior, runtime inventory, eligibility UI and live recovery still require qualification; native ETH has no external ERC20 balance query.
   - Pons hook/creator-payment intake is removed from the current release. Qualify actual LP-fee collection, independent prices and cheaper ETH-conversion routes. Preserve captured conversion policy (1% default; governance maximum10%), stronger caller/venue minima and separate gas; the selected approximately1.101% fee does not qualify full conversion under the default1% cap.
   - Review the implemented [two-source price and factual LP guard](docs/PRICE_SECURITY.md), including common-mode/proxy authority, depeg/outage, pre-pull frozen prices/caps, exact deployment spot, historical incumbent backing, gas/DoS limits and coherent backend traces. Real source qualification remains [open](TODO.md#task-dual-price-qualification).
+  - Review the frozen compiler/dependency closure and current official advisories using [applicability triage](reports/deep-cleanup-20261025/UPSTREAM.md). The final source graph has no internal recursion/named-error require trigger, but is not a compiler proof or independent approval. Recheck actual compiler-generated behavior on any compiler/dependency change.
 
   </details>
 
@@ -1061,4 +1065,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `f8765b2250a17e3e2191c776a2a109241f3ad71be92209c610a2cb649431a788`.
+Snapshot SHA-256: `8ab88a415f9e7b37edfd9dcc458f33393574e39622725b9342debe3bd4bba85c`.

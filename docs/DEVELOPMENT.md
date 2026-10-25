@@ -1,3 +1,21 @@
+## Closed dependency evidence - 2026-10-25
+
+Current callable-reference snapshot2 binds project and imported Solidity plus
+the exact existing foundry.toml/package.json/package-lock.json/install-deps.sh.
+Install locked dependencies before --check. Regeneration requires complete
+explicit compiler contents, output/source inventory and normal size evidence;
+implicit imports, missing build pins, malformed/truthy gate flags and escaping
+source roots fail closed. Never hand-edit hashes to suppress a mismatch.
+This is evidence-format versioning, not a deployed accounting upgrade.
+
+The [current cleanup verification](../reports/deep-cleanup-20261025/VERIFICATION.md)
+records 32 targeted Solidity / 41 Python methods, 37 normal gates and 75 production /
+265 all-source explicit inputs. It does not claim a new full verify.sh run,
+current Slither triage, real provider/operating acceptance or independent audit.
+Run the complete frozen-release pipeline before approval. Keep old dated notes
+below in their original source scope; current contribution default is 2%,
+conversion 1%, maintenance 3%, each governed up to 10%, gas separate.
+
 ## Current fork qualification boundary - 2026-10-25
 
 The wrapped-accounting NativePoolFork fixture is retired. Current fork

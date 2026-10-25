@@ -7,7 +7,7 @@ import {MockToken} from "./mocks/Mocks.sol";
 import {ZZZNFT} from "../src/ZZZNFT.sol";
 import {ZZZClaimRouter} from "../src/ZZZClaimRouter.sol";
 import {ZZZRoyaltyRewards} from "../src/ZZZRoyaltyRewards.sol";
-import {PositionStatus} from "../src/libraries/ZZZTypes.sol";
+import {Position, PositionStatus} from "../src/libraries/ZZZTypes.sol";
 
 /// @dev TEST ONLY: proves ownership is already committed during a safe-transfer
 /// receiver callback. A rejection must roll back both the NFT and its payouts.
@@ -177,26 +177,49 @@ contract NFTOwnershipRightsTest is PooledVaultFixture {
         assertEq(paid[0], 0); assertEq(paid[1], 0); assertEq(paid[2], 0);
     }
 
-    function testUnavailableAdmittedRoyaltyAssetBlocksEntryButHealthyClaimsRemain() public {
+    function testUnavailableRoyaltyCurrencyDefersOnlyItsEligibilityWhileActualLPActivates() public {
         uint256 active = activatedPosition(); _fundRights(active);
         UnavailableRoyaltyToken unavailable = new UnavailableRoyaltyToken();
         nft.addRoyaltyAsset(address(unavailable));
-        uint256 dormant = _mint(bob); uint256 beforeBalance = t0.balanceOf(bob);
-        uint256 shares = vault.bucketTotalShares(vault.nftBucket(active));
+        unavailable.mint(address(royalties), 100);
+        uint256 next = _mint(bob);
+        uint256 before0 = t0.balanceOf(bob); uint256 before1 = t1.balanceOf(bob);
+        uint256 bucket = vault.nftBucket(active);
+        uint256 oldShares = vault.sharesOf(active); uint256 totalShares = vault.bucketTotalShares(bucket);
+        Position memory beforePosition = vault.group(bucket);
+        uint256 beforeLP0 = venue.a0(beforePosition.lpTokenId);
+        uint256 beforeLP1 = venue.a1(beforePosition.lpTokenId);
         unavailable.setUnavailable(true);
-        vm.prank(bob); vm.expectRevert(bytes("balance unavailable"));
-        vault.activate(dormant, poolId, 1000, 1000, 1, block.timestamp + 100);
-        assertEq(vault.sharesOf(dormant), 0); assertEq(vault.nftBucket(dormant), 0);
-        assertEq(uint256(vault.nftStatus(dormant)), uint256(PositionStatus.Dormant));
-        assertEq(vault.bucketTotalShares(vault.nftBucket(active)), shares);
-        assertEq(t0.balanceOf(bob), beforeBalance); assertFalse(membership.eligible(dormant));
-        assertEq(royalties.weightOf(dormant), 0);
+        _activate(bob, next, 1000, 1000);
+        assertGt(vault.sharesOf(next), 0); assertEq(vault.nftBucket(next), bucket);
+        assertEq(uint256(vault.nftStatus(next)), uint256(PositionStatus.Active));
+        assertEq(vault.sharesOf(active), oldShares);
+        assertEq(vault.bucketTotalShares(bucket), totalShares + vault.sharesOf(next));
+        assertEq(t0.balanceOf(bob), before0 - 1000); assertEq(t1.balanceOf(bob), before1 - 1000);
+        assertGe(venue.a0(beforePosition.lpTokenId), beforeLP0 + 1000);
+        assertGe(venue.a1(beforePosition.lpTokenId), beforeLP1 + 1000);
+        assertTrue(membership.eligible(next)); assertTrue(nft.traitsReady(next));
+        assertEq(royalties.weightOf(next), uint256(nft.rarityOf(next)) + 1);
+        assertTrue(royalties.eligibleFor(next, address(0)));
+        assertTrue(royalties.eligibleFor(next, address(t0)));
+        assertFalse(royalties.eligibleFor(next, address(unavailable)));
+        assertEq(royalties.claimable(next, address(t0)), 0);
+        assertEq(royalties.claimable(next, address(0)), 0);
+        // Previously funded LP fees and healthy royalties remain entirely with
+        // the incumbent despite the optional currency's isolated read failure.
         vm.prank(alice); uint256[] memory paid = router.claimBatch(_claims(active));
         assertEq(paid[0], 90); assertEq(paid[1], 70); assertEq(paid[2], 3 ether);
-        unavailable.setUnavailable(false);
-        _activate(bob, dormant, 1000, 1000);
-        assertTrue(membership.eligible(dormant));
-        assertEq(royalties.claimable(dormant, address(t0)), 0);
-        assertEq(royalties.claimable(dormant, address(0)), 0);
+        unavailable.mint(address(royalties), 50);
+        unavailable.setUnavailable(false); royalties.sync(address(unavailable));
+        assertTrue(royalties.eligibleFor(next, address(unavailable)));
+        assertEq(royalties.claimable(next, address(unavailable)), 0);
+        assertEq(royalties.claimable(active, address(unavailable)), 150);
+        vm.prank(alice); assertEq(royalties.claim(active, address(unavailable)), 150);
+        // Both deterministic fixture draws are Commun. Future receipts join
+        // their equal royalty weights only after the recovery boundary.
+        assertEq(royalties.weightOf(active), 1); assertEq(royalties.weightOf(next), 1);
+        unavailable.mint(address(royalties), 60);
+        assertEq(royalties.claimable(active, address(unavailable)), 30);
+        assertEq(royalties.claimable(next, address(unavailable)), 30);
     }
 }

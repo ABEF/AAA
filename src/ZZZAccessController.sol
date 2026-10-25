@@ -50,6 +50,7 @@ contract ZZZAccessController {
     event SystemSealed();
     event PauseChanged(bool paused);
     event KeeperChanged(address indexed account, bool enabled);
+    event GuardianChanged(address indexed account, bool enabled);
     event PreparationStarted(bytes32 indexed noticeHash, uint256 indexed nonce,
         uint256 indexed destinationChain, address successorController, bytes32 deploymentCommitment, bytes32 reviewHash);
     event PreparationCancelled(bytes32 indexed noticeHash);
@@ -66,7 +67,9 @@ contract ZZZAccessController {
         royaltyFactory = address(new ZZZRoyaltyFactory());
         activationAssetsFactory = address(new ZZZActivationAssetsFactory());
         keepers[initialKeeper] = true;
+        emit KeeperChanged(initialKeeper, true);
         guardians[initialGuardian] = true;
+        emit GuardianChanged(initialGuardian, true);
     }
     function canConfigure(address account) public view returns (bool) {
         return !preparationActive && ((isSealed && canonicalState == 0 && account == governance) ||
@@ -186,6 +189,7 @@ contract ZZZAccessController {
     function setGuardian(address who, bool enabled) external {
         if (!canConfigure(msg.sender) || who == address(0)) revert Unauthorized();
         guardians[who] = enabled;
+        emit GuardianChanged(who, enabled);
     }
     function setPaused(bool state) external {
         // Pause control remains available to drain incoming custody and park it.

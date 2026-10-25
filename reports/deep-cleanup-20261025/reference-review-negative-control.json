@@ -1,0 +1,12 @@
+{
+  "expected_failure": true,
+  "exit_code": 1,
+  "methods": [
+    "test_existing_build_file_cannot_be_omitted_from_snapshot",
+    "test_size_gate_boolean_strings_cannot_qualify_compiler_import",
+    "test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected",
+    "test_source_root_resolution_cannot_escape_the_repository"
+  ],
+  "tool_sha256": "825635ee4f2f275cdb2802dc462041e8b9a54ae5084ae8e64fa900d2fdb1eac0",
+  "tests_sha256": "8356b27cb7dbb26ceaf344d16168d07cecffcc580d74946d3509ea35dd115726"
+}

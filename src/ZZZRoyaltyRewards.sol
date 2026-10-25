@@ -150,12 +150,12 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         }
         if (total == 0) revert InvalidConfiguration();
         accounted[asset] -= total; liabilities[asset] -= total;
-        uint256 beforeSource = _balance(asset);
+        uint256 beforeSource = _canonicalBalance(asset);
         uint256 beforeNative = address(this).balance;
         IERC20(asset).forceApprove(converter, total);
         output = IZZZRoyaltyConverter(converter).convert(asset, total, routeId, minimumETH, deadline);
         IERC20(asset).forceApprove(converter, 0);
-        if (output == 0 || _balance(asset) + total != beforeSource ||
+        if (output == 0 || _canonicalBalance(asset) + total != beforeSource ||
             address(this).balance != beforeNative + output) revert InvalidState();
         accounted[address(0)] += output; liabilities[address(0)] += output;
         uint256 cumulative; uint256 assigned;
@@ -249,10 +249,6 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (low < joins.length && ordinal >= joins[low].first) paid = Math.max(paid, joins[low].baseline);
     }
 
-    function _balance(address asset) private view returns (uint256) {
-        return asset == address(0) ? address(this).balance : IERC20(asset).balanceOf(address(this));
-    }
-
     /// @notice Full admitted currency only, separate from LP principal. Explicit
     /// paused governance approval accepts recipient custody/liveness risk.
     /// Unknown currencies must first pass the existing admission/quarantine policy.
@@ -262,7 +258,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if(!c.canConfigure(msg.sender) || !c.isSealed() || !c.paused() || c.preparationActive() ||
             !isAsset[asset] || custodyAmount[asset]!=0 || recipient==address(0) || recipient==address(this) ||
             recipient.codehash!=recipientCodeHash || reviewHash==bytes32(0) || nonce!=custodyNonce[asset] ||
-            expectedBalance==0 || _balance(asset)!=expectedBalance) revert InvalidState();
+            expectedBalance==0 || _canonicalBalance(asset)!=expectedBalance) revert InvalidState();
         _sync(asset);
         id=keccak256(abi.encode("ZZZ_ROYALTY_CUSTODY_V1",block.chainid,address(this),asset,recipient,
             expectedBalance,nonce,reviewHash,index[asset],accounted[asset]));
@@ -281,7 +277,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if(asset==address(0)) { if(msg.value!=amount) revert InvalidState(); }
         else { if(msg.value!=0) revert InvalidState();ExactToken.pull(asset,msg.sender,amount); }
         delete custodyAmount[asset];delete custodyId[asset];--custodyCount;
-        if(_balance(asset)<accounted[asset]) revert InvalidState();
+        if(_canonicalBalance(asset)<accounted[asset]) revert InvalidState();
         // Later receipts remain pending, allocated by the normal eligibility rules.
         emit RoyaltyCustodyReturned(id,asset,amount);
     }
@@ -290,14 +286,14 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if(custodyAmount[asset]!=0) revert CustodyInTransit();
         if (_reentrancyGuardEntered()) revert InvalidState();
         if (!isAsset[asset]) revert InvalidConfiguration();
-        uint256 balance = _balance(asset);
+        uint256 balance = _canonicalBalance(asset);
         if (balance < accounted[asset]) revert InvalidState();
         return balance - accounted[asset];
     }
 
     function _sync(address asset) private returns (uint256 amount) {
         if(custodyAmount[asset]!=0) revert CustodyInTransit();
-        uint256 balance = _balance(asset);
+        uint256 balance = _canonicalBalance(asset);
         if (balance < accounted[asset]) revert InvalidState();
         amount = balance - accounted[asset];
         if (amount == 0) { _enrollWaiting(asset); return 0; }
@@ -372,7 +368,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         }
         // A receiver can return native ETH during its callback; that new inbox
         // payment remains pending. Existing backing must never decrease further.
-        if (_balance(asset) < accounted[asset]) revert InvalidState();
+        if (_canonicalBalance(asset) < accounted[asset]) revert InvalidState();
         emit Claimed(id, asset, owner, amount);
     }
 
@@ -383,7 +379,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         // balance during a token, router or recipient callback.
         if (_reentrancyGuardEntered()) revert InvalidState();
         if (!isAsset[asset]) revert InvalidConfiguration();
-        uint256 balance = _balance(asset);
+        uint256 balance = _canonicalBalance(asset);
         if (balance < accounted[asset]) revert InvalidState();
         uint256 currentIndex = index[asset];
         if (!eligibleFor(id, asset)) return accrued[id][asset];
@@ -413,7 +409,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         canonicalWeight = totalWeight;
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i];
-            uint256 balance = _balance(asset);
+            uint256 balance = _canonicalBalance(asset);
             if (balance < accounted[asset]) revert CanonicalState();
             canonicalPending.push(balance - accounted[asset]);
             _canonicalAdd(asset, balance, 0);
@@ -469,7 +465,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
                 liabilities[asset] != 0 || index[asset] != 0 || acc != liability + orphan || backing != acc) revert CanonicalState();
             if (assets.length == row) { if (isAsset[asset]) revert CanonicalState(); assets.push(asset); isAsset[asset] = true; }
             if (assets[row] != asset) revert CanonicalState();
-            uint256 prefund = _balance(asset);
+            uint256 prefund = _canonicalBalance(asset);
             _canonicalAdd(asset, backing, prefund);
             index[asset] = ix; liabilities[asset] = liability;
             accounted[asset] = acc + prefund; orphaned[asset] = orphan + prefund;
@@ -500,7 +496,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         if (_state() != 2) revert CanonicalState();
         for (uint256 i; i < assets.length; ++i) {
             address asset = assets[i];
-            uint256 extra = _balance(asset) - accounted[asset];
+            uint256 extra = _canonicalBalance(asset) - accounted[asset];
             accounted[asset] += extra; orphaned[asset] += extra; canonicalPrefunds[i] += extra;
             eligibleCount[asset] = activationCount; eligibleWeight[asset] = totalWeight;
         }
@@ -513,7 +509,7 @@ contract ZZZRoyaltyRewards is ReentrancyGuard, ZZZCanonicalLedger {
         address destination = IZZZRoyaltySuccessor(handoff).destinationController();
         address receiver = IZZZRoyaltyOrdinals(IZZZAccess(destination).module(Ids.NFT)).royaltyRewards();
         if (receiver == address(0) || receiver == address(this)) revert CanonicalState();
-        amount = _balance(asset);
+        amount = _canonicalBalance(asset);
         if (asset == address(0)) {
             if (amount != 0) { (bool ok,) = payable(receiver).call{value: amount}(""); if (!ok) revert NativeTransferFailed(); }
         } else ExactToken.push(asset, receiver, amount);

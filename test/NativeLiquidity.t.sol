@@ -9,14 +9,27 @@ import {TickMath} from "@uniswap/v4-core/src/libraries/TickMath.sol";
 import {SqrtPriceMath} from "@uniswap/v4-core/src/libraries/SqrtPriceMath.sol";
 import {LiquidityAmounts} from "@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol";
 import {ZZZLiquidityManager} from "../src/ZZZLiquidityManager.sol";
-import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZStrategy} from "../src/ZZZStrategy.sol";
 import {Ids, PoolKey, PoolConfig} from "../src/libraries/ZZZTypes.sol";
 import {IPoolManagerMinimal} from "../src/interfaces/IZZZ.sol";
 import {MockAccess, MockToken} from "./mocks/Mocks.sol";
-import {FakePermit2, FakeState, FakePolicy} from "./LiquidityEncoding.t.sol";
+import {FakePermit2} from "./LiquidityEncoding.t.sol";
+import {FactualPermit} from "./LiquidityFactualChecks.t.sol";
+import {PoolManager} from "@uniswap/v4-core/src/PoolManager.sol";
+import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
+import {PoolKey as CoreKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+import {Currency} from "@uniswap/v4-core/src/types/Currency.sol";
+import {PoolId} from "@uniswap/v4-core/src/types/PoolId.sol";
+import {BalanceDelta, BalanceDeltaLibrary} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import {StateView} from "@uniswap/v4-periphery/src/lens/StateView.sol";
+import {PositionManager} from "@uniswap/v4-periphery/src/PositionManager.sol";
+import {IPositionDescriptor} from "@uniswap/v4-periphery/src/interfaces/IPositionDescriptor.sol";
+import {IWETH9} from "@uniswap/v4-periphery/src/interfaces/external/IWETH9.sol";
+import {IAllowanceTransfer} from "permit2/src/interfaces/IAllowanceTransfer.sol";
 
-/// @dev Fake settlement tests only. Actual selected-market tests are in NativePoolFork.t.sol.
+/// @dev Reused hostile settlement/wrapper helpers are local substitutes. The
+/// NativeLiquidityTest below uses installed core and periphery, not a live fork.
 contract BoundaryWETH is ERC20 {
     bool public brokenWithdraw;
     bool public brokenDeposit;
@@ -37,19 +50,6 @@ contract BoundaryWETH is ERC20 {
         uint256 sent = brokenWithdraw ? amount - 1 : amount;
         (bool ok,) = msg.sender.call{value: sent}(""); require(ok);
     }
-}
-
-contract BoundaryPools {
-    PoolConfig private config;
-    address public wrapper;
-    constructor(PoolConfig memory c, address w) { config = c; wrapper = w; }
-    function get(bytes32) external view returns (PoolConfig memory) { return config; }
-    function accounting(bytes32) external view returns (PoolConfig memory c) { c = config; c.key.currency0 = wrapper; }
-    function nativeAsset(bytes32) external view returns (address) { return wrapper; }
-    function setWrapper(address w) external { wrapper = w; }
-    function setKey(PoolKey memory key) external { config.key = key; }
-    function setStrategyPolicy() external { config.rangeBps = 1000; config.maxSpotDeviationBps = 100; }
-    function disableOperations() external { config.operationsEnabled = false; config.depositsEnabled = false; }
 }
 
 contract BoundaryOracle {
@@ -181,190 +181,231 @@ contract BoundaryPositions is ERC721 {
     }
 }
 
+/// @dev TEST ONLY native admission seam; production Registry pins Robinhood
+/// dependencies. It never substitutes WETH for the native zero currency.
+contract NativeLiquidityPools {
+    PoolConfig private config;
+    bool public nativeEnabled = true;
+    constructor(PoolConfig memory value) { config = value; }
+    function get(bytes32 id) external view returns (PoolConfig memory) {
+        require(id == keccak256(abi.encode(config.key))); return config;
+    }
+    function accounting(bytes32 id) external view returns (PoolConfig memory) {
+        require(id == keccak256(abi.encode(config.key))); return config;
+    }
+    function isNativePool(bytes32 id) external view returns (bool) {
+        require(id == keccak256(abi.encode(config.key))); return nativeEnabled && config.key.currency0 == address(0);
+    }
+    function setNativeEnabled(bool value) external { nativeEnabled = value; }
+    function setKey(PoolKey memory value) external { config.key = value; }
+    function disableOperations() external { config.operationsEnabled = false; config.depositsEnabled = false; }
+}
+
+/// @notice Actual installed PoolManager1.0.2/PositionManager1.0.3/StateView with
+/// the production LiquidityManager. Authority/admission/prices are explicit test
+/// seams; FactualPermit models only used allowances because real Permit2 pins
+/// solc0.8.17. This is native accounting coverage, not Robinhood qualification.
 contract NativeLiquidityTest is Test {
+    using BalanceDeltaLibrary for BalanceDelta;
     MockAccess private access;
     BoundaryWETH private wrapped;
     MockToken private token;
-    BoundaryPools private pools;
-    FakePermit2 private permit;
-    BoundaryCore private core;
-    BoundaryPositions private positions;
+    NativeLiquidityPools private pools;
+    FactualPermit private permit;
+    PoolManager private core;
+    StateView private state;
+    PositionManager private positions;
     ZZZLiquidityManager private manager;
+    ZZZStrategy private policy;
+    CoreKey private key;
     bytes32 private poolId;
+    bool private rejectNative;
+    bool private forceNativeBack;
+    receive() external payable {
+        require(!rejectNative, "test recipient rejects ETH");
+        if (forceNativeBack) new BoundaryForce{value: 1}(payable(address(manager)));
+    }
     function setUp() public {
-        access = new MockAccess(); wrapped = new BoundaryWETH(); token = new MockToken(18); permit = new FakePermit2();
-        core = new BoundaryCore(); positions = new BoundaryPositions(address(core), address(permit), address(wrapped));
-        core.setPositions(address(positions));
-        FakeState state = new FakeState(address(core));
-        manager = new ZZZLiquidityManager(address(access), address(positions), address(state), address(core), address(permit));
-        PoolConfig memory c; c.key = PoolKey(address(0), address(token), 10020, 60, address(0));
-        c.operationsEnabled = true; c.maxSlippageBps = 200; poolId = keccak256(abi.encode(c.key));
-        vm.mockCall(address(state), abi.encodeWithSignature("getSlot0(bytes32)", poolId),
-            abi.encode(uint160(1 << 96), int24(0), uint24(0), uint24(10020)));
-        pools = new BoundaryPools(c, address(wrapped));
-        access.bind(Ids.VAULT, address(this)); access.bind(Ids.POOLS, address(pools));
-        access.bind(Ids.LIQUIDITY, address(manager));
-        access.bind(Ids.STRATEGY, address(new FakePolicy())); access.bind(Ids.ORACLE, address(new BoundaryOracle())); access.seal();
-        vm.deal(address(this), 100 ether); wrapped.deposit{value: 50 ether}();
-        vm.deal(address(core), 100 ether); token.mint(address(core), 100 ether); token.mint(address(this), 50 ether);
-        wrapped.approve(address(manager), type(uint256).max); token.approve(address(manager), type(uint256).max);
+        vm.warp(1_000_000); vm.deal(address(this), 100_000 ether);
+        access = new MockAccess(); wrapped = new BoundaryWETH(); token = new MockToken(18);
+        permit = new FactualPermit(); core = new PoolManager(address(this));
+        state = new StateView(IPoolManager(address(core)));
+        positions = new PositionManager(IPoolManager(address(core)), IAllowanceTransfer(address(permit)),
+            100000, IPositionDescriptor(address(0)), IWETH9(address(wrapped)));
+        manager = new ZZZLiquidityManager(address(access),address(positions),address(state),address(core),address(permit));
+        PoolConfig memory c = PoolConfig(PoolKey(address(0),address(token),10020,60,address(0)),
+            true,true,1000,100,500,200,600,100e18,1e30);
+        poolId = keccak256(abi.encode(c.key)); pools = new NativeLiquidityPools(c);
+        policy = new ZZZStrategy(address(access));
+        access.bind(Ids.VAULT,address(this)); access.bind(Ids.POOLS,address(pools));
+        access.bind(Ids.LIQUIDITY,address(manager)); access.bind(Ids.STRATEGY,address(policy));
+        access.bind(Ids.ORACLE,address(new BoundaryOracle())); access.seal();
+        key = CoreKey(Currency.wrap(address(0)),Currency.wrap(address(token)),10020,60,IHooks(address(0)));
+        core.initialize(key,uint160(1 << 96)); core.setProtocolFeeController(address(this));
+        core.setProtocolFee(key,uint24(1000 | (1000 << 12)));
+        token.mint(address(this),100_000 ether); token.approve(address(manager),type(uint256).max);
     }
     function _mint() private returns (uint256 id) {
-        (id,,) = manager.mint(poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        positions.approve(address(manager), id);
+        (id,,) = manager.mint{value: 10 ether}(poolId,-600,600,10 ether,10 ether,1,block.timestamp+100);
+        positions.approve(address(manager),id);
     }
     function _clearApprovals() private view {
-        assertEq(token.allowance(address(manager), address(permit)), 0);
-        assertEq(permit.amount(address(manager), address(token), address(positions)), 0);
-        assertEq(wrapped.allowance(address(manager), address(permit)), 0);
+        assertEq(token.allowance(address(manager),address(permit)),0);
+        (uint160 amount,uint48 expiration) = permit.allowances(address(manager),address(token),address(positions));
+        assertEq(amount,0); assertEq(expiration,0);
+    }
+    function _price() private view returns (uint160 price) { (price,,,) = state.getSlot0(PoolId.wrap(poolId)); }
+    function _donate(uint256 nativeAmount,uint256 tokenAmount) private { core.unlock(abi.encode(nativeAmount,tokenAmount)); }
+    function unlockCallback(bytes calldata data) external returns (bytes memory) {
+        require(msg.sender == address(core)); (uint256 x,uint256 y) = abi.decode(data,(uint256,uint256));
+        BalanceDelta delta = core.donate(key,x,y,"");
+        _settle(address(0),delta.amount0()); _settle(address(token),delta.amount1()); return "";
+    }
+    function _settle(address asset,int128 delta) private {
+        if (delta == 0) return; require(delta < 0); uint256 amount = uint256(-int256(delta));
+        core.sync(Currency.wrap(asset));
+        if (asset == address(0)) assertEq(core.settle{value: amount}(),amount);
+        else { require(token.transfer(address(core),amount)); assertEq(core.settle(),amount); }
     }
     function testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds() public {
         new BoundaryForce{value: 123}(payable(address(manager)));
         new BoundaryForce{value: 456}(payable(address(positions)));
-        token.mint(address(manager), 789); wrapped.transfer(address(manager), 321);
-        (uint256 id, uint256 spent0, uint256 spent1) = manager.mint(poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        assertEq(positions.ownerOf(id), address(this)); assertGt(spent0, 0); assertGt(spent1, 0);
-        assertEq(address(manager).balance, 123); assertEq(address(positions).balance, 456);
-        assertEq(token.balanceOf(address(manager)), 789); assertEq(wrapped.balanceOf(address(manager)), 321); _clearApprovals();
+        token.mint(address(manager),789); wrapped.deposit{value: 321}(); wrapped.transfer(address(manager),321);
+        uint256 beforeNative = address(this).balance; uint256 beforeToken = token.balanceOf(address(this));
+        (uint256 id,uint256 spent0,uint256 spent1) = manager.mint{value: 10 ether}(
+            poolId,-600,600,10 ether,10 ether,1,block.timestamp+100);
+        assertEq(positions.ownerOf(id),address(this)); assertGt(spent0,0); assertGt(spent1,0);
+        assertEq(beforeNative-address(this).balance,spent0); assertEq(beforeToken-token.balanceOf(address(this)),spent1);
+        assertEq(address(manager).balance,123); assertEq(address(positions).balance,456);
+        assertEq(token.balanceOf(address(manager)),789); assertEq(wrapped.balanceOf(address(manager)),321); _clearApprovals();
     }
     function testNativeIncreaseReusesPositionAndClearsApprovals() public {
         uint256 id = _mint(); uint128 beforeLiquidity = positions.getPositionLiquidity(id);
-        manager.increase(poolId, id, 3 ether, 3 ether, 1, block.timestamp + 100);
-        assertGt(positions.getPositionLiquidity(id), beforeLiquidity); assertEq(positions.nextTokenId(), 2); _clearApprovals();
+        uint256 beforeNative = address(this).balance; uint256 beforeToken = token.balanceOf(address(this));
+        (uint256 x,uint256 y) = manager.increase{value: 3 ether}(poolId,id,3 ether,3 ether,1,block.timestamp+100);
+        assertGt(positions.getPositionLiquidity(id),beforeLiquidity); assertEq(positions.nextTokenId(),2);
+        assertEq(beforeNative-address(this).balance,x); assertEq(beforeToken-token.balanceOf(address(this)),y); _clearApprovals();
     }
-    function testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees() public {
-        uint256 id = _mint(); positions.fees(id, 17, 29);
-        new BoundaryForce{value: 123}(payable(address(manager))); token.mint(address(manager), 40);
-        uint256 w = wrapped.balanceOf(address(this)); uint256 t = token.balanceOf(address(this));
-        manager.collect(poolId, id, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), w + 17); assertEq(token.balanceOf(address(this)), t + 29);
-        assertEq(address(manager).balance, 123); assertEq(token.balanceOf(address(manager)), 40);
+    function testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations() public {
+        uint256 id = _mint(); _donate(1 ether,2 ether);
+        new BoundaryForce{value: 123}(payable(address(manager))); token.mint(address(manager),40);
+        uint256 n = address(this).balance; uint256 t = token.balanceOf(address(this));
+        manager.collect(poolId,id,block.timestamp+100);
+        assertGt(address(this).balance,n); assertLe(address(this).balance-n,1 ether);
+        assertGt(token.balanceOf(address(this)),t); assertLe(token.balanceOf(address(this))-t,2 ether);
+        assertEq(wrapped.balanceOf(address(this)),0); assertEq(address(manager).balance,123); assertEq(token.balanceOf(address(manager)),40);
+        n = address(this).balance; t = token.balanceOf(address(this)); manager.collect(poolId,id,block.timestamp+100);
+        assertEq(address(this).balance,n); assertEq(token.balanceOf(address(this)),t);
     }
-    function testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault() public {
-        uint256 id = _mint(); uint256 beforeWrapped = wrapped.balanceOf(address(this)); uint256 beforeNative = address(this).balance;
-        (uint256 amount0, uint256 amount1) = manager.amounts(id); uint256 beforeToken = token.balanceOf(address(this));
-        manager.close(poolId, id, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), beforeWrapped + amount0); assertEq(token.balanceOf(address(this)), beforeToken + amount1);
-        assertEq(address(this).balance, beforeNative); vm.expectRevert(); positions.ownerOf(id);
+    function testNativeCloseReturnsActualPrincipalInETHWithoutWrapping() public {
+        uint256 id = _mint(); (uint256 x,uint256 y) = manager.amounts(id);
+        uint256 n = address(this).balance; uint256 t = token.balanceOf(address(this));
+        manager.close(poolId,id,block.timestamp+100);
+        assertEq(address(this).balance,n+x); assertEq(token.balanceOf(address(this)),t+y);
+        assertEq(wrapped.balanceOf(address(this)),0); vm.expectRevert(); positions.ownerOf(id);
     }
-    function testNativeInputSwapResetsDirtySyncAndUsesNetDelta() public {
-        uint256 beforeToken = token.balanceOf(address(this)); uint256 beforeWrapped = wrapped.balanceOf(address(this));
-        uint256 out = manager.swap(poolId, true, 1 ether, 0.98 ether, block.timestamp + 100);
-        assertEq(out, 0.99 ether); assertEq(token.balanceOf(address(this)), beforeToken + out);
-        assertEq(wrapped.balanceOf(address(this)), beforeWrapped - 1 ether); assertEq(address(manager).balance, 0);
+    function testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta() public {
+        _mint(); core.sync(Currency.wrap(address(token)));
+        uint256 n = address(this).balance; uint256 t = token.balanceOf(address(this));
+        uint256 out = manager.swap{value: 1 ether}(poolId,true,1 ether,0.98 ether,block.timestamp+100);
+        assertLt(out,1 ether); assertGe(out,0.98 ether); assertEq(address(this).balance,n-1 ether);
+        assertEq(token.balanceOf(address(this)),t+out); assertEq(address(manager).balance,0); _clearApprovals();
     }
-    function testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH() public {
-        new BoundaryForce{value: 123}(payable(address(manager)));
-        uint256 beforeWrapped = wrapped.balanceOf(address(this));
-        assertEq(manager.swap(poolId, false, 1 ether, 0.98 ether, block.timestamp + 100), 0.99 ether);
-        assertEq(wrapped.balanceOf(address(this)), beforeWrapped + 0.99 ether); assertEq(address(manager).balance, 123);
+    function testNativeOutputSwapPaysETHAndPreservesForcedPrefunds() public {
+        _mint(); new BoundaryForce{value: 123}(payable(address(manager)));
+        uint256 n = address(this).balance; uint256 t = token.balanceOf(address(this));
+        uint256 out = manager.swap(poolId,false,1 ether,0.98 ether,block.timestamp+100);
+        assertEq(address(this).balance,n+out); assertEq(token.balanceOf(address(this)),t-1 ether);
+        assertGe(out,0.98 ether); assertLt(out,1 ether); assertEq(wrapped.balanceOf(address(this)),0);
+        assertEq(address(manager).balance,123);
     }
-    function testNativePartialInputRejectedAtomically() public {
-        core.setPartial(true); uint256 w = wrapped.balanceOf(address(this));
-        vm.expectRevert(); manager.swap(poolId, true, 1 ether, 0.98 ether, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), w); assertEq(core.debt(), 0);
+    function testNativeUnfillableInputRevertsAllCoreAndWalletState() public {
+        uint256 id = _mint(); uint160 beforePrice = _price(); uint128 l = positions.getPositionLiquidity(id);
+        uint256 n = address(this).balance; uint256 t = token.balanceOf(address(this));
+        vm.expectRevert(); manager.swap{value: 1000 ether}(poolId,true,1000 ether,980 ether,block.timestamp+100);
+        assertEq(_price(),beforePrice); assertEq(positions.getPositionLiquidity(id),l);
+        assertEq(address(this).balance,n); assertEq(token.balanceOf(address(this)),t); assertEq(address(manager).balance,0);
     }
-    function testNativeMinOutIncludesExecutionFees() public {
-        vm.expectRevert(); manager.swap(poolId, true, 1 ether, 0.995 ether, block.timestamp + 100);
-        assertEq(address(manager).balance, 0);
+    function testNativeMinimumOutputIncludesActualLPAndProtocolFees() public {
+        _mint(); uint160 beforePrice = _price(); uint256 n = address(this).balance;
+        vm.expectRevert(); manager.swap{value: 1 ether}(poolId,true,1 ether,0.995 ether,block.timestamp+100);
+        assertEq(_price(),beforePrice); assertEq(address(this).balance,n);
+    }
+    function testNativeMissingOrExcessValueCannotSpendPrefunds() public {
+        new BoundaryForce{value: 10 ether}(payable(address(manager))); uint256 n = address(this).balance;
+        vm.expectRevert(); manager.mint(poolId,-600,600,10 ether,10 ether,1,block.timestamp+100);
+        vm.expectRevert(); manager.mint{value: 11 ether}(poolId,-600,600,10 ether,10 ether,1,block.timestamp+100);
+        assertEq(address(this).balance,n); assertEq(address(manager).balance,10 ether); assertEq(positions.nextTokenId(),1);
     }
     function testNativeUnexpectedSenderAndCallbackRejected() public {
         (bool ok,) = address(manager).call{value: 1}(""); assertFalse(ok);
         vm.expectRevert(); manager.unlockCallback(bytes("fake"));
     }
-    function testNativeIncorrectWrapperRejectedBeforePull() public {
-        pools.setWrapper(address(token)); uint256 w = wrapped.balanceOf(address(this));
-        vm.expectRevert(); manager.mint(poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), w);
+    function testNativeIdentityMustBeAdmittedBeforePullOrMint() public {
+        pools.setNativeEnabled(false); uint256 n = address(this).balance; uint256 t = token.balanceOf(address(this));
+        vm.expectRevert(); manager.mint{value: 10 ether}(poolId,-600,600,10 ether,10 ether,1,block.timestamp+100);
+        assertEq(address(this).balance,n); assertEq(token.balanceOf(address(this)),t); assertEq(positions.nextTokenId(),1);
     }
-    function testNativeAmountsRemainUint128BoundedWithoutPermitApproval() public {
-        vm.expectRevert(); manager.mint(poolId, -600, 600, uint256(type(uint128).max) + 1, 1 ether, 1, block.timestamp + 100);
-        assertEq(positions.nextTokenId(), 1); assertEq(address(manager).balance, 0);
+    function testNativeAmountsStayUint128BoundedWithoutPermitApproval() public {
+        vm.expectRevert(); manager.mint(poolId,-600,600,uint256(type(uint128).max)+1,1 ether,1,block.timestamp+100);
+        assertEq(positions.nextTokenId(),1); assertEq(address(manager).balance,0); _clearApprovals();
     }
-    function testNativeLiquidityCallbackHookMaskRejected() public {
+    function testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution() public {
         PoolConfig memory c = pools.get(poolId); c.key.hooks = address(0x2444); pools.setKey(c.key);
-        bytes32 unsupported = keccak256(abi.encode(c.key));
-        vm.expectRevert(); manager.mint(unsupported, -600, 600, 1 ether, 1 ether, 1, block.timestamp + 100);
-        assertEq(positions.nextTokenId(), 1);
+        vm.expectRevert(); manager.mint{value: 1 ether}(keccak256(abi.encode(c.key)),-600,600,1 ether,1 ether,1,block.timestamp+100);
+        c.key.hooks = address(0); c.key.fee = 0x800000; pools.setKey(c.key);
+        vm.expectRevert(); manager.mint{value: 1 ether}(keccak256(abi.encode(c.key)),-600,600,1 ether,1 ether,1,block.timestamp+100);
+        assertEq(positions.nextTokenId(),1);
     }
-    function testNativeDynamicFeeRejected() public {
-        PoolConfig memory c = pools.get(poolId); c.key.fee = 0x800000; pools.setKey(c.key);
-        bytes32 unsupported = keccak256(abi.encode(c.key));
-        vm.expectRevert(); manager.mint(unsupported, -600, 600, 1 ether, 1 ether, 1, block.timestamp + 100);
-        assertEq(positions.nextTokenId(), 1);
+    function testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper() public {
+        vm.mockCallRevert(address(wrapped),abi.encodeWithSignature("deposit()"),hex"deadbeef");
+        vm.mockCallRevert(address(wrapped),abi.encodeWithSignature("withdraw(uint256)"),hex"deadbeef");
+        uint256 id = _mint(); _donate(1 ether,1 ether); manager.collect(poolId,id,block.timestamp+100);
+        manager.close(poolId,id,block.timestamp+100); assertEq(wrapped.totalSupply(),0); assertEq(address(wrapped).balance,0);
     }
-    function testNativeBrokenWithdrawRollsBack() public {
-        wrapped.failures(true, false); uint256 w = wrapped.balanceOf(address(this));
-        vm.expectRevert(); manager.mint(poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), w); assertEq(positions.nextTokenId(), 1);
+    function testNativeRecipientFailureRollsBackActualFeeCollection() public {
+        uint256 id = _mint(); _donate(1 ether,1 ether); uint256 n = address(this).balance;
+        uint256 t = token.balanceOf(address(this)); uint128 l = positions.getPositionLiquidity(id);
+        rejectNative = true; vm.expectRevert(); manager.collect(poolId,id,block.timestamp+100);
+        assertEq(address(this).balance,n); assertEq(token.balanceOf(address(this)),t); assertEq(positions.getPositionLiquidity(id),l);
+        rejectNative = false; manager.collect(poolId,id,block.timestamp+100); assertGt(address(this).balance,n);
     }
-    function testNativeBrokenDepositRollsBackCredits() public {
-        uint256 id = _mint(); positions.fees(id, 17, 29); wrapped.failures(false, true);
-        vm.expectRevert(); manager.collect(poolId, id, block.timestamp + 100); assertEq(positions.nativeFees(id), 17);
+    function testForcedETHDuringNativeForwardCannotBecomeIncome() public {
+        uint256 id = _mint(); _donate(1 ether,1 ether); uint256 n = address(this).balance;
+        forceNativeBack = true; vm.expectRevert(); manager.collect(poolId,id,block.timestamp+100);
+        assertEq(address(this).balance,n); assertEq(address(manager).balance,0);
+        forceNativeBack = false; manager.collect(poolId,id,block.timestamp+100); assertGt(address(this).balance,n);
     }
-    function testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping() public {
-        positions.retain(true); uint256 w = wrapped.balanceOf(address(this));
-        vm.expectRevert(); manager.mint(poolId, -600, 600, 10 ether, 10 ether, 1, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), w); assertEq(positions.nextTokenId(), 1);
+    function testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal() public {
+        uint256 id = _mint(); _donate(1000,1000); uint128 l = positions.getPositionLiquidity(id);
+        vm.expectRevert(); manager.increase{value: 3 ether}(poolId,id,3 ether,3 ether,1,block.timestamp+100);
+        assertEq(positions.getPositionLiquidity(id),l); assertEq(address(positions).balance,0); _clearApprovals();
+        manager.collect(poolId,id,block.timestamp+100);
+        manager.increase{value: 3 ether}(poolId,id,3 ether,3 ether,1,block.timestamp+100);
+        assertGt(positions.getPositionLiquidity(id),l); _clearApprovals();
     }
-    function testNativeForcedETHDuringTakeCannotBeClaimed() public {
-        core.forceTake(true); uint256 w = wrapped.balanceOf(address(this));
-        vm.expectRevert(); manager.swap(poolId, false, 1 ether, 0.98 ether, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), w); assertEq(address(manager).balance, 0);
-    }
-    function testNativeWrapperReentryFailsWhileCreditStillSucceeds() public {
-        wrapped.reentry(address(manager));
-        assertEq(manager.swap(poolId, false, 1 ether, 0.98 ether, block.timestamp + 100), 0.99 ether);
-    }
-    function testNativeRegistryAdmissionRejectsUnreviewedDependencies() public {
-        ZZZPoolRegistry registry = new ZZZPoolRegistry(address(access));
-        PoolConfig memory c = pools.get(poolId);
-        vm.expectRevert(); registry.configure(c);
-        vm.expectRevert(); registry.configureNative(c);
-    }
-    function testNativePlanBalancesNetAmountsWithinOnePercentBudget() public {
-        pools.setStrategyPolicy(); ZZZStrategy policy = new ZZZStrategy(address(access)); access.bind(Ids.STRATEGY, address(policy));
-        (int24 lower, int24 upper,) = policy.target(poolId);
-        (bool direction, uint256 amountIn,) = policy.swapPlan(poolId, 0, 200 ether); assertFalse(direction);
-        uint256 amount0 = amountIn * 99 / 100; uint256 amount1 = 200 ether - amountIn;
-        uint160 a = TickMath.getSqrtPriceAtTick(lower); uint160 b = TickMath.getSqrtPriceAtTick(upper);
-        uint128 liq = LiquidityAmounts.getLiquidityForAmounts(uint160(1 << 96), a, b, amount0, amount1);
-        uint256 deployed = SqrtPriceMath.getAmount0Delta(uint160(1 << 96), b, liq, false) +
-            SqrtPriceMath.getAmount1Delta(a, uint160(1 << 96), liq, false);
-        assertGe(deployed, 198 ether); assertGt(deployed, 198.5 ether);
-    }
-    function testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee() public {
-        pools.setStrategyPolicy(); ZZZStrategy policy = new ZZZStrategy(address(access));
-        access.bind(Ids.STRATEGY, address(policy));
-        bytes memory callData = abi.encodeWithSignature("getSlot0(bytes32)", poolId);
-        address state = address(manager.stateView());
-        (bool direction,uint256 beforeInput,) = policy.swapPlan(poolId, 0, 200 ether); assertFalse(direction);
-        vm.mockCall(state,callData,abi.encode(uint160(1<<96),int24(0),uint24(1000),uint24(10020)));
-        (,uint256 unchangedInput,) = policy.swapPlan(poolId, 0, 200 ether); assertEq(unchangedInput,beforeInput);
-        vm.mockCall(state,callData,abi.encode(uint160(1<<96),int24(0),uint24(1000<<12),uint24(10020)));
-        (,uint256 higherInput,) = policy.swapPlan(poolId, 0, 200 ether); assertGt(higherInput,beforeInput);
-        vm.mockCall(state,callData,abi.encode(uint160(1<<96),int24(0),uint24(0),uint24(3000)));
+    function testNativePlannerReadsActualDirectionalProtocolFee() public {
+        (bool direction,uint256 initial,) = policy.swapPlan(poolId,0,200 ether); assertFalse(direction);
+        core.setProtocolFee(key,1000); (,uint256 lowerFeeInput,) = policy.swapPlan(poolId,0,200 ether);
+        assertLt(lowerFeeInput,initial); core.setProtocolFee(key,uint24(1000 << 12));
+        (,uint256 restored,) = policy.swapPlan(poolId,0,200 ether); assertEq(restored,initial);
+        // Explicit bad StateView response; this is not a real fee-tier mutation.
+        vm.mockCall(address(state),abi.encodeWithSignature("getSlot0(bytes32)",poolId),
+            abi.encode(uint160(1 << 96),int24(0),uint24(0),uint24(3000)));
         vm.expectRevert(); policy.swapPlan(poolId,0,200 ether);
     }
-    function testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap() public {
-        uint256 id = _mint(); pools.disableOperations(); positions.fees(id, 17, 29);
-        vm.expectRevert(); manager.mint(poolId, -600, 600, 1 ether, 1 ether, 1, block.timestamp + 100);
-        vm.expectRevert(); manager.increase(poolId, id, 1 ether, 1 ether, 1, block.timestamp + 100);
-        vm.expectRevert(); manager.swap(poolId, true, 1 ether, 0.98 ether, block.timestamp + 100);
-        uint256 beforeWrapped = wrapped.balanceOf(address(this)); manager.collect(poolId, id, block.timestamp + 100);
-        assertEq(wrapped.balanceOf(address(this)), beforeWrapped + 17);
-        manager.close(poolId, id, block.timestamp + 100); vm.expectRevert(); positions.ownerOf(id);
+    function testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap() public {
+        uint256 id = _mint(); _donate(1 ether,1 ether); pools.disableOperations();
+        vm.expectRevert(); manager.mint{value: 1 ether}(poolId,-600,600,1 ether,1 ether,1,block.timestamp+100);
+        vm.expectRevert(); manager.increase{value: 1 ether}(poolId,id,1 ether,1 ether,1,block.timestamp+100);
+        vm.expectRevert(); manager.swap{value: 1 ether}(poolId,true,1 ether,0.98 ether,block.timestamp+100);
+        access.bind(Ids.ORACLE,address(new BoundaryUnavailableOracle())); uint256 n = address(this).balance;
+        manager.collect(poolId,id,block.timestamp+100); assertGt(address(this).balance,n);
+        manager.close(poolId,id,block.timestamp+100); vm.expectRevert(); positions.ownerOf(id);
     }
-    function testNativeDisabledPoolExitDoesNotReadUnavailableOracle() public {
-        uint256 id = _mint(); pools.disableOperations();
-        access.bind(Ids.ORACLE, address(new BoundaryUnavailableOracle()));
-        manager.collect(poolId, id, block.timestamp + 100); manager.close(poolId, id, block.timestamp + 100);
-        assertEq(address(manager).balance, 0); vm.expectRevert(); positions.ownerOf(id);
-    }
-    function testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle() public {
-        pools.setStrategyPolicy(); ZZZStrategy policy = new ZZZStrategy(address(access)); access.bind(Ids.STRATEGY, address(policy));
+    function testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle() public {
         pools.disableOperations(); vm.expectRevert(); policy.validatePrice(poolId);
-        assertEq(policy.validateExitPrice(poolId), uint160(1 << 96));
-        access.bind(Ids.ORACLE, address(new BoundaryUnavailableOracle())); vm.expectRevert(); policy.validateExitPrice(poolId);
+        assertEq(policy.validateExitPrice(poolId),uint160(1 << 96));
+        access.bind(Ids.ORACLE,address(new BoundaryUnavailableOracle())); vm.expectRevert(); policy.validateExitPrice(poolId);
     }
 }

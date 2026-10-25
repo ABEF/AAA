@@ -2,14 +2,12 @@
 pragma solidity 0.8.26;
 
 import {IV3RouteRouter, IV3RouteFactory, IV3RoutePool} from "../interfaces/IZZZV3Route.sol";
+import {ZZZModule} from "../base/ZZZModule.sol";
 
 /// @notice Read-only v3 venue identity checks shared by typed route policies.
 /// Callers retain source/output admission and all runtime pins before this call.
 /// No storage, approval, token movement or configurable execution target exists.
 library ZZZV3VenueValidation {
-    // Matches the callers' existing InvalidConfiguration() revert selector.
-    error InvalidConfiguration();
-
     function validate(address router, address factory, address pool, address source, address output, uint24 fee)
         internal view {
         address a = source < output ? source : output;
@@ -19,6 +17,6 @@ library ZZZV3VenueValidation {
         if (IV3RouteRouter(router).factory() != factory ||
             IV3RouteFactory(factory).getPool(source, output, fee) != pool ||
             IV3RoutePool(pool).factory() != factory || IV3RoutePool(pool).token0() != a ||
-            IV3RoutePool(pool).token1() != b || IV3RoutePool(pool).fee() != fee) revert InvalidConfiguration();
+            IV3RoutePool(pool).token1() != b || IV3RoutePool(pool).fee() != fee) revert ZZZModule.InvalidConfiguration();
     }
 }

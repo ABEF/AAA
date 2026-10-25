@@ -1,0 +1,148 @@
+{
+  "kind": "Fixture remediation and deprecation map; no EVM/compiler execution by this record",
+  "old_preimage": "native-liquidity-before.sol.txt",
+  "old_preimage_sha256": "5e33ecfa0d0ea47c41ef3735f0c6731e3d1d00cccfb0d31f2cc7cd6c16e26d7f",
+  "current_test_source_sha256": "9ec206e29b36c669bf104fce2ca7b21b46af49a993a44304bd319cdd354310dd",
+  "old_method_count": 24,
+  "current_method_count": 20,
+  "current_methods": [
+    "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds",
+    "testNativeIncreaseReusesPositionAndClearsApprovals",
+    "testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations",
+    "testNativeCloseReturnsActualPrincipalInETHWithoutWrapping",
+    "testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta",
+    "testNativeOutputSwapPaysETHAndPreservesForcedPrefunds",
+    "testNativeUnfillableInputRevertsAllCoreAndWalletState",
+    "testNativeMinimumOutputIncludesActualLPAndProtocolFees",
+    "testNativeMissingOrExcessValueCannotSpendPrefunds",
+    "testNativeUnexpectedSenderAndCallbackRejected",
+    "testNativeIdentityMustBeAdmittedBeforePullOrMint",
+    "testNativeAmountsStayUint128BoundedWithoutPermitApproval",
+    "testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution",
+    "testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+    "testNativeRecipientFailureRollsBackActualFeeCollection",
+    "testForcedETHDuringNativeForwardCannotBecomeIncome",
+    "testNativePendingFeesMustBeCollectedBeforeIncreasingPrincipal",
+    "testNativePlannerReadsActualDirectionalProtocolFee",
+    "testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap",
+    "testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle"
+  ],
+  "preserved_imported_helpers": {
+    "BoundaryWETH": {
+      "preserved": true,
+      "body_sha256": "4112b80690a28bb881ab1fcf5646e2af335ec4e2c8f6785d7bc8b73585462dbb"
+    },
+    "BoundaryOracle": {
+      "preserved": true,
+      "body_sha256": "a4c17584e2641831957b8ef4442969f7f924d18c2fd92f22aa5ea1efe934017f"
+    },
+    "BoundaryUnavailableOracle": {
+      "preserved": true,
+      "body_sha256": "1823986475d5e406a99a632ff8638059b35d2c6517b018e278b04f49eedcad0b"
+    },
+    "BoundaryCore": {
+      "preserved": true,
+      "body_sha256": "8dabc56688493920fe219c7fc08b8d4054d4995dbc973015c4b32a8df6a97791"
+    },
+    "BoundaryForce": {
+      "preserved": true,
+      "body_sha256": "4b69dcb39dad4b31b18ed694a59cc6f6f2400bec2777d898d5cc64f57d874b79"
+    },
+    "BoundaryPositions": {
+      "preserved": true,
+      "body_sha256": "99c2daaec81a515f5e4adcebc3d85d3fb439016408843a4f3d3973324d8f3007"
+    }
+  },
+  "removed_unused_test_only_helper": "BoundaryPools: only old test class used its native->WETH accounting substitution/nativeAsset getter; current helpers preserve their original bodies.",
+  "replacements": {
+    "testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds": [
+      "test/NativeLiquidity.t.sol:testNativeMintSpendsOnlyExactDebtAndPreservesPrefunds"
+    ],
+    "testNativeIncreaseReusesPositionAndClearsApprovals": [
+      "test/NativeLiquidity.t.sol:testNativeIncreaseReusesPositionAndClearsApprovals"
+    ],
+    "testNativeCollectWrapsOnlyActualCreditsIncludingDonationFees": [
+      "test/NativeLiquidity.t.sol:testNativeCollectReturnsOnlyActualCoreFeesIncludingDonations"
+    ],
+    "testNativeCloseReturnsWrappedPrincipalWithoutExposingNativeToVault": [
+      "test/NativeLiquidity.t.sol:testNativeCloseReturnsActualPrincipalInETHWithoutWrapping"
+    ],
+    "testNativeInputSwapResetsDirtySyncAndUsesNetDelta": [
+      "test/NativeLiquidity.t.sol:testNativeInputSwapResetsActualCoreDirtySyncAndUsesNetDelta"
+    ],
+    "testNativeOutputSwapWrapsNetDeltaAndPreservesForcedETH": [
+      "test/NativeLiquidity.t.sol:testNativeOutputSwapPaysETHAndPreservesForcedPrefunds"
+    ],
+    "testNativePartialInputRejectedAtomically": [
+      "test/NativeLiquidity.t.sol:testNativeUnfillableInputRevertsAllCoreAndWalletState",
+      "test/TypedV4Executor.t.sol:testActualCorePartialFillRevertsAllMarketAndCallerState"
+    ],
+    "testNativeMinOutIncludesExecutionFees": [
+      "test/NativeLiquidity.t.sol:testNativeMinimumOutputIncludesActualLPAndProtocolFees"
+    ],
+    "testNativeUnexpectedSenderAndCallbackRejected": [
+      "test/NativeLiquidity.t.sol:testNativeUnexpectedSenderAndCallbackRejected"
+    ],
+    "testNativeIncorrectWrapperRejectedBeforePull": [
+      "test/NativeLiquidity.t.sol:testNativeIdentityMustBeAdmittedBeforePullOrMint",
+      "test/NativeAssetFoundation.t.sol:testNativeETHOracleAndSourceAdmissionAreDistinctFromWETH"
+    ],
+    "testNativeAmountsRemainUint128BoundedWithoutPermitApproval": [
+      "test/NativeLiquidity.t.sol:testNativeAmountsStayUint128BoundedWithoutPermitApproval"
+    ],
+    "testNativeLiquidityCallbackHookMaskRejected": [
+      "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+    ],
+    "testNativeDynamicFeeRejected": [
+      "test/NativeLiquidity.t.sol:testNativeHookAndDynamicFeePoliciesRejectBeforeVenueExecution"
+    ],
+    "testNativeBrokenWithdrawRollsBack": [
+      "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+      "test/NativeAssetFoundation.t.sol:testNativeMintAndIncreaseReturnUnusedETHWithoutCallingBrokenWrapper"
+    ],
+    "testNativeBrokenDepositRollsBackCredits": [
+      "test/NativeLiquidity.t.sol:testNativeLifecycleDoesNotCallAnUnusedBrokenWrapper",
+      "test/NativeAssetFoundation.t.sol:testNativeCollectAndDisabledClosePayETHWithFailedWrapper"
+    ],
+    "testNativeUnconsumedPosmValueRollsBackInsteadOfSweeping": [
+      "test/NativeAssetFoundation.t.sol:testNativeRetainedPositionValueRevertsInsteadOfSubsidizingLaterLP"
+    ],
+    "testNativeForcedETHDuringTakeCannotBeClaimed": [
+      "test/NativeLiquidity.t.sol:testForcedETHDuringNativeForwardCannotBecomeIncome",
+      "test/NativeAssetFoundation.t.sol:testNativePartialSettlementAndUnexpectedETHRevertAtomically"
+    ],
+    "testNativeWrapperReentryFailsWhileCreditStillSucceeds": [
+      "test/NativeAssetFoundation.t.sol:testNativeRejectedRecipientRollsBackAndReentryCannotCollectTwice"
+    ],
+    "testNativeRegistryAdmissionRejectsUnreviewedDependencies": [
+      "test/FixedZZZPool.t.sol:testNativeAdmissionRetainsItsSeparateFixedIdentityGuard",
+      "test/NativeSourceIdentity.t.sol:testMatchingSourceStillCannotBypassNativeRuntimePins"
+    ],
+    "testNativePlanBalancesNetAmountsWithinOnePercentBudget": [
+      "test/IntegratedEconomicConservation.t.sol:testActualV4ApprovedTwoPercentDefaultAndStricterOnePercentApplyToActivationAndGrowth"
+    ],
+    "testNativePlanUsesDirectionalProtocolFeesAndRejectsChangedLPFee": [
+      "test/NativeLiquidity.t.sol:testNativePlannerReadsActualDirectionalProtocolFee"
+    ],
+    "testNativeDisabledPoolStillCollectsAndClosesButCannotEnterOrSwap": [
+      "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap"
+    ],
+    "testNativeDisabledPoolExitDoesNotReadUnavailableOracle": [
+      "test/NativeLiquidity.t.sol:testNativeDisabledPoolCollectsAndClosesButCannotEnterOrSwap"
+    ],
+    "testNativeExitPolicyIgnoresDisabledFlagButRequiresValidOracle": [
+      "test/NativeLiquidity.t.sol:testNativeExitPriceIgnoresStopFlagButStillRequiresValidOracle"
+    ]
+  },
+  "retired_semantics": "Wrapping all native pool custody or making a failed unused wrapper block it contradicts current native profile; those expectations are replaced, not claimed to pass. Current wrapper failure isolation and fault-core tests remain explicit.",
+  "substitutes": [
+    "MockAccess/price/Registry admission seam",
+    "FactualPermit exact-allowance subset; actual Permit2 is pinned to solc0.8.17 and is not instantiated by solc0.8.26 tests"
+  ],
+  "real_execution_dependencies": [
+    "Installed @uniswap/v4-core1.0.2 PoolManager",
+    "Installed @uniswap/v4-periphery1.0.3 PositionManager/StateView",
+    "Actual core donate/fee-growth/settle/take and PosM action authorization/close"
+  ],
+  "status": "Source prepared for root-coordinated one normal compilation/typecheck and meaningful selected EVM execution. Not executed, production qualified or deployed by this agent."
+}

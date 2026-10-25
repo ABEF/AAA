@@ -1,0 +1,25 @@
+test_imported_dependency_drift_invalidates_existing_reference (tests_python.test_function_reference.FunctionReferenceTests.test_imported_dependency_drift_invalidates_existing_reference) ... FAIL
+test_dependency_lock_or_build_profile_drift_invalidates_reference (tests_python.test_function_reference.FunctionReferenceTests.test_dependency_lock_or_build_profile_drift_invalidates_reference) ... FAIL
+
+======================================================================
+FAIL: test_imported_dependency_drift_invalidates_existing_reference (tests_python.test_function_reference.FunctionReferenceTests.test_imported_dependency_drift_invalidates_existing_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 102, in test_imported_dependency_drift_invalidates_existing_reference
+    with self.assertRaisesRegex(ReferenceError,'Dependency source changed'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_dependency_lock_or_build_profile_drift_invalidates_reference (tests_python.test_function_reference.FunctionReferenceTests.test_dependency_lock_or_build_profile_drift_invalidates_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 112, in test_dependency_lock_or_build_profile_drift_invalidates_reference
+    with self.assertRaisesRegex(ReferenceError,'Build input changed'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.095s
+
+FAILED (failures=2)

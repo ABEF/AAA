@@ -3,7 +3,7 @@
 `ZZZNFT` creates one immutable `ZZZClaimRouter` alongside its royalty ledger.
 This optional helper lets the website request several NFT/asset claims, including
 LP rewards and NFT-sale royalties, in one owner transaction. It does not activate
-NFTs, harvest LP fees, process creator inboxes, redeem principal, bridge assets or
+NFTs, harvest LP fees, redeem principal, bridge assets or
 convert currencies. Only already allocated LP balances are claimable; royalty
 claims retain the ledger's existing admitted-receipt synchronization behavior.
 
@@ -18,7 +18,7 @@ module. There is no owner/admin-selected router replacement or arbitrary target.
 ```solidity
 struct Claim {
     uint256 nftId;  // Actual token ID, not its mint ordinal/display label.
-    address asset; // Native ETH is address(0), permitted by royalties only.
+    address asset; // Native ETH is address(0) in both current reward ledgers.
     bool royalty;  // false = LP rewards; true = NFT-sale royalties.
 }
 function claimBatch(Claim[] calldata claims) external returns (uint256[] memory amounts);

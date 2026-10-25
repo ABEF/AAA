@@ -1,0 +1,12 @@
+{
+  "reason": "Current real-Vault integration fixture retained the retired all-currency activation barrier despite approved per-currency fault isolation. No production behavior changed.",
+  "source": "test/NFTOwnershipRights.t.sol",
+  "before_sha256": "5d39d6704e793fe68c11c333ea5827b0fdc8676b7ec29abcfb4af34482d52663",
+  "after_sha256": "53740c3e1ff7d5bbf1af0686aba26233711dd296123c9cc4ad29e1ec1cffb648",
+  "old_method": "testUnavailableAdmittedRoyaltyAssetBlocksEntryButHealthyClaimsRemain",
+  "new_method": "testUnavailableRoyaltyCurrencyDefersOnlyItsEligibilityWhileActualLPActivates",
+  "old_method_start_byte": 9940,
+  "old_method_end_byte": 11404,
+  "old_method_sha256": "8ebdd94a57563d2867b79bc5a8c10cf128131f5dddedd10be74aea54a74495f4",
+  "execution": "Not run; parent owns final targeted verification."
+}

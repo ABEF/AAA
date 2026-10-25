@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "observed_at_utc": "2026-10-25T20:50:29.8232237Z",
+  "baseline": "964e6b6e14dfc91670ab74b6c5d34d8fe4da39bb",
+  "method": "Read-only source/dependency review, except approved Access role-observability patch and four unexecuted focused tests",
+  "implementation_files": [
+    "src/ZZZAccessController.sol",
+    "test/DirectGovernance.t.sol"
+  ],
+  "findings": [
+    {
+      "id": "guardian-role-observability",
+      "severity": "P2 operational",
+      "status": "implemented; final compiler/size/test campaign pending parent",
+      "event": "GuardianChanged(address,bool)",
+      "new_tests": 4,
+      "tests_run_by_reviewer": 0,
+      "economic_rights_changed": false
+    }
+  ],
+  "retained": [
+    "permanent pool aliases and homePoolId provenance",
+    "source snapshot/epoch/nonce/recipient bindings",
+    "explicit normal/raw custody modes",
+    "canonical prefunds/quarantine/classified backing",
+    "separate fee/royalty liabilities",
+    "historical profile/event/journal readers"
+  ],
+  "dependency_versions": {
+    "openzeppelin": "5.4.0",
+    "uniswap_v4_core": "1.0.2",
+    "uniswap_v4_periphery": "1.0.3"
+  },
+  "public_transactions": 0,
+  "services_changed": false,
+  "source_hashes": {
+    "src/ZZZAccessController.sol": "8f78ea1f048a2fce5a40938b53de7486aa1dff88884bc6ec9a9fbf104d40c16c",
+    "src/base/ZZZModule.sol": "0232427e6175adc3680f389bc6a0a62e7f95d8b2c6807370b8ea10ebbca00950",
+    "src/ZZZVault.sol": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+    "src/ZZZMigration.sol": "fc236044d55fd7d5b834128f10a0fd732ba57bf1f0953b2995b3a34a496f38e0",
+    "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68",
+    "src/ZZZCustodyValidation.sol": "9343deb8edcfaab900979cd1e27716826700810eeef40ba7d6657fa41380ae58",
+    "src/ZZZCanonicalHandoff.sol": "c434c5c68637e5d9de64ee9651d8d767fd8446ef48865f94ef1b5e4271770d0c",
+    "src/ZZZVaultCanonical.sol": "4e2e4a44d420bf1ad63b04d6a732535fde200a521c014ab4af49b91abb92bcae",
+    "src/ZZZFeesCanonical.sol": "e9b56e45a4cf0307d5c3398ef2240b155bad209cbad538182a5e344d7ece9857",
+    "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/ZZZPoolRegistry.sol": "967775732b0848988ab111fd9e5ae9dade3a8ba99f6a1d043e6a0bce5cb28bc2",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "test/DirectGovernance.t.sol": "41295df0a3ae5fff4c4101e99ce68d8e39152590d9402cb72539d1587b860ba4",
+    "test/CustodyHandoff.t.sol": "b44eb1ad534344e32a1cbf89214e0234cfe0d84e6373ea93adde90aa791a9bb1",
+    "test/CustodyParking.t.sol": "650965488366047f6aef47f366d8f91b6b3a97b3e82d7bb223873be88c745077",
+    "test/CanonicalHandoff.t.sol": "7cd863b49eb8ed3dfd610d7f1ef75a80944a96b97e2ebf9983f931f7e01be3b3",
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+    "node_modules/@uniswap/v4-core/src/PoolManager.sol": "3b6ab111dadf613e3cfd617e4b1c6ab75b5445cd15cbe52d7c6207fc02449717",
+    "node_modules/@uniswap/v4-periphery/src/PositionManager.sol": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+    "node_modules/@uniswap/v4-periphery/src/base/DeltaResolver.sol": "cb2df93554fb4541355c6e42e346a39cd59138d919456dd5f1d500e2a5d70864",
+    "package.json": "932d4b2f7dd67c119223d3b7aaa667f3e7676320398c2aac0a1b56173973d083",
+    "foundry.toml": "35d073e0cad1e77849c99409c7492d115eb286f5e38839db8b32993646f170c7",
+    "docs/OPERATOR_MANUAL.md": "ac8d8cf4ab8f41138e6b0f436ead1b12d36040043ccc26c9e2c92645dbc62a85",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff"
+  },
+  "approval": "NOT APPROVED"
+}

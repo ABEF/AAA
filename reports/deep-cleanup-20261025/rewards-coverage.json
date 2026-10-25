@@ -1,0 +1,71 @@
+{
+  "review": "NFT and funded-reward cleanup",
+  "baseline_commit": "964e6b6e14dfc91670ab74b6c5d34d8fe4da39bb",
+  "mode": "Source review and specifically approved source/test edits; no compiler/EVM/service/public transaction executed by this agent",
+  "source_bindings": {
+    "src/ZZZNFT.sol": "306715bf51d163f41ac6c072931e15732699f3cf7230345cc1e3b6aaf0a8fb4c",
+    "src/ZZZNFTCanonical.sol": "e2e058483a35e791a7dce5c5638b74271fa742aaec5f3944adf27f7d146f5c5e",
+    "src/ZZZNFTMetadata.sol": "b1ca53e94e0f4bd642eff3b49c200b4edb56f803d2b30f7ea9e7e913786ed8bf",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyRewards.sol": "f12c7b92d4fece2aa9d99b05da484a4467e0ecd95ce5f21198ca273be42ad921",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZFeeController.sol": "a34977f2a84f082b6762a63577654251830aa7177ee0446631731079e34562a8",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZMembership.sol": "3dc159a901b44d6932b7a3690bb3e2844337d727f9a043bc552147fc2819495e",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "test/NFTOwnershipRights.t.sol": "53740c3e1ff7d5bbf1af0686aba26233711dd296123c9cc4ad29e1ec1cffb648",
+    "node_modules/@openzeppelin/contracts/package.json": "8c5b490fe133a9dda13c9a2915761c6b6c2e003a16c95863a800ce5527992bc4",
+    "node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": "330a87f2bf94083df8ddd341735d712866455042aaca58d33ee1799773e1cae1",
+    "node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Utils.sol": "f2041b1685dcf0cf6b968d9b8454e5a46068b1df5ab0e82ba0b269fa2f3099a8",
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+  },
+  "changes": [
+    "Royalty balance helper deduplication with exact expression and call order preserved",
+    "Obsolete real-Vault royalty-outage expectation replaced with current successful-activation and deferred-currency accounting assertions"
+  ],
+  "not_qualified": [
+    "OpenSea payment integration",
+    "Live randomness provider",
+    "Actual independent feeds and routes",
+    "Production authority addresses",
+    "Hosted service operating/recovery qualification",
+    "Independent audit"
+  ],
+  "baseline_ast_analysis": {
+    "path": "external deep-cleanup-20261025/rewards-callgraph-baseline.json",
+    "sha256": "227147140cf9a44b4ea41cd6970ee3256c57db51711182c5b47e9f0f6469af1a",
+    "concrete_roots": 31,
+    "internal_recursive_components": 0,
+    "unresolved_internal_calls": 0,
+    "named_custom_error_require_calls": 0,
+    "user_defined_yul_functions": 0,
+    "scope_limit": "Baseline AST predates approved helper deduplication; final-source rerun pending.",
+    "inline_assembly_root_contexts": 149,
+    "distinct_inline_assembly_scopes": 51
+  },
+  "final_ast_analysis": {
+    "compiler_input_sha256": "b33bbcbeecc71c25a06177f12161694a815314fc9ff584263331dae924ca5e94",
+    "compiler_output_sha256": "6a5dc0dbd554372922e3f0973ecf392a6f2075ac83a6305c5177dd37cede1616",
+    "closed_input_count": 265,
+    "normal_production_input_count": 75,
+    "production_project_inputs": 44,
+    "production_dependency_inputs": 31,
+    "all_compiler_input_contents_match_current_files": true,
+    "concrete_production_roots": 31,
+    "internal_recursive_components": 0,
+    "unresolved_internal_calls": 0,
+    "named_error_require_calls": 0,
+    "distinct_inline_assembly_scopes": 51,
+    "user_defined_yul_functions": 0,
+    "full_external_graph_sha256": "d1cebcffc770a9b9ebaf4d06b325c03dd28764c7a1ea27dbf6b05d87167726ef",
+    "summary": "rewards-callgraph-summary.json"
+  }
+}

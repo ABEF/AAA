@@ -1,5 +1,14 @@
 # Verification evidence
 
+## Deep cleanup review - 2026-10-25
+
+[Adapted workflow](deep-cleanup-20261025/ADAPTED_PROMPT.md),
+[review](deep-cleanup-20261025/REVIEW.md), [verification](deep-cleanup-20261025/VERIFICATION.md)
+and [compiler comparison](deep-cleanup-20261025/compiler-comparison.md) record
+role visibility, duplicate helper/error removal, repaired native/royalty fixtures,
+closed dependency inputs and guarded evidence. No production deployment or
+independent approval; older reports below retain their own source scopes.
+
 Current source organization: [auditability refactor review](auditability-refactor-20261025/REVIEW.md),
 [verification](auditability-refactor-20261025/VERIFICATION.md) and
 [compiler comparison](auditability-refactor-20261025/compiler-comparison.md).

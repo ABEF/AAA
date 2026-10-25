@@ -1,0 +1,11 @@
+{
+  "tests_run": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "tool_sha256": "825635ee4f2f275cdb2802dc462041e8b9a54ae5084ae8e64fa900d2fdb1eac0",
+  "test_sha256": "fd6f268b13d55f06da0bf083f4ef50cf5539b7c78cb5d963670a55573b1b213c",
+  "log_sha256": "28c310334f47cb15afbab75b4e5e9dd31b65de2089e148324f9581c0184e7e44",
+  "scope": "Affected reference-generator module only; no compilation or financial action."
+}

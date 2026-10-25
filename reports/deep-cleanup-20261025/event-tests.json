@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "tests_run": 21,
+  "failures": 0,
+  "errors": 0,
+  "retention": {
+    "old_count": 135,
+    "new_count": 136,
+    "removed": [],
+    "modified": [],
+    "added": [
+      {
+        "fields": [
+          {
+            "indexed": true,
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "enabled",
+            "type": "bool"
+          }
+        ],
+        "name": "GuardianChanged",
+        "signature": "GuardianChanged(address,bool)"
+      }
+    ]
+  },
+  "schema_sha256": "11f49554c4b1a1ace157e04ea7c2b67e21f0c97eaf13d9ea5b396f9aa7c638f0",
+  "test_sha256": "456f131604c20147d245bd91c3f8a6670a6b10d6cc38a7e516e8f3173a27ded0",
+  "log_sha256": "b092b3e83e3a9b4b2e8bf0ab193b6e479434dc297d27b03dc5cab4092428fc29"
+}

@@ -10,6 +10,8 @@ from typing import Any
 
 MAX_JSON_BYTES = 64 * 1024 * 1024
 CALLABLE_KINDS = frozenset(('function', 'constructor', 'receive', 'fallback'))
+SNAPSHOT_SCHEMA = 2
+BUILD_INPUTS = frozenset(('foundry.toml','package.json','package-lock.json','scripts/install-deps.sh'))
 
 
 class ReferenceError(ValueError):
@@ -85,15 +87,36 @@ def _hex_object(value):
 
 
 def _source(root: Path, name: str) -> Path:
-    if not isinstance(name, str) or '\\' in name or not name.startswith('src/'):
+    if (not isinstance(name,str) or '\\' in name or not name.startswith('src/') or
+            any(part in ('','.','..') for part in name.split('/'))):
         raise ReferenceError('Invalid project source path')
+    directory=(root/'src').resolve()
     path = (root / name).resolve()
-    if not path.is_relative_to((root / 'src').resolve()) or path.suffix != '.sol' or not path.is_file():
+    if (not directory.is_relative_to(root.resolve()) or not path.is_relative_to(directory) or
+            path.suffix != '.sol' or not path.is_file()):
         raise ReferenceError('Source path escaped the project or is missing')
     return path
 
 
+def _dependency_source(root: Path, name: str) -> Path:
+    if (not isinstance(name,str) or '\\' in name or
+            not name.startswith(('node_modules/','lib/')) or
+            any(part in ('','.','..') for part in name.split('/'))):
+        raise ReferenceError('Invalid dependency source path')
+    directory = root / name.split('/',1)[0]
+    path = (root/name).resolve()
+    if (not directory.resolve().is_relative_to(root.resolve()) or
+            not path.is_relative_to(directory.resolve()) or path.suffix != '.sol' or not path.is_file()):
+        raise ReferenceError('Dependency source escaped its directory or is missing')
+    return path
+
+
 def _check_sources(root, snapshot):
+    if type(snapshot.get('snapshot_schema')) is not int or snapshot['snapshot_schema'] != SNAPSHOT_SCHEMA:
+        raise ReferenceError('Regenerate the reference with explicit dependency/build bindings')
+    for field in ('compiler_input_sha256','compiler_output_sha256','size_evidence_sha256'):
+        if not isinstance(snapshot.get(field),str) or not re.fullmatch(r'[0-9a-f]{64}',snapshot[field]):
+            raise ReferenceError('Invalid compiler artifact binding')
     expected = snapshot.get('source_sha256')
     if not isinstance(expected, dict) or not expected:
         raise ReferenceError('Missing source bindings')
@@ -103,6 +126,20 @@ def _check_sources(root, snapshot):
     for name, digest in expected.items():
         if not re.fullmatch(r'[0-9a-f]{64}', str(digest)) or sha(_source(root, name).read_bytes()) != digest:
             raise ReferenceError('Production source changed: ' + name)
+    dependencies = snapshot.get('dependency_source_sha256')
+    build_inputs = snapshot.get('build_input_sha256')
+    if not isinstance(dependencies,dict) or not isinstance(build_inputs,dict) or not set(build_inputs) <= BUILD_INPUTS:
+        raise ReferenceError('Missing or invalid dependency/build bindings')
+    if set(build_inputs) != {name for name in BUILD_INPUTS if (root/name).is_file()}:
+        raise ReferenceError('Build input inventory changed')
+    for name,digest in dependencies.items():
+        if not re.fullmatch(r'[0-9a-f]{64}',str(digest)) or sha(_dependency_source(root,name).read_bytes()) != digest:
+            raise ReferenceError('Dependency source changed: '+name)
+    for name,digest in build_inputs.items():
+        path=root/name
+        if (not re.fullmatch(r'[0-9a-f]{64}',str(digest)) or
+                not path.resolve().is_relative_to(root.resolve()) or not path.is_file() or sha(path.read_bytes()) != digest):
+            raise ReferenceError('Build input changed: '+name)
 
 
 def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, size_report: Path) -> dict:
@@ -115,18 +152,26 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
     if supplied.get('language') != 'Solidity' or any(x.get('severity') == 'error' for x in output.get('errors', [])):
         raise ReferenceError('Compiler input/output is not a successful Solidity result')
     settings = supplied.get('settings')
-    if settings != sizes.get('settings') or not sizes.get('all_pass') or sizes.get('errors'):
+    if settings != sizes.get('settings') or sizes.get('all_pass') is not True or sizes.get('errors') != []:
         raise ReferenceError('Compiler settings or normal size evidence differs')
     sources = supplied.get('sources')
     hashes = sizes.get('source_sha256')
-    if not isinstance(sources, dict) or set(sources) != set(hashes or {}):
+    dependencies = sizes.get('dependency_source_sha256')
+    compiled_sources = output.get('sources')
+    contents = sizes.get('compiler_content_sha256')
+    if (not isinstance(sources,dict) or not isinstance(hashes,dict) or not isinstance(dependencies,dict) or
+            not isinstance(compiled_sources,dict) or not isinstance(contents,dict) or set(contents) != set(sources) or
+            set(hashes)&set(dependencies) or
+            set(sources) != set(hashes)|set(dependencies) or set(compiled_sources) != set(sources)):
         raise ReferenceError('Compiler source inventory differs from size evidence')
     for name, value in sources.items():
-        source = _source(root, name)
+        source = _source(root,name) if name in hashes else _dependency_source(root,name)
         text = source.read_bytes().decode('utf-8-sig')
         if value != {'content': text} or sha(text.encode()) != sizes.get('compiler_content_sha256', {}).get(name):
             raise ReferenceError('Compiler source content differs: ' + name)
-    snapshot = {'source_sha256': hashes, 'compiler_settings': settings,
+    snapshot = {'snapshot_schema':SNAPSHOT_SCHEMA,'source_sha256':hashes,
+        'dependency_source_sha256':dependencies,'build_input_sha256':sizes.get('build_input_sha256'),
+        'compiler_settings': settings,
         'compiler_input_sha256': sha(compiler_input.read_bytes()), 'compiler_output_sha256': sha(compiler_output.read_bytes()),
         'size_evidence_sha256': sha(size_report.read_bytes())}
     _check_sources(root, snapshot)
@@ -148,7 +193,9 @@ def import_compiler(root: Path, compiler_input: Path, compiler_output: Path, siz
                 continue
             runtime = _hex_object(obj.get('evm', {}).get('deployedBytecode', {}).get('object', ''))
             gate = gates.get((source, name))
-            if not gate or len(creation) // 2 != gate['creation'] or len(runtime) // 2 != gate['runtime'] or not gate['creation_ok'] or not gate['runtime_ok']:
+            if (not gate or type(gate.get('creation')) is not int or type(gate.get('runtime')) is not int or
+                    len(creation)//2 != gate['creation'] or len(runtime)//2 != gate['runtime'] or
+                    gate.get('creation_ok') is not True or gate.get('runtime_ok') is not True):
                 raise ReferenceError('Compiler object differs from normal size evidence')
             abi = obj.get('abi')
             if not isinstance(abi, list):

@@ -1,0 +1,7 @@
+{
+  "expected_failure": true,
+  "exit_code": 1,
+  "tool_sha256": "679c166314987de806953dee0d414df06b2c87a84cf8eb84b73525c3c88fcfa0",
+  "tests_sha256": "ca18b84fc48f7635f47f7eb1c8d566a5b2e6d4cd05505612bfca818c4ca522eb",
+  "reason": "Unchanged project files did not bind imported Solidity dependencies or build/lock inputs."
+}

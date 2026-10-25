@@ -1,3 +1,47 @@
+## Deep cleanup checkpoint - 2026-10-25
+
+Adapted user prompt to current shared LP/accounting3/direct governance2/local
+canonicalV4. The prior four refactors were source-matched and not repeated.
+Read [workflow](../reports/deep-cleanup-20261025/ADAPTED_PROMPT.md),
+[review](../reports/deep-cleanup-20261025/REVIEW.md),
+[verification](../reports/deep-cleanup-20261025/VERIFICATION.md) and compiler/upstream
+records. Three production files change: guardian/initial role events (no authority
+change), royalty inherited balance reuse and shared v3 error-declaration reuse.
+Rights, rates, storage and public function encodings stay unchanged; event/error
+metadata exceptions are explicit. Pure cleanup executable bodies remain identical.
+
+32 selected Solidity methods pass once, including 20 actual Core/PosM native cases;
+41 distinct affected Python methods pass. 37 normal size gates pass with 75 explicit
+inputs (44 project / 31 dependency files); final AST 265 inputs (131 project/test /
+134 dependencies). One test-only missing Vm import was corrected after recorded
+failed AST; normal production build reused. Old/current test mapping and negative
+reference/comparison/graph controls retained. No full regression/fresh Slither,
+actual provider/fork/market/operating qualification or independent audit claimed.
+
+Current source reference still 31 contracts/608 functions/13 receive hooks; new
+evidence snapshot 2 rejects missing/drifting dependency/build bindings and malformed
+gates. This is not an on-chain profile upgrade. Two extra unused remappings align
+the driver to actual Foundry; old dependency-byte identity is not retroactively
+proven. Current 75/265 compiler input contents are frozen and verified. Source graph
+finds 0 internal cycles/unresolved calls/named-error require triggers; source-level
+compiler applicability triage is not compiler proof. Upstream/compiler release
+review stays open. Access runtime 9252, total initcode 42352/6800 margin; Vault
+22852/1724 unchanged, RoyaltyFactory 69 runtime margin remains tight.
+
+Operator: monitor initial/update Guardian/Keeper logs from controller creation;
+admit expected royalty currencies before receipt (old unknown prefunds quarantine,
+no retroactive allocation shortcut); native LP increase harvests first. Native
+claim docs allow ETH in both ledgers. Preserve unrelated drafts; two dirty docs
+receive only exact owned substitutions/prefix, not their unrelated content.
+
+No public RPC/transaction/deployment/seal, existing 8902/Anvil/NFT/LP/balances/
+journals/dist overlay, website source/build/server/service, signer or monitor
+change. Public DEPLOYMENT null, signing Anvil-only, monitor paused. Main only;
+maintain sole Todo/features/roadmap/operator/callable reference and both memories.
+Actual feeds/routes/VRF/authorities/OpenSea/website3/services/operating/gas and
+independent audit remain open. Production NOT APPROVED. Publication is separate;
+verify Git and the new receipt rather than infer a push from local saves.
+
 ## Auditability refactor - 2026-10-25
 
 User authorized four source refactors: private collect/close settlement, shared

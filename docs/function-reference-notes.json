@@ -124,7 +124,7 @@
           "access": "Bootstrap only, once."
         },
         "setKeeper(address,bool)": {
-          "purpose": "Enable or disable a keeper address. Keepers can run bounded maintenance but cannot rewrite governance policy or redeem holder principal.",
+          "purpose": "Grant or revoke bounded keeper maintenance authority and emit KeeperChanged. Initial grants are also emitted by the constructor; no management or custody-exit authority is added.",
           "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "who": "Nonzero account to add to or remove from this protocol role.",
@@ -132,7 +132,7 @@
           }
         },
         "setGuardian(address,bool)": {
-          "purpose": "Enable or disable a guardian address. Guardians may pause immediately; they cannot unpause solely by holding this role.",
+          "purpose": "Grant or revoke guardian pause authority and emit GuardianChanged for the resulting state. This does not grant governance, unpause, keeper or custody-exit authority.",
           "access": "Selected governance wallet directly; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "who": "Nonzero account to add to or remove from this protocol role.",
@@ -201,7 +201,7 @@
         }
       },
       "constructor": {
-        "purpose": "Select governance, keeper and guardian; deploy fixed helper factories. Deployer holds temporary bootstrap only until seal.",
+        "purpose": "Select governance, keeper and guardian; deploy fixed helper factories. Deployer holds temporary bootstrap only until seal. Emits the initial KeeperChanged and GuardianChanged grants.",
         "access": "Deployment only; three static nonzero address arguments. A governance wallet cannot be the controller itself.",
         "inputs": {
           "initialGovernance": "Reviewed governance wallet, typically a multisig; after sealing it calls configuration targets directly. Its own signatures/nonce authorize transactions.",

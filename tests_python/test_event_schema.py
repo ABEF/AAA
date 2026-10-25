@@ -28,6 +28,16 @@ def log(signature, indexed=(), data=(), emitter=TOKEN):
 
 
 class EventSchemaTests(unittest.TestCase):
+    def test_guardian_grants_and_revocations_are_exactly_decodable(self):
+        signature='GuardianChanged(address,bool)'
+        self.assertEqual(SCHEMA[topic(signature)]['fields'],[
+            {'type':'address','name':'account','indexed':True},
+            {'type':'bool','name':'enabled','indexed':False},
+        ])
+        for enabled in (True,False):
+            self.assertEqual(decode(log(signature,[word(OWNER,'address')],[word(enabled,'bool')])),
+                             ('GuardianChanged',{'account':OWNER,'enabled':enabled}))
+
     def test_source_schema_discovers_nested_base_events_without_renaming_or_duplicating_topics(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

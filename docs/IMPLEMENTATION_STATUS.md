@@ -1,5 +1,26 @@
 # Feature and evidence reference
 
+## Deep cleanup review - 2026-10-25
+
+The [adapted workflow](../reports/deep-cleanup-20261025/ADAPTED_PROMPT.md),
+[review](../reports/deep-cleanup-20261025/REVIEW.md) and
+[verification](../reports/deep-cleanup-20261025/VERIFICATION.md) separate structural
+cleanup, new role logs, evidence-tool fixes and obsolete fixture repairs.
+Royalty balance/error declaration reuse preserves execution and economic rights.
+Guardian changes and initial keeper/guardian grants are now observable. Public
+function encodings and recursive storage remain; declared event/error metadata
+changes are explicit. Only Access grows: 45 runtime / 175 creation bytes.
+
+32 scoped Solidity methods and 41 distinct Python methods pass; 37 normal object
+gates pass. The normal compiler explicitly binds 44 project + 31 dependency files;
+the final AST binds 131 project/test/script + 134 dependency files. The callable
+reference remains 31 concrete contracts/608 functions/13 receive hooks, now using
+snapshot schema 2 with complete dependency/build bindings. No full regression,
+fresh Slither, live qualification or independent audit is claimed. Current
+accounting3/governance2/local canonicalV4 and old deployments/journals stay distinct.
+Actual services, OpenSea, authorities, operating/gas qualification and independent
+audit remain open in the sole Todo. Production NOT APPROVED; no deployment.
+
 ## Auditability refactor - 2026-10-25
 
 The [current review](../reports/auditability-refactor-20261025/REVIEW.md) and

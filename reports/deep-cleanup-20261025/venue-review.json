@@ -1,0 +1,197 @@
+{
+  "scope": "Read-only venue/oracle/strategy review, followed only by root-assigned V3 error declaration reuse and native fixture remediation. No EVM/build/RPC/service/Git mutation by this agent.",
+  "baseline_commit": "964e6b6e14dfc91670ab74b6c5d34d8fe4da39bb",
+  "prompt_sha256": "7cc7c24f0a154b667b001abeb7565decd828676a9ea8f8c359b2b643f2340f02",
+  "compiler": {
+    "version": "0.8.26",
+    "evm": "Cancun",
+    "via_ir": true,
+    "optimizer_runs": 1,
+    "yul_optimizer": false
+  },
+  "dependency_versions": {
+    "@openzeppelin/contracts": {
+      "locked": "5.4.0",
+      "installed": "5.4.0"
+    },
+    "@uniswap/v4-core": {
+      "locked": "1.0.2",
+      "installed": "1.0.2"
+    },
+    "@uniswap/v4-periphery": {
+      "locked": "1.0.3",
+      "installed": "1.0.3"
+    }
+  },
+  "reviewed_dependency_files": {
+    "node_modules/@uniswap/v4-core/src/PoolManager.sol": {
+      "sha256": "3b6ab111dadf613e3cfd617e4b1c6ab75b5445cd15cbe52d7c6207fc02449717",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/ProtocolFeeLibrary.sol": {
+      "sha256": "f8d96d9c8b5d12ab927b34551699bd7086750475f70254c9505e636f2cafe56a",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/TickMath.sol": {
+      "sha256": "272d4f6d3ff9ae33596ebcdb84a71a3c2d4542ae8fb5c88ddf1aca8043f5d06b",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/SqrtPriceMath.sol": {
+      "sha256": "42440c21bbab86c7eed4716b281ed5ca281cf14af8b5e06dc6dc3bc6864bcfdf",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-core/src/libraries/FullMath.sol": {
+      "sha256": "a9607255a6fd604d9c92f6b7416811c38b9d86e5dfdb0c345a494ebd35f7a4a3",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/PositionManager.sol": {
+      "sha256": "49214f7463f709c378e5bdd010697eea02c1cabb2339fbe09f2ee5395748c6e3",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/BaseActionsRouter.sol": {
+      "sha256": "e3ceda8c5bb24d3e439aef94d004fdce7956439bc74c5c5bcd86e2cb9455e813",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/DeltaResolver.sol": {
+      "sha256": "cb2df93554fb4541355c6e42e346a39cd59138d919456dd5f1d500e2a5d70864",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/base/NativeWrapper.sol": {
+      "sha256": "8ca41a32e3c8e42866e6486fccd2e805b702cb583bf222c2d2da4bd429a23aa2",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/Actions.sol": {
+      "sha256": "404b842f30a05783b20eb37b20cc86e7a0df2730f6a7399229b46ae77f63e63a",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/PositionInfoLibrary.sol": {
+      "sha256": "5c889e1d5f259291045413e28069101eba1e7b8b72df6586bf54e4de5e525099",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/src/libraries/LiquidityAmounts.sol": {
+      "sha256": "dbfbef7aed94a6a56885124f0802b42adf7ee7bdd658f11fed40ffbb93fe6ba5",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@uniswap/v4-periphery/lib/permit2/src/AllowanceTransfer.sol": {
+      "sha256": "7be95b655a59352a3007147a1b79f211fc819b9a615a92017acf7257ecb88276",
+      "matches_earlier_recorded_local_binding": null
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "sha256": "32fbb1c908ec1b4de85cc1bb10091aebd5816ffe80dfdd5ca5e084fbea67a462",
+      "matches_earlier_recorded_local_binding": true
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "matches_earlier_recorded_local_binding": true
+    }
+  },
+  "dependency_scope_limit": "Matches are against earlier recorded local file bindings, not a fresh pristine npm tarball comparison or validation of deployed Robinhood bytecode. No dependency update or full dependency-tree audit performed.",
+  "current_source_sha256": {
+    "src/ZZZLiquidityManager.sol": "925dd46418ac3145718564437cb2d3f3bb031fd807401d98b1035a20b4720f26",
+    "src/libraries/ZZZV3VenueValidation.sol": "58bef41a2ed214812dfa8f895c3512c47d6d78e264dcd9a23abbac46131ee0a2",
+    "src/interfaces/IZZZV3Route.sol": "c1b4a0ed7e2930f5138974b5646cdca6ee81095578c11d57cca4dc9c5a9ce507",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZActivationEntry.sol": "dc3472b8d198246f3b0f7c0f8ad07945d149a2035a12a415e3c1cff6e1af584a",
+    "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
+    "src/ZZZOracle.sol": "8b86982de9090cacdd61760257efca657ce669045fc4a4479098b36106764ad3",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/base/ZZZRewardConverter.sol": "b7cec9db4ff55fa00ecf517ee9dbf65734a82359589b4f77048d768fe009e589",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/ZZZVault.sol": "a2d94a8152856240eb75d514a8d8f37d5f6412d3f3b1edca0ff31757c318940c",
+    "src/ZZZMigrationBudget.sol": "8a0e243dfc31717f431b71366becbb3717339485707b8e33645f456462545a68"
+  },
+  "inspected_test_sources": {
+    "test/NativeLiquidity.t.sol": "9ec206e29b36c669bf104fce2ca7b21b46af49a993a44304bd319cdd354310dd",
+    "test/NativeAssetFoundation.t.sol": "9b10e2b2cddba57859f20c66882b65c4399b3d52486d6310cb826bc6bb8ebb34",
+    "test/NativeVaultFlows.t.sol": "f9b8c654be473f417231453646099dace85765212055d5a55d38455aaaa0be88",
+    "test/LiquidityFactualChecks.t.sol": "5aa0caa156d287d97027f3c4757c784d43a7198320bf514212d9aa08fe69988d",
+    "test/LiquidityEncoding.t.sol": "da28f8e8f69df995a829e38a44d2fc9fa1640513a95ea662125512fb63b20d05",
+    "test/TypedV4Executor.t.sol": "bcef3eb49f9b7c3c9bb67f967ed6e10f1e95344d10dbe59e1f4e7f1c37084cb1",
+    "test/TypedV4Entry.t.sol": "a59b9b981db368a395a73dbf83d776e76d882fdd0488a354417122f85c9a010c",
+    "test/TypedV4Rewards.t.sol": "a7d6ca01aa368b76194c72490cf7e96607484a0119a5fa3c933cbb16e606c609",
+    "test/ContributionPriceSecurity.t.sol": "d9db1da89d3127d9c0fbe7be619b7148ee42d9cead485d4d723c47ff65cd1130",
+    "test/ContributionEntryPriceSecurity.t.sol": "983a94dcdb629626233b140cfb777bdce9a666de8534921580da9e181d83633e",
+    "test/EntryReviewPolicy.t.sol": "072d105b6f03a230db8a287e334ba6ed8dd4049d71688592bbf4059d815d8ead",
+    "test/PythPriceFeed.t.sol": "72f713cf177f44ba00193fa8d4f266afdba4dc1ecc257d1c8dbec8151f8e12d6",
+    "test/KeeperRangePolicy.t.sol": "d302836b69b3686db11aebce8be22f3cb9df8b03384d3482f33e25dbbee448c9",
+    "test/StrategyFeeSizing.t.sol": "1adb74e532d688ca88ae50c59d1d91591e2a2c5130439b91e00ec513ab59798c",
+    "test/StrategyPriceSnapshot.t.sol": "a109b5e66ee9ca26032e42156dbf985022a7b1e768029b1055238ea264ac099f",
+    "test/IntegratedEconomicConservation.t.sol": "f6e266cd5977198fe11a2a16a7e0556b1247a7229c90d0a5e80bc3a352ca112e",
+    "test/UniswapV4Fork.t.sol": "c2dfe7125cc08c9cfd50d624447367652bd8745a05cb0489d19c956ac8553555"
+  },
+  "paths_traced": [
+    "Actual PosM actions: MINT/INCREASE+SETTLE_PAIR, zero-DECREASE+TAKE_PAIR and BURN+TAKE_PAIR; locker/approval/currentVault ownership; packed tick offsets8/32 and native rounded-up debt/refunds.",
+    "PoolManager unlock hash authentication, exact-input signed deltas, dirty sync reset, settle/take, nonzero-delta closure and native receive accounting; protocol-fee low/high12-bit direction and effective fee formula.",
+    "Entry ETH/fixedZZZ admission, owner/context, original dual-price capture before transfer/approval, direct/v3/v4 route floors, exact approvals/reset and final price/balance/owner checks.",
+    "Contribution Pricing phases, lower/upper input bounds, marginal deployed LP, incumbent and historical compound, unchanged price/round fingerprint and endEntry callback window.",
+    "Oracle bounded returndata/gas, two-source agreement/freshness/decimal bounds, sequencer replacement and grace; Pyth original timestamps, signed width/exponent/confidence checks and proxy trust limitation.",
+    "Strategy inverse/native price orientation, outward tick rounding, displacement/cooldown/keeper reviewed widths, swap ratio/fee planning; Compounder forwarding and Buyback classified reserve/burn supply checks."
+  ],
+  "findings": [
+    {
+      "id": "VENUE-01",
+      "kind": "Obsolete active test fixture/verification gap",
+      "severity": "Medium test-maintenance; not a production theft finding",
+      "source": [
+        "test/NativeLiquidity.t.sol old BoundaryPools and NativeLiquidityTest",
+        "src/ZZZLiquidityManager.sol:_config,_mintOrIncrease,_settleTakePair"
+      ],
+      "evidence": "Old registry seam lacked isNativePool and rewrote native currency0 to WETH; positive mint/increase/input-swap calls omitted msg.value and asserted wrapped proceeds. Current code rejects before those claimed native paths. Original24 methods/preimage retained.",
+      "action": "Replaced old class with20 installed actual Core/PosM/StateView methods and current native ETH assertions; mapped every old behavior including retained fault coverage. Shared imported hostile helper bodies remain identical.",
+      "status": "Implemented and all 20 replacement methods passed against installed actual Core/PosM with explicit local authority/admission/price/Permit2 seams."
+    },
+    {
+      "id": "VENUE-02",
+      "kind": "Duplicate ABI error provenance",
+      "severity": "Low auditability/metadata, not fund flow",
+      "source": [
+        "src/libraries/ZZZV3VenueValidation.sol:InvalidConfiguration declaration",
+        "src/base/ZZZModule.sol:InvalidConfiguration declaration"
+      ],
+      "evidence": "The extracted helper redeclared identical InvalidConfiguration(), introducing duplicate identical ABI entries in Entry and both concrete converters; prior refactor explicitly recorded this.",
+      "action": "Reuse ZZZModule.InvalidConfiguration directly. Ordered view-read expression and revert selector unchanged; exact source preimage retained.",
+      "status": "Implemented; both V3 validation methods passed with exact ordered rejection selector; final ABI/size comparison is separately recorded by root."
+    },
+    {
+      "id": "VENUE-03",
+      "kind": "Required cross-module invariant, confirmed present",
+      "severity": "Informational",
+      "source": [
+        "src/ZZZLiquidityManager.sol:_nativeDebt,_mintOrIncrease",
+        "node_modules/@uniswap/v4-periphery/src/PositionManager.sol:_increase,_settlePair",
+        "src/ZZZVault.sol:_join,_redeploy"
+      ],
+      "evidence": "Native debt funding is exact gross principal, while PosM nets uncollected fees. Increasing before harvesting leaves unconsumed PosM ETH and must revert. Both current Vault paths explicitly harvest just before _put.",
+      "action": "Retain separate harvest and prefund checks; new actual fixture covers unharvested-increase rollback then collect/increase success. Do not merge principal/fee settlement as cleanup.",
+      "status": "No production change needed."
+    }
+  ],
+  "remaining_limits": [
+    "No newly confirmed unprivileged fund-theft or allowance/callback bypass in inspected paths; this is not proof of absence.",
+    "Existing current selected-market fork qualification remains blocked/unfinished; archived native-wrapped/Pons fixtures are not current provider approval.",
+    "Actual independent ETH/ZZZ feeds/routes/VRF, authority/Safe choices, OpenSea, operations/gas/strategy economics and independent audit remain release gates.",
+    "Native test uses explicit allowance/admission/price/authority substitutes; actual Permit2 and deployed proxy/upstream authority behavior need separate qualification.",
+    "Immediate governance, fixed-code recipient custody, source proxy common-mode and per-operation-only loss limits remain accepted trust/risk boundaries."
+  ],
+  "verification_executed_by_agent": [
+    "Static caller/dependency/action-order/source review",
+    "SHA256 source/dependency records and exact helper-body/deprecation-reference checks",
+    "Exactly 32 affected Solidity methods passed in one isolated normal-profile AST-selected Forge run, including 20 actual installed Core/PosM native methods; no retries, failed, skipped, missing or unexpected methods",
+    "All 265 final AST input bindings (131 project, 134 installed dependencies), the 75 closed normal-build bindings and selected bodies match before/after execution"
+  ],
+  "not_executed_by_agent": [
+    "Any RPC/fork/onchain transaction/service/deployment",
+    "Broad Python or full fresh regression",
+    "Root separately performed the normal 37-object production build and complete 265-input ABI/AST typecheck"
+  ],
+  "selected_verification": "solidity/selected-verification.json"
+}

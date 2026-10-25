@@ -2,6 +2,7 @@
 pragma solidity 0.8.26;
 
 import {Test} from "forge-std/Test.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {ZZZAccessController} from "../src/ZZZAccessController.sol";
 import {ZZZPoolRegistry} from "../src/ZZZPoolRegistry.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
@@ -66,6 +67,89 @@ contract DirectGovernanceTest is Test {
     function _notice() private view returns (ZZZAccessController.PreparationNotice memory) {
         return ZZZAccessController.PreparationNotice(block.chainid, address(0xCA11),
             keccak256("non-executable local review notice"), REVIEW);
+    }
+
+    function _assertRoleLog(Vm.Log memory entry, address controller, bytes32 signature,
+        address account, bool enabled) private pure
+    {
+        assertEq(entry.emitter, controller);
+        assertEq(entry.topics.length, 2);
+        assertEq(entry.topics[0], signature);
+        assertEq(entry.topics[1], bytes32(uint256(uint160(account))));
+        assertEq(entry.data, abi.encode(enabled));
+    }
+
+    function testInitialRoleLogsReconstructBothConstructorGrants() public {
+        vm.recordLogs();
+        ZZZAccessController fresh = new ZZZAccessController(GOVERNANCE, KEEPER, GUARDIAN);
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        assertEq(logs.length, 2);
+        _assertRoleLog(logs[0], address(fresh), keccak256("KeeperChanged(address,bool)"), KEEPER, true);
+        _assertRoleLog(logs[1], address(fresh), keccak256("GuardianChanged(address,bool)"), GUARDIAN, true);
+        assertTrue(fresh.keepers(KEEPER));
+        assertTrue(fresh.guardians(GUARDIAN));
+        assertEq(fresh.bootstrap(), address(this));
+        assertEq(fresh.governance(), GOVERNANCE);
+    }
+
+    function testBootstrapRoleGrantAndRevocationLogsMatchStoredEntitlements() public {
+        vm.recordLogs();
+        access.setKeeper(STRANGER, true);
+        access.setGuardian(NEXT, true);
+        assertTrue(access.keepers(STRANGER));
+        assertTrue(access.guardians(NEXT));
+        access.setKeeper(STRANGER, false);
+        access.setGuardian(NEXT, false);
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        assertEq(logs.length, 4);
+        _assertRoleLog(logs[0], address(access), keccak256("KeeperChanged(address,bool)"), STRANGER, true);
+        _assertRoleLog(logs[1], address(access), keccak256("GuardianChanged(address,bool)"), NEXT, true);
+        _assertRoleLog(logs[2], address(access), keccak256("KeeperChanged(address,bool)"), STRANGER, false);
+        _assertRoleLog(logs[3], address(access), keccak256("GuardianChanged(address,bool)"), NEXT, false);
+        assertFalse(access.keepers(STRANGER));
+        assertFalse(access.guardians(NEXT));
+        assertTrue(access.keepers(KEEPER));
+        assertTrue(access.guardians(GUARDIAN));
+    }
+
+    function testSealedGovernanceRoleLogsCoverGrantAndRevocationWithoutBootstrapAuthority() public {
+        _seal();
+        vm.recordLogs();
+        vm.prank(GOVERNANCE); access.setKeeper(STRANGER, true);
+        vm.prank(GOVERNANCE); access.setGuardian(NEXT, true);
+        assertTrue(access.keeperAuthorized(STRANGER));
+        assertTrue(access.guardians(NEXT));
+        vm.prank(GOVERNANCE); access.setKeeper(STRANGER, false);
+        vm.prank(GOVERNANCE); access.setGuardian(NEXT, false);
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        assertEq(logs.length, 4);
+        _assertRoleLog(logs[0], address(access), keccak256("KeeperChanged(address,bool)"), STRANGER, true);
+        _assertRoleLog(logs[1], address(access), keccak256("GuardianChanged(address,bool)"), NEXT, true);
+        _assertRoleLog(logs[2], address(access), keccak256("KeeperChanged(address,bool)"), STRANGER, false);
+        _assertRoleLog(logs[3], address(access), keccak256("GuardianChanged(address,bool)"), NEXT, false);
+        assertFalse(access.keeperAuthorized(STRANGER));
+        assertFalse(access.guardians(NEXT));
+        vm.recordLogs();
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector); access.setGuardian(NEXT, true);
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector); access.setKeeper(STRANGER, true);
+        assertEq(vm.getRecordedLogs().length, 0);
+        assertFalse(access.keepers(STRANGER));
+        assertFalse(access.guardians(NEXT));
+    }
+
+    function testUnauthorizedOrInvalidRoleUpdatesEmitNothingAndPreserveMappings() public {
+        vm.recordLogs();
+        vm.prank(GOVERNANCE); vm.expectRevert(ZZZAccessController.Unauthorized.selector); access.setGuardian(NEXT, true);
+        vm.prank(STRANGER); vm.expectRevert(ZZZAccessController.Unauthorized.selector); access.setKeeper(NEXT, true);
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector); access.setGuardian(address(0), true);
+        vm.expectRevert(ZZZAccessController.Unauthorized.selector); access.setKeeper(address(0), true);
+        assertEq(vm.getRecordedLogs().length, 0);
+        assertFalse(access.keepers(NEXT));
+        assertFalse(access.guardians(NEXT));
+        assertFalse(access.keepers(address(0)));
+        assertFalse(access.guardians(address(0)));
+        assertTrue(access.keepers(KEEPER));
+        assertTrue(access.guardians(GUARDIAN));
     }
 
     function testSelectedGovernanceConfiguresImmediatelyAfterSealAndBootstrapLosesAuthority() public {

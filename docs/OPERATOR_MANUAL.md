@@ -1,5 +1,39 @@
 # PoPL operator manual
 
+## Deep cleanup review - 2026-10-25
+
+The [review](../reports/deep-cleanup-20261025/REVIEW.md) changes no operator
+permission, contribution currency, economic rule or custody guarantee.
+
+- **Role history:** `setGuardian(address,bool)` now emits `GuardianChanged`;
+  `setKeeper` retains `KeeperChanged`. The controller constructor emits both
+  initial grants. Start role monitoring from the controller's deployment block
+  and canonical receipt, not just the NFT's first mint. Replay indexed account /
+  enabled updates, confirm stored mappings and reorg-safe completeness. Older
+  deployments lack these initial logs: review original constructor arguments and
+  calls rather than infer that no role exists. This is visibility, not more power.
+- **Reference/evidence refresh:** install the locked dependencies before running
+  `python scripts/generate-function-reference.py --check`. Snapshot schema2
+  binds imported Solidity plus foundry.toml, package.json, package-lock.json and
+  install-deps.sh. If any binding changes, obtain reviewed complete compiler
+  inputs/output and normal size evidence, then regenerate. Do not hand-edit
+  hashes, drop bindings or enable implicit-source fallback to bypass failure.
+  This evidence schema is not a deployed accounting/profile upgrade.
+- **Marketplace currencies:** admit expected royalty currencies and qualify
+  routes/feeds before payments begin. Funds already present when a currency is
+  first admitted are quarantined as orphaned. Do not promise retroactive credit
+  or silently allocate unknown historical receipts. Unexpected currencies need
+  provenance and an explicit reviewed policy; supported WETH/stable royalties
+  remain separate from ETH/ZZZ-only contributions.
+- **Native maintenance:** harvest before increasing the shared native position.
+  Current Vault paths do this. The adapter's strict exact-debt/prefund check is
+  intentional; do not bypass it when PositionManager has pending fees. Review
+  actual confirmed state, failure and original transaction before retrying.
+
+See the [callable reference](CONTRACT_FUNCTIONS.md),
+[royalty procedure](ROYALTY_SETTLEMENT.md) and [scoped verification](../reports/deep-cleanup-20261025/VERIFICATION.md).
+No website/server, existing local chain/journal, signer policy or monitor changed.
+
 ## Auditability refactor - 2026-10-25
 
 This [implementation refactor](../reports/auditability-refactor-20261025/REVIEW.md)

@@ -8,12 +8,15 @@ profiles and journals remain separately decoded. See [profile boundaries](POSITI
 [feature/evidence reference](IMPLEMENTATION_STATUS.md). Production NOT APPROVED.
 
 The current reference covers **31 contracts, 608 functions and 13 receive hooks**.
-Normal 37-object gates and 131-input typechecking pass. The [refactor verification](../reports/auditability-refactor-20261025/VERIFICATION.md)
-separates exact compiler comparison, scoped execution and inherited-struct metadata
-changes. The shared abstract converter is not another operator target; the two
-concrete instances retain separate ledgers. Registry runtime 10,269; Vault 22,852
-leaves 1,724bytes; Access total initcode 42,177 leaves 6,975. Actual service/release
-qualification and independent audit remain open. No full regression is inferred.
+The [latest cleanup](../reports/deep-cleanup-20261025/REVIEW.md) preserves function
+encodings/storage and adds explicit role logs. Normal 37-object gates pass with
+75 closed production inputs (44 project / 31 dependencies); 265 final ABI/AST inputs
+include 131 project/test/script and 134 dependencies. 32 scoped Solidity and 41 Python
+methods pass. Reference snapshot 2 rejects dependency/build drift. Vault runtime
+22,852 leaves 1,724; Access creation 42,256+96 fixed arguments totals 42,352, leaving
+6,800. RoyaltyFactory 69-byte runtime margin stays tight. Production NOT APPROVED;
+actual services, complete release regression/static analysis and independent audit
+remain open. Existing deployments and journals are unchanged.
 
 ## On-chain identity, entry and custody
 

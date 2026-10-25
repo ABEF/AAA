@@ -1,0 +1,66 @@
+test_existing_build_file_cannot_be_omitted_from_snapshot (tests_python.test_function_reference.FunctionReferenceTests.test_existing_build_file_cannot_be_omitted_from_snapshot) ... FAIL
+test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) ... 
+  test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) (field='all_pass') ... FAIL
+  test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) (field='creation_ok') ... FAIL
+  test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) (field='runtime_ok') ... FAIL
+test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected (tests_python.test_function_reference.FunctionReferenceTests.test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected) ... FAIL
+test_source_root_resolution_cannot_escape_the_repository (tests_python.test_function_reference.FunctionReferenceTests.test_source_root_resolution_cannot_escape_the_repository) ... FAIL
+
+======================================================================
+FAIL: test_existing_build_file_cannot_be_omitted_from_snapshot (tests_python.test_function_reference.FunctionReferenceTests.test_existing_build_file_cannot_be_omitted_from_snapshot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 168, in test_existing_build_file_cannot_be_omitted_from_snapshot
+    with self.assertRaisesRegex(ReferenceError,'Build input inventory changed'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) (field='all_pass')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 179, in test_size_gate_boolean_strings_cannot_qualify_compiler_import
+    with self.assertRaises(ReferenceError):import_compiler(self.root,*self.paths)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) (field='creation_ok')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 179, in test_size_gate_boolean_strings_cannot_qualify_compiler_import
+    with self.assertRaises(ReferenceError):import_compiler(self.root,*self.paths)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_size_gate_boolean_strings_cannot_qualify_compiler_import (tests_python.test_function_reference.FunctionReferenceTests.test_size_gate_boolean_strings_cannot_qualify_compiler_import) (field='runtime_ok')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 179, in test_size_gate_boolean_strings_cannot_qualify_compiler_import
+    with self.assertRaises(ReferenceError):import_compiler(self.root,*self.paths)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected (tests_python.test_function_reference.FunctionReferenceTests.test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 185, in test_unreported_content_hash_or_invalid_saved_artifact_hash_is_rejected
+    with self.assertRaisesRegex(ReferenceError,'Compiler source inventory'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+======================================================================
+FAIL: test_source_root_resolution_cannot_escape_the_repository (tests_python.test_function_reference.FunctionReferenceTests.test_source_root_resolution_cannot_escape_the_repository)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_function_reference.py", line 202, in test_source_root_resolution_cannot_escape_the_repository
+    with patch.object(Path,'resolve',new=resolved),self.assertRaises(ReferenceError):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ReferenceError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.096s
+
+FAILED (failures=6)

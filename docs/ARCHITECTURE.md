@@ -26,6 +26,13 @@ Earlier [release-hardening evidence](../reports/release-hardening/README.md) rec
 
 ## Shared implementation boundaries
 
+RoyaltyRewards now reuses its existing canonical-ledger balance observation;
+no extra inheritance or custody coupling is introduced. V3 validation references
+the module's existing error declaration. Governance/guardian authority is
+unchanged; new guardian and initial keeper/guardian events make role history
+observable. Current verification binds the entire imported source closure.
+See the [cleanup review](../reports/deep-cleanup-20261025/REVIEW.md).
+
 [LiquidityManager](../src/ZZZLiquidityManager.sol) uses one private settlement
 helper for collect/close; each caller retains its fixed action and checks.
 [Entry](../src/ZZZActivationEntry.sol) and the converter base share an internal

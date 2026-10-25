@@ -1,0 +1,11 @@
+{
+  "tests_run": 20,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "tool_sha256": "3c45f4ac8d28f9f2723986870b1e62dfc1551080e144e837dfdc350d77a28e7c",
+  "test_sha256": "8356b27cb7dbb26ceaf344d16168d07cecffcc580d74946d3509ea35dd115726",
+  "log_sha256": "7d6ba8694195e43e8f29bb49b4b93f78b6ed06abdd9705221d046ef88cf33331",
+  "scope": "20 distinct affected generator methods; prior16 repeated count once. No compilation or financial action; controlled path-resolution seam is not a physical symlink rehearsal."
+}

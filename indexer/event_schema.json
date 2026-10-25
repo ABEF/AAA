@@ -2107,6 +2107,22 @@
     "name": "RouteRecorded",
     "signature": "RouteRecorded(bytes32,address,address,bytes32)"
   },
+  "0xafef3d05547c718394a99a79aa641db2143708cd1114b68479af4740f173cc50": {
+    "fields": [
+      {
+        "indexed": true,
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "enabled",
+        "type": "bool"
+      }
+    ],
+    "name": "GuardianChanged",
+    "signature": "GuardianChanged(address,bool)"
+  },
   "0xb11ad1e7eddb5d475279e30a30e8580b78e8f7417a169ac42d626c06bc94f923": {
     "fields": [
       {
