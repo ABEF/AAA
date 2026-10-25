@@ -13,6 +13,15 @@ the fee controller funds its own classified reserve. Native venue fees need no
 conversion worker. Explicit WETH conversion remains separately configured.
 See [native implementation evidence](../reports/native-eth-port/VERIFICATION.md).
 
+Fresh current LP-only deployments also require explicit `fee_intake_version: 1`,
+the actual `contracts.fees` address and its reviewed deployed runtime at
+`code_hashes.fees`. The keeper checks `FEE_INTAKE_VERSION() == 1` before new work.
+This profile is persisted separately from accounting version2: historical fee0
+journals and pending hashes must not be reinterpreted by copying current settings
+or editing a version field. Restore their original deployment/profile for reviewed
+reconciliation. The current example uses separate native/profile-specific state
+paths; it does not upgrade an installed service or provide reviewed runtime pins.
+
 Hardened keeper candidate. See [the internal review](../reports/keeper-recovery/REVIEW.md). Staging and independent approval remain required before funded operation.
 
 See [service qualification and rehearsal](KEEPER_REHEARSALS.md) for the isolated

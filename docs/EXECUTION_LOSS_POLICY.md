@@ -45,8 +45,7 @@ weaken the in-progress check. The reviewed Entry path additionally rejects inclu
 the caller maximum; other governance configuration is not frozen by a quote.
 
 For normal external custody, approval stores an absolute minimum retained value.
-Raising the global limit later does **not** weaken that plan's exit/completion or
-proof commitment. Cancel and separately review a new unsent approval if a different
+Raising the global limit later does **not** weaken that plan's exit/completion. Cancel and separately review a new unsent approval if a different
 budget is intended. Exact outgoing raw/ZZZ and destination minimums still apply.
 Raw emergency exit remains explicit and separately approved, with raw-asset
 minimums and no USD-loss guarantee. Normal failure never selects raw mode.
@@ -73,9 +72,9 @@ Existing Anvil state, saved reviews and public simulation are unchanged. See
 [typed routes](TYPED_V4_ROUTES.md), the [operator manual](OPERATOR_MANUAL.md),
 [feature evidence](IMPLEMENTATION_STATUS.md) and [central Todo](../TODO.md).
 
-The public website is not switched to this policy. Its native-V2/live profile and
-review of current limits remain explicit release work; the existing local
-deployment and its journals keep their original contract/configuration semantics.
+The public website remains simulated. The native-V2 read/unsigned profile is
+implemented in source; actual wallet/service qualification and public signing
+remain open. Existing local deployments/journals keep their original semantics.
 
 <a id="review-time-policy-binding-remains-open"></a>
 
@@ -107,8 +106,7 @@ Historical pricing-V1/local profiles keep their old semantics. Old native-V2
 activation configurations require an explicit upgrade; missing getters/RPC errors
 never mean legacy support. Read-only historical profiles remain separate.
 
-The website's historical Anvil/unsigned profile still uses its original 1% and
-old Entry selector. It must reject this new runtime, not relax its validation or
-reinterpret saved journals. Native-V2 browser/preparer integration and real wallet
-acceptance remain [open](../TODO.md#task-reviewed-contribution-policy). Public
-signing stays disabled. [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).
+The historical Anvil profile retains its original policy and runtime; never
+reinterpret saved journals. The implemented native-V2 read/unsigned profile
+requires the reviewed selector and current limit checks; real wallet/provider
+acceptance and public signing remain [open](../TODO.md#task-reviewed-contribution-policy). [Source-scoped evidence](../reports/comprehensive-improvement-20261025/VERIFICATION.md).

@@ -1,3 +1,28 @@
+## One-ZZZ and day security review - 2026-10-25
+
+User confirmed there is ONE ZZZ. The same fixed identity is used by source
+activation/growth, native pool admission, immutable Buyback and normal exit.
+No setZZZ or token retargeting exists; issuer migration uses custody exit and
+a fresh reviewed deployment. Bind the source once, deploy/bind matching Buyback,
+then configure Migration once before seal. Raw exit gains no new dependency.
+
+Read [day review](../reports/daily-security-20261025/REVIEW.md),
+[verification](../reports/daily-security-20261025/VERIFICATION.md) and necessity map.
+Native identity admission, funded historical-dust liveness and poisoned-indexer
+provenance are fixed.28distinct Solidity behaviors across three test-fixture
+scopes,35Python methods,124-input final ABI/AST and36normal object gates pass.
+Fixture naming/same-depth mock failures and exact repairs are recorded; no
+fresh full regression/provider/independent approval.31contracts/643functions.
+Vault23,889/687margin; Registry10,131; Access minimal role initcode49,123/29margin.
+Actual release role arguments and real service/OpenSea/VRF/feed/route/authority/
+operating/economic/gas/audit gates stay open. Fresh deployment only, no old
+storage/journal update.65TodoIDs/statuses preserved; operator/features updated.
+
+Publication is separate: inspect Git and the eventual receipt. No deployment,
+public transaction, website code/build/server,8902/Anvil/NFT/LP/balances/journals/
+dist overlay, signer or paused-monitor change. Public DEPLOYMENT null; Anvil-only
+signer. Preserve older unrelated drafts; main only. Production NOT APPROVED.
+
 ## Residual obsolete-code cleanup - 2026-10-25
 
 Read [review](../reports/obsolete-code-20261025/REVIEW.md) and

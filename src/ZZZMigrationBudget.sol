@@ -10,7 +10,6 @@ interface IPairAssets { function assetCount() external view returns(uint256); fu
 interface IPairVault { function migrationBudget() external view returns(ZZZMigrationBudget); }
 import {IZZZCanonicalAccess} from "./interfaces/IZZZCanonical.sol";
 
-interface IMigrationContribution { function contributionUSD(uint256 id) external view returns (uint256); }
 interface IMigrationIdle { function totalIdle(address) external view returns(uint256); }
 interface IBudgetVaultValidation {
     function validateOwner(uint256,address,bool,bool) external view returns(address);

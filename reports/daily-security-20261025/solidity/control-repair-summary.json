@@ -1,0 +1,55 @@
+{
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\daily-consistency-audit-20261025\\solidity\\selected\\ast-focused-profile-b7y0wmzj",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^GlobalMembershipDustTest$",
+    "--match-test",
+    "(testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents|testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry|testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights)",
+    "--json"
+  ],
+  "elapsed_seconds": 118.704,
+  "exit_code": 0,
+  "cases": [
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 6632722
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 6010608
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 5328524
+        }
+      }
+    }
+  ],
+  "complete": true,
+  "successful": true,
+  "repair_manifest_sha256": "c8fbf1eaec15544dc9061758c850346093360c0b19e1694e03055f3a0c599210"
+}

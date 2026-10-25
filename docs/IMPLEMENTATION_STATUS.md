@@ -1,5 +1,21 @@
 # Feature and evidence reference
 
+## October25 consistency and security fixes
+
+The [day review](../reports/daily-security-20261025/REVIEW.md) fixes native-pool
+identity admission, makes Buyback use the same immutable ZZZ as activation and
+normal exit, removes historical venue reads from funded incumbent dust settlement,
+and rejects poisoned indexer log provenance before committing a batch. No new
+custody right, token migration setter or automatic history repair is introduced.
+
+[Scoped verification](../reports/daily-security-20261025/VERIFICATION.md):28 distinct
+Solidity behaviors across recorded fixture scopes,35 affected Python methods,
+124-input ABI/AST and36 normal object gates. Current reference:31 contracts,
+643 functions. Registry runtime10,131; Vault23,889 with687 bytes of headroom.
+Access retains only29 bytes with minimal role arguments; actual release arrays
+remain unqualified. Older sections below retain their original source scope.
+Real services, marketplace/authority rehearsals and independent audit remain open.
+Production NOT APPROVED; no running deployment, website or service changed.
 
 ## Residual obsolete-code cleanup - 2026-10-25
 
@@ -20,7 +36,7 @@ explicit; old deployments/journals keep historical profiles.
 
 ## Callable-function documentation and current service scope - 2026-10-25
 
-The [function reference](CONTRACT_FUNCTIONS.md) covers31 contracts and644 functions. It records the compiled current public
+The [function reference](CONTRACT_FUNCTIONS.md) covers31 contracts and643 functions. It records the compiled current public
 surface, inputs/outputs, read/write type, authority and concise behavior. The
 [operator manual](OPERATOR_MANUAL.md) owns procedures; its closing reference links
 the catalog. Internal helpers and unsupported external protocols are not new

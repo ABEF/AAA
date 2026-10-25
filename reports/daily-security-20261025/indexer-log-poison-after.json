@@ -1,0 +1,19 @@
+{
+  "scope": "Eight new log-provenance regressions plus existing affected IndexerTests, once, against isolated SQLite/mock chain. No actual service/database/provider/chain operation. Not a full repository regression.",
+  "observed_at_utc": "2026-10-25T18:04:29.710092+00:00",
+  "source_sha256": {
+    "indexer/monitor.py": "6f50a2839a9abc174b5224a52f7aeca2584ab51492bebd963d30091a6b683e02",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "tests_python/test_indexer_log_safety.py": "acbf08a782c8215330e857b347cae56f1df7831bb2663ee883306ce59c8c4800",
+    "tests_python/test_indexer.py": "cb413df03ce80e121723f0fd317f79e70830782c677216a95c1a59dc1a70b6d7"
+  },
+  "modules": [
+    "tests_python.test_indexer_log_safety",
+    "tests_python.test_indexer"
+  ],
+  "tests_run": 35,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true
+}

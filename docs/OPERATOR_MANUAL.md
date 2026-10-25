@@ -1,6 +1,25 @@
 # PoPL operator manual
 
 
+## One fixed ZZZ and current setup order - 2026-10-25
+
+There is one ZZZ contract for contribution inputs, the selected native LP,
+buyback burns and normal custody exit. Configure its reviewed source identity
+before `PoolRegistry.configureNative`; native admission rejects an unset or
+mismatched source before venue checks. Deploy/bind Buyback with that same token,
+then call the one-time `Migration.configureZZZ`; it checks the source and immutable
+Buyback identities before recording the exit pin. Sealing then verifies the
+matching nonzero source/exit setup. No post-seal retargeting exists.
+
+If the initial identity or immutable Buyback was wrong, do not seal or invent a
+repair setter: prepare a fresh reviewed deployment. Operator range, limits,
+asset enable/disable and approved routes remain configurable within their bounds.
+Raw emergency exit still does not need a conversion or buyback dependency.
+
+The [day review](../reports/daily-security-20261025/REVIEW.md) also separates
+already-funded dust settlement from old venue liveness; actual new contribution
+execution and nonzero payment/backing checks remain mandatory.
+
 ## Current release simplification - 2026-10-25
 
 [Current scope](SIMPLIFIED_RELEASE.md): ETH/ZZZ-only contributions, actual local LP
@@ -76,6 +95,15 @@ that maximum. Old Anvil/website ABI and journals keep their original policy.
 For missing/malformed/unstable indexer ancestry, follow [indexer recovery](INDEXER_RECOVERY.md).
 Preserve the DB/WAL, cursor, anchors and event history. Switch only to a reviewed
 configured endpoint and retry; never clear history to make an outage look current.
+For `invalid_log` or `duplicate_log`, preserve a consistent DB/WAL evidence copy,
+configuration and affected block/log range. The current ingestion guard rejects
+malformed/oversized provenance and conflicting event identities before new rows
+or a new cursor are committed; a separately proved reorg rollback is distinct.
+It does not repair already poisoned history. Compare a reviewed provider, and if
+independently approved rebuild into a separate database with complete creation,
+predecessor and cutoff coverage. Never delete bad rows, guess a cursor or replace
+unavailable earnings with zero. [Current validation](FRONTEND_HISTORY.md) explains
+the limits; no automatic cleanup or new financial action follows from an alert.
 RPC redirects are refused, including same-host redirects: configure the actual
 reviewed final endpoint explicitly. Normal bounded failover still applies.
 
@@ -603,7 +631,7 @@ Revenue is receipt-based, not a per-minute promise. **80/10/5/5 is fixed**: indi
 | --- | --- | --- |
 | Harvest selected pool LP fees | Permissionless `Vault.collectFees(bucketId,deadline)` while live and locally active | Verify actual venue fees collected and funded 80/10/5/5 allocation. The selected hookless pool has a static 1.002% LP fee; PoPL earns its eligible position's share, not Uniswap's separate protocol fee. No creator payment is required for this LP income. |
 | Compound | Keeper `Compounder.compound(bucketId,minimumLiquidity,deadline)` | Uses classified reserve, actual pool and guards; funds never pass through keeper. Poll/threshold changes are off-chain; insufficient funds or unsafe execution waits/reverts. |
-| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. Governance can update the reviewed target with `Buyback.setZZZ(token,codeHash,reviewHash)` after new-token/feed/burn qualification; this separate buyback target does not change the fixed contribution/normal-exit ZZZ identity. Verify current pools/routes. Token migration requires custody exit and a fresh deployment. |
+| Buy back and burn | Keeper `Buyback.execute(token,amount,poolId,deadline)` | Check reserve, oracle value ≤ current `operatingTradeUSD` ≤ immutable `maxTradeUSD`, swap minima, actual ZZZ acquired and total-supply reduction. Governance tunes the operating ceiling with `setOperatingTradeUSD`; zero stops buys. The buyback target is immutable and must be the same ZZZ as contribution and normal exit. There is no retargeting setter. Bind Buyback before `Migration.configureZZZ`; mismatched or unbound targets cannot complete setup. Token migration requires custody exit and a fresh reviewed deployment. |
 | Admit LP payout asset | Governance `Rewards.addAsset(token)` | Permanent bounded history, maximum 32; do not fill slots with speculative assets. Admission is distinct from input routing. |
 | Receive marketplace royalties | `NFT.royaltyInfo(tokenId,salePrice)` returns the NFT's royalty receiver and requested 5% | Configure marketplaces with the **returned contract receiver**, never a manager wallet. ERC2981 is a request, not universal enforcement on every marketplace. |
 | Admit royalty currency | Governance `NFT.addRoyaltyAsset(token)` | Initial scope is native ETH plus the independently verified Robinhood WETH wrapper; stablecoin conversion depends on marketplace qualification. Admission does not restrict sales or convert payouts. Separate bounded ledger (17 total including native); no arbitrary removal/sweep. Pre-admission/no-eligible-holder funds stay quarantined. |
@@ -626,12 +654,6 @@ new execution without querying the oracle or releasing reserves; it does not sto
 LP maintenance, claims or royalty processing, and does not move accumulated funds.
 Reopen by selecting a positive reviewed limit within the hard ceiling.
 This is a per-trade USD limit, not a token quantity or daily/cumulative budget.
-Current pricingV2 checks the upper admitted input price, rounded upward at token
-precision. Reduce the raw task amount if disagreement makes it exceed the ceiling;
-never switch to the lower mark just to make a batch pass.
-Current pricingV2 checks the upper admitted input price, rounded upward at token
-precision. Reduce the raw task amount if disagreement makes it exceed the ceiling;
-never switch to the lower mark just to make a batch pass.
 Current pricingV2 checks the upper admitted input price, rounded upward at token
 precision. Reduce the raw task amount if disagreement makes it exceed the ceiling;
 never switch to the lower mark just to make a batch pass.

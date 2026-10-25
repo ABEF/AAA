@@ -39,8 +39,9 @@ economic rights are otherwise unchanged.
    `configureZZZ(token, codeHash, reviewHash)` once before sealing, using actual
    token/runtime and dual-price evidence. Rebinding is rejected.
    Native ETH uses its explicit native identity. Disable/re-enable these two
-   inputs through their append-only source policies. Bind `Migration.configureZZZ`
-   to that same identity before sealing; seal rejects unset/mismatched bindings.
+   inputs through their append-only source policies. Deploy/bind immutable Buyback with the same ZZZ before calling
+   `Migration.configureZZZ`; this one-time binding validates both identities.
+   Configure the source before native pool admission and before sealing; seal rejects unset/mismatched bindings.
    Changing the token identity
    requires custody exit and a fresh deployment.
 2. Keep contribution, conversion and maintenance defaults at **2%, 1% and 3%**,

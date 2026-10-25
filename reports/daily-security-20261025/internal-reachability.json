@@ -1,0 +1,9 @@
+{
+  "scope": "Conservative static AST-reference reachability from project public/external/constructor/override roots. Not an external-call completeness, minimality or runtime vulnerability proof. Interface dispatch and caller intents still require manual review.",
+  "roots": 386,
+  "reachable_nodes": 650,
+  "project_internal_candidates": [],
+  "compiler_input_sha256": "fb83d481a5af1109d04bda14398684ffdbf368e0d39dfb6ff15c15e42bd09737",
+  "compiler_output_sha256": "8dd118c60815ac4a941dac00524a1dbbf21199950d13df68f0ac66b38e301591",
+  "scope_note": "Production sources match the final normal build; only test fixture repairs followed this AST scan. No scan or runtime test rerun is inferred."
+}

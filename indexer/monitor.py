@@ -31,6 +31,21 @@ def _header_quantity(value:Any)->int:
         raise IndexerSafetyError('invalid_header','Block header exceeds the supported database range')
     return number
 
+MAX_RAW_LOG = 131072
+
+def _log_quantity(value:Any)->int:
+    if not isinstance(value,str) or not re.fullmatch(r'0x(?:0|[1-9a-fA-F][0-9a-fA-F]{0,15})',value):
+        raise IndexerSafetyError('invalid_log','Malformed log quantity; retained history is unchanged')
+    number=int(value,16)
+    if number>2**63-1:
+        raise IndexerSafetyError('invalid_log','Log quantity exceeds the supported database range')
+    return number
+
+def _log_hash(value:Any)->str:
+    if not isinstance(value,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',value) or int(value,16)==0:
+        raise IndexerSafetyError('invalid_log','Malformed log hash; retained history is unchanged')
+    return value.lower()
+
 class Indexer:
     def __init__(self,config:dict[str,Any],rpc:Rpc|None=None):
         self.config=config
@@ -141,18 +156,50 @@ class Indexer:
             headers[number]=h;parent=h['hash']
         last=self.header(end)
         if last!=headers[end]:raise RpcError('Chain changed during log fetch')
-        prepared=[]
+        prepared=[];seen_logs=set();transaction_blocks={}
         for item in logs:
-            number=int(item['blockNumber'],16)
-            if number not in headers or item.get('removed') or item['blockHash'].lower()!=headers[number]['hash'].lower():
-                raise RpcError('Log does not belong to the confirmed block range')
-            contract=address(item['address'])
-            if contract not in self.contracts:raise RpcError('Unexpected contract in log response')
-            event,decoded=decode(item)
-            prepared.append((self.chain,number,item['blockHash'].lower(),item['transactionHash'].lower(),
-                int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
-                json.dumps(item,sort_keys=True)))
+            if not isinstance(item,dict) or item.get('removed') is not False:
+                raise IndexerSafetyError('invalid_log','Malformed or removed log; retained history is unchanged')
+            number=_log_quantity(item.get('blockNumber'))
+            block_hash=_log_hash(item.get('blockHash'))
+            transaction_hash=_log_hash(item.get('transactionHash'))
+            log_index=_log_quantity(item.get('logIndex'))
+            if number not in headers or block_hash!=headers[number]['hash']:
+                raise IndexerSafetyError('invalid_log','Log is outside the confirmed block range')
+            try:contract=address(item.get('address'))
+            except (ValueError,TypeError,AttributeError):
+                raise IndexerSafetyError('invalid_log','Malformed log emitter; retained history is unchanged') from None
+            if contract not in self.contracts:
+                raise IndexerSafetyError('invalid_log','Unexpected log emitter; retained history is unchanged')
+            topics=item.get('topics');data=item.get('data')
+            if (not isinstance(topics,list) or len(topics)>4 or
+                    any(not isinstance(t,str) or not re.fullmatch(r'0x[0-9a-fA-F]{64}',t) for t in topics) or
+                    not isinstance(data,str) or len(data)>MAX_RAW_LOG or
+                    not re.fullmatch(r'0x(?:[0-9a-fA-F]{2})*',data)):
+                raise IndexerSafetyError('invalid_log','Malformed log topics or data; retained history is unchanged')
+            if 'transactionIndex' in item:_log_quantity(item['transactionIndex'])
+            try:
+                raw=json.dumps(item,sort_keys=True,allow_nan=False)
+                if len(raw)>MAX_RAW_LOG:raise ValueError()
+                event,decoded=decode(item)
+            except (ValueError,TypeError,KeyError,AttributeError,RecursionError):
+                raise IndexerSafetyError('invalid_log','Malformed or oversized raw event; retained history is unchanged') from None
+            if ((number,log_index) in seen_logs or
+                    transaction_hash in transaction_blocks and transaction_blocks[transaction_hash]!=number):
+                raise IndexerSafetyError('duplicate_log','Conflicting log provenance; retained history is unchanged')
+            seen_logs.add((number,log_index));transaction_blocks[transaction_hash]=number
+            prepared.append((self.chain,number,block_hash,transaction_hash,log_index,contract,event,
+                json.dumps(decoded,sort_keys=True) if decoded is not None else None,raw))
         with self.db:
+            self.db.execute('BEGIN IMMEDIATE')
+            if self.next_block!=start:
+                raise IndexerSafetyError('database_changed','Indexer cursor changed during ingestion; retry with one writer')
+            # One indexed, LIMIT-1 lookup per distinct incoming transaction.
+            # No history list is materialized, and every check precedes INSERT.
+            for transaction_hash,number in transaction_blocks.items():
+                if self.db.execute('SELECT 1 FROM logs WHERE chain=? AND transaction_hash=? AND block_number!=? LIMIT 1',
+                        (self.chain,transaction_hash,number)).fetchone():
+                    raise IndexerSafetyError('duplicate_log','Transaction conflicts with retained history; no new blocks were stored')
             for number,h in headers.items():
                 self.db.execute('INSERT INTO blocks VALUES(?,?,?,?,?)',(self.chain,number,h['hash'].lower(),h['parentHash'].lower(),int(h['timestamp'],16)))
             self.db.executemany('INSERT INTO logs VALUES(?,?,?,?,?,?,?,?,?)',prepared)

@@ -97,7 +97,7 @@ contract ZZZContributionPricing {
     }
     /// @dev Entry calls BEFORE token pulls, approvals or conversion. No later
     /// quote can replace this original-source value or LP-pair price basis.
-    /// @notice Retired initializer; current Entry must supply its signed maximum.
+    /// @notice Freeze the reviewed Entry basis and enforce the caller's maximum loss.
     function beginEntryReviewed(uint256 nft,bytes32 pool,address source,uint256 amount,uint16 maximumLossBps)
         external returns(uint256 lowerUSD) {
         if (msg.sender != _entry()) revert Unauthorized();

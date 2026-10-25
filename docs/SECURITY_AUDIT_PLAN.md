@@ -1,5 +1,22 @@
 # Security audit plan
 
+## October25 consistency and security fixes
+
+The [day review](../reports/daily-security-20261025/REVIEW.md) fixes native-pool
+identity admission, makes Buyback use the same immutable ZZZ as activation and
+normal exit, removes historical venue reads from funded incumbent dust settlement,
+and rejects poisoned indexer log provenance before committing a batch. No new
+custody right, token migration setter or automatic history repair is introduced.
+
+[Scoped verification](../reports/daily-security-20261025/VERIFICATION.md):28 distinct
+Solidity behaviors across recorded fixture scopes,35 affected Python methods,
+124-input ABI/AST and36 normal object gates. Current reference:31 contracts,
+643 functions. Registry runtime10,131; Vault23,889 with687 bytes of headroom.
+Access retains only29 bytes with minimal role arguments; actual release arrays
+remain unqualified. Older sections below retain their original source scope.
+Real services, marketplace/authority rehearsals and independent audit remain open.
+Production NOT APPROVED; no running deployment, website or service changed.
+
 The [on-chain safety/cost follow-up](../reports/onchain-safety/REVIEW.md) covers
 bounded uptime calls, memory-only strategy prices, packed contribution bounds
 and static-loop reward contexts. Independently review the exact optimized source,
@@ -45,7 +62,7 @@ preserve original per-NFT liabilities/quarantine and ownership rights, suspend
 only the exited currency, require actual full restoration and never distribute
 that restoration as new income. Check native-currency activation deferral and
 replay. Whole-collection capture must reject all outstanding custody. Review the
-mutable governed ZZZ buyback target and retained strict burn verification.
+immutable matching ZZZ buyback target and retained strict burn verification. Token migration uses custody exit and a fresh reviewed deployment, not retargeting.
 
 The old v3 bridge/pair execution contracts are retired; their historical tests are not current evidence. Adapt and independently qualify the release inventory, hosting/keeper/API status handling, real markets/native pins, operational recovery and holder disclosures before real funds.
 

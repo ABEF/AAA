@@ -18,13 +18,29 @@ claim older royalties. No rarity, art path, allocation or ownership rule changes
 
 Current accepted rules: $100 activation, 80/10/5/5 revenue, equal activated-NFT collective membership and separate rarity royalties. This is an undeployed candidate; publication is not approval to use real funds.
 
+## One fixed ZZZ token
+
+Contributions, buyback burns and normal all-ZZZ exit use the same token contract.
+Before sealing, configure the reviewed source ZZZ once, deploy and bind Buyback
+with that immutable token, then configure Migration once to the matching source
+and Buyback identity. The source and exit pins are separate records for one ZZZ,
+not two economic assets. Sealing requires matching nonzero source/exit identities;
+native pool admission also checks the pinned Robinhood ZZZ. No post-seal token
+replacement or buyback-retargeting setter exists. An issuer token migration uses
+custody exit and a fresh reviewed deployment; it does not erase NFT ownership,
+earned balances or purpose-bound reserves.
+
+This setup check does not add a Buyback or source-policy call to raw exit.
+Explicit raw exit still transfers actual pair assets without conversion under
+its own custody and raw-minimum checks.
+
 ## Permanent capital
 
 Current direct mint forwards its full 0.05 ETH charge to the immutable mint recipient; none becomes LP or rewards. The intended OpenSea path must keep the buyer total at 0.05 ETH, deduct the actual platform fee and pay that recipient the remainder, with gas separate. That compatible mint integration is not implemented; no platform percentage is assumed. See [mint qualification](MINT_INTEGRATION_QUALIFICATION.md). The accepted activation input minimum is **$100 in conservative original-source value**, with the **captured marginal-LP floor (98% at the default 2% limit)** after execution; network gas is separate. The same captured contribution execution/undeployed limit applies across conversion and additions; governance can set future limits up to 10%. Incumbent LP, idle and compound assets cannot subsidize the new contribution. Stricter pool execution bounds still apply. The immutable [atomic Entry](ACTIVATION_ENTRY.md) authenticates exact original-source ingress, current-owner intent and measured USD value through typed conversion into the Vault. Its short-lived context prevents using post-conversion value to reset the captured budget. Actual production feeds/routes and selected hookless-pool execution still need qualification.
 
 Shares are nonredeemable. They are priced against the pool's current principal NAV, including attributed idle and designated compounding reserves. Earlier owner fees are checkpointed before new shares. Swaps can reprice incumbent LP; this gain/loss belongs to incumbents, and execution losses are charged to the net new contribution. Compounding and market changes do not create collective memberships. Transfers preserve shares and unclaimed rewards for the current holder.
 
-[Governed paused parking](CUSTODY_PARKING.md) closes LP into bucket-attributed Vault balances without holder redemption or a USD price read. Independently reviewed raw-token minimums bound only actual LP-close proceeds. NFT shares, equal membership, royalty eligibility and funded claims persist; no ongoing LP revenue is fabricated while closed. Resume restores ordinary valuation/deployment guards, and parked migration retains authenticated funding and remote-liability barriers.
+[Governed paused parking](CUSTODY_PARKING.md) closes LP into bucket-attributed Vault balances without holder redemption or a USD price read. Independently reviewed raw-token minimums bound only actual LP-close proceeds. NFT shares, equal membership, royalty eligibility and funded claims persist; no ongoing LP revenue is fabricated while closed. Resume restores ordinary valuation/deployment guards, and parked migration retains authenticated funding and classified-liability barriers.
 
 ## Collected local LP fees
 

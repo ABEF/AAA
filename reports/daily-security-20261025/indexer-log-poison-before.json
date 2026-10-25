@@ -1,0 +1,15 @@
+{
+  "scope": "Negative control on pre-fix source. Expected failures demonstrate malformed/duplicate provenance can be persisted, or raises an unsanitized wrong exception. Isolated SQLite/mock chain only; no actual service/database touched.",
+  "observed_at_utc": "2026-10-25T18:02:47.996321+00:00",
+  "source_sha256": {
+    "indexer/monitor.py": "88ca293e3c413281d74d051e5accd186c804e518fd84cd0212eab91679f11697",
+    "indexer/events.py": "6ff5288d9606cc1bd03bde6822daa883ef66f2067b1ea7af0e3352d6e0f1b6b6",
+    "tests_python/test_indexer_log_safety.py": "acbf08a782c8215330e857b347cae56f1df7831bb2663ee883306ce59c8c4800",
+    "tests_python/test_indexer.py": "6e5477b686a6f8e1f8ee0ab1980c429dea511616292785504be4d081dfc90708"
+  },
+  "tests_run": 8,
+  "failures": 21,
+  "errors": 29,
+  "skipped": 0,
+  "successful": false
+}

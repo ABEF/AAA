@@ -6,24 +6,24 @@
       "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
       "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
       "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
-      "src/ZZZBuyback.sol": "4308413c89c34010fd991b61348d60f1ace77beaba5dcdabb0d966dbaf434b8f",
+      "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
       "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
       "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
       "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
-      "src/ZZZContributionPricing.sol": "7ebab458c1b00ed353a3b48b985c26d557970353a9ed0cf9abcceff7df99dc1a",
+      "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
       "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
       "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
       "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
       "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
       "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
-      "src/ZZZMembership.sol": "e0b05002e04d08e55ba06fddf31c67d192a7d3f92ed56bf2c1e5d0b4b56c7425",
-      "src/ZZZMigration.sol": "abf189cecbc58dca9fde4a544104e221a3a59d5d5ce9773693b053e432e4b614",
-      "src/ZZZMigrationBudget.sol": "d5036a5f11eb38a9e49720263fb62454382b545e123a3fe4dee7235a0882246e",
+      "src/ZZZMembership.sol": "b07df8f7b000dd15c055522380e6e50792f0da88a49f78c265401159bda726eb",
+      "src/ZZZMigration.sol": "ca88ada6015fe220462e145864e1d9b870082b4869130a6895bc7db9650f1922",
+      "src/ZZZMigrationBudget.sol": "aa9fc2e05885bdf94aa09d7e08c5dedbfc880263fb5c4949ab1f2fad6782b369",
       "src/ZZZNFT.sol": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
       "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
       "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
       "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
-      "src/ZZZPoolRegistry.sol": "c07189fe112ad5aa8e18672d2d536529c5e8967cfed0495d46b873cdd97ace68",
+      "src/ZZZPoolRegistry.sol": "397363122abef6b14d0b1fb7335bc47cc2c0a6375a9b9928587248f8b6d0498f",
       "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
       "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
       "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
@@ -72,9 +72,9 @@
         }
       }
     },
-    "compiler_input_sha256": "f0661254a1123a342ab7d4ec0cd01b1ec4f8977c02848a6a8b964a0f651a2b91",
-    "compiler_output_sha256": "7ade95110391aeb57937fc61bb33b2e26313bb1aefd326267c6abf993726712f",
-    "size_evidence_sha256": "a678ccf8041ae857c40ff8aa2cf05b519e69ec7ea1fc8620dd8bae7fda839d7a"
+    "compiler_input_sha256": "e39b105926dca2ab51c4b475536d1fee51a26b6a65563f294219148110f32389",
+    "compiler_output_sha256": "3939db201f0b70ee4fa9432c5d964e7eefbb9d26196482a05addeb2df608f2d3",
+    "size_evidence_sha256": "d20a62f3274747f46324901dfd061f4d4a169f05195fa4b0548f43b639effd7c"
   },
   "abi_snapshot": {
     "ZZZAccessController": {
@@ -3185,31 +3185,6 @@
           "anonymous": false,
           "inputs": [
             {
-              "indexed": true,
-              "internalType": "address",
-              "name": "previous",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "current",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "BuybackTargetChanged",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
               "indexed": false,
               "internalType": "uint256",
               "name": "previous",
@@ -3306,29 +3281,6 @@
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "token",
-              "type": "address"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "codeHash",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes32",
-              "name": "reviewHash",
-              "type": "bytes32"
-            }
-          ],
-          "name": "setZZZ",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
           "inputs": [],
           "name": "zzz",
           "outputs": [
@@ -3346,7 +3298,7 @@
           "type": "receive"
         }
       ],
-      "abi_sha256": "c9494f04c59b4ae439988cc88c8e54a30c28b99657b4f03fc54d571bc965774f"
+      "abi_sha256": "13a3420d11e8a1846f2575d65cf5404fe4bcf27b8308470b95a875d05592ffa3"
     },
     "ZZZCanonicalHandoff": {
       "source": "src/ZZZCanonicalHandoff.sol",
@@ -19636,7 +19588,7 @@
       "reason": "Internal-only library; no callable ABI."
     }
   ],
-  "notes_sha256": "5f24b77463f55bfc4fc1565787bfd17fd90ec46c79ba715324ab7132682a2b92",
+  "notes_sha256": "384f1c1244d19167076f2c77cbedd7e256b4e7b44dd3ab7a37614a0520664283",
   "contracts": [
     {
       "name": "ZZZAccessController",
@@ -23711,52 +23663,11 @@
           "notes": "Zero stops new buys and direct ZZZ burns before reserve/oracle reads; does not sweep reserves. Inputs: USD18 amount, not raw token units or basis points."
         },
         {
-          "signature": "setZZZ(address,bytes32,bytes32)",
-          "kind": "function",
-          "name": "setZZZ",
-          "state_mutability": "nonpayable",
-          "purpose": "Select a reviewed future ZZZ burn target without rewriting other custody or reward currencies.",
-          "access": "Governance via controller.",
-          "status": "documented",
-          "inputs": [
-            {
-              "position": 0,
-              "name": "token",
-              "label": "token",
-              "type": "address",
-              "canonical_type": "address",
-              "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
-            },
-            {
-              "position": 1,
-              "name": "codeHash",
-              "label": "codeHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Exact reviewed runtime-code hash, not automatically copied observation."
-            },
-            {
-              "position": 2,
-              "name": "reviewHash",
-              "label": "reviewHash",
-              "type": "bytes32",
-              "canonical_type": "bytes32",
-              "internal_type": "bytes32",
-              "explanation": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
-            }
-          ],
-          "outputs": [],
-          "native_value": null,
-          "notes": "Requires code pin, admitted reward asset, valid price and review hash; coordinate separately with Migration/pools/routes."
-        },
-        {
           "signature": "zzz()",
           "kind": "function",
           "name": "zzz",
           "state_mutability": "view",
-          "purpose": "Identify the currently reviewed ZZZ token acquired and provably burned by this executor.",
+          "purpose": "Read the immutable deployment ZZZ token used for every buyback burn; contribution and normal-exit setup must match it.",
           "access": "Anyone; read-only.",
           "status": "documented",
           "inputs": [],
@@ -23768,7 +23679,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "The currently reviewed ZZZ token acquired and provably burned by this executor."
+              "explanation": "The immutable deployment ZZZ token; there is no retargeting setter."
             }
           ],
           "native_value": null,
@@ -29155,7 +29066,7 @@
           "kind": "function",
           "name": "settleDust",
           "state_mutability": "nonpayable",
-          "purpose": "Flush already-funded local and historical-currency bucket dust to incumbents in one bounded pre-entry pass.",
+          "purpose": "Settle already-funded dust to incumbent owners across bounded historical local buckets before a new entry. Reads admitted stored currencies without requiring an old venue to be live; exact nonzero payment/backing and current-pool execution checks remain.",
           "access": "Only the bound Vault while economic lifecycle permits; before issuing new membership or shares.",
           "status": "documented",
           "inputs": [],
@@ -29621,8 +29532,8 @@
           "kind": "function",
           "name": "configureZZZ",
           "state_mutability": "nonpayable",
-          "purpose": "Bind the fixed normal-exit ZZZ once before sealing, matching the contribution identity and reviewed runtime. Later replacement is rejected.",
-          "access": "Governance via controller; no outstanding custody plans.",
+          "purpose": "Bind the fixed normal-exit ZZZ once before sealing. Requires the already-bound immutable Buyback and contribution-source identity to match; validates code, admitted rewards and price before storing the exit pin.",
+          "access": "Only authorized configuration while unsealed, once, with no outstanding custody plans. Bind the immutable Buyback module first.",
           "status": "documented",
           "inputs": [
             {
@@ -29632,7 +29543,7 @@
               "type": "address",
               "canonical_type": "address",
               "internal_type": "address",
-              "explanation": "Actual currency address; zero denotes native ETH only in native-aware paths."
+              "explanation": "The one nonzero ZZZ ERC20 address shared by source admission, immutable buyback and normal exit; never native ETH."
             },
             {
               "position": 1,
@@ -29655,7 +29566,7 @@
           ],
           "outputs": [],
           "native_value": null,
-          "notes": "Cannot relabel in-flight assets. Buyback has a separate governed target setter."
+          "notes": "The source identity and immutable buyback token must already match. No post-seal token replacement, in-flight relabeling or native-ETH-as-ZZZ identity is allowed."
         },
         {
           "signature": "currentZZZ()",
@@ -36480,7 +36391,7 @@
           "kind": "function",
           "name": "configureNative",
           "state_mutability": "nonpayable",
-          "purpose": "Admit/update a static hookless native ETH/ZZZ pool on the pinned Robinhood v4 venue. Requires native currency0=zero, fixed ZZZ currency1, initialized matching static fee and reviewed pinned infrastructure. Re-enabling needs healthy dependencies. It does not move existing principal.",
+          "purpose": "Admit or reconfigure a static hookless native ETH/ZZZ pool. The source ZZZ identity must already match the pinned native token; initialized venue, runtime, prices, assets, bounds and one-contribution-pool checks remain.",
           "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "status": "documented",
           "inputs": [
@@ -45691,7 +45602,7 @@
   "gaps": [],
   "counts": {
     "contracts": 31,
-    "functions": 644,
+    "functions": 643,
     "constructors": 31,
     "receive_hooks": 14,
     "fallback_hooks": 0,

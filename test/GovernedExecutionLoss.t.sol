@@ -6,6 +6,7 @@ import {HandoffVenue,CustodySourceIdentity} from "./CustodyHandoff.t.sol";
 import {BudgetAdversarialVenue} from "./MigrationBudgetAdversarial.t.sol";
 import {RebalanceBudgetPolicy} from "./RebalanceBudget.t.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
+import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZMigrationBudget} from "../src/ZZZMigrationBudget.sol";
 import {ZZZVaultCanonical} from "../src/ZZZVaultCanonical.sol";
 import {ZZZOracle} from "../src/ZZZOracle.sol";
@@ -63,6 +64,7 @@ contract GovernedExecutionLossTest is PooledVaultFixture {
     function _custody() private returns(ZZZMigration m){
         ac.bind(Ids.LIQUIDITY,address(new HandoffVenue(pools)));m=_migration();
         pools.setActivationAssets(address(new CustodySourceIdentity(address(t1))));
+        ac.bind(Ids.BUYBACK,address(new ZZZBuyback(address(ac),address(t1),1e30)));
         // TEST ONLY: restore initial bootstrap for the newly installed custody module.
         vm.mockCall(address(ac),abi.encodeWithSignature("isSealed()"),abi.encode(false));
         m.configureZZZ(address(t1),address(t1).codehash,REVIEW);vm.clearMockedCalls();activatedPosition();

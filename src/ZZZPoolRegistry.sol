@@ -45,10 +45,13 @@ contract ZZZPoolRegistry is ZZZModule {
     }
     /// @notice Admit a static hookless ETH/ZZZ pool, including future fee tiers.
     /// The selected launch identity does not prevent governed moves after sealing.
+    /// Bind the fixed contribution/exit ZZZ before native admission. Otherwise
+    /// matching but wrong source/exit settings could strand normal all-ZZZ exit.
     /// Runtime/wiring are rechecked on every accounting/nativeAsset read.
     function configureNative(PoolConfig calldata config) external onlyGovernance returns (bytes32 poolId) {
         PoolKey memory key = config.key;
-        if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000) {
+        if (key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 ||
+            activationAssets.zzz() != ZZZ) {
             revert InvalidConfiguration();
         }
         _nativeBindings();

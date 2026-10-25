@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "exit_code": 1,
+  "elapsed_seconds": 428.906,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\daily-consistency-audit-20261025\\solidity\\selected\\ast-focused-profile-b7y0wmzj",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(NativeSourceIdentityTest|FixedZZZBindingTest|GlobalMembershipDustTest|BuybackOperatingLimitTest|BuybackExecutionTest|CustodyHandoffTest|GovernedExecutionLossTest)$",
+    "--json"
+  ],
+  "selected_methods": 28,
+  "complete_selection_executed": false,
+  "missing": [
+    [
+      "GlobalMembershipDustTest",
+      "testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testCurrentVenueFaultStillRejectsEntryAndPreservesFundedDust"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testFailedHistoricalDustPaymentStillRejectsEntryWithoutLosingOldRights"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testGlobalSettlementOnlyVaultAndDustFlushOnlyAuthorizedModules"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testMembershipCannotFlushForeignCustodyDust"
+    ],
+    [
+      "GlobalMembershipDustTest",
+      "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically"
+    ]
+  ],
+  "unexpected": [
+    [
+      "GlobalMembershipDustTest",
+      "Found 1 instances: testFailedHistoricalDustPaymentStillRejectsEntryWithoutLosingOldRights"
+    ]
+  ],
+  "cases": [
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "method": "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1687598
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "method": "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 963483
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "method": "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1015939
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testAuthorizedGovernanceCallbackCannotChangePolicyDuringBurn()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 193661
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testNativeExactLimitWorksAndOverLimitPreservesReservesAndDonations()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 299064
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testUpperBoundExactCeilingSucceedsAndOneRawUnitOverReverts()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6692503
+        }
+      }
+    },
+    {
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testZeroStopsWithoutPriceOrReserveCallsAndCanBeReopened()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 266592
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testCompleteRequiresActualLPAndPreservesNFTAndLedgers()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 6045420
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testEmergencyRawExitWorksWithFailedSwapAndStalePrices()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4419822
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4994174
+        }
+      }
+    },
+    {
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 4751345
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZBinding.t.sol:FixedZZZBindingTest",
+      "method": "testMismatchedImmutableBuybackCannotCommitExitIdentityOrSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17287300
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZBinding.t.sol:FixedZZZBindingTest",
+      "method": "testRetiredBuybackSetterCannotRetargetBeforeOrAfterSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17773711
+        }
+      }
+    },
+    {
+      "suite": "test/FixedZZZBinding.t.sol:FixedZZZBindingTest",
+      "method": "testUnboundBuybackCannotCommitExitIdentityAndMatchingBindingAllowsSeal()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17510970
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "Found 1 instances: testFailedHistoricalDustPaymentStillRejectsEntryWithoutLosingOldRights",
+      "status": "Failure",
+      "reason": "`testFail*` has been removed. Consider changing to test_Revert[If|When]_Condition and expecting a revert",
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 0
+        }
+      }
+    },
+    {
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "method": "testNormalCustodyApprovalCannotBeWeakenedAfterPolicyIncrease()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 17031845
+        }
+      }
+    },
+    {
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testGenericERC20AdmissionKeepsItsIndependentIdentityPolicy()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 1716590
+        }
+      }
+    },
+    {
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testMatchingSourceStillCannotBypassNativeRuntimePins()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 835282
+        }
+      }
+    },
+    {
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testSourceIdentityReadPrecedesNativeChainAndRuntimeChecks()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 45705
+        }
+      }
+    },
+    {
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testUnsetSourceIdentityCannotAdmitNativePool()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 51013
+        }
+      }
+    },
+    {
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testWrongFixedSourceCannotAdmitNativePool()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 830080
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "83b2dcf1c8396c6395f6c2bea34b661890e69894ad96621be9b8a4f6a9ec0313"
+}

@@ -18,6 +18,7 @@ interface ICustodyVault is IZZZVault {
 interface IMaintenanceLossPolicy { function maintenanceLossBps() external view returns(uint16); }
 interface ICustodySourceRegistry { function activationAssets() external view returns(address); }
 interface ICustodySourceIdentity { function zzz() external view returns(address); }
+interface ICustodyBuybackIdentity { function zzz() external view returns(address); }
 /// @notice Governed custody handoff; recipient custody/liveness are explicitly trusted.
 /// Source-chain custody only; any bridge or issuer exchange happens outside PoPL.
 /// No arbitrary call, delegatecall, sweep, timeout release or remote-completion proof.
@@ -77,11 +78,14 @@ contract ZZZMigration is ZZZModule, ReentrancyGuard {
     }
     function minimumRetainedUSD(bytes32 id) external view returns(uint256) { return plans[id].minimumRetainedUSD; }
     /// Bind the deployment's fixed ZZZ target once during bootstrap, before seal.
+    /// Source admission and the immutable Buyback must already share this identity.
     /// Token-contract exchanges use external custody and a fresh reviewed deployment.
     function configureZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external onlyGovernance nonReentrant {
         if(access.isSealed() || currentZZZ!=address(0) || outstandingCount!=0 || token.code.length==0 || token.codehash!=codeHash || reviewHash==bytes32(0) ||
             !IZZZRewards(access.module(Ids.REWARDS)).isAsset(token)) revert InvalidConfiguration();
-        if(token!=ICustodySourceIdentity(ICustodySourceRegistry(address(_pools())).activationAssets()).zzz()) revert InvalidConfiguration();
+        address buyback=access.module(Ids.BUYBACK);
+        if(token!=ICustodySourceIdentity(ICustodySourceRegistry(address(_pools())).activationAssets()).zzz() ||
+            buyback.code.length==0 || ICustodyBuybackIdentity(buyback).zzz()!=token) revert InvalidConfiguration();
         IZZZOracle(access.module(Ids.ORACLE)).price(token); currentZZZ=token; zzzCodeHash=codeHash;
         emit ZZZConfigured(token,codeHash,reviewHash);
     }

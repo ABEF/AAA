@@ -1,0 +1,31 @@
+{
+  "scope": "Owned published-candidate local Markdown targets only; no external URL or anchor qualification.",
+  "files": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "README.md",
+    "TODO.md",
+    "docs/CHANGE_AND_RECOVERY.md",
+    "docs/COMPONENT_STATUS.md",
+    "docs/CONTRACT_FUNCTIONS.md",
+    "docs/ECONOMICS.md",
+    "docs/EXECUTION_LOSS_POLICY.md",
+    "docs/FRONTEND_HISTORY.md",
+    "docs/GOVERNED_CUSTODY_HANDOFF.md",
+    "docs/IMPLEMENTATION_STATUS.md",
+    "docs/INDEXER_RECOVERY.md",
+    "docs/KEEPER_RECOVERY.md",
+    "docs/OPERATOR_MANUAL.md",
+    "docs/RELEASE_CHECKLIST.md",
+    "docs/ROADMAP.md",
+    "docs/SECURITY_AUDIT_PLAN.md",
+    "docs/SIMPLIFIED_RELEASE.md",
+    "docs/WORK_HANDOFF.md",
+    "reports/daily-security-20261025/NECESSITY.md",
+    "reports/daily-security-20261025/REVIEW.md",
+    "reports/daily-security-20261025/SERVICE_REVIEW.md",
+    "reports/daily-security-20261025/VERIFICATION.md"
+  ],
+  "local_targets_checked": 1472,
+  "errors": []
+}

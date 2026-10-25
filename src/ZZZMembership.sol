@@ -34,7 +34,11 @@ contract ZZZMembership is ZZZModule, ZZZCanonicalLedger {
             if (position.homeChain != block.chainid || position.homeVault != address(vault) ||
                 (position.status != PositionStatus.Active && position.status != PositionStatus.Outbound &&
                     position.status != PositionStatus.Parked)) continue;
-            PoolConfig memory config = pools.accounting(position.poolId);
+            // Dust uses immutable admitted currency identities, not a live venue
+            // observation. A broken historical venue must not block healthy new
+            // entry when its funded dust can still settle exactly. Current-pool
+            // execution independently validates accounting and real LP backing.
+            PoolConfig memory config = pools.get(position.poolId);
             fees.flushDust(bucket, config.key.currency0);
             fees.flushDust(bucket, config.key.currency1);
             if (IPairVault(address(vault)).migrationBudget().compositionEpoch(bucket) != 0) {

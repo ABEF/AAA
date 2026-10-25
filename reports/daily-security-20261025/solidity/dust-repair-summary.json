@@ -1,0 +1,118 @@
+{
+  "elapsed_seconds": 120.859,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\daily-consistency-audit-20261025\\solidity\\selected\\ast-focused-profile-b7y0wmzj",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^GlobalMembershipDustTest$",
+    "--json"
+  ],
+  "exit_code": 1,
+  "expected": [
+    "testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents",
+    "testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry",
+    "testCurrentVenueFaultStillRejectsEntryAndPreservesFundedDust",
+    "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool",
+    "testGlobalSettlementOnlyVaultAndDustFlushOnlyAuthorizedModules",
+    "testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights",
+    "testMembershipCannotFlushForeignCustodyDust",
+    "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically"
+  ],
+  "cases": [
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents()",
+      "status": "Failure",
+      "reason": "call didn't revert at a lower depth than cheatcode call depth",
+      "kind": {
+        "Unit": {
+          "gas": 4760355
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry()",
+      "status": "Failure",
+      "reason": "call didn't revert at a lower depth than cheatcode call depth",
+      "kind": {
+        "Unit": {
+          "gas": 4314199
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testCurrentVenueFaultStillRejectsEntryAndPreservesFundedDust()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 4380776
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 7147918
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testGlobalSettlementOnlyVaultAndDustFlushOnlyAuthorizedModules()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 3318836
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights()",
+      "status": "Failure",
+      "reason": "call didn't revert at a lower depth than cheatcode call depth",
+      "kind": {
+        "Unit": {
+          "gas": 4560760
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testMembershipCannotFlushForeignCustodyDust()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 3481781
+        }
+      }
+    },
+    {
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically()",
+      "status": "Success",
+      "reason": null,
+      "kind": {
+        "Unit": {
+          "gas": 8368931
+        }
+      }
+    }
+  ],
+  "complete": true,
+  "successful": false,
+  "repair_manifest_sha256": "da152914246e0d72e7f1fe8c01831e02e17448bca468d318c3d10b36a6a5bc82"
+}

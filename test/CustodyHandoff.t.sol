@@ -7,6 +7,7 @@ using DualOracleFixture for FixtureOracleType;
 import {PooledVaultFixture} from "./VaultAccounting.t.sol";
 import {MockToken,MockFeed,MockPools} from "./mocks/Mocks.sol";
 import {ZZZMigration} from "../src/ZZZMigration.sol";
+import {ZZZBuyback} from "../src/ZZZBuyback.sol";
 import {ZZZCustodyValidation} from "../src/ZZZCustodyValidation.sol";
 import {ZZZModule} from "../src/base/ZZZModule.sol";
 import {Ids,Position,PositionStatus,PoolConfig} from "../src/libraries/ZZZTypes.sol";
@@ -54,6 +55,7 @@ contract CustodyHandoffTest is PooledVaultFixture {
     function setUp() public override {
         super.setUp();handoffVenue=new HandoffVenue(pools);ac.bind(Ids.LIQUIDITY,address(handoffVenue));
         migration=new ZZZMigration(address(ac));ac.bind(Ids.MIGRATION,address(migration));
+        ac.bind(Ids.BUYBACK,address(new ZZZBuyback(address(ac),address(t1),1e30)));
         pools.setActivationAssets(address(new CustodySourceIdentity(address(t1))));
         // TEST ONLY: the shared fixture sealed its mock core before installing
         // Migration. Model bootstrap coherently; production cannot unseal.

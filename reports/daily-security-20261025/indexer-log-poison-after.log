@@ -1,0 +1,40 @@
+test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) ... ok
+test_block_log_identity_cannot_be_reused_with_another_transaction (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction) ... ok
+test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) ... ok
+test_one_transaction_cannot_appear_in_two_blocks_of_one_batch (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_one_transaction_cannot_appear_in_two_blocks_of_one_batch) ... ok
+test_oversized_unknown_raw_log_cannot_poison_history (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_oversized_unknown_raw_log_cannot_poison_history) ... ok
+test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) ... ok
+test_transaction_cannot_move_across_previously_stored_blocks (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_transaction_cannot_move_across_previously_stored_blocks) ... ok
+test_wellformed_unknown_anonymous_and_multilog_events_remain_available (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_wellformed_unknown_anonymous_and_multilog_events_remain_available) ... ok
+test_ancestor_must_remain_stable_until_rollback (tests_python.test_indexer.IndexerTests.test_ancestor_must_remain_stable_until_rollback) ... ok
+test_burn_removes_current_owner (tests_python.test_indexer.IndexerTests.test_burn_removes_current_owner) ... ok
+test_changed_contracts_rejected (tests_python.test_indexer.IndexerTests.test_changed_contracts_rejected) ... ok
+test_changed_genesis_is_not_treated_as_an_empty_history (tests_python.test_indexer.IndexerTests.test_changed_genesis_is_not_treated_as_an_empty_history) ... ok
+test_confirmed_only (tests_python.test_indexer.IndexerTests.test_confirmed_only) ... ok
+test_decimal_string_configuration_remains_supported (tests_python.test_indexer.IndexerTests.test_decimal_string_configuration_remains_supported) ... ok
+test_duplicate_log_atomic_failure (tests_python.test_indexer.IndexerTests.test_duplicate_log_atomic_failure) ... ok
+test_empty_blocks_preserved (tests_python.test_indexer.IndexerTests.test_empty_blocks_preserved) ... ok
+test_exact_configured_reorg_depth_still_recovers (tests_python.test_indexer.IndexerTests.test_exact_configured_reorg_depth_still_recovers) ... ok
+test_full_bounded_reorg_requires_the_original_start_anchor (tests_python.test_indexer.IndexerTests.test_full_bounded_reorg_requires_the_original_start_anchor) ... ok
+test_inconsistent_remote_ancestry_preserves_history (tests_python.test_indexer.IndexerTests.test_inconsistent_remote_ancestry_preserves_history) ... ok
+test_integer_configuration_rejects_floats_and_booleans (tests_python.test_indexer.IndexerTests.test_integer_configuration_rejects_floats_and_booleans) ... ok
+test_malformed_or_misnumbered_header_preserves_database_and_cursor (tests_python.test_indexer.IndexerTests.test_malformed_or_misnumbered_header_preserves_database_and_cursor) ... ok
+test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch (tests_python.test_indexer.IndexerTests.test_missing_header_never_authorizes_rollback_even_after_a_proved_tip_mismatch) ... ok
+test_multiple_collections_do_not_mix (tests_python.test_indexer.IndexerTests.test_multiple_collections_do_not_mix) ... ok
+test_poll_interval_must_be_positive (tests_python.test_indexer.IndexerTests.test_poll_interval_must_be_positive) ... ok
+test_reconciliation_read_cost_is_bounded_and_idle_path_unchanged (tests_python.test_indexer.IndexerTests.test_reconciliation_read_cost_is_bounded_and_idle_path_unchanged) ... ok
+test_reduce_rpc_range (tests_python.test_indexer.IndexerTests.test_reduce_rpc_range) ... ok
+test_removed_log_rejected (tests_python.test_indexer.IndexerTests.test_removed_log_rejected) ... ok
+test_reorg_bound_fails_closed (tests_python.test_indexer.IndexerTests.test_reorg_bound_fails_closed) ... ok
+test_reorg_rolls_back_owner (tests_python.test_indexer.IndexerTests.test_reorg_rolls_back_owner) ... ok
+test_repeat_no_duplicates (tests_python.test_indexer.IndexerTests.test_repeat_no_duplicates) ... ok
+test_resume_database (tests_python.test_indexer.IndexerTests.test_resume_database) ... ok
+test_same_hash_inconsistent_metadata_does_not_authorize_rollback (tests_python.test_indexer.IndexerTests.test_same_hash_inconsistent_metadata_does_not_authorize_rollback) ... ok
+test_unrequested_contract_rejected (tests_python.test_indexer.IndexerTests.test_unrequested_contract_rejected) ... ok
+test_wrong_log_block_no_commit (tests_python.test_indexer.IndexerTests.test_wrong_log_block_no_commit) ... ok
+test_wrong_parent_no_commit (tests_python.test_indexer.IndexerTests.test_wrong_parent_no_commit) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 2.087s
+
+OK

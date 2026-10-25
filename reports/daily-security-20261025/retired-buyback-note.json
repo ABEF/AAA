@@ -1,0 +1,13 @@
+{
+  "reason": "User requires one fixed ZZZ; the retargeting selector/event are removed.",
+  "function": {
+    "purpose": "Select a reviewed future ZZZ burn target without rewriting other custody or reward currencies.",
+    "access": "Governance via controller.",
+    "notes": "Requires code pin, admitted reward asset, valid price and review hash; coordinate separately with Migration/pools/routes.",
+    "inputs": {
+      "0": "Actual currency address; zero denotes native ETH only in native-aware paths.",
+      "1": "Exact reviewed runtime-code hash, not automatically copied observation.",
+      "2": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
+    }
+  }
+}

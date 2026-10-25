@@ -500,7 +500,7 @@
           }
         },
         "configureNative(((address,address,uint24,int24,address),bool,bool,uint16,uint16,uint16,uint16,uint32,uint256,uint256))": {
-          "purpose": "Admit/update a static hookless native ETH/ZZZ pool on the pinned Robinhood v4 venue. Requires native currency0=zero, fixed ZZZ currency1, initialized matching static fee and reviewed pinned infrastructure. Re-enabling needs healthy dependencies. It does not move existing principal.",
+          "purpose": "Admit or reconfigure a static hookless native ETH/ZZZ pool. The source ZZZ identity must already match the pinned native token; initialized venue, runtime, prices, assets, bounds and one-contribution-pool checks remain.",
           "access": "Governance through the controller; before sealing, the bootstrap may also configure where canConfigure permits. No governance waiting period.",
           "inputs": {
             "config": "key.currency0: Ordered lower-address accounting currency; address zero is native ETH.; key.currency1: Ordered higher-address currency; configureNative requires the fixed canonical ZZZ.; key.fee: Static LP fee in millionths, not percent or BPS; e.g. 10020 means 1.002% LP fee. Protocol fee is separate.; key.tickSpacing: Positive signed-int24 v4 tick spacing; must match the actual initialized pool.; key.hooks: Must be address zero for the currently supported hookless venues.; depositsEnabled: Desired contribution acceptance; only one pool may be true at a time.; operationsEnabled: Desired ordinary maintenance/deployment acceptance; does not erase custody/history.; rangeBps: Price width in basis points; 100..5000, with orientation selected separately by Strategy.; triggerBps: Price displacement trigger in BPS, at least 100 and strictly below rangeBps.; maxSpotDeviationBps: Allowed spot-versus-oracle deviation in BPS, 1..500 and below rangeBps.; maxSlippageBps: Per-venue swap minimum guard in BPS, 1..200 and sufficient for static LP fee. Separate from aggregate contribution/maintenance caps.; minRebalanceInterval: Cooldown seconds, 600..604800.; minDepositUSD: Pool minimum in USD18 (1 USD=10**18); production policy must permit the $5 growth minimum.; maxPositionUSD: Maximum governed pool/position value in USD18, at least minDepositUSD."
@@ -3000,7 +3000,7 @@
           }
         },
         "settleDust()": {
-          "purpose": "Flush already-funded local and historical-currency bucket dust to incumbents in one bounded pre-entry pass.",
+          "purpose": "Settle already-funded dust to incumbent owners across bounded historical local buckets before a new entry. Reads admitted stored currencies without requiring an old venue to be live; exact nonzero payment/backing and current-pool execution checks remain.",
           "access": "Only the bound Vault while economic lifecycle permits; before issuing new membership or shares.",
           "notes": "Not an administrator sweep or an allocation to dormant NFTs."
         },
@@ -4105,21 +4105,11 @@
             "0": "USD18 operating buyback ceiling, at most immutable maxTradeUSD."
           }
         },
-        "setZZZ(address,bytes32,bytes32)": {
-          "purpose": "Select a reviewed future ZZZ burn target without rewriting other custody or reward currencies.",
-          "access": "Governance via controller.",
-          "notes": "Requires code pin, admitted reward asset, valid price and review hash; coordinate separately with Migration/pools/routes.",
-          "inputs": {
-            "0": "Actual currency address; zero denotes native ETH only in native-aware paths.",
-            "1": "Exact reviewed runtime-code hash, not automatically copied observation.",
-            "2": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
-          }
-        },
         "zzz()": {
-          "purpose": "Identify the currently reviewed ZZZ token acquired and provably burned by this executor.",
+          "purpose": "Read the immutable deployment ZZZ token used for every buyback burn; contribution and normal-exit setup must match it.",
           "access": "Anyone; read-only.",
           "outputs": {
-            "0": "The currently reviewed ZZZ token acquired and provably burned by this executor."
+            "0": "The immutable deployment ZZZ token; there is no retargeting setter."
           }
         }
       },
@@ -4193,11 +4183,11 @@
           "value": "Exactly the approved local destination’s native component in a0/a1, otherwise zero; ERC20 backing is actually pulled."
         },
         "configureZZZ(address,bytes32,bytes32)": {
-          "purpose": "Bind the fixed normal-exit ZZZ once before sealing, matching the contribution identity and reviewed runtime. Later replacement is rejected.",
-          "access": "Governance via controller; no outstanding custody plans.",
-          "notes": "Cannot relabel in-flight assets. Buyback has a separate governed target setter.",
+          "purpose": "Bind the fixed normal-exit ZZZ once before sealing. Requires the already-bound immutable Buyback and contribution-source identity to match; validates code, admitted rewards and price before storing the exit pin.",
+          "access": "Only authorized configuration while unsealed, once, with no outstanding custody plans. Bind the immutable Buyback module first.",
+          "notes": "The source identity and immutable buyback token must already match. No post-seal token replacement, in-flight relabeling or native-ETH-as-ZZZ identity is allowed.",
           "inputs": {
-            "0": "Actual currency address; zero denotes native ETH only in native-aware paths.",
+            "0": "The one nonzero ZZZ ERC20 address shared by source admission, immutable buyback and normal exit; never native ETH.",
             "1": "Exact reviewed runtime-code hash, not automatically copied observation.",
             "2": "Nonzero commitment to independently reviewed policy; the hash does not perform the review."
           }

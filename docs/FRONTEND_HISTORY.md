@@ -1,3 +1,27 @@
+## Confirmed-log validation and recovery - 2026-10-25
+
+The current indexer rejects malformed log identities/layouts as sanitized
+`invalid_log` and conflicting block/log or transaction/block identities as
+`duplicate_log`. It verifies complete hashes, canonical bounded quantities,
+nonremoved status, emitter, topics/data and the raw-log size before storing a
+new batch. Unknown or anonymous wellformed events remain complete raw history.
+
+A rejected ingestion batch inserts no rows and does not advance its cursor.
+Separately proved reorganization rollback may already have restored a canonical
+boundary before that ingestion attempt; it is not an automatic bad-log repair.
+Preserve a consistent DB/WAL backup, reviewed configuration, cursor/anchors and
+sanitized diagnostics. Compare the affected range with a separately reviewed
+provider using [history comparison](HISTORY_AUDIT.md); never delete rows, reset
+the cursor or show unavailable history as zero to make a failure disappear.
+
+This guard does not scrub already stored bad data or prove a provider returned
+all real logs. If a rebuild is independently approved, retain the original
+forensic copy and rebuild into a separate database, then verify full creation,
+predecessor and cutoff coverage before serving results. See
+[indexer recovery](INDEXER_RECOVERY.md) and the
+[scoped service review](../reports/daily-security-20261025/SERVICE_REVIEW.md).
+No running service or existing journal/database is changed by this source update.
+
 ## Processed earnings and current USD - 2026-10-19
 
 The separate [earnings endpoint](EARNINGS_HISTORY.md) now uses this raw-log

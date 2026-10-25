@@ -1,0 +1,205 @@
+{
+  "scope": "28 distinct selected behaviors across three precise test-source scopes; unchanged 41 production inputs. Not one fresh full-suite run.",
+  "distinct_passing_methods": 28,
+  "initial_passes": 20,
+  "name_repair_passes": 5,
+  "control_repair_passes": 3,
+  "production_source_sha256": {
+    "src/ZZZAccessController.sol": "52a43030c26e16d3d2556f7ad09535d44fe1000ca02ff755828fa3abd3568174",
+    "src/ZZZActivationAssets.sol": "edded366caa28015d2c96479940222e2eb809fa32e0bb972a22369e7e5f8422e",
+    "src/ZZZActivationAssetsFactory.sol": "c46d15fefb741adafae5fe45f94ede5c44801c3fb6740782e07086dab406d76b",
+    "src/ZZZActivationEntry.sol": "1cd7eb5c4d73f0e46696ec069ed29bbd12ab86858b50f934a4f53513ce13025a",
+    "src/ZZZBuyback.sol": "2c3e496c21015117f81514b3bc85efb35b37cb8e3d94aec176e860fd8900f9cb",
+    "src/ZZZCanonicalHandoff.sol": "6c4a822fe3dbf21a1d699271d2bf623bf16676376812ec03e6d4ff48ba7be0c6",
+    "src/ZZZClaimRouter.sol": "88774ea2349d1bedf62768f3d94f85ea36897b1e387128871dc76ced4d85c5e5",
+    "src/ZZZCompounder.sol": "315a9282b3732c8ea95f5bd655628d1b16aa4eb56bc7ee6f4bc2c43ffdd497f4",
+    "src/ZZZContributionPricing.sol": "f4597d45a412d55b240d48c033b70040a9d9bdfecc9248adb9aa1e33cb5b7403",
+    "src/ZZZCustodyValidation.sol": "6f847d1665cfc78a3021fb1623037b57a6fd2a651c22aea3f0b205b52a4420d5",
+    "src/ZZZFeeController.sol": "86050ae2d7be11059554b109df5adb850fbc9dade52a03d41961e9f12f7b8163",
+    "src/ZZZFeesCanonical.sol": "a9ad5f25e23c36e475bed78d5be39d93424870db7069b09af7c0340404ed2aa1",
+    "src/ZZZLiquidityManager.sol": "37baea01e3473124143cfe053bd9cc1ee2432414407c867fd7b347d5dadfb599",
+    "src/ZZZLPRewardConverter.sol": "4495071a0e6f60ba5dc6d6d6bb8b214d296c99105fc0e7a68e7a40936451fe0a",
+    "src/ZZZMembership.sol": "b07df8f7b000dd15c055522380e6e50792f0da88a49f78c265401159bda726eb",
+    "src/ZZZMigration.sol": "ca88ada6015fe220462e145864e1d9b870082b4869130a6895bc7db9650f1922",
+    "src/ZZZMigrationBudget.sol": "aa9fc2e05885bdf94aa09d7e08c5dedbfc880263fb5c4949ab1f2fad6782b369",
+    "src/ZZZNFT.sol": "c4ead9fd0973e36491a500149a445fd11b67e42de27b409b15a53d1013f6626b",
+    "src/ZZZNFTCanonical.sol": "234a8b98453f38f8e5714047d60f33400b355f28bce6bcde2f5423f244f289a6",
+    "src/ZZZNFTMetadata.sol": "d7cc2560f329196a406dde9ee03f1073abf90b748e27c91ff3410ac00d3f343c",
+    "src/ZZZOracle.sol": "b39ba39e99daca1be8e711ec6956703d76a21b56461c9ceb6dff1e97e23f53ce",
+    "src/ZZZPoolRegistry.sol": "397363122abef6b14d0b1fb7335bc47cc2c0a6375a9b9928587248f8b6d0498f",
+    "src/ZZZPythPriceFeed.sol": "eb57b848d7eccede5e3c2d54ff266f95ae753bb2f3a3d6e3f7b862e4bd5ed788",
+    "src/ZZZRewards.sol": "4e1901f085d631c95467ae778a32a863ee4cd8f9361cfec32611e1461d0d4312",
+    "src/ZZZRoyaltyConverter.sol": "b0f8133a455d52ca1fbc50c7e96579041f836bc6a4e16b27d463c6d9cb235431",
+    "src/ZZZRoyaltyFactory.sol": "52ff6c0461579c1e52c1977d4011db5845f9789ee2d5891c42b7d5f583405aae",
+    "src/ZZZRoyaltyRewards.sol": "ac585ffe7d40435b8537b88284794d6ae6ed2218ad7b65c39f5b567d3c590905",
+    "src/ZZZStrategy.sol": "582cbc9293224b9d6b6d2d6c8f88d77e35d682d4e76b9d029cb0e2c34149d4a9",
+    "src/ZZZV4RouteExecutor.sol": "41292f46045277ea6235ed722d3b685e218f213649de126ebfd732a2892c5021",
+    "src/ZZZVault.sol": "47f68ab99d9ed945d2f93bb24b86e217eefe2e7ef244b31cb3f03a8a89a31af7",
+    "src/ZZZVaultCanonical.sol": "cccd8f08a0d6263c966ccf0a44642e3f48e70a30ce732790f19c25e57b582675",
+    "src/base/ZZZCanonicalLedger.sol": "b95b5299a46369ddeb7bebc21c08043e45f0f851500cfce47f66bf52e567feaf",
+    "src/base/ZZZModule.sol": "69bd292cd8ce5cac78b398e26dc6de8a07af4fa41ef9d6ff7dbdaf9597ad3712",
+    "src/interfaces/IZZZ.sol": "2d900ff76db13b8a62c67adeccedf788109dc661a248029750678cd446a11d97",
+    "src/interfaces/IZZZCanonical.sol": "ded6f6edfd75669aef45f8aecd0c5ddd1a34dac238472d2b4cfa3e6a6e8583c0",
+    "src/interfaces/IZZZNFTCanonical.sol": "ad502041a7c6873f80153b82d284c241e185774b3f7d792fd3cc4fa7c91fe3e4",
+    "src/libraries/ExactAsset.sol": "c7ffed47230361f30eaba5d0b3ea87cbc6ab4018658da3c9f1395864f584edc4",
+    "src/libraries/ExactToken.sol": "a333ee44161447b40b815ca7965ac95676730bd4b9523060a65c4eb28058b5db",
+    "src/libraries/ZZZArtwork.sol": "3be3048d60b601b35aa17affd822be78da4f40e70a6c9368cdff0cfa81d26606",
+    "src/libraries/ZZZPriceMath.sol": "d797dd251f0564b166ad37d83ce8dede3bf8a73b58f28d4b694d51b3dc8a8c02",
+    "src/libraries/ZZZTypes.sol": "e9f7affdf30e8ff2582acbec761e1bfb97380b73dca0d220562bbc98fa75266e"
+  },
+  "methods": [
+    {
+      "scope": "initial",
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "method": "testApprovedDirectSwapBurnPreservesRewardAndCompoundBalances()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "method": "testBurnReentryCannotSpendASecondBudgetEvenWithKeeperRole()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/BuybackExecution.t.sol:BuybackExecutionTest",
+      "method": "testDirectZZZBurnUsesOnlyBuybackReserveAndPreservesDonations()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testAuthorizedGovernanceCallbackCannotChangePolicyDuringBurn()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testNativeExactLimitWorksAndOverLimitPreservesReservesAndDonations()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testUpperBoundExactCeilingSucceedsAndOneRawUnitOverReverts()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/BuybackOperatingLimit.t.sol:BuybackOperatingLimitTest",
+      "method": "testZeroStopsWithoutPriceOrReserveCallsAndCanBeReopened()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testCompleteRequiresActualLPAndPreservesNFTAndLedgers()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testEmergencyRawExitWorksWithFailedSwapAndStalePrices()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testExitAlwaysSendsOnlyZZZAndPreservesDonationsSharesAndRoyalties()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/CustodyHandoff.t.sol:CustodyHandoffTest",
+      "method": "testSwapFailureRevertsWholeExitWithoutAutomaticRawFallback()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/FixedZZZBinding.t.sol:FixedZZZBindingTest",
+      "method": "testMismatchedImmutableBuybackCannotCommitExitIdentityOrSeal()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/FixedZZZBinding.t.sol:FixedZZZBindingTest",
+      "method": "testRetiredBuybackSetterCannotRetargetBeforeOrAfterSeal()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/FixedZZZBinding.t.sol:FixedZZZBindingTest",
+      "method": "testUnboundBuybackCannotCommitExitIdentityAndMatchingBindingAllowsSeal()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/GovernedExecutionLoss.t.sol:GovernedExecutionLossTest",
+      "method": "testNormalCustodyApprovalCannotBeWeakenedAfterPolicyIncrease()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testGenericERC20AdmissionKeepsItsIndependentIdentityPolicy()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testMatchingSourceStillCannotBypassNativeRuntimePins()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testSourceIdentityReadPrecedesNativeChainAndRuntimeChecks()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testUnsetSourceIdentityCannotAdmitNativePool()"
+    },
+    {
+      "scope": "initial",
+      "suite": "test/NativeSourceIdentity.t.sol:NativeSourceIdentityTest",
+      "method": "testWrongFixedSourceCannotAdmitNativePool()"
+    },
+    {
+      "scope": "name_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testCurrentVenueFaultStillRejectsEntryAndPreservesFundedDust()"
+    },
+    {
+      "scope": "name_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testFundedDustWithoutCreatorInboxCannotRewardNewMemberInOtherPool()"
+    },
+    {
+      "scope": "name_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testGlobalSettlementOnlyVaultAndDustFlushOnlyAuthorizedModules()"
+    },
+    {
+      "scope": "name_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testMembershipCannotFlushForeignCustodyDust()"
+    },
+    {
+      "scope": "name_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testRevertedEntryRollsBackGlobalDustSettlementAndMembershipAtomically()"
+    },
+    {
+      "scope": "control_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueStillSettlesFundedDustOnlyToIncumbents()"
+    },
+    {
+      "scope": "control_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry()"
+    },
+    {
+      "scope": "control_repair",
+      "suite": "test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest",
+      "method": "testHistoricalDustPaymentFailureRejectsEntryWithoutLosingOldRights()"
+    }
+  ],
+  "no_passed_case_repeated": true,
+  "failures_retained": [
+    "Reserved Foundry testFail prefix prevented eight dust cases from running in the initial run.",
+    "Three same-depth mocked-call expectRevert negative controls failed after name repair; exact low-level return assertions repair only the test fixture.",
+    "One anchored diagnostic trace pattern matched no test; retained, not counted as execution."
+  ],
+  "final_test_sha256": {
+    "test/FixedZZZBinding.t.sol": "8da107fcaa5eeaed36129967b6901bafd33e14252c4659f7d901668e971206e3",
+    "test/NativeSourceIdentity.t.sol": "22a823d53e412bd32891fcf3bd8734e52a60ddb20416d585bad01c665af5a0ce",
+    "test/GlobalMembershipDust.t.sol": "ddbbcc9e07310ce90c5fae46e50ab02a5caef36ba6562a1de53b53ec8ebcd932",
+    "test/CustodyHandoff.t.sol": "31d1d6a1198d05cb687575d69a2f883a88ca179dba0fb06690b3b2cdf2d7df1c",
+    "test/GovernedExecutionLoss.t.sol": "b1508aa8fe7f0ec1a0c34e1d6055ab2265e495fe9e520a3975e02728f246bcce"
+  }
+}

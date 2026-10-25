@@ -1,0 +1,25 @@
+{
+  "finding": "Native admission must match the fixed contribution/exit ZZZ identity, not merely a separately supplied pair key.",
+  "severity": "P2 deployment consistency/liveness; privileged misconfiguration, not confirmed unprivileged theft.",
+  "change": "configureNative rejects unless activationAssets.zzz() equals the existing private Robinhood ZZZ constant, before native runtime/venue checks. Token source is once-bound preseal, so mismatch cannot later appear by rebinding. Generic ERC20 admission is unchanged. No additional state/getter/Access constructor code.",
+  "sha256": {
+    "src/ZZZPoolRegistry.sol": "397363122abef6b14d0b1fb7335bc47cc2c0a6375a9b9928587248f8b6d0498f",
+    "test/NativeSourceIdentity.t.sol": "22a823d53e412bd32891fcf3bd8734e52a60ddb20416d585bad01c665af5a0ce"
+  },
+  "focused_cases": [
+    "Unset source cannot admit native pool",
+    "Wrong actually bound source cannot admit native pool",
+    "Distinct getter-revert sentinel precedes chain/runtime checks",
+    "Matching actually bound source cannot bypass existing runtime pins",
+    "Generic ERC20 admission keeps its independent identity policy"
+  ],
+  "evidence_limits": [
+    "Real Registry and Assets constructors/admission are used with explicit local Access/Oracle/Rewards/token substitutes.",
+    "Only the sentinel case mocks the source getter. Other identity cases bind actual Assets state.",
+    "Matching fake token is etched only to the fixed address and deliberately fails production native runtime pins. No successful live native admission, real pricing or provider qualification is claimed.",
+    "Unset/wrong errors alone would be masked by missing native runtimes; exact child-getter expectation and sentinel establish gate execution/order. Final source/AST inspection must establish the explicit != rejection condition.",
+    "Parent runs normal compile and focused execution separately."
+  ],
+  "tests_run_by_agent": false,
+  "services_or_public_transactions_modified": false
+}

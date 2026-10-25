@@ -1,23 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {ZZZModule} from "./base/ZZZModule.sol";
 import {Ids, PoolConfig} from "./libraries/ZZZTypes.sol";
-import {IZZZFees, IZZZLiquidity, IZZZPools, IZZZOracle, IZZZRewards, IBurnable} from "./interfaces/IZZZ.sol";
+import {IZZZFees, IZZZLiquidity, IZZZPools, IZZZOracle, IBurnable} from "./interfaces/IZZZ.sol";
 import {ExactAsset} from "./libraries/ExactAsset.sol";
 
 contract ZZZBuyback is ZZZModule, ReentrancyGuard {
-    using SafeERC20 for IERC20;
-    address public zzz;
+    /// @notice Fixed deployment ZZZ identity; issuer migration requires exit/redeployment.
+    address public immutable zzz;
     uint256 public immutable maxTradeUSD;
     /// @notice Immediate operating limit within the immutable deployment ceiling.
     /// Zero stops new buybacks without consulting an oracle or releasing reserves.
     uint256 public operatingTradeUSD;
     event BoughtAndBurned(address indexed input, uint256 inputAmount, uint256 zzzBurned);
-    event BuybackTargetChanged(address indexed previous,address indexed current,bytes32 reviewHash);
     event OperatingTradeLimitChanged(uint256 previous, uint256 current);
     constructor(address controller, address zzzToken, uint256 maximumTradeUSD) ZZZModule(controller) {
         if (zzzToken.code.length == 0 || maximumTradeUSD == 0) revert InvalidConfiguration();
@@ -36,12 +34,6 @@ contract ZZZBuyback is ZZZModule, ReentrancyGuard {
         uint256 previous = operatingTradeUSD;
         operatingTradeUSD = limit;
         emit OperatingTradeLimitChanged(previous, limit);
-    }
-    function setZZZ(address token,bytes32 codeHash,bytes32 reviewHash) external onlyGovernance nonReentrant {
-        if(token.code.length == 0 || token.codehash != codeHash || reviewHash == bytes32(0) ||
-            !IZZZRewards(access.module(Ids.REWARDS)).isAsset(token)) revert InvalidConfiguration();
-        IZZZOracle(access.module(Ids.ORACLE)).price(token);
-        address previous = zzz; zzz = token; emit BuybackTargetChanged(previous,token,reviewHash);
     }
     function execute(address token, uint256 amount, bytes32 poolId, uint256 deadline) external onlyKeeper live operating nonReentrant {
         _deadline(deadline);

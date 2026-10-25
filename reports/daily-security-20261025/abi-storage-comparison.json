@@ -1,0 +1,483 @@
+{
+  "scope": "Exact compiled ABI and label/slot/offset comparison with prior cleanup output; not a deployment or upgrade authorization.",
+  "unchanged_project_object_abis": 104,
+  "changes": [
+    {
+      "path": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "removed": [
+        "event:BuybackTargetChanged(address,address,bytes32)",
+        "function:setZZZ(address,bytes32,bytes32)"
+      ],
+      "added": [],
+      "modified": []
+    }
+  ],
+  "removed_interface": "IMigrationContribution; no production/test/service caller",
+  "layouts": {
+    "ZZZBuyback": {
+      "before": [
+        {
+          "label": "_status",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "zzz",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "operatingTradeUSD",
+          "slot": "2",
+          "offset": 0
+        }
+      ],
+      "after": [
+        {
+          "label": "_status",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "operatingTradeUSD",
+          "slot": "1",
+          "offset": 0
+        }
+      ],
+      "identical_label_slot_offset": false
+    },
+    "ZZZAccessController": {
+      "before": [
+        {
+          "label": "_roles",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "_timestamps",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "_minDelay",
+          "slot": "2",
+          "offset": 0
+        },
+        {
+          "label": "module",
+          "slot": "3",
+          "offset": 0
+        },
+        {
+          "label": "keepers",
+          "slot": "4",
+          "offset": 0
+        },
+        {
+          "label": "guardians",
+          "slot": "5",
+          "offset": 0
+        },
+        {
+          "label": "bootstrap",
+          "slot": "6",
+          "offset": 0
+        },
+        {
+          "label": "isSealed",
+          "slot": "6",
+          "offset": 20
+        },
+        {
+          "label": "paused",
+          "slot": "6",
+          "offset": 21
+        },
+        {
+          "label": "preparationActive",
+          "slot": "6",
+          "offset": 22
+        },
+        {
+          "label": "canonicalState",
+          "slot": "6",
+          "offset": 23
+        },
+        {
+          "label": "canonicalSettling",
+          "slot": "6",
+          "offset": 24
+        },
+        {
+          "label": "preparationReadyDestination",
+          "slot": "6",
+          "offset": 25
+        },
+        {
+          "label": "preparationNonce",
+          "slot": "7",
+          "offset": 0
+        },
+        {
+          "label": "preparationHash",
+          "slot": "8",
+          "offset": 0
+        },
+        {
+          "label": "preparationStartedAt",
+          "slot": "9",
+          "offset": 0
+        },
+        {
+          "label": "preparationNotice",
+          "slot": "10",
+          "offset": 0
+        }
+      ],
+      "after": [
+        {
+          "label": "_roles",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "_timestamps",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "_minDelay",
+          "slot": "2",
+          "offset": 0
+        },
+        {
+          "label": "module",
+          "slot": "3",
+          "offset": 0
+        },
+        {
+          "label": "keepers",
+          "slot": "4",
+          "offset": 0
+        },
+        {
+          "label": "guardians",
+          "slot": "5",
+          "offset": 0
+        },
+        {
+          "label": "bootstrap",
+          "slot": "6",
+          "offset": 0
+        },
+        {
+          "label": "isSealed",
+          "slot": "6",
+          "offset": 20
+        },
+        {
+          "label": "paused",
+          "slot": "6",
+          "offset": 21
+        },
+        {
+          "label": "preparationActive",
+          "slot": "6",
+          "offset": 22
+        },
+        {
+          "label": "canonicalState",
+          "slot": "6",
+          "offset": 23
+        },
+        {
+          "label": "canonicalSettling",
+          "slot": "6",
+          "offset": 24
+        },
+        {
+          "label": "preparationReadyDestination",
+          "slot": "6",
+          "offset": 25
+        },
+        {
+          "label": "preparationNonce",
+          "slot": "7",
+          "offset": 0
+        },
+        {
+          "label": "preparationHash",
+          "slot": "8",
+          "offset": 0
+        },
+        {
+          "label": "preparationStartedAt",
+          "slot": "9",
+          "offset": 0
+        },
+        {
+          "label": "preparationNotice",
+          "slot": "10",
+          "offset": 0
+        }
+      ],
+      "identical_label_slot_offset": true
+    },
+    "ZZZMembership": {
+      "before": [
+        {
+          "label": "canonicalAssets",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "canonicalAmounts",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "canonicalPrefunds",
+          "slot": "2",
+          "offset": 0
+        },
+        {
+          "label": "canonicalDelivered",
+          "slot": "3",
+          "offset": 0
+        },
+        {
+          "label": "canonicalAccepted",
+          "slot": "4",
+          "offset": 0
+        },
+        {
+          "label": "canonicalCursor",
+          "slot": "5",
+          "offset": 0
+        },
+        {
+          "label": "canonicalCaptured",
+          "slot": "6",
+          "offset": 0
+        },
+        {
+          "label": "eligible",
+          "slot": "7",
+          "offset": 0
+        },
+        {
+          "label": "totalEligible",
+          "slot": "8",
+          "offset": 0
+        },
+        {
+          "label": "canonicalNFTs",
+          "slot": "9",
+          "offset": 0
+        },
+        {
+          "label": "canonicalEligible",
+          "slot": "10",
+          "offset": 0
+        }
+      ],
+      "after": [
+        {
+          "label": "canonicalAssets",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "canonicalAmounts",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "canonicalPrefunds",
+          "slot": "2",
+          "offset": 0
+        },
+        {
+          "label": "canonicalDelivered",
+          "slot": "3",
+          "offset": 0
+        },
+        {
+          "label": "canonicalAccepted",
+          "slot": "4",
+          "offset": 0
+        },
+        {
+          "label": "canonicalCursor",
+          "slot": "5",
+          "offset": 0
+        },
+        {
+          "label": "canonicalCaptured",
+          "slot": "6",
+          "offset": 0
+        },
+        {
+          "label": "eligible",
+          "slot": "7",
+          "offset": 0
+        },
+        {
+          "label": "totalEligible",
+          "slot": "8",
+          "offset": 0
+        },
+        {
+          "label": "canonicalNFTs",
+          "slot": "9",
+          "offset": 0
+        },
+        {
+          "label": "canonicalEligible",
+          "slot": "10",
+          "offset": 0
+        }
+      ],
+      "identical_label_slot_offset": true
+    },
+    "ZZZMigration": {
+      "before": [
+        {
+          "label": "_status",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "currentZZZ",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "zzzCodeHash",
+          "slot": "2",
+          "offset": 0
+        },
+        {
+          "label": "sequence",
+          "slot": "3",
+          "offset": 0
+        },
+        {
+          "label": "outstandingCount",
+          "slot": "4",
+          "offset": 0
+        },
+        {
+          "label": "plans",
+          "slot": "5",
+          "offset": 0
+        },
+        {
+          "label": "activePlan",
+          "slot": "6",
+          "offset": 0
+        },
+        {
+          "label": "custodyEpoch",
+          "slot": "7",
+          "offset": 0
+        },
+        {
+          "label": "parkingNonce",
+          "slot": "8",
+          "offset": 0
+        }
+      ],
+      "after": [
+        {
+          "label": "_status",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "currentZZZ",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "zzzCodeHash",
+          "slot": "2",
+          "offset": 0
+        },
+        {
+          "label": "sequence",
+          "slot": "3",
+          "offset": 0
+        },
+        {
+          "label": "outstandingCount",
+          "slot": "4",
+          "offset": 0
+        },
+        {
+          "label": "plans",
+          "slot": "5",
+          "offset": 0
+        },
+        {
+          "label": "activePlan",
+          "slot": "6",
+          "offset": 0
+        },
+        {
+          "label": "custodyEpoch",
+          "slot": "7",
+          "offset": 0
+        },
+        {
+          "label": "parkingNonce",
+          "slot": "8",
+          "offset": 0
+        }
+      ],
+      "identical_label_slot_offset": true
+    },
+    "ZZZPoolRegistry": {
+      "before": [
+        {
+          "label": "pools",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "exists",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "contributionPool",
+          "slot": "2",
+          "offset": 0
+        }
+      ],
+      "after": [
+        {
+          "label": "pools",
+          "slot": "0",
+          "offset": 0
+        },
+        {
+          "label": "exists",
+          "slot": "1",
+          "offset": 0
+        },
+        {
+          "label": "contributionPool",
+          "slot": "2",
+          "offset": 0
+        }
+      ],
+      "identical_label_slot_offset": true
+    }
+  },
+  "fresh_deployment_only": true,
+  "source_notes": "Buyback zzz becomes immutable and operating limit changes storage slot. Existing deployments must retain original bytecode/storage/journals.",
+  "old_output_sha256": "7ade95110391aeb57937fc61bb33b2e26313bb1aefd326267c6abf993726712f",
+  "new_output_sha256": "3939db201f0b70ee4fa9432c5d964e7eefbb9d26196482a05addeb2df608f2d3"
+}

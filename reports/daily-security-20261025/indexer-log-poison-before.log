@@ -1,0 +1,831 @@
+test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) ... 
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x06') ... FAIL
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='-0x1') ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x-1') ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x') ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value=6) ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value=True) ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value=None) ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x8000000000000000') ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x06') ... FAIL
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='-0x1') ... FAIL
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x-1') ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x') ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value=6) ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value=True) ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value=None) ... ERROR
+  test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x8000000000000000') ... ERROR
+test_block_log_identity_cannot_be_reused_with_another_transaction (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction) ... 
+  test_block_log_identity_cannot_be_reused_with_another_transaction (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction) (same_transaction=True) ... ERROR
+  test_block_log_identity_cannot_be_reused_with_another_transaction (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction) (same_transaction=False) ... FAIL
+test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) ... 
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value='0x1') ... FAIL
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value='0x0000000000000000000000000000000000000000000000000000000000000000') ... FAIL
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value=None) ... ERROR
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value=True) ... ERROR
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value='not-a-hash') ... FAIL
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value='0x1') ... ERROR
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value='0x0000000000000000000000000000000000000000000000000000000000000000') ... ERROR
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value=None) ... ERROR
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value=True) ... ERROR
+  test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value='not-a-hash') ... ERROR
+test_one_transaction_cannot_appear_in_two_blocks_of_one_batch (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_one_transaction_cannot_appear_in_two_blocks_of_one_batch) ... FAIL
+test_oversized_unknown_raw_log_cannot_poison_history (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_oversized_unknown_raw_log_cannot_poison_history) ... FAIL
+test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) ... 
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value=None) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value=0) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value='false') ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value=True) ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=None) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value='0x') ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=['0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384']) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=['0x1']) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=[False]) ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value=None) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value='0x1') ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value='0xzz') ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value=False) ... FAIL
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='address', value=None) ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='address', value='0x3333333333333333333333333333333333333333') ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (item=None) ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (item=[]) ... ERROR
+  test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (item='provider-error') ... ERROR
+test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) ... FAIL
+test_transaction_cannot_move_across_previously_stored_blocks (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_transaction_cannot_move_across_previously_stored_blocks) ... FAIL
+test_wellformed_unknown_anonymous_and_multilog_events_remain_available (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_wellformed_unknown_anonymous_and_multilog_events_remain_available) ... ok
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='-0x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x-1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: '0x-1'
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: '0x'
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() can't convert non-string with explicit base
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() can't convert non-string with explicit base
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() can't convert non-string with explicit base
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x8000000000000000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x-1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 153, in step
+    int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: '0x-1'
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 153, in step
+    int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 16: '0x'
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 153, in step
+    int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() can't convert non-string with explicit base
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 153, in step
+    int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() can't convert non-string with explicit base
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 153, in step
+    int(item['logIndex'],16),contract,event,json.dumps(decoded,sort_keys=True) if decoded is not None else None,
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() can't convert non-string with explicit base
+
+======================================================================
+ERROR: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x8000000000000000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 158, in step
+    self.db.executemany('INSERT INTO logs VALUES(?,?,?,?,?,?,?,?,?)',prepared)
+OverflowError: Python int too large to convert to SQLite INTEGER
+
+======================================================================
+ERROR: test_block_log_identity_cannot_be_reused_with_another_transaction (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction) (same_transaction=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 86, in test_block_log_identity_cannot_be_reused_with_another_transaction
+    self.rejected(lambda event: [event, {**event, 'transactionHash':
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 158, in step
+    self.db.executemany('INSERT INTO logs VALUES(?,?,?,?,?,?,?,?,?)',prepared)
+sqlite3.IntegrityError: UNIQUE constraint failed: logs.chain, logs.transaction_hash, logs.log_index
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 152, in step
+    prepared.append((self.chain,number,item['blockHash'].lower(),item['transactionHash'].lower(),
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 152, in step
+    prepared.append((self.chain,number,item['blockHash'].lower(),item['transactionHash'].lower(),
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'lower'
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value='0x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value='0x0000000000000000000000000000000000000000000000000000000000000000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 147, in step
+    if number not in headers or item.get('removed') or item['blockHash'].lower()!=headers[number]['hash'].lower():
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 147, in step
+    if number not in headers or item.get('removed') or item['blockHash'].lower()!=headers[number]['hash'].lower():
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'lower'
+
+======================================================================
+ERROR: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='blockHash', value='not-a-hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value='false')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 148, in step
+    raise RpcError('Log does not belong to the confirmed block range')
+zzz_ops.errors.RpcError: Log does not belong to the confirmed block range
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=[False])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 151, in step
+    event,decoded=decode(item)
+                  ^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\events.py", line 13, in decode
+    if not topics or topics[0].lower() not in SCHEMA: return None,None
+                     ^^^^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'lower'
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='address', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 149, in step
+    contract=address(item['address'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\abi.py", line 39, in address
+    raise ValueError('Expected an Ethereum address')
+ValueError: Expected an Ethereum address
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='address', value='0x3333333333333333333333333333333333333333')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 150, in step
+    if contract not in self.contracts:raise RpcError('Unexpected contract in log response')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+zzz_ops.errors.RpcError: Unexpected contract in log response
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (item=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 77, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [value])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+               ~~~~^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (item=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 77, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [value])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+               ~~~~^^^^^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+
+======================================================================
+ERROR: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (item='provider-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 77, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [value])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 47, in rejected
+    index.step()
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\indexer\monitor.py", line 146, in step
+    number=int(item['blockNumber'],16)
+               ~~~~^^^^^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+
+======================================================================
+FAIL: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='blockNumber', value='0x06')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2674 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4047 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='0x06')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2674 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4047 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_block_and_log_quantities_are_canonical_and_database_bounded (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_and_log_quantities_are_canonical_and_database_bounded) (field='logIndex', value='-0x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 64, in test_block_and_log_quantities_are_canonical_and_database_bounded
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2675 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4048 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_block_log_identity_cannot_be_reused_with_another_transaction (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_block_log_identity_cannot_be_reused_with_another_transaction) (same_transaction=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 86, in test_block_log_identity_cannot_be_reused_with_another_transaction
+    self.rejected(lambda event: [event, {**event, 'transactionHash':
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[3300 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4666 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value='0x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2547 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 3920 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value='0x0000000000000000000000000000000000000000000000000000000000000000')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2673 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4046 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_hashes_require_complete_nonzero_rpc_identities (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_hashes_require_complete_nonzero_rpc_identities) (field='transactionHash', value='not-a-hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 58, in test_hashes_require_complete_nonzero_rpc_identities
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2561 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 3934 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_one_transaction_cannot_appear_in_two_blocks_of_one_batch (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_one_transaction_cannot_appear_in_two_blocks_of_one_batch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 91, in test_one_transaction_cannot_appear_in_two_blocks_of_one_batch
+    self.rejected(lambda event: [event, {**event, 'blockNumber': '0x7',
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[3300 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4666 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_oversized_unknown_raw_log_cannot_poison_history (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_oversized_unknown_raw_log_cannot_poison_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 81, in test_oversized_unknown_raw_log_cannot_poison_history
+    self.rejected(lambda event: [{**event, 'provider_metadata': 'x' * 131072}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[133770 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2672 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4045 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='removed', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2669 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4042 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2607 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 3980 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value='0x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2607 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 3980 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=['0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384', '0x0000000000000000000000000000000000000000000000000000000000000384'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2953 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4326 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='topics', value=['0x1'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2610 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 3983 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2669 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4042 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value='0x1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2670 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4043 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value='0xzz')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2671 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4044 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics) (field='data', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 74, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{**event, field: value}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2670 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4043 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_raw_event_shape_is_strict_even_for_unknown_topics (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_raw_event_shape_is_strict_even_for_unknown_topics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 78, in test_raw_event_shape_is_strict_even_for_unknown_topics
+    self.rejected(lambda event: [{k: v for k, v in event.items() if k != 'removed'}])
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2655 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4028 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_transaction_cannot_move_across_previously_stored_blocks (tests_python.test_indexer_log_safety.IndexerLogSafetyTests.test_transaction_cannot_move_across_previously_stored_blocks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 46, in rejected
+    with self.assertRaises(IndexerSafetyError) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: IndexerSafetyError not raised
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 95, in test_transaction_cannot_move_across_previously_stored_blocks
+    self.rejected(lambda event: [{**event, 'transactionHash': fixtures.h(102),
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_indexer_log_safety.py", line 50, in rejected
+    self.assertEqual(self.snapshot(index), before)
+AssertionError: 'BEGI[1078 chars]5);\nINSERT INTO "blocks" VALUES(1,6,\'0x00000[2673 chars]MIT;' != 'BEGI[1078 chars]5);\nCREATE TABLE cursors(chain INTEGER PRIMAR[1682 chars]MIT;'
+Diff is 4046 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.130s
+
+FAILED (failures=21, errors=29)

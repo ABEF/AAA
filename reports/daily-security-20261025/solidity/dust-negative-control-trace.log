@@ -1,0 +1,1139 @@
+No files changed, compilation skipped
+2026-10-25T18:33:00.922089Z  WARN traces::etherscan: etherscan config not found
+
+Ran 1 test for test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest
+[FAIL: call didn't revert at a lower depth than cheatcode call depth] testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry() (gas: 4314199)
+Traces:
+  [63538837] GlobalMembershipDustTest::setUp()
+    ├─ [0] VM::warp(1000000 [1e6])
+    │   └─ ← [Return]
+    ├─ [6961138] → new MockAccess@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   ├─ [4907273] → new ZZZRoyaltyFactory@0x104fBc016F4bb334D775a19E8A6510109AC63E00
+    │   │   └─ ← [Return] 24507 bytes of code
+    │   ├─ [1497631] → new ZZZActivationAssetsFactory@0x037eDa3aDB1198021A9b2e88C22B464fD38db3f3
+    │   │   └─ ← [Return] 7480 bytes of code
+    │   └─ ← [Return] 2302 bytes of code
+    ├─ [539520] → new MockToken@0x2e234DAe75C793f67A35089C9d99245E1C58470b
+    │   └─ ← [Return] 2463 bytes of code
+    ├─ [539520] → new MockToken@0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+    │   └─ ← [Return] 2463 bytes of code
+    ├─ [783429] → new MockPools@0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9
+    │   └─ ← [Return] 3913 bytes of code
+    ├─ [261134] → new VaultPolicyMock@0xc7183455a4C133Ae270771860664b6B7ec320bB1
+    │   └─ ← [Return] 1193 bytes of code
+    ├─ [1860728] → new VaultLiquidityMock@0xa0Cb889707d426A7A386870A03bc70d1b0697598
+    │   └─ ← [Return] 8613 bytes of code
+    ├─ [9033449] → new ZZZVault@0x1d1499e622D69689cdf9004d05Ec547d650Ff211
+    │   ├─ [4189117] → new ZZZMigrationBudget@0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22
+    │   │   └─ ← [Return] 20687 bytes of code
+    │   └─ ← [Return] 23889 bytes of code
+    ├─ [12922549] → new ZZZNFT@0xA4AD4f68d0b91CFD19687c881e50f3A00242828c
+    │   ├─ [545] MockAccess::royaltyFactory() [staticcall]
+    │   │   └─ ← [Return] ZZZRoyaltyFactory: [0x104fBc016F4bb334D775a19E8A6510109AC63E00]
+    │   ├─ [4740914] ZZZRoyaltyFactory::create()
+    │   │   ├─ [4676600] → new ZZZRoyaltyRewards@0x41C3c259514f88211c4CA2fd805A93F8F9A57504
+    │   │   │   ├─ emit AssetAdded(asset: 0x0000000000000000000000000000000000000000, quarantined: 0)
+    │   │   │   └─ ← [Return] 22960 bytes of code
+    │   │   ├─ [23697] ZZZRoyaltyRewards::bindCanonicalController(MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] ZZZRoyaltyRewards: [0x41C3c259514f88211c4CA2fd805A93F8F9A57504]
+    │   ├─ [1790] ZZZRoyaltyRewards::canonicalController() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   ├─ [600] ZZZRoyaltyRewards::nft() [staticcall]
+    │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   ├─ [601677] → new ZZZClaimRouter@0xeafCcCE3F73a1ac8690F49acF56C4142183619dd
+    │   │   └─ ← [Return] 2885 bytes of code
+    │   ├─ [2569713] → new ZZZNFTMetadata@0x7bb886E6fCe69554E427e4DCC5CD8EAf5A3C9dd0
+    │   │   └─ ← [Return] 12831 bytes of code
+    │   └─ ← [Return] 23929 bytes of code
+    ├─ [2070464] → new ZZZMembership@0x03A6a84cD762D9707A21605b548aaaB891562aAb
+    │   └─ ← [Return] 10336 bytes of code
+    ├─ [4340161] → new ZZZRewards@0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF
+    │   ├─ emit AssetAdded(token: 0x0000000000000000000000000000000000000000)
+    │   └─ ← [Return] 21311 bytes of code
+    ├─ [2006927] → new ZZZFeeController@0x15cF58144EF33af1e14b5208015d11F9143E27b9
+    │   └─ ← [Return] 9907 bytes of code
+    ├─ [404818] → new ZZZCompounder@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 2017 bytes of code
+    ├─ [5221081] → new ZZZOracle@0x2a07706473244BC757E10F2a9E86fB532828afe3
+    │   ├─ [2993955] → new ZZZContributionPricing@0x1F88f48585ad6754e59c03debd4502399e33Ff50
+    │   │   └─ ← [Return] 14944 bytes of code
+    │   └─ ← [Return] 10939 bytes of code
+    ├─ [346415] → new MockFeed@0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7
+    │   └─ ← [Return] 1170 bytes of code
+    ├─ [182485] → new CorrelatedFixtureFeed@0xD16d567549A2a2a2005aEACf7fB193851603dd70
+    │   └─ ← [Return] 908 bytes of code
+    ├─ [234] MockFeed::decimals() [staticcall]
+    │   └─ ← [Return] 8
+    ├─ [367259] ZZZOracle::setDualFeed(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], SourcePolicy({ source: 0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7, expectedCodeHash: 0x6cbaf98e14d4711e2acc0ad12b9b2cade513559483836d477d8cc2a4d2db0ae2, independenceId: 0x2b2be42064ffb529379e6323731d7a395d98174798b32278e580786a6628158c, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0xD16d567549A2a2a2005aEACf7fB193851603dd70, expectedCodeHash: 0x85c442e6cdf79e7b8f061ea5eb51575be9f9af29d8501210167bf68e0c327b61, independenceId: 0x82678b5a52a7b165ded350caffe4b09b020c4a7c791796da99118523f5235fd5, maxAge: 3600, feedDecimals: 8 }), 0, 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ emit FeedConfigured(token: MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], source: MockFeed: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7], maxAge: 3600)
+    │   ├─ emit DualPolicyRecorded(id: 0x6d7d8ced141d914cb5741fe0fd7841bcca74c50fd2f4898b7364b0ea763a0b9a, token: MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], primary: MockFeed: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7], secondary: CorrelatedFixtureFeed: [0xD16d567549A2a2a2005aEACf7fB193851603dd70], primaryIndependenceId: 0x2b2be42064ffb529379e6323731d7a395d98174798b32278e580786a6628158c, secondaryIndependenceId: 0x82678b5a52a7b165ded350caffe4b09b020c4a7c791796da99118523f5235fd5, maxDeviationBps: 0, reviewHash: 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ emit DualPolicyActivated(token: MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0x6d7d8ced141d914cb5741fe0fd7841bcca74c50fd2f4898b7364b0ea763a0b9a)
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0x6d7d8ced141d914cb5741fe0fd7841bcca74c50fd2f4898b7364b0ea763a0b9a
+    ├─ [182485] → new CorrelatedFixtureFeed@0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758
+    │   └─ ← [Return] 908 bytes of code
+    ├─ [234] MockFeed::decimals() [staticcall]
+    │   └─ ← [Return] 8
+    ├─ [345359] ZZZOracle::setDualFeed(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], SourcePolicy({ source: 0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7, expectedCodeHash: 0x6cbaf98e14d4711e2acc0ad12b9b2cade513559483836d477d8cc2a4d2db0ae2, independenceId: 0x2b2be42064ffb529379e6323731d7a395d98174798b32278e580786a6628158c, maxAge: 3600, feedDecimals: 8 }), SourcePolicy({ source: 0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758, expectedCodeHash: 0x85c442e6cdf79e7b8f061ea5eb51575be9f9af29d8501210167bf68e0c327b61, independenceId: 0x2c995dfc51c3447db13bee08fa44d8b8687db4a5f08e051e2820fbb7061f6afa, maxAge: 3600, feedDecimals: 8 }), 0, 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   └─ ← [Return] 8
+    │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   └─ ← [Return] 8
+    │   │   └─ ← [Return] 8
+    │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   ├─ emit FeedConfigured(token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], source: MockFeed: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7], maxAge: 3600)
+    │   ├─ emit DualPolicyRecorded(id: 0xe5e1fbad97fb48382f30266e8a5f4762d4049c841a66b0bfb1ff3d8d3ba0fcda, token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], primary: MockFeed: [0x3D7Ebc40AF7092E3F1C81F2e996cbA5Cae2090d7], secondary: CorrelatedFixtureFeed: [0x96d3F6c20EEd2697647F543fE6C08bC2Fbf39758], primaryIndependenceId: 0x2b2be42064ffb529379e6323731d7a395d98174798b32278e580786a6628158c, secondaryIndependenceId: 0x2c995dfc51c3447db13bee08fa44d8b8687db4a5f08e051e2820fbb7061f6afa, maxDeviationBps: 0, reviewHash: 0x9827caaf3c68fdb81cc7dd819db8faa7df3d16b529dfe72d22e1c8848bd7f0d3)
+    │   ├─ emit DualPolicyActivated(token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], previousPolicy: 0x0000000000000000000000000000000000000000000000000000000000000000, activePolicy: 0xe5e1fbad97fb48382f30266e8a5f4762d4049c841a66b0bfb1ff3d8d3ba0fcda)
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Return] 0xe5e1fbad97fb48382f30266e8a5f4762d4049c841a66b0bfb1ff3d8d3ba0fcda
+    ├─ [23017] MockAccess::bind(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5, ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55, ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x84664485efed53b314d87c1de748f22d797145d85703d9f1795d90df17ad6afd, ZZZRewards: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04, ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0x66b6519ff03a0a77984595e84073bf99bd8c895208419e04fb44ec8a39504e24, ZZZCompounder: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4, VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e, VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7, MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38, ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xc470a453866446f6c45d7459b498fbe539d5cd72f9875c1ee19f3fecaa74ec7c, GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496])
+    │   └─ ← [Stop]
+    ├─ [23017] MockAccess::bind(0xb2d964694d03b9cac2287b26f618f5fb37d41af3bb33bb28a905c6daee0b6adf, 0x0000000000000000000000000000000000000987)
+    │   └─ ← [Stop]
+    ├─ [23343] MockAccess::setKeeper(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496], true)
+    │   └─ ← [Stop]
+    ├─ [690932] → new MockVRF@0x13aa49bAc059d709dd0a18D6bb63290076a702D7
+    │   └─ ← [Return] 3451 bytes of code
+    ├─ [100738] ZZZNFT::configureRandomness(MockVRF: [0x13aa49bAc059d709dd0a18D6bb63290076a702D7], 0x0000000000000000000000000000000000000000000000000000000000000001, 1, 3, 500000 [5e5], false)
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ emit RandomnessConfigured(coordinator: MockVRF: [0x13aa49bAc059d709dd0a18D6bb63290076a702D7], keyHash: 0x0000000000000000000000000000000000000000000000000000000000000001, subscriptionId: 1, confirmations: 3, callbackGasLimit: 500000 [5e5], nativePayment: false)
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [53060] ZZZRewards::addAsset(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ emit AssetAdded(token: MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [53060] ZZZRewards::addAsset(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ emit AssetAdded(token: MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   ├─ [1374] MockAccess::canConfigure(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]) [staticcall]
+    │   │   └─ ← [Return] true
+    │   └─ ← [Stop]
+    ├─ [120981] MockPools::set(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] }))
+    │   └─ ← [Stop]
+    ├─ [3200] MockAccess::module(0x8793ebf778da79e95ce07a99a87738bb03de82612fccea3b04b4a321177b66b7) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [4176394] → new ZZZCanonicalHandoff@0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240
+    │   └─ ← [Return] 20740 bytes of code
+    ├─ [21017] MockAccess::bind(0x8793ebf778da79e95ce07a99a87738bb03de82612fccea3b04b4a321177b66b7, ZZZCanonicalHandoff: [0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240])
+    │   └─ ← [Stop]
+    ├─ [3200] MockAccess::module(0xe7c4cba8d36bbf11a32f62c7c712436629d5e6a88deaf0cafcd35798392bcc0f) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    ├─ [2140923] → new ZZZNFTCanonical@0x3381cD18e2Fb4dB236BF0525938AB6E43Db0440f
+    │   ├─ [1243] ZZZNFT::access() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   └─ ← [Return] 10671 bytes of code
+    ├─ [21017] MockAccess::bind(0xe7c4cba8d36bbf11a32f62c7c712436629d5e6a88deaf0cafcd35798392bcc0f, ZZZNFTCanonical: [0x3381cD18e2Fb4dB236BF0525938AB6E43Db0440f])
+    │   └─ ← [Stop]
+    ├─ [3200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    ├─ [290] ZZZVault::canonicalChainId() [staticcall]
+    │   └─ ← [Return] 31337 [3.133e4]
+    ├─ [3983620] → new ZZZVaultCanonical@0x756e0562323ADcDA4430d6cb456d9151f605290B
+    │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   ├─ [290] ZZZVault::canonicalChainId() [staticcall]
+    │   │   └─ ← [Return] 31337 [3.133e4]
+    │   └─ ← [Return] 19642 bytes of code
+    ├─ [21017] MockAccess::bind(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50, ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B])
+    │   └─ ← [Stop]
+    ├─ [3200] MockAccess::module(0x880ba1fe5e3dab66aacd02697910e5e9e5f23413023adbdbd75ab2200ba387e7) [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [1200] MockAccess::module(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04) [staticcall]
+    │   └─ ← [Return] ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    ├─ [2052088] → new ZZZFeesCanonical@0x1aF7f588A501EA2B5bB3feeFA744892aA2CF00e6
+    │   ├─ [609] ZZZFeeController::access() [staticcall]
+    │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   ├─ [504] ZZZFeeController::FEE_INTAKE_VERSION() [staticcall]
+    │   │   └─ ← [Return] 1
+    │   └─ ← [Return] 10223 bytes of code
+    ├─ [21017] MockAccess::bind(0x880ba1fe5e3dab66aacd02697910e5e9e5f23413023adbdbd75ab2200ba387e7, ZZZFeesCanonical: [0x1aF7f588A501EA2B5bB3feeFA744892aA2CF00e6])
+    │   └─ ← [Stop]
+    ├─ [732] MockAccess::seal()
+    │   └─ ← [Stop]
+    ├─ [0] VM::deal(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [48682] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000 [1e5])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, value: 100000 [1e5])
+    │   └─ ← [Stop]
+    ├─ [48682] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000 [1e5])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, value: 100000 [1e5])
+    │   └─ ← [Stop]
+    ├─ [0] VM::startPrank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [26058] MockToken::approve(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x00000000000000000000000000000000000A11cE, spender: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [26058] MockToken::approve(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x00000000000000000000000000000000000A11cE, spender: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    ├─ [0] VM::deal(0x0000000000000000000000000000000000000B0b, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [26782] MockToken::mint(0x0000000000000000000000000000000000000B0b, 100000 [1e5])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x0000000000000000000000000000000000000B0b, value: 100000 [1e5])
+    │   └─ ← [Stop]
+    ├─ [26782] MockToken::mint(0x0000000000000000000000000000000000000B0b, 100000 [1e5])
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x0000000000000000000000000000000000000B0b, value: 100000 [1e5])
+    │   └─ ← [Stop]
+    ├─ [0] VM::startPrank(0x0000000000000000000000000000000000000B0b)
+    │   └─ ← [Return]
+    ├─ [26058] MockToken::approve(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x0000000000000000000000000000000000000B0b, spender: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [26058] MockToken::approve(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   ├─ emit Approval(owner: 0x0000000000000000000000000000000000000B0b, spender: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], value: 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    ├─ [0] VM::deal(GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496], 10000000000000000000 [1e19])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [4314199] GlobalMembershipDustTest::testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry()
+    ├─ [0] VM::prank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [522575] ZZZVault::mintDormant{value: 50000000000000000}()
+    │   ├─ [2511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [706] MockAccess::paused() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [3200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   │   └─ ← [Return] ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B]
+    │   ├─ [9205] ZZZVaultCanonical::validateMint(50000000000000000 [5e16], 1) [staticcall]
+    │   │   ├─ [290] ZZZVault::canonicalChainId() [staticcall]
+    │   │   │   └─ ← [Return] 31337 [3.133e4]
+    │   │   ├─ [1056] ZZZVault::MINT_PRICE() [staticcall]
+    │   │   │   └─ ← [Return] 50000000000000000 [5e16]
+    │   │   └─ ← [Return] 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]
+    │   ├─ [3200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   ├─ [394737] ZZZNFT::mint(0x00000000000000000000000000000000000A11cE, 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ [3865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [823] ZZZVault::mintProceedsRecipient() [staticcall]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000007EA5
+    │   │   ├─ [163270] MockVRF::requestRandomWords(RandomWordsRequest({ keyHash: 0x0000000000000000000000000000000000000000000000000000000000000001, subId: 1, requestConfirmations: 3, callbackGasLimit: 500000 [5e5], numWords: 2, extraArgs: 0x92fd13380000000000000000000000000000000000000000000000000000000000000000 }))
+    │   │   │   └─ ← [Return] 1
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, tokenId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ emit RandomnessRequested(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], requestId: 1, ordinal: 1)
+    │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [0] 0x0000000000000000000000000000000000007EA5::fallback{value: 50000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ emit DormantMinted(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], owner: 0x00000000000000000000000000000000000A11cE, mintPrice: 50000000000000000 [5e16])
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   └─ ← [Return] 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]
+    ├─ [1106] ZZZNFT::requestOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   └─ ← [Return] 1
+    ├─ [12483] MockVRF::fulfill(1, 0, 0)
+    │   ├─ [9259] ZZZNFT::rawFulfillRandomWords(1, [0, 0])
+    │   │   ├─ emit RandomnessReceived(requestId: 1)
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [160160] ZZZNFT::finalizeTraits(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ emit TraitsFinalized(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], rarity: 0, color: 4)
+    │   ├─ emit ArtworkFinalized(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], palette: 26, pattern: 1)
+    │   ├─ emit MetadataUpdate(tokenId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [2985867] ZZZVault::activate(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, 1000, 1000, 1, 1000100 [1e6])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [706] MockAccess::paused() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [23284] ZZZMigrationBudget::validateOwner(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 0x00000000000000000000000000000000000A11cE, true, true) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   │   │   └─ ← [Return] ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B]
+    │   │   ├─ [18492] ZZZVaultCanonical::validateOwner(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 0x00000000000000000000000000000000000A11cE, true, true) [staticcall]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [290] ZZZVault::canonicalChainId() [staticcall]
+    │   │   │   │   └─ ← [Return] 31337 [3.133e4]
+    │   │   │   ├─ [2943] ZZZVault::nftBucket(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   │   │   ├─ [1635] ZZZNFT::traitsReady(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   │   │   ├─ [1845] ZZZNFT::ownerOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0x00000000000000000000000000000000000A11cE
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    │   ├─ [1200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   │   └─ ← [Return] ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B]
+    │   ├─ [1598] ZZZVaultCanonical::bucketIdentity(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   └─ ← [Return] 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]
+    │   ├─ [31132] ZZZMigrationBudget::validateReservation(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   ├─ [3200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [17988] MockPools::get(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [1203] ZZZVault::poolBucket(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [1200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   │   └─ ← [Return] ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B]
+    │   ├─ [68464] ZZZVaultCanonical::registerAlias(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   └─ ← [Stop]
+    │   ├─ emit PoolReserved(poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, bucketId: 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   ├─ [12692] ZZZMigrationBudget::poolTokens(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [3200] MockAccess::module(0xc470a453866446f6c45d7459b498fbe539d5cd72f9875c1ee19f3fecaa74ec7c) [staticcall]
+    │   │   └─ ← [Return] GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]
+    │   ├─ [3200] MockAccess::module(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04) [staticcall]
+    │   │   └─ ← [Return] ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   ├─ [161342] MockPools::contributionValue(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, 1000, 1000) [staticcall]
+    │   │   ├─ [895] ZZZVault::access() [staticcall]
+    │   │   │   └─ ← [Return] MockAccess: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    │   │   ├─ [3200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [81294] ZZZOracle::value(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 1000) [staticcall]
+    │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [11679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   └─ ← [Return] 1000000000000000000000 [1e21]
+    │   │   ├─ [64794] ZZZOracle::value(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 1000) [staticcall]
+    │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   └─ ← [Return] 8
+    │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   └─ ← [Return] 1000000000000000000000 [1e21]
+    │   │   └─ ← [Return] 2000000000000000000000 [2e21]
+    │   ├─ [672188] ZZZMigrationBudget::validateContribution(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 2000000000000000000000 [2e21], 340282366920938463463374607431768211457000 [3.402e41], 1, true)
+    │   │   ├─ [1200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   │   │   └─ ← [Return] ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B]
+    │   │   ├─ [42929] ZZZVaultCanonical::validateContribution(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 2000000000000000000000 [2e21], 340282366920938463463374607431768211457000 [3.402e41], 1, true) [staticcall]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [14816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   ├─ [1200] MockAccess::module(0xc470a453866446f6c45d7459b498fbe539d5cd72f9875c1ee19f3fecaa74ec7c) [staticcall]
+    │   │   │   │   └─ ← [Return] GlobalMembershipDustTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496]
+    │   │   │   ├─ [418] GlobalMembershipDustTest::activePlan(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000000
+    │   │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   │   ├─ [3515] ZZZVault::contributionUSD(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 100
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [614217] ZZZContributionPricing::begin(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 340282366920938463463374607431768211457000 [3.402e41], 2000000000000000000000 [2e21], 13107300 [1.31e7])
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [706] MockAccess::paused() [staticcall]
+    │   │   │   │   └─ ← [Return] false
+    │   │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   │   └─ ← [Return] false
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [960] ZZZMigrationBudget::contributionLossBps() [staticcall]
+    │   │   │   │   └─ ← [Return] 200
+    │   │   │   ├─ [34610] ZZZOracle::priceBounds(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000000000000000 [1e18], 0xc6d43da2f33492fdacc53367bc845e8767df6df6206be2e57117127182819bb2
+    │   │   │   ├─ [1661] ZZZOracle::tokenDecimals(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [34610] ZZZOracle::priceBounds(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000000000000000 [1e18], 0x6a7207474bb7d6962b188a298993aeeed424a5285a6f6d51a905089dd1fb8db6
+    │   │   │   ├─ [1661] ZZZOracle::tokenDecimals(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [3447] ZZZMigrationBudget::compositionEpoch(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [34610] ZZZOracle::priceBounds(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000000000000000 [1e18], 0xc6d43da2f33492fdacc53367bc845e8767df6df6206be2e57117127182819bb2
+    │   │   │   ├─ [1661] ZZZOracle::tokenDecimals(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [34610] ZZZOracle::priceBounds(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000000000000000 [1e18], 0x6a7207474bb7d6962b188a298993aeeed424a5285a6f6d51a905089dd1fb8db6
+    │   │   │   ├─ [1661] ZZZOracle::tokenDecimals(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], 13107300 [1.31e7]
+    │   ├─ [3200] MockAccess::module(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55) [staticcall]
+    │   │   └─ ← [Return] ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]
+    │   ├─ [103307] ZZZMembership::settleDust()
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   ├─ [1200] MockAccess::module(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04) [staticcall]
+    │   │   │   └─ ← [Return] ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [1076] ZZZVault::bucketCount() [staticcall]
+    │   │   │   └─ ← [Return] 1
+    │   │   ├─ [484] ZZZVault::MAX_BUCKETS() [staticcall]
+    │   │   │   └─ ← [Return] 4
+    │   │   ├─ [1268] ZZZVault::bucketAt(0) [staticcall]
+    │   │   │   └─ ← [Return] 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [5988] MockPools::get(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [29153] ZZZFeeController::flushDust(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [1200] MockAccess::module(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [27153] ZZZFeeController::flushDust(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [1200] MockAccess::module(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   ├─ [1447] ZZZMigrationBudget::compositionEpoch(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [26147] ZZZMigrationBudget::contributionNav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [20874] ZZZContributionPricing::contributionNav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   └─ ← [Return] 0, 0
+    │   │   └─ ← [Return] 0, 0
+    │   ├─ [3011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [3011] MockToken::balanceOf(0x00000000000000000000000000000000000A11cE) [staticcall]
+    │   │   └─ ← [Return] 100000 [1e5]
+    │   ├─ [31226] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 1000)
+    │   │   ├─ emit Transfer(from: 0x00000000000000000000000000000000000A11cE, to: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], value: 1000)
+    │   │   └─ ← [Return] true
+    │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 1000
+    │   ├─ [1011] MockToken::balanceOf(0x00000000000000000000000000000000000A11cE) [staticcall]
+    │   │   └─ ← [Return] 99000 [9.9e4]
+    │   ├─ [3011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [3011] MockToken::balanceOf(0x00000000000000000000000000000000000A11cE) [staticcall]
+    │   │   └─ ← [Return] 100000 [1e5]
+    │   ├─ [31226] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 1000)
+    │   │   ├─ emit Transfer(from: 0x00000000000000000000000000000000000A11cE, to: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], value: 1000)
+    │   │   └─ ← [Return] true
+    │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 1000
+    │   ├─ [1011] MockToken::balanceOf(0x00000000000000000000000000000000000A11cE) [staticcall]
+    │   │   └─ ← [Return] 99000 [9.9e4]
+    │   ├─ [12692] ZZZMigrationBudget::poolTokens(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [30968] ZZZMigrationBudget::assertIdle(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 1000, idle1: 1000, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 1000
+    │   │   ├─ [1159] ZZZVault::totalIdle(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   └─ ← [Return] 1000
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 1000
+    │   │   ├─ [1159] ZZZVault::totalIdle(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   └─ ← [Return] 1000
+    │   │   └─ ← [Stop]
+    │   ├─ [31686] ZZZMigrationBudget::balancePlan(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], false) [staticcall]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 1000, idle1: 1000, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [3200] MockAccess::module(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e) [staticcall]
+    │   │   │   └─ ← [Return] VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   ├─ [904] VaultPolicyMock::swapPlan(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, 1000, 1000) [staticcall]
+    │   │   │   └─ ← [Return] false, 0, 0
+    │   │   └─ ← [Return] false, 0, 0, MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [35774] ZZZMigrationBudget::contributionNav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [30501] ZZZContributionPricing::contributionNav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [1200] MockAccess::module(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e) [staticcall]
+    │   │   │   │   └─ ← [Return] VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   │   ├─ [671] VaultPolicyMock::validatePrice(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   │   └─ ← [Return] 79228162514264337593543950336 [7.922e28]
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 1000, idle1: 1000, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   └─ ← [Return] 0, 2000000000000000000000 [2e21]
+    │   │   └─ ← [Return] 0, 2000000000000000000000 [2e21]
+    │   ├─ [12692] ZZZMigrationBudget::poolTokens(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [3200] MockAccess::module(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4) [staticcall]
+    │   │   └─ ← [Return] VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598]
+    │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 1000
+    │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   └─ ← [Return] 1000
+    │   ├─ [26058] MockToken::approve(VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1000)
+    │   │   ├─ emit Approval(owner: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], spender: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], value: 1000)
+    │   │   └─ ← [Return] true
+    │   ├─ [26058] MockToken::approve(VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1000)
+    │   │   ├─ emit Approval(owner: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], spender: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], value: 1000)
+    │   │   └─ ← [Return] true
+    │   ├─ [15324] ZZZMigrationBudget::mintTarget(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e) [staticcall]
+    │   │   │   └─ ← [Return] VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 0, idle0: 1000, idle1: 1000, depositUSD: 0, centerX96: 0, lastRebalance: 0, status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [903] VaultPolicyMock::target(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] -600, 600, 79228162514264337593543950336 [7.922e28]
+    │   │   └─ ← [Return] -600, 600, 79228162514264337593543950336 [7.922e28]
+    │   ├─ [173505] VaultLiquidityMock::mint(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, -600, 600, 1000, 1000, 1, 1000100 [1e6])
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], tokenId: 1)
+    │   │   ├─ [29797] MockToken::transferFrom(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1000)
+    │   │   │   ├─ emit Transfer(from: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], to: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], value: 1000)
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [29797] MockToken::transferFrom(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1000)
+    │   │   │   ├─ emit Transfer(from: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], to: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], value: 1000)
+    │   │   │   └─ ← [Return] true
+    │   │   └─ ← [Return] 1, 1000, 1000
+    │   ├─ [928] VaultLiquidityMock::positionManager() [staticcall]
+    │   │   └─ ← [Return] VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598]
+    │   ├─ [26709] VaultLiquidityMock::approve(VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1)
+    │   │   ├─ emit Approval(owner: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], approved: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], tokenId: 1)
+    │   │   └─ ← [Stop]
+    │   ├─ [4058] MockToken::approve(VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 0)
+    │   │   ├─ emit Approval(owner: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], spender: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], value: 0)
+    │   │   └─ ← [Return] true
+    │   ├─ [4058] MockToken::approve(VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 0)
+    │   │   ├─ emit Approval(owner: ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], spender: VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], value: 0)
+    │   │   └─ ← [Return] true
+    │   ├─ [34616] ZZZMigrationBudget::assertPut(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 1000, 1000, 1000, 1000, 1000, 1000) [staticcall]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 1, idle0: 1000, idle1: 1000, depositUSD: 0, centerX96: 79228162514264337593543950336 [7.922e28], lastRebalance: 1000000 [1e6], status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [1200] MockAccess::module(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4) [staticcall]
+    │   │   │   └─ ← [Return] VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598]
+    │   │   ├─ [928] VaultLiquidityMock::positionManager() [staticcall]
+    │   │   │   └─ ← [Return] VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598]
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1493] VaultLiquidityMock::ownerOf(1) [staticcall]
+    │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   └─ ← [Stop]
+    │   ├─ [12692] ZZZMigrationBudget::poolTokens(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [30968] ZZZMigrationBudget::assertIdle(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 1, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 79228162514264337593543950336 [7.922e28], lastRebalance: 1000000 [1e6], status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1159] ZZZVault::totalIdle(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1159] ZZZVault::totalIdle(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [31811] ZZZMigrationBudget::assertDeployed(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [25718] ZZZContributionPricing::nav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 1, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 79228162514264337593543950336 [7.922e28], lastRebalance: 1000000 [1e6], status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   ├─ [1200] MockAccess::module(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4) [staticcall]
+    │   │   │   │   └─ ← [Return] VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598]
+    │   │   │   ├─ [1442] VaultLiquidityMock::amounts(1) [staticcall]
+    │   │   │   │   └─ ← [Return] 1000, 1000
+    │   │   │   └─ ← [Return] 2000000000000000000000 [2e21], 0
+    │   │   └─ ← [Stop]
+    │   ├─ [12692] ZZZMigrationBudget::poolTokens(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [1200] MockAccess::module(0xa93341f4bc02ec5f35c323a55f9fd5355df1a75bdfec48a3279200374d036b04) [staticcall]
+    │   │   └─ ← [Return] ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]
+    │   ├─ [21841] ZZZFeeController::releaseCompound(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [3011] MockToken::balanceOf(ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 0
+    │   ├─ [21841] ZZZFeeController::releaseCompound(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a])
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [3011] MockToken::balanceOf(ZZZFeeController: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 0
+    │   ├─ [12692] ZZZMigrationBudget::poolTokens(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   └─ ← [Return] MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]
+    │   ├─ [30968] ZZZMigrationBudget::assertIdle(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 1, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 79228162514264337593543950336 [7.922e28], lastRebalance: 1000000 [1e6], status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   ├─ [1200] MockAccess::module(0xe172fc22ef4736794abb342530a7acc3f7d6bbf4f70bb0141fa0aa0eaa39a6a7) [staticcall]
+    │   │   │   └─ ← [Return] MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9]
+    │   │   ├─ [6010] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1159] ZZZVault::totalIdle(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1011] MockToken::balanceOf(ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1159] ZZZVault::totalIdle(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [7833] ZZZMigrationBudget::valueBucket(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 0, 0) [staticcall]
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [2255] ZZZContributionPricing::valueBucket(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 0, 0) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Return] 0
+    │   ├─ [41853] ZZZMigrationBudget::contributionNav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [36580] ZZZContributionPricing::contributionNav(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77])
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [1200] MockAccess::module(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e) [staticcall]
+    │   │   │   │   └─ ← [Return] VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   │   ├─ [671] VaultPolicyMock::validatePrice(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   │   └─ ← [Return] 79228162514264337593543950336 [7.922e28]
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 1, idle0: 0, idle1: 0, depositUSD: 0, centerX96: 79228162514264337593543950336 [7.922e28], lastRebalance: 1000000 [1e6], status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    │   │   │   ├─ [1200] MockAccess::module(0xfdd9364e44808e858f9a3e3597a4c2e23cdac176e030967c91d5873fe1371bd4) [staticcall]
+    │   │   │   │   └─ ← [Return] VaultLiquidityMock: [0xa0Cb889707d426A7A386870A03bc70d1b0697598]
+    │   │   │   ├─ [1442] VaultLiquidityMock::amounts(1) [staticcall]
+    │   │   │   │   └─ ← [Return] 1000, 1000
+    │   │   │   └─ ← [Return] 2000000000000000000000 [2e21], 0
+    │   │   └─ ← [Return] 2000000000000000000000 [2e21], 0
+    │   ├─ [3200] MockAccess::module(0x84664485efed53b314d87c1de748f22d797145d85703d9f1795d90df17ad6afd) [staticcall]
+    │   │   └─ ← [Return] ZZZRewards: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]
+    │   ├─ [45103] ZZZRewards::checkpointOwner(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   ├─ [943] ZZZVault::nftBucket(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   └─ ← [Return] 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]
+    │   │   ├─ [3295] ZZZVault::sharesOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [127568] ZZZMigrationBudget::contributionResult(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 2000000000000000000000 [2e21], 0, 0, 0, 2000000000000000000000 [2e21], 0, 13107300 [1.31e7])
+    │   │   ├─ [1200] MockAccess::module(0xbf820fa66fadba8f93ff177e73b8d9962881eaa782ee4924feadac7ed13eaf38) [staticcall]
+    │   │   │   └─ ← [Return] ZZZOracle: [0x2a07706473244BC757E10F2a9E86fB532828afe3]
+    │   │   ├─ [616] ZZZOracle::contributionPricing() [staticcall]
+    │   │   │   └─ ← [Return] ZZZContributionPricing: [0x1F88f48585ad6754e59c03debd4502399e33Ff50]
+    │   │   ├─ [121243] ZZZContributionPricing::finish(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], 2000000000000000000000 [2e21], 0, 0, 0, 2000000000000000000000 [2e21], 0, 13107300 [1.31e7])
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [1200] MockAccess::module(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]
+    │   │   │   ├─ [983] ZZZVault::migrationBudget() [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMigrationBudget: [0x45C92C2Cd0dF7B2d705EF12CfF77Cb0Bc557Ed22]
+    │   │   │   ├─ [1447] ZZZMigrationBudget::compositionEpoch(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0xcbff646c6fd41643bc1b6f2d57f799f19e8feafaf21cc5deab1664dfb601170e) [staticcall]
+    │   │   │   │   └─ ← [Return] VaultPolicyMock: [0xc7183455a4C133Ae270771860664b6B7ec320bB1]
+    │   │   │   ├─ [671] VaultPolicyMock::validatePrice(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   │   │   │   └─ ← [Return] 79228162514264337593543950336 [7.922e28]
+    │   │   │   ├─ [34610] ZZZOracle::priceBounds(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000000000000000 [1e18], 0xc6d43da2f33492fdacc53367bc845e8767df6df6206be2e57117127182819bb2
+    │   │   │   ├─ [1661] ZZZOracle::tokenDecimals(MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [34610] ZZZOracle::priceBounds(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   │   ├─ [278] MockToken::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   ├─ [1191] CorrelatedFixtureFeed::decimals() [staticcall]
+    │   │   │   │   │   ├─ [234] MockFeed::decimals() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   │   └─ ← [Return] 8
+    │   │   │   │   ├─ [3432] CorrelatedFixtureFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   ├─ [1679] MockFeed::latestRoundData() [staticcall]
+    │   │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   │   └─ ← [Return] 1, 100000000 [1e8], 1000000 [1e6], 1000000 [1e6], 1
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000000000000000 [1e18], 0x6a7207474bb7d6962b188a298993aeeed424a5285a6f6d51a905089dd1fb8db6
+    │   │   │   ├─ [1661] ZZZOracle::tokenDecimals(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ emit ContributionVerified(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], bucketId: 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], inputLowerUSD: 2000000000000000000000 [2e21], inputUpperUSD: 2000000000000000000000 [2e21], marginalDeployedUSD: 2000000000000000000000 [2e21], netUSD: 2000000000000000000000 [2e21], spotX96: 79228162514264337593543950336 [7.922e28], basisHash: 0xfad84df45e5e40d9fa79923000f5b573e2eeedaaee694e1eb81934838b33f152)
+    │   │   │   └─ ← [Return] 2000000000000000000000 [2e21], 2000000000000000000000 [2e21]
+    │   │   └─ ← [Return] 2000000000000000000000 [2e21], 2000000000000000000000 [2e21]
+    │   ├─ [1200] MockAccess::module(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55) [staticcall]
+    │   │   └─ ← [Return] ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]
+    │   ├─ [95498] ZZZMembership::activate(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   │   ├─ [1845] ZZZNFT::ownerOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   └─ ← [Return] 0x00000000000000000000000000000000000A11cE
+    │   │   ├─ [1200] MockAccess::module(0x84664485efed53b314d87c1de748f22d797145d85703d9f1795d90df17ad6afd) [staticcall]
+    │   │   │   └─ ← [Return] ZZZRewards: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF]
+    │   │   ├─ [33512] ZZZRewards::checkpointAll(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   │   ├─ [1865] MockAccess::moduleAuthorized(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55, ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]) [staticcall]
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1200] MockAccess::module(0x65a9a830a9b3fd817da9a168637c427a3e9b4e1107de2c6f2373548a6fbd4d55) [staticcall]
+    │   │   │   │   └─ ← [Return] ZZZMembership: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]
+    │   │   │   ├─ [941] ZZZMembership::eligible(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   │   └─ ← [Return] false
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ emit MembershipActivated(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   ├─ [201291] ZZZNFT::notifyContribution(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [1295] ZZZVault::sharesOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   └─ ← [Return] 2000000000000000000000 [2e21]
+    │   │   ├─ [2798] ZZZRoyaltyRewards::weightOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [180092] ZZZRoyaltyRewards::activate(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], 1)
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   ├─ [1845] ZZZNFT::ownerOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   │   │   └─ ← [Return] 0x00000000000000000000000000000000000A11cE
+    │   │   │   ├─ emit Activated(id: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], weight: 1)
+    │   │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   │   └─ ← [Return] 0
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ emit MetadataUpdate(tokenId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76])
+    │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ emit SharesAdded(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], bucketId: 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], shares: 2000000000000000000000 [2e21], netUSD: 2000000000000000000000 [2e21])
+    │   ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   ├─ [1845] ZZZNFT::ownerOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   │   └─ ← [Return] 0x00000000000000000000000000000000000A11cE
+    │   ├─ emit Activated(nftId: 74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76], owner: 0x00000000000000000000000000000000000A11cE, poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, amount0: 1000, amount1: 1000)
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   └─ ← [Stop]
+    ├─ [943] ZZZVault::nftBucket(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   └─ ← [Return] 112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]
+    ├─ [1295] ZZZVault::sharesOf(74789083671864909723430118290967105462114037800446596660293504976813563983164 [7.478e76]) [staticcall]
+    │   └─ ← [Return] 2000000000000000000000 [2e21]
+    ├─ [6816] ZZZVault::group(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77]) [staticcall]
+    │   └─ ← [Return] Position({ poolId: 0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, lpTokenId: 1, idle0: 0, idle1: 0, depositUSD: 2000000000000000000000 [2e21], centerX96: 79228162514264337593543950336 [7.922e28], lastRebalance: 1000000 [1e6], status: 1, homeChain: 31337 [3.133e4], homeVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211, homeReceiver: 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496, homeToken0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, homeToken1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, locationChain: 31337 [3.133e4], locationVault: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 })
+    ├─ [0] VM::prank(0x0000000000000000000000000000000000000B0b)
+    │   └─ ← [Return]
+    ├─ [277838] ZZZVault::mintDormant{value: 50000000000000000}()
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [749] MockAccess::isSealed() [staticcall]
+    │   │   └─ ← [Return] true
+    │   ├─ [706] MockAccess::paused() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [1200] MockAccess::module(0x5b48b7ad60281bc6b540acdfdedc01f73c0131503d81b1b3a8f7b84943131d50) [staticcall]
+    │   │   └─ ← [Return] ZZZVaultCanonical: [0x756e0562323ADcDA4430d6cb456d9151f605290B]
+    │   ├─ [5205] ZZZVaultCanonical::validateMint(50000000000000000 [5e16], 2) [staticcall]
+    │   │   ├─ [290] ZZZVault::canonicalChainId() [staticcall]
+    │   │   │   └─ ← [Return] 31337 [3.133e4]
+    │   │   ├─ [1056] ZZZVault::MINT_PRICE() [staticcall]
+    │   │   │   └─ ← [Return] 50000000000000000 [5e16]
+    │   │   └─ ← [Return] 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77]
+    │   ├─ [1200] MockAccess::module(0x86798dfd34b3cf289e7582d0460beda645ea24721422547e964271fa9bdb63e5) [staticcall]
+    │   │   └─ ← [Return] ZZZNFT: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]
+    │   ├─ [218900] ZZZNFT::mint(0x0000000000000000000000000000000000000B0b, 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77])
+    │   │   ├─ [1865] MockAccess::moduleAuthorized(0x411f1fc1c0e7b1fef9670835d6b39dd39cdfaadfae26102258b61be58c80b968, ZZZVault: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211]) [staticcall]
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ [823] ZZZVault::mintProceedsRecipient() [staticcall]
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000007EA5
+    │   │   ├─ [27833] MockVRF::requestRandomWords(RandomWordsRequest({ keyHash: 0x0000000000000000000000000000000000000000000000000000000000000001, subId: 1, requestConfirmations: 3, callbackGasLimit: 500000 [5e5], numWords: 2, extraArgs: 0x92fd13380000000000000000000000000000000000000000000000000000000000000000 }))
+    │   │   │   └─ ← [Return] 2
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x0000000000000000000000000000000000000B0b, tokenId: 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77])
+    │   │   ├─ emit RandomnessRequested(nftId: 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77], requestId: 2, ordinal: 2)
+    │   │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   │   └─ ← [Return] false
+    │   │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   │   └─ ← [Return] 0
+    │   │   └─ ← [Stop]
+    │   ├─ [0] 0x0000000000000000000000000000000000007EA5::fallback{value: 50000000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ emit DormantMinted(nftId: 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77], owner: 0x0000000000000000000000000000000000000B0b, mintPrice: 50000000000000000 [5e16])
+    │   ├─ [552] MockAccess::preparationActive() [staticcall]
+    │   │   └─ ← [Return] false
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   └─ ← [Return] 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77]
+    ├─ [1106] ZZZNFT::requestOf(108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77]) [staticcall]
+    │   └─ ← [Return] 2
+    ├─ [12483] MockVRF::fulfill(2, 0, 0)
+    │   ├─ [9259] ZZZNFT::rawFulfillRandomWords(2, [0, 0])
+    │   │   ├─ emit RandomnessReceived(requestId: 2)
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [102530] ZZZNFT::finalizeTraits(108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ emit TraitsFinalized(nftId: 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77], rarity: 0, color: 0)
+    │   ├─ emit ArtworkFinalized(nftId: 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77], palette: 11, pattern: 1)
+    │   ├─ emit MetadataUpdate(tokenId: 108657921663171220586998298901311993767690317260130554515167261736955895293535 [1.086e77])
+    │   ├─ [511] MockAccess::canonicalState() [staticcall]
+    │   │   └─ ← [Return] 0
+    │   └─ ← [Stop]
+    ├─ [5988] MockPools::get(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    ├─ [120981] MockPools::set(0x93c52137dee14cdf675f4930a65029100d0cfe23816fd164e9ce6025312eb84b, PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 500, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] }))
+    │   └─ ← [Stop]
+    ├─ [5988] MockPools::get(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   └─ ← [Return] PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: true, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] })
+    ├─ [12281] MockPools::set(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, PoolConfig({ key: PoolKey({ currency0: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, currency1: 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, fee: 3000, tickSpacing: 60, hooks: 0x0000000000000000000000000000000000000000 }), depositsEnabled: false, operationsEnabled: true, rangeBps: 0, triggerBps: 0, maxSpotDeviationBps: 0, maxSlippageBps: 100, minRebalanceInterval: 0, minDepositUSD: 1000000000000000000 [1e18], maxPositionUSD: 1000000000000000000000000000000 [1e30] }))
+    │   └─ ← [Stop]
+    ├─ [1416] ZZZFeeController::dust(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b]) [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [0] VM::assertEq(0, 0) [staticcall]
+    │   └─ ← [Return]
+    ├─ [1416] ZZZFeeController::dust(112761591199685826881050592619825125452011990694373945394669776198917404710592 [1.127e77], MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [0] VM::assertEq(0, 0) [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::mockCallRevert(MockPools: [0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9], 0xb95559a1c7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22, 0xd9d3f2ec)
+    │   └─ ← [Return]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3: 00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000004d9d3f2ec00000000000000000000000000000000000000000000000000000000)
+    │   └─ ← [Return]
+    ├─ [0] MockPools::accounting(0xc7a8d7c3313192098ffe689da9fd411c71ad79ef23356858077d51e734fccc22) [staticcall]
+    │   └─ ← [Revert] custom error 0xd9d3f2ec
+    └─ ← [Revert] call didn't revert at a lower depth than cheatcode call depth
+
+Backtrace:
+  at MockPools.accounting
+  at GlobalMembershipDustTest.testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 15.97ms (7.44ms CPU time)
+
+Ran 1 test suite in 51.11ms (15.97ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/GlobalMembershipDust.t.sol:GlobalMembershipDustTest
+[FAIL: call didn't revert at a lower depth than cheatcode call depth] testBrokenHistoricalVenueWithNoDustDoesNotBlockHealthyNewEntry() (gas: 4314199)
+
+Encountered a total of 1 failing tests, 0 tests succeeded

@@ -105,16 +105,21 @@ manual token exchange, bridging or a return to a reviewed different pair.
 
 1. Independently qualify the selected ZZZ contract, source/destination venue,
    input/output units, prices and source-chain recipient. The ordinary custody-only
-   procedure uses no bridge or finality verifier. During initial bootstrap,
-   before sealing, call `Migration.configureZZZ(token,expectedCodeHash,reviewHash)`
-   once with the same fixed token as `ActivationAssets.zzz()`, an admitted Rewards
-   asset and healthy USD feed. Sealing checks the nonzero, matching identities;
-   incomplete or mismatched setup blocks sealing. The target cannot be replaced or initially set
-   after sealing. For a later ordinary exit, verify its existing identity/code
-   hash rather than trying to configure it again. Buyback has its own reviewed
-   target configuration; setting a target never moves funds. A future token-contract
-   exchange uses this deployment's custody exit and a fresh reviewed deployment;
-   it does not relabel this deployment's ZZZ input or exit identity.
+   procedure uses no bridge or finality verifier. There is **one fixed ZZZ token**
+   for contributions, buyback burns and normal exit. During initial bootstrap,
+   bind its reviewed source identity once with `ActivationAssets.configureZZZ`.
+   Deploy and bind `Buyback` with that same immutable ZZZ, then call
+   `Migration.configureZZZ(token,expectedCodeHash,reviewHash)` once before sealing.
+   Migration requires both existing identities to match, an admitted Rewards
+   asset and a healthy USD feed. Source and exit have separate pin records for
+   the same token; they are not selectable alternative exit assets. Sealing
+   rejects incomplete or mismatched source/exit setup. Native pool admission
+   also requires that source identity to match the pinned Robinhood ZZZ.
+   For a later ordinary exit, verify the existing identity/code hash rather
+   than configuring it again. Neither the fixed source/exit identity nor
+   Buyback's immutable target can be replaced; there is no retargeting setter.
+   A future token-contract exchange uses custody exit and a fresh reviewed
+   deployment, preserving existing ownership and reward obligations separately.
    Before parking, record the reviewed principal-plus-idle USD18 value `V`,
    Budget `maintenanceLossBps()` as `L`, and the configured ZZZ lower USD18 price
    `P` and decimals `d` at the same block. Compute the retained USD floor
@@ -408,9 +413,12 @@ Current release inventory requires explicit `fee_intake_version: 1`, 15 current 
 `SCHEMA == keccak256("ZZZ_CANONICAL_SAME_CHAIN_NATIVE_LP_ONLY_V3")`.
 `ActivationAssets.SOURCE_POLICY_VERSION() == 1` and its reviewed `zzz()` identity
 bound the ETH/ZZZ contribution inputs; royalty currencies remain separate. That
-ZZZ identity is selected once by bootstrap before sealing. A later token-contract
+ZZZ is selected once before sealing and must equal immutable `Buyback.zzz()`
+and `Migration.currentZZZ()`. Bind source and Buyback before the one-time
+Migration configuration. The raw-exit operation gains no new Buyback call or
+source-policy dependency from this bootstrap check. A later token-contract
 exchange requires external custody and a fresh reviewed deployment, rather than
-relabeling historical balances or changing the existing input identity.
+relabeling historical balances or changing any of these ZZZ identities.
 The current helper set includes the controller-created ActivationAssetsFactory;
 verify its fixed controller and `assetsOf(Registry)` binding. It excludes the old
 RewardReceiverFactory even though the historical inventory also counted 15 helpers.

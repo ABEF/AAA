@@ -204,6 +204,7 @@ Custody, ownership and reward accounting.
   - Source changes use a new LP-only canonical schema and explicit service profiles, preserving historical deployments/journals and old event readers. Retired fixtures are archived rather than counted as current passes. See the [audit](reports/simplification-20261025/REVIEW.md).
   - [Verification](reports/simplification-20261025/VERIFICATION.md):89 distinct Solidity behaviors across two source scopes,40 backend plus6 API/keeper scoped methods,122-input ABI/AST and36 normal object gates. Current real fork qualification is blocked until its retired wrapped fixture is replaced; actual services and independent audit remain open. Access exact release constructor arguments still need qualification (29-byte minimal margin).
   - The [residual-code review](reports/obsolete-code-20261025/REVIEW.md) removes unconsumed Registry wrapper records and orphan creator-payment measurement tools, aligns current keeper examples and corrects stale operating/audit requirements. Historical event/journal readers and actual converter wrapper checks remain; no external release gate closes. Use that report for final source scope and verification rather than adding earlier counts.
+  - [Day consistency audit](reports/daily-security-20261025/REVIEW.md): one fixed ZZZ now binds source, native admission, immutable Buyback and normal exit; the old buyback retarget setter is removed. Registry admission prevents mismatched native identity. This is fresh-deployment source only; 28 distinct selected behaviors across recorded fixture scopes, 35 indexer methods and 36 normal gates are source-scoped, not external qualification.
 
   </details>
 
@@ -261,6 +262,7 @@ Custody, ownership and reward accounting.
   <summary>Acceptance criteria</summary>
 
   - Use [the one-pool switch procedure](docs/OPERATOR_MANUAL.md#one-contribution-pool-at-a-time). Verify initial ZZZ/ETH selection, full destination validation, exact atomic switch/rollback and operator/runtime pins. Local evidence does not approve real destination liquidity or future-chain transport.
+  - [Incumbent dust liveness fix](reports/daily-security-20261025/REVIEW.md): historical admitted currencies come from stored Registry identity, not unavailable old venue accounting. Exact nonzero dust funding/settlement and current-pool validation still apply; newcomers receive no earlier rewards.
 
   </details>
 
@@ -323,6 +325,7 @@ Custody, ownership and reward accounting.
   - Derived from the current43-source compiler ABI and normal size evidence; inherited ERC721/governance methods are included, internal-only libraries excluded. No function is executed by documentation generation.
   - Keep editable explanations and ABI/source snapshot in sync after source, behavior, permission, input or output changes. Run python scripts/generate-function-reference.py --check; missing purpose/caller/payable-value/input notes or stale generated/source data must fail. A correct signature is not transaction authorization.
   - See the [operator appendix](docs/OPERATOR_MANUAL.md#callable-contract-reference) and [scoped verification](reports/release-services-20261025/function-reference/VERIFICATION.md). Normal verification now checks both Todo and this reference before running broader checks; no fresh full CI pass is claimed.
+  - Current source-bound catalog is31contracts/643functions. The removed Buyback setter/event, immutable getter and matching setup order are reflected in exact compiler/reference notes. Maintain all callable purpose, authority and input/output explanations for future changes.
 
   </details>
 
@@ -394,6 +397,7 @@ The data and services behind the app.
   - Shared read-only RPC refuses all redirects, including same-host; only explicitly configured reviewed endpoints may be used. Bounded failover, chain recheck, response/work limits and sanitized failure reporting remain. Qualify final provider URLs/proxy/auth behavior explicitly; other historical standalone transports are separate.
   - Use the stricter [RPC qualification procedure](docs/RPC_PREPARATION_QUALIFICATION.md): timeouts/rate limits/ambiguous errors do not prove unknown-hash rejection; the opt-in preparation profile requires reviewed genesis/runtime and a real discarded Approval(0) log witness. Keep basic public-read observations, actual preparation capability and independent operating approval separate.
   - [Current observation](reports/release-services-20261025/vrf-opensea/VERIFICATION.md) obtained16 logical canonical runtime/storage reads using32 HTTP posts from one public provider. Separate feed probing later failed429/403. Neither result supplies redundant operating approval, continuous uptime or preparation-trace qualification.
+  - [Indexer provenance fix and scoped evidence](reports/daily-security-20261025/SERVICE_REVIEW.md): reject invalid/duplicate log identities atomically before inserting a new batch/cursor. Preserve rejected or previously poisoned database evidence; no silent deletion/repair, and full confirmed-history coverage remains required after an approved separate rebuild.
 
   </details>
 
@@ -886,6 +890,7 @@ Seven audit workstreams. Local checks are partial evidence; independent review a
   - Review [the October25 internal audit](reports/preproduction-audit-20261025/REVIEW.md): keeper budget/preflight defects, non-vacuous composed accounting/invariants, current native/schema-5 runbooks, pause-versus-custody authority and captured original floors. These fixes do not prove absence of exploits or close actual services and independent audit.
   - Review [liquidity operations](reports/liquidity-operations-20261025/REVIEW.md): exact2/1/3defaults, actual-state bounded planning, idle ownership/cooldown, explicit inverse ranges, narrow Strategy-only width callback and strict API/observer/keeper version profiles. Near-limit runtime/initcode and unchanged public-signing restrictions remain release boundaries.
   - [Comprehensive review/coverage](reports/comprehensive-improvement-20261025/COVERAGE.md) and [findings](reports/comprehensive-improvement-20261025/REVIEW.md) distinguish fresh fixes from reused evidence and external gates. Review-cap, metadata, buyback, RPC transport and indexer atomicity improvements do not replace independent audit or qualify all48areas exhaustively.
+  - [25October internal combined review](reports/daily-security-20261025/REVIEW.md) includes financial/custody/service paths, native source consistency, immutable burn target, funded historical dust and indexer provenance. No new unprivileged theft/dilution/double-claim path was confirmed in inspected scope; this is not an independent audit or guarantee of exploit absence.
 
   </details>
 
@@ -921,6 +926,7 @@ Decisions and rehearsals before real funds.
   - Inventory all royalty assets and review exact transfers, rebases, mutable authority, prefund/zero-member quarantine, pending settlement, claim callbacks, fractional/global dust, transfer rights and activation outage behavior.
   - Approve admitted-token outage/upgrade/blacklist behavior and economic value of repeated sub-20-raw-unit incumbent dust settlements.
   - Before issuer migration or external custody, inventory principal/current and historical compound, holder liabilities, royalty liabilities, buyback reserves, fractions, quarantines and accidental assets separately. Principal/royalty exit is not an arbitrary sweep of every contract balance; old-denomination purpose-bound reserves need an explicitly reviewed path or compatible whole-collection recovery. Unsupported-token failure may prevent exact recovery; never invent backing or relabel funds.
+  - [Historical venue outage cases](reports/daily-security-20261025/VERIFICATION.md) verify healthy new entry with zero dust, funded incumbent-only dust payout, atomic failure for current venue or old dust payment. No sweep or skipped unbacked reward is permitted.
 
   </details>
 
@@ -1041,4 +1047,4 @@ Current source-chain custody and destination qualification, plus explicitly defe
 
 Generated from [the task ledger](docs/project-todo.json). Update that ledger, then run `python scripts/sync-project-todo.py`; use `--check` to detect stale generated content.
 
-Snapshot SHA-256: `25c3870b62c84085fa6e5ad3e6286cea49acb6952338b9cd897035c623954b5b`.
+Snapshot SHA-256: `6178970a626952f7d193f63b9e3f0f23c9e75ee6d06558813669f58de6718778`.

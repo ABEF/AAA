@@ -36,13 +36,18 @@ credentials or provider response bodies:
 
 | Reason | Meaning and operator action |
 | --- | --- |
+| `invalid_log` | A confirmed log has malformed or inconsistent provenance, topics, data or bounds. The new batch and cursor are not committed. Preserve the response/range, deployment anchors and consistent database backup; compare a reviewed provider. |
+| `duplicate_log` | A batch repeats a block/log position or a transaction hash crosses block identities in the batch or stored history. Preserve evidence; do not delete rows or advance the cursor manually. |
 | `header_unavailable` | The provider cannot supply a required header. Retain the database and retry a reviewed endpoint with the required history. Check node synchronization, archive availability and provider limits. |
 | `invalid_header` / `inconsistent_header` | A header is malformed, misnumbered or supplies different metadata for the same hash. Preserve evidence and compare an independently reviewed provider. |
 | `unstable_ancestry` | Reads did not describe a stable contiguous chain. Retry after the reviewed confirmation boundary settles; persistent disagreement needs provider/finality review. |
 | `reorg_depth` / `unproved_ancestor` | No common ancestor was proved inside the configured boundary. Preserve the original database, configuration and observations; investigate chain identity and finality before approving a separate rebuild. |
 | `database_boundary` / `database_changed` | Stored blocks/cursor are inconsistent or another writer changed them. Stop competing writers and inspect a consistent backup. Do not edit rows or guess a cursor. |
 
-These failures preserve the existing logical blocks, logs and cursor. They do
+Rejected log batches do not commit new logs or advance the cursor. A separately
+proved bounded reorganization can already have been rolled back before batch
+validation; that rollback retains its independent ancestry checks. Header and
+ancestry safety failures preserve the existing logical blocks, logs and cursor. They do
 not make stale history current: keep affected API/history responses unavailable
 until complete confirmed coverage is verified. Generic RPC/transport failures
 retain sanitized exception-type logging; consult restricted operator telemetry

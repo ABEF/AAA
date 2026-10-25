@@ -1,7 +1,7 @@
 import copy,tempfile,unittest
 from unittest.mock import patch
 from pathlib import Path
-from indexer.monitor import Indexer
+from indexer.monitor import Indexer,IndexerSafetyError
 from zzz_ops.abi import keccak256
 from zzz_ops.rpc import RpcError
 A='0x'+'11'*20;B='0x'+'22'*20;C='0x'+'33'*20
@@ -190,8 +190,8 @@ class IndexerTests(unittest.TestCase):
         with self.assertRaises(RpcError):self.idx.step()
     def test_duplicate_log_atomic_failure(self):
         self.chain.transfer(2,B);self.chain.logs.append(dict(self.chain.logs[0]))
-        import sqlite3
-        with self.assertRaises(sqlite3.IntegrityError):self.idx.step()
+        with self.assertRaises(IndexerSafetyError) as caught:self.idx.step()
+        self.assertEqual(caught.exception.code,'duplicate_log')
         self.assertEqual(self.idx.next_block,1)
         self.assertEqual(self.idx.db.execute('select count(*) from blocks').fetchone()[0],0)
     def test_empty_blocks_preserved(self):

@@ -11,16 +11,18 @@ Anvil deployments retain their original code; public signing remains disabled.
 
 | Current design | Implementation and remaining boundary |
 | --- | --- |
-| Market and custody | Robinhood v4 native ETH/ZZZ, selected pool `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`: static 1.002% LP fee, no hook; observed combined fee about 1.101%. Native V2 accounts for actual ETH. [Pool decision](docs/POOL_SELECTION.md), [native scope](docs/NATIVE_ETH_ARCHITECTURE.md). |
-| Contributions and prices | Native ETH or the fixed pre-seal reviewed ZZZ identity only. $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
+| Market and custody | Robinhood v4 native ETH/ZZZ, selected pool `0x501122bfd256e408a63bddad901cc19a2512d74b2006f0474a3cf480e94afe1b`: static 1.002% LP fee, no hook; recorded combined fee about 1.101%. Protocol fees can change. Native V2 accounts for actual ETH. [Pool decision](docs/POOL_SELECTION.md), [native scope](docs/NATIVE_ETH_ARCHITECTURE.md). |
+| Contributions and prices | Native ETH or one fixed ZZZ only. Source admission, the native pool, immutable buyback and normal exit use that same reviewed ZZZ identity. Minimum $100 activation / $5 growth, two reviewed USD sources per asset and 3% disagreement tolerance. Actual added LP must meet the captured 2% default loss budget; gas separate. Reviewed Entry V1 also binds a caller maximum before funds move. [Price security](docs/PRICE_SECURITY.md), [reviewed policy](docs/EXECUTION_LOSS_POLICY.md#review-time-policy-binding). |
 | Maintenance and conversion | Conversion defaults to 1%, maintenance to 3%; governance may immediately set each category up to 10%. Bounded placement/idle reinvestment and opt-in reviewed +/-25/50% keeper widths preserve accounting. At 1%, ZZZ conversion needs a cheaper qualified route. [Idle](docs/IDLE_AND_DUST.md), [range policy](docs/RANGE_POLICY_UPDATES.md), [operating controls](docs/POST_SEAL_POLICY.md). |
-| Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ or explicit raw custody exit. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
-| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest service review](reports/release-services-20261025/REVIEW.md). |
+| Movement and recovery | Same-actual-pair pool moves; separate approved paused all-ZZZ exit or explicit raw exit sending the actual assets (ETH/ZZZ for the selected pool), without swaps. External custodian is trusted. Same-chain whole-collection handoff remains; integrated bridge, remote-proof and creator-inbox paths are removed. No reset/sweep. [Operator procedure](docs/GOVERNED_CUSTODY_HANDOFF.md). |
+| Release gates | Actual routes/independent feeds/VRF, authorities, native wallet/service acceptance and OpenSea integration, gas/strategy economics, operating rehearsals and independent audit/remediation remain open. [Sole Todo](TODO.md), [latest internal review](reports/daily-security-20261025/REVIEW.md). |
 
-The native website read/unsigned profile is implemented locally. The [simplification audit](reports/simplification-20261025/REVIEW.md) removes
-obsolete intake/transport paths and leaves687 Vault runtime bytes. The source-bound
-reference now covers31 contracts and644 functions. Access construction is tight:
-one proposer/one executor needs49,123 total initcode bytes (29 bytes below the
+The native website read/unsigned profile is implemented in source. The
+[latest review](reports/daily-security-20261025/REVIEW.md) covers the combined
+financial, custody and service changes. The source-bound reference covers
+31 contracts and 643 functions. Registry runtime is 10,131 bytes; Vault runtime
+is 23,889 bytes with 687 bytes of headroom. Access construction is tight:
+one proposer/one executor needs 49,123 total initcode bytes (29 bytes below the
 limit); exact release role-array arguments require qualification. [Integration and operator boundaries](docs/NATIVE_WEBSITE_PROFILE.md).
 
 Optional [Pyth source compatibility](docs/PYTH_PRICE_SOURCE.md), strict current
@@ -45,7 +47,7 @@ does not select independent feeds or provide live prices.
 | Callable reads and writes | [Function reference](docs/CONTRACT_FUNCTIONS.md) - purpose, permissions, inputs, outputs and tuple fields, linked from the operator manual |
 | Production inventory | [Native V2 preflight](docs/PRODUCTION_PREFLIGHT.md) - explicit pricing V2, 15 helper bindings, approved pins, actual observations and release blockers |
 | Contribution and valuation security | [Two-source prices and actual LP](docs/PRICE_SECURITY.md) - fixed transaction basis, conservative loss checks and remaining provider trust |
-| Security and release | [Latest service review](reports/release-services-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
+| Security and release | [Latest internal review](reports/daily-security-20261025/REVIEW.md), with scoped fixes and remaining qualification; [Security audit plan](docs/SECURITY_AUDIT_PLAN.md) for review criteria; [Release approval record](docs/RELEASE_CHECKLIST.md) for the final go/no-go decision |
 
 ## Architecture overview
 
@@ -95,7 +97,7 @@ Read services serve confirmed chain state. Transaction preparation returns an un
 | **HTTP admission and isolation** | Bounded isolated workers, per-client concurrency/read/preparation budgets, finite connections and deadlines, explicit overload and cleanup quarantine. Guarded proxy identity/origin; no signer. | [Worker pool](frontend_api/worker.py), [client admission](frontend_api/admission.py), [HTTP bounds](frontend_api/http_runtime.py), [proxy and recovery](docs/API_INGRESS.md) |
 | **Read API** | Verifies deployment/lifecycle at a confirmed block, then reads current owners, LP values and funded balances. Optional current-ledger reporting separates ETH/source balances and deferred royalty eligibility; complete pinned predecessor replay carries lifetime claims and conversion credits across same-chain handoffs. | [Service](frontend_api/service.py), [lifecycle](frontend_api/lifecycle.py), [lineage replay](frontend_api/lineage.py), [API contract](docs/FRONTEND_API.md), [royalty reporting](docs/ROYALTY_REPORTING.md) |
 | **Earnings history** | Replays actual processed LP/royalty earnings per collection and NFT, preserving weights, fractions and complete same-chain lineage. Optional reviewed prices value original earned currencies at today's confirmed snapshot. Claims, conversions and current balances stay separate. | [Replay/API](frontend_api/earnings.py), [configuration and operations](docs/EARNINGS_HISTORY.md), [evidence](reports/earnings-history/VERIFICATION.md) |
-| **Mint/claim preparation** | Builds exact 0.05 ETH mints or up to 32 owner-authenticated LP/royalty claim operations; verifies lifecycle, simulates at a canonical hash and returns a short-lived unsigned draft with separate bounded gas estimates. Opt-in policy; no signer. | [Preparer](frontend_api/transactions.py), [configuration and wallet rules](docs/FRONTEND_TRANSACTIONS.md), [evidence](reports/wallet-preparation/VERIFICATION.md) |
+| **Claim and local-mint preparation** | Builds up to 32 owner-authenticated LP/royalty claim operations with canonical simulation and separate gas estimates. Local/historical mint drafts remain test tools; the current release profile rejects unqualified OpenSea minting. Short-lived unsigned reviews only; no signer. | [Preparer](frontend_api/transactions.py), [configuration and wallet rules](docs/FRONTEND_TRANSACTIONS.md), [mint qualification](docs/MINT_INTEGRATION_QUALIFICATION.md) |
 | **Activation preparation** | Checks asset/route/feed bindings, simulates the complete Entry call, measures new LP, and returns exact unsigned calldata and separate gas. Missing approval produces an approval step before re-quoting. | [Preparation](frontend_api/activation.py), [opt-in endpoint](frontend_api/activation_server.py), [integration sequence](docs/ACTIVATION_PREPARATION.md) |
 | **Keeper** | Discovers shared buckets, checks eligibility, simulates and submits authorized upkeep. Persists intents, receipts and budgets for recovery; optional metadata watching uses the same bounded transaction path. | [Monitor](keeper/monitor.py), [execution](keeper/ops.py), [recovery runbook](docs/KEEPER_RECOVERY.md) |
 | **Release preflight** | Explicit current native-V2 inventory validation and bounded read-only same-block observation. Actual service/evidence qualification stays separate; no signer or deployment authority. | [Gate](scripts/validate-production-config.py), [observer](scripts/observe-production-config.py), [operator sequence](docs/PRODUCTION_PREFLIGHT.md) |
@@ -128,11 +130,16 @@ The target live flow is **website -> read/preparation API -> user wallet confirm
 
 **LP principal cannot be redeemed by holders.** It remains managed by the protocol for rebalancing, compounding and approved migration. A right to future funded fees has no expiry, but does not guarantee future revenue or capital value.
 
-Target activation assets are **ETH, ZZZ, USDG and USDC**, admitted by reviewed address and route. Each economic asset needs two independently qualified USD sources, including depeg-aware USDG/USDC prices. Actual routes and feed pairs remain unqualified; USDC has no qualified funded route. The [atomic Entry](docs/ACTIVATION_ENTRY.md) binds the original contribution value through conversion into LP; [route qualification](docs/ACTIVATION_ROUTING.md) covers the remaining integration work.
+Activation and growth accept **native ETH or the fixed ZZZ token only**. USDG,
+USDC and WETH are not user input options. Independent ETH/ZZZ feed pairs and
+actual routes remain unqualified. The [atomic Entry](docs/ACTIVATION_ENTRY.md)
+binds original contribution value through conversion into LP. Marketplace
+royalty currencies and internal conversion assets have separate admission rules;
+they do not expand these two contribution inputs.
 
 ## Revenue and claims
 
-### LP revenue and optional funding
+### LP trading revenue
 
 The allocation is fixed in the current contracts:
 
@@ -143,7 +150,12 @@ The allocation is fixed in the current contracts:
 | LP compounding | **5%** | Reserved for reinvestment in the earning bucket |
 | ZZZ buyback and burn | **5%** | Reserved for approved execution |
 
-Rarity does not change LP or collective weights; there is no Power multiplier. Actual receipts allocate in batches of 20 raw token units, with a documented sub-20-unit incumbent-dust exception at membership/migration boundaries. Returned remote holder rewards are already allocated and are not split again. See [accounting and timing](docs/ECONOMICS.md).
+Rarity does not change LP or collective weights; there is no Power multiplier.
+Only actual local venue collections enter this allocation. Creator-payment inboxes
+and remote-fee intake are removed. Receipts allocate in batches of 20 raw token
+units, with a documented sub-20-unit incumbent-dust exception at membership/move
+boundaries. Already allocated rewards, conversions, claims and custody returns
+are not new revenue and receive no second split. See [accounting and timing](docs/ECONOMICS.md).
 
 The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL allocates only actual fees earned by its own position; Uniswap's separate protocol fee is not PoPL revenue. The observed combined swap fee is approximately 1.101%. Native V2 accounts for ETH directly; already-native holder fees need no conversion. ZZZ reward conversion defaults to a **1% loss cap** (governed maximum 10%), gas separate, and needs a cheaper qualified route. See [pool selection](docs/POOL_SELECTION.md).
 
@@ -151,14 +163,23 @@ The selected hookless native ETH/ZZZ pool has a static **1.002% LP fee**. PoPL a
 
 ERC-2981 requests **5% of sale value** to the immutable royalty receiver. **100% of eligible receipts** are shared among activated NFTs at **Commun x1 / Rare x2 / Legendary x3**, independently of LP shares. Prefunds, pre-admission receipts and payments with no eligible members stay quarantined. ERC-2981 does not enforce marketplace payment. The optional keeper converts earned WETH/stablecoin royalties into ETH in guarded batches, preserving each NFT's share; the default 1% execution-loss cap excludes gas and is governed within a hard 10% maximum. Failed optional currencies defer only their new eligibility, with earlier royalties protected. See the [settlement runbook](docs/ROYALTY_SETTLEMENT.md) and [separate royalty ledger](docs/NFT_METADATA.md#separate-marketplace-royalties).
 
-Claims follow funding events, not a per-minute clock. LP claims use allocated balances; royalty claims also synchronize pending admitted receipts. Direct claims take one NFT and asset; the [claim router](docs/CLAIM_ROUTER.md) supports up to **32 mixed LP/royalty operations**, paid to the current owner. [Timing and keeper schedules](docs/OPERATIONS.md#reward-timing-and-maintenance-schedule) explain when processing occurs.
+Claims follow funding events, not a per-minute clock. LP claims use allocated balances; royalty claims also synchronize pending admitted receipts. Direct claims take one NFT and asset; the [claim router](docs/CLAIM_ROUTER.md) supports up to **32 mixed LP/royalty operations**, paid to the current owner. [Timing and keeper schedules](docs/OPERATIONS.md) explain when processing occurs.
+
+The candidate settles both LP rewards and royalties in **native ETH** through
+separate guarded converters, preserving each NFT's entitlement. Already-native
+fees need no conversion; earned non-ETH balances remain source-currency claims
+until converted. An owner can explicitly claim the source asset if it works;
+an ETH-only display must not report an unconverted balance as ETH. Conversion
+defaults to 1% loss, gas separate, with governance bounded at 10%. Actual routes,
+conversion latency and public operation remain unqualified. See
+[LP settlement](docs/LP_ETH_SETTLEMENT.md) and [royalty settlement](docs/ROYALTY_SETTLEMENT.md).
 
 ## Collection and artwork
 
 - **Supply:** at most **1,000 NFTs**, with exact eventual quotas of **600 Commun / 300 Rare / 100 Legendary**.
 - **Assignment:** an authenticated random draw selects fixed inventory entries without replacement, finalized in mint order. There is no administrator trait selection or reroll. A stalled earlier request can block later reveals; live VRF qualification remains open.
 - **Fixed traits:** rarity, palette and pattern never change. Eight colors form 58 palettes across monochrome, bicolor and tricolor styles; four patterns produce **2,784 rendered evolution states**. Palette and pattern do not change rewards; rarity affects only royalty weight.
-- **Evolution:** Dormant until activation; afterward, current marked LP value selects Activated, **Enhanced from $1,000**, or **Singularity from $10,000**. Falling value can downgrade art without removing activation or fee rights. Remote or stale valuation is explicitly unavailable.
+- **Evolution:** Dormant until activation; afterward, current marked LP value selects Activated, **Enhanced from $1,000**, or **Singularity from $10,000**. Falling value can downgrade art without removing activation or fee rights. Unavailable prices or principal outside protocol custody produce an unavailable valuation, not a fabricated balance.
 
 The [metadata specification](docs/NFT_METADATA.md) and [artwork catalogue](design/nft-metadata/palette-system-v1/README.md) detail inventory quotas, duplicate limits, palettes and patterns. The [IPFS bundle](docs/ARTWORK_PUBLICATION.md) is prepared; provider selection, publication and marketplace refresh testing remain open.
 
@@ -174,7 +195,13 @@ The [metadata specification](docs/NFT_METADATA.md) and [artwork catalogue](desig
 
 Production addresses are not selected. The [address inventory](docs/DEPLOYMENT_ADDRESSES.md) separates authority wallets, deployed contracts and network dependencies.
 
-**Sealing fixes module implementations and local venue bindings.** Governance can still configure supported assets, routes, feeds, destinations and strategy parameters within existing controls. New algorithms or unsupported venues need separately reviewed compatible deployments, rather than an in-place code update. The [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md) details these boundaries.
+**Sealing fixes module implementations, local venue bindings and the ZZZ identity.**
+Governance can enable/disable the fixed inputs and configure supported routes,
+feeds, pools, royalty currencies and strategy parameters within existing controls.
+It cannot retarget ZZZ burns or replace the contribution/normal-exit token. An
+issuer migration uses custody exit and a fresh reviewed deployment. New algorithms
+or unsupported venues also require separately reviewed code; they are not an
+in-place upgrade. See the [change and recovery matrix](docs/CHANGE_AND_RECOVERY.md).
 
 The [operator manual](docs/OPERATOR_MANUAL.md#stop-controls) includes a governed
 mint-only pause and disable-only pool controls that work without healthy pool
@@ -186,7 +213,7 @@ retain their independent guards. See [scoped verification](reports/operator-cont
 | Situation | Supported path and limits | Reference |
 | --- | --- | --- |
 | **Pause and park LP** | Governance can close LP into Vault custody while globally paused, using an exact snapshot and raw output minimums. Parking omits source-price reads; resume requires fresh valuation and execution guards. Failed tokens or venues can still prevent movement. | [Custody parking](docs/CUSTODY_PARKING.md) |
-| **Move LP between local pools** | Ordinary moves retain same-ordered-pair guards and the governed aggregate loss floor. Different-pair and ETH/WETH conversion need a reviewed compatible implementation; governed external custody is a separate workflow. Moving LP alone does not relocate NFT ownership or reward ledgers. | [Move/exit procedure](docs/GOVERNED_CUSTODY_HANDOFF.md), [migration safety](docs/MIGRATION_SAFETY.md) |
+| **Move LP between local pools** | Atomic moves require the same ordered actual currencies and the governed aggregate loss floor. Different-pair or ETH/WETH conversion uses explicit trusted external custody, followed by actual funded local completion or full original-asset recovery. Moving LP alone does not relocate NFT ownership or reward ledgers. | [Move/exit procedure](docs/GOVERNED_CUSTODY_HANDOFF.md), [migration safety](docs/MIGRATION_SAFETY.md) |
 | **Review replacement NFT holders** | A confirmed owner/code inventory identifies contracts and delegated accounts requiring escrow release/claim review; rescan after freeze. Complete inventory is not migration approval. | [Holder preflight](docs/HOLDER_PREFLIGHT.md) |
 | **Replace the whole deployment on the same chain** | The handoff candidate freezes and carries NFT ownership, both reward ledgers and exact classified backing to one replacement. Retirement/activation is atomic, with a restored funded abort path before retirement. Reviewed replacement code is an accepted governance trust boundary. | [Canonical handoff](docs/CANONICAL_HANDOFF.md) |
 | **External migration or bridge** | Exit to the explicitly trusted source-chain custodian. The custodian performs external operations; this does not move NFT ownership or reward ledgers. Integrated cross-chain code is removed. | [Current release boundary](docs/SIMPLIFIED_RELEASE.md) |
@@ -220,7 +247,7 @@ The keeper **defaults to dry run**. Full keeper/state-lock operation requires **
 | **LP accounting and maintenance** | [Dynamic liquidity](reports/dynamic-liquidity/VERIFICATION.md), [range-policy updates](reports/range-policy/VERIFICATION.md) | Contribution/valuation guards, aggregate rebalance budget, range-change eligibility and targeted venue/backend checks. |
 | **Backend integration** | [Activation preparation](reports/activation-preparation/VERIFICATION.md), [API lifecycle](reports/frontend-lifecycle/VERIFICATION.md), [claim-history lineage](reports/frontend-lineage/VERIFICATION.md) | Scoped transaction preparation and confirmed reads; not hosted-service or live website qualification. |
 | **Same-chain replacement** | [Canonical handoff](reports/canonical-handoff/VERIFICATION.md) | Handoff accounting and regression evidence for its recorded snapshot. Later changed paths use the separate reports above. |
-| **Local $1 test build** | [Rehearsal verification](reports/one-dollar-rehearsal/VERIFICATION.md) | Separate generated copy with mock services; not the production binary or live Pons execution. |
+| **Local $1 test build** | [Rehearsal verification](reports/one-dollar-rehearsal/VERIFICATION.md) | Separate generated copy with mock services; not the production binary or qualification of the selected live pool. |
 | **Published revision** | [GitHub Actions](https://github.com/ABEF/AAA/actions) | Check the exact commit and required jobs. Local results do not establish a green published workflow. |
 
 <details>
@@ -244,13 +271,14 @@ The [production inventory](config/production.example.json) records the exact dep
 
 ## Try the local browser test
 
-The [local setup guide](docs/LOCAL_TEST_STACK.md) starts an isolated Anvil deployment,
-confirmed API/indexer and browser panel with disposable test wallets. The
-[existing website integration](docs/LOCAL_WEBSITE.md) is available at `/app/`
-on the same local origin, with actual holdings, history and explicit transaction
-confirmations. Mint, activate,
-add LP, fund fees/royalties, rebalance, transfer and claim without public funds.
-The venue, prices and randomness are test substitutes; the public website is unchanged.
+The [local setup guide](docs/LOCAL_TEST_STACK.md) describes isolated, versioned
+Anvil rehearsals with disposable wallets, confirmed API/indexer reads and a
+browser panel. The [website rehearsal profile](docs/LOCAL_WEBSITE.md) uses `/app/`
+on that local origin for explicit test transactions. Venue, prices and randomness
+are substitutes. Existing local contracts and journals retain their original
+profiles; they are not upgraded by these source changes. A fresh setup requires
+a compatible build/profile and does not qualify current native production flows.
+The public website remains simulated.
 
 ## Development
 
@@ -283,16 +311,3 @@ python3 scripts/sync-project-todo.py --check
 
 Keep local work, GitHub publication, test evidence and deployment status explicit. The central Todo owns task status; feature references and release records have their separate purposes.
 
-### Holder payout currency
-
-The product requires rewards claimable in ETH. The current candidate still pays
-LP rewards in their source ERC20 currency; the implemented ETH converter handles
-marketplace royalties only. This is an open pre-seal requirement, documented in
-the [payout audit](reports/topup-and-reward-review/ETH_PAYOUT_AUDIT.md) and
-[central Todo](TODO.md#task-lp-eth-settlement).
-
-Historical contribution UI rehearsal: four visible input choices (ZZZ/USDG/USDC/ETH), a dedicated contribution dialog and confirmed per-NFT evolution refresh. The [named local rehearsal](docs/LOCAL_TEST_STACK.md#named-input-local-rehearsal) retains its original WETH-accounted fixtures. Native V2 uses actual ETH; its website profile and public route/payout qualification remain open.
-
-## LP reward settlement
-
-The development candidate converts allocated holder LP rewards to native ETH with a **1% execution-loss cap and separate gas**. Credits stay with the same NFT; failed conversion preserves its source balances. [Conversion, claims and operator procedure](docs/LP_ETH_SETTLEMENT.md) | [Scoped verification](reports/lp-eth-settlement/VERIFICATION.md). Public routes and production approval remain open.
