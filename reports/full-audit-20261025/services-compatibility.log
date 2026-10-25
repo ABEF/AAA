@@ -1,0 +1,7 @@
+test_explicit_legacy_profile_keeps_its_original_selector_and_response_shape (tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_explicit_legacy_profile_keeps_its_original_selector_and_response_shape) ... ok
+test_zero_is_a_typed_currency_never_a_contract_target_or_owner (tests_python.test_native_backend_boundary.NativeBackendBoundaryTests.test_zero_is_a_typed_currency_never_a_contract_target_or_owner) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.740s
+
+OK

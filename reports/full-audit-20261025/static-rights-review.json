@@ -1,0 +1,1652 @@
+[
+  {
+    "ordinal": 1,
+    "fingerprint": "8f8deae8871b50bce7f6b3c25f4a8da2084829b4edcf6100bc58932bbb389269",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Rewards._claim authenticates the NFT current owner through ownerOf, requires sealed operating lifecycle, checkpoints the same NFT then zeros both accrued components and debits liabilities before sending. Public claim supplies msg.sender; claimFor is restricted to the NFT immutable ClaimRouter and repeats ownerOf. The recipient is the verified owner, not an attacker-selected payout address; nonReentrant and economic post-check apply.",
+    "reviewed_function": "ZZZRewards._claim(uint256,address,address) (src/ZZZRewards.sol#160-174) sends eth to arbitrary user",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 2,
+    "fingerprint": "db3203a21b3c25cd5dcd82e554e3fffff3f6bf1af0b474479fd546921f4b3922",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "disposition": "accepted_risk",
+    "rationale": "RoyaltyRewards.exitCustody intentionally permits selected governance to send the full admitted-currency balance to the exact reviewed recipient while sealed and paused. It verifies recipient/codehash, full balance, nonce and review hash; records custody before sending; claims/sync stop until full backing returns. This is privileged external custody with explicit withholding/theft trust, not an unprivileged arbitrary-send exploit. No source check can force custodian return.",
+    "reviewed_function": "ZZZRoyaltyRewards.exitCustody(address,address,uint256,uint256,bytes32,bytes32) (src/ZZZRoyaltyRewards.sol#255-271) sends eth to arbitrary user",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 3,
+    "fingerprint": "3b9f75318b33365effcaefcf2c928ade6efd4585c9beb6f54fe6ec15ec5a8726",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "RoyaltyRewards._claim verifies ownerOf(id)==owner; public claim fixes owner=msg.sender and claimFor accepts only the immutable NFT router. It syncs/checkpoints, clears accrued and debits accounted/liabilities before sending exactly that NFT earned amount. nonReentrant/economic guard plus post-payout backing check prevent a second claim or lifecycle capture from committing. No arbitrary recipient parameter is honored.",
+    "reviewed_function": "ZZZRoyaltyRewards._claim(uint256,address,address) (src/ZZZRoyaltyRewards.sol#352-373) sends eth to arbitrary user",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 4,
+    "fingerprint": "4ecba8661841c978b662cb6eb54659d51f4f6d062a3a8a654b9a164849b61d7f",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "FeeController._push is private. releaseCompound sends only its classified bucket reserve to authenticated Vault; releaseBuyback sends its bounded reserve to fixed BUYBACK; canonicalSend is only the seal-bound FeesCanonical companion under the handoff protocol. Exact native balance reduction is checked. No public caller chooses an unconstrained withdrawal recipient; governed canonical/custody trust remains separately recorded.",
+    "reviewed_function": "ZZZFeeController._push(address,address,uint256) (src/ZZZFeeController.sol#43-49) sends eth to arbitrary user",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 5,
+    "fingerprint": "7585cc2caf8e305c8b455c7000678cef7f07f92acfac41558833a092bb301de6",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "RewardConverter._convertV4 pays its immutable ledger, not a supplied recipient. convert is nonReentrant and accepts only that ledger, sealed live operation and admitted route. It pulls the exact selected amount, checks actual source/native deltas, sends only output and restores both converter prefund balances. Separate LP and royalty converter instances do not share custody.",
+    "reviewed_function": "ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227) sends eth to arbitrary user",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 9,
+    "fingerprint": "1a52eaf7075419ddafa4d51334df5042dd8cd0b198ad82144ad6ac85fb90db44",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 10,
+    "fingerprint": "b83a399f7728f7b5709eb11ca2e49bf84a830233b6a8a9fdfe01ffc56d73a130",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 12,
+    "fingerprint": "33995e4e36dc0a4b04c8838e6f39b7c2eec04409f42fccc1a5e0625e16a4dcdd",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The immutable-ledger-only convert entry is nonReentrant. It pulls the selected amount with exact sender/receiver deltas, grants only that amount to the reviewed v3 router, clears approval, checks source restoration and exact added wrapped output, then unwraps with sender/policy and native delta checks. Original source/wrapped balances are retained deliberately to prevent old prefunds subsidizing a short conversion; callback reentry cannot mutate another converter operation.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 13,
+    "fingerprint": "56a31c320d9e5420e5bdfdf6ddc3322fd31d5516252d2788eb5a4a2d5b3fc1f9",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The keeper-only live/operating execute path is nonReentrant. Fixed Fees must add exactly the authorized reserve amount, swap must restore original input prefunds and add actual ZZZ, then burn must restore original ZZZ balance and reduce totalSupply exactly acquired. Retaining beforeZZZ through these calls is how existing prefunds are kept out of acquired/burned accounting. Malicious/adversarial token behavior remains an admission risk, not permission to skip these equality guards.",
+    "reviewed_function": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 15,
+    "fingerprint": "e65de2e3ab46be7c461326bfa86e64c0db635009c9f098272bb5e2d116f0dc7e",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The immutable-ledger-only convert entry is nonReentrant. It pulls the selected amount with exact sender/receiver deltas, grants only that amount to the reviewed v3 router, clears approval, checks source restoration and exact added wrapped output, then unwraps with sender/policy and native delta checks. Original source/wrapped balances are retained deliberately to prevent old prefunds subsidizing a short conversion; callback reentry cannot mutate another converter operation.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 16,
+    "fingerprint": "1083ffec7d5159d0946d9184cdeb1127989e558deb6dd7853f4b609a4db2e1d9",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The nonReentrant/economic batch checkpoints and debits the selected source balances before invoking its immutable bound converter. The snapshot requires actual source depletion exactly total and native receipt exactly output, then credits only those same NFTs/components. Original prefunds cannot replace received ETH or enable a duplicate claim; claimable rejects reentrant intermediate reads and lifecycle post-checks prevent capture from committing mid-operation.",
+    "reviewed_function": "Reentrancy in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#191-229):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 17,
+    "fingerprint": "3fd13961ee2e57928c5e896d542c6a85bad1dcc6dfa4a4cf52b83ae45aa56901",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "This private ingress is reached only by nonReentrant completeLocal/recover. It requires exact payable nativeAmount; for the native currency the baseline explicitly subtracts this operation msg.value, while ERC20 baselines are raw prefunds. ExactToken pulls and exact/reset Vault allowances fund only this caller amounts, and final balances must equal original prefunds. The baseline is intentionally not updated after Vault.acceptHandoff, so old donations cannot cover missing or retained funding.",
+    "reviewed_function": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 18,
+    "fingerprint": "d4d76f3cd48b143afb55bb608fb74e449406f56d7cbef2e510079e3af7a2e9c6",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 21,
+    "fingerprint": "85c6030ff5006b75c122de9b0402e78d6e691894e682bd81bb0eccd583939f42",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "returnFunds is nonReentrant in ABORTING phase and marks its funded row returned before calling the fixed cancelled peer. It requires the source-domain balance to increase by exactly the captured amount, then calls the authenticated restore hook. The original destination-domain balance is intentionally retained so old source prefunds cannot masquerade as an actual return; row flags and peer phase prevent repeat funding.",
+    "reviewed_function": "Reentrancy in ZZZCanonicalHandoff.returnFunds(uint8,uint256) (src/ZZZCanonicalHandoff.sol#431-445):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 22,
+    "fingerprint": "9d1941dbdfa173617cc114eb809b60b437168b8b78dd6b8a62c1e2ea3b92b224",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 23,
+    "fingerprint": "0cf332db9e2a3c6a2e2ca913005c66104724c30fbfcd7890f192bddc97806e6e",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The nonReentrant/economic royalty batch syncs actual receipts/cohorts before selecting and debiting source claims. The immutable converter must remove exactly total and add exactly output ETH; only then are backed native liabilities and original selected NFT credits added. The pre-call source snapshot intentionally detects prefund theft/short consumption; no user callback can claim or convert again while the lock is held.",
+    "reviewed_function": "Reentrancy in ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRoyaltyRewards.sol#136-172):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 27,
+    "fingerprint": "e027f2e210959269bac95b6ef2b3361c0ead15f6d5d52e2022f0a9309eb902f2",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The keeper-only live/operating execute path is nonReentrant. Fixed Fees must add exactly the authorized reserve amount, swap must restore original input prefunds and add actual ZZZ, then burn must restore original ZZZ balance and reduce totalSupply exactly acquired. Retaining beforeZZZ through these calls is how existing prefunds are kept out of acquired/burned accounting. Malicious/adversarial token behavior remains an admission risk, not permission to skip these equality guards.",
+    "reviewed_function": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 28,
+    "fingerprint": "8ae2e530be00adfdde68b0921174c47d385d27d49a523916e6612b39dd28715c",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 30,
+    "fingerprint": "2208a5b01137febe9ea3553d4e96942272f7d4467a4a69ccb656c489677e7bd8",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "This private ingress is reached only by nonReentrant completeLocal/recover. It requires exact payable nativeAmount; for the native currency the baseline explicitly subtracts this operation msg.value, while ERC20 baselines are raw prefunds. ExactToken pulls and exact/reset Vault allowances fund only this caller amounts, and final balances must equal original prefunds. The baseline is intentionally not updated after Vault.acceptHandoff, so old donations cannot cover missing or retained funding.",
+    "reviewed_function": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 33,
+    "fingerprint": "3c550743c33f488344e399564701fcf57dde12e240107268fbc0713030090eca",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 34,
+    "fingerprint": "19e2ea19a3a540a55515bd180fc3fd416da161f00f9f2bc460bc805e6d8f3519",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The immutable-ledger-only convert entry is nonReentrant. It pulls the selected amount with exact sender/receiver deltas, grants only that amount to the reviewed v3 router, clears approval, checks source restoration and exact added wrapped output, then unwraps with sender/policy and native delta checks. Original source/wrapped balances are retained deliberately to prevent old prefunds subsidizing a short conversion; callback reentry cannot mutate another converter operation.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 35,
+    "fingerprint": "d0425af02140618e57172b95df6ef4d6d739cc632c33d87a3163a3de8c5a0e10",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "This private ingress is reached only by nonReentrant completeLocal/recover. It requires exact payable nativeAmount; for the native currency the baseline explicitly subtracts this operation msg.value, while ERC20 baselines are raw prefunds. ExactToken pulls and exact/reset Vault allowances fund only this caller amounts, and final balances must equal original prefunds. The baseline is intentionally not updated after Vault.acceptHandoff, so old donations cannot cover missing or retained funding.",
+    "reviewed_function": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 36,
+    "fingerprint": "d5188e8a490a3aa1503e5d08fabd31913a1024befb01b507ead3cb4f39af69c7",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "This private ingress is reached only by nonReentrant completeLocal/recover. It requires exact payable nativeAmount; for the native currency the baseline explicitly subtracts this operation msg.value, while ERC20 baselines are raw prefunds. ExactToken pulls and exact/reset Vault allowances fund only this caller amounts, and final balances must equal original prefunds. The baseline is intentionally not updated after Vault.acceptHandoff, so old donations cannot cover missing or retained funding.",
+    "reviewed_function": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 38,
+    "fingerprint": "ad994e792f944f7eb5a2df01c359879c21a66a113dd62f62ff806ff401d93de6",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "fund is nonReentrant and requires frozen/exported source plus imported matching peer root/asset/amount. It marks this row funded, captures destination-domain prefunds and requires an exact amount increase before the fixed peer acknowledges. Holding the original snapshot through release is intentional proof of new incoming backing; existing destination prefunds cannot stand in for source assets.",
+    "reviewed_function": "Reentrancy in ZZZCanonicalHandoff.fund(uint8,uint256) (src/ZZZCanonicalHandoff.sol#336-353):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 39,
+    "fingerprint": "cfad5d1700c6566bd3d4259f1b1f79acba7f21897322be639c13de05f5ff3bbc",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The keeper-only live/operating execute path is nonReentrant. Fixed Fees must add exactly the authorized reserve amount, swap must restore original input prefunds and add actual ZZZ, then burn must restore original ZZZ balance and reduce totalSupply exactly acquired. Retaining beforeZZZ through these calls is how existing prefunds are kept out of acquired/burned accounting. Malicious/adversarial token behavior remains an admission risk, not permission to skip these equality guards.",
+    "reviewed_function": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 40,
+    "fingerprint": "35f5b27402a5594a5cf04486c23118711a8c3ffe698e8a8027fa6f194b39e140",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 41,
+    "fingerprint": "070f770d9dc798ba4ac3ef8a36bc1870905b3e32f22f70ee2c983b05338aa7d8",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 42,
+    "fingerprint": "d8321734fd86a20fed6b22f4eb717941f73953177105a0a6e4109520786eb2fc",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "This private path runs under immutable-ledger-only nonReentrant convert. A fixed parent-bound helper gets exactly amount allowance, which is cleared; source must return to the original baseline and actual native increase must equal output before paying the immutable ledger, then both prefunds are checked again. Retaining the original snapshot across executor/ledger callbacks is the intended conservation check, not trust in a stale spendable balance.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 43,
+    "fingerprint": "a09de9e19295b112f644a1931865914be0cf6c4ca93fd00d891ffa28f6fdad0d",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "The keeper-only live/operating execute path is nonReentrant. Fixed Fees must add exactly the authorized reserve amount, swap must restore original input prefunds and add actual ZZZ, then burn must restore original ZZZ balance and reduce totalSupply exactly acquired. Retaining beforeZZZ through these calls is how existing prefunds are kept out of acquired/burned accounting. Malicious/adversarial token behavior remains an admission risk, not permission to skip these equality guards.",
+    "reviewed_function": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 44,
+    "fingerprint": "6f5eae672bfa8f9f579d24ede4d542ec3f82fdae06fed5b4fb7fd84f15a63ec4",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 46,
+    "fingerprint": "eed3c0d943671043387005e591cf0feb3a51f2e15dae02b3cbbdf863b185963e",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Governance/paused/exact snapshot authorization and nonReentrant apply. The fixed Vault operations can add only the returned attributed principal; after withdrawal both Migration balances must equal their original prefunds, with sent quantities recorded once and NFT shares unchanged. The retained pre-call value is intentionally the original balance against which new deltas and final restoration are checked, not a cached current entitlement. Token/recipient callbacks cannot enter a second principal/plan-mutating Migration path; failed equality reverts the entire exit.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 48,
+    "fingerprint": "7908a7e1e75fd4ac6717b7623bc35e20cfdbe17084ffa6f53b99c4f6de758eca",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "This private path runs under immutable-ledger-only nonReentrant convert. A fixed parent-bound helper gets exactly amount allowance, which is cleared; source must return to the original baseline and actual native increase must equal output before paying the immutable ledger, then both prefunds are checked again. Retaining the original snapshot across executor/ledger callbacks is the intended conservation check, not trust in a stale spendable balance.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 57,
+    "fingerprint": "9fa843d3727158b65d8c32cd6983d7124896e860248bd87be63c5780014bdd09",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "FeesCanonical.canonicalRestore is callable only by the controller fixed handoff in frozen-source state with released[index] true. _accept forwards backing to fixed FeeController; its native receive has no callback work. Token callbacks cannot impersonate Handoff, whose returnFunds path is nonReentrant and verifies exact incoming balance delta before calling restore. Clearing released after forwarding therefore cannot expose a second authorized restore/release; arbitrary callbacks fail the caller/state checks.",
+    "reviewed_function": "Reentrancy in ZZZFeesCanonical.canonicalRestore(uint256,address) (src/ZZZFeesCanonical.sol#130-133):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 62,
+    "fingerprint": "2483668cac95046507cf5bf38a82f4e06230131e741bc852ae09581da72f6044",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Migration.recover is nonReentrant and operating, requires Sent and the exact originally sent quantities, then calls fixed Vault.acceptHandoff through _receive with exact funding/allowance checks. Completion writes Recovered and closes activePlan only after backing and unchanged-share checks. The listed cross-function consumers are read-only request/state/floor getters; all plan-mutating entries use the same lock and/or governance/phase checks. No callback can complete/recover twice.",
+    "reviewed_function": "Reentrancy in ZZZMigration.recover(bytes32,uint256) (src/ZZZMigration.sol#379-390):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 73,
+    "fingerprint": "9c37297712c3f6709edec0cfe4a30aed64cdb3025dbcf61d8e6b9bd1f7a99e2a",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "disposition": "false_positive",
+    "rationale": "Migration.completeLocal is nonReentrant with live/operating lifecycle guards. The only Sent plan must be funded by this caller through fixed Vault, destination LP must be physically Active, original retained-floor/raw minima and NFT shares must pass before Completed/_close. Callbacks cannot enter another mutating Migration path, and the displayed request/state/floor getters transfer nothing. A failure reverts received funding and LP operation together.",
+    "reviewed_function": "Reentrancy in ZZZMigration.completeLocal(bytes32,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#330-375):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 77,
+    "fingerprint": "b5d0ad980febc29ba6da843bd680302ef70fe868aed3eafa911a1c9d0ad622a5",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "disposition": "informational",
+    "rationale": "FeeController deliberately computes floor(total/20) complete groups before emitting distributed=units*20; total%20 is retained in dust. This realizes exact integer groups16/2/1/1 rather than losing the remainder. The emitted distributed figure intentionally excludes carried dust; documented incumbent dust settlement is a separate path.",
+    "reviewed_function": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#68-89) performs a multiplication on the result of a division:",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 78,
+    "fingerprint": "603fdc19e6a6ca75521ec7ac700bd25a9d8a5c01fcca5be400a946d79ddfca0a",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "disposition": "informational",
+    "rationale": "Floor(total/20) is intentional whole-group allocation. Each group retains1 compound+1 buyback raw unit and sends18 holder/collective units, so accounted-=units*18 is exact for released backing. total%20 remains classified dust and cannot be swept. Multiplying before dividing would change the specified raw-unit split.",
+    "reviewed_function": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#68-89) performs a multiplication on the result of a division:",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 80,
+    "fingerprint": "edffe753c85f902a04ee56d4a043282ad610fbbf87df0d03d233c87562798bdc",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "disposition": "informational",
+    "rationale": "The integer split intentionally credits units*16 individually and units*2 collectively after floor(total/20); compound/buyback each retain units and total%20 stays dust. No precision loss is hidden or redistributed to new entrants: membership/movement barriers explicitly settle residual incumbent ownership. This matches the documented exception to exact percentages at tiny denominations.",
+    "reviewed_function": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#68-89) performs a multiplication on the result of a division:",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 82,
+    "fingerprint": "bf5de1539581e07c80dbc5dd3e1aa8dd3a5cdb5f7280783c2db3e9941918122e",
+    "check": "incorrect-equality",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "RoyaltyRewards._sync first computes actual balance-accounted with solvency check. amount==0 selects a no-new-receipt fast path but still enrolls waiting NFTs. A forced donation merely makes amount positive and follows normal old-cohort receipt allocation; it cannot bypass backing or freeze funds through this equality. No equality is used as a required external-balance sentinel.",
+    "reviewed_function": "ZZZRoyaltyRewards._sync(address) (src/ZZZRoyaltyRewards.sol#294-310) uses a dangerous strict equality:",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 83,
+    "fingerprint": "1ca2a389d9815156b84a289ec0d47f8d579d157d0a2fb87a4ccafaee16f8d61f",
+    "check": "incorrect-equality",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Migration.exit compares a captured enum, not a manipulable raw balance. Approval admits only Active or Parked source status and binds the full position sourceSnapshot; exit rechecks that snapshot. An Active source must park first; an already Parked source intentionally skips duplicate close. The strict equality distinguishes two legitimate custody states, not a forced-balance lock.",
+    "reviewed_function": "ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319) uses a dangerous strict equality:",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 85,
+    "fingerprint": "387df20548d079395f32ea9039cda4df439ad99f1abe49c77deef4ea684eef43",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Rewards.convertBatch is nonReentrant/economic, pre-checkpoints and clears exact selected ERC20 whole balances and debits liabilities before invoking its fixed bound converter. It credits native liabilities/components only after verifying exact source depletion and received output. Reentrant claim/convert is locked; checkpoint mutation requires fixed Membership/Vault, not a router/token caller, and canonical lifecycle changes cause the outer post-check to revert. claimable explicitly rejects intermediate reentrant reads. Public mapping getters are observations, not payout authority.",
+    "reviewed_function": "Reentrancy in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#191-229):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 86,
+    "fingerprint": "c066dd1b3b6cc2e287e12942f4b051980509d52df9457b745d53fbcd15b90bba",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Handoff.settle is nonReentrant, requires the precise PHASE_SETTLING cursor/slot<6, toggles only controller canonicalSettling around the fixed domain hook and advances cursor/phase after success. Every other mutable settlement/export/funding/abort path uses the same coordinator lock. The unguarded bindFrozen entry is authenticated to the peer and requires importer phase, which this source is not in. An observed intermediate phase cannot authorize reentrant mutation.",
+    "reviewed_function": "Reentrancy in ZZZCanonicalHandoff.settle(uint8) (src/ZZZCanonicalHandoff.sol#246-254):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 88,
+    "fingerprint": "1684b17d522e6a12fbef45441908f33f98e08f1e29f2f443acfafe821bebb7a9",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Handoff.activate is nonReentrant and accepts only its bound source after atomic source retirement with matching roots/destination. It checks all incoming funding and fixed-domain backing before hooks, then changes phase and controller state. Reentry into activation/abort/funding is locked; bindFrozen requires the old importer phase and an unset handoffId, impossible here. Role/accounting mutation is also locked while Access is importing.",
+    "reviewed_function": "Reentrancy in ZZZCanonicalHandoff.activate() (src/ZZZCanonicalHandoff.sol#390-410):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 90,
+    "fingerprint": "e28aa28b4d678949d67065bb22fbf75352eabe098db6cc1c935a8050156125e2",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Handoff.importRows is nonReentrant and capped at8rows. It verifies frozen source phase/root and compares each record with source canonicalExport before applying it to the fixed local domain. Cursor/root writes after hooks cannot be raced because other mutating handoff entries share the lock; listed external getters do not mutate. Import-domain hooks are callable only by this handoff, not by arbitrary token callbacks.",
+    "reviewed_function": "Reentrancy in ZZZCanonicalHandoff.importRows(uint8,bytes[]) (src/ZZZCanonicalHandoff.sol#295-312):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 92,
+    "fingerprint": "4decada2db83b22ac9a7d50b54aa4a6b937af48e3e01c24b7474ff21ec894588",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "RoyaltyRewards.convertBatch syncs native/source cohorts, checkpoints selected NFT source balances, zeros them and debits source liabilities before the immutable converter. Only after exact source/native delta checks are native accounted/liabilities and the same NFTs accrued balances credited. nonReentrant/economic protects mutators; pending/claimable reject intermediate reentrant reads; canonical state cannot change and still pass the outer post-check. Direct mapping getters cannot claim or invent credit.",
+    "reviewed_function": "Reentrancy in ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRoyaltyRewards.sol#136-172):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 93,
+    "fingerprint": "2328def953160614db60a11e8291b2265d5252c4d4b3a5aea0e6c2b9da4a0ffa",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Migration.exit is nonReentrant and governance/paused/source-snapshot authenticated. It changes status to Sent and custody epoch before fixed-Vault close/consolidation/release; actual returned quantities are checked before recording sent0/sent1 and transferring them. All competing plan/principal-mutating Migration entries are locked, while the listed request/state/floor functions only read. Post-transfer exact balances and unchanged shares are checked; any failure rolls the transaction back.",
+    "reviewed_function": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 95,
+    "fingerprint": "93ab346ce93bf005f8a3a9d7fa31df2505289b7ddcfc569da51e422a22b496a8",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Membership.activate is callable only by fixed Vault in operating canonical state. Its pre-eligibility checkpoint invokes fixed Rewards.checkpointAll, which only performs static dependency reads plus internal index writes and cannot call back into Membership.activate as Vault. eligible/totalEligible are set only after the inactive baseline is captured. Marking eligibility before checkpoint would incorrectly admit earlier collective receipts.",
+    "reviewed_function": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 97,
+    "fingerprint": "08914886a8aeb20f8915f840e22dacdd6969a38f1347b4c891b07b5616fc1582",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "convertBatch.total is a Solidity uint256 local initialized to0 by language semantics, deliberately accumulated from selected checkpointed accrued source balances. Empty selection is rejected, and total==0 reverts. This is not an uninitialized storage pointer or nondeterministic accumulator.",
+    "reviewed_function": "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).total (src/ZZZRoyaltyRewards.sol#144) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 98,
+    "fingerprint": "b20bb581f4865efea8c01e6069706fc0eaeb02e5fa73e9966104d903f5cbe822",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Royalty conversion assigned starts at Solidity-defined zero. Each selected NFT receives next-assigned, then assigned=next; cumulative source totals end at total, so final output is conserved exactly. No stale native balance is used as the initial allocation.",
+    "reviewed_function": "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).assigned (src/ZZZRoyaltyRewards.sol#161) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 100,
+    "fingerprint": "9c384ff0fcdd36ddd49bb910d0848bfa6dc532210573ecc05d1a9e567444257a",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Rewards conversion assigned is deliberately zero-initialized by Solidity. It tracks cumulative native output already allocated across individual/collective components; each difference is credited once and later components subtract the updated value. No uninitialized memory pointer is dereferenced.",
+    "reviewed_function": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).assigned (src/ZZZRewards.sol#216) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 101,
+    "fingerprint": "77540a68a283a0ff7e30a868dc2ad7bcd3e5efb671414b6ac4420dfcd589b796",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Rewards.convertBatch.total is an explicitly declared uint256 whose default value is0. It sums only checkpointed individual+collective source whole units; invalid/empty duplicate inputs and a zero final total revert. Zero is the required accumulation identity.",
+    "reviewed_function": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).total (src/ZZZRewards.sol#197) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 103,
+    "fingerprint": "88666f0863981f6a1d7aa5929e012bd5e732af743ee1a4550dea571b261a5296",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "NFTMetadata._visualAttributes.number is an ordinary uint256 local with default0. It increments before labeling each present color, yielding Color1..ColorN in the bounded8-color mask. No first-read uninitialized value or externally supplied index is used.",
+    "reviewed_function": "ZZZNFTMetadata._visualAttributes(NFTMetadataInput).number (src/ZZZNFTMetadata.sol#116) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 105,
+    "fingerprint": "99699afc6f2afe6e9841deef393b9e436b6bd01b93426ca7bf6fef7cd90d7722",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Royalty conversion cumulative is deliberately initialized to0 by Solidity before adding selected source amounts. The final cumulative total equals the debit total, so Math.mulDiv(output,cumulative,total) reaches output and cumulative rounding conserves received wei.",
+    "reviewed_function": "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).cumulative (src/ZZZRoyaltyRewards.sol#161) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 106,
+    "fingerprint": "1707f85b02a726ba383f3186b2fb0fc80efccf10ee28af6e89323c8e79348b9a",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Rewards conversion cumulative starts at the required zero and accumulates personal then shared source units in sorted NFT order. The sum equals total; whole output is apportioned through successive cumulative differences without changing source fractions. This is defined integer initialization.",
+    "reviewed_function": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).cumulative (src/ZZZRewards.sol#216) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 109,
+    "fingerprint": "3355271149aebb83969a31af2d029841e88c15d501f9aa4122da2097473576a3",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Access.bind.known is a Solidity bool local defaultfalse. A bounded16-ID scan sets it true on an exact supported module ID; !known rejects all unmatched IDs. Explicit false initialization would not change authorization or behavior.",
+    "reviewed_function": "ZZZAccessController.bind(bytes32,address).known (src/ZZZAccessController.sol#150) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 110,
+    "fingerprint": "23ddc5f3d1765d3314ac42c8105e567c54cab218dfd2ad91384c1a0b50e6477a",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "RewardConverter.convert.p is a memory struct with zero-default fields. When source!=wrapper it is assigned routes[routeId], source equality and all venue/code pins are checked, and only then its router fields are used. The source==wrapper branch intentionally never reads those route fields and only unwraps exact amount; no zero address call results from this declaration.",
+    "reviewed_function": "ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256).p (src/base/ZZZRewardConverter.sol#165) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 111,
+    "fingerprint": "3f57e7b486fb23ea0885d5c171fe51fa72266780c71277d3feb1d74d350b5f63",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "RoyaltyRewards._paid.low is the deliberate0 lower bound of a binary search over deferredJoins. high starts at joins.length; each iteration narrows the range, and the final index is checked against length before dereference. Zero initialization is defined and needed for the first cohort.",
+    "reviewed_function": "ZZZRoyaltyRewards._paid(uint256,address).low (src/ZZZRoyaltyRewards.sol#245) is a local variable never initialized",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 115,
+    "fingerprint": "78ced49035ee895ad701d4c11ecb6ae7f9b7d4dfd62310f9c1f30c6d1555cd4c",
+    "check": "unused-return",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Handoff.freeze intentionally uses chain/destination/deployment from preparationNotice and ignores only reviewHash at this getter. Access.startPreparation already required nonzero reviewHash and committed the entire notice into preparationHash, which freeze incorporates into handoffId. Review hash is evidence metadata, not an additional authorization proof; matching destination deployment/incoming source are separately rechecked.",
+    "reviewed_function": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) ignores return value by (chain,destination,deployment,None) = access.preparationNotice() (src/ZZZCanonicalHandoff.sol#188)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 116,
+    "fingerprint": "253bba99e0013cdcdbe3ecdabb552587f105443a13082ef66080a6a6e758e6e2",
+    "check": "unused-return",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "NFTMetadata.currentValue calls Strategy.validateExitPrice for its revert-on-invalid-price validation; the returned spot number is not the NAV input. It then reads actual LiquidityManager token amounts and values them through guarded Oracle USD values including idle/compound. Ignoring the validation function numeric return does not skip the validation or substitute a stale price.",
+    "reviewed_function": "ZZZNFTMetadata.currentValue(uint256) (src/ZZZNFTMetadata.sol#35-55) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId) (src/ZZZNFTMetadata.sol#46)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 119,
+    "fingerprint": "ec9f41f1273f73ed99c04387315652a02fc494f32f98dca128cca336a91f0b3a",
+    "check": "unused-return",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Buyback.execute deliberately selects upper from priceBounds, because a maximum spend must hold at either admitted USD source; lower is inappropriate for a spending ceiling. Fingerprint and lower are unused only after Oracle has itself validated freshness/agreement. Actual swap minima, input deltas, output and burn supply changes are checked separately.",
+    "reviewed_function": "ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70) ignores return value by (None,upper,None) = oracle.priceBounds(token) (src/ZZZBuyback.sol#45)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 129,
+    "fingerprint": "18016061360184dde3db8037f0535dc7d7c61ce8525a2a70df0eebfb02b2f786",
+    "check": "unused-return",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Migration.configureZZZ calls Oracle.price(token) as an admission liveness/valid-price assertion; its numeric result is intentionally not stored as a permanent price. It binds fixed token/codehash only after source/Buyback identity and Rewards asset checks. Real operations obtain their own current/captured prices rather than relying on this setup value.",
+    "reviewed_function": "ZZZMigration.configureZZZ(address,bytes32,bytes32) (src/ZZZMigration.sol#166-181) ignores return value by IZZZOracle(access.module(Ids.ORACLE)).price(token) (src/ZZZMigration.sol#177)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 133,
+    "fingerprint": "44764c373f31b7a4f46714aadbd674872e005c79d2236d21f1efe4c24a43f2be",
+    "check": "write-after-write",
+    "impact": "Medium",
+    "disposition": "false_positive",
+    "rationale": "Both assigned writes are used. The first makes assigned equal the cumulative personal allocation before calculating next-assigned for that NFT collective allocation; the second carries cumulative personal+collective allocation into the next NFT. Deleting the first write would double-credit personal output in sharedETH. This is a necessary cumulative-rounding accounting step.",
+    "reviewed_function": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).assigned (src/ZZZRewards.sol#216) is written in both",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 143,
+    "fingerprint": "3b7ca2e5e03a9c58f7f932a9a192821119096d61f3757f6bea22b40a4536685b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). freeze enumerates exactly six fixed domains after controller FROZEN and under governance/nonReentrant; its per-asset flag clearing uses captured bounded assetCount<=256, with actual current domains capped33LP/17royalty. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 146,
+    "fingerprint": "4b1fcb02293e31b09326e8cadf1513058ea2b2dc4fc7156ef67d08f2ef8b2ce6",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call fees.flushDust(bucket,config.key.currency0) (src/ZZZMembership.sol#53) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: fees.flushDust(bucket,config.key.currency0) (src/ZZZMembership.sol#53)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 147,
+    "fingerprint": "b6093ed1fb47e557222f9e908cb61490704174e9a496c6f6bc9c83d564be38b8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). deploymentCommitment enumerates16fixed module IDs plus six fixed domains; all these getter resolutions are static, and unknown slots revert. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 148,
+    "fingerprint": "2013e0414baa141d5929bf7198dd3697b14d2e8f70d63cfe5f214f1588d93eb4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call id = _vault().bucketAt(i) (src/ZZZFeesCanonical.sol#66) was reviewed in ZZZFeesCanonical.canonicalSettle(). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73) has external calls inside a loop: id = _vault().bucketAt(i) (src/ZZZFeesCanonical.sol#66)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 150,
+    "fingerprint": "1c705b0a9f0e06ac3ed729e5ad674c5b39ce667a7c1c589c8da8fc1396b5aa0e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call recordCount[slot] = source.recordCount(slot) (src/ZZZCanonicalHandoff.sol#264) was reviewed in ZZZCanonicalHandoff.bindFrozen(bytes32). A peer-authenticated importer copies exactly six domain counts, not a user-sized list; source/destination IDs are checked before this loop. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.bindFrozen(bytes32) (src/ZZZCanonicalHandoff.sol#256-267) has external calls inside a loop: recordCount[slot] = source.recordCount(slot) (src/ZZZCanonicalHandoff.sol#264)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 152,
+    "fingerprint": "7f8fc0c6174c878ebb9aeb1f68e7c238c531a53469082809952436442968d169",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). deploymentCommitment enumerates16fixed module IDs plus six fixed domains; all these getter resolutions are static, and unknown slots revert. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 153,
+    "fingerprint": "491a316c0396a5ac31bcd63dc502e06a48569c53a70d272eb82c7605cb5a602b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). freeze enumerates exactly six fixed domains after controller FROZEN and under governance/nonReentrant; its per-asset flag clearing uses captured bounded assetCount<=256, with actual current domains capped33LP/17royalty. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 154,
+    "fingerprint": "ca915393b3ff0324d1344e003dece4862edfc974ecf95a7491f38fe3662910d0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). importRows accepts at most8records under the coordinator lock, with source row equality and exact fixed-domain identity before any write. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 155,
+    "fingerprint": "14c60deb3901e61e27eacc3999e24c105318e2e45bf3447ab91e148d75864266",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call _checkpointOwner(id,token,vault.nftBucket(id),vault.sharesOf(id)) (src/ZZZRewards.sol#88) was reviewed in ZZZRewards._checkpointOwner(uint256,address). The loop caller is the sorted, nonempty convertBatch ID list capped32 under keeper/live/operating/nonReentrant/economic guards. Calls resolve fixed sealed NFT/Membership/Vault and make static owner/share/eligibility reads; checkpoint writes settle the original NFT before conversion. Runtime-bound dependency failure/max32gas remains a qualification, not unbounded work or a mutable arbitrary callback.",
+    "reviewed_function": "ZZZRewards._checkpointOwner(uint256,address) (src/ZZZRewards.sol#86-89) has external calls inside a loop: _checkpointOwner(id,token,vault.nftBucket(id),vault.sharesOf(id)) (src/ZZZRewards.sol#88)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 156,
+    "fingerprint": "2a413e5d3e01577077c0255251538cce709a15b4a6ccd118e793ba04c1411bc1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call _module(slot).canonicalImport(row,records[i]) (src/ZZZCanonicalHandoff.sol#308) was reviewed in ZZZCanonicalHandoff.importRows(uint8,bytes[]). Input records are capped8 and bounded by captured row count. Each record is checked against source canonicalExport before passing to the fixed corresponding domain; nonReentrant holds across hooks. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.importRows(uint8,bytes[]) (src/ZZZCanonicalHandoff.sol#295-312) has external calls inside a loop: _module(slot).canonicalImport(row,records[i]) (src/ZZZCanonicalHandoff.sol#308)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 158,
+    "fingerprint": "d58d2972c7863968a19f62684709627ad8e8dc6bbb30398901b1e9877a8bf1cf",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call target = access.module(Ids.REWARDS) (src/ZZZClaimRouter.sol#69) was reviewed in ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]). The user batch length is1..32; ownership/duplicates are checked before payout, ownership is checked again per operation and each fixed ledger repeats current-owner authentication. Router/ledgers hold nonReentrant locks and any failure rolls the full selected batch back. Users can choose smaller batches/omit failed currencies; a failed payout or maximum32-operation gas remains an accepted bounded availability cost, not arbitrary target execution.",
+    "reviewed_function": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: target = access.module(Ids.REWARDS) (src/ZZZClaimRouter.sol#69)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 159,
+    "fingerprint": "bd5f590a70e567d3ad2cf2965eba1282c17b71e8c72a4d5c2ea1b9fda3a6aac9",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). The activated ledger caps currencies17; optional ERC20 _sync runs in its isolated250,000gas self-call with reserved tail, so a failing currency defers only its enrollment. Native custody has its separate no-ERC20 check. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 160,
+    "fingerprint": "a7a375bca6ff95c7dba4282952c2b9efc2aa88f1fcdd62052839016432cf803b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call position = vault.group(bucket) (src/ZZZMembership.sol#45) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: position = vault.group(bucket) (src/ZZZMembership.sol#45)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 162,
+    "fingerprint": "2c4670e38e3c59af72d59798874a63b50feda319930513c2bcd0ec782e9857ec",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call (i != 0 && ids[i] <= ids[i - 1]) || IZZZNFT(access.module(Ids.NFT)).ownerOf(ids[i]) == address(0) (src/ZZZRewards.sol#199) was reviewed in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256). The loop caller is the sorted, nonempty convertBatch ID list capped32 under keeper/live/operating/nonReentrant/economic guards. Calls resolve fixed sealed NFT/Membership/Vault and make static owner/share/eligibility reads; checkpoint writes settle the original NFT before conversion. Runtime-bound dependency failure/max32gas remains a qualification, not unbounded work or a mutable arbitrary callback.",
+    "reviewed_function": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#191-229) has external calls inside a loop: (i != 0 && ids[i] <= ids[i - 1]) || IZZZNFT(access.module(Ids.NFT)).ownerOf(ids[i]) == address(0) (src/ZZZRewards.sol#199)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 163,
+    "fingerprint": "4e6db17e544471a07456a0cc37ce13d86e0323aa1df00bb3000e5d133f181c3e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). finishAbort enumerates six fixed domains and their bounded funded rows, requiring all actually sent rows returned before source validation/resume. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 164,
+    "fingerprint": "46226ff30b5e993c7777c110e43c09ae3556dc8561afe09fa63389bc642a76b7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). freeze enumerates exactly six fixed domains after controller FROZEN and under governance/nonReentrant; its per-asset flag clearing uses captured bounded assetCount<=256, with actual current domains capped33LP/17royalty. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 165,
+    "fingerprint": "24ffccdc059dbcc047b5632d9c4067d799e31125aea09a0057eac9714f62fe93",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call keccak256(bytes)(records[i]) != keccak256(bytes)(sourceModule.canonicalExport(row)) (src/ZZZCanonicalHandoff.sol#307) was reviewed in ZZZCanonicalHandoff.importRows(uint8,bytes[]). Input records are capped8 and bounded by captured row count. Each record is checked against source canonicalExport before passing to the fixed corresponding domain; nonReentrant holds across hooks. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.importRows(uint8,bytes[]) (src/ZZZCanonicalHandoff.sol#295-312) has external calls inside a loop: keccak256(bytes)(records[i]) != keccak256(bytes)(sourceModule.canonicalExport(row)) (src/ZZZCanonicalHandoff.sol#307)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 166,
+    "fingerprint": "5ee90833b996c1bae12d9f4ea184cab936fa1b7f3379f2406a49553a9593fbcc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call j < assets.assetCount() (src/ZZZMembership.sol#58) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: j < assets.assetCount() (src/ZZZMembership.sol#58)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 167,
+    "fingerprint": "eec096c33114b01a9a6ecaea3b43c7e3a945e07bdb8ce4f5d4bd90186cbee13e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). exportRows accepts at most8source-derived records and checks cursor/count boundaries under the coordinator lock; no user-selected target is called. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 168,
+    "fingerprint": "b0c9ab70c72fb3f6e706b1fbc957446ef0573e881c18e9ddb0220bc44911b5da",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). freeze enumerates exactly six fixed domains after controller FROZEN and under governance/nonReentrant; its per-asset flag clearing uses captured bounded assetCount<=256, with actual current domains capped33LP/17royalty. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 169,
+    "fingerprint": "0660c5ede24d0fdf6482b3283b831e9930ed3f1b24eefcf8486b7e7bffce12a8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). The canonical royalty domain caps currencies17. Capture/validation/activation run only through the fixed handoff in frozen/importing states; every admitted currency must actually report backing before a truthful complete transfer can proceed. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 170,
+    "fingerprint": "b91443b6659ef7bfe787344de340cb37cc5eb012b7083138c019e731193f6593",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31) was reviewed in ZZZFeesCanonical._balance(address,address). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical._balance(address,address) (src/ZZZFeesCanonical.sol#30-32) has external calls inside a loop: IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 172,
+    "fingerprint": "7dc3ec8db5b287832b7c729a8fa5feb14177e18eb585fbde79bac61b86ed96c2",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call _module(slot).canonicalValidate() (src/ZZZCanonicalHandoff.sol#402) was reviewed in ZZZCanonicalHandoff.activate(). Exactly six domains are validated/activated; their asset counts came from frozen captures and are capped256, with current LP/royalty domains33/17. The nonReentrant source-retirement/root/actual-backing checks are mandatory. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.activate() (src/ZZZCanonicalHandoff.sol#390-410) has external calls inside a loop: _module(slot).canonicalValidate() (src/ZZZCanonicalHandoff.sol#402)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 175,
+    "fingerprint": "c22bbeb080290eb0101ba04d069b49ffff595041428d032d0d8a67b0f9271aae",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call assetCount[slot] = source.assetCount(slot) (src/ZZZCanonicalHandoff.sol#265) was reviewed in ZZZCanonicalHandoff.bindFrozen(bytes32). A peer-authenticated importer copies exactly six domain counts, not a user-sized list; source/destination IDs are checked before this loop. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.bindFrozen(bytes32) (src/ZZZCanonicalHandoff.sol#256-267) has external calls inside a loop: assetCount[slot] = source.assetCount(slot) (src/ZZZCanonicalHandoff.sol#265)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 176,
+    "fingerprint": "cdc36ad22a55a0f9bc96a73b3810932255cbad9d01f42cb2138bdd3facf61184",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IPairVault(address(vault)).migrationBudget().compositionEpoch(bucket) != 0 (src/ZZZMembership.sol#55) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: IPairVault(address(vault)).migrationBudget().compositionEpoch(bucket) != 0 (src/ZZZMembership.sol#55)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 177,
+    "fingerprint": "e6367e914eab2027e6b07425cddd0a0e052f9885175c73ebdb791d0b60a36b5c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call importCursor[slot] != recordCount[slot] || importRoot[slot] != source.exportRoot(slot) || _module(slot).canonicalCount() != recordCount[slot] || _module(slot).canonicalAssetCount() != assetCount[slot] (src/ZZZCanonicalHandoff.sol#319-321) was reviewed in ZZZCanonicalHandoff.completeImport(). Exactly six domains must match source roots and captured record/asset counts under nonReentrant before phase changes. No arbitrary external implementation is supplied by this call. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.completeImport() (src/ZZZCanonicalHandoff.sol#314-330) has external calls inside a loop: importCursor[slot] != recordCount[slot] || importRoot[slot] != source.exportRoot(slot) || _module(slot).canonicalCount() != recordCount[slot] || _module(slot).canonicalAssetCount() != assetCount[slot] (src/ZZZCanonicalHandoff.sol#319-321)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 178,
+    "fingerprint": "f65c1301f19725a08496a10a308daf65e466184513b6ac40d11b9d0c6b10789f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31) was reviewed in ZZZFeesCanonical._balance(address,address). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical._balance(address,address) (src/ZZZFeesCanonical.sol#30-32) has external calls inside a loop: IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 184,
+    "fingerprint": "d80f06f1a258d90f4dd604775de0fc447f496560184275ef4c21604354a7cd7b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). freeze enumerates exactly six fixed domains after controller FROZEN and under governance/nonReentrant; its per-asset flag clearing uses captured bounded assetCount<=256, with actual current domains capped33LP/17royalty. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 185,
+    "fingerprint": "107a2dbe6c2adcd25215213a77175c9a7f97f61599c3a744b45cf5c5be14d482",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). exportRows accepts at most8source-derived records and checks cursor/count boundaries under the coordinator lock; no user-selected target is called. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 186,
+    "fingerprint": "a286a21bb44b99672ee67d8d2ac9a009f920261f6f6c12486bf9d20e616a8631",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). deploymentCommitment enumerates16fixed module IDs plus six fixed domains; all these getter resolutions are static, and unknown slots revert. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 187,
+    "fingerprint": "5bec158854b95641453c67dece69795923b51173cbe709576a5e8cc982e86d86",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). The canonical royalty domain caps currencies17. Capture/validation/activation run only through the fixed handoff in frozen/importing states; every admitted currency must actually report backing before a truthful complete transfer can proceed. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 188,
+    "fingerprint": "9c106e86cd4fcf9d81b33040402ded5b371abc29f21aed26e9294b7569f21a7d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call bucket = vault.bucketAt(i) (src/ZZZMembership.sol#44) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: bucket = vault.bucketAt(i) (src/ZZZMembership.sol#44)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 190,
+    "fingerprint": "6d6627cf7212c915126a90b39f61b0845c4a7f0a8690851abd6519d7fe0d9a66",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). finishAbort enumerates six fixed domains and their bounded funded rows, requiring all actually sent rows returned before source validation/resume. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 192,
+    "fingerprint": "5253d44812a7fae8a024d6fe25855accf171d0518dcddee6df9b1aa6755a00dc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). importRows accepts at most8records under the coordinator lock, with source row equality and exact fixed-domain identity before any write. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 193,
+    "fingerprint": "8a04ee23db6f08ca8488128f8b1612ff00c3835b6a38fb5c1cf7c4a027cf05ce",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call amounts[i_scope_0] = IZZZClaimLedger(target).claimFor(entry_scope_1.nftId,entry_scope_1.asset,msg.sender) (src/ZZZClaimRouter.sol#71) was reviewed in ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]). The user batch length is1..32; ownership/duplicates are checked before payout, ownership is checked again per operation and each fixed ledger repeats current-owner authentication. Router/ledgers hold nonReentrant locks and any failure rolls the full selected batch back. Users can choose smaller batches/omit failed currencies; a failed payout or maximum32-operation gas remains an accepted bounded availability cost, not arbitrary target execution.",
+    "reviewed_function": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: amounts[i_scope_0] = IZZZClaimLedger(target).claimFor(entry_scope_1.nftId,entry_scope_1.asset,msg.sender) (src/ZZZClaimRouter.sol#71)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 195,
+    "fingerprint": "15749e554fc8ae366367d58d7eba6d30a7041a5555f40d914b11f0aa1ed422df",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IZZZNFT(nft).ownerOf(entry.nftId) != msg.sender (src/ZZZClaimRouter.sol#55) was reviewed in ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]). The user batch length is1..32; ownership/duplicates are checked before payout, ownership is checked again per operation and each fixed ledger repeats current-owner authentication. Router/ledgers hold nonReentrant locks and any failure rolls the full selected batch back. Users can choose smaller batches/omit failed currencies; a failed payout or maximum32-operation gas remains an accepted bounded availability cost, not arbitrary target execution.",
+    "reviewed_function": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: IZZZNFT(nft).ownerOf(entry.nftId) != msg.sender (src/ZZZClaimRouter.sol#55)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 196,
+    "fingerprint": "4f40410f70d97655d0fdfec22f41e7ae4955a49ded8811f8869953444635f0cc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call record = _module(slot).canonicalExport(row) (src/ZZZCanonicalHandoff.sol#280) was reviewed in ZZZCanonicalHandoff.exportRows(uint8,uint256). At most8records per call under exact source row/cursor bounds; the target is this controller fixed domain. Operator can chunk export; a domain read failure remains a genuine liveness blocker. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.exportRows(uint8,uint256) (src/ZZZCanonicalHandoff.sol#273-293) has external calls inside a loop: record = _module(slot).canonicalExport(row) (src/ZZZCanonicalHandoff.sol#280)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 197,
+    "fingerprint": "d570208603552e0736c6b7c870305d4255336ae8771e07d444cd4a92a7fd12ac",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). importRows accepts at most8records under the coordinator lock, with source row equality and exact fixed-domain identity before any write. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 198,
+    "fingerprint": "ea6306112277bcee8384c898c6fd59ef7950dad22161d0993f8697c2168a07c3",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call vault = IZZZVault(access.module(Ids.VAULT)) (src/ZZZRewards.sol#87) was reviewed in ZZZRewards._checkpointOwner(uint256,address). The loop caller is the sorted, nonempty convertBatch ID list capped32 under keeper/live/operating/nonReentrant/economic guards. Calls resolve fixed sealed NFT/Membership/Vault and make static owner/share/eligibility reads; checkpoint writes settle the original NFT before conversion. Runtime-bound dependency failure/max32gas remains a qualification, not unbounded work or a mutable arbitrary callback.",
+    "reviewed_function": "ZZZRewards._checkpointOwner(uint256,address) (src/ZZZRewards.sol#86-89) has external calls inside a loop: vault = IZZZVault(access.module(Ids.VAULT)) (src/ZZZRewards.sol#87)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 199,
+    "fingerprint": "741cbd3f7e6052182a15dd3b05acb527d45f9cd00b1ef1c3d097ba89377d4a7c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). importRows accepts at most8records under the coordinator lock, with source row equality and exact fixed-domain identity before any write. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 200,
+    "fingerprint": "e5d008a59937bc5376e5ae059e9cd113a49ac6a1e81c33554b9a38752630ac3f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). completeImport enumerates the six fixed domains and compares each source root/count to the local imported domain under the coordinator lock. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 203,
+    "fingerprint": "6ca6a0a322b9dd613cc38aaf1347811bad3bf35558a97ce88afda0720398345d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). deploymentCommitment enumerates16fixed module IDs plus six fixed domains; all these getter resolutions are static, and unknown slots revert. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 206,
+    "fingerprint": "010ff2da9ff74373455c6a8a2e0648656f19ab20bdcc947420b47e827908e48c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). completeImport enumerates the six fixed domains and compares each source root/count to the local imported domain under the coordinator lock. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 207,
+    "fingerprint": "e0fee01190c6a52b996d962a8c23c685c5ea61c37664fe0e821a391aa6ddbe1e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call fees.flushDust(bucket,token) (src/ZZZMembership.sol#60) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: fees.flushDust(bucket,token) (src/ZZZMembership.sol#60)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 208,
+    "fingerprint": "628dbad96e13a99c8aaa58c6e0b5266793b9c18af73bbef041954b8fafe199bd",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). exportRows accepts at most8source-derived records and checks cursor/count boundaries under the coordinator lock; no user-selected target is called. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 209,
+    "fingerprint": "49bd0bbe0b99d4e5c5178c75c025fdd92aab63a9adf58db9ca067ae7d348d78a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call _module(slot).canonicalCapture() (src/ZZZCanonicalHandoff.sol#223) was reviewed in ZZZCanonicalHandoff.freeze(). Exactly six fixed domain captures/count reads occur after canonical state is FROZEN under governance/nonReentrant. Counts are bounded and principal/royalty custody must be parked/resolved. No economic callback can commit through the changed lifecycle. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) has external calls inside a loop: _module(slot).canonicalCapture() (src/ZZZCanonicalHandoff.sol#223)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 211,
+    "fingerprint": "996d07062afa749e89467b675881af5a9a6a26dac68597e89f20c38f6d891da7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call token = assets.assets(j) (src/ZZZMembership.sol#59) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: token = assets.assets(j) (src/ZZZMembership.sol#59)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 214,
+    "fingerprint": "61c922e84296534de4e61108fa1f8f7dd81f5c4539293dfd13f410e56805124a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). activate enumerates six fixed domains with bounded per-domain incoming funding; source retirement/root and all backing checks precede final operating authority. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 218,
+    "fingerprint": "06af1f3f7d55d751f54a36fa08bb9f837ce465074cb5b88e8e115e942fe551b6",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). activate enumerates six fixed domains with bounded per-domain incoming funding; source retirement/root and all backing checks precede final operating authority. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 219,
+    "fingerprint": "c4f18a820947c4162344d884cf41e6dcb0403d00b7e606583357273a95bf32d4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call amounts[i_scope_0] = fees.accounted(assets[i_scope_0]) + quarantine[i_scope_0] (src/ZZZFeesCanonical.sol#70) was reviewed in ZZZFeesCanonical.canonicalSettle(). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73) has external calls inside a loop: amounts[i_scope_0] = fees.accounted(assets[i_scope_0]) + quarantine[i_scope_0] (src/ZZZFeesCanonical.sol#70)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 220,
+    "fingerprint": "b1a66ee3215c6995e9fa59e61bc89a494f7979ac263cb34f8c351be90d44b35e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call assetCount[slot_scope_0] = _module(slot_scope_0).canonicalAssetCount() (src/ZZZCanonicalHandoff.sol#227) was reviewed in ZZZCanonicalHandoff.freeze(). Exactly six fixed domain captures/count reads occur after canonical state is FROZEN under governance/nonReentrant. Counts are bounded and principal/royalty custody must be parked/resolved. No economic callback can commit through the changed lifecycle. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) has external calls inside a loop: assetCount[slot_scope_0] = _module(slot_scope_0).canonicalAssetCount() (src/ZZZCanonicalHandoff.sol#227)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 221,
+    "fingerprint": "02be564ca1885a17f1c3900f06bb34e39c12fc719ca7f86d5cbb63c986b433f7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). completeImport enumerates the six fixed domains and compares each source root/count to the local imported domain under the coordinator lock. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 223,
+    "fingerprint": "61b4a0955ba89d53b1fcca355ebc01b366062dcd172cf416f7ae23ac0b83105c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). exportRows accepts at most8source-derived records and checks cursor/count boundaries under the coordinator lock; no user-selected target is called. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 225,
+    "fingerprint": "92fda63952365386414546cdd9c8ca289dd61c24635ef4a21ee9ce8abdb9fe9e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). activate enumerates six fixed domains with bounded per-domain incoming funding; source retirement/root and all backing checks precede final operating authority. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 226,
+    "fingerprint": "67eab45565c9e9df5888a01b130ff1145712ad4012d3942bb5da5c4cc2fa3a4c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). deploymentCommitment enumerates16fixed module IDs plus six fixed domains; all these getter resolutions are static, and unknown slots revert. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 227,
+    "fingerprint": "73a967f8793963179c31f63e1651ca82309b223f24310b26c6d66a06b0588a29",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). importRows accepts at most8records under the coordinator lock, with source row equality and exact fixed-domain identity before any write. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 228,
+    "fingerprint": "771e249a89ef37cb5635a19fbd0056f7733129b6be67e14b98d2ffb45c2d053f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call target = access.module(ids[i]) (src/ZZZCanonicalHandoff.sol#155) was reviewed in ZZZCanonicalHandoff.deploymentCommitment(). This pure-inventory view loops16sealed module IDs plus six domains and reads their fixed bindings/codehashes. It performs no asset transfer or configurable callback. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.deploymentCommitment() (src/ZZZCanonicalHandoff.sol#123-163) has external calls inside a loop: target = access.module(ids[i]) (src/ZZZCanonicalHandoff.sol#155)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 229,
+    "fingerprint": "c7ad5dcf10b6509703ab27c07fd0be22d52643cebb59f0ff79885f25228bfae0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). The LP reward domain caps assets33. Canonical capture/validation runs through the fixed handoff and requires real balance at least recorded liability/backing; an unreadable admitted asset deliberately blocks truthful migration. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 231,
+    "fingerprint": "ce5edd53aa1dcaf557c564dea37b1b821331509684f19b4153e68b4aea656e27",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). activate enumerates six fixed domains with bounded per-domain incoming funding; source retirement/root and all backing checks precede final operating authority. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 233,
+    "fingerprint": "a64ad372b02e174d80f3dff72829e87eba2ddec565ddffbbc635a59d1f42c81a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) (src/ZZZRewards.sol#68) was reviewed in ZZZRewards._checkpoint(uint256,address). The loop caller is the sorted, nonempty convertBatch ID list capped32 under keeper/live/operating/nonReentrant/economic guards. Calls resolve fixed sealed NFT/Membership/Vault and make static owner/share/eligibility reads; checkpoint writes settle the original NFT before conversion. Runtime-bound dependency failure/max32gas remains a qualification, not unbounded work or a mutable arbitrary callback.",
+    "reviewed_function": "ZZZRewards._checkpoint(uint256,address) (src/ZZZRewards.sol#67-69) has external calls inside a loop: IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) (src/ZZZRewards.sol#68)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 235,
+    "fingerprint": "d99c3eabf93b5e815ecf9455e9da408b08640b8ef7df6eb6e511d4c6e77710e0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call quarantine.push(raw - fees.accounted(asset)) (src/ZZZFeesCanonical.sol#58) was reviewed in ZZZFeesCanonical.canonicalCapture(). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62) has external calls inside a loop: quarantine.push(raw - fees.accounted(asset)) (src/ZZZFeesCanonical.sol#58)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 238,
+    "fingerprint": "2f7bae4579ba0c45b8c388ebc02b71e1a27c06dab443819bf8c59d4a368eca4e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). completeImport enumerates the six fixed domains and compares each source root/count to the local imported domain under the coordinator lock. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 239,
+    "fingerprint": "967ac3e8ede706406c9ed42f499c6c2d2b026e3b709347a2bc691fb599dbebbc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). importRows accepts at most8records under the coordinator lock, with source row equality and exact fixed-domain identity before any write. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 241,
+    "fingerprint": "bb5a7249d085e3abb8b7ad6a838c7b0291f541c73c0150ab4cc7cdd2f95ae830",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). The canonical royalty domain caps currencies17. Capture/validation/activation run only through the fixed handoff in frozen/importing states; every admitted currency must actually report backing before a truthful complete transfer can proceed. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 242,
+    "fingerprint": "5a4862af3d07e7c552ce6d16f436992d3d38726f551eb1b41c43bab41bbe4183",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). finishAbort enumerates six fixed domains and their bounded funded rows, requiring all actually sent rows returned before source validation/resume. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 243,
+    "fingerprint": "8042f49d2a7834d927c4757f0b45f156ed3d347072115095c390d0234f8ba0c1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call config = pools.get(position.poolId) (src/ZZZMembership.sol#52) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: config = pools.get(position.poolId) (src/ZZZMembership.sol#52)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 244,
+    "fingerprint": "970ec22b66c290ff6ae6373ad0b87d2004a9aedaf11a96137cc5a98fe26b0ebc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). finishAbort enumerates six fixed domains and their bounded funded rows, requiring all actually sent rows returned before source validation/resume. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 245,
+    "fingerprint": "b90865199285d33042a4caab74ed66e9c44dd2336f71e5672de4dc9b512b651b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call assets = IPairAssets(access.module(Ids.REWARDS)) (src/ZZZMembership.sol#56) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: assets = IPairAssets(access.module(Ids.REWARDS)) (src/ZZZMembership.sol#56)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 246,
+    "fingerprint": "98d7c28b5262d4e6fa1418cde41eccce4019977b9e0d8d7fa2fffb7942ca8458",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). completeImport enumerates the six fixed domains and compares each source root/count to the local imported domain under the coordinator lock. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 248,
+    "fingerprint": "f2258b38c85dfd673475cdce829e7f5eb2cb95f874acd4e81c728c2c5cced64f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). syncAll loops at most17admitted currencies under nonReentrant/economic. A failing optional token intentionally reverts this convenience call; independent sync/claim for healthy assets remains available. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 249,
+    "fingerprint": "1eca573fb0229bc32bb738c53b7c1f3e252a87b6a5e55eaa257a4836edc64286",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40) was reviewed in ZZZCanonicalLedger._canonicalBalance(address). The LP reward domain caps assets33. Canonical capture/validation runs through the fixed handoff and requires real balance at least recorded liability/backing; an unreadable admitted asset deliberately blocks truthful migration. balanceOf is a static read and cannot mutate these records; it can consume/revert gas or lie if token admission is unsound. Actual token semantics and composed maximum-state gas remain explicit release risks, not falsely marked independently qualified.",
+    "reviewed_function": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 250,
+    "fingerprint": "139bc59cb7206be6f418ff13e8c153425ae37a17b35d73bd5a09cbf216e2068b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IZZZNFT(nft).ownerOf(entry_scope_1.nftId) != msg.sender (src/ZZZClaimRouter.sol#68) was reviewed in ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]). The user batch length is1..32; ownership/duplicates are checked before payout, ownership is checked again per operation and each fixed ledger repeats current-owner authentication. Router/ledgers hold nonReentrant locks and any failure rolls the full selected batch back. Users can choose smaller batches/omit failed currencies; a failed payout or maximum32-operation gas remains an accepted bounded availability cost, not arbitrary target execution.",
+    "reviewed_function": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: IZZZNFT(nft).ownerOf(entry_scope_1.nftId) != msg.sender (src/ZZZClaimRouter.sol#68)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 251,
+    "fingerprint": "1ab6f00abf5bcf3365c6da1ff7847d2e05dc065819e2f7c15cae22e0716aac0d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). completeImport enumerates the six fixed domains and compares each source root/count to the local imported domain under the coordinator lock. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 252,
+    "fingerprint": "7a6429da44179031b9d79edb1800455e6430b78745fe844b05d97dba7b64245c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IZZZVault(access.module(Ids.VAULT)) (src/ZZZFeesCanonical.sol#40) was reviewed in ZZZFeesCanonical._vault(). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical._vault() (src/ZZZFeesCanonical.sol#40) has external calls inside a loop: IZZZVault(access.module(Ids.VAULT)) (src/ZZZFeesCanonical.sol#40)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 254,
+    "fingerprint": "e8db9fc49d9ff72c1b1d8287b7aa1528c6f15b6dec9009c97e863084968adf2c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). activate enumerates six fixed domains with bounded per-domain incoming funding; source retirement/root and all backing checks precede final operating authority. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 256,
+    "fingerprint": "1edd4084497b847c76f61ad651da8c1eba062144170dc9b26bdc6ef52720caf1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call assets.assetCount() > 33 (src/ZZZMembership.sol#57) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: assets.assetCount() > 33 (src/ZZZMembership.sol#57)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 257,
+    "fingerprint": "936e6de0828a09e78470c0533214e9751e6d02a4f25336b0feb28f63cc6af39d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call _module(slot_scope_0).canonicalActivate() (src/ZZZCanonicalHandoff.sol#405) was reviewed in ZZZCanonicalHandoff.activate(). Exactly six domains are validated/activated; their asset counts came from frozen captures and are capped256, with current LP/royalty domains33/17. The nonReentrant source-retirement/root/actual-backing checks are mandatory. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.activate() (src/ZZZCanonicalHandoff.sol#390-410) has external calls inside a loop: _module(slot_scope_0).canonicalActivate() (src/ZZZCanonicalHandoff.sol#405)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 259,
+    "fingerprint": "11394aff6ec9913a09c8ff192cd95987a1b1ed11866e42371ca0dfc5a3ae19ee",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call _module(slot).canonicalValidate() (src/ZZZCanonicalHandoff.sol#465) was reviewed in ZZZCanonicalHandoff.finishAbort(). Exactly six domains are validated after all bounded captured funded rows return. The nonReentrant abort lifecycle and actual balance checks prevent unbounded or repeat asset movement. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.finishAbort() (src/ZZZCanonicalHandoff.sol#457-470) has external calls inside a loop: _module(slot).canonicalValidate() (src/ZZZCanonicalHandoff.sol#465)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 261,
+    "fingerprint": "65add6598ca40810f3edddc6f594a22a8d4a90048aa6f215541aeab3007aa9d3",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31) was reviewed in ZZZFeesCanonical._balance(address,address). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical._balance(address,address) (src/ZZZFeesCanonical.sol#30-32) has external calls inside a loop: IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 262,
+    "fingerprint": "0557ef46c24be209fa7c88a54f04344d8ebbe4fec8cc73e791a1ad51bd8174e1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call fees.flushDust(bucket,config.key.currency1) (src/ZZZMembership.sol#54) was reviewed in ZZZMembership.settleDust(). Only fixed Vault calls settleDust in operating canonical state. The outer bucket inventory is capped4, and composition-history work checks Rewards assetCount<=33. Pool.get reads immutable admitted currency identities rather than a live venue. Each funded flush goes to fixed Fees/Rewards, not a caller target. Positive unpayable historical dust can deliberately block entry rather than redistribute incumbent funds; composed4x33gas/token liveness must be qualified, not ignored.",
+    "reviewed_function": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: fees.flushDust(bucket,config.key.currency1) (src/ZZZMembership.sol#54)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 264,
+    "fingerprint": "bb52728f9eaadc4b0c3c5e0ff96fb0eb1a83fa01f3e5351c6e4666906f56283b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call asset = rewards.assets(i_scope_0) (src/ZZZFeesCanonical.sol#52) was reviewed in ZZZFeesCanonical.canonicalCapture(). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62) has external calls inside a loop: asset = rewards.assets(i_scope_0) (src/ZZZFeesCanonical.sol#52)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 265,
+    "fingerprint": "26d300d90414ecf537ca04246b1f25af9f8f457eb654688bab65b26795bd10d4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call fees.canonicalFlush(id,assets[j]) (src/ZZZFeesCanonical.sol#67) was reviewed in ZZZFeesCanonical.canonicalSettle(). Only fixed Handoff invokes this codec. Its captured Rewards currency inventory is capped33 and groups4; settlement may invoke4x33fixed FeeController dust flushes, while capture/validate inspect33balances. The source is lifecycle-frozen and flushes use authenticated canonical-settling cutoff credits. Reverting token/backing or maximum-state gas may block complete handoff; this accepted liveness/gas risk needs operating qualification, not an unbounded-list code rewrite.",
+    "reviewed_function": "ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73) has external calls inside a loop: fees.canonicalFlush(id,assets[j]) (src/ZZZFeesCanonical.sol#67)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 266,
+    "fingerprint": "c9b972beaeca230e3f692707c3bb4c0d2146fe03308098efab33efb86e556ac8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). activate enumerates six fixed domains with bounded per-domain incoming funding; source retirement/root and all backing checks precede final operating authority. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 268,
+    "fingerprint": "da0c947f1d71d7ba811a843a98886974826fe5a36bd9b6c034f0aa564971c7aa",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). exportRows accepts at most8source-derived records and checks cursor/count boundaries under the coordinator lock; no user-selected target is called. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 269,
+    "fingerprint": "04baf28f43c8cde2e57cd6dd08506ec2405f2e8877f75ac171440696c1fed800",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). deploymentCommitment enumerates16fixed module IDs plus six fixed domains; all these getter resolutions are static, and unknown slots revert. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 272,
+    "fingerprint": "88ba2dc24697588039289c9be93ba229368d07374e6f1a46347245dc2784da6f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). exportRows accepts at most8source-derived records and checks cursor/count boundaries under the coordinator lock; no user-selected target is called. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 273,
+    "fingerprint": "8eba4fec22307b977435168b2faaad6c5ae92eb71ba8d1a5b753fb8d284b6bd4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call recordCount[slot_scope_0] = _module(slot_scope_0).canonicalCount() (src/ZZZCanonicalHandoff.sol#226) was reviewed in ZZZCanonicalHandoff.freeze(). Exactly six fixed domain captures/count reads occur after canonical state is FROZEN under governance/nonReentrant. Counts are bounded and principal/royalty custody must be parked/resolved. No economic callback can commit through the changed lifecycle. Fixed bounds reduce unbounded-loop risk but do not prove affordable target-chain execution or healthy dependencies; that operating qualification remains open.",
+    "reviewed_function": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) has external calls inside a loop: recordCount[slot_scope_0] = _module(slot_scope_0).canonicalCount() (src/ZZZCanonicalHandoff.sol#226)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 275,
+    "fingerprint": "d1564d14d3abfef4b14080e3f8c4688407b3dd20daed406e6376694683a1cbc5",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). finishAbort enumerates six fixed domains and their bounded funded rows, requiring all actually sent rows returned before source validation/resume. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 280,
+    "fingerprint": "17bf13e9843ce149b7efc68ad942aa055c5dac70d8337e243b26c0e7dfd6cc96",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). freeze enumerates exactly six fixed domains after controller FROZEN and under governance/nonReentrant; its per-asset flag clearing uses captured bounded assetCount<=256, with actual current domains capped33LP/17royalty. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 283,
+    "fingerprint": "3b41cdf324a3836dc05b1449b1f9ed3cb8f43ae6ab9e6d721e7e3bffad96bc36",
+    "check": "calls-loop",
+    "impact": "Low",
+    "disposition": "accepted_risk",
+    "rationale": "The flagged call access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106) was reviewed in ZZZCanonicalHandoff.moduleAt(uint8). finishAbort enumerates six fixed domains and their bounded funded rows, requiring all actually sent rows returned before source validation/resume. The getter resolves sealed module/helper bindings, not an arbitrary mutable target. Bounded dependency failure and composed maximum gas can still prevent the operation and remain operating/release qualifications; the static warning is not proof of an exploitable unbounded loop.",
+    "reviewed_function": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 289,
+    "fingerprint": "d18ef80ed12d04998f14288d9062cc669cb4fd7ae536a6d65add1bd459b5aff2",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "Migration.completeLocal remains under one nonReentrant lock through fixed-Vault funding and physical LP checks. _close deletes the exact matching activePlan and decrements outstandingCount only after successful completion. No callback can call complete/recover/cancel/approve concurrently; view getters do not close plans. Failure rolls all funding/status effects back.",
+    "reviewed_function": "Reentrancy in ZZZMigration.completeLocal(bytes32,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#330-375):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 293,
+    "fingerprint": "10310e5fe04d35c17a7efd538a37a4f2752a4196d30f5ef12d2401d6436c7eb0",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "Converter.convert is nonReentrant and immutable-ledger-only; nativeSender is set to the reviewed wrapper only immediately before withdraw. The previous router call has no nativeSender allowance and cannot inject accepted native ETH through receive. The guard authorizes one expected native sender, not another financial entry, and is reset after withdraw with exact balances.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 294,
+    "fingerprint": "51d425f39fffa5f600cd29d01394fe97b6dd5c061b32bbc9cb3d50b3cdaf8632",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "NFT.mint is nonReentrant and accepts only fixed Vault. Coordinator request runs before registration so an attempted synchronous rawFulfill fails result.requested; normal fulfillment is asynchronous. The returned request must be nonzero and unused before ID/epoch binding and safeMint. A malicious coordinator remains a separately unqualified dependency, but cannot choose a second public mint or bypass fixed-Vault authorization here.",
+    "reviewed_function": "Reentrancy in ZZZNFT.mint(address,uint256) (src/ZZZNFT.sol#139-160):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 297,
+    "fingerprint": "8fe97b114c1878d7bab89d0e72c4341cbffcfd74e1443134fa2a7cf30eb6f900",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "The inherited nonReentrant convert lock stays held while _convertV4 executes the fixed parent-bound route helper. nativeSender is set to that helper before execution and cleared immediately after; receive performs no stateful action beyond sender validation. A callback cannot reopen conversion, and exact source/native totals are checked before/after returning output to the immutable ledger.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 299,
+    "fingerprint": "36cf5be6fef241150cff6779b7292339d16c30923cefbf5f6fdf7153fc07b31a",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "FeesCanonical.canonicalCapture is onlyHandoff during frozen source capture. It calls fixed FeeController.canonicalBarrier to acquire/check its existing nonReentrant barrier before rebuilding caches. That function performs no external token call. Subsequent balanceOf calls are static observations; arbitrary callbacks cannot impersonate Handoff, and freeze itself is nonReentrant/lifecycle-locked. Old cache flags are reset, not economic rights.",
+    "reviewed_function": "Reentrancy in ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 300,
+    "fingerprint": "123ae9661a47ec6468eec0f5ef087b3e2ba20f1333a26f808917dada7607e2df",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "Migration.recover uses nonReentrant/operating from exact Sent plan funding through _close. It restores every sent asset through fixed Vault, verifies unchanged shares, then marks Recovered and clears exactly this activePlan. Token/Vault callbacks cannot race another mutation using intermediate outstandingCount; failed funding reverts before closing.",
+    "reviewed_function": "Reentrancy in ZZZMigration.recover(bytes32,uint256) (src/ZZZMigration.sol#379-390):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 304,
+    "fingerprint": "75615a96498909a6400d7a16f9e8446bb321240fc1b63f1dce0309c971a77936",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "Membership.activate receives only fixed-Vault calls; its fixed Rewards checkpoint has no mutable callback to Vault/Membership. totalEligible increases only after pre-entry indexes have been recorded with weight0. Leaving the write after checkpoint preserves no-retroactive collective accounting and cannot be reached recursively by arbitrary users.",
+    "reviewed_function": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 305,
+    "fingerprint": "08c9dc8e6767f635bae46456780b834911bebbbf02ee94f18a1cb59b468c0422",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "Handoff.freeze is governance-only and nonReentrant; phase becomes SETTLING and controller becomes FROZEN before any capture hook. It invokes fixed domains, including the Fees barrier and Vault barrier, then stores bounded counts/flags. Economic callbacks cannot continue across that lifecycle change because their own post-checks revert. NonReentrant blocks competing freeze/abort/import entries; bindFrozen is peer-authenticated in a different importer phase.",
+    "reviewed_function": "Reentrancy in ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 309,
+    "fingerprint": "1bc4be1eb2704c8512d3fb566d737a74eb5c63315ec6fd64dac828ac28f994f6",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "The router and wrapper calls occur within immutable-ledger-only nonReentrant convert. nativeSender authorizes only the wrapper during withdraw, then clears tozero before output payout; exact wrapped/native balances and wrapper runtime/proxy policy are rechecked after withdrawal. No other converter mutation can interleave during that transient sender flag.",
+    "reviewed_function": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 310,
+    "fingerprint": "1a895ca68299a4b07abb4255c8e4ee7566854dccc151e9d71545eb2ee693f074",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "FeesCanonical.canonicalSettle is only the fixed Handoff while source is frozen/settling; Handoff.settle is nonReentrant and exact-cursor gated. Fee flushes call fixed reserve/reward modules with their own guards and canonical cutoff-only permission. amounts are recorded after actual accounted/dust settlement, not exposed to a token-controlled reentrant writer. Any callback state change makes the outer settlement fail.",
+    "reviewed_function": "Reentrancy in ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 314,
+    "fingerprint": "e93e36d26c480fed0073f26c9d8603d663645881be4529fae22369d71b6ee655",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "NFT.notifyContribution is only fixed Vault after successful share issuance and requires traitsReady/shares>0. It calls the immutable royalty ledger activate at mostonce, then emits metadata notification; optional-token callbacks cannot call notifyContribution as Vault, and nested Vault contribution paths are locked. Royalty activation events intentionally precede final MetadataUpdate; observers must use full transaction order, not assume the notification creates shares.",
+    "reviewed_function": "Reentrancy in ZZZNFT.notifyContribution(uint256) (src/ZZZNFT.sol#209-214):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 316,
+    "fingerprint": "767d7df92d750064ef01f4afcb0e7939a46f911d2156e0cc1fb929be81e968cd",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "FeeController._flushHomeDust first zeros dust and debits accounted, then credits only the fixed Rewards ledger through nonReentrant flushDust or authenticated canonical settling. No arbitrary payout recipient or unguarded user callback is present in that fixed credit path. MembershipDustSettled follows the actual successful credit; on failure all events/state roll back.",
+    "reviewed_function": "Reentrancy in ZZZFeeController._flushHomeDust(uint256,address) (src/ZZZFeeController.sol#98-106):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  },
+  {
+    "ordinal": 317,
+    "fingerprint": "65c07497c34b2003f1badd5d412bcecb46525bf4cc60c394608355106430e85a",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "disposition": "false_positive",
+    "rationale": "Membership.activate is fixed-Vault-only; Rewards.checkpointAll performs static eligibility reads/index writes without an attacker callback. MembershipActivated is intentionally emitted after eligibility and count are committed, with the prior zero-weight checkpoint already complete. There is no second activation route or reorderable untrusted event source in this call chain.",
+    "reviewed_function": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73):",
+    "trace": "reports/full-audit-20261025/RIGHTS.md; reports/full-audit-20261025/static-rights-review.md"
+  }
+]

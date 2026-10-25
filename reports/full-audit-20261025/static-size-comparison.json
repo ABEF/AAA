@@ -1,0 +1,379 @@
+{
+  "scope": "Fresh successful solc output from isolated86-input static build; Forge CLI failed only afterward at host signature cache. Compare captured normal75-input object lengths, not actual dynamic release arguments or claimedCLI success.",
+  "compiler_errors": 0,
+  "build_info_sha256": "1580fccf57bf19513ad759ce80803296f990aef86e99c409926d7ba86c412e78",
+  "objects": [
+    {
+      "source": "src/ZZZAccessController.sol",
+      "contract": "ZZZAccessController",
+      "creation": 42256,
+      "runtime": 9252,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZActivationAssets.sol",
+      "contract": "ZZZActivationAssets",
+      "creation": 6660,
+      "runtime": 5849,
+      "same_normal_lengths": true,
+      "static_args": 64,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZActivationAssetsFactory.sol",
+      "contract": "ZZZActivationAssetsFactory",
+      "creation": 7534,
+      "runtime": 7480,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZActivationEntry.sol",
+      "contract": "ZZZActivationEntry",
+      "creation": 30500,
+      "runtime": 17956,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZBuyback.sol",
+      "contract": "ZZZBuyback",
+      "creation": 8059,
+      "runtime": 7367,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZCanonicalHandoff.sol",
+      "contract": "ZZZCanonicalHandoff",
+      "creation": 21664,
+      "runtime": 21034,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZClaimRouter.sol",
+      "contract": "ZZZClaimRouter",
+      "creation": 3443,
+      "runtime": 2885,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZCompounder.sol",
+      "contract": "ZZZCompounder",
+      "creation": 2402,
+      "runtime": 2017,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZContributionPricing.sol",
+      "contract": "ZZZContributionPricing",
+      "creation": 15451,
+      "runtime": 14804,
+      "same_normal_lengths": true,
+      "static_args": 64,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZCustodyValidation.sol",
+      "contract": "ZZZCustodyValidation",
+      "creation": 8282,
+      "runtime": 7847,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZFeeController.sol",
+      "contract": "ZZZFeeController",
+      "creation": 10179,
+      "runtime": 9702,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZFeesCanonical.sol",
+      "contract": "ZZZFeesCanonical",
+      "creation": 11231,
+      "runtime": 10223,
+      "same_normal_lengths": true,
+      "static_args": 64,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZLPRewardConverter.sol",
+      "contract": "ZZZLPRewardConverter",
+      "creation": 29162,
+      "runtime": 16830,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZLiquidityManager.sol",
+      "contract": "ZZZLiquidityManager",
+      "creation": 22216,
+      "runtime": 20769,
+      "same_normal_lengths": true,
+      "static_args": 160,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZMembership.sol",
+      "contract": "ZZZMembership",
+      "creation": 7838,
+      "runtime": 7389,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZMigration.sol",
+      "contract": "ZZZMigration",
+      "creation": 31043,
+      "runtime": 22099,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZMigrationBudget.sol",
+      "contract": "ZZZMigrationBudget",
+      "creation": 21264,
+      "runtime": 20245,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZNFT.sol",
+      "contract": "ZZZNFT",
+      "creation": 43809,
+      "runtime": 23929,
+      "same_normal_lengths": true,
+      "static_args": null,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": true
+    },
+    {
+      "source": "src/ZZZNFTCanonical.sol",
+      "contract": "ZZZNFTCanonical",
+      "creation": 11513,
+      "runtime": 10600,
+      "same_normal_lengths": true,
+      "static_args": 64,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZNFTMetadata.sol",
+      "contract": "ZZZNFTMetadata",
+      "creation": 12867,
+      "runtime": 12543,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZOracle.sol",
+      "contract": "ZZZOracle",
+      "creation": 28255,
+      "runtime": 10242,
+      "same_normal_lengths": true,
+      "static_args": 64,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZPoolRegistry.sol",
+      "contract": "ZZZPoolRegistry",
+      "creation": 41633,
+      "runtime": 10269,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZPythPriceFeed.sol",
+      "contract": "ZZZPythPriceFeed",
+      "creation": 3259,
+      "runtime": 2193,
+      "same_normal_lengths": true,
+      "static_args": 224,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZRewards.sol",
+      "contract": "ZZZRewards",
+      "creation": 22332,
+      "runtime": 21311,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZRoyaltyConverter.sol",
+      "contract": "ZZZRoyaltyConverter",
+      "creation": 29162,
+      "runtime": 16830,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZRoyaltyFactory.sol",
+      "contract": "ZZZRoyaltyFactory",
+      "creation": 24560,
+      "runtime": 24507,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZRoyaltyRewards.sol",
+      "contract": "ZZZRoyaltyRewards",
+      "creation": 23897,
+      "runtime": 22960,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZStrategy.sol",
+      "contract": "ZZZStrategy",
+      "creation": 21416,
+      "runtime": 20820,
+      "same_normal_lengths": true,
+      "static_args": 32,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZV4RouteExecutor.sol",
+      "contract": "ZZZV4RouteExecutor",
+      "creation": 11322,
+      "runtime": 11164,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZVault.sol",
+      "contract": "ZZZVault",
+      "creation": 45132,
+      "runtime": 22852,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/ZZZVaultCanonical.sol",
+      "contract": "ZZZVaultCanonical",
+      "creation": 19983,
+      "runtime": 18622,
+      "same_normal_lengths": true,
+      "static_args": 96,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/libraries/ExactAsset.sol",
+      "contract": "ExactAsset",
+      "creation": 93,
+      "runtime": 62,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/libraries/ExactToken.sol",
+      "contract": "ExactToken",
+      "creation": 93,
+      "runtime": 62,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/libraries/ZZZArtwork.sol",
+      "contract": "ZZZArtwork",
+      "creation": 93,
+      "runtime": 62,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/libraries/ZZZPriceMath.sol",
+      "contract": "ZZZPriceMath",
+      "creation": 93,
+      "runtime": 62,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/libraries/ZZZTypes.sol",
+      "contract": "Ids",
+      "creation": 93,
+      "runtime": 62,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    },
+    {
+      "source": "src/libraries/ZZZV3VenueValidation.sol",
+      "contract": "ZZZV3VenueValidation",
+      "creation": 93,
+      "runtime": 62,
+      "same_normal_lengths": true,
+      "static_args": 0,
+      "normal_limits": true,
+      "actual_dynamic_args_still_unqualified": false
+    }
+  ],
+  "all37_lengths_equal": true,
+  "normal_limits_pass": true
+}

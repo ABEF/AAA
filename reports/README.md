@@ -1,5 +1,19 @@
 # Verification evidence
 
+## Full current-candidate audit - 2026-10-26
+
+Started25October: [findings](full-audit-20261025/REVIEW.md),
+[coverage](full-audit-20261025/COVERAGE.md),
+[verification](full-audit-20261025/VERIFICATION.md),
+[readiness](full-audit-20261025/READINESS.md),
+[principal](full-audit-20261025/PRINCIPAL.md),
+[rights](full-audit-20261025/RIGHTS.md) and
+[services](full-audit-20261025/SERVICES.md).
+Three current-profile preparation/audit bugs are fixed. Fresh399-flag manual
+Slither triage refreshes the current source-review gate. No production Solidity
+change, full release regression, independent or real-service approval. Older
+stale-static failures retain their dated historical evidence scope.
+
 ## Day-change readiness audit - 2026-10-25
 
 [Adapted prompt](day-readiness-20261025/ADAPTED_PROMPT.md),

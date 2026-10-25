@@ -1,0 +1,20 @@
+{
+  "observed_at_utc": "2026-10-25T22:44:52.199361+00:00",
+  "scope": "Two existing directly affected historical-profile and zero-address ABI controls, rerun because activation.py/service.py changed. Synthetic offline RPC only.",
+  "selected_methods": [
+    "tests_python.test_entry_review_policy.EntryReviewPolicyTests.test_explicit_legacy_profile_keeps_its_original_selector_and_response_shape",
+    "tests_python.test_native_backend_boundary.NativeBackendBoundaryTests.test_zero_is_a_typed_currency_never_a_contract_target_or_owner"
+  ],
+  "tests_run": 2,
+  "failures": [],
+  "errors": [],
+  "successful": true,
+  "elapsed_seconds": 0.938,
+  "source_sha256": {
+    "frontend_api/activation.py": "9ab3cc60bd63f4731b01331cc14ac3bddd7830b2b14513dd751012e9bd08cd68",
+    "frontend_api/service.py": "ca465b0159551ac5046e2aa52e800a8e2a6d3b4e8a4919663c2ecaf2d66053a8",
+    "tests_python/test_entry_review_policy.py": "2c393b3e422593a40505c5f1a55dbb002c312031060f03a421df48aaa5feac9d",
+    "tests_python/test_native_backend_boundary.py": "316741f6fccb2972a4e0092d28887ebdc56d9bf531d79942ce1ec9eb9383c05a"
+  },
+  "sources_unchanged": true
+}

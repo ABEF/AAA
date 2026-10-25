@@ -1,0 +1,8 @@
+{
+  "scope": "Additional read-only example-copy check; not server/deployed bundle qualification.",
+  "source_sha256": {
+    "app.js": "22b60108f08059211d5cca181e87cbfcea4781a60a1aaeb45391d9b3a92d08d3",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2"
+  },
+  "finding": "Example form lists USDC/USDG and99%deployment while current policy is ETH/fixedZZZ and98%default. No mutation; actual current-profile integration remains open."
+}

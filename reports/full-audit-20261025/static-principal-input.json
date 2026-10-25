@@ -1,0 +1,1576 @@
+[
+  {
+    "ordinal": 6,
+    "fingerprint": "31d8b1a6b938d068d5de5612dffcfc000c6214402e1a2ccd6aa841b02174417f",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _approve(t0,amount0,deadline) (src/ZZZLiquidityManager.sol#136)\n\t\t- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#100)\n\tBalance read before the call:\n\t- before0 = _balance(t0,address(this)) - msg.value (src/ZZZLiquidityManager.sol#122)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused0`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 7,
+    "fingerprint": "50cbea486f9341149ac07cfd4fcca6a0040829019f6e5d6810f9f8f3b4eb1ab1",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):\n\tExternal call allowing reentrancy:\n\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\tBalance read before the call:\n\t- before1 = _tokenBalance(token1) (src/ZZZVault.sol#385)\n\tPossible stale balance used after the call in a condition:\n\t- token0 == address(0) && closed0 != nativeReceived - received (src/ZZZVault.sol#390)\n\t\t- stale variable `token0`\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 8,
+    "fingerprint": "b8a6dbaebdcfd4c5c96a406cb807cf1ef22845d2627e73d613367131546c1006",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _approve(t1,amount1,deadline) (src/ZZZLiquidityManager.sol#137)\n\t\t- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#100)\n\tBalance read before the call:\n\t- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#123)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused1`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 11,
+    "fingerprint": "93a6b7278355adf69031f012a52114ef3528b69064fdf170586bfe910ace16f2",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- posm.modifyLiquidities{value: nativeValue}(abi.encode(abi.encodePacked(INCREASE,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#148-149)\n\tBalance read before the call:\n\t- before0 = _balance(t0,address(this)) - msg.value (src/ZZZLiquidityManager.sol#122)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused0`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 14,
+    "fingerprint": "1acfafad1b6b34bba1d9219bb444f283a47ffbc7fc253a5b3bb0022c9ee4fbe7",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):\n\tExternal call allowing reentrancy:\n\t- (success,result) = vault.call{value: acquired}(payload) (src/ZZZActivationEntry.sol#270)\n\tBalance read before the call:\n\t- acquired = _convertV4(request,output,sourceBaseline,outputBaseline) (src/ZZZActivationEntry.sol#249)\n\tPossible stale balance used after the call in a condition:\n\t- _owner(request.nftId) != msg.sender || ExactAsset.balance(output,address(this)) != outputBaseline || ExactAsset.balance(source,address(this)) != sourceBaseline || address(this).balance != nativeBaseline (src/ZZZActivationEntry.sol#274-275)\n\t\t- stale variable `TMP_2387`\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 19,
+    "fingerprint": "390599b371efec6b8ac8f1f1c058f2cd2f639e981df3f6e3bd5bc8a4066137e1",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _approve(t0,amount0,deadline) (src/ZZZLiquidityManager.sol#136)\n\t\t- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#100)\n\tBalance read before the call:\n\t- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#123)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused1`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 20,
+    "fingerprint": "09760488d0bb04d28c0560738c4602248b950ef840500ca4d71c24118bf7c24f",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _approve(t1,amount1,deadline) (src/ZZZLiquidityManager.sol#137)\n\t\t- permit2.approve(token,address(posm),uint160(amount),uint48(deadline)) (src/ZZZLiquidityManager.sol#100)\n\tBalance read before the call:\n\t- before0 = _balance(t0,address(this)) - msg.value (src/ZZZLiquidityManager.sol#122)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused0`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 24,
+    "fingerprint": "750f02a931ad68efece478c0177f6e1e60301f3c984c016f6f57eae77369e634",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _reset(t1) (src/ZZZLiquidityManager.sol#153)\n\t\t- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#103)\n\tBalance read before the call:\n\t- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#123)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused1`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 25,
+    "fingerprint": "e9bfd3e6655fa118d221000f3dbd8b2b53dbfa5fe3353ba1f286d120b057968c",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._harvestVenue(uint256,uint256) (src/ZZZVault.sol#333-346):\n\tExternal call allowing reentrancy:\n\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\tBalance read before the call:\n\t- before0 = _tokenBalance(token0) (src/ZZZVault.sol#336)\n\tPossible stale balance used after the call in a condition:\n\t- token0 == address(0) && fee0 != nativeReceived - received (src/ZZZVault.sol#342)\n\t\t- stale variable `fee0`\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 26,
+    "fingerprint": "bf23d998484194b2f78c79698f700fb70f9015a7214222e1a02a846e477d119f",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- posm.modifyLiquidities{value: nativeValue}(abi.encode(abi.encodePacked(MINT,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#148-149)\n\tBalance read before the call:\n\t- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#123)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused1`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 29,
+    "fingerprint": "0908051c1304c313ce5438b47baf48409882a49f011b82eabd6ecc70c6d4a04d",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _reset(t1) (src/ZZZLiquidityManager.sol#153)\n\t\t- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#103)\n\tBalance read before the call:\n\t- before0 = _balance(t0,address(this)) - msg.value (src/ZZZLiquidityManager.sol#122)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused0`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 31,
+    "fingerprint": "0eb9f7ac921066997048430a3bdc260a94015a92a82c3aa867d342892acd2797",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- posm.modifyLiquidities{value: nativeValue}(abi.encode(abi.encodePacked(INCREASE,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#148-149)\n\tBalance read before the call:\n\t- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#123)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused1`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 32,
+    "fingerprint": "0ebf6bdf65ac2e0f2ee78171ed63ad790c7d66263406db1f6f31f15169d937f8",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):\n\tExternal call allowing reentrancy:\n\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\tBalance read before the call:\n\t- before0 = _tokenBalance(token0) (src/ZZZVault.sol#384)\n\tPossible stale balance used after the call in a condition:\n\t- token0 == address(0) && closed0 != nativeReceived - received (src/ZZZVault.sol#390)\n\t\t- stale variable `token0`\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 37,
+    "fingerprint": "717593a27e595ff3a6da22250dec62cec8756c8a3bf32ea0a1e6b075120b6396",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):\n\tExternal call allowing reentrancy:\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#270)\n\tBalance read before the call:\n\t- acquired = _convertV4(request,output,sourceBaseline,outputBaseline) (src/ZZZActivationEntry.sol#249)\n\tPossible stale balance used after the call in a condition:\n\t- _owner(request.nftId) != msg.sender || ExactAsset.balance(output,address(this)) != outputBaseline || ExactAsset.balance(source,address(this)) != sourceBaseline || address(this).balance != nativeBaseline (src/ZZZActivationEntry.sol#274-275)\n\t\t- stale variable `TMP_2387`\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 45,
+    "fingerprint": "573f20a6fb788a11f15a762375242c486548e5ba67e0c614a46c19d9b5f6d247",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _reset(t0) (src/ZZZLiquidityManager.sol#152)\n\t\t- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#103)\n\tBalance read before the call:\n\t- before1 = IERC20(t1).balanceOf(address(this)) (src/ZZZLiquidityManager.sol#123)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused1`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 47,
+    "fingerprint": "3ae4fd293e83bfcf647f8f8e4e7ab5105d81e68571e931b3bf46f1295a892660",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#235-259):\n\tExternal call allowing reentrancy:\n\t- amountOut = abi.decode(poolManager.unlock(payload),(uint256)) (src/ZZZLiquidityManager.sol#254)\n\tBalance read before the call:\n\t- beforeOutput = _balance(output,msg.sender) (src/ZZZLiquidityManager.sol#251)\n\tPossible stale balance used after the call in a condition:\n\t- pendingSwapHash != bytes32(0) || amountOut < minimumOut || _balance(output,msg.sender) != beforeOutput + amountOut || address(this).balance != beforeNative (src/ZZZLiquidityManager.sol#255-257)\n\t\t- stale variable `beforeOutput`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 49,
+    "fingerprint": "d152cb81192f37aa1d34602078f46586b6bebda0dd7f8ddbf2f55adafbbd1cb7",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- _reset(t0) (src/ZZZLiquidityManager.sol#152)\n\t\t- permit2.approve(token,address(posm),0,0) (src/ZZZLiquidityManager.sol#103)\n\tBalance read before the call:\n\t- before0 = _balance(t0,address(this)) - msg.value (src/ZZZLiquidityManager.sol#122)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused0`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 50,
+    "fingerprint": "dac99a40c2363529519b1ae0079cc81e030a1f5f5775e9de6f5468f0784e087b",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):\n\tExternal call allowing reentrancy:\n\t- posm.modifyLiquidities{value: nativeValue}(abi.encode(abi.encodePacked(MINT,SETTLE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#148-149)\n\tBalance read before the call:\n\t- before0 = _balance(t0,address(this)) - msg.value (src/ZZZLiquidityManager.sol#122)\n\tPossible stale balance used after the call in a condition:\n\t- unused0 > amount0 || unused1 > amount1 (src/ZZZLiquidityManager.sol#156)\n\t\t- stale variable `unused0`\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 51,
+    "fingerprint": "39289651402f6eb15034974a2f401087ff80f97bc402d3c6625b48ecfd590c3b",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#580-596):\n\tExternal calls:\n\t- _reserve(newPool,bucketId) (src/ZZZVault.sol#583)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\t- _migrationCheckpoint(bucketId,0) (src/ZZZVault.sol#585)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#587)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- _migrationCheckpoint(bucketId,1) (src/ZZZVault.sol#588)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _unwind(bucketId,deadline) (src/ZZZVault.sol#590)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _redeploy(bucketId,minimumLiquidity,deadline) (src/ZZZVault.sol#593)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _unwind(bucketId,deadline) (src/ZZZVault.sol#590)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _redeploy(bucketId,minimumLiquidity,deadline) (src/ZZZVault.sol#593)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _redeploy(bucketId,minimumLiquidity,deadline) (src/ZZZVault.sol#593)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#182)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#183)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _redeploy(bucketId,minimumLiquidity,deadline) (src/ZZZVault.sol#593)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 52,
+    "fingerprint": "a654b71f2499ee9dae876d135ef8b24a5d7c02182fea0eb468931a635e067053",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#289)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#290)\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,None) = _nav(bucketId) (src/ZZZVault.sol#296)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\t- (late0,late1) = _pullCompound(bucketId) (src/ZZZVault.sol#300)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- (late0,late1) = _pullCompound(bucketId) (src/ZZZVault.sol#300)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- (late0,late1) = _pullCompound(bucketId) (src/ZZZVault.sol#300)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 53,
+    "fingerprint": "2dd47f816d7966b4ed7cad38012af5b6db3f55924ca7dc4bcc9a03f34d73e384",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.resume(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#554-565):\n\tExternal calls:\n\t- _movePool(id,newPool,minimumLiquidity,deadline) (src/ZZZVault.sol#563)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _movePool(id,newPool,minimumLiquidity,deadline) (src/ZZZVault.sol#563)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- positions[id].status = PositionStatus.Active (src/ZZZVault.sol#564)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 54,
+    "fingerprint": "030f8f73cb6d0ea5bc4967f9dd4a04883aff1ef7c391c449441b0db9a804bf16",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVaultCanonical.canonicalRestore(uint256,address) (src/ZZZVaultCanonical.sol#238-242):\n\tExternal calls:\n\t- _forward(index,true) (src/ZZZVaultCanonical.sol#240)\n\t\t- (ok,None) = address(to).call{value: amount}() (src/libraries/ExactAsset.sol#24)\n\t\t- ExactAsset.push(asset,address(vault),amount) (src/ZZZVaultCanonical.sol#253)\n\tExternal calls sending eth:\n\t- _forward(index,true) (src/ZZZVaultCanonical.sol#240)\n\t\t- (ok,None) = address(to).call{value: amount}() (src/libraries/ExactAsset.sol#24)\n\tState variables written after the call(s):\n\t- released[index] = false (src/ZZZVaultCanonical.sol#241)\n\tZZZVaultCanonical.released (src/ZZZVaultCanonical.sol#40) can be used in cross function reentrancies:\n\t- ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136)\n\t- ZZZVaultCanonical.canonicalRelease(uint256,address) (src/ZZZVaultCanonical.sol#227-232)\n\t- ZZZVaultCanonical.canonicalRestore(uint256,address) (src/ZZZVaultCanonical.sol#238-242)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol",
+      "src/libraries/ExactAsset.sol"
+    ]
+  },
+  {
+    "ordinal": 55,
+    "fingerprint": "645a7b5f2cf6463333aa38f0839213482e27806d02642639e0e7fd2344207779",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#163-193):\n\tExternal calls:\n\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _idle(bucketId,a0 - spent0,a1 - spent1) (src/ZZZVault.sol#191)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 56,
+    "fingerprint": "5115d2dc1cb8941ad2847cfb84047a182fabe6a648f58be0aa039c1db92ca3b5",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#580-596):\n\tExternal calls:\n\t- _reserve(newPool,bucketId) (src/ZZZVault.sol#583)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\t- _migrationCheckpoint(bucketId,0) (src/ZZZVault.sol#585)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#587)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- _migrationCheckpoint(bucketId,1) (src/ZZZVault.sol#588)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _unwind(bucketId,deadline) (src/ZZZVault.sol#590)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tExternal calls sending eth:\n\t- _unwind(bucketId,deadline) (src/ZZZVault.sol#590)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- p.poolId = newPool (src/ZZZVault.sol#592)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 58,
+    "fingerprint": "edd7f8e97d5a6d14b3d4ba299be97c82a7af29728a889636693766125da7f60d",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tState variables written after the call(s):\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 59,
+    "fingerprint": "87d31c09152693cb1b971899b9d3567b20929e2f89292665745bab2f4beeb8b9",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.park(uint256,uint256) (src/ZZZVault.sol#543-552):\n\tExternal calls:\n\t- _harvestVenue(id,deadline) (src/ZZZVault.sol#548)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _close(id,deadline) (src/ZZZVault.sol#549)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\tExternal calls sending eth:\n\t- _harvestVenue(id,deadline) (src/ZZZVault.sol#548)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- _close(id,deadline) (src/ZZZVault.sol#549)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- p.lpTokenId = 0 (src/ZZZVault.sol#391)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- positions[id].status = PositionStatus.Parked (src/ZZZVault.sol#550)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 60,
+    "fingerprint": "275977302515b398a20f178c49cf3d82392c72cc0089f1caa53e9cc1d9591c43",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#289)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#290)\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,None) = _nav(bucketId) (src/ZZZVault.sol#296)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\t- (late0,late1) = _pullCompound(bucketId) (src/ZZZVault.sol#300)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (newLP,newIdle) = _nav(bucketId) (src/ZZZVault.sol#302)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(nftId) (src/ZZZVault.sol#304)\n\t- (issued,netUSD) = migrationBudget.contributionResult(bucketId,inputUSD,supply,incumbentNAV,oldLP + oldIdle + freshCompound,newLP,newIdle,limits) (src/ZZZVault.sol#308-310)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- bucketTotalShares[bucketId] = supply + issued (src/ZZZVault.sol#312)\n\tZZZVault.bucketTotalShares (src/ZZZVault.sol#31) can be used in cross function reentrancies:\n\t- ZZZVault.bucketTotalShares (src/ZZZVault.sol#31)\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- p.depositUSD += inputUSD (src/ZZZVault.sol#314)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 61,
+    "fingerprint": "99442ae967513f5f74f478e4ec1248d22bd1fc923fdf54fa092ff4af69fd9bd9",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#163-193):\n\tExternal calls:\n\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\tExternal calls sending eth:\n\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\tState variables written after the call(s):\n\t- p.centerX96 = ref (src/ZZZVault.sol#182)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#183)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 63,
+    "fingerprint": "55dfa9f1825e56ab7dadc182c1b42b1adc415cef6a935a9e3b321706dbf6ced5",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#515-539):\n\tExternal calls:\n\t- _reserve(pool,id) (src/ZZZVault.sol#526)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#534)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#534)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- p.status = PositionStatus.Active (src/ZZZVault.sol#535)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 64,
+    "fingerprint": "623ceb92734666e3e48a00201d3ec7b0581cbc9af02339b49448fbefcec2df86",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#363-379):\n\tExternal calls:\n\t- _migrationCheckpoint(id,3) (src/ZZZVault.sol#372)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _harvest(id,deadline) (src/ZZZVault.sol#373)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#374)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- _migrationCheckpoint(id,1) (src/ZZZVault.sol#375)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#376)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#373)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#376)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#376)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#182)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#183)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#376)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 65,
+    "fingerprint": "21a1ac6b1c582dc147b8b54f11f7b7f79c77f4393e86dc520d26b8ea40bf7eaf",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424):\n\tExternal calls:\n\t- amountOut = _swap(p,zeroForOne,input,amountIn,minimumOut,deadline) (src/ZZZVault.sol#417)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tState variables written after the call(s):\n\t- _idle(bucketId,p.idle0 - amountIn,p.idle1 + amountOut) (src/ZZZVault.sol#418)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _idle(bucketId,p.idle0 + amountOut,p.idle1 - amountIn) (src/ZZZVault.sol#419)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _idle(bucketId,p.idle0 - amountIn,p.idle1 + amountOut) (src/ZZZVault.sol#418)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n\t- _idle(bucketId,p.idle0 + amountOut,p.idle1 - amountIn) (src/ZZZVault.sol#419)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 66,
+    "fingerprint": "8b1c7b3a180050e2ac214773d236de56e6c69ef1a5a02c2c1945d6e3780df7c9",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#289)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#290)\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,None) = _nav(bucketId) (src/ZZZVault.sol#296)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#182)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#183)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 67,
+    "fingerprint": "eb051748bdb4e856ad5c4f0ec3bca2e632cf45e58fa8640d4f959366552d8cee",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#430-436):\n\tExternal calls:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#432)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#433)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- _migrationCheckpoint(bucketId,1) (src/ZZZVault.sol#434)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _close(bucketId,deadline) (src/ZZZVault.sol#435)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#432)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- _close(bucketId,deadline) (src/ZZZVault.sol#435)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- p.lpTokenId = 0 (src/ZZZVault.sol#391)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _close(bucketId,deadline) (src/ZZZVault.sol#435)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 68,
+    "fingerprint": "05c91afe0c41efe0cb7e601d00294a937a9bf13179977fbaa38c1c930a9f6f64",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 69,
+    "fingerprint": "b1e8336aa2d90588ef7dfb1e2428094ab08078fece0a4532e2e42ca363575c1e",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#363-379):\n\tExternal calls:\n\t- _migrationCheckpoint(id,3) (src/ZZZVault.sol#372)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _harvest(id,deadline) (src/ZZZVault.sol#373)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#374)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tExternal calls sending eth:\n\t- _harvest(id,deadline) (src/ZZZVault.sol#373)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- (amount0,amount1) = _pullCompound(id) (src/ZZZVault.sol#374)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 70,
+    "fingerprint": "1b2c5512bc6bd30b956fd3305d1c6796b3d4230939b3f287d35cca4b587f1d76",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.consolidateHandoff(uint256,address,uint256,uint256) (src/ZZZVault.sol#473-488):\n\tExternal calls:\n\t- out = _swap(p,plan.direction,plan.input,plan.amount,plan.minimum,deadline) (src/ZZZVault.sol#483)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tState variables written after the call(s):\n\t- _idle(id,0,plan.held + out) (src/ZZZVault.sol#484)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _idle(id,plan.held + out,0) (src/ZZZVault.sol#485)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 71,
+    "fingerprint": "9f258212bca1d747b5554079e24082db0936efc1fbe3e5447f34a6775c511637",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#430-436):\n\tExternal calls:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#432)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#433)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#432)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#433)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 72,
+    "fingerprint": "2485c20146bc18f1d6a8c0a2cd0279e347addeae7057cf50c380371bdb1b39b4",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- _idle(bucketId,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#283)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _idle(bucketId,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#283)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 74,
+    "fingerprint": "544153ec86100482b5673a02c197ae94edea8676b195255939dc3f5beb6fbe5e",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#289)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#290)\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\tState variables written after the call(s):\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 75,
+    "fingerprint": "bcfd82bb976938fa97a7ec086fa0ed0ce2884e02fd004b25f6183e2d64646aa0",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#453-470):\n\tExternal calls:\n\t- _migrationCheckpoint(id,0) (src/ZZZVault.sol#465)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _unwind(id,deadline) (src/ZZZVault.sol#466)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#467)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _unwind(id,deadline) (src/ZZZVault.sol#466)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#467)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#467)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#182)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#183)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _redeploy(id,minimumLiquidity,deadline) (src/ZZZVault.sol#467)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 76,
+    "fingerprint": "b8a0ec2e0ca1d74e7cfcbb7468d1e0dd454cbd71c717f1af94e340a77d84db8f",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._redeploy(uint256,uint128,uint256) (src/ZZZVault.sol#442-451):\n\tExternal calls:\n\t- _balanceUsing(bucketId,deadline,! create) (src/ZZZVault.sol#445)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#448)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _put(bucketId,create,minimumLiquidity,deadline) (src/ZZZVault.sol#450)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- _balanceUsing(bucketId,deadline,! create) (src/ZZZVault.sol#445)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#448)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _put(bucketId,create,minimumLiquidity,deadline) (src/ZZZVault.sol#450)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _put(bucketId,create,minimumLiquidity,deadline) (src/ZZZVault.sol#450)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- p.centerX96 = ref (src/ZZZVault.sol#182)\n\t\t- p.lastRebalance = uint64(block.timestamp) (src/ZZZVault.sol#183)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _put(bucketId,create,minimumLiquidity,deadline) (src/ZZZVault.sol#450)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\tZZZVault.totalIdle (src/ZZZVault.sol#41) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.totalIdle (src/ZZZVault.sol#41)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 79,
+    "fingerprint": "333dae6d5d6e29fa042523ac154756e24a909d70384edca3c255d1de729b7b77",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZStrategy._floor(int24,int24) (src/ZZZStrategy.sol#35-39) performs a multiplication on the result of a division:\n\t- quotient = tick / spacing (src/ZZZStrategy.sol#36)\n\t- quotient * spacing (src/ZZZStrategy.sol#38)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 81,
+    "fingerprint": "69f365e6875e9e0f31e2d1986fa98320e4123c44111a376e7ed0b6dab0845bcb",
+    "check": "incorrect-equality",
+    "impact": "Medium",
+    "confidence": "High",
+    "description": "ZZZLiquidityManager._sendNative(address,uint256) (src/ZZZLiquidityManager.sol#71-76) uses a dangerous strict equality:\n\t- amount == 0 (src/ZZZLiquidityManager.sol#72)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 84,
+    "fingerprint": "8f3f7208bb77ca21c1ead8e540607587dd03dbaa72d9295a7f9a2c6bd7aa824a",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):\n\tExternal calls:\n\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\tState variables written after the call(s):\n\t- p.lpTokenId = 0 (src/ZZZVault.sol#391)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _idle(bucketId,p.idle0 + closed0,p.idle1 + closed1) (src/ZZZVault.sol#392)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 87,
+    "fingerprint": "7bc3d66aadbdb61e80db5807f1434695bf89be2688366217197c73f16386b8e7",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#515-539):\n\tExternal calls:\n\t- _reserve(pool,id) (src/ZZZVault.sol#526)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\tState variables written after the call(s):\n\t- p.poolId = pool (src/ZZZVault.sol#527)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- _idle(id,amount0,amount1) (src/ZZZVault.sol#530)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- p.status = PositionStatus.Parked (src/ZZZVault.sol#531)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 89,
+    "fingerprint": "7cab186ae805c3d4bdd9bef6e9f9a648d6223fac014dee3f00c33989ab6d592d",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#580-596):\n\tExternal calls:\n\t- _reserve(newPool,bucketId) (src/ZZZVault.sol#583)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\t- _migrationCheckpoint(bucketId,0) (src/ZZZVault.sol#585)\n\t\t- migrationBudget.checkpoint(bucketId,phase) (src/ZZZVault.sol#439)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#587)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tState variables written after the call(s):\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#587)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 91,
+    "fingerprint": "1c979a74496393251d5ea94dc646aff8464ebee2dd3f6349ef1a9cddf1f5a0fd",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#354-361):\n\tExternal calls:\n\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tState variables written after the call(s):\n\t- _idle(bucketId,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#360)\n\t\t- p.idle0 = new0 (src/ZZZVault.sol#154)\n\t\t- p.idle1 = new1 (src/ZZZVault.sol#155)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 94,
+    "fingerprint": "72d71d5e920e639cd1a7eb6805944bc53f0cadbf5db9c858eb80d9e2e34235b1",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#209-233):\n\tExternal calls:\n\t- _reserve(poolId,bucket) (src/ZZZVault.sol#223)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\tState variables written after the call(s):\n\t- p.poolId = poolId (src/ZZZVault.sol#226)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n\t- p.status = PositionStatus.Active (src/ZZZVault.sol#227)\n\tZZZVault.positions (src/ZZZVault.sol#26) can be used in cross function reentrancies:\n\t- ZZZVault.canonicalWrite(uint8,bytes) (src/ZZZVault.sol#605-635)\n\t- ZZZVault.group(uint256) (src/ZZZVault.sol#81-83)\n\t- ZZZVault.nftStatus(uint256) (src/ZZZVault.sol#75-79)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 96,
+    "fingerprint": "4b290e045d0387eda544aad4003f0d1f63db66d7916c6e3db4bd0d4dbfb41a67",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116):\n\tExternal calls:\n\t- activationAssets.admitPoolAsset(token0) (src/ZZZPoolRegistry.sol#109)\n\t- activationAssets.admitPoolAsset(token1) (src/ZZZPoolRegistry.sol#110)\n\tState variables written after the call(s):\n\t- _setContributionPool(poolId) (src/ZZZPoolRegistry.sol#113)\n\t\t- contributionPool = poolId (src/ZZZPoolRegistry.sol#120)\n\tZZZPoolRegistry.contributionPool (src/ZZZPoolRegistry.sol#32) can be used in cross function reentrancies:\n\t- ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116)\n\t- ZZZPoolRegistry._setContributionPool(bytes32) (src/ZZZPoolRegistry.sol#117-122)\n\t- ZZZPoolRegistry.contributionPool (src/ZZZPoolRegistry.sol#32)\n\t- ZZZPoolRegistry.disablePool(bytes32,bool,bool) (src/ZZZPoolRegistry.sol#70-79)\n\t- _setContributionPool(bytes32(0)) (src/ZZZPoolRegistry.sol#114)\n\t\t- contributionPool = poolId (src/ZZZPoolRegistry.sol#120)\n\tZZZPoolRegistry.contributionPool (src/ZZZPoolRegistry.sol#32) can be used in cross function reentrancies:\n\t- ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116)\n\t- ZZZPoolRegistry._setContributionPool(bytes32) (src/ZZZPoolRegistry.sol#117-122)\n\t- ZZZPoolRegistry.contributionPool (src/ZZZPoolRegistry.sol#32)\n\t- ZZZPoolRegistry.disablePool(bytes32,bool,bool) (src/ZZZPoolRegistry.sol#70-79)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 99,
+    "fingerprint": "846eb7173e9e150e07b4cf86b2055b3bbcb444341738be52115ce6b2469696c3",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256).unit1 (src/ZZZStrategy.sol#218) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 102,
+    "fingerprint": "2d7abdf5463534ee3f1fe92d7d96df0f4c7a814d46e50497d9cb0cdf8669f0a6",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256).unit0 (src/ZZZStrategy.sol#217) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 104,
+    "fingerprint": "3177ad1f8a7edadb655cf203c5c13b5bc1130cbe6ed82ebe4b723e677adf0908",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256).beforePosmNative (src/ZZZLiquidityManager.sol#129) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 107,
+    "fingerprint": "441d749e54d6fdd0f5250f51c7bae8b24e650a2c01ea2ce005279c100520aa7b",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool).freshCompound (src/ZZZVault.sol#285) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 108,
+    "fingerprint": "6b73b21760a491a70e3e649ffa18efd47fa75adab331e8617562abfde11a4e19",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256).nativeValue (src/ZZZLiquidityManager.sol#126) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 112,
+    "fingerprint": "498ef9daed31c4098fa4e1ab384d4e0377a3c5c216ed037b23f4b5dcdee4cabc",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget._beforeMove(uint256).s (src/ZZZMigrationBudget.sol#120) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "ordinal": 113,
+    "fingerprint": "f6d3b3079a22af422d3761c26fef0265d0c9cce1b1b67b69f753ae6435bb1e11",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.validateReservation(bytes32,uint256) (src/ZZZMigrationBudget.sol#226-231) ignores return value by IZZZPools(access.module(Ids.POOLS)).get(poolId) (src/ZZZMigrationBudget.sol#228)\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "ordinal": 114,
+    "fingerprint": "7edac9945bc2c90267d163e20d591fe6b23f7c22a762ce74332ba5c276090b30",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZStrategy._pairPrices(PoolConfig) (src/ZZZStrategy.sol#199-207) ignores return value by (p.second.lower,p.second.upper,None) = oracle.priceBounds(c.key.currency1) (src/ZZZStrategy.sol#202)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 117,
+    "fingerprint": "a2042ee427b8bf460453c96107f684c9b25784c6924271678babf13995821d80",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#235-259) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#258)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 118,
+    "fingerprint": "35fc14da29e6dede0373943704f038eca5d4294ed45583046af5988a62480900",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.validateUnwind(uint256) (src/ZZZMigrationBudget.sol#238-240) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault).group(id).poolId) (src/ZZZMigrationBudget.sol#239)\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "ordinal": 120,
+    "fingerprint": "7d42e795b60067530c17f645691b7390e8aa0d310c6e8e442e54ab2d34914641",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#56-58) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#57)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 121,
+    "fingerprint": "2b88c07f504e7af1e29c686b7feca31f5c21d1b6af4b0a77624f7fd95bd55ddd",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZV4RouteExecutor._check(ZZZV4RouteExecutor.Policy) (src/ZZZV4RouteExecutor.sol#88-101) ignores return value by (price,None,None,lpFee) = view_.getSlot0(keccak256(bytes)(abi.encode(k))) (src/ZZZV4RouteExecutor.sol#98)\n",
+    "files": [
+      "src/ZZZV4RouteExecutor.sol"
+    ]
+  },
+  {
+    "ordinal": 122,
+    "fingerprint": "69072e0a53c93754aef5359a990d47e69d2ad20967feed12ce02dae082fbe79b",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by oracle.price(token0) (src/ZZZPoolRegistry.sol#105)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 123,
+    "fingerprint": "df787610ec821d3ad7a969d88f8051762be9e6f51a470379aac708221e91d1c6",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZStrategy._pairPrices(PoolConfig) (src/ZZZStrategy.sol#199-207) ignores return value by (p.first.lower,p.first.upper,None) = oracle.priceBounds(c.key.currency0) (src/ZZZStrategy.sol#201)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 124,
+    "fingerprint": "6c65f702ba349f9e99cb2d9cd55a56936bddbf8079769482de9c7cca8680ce28",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by activationAssets.admitPoolAsset(token0) (src/ZZZPoolRegistry.sol#109)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 125,
+    "fingerprint": "c8f2194ff1a519d8452dfd1e3b4ff9f458ffaff675636321628d2a921271045b",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager.ticks(uint256) (src/ZZZLiquidityManager.sol#216-219) ignores return value by (None,info) = posm.getPoolAndPositionInfo(id) (src/ZZZLiquidityManager.sol#217)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 126,
+    "fingerprint": "c483ace8c42448cbd43bdcb62831ee8abe242c51b5524723a1c76363316a89e2",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by oracle.price(token1) (src/ZZZPoolRegistry.sol#106)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 127,
+    "fingerprint": "6d67b1633d2fdedd949756251ad6057d4609448bf422a4cc3fc37a2fc16a21b2",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry.configureNative(PoolConfig) (src/ZZZPoolRegistry.sol#53-66) ignores return value by (price,None,None,lpFee) = IStateViewMinimal(STATE).getSlot0(poolId) (src/ZZZPoolRegistry.sol#63)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 128,
+    "fingerprint": "7a83af78de1b6c36ddf6f009f1140f6deae9250576abaf58aed070982934b7d1",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by activationAssets.admitPoolAsset(token1) (src/ZZZPoolRegistry.sol#110)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 130,
+    "fingerprint": "1c346971a020e00c69e0f3c35b513a8223391067dd0bba6370c3603e47cc671a",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256) (src/ZZZStrategy.sol#211-253) ignores return value by (None,None,protocol,lpFee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId) (src/ZZZStrategy.sol#239)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 131,
+    "fingerprint": "b9bd3274566d1ddd54effb4f18308b461a2bb893f6f934e0fe92939a3df0376d",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#235-259) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#241)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 132,
+    "fingerprint": "26f687d402966dc0b4960464af3b90c499f06698df0023111c4e20b9fbfad90a",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalImport(uint256,bytes) (src/ZZZVaultCanonical.sol#163-222) ignores return value by IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId) (src/ZZZVaultCanonical.sol#188)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 144,
+    "fingerprint": "07ef791cd3ee4d15cbe68e26786e7334007b7b7ae21cfc24ffa1ec3f300846b7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#93)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 145,
+    "fingerprint": "785f2f795299a043839007daf6611c1d735e7b294bf74979c946aa7b73601876",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#197)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 149,
+    "fingerprint": "022f66b045cc57a9d71005a624323f71c98bf2547b9eaeb667e952799a0230b1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#184)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 151,
+    "fingerprint": "f4dc263beb65ff83a7bd066b8597aa7e4fe6f01e4512be187a187efe655249d3",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: id = vault.bucketAt(i) (src/ZZZVaultCanonical.sol#116)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 157,
+    "fingerprint": "34e5fa02ed81d541e31d4f8675ba8519dfd9d5a6019a9950d3cdafca9906bd67",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.increase(uint256,uint256,uint256,uint128,uint256)\n\t\tZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 161,
+    "fingerprint": "477fd397bf9430decb40209a2273dd0503d155d807746483907c29ec30c96710",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 171,
+    "fingerprint": "b53fffeeef9e3a982d6a95cc49f0c5aad627bd90563e67adc42ef80853a22aba",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._moduleLiquidity() (src/ZZZVault.sol#657-659) has external calls inside a loop: access.module(Ids.LIQUIDITY) (src/ZZZVault.sol#658)\n\tCalls stack containing the loop:\n\t\tZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n\t\tZZZVault._swap(Position,bool,address,uint256,uint256,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 173,
+    "fingerprint": "ca01063b46a209917d2b63996ca135e47bd3cecdb0af8d8e75f3dd15212333a4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 174,
+    "fingerprint": "48e005318375059ed98b36ee848fe1ee40652ff60716e4b7a39e632423803ddb",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: i_scope_0 < rewards.assetCount() (src/ZZZVaultCanonical.sol#125)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 179,
+    "fingerprint": "983da5b814aa6042636c906ae2a556ceb51e754ed58042fdaa8a284e47da1712",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0 (src/ZZZContributionPricing.sol#95)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 180,
+    "fingerprint": "222932c9fc9fa1ca291afce8c7b1fc05c8439243e4d35e6c5564b3594c0e9771",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.rebalance(uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 181,
+    "fingerprint": "ad071099606d221731a8d87d216115ea6a708564a31becc40c409ca3102529a2",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 182,
+    "fingerprint": "949ac5fafc0edaec0773923d12d4b74cd84407fa41c9e5bcb05d83907bab4b33",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#198-199)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 183,
+    "fingerprint": "e86a0a6ba16ab7f9e36bab4e709c7271bfeec7777564fb94276be7ab265204c1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) (src/ZZZContributionPricing.sol#186)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 189,
+    "fingerprint": "22ec98cb32b3d19d09cf24f4e5b8c64655f7c22b6a1fc93a400b76690d191850",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 191,
+    "fingerprint": "a04b5edc850393ee34863487dae9ef3305e3b1df350eeb034c23130d73bc919f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: p = vault.group(id) (src/ZZZVaultCanonical.sol#117)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 194,
+    "fingerprint": "6708baa52d49e76f42141b4cec5262cf1244e399055a0dfa9f14a8c8b13fb641",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.rebalance(uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 201,
+    "fingerprint": "ba33a71ff73a80ef3117f336e11228ffca74e25bbf3a0a76e67004d22fda5e81",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 202,
+    "fingerprint": "4d0da2ceb5e7f021e2b40c9a8e3f07a753389e6d1dc4a149f0300511e6bd50bd",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.increase(uint256,uint256,uint256,uint128,uint256)\n\t\tZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 204,
+    "fingerprint": "de3c59bf4ff47960057aa4932e14851e268f6beaca41a90bd2040c24892fb6f2",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.resume(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 205,
+    "fingerprint": "c0506ec0208c76a53796d7603c17a4b587093e45bc53b0caea0956ec172dee3b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._mark(address) (src/ZZZContributionPricing.sol#64-71) has external calls inside a loop: (lower,upper,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#67)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n\t\tZZZContributionPricing._historicalMarks(uint256)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 210,
+    "fingerprint": "432b43fab7b895df23d390c94d6e91696674e2bf8e90ea11d99f83dfa4ead819",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.rebalance(uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 212,
+    "fingerprint": "1063fe6354484fc48fc343467388d1f964a8d50b2a328bfd41355093dc7c3a2a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#198-199)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.endEntry()\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 213,
+    "fingerprint": "dd88789cc4a377aaa85b25c143d87300e73213ca12a4df9e59b8fb100be5206d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#198-199)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 215,
+    "fingerprint": "bfb83c2488b3635a70c692022f0297661087f2bde315c89e66168116366e9030",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 216,
+    "fingerprint": "11cdcf82e38f769169fa31b710bce1d243a53157b8fec4a51fc5bf7b075ac0fc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.increase(uint256,uint256,uint256,uint128,uint256)\n\t\tZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 217,
+    "fingerprint": "2c6be9f9cd6be16fd3a8003f6cc545325847b2ba4051d401780d15d8227d6775",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#184)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 222,
+    "fingerprint": "ed48996a59863293888df117ef1fd09c8efeba4dd94dac4a995ee37c71af926f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0 (src/ZZZContributionPricing.sol#95)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 224,
+    "fingerprint": "b0de90bb1ccd6a818194f5e9e14d703d975cc12e334f1d7b705a028d830fdf46",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: asset = rewards.assets(i_scope_0) (src/ZZZVaultCanonical.sol#126)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 230,
+    "fingerprint": "20539e42537b29914704da9cfd747ffca7a6c6a01e2088b3b3d8b75ad94fb7ea",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) (src/ZZZContributionPricing.sol#186)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 232,
+    "fingerprint": "9a70d5fdcde7c2d844af549b8ebde354965008d77c5b43d21dcfd5600facc6f8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 234,
+    "fingerprint": "50c62342a26f6fe19812976cab3e450444dd017bc24145ce6024ad85603b4a58",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._mark(address) (src/ZZZContributionPricing.sol#64-71) has external calls inside a loop: marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint) (src/ZZZContributionPricing.sol#69)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n\t\tZZZContributionPricing._historicalMarks(uint256)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 236,
+    "fingerprint": "e4265de06ce112732fe7b1816b6f16db92cf54611a7583558664d66a792c4672",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: balance < vault.totalIdle(asset) (src/ZZZVaultCanonical.sol#129)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 237,
+    "fingerprint": "0cdaa07b0209b127b00ea7af0e4be5e9f4a9bda00998974805294e4c70d7c3d6",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.compound(uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 240,
+    "fingerprint": "785cfb705696158e6fc3394e580f94b0e8d0fddc0beecf7799b9862d3b766f2e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: IZZZMigration(access.module(Ids.MIGRATION)).activePlan(id) != bytes32(0) (src/ZZZVaultCanonical.sol#121)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 247,
+    "fingerprint": "2e33a6856aff6c04b57ff9bb4978badcb8deb99a3ec7e4d692609b03b9c0b9a6",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#197)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 253,
+    "fingerprint": "72c1204c73cb3d4bff92f2e1170849c7c5a5a277f18788454b7602a7a098d302",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#197)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.finish(uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 255,
+    "fingerprint": "bf36a26586a36ce079c25287eae3ce0fffa8be1efbca89125f2430633f6b2362",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._moduleLiquidity() (src/ZZZVault.sol#657-659) has external calls inside a loop: access.module(Ids.LIQUIDITY) (src/ZZZVault.sol#658)\n\tCalls stack containing the loop:\n\t\tZZZVault.movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n\t\tZZZVault._swap(Position,bool,address,uint256,uint256,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 258,
+    "fingerprint": "07bb986bd71338b2b96c673c97d401c13e50ddf2a82359bf787b998970ae956f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.resume(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 260,
+    "fingerprint": "cbdc017c9d46b7e4508ea4aa0917545824ace6e192ceab09185bcd083528601f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.compound(uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 263,
+    "fingerprint": "b29e96f71b6edf88c91932a0f760d74a51d2775604907a3c6a1a315ad7df2e27",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._moduleLiquidity() (src/ZZZVault.sol#657-659) has external calls inside a loop: access.module(Ids.LIQUIDITY) (src/ZZZVault.sol#658)\n\tCalls stack containing the loop:\n\t\tZZZVault.resume(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n\t\tZZZVault._swap(Position,bool,address,uint256,uint256,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 267,
+    "fingerprint": "bb6c00543fd89c4e63cdedf710ea4810727ee2f4e4a2831a38a725124ab80f4c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0 (src/ZZZContributionPricing.sol#95)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 270,
+    "fingerprint": "6b7ffcee7f03f68bc54206c13f71e14f9c0fb3397980e86aa2efa0b21ca02bd4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0 || vault.bucketTotalShares(id) != 0 (src/ZZZVaultCanonical.sol#119)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 271,
+    "fingerprint": "31f92b5a7652b36e9192a47abcf47ca754f8c03acd075d8a6bda69af48ce3672",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 274,
+    "fingerprint": "3b2b2f4c2c3c20b3482ca7a7830b354ea8adcbd072b74b887e245c077955dcee",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.resume(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._movePool(uint256,bytes32,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 276,
+    "fingerprint": "7d7dfd79333daaf996fde65c457de01dd08e13003e6dbc1eec750d77f7288c41",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)\n\tCalls stack containing the loop:\n\t\tZZZVault.compound(uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 277,
+    "fingerprint": "a1e4dca79a2d193d9f6596655f782cd1ff444db760c02f011b937d0c9f477bcd",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#93)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.begin(uint256,uint256,uint256,uint256,uint32)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 278,
+    "fingerprint": "7855809c5d0cac93f4ba825ad088ef67324a95e207a9ff62ee43366a0f5b2137",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#93)\n\tCalls stack containing the loop:\n\t\tZZZContributionPricing.beginEntryReviewed(uint256,bytes32,address,uint256,uint16)\n",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 279,
+    "fingerprint": "d97b014fd8cca2462f13063840fa04b2c4274f431eac8de475c52d52e470b16c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tCalls stack containing the loop:\n\t\tZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256)\n\t\tZZZVault._redeploy(uint256,uint128,uint256)\n\t\tZZZVault._balanceUsing(uint256,uint256,bool)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 281,
+    "fingerprint": "221acfcd4bff9d025833a5556ce95c9bab21440301665fb4623de93a906ac99c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalValidate() (src/ZZZVaultCanonical.sol#255-266) has external calls inside a loop: importedShares[id] != vault.bucketTotalShares(id) (src/ZZZVaultCanonical.sol#260)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 282,
+    "fingerprint": "ee7c48cbbd675f05e54cdd0cbf7d3c6b4346ac6009b68ae1e1784b993d9d5bd1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalValidate() (src/ZZZVaultCanonical.sol#255-266) has external calls inside a loop: id = vault.bucketAt(i) (src/ZZZVaultCanonical.sol#259)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 284,
+    "fingerprint": "ee48aa9407ae47ab5e3ef887510066bc184051fc75da9394c14027e7d4bb9672",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116):\n\tExternal calls:\n\t- activationAssets.admitPoolAsset(token0) (src/ZZZPoolRegistry.sol#109)\n\t- activationAssets.admitPoolAsset(token1) (src/ZZZPoolRegistry.sol#110)\n\tState variables written after the call(s):\n\t- exists[poolId] = true (src/ZZZPoolRegistry.sol#112)\n\t- pools[poolId] = config (src/ZZZPoolRegistry.sol#111)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 285,
+    "fingerprint": "9ee92f5841e968325be56a61371a4f0139d303a5ab12e9e0019bfed8eb056455",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager._settleTakePair(PoolKey,uint8,bytes[],uint256) (src/ZZZLiquidityManager.sol#192-203):\n\tExternal calls:\n\t- posm.modifyLiquidities(abi.encode(abi.encodePacked(action,TAKE_PAIR),parameters),deadline) (src/ZZZLiquidityManager.sol#198)\n\t- _finishNativeCredit(beforeNative,access.module(Ids.VAULT)) (src/ZZZLiquidityManager.sol#200)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#74)\n\tExternal calls sending eth:\n\t- _finishNativeCredit(beforeNative,access.module(Ids.VAULT)) (src/ZZZLiquidityManager.sol#200)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#74)\n\tState variables written after the call(s):\n\t- _finishNativeCredit(beforeNative,access.module(Ids.VAULT)) (src/ZZZLiquidityManager.sol#200)\n\t\t- nativeSender = address(0) (src/ZZZLiquidityManager.sol#78)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 286,
+    "fingerprint": "3020a59a2781392515ba03015fd269a90a6184dff9c0480659d5c7759c38eaf3",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):\n\tExternal calls:\n\t- _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps) != grossUSD (src/ZZZActivationEntry.sol#243)\n\t- acquired = _convertV4(request,output,sourceBaseline,outputBaseline) (src/ZZZActivationEntry.sol#249)\n\t\t- acquired = v4Executor.execute{value: r.amountIn}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t\t- acquired = v4Executor.execute{value: 0}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t- acquired = IV3RouteRouter(policy.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,output,policy.fee,address(this),request.amountIn,request.minimumOut,0)) (src/ZZZActivationEntry.sol#252-253)\n\tExternal calls sending eth:\n\t- acquired = _convertV4(request,output,sourceBaseline,outputBaseline) (src/ZZZActivationEntry.sol#249)\n\t\t- acquired = v4Executor.execute{value: r.amountIn}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t\t- acquired = v4Executor.execute{value: 0}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\tState variables written after the call(s):\n\t- context = Context(msg.sender,request.nftId,keccak256(bytes)(payload),request.poolId,amount0,amount1,grossUSD) (src/ZZZActivationEntry.sol#269)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 287,
+    "fingerprint": "c0fa53826825bbf0acf6927f03ae5ced5d02f09196977508d4e92dc82660be6f",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#209-233):\n\tExternal calls:\n\t- _reserve(poolId,bucket) (src/ZZZVault.sol#223)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\tState variables written after the call(s):\n\t- homePoolId[bucket] = poolId (src/ZZZVault.sol#224)\n\t- nftBucket[id] = bucket (src/ZZZVault.sol#230)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 288,
+    "fingerprint": "cb3afb585534f84aa5d985df03b404768c56906e7f8bde3962db5639b7e83599",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.consolidateHandoff(uint256,address,uint256,uint256) (src/ZZZVault.sol#473-488):\n\tExternal calls:\n\t- out = _swap(p,plan.direction,plan.input,plan.amount,plan.minimum,deadline) (src/ZZZVault.sol#483)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\tState variables written after the call(s):\n\t- _idle(id,0,plan.held + out) (src/ZZZVault.sol#484)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n\t- _idle(id,plan.held + out,0) (src/ZZZVault.sol#485)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 290,
+    "fingerprint": "fd35fb04f6c8bc4c294ec4ce0e7e928ccdb6aff1369ee51c15f533b20109a126",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#260-293):\n\tExternal calls:\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#276)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#281)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#266-267)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#266-267)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZLiquidityManager.sol#287)\n\t- nativeSender = address(poolManager) (src/ZZZLiquidityManager.sol#286)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 291,
+    "fingerprint": "bfa34064e3eed8e0c1f4697de1119e913d81444275872cc0fb6c992f3ae42fcb",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#163-193):\n\tExternal calls:\n\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tExternal calls sending eth:\n\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- _idle(bucketId,a0 - spent0,a1 - spent1) (src/ZZZVault.sol#191)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 292,
+    "fingerprint": "b3057c38f494112fcb8ec66770fc6cfc11d36c51d989bdc68e7bc9355675af3e",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVaultCanonical.canonicalImport(uint256,bytes) (src/ZZZVaultCanonical.sol#163-222):\n\tExternal calls:\n\t- vault.canonicalWrite(0,abi.encode(nftCount)) (src/ZZZVaultCanonical.sol#174)\n\tState variables written after the call(s):\n\t- imported = true (src/ZZZVaultCanonical.sol#175)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 295,
+    "fingerprint": "003946dbeeaf399f650ea9dd60c0b4f7ee2fb0e00f19c297baa94df6ceb628b2",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#260-293):\n\tExternal calls:\n\t- poolManager.sync(input) (src/ZZZLiquidityManager.sol#276)\n\t- poolManager.settle() != amountIn (src/ZZZLiquidityManager.sol#281)\n\t- poolManager.take(output,address(this),amountOut) (src/ZZZLiquidityManager.sol#288)\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#290)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#74)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZLiquidityManager.sol#266-267)\n\t- delta = poolManager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZLiquidityManager.sol#266-267)\n\tExternal calls sending eth:\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#290)\n\t\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#74)\n\tState variables written after the call(s):\n\t- _finishNativeCredit(beforeNative,recipient) (src/ZZZLiquidityManager.sol#290)\n\t\t- nativeSender = address(0) (src/ZZZLiquidityManager.sol#78)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 296,
+    "fingerprint": "2086468f10dded12003f06958cf0f567e8a72f86ec3d3a91b88e11c85ba0152c",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):\n\tExternal calls:\n\t- IZZZLiquidity(_moduleLiquidity()).close(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#387)\n\tState variables written after the call(s):\n\t- _idle(bucketId,p.idle0 + closed0,p.idle1 + closed1) (src/ZZZVault.sol#392)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 298,
+    "fingerprint": "032885b7ec411b30c93229de4805d5a9f189faef5f757022661dc1e06e86f244",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#515-539):\n\tExternal calls:\n\t- _reserve(pool,id) (src/ZZZVault.sol#526)\n\t\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\tState variables written after the call(s):\n\t- _idle(id,amount0,amount1) (src/ZZZVault.sol#530)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 301,
+    "fingerprint": "4b0ef57285e696bc9316528df8f31c717ff83dff1645ab0c9b058e8589ec07bb",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZV4RouteExecutor.unlockCallback(bytes) (src/ZZZV4RouteExecutor.sol#135-167):\n\tExternal calls:\n\t- manager.sync(source) (src/ZZZV4RouteExecutor.sol#150)\n\t- manager.settle() != amountIn (src/ZZZV4RouteExecutor.sol#155)\n\t- manager.take(output,address(this),amountOut) (src/ZZZV4RouteExecutor.sol#160)\n\t- delta = manager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZV4RouteExecutor.sol#143-144)\n\t- delta = manager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZV4RouteExecutor.sol#143-144)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZV4RouteExecutor.sol#163)\n\t- nativeSender = address(0) (src/ZZZV4RouteExecutor.sol#163)\n",
+    "files": [
+      "src/ZZZV4RouteExecutor.sol"
+    ]
+  },
+  {
+    "ordinal": 302,
+    "fingerprint": "eac0b6f958c364de869dba4e7c727a0d26c6a55fe1bf03336c3a15be5b270854",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#354-361):\n\tExternal calls:\n\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\tState variables written after the call(s):\n\t- _idle(bucketId,p.idle0 + amount0,p.idle1 + amount1) (src/ZZZVault.sol#360)\n\t\t- totalIdle[token0] = totalIdle[token0] - p.idle0 + new0 (src/ZZZVault.sol#152)\n\t\t- totalIdle[token1] = totalIdle[token1] - p.idle1 + new1 (src/ZZZVault.sol#153)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 303,
+    "fingerprint": "63ef543322b64b2f1fc4aae809f0bd7b40f80691382802a6eacdaede4a81c00b",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZV4RouteExecutor.unlockCallback(bytes) (src/ZZZV4RouteExecutor.sol#135-167):\n\tExternal calls:\n\t- manager.sync(source) (src/ZZZV4RouteExecutor.sol#150)\n\t- manager.settle() != amountIn (src/ZZZV4RouteExecutor.sol#155)\n\t- delta = manager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MIN_SQRT_PRICE + 1),bytes()) (src/ZZZV4RouteExecutor.sol#143-144)\n\t- delta = manager.swap(key,IPoolManagerMinimal.SwapParams(zeroForOne,- int256(amountIn),TickMath.MAX_SQRT_PRICE - 1),bytes()) (src/ZZZV4RouteExecutor.sol#143-144)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZV4RouteExecutor.sol#159)\n\t- nativeSender = msg.sender (src/ZZZV4RouteExecutor.sol#159)\n",
+    "files": [
+      "src/ZZZV4RouteExecutor.sol"
+    ]
+  },
+  {
+    "ordinal": 306,
+    "fingerprint": "342305c8cd7f031fad3e4168de1588662ad6184260aed0d181d82986c6fb6080",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136):\n\tExternal calls:\n\t- vault.canonicalBarrier() (src/ZZZVaultCanonical.sol#108)\n\tState variables written after the call(s):\n\t- accepted[i_scope_0] = false (src/ZZZVaultCanonical.sol#133)\n\t- aliasCount = aliases.length (src/ZZZVaultCanonical.sol#114)\n\t- delete backingAmounts (src/ZZZVaultCanonical.sol#112)\n\t- backingAmounts.push(balance) (src/ZZZVaultCanonical.sol#130)\n\t- delete backingAssets (src/ZZZVaultCanonical.sol#112)\n\t- backingAssets.push(asset) (src/ZZZVaultCanonical.sol#130)\n\t- captured = true (src/ZZZVaultCanonical.sol#135)\n\t- groupCount = vault.bucketCount() (src/ZZZVaultCanonical.sol#114)\n\t- imported = false (src/ZZZVaultCanonical.sol#113)\n\t- nftCount = vault.sequence() (src/ZZZVaultCanonical.sol#114)\n\t- released[i_scope_0] = false (src/ZZZVaultCanonical.sol#133)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 307,
+    "fingerprint": "2e032c0ae4df53711466c1c3b75ced2604e08ab6bb605ea5fc0f2d497b551984",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZActivationEntry._convertV4(ZZZActivationEntry.Request,address,uint256,uint256) (src/ZZZActivationEntry.sol#187-200):\n\tExternal calls:\n\t- acquired = v4Executor.execute{value: r.amountIn}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t- acquired = v4Executor.execute{value: 0}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\tState variables written after the call(s):\n\t- nativeReceived = 0 (src/ZZZActivationEntry.sol#199)\n\t- nativeSender = address(0) (src/ZZZActivationEntry.sol#194)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 308,
+    "fingerprint": "77aaaff6b012d208d885dc2c0ebc3ccc9028de0a4e5163460d520a9d7afad4ad",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):\n\tExternal calls:\n\t- (token0,token1,limits) = migrationBudget.validateContribution(nftId,bucketId,inputUSD,amount0 | (amount1 << 128),minimumLiquidity,activation) (src/ZZZVault.sol#266-268)\n\t- IZZZMembership(access.module(Ids.MEMBERSHIP)).settleDust() (src/ZZZVault.sol#272)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#275)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#276)\n\t- _pullCompound(bucketId) (src/ZZZVault.sol#277)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,oldIdle) = _nav(bucketId) (src/ZZZVault.sol#279)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZLiquidity(_moduleLiquidity()).collect(p.poolId,p.lpTokenId,deadline) (src/ZZZVault.sol#339)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- fees.flushDust(bucketId,token0) (src/ZZZVault.sol#289)\n\t- fees.flushDust(bucketId,token1) (src/ZZZVault.sol#290)\n\t- (f0,f1) = _pullCompound(bucketId) (src/ZZZVault.sol#291)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (oldLP,None) = _nav(bucketId) (src/ZZZVault.sol#296)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- IPositionManagerMinimal(manager.positionManager()).approve(address(manager),p.lpTokenId) (src/ZZZVault.sol#181)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\t- (late0,late1) = _pullCompound(bucketId) (src/ZZZVault.sol#300)\n\t\t- amount0 = fees.releaseCompound(bucketId,token0) (src/ZZZVault.sol#358)\n\t\t- amount1 = fees.releaseCompound(bucketId,token1) (src/ZZZVault.sol#359)\n\t- (newLP,newIdle) = _nav(bucketId) (src/ZZZVault.sol#302)\n\t\t- migrationBudget.contributionNav(bucketId) (src/ZZZVault.sol#250)\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointOwner(nftId) (src/ZZZVault.sol#304)\n\t- (issued,netUSD) = migrationBudget.contributionResult(bucketId,inputUSD,supply,incumbentNAV,oldLP + oldIdle + freshCompound,newLP,newIdle,limits) (src/ZZZVault.sol#308-310)\n\tExternal calls sending eth:\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#274)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _balanceUsing(bucketId,deadline,supply != 0) (src/ZZZVault.sol#284)\n\t\t- output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t\t- output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)\n\t- _harvest(bucketId,deadline) (src/ZZZVault.sol#288)\n\t\t- IZZZFees(fees).allocate{value: amount}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t\t- IZZZFees(fees).allocate{value: 0}(bucketId,token,amount) (src/ZZZVault.sol#324)\n\t- _put(bucketId,supply == 0,minimumLiquidity,deadline) (src/ZZZVault.sol#299)\n\t\t- (p.lpTokenId,spent0,spent1) = manager.mint{value: nativeValue}(p.poolId,lower,upper,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#179-180)\n\t\t- (spent0,spent1) = manager.increase{value: nativeValue}(p.poolId,p.lpTokenId,a0,a1,minimumLiquidity,deadline) (src/ZZZVault.sol#185-186)\n\tState variables written after the call(s):\n\t- contributionUSD[nftId] += inputUSD (src/ZZZVault.sol#313)\n\t- sharesOf[nftId] += issued (src/ZZZVault.sol#311)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 311,
+    "fingerprint": "2d62ac462b06c54d06cdf215eddd88b5ddbceb51af8729ce38020df7531d3790",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):\n\tExternal calls:\n\t- _pricing().beginEntryReviewed(request.nftId,request.poolId,source,request.amountIn,maximumLossBps) != grossUSD (src/ZZZActivationEntry.sol#243)\n\t- acquired = _convertV4(request,output,sourceBaseline,outputBaseline) (src/ZZZActivationEntry.sol#249)\n\t\t- acquired = v4Executor.execute{value: r.amountIn}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t\t- acquired = v4Executor.execute{value: 0}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t- acquired = IV3RouteRouter(policy.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,output,policy.fee,address(this),request.amountIn,request.minimumOut,0)) (src/ZZZActivationEntry.sol#252-253)\n\t- (success,result) = vault.call{value: acquired}(payload) (src/ZZZActivationEntry.sol#270)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#270)\n\tExternal calls sending eth:\n\t- acquired = _convertV4(request,output,sourceBaseline,outputBaseline) (src/ZZZActivationEntry.sol#249)\n\t\t- acquired = v4Executor.execute{value: r.amountIn}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t\t- acquired = v4Executor.execute{value: 0}(r.routeId,r.amountIn,r.minimumOut,r.deadline) (src/ZZZActivationEntry.sol#192-193)\n\t- (success,result) = vault.call{value: acquired}(payload) (src/ZZZActivationEntry.sol#270)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#270)\n\tState variables written after the call(s):\n\t- delete context (src/ZZZActivationEntry.sol#272)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 312,
+    "fingerprint": "5d4f19ca1fd363614bfd5bf1b9c6a43047a9413504c096ba06fac015d9874bd1",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116):\n\tExternal calls:\n\t- activationAssets.admitPoolAsset(token0) (src/ZZZPoolRegistry.sol#109)\n\t- activationAssets.admitPoolAsset(token1) (src/ZZZPoolRegistry.sol#110)\n\tEvent emitted after the call(s):\n\t- ContributionPoolChanged(previous,poolId) (src/ZZZPoolRegistry.sol#121)\n\t\t- _setContributionPool(poolId) (src/ZZZPoolRegistry.sol#113)\n\t- ContributionPoolChanged(previous,poolId) (src/ZZZPoolRegistry.sol#121)\n\t\t- _setContributionPool(bytes32(0)) (src/ZZZPoolRegistry.sol#114)\n\t- PoolConfigured(poolId,k.currency0,k.currency1) (src/ZZZPoolRegistry.sol#115)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 313,
+    "fingerprint": "cee478ea19b67c9abb62237ba981d1f8a2cdc985b3c45c821a5c5cb783018fcc",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZVault._reserve(bytes32,uint256) (src/ZZZVault.sol#112-118):\n\tExternal calls:\n\t- canonicalModule().registerAlias(pool,bucketId) (src/ZZZVault.sol#116)\n\tEvent emitted after the call(s):\n\t- PoolReserved(pool,bucketId) (src/ZZZVault.sol#117)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 315,
+    "fingerprint": "a90398198684958907845a5640e5ff2a76740b7618848784d4592cb9ad96fc35",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZStrategy.applyKeeperRange(bytes32) (src/ZZZStrategy.sol#128-135):\n\tExternal calls:\n\t- IRangeRegistry(access.module(Ids.POOLS)).applyKeeperRange(poolId,next) (src/ZZZStrategy.sol#133)\n\tEvent emitted after the call(s):\n\t- KeeperRangeSelected(poolId,previous,next,keeperRangePolicy[poolId].reviewHash) (src/ZZZStrategy.sol#134)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  }
+]

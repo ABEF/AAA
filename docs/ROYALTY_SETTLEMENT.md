@@ -1,6 +1,23 @@
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+
+## Late receipts after retirement
+
+`RoyaltyRewards.forwardLate(asset)` forwards only an asset already admitted by
+the retired source ledger, to its fixed immediate successor. Once retired,
+governance cannot add a previously unknown currency there. An arbitrary new
+ERC20 sent to an old receiver is therefore outside the implemented recovery
+support. Existing admitted ETH/ERC20 late receipts retain their original path.
+
+Before a handoff, inventory actual marketplace currencies/old signed orders and
+cached receiver addresses; admit/qualify intended currencies before receipt or
+retirement, and update supported marketplace configuration. Do not infer a
+universal settlement-currency ban from collection pricing preferences.
+An extension for bounded forwarding of genuinely unadmitted currencies to the
+fixed successor would require explicit policy, quarantine/backing/security and
+size review before sealing; an arbitrary operator sweep is not equivalent.
+The current release retains its admitted-only behavior. See [rights audit](../reports/full-audit-20261025/RIGHTS.md).
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their
@@ -19,7 +36,8 @@ receive royalties in ETH. Stablecoin conversion is conditional: if USDC/USDG
 royalties cannot be excluded from the supported marketplace settlement flows,
 enable the implemented guarded conversion after qualification. Do not admit arbitrary currencies or assume
 a ticker identifies a reviewed token. Activation inputs remain a separate policy;
-this decision does not remove USDC/USDG from the intended activation inputs.
+current activation/growth accepts only native ETH or the fixed deployment ZZZ.
+USDC/USDG/WETH remain separately reviewed royalty/conversion currencies, not user contribution inputs.
 
 Rarity and its multiplier are fixed at reveal before activation. Activation adds
 LP and enables the existing Commun/Rare/Legendary royalty weight of 1/2/3. The

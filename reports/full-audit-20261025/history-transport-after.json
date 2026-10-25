@@ -1,0 +1,23 @@
+{
+  "observed_at_utc": "2026-10-25T22:40:02.795138+00:00",
+  "phase": "after",
+  "scope": "Four new offline transport/SQLite history-audit methods, using real Rpc.call with HTTP replaced by a fixture. No public RPC, signing or existing database writes.",
+  "selected_methods": [
+    "test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit",
+    "test_canonical_wire_quantity_injected_adapter_remains_supported",
+    "test_boolean_float_wrong_or_noncanonical_chain_ids_fail_without_database_changes",
+    "test_actual_transport_wrong_network_stays_fail_closed_before_history"
+  ],
+  "tests_run": 4,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "elapsed_seconds": 0.672,
+  "source_sha256": {
+    "frontend_api/history_audit.py": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "tests_python/test_history_audit_transport.py": "d88dbfaff7a38e2c9ebb4e952d157f186396f658307c0938fa9b62ccee1710bf"
+  },
+  "sources_unchanged": true
+}

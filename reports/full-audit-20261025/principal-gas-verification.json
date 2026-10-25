@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "distinct_final_methods": 1,
+  "selected_method": "testMaximumOptionalRoyaltyGasFaultsFitReviewedActivationBudget",
+  "test_source_sha256": "08ec71156b54ae60f1ec63b1c5fbcd2dfca0e36d2517d9da50ae05799c14fdd6",
+  "original_source_sha256": "debede3af5b7b62d497bbc62d518e32ba53fb72d21aad029264e126119c1ea81",
+  "existing_public_test_methods_byte_identical": [
+    "testColdActivationAtCombinedBucketAndAssetCaps",
+    "testColdActivationWithEveryHistoricalRewardIndexPopulated",
+    "testColdIncumbentTopUpAtCombinedBucketAndAssetCaps",
+    "testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated"
+  ],
+  "production_source_changed": false,
+  "forwarded_activation_gas_budget": 12000000,
+  "measured_activation_call_raw_gas": 9591082,
+  "full_test_unit_gas": 14347040,
+  "full_test_gas_includes_later_recovery_and_assertions": true,
+  "actual_final_command": [
+    [
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+      "test",
+      "--root",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\full-audit-20261025\\principal-gas-attempt2\\execution\\ast-focused-profile-gg9kqag8",
+      "--use",
+      "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+      "--match-contract",
+      "^(CombinedCapacityGasTest)$",
+      "--json",
+      "-vv"
+    ]
+  ],
+  "driver_command_note": "Original focused driver summary omits the wrapper-added -vv; actual-final-command.json records actual invocation. Verbosity adds logs only; no compiler/profile/selection relaxation.",
+  "elapsed_execution_seconds_including_compile": 108.329,
+  "final_typecheck_seconds": 12.25,
+  "compiler_inputs": 265,
+  "only_changed_input": "test/CombinedCapacityGas.t.sol",
+  "normal37_size_gates_reused_with_exact75_bindings": true,
+  "initial_failed_diagnostic": {
+    "cause": "New test incorrectly hypothesized that16optional gas faults would exceed12M. The actual call succeeded and assertFalse failed. This was a disproven hypothesis, not a production failure.",
+    "production_change": false,
+    "larger20M_diagnostic_branch_executed": false,
+    "rerun_scope": "Only corrected one newmethod; no unchanged broadtest rerun."
+  },
+  "cooling": "Existing _cool unchanged; pinned lib/forge-std/src/Vm.sol documents cool(address) as cooling both address and slots. No absolute real-network cold-maximal claim.",
+  "scope_limits": [
+    "Actual Vault/NFT/Oracle/Membership/Rewards/FeeController/RoyaltyRewards; mocked access/LPvenue/price feeds/VRF.",
+    "No real v4/native Entry gas qualification or Robinhood blockbudget/capacity approval.",
+    "A gas-exhausting token view cannot persist a call counter; all16deferred entries and actual fault body are checked.",
+    "Four unchanged existing methods plus one newcase are not a fresh full-regression claim."
+  ],
+  "artifact_sha256": {
+    "principal-gas/actual-final-command.json": "536cb347ec5438cba27b86ad7dfa574b235689a3cdec1a3e781c4ee9ffd182ee",
+    "principal-gas/final-results.json": "a0b0c92b2f1c253c07fef9d0674f9ad9dc1db146a912736fc65f8ad59a403bc4",
+    "principal-gas/final-summary.json": "96923d53c8eaf52d3ac251ff75d9411a235b467199d4a584403d23f2544fd5b7",
+    "principal-gas/final-transformation.json": "c4ff71c2d40d4679a0a013c6e223c2907419d699261a158a2d256174b65fad53",
+    "principal-gas/final-typecheck.json": "218cef8c4cccff059b887e5953cc5b5e1c08722e13f79c45a4c8b069e7378d5c",
+    "principal-gas/fixture-before.sol.txt": "debede3af5b7b62d497bbc62d518e32ba53fb72d21aad029264e126119c1ea81",
+    "principal-gas/initial-diagnostic-expectation.sol.txt": "5cc498a6ccaabbb3a6108ccf038ce23a1157eda31480fdb25b7c3ca14ce14ef5",
+    "principal-gas/initial-results.json": "6c3e264432aacfe4785d7853996538a919bda1643e0f7d80542696226053d02b",
+    "principal-gas/initial-summary.json": "3ecae84258e65432e058519308d8c22e18419ec74e86b5d62ded1cdb9a42b7aa",
+    "principal-gas/initial-typecheck.json": "27a2304a1c880d6b917a40a09e7ee54e4c037c8940d89e9a60d3cbade22cbbd8"
+  }
+}

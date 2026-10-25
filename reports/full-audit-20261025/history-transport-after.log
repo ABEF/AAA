@@ -1,0 +1,9 @@
+test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit) ... ok
+test_canonical_wire_quantity_injected_adapter_remains_supported (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_canonical_wire_quantity_injected_adapter_remains_supported) ... ok
+test_boolean_float_wrong_or_noncanonical_chain_ids_fail_without_database_changes (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_boolean_float_wrong_or_noncanonical_chain_ids_fail_without_database_changes) ... ok
+test_actual_transport_wrong_network_stays_fail_closed_before_history (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_actual_transport_wrong_network_stays_fail_closed_before_history) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.675s
+
+OK

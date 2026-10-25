@@ -1,4 +1,4 @@
-**Current policy, 2026-10-24:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
+**Current policy, 2026-10-25:** [Typed v4 conversions](TYPED_V4_ROUTES.md) and
 
 ## Native custody history and recovery
 
@@ -30,7 +30,7 @@ infer missing events or repair a running service automatically. Read-service
 rollback restores the prior release/configuration, not on-chain custody state.
 See [fix and limits](../reports/day-readiness-20261025/royalty-matrix.md).
 [governed execution-loss limits](EXECUTION_LOSS_POLICY.md) are implemented in the
-undeployed candidate. Defaults are 1% contribution, 1% conversion and 3% maintenance;
+undeployed candidate. Defaults are 2% contribution, 1% conversion and 3% maintenance;
 immediate governance may set each category up to a hard 10%. Existing stricter
 venue/caller minima remain. Pending normal custody approvals retain their original
 absolute floor. Earlier fixed-cap or v3-only descriptions below retain their

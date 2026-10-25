@@ -1,5 +1,34 @@
 # Feature and evidence reference
 
+## Full current-candidate audit - 2026-10-26
+
+Started25October and completed26October Europe/Paris. The [review](../reports/full-audit-20261025/REVIEW.md),
+[coverage](../reports/full-audit-20261025/COVERAGE.md),
+[verification](../reports/full-audit-20261025/VERIFICATION.md) and
+[readiness](../reports/full-audit-20261025/READINESS.md) cover principal/valuation,
+rights/custody, services, website consumers and build/static boundaries.
+
+Three production-backend defects are corrected: current dormant3 activation
+preparation, typed native contribution-policy encoding and actual Rpc integer
+chain-ID history audits. Eleven distinct scoped Python methods pass (nine new,
+two compatibility controls). One new full-capacity optional-royalty fault test
+passes at9,591,082activation CALL gas under unchanged12M; actual venue/native
+Entry/target gas remains unqualified. No production Solidity or economic change.
+
+Fresh Slither0.11.6 completes with399flags, all manually reviewed:165false
+positives,152accepted risks and82informational items. Current47-binding internal
+static-review gate now passes, replacing the previously stale record. This is
+not a clean-zero-findings or independent-audit claim. Complete86-input solc
+output has zero errors and37object lengths match normal capture; Forge's later
+host-signature-cache CLI failure is preserved. Changed test265AST passes.
+
+Actual feeds/routes/VRF/authorities/OpenSea/current website3/services/operations,
+real gas/economics, exact release arguments and independent audit remain open.
+Actual fixed-ZZZ burn semantics and admitted-only late royalty forwarding limits
+are explicit. Production NOT APPROVED. No deployment, public RPC/transaction,
+website source/build/server, existing Anvil/journal/service or monitor change.
+Dated prior reports retain their own scope; their stale-static FAIL is historical.
+
 ## Day-change audit - 2026-10-25
 
 The [adapted audit](../reports/day-readiness-20261025/ADAPTED_PROMPT.md),

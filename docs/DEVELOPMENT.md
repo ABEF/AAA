@@ -1,3 +1,14 @@
+## Current static review refreshed - 2026-10-26
+
+The [full audit](../reports/full-audit-20261025/VERIFICATION.md) performs fresh
+Slither0.11.6 analysis and manually reviews all399flags against47current source/
+build bindings. The actual current coverage checker passes. The older stale-
+review statement below is historical, not the latest gate. This is internal
+triage only: actual dependencies/operations, frozen full suite and independent
+audit remain unqualified. Preserve the recorded successful solc output versus
+later host-signature-cache Forge CLI failure; no green CI claim is implied.
+Reference snapshot3 and unchanged31contracts/608functions remain current.
+
 ## Evidence snapshot 3 and day audit - 2026-10-25
 
 The current reference uses snapshot3 with closed compiler names, normal limits,

@@ -1,0 +1,1817 @@
+[
+  {
+    "ordinal": 1,
+    "fingerprint": "8f8deae8871b50bce7f6b3c25f4a8da2084829b4edcf6100bc58932bbb389269",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "ZZZRewards._claim(uint256,address,address) (src/ZZZRewards.sol#160-174) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = owner.call{value: amount}() (src/ZZZRewards.sol#171)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 2,
+    "fingerprint": "db3203a21b3c25cd5dcd82e554e3fffff3f6bf1af0b474479fd546921f4b3922",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards.exitCustody(address,address,uint256,uint256,bytes32,bytes32) (src/ZZZRoyaltyRewards.sol#255-271) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = address(recipient).call{value: expectedBalance}() (src/ZZZRoyaltyRewards.sol#267)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 3,
+    "fingerprint": "3b9f75318b33365effcaefcf2c928ade6efd4585c9beb6f54fe6ec15ec5a8726",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards._claim(uint256,address,address) (src/ZZZRoyaltyRewards.sol#352-373) sends eth to arbitrary user\n\tDangerous calls:\n\t- (success,None) = address(owner).call{value: amount}() (src/ZZZRoyaltyRewards.sol#363)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 4,
+    "fingerprint": "4ecba8661841c978b662cb6eb54659d51f4f6d062a3a8a654b9a164849b61d7f",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "ZZZFeeController._push(address,address,uint256) (src/ZZZFeeController.sol#43-49) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = address(destination).call{value: amount}() (src/ZZZFeeController.sol#47)\n",
+    "files": [
+      "src/ZZZFeeController.sol"
+    ]
+  },
+  {
+    "ordinal": 5,
+    "fingerprint": "7585cc2caf8e305c8b455c7000678cef7f07f92acfac41558833a092bb301de6",
+    "check": "arbitrary-send-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227) sends eth to arbitrary user\n\tDangerous calls:\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#223)\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 9,
+    "fingerprint": "1a52eaf7075419ddafa4d51334df5042dd8cd0b198ad82144ad6ac85fb90db44",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- ExactAsset.push(plan.token0,requestData.recipient,a0) (src/ZZZMigration.sol#311)\n\tBalance read before the call:\n\t- balance1Before = _balance(plan.token1) (src/ZZZMigration.sol#290)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 10,
+    "fingerprint": "b83a399f7728f7b5709eb11ca2e49bf84a830233b6a8a9fdfe01ffc56d73a130",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- vault.park(requestData.bucket,requestData.deadline) (src/ZZZMigration.sol#294)\n\tBalance read before the call:\n\t- balance0Before = _balance(plan.token0) (src/ZZZMigration.sol#289)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before + a0 || _balance(plan.token1) != balance1Before + a1 (src/ZZZMigration.sol#306)\n\t\t- stale variable `balance0Before`\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 12,
+    "fingerprint": "33995e4e36dc0a4b04c8838e6f39b7c2eec04409f42fccc1a5e0625e16a4dcdd",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):\n\tExternal call allowing reentrancy:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#186-187)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(source).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#179)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(source).balanceOf(address(this)) != sourceBefore || IERC20(wrapper).balanceOf(address(this)) != wrappedBefore + output (src/base/ZZZRewardConverter.sol#189-190)\n\t\t- stale variable `sourceBefore`\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 13,
+    "fingerprint": "56a31c320d9e5420e5bdfdf6ddc3322fd31d5516252d2788eb5a4a2d5b3fc1f9",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):\n\tExternal call allowing reentrancy:\n\t- IBurnable(zzz).burn(acquired) (src/ZZZBuyback.sol#66)\n\tBalance read before the call:\n\t- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#48)\n\tPossible stale balance used after the call in a condition:\n\t- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#67-68)\n\t\t- stale variable `beforeZZZ`\n",
+    "files": [
+      "src/ZZZBuyback.sol"
+    ]
+  },
+  {
+    "ordinal": 15,
+    "fingerprint": "e65de2e3ab46be7c461326bfa86e64c0db635009c9f098272bb5e2d116f0dc7e",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):\n\tExternal call allowing reentrancy:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#186-187)\n\tBalance read before the call:\n\t- wrappedBefore = IERC20(wrapper).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#180)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(source).balanceOf(address(this)) != sourceBefore || IERC20(wrapper).balanceOf(address(this)) != wrappedBefore + output (src/base/ZZZRewardConverter.sol#189-190)\n\t\t- stale variable `wrappedBefore`\n\t- IERC20(wrapper).balanceOf(address(this)) != wrappedBefore || address(this).balance != nativeBefore + output (src/base/ZZZRewardConverter.sol#198-199)\n\t\t- stale variable `wrappedBefore`\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 16,
+    "fingerprint": "1083ffec7d5159d0946d9184cdeb1127989e558deb6dd7853f4b609a4db2e1d9",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#191-229):\n\tExternal call allowing reentrancy:\n\t- output = ZZZLPRewardConverter(address(converter)).convert(token,total,routeId,minimumETH,deadline) (src/ZZZRewards.sol#211)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(token).balanceOf(address(this)) (src/ZZZRewards.sol#207)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(token).balanceOf(address(this)) != sourceBefore - total || address(this).balance != nativeBefore + output (src/ZZZRewards.sol#213-214)\n\t\t- stale variable `sourceBefore`\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 17,
+    "fingerprint": "3fd13961ee2e57928c5e896d542c6a85bad1dcc6dfa4a4cf52b83ae45aa56901",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):\n\tExternal call allowing reentrancy:\n\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tBalance read before the call:\n\t- balance1Before = _balance(token1) - 0 (src/ZZZMigration.sol#412)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(token0) != balance0Before || _balance(token1) != balance1Before (src/ZZZMigration.sol#426)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 18,
+    "fingerprint": "d4d76f3cd48b143afb55bb608fb74e449406f56d7cbef2e510079e3af7a2e9c6",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- (a0,a1) = vault.releaseForMigration(requestData.bucket,id,requestData.deadline) (src/ZZZMigration.sol#298)\n\tBalance read before the call:\n\t- balance0Before = _balance(plan.token0) (src/ZZZMigration.sol#289)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before + a0 || _balance(plan.token1) != balance1Before + a1 (src/ZZZMigration.sol#306)\n\t\t- stale variable `balance0Before`\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 21,
+    "fingerprint": "85c6030ff5006b75c122de9b0402e78d6e691894e682bd81bb0eccd583939f42",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZCanonicalHandoff.returnFunds(uint8,uint256) (src/ZZZCanonicalHandoff.sol#431-445):\n\tExternal call allowing reentrancy:\n\t- peer.returnFunding(slot,index) (src/ZZZCanonicalHandoff.sol#441)\n\tBalance read before the call:\n\t- beforeBalance = _balance(asset,moduleAt(slot)) (src/ZZZCanonicalHandoff.sol#440)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(asset,moduleAt(slot)) != beforeBalance + amount (src/ZZZCanonicalHandoff.sol#442)\n\t\t- stale variable `beforeBalance`\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 22,
+    "fingerprint": "9d1941dbdfa173617cc114eb809b60b437168b8b78dd6b8a62c1e2ea3b92b224",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- (a0,a1) = vault.releaseForMigration(requestData.bucket,id,requestData.deadline) (src/ZZZMigration.sol#298)\n\tBalance read before the call:\n\t- balance1Before = _balance(plan.token1) (src/ZZZMigration.sol#290)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before + a0 || _balance(plan.token1) != balance1Before + a1 (src/ZZZMigration.sol#306)\n\t\t- stale variable `balance1Before`\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 23,
+    "fingerprint": "0cf332db9e2a3c6a2e2ca913005c66104724c30fbfcd7890f192bddc97806e6e",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRoyaltyRewards.sol#136-172):\n\tExternal call allowing reentrancy:\n\t- output = IZZZRoyaltyConverter(converter).convert(asset,total,routeId,minimumETH,deadline) (src/ZZZRoyaltyRewards.sol#156)\n\tBalance read before the call:\n\t- beforeSource = _canonicalBalance(asset) (src/ZZZRoyaltyRewards.sol#153)\n\tPossible stale balance used after the call in a condition:\n\t- output == 0 || _canonicalBalance(asset) + total != beforeSource || address(this).balance != beforeNative + output (src/ZZZRoyaltyRewards.sol#158-159)\n\t\t- stale variable `beforeSource`\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 27,
+    "fingerprint": "e027f2e210959269bac95b6ef2b3361c0ead15f6d5d52e2022f0a9309eb902f2",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):\n\tExternal call allowing reentrancy:\n\t- acquired = IZZZLiquidity(manager).swap{value: amount}(poolId,zeroForOne,amount,minimum,deadline) (src/ZZZBuyback.sol#60)\n\tBalance read before the call:\n\t- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#48)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired (src/ZZZBuyback.sol#64)\n\t\t- stale variable `beforeZZZ`\n\t- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#67-68)\n\t\t- stale variable `beforeZZZ`\n",
+    "files": [
+      "src/ZZZBuyback.sol"
+    ]
+  },
+  {
+    "ordinal": 28,
+    "fingerprint": "8ae2e530be00adfdde68b0921174c47d385d27d49a523916e6612b39dd28715c",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- vault.park(requestData.bucket,requestData.deadline) (src/ZZZMigration.sol#294)\n\tBalance read before the call:\n\t- balance1Before = _balance(plan.token1) (src/ZZZMigration.sol#290)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before + a0 || _balance(plan.token1) != balance1Before + a1 (src/ZZZMigration.sol#306)\n\t\t- stale variable `balance1Before`\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 30,
+    "fingerprint": "2208a5b01137febe9ea3553d4e96942272f7d4467a4a69ccb656c489677e7bd8",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):\n\tExternal call allowing reentrancy:\n\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tBalance read before the call:\n\t- balance0Before = _balance(token0) - 0 (src/ZZZMigration.sol#411)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(token0) != balance0Before || _balance(token1) != balance1Before (src/ZZZMigration.sol#426)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 33,
+    "fingerprint": "3c550743c33f488344e399564701fcf57dde12e240107268fbc0713030090eca",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- vault.consolidateHandoff(requestData.bucket,currentZZZ,requestData.minimumZZZ,requestData.deadline) (src/ZZZMigration.sol#296)\n\tBalance read before the call:\n\t- balance1Before = _balance(plan.token1) (src/ZZZMigration.sol#290)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before + a0 || _balance(plan.token1) != balance1Before + a1 (src/ZZZMigration.sol#306)\n\t\t- stale variable `balance1Before`\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 34,
+    "fingerprint": "19e2ea19a3a540a55515bd180fc3fd416da161f00f9f2bc460bc805e6d8f3519",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):\n\tExternal call allowing reentrancy:\n\t- IRewardWrapper(wrapper).withdraw(output) (src/base/ZZZRewardConverter.sol#195)\n\tBalance read before the call:\n\t- wrappedBefore = IERC20(wrapper).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#180)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(wrapper).balanceOf(address(this)) != wrappedBefore || address(this).balance != nativeBefore + output (src/base/ZZZRewardConverter.sol#198-199)\n\t\t- stale variable `wrappedBefore`\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 35,
+    "fingerprint": "d0425af02140618e57172b95df6ef4d6d739cc632c33d87a3163a3de8c5a0e10",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):\n\tExternal call allowing reentrancy:\n\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tBalance read before the call:\n\t- balance1Before = _balance(token1) - msg.value (src/ZZZMigration.sol#412)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(token0) != balance0Before || _balance(token1) != balance1Before (src/ZZZMigration.sol#426)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 36,
+    "fingerprint": "d5188e8a490a3aa1503e5d08fabd31913a1024befb01b507ead3cb4f39af69c7",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427):\n\tExternal call allowing reentrancy:\n\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tBalance read before the call:\n\t- balance0Before = _balance(token0) - msg.value (src/ZZZMigration.sol#411)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(token0) != balance0Before || _balance(token1) != balance1Before (src/ZZZMigration.sol#426)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 38,
+    "fingerprint": "ad994e792f944f7eb5a2df01c359879c21a66a113dd62f62ff806ff401d93de6",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZCanonicalHandoff.fund(uint8,uint256) (src/ZZZCanonicalHandoff.sol#336-353):\n\tExternal call allowing reentrancy:\n\t- _module(slot).canonicalRelease(index,address(destination)) (src/ZZZCanonicalHandoff.sol#349)\n\tBalance read before the call:\n\t- beforeBalance = _balance(asset,address(destination)) (src/ZZZCanonicalHandoff.sol#348)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(asset,address(destination)) != beforeBalance + amount (src/ZZZCanonicalHandoff.sol#350)\n\t\t- stale variable `beforeBalance`\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 39,
+    "fingerprint": "cfad5d1700c6566bd3d4259f1b1f79acba7f21897322be639c13de05f5ff3bbc",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):\n\tExternal call allowing reentrancy:\n\t- acquired = IZZZLiquidity(manager).swap{value: 0}(poolId,zeroForOne,amount,minimum,deadline) (src/ZZZBuyback.sol#60)\n\tBalance read before the call:\n\t- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#48)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired (src/ZZZBuyback.sol#64)\n\t\t- stale variable `beforeZZZ`\n\t- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#67-68)\n\t\t- stale variable `beforeZZZ`\n",
+    "files": [
+      "src/ZZZBuyback.sol"
+    ]
+  },
+  {
+    "ordinal": 40,
+    "fingerprint": "35f5b27402a5594a5cf04486c23118711a8c3ffe698e8a8027fa6f194b39e140",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- ExactAsset.push(plan.token0,requestData.recipient,a0) (src/ZZZMigration.sol#311)\n\tBalance read before the call:\n\t- balance0Before = _balance(plan.token0) (src/ZZZMigration.sol#289)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 41,
+    "fingerprint": "070f770d9dc798ba4ac3ef8a36bc1870905b3e32f22f70ee2c983b05338aa7d8",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- ExactAsset.push(plan.token1,requestData.recipient,a1) (src/ZZZMigration.sol#312)\n\tBalance read before the call:\n\t- balance1Before = _balance(plan.token1) (src/ZZZMigration.sol#290)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance1Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 42,
+    "fingerprint": "d8321734fd86a20fed6b22f4eb717941f73953177105a0a6e4109520786eb2fc",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):\n\tExternal call allowing reentrancy:\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#223)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(source).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#213)\n\tPossible stale balance used after the call in a condition:\n\t- ! ok || address(this).balance != nativeBefore || IERC20(source).balanceOf(address(this)) != sourceBefore (src/base/ZZZRewardConverter.sol#224-225)\n\t\t- stale variable `sourceBefore`\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 43,
+    "fingerprint": "a09de9e19295b112f644a1931865914be0cf6c4ca93fd00d891ffa28f6fdad0d",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70):\n\tExternal call allowing reentrancy:\n\t- IZZZFees(access.module(Ids.FEES)).releaseBuyback(token,amount) (src/ZZZBuyback.sol#50)\n\tBalance read before the call:\n\t- beforeZZZ = IERC20(zzz).balanceOf(address(this)) (src/ZZZBuyback.sol#48)\n\tPossible stale balance used after the call in a condition:\n\t- IERC20(zzz).balanceOf(address(this)) != beforeZZZ + acquired (src/ZZZBuyback.sol#64)\n\t\t- stale variable `beforeZZZ`\n\t- IBurnable(zzz).totalSupply() + acquired != supplyBefore || IERC20(zzz).balanceOf(address(this)) != beforeZZZ (src/ZZZBuyback.sol#67-68)\n\t\t- stale variable `beforeZZZ`\n",
+    "files": [
+      "src/ZZZBuyback.sol"
+    ]
+  },
+  {
+    "ordinal": 44,
+    "fingerprint": "6f5eae672bfa8f9f579d24ede4d542ec3f82fdae06fed5b4fb7fd84f15a63ec4",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- vault.consolidateHandoff(requestData.bucket,currentZZZ,requestData.minimumZZZ,requestData.deadline) (src/ZZZMigration.sol#296)\n\tBalance read before the call:\n\t- balance0Before = _balance(plan.token0) (src/ZZZMigration.sol#289)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before + a0 || _balance(plan.token1) != balance1Before + a1 (src/ZZZMigration.sol#306)\n\t\t- stale variable `balance0Before`\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 46,
+    "fingerprint": "eed3c0d943671043387005e591cf0feb3a51f2e15dae02b3cbbdf863b185963e",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal call allowing reentrancy:\n\t- ExactAsset.push(plan.token1,requestData.recipient,a1) (src/ZZZMigration.sol#312)\n\tBalance read before the call:\n\t- balance0Before = _balance(plan.token0) (src/ZZZMigration.sol#289)\n\tPossible stale balance used after the call in a condition:\n\t- _balance(plan.token0) != balance0Before || _balance(plan.token1) != balance1Before || vault.bucketTotalShares(requestData.bucket) != plan.shares (src/ZZZMigration.sol#314-315)\n\t\t- stale variable `balance0Before`\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 48,
+    "fingerprint": "7908a7e1e75fd4ac6717b7623bc35e20cfdbe17084ffa6f53b99c4f6de758eca",
+    "check": "reentrancy-balance",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):\n\tExternal call allowing reentrancy:\n\t- output = v4Executor.execute(routeId,amount,minimum,deadline) (src/base/ZZZRewardConverter.sol#218)\n\tBalance read before the call:\n\t- sourceBefore = IERC20(source).balanceOf(address(this)) (src/base/ZZZRewardConverter.sol#213)\n\tPossible stale balance used after the call in a condition:\n\t- output < minimum || IERC20(source).balanceOf(address(this)) != sourceBefore || address(this).balance != nativeBefore + output (src/base/ZZZRewardConverter.sol#221-222)\n\t\t- stale variable `sourceBefore`\n\t- ! ok || address(this).balance != nativeBefore || IERC20(source).balanceOf(address(this)) != sourceBefore (src/base/ZZZRewardConverter.sol#224-225)\n\t\t- stale variable `sourceBefore`\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 57,
+    "fingerprint": "9fa843d3727158b65d8c32cd6983d7124896e860248bd87be63c5780014bdd09",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZFeesCanonical.canonicalRestore(uint256,address) (src/ZZZFeesCanonical.sol#130-133):\n\tExternal calls:\n\t- _accept(index,true) (src/ZZZFeesCanonical.sol#132)\n\t\t- (ok,None) = address(destination).call{value: amount}() (src/ZZZFeesCanonical.sol#37)\n\tState variables written after the call(s):\n\t- released[index] = false (src/ZZZFeesCanonical.sol#132)\n\tZZZFeesCanonical.released (src/ZZZFeesCanonical.sol#22) can be used in cross function reentrancies:\n\t- ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62)\n\t- ZZZFeesCanonical.canonicalRelease(uint256,address) (src/ZZZFeesCanonical.sol#113-119)\n\t- ZZZFeesCanonical.canonicalRestore(uint256,address) (src/ZZZFeesCanonical.sol#130-133)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 62,
+    "fingerprint": "2483668cac95046507cf5bf38a82f4e06230131e741bc852ae09581da72f6044",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.recover(bytes32,uint256) (src/ZZZMigration.sol#379-390):\n\tExternal calls:\n\t- _receive(plan,plan.sourcePool,plan.token0,plan.token1,a0,a1,0,deadline) (src/ZZZMigration.sol#385)\n\t\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tState variables written after the call(s):\n\t- plan.status = Status.Recovered (src/ZZZMigration.sol#387)\n\tZZZMigration.plans (src/ZZZMigration.sol#108) can be used in cross function reentrancies:\n\t- ZZZMigration.minimumRetainedUSD(bytes32) (src/ZZZMigration.sol#159-161)\n\t- ZZZMigration.request(bytes32) (src/ZZZMigration.sol#150-152)\n\t- ZZZMigration.state(bytes32) (src/ZZZMigration.sol#154-157)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 73,
+    "fingerprint": "9c37297712c3f6709edec0cfe4a30aed64cdb3025dbcf61d8e6b9bd1f7a99e2a",
+    "check": "reentrancy-eth",
+    "impact": "High",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.completeLocal(bytes32,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#330-375):\n\tExternal calls:\n\t- _receive(plan,requestData.destinationPool,requestData.output0,requestData.output1,a0,a1,minimumLiquidity,deadline) (src/ZZZMigration.sol#348-357)\n\t\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tState variables written after the call(s):\n\t- plan.status = Status.Completed (src/ZZZMigration.sol#372)\n\tZZZMigration.plans (src/ZZZMigration.sol#108) can be used in cross function reentrancies:\n\t- ZZZMigration.minimumRetainedUSD(bytes32) (src/ZZZMigration.sol#159-161)\n\t- ZZZMigration.request(bytes32) (src/ZZZMigration.sol#150-152)\n\t- ZZZMigration.state(bytes32) (src/ZZZMigration.sol#154-157)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 77,
+    "fingerprint": "b5d0ad980febc29ba6da843bd680302ef70fe868aed3eafa911a1c9d0ad622a5",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#68-89) performs a multiplication on the result of a division:\n\t- units = total / 20 (src/ZZZFeeController.sol#79)\n\t- FeesAllocated(id,token,units * 20,dust[id][token]) (src/ZZZFeeController.sol#88)\n",
+    "files": [
+      "src/ZZZFeeController.sol"
+    ]
+  },
+  {
+    "ordinal": 78,
+    "fingerprint": "603fdc19e6a6ca75521ec7ac700bd25a9d8a5c01fcca5be400a946d79ddfca0a",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#68-89) performs a multiplication on the result of a division:\n\t- units = total / 20 (src/ZZZFeeController.sol#79)\n\t- accounted[token] -= units * 18 (src/ZZZFeeController.sol#84)\n",
+    "files": [
+      "src/ZZZFeeController.sol"
+    ]
+  },
+  {
+    "ordinal": 80,
+    "fingerprint": "edffe753c85f902a04ee56d4a043282ad610fbbf87df0d03d233c87562798bdc",
+    "check": "divide-before-multiply",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZFeeController.allocate(uint256,address,uint256) (src/ZZZFeeController.sol#68-89) performs a multiplication on the result of a division:\n\t- units = total / 20 (src/ZZZFeeController.sol#79)\n\t- _credit(id,token,units * 16,units * 2) (src/ZZZFeeController.sol#85)\n",
+    "files": [
+      "src/ZZZFeeController.sol"
+    ]
+  },
+  {
+    "ordinal": 82,
+    "fingerprint": "bf5de1539581e07c80dbc5dd3e1aa8dd3a5cdb5f7280783c2db3e9941918122e",
+    "check": "incorrect-equality",
+    "impact": "Medium",
+    "confidence": "High",
+    "description": "ZZZRoyaltyRewards._sync(address) (src/ZZZRoyaltyRewards.sol#294-310) uses a dangerous strict equality:\n\t- amount == 0 (src/ZZZRoyaltyRewards.sol#299)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 83,
+    "fingerprint": "1ca2a389d9815156b84a289ec0d47f8d579d157d0a2fb87a4ccafaee16f8d61f",
+    "check": "incorrect-equality",
+    "impact": "Medium",
+    "confidence": "High",
+    "description": "ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319) uses a dangerous strict equality:\n\t- plan.sourceStatus == PositionStatus.Active (src/ZZZMigration.sol#294)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 85,
+    "fingerprint": "387df20548d079395f32ea9039cda4df439ad99f1abe49c77deef4ea684eef43",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#191-229):\n\tExternal calls:\n\t- output = ZZZLPRewardConverter(address(converter)).convert(token,total,routeId,minimumETH,deadline) (src/ZZZRewards.sol#211)\n\tState variables written after the call(s):\n\t- collective[ids[i_scope_0]][address(0)] += sharedETH (src/ZZZRewards.sol#225)\n\tZZZRewards.collective (src/ZZZRewards.sol#33) can be used in cross function reentrancies:\n\t- ZZZRewards._checkpoint(uint256,address,uint256) (src/ZZZRewards.sol#70-79)\n\t- ZZZRewards.canonicalExport(uint256) (src/ZZZRewards.sol#250-268)\n\t- ZZZRewards.canonicalImport(uint256,bytes) (src/ZZZRewards.sol#269-307)\n\t- ZZZRewards.claimable(uint256,address) (src/ZZZRewards.sol#175-186)\n\t- ZZZRewards.collective (src/ZZZRewards.sol#33)\n\t- individual[ids[i_scope_0]][address(0)] += ownETH (src/ZZZRewards.sol#225)\n\tZZZRewards.individual (src/ZZZRewards.sol#32) can be used in cross function reentrancies:\n\t- ZZZRewards._checkpointOwner(uint256,address,uint256,uint256) (src/ZZZRewards.sol#90-100)\n\t- ZZZRewards.canonicalExport(uint256) (src/ZZZRewards.sol#250-268)\n\t- ZZZRewards.canonicalImport(uint256,bytes) (src/ZZZRewards.sol#269-307)\n\t- ZZZRewards.claimable(uint256,address) (src/ZZZRewards.sol#175-186)\n\t- ZZZRewards.individual (src/ZZZRewards.sol#32)\n\t- liabilities[address(0)] += output (src/ZZZRewards.sol#215)\n\tZZZRewards.liabilities (src/ZZZRewards.sol#30) can be used in cross function reentrancies:\n\t- ZZZRewards.canonicalCapture() (src/ZZZRewards.sol#234-245)\n\t- ZZZRewards.canonicalExport(uint256) (src/ZZZRewards.sol#250-268)\n\t- ZZZRewards.canonicalImport(uint256,bytes) (src/ZZZRewards.sol#269-307)\n\t- ZZZRewards.liabilities (src/ZZZRewards.sol#30)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 86,
+    "fingerprint": "c066dd1b3b6cc2e287e12942f4b051980509d52df9457b745d53fbcd15b90bba",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZCanonicalHandoff.settle(uint8) (src/ZZZCanonicalHandoff.sol#246-254):\n\tExternal calls:\n\t- access.canonicalTransition(STATE_FROZEN,true,false) (src/ZZZCanonicalHandoff.sol#248)\n\t- _module(slot).canonicalSettle() (src/ZZZCanonicalHandoff.sol#249)\n\t- access.canonicalTransition(STATE_FROZEN,false,false) (src/ZZZCanonicalHandoff.sol#250)\n\tState variables written after the call(s):\n\t- phase = PHASE_EXPORTING (src/ZZZCanonicalHandoff.sol#252)\n\tZZZCanonicalHandoff.phase (src/ZZZCanonicalHandoff.sol#57) can be used in cross function reentrancies:\n\t- ZZZCanonicalHandoff.bindFrozen(bytes32) (src/ZZZCanonicalHandoff.sol#256-267)\n\t- ZZZCanonicalHandoff.phase (src/ZZZCanonicalHandoff.sol#57)\n\t- settlementCursor = slot + 1 (src/ZZZCanonicalHandoff.sol#251)\n\tZZZCanonicalHandoff.settlementCursor (src/ZZZCanonicalHandoff.sol#58) can be used in cross function reentrancies:\n\t- ZZZCanonicalHandoff.settlementCursor (src/ZZZCanonicalHandoff.sol#58)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 88,
+    "fingerprint": "1684b17d522e6a12fbef45441908f33f98e08f1e29f2f443acfafe821bebb7a9",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZCanonicalHandoff.activate() (src/ZZZCanonicalHandoff.sol#390-410):\n\tExternal calls:\n\t- _module(slot_scope_0).canonicalActivate() (src/ZZZCanonicalHandoff.sol#405)\n\tState variables written after the call(s):\n\t- phase = PHASE_ACTIVE_REPLACEMENT (src/ZZZCanonicalHandoff.sol#407)\n\tZZZCanonicalHandoff.phase (src/ZZZCanonicalHandoff.sol#57) can be used in cross function reentrancies:\n\t- ZZZCanonicalHandoff.bindFrozen(bytes32) (src/ZZZCanonicalHandoff.sol#256-267)\n\t- ZZZCanonicalHandoff.phase (src/ZZZCanonicalHandoff.sol#57)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 90,
+    "fingerprint": "e28aa28b4d678949d67065bb22fbf75352eabe098db6cc1c935a8050156125e2",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZCanonicalHandoff.importRows(uint8,bytes[]) (src/ZZZCanonicalHandoff.sol#295-312):\n\tExternal calls:\n\t- _module(slot).canonicalImport(row,records[i]) (src/ZZZCanonicalHandoff.sol#308)\n\tState variables written after the call(s):\n\t- row = importCursor[slot] ++ (src/ZZZCanonicalHandoff.sol#306)\n\tZZZCanonicalHandoff.importCursor (src/ZZZCanonicalHandoff.sol#67) can be used in cross function reentrancies:\n\t- ZZZCanonicalHandoff.importCursor (src/ZZZCanonicalHandoff.sol#67)\n\t- importRoot[slot] = _next(importRoot[slot],slot,row,records[i]) (src/ZZZCanonicalHandoff.sol#309)\n\tZZZCanonicalHandoff.importRoot (src/ZZZCanonicalHandoff.sol#69) can be used in cross function reentrancies:\n\t- ZZZCanonicalHandoff.importRoot (src/ZZZCanonicalHandoff.sol#69)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 92,
+    "fingerprint": "4decada2db83b22ac9a7d50b54aa4a6b937af48e3e01c24b7474ff21ec894588",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRoyaltyRewards.sol#136-172):\n\tExternal calls:\n\t- output = IZZZRoyaltyConverter(converter).convert(asset,total,routeId,minimumETH,deadline) (src/ZZZRoyaltyRewards.sol#156)\n\tState variables written after the call(s):\n\t- accounted[address(0)] += output (src/ZZZRoyaltyRewards.sol#160)\n\tZZZRoyaltyRewards.accounted (src/ZZZRoyaltyRewards.sol#54) can be used in cross function reentrancies:\n\t- ZZZRoyaltyRewards._sync(address) (src/ZZZRoyaltyRewards.sol#294-310)\n\t- ZZZRoyaltyRewards.accounted (src/ZZZRoyaltyRewards.sol#54)\n\t- ZZZRoyaltyRewards.canonicalActivate() (src/ZZZRoyaltyRewards.sol#495-503)\n\t- ZZZRoyaltyRewards.canonicalCapture() (src/ZZZRoyaltyRewards.sol#402-417)\n\t- ZZZRoyaltyRewards.canonicalExport(uint256) (src/ZZZRoyaltyRewards.sol#434-449)\n\t- ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#450-488)\n\t- ZZZRoyaltyRewards.canonicalSettle() (src/ZZZRoyaltyRewards.sol#418-430)\n\t- ZZZRoyaltyRewards.claimable(uint256,address) (src/ZZZRoyaltyRewards.sol#376-392)\n\t- ZZZRoyaltyRewards.constructor(address) (src/ZZZRoyaltyRewards.sol#91-101)\n\t- ZZZRoyaltyRewards.pending(address) (src/ZZZRoyaltyRewards.sol#285-292)\n\t- accrued[ids[i_scope_0]][address(0)] += part (src/ZZZRoyaltyRewards.sol#166)\n\tZZZRoyaltyRewards.accrued (src/ZZZRoyaltyRewards.sol#57) can be used in cross function reentrancies:\n\t- ZZZRoyaltyRewards.accrued (src/ZZZRoyaltyRewards.sol#57)\n\t- ZZZRoyaltyRewards.canonicalExport(uint256) (src/ZZZRoyaltyRewards.sol#434-449)\n\t- ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#450-488)\n\t- ZZZRoyaltyRewards.claimable(uint256,address) (src/ZZZRoyaltyRewards.sol#376-392)\n\t- liabilities[address(0)] += output (src/ZZZRoyaltyRewards.sol#160)\n\tZZZRoyaltyRewards.liabilities (src/ZZZRoyaltyRewards.sol#55) can be used in cross function reentrancies:\n\t- ZZZRoyaltyRewards._sync(address) (src/ZZZRoyaltyRewards.sol#294-310)\n\t- ZZZRoyaltyRewards.canonicalExport(uint256) (src/ZZZRoyaltyRewards.sol#434-449)\n\t- ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#450-488)\n\t- ZZZRoyaltyRewards.canonicalSettle() (src/ZZZRoyaltyRewards.sol#418-430)\n\t- ZZZRoyaltyRewards.liabilities (src/ZZZRoyaltyRewards.sol#55)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 93,
+    "fingerprint": "2328def953160614db60a11e8291b2265d5252c4d4b3a5aea0e6c2b9da4a0ffa",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319):\n\tExternal calls:\n\t- vault.park(requestData.bucket,requestData.deadline) (src/ZZZMigration.sol#294)\n\t- vault.consolidateHandoff(requestData.bucket,currentZZZ,requestData.minimumZZZ,requestData.deadline) (src/ZZZMigration.sol#296)\n\t- (a0,a1) = vault.releaseForMigration(requestData.bucket,id,requestData.deadline) (src/ZZZMigration.sol#298)\n\tState variables written after the call(s):\n\t- plan.sent0 = a0 (src/ZZZMigration.sol#309)\n\tZZZMigration.plans (src/ZZZMigration.sol#108) can be used in cross function reentrancies:\n\t- ZZZMigration.minimumRetainedUSD(bytes32) (src/ZZZMigration.sol#159-161)\n\t- ZZZMigration.request(bytes32) (src/ZZZMigration.sol#150-152)\n\t- ZZZMigration.state(bytes32) (src/ZZZMigration.sol#154-157)\n\t- plan.sent1 = a1 (src/ZZZMigration.sol#310)\n\tZZZMigration.plans (src/ZZZMigration.sol#108) can be used in cross function reentrancies:\n\t- ZZZMigration.minimumRetainedUSD(bytes32) (src/ZZZMigration.sol#159-161)\n\t- ZZZMigration.request(bytes32) (src/ZZZMigration.sol#150-152)\n\t- ZZZMigration.state(bytes32) (src/ZZZMigration.sol#154-157)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 95,
+    "fingerprint": "93ab346ce93bf005f8a3a9d7fa31df2505289b7ddcfc569da51e422a22b496a8",
+    "check": "reentrancy-no-eth",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73):\n\tExternal calls:\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id) (src/ZZZMembership.sol#69)\n\tState variables written after the call(s):\n\t- eligible[id] = true (src/ZZZMembership.sol#70)\n\tZZZMembership.eligible (src/ZZZMembership.sol#16) can be used in cross function reentrancies:\n\t- ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73)\n\t- ZZZMembership.canonicalExport(uint256) (src/ZZZMembership.sol#84-89)\n\t- ZZZMembership.canonicalImport(uint256,bytes) (src/ZZZMembership.sol#90-102)\n\t- ZZZMembership.eligible (src/ZZZMembership.sol#16)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 97,
+    "fingerprint": "08914886a8aeb20f8915f840e22dacdd6969a38f1347b4c891b07b5616fc1582",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).total (src/ZZZRoyaltyRewards.sol#144) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 98,
+    "fingerprint": "b20bb581f4865efea8c01e6069706fc0eaeb02e5fa73e9966104d903f5cbe822",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).assigned (src/ZZZRoyaltyRewards.sol#161) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 100,
+    "fingerprint": "9c384ff0fcdd36ddd49bb910d0848bfa6dc532210573ecc05d1a9e567444257a",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).assigned (src/ZZZRewards.sol#216) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 101,
+    "fingerprint": "77540a68a283a0ff7e30a868dc2ad7bcd3e5efb671414b6ac4420dfcd589b796",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).total (src/ZZZRewards.sol#197) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 103,
+    "fingerprint": "88666f0863981f6a1d7aa5929e012bd5e732af743ee1a4550dea571b261a5296",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata._visualAttributes(NFTMetadataInput).number (src/ZZZNFTMetadata.sol#116) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZNFTMetadata.sol"
+    ]
+  },
+  {
+    "ordinal": 105,
+    "fingerprint": "99699afc6f2afe6e9841deef393b9e436b6bd01b93426ca7bf6fef7cd90d7722",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).cumulative (src/ZZZRoyaltyRewards.sol#161) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 106,
+    "fingerprint": "1707f85b02a726ba383f3186b2fb0fc80efccf10ee28af6e89323c8e79348b9a",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).cumulative (src/ZZZRewards.sol#216) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 109,
+    "fingerprint": "3355271149aebb83969a31af2d029841e88c15d501f9aa4122da2097473576a3",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZAccessController.bind(bytes32,address).known (src/ZZZAccessController.sol#150) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZAccessController.sol"
+    ]
+  },
+  {
+    "ordinal": 110,
+    "fingerprint": "23ddc5f3d1765d3314ac42c8105e567c54cab218dfd2ad91384c1a0b50e6477a",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256).p (src/base/ZZZRewardConverter.sol#165) is a local variable never initialized\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 111,
+    "fingerprint": "3f57e7b486fb23ea0885d5c171fe51fa72266780c71277d3feb1d74d350b5f63",
+    "check": "uninitialized-local",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards._paid(uint256,address).low (src/ZZZRoyaltyRewards.sol#245) is a local variable never initialized\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 115,
+    "fingerprint": "78ced49035ee895ad701d4c11ecb6ae7f9b7d4dfd62310f9c1f30c6d1555cd4c",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) ignores return value by (chain,destination,deployment,None) = access.preparationNotice() (src/ZZZCanonicalHandoff.sol#188)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 116,
+    "fingerprint": "253bba99e0013cdcdbe3ecdabb552587f105443a13082ef66080a6a6e758e6e2",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZNFTMetadata.currentValue(uint256) (src/ZZZNFTMetadata.sol#35-55) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(position.poolId) (src/ZZZNFTMetadata.sol#46)\n",
+    "files": [
+      "src/ZZZNFTMetadata.sol"
+    ]
+  },
+  {
+    "ordinal": 119,
+    "fingerprint": "ec9f41f1273f73ed99c04387315652a02fc494f32f98dca128cca336a91f0b3a",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZBuyback.execute(address,uint256,bytes32,uint256) (src/ZZZBuyback.sol#38-70) ignores return value by (None,upper,None) = oracle.priceBounds(token) (src/ZZZBuyback.sol#45)\n",
+    "files": [
+      "src/ZZZBuyback.sol"
+    ]
+  },
+  {
+    "ordinal": 129,
+    "fingerprint": "18016061360184dde3db8037f0535dc7d7c61ce8525a2a70df0eebfb02b2f786",
+    "check": "unused-return",
+    "impact": "Medium",
+    "confidence": "Medium",
+    "description": "ZZZMigration.configureZZZ(address,bytes32,bytes32) (src/ZZZMigration.sol#166-181) ignores return value by IZZZOracle(access.module(Ids.ORACLE)).price(token) (src/ZZZMigration.sol#177)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 133,
+    "fingerprint": "44764c373f31b7a4f46714aadbd674872e005c79d2236d21f1efe4c24a43f2be",
+    "check": "write-after-write",
+    "impact": "Medium",
+    "confidence": "High",
+    "description": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256).assigned (src/ZZZRewards.sol#216) is written in both\n\tassigned = next (src/ZZZRewards.sol#222)\n\tassigned = next (src/ZZZRewards.sol#224)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 143,
+    "fingerprint": "3b7ca2e5e03a9c58f7f932a9a192821119096d61f3757f6bea22b40a4536685b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.freeze()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 146,
+    "fingerprint": "4b1fcb02293e31b09326e8cadf1513058ea2b2dc4fc7156ef67d08f2ef8b2ce6",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: fees.flushDust(bucket,config.key.currency0) (src/ZZZMembership.sol#53)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 147,
+    "fingerprint": "b6093ed1fb47e557222f9e908cb61490704174e9a496c6f6bc9c83d564be38b8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.deploymentCommitment()\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 148,
+    "fingerprint": "2013e0414baa141d5929bf7198dd3697b14d2e8f70d63cfe5f214f1588d93eb4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73) has external calls inside a loop: id = _vault().bucketAt(i) (src/ZZZFeesCanonical.sol#66)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 150,
+    "fingerprint": "1c705b0a9f0e06ac3ed729e5ad674c5b39ce667a7c1c589c8da8fc1396b5aa0e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.bindFrozen(bytes32) (src/ZZZCanonicalHandoff.sol#256-267) has external calls inside a loop: recordCount[slot] = source.recordCount(slot) (src/ZZZCanonicalHandoff.sol#264)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 152,
+    "fingerprint": "7f8fc0c6174c878ebb9aeb1f68e7c238c531a53469082809952436442968d169",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.deploymentCommitment()\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 153,
+    "fingerprint": "491a316c0396a5ac31bcd63dc502e06a48569c53a70d272eb82c7605cb5a602b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.freeze()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 154,
+    "fingerprint": "ca915393b3ff0324d1344e003dece4862edfc974ecf95a7491f38fe3662910d0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.importRows(uint8,bytes[])\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 155,
+    "fingerprint": "14c60deb3901e61e27eacc3999e24c105318e2e45bf3447ab91e148d75864266",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZRewards._checkpointOwner(uint256,address) (src/ZZZRewards.sol#86-89) has external calls inside a loop: _checkpointOwner(id,token,vault.nftBucket(id),vault.sharesOf(id)) (src/ZZZRewards.sol#88)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 156,
+    "fingerprint": "2a413e5d3e01577077c0255251538cce709a15b4a6ccd118e793ba04c1411bc1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.importRows(uint8,bytes[]) (src/ZZZCanonicalHandoff.sol#295-312) has external calls inside a loop: _module(slot).canonicalImport(row,records[i]) (src/ZZZCanonicalHandoff.sol#308)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 158,
+    "fingerprint": "d58d2972c7863968a19f62684709627ad8e8dc6bbb30398901b1e9877a8bf1cf",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: target = access.module(Ids.REWARDS) (src/ZZZClaimRouter.sol#69)\n",
+    "files": [
+      "src/ZZZClaimRouter.sol"
+    ]
+  },
+  {
+    "ordinal": 159,
+    "fingerprint": "bd5f590a70e567d3ad2cf2965eba1282c17b71e8c72a4d5c2ea1b9fda3a6aac9",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.activate(uint256,uint256)\n\t\tZZZRoyaltyRewards._sync(address)\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 160,
+    "fingerprint": "a7a375bca6ff95c7dba4282952c2b9efc2aa88f1fcdd62052839016432cf803b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: position = vault.group(bucket) (src/ZZZMembership.sol#45)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 162,
+    "fingerprint": "2c4670e38e3c59af72d59798874a63b50feda319930513c2bcd0ec782e9857ec",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256) (src/ZZZRewards.sol#191-229) has external calls inside a loop: (i != 0 && ids[i] <= ids[i - 1]) || IZZZNFT(access.module(Ids.NFT)).ownerOf(ids[i]) == address(0) (src/ZZZRewards.sol#199)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 163,
+    "fingerprint": "4e6db17e544471a07456a0cc37ce13d86e0323aa1df00bb3000e5d133f181c3e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.finishAbort()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 164,
+    "fingerprint": "46226ff30b5e993c7777c110e43c09ae3556dc8561afe09fa63389bc642a76b7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.freeze()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 165,
+    "fingerprint": "24ffccdc059dbcc047b5632d9c4067d799e31125aea09a0057eac9714f62fe93",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.importRows(uint8,bytes[]) (src/ZZZCanonicalHandoff.sol#295-312) has external calls inside a loop: keccak256(bytes)(records[i]) != keccak256(bytes)(sourceModule.canonicalExport(row)) (src/ZZZCanonicalHandoff.sol#307)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 166,
+    "fingerprint": "5ee90833b996c1bae12d9f4ea184cab936fa1b7f3379f2406a49553a9593fbcc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: j < assets.assetCount() (src/ZZZMembership.sol#58)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 167,
+    "fingerprint": "eec096c33114b01a9a6ecaea3b43c7e3a945e07bdb8ce4f5d4bd90186cbee13e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.exportRows(uint8,uint256)\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 168,
+    "fingerprint": "b0c9ab70c72fb3f6e706b1fbc957446ef0573e881c18e9ddb0220bc44911b5da",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.freeze()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 169,
+    "fingerprint": "0660c5ede24d0fdf6482b3283b831e9930ed3f1b24eefcf8486b7e7bffce12a8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.canonicalValidate()\n\t\tZZZCanonicalLedger._canonicalValidateBacking()\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 170,
+    "fingerprint": "b91443b6659ef7bfe787344de340cb37cc5eb012b7083138c019e731193f6593",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical._balance(address,address) (src/ZZZFeesCanonical.sol#30-32) has external calls inside a loop: IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31)\n\tCalls stack containing the loop:\n\t\tZZZFeesCanonical.canonicalSettle()\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 172,
+    "fingerprint": "7dc3ec8db5b287832b7c729a8fa5feb14177e18eb585fbde79bac61b86ed96c2",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.activate() (src/ZZZCanonicalHandoff.sol#390-410) has external calls inside a loop: _module(slot).canonicalValidate() (src/ZZZCanonicalHandoff.sol#402)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 175,
+    "fingerprint": "c22bbeb080290eb0101ba04d069b49ffff595041428d032d0d8a67b0f9271aae",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.bindFrozen(bytes32) (src/ZZZCanonicalHandoff.sol#256-267) has external calls inside a loop: assetCount[slot] = source.assetCount(slot) (src/ZZZCanonicalHandoff.sol#265)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 176,
+    "fingerprint": "cdc36ad22a55a0f9bc96a73b3810932255cbad9d01f42cb2138bdd3facf61184",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: IPairVault(address(vault)).migrationBudget().compositionEpoch(bucket) != 0 (src/ZZZMembership.sol#55)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 177,
+    "fingerprint": "e6367e914eab2027e6b07425cddd0a0e052f9885175c73ebdb791d0b60a36b5c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.completeImport() (src/ZZZCanonicalHandoff.sol#314-330) has external calls inside a loop: importCursor[slot] != recordCount[slot] || importRoot[slot] != source.exportRoot(slot) || _module(slot).canonicalCount() != recordCount[slot] || _module(slot).canonicalAssetCount() != assetCount[slot] (src/ZZZCanonicalHandoff.sol#319-321)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 178,
+    "fingerprint": "f65c1301f19725a08496a10a308daf65e466184513b6ac40d11b9d0c6b10789f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical._balance(address,address) (src/ZZZFeesCanonical.sol#30-32) has external calls inside a loop: IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31)\n\tCalls stack containing the loop:\n\t\tZZZFeesCanonical.canonicalCapture()\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 184,
+    "fingerprint": "d80f06f1a258d90f4dd604775de0fc447f496560184275ef4c21604354a7cd7b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.freeze()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 185,
+    "fingerprint": "107a2dbe6c2adcd25215213a77175c9a7f97f61599c3a744b45cf5c5be14d482",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.exportRows(uint8,uint256)\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 186,
+    "fingerprint": "a286a21bb44b99672ee67d8d2ac9a009f920261f6f6c12486bf9d20e616a8631",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.deploymentCommitment()\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 187,
+    "fingerprint": "5bec158854b95641453c67dece69795923b51173cbe709576a5e8cc982e86d86",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.canonicalActivate()\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 188,
+    "fingerprint": "9c106e86cd4fcf9d81b33040402ded5b371abc29f21aed26e9294b7569f21a7d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: bucket = vault.bucketAt(i) (src/ZZZMembership.sol#44)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 190,
+    "fingerprint": "6d6627cf7212c915126a90b39f61b0845c4a7f0a8690851abd6519d7fe0d9a66",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.finishAbort()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 192,
+    "fingerprint": "5253d44812a7fae8a024d6fe25855accf171d0518dcddee6df9b1aa6755a00dc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.importRows(uint8,bytes[])\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 193,
+    "fingerprint": "8a04ee23db6f08ca8488128f8b1612ff00c3835b6a38fb5c1cf7c4a027cf05ce",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: amounts[i_scope_0] = IZZZClaimLedger(target).claimFor(entry_scope_1.nftId,entry_scope_1.asset,msg.sender) (src/ZZZClaimRouter.sol#71)\n",
+    "files": [
+      "src/ZZZClaimRouter.sol"
+    ]
+  },
+  {
+    "ordinal": 195,
+    "fingerprint": "15749e554fc8ae366367d58d7eba6d30a7041a5555f40d914b11f0aa1ed422df",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: IZZZNFT(nft).ownerOf(entry.nftId) != msg.sender (src/ZZZClaimRouter.sol#55)\n",
+    "files": [
+      "src/ZZZClaimRouter.sol"
+    ]
+  },
+  {
+    "ordinal": 196,
+    "fingerprint": "4f40410f70d97655d0fdfec22f41e7ae4955a49ded8811f8869953444635f0cc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.exportRows(uint8,uint256) (src/ZZZCanonicalHandoff.sol#273-293) has external calls inside a loop: record = _module(slot).canonicalExport(row) (src/ZZZCanonicalHandoff.sol#280)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 197,
+    "fingerprint": "d570208603552e0736c6b7c870305d4255336ae8771e07d444cd4a92a7fd12ac",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.importRows(uint8,bytes[])\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 198,
+    "fingerprint": "ea6306112277bcee8384c898c6fd59ef7950dad22161d0993f8697c2168a07c3",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZRewards._checkpointOwner(uint256,address) (src/ZZZRewards.sol#86-89) has external calls inside a loop: vault = IZZZVault(access.module(Ids.VAULT)) (src/ZZZRewards.sol#87)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 199,
+    "fingerprint": "741cbd3f7e6052182a15dd3b05acb527d45f9cd00b1ef1c3d097ba89377d4a7c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.importRows(uint8,bytes[])\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 200,
+    "fingerprint": "e5d008a59937bc5376e5ae059e9cd113a49ac6a1e81c33554b9a38752630ac3f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.completeImport()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 203,
+    "fingerprint": "6ca6a0a322b9dd613cc38aaf1347811bad3bf35558a97ce88afda0720398345d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.deploymentCommitment()\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 206,
+    "fingerprint": "010ff2da9ff74373455c6a8a2e0648656f19ab20bdcc947420b47e827908e48c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.completeImport()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 207,
+    "fingerprint": "e0fee01190c6a52b996d962a8c23c685c5ea61c37664fe0e821a391aa6ddbe1e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: fees.flushDust(bucket,token) (src/ZZZMembership.sol#60)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 208,
+    "fingerprint": "628dbad96e13a99c8aaa58c6e0b5266793b9c18af73bbef041954b8fafe199bd",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.exportRows(uint8,uint256)\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 209,
+    "fingerprint": "49bd0bbe0b99d4e5c5178c75c025fdd92aab63a9adf58db9ca067ae7d348d78a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) has external calls inside a loop: _module(slot).canonicalCapture() (src/ZZZCanonicalHandoff.sol#223)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 211,
+    "fingerprint": "996d07062afa749e89467b675881af5a9a6a26dac68597e89f20c38f6d891da7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: token = assets.assets(j) (src/ZZZMembership.sol#59)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 214,
+    "fingerprint": "61c922e84296534de4e61108fa1f8f7dd81f5c4539293dfd13f410e56805124a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.activate()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 218,
+    "fingerprint": "06af1f3f7d55d751f54a36fa08bb9f837ce465074cb5b88e8e115e942fe551b6",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.activate()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 219,
+    "fingerprint": "c4f18a820947c4162344d884cf41e6dcb0403d00b7e606583357273a95bf32d4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73) has external calls inside a loop: amounts[i_scope_0] = fees.accounted(assets[i_scope_0]) + quarantine[i_scope_0] (src/ZZZFeesCanonical.sol#70)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 220,
+    "fingerprint": "b1a66ee3215c6995e9fa59e61bc89a494f7979ac263cb34f8c351be90d44b35e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) has external calls inside a loop: assetCount[slot_scope_0] = _module(slot_scope_0).canonicalAssetCount() (src/ZZZCanonicalHandoff.sol#227)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 221,
+    "fingerprint": "02be564ca1885a17f1c3900f06bb34e39c12fc719ca7f86d5cbb63c986b433f7",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.completeImport()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 223,
+    "fingerprint": "61b4a0955ba89d53b1fcca355ebc01b366062dcd172cf416f7ae23ac0b83105c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.NFT_CANONICAL) (src/ZZZCanonicalHandoff.sol#103)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.exportRows(uint8,uint256)\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 225,
+    "fingerprint": "92fda63952365386414546cdd9c8ca289dd61c24635ef4a21ee9ce8abdb9fe9e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.activate()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 226,
+    "fingerprint": "67eab45565c9e9df5888a01b130ff1145712ad4012d3942bb5da5c4cc2fa3a4c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.deploymentCommitment()\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 227,
+    "fingerprint": "73a967f8793963179c31f63e1651ca82309b223f24310b26c6d66a06b0588a29",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.importRows(uint8,bytes[])\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 228,
+    "fingerprint": "771e249a89ef37cb5635a19fbd0056f7733129b6be67e14b98d2ffb45c2d053f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.deploymentCommitment() (src/ZZZCanonicalHandoff.sol#123-163) has external calls inside a loop: target = access.module(ids[i]) (src/ZZZCanonicalHandoff.sol#155)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 229,
+    "fingerprint": "c7ad5dcf10b6509703ab27c07fd0be22d52643cebb59f0ff79885f25228bfae0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRewards.canonicalCapture()\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 231,
+    "fingerprint": "ce5edd53aa1dcaf557c564dea37b1b821331509684f19b4153e68b4aea656e27",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.activate()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 233,
+    "fingerprint": "a64ad372b02e174d80f3dff72829e87eba2ddec565ddffbbc635a59d1f42c81a",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZRewards._checkpoint(uint256,address) (src/ZZZRewards.sol#67-69) has external calls inside a loop: IZZZMembership(access.module(Ids.MEMBERSHIP)).eligible(id) (src/ZZZRewards.sol#68)\n\tCalls stack containing the loop:\n\t\tZZZRewards.convertBatch(address,uint256[],bytes32,uint256,uint256)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 235,
+    "fingerprint": "d99c3eabf93b5e815ecf9455e9da408b08640b8ef7df6eb6e511d4c6e77710e0",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62) has external calls inside a loop: quarantine.push(raw - fees.accounted(asset)) (src/ZZZFeesCanonical.sol#58)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 238,
+    "fingerprint": "2f7bae4579ba0c45b8c388ebc02b71e1a27c06dab443819bf8c59d4a368eca4e",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.completeImport()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 239,
+    "fingerprint": "967ac3e8ede706406c9ed42f499c6c2d2b026e3b709347a2bc691fb599dbebbc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.importRows(uint8,bytes[])\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 241,
+    "fingerprint": "bb5a7249d085e3abb8b7ad6a838c7b0291f541c73c0150ab4cc7cdd2f95ae830",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.canonicalCapture()\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 242,
+    "fingerprint": "5a4862af3d07e7c552ce6d16f436992d3d38726f551eb1b41c43bab41bbe4183",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.finishAbort()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 243,
+    "fingerprint": "8042f49d2a7834d927c4757f0b45f156ed3d347072115095c390d0234f8ba0c1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: config = pools.get(position.poolId) (src/ZZZMembership.sol#52)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 244,
+    "fingerprint": "970ec22b66c290ff6ae6373ad0b87d2004a9aedaf11a96137cc5a98fe26b0ebc",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.finishAbort()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 245,
+    "fingerprint": "b90865199285d33042a4caab74ed66e9c44dd2336f71e5672de4dc9b512b651b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: assets = IPairAssets(access.module(Ids.REWARDS)) (src/ZZZMembership.sol#56)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 246,
+    "fingerprint": "98d7c28b5262d4e6fa1418cde41eccce4019977b9e0d8d7fa2fffb7942ca8458",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.completeImport()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 248,
+    "fingerprint": "f2258b38c85dfd673475cdce829e7f5eb2cb95f874acd4e81c728c2c5cced64f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRoyaltyRewards.syncAll()\n\t\tZZZRoyaltyRewards._sync(address)\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 249,
+    "fingerprint": "1eca573fb0229bc32bb738c53b7c1f3e252a87b6a5e55eaa257a4836edc64286",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalLedger._canonicalBalance(address) (src/base/ZZZCanonicalLedger.sol#39-41) has external calls inside a loop: IERC20(asset).balanceOf(address(this)) (src/base/ZZZCanonicalLedger.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZRewards.canonicalValidate()\n\t\tZZZCanonicalLedger._canonicalValidateBacking()\n",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 250,
+    "fingerprint": "139bc59cb7206be6f418ff13e8c153425ae37a17b35d73bd5a09cbf216e2068b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZClaimRouter.claimBatch(ZZZClaimRouter.Claim[]) (src/ZZZClaimRouter.sol#48-74) has external calls inside a loop: IZZZNFT(nft).ownerOf(entry_scope_1.nftId) != msg.sender (src/ZZZClaimRouter.sol#68)\n",
+    "files": [
+      "src/ZZZClaimRouter.sol"
+    ]
+  },
+  {
+    "ordinal": 251,
+    "fingerprint": "1ab6f00abf5bcf3365c6da1ff7847d2e05dc065819e2f7c15cae22e0716aac0d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.NFT)).royaltyRewards() (src/ZZZCanonicalHandoff.sol#107)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.completeImport()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 252,
+    "fingerprint": "7a6429da44179031b9d79edb1800455e6430b78745fe844b05d97dba7b64245c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical._vault() (src/ZZZFeesCanonical.sol#40) has external calls inside a loop: IZZZVault(access.module(Ids.VAULT)) (src/ZZZFeesCanonical.sol#40)\n\tCalls stack containing the loop:\n\t\tZZZFeesCanonical.canonicalSettle()\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 254,
+    "fingerprint": "e8db9fc49d9ff72c1b1d8287b7aa1528c6f15b6dec9009c97e863084968adf2c",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.activate()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 256,
+    "fingerprint": "1edd4084497b847c76f61ad651da8c1eba062144170dc9b26bdc6ef52720caf1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: assets.assetCount() > 33 (src/ZZZMembership.sol#57)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 257,
+    "fingerprint": "936e6de0828a09e78470c0533214e9751e6d02a4f25336b0feb28f63cc6af39d",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.activate() (src/ZZZCanonicalHandoff.sol#390-410) has external calls inside a loop: _module(slot_scope_0).canonicalActivate() (src/ZZZCanonicalHandoff.sol#405)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 259,
+    "fingerprint": "11394aff6ec9913a09c8ff192cd95987a1b1ed11866e42371ca0dfc5a3ae19ee",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.finishAbort() (src/ZZZCanonicalHandoff.sol#457-470) has external calls inside a loop: _module(slot).canonicalValidate() (src/ZZZCanonicalHandoff.sol#465)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 261,
+    "fingerprint": "65add6598ca40810f3edddc6f594a22a8d4a90048aa6f215541aeab3007aa9d3",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical._balance(address,address) (src/ZZZFeesCanonical.sol#30-32) has external calls inside a loop: IERC20(asset).balanceOf(holder) (src/ZZZFeesCanonical.sol#31)\n\tCalls stack containing the loop:\n\t\tZZZFeesCanonical.canonicalValidate()\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 262,
+    "fingerprint": "0557ef46c24be209fa7c88a54f04344d8ebbe4fec8cc73e791a1ad51bd8174e1",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.settleDust() (src/ZZZMembership.sol#37-64) has external calls inside a loop: fees.flushDust(bucket,config.key.currency1) (src/ZZZMembership.sol#54)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 264,
+    "fingerprint": "bb52728f9eaadc4b0c3c5e0ff96fb0eb1a83fa01f3e5351c6e4666906f56283b",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62) has external calls inside a loop: asset = rewards.assets(i_scope_0) (src/ZZZFeesCanonical.sol#52)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 265,
+    "fingerprint": "26d300d90414ecf537ca04246b1f25af9f8f457eb654688bab65b26795bd10d4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73) has external calls inside a loop: fees.canonicalFlush(id,assets[j]) (src/ZZZFeesCanonical.sol#67)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 266,
+    "fingerprint": "c9b972beaeca230e3f692707c3bb4c0d2146fe03308098efab33efb86e556ac8",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.activate()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 268,
+    "fingerprint": "da0c947f1d71d7ba811a843a98886974826fe5a36bd9b6c034f0aa564971c7aa",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.MEMBERSHIP) (src/ZZZCanonicalHandoff.sol#105)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.exportRows(uint8,uint256)\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 269,
+    "fingerprint": "04baf28f43c8cde2e57cd6dd08506ec2405f2e8877f75ac171440696c1fed800",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.deploymentCommitment()\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 272,
+    "fingerprint": "88ba2dc24697588039289c9be93ba229368d07374e6f1a46347245dc2784da6f",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.exportRows(uint8,uint256)\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 273,
+    "fingerprint": "8eba4fec22307b977435168b2faaad6c5ae92eb71ba8d1a5b753fb8d284b6bd4",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240) has external calls inside a loop: recordCount[slot_scope_0] = _module(slot_scope_0).canonicalCount() (src/ZZZCanonicalHandoff.sol#226)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 275,
+    "fingerprint": "d1564d14d3abfef4b14080e3f8c4688407b3dd20daed406e6376694683a1cbc5",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.FEES_CANONICAL) (src/ZZZCanonicalHandoff.sol#108)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.finishAbort()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 280,
+    "fingerprint": "17bf13e9843ce149b7efc68ad942aa055c5dac70d8337e243b26c0e7dfd6cc96",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: ICanonicalHelpers(access.module(Ids.VAULT)).canonicalModule() (src/ZZZCanonicalHandoff.sol#104)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.freeze()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 283,
+    "fingerprint": "3b41cdf324a3836dc05b1449b1f9ed3cb8f43ae6ab9e6d721e7e3bffad96bc36",
+    "check": "calls-loop",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZCanonicalHandoff.moduleAt(uint8) (src/ZZZCanonicalHandoff.sol#102-110) has external calls inside a loop: access.module(Ids.REWARDS) (src/ZZZCanonicalHandoff.sol#106)\n\tCalls stack containing the loop:\n\t\tZZZCanonicalHandoff.finishAbort()\n\t\tZZZCanonicalHandoff._module(uint8)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 289,
+    "fingerprint": "d18ef80ed12d04998f14288d9062cc669cb4fd7ae536a6d65add1bd459b5aff2",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.completeLocal(bytes32,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#330-375):\n\tExternal calls:\n\t- _receive(plan,requestData.destinationPool,requestData.output0,requestData.output1,a0,a1,minimumLiquidity,deadline) (src/ZZZMigration.sol#348-357)\n\t\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tState variables written after the call(s):\n\t- _close(plan,id) (src/ZZZMigration.sol#373)\n\t\t- delete activePlan[plan.request.bucket] (src/ZZZMigration.sol#431)\n\t- _close(plan,id) (src/ZZZMigration.sol#373)\n\t\t- -- outstandingCount (src/ZZZMigration.sol#432)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 293,
+    "fingerprint": "10310e5fe04d35c17a7efd538a37a4f2752a4196d30f5ef12d2401d6436c7eb0",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):\n\tExternal calls:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#186-187)\n\tState variables written after the call(s):\n\t- nativeSender = wrapper (src/base/ZZZRewardConverter.sol#194)\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 294,
+    "fingerprint": "51d425f39fffa5f600cd29d01394fe97b6dd5c061b32bbc9cb3d50b3cdaf8632",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZNFT.mint(address,uint256) (src/ZZZNFT.sol#139-160):\n\tExternal calls:\n\t- requestId = IZZZVRFCoordinator(randomnessCoordinator).requestRandomWords(IZZZVRFCoordinator.RandomWordsRequest(keyHash,subscriptionId,requestConfirmations,callbackGasLimit,2,abi.encodeWithSelector(bytes4(keccak256(bytes)(VRF ExtraArgsV1)),nativePayment))) (src/ZZZNFT.sol#149-151)\n\tState variables written after the call(s):\n\t- randomness[requestKey].nftId = id (src/ZZZNFT.sol#154)\n\t- randomness[requestKey].requested = true (src/ZZZNFT.sol#154)\n\t- requestEpochOf[id] = randomnessEpoch (src/ZZZNFT.sol#155)\n\t- requestOf[id] = requestId (src/ZZZNFT.sol#156)\n",
+    "files": [
+      "src/ZZZNFT.sol"
+    ]
+  },
+  {
+    "ordinal": 297,
+    "fingerprint": "8fe97b114c1878d7bab89d0e72c4341cbffcfd74e1443134fa2a7cf30eb6f900",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):\n\tExternal calls:\n\t- output = v4Executor.execute(routeId,amount,minimum,deadline) (src/base/ZZZRewardConverter.sol#218)\n\tState variables written after the call(s):\n\t- nativeSender = address(0) (src/base/ZZZRewardConverter.sol#219)\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 299,
+    "fingerprint": "36cf5be6fef241150cff6779b7292339d16c30923cefbf5f6fdf7153fc07b31a",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62):\n\tExternal calls:\n\t- fees.canonicalBarrier() (src/ZZZFeesCanonical.sol#43)\n\tState variables written after the call(s):\n\t- delete accepted[i] (src/ZZZFeesCanonical.sol#45)\n\t- delete amounts (src/ZZZFeesCanonical.sol#46)\n\t- amounts.push(0) (src/ZZZFeesCanonical.sol#54)\n\t- delete assets (src/ZZZFeesCanonical.sol#46)\n\t- assets.push(asset) (src/ZZZFeesCanonical.sol#54)\n\t- captured = true (src/ZZZFeesCanonical.sol#61)\n\t- groups = _vault().bucketCount() (src/ZZZFeesCanonical.sol#47)\n\t- imported = false (src/ZZZFeesCanonical.sol#44)\n\t- lpAssets = rewards.assetCount() (src/ZZZFeesCanonical.sol#49)\n\t- delete quarantine (src/ZZZFeesCanonical.sol#46)\n\t- quarantine.push(raw - fees.accounted(asset)) (src/ZZZFeesCanonical.sol#58)\n\t- released[i_scope_0] = false (src/ZZZFeesCanonical.sol#59)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 300,
+    "fingerprint": "123ae9661a47ec6468eec0f5ef087b3e2ba20f1333a26f808917dada7607e2df",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMigration.recover(bytes32,uint256) (src/ZZZMigration.sol#379-390):\n\tExternal calls:\n\t- _receive(plan,plan.sourcePool,plan.token0,plan.token1,a0,a1,0,deadline) (src/ZZZMigration.sol#385)\n\t\t- vault.acceptHandoff{value: nativeAmount}(plan.request.bucket,pool,amount0,amount1,minimumLiquidity,deadline) (src/ZZZMigration.sol#421-423)\n\tState variables written after the call(s):\n\t- _close(plan,id) (src/ZZZMigration.sol#388)\n\t\t- delete activePlan[plan.request.bucket] (src/ZZZMigration.sol#431)\n\t- _close(plan,id) (src/ZZZMigration.sol#388)\n\t\t- -- outstandingCount (src/ZZZMigration.sol#432)\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 304,
+    "fingerprint": "75615a96498909a6400d7a16f9e8446bb321240fc1b63f1dce0309c971a77936",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73):\n\tExternal calls:\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id) (src/ZZZMembership.sol#69)\n\tState variables written after the call(s):\n\t- ++ totalEligible (src/ZZZMembership.sol#71)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 305,
+    "fingerprint": "08c9dc8e6767f635bae46456780b834911bebbbf02ee94f18a1cb59b468c0422",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZCanonicalHandoff.freeze() (src/ZZZCanonicalHandoff.sol#181-240):\n\tExternal calls:\n\t- access.canonicalTransition(STATE_FROZEN,false,false) (src/ZZZCanonicalHandoff.sol#221)\n\t- _module(slot).canonicalCapture() (src/ZZZCanonicalHandoff.sol#223)\n\tState variables written after the call(s):\n\t- assetCount[slot_scope_0] = _module(slot_scope_0).canonicalAssetCount() (src/ZZZCanonicalHandoff.sol#227)\n\t- exportCursor[slot_scope_0] = 0 (src/ZZZCanonicalHandoff.sol#231)\n\t- exportRoot[slot_scope_0] = bytes32(0) (src/ZZZCanonicalHandoff.sol#232)\n\t- funded[slot_scope_0][index] = false (src/ZZZCanonicalHandoff.sol#234)\n\t- recordCount[slot_scope_0] = _module(slot_scope_0).canonicalCount() (src/ZZZCanonicalHandoff.sol#226)\n\t- returned[slot_scope_0][index] = false (src/ZZZCanonicalHandoff.sol#235)\n",
+    "files": [
+      "src/ZZZCanonicalHandoff.sol"
+    ]
+  },
+  {
+    "ordinal": 309,
+    "fingerprint": "1bc4be1eb2704c8512d3fb566d737a74eb5c63315ec6fd64dac828ac28f994f6",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):\n\tExternal calls:\n\t- output = IV3RouteRouter(p.router).exactInputSingle(IV3RouteRouter.ExactInputSingleParams(source,wrapper,p.fee,address(this),amount,minimum,0)) (src/base/ZZZRewardConverter.sol#186-187)\n\t- IRewardWrapper(wrapper).withdraw(output) (src/base/ZZZRewardConverter.sol#195)\n\tState variables written after the call(s):\n\t- nativeSender = address(0) (src/base/ZZZRewardConverter.sol#196)\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 310,
+    "fingerprint": "1a895ca68299a4b07abb4255c8e4ee7566854dccc151e9d71545eb2ee693f074",
+    "check": "reentrancy-benign",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZFeesCanonical.canonicalSettle() (src/ZZZFeesCanonical.sol#63-73):\n\tExternal calls:\n\t- fees.canonicalFlush(id,assets[j]) (src/ZZZFeesCanonical.sol#67)\n\tState variables written after the call(s):\n\t- amounts[i_scope_0] = fees.accounted(assets[i_scope_0]) + quarantine[i_scope_0] (src/ZZZFeesCanonical.sol#70)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 314,
+    "fingerprint": "e93e36d26c480fed0073f26c9d8603d663645881be4529fae22369d71b6ee655",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZNFT.notifyContribution(uint256) (src/ZZZNFT.sol#209-214):\n\tExternal calls:\n\t- royaltyRewards.activate(id,uint256(rarityOf[id]) + 1) (src/ZZZNFT.sol#212)\n\tEvent emitted after the call(s):\n\t- MetadataUpdate(id) (src/ZZZNFT.sol#213)\n",
+    "files": [
+      "src/ZZZNFT.sol"
+    ]
+  },
+  {
+    "ordinal": 316,
+    "fingerprint": "767d7df92d750064ef01f4afcb0e7939a46f911d2156e0cc1fb929be81e968cd",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZFeeController._flushHomeDust(uint256,address) (src/ZZZFeeController.sol#98-106):\n\tExternal calls:\n\t- _credit(id,token,remainder,0) (src/ZZZFeeController.sol#103)\n\t\t- ICanonicalFeeCutoff(rewards).creditCanonicalCutoff{value: personal + shared}(id,token,personal,shared) (src/ZZZFeeController.sol#60)\n\t\t- ICanonicalFeeCutoff(rewards).creditCanonicalCutoff{value: 0}(id,token,personal,shared) (src/ZZZFeeController.sol#60)\n\t\t- IZZZRewards(rewards).creditPool{value: personal + shared}(id,token,personal,shared) (src/ZZZFeeController.sol#61)\n\t\t- IZZZRewards(rewards).creditPool{value: 0}(id,token,personal,shared) (src/ZZZFeeController.sol#61)\n\tEvent emitted after the call(s):\n\t- MembershipDustSettled(id,token,remainder) (src/ZZZFeeController.sol#105)\n",
+    "files": [
+      "src/ZZZFeeController.sol"
+    ]
+  },
+  {
+    "ordinal": 317,
+    "fingerprint": "65c07497c34b2003f1badd5d412bcecb46525bf4cc60c394608355106430e85a",
+    "check": "reentrancy-events",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "Reentrancy in ZZZMembership.activate(uint256) (src/ZZZMembership.sol#65-73):\n\tExternal calls:\n\t- IZZZRewards(access.module(Ids.REWARDS)).checkpointAll(id) (src/ZZZMembership.sol#69)\n\tEvent emitted after the call(s):\n\t- MembershipActivated(id) (src/ZZZMembership.sol#72)\n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  }
+]

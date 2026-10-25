@@ -1,0 +1,24 @@
+{
+  "observed_at_utc": "2026-10-25T22:37:33.748014+00:00",
+  "phase": "after",
+  "scope": "Five new offline current/historical profile composition methods; synthetic byte-level traces, no live service or Solidity execution.",
+  "selected_methods": [
+    "test_current_dormant_activation_new_pool_and_active_growth_prepare",
+    "test_current_zzz_requires_only_exact_approval_before_fresh_review",
+    "test_current_native_policy_getter_is_typed_and_other_zero_uses_stay_rejected",
+    "test_explicit_historical_profile_keeps_old_dormant_value_and_native_preparation",
+    "test_dormant_codes_cannot_be_mixed_between_profiles_and_nonactive_growth_is_rejected"
+  ],
+  "tests_run": 5,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "successful": true,
+  "elapsed_seconds": 4.391,
+  "source_sha256": {
+    "frontend_api/activation.py": "9ab3cc60bd63f4731b01331cc14ac3bddd7830b2b14513dd751012e9bd08cd68",
+    "frontend_api/service.py": "ca465b0159551ac5046e2aa52e800a8e2a6d3b4e8a4919663c2ecaf2d66053a8",
+    "tests_python/test_current_activation_profile.py": "270da42852f3413d42d27c07efe7903d9b08fe48cab6ca858db78135266e6670"
+  },
+  "sources_unchanged": true
+}

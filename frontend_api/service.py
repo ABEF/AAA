@@ -236,7 +236,7 @@ class Projection:
                 'priceBounds(address)': {0},
                 'value(address,uint256)': {0}, 'quote(address,address,uint256)': {0, 1},
                 'referenceX96(address,address)': {0, 1}, 'activePolicy(address)': {0},
-                'isAsset(address)': {0},
+                'isAsset(address)': {0}, 'isContributionAsset(address)': {0},
             })
         replacements = {i for i in native_slots.get(signature, ()) if i < len(args) and args[i] == ZERO}
         safe = tuple('0x' + '0' * 39 + '1' if i in replacements else arg for i, arg in enumerate(args))

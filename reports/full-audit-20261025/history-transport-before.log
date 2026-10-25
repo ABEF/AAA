@@ -1,0 +1,29 @@
+test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit) ... ERROR
+test_canonical_wire_quantity_injected_adapter_remains_supported (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_canonical_wire_quantity_injected_adapter_remains_supported) ... ok
+test_boolean_float_wrong_or_noncanonical_chain_ids_fail_without_database_changes (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_boolean_float_wrong_or_noncanonical_chain_ids_fail_without_database_changes) ... ok
+test_actual_transport_wrong_network_stays_fail_closed_before_history (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_actual_transport_wrong_network_stays_fail_closed_before_history) ... ok
+
+======================================================================
+ERROR: test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit (tests_python.test_history_audit_transport.HistoryAuditTransportTests.test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_audit_transport.py", line 39, in test_actual_rpc_checked_integer_chain_id_can_complete_read_only_audit
+    result = self.audit(transport)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_history_audit_transport.py", line 32, in audit
+    return HistoryAudit(self.f.cfg, self.f.policy, rpc).run(addr(1), 10, 19)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\history_audit.py", line 142, in run
+    require(_quantity(self.rpc.call('eth_chainId', [])) == peer.chain, 'wrong_chain')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\history.py", line 41, in _quantity
+    raise HistoryError('Malformed history RPC quantity')
+frontend_api.history.HistoryError: Malformed history RPC quantity
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.619s
+
+FAILED (errors=1)

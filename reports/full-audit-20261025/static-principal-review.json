@@ -1,0 +1,1591 @@
+{
+  "schema": 1,
+  "scope": "Manual source-specific principal/valuation/execution slice of fresh Slither399 findings. Family explanations apply only after reading the listed actual call stacks and current guarded callers; not exploit-absence or independent audit approval.",
+  "input_sha256": "7ced287f39f2d1aaef5c4e2003f3f23d27ef57c38a2de6ffa7b5f352a2a621f7",
+  "entries": [
+    {
+      "fingerprint": "31d8b1a6b938d068d5de5612dffcfc000c6214402e1a2ccd6aa841b02174417f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 6,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "50cbea486f9341149ac07cfd4fcca6a0040829019f6e5d6810f9f8f3b4eb1ab1",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded rebalance/move/park, with fixed Manager and approved owned LP. Fresh post-close balances determine closed principal; nativeReceived distinguishes actual Manager credit. lpTokenId is cleared and attributed idle updated only once while Vault nonReentrant excludes every public financial reentry. canonicalWrite cannot be called by tokens or in operating state. Specific diagnostic: Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):",
+      "ordinal": 7,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b8a6dbaebdcfd4c5c96a406cb807cf1ef22845d2627e73d613367131546c1006",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 8,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "93a6b7278355adf69031f012a52114ef3528b69064fdf170586bfe910ace16f2",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 11,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "1acfafad1b6b34bba1d9219bb444f283a47ffbc7fc253a5b3bb0022c9ee4fbe7",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Owner-funded executeReviewed is nonReentrant and live/operating, with original source/pair prices and reviewed maximum frozen before pull/conversion. Context is armed only for exact Vault payload after approvals and ownership recheck. After Vault returns it deletes context, resets allowance, rechecks current owner and exact source/output/native prefunds, and ends the unchanged pricing basis. The saved acquisition/baselines are intentionally reconciled against fresh balances, not blindly reused as income. Specific diagnostic: Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):",
+      "ordinal": 14,
+      "source_files": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "390599b371efec6b8ac8f1f1c058f2cd2f639e981df3f6e3bd5bc8a4066137e1",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 19,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "09760488d0bb04d28c0560738c4602248b950ef840500ca4d71c24118bf7c24f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 20,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "750f02a931ad68efece478c0177f6e1e60301f3c984c016f6f57eae77369e634",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 24,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "e9bfd3e6655fa118d221000f3dbd8b2b53dbfa5fe3353ba1f286d120b057968c",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private collect runs under nonReentrant Vault entry and fixed Manager. It snapshots raw Vault balances then derives actual new fees after collect; native fees must equal authenticated Manager credits. Existing idle/principal are not allocated from an old quote, and allocation to fixed FeeController uses exactly received deltas. Unexpected donation/token behavior can revert, not create a withdrawal path. Specific diagnostic: Reentrancy in ZZZVault._harvestVenue(uint256,uint256) (src/ZZZVault.sol#333-346):",
+      "ordinal": 25,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "bf23d998484194b2f78c79698f700fb70f9015a7214222e1a02a846e477d119f",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 26,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "0908051c1304c313ce5438b47baf48409882a49f011b82eabd6ecc70c6d4a04d",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 29,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "0eb9f7ac921066997048430a3bdc260a94015a92a82c3aa867d342892acd2797",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 31,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "0ebf6bdf65ac2e0f2ee78171ed63ad790c7d66263406db1f6f31f15169d937f8",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded rebalance/move/park, with fixed Manager and approved owned LP. Fresh post-close balances determine closed principal; nativeReceived distinguishes actual Manager credit. lpTokenId is cleared and attributed idle updated only once while Vault nonReentrant excludes every public financial reentry. canonicalWrite cannot be called by tokens or in operating state. Specific diagnostic: Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):",
+      "ordinal": 32,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "717593a27e595ff3a6da22250dec62cec8756c8a3bf32ea0a1e6b075120b6396",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Owner-funded executeReviewed is nonReentrant and live/operating, with original source/pair prices and reviewed maximum frozen before pull/conversion. Context is armed only for exact Vault payload after approvals and ownership recheck. After Vault returns it deletes context, resets allowance, rechecks current owner and exact source/output/native prefunds, and ends the unchanged pricing basis. The saved acquisition/baselines are intentionally reconciled against fresh balances, not blindly reused as income. Specific diagnostic: Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):",
+      "ordinal": 37,
+      "source_files": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "573f20a6fb788a11f15a762375242c486548e5ba67e0c614a46c19d9b5f6d247",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 45,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "3ae4fd293e83bfcf647f8f8e4e7ab5105d81e68571e931b3bf46f1295a892660",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only sealed fixed Vault/Buyback may enter; swap is nonReentrant. Callback must be the immutable Core and consume the exact pending hash once. Exact signed input delta/settlement, recipient output delta, original native prefund and final price guard are checked after unlock. The saved beforeOutput is an intentional pre-transfer baseline, not an unchecked price quote. Modules cannot be rebound after sealing. Specific diagnostic: Reentrancy in ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#235-259):",
+      "ordinal": 47,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "d152cb81192f37aa1d34602078f46586b6bebda0dd7f8ddbf2f55adafbbd1cb7",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 49,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "dac99a40c2363529519b1ae0079cc81e030a1f5f5775e9de6f5468f0784e087b",
+      "check": "reentrancy-balance",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper reached only through fixed-Vault mint/increase, both nonReentrant. Native/msg.value and uint128 bounds precede transfers. Before balances deliberately preserve prefunds; fresh after-balances determine unused amounts, exact refunds and final oracle spot/key/ticks/owner/liquidity checks follow all approvals, settlement and refund callbacks. Permit2 cannot reenter a money-moving public entry while the manager guard is held. A malicious admitted token/venue remains a qualification/trust risk, not a stale-baseline spending permission. Specific diagnostic: Reentrancy in ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170):",
+      "ordinal": 50,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "39289651402f6eb15034974a2f401087ff80f97bc402d3c6625b48ecfd590c3b",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private move executes only through fixed-Migration movePool/resume, both live/operating nonReentrant. Ordered pair identity, destination admission/reservation, starting-price maintenance snapshot and exact ending LP/backing guards apply. Old/new idle writes cannot be recursively mutated by token calls; canonicalWrite is fixed-companion/import-state only. The external custodian trust is a separate explicit release boundary, not this atomic pool move. Specific diagnostic: Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#580-596):",
+      "ordinal": 51,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a654b71f2499ee9dae876d135ef8b24a5d7c02182fea0eb468931a635e067053",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 52,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "2dd47f816d7966b4ed7cad38012af5b6db3f55924ca7dc4bcc9a03f34d73e384",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Fixed Migration is the sole caller; live/operating nonReentrant guard remains held throughout _movePool and final Active transition. It starts from Parked, retains same ordered actual pair and aggregate maintenance floor, and requires physically funded destination LP. A token/venue callback cannot enter the Migration-authorized Vault endpoint as Migration. Specific diagnostic: Reentrancy in ZZZVault.resume(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#554-565):",
+      "ordinal": 53,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "030f8f73cb6d0ea5bc4967f9dd4a04883aff1ef7c391c449441b0db9a804bf16",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only fixed CanonicalHandoff in source frozen state1 may restore a previously released row. Handoff.returnFunds is nonReentrant, marks the row returned and verifies exact incoming delta before calling restore. _forward sends only fixed captured backing to the fixed Vault, whose native receive only accepts this companion; token callbacks cannot impersonate Handoff. released resets once after the exact push, which reverts atomically on failure. Specific diagnostic: Reentrancy in ZZZVaultCanonical.canonicalRestore(uint256,address) (src/ZZZVaultCanonical.sol#238-242):",
+      "ordinal": 54,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol",
+        "src/libraries/ExactAsset.sol"
+      ]
+    },
+    {
+      "fingerprint": "645a7b5f2cf6463333aa38f0839213482e27806d02642639e0e7fd2344207779",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper executes under the guarded contribution/maintenance/Migration entry. Only fixed Manager receives exact per-call approvals/value; approvals reset. Budget asserts exact Vault debit and actual LP ownership, idle backing and deployed value after callbacks. LP/key/ticks/liquidity and price checks occur inside Manager. Reentrant canonicalWrite is limited to fixed companion/importing state; ordinary operational entry is state0. Specific diagnostic: Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#163-193):",
+      "ordinal": 55,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "5115d2dc1cb8941ad2847cfb84047a182fabe6a648f58be0aa039c1db92ca3b5",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private move executes only through fixed-Migration movePool/resume, both live/operating nonReentrant. Ordered pair identity, destination admission/reservation, starting-price maintenance snapshot and exact ending LP/backing guards apply. Old/new idle writes cannot be recursively mutated by token calls; canonicalWrite is fixed-companion/import-state only. The external custodian trust is a separate explicit release boundary, not this atomic pool move. Specific diagnostic: Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#580-596):",
+      "ordinal": 56,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "edd7f8e97d5a6d14b3d4ba299be97c82a7af29728a889636693766125da7f60d",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 58,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "87d31c09152693cb1b971899b9d3567b20929e2f89292665745bab2f4beeb8b9",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Migration may call, while globally paused; Vault nonReentrant and canonical-accounting barriers remain. Harvest and close credits are measured before marking Parked. Token callbacks cannot call the endpoint as Migration, cannot enter other guarded money writes, and cannot use canonicalWrite outside fixed companion/importing state. Parking sends no principal to an external holder. Specific diagnostic: Reentrancy in ZZZVault.park(uint256,uint256) (src/ZZZVault.sol#543-552):",
+      "ordinal": 59,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "275977302515b398a20f178c49cf3d82392c72cc0089f1caa53e9cc1d9591c43",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 60,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "99442ae967513f5f74f478e4ec1248d22bd1fc923fdf54fa092ff4af69fd9bd9",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper executes under the guarded contribution/maintenance/Migration entry. Only fixed Manager receives exact per-call approvals/value; approvals reset. Budget asserts exact Vault debit and actual LP ownership, idle backing and deployed value after callbacks. LP/key/ticks/liquidity and price checks occur inside Manager. Reentrant canonicalWrite is limited to fixed companion/importing state; ordinary operational entry is state0. Specific diagnostic: Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#163-193):",
+      "ordinal": 61,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "55dfa9f1825e56ab7dadc182c1b42b1adc415cef6a935a9e3b321706dbf6ced5",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Migration may enter and Vault nonReentrant/operating remain held. It requires Outbound with no old LP/idle, reserves the reviewed destination, receives exact assets and tracks backed idle; deployment requires fresh guards and unpaused state. Reservation companion only updates local aliases and cannot call arbitrary callback code. Canonical writes require distinct inert importing state. Specific diagnostic: Reentrancy in ZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#515-539):",
+      "ordinal": 63,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "623ceb92734666e3e48a00201d3ec7b0581cbc9af02339b49448fbefcec2df86",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Compounder may enter and Vault live/operating nonReentrant remain held. The budget captures current principal/price vector and local cooldown before harvest, includes only released compound, then checks final LP plus idle against the captured aggregate loss floor. Reserve callbacks cannot recursively issue shares or mutate custody. Specific diagnostic: Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#363-379):",
+      "ordinal": 64,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "21a1ac6b1c582dc147b8b54f11f7b7f79c77f4393e86dc520d26b8ea40bf7eaf",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper executes under the outer guarded entry and has exactly two passes. Only attributed idle is swapped by the fixed Manager with exact allowance/reset and output checks; each pass updates that bucket idle with measured input/output. No user-supplied arbitrary calldata/recipient or unbounded loop exists. External callback writes are blocked by the Vault guard and canonical writer restrictions. Specific diagnostic: Reentrancy in ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424):",
+      "ordinal": 65,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "8b1c7b3a180050e2ac214773d236de56e6c69ef1a5a02c2c1945d6e3780df7c9",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 66,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "eb051748bdb4e856ad5c4f0ec3bca2e632cf45e58fa8640d4f959366552d8cee",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded rebalance/move, validates exit pricing, harvests actual fees, releases designated compound, includes it in the captured budget and closes owned LP. Each child path is fixed-module authenticated and outer Vault nonReentrant excludes cross-function balance mutations. Later redeployment/aggregate checks must succeed atomically. Specific diagnostic: Reentrancy in ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#430-436):",
+      "ordinal": 67,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "05c91afe0c41efe0cb7e601d00294a937a9bf13179977fbaa38c1c930a9f6f64",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 68,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b1e8336aa2d90588ef7dfb1e2428094ab08078fece0a4532e2e42ca363575c1e",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Compounder may enter and Vault live/operating nonReentrant remain held. The budget captures current principal/price vector and local cooldown before harvest, includes only released compound, then checks final LP plus idle against the captured aggregate loss floor. Reserve callbacks cannot recursively issue shares or mutate custody. Specific diagnostic: Reentrancy in ZZZVault.compound(uint256,uint128,uint256) (src/ZZZVault.sol#363-379):",
+      "ordinal": 69,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "1b2c5512bc6bd30b956fd3305d1c6796b3d4230939b3f287d35cca4b587f1d76",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Migration may call while its governance-approved custody request is active. Vault nonReentrant/operating remain held; Budget requires globally paused Parked/no-LP custody, computes fixed-ZZZ exact input/stronger minimum and updates only attributed idle. The normal exit recipient trust is explicit; a swap callback cannot take an extra bucket or bypass the raw/normal approval distinction. Specific diagnostic: Reentrancy in ZZZVault.consolidateHandoff(uint256,address,uint256,uint256) (src/ZZZVault.sol#473-488):",
+      "ordinal": 70,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "9f258212bca1d747b5554079e24082db0936efc1fbe3e5447f34a6775c511637",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded rebalance/move, validates exit pricing, harvests actual fees, releases designated compound, includes it in the captured budget and closes owned LP. Each child path is fixed-module authenticated and outer Vault nonReentrant excludes cross-function balance mutations. Later redeployment/aggregate checks must succeed atomically. Specific diagnostic: Reentrancy in ZZZVault._unwind(uint256,uint256) (src/ZZZVault.sol#430-436):",
+      "ordinal": 71,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "2485c20146bc18f1d6a8c0a2cd0279e347addeae7057cf50c380371bdb1b39b4",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 72,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "544153ec86100482b5673a02c197ae94edea8676b195255939dc3f5beb6fbe5e",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 74,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "bcfd82bb976938fa97a7ec086fa0ed0ce2884e02fd004b25f6183e2d64646aa0",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Keeper-authorized live/operating nonReentrant endpoint checks trigger/cooldown and nonzero minimum liquidity, captures old principal/price policy, unwinds/redeploys and verifies the complete aggregate budget before emitting. Intermediate positions/idle getters are read-only; no callback can invoke another Vault financial entry or importing-only canonical writer. Specific diagnostic: Reentrancy in ZZZVault.rebalance(uint256,uint128,uint256) (src/ZZZVault.sol#453-470):",
+      "ordinal": 75,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b8a0ec2e0ca1d74e7cfcbb7468d1e0dd454cbd71c717f1af94e340a77d84db8f",
+      "check": "reentrancy-eth",
+      "impact": "High",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded compound/rebalance/move/return. It bounds balancing to two passes, separately harvests newly earned venue fees before increase, enforces idle loss, then exact-spend/owned-LP/deployed-value checks. Shares are not rewritten by this helper and every money-mutating public caller holds the same Vault reentrancy guard. Specific diagnostic: Reentrancy in ZZZVault._redeploy(uint256,uint128,uint256) (src/ZZZVault.sol#442-451):",
+      "ordinal": 76,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "333dae6d5d6e29fa042523ac154756e24a909d70384edca3c255d1de729b7b77",
+      "check": "divide-before-multiply",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Intentional floor-to-spacing arithmetic. Integer quotient is reduced by one for negative nonmultiples before multiplication; the result is the lower valid tick multiple, not a lost-precision monetary calculation. _range separately enforces TickMath limits and ordered outward ticks. Specific diagnostic: ZZZStrategy._floor(int24,int24) (src/ZZZStrategy.sol#35-39) performs a multiplication on the result of a division:",
+      "ordinal": 79,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "69f365e6875e9e0f31e2d1986fa98320e4123c44111a376e7ed0b6dab0845bcb",
+      "check": "incorrect-equality",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Flagged equality is amount==0: the zero-transfer early return, not a balance-dependent halt condition. Nonzero sends use exact before/after prefund preservation by design; donating ETH cannot force an extra payout. Specific diagnostic: ZZZLiquidityManager._sendNative(address,uint256) (src/ZZZLiquidityManager.sol#71-76) uses a dangerous strict equality:",
+      "ordinal": 81,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "8f3f7208bb77ca21c1ead8e540607587dd03dbaa72d9295a7f9a2c6bd7aa824a",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded rebalance/move/park, with fixed Manager and approved owned LP. Fresh post-close balances determine closed principal; nativeReceived distinguishes actual Manager credit. lpTokenId is cleared and attributed idle updated only once while Vault nonReentrant excludes every public financial reentry. canonicalWrite cannot be called by tokens or in operating state. Specific diagnostic: Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):",
+      "ordinal": 84,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7bc3d66aadbdb61e80db5807f1434695bf89be2688366217197c73f16386b8e7",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Migration may enter and Vault nonReentrant/operating remain held. It requires Outbound with no old LP/idle, reserves the reviewed destination, receives exact assets and tracks backed idle; deployment requires fresh guards and unpaused state. Reservation companion only updates local aliases and cannot call arbitrary callback code. Canonical writes require distinct inert importing state. Specific diagnostic: Reentrancy in ZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#515-539):",
+      "ordinal": 87,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7cab186ae805c3d4bdd9bef6e9f9a648d6223fac014dee3f00c33989ab6d592d",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Private move executes only through fixed-Migration movePool/resume, both live/operating nonReentrant. Ordered pair identity, destination admission/reservation, starting-price maintenance snapshot and exact ending LP/backing guards apply. Old/new idle writes cannot be recursively mutated by token calls; canonicalWrite is fixed-companion/import-state only. The external custodian trust is a separate explicit release boundary, not this atomic pool move. Specific diagnostic: Reentrancy in ZZZVault._movePool(uint256,bytes32,uint128,uint256) (src/ZZZVault.sol#580-596):",
+      "ordinal": 89,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "1c979a74496393251d5ea94dc646aff8464ebee2dd3f6349ef1a9cddf1f5a0fd",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Private helper executes under the outer Vault guard. Only fixed FeeController releases the designated bucket reserve; returned amounts are added to that bucket idle and aggregate raw backing is rechecked. No external caller can invoke it or change shares while reserve transfer callbacks execute. Canonical writers are separately restricted to inert import state. Specific diagnostic: Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#354-361):",
+      "ordinal": 91,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "72d71d5e920e639cd1a7eb6805944bc53f0cadbf5db9c858eb80d9e2e34235b1",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Owner/revealed dormant validation, live/operating and Vault nonReentrant precede reservation. Immutable canonical companion registerAlias performs local mapping writes only; it has no arbitrary external callback. nftBucket and shares then follow guarded _join checks. Alternate canonicalWrite path requires fixed companion plus importing state2, excluded here. Specific diagnostic: Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#209-233):",
+      "ordinal": 94,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "4b290e045d0387eda544aad4003f0d1f63db66d7916c6e3db4bd0d4dbfb41a67",
+      "check": "reentrancy-no-eth",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Only governance may configure and authority is rechecked after the body. The Registry-created immutable Assets child admits via token/feed static reads plus local history writes; those static observations cannot invoke mutable callbacks. It cannot call an arbitrary target. Configuration then writes the sole contributionPool and flags locally. Malicious governance/dependency approval remains an accepted explicit trust boundary, not permission for unprivileged reentrant mutation. Specific diagnostic: Reentrancy in ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116):",
+      "ordinal": 96,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "846eb7173e9e150e07b4cf86b2055b3bbcb444341738be52115ce6b2469696c3",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "unit1 deliberately defaults to zero below the lower tick, representing one-sided token0 LP; in-range/above branches assign it. u0+u1 must remain positive before planning. Specific diagnostic: ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256).unit1 (src/ZZZStrategy.sol#218) is a local variable never initialized",
+      "ordinal": 99,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "2d7abdf5463534ee3f1fe92d7d96df0f4c7a814d46e50497d9cb0cdf8669f0a6",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "unit0 deliberately defaults to zero above the upper tick, representing one-sided token1 LP; in-range/below branches assign it. Zero total unit valuation reverts. Specific diagnostic: ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256).unit0 (src/ZZZStrategy.sol#217) is a local variable never initialized",
+      "ordinal": 102,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "3177ad1f8a7edadb655cf203c5c13b5bc1130cbe6ed82ebe4b723e677adf0908",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "beforePosmNative defaults zero but is read only in nativePool branches, after explicit snapshot assignment before modifyLiquidities. ERC20 branch never consumes it. Specific diagnostic: ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256).beforePosmNative (src/ZZZLiquidityManager.sol#129) is a local variable never initialized",
+      "ordinal": 104,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "441d749e54d6fdd0f5250f51c7bae8b24e650a2c01ea2ce005279c100520aa7b",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "freshCompound is intentionally zero on first supply==0 entry; nonzero-supply path assigns released compound before subtracting incumbent NAV. It cannot award historical compound to first/new shares. Specific diagnostic: ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool).freshCompound (src/ZZZVault.sol#285) is a local variable never initialized",
+      "ordinal": 107,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "6b73b21760a491a70e3e649ffa18efd47fa75adab331e8617562abfde11a4e19",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "nativeValue must remain zero for ERC20 pools. Native pool branch explicitly assigns exact rounded native debt and verifies it <=amount0 before calling PositionManager. Specific diagnostic: ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256).nativeValue (src/ZZZLiquidityManager.sol#126) is a local variable never initialized",
+      "ordinal": 108,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "498ef9daed31c4098fa4e1ab384d4e0377a3c5c216ed037b23f4b5dcdee4cabc",
+      "check": "uninitialized-local",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Snapshot memory s starts zeroed by Solidity. Every persisted field (bucketId, lossBps, prices, scales, idle0/1 and positive total value) is assigned before snapshot=s. No uninitialized pointer or missing economic field is consumed. Specific diagnostic: ZZZMigrationBudget._beforeMove(uint256).s (src/ZZZMigrationBudget.sol#120) is a local variable never initialized",
+      "ordinal": 112,
+      "source_files": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "f6d3b3079a22af422d3761c26fef0265d0c9cce1b1b67b69f753ae6435bb1e11",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "get(poolId) is called only to enforce admitted existence by revert; no configuration field from that return is needed to validate a permanent reservation. The existing alias/bucket collision is checked separately. Specific diagnostic: ZZZMigrationBudget.validateReservation(bytes32,uint256) (src/ZZZMigrationBudget.sol#226-231) ignores return value by IZZZPools(access.module(Ids.POOLS)).get(poolId) (src/ZZZMigrationBudget.sol#228)",
+      "ordinal": 113,
+      "source_files": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "7edac9945bc2c90267d163e20d591fe6b23f7c22a762ce74332ba5c276090b30",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Both lower and upper pair prices are used; only the observation fingerprint is intentionally discarded in the memory-only read plan. Actual contribution Pricing independently freezes/checks fingerprints across the complete operation. Specific diagnostic: ZZZStrategy._pairPrices(PoolConfig) (src/ZZZStrategy.sol#199-207) ignores return value by (p.second.lower,p.second.upper,None) = oracle.priceBounds(c.key.currency1) (src/ZZZStrategy.sol#202)",
+      "ordinal": 114,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "a2042ee427b8bf460453c96107f684c9b25784c6924271678babf13995821d80",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "The final Strategy.validatePrice call is a revert-based freshness/spot guard. Returned spot is intentionally unused because a swap changes price; actual received output/debit and later put/contribution guards are independent. Specific diagnostic: ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#235-259) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#258)",
+      "ordinal": 117,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "35fc14da29e6dede0373943704f038eca5d4294ed45583046af5988a62480900",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "validateExitPrice is invoked for its revert-based health/spot checks; unwind does not need to store its spot. The starting maintenance vector is captured separately before closing. Specific diagnostic: ZZZMigrationBudget.validateUnwind(uint256) (src/ZZZMigrationBudget.sol#238-240) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validateExitPrice(IZZZVault(vault).group(id).poolId) (src/ZZZMigrationBudget.sol#239)",
+      "ordinal": 118,
+      "source_files": [
+        "src/ZZZMigrationBudget.sol"
+      ]
+    },
+    {
+      "fingerprint": "7d42e795b60067530c17f645691b7390e8aa0d310c6e8e442e54ab2d34914641",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "spot returns only sqrtPriceX96; unused tick and fee tuple fields are not required for amount valuation. Strategy._plan separately reads actual directional fees where sizing needs them. Specific diagnostic: ZZZLiquidityManager.spot(bytes32) (src/ZZZLiquidityManager.sol#56-58) ignores return value by (priceX96,None,None,None) = stateView.getSlot0(poolId) (src/ZZZLiquidityManager.sol#57)",
+      "ordinal": 120,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "2b88c07f504e7af1e29c686b7feca31f5c21d1b6af4b0a77624f7fd95bd55ddd",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Route admission uses initialized price and actual lpFee; unused tick/protocol-fee tuple fields do not authorize output. Execution checks actual exact input and minimum output, with parent aggregate floors. Specific diagnostic: ZZZV4RouteExecutor._check(ZZZV4RouteExecutor.Policy) (src/ZZZV4RouteExecutor.sol#88-101) ignores return value by (price,None,None,lpFee) = view_.getSlot0(keccak256(bytes)(abi.encode(k))) (src/ZZZV4RouteExecutor.sol#98)",
+      "ordinal": 121,
+      "source_files": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "69072e0a53c93754aef5359a990d47e69d2ad20967feed12ce02dae082fbe79b",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "oracle.price(token0) is admission validation by revert; its numeric value is not stored as a live price. Every execution reads fresh reviewed Oracle observations. Specific diagnostic: ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by oracle.price(token0) (src/ZZZPoolRegistry.sol#105)",
+      "ordinal": 122,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "df787610ec821d3ad7a969d88f8051762be9e6f51a470379aac708221e91d1c6",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Both lower and upper pair prices are used; discarded fingerprint is deliberate for this memory-only planner. Pricing.begin/finish/end independently validate complete fixed fingerprints before/after execution. Specific diagnostic: ZZZStrategy._pairPrices(PoolConfig) (src/ZZZStrategy.sol#199-207) ignores return value by (p.first.lower,p.first.upper,None) = oracle.priceBounds(c.key.currency0) (src/ZZZStrategy.sol#201)",
+      "ordinal": 123,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "6c65f702ba349f9e99cb2d9cd55a56936bddbf8079769482de9c7cca8680ce28",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "admitPoolAsset(token0) performs authenticated fixed-child admission/state changes. Its returned history ID is not needed by Registry; Assets records the active ID/events itself. Execution validates active source policy separately. Specific diagnostic: ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by activationAssets.admitPoolAsset(token0) (src/ZZZPoolRegistry.sol#109)",
+      "ordinal": 124,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "c8f2194ff1a519d8452dfd1e3b4ff9f458ffaff675636321628d2a921271045b",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "ticks only needs packed position tick info; discarding the returned key is a read-helper scope, not admission. Mint/increase independently call _checkPosition to enforce actual owner/key and physical tick/liquidity checks. Specific diagnostic: ZZZLiquidityManager.ticks(uint256) (src/ZZZLiquidityManager.sol#216-219) ignores return value by (None,info) = posm.getPoolAndPositionInfo(id) (src/ZZZLiquidityManager.sol#217)",
+      "ordinal": 125,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "c483ace8c42448cbd43bdcb62831ee8abe242c51b5524723a1c76363316a89e2",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "oracle.price(token1) validates admissible fresh nonzero pricing by revert. Registry does not cache prices; actual execution obtains fresh bounds. Specific diagnostic: ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by oracle.price(token1) (src/ZZZPoolRegistry.sol#106)",
+      "ordinal": 126,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "6d67b1633d2fdedd949756251ad6057d4609448bf422a4cc3fc37a2fc16a21b2",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Native admission checks initialized sqrt price and static LP fee. Protocol fee may legitimately change; it is not incorrectly pinned forever. Strategy sizing and actual swap output guards account for directional effective fees. Specific diagnostic: ZZZPoolRegistry.configureNative(PoolConfig) (src/ZZZPoolRegistry.sol#53-66) ignores return value by (price,None,None,lpFee) = IStateViewMinimal(STATE).getSlot0(poolId) (src/ZZZPoolRegistry.sol#63)",
+      "ordinal": 127,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "7a83af78de1b6c36ddf6f009f1140f6deae9250576abaf58aed070982934b7d1",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "admitPoolAsset(token1) updates/authenticates admission via the fixed Assets child; that child persists active policy and events. Registry does not consume its history ID in its own pool configuration. Specific diagnostic: ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) ignores return value by activationAssets.admitPoolAsset(token1) (src/ZZZPoolRegistry.sol#110)",
+      "ordinal": 128,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "1c346971a020e00c69e0f3c35b513a8223391067dd0bba6370c3603e47cc671a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "The sizing plan needs actual directional protocol fee and static lpFee; price was independently read and deviation-checked in _checkedSpot immediately above. Ignored tick/price fields do not replace that guard. Specific diagnostic: ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256) (src/ZZZStrategy.sol#211-253) ignores return value by (None,None,protocol,lpFee) = IV4FeeState(access.module(Ids.LIQUIDITY)).stateView().getSlot0(poolId) (src/ZZZStrategy.sol#239)",
+      "ordinal": 130,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    },
+    {
+      "fingerprint": "b9bd3274566d1ddd54effb4f18308b461a2bb893f6f934e0fe92939a3df0376d",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "Pre-swap validatePrice is deliberately a revert-only guard; no stored spot is used as guaranteed output. Amount/output/prefund checks run after callback and final validatePrice checks freshness/deviation again. Specific diagnostic: ZZZLiquidityManager.swap(bytes32,bool,uint256,uint256,uint256) (src/ZZZLiquidityManager.sol#235-259) ignores return value by IZZZStrategy(access.module(Ids.STRATEGY)).validatePrice(poolId) (src/ZZZLiquidityManager.sol#241)",
+      "ordinal": 131,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "26f687d402966dc0b4960464af3b90c499f06698df0023111c4e20b9fbfad90a",
+      "check": "unused-return",
+      "impact": "Medium",
+      "disposition": "false_positive",
+      "rationale": "canonicalImport calls accounting(p.poolId) to require an admitted current pool (including native runtime wiring). The authenticated source row supplies the Position, while ordered asset backing and aggregate imported shares are separately checked. Specific diagnostic: ZZZVaultCanonical.canonicalImport(uint256,bytes) (src/ZZZVaultCanonical.sol#163-222) ignores return value by IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId) (src/ZZZVaultCanonical.sol#188)",
+      "ordinal": 132,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "07ef791cd3ee4d15cbe68e26786e7334007b7b7ae21cfc24ffa1ec3f300846b7",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#93)",
+      "ordinal": 144,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "785f2f795299a043839007daf6611c1d735e7b294bf74979c946aa7b73601876",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#197)",
+      "ordinal": 145,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "022f66b045cc57a9d71005a624323f71c98bf2547b9eaeb667e952799a0230b1",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#184)",
+      "ordinal": 149,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "f4dc263beb65ff83a7bd066b8597aa7e4fe6f01e4512be187a187efe655249d3",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: id = vault.bucketAt(i) (src/ZZZVaultCanonical.sol#116)",
+      "ordinal": 151,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "34e5fa02ed81d541e31d4f8675ba8519dfd9d5a6019a9950d3cdafca9906bd67",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 157,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "477fd397bf9430decb40209a2273dd0503d155d807746483907c29ec30c96710",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 161,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b53fffeeef9e3a982d6a95cc49f0c5aad627bd90563e67adc42ef80853a22aba",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._moduleLiquidity() (src/ZZZVault.sol#657-659) has external calls inside a loop: access.module(Ids.LIQUIDITY) (src/ZZZVault.sol#658)",
+      "ordinal": 171,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "ca01063b46a209917d2b63996ca135e47bd3cecdb0af8d8e75f3dd15212333a4",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 173,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "48e005318375059ed98b36ee848fe1ee40652ff60716e4b7a39e632423803ddb",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: i_scope_0 < rewards.assetCount() (src/ZZZVaultCanonical.sol#125)",
+      "ordinal": 174,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "983da5b814aa6042636c906ae2a556ceb51e754ed58042fdaa8a284e47da1712",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0 (src/ZZZContributionPricing.sol#95)",
+      "ordinal": 179,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "222932c9fc9fa1ca291afce8c7b1fc05c8439243e4d35e6c5564b3594c0e9771",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 180,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "ad071099606d221731a8d87d216115ea6a708564a31becc40c409ca3102529a2",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 181,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "949ac5fafc0edaec0773923d12d4b74cd84407fa41c9e5bcb05d83907bab4b33",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#198-199)",
+      "ordinal": 182,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "e86a0a6ba16ab7f9e36bab4e709c7271bfeec7777564fb94276be7ab265204c1",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) (src/ZZZContributionPricing.sol#186)",
+      "ordinal": 183,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "22ec98cb32b3d19d09cf24f4e5b8c64655f7c22b6a1fc93a400b76690d191850",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 189,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a04b5edc850393ee34863487dae9ef3305e3b1df350eeb034c23130d73bc919f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: p = vault.group(id) (src/ZZZVaultCanonical.sol#117)",
+      "ordinal": 191,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "6708baa52d49e76f42141b4cec5262cf1244e399055a0dfa9f14a8c8b13fb641",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 194,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "ba33a71ff73a80ef3117f336e11228ffca74e25bbf3a0a76e67004d22fda5e81",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 201,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "4d0da2ceb5e7f021e2b40c9a8e3f07a753389e6d1dc4a149f0300511e6bd50bd",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 202,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "de3c59bf4ff47960057aa4932e14851e268f6beaca41a90bd2040c24892fb6f2",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 204,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "c0506ec0208c76a53796d7603c17a4b587093e45bc53b0caea0956ec172dee3b",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._mark(address) (src/ZZZContributionPricing.sol#64-71) has external calls inside a loop: (lower,upper,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#67)",
+      "ordinal": 205,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "432b43fab7b895df23d390c94d6e91696674e2bf8e90ea11d99f83dfa4ead819",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 210,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "1063fe6354484fc48fc343467388d1f964a8d50b2a328bfd41355093dc7c3a2a",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#198-199)",
+      "ordinal": 212,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "dd88789cc4a377aaa85b25c143d87300e73213ca12a4df9e59b8fb100be5206d",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: low != m.lower || high != m.upper || fingerprint != m.fingerprint || 10 ** oracle.tokenDecimals(token) != m.scale (src/ZZZContributionPricing.sol#198-199)",
+      "ordinal": 213,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "bfb83c2488b3635a70c692022f0297661087f2bde315c89e66168116366e9030",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 215,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "11cdcf82e38f769169fa31b710bce1d243a53157b8fec4a51fc5bf7b075ac0fc",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 216,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "2c6be9f9cd6be16fd3a8003f6cc545325847b2ba4051d401780d15d8227d6775",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#184)",
+      "ordinal": 217,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "ed48996a59863293888df117ef1fd09c8efeba4dd94dac4a995ee37c71af926f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0 (src/ZZZContributionPricing.sol#95)",
+      "ordinal": 222,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "b0de90bb1ccd6a818194f5e9e14d703d975cc12e334f1d7b705a028d830fdf46",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: asset = rewards.assets(i_scope_0) (src/ZZZVaultCanonical.sol#126)",
+      "ordinal": 224,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "20539e42537b29914704da9cfd747ffca7a6c6a01e2088b3b3d8b75ad94fb7ea",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing.historicalValue(uint256) (src/ZZZContributionPricing.sol#177-189) has external calls inside a loop: amount = IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) (src/ZZZContributionPricing.sol#186)",
+      "ordinal": 230,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "9a70d5fdcde7c2d844af549b8ebde354965008d77c5b43d21dcfd5600facc6f8",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 232,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "50c62342a26f6fe19812976cab3e450444dd017bc24145ce6024ad85603b4a58",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._mark(address) (src/ZZZContributionPricing.sol#64-71) has external calls inside a loop: marks[token] = Mark(uint128(lower),uint128(upper),10 ** oracle.tokenDecimals(token),fingerprint) (src/ZZZContributionPricing.sol#69)",
+      "ordinal": 234,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "e4265de06ce112732fe7b1816b6f16db92cf54611a7583558664d66a792c4672",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: balance < vault.totalIdle(asset) (src/ZZZVaultCanonical.sol#129)",
+      "ordinal": 236,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "0cdaa07b0209b127b00ea7af0e4be5e9f4a9bda00998974805294e4c70d7c3d6",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 237,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "785cfb705696158e6fc3394e580f94b0e8d0fddc0beecf7799b9862d3b766f2e",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: IZZZMigration(access.module(Ids.MIGRATION)).activePlan(id) != bytes32(0) (src/ZZZVaultCanonical.sol#121)",
+      "ordinal": 240,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "2e33a6856aff6c04b57ff9bb4978badcb8deb99a3ec7e4d692609b03b9c0b9a6",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#197)",
+      "ordinal": 247,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "72c1204c73cb3d4bff92f2e1170849c7c5a5a277f18788454b7602a7a098d302",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "The mark list has an explicit34asset cap; each Oracle source read has500k gas and exact returndata bounds. Repeated static reads deliberately detect changed prices/policies/fingerprints through the whole contribution. Failed dependency or excessive aggregate cost reverts atomically; qualified actual sources/max-state gas remain required rather than silently skipping a price. Specific diagnostic: ZZZContributionPricing._unchanged() (src/ZZZContributionPricing.sol#193-202) has external calls inside a loop: (low,high,fingerprint) = oracle.priceBounds(token) (src/ZZZContributionPricing.sol#197)",
+      "ordinal": 253,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "bf36a26586a36ce079c25287eae3ce0fffa8be1efbca89125f2430633f6b2362",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._moduleLiquidity() (src/ZZZVault.sol#657-659) has external calls inside a loop: access.module(Ids.LIQUIDITY) (src/ZZZVault.sol#658)",
+      "ordinal": 255,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "07bb986bd71338b2b96c673c97d401c13e50ddf2a82359bf787b998970ae956f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 258,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "cbdc017c9d46b7e4508ea4aa0917545824ace6e192ceab09185bcd083528601f",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 260,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b29e96f71b6edf88c91932a0f760d74a51d2775604907a3c6a1a315ad7df2e27",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._moduleLiquidity() (src/ZZZVault.sol#657-659) has external calls inside a loop: access.module(Ids.LIQUIDITY) (src/ZZZVault.sol#658)",
+      "ordinal": 263,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "bb6c00543fd89c4e63cdedf710ea4810727ee2f4e4a2831a38a725124ab80f4c",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: IZZZFees(access.module(Ids.FEES)).compoundBalance(bucket,token) != 0 (src/ZZZContributionPricing.sol#95)",
+      "ordinal": 267,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "6b7ffcee7f03f68bc54206c13f71e14f9c0fb3397980e86aa2efa0b21ca02bd4",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Capture restricts bucketCount to the Vault four-slot bound and reward assets to33, with bounded duplicate/backing checks. It is fixed-Handoff/frozen-only and observations are static. A broken token can prevent exact backing qualification; this is an explicit availability risk, not unbounded holder-controlled iteration or permission to skip liabilities. Specific diagnostic: ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has external calls inside a loop: p.lpTokenId != 0 || p.idle0 != 0 || p.idle1 != 0 || vault.bucketTotalShares(id) != 0 (src/ZZZVaultCanonical.sol#119)",
+      "ordinal": 270,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "31f92b5a7652b36e9192a47abcf47ca754f8c03acd075d8a6bda69af48ce3672",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 271,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "3b2b2f4c2c3c20b3482ca7a7830b354ea8adcbd072b74b887e245c077955dcee",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: amount}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 274,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "7d7dfd79333daaf996fde65c457de01dd08e13003e6dbc1eec750d77f7288c41",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._balanceUsing(uint256,uint256,bool) (src/ZZZVault.sol#409-424) has external calls inside a loop: (zeroForOne,amountIn,minimumOut,input) = migrationBudget.balancePlan(bucketId,existingRange) (src/ZZZVault.sol#414-415)",
+      "ordinal": 276,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a1e4dca79a2d193d9f6596655f782cd1ff444db760c02f011b937d0c9f477bcd",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#93)",
+      "ordinal": 277,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "7855809c5d0cac93f4ba825ad088ef67324a95e207a9ff62ee43366a0f5b2137",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Historical LP-compound scan rejects assetCount>33 and skips epoch0/current pair/zero historical amounts. Only admitted assets with positive incumbent backing require marks; calls are static, with no share or custody writes in the scan. This is finite work, not proof it fits every provider/market gas budget; actual maximum-state/feed latency qualification stays open. Specific diagnostic: ZZZContributionPricing._historicalMarks(uint256) (src/ZZZContributionPricing.sol#82-97) has external calls inside a loop: token = admitted.assets(i) (src/ZZZContributionPricing.sol#93)",
+      "ordinal": 278,
+      "source_files": [
+        "src/ZZZContributionPricing.sol"
+      ]
+    },
+    {
+      "fingerprint": "d97b014fd8cca2462f13063840fa04b2c4274f431eac8de475c52d52e470b16c",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "This call stack is inside _balanceUsing, whose pass counter is strictly<2. Each fixed-Manager swap has exact input/output/prefund/deadline and parent aggregate budget guards; no loop toward zero dust or arbitrary user-selected target exists. Two fee-bearing passes still require reviewed real strategy/gas/MEV economics; bounded does not mean free or always feasible. Specific diagnostic: ZZZVault._swap(Position,bool,address,uint256,uint256,uint256) (src/ZZZVault.sol#397-407) has external calls inside a loop: output = IZZZLiquidity(manager).swap{value: 0}(p.poolId,direction,amount,minimum,deadline) (src/ZZZVault.sol#403-405)",
+      "ordinal": 279,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "221acfcd4bff9d025833a5556ce95c9bab21440301665fb4623de93a906ac99c",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Imported groupCount is validated<=4 and backing assets<=33 at header import; validation compares exact bucket share denominators/raw backing through static calls. Missing backing or failing tokens deliberately fail closed. Exact maximal actual token/service gas remains a release qualification. Specific diagnostic: ZZZVaultCanonical.canonicalValidate() (src/ZZZVaultCanonical.sol#255-266) has external calls inside a loop: importedShares[id] != vault.bucketTotalShares(id) (src/ZZZVaultCanonical.sol#260)",
+      "ordinal": 281,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "ee7c48cbbd675f05e54cdd0cbf7d3c6b4346ac6009b68ae1e1784b993d9d5bd1",
+      "check": "calls-loop",
+      "impact": "Low",
+      "disposition": "accepted_risk",
+      "rationale": "Imported groupCount is validated<=4 and backing assets<=33 at header import; validation compares exact bucket share denominators/raw backing through static calls. Missing backing or failing tokens deliberately fail closed. Exact maximal actual token/service gas remains a release qualification. Specific diagnostic: ZZZVaultCanonical.canonicalValidate() (src/ZZZVaultCanonical.sol#255-266) has external calls inside a loop: id = vault.bucketAt(i) (src/ZZZVaultCanonical.sol#259)",
+      "ordinal": 282,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "ee48aa9407ae47ab5e3ef887510066bc184051fc75da9394c14027e7d4bb9672",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only governance may configure and authority is rechecked after the body. The Registry-created immutable Assets child admits via token/feed static reads plus local history writes; those static observations cannot invoke mutable callbacks. It cannot call an arbitrary target. Configuration then writes the sole contributionPool and flags locally. Malicious governance/dependency approval remains an accepted explicit trust boundary, not permission for unprivileged reentrant mutation. Specific diagnostic: Reentrancy in ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116):",
+      "ordinal": 284,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "9ee92f5841e968325be56a61371a4f0139d303a5ab12e9e0019bfed8eb056455",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reachable only from fixed-Vault collect/close under the manager nonReentrant guard. NativeSender admits only the expected immutable Core during the take; _finishNativeCredit clears callback state, verifies exact received native delta and sends only that credit to fixed Vault. ERC20 prefunds remain separate and the native token delta is forwarded after the core call. Specific diagnostic: Reentrancy in ZZZLiquidityManager._settleTakePair(PoolKey,uint8,bytes[],uint256) (src/ZZZLiquidityManager.sol#192-203):",
+      "ordinal": 285,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "3020a59a2781392515ba03015fd269a90a6184dff9c0480659d5c7759c38eaf3",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Owner-funded executeReviewed is nonReentrant and live/operating, with original source/pair prices and reviewed maximum frozen before pull/conversion. Context is armed only for exact Vault payload after approvals and ownership recheck. After Vault returns it deletes context, resets allowance, rechecks current owner and exact source/output/native prefunds, and ends the unchanged pricing basis. The saved acquisition/baselines are intentionally reconciled against fresh balances, not blindly reused as income. Specific diagnostic: Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):",
+      "ordinal": 286,
+      "source_files": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "c0fa53826825bbf0acf6927f03ae5ced5d02f09196977508d4e92dc82660be6f",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Owner/revealed dormant validation, live/operating and Vault nonReentrant precede reservation. Immutable canonical companion registerAlias performs local mapping writes only; it has no arbitrary external callback. nftBucket and shares then follow guarded _join checks. Alternate canonicalWrite path requires fixed companion plus importing state2, excluded here. Specific diagnostic: Reentrancy in ZZZVault.activate(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#209-233):",
+      "ordinal": 287,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "cb3afb585534f84aa5d985df03b404768c56906e7f8bde3962db5639b7e83599",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Migration may call while its governance-approved custody request is active. Vault nonReentrant/operating remain held; Budget requires globally paused Parked/no-LP custody, computes fixed-ZZZ exact input/stronger minimum and updates only attributed idle. The normal exit recipient trust is explicit; a swap callback cannot take an extra bucket or bypass the raw/normal approval distinction. Specific diagnostic: Reentrancy in ZZZVault.consolidateHandoff(uint256,address,uint256,uint256) (src/ZZZVault.sol#473-488):",
+      "ordinal": 288,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "fd35fb04f6c8bc4c294ec4ce0e7e928ccdb6aff1369ee51c15f533b20109a126",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Callback is deliberately callable while swap owns nonReentrant: it requires msg.sender immutable Core and exact pendingSwapHash, then deletes the hash BEFORE calling swap/sync/settle/take. Repeated/nested callbacks cannot consume it. The temporary native sender only admits matching Core take credits; exact nativeReceived/balance and output checks plus the outer guarded swap complete settlement. It is not a public arbitrary executor. Specific diagnostic: Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#260-293):",
+      "ordinal": 290,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "bfa34064e3eed8e0c1f4697de1119e913d81444275872cc0fb6c992f3ae42fcb",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Private helper executes under the guarded contribution/maintenance/Migration entry. Only fixed Manager receives exact per-call approvals/value; approvals reset. Budget asserts exact Vault debit and actual LP ownership, idle backing and deployed value after callbacks. LP/key/ticks/liquidity and price checks occur inside Manager. Reentrant canonicalWrite is limited to fixed companion/importing state; ordinary operational entry is state0. Specific diagnostic: Reentrancy in ZZZVault._put(uint256,bool,uint128,uint256) (src/ZZZVault.sol#163-193):",
+      "ordinal": 291,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "b3057c38f494112fcb8ec66770fc6cfc11d36c51d989bdc68e7bc9355675af3e",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Handoff and inert importing state2 may advance exact row cursor. Calls into fixed Vault canonicalWrite are restricted to this companion/importing state and contain typed writes/read validations, no recipient callback. Ordinary Vault money operations are locked. imported flag after header write cannot be exploited through unprivileged reentry. Specific diagnostic: Reentrancy in ZZZVaultCanonical.canonicalImport(uint256,bytes) (src/ZZZVaultCanonical.sol#163-222):",
+      "ordinal": 292,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "003946dbeeaf399f650ea9dd60c0b4f7ee2fb0e00f19c297baa94df6ceb628b2",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Callback is deliberately callable while swap owns nonReentrant: it requires msg.sender immutable Core and exact pendingSwapHash, then deletes the hash BEFORE calling swap/sync/settle/take. Repeated/nested callbacks cannot consume it. The temporary native sender only admits matching Core take credits; exact nativeReceived/balance and output checks plus the outer guarded swap complete settlement. It is not a public arbitrary executor. Specific diagnostic: Reentrancy in ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#260-293):",
+      "ordinal": 295,
+      "source_files": [
+        "src/ZZZLiquidityManager.sol"
+      ]
+    },
+    {
+      "fingerprint": "2086468f10dded12003f06958cf0f567e8a72f86ec3d3a91b88e11c85ba0152c",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs under guarded rebalance/move/park, with fixed Manager and approved owned LP. Fresh post-close balances determine closed principal; nativeReceived distinguishes actual Manager credit. lpTokenId is cleared and attributed idle updated only once while Vault nonReentrant excludes every public financial reentry. canonicalWrite cannot be called by tokens or in operating state. Specific diagnostic: Reentrancy in ZZZVault._close(uint256,uint256) (src/ZZZVault.sol#381-393):",
+      "ordinal": 296,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "032885b7ec411b30c93229de4805d5a9f189faef5f757022661dc1e06e86f244",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Migration may enter and Vault nonReentrant/operating remain held. It requires Outbound with no old LP/idle, reserves the reviewed destination, receives exact assets and tracks backed idle; deployment requires fresh guards and unpaused state. Reservation companion only updates local aliases and cannot call arbitrary callback code. Canonical writes require distinct inert importing state. Specific diagnostic: Reentrancy in ZZZVault.acceptHandoff(uint256,bytes32,uint256,uint256,uint128,uint256) (src/ZZZVault.sol#515-539):",
+      "ordinal": 298,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "4b0ef57285e696bc9316528df8f31c717ff83dff1645ab0c9b058e8589ec07bb",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only the pending pinned manager with exact pendingHash may enter, and both pending fields are cleared before external swap/settlement. The parent-only execute is already nonReentrant. Exact input delta, settle amount and taken output are checked; native receiver state admits only expected manager credit and is cleared, then outer execute checks source/output/prefund restoration and immutable policy again. Specific diagnostic: Reentrancy in ZZZV4RouteExecutor.unlockCallback(bytes) (src/ZZZV4RouteExecutor.sol#135-167):",
+      "ordinal": 301,
+      "source_files": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "eac0b6f958c364de869dba4e7c727a0d26c6a55fe1bf03336c3a15be5b270854",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Private helper executes under the outer Vault guard. Only fixed FeeController releases the designated bucket reserve; returned amounts are added to that bucket idle and aggregate raw backing is rechecked. No external caller can invoke it or change shares while reserve transfer callbacks execute. Canonical writers are separately restricted to inert import state. Specific diagnostic: Reentrancy in ZZZVault._pullCompound(uint256) (src/ZZZVault.sol#354-361):",
+      "ordinal": 302,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "63ef543322b64b2f1fc4aae809f0bd7b40f80691382802a6eacdaede4a81c00b",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only the pending pinned manager with exact pendingHash may enter, and both pending fields are cleared before external swap/settlement. The parent-only execute is already nonReentrant. Exact input delta, settle amount and taken output are checked; native receiver state admits only expected manager credit and is cleared, then outer execute checks source/output/prefund restoration and immutable policy again. Specific diagnostic: Reentrancy in ZZZV4RouteExecutor.unlockCallback(bytes) (src/ZZZV4RouteExecutor.sol#135-167):",
+      "ordinal": 303,
+      "source_files": [
+        "src/ZZZV4RouteExecutor.sol"
+      ]
+    },
+    {
+      "fingerprint": "342305c8cd7f031fad3e4168de1588662ad6184260aed0d181d82986c6fb6080",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only fixed Handoff in frozen state1 captures. vault.canonicalBarrier merely takes/releases its mutex under companion authentication; remaining Vault/Registry/Migration/Rewards observations are static. Snapshot resets and local arrays then occur without arbitrary callbacks. Concurrent ordinary financial operations are blocked by lifecycle/guard; actual token-read availability remains a separate failure/qualification boundary. Specific diagnostic: Reentrancy in ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136):",
+      "ordinal": 306,
+      "source_files": [
+        "src/ZZZVaultCanonical.sol"
+      ]
+    },
+    {
+      "fingerprint": "2e032c0ae4df53711466c1c3b75ced2604e08ab6bb605ea5fc0f2d497b551984",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Private helper runs only inside nonReentrant executeReviewed. The unique immutable v4 child returns only to its parent; native credits require expected child sender and exact nativeReceived. Source and output balance deltas are checked before clearing native state; outer execute further checks original prefunds and unchanged price basis. Nested user execution is blocked. Specific diagnostic: Reentrancy in ZZZActivationEntry._convertV4(ZZZActivationEntry.Request,address,uint256,uint256) (src/ZZZActivationEntry.sol#187-200):",
+      "ordinal": 307,
+      "source_files": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "77aaaff6b012d208d885dc2c0ebc3ccc9028de0a4e5163460d520a9d7afad4ad",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Private helper is reached only by owner/Entry-authenticated activate or increase under the same Vault nonReentrant guard and operating checks. Incumbent fee/dust/compound settlement precedes issuance; current physical LP and fixed price fingerprints are checked before new shares. Hooks cannot reenter other Vault financial writes. canonicalWrite requires the fixed canonical companion and importing state2, incompatible with operating state0; group/status/idle getters are read-only transient observations, not a reentrant custody permission. Specific diagnostic: Reentrancy in ZZZVault._join(uint256,uint256,uint256,uint256,uint128,uint256,bool) (src/ZZZVault.sol#253-318):",
+      "ordinal": 308,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "2d62ac462b06c54d06cdf215eddd88b5ddbceb51af8729ce38020df7531d3790",
+      "check": "reentrancy-benign",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Owner-funded executeReviewed is nonReentrant and live/operating, with original source/pair prices and reviewed maximum frozen before pull/conversion. Context is armed only for exact Vault payload after approvals and ownership recheck. After Vault returns it deletes context, resets allowance, rechecks current owner and exact source/output/native prefunds, and ends the unchanged pricing basis. The saved acquisition/baselines are intentionally reconciled against fresh balances, not blindly reused as income. Specific diagnostic: Reentrancy in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):",
+      "ordinal": 311,
+      "source_files": [
+        "src/ZZZActivationEntry.sol"
+      ]
+    },
+    {
+      "fingerprint": "5d4f19ca1fd363614bfd5bf1b9c6a43047a9413504c096ba06fac015d9874bd1",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Only governance may configure and authority is rechecked after the body. The Registry-created immutable Assets child admits via token/feed static reads plus local history writes; those static observations cannot invoke mutable callbacks. It cannot call an arbitrary target. Configuration then writes the sole contributionPool and flags locally. Malicious governance/dependency approval remains an accepted explicit trust boundary, not permission for unprivileged reentrant mutation. Specific diagnostic: Reentrancy in ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116):",
+      "ordinal": 312,
+      "source_files": [
+        "src/ZZZPoolRegistry.sol"
+      ]
+    },
+    {
+      "fingerprint": "cee478ea19b67c9abb62237ba981d1f8a2cdc985b3c45c821a5c5cb783018fcc",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "The immutable canonical companion registerAlias is Vault-only and writes local alias metadata without external calls. _reserve is used by guarded financial flows or explicit governance reservePool; token callbacks cannot impersonate governance/Vault/companion. PoolReserved emitted afterward reflects the same successful alias reservation, with full transaction rollback on failure. Specific diagnostic: Reentrancy in ZZZVault._reserve(bytes32,uint256) (src/ZZZVault.sol#112-118):",
+      "ordinal": 313,
+      "source_files": [
+        "src/ZZZVault.sol"
+      ]
+    },
+    {
+      "fingerprint": "a90398198684958907845a5640e5ff2a76740b7618848784d4592cb9ad96fc35",
+      "check": "reentrancy-events",
+      "impact": "Low",
+      "disposition": "false_positive",
+      "rationale": "Keeper invokes reviewed rule, not arbitrary width. After local lastChange update, immutable bound Registry applyKeeperRange accepts only Strategy; its remaining Access checks are static and its writes local, with no mutable callback. The final event therefore cannot be reentrantly reordered by an external token/router. Specific diagnostic: Reentrancy in ZZZStrategy.applyKeeperRange(bytes32) (src/ZZZStrategy.sol#128-135):",
+      "ordinal": 315,
+      "source_files": [
+        "src/ZZZStrategy.sol"
+      ]
+    }
+  ],
+  "counts": {
+    "false_positive": 92,
+    "accepted_risk": 51
+  },
+  "unresolved_financial_code_findings": [],
+  "release_limits": [
+    "Actual providers/routes/independent feeds and maximal chain gas remain unqualified.",
+    "Conventional exact nonrebasing tokens and reviewed immutable modules/venues are explicit dependencies.",
+    "Immediate governance and external custody remain trusted by design."
+  ]
+}

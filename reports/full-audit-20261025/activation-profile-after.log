@@ -1,0 +1,10 @@
+test_current_dormant_activation_new_pool_and_active_growth_prepare (tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_current_dormant_activation_new_pool_and_active_growth_prepare) ... ok
+test_current_zzz_requires_only_exact_approval_before_fresh_review (tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_current_zzz_requires_only_exact_approval_before_fresh_review) ... ok
+test_current_native_policy_getter_is_typed_and_other_zero_uses_stay_rejected (tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_current_native_policy_getter_is_typed_and_other_zero_uses_stay_rejected) ... ok
+test_explicit_historical_profile_keeps_old_dormant_value_and_native_preparation (tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_explicit_historical_profile_keeps_old_dormant_value_and_native_preparation) ... ok
+test_dormant_codes_cannot_be_mixed_between_profiles_and_nonactive_growth_is_rejected (tests_python.test_current_activation_profile.CurrentActivationProfileTests.test_dormant_codes_cannot_be_mixed_between_profiles_and_nonactive_growth_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.401s
+
+OK

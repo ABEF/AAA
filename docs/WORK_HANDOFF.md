@@ -1,3 +1,37 @@
+## Full candidate audit checkpoint - 2026-10-26
+
+Audit started25October; initial main e32e966. Read [review](../reports/full-audit-20261025/REVIEW.md),
+[coverage](../reports/full-audit-20261025/COVERAGE.md),
+[verification](../reports/full-audit-20261025/VERIFICATION.md) and
+[readiness](../reports/full-audit-20261025/READINESS.md).
+Three production-backend fixes: current dormant3 preparation, native-zero
+isContributionAsset typed read, actual Rpc integer-chain-ID history audit.
+No production Solidity, rights, authority, policy or deployment profile change.
+
+Fresh Slither0.11.6 succeeds:399flags manuallytriaged165falsepositive/
+152acceptedrisk/82informational,47sourcebindings. Current internalstaticreview
+gate PASS; prior stale FAIL is historical. Actual48Pythonversions matchlock;
+originalwheelintegrity notretrospectivelyproven. Solc86closed inputs succeeds;
+ForgeCLI afterward fails hostsignaturecache; failure retained, no successrelabel.
+37object lengths matchnormal75capture. Newtest265AST passes.11distinct Python
+methods (9new/2existing) pass and one new gascase9,591,082<12M passes, with full
+test14,347,040including recovery. Original disproven12Mfailure hypothesis kept;
+no20Mbranch/caprelaxation. Not a full release regression or realnativegasproof.
+
+Current accounting3/directgovernance2/localV4/ETHfixedZZZ and608functionreference
+remain. Website native2only reader remains incompatible with3; actual website3/
+wallet/services/feed/routes/VRF/authorities/OpenSea/gas/operations and independent
+audit open. Qualify actual fixedZZZburnABI; retiredroyaltyreceiver forwards only
+admitted currencies (unknownnewtokenshave norescue). Externalcustody trusted.
+SoleTodo/features/roadmap/operator/release andbothmemories maintained. Production
+NOTAPPROVED. Publication separate: verifyGitandreceipt, localsaveisnotpush.
+
+Mainonly; preserve14unrelateddirtyfiles andotherartifacts. Owned dirtydoc
+prefixes stagedseparately. Existing8902/Anvil/NFT/LP/balances/journals/distoverlay,
+website source/build/server, signer/services andpausedmonitor unchanged. Public
+DEPLOYMENTnull, signingAnvil-only. No publicRPC/financialtransaction/deployment/
+seal/service action. Website memory-only updates do not deploy the website.
+
 ## Day-change readiness audit - 2026-10-25
 
 User prompt was challenged/adapted and executed against reference35007db,

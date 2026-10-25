@@ -1,0 +1,1019 @@
+[
+  {
+    "ordinal": 0,
+    "fingerprint": "2012e4e53c8fa06b3a8160fbc3065d965b9919a2f3869cd172b025ff54b91b2c",
+    "check": "arbitrary-send-erc20",
+    "impact": "High",
+    "confidence": "High",
+    "description": "ExactToken.pull(address,address,uint256) (src/libraries/ExactToken.sol#11-18) uses arbitrary from in transferFrom: IERC20(token).safeTransferFrom(from,address(this),amount) (src/libraries/ExactToken.sol#15)\n",
+    "files": [
+      "src/libraries/ExactToken.sol"
+    ]
+  },
+  {
+    "ordinal": 134,
+    "fingerprint": "65c9f0b52466ee820bb21bbd7ae0e304ed203f1d226878638900903fa88f254a",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager.receive() (src/ZZZLiquidityManager.sol#51-54) should emit an event for: \n\t- nativeReceived += msg.value (src/ZZZLiquidityManager.sol#53) \n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 135,
+    "fingerprint": "95efbfc9f40141ac83b7d8bc0237a4393ef92f511cf30f8dc23bff65cdc8fe8d",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZNFT.canonicalWriteHeader(uint256,uint256,uint256,uint16[3],uint256) (src/ZZZNFT.sol#318-322) should emit an event for: \n\t- mintedCount = count (src/ZZZNFT.sol#320) \n\t- nextToFinalize = next (src/ZZZNFT.sol#320) \n\t- remainingToReveal = remaining (src/ZZZNFT.sol#320) \n",
+    "files": [
+      "src/ZZZNFT.sol"
+    ]
+  },
+  {
+    "ordinal": 136,
+    "fingerprint": "10d60ba40720546850cf74adb926df7df785250ab6524aff64456a653aca952f",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZActivationEntry.receive() (src/ZZZActivationEntry.sol#87-90) should emit an event for: \n\t- nativeReceived += msg.value (src/ZZZActivationEntry.sol#89) \n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 137,
+    "fingerprint": "c4de7bea9026684cfc921e0c7b855a724d49d74da970ff668aa29cb1ccb6b0cd",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalImport(uint256,bytes) (src/ZZZFeesCanonical.sol#86-110) should emit an event for: \n\t- (lpAssets,groups) = abi.decode(record,(uint256,uint256)) (src/ZZZFeesCanonical.sol#90) \n\t- (lpAssets,groups) = abi.decode(record,(uint256,uint256)) (src/ZZZFeesCanonical.sol#90) \n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 138,
+    "fingerprint": "b33780ebdce1e1a32f97bd978211b5591126a063764f24e598069008373c1476",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMembership.canonicalImport(uint256,bytes) (src/ZZZMembership.sol#90-102) should emit an event for: \n\t- (canonicalNFTs,canonicalEligible) = abi.decode(record,(uint256,uint256)) (src/ZZZMembership.sol#94) \n\t- (canonicalNFTs,canonicalEligible) = abi.decode(record,(uint256,uint256)) (src/ZZZMembership.sol#94) \n",
+    "files": [
+      "src/ZZZMembership.sol"
+    ]
+  },
+  {
+    "ordinal": 139,
+    "fingerprint": "0e27821772fb9c6b354d28a273c4fc4ff769576bd54e9f8b17ac137ff2887235",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZRewards.canonicalImport(uint256,bytes) (src/ZZZRewards.sol#269-307) should emit an event for: \n\t- (canonicalAssetTotal,canonicalBuckets,canonicalNFTs) = abi.decode(record,(uint256,uint256,uint256)) (src/ZZZRewards.sol#272) \n\t- (canonicalAssetTotal,canonicalBuckets,canonicalNFTs) = abi.decode(record,(uint256,uint256,uint256)) (src/ZZZRewards.sol#272) \n\t- (canonicalAssetTotal,canonicalBuckets,canonicalNFTs) = abi.decode(record,(uint256,uint256,uint256)) (src/ZZZRewards.sol#272) \n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 140,
+    "fingerprint": "46936fc27c72c5db912066498f692ce055737d2ab0dc3361bd1d6a0631f64cd8",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZRoyaltyRewards.canonicalImport(uint256,bytes) (src/ZZZRoyaltyRewards.sol#450-488) should emit an event for: \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight) = abi.decode(record,(uint256,uint256,uint256)) (src/ZZZRoyaltyRewards.sol#454) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight) = abi.decode(record,(uint256,uint256,uint256)) (src/ZZZRoyaltyRewards.sol#454) \n\t- (canonicalAssetTotal,canonicalNFTs,canonicalWeight) = abi.decode(record,(uint256,uint256,uint256)) (src/ZZZRoyaltyRewards.sol#454) \n\t- totalWeight += weight (src/ZZZRoyaltyRewards.sol#481) \n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 141,
+    "fingerprint": "07919a86472acf6dfda22995dd17ec63adee763bf4c1061159c8020c9a75169e",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZAccessController.canonicalTransition(uint8,bool,bool) (src/ZZZAccessController.sol#102-109) should emit an event for: \n\t- canonicalState = state (src/ZZZAccessController.sol#106) \n",
+    "files": [
+      "src/ZZZAccessController.sol"
+    ]
+  },
+  {
+    "ordinal": 142,
+    "fingerprint": "591de817e60d151acfab72ff1ef8d2e5a29b2a59c7524ad005ee967a3f207da9",
+    "check": "events-maths",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZVaultCanonical.canonicalImport(uint256,bytes) (src/ZZZVaultCanonical.sol#163-222) should emit an event for: \n\t- (originChain,originVault,nftCount,groupCount,aliasCount,assetCount) = abi.decode(record,(uint256,address,uint256,uint256,uint256,uint256)) (src/ZZZVaultCanonical.sol#169-170) \n\t- (originChain,originVault,nftCount,groupCount,aliasCount,assetCount) = abi.decode(record,(uint256,address,uint256,uint256,uint256,uint256)) (src/ZZZVaultCanonical.sol#169-170) \n\t- (originChain,originVault,nftCount,groupCount,aliasCount,assetCount) = abi.decode(record,(uint256,address,uint256,uint256,uint256,uint256)) (src/ZZZVaultCanonical.sol#169-170) \n\t- (originChain,originVault,nftCount,groupCount,aliasCount,assetCount) = abi.decode(record,(uint256,address,uint256,uint256,uint256,uint256)) (src/ZZZVaultCanonical.sol#169-170) \n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 318,
+    "fingerprint": "08052be859519b963e344e5d669864d8d170c73de7a19b5f8843f154a6ff438f",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZStrategy.keeperRangeTarget(bytes32) (src/ZZZStrategy.sol#107-126) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! policy.enabled || ! access.isSealed() || access.paused() || access.preparationActive() || access.canonicalState() != 0 || rangeOrientation[poolId] != 1 || block.timestamp < uint256(policy.lastChange) + policy.minInterval (src/ZZZStrategy.sol#109-111)\n\t- ! c.operationsEnabled || _rangeConfiguration(c) != policy.configurationHash || (c.rangeBps != 2500 && c.rangeBps != 5000) (src/ZZZStrategy.sol#113-114)\n\t- p.poolId != poolId || p.status != PositionStatus.Active || p.lpTokenId == 0 || p.centerX96 == 0 || block.timestamp < uint256(p.lastRebalance) + c.minRebalanceInterval || _rangeUpdatePending(p,c) (src/ZZZStrategy.sol#119-120)\n\t- c.rangeBps == 2500 && movement >= uint256(policy.widenTriggerBps) * 1e14 (src/ZZZStrategy.sol#123)\n\t- c.rangeBps == 5000 && movement <= uint256(policy.narrowTriggerBps) * 1e14 (src/ZZZStrategy.sol#124)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 319,
+    "fingerprint": "ad101e987d8685bcd15bd21ea71953862b38578c320eeab5412eeca1e44dab12",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZOracle._sequencerData(address,bytes32) (src/ZZZOracle.sol#92-105) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answeredRound > type()(uint80).max || answeredRound < round || (answer != 0 && answer != 1) || startedAt == 0 || startedAt > block.timestamp || updated < startedAt || updated > block.timestamp (src/ZZZOracle.sol#100-102)\n",
+    "files": [
+      "src/ZZZOracle.sol"
+    ]
+  },
+  {
+    "ordinal": 320,
+    "fingerprint": "2988d3237e37e9053e58ce1b90d4aff89e03c5311401437d9d65d224e868943f",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZStrategy.needsRebalance(uint256) (src/ZZZStrategy.sol#158-166) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- ! c.operationsEnabled || block.timestamp < p.lastRebalance + c.minRebalanceInterval (src/ZZZStrategy.sol#162)\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 321,
+    "fingerprint": "6b59526fed09faa4199eb864e3e1d2365aabd96cab71aae32db52e3f5d442b2a",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZOracle._sequencerCheck() (src/ZZZOracle.sol#193-198) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- answer != 0 || block.timestamp - startedAt <= SEQUENCER_GRACE (src/ZZZOracle.sol#197)\n",
+    "files": [
+      "src/ZZZOracle.sol"
+    ]
+  },
+  {
+    "ordinal": 322,
+    "fingerprint": "3168bbf6dd3b9f4e1406260b990831ae06329b8a6c9cfafa0c2eff201518cae3",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZMigrationBudget.checkpoint(uint256,uint8) (src/ZZZMigrationBudget.sol#100-114) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- previous != 0 && block.timestamp < previous + IZZZPools(access.module(Ids.POOLS)).accounting(p.poolId).minRebalanceInterval (src/ZZZMigrationBudget.sol#108-109)\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "ordinal": 323,
+    "fingerprint": "db19f7522e3a698755b2cc72b25a286704c120d176d5d9617ca0378f8bc51911",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZModule._deadline(uint256) (src/base/ZZZModule.sol#85-87) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- deadline < block.timestamp || deadline > block.timestamp + 600 (src/base/ZZZModule.sol#86)\n",
+    "files": [
+      "src/base/ZZZModule.sol"
+    ]
+  },
+  {
+    "ordinal": 324,
+    "fingerprint": "ad8666924c89653c02f9be19a2053a02ed5507bce3077ae67382109c4076fd6e",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZOracle._round(ZZZOracle.SourcePolicy,address) (src/ZZZOracle.sol#166-180) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- round == 0 || round > type()(uint80).max || answered > type()(uint80).max || answered < round || answer <= 0 || started == 0 || started > updated || updated == 0 || updated > block.timestamp || block.timestamp - updated > source.maxAge (src/ZZZOracle.sol#173-175)\n",
+    "files": [
+      "src/ZZZOracle.sol"
+    ]
+  },
+  {
+    "ordinal": 325,
+    "fingerprint": "35a4e5bc02daa718972fab03e7e3992792baec890a7b486ad092d65262d7c67f",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZV4RouteExecutor.execute(bytes32,uint256,uint256,uint256) (src/ZZZV4RouteExecutor.sol#103-133) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- deadline < block.timestamp || deadline > block.timestamp + 600 (src/ZZZV4RouteExecutor.sol#105)\n",
+    "files": [
+      "src/ZZZV4RouteExecutor.sol"
+    ]
+  },
+  {
+    "ordinal": 326,
+    "fingerprint": "16bb19b97cac907598d625646704a662baed4f268b7b47208cb9e6b495543435",
+    "check": "timestamp",
+    "impact": "Low",
+    "confidence": "Medium",
+    "description": "ZZZPythPriceFeed.latestRoundData() (src/ZZZPythPriceFeed.sol#42-74) uses timestamp for comparisons\n\tDangerous comparisons:\n\t- answer <= 0 || answer > type()(int64).max || confidence > type()(uint64).max || exponent != int256(expectedExponent) || updatedAt == 0 || updatedAt > type()(uint80).max || updatedAt > block.timestamp || block.timestamp - updatedAt > maxAge || confidence * 10_000 > uint256(answer) * maxConfidenceBps (src/ZZZPythPriceFeed.sol#67-70)\n",
+    "files": [
+      "src/ZZZPythPriceFeed.sol"
+    ]
+  },
+  {
+    "ordinal": 327,
+    "fingerprint": "c9db1efb43cd2c15ddfdaa46feeff1a312735201da07850436bb728f840e51e8",
+    "check": "assembly",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279) uses assembly\n\t- INLINE ASM (src/ZZZActivationEntry.sol#271)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 328,
+    "fingerprint": "222d1f23efc445160603eac3fb236e15e1bbcd896490d4e057fc25193251935b",
+    "check": "assembly",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRoyaltyRewards.activate(uint256,uint256) (src/ZZZRoyaltyRewards.sol#196-223) uses assembly\n\t- INLINE ASM (src/ZZZRoyaltyRewards.sol#211)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 329,
+    "fingerprint": "7c8b02c40bdf27df983ffa96b9f5e64d357445d6b8606b9807682293c8c9e3a6",
+    "check": "assembly",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZPythPriceFeed.latestRoundData() (src/ZZZPythPriceFeed.sol#42-74) uses assembly\n\t- INLINE ASM (src/ZZZPythPriceFeed.sol#52-58)\n\t- INLINE ASM (src/ZZZPythPriceFeed.sol#61)\n",
+    "files": [
+      "src/ZZZPythPriceFeed.sol"
+    ]
+  },
+  {
+    "ordinal": 330,
+    "fingerprint": "51ef6964d0c8e0f092d16d7f8310f575b935a82f8770d2fa6a61271752c55056",
+    "check": "assembly",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZOracle._boundedRead(address,bytes4,uint256,address) (src/ZZZOracle.sol#136-152) uses assembly\n\t- INLINE ASM (src/ZZZOracle.sol#143-148)\n\t- INLINE ASM (src/ZZZOracle.sol#151)\n",
+    "files": [
+      "src/ZZZOracle.sol"
+    ]
+  },
+  {
+    "ordinal": 331,
+    "fingerprint": "f5b591bfa4d5d593f776ac14570f42452d589710ba869838995058b6074f1ac9",
+    "check": "costly-loop",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZFeesCanonical.canonicalCapture() (src/ZZZFeesCanonical.sol#41-62) has costly operations inside a loop:\n\t- delete accepted[i] (src/ZZZFeesCanonical.sol#45)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 332,
+    "fingerprint": "5c5cb5b4836397783b77505fd650dfab7ccf0d5c97a491d99bd3fe6bea79c705",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZLiquidityManager._mintOrIncrease(bytes32,uint256,int24,int24,uint256,uint256,uint128,uint256) (src/ZZZLiquidityManager.sol#106-170) has a high cyclomatic complexity (19).\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 333,
+    "fingerprint": "d078ee714bdc71c645f4c2ee2cc482a85f160d9a9fde4040d09f78b62ff6d378",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVaultCanonical.canonicalImport(uint256,bytes) (src/ZZZVaultCanonical.sol#163-222) has a high cyclomatic complexity (19).\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 334,
+    "fingerprint": "1321ca2c47f4169c14c15b6d2c1e91eaa968df50e5d1572e4716ff57e9db491b",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVaultCanonical.canonicalCapture() (src/ZZZVaultCanonical.sol#106-136) has a high cyclomatic complexity (13).\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 335,
+    "fingerprint": "b88f0c49620f62d627b01a1b24d1c4dc7622b3b4fab7791f2405d5fe2b577712",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigration.exit(bytes32) (src/ZZZMigration.sol#278-319) has a high cyclomatic complexity (12).\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 336,
+    "fingerprint": "36c491bdbbf9c15f33fcf148f0561df9a0d4d6b8a5d5dc98725dceeb87b84a65",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigration._receive(ZZZMigration.Plan,bytes32,address,address,uint256,uint256,uint128,uint256) (src/ZZZMigration.sol#392-427) has a high cyclomatic complexity (12).\n",
+    "files": [
+      "src/ZZZMigration.sol"
+    ]
+  },
+  {
+    "ordinal": 337,
+    "fingerprint": "1e73b4489d45680a7a2cefb3f9a048ea4917a63207e56a0996c9bf2dcbb448c7",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZV4RouteExecutor.unlockCallback(bytes) (src/ZZZV4RouteExecutor.sol#135-167) has a high cyclomatic complexity (13).\n",
+    "files": [
+      "src/ZZZV4RouteExecutor.sol"
+    ]
+  },
+  {
+    "ordinal": 338,
+    "fingerprint": "1b0a4457ec61d560207fa727a26731055e01b7a686209c1c85b8936c334b2dac",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZStrategy._plan(bytes32,PoolConfig,ZZZStrategy.PairPrices,int24,int24,uint256,uint256) (src/ZZZStrategy.sol#211-253) has a high cyclomatic complexity (13).\n",
+    "files": [
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 339,
+    "fingerprint": "8a75e798e74fa6c3d22e96c9b9676959e091b6022bfa9804cfee29dcf6c0da42",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279) has a high cyclomatic complexity (30).\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 340,
+    "fingerprint": "daa6bff36e31caf16dffdce60304713e1004cc0ad005d97c3f31900ba671860e",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZLiquidityManager.unlockCallback(bytes) (src/ZZZLiquidityManager.sol#260-293) has a high cyclomatic complexity (13).\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 341,
+    "fingerprint": "ba03f23d2d61a6dcb40453931d453198084a4cca2bc017d0fb18ce66bbe09d3f",
+    "check": "cyclomatic-complexity",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203) has a high cyclomatic complexity (14).\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 342,
+    "fingerprint": "979e611fa635a8813b4c82614b0fffc02e4e36758d1653618fde09a557a1a096",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ExactAsset.push(address,address,uint256) (src/libraries/ExactAsset.sol#20-27):\n\t- (ok,None) = address(to).call{value: amount}() (src/libraries/ExactAsset.sol#24)\n",
+    "files": [
+      "src/libraries/ExactAsset.sol"
+    ]
+  },
+  {
+    "ordinal": 343,
+    "fingerprint": "6de64c8480e017560937b3ce51c63e2cfb68374961d88f794b9a3e57c863d2bd",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRewardConverter._convertV4(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#205-227):\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#223)\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 344,
+    "fingerprint": "944ae74d56cdafc54c102aec7de2daea2bf9b8b7b01a58791d2e15c1d92257ea",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZLiquidityManager._sendNative(address,uint256) (src/ZZZLiquidityManager.sol#71-76):\n\t- (ok,None) = recipient.call{value: amount}() (src/ZZZLiquidityManager.sol#74)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 345,
+    "fingerprint": "afa564aba285e0021883dd51c24da002e8eb329ac771cec56d8b834ff41e0749",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRewards._claim(uint256,address,address) (src/ZZZRewards.sol#160-174):\n\t- (ok,None) = owner.call{value: amount}() (src/ZZZRewards.sol#171)\n",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 346,
+    "fingerprint": "88f1f87031ed9656a62dd0558253db1a6ca8835cf25f762eb0322086bb504fc1",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRoyaltyRewards.exitCustody(address,address,uint256,uint256,bytes32,bytes32) (src/ZZZRoyaltyRewards.sol#255-271):\n\t- (ok,None) = address(recipient).call{value: expectedBalance}() (src/ZZZRoyaltyRewards.sol#267)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 347,
+    "fingerprint": "2653d6bf3f27c5e2c522a08d979930b119d117cc01730be4b8a466da19ce3adf",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRoyaltyRewards.forwardLate(address) (src/ZZZRoyaltyRewards.sol#506-517):\n\t- (ok,None) = address(receiver).call{value: amount}() (src/ZZZRoyaltyRewards.sol#514)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 348,
+    "fingerprint": "aece23893b8a93dba13d5e05902e05087c0b7309819717a1bb6aa5a44ef87584",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRoyaltyRewards._claim(uint256,address,address) (src/ZZZRoyaltyRewards.sol#352-373):\n\t- (success,None) = address(owner).call{value: amount}() (src/ZZZRoyaltyRewards.sol#363)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 349,
+    "fingerprint": "8dd3a037d05899fc9aa6b1499e7dca445103e77ca8c6b4d12a4df214128b5300",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZVault.mintDormant() (src/ZZZVault.sol#197-206):\n\t- (paid,None) = mintProceedsRecipient.call{value: msg.value}() (src/ZZZVault.sol#203)\n",
+    "files": [
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 350,
+    "fingerprint": "9a80c07b9e41412ef337fb9c768e8e2246a6373da7401e9b359ac3dcc9b911eb",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZFeeController._push(address,address,uint256) (src/ZZZFeeController.sol#43-49):\n\t- (ok,None) = address(destination).call{value: amount}() (src/ZZZFeeController.sol#47)\n",
+    "files": [
+      "src/ZZZFeeController.sol"
+    ]
+  },
+  {
+    "ordinal": 351,
+    "fingerprint": "715b8cd76fbf809bbf055a1fa99f6c7c473389f5aa1ff85dc688cd7ba55d2313",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZFeesCanonical._push(address,address,uint256) (src/ZZZFeesCanonical.sol#33-39):\n\t- (ok,None) = address(destination).call{value: amount}() (src/ZZZFeesCanonical.sol#37)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 352,
+    "fingerprint": "5ffdd48c106f872fe7a4619ebd15e762d3dd4c1899e7bbc81f0a3ec7eb43fb89",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZActivationEntry.executeReviewed(ZZZActivationEntry.Request,uint16) (src/ZZZActivationEntry.sol#204-279):\n\t- (success,result) = vault.call{value: acquired}(payload) (src/ZZZActivationEntry.sol#270)\n\t- (success,result) = vault.call{value: 0}(payload) (src/ZZZActivationEntry.sol#270)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol"
+    ]
+  },
+  {
+    "ordinal": 353,
+    "fingerprint": "68a51364e3aea46070a76677de1b1f08d5e4327c57e4f86a1d0916621fb5b683",
+    "check": "low-level-calls",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Low level call in ZZZRewardConverter.convert(address,uint256,bytes32,uint256,uint256) (src/base/ZZZRewardConverter.sol#157-203):\n\t- (ok,None) = address(ledger).call{value: output}() (src/base/ZZZRewardConverter.sol#200)\n",
+    "files": [
+      "src/base/ZZZRewardConverter.sol"
+    ]
+  },
+  {
+    "ordinal": 354,
+    "fingerprint": "1a7e1d647e10f692b2a1d2a75148800b772e60d2b74a78f791fd3c4f80b92d68",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRoyaltyRewards (src/ZZZRoyaltyRewards.sol#37-518) should inherit from IZZZCanonicalModule (src/interfaces/IZZZCanonical.sol#6-19)\n",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol",
+      "src/interfaces/IZZZCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 355,
+    "fingerprint": "e6e8a1ecdc5bdbf46da5a41690f7ca75036b35357966499df097403626d38eea",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#28-270) should inherit from IZZZCanonicalModule (src/interfaces/IZZZCanonical.sol#6-19)\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol",
+      "src/interfaces/IZZZCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 356,
+    "fingerprint": "8901b364235c1eae6945ea0ec96c2288aef7008cebc9f65dc1796fef62364389",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRewards (src/ZZZRewards.sol#20-312) should inherit from ICanonicalFeeCutoff (src/ZZZFeeController.sol#12-14)\n",
+    "files": [
+      "src/ZZZFeeController.sol",
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 357,
+    "fingerprint": "83a9f096e793c4af7221e84cafd756aefc084d9140921917980748f94fedf9f2",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZStrategy (src/ZZZStrategy.sol#15-254) should inherit from IZZZStrategy (src/interfaces/IZZZ.sol#71-79)\n",
+    "files": [
+      "src/ZZZStrategy.sol",
+      "src/interfaces/IZZZ.sol"
+    ]
+  },
+  {
+    "ordinal": 358,
+    "fingerprint": "b3100c119020f9e335af464e2f0093336151c9e3b977122ea99609dd2e96b56b",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#25-280) should inherit from IPricingEntry (src/ZZZContributionPricing.sol#9-11)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol",
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 359,
+    "fingerprint": "dfc31a91b3827ad1b2f8578db7711e6a01c79813c178f80d65b8ded27b3a5c84",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZPoolRegistry (src/ZZZPoolRegistry.sol#19-170) should inherit from INativePoolAssets (src/ZZZLiquidityManager.sol#16-18)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol",
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 360,
+    "fingerprint": "08114bdef398f465d95729cd96c554ba0bc992b7987846886fd4235f82eb2408",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRewards (src/ZZZRewards.sol#20-312) should inherit from IZZZClaimLedger (src/ZZZClaimRouter.sol#8-10)\n",
+    "files": [
+      "src/ZZZClaimRouter.sol",
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 361,
+    "fingerprint": "3ab60c8fb1579373d66eedf5c8322d1f097e82bdf0cd6fc91544b3be783377fe",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVault (src/ZZZVault.sol#25-664) should inherit from IActivationVault (src/ZZZActivationEntry.sol#18-21)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol",
+      "src/ZZZVault.sol"
+    ]
+  },
+  {
+    "ordinal": 362,
+    "fingerprint": "08c29bc88245aba26c9896dfc7d0e1e0822e8d557f3837d19924f8da86d053e3",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRoyaltyRewards (src/ZZZRoyaltyRewards.sol#37-518) should inherit from IZZZClaimLedger (src/ZZZClaimRouter.sol#8-10)\n",
+    "files": [
+      "src/ZZZClaimRouter.sol",
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 363,
+    "fingerprint": "fb9aef1b1cec4f74f24acc7cc9a8d0855f5e0155f70cd5d9466d9f0bd5b0fe2d",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZVaultCanonical (src/ZZZVaultCanonical.sol#28-270) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#14-18)\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol",
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 364,
+    "fingerprint": "19ef71e24cd7f9cd772daf3bd8f19b00a7bba4d625c13e8a712013f2450ecb55",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZActivationEntry (src/ZZZActivationEntry.sol#25-280) should inherit from IZZZActivationEntry (src/interfaces/IZZZ.sol#58-61)\n",
+    "files": [
+      "src/ZZZActivationEntry.sol",
+      "src/interfaces/IZZZ.sol"
+    ]
+  },
+  {
+    "ordinal": 365,
+    "fingerprint": "889689cf3c14654df08e9de0e1f9f3545db9aa7829976e8d0e9405aa8ed48f57",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZFeesCanonical (src/ZZZFeesCanonical.sol#12-141) should inherit from IZZZCanonicalModule (src/interfaces/IZZZCanonical.sol#6-19)\n",
+    "files": [
+      "src/ZZZFeesCanonical.sol",
+      "src/interfaces/IZZZCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 366,
+    "fingerprint": "e083533fe358a2b1e59e61f2cd4fe2f50e4001183428ff6174797ed1725ea932",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZLiquidityManager (src/ZZZLiquidityManager.sol#22-294) should inherit from IZZZLiquidity (src/interfaces/IZZZ.sol#80-93)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol",
+      "src/interfaces/IZZZ.sol"
+    ]
+  },
+  {
+    "ordinal": 367,
+    "fingerprint": "c90657618619e7ec93785a1d80c10a275e49eb1f37c1b55dd4129dfeb90aedf2",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZRewards (src/ZZZRewards.sol#20-312) should inherit from IZZZCanonicalModule (src/interfaces/IZZZCanonical.sol#6-19)\n",
+    "files": [
+      "src/ZZZRewards.sol",
+      "src/interfaces/IZZZCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 368,
+    "fingerprint": "f95f557031980fbdba0da30dccae1c5b10ac77b1d8b089ec6299b4a0b0b0a87e",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#22-305) should inherit from IBudgetVaultValidation (src/ZZZMigrationBudget.sol#14-18)\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol"
+    ]
+  },
+  {
+    "ordinal": 369,
+    "fingerprint": "e0430704e89857e9874554b5e71ec3b96447490d3bda7a6f59d19953c3feb319",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZPoolRegistry (src/ZZZPoolRegistry.sol#19-170) should inherit from IRangeRegistry (src/ZZZStrategy.sol#12)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol",
+      "src/ZZZStrategy.sol"
+    ]
+  },
+  {
+    "ordinal": 370,
+    "fingerprint": "8a83ea0a7f5e55634cd295a9e5a2b3a2523acbe0c6dc0fc15c67daaf74bb4908",
+    "check": "missing-inheritance",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "ZZZMigrationBudget (src/ZZZMigrationBudget.sol#22-305) should inherit from IHistoricalCompound (src/ZZZNFTMetadata.sol#10)\n",
+    "files": [
+      "src/ZZZMigrationBudget.sol",
+      "src/ZZZNFTMetadata.sol"
+    ]
+  },
+  {
+    "ordinal": 371,
+    "fingerprint": "3df95b43939a4cfc231e73e5a2c9d62e891c6eca9ed5bde62a0fe4dc0b8cb4c5",
+    "check": "naming-convention",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Function IZZZVault.MAX_BUCKETS() (src/interfaces/IZZZ.sol#105) is not in mixedCase\n",
+    "files": [
+      "src/interfaces/IZZZ.sol"
+    ]
+  },
+  {
+    "ordinal": 372,
+    "fingerprint": "6eb6fae64bf168e3c4474f14ea23bd2ba9f93e72d37ea1eac8beb2fdb4021ee2",
+    "check": "naming-convention",
+    "impact": "Informational",
+    "confidence": "High",
+    "description": "Function ICanonicalVaultState.MINT_PRICE() (src/ZZZVaultCanonical.sol#12) is not in mixedCase\n",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 373,
+    "fingerprint": "4763f94a5aaa4e8c248150a2e4d6463043eeb746a267f5f2576db55de7b2a830",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry._configure(PoolConfig,address,address) (src/ZZZPoolRegistry.sol#93-116) uses literals with too many digits:\n\t- k.tickSpacing <= 0 || k.tickSpacing > 32767 || k.fee > 100000 || config.rangeBps < 100 || config.rangeBps > 5000 || config.triggerBps < 100 || config.triggerBps >= config.rangeBps || config.maxSpotDeviationBps == 0 || config.maxSpotDeviationBps > 500 || config.maxSpotDeviationBps >= config.rangeBps || config.maxSlippageBps == 0 || config.maxSlippageBps > 200 || k.fee >= uint24(config.maxSlippageBps) * 100 || config.minRebalanceInterval < 600 || config.minRebalanceInterval > 604800 || config.minDepositUSD == 0 || config.maxPositionUSD < config.minDepositUSD (src/ZZZPoolRegistry.sol#98-103)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 374,
+    "fingerprint": "6f6412d6715d0426b0450a86ff3d4db53bedc59ac90b782312a2b7e825d5ce8b",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZNFT.configureRandomness(address,bytes32,uint256,uint16,uint32,bool) (src/ZZZNFT.sol#105-114) uses literals with too many digits:\n\t- access.isSealed() || randomnessConfigured || coordinator.code.length == 0 || gasLane == bytes32(0) || subId == 0 || confirmations < 3 || confirmations > 200 || gasLimit < 200000 || gasLimit > 10000000 (src/ZZZNFT.sol#107-109)\n",
+    "files": [
+      "src/ZZZNFT.sol"
+    ]
+  },
+  {
+    "ordinal": 375,
+    "fingerprint": "7df878a115fdf4c49d851f1aa5c30df278829855206867556617c4f0acf3a86f",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZPoolRegistry.configureNative(PoolConfig) (src/ZZZPoolRegistry.sol#53-66) uses literals with too many digits:\n\t- key.currency0 != address(0) || key.currency1 != ZZZ || key.hooks != address(0) || key.fee > 100000 || activationAssets.zzz() != ZZZ (src/ZZZPoolRegistry.sol#55-56)\n",
+    "files": [
+      "src/ZZZPoolRegistry.sol"
+    ]
+  },
+  {
+    "ordinal": 376,
+    "fingerprint": "f9baf3175e8e8fc94ef9dbd88c288a98a0e2a2b16466c954073999913af6dead",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZArtwork.slitherConstructorConstantVariables() (src/libraries/ZZZArtwork.sol#9-30) uses literals with too many digits:\n\t- RARE = 0x0022006e006900bd002100be006000e400de0090005600960094004f00aa008b00b600e6008a0038003100310089004c00150078002600ad009300e1003f0049002b003d00000006003e002d007700a4000e00d800650027007e00700028007200540029000f00790051006700350004006b0011004f001a005d0063001500220005000900bb00c2006a00c700ac001d005000ca0043006100100059002000cc0012000800df0016009f001c0042005e0012004e00a6006100450044005b00a7001000d000760001003c00550055000b002d000a00d7003f001b005900e0000300040040005100250048006c0043002a004700d50099001e001300b0000d0046005c008000690033008300bf009d006c0005002e001b00c4005200a9008100c60054007400c800e5004d00a00029005f005d00b2001f00d60070008c00500017009e0001005a00cb00730019004e004d001900390014001a000900110053002b00db00c900710086004b0038007a000800cf00a50036004a001e005f000b007300b5006800b80072002f00370057003700ce00af002400e300dc006e0023002e007d001c000700c00035001f0013006d009a006700910018003a005c000c00520048000700330062007f006000660045008f0063003c004b003900b9003b00ab00a30085001400760002003200210027000000b1009500b4003b00d3004100a10044006a0003000e00d10016005800980057001800280041000f003e00c10065005a0084008d007400250046000d00dd0030003200750034007c00da00d4006800a2001d00360042004a0023002c006f0064000c002c0066 (src/libraries/ZZZArtwork.sol#14)\n",
+    "files": [
+      "src/libraries/ZZZArtwork.sol"
+    ]
+  },
+  {
+    "ordinal": 377,
+    "fingerprint": "33ed33803acebb64b370a513d10c260f13d0c95e0d4e0f67b4661aa9ebd29fd0",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZV4RouteExecutor._check(ZZZV4RouteExecutor.Policy) (src/ZZZV4RouteExecutor.sol#88-101) uses literals with too many digits:\n\t- p.source == p.output || k.currency0 >= k.currency1 || k.hooks != address(0) || k.fee >= 1000000 || k.tickSpacing < 1 || k.tickSpacing > 32767 || p.reviewHash == bytes32(0) || ! ((p.source == k.currency0 && p.output == k.currency1) || (p.source == k.currency1 && p.output == k.currency0)) (src/ZZZV4RouteExecutor.sol#90-93)\n",
+    "files": [
+      "src/ZZZV4RouteExecutor.sol"
+    ]
+  },
+  {
+    "ordinal": 378,
+    "fingerprint": "b41cae5ea04de63995bf4a235040b1f2e2d598a8b141255298b17fcdf5dc6bb3",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZArtwork.slitherConstructorConstantVariables() (src/libraries/ZZZArtwork.sol#9-30) uses literals with too many digits:\n\t- COMMUN = 0x006900630060001e006100b700c6005d00c5003e0015005f008100710050000400a3000d0077005f00960018006300560041000900cb00d300e5001900e20069008b003d002f001f0048001100460062001b0036005d002b005a00640012003f001b0093000f0030001000a10002008c00310021006000a5002a00e5004a000300e20079003e0035004500020022001400b4006a002300b1006e009f00880015003d006000bf0037001f00a0000f0031007b00040075002a005300a8007200ba00d6008a0058007e0013004700c7001400530049005f005800b3007e00010059000200280042000e000e001700da004300a70013007f0038009d0065003a002d00d5006e001f006e00d4003d00e3003500b500ac00c1009600060004006f00ce00e000760052009a008a003c0034000d00110015007c0012007200b30052003f004f004a0022005000df00e400260083007a004c002c00400061008900210051001300410048005b006600dd0063007600b60090005a0041001600210067000b0051005a004b002900720036009b00c7009400680071002e000300d80024002b0064009500bc006b0086002500000058003200af008800670042001300a80045003800cc0092002600330044009b000700d50069000700b400180005006c0043002e006400560043001d008500af002d004a00e7003c0076001c00d10073004d00710066007b001e0061001e004f000e006f0046002700740091008e00750031001c00320070009800ab00450055002f005c0093002500230018000000270023001a005e00a1008100860007000400bd00c3007d0016000b0050002400e0003f005300c500520074000a0010009c00d700aa0033000d003c001e000c0063008d009c0075004b00a200ad00a200d1004a004f004c00670008001c0027004e0019002f001000bb003b00ce007500360049001600d600590034006b0069000600800073006d0077006f0057005d004b0020002e003000b5004400110008007300190034000800c8003b00c30062006b0033005b005400b10099004c006800b000420000004800060039007d00cf0059004d0020002a00010019003a00000027001d00e1004000b8005a005500db0009002f006a009e007a00b7005e0006000f0066002a003e004e006f002b004900050002003f00390039007100dc005c00a9003a002d00670011001d00220020004e000e00ab00dd008d00550033005700010009003b007800c1004700c2002900bd004c0012005c008c00de000300bc00ad00d3009f0022008e00700044007700cc000a003400cd00da005600ba0014002800b90059009a003600a400e40068001d00b90070006200090085008000a600c900ca007f000b004300d200540032008f0074002c006500be0038005700b80095001a0031001700840037008200770005007200d90007002600a5003a00b200c000650017004000920014001a009700470046000c00e7000a00540016002b005c0037002900150045000b003000c40051000300e10061006d00a6001f001a0018002c00db004d00c9000c00d400d0006c00ae006b0052005b0025000f0090006a004e002600500054009700dc006d006c005e00e6001200de0008006c00ae00cb00870035005d0024000c002800c4001b002d (src/libraries/ZZZArtwork.sol#13)\n",
+    "files": [
+      "src/libraries/ZZZArtwork.sol"
+    ]
+  },
+  {
+    "ordinal": 379,
+    "fingerprint": "f83aa74d68bf45751707f31ad8801756641c3e4f8182ebfa7185df5b453030e8",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZLiquidityManager._config(bytes32,bool) (src/ZZZLiquidityManager.sol#59-67) uses literals with too many digits:\n\t- ! INativePoolAssets(access.module(Ids.POOLS)).isNativePool(poolId) || c.key.fee > 100000 || c.key.hooks != address(0) (src/ZZZLiquidityManager.sol#64-65)\n",
+    "files": [
+      "src/ZZZLiquidityManager.sol"
+    ]
+  },
+  {
+    "ordinal": 380,
+    "fingerprint": "1e2fa63097aa84e42991175f3e2fe8c95f06db4182840fd9f6e613625e7683ad",
+    "check": "too-many-digits",
+    "impact": "Informational",
+    "confidence": "Medium",
+    "description": "ZZZNFT.setRandomnessRequestSettings(uint16,uint32) (src/ZZZNFT.sol#121-130) uses literals with too many digits:\n\t- confirmations < 3 || confirmations > 200 || gasLimit < 200000 || gasLimit > 10000000 (src/ZZZNFT.sol#124)\n",
+    "files": [
+      "src/ZZZNFT.sol"
+    ]
+  },
+  {
+    "ordinal": 381,
+    "fingerprint": "9594eb9b2805b1d720be2e005941730a1720c2768224e73450d0ae3e05d38dd4",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < canonicalAssets.length (src/base/ZZZCanonicalLedger.sol#43) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 382,
+    "fingerprint": "7f70475961db59e42894a553d30c3d56be1fe21845f69b6561f97d5cf28a992a",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < canonicalAssets.length (src/base/ZZZCanonicalLedger.sol#70) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 383,
+    "fingerprint": "fcc89bf28ab3ed9ac85936d44380ed61aaae9e80a580a74660306dc7bbdd4fbe",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < canonicalAssets.length (src/ZZZRewards.sol#134) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 384,
+    "fingerprint": "eee4f6ef90cf3c6fa7d715a967f901a05c0137de963049f5125311948349cc5d",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i_scope_0 < backingAssets.length (src/ZZZVaultCanonical.sol#263) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZVaultCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 385,
+    "fingerprint": "2b5d4fce8126629a76a6b081675403f15ed6b0f035d061d3b941a72fab7d9ba6",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#410) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 386,
+    "fingerprint": "fd216b783a0e7e593b9c5492320757942b500cbcbbe065700f272a6cbdf390d0",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZFeesCanonical.sol#45) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 387,
+    "fingerprint": "3f75601ea9f8957828ac7c3cd940299ed0307b6f76851bfe372ddb9f818ffde9",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRewards.sol#84) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 388,
+    "fingerprint": "ac4b0d2a105beb9bec85300a6cd3537470d593184ad777083554cbc6bff89774",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZContributionPricing.sol#195) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 389,
+    "fingerprint": "6b49fe0c8a5064eb7b5b132b5194e8be180b49b7484934f167bf5672c9a1f70b",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRewards.sol#239) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 390,
+    "fingerprint": "e12973414caa8a5ea595d2c00a43b32a8563262a6fd28b0618feca0a9fbf0447",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRewards.sol#110) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 391,
+    "fingerprint": "6f39a366ff1a6afbc8c18686b2652ca953253f888d0c3bbb7a0ac5e4bc15b645",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#201) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 392,
+    "fingerprint": "c469ef0cbe74b89bf42ac26818a8849f5415d9f11fcdc645180d20516b44b0d8",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZFeesCanonical.sol#136) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZFeesCanonical.sol"
+    ]
+  },
+  {
+    "ordinal": 393,
+    "fingerprint": "87365d6e750abdc53e6712dbd40323a827487ccccbec91b84b11a1eb0e2e2a0c",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < canonicalAssets.length (src/base/ZZZCanonicalLedger.sol#31) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/base/ZZZCanonicalLedger.sol"
+    ]
+  },
+  {
+    "ordinal": 394,
+    "fingerprint": "8cfe0f4c8bad24de496b305a2205b64078a6008568bd380d3093f242f4832006",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#318) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 395,
+    "fingerprint": "974193c3b70f10db3d6327a68c893b53604f1ff4ebe2ee7c2299a0618392668e",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#497) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 396,
+    "fingerprint": "033b4ca9507dfa03c73432fb7642d48a7a32691f8f1a8b2aa22cb251940aac33",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i_scope_0 < assets.length (src/ZZZRoyaltyRewards.sol#219) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  },
+  {
+    "ordinal": 397,
+    "fingerprint": "e6eccd9409db8e22c28b8f35cbbd14dff476085a5527289fce9e712c18d41b26",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZContributionPricing.sol#234) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZContributionPricing.sol"
+    ]
+  },
+  {
+    "ordinal": 398,
+    "fingerprint": "612689ed1095a301d25d33e1bd51f35401064fdc457da738fb9a7d54c8a860ed",
+    "check": "cache-array-length",
+    "impact": "Optimization",
+    "confidence": "High",
+    "description": "Loop condition i < assets.length (src/ZZZRoyaltyRewards.sol#421) should use cached array length instead of referencing `length` member of the storage array.\n ",
+    "files": [
+      "src/ZZZRoyaltyRewards.sol"
+    ]
+  }
+]

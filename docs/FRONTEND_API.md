@@ -1,5 +1,15 @@
 ## Current local Position V3 profile - 2026-10-25
 
+## Full audit: current-profile readers - 2026-10-25
+
+Current activation preparation now uses the selected profile's dormant state
+and narrowly typed native source-policy address argument. Independent history
+audit consumes the actual Rpc adapter's checked integer chain ID as well as
+canonical wire-hex fixtures; malformed/Boolean/floating values fail closed.
+No public signing, write endpoint, state override or fallback profile is added.
+See [service review](../reports/full-audit-20261025/SERVICES.md). Existing live
+services, websites, databases and local wallets were not changed by these fixes.
+
 Current deployments require explicit `accounting_version: 3` and
 `fee_intake_version: 1` in the existing **schema 2** read configuration.
 The service verifies `Vault.ACCOUNTING_VERSION() == 3`, direct

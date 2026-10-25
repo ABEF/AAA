@@ -21,6 +21,19 @@ import {MockAccess, MockToken, MockPools, MockFeed} from "./mocks/Mocks.sol";
 import {MockVRF} from "./mocks/MockVRF.sol";
 import {VaultPolicyMock} from "./VaultAccounting.t.sol";
 
+/// @dev TEST ONLY: mutable balance-query fault confined to the royalty ledger.
+/// Transfers, LP/price reads and historical backing remain conventional. INVALID
+/// consumes the forwarded token-read gas, exercising the isolated self-call cap.
+contract CapacityRoyaltyFaultToken is MockToken {
+    address private failingReader;
+    constructor() MockToken(0) {}
+    function setFailingReader(address reader) external { failingReader = reader; }
+    function balanceOf(address owner) public view override returns (uint256) {
+        if (msg.sender == failingReader) assembly ("memory-safe") { invalid() }
+        return super.balanceOf(owner);
+    }
+}
+
 /// @dev TEST ONLY: multi-pair venue that deploys every contributed token unit.
 /// It models custody and fee separation, not Uniswap execution or production gas.
 contract CombinedCapacityVenue is ERC721 {
@@ -91,6 +104,7 @@ contract CombinedCapacityGasTest is Test {
     bytes32[] private poolIds;
     uint256[] private incumbents;
     uint256 private entrant;
+    bool private faultCurrencyFixture;
 
     function activePlan(uint256) external pure returns (bytes32) { return bytes32(0); }
 
@@ -131,7 +145,7 @@ contract CombinedCapacityGasTest is Test {
         access.bind(Ids.MIGRATION, address(this));
         access.bind(keccak256("ZZZMigrationReceiver"), address(0x987));
         for (uint256 i; i < 32; ++i) {
-            MockToken token = new MockToken(0);
+            MockToken token = faultCurrencyFixture && i < 16 ? new CapacityRoyaltyFaultToken() : new MockToken(0);
             tokens.push(token);
             oracle.setTestFeed(address(token), address(feed), 3600);
             rewards.addAsset(address(token));
@@ -312,4 +326,58 @@ contract CombinedCapacityGasTest is Test {
 
     function testColdActivationWithEveryHistoricalRewardIndexPopulated() public { _fullyIndexedOperation(true); }
     function testColdIncumbentTopUpWithEveryHistoricalRewardIndexPopulated() public { _fullyIndexedOperation(false); }
+
+    /// @notice Bounded optional-currency isolation still has a finite total gas
+    /// cost. This scenario fits the unchanged 12M call budget while preserving
+    /// earlier earnings; it does not qualify actual venue or worst-case native gas.
+    function testMaximumOptionalRoyaltyGasFaultsFitReviewedActivationBudget() public {
+        faultCurrencyFixture = true;
+        _fixture();
+        vm.pauseGasMetering();
+        uint256 bucket = vault.nftBucket(incumbents[0]);
+        for (uint256 i; i < 32; ++i) {
+            tokens[i].mint(address(fees), 900);
+            vm.startPrank(address(fees));
+            tokens[i].approve(address(rewards), 900);
+            rewards.creditPool(bucket, address(tokens[i]), 800, 100);
+            vm.stopPrank();
+        }
+        for (uint256 i; i < 16; ++i) CapacityRoyaltyFaultToken(address(tokens[i])).setFailingReader(address(royalties));
+        address first = pools.get(poolIds[0]).key.currency0;
+        address second = pools.get(poolIds[0]).key.currency1;
+        uint256 balance0 = IERC20(first).balanceOf(ENTRANT);
+        uint256 balance1 = IERC20(second).balanceOf(ENTRANT);
+        uint256 previousShares = vault.bucketTotalShares(bucket);
+        uint256 previousLP = vault.group(bucket).lpTokenId;
+        bytes memory payload = abi.encodeCall(vault.activate, (entrant,poolIds[0],1000,1000,1,block.timestamp+100));
+        vm.resumeGasMetering();
+        _cool();
+        vm.prank(ENTRANT);
+        uint256 start = gasleft();
+        (bool executed, bytes memory result) = address(vault).call{gas: LOCAL_GAS_BUDGET}(payload);
+        uint256 completedGas = start-gasleft();
+        emit log_named_uint("maximum-royalty-faults.12M-attempt.gas", completedGas);
+        if (!executed) assembly ("memory-safe") { revert(add(result,32),mload(result)) }
+        assertLt(completedGas,LOCAL_GAS_BUDGET,"Requalify optional-currency gas before changing the review");
+        assertEq(vault.nftBucket(entrant),bucket);
+        assertGt(vault.sharesOf(entrant),0);
+        assertEq(vault.bucketTotalShares(bucket),previousShares+vault.sharesOf(entrant));
+        assertEq(membership.totalEligible(),SUPPORTED_BUCKETS+1);
+        assertEq(royalties.activationCount(),SUPPORTED_BUCKETS+1);
+        assertEq(royalties.eligibleCount(address(0)),SUPPORTED_BUCKETS+1);
+        assertEq(IERC20(first).balanceOf(ENTRANT),balance0-1000);
+        assertEq(IERC20(second).balanceOf(ENTRANT),balance1-1000);
+        for (uint256 i; i < 16; ++i) {
+            address token=address(tokens[i]);
+            assertFalse(royalties.eligibleFor(entrant,token));
+            assertEq(royalties.eligibleCount(token),SUPPORTED_BUCKETS);
+            CapacityRoyaltyFaultToken(token).setFailingReader(address(0));
+            royalties.sync(token);
+            assertTrue(royalties.eligibleFor(entrant,token));
+            assertEq(royalties.claimable(entrant,token),0,"No pre-activation royalty theft");
+            assertEq(royalties.claimable(incumbents[0],token),1600/SUPPORTED_BUCKETS);
+        }
+        for (uint256 i; i < 32; ++i) assertEq(rewards.claimable(entrant,address(tokens[i])),0,"No historical LP fee theft");
+        assertEq(royalties.claimable(entrant,address(0)),0);
+    }
 }

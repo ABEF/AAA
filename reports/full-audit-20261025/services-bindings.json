@@ -1,0 +1,64 @@
+{
+  "observed_at_utc": "2026-10-25T22:46:36.117009+00:00",
+  "scope": "Reviewed critical paths, not all possible file paths formally verified. Source hashes bind read scope; explicit offline test records bind execution.",
+  "reviewed_source_sha256": {
+    "frontend_api/activation.py": "9ab3cc60bd63f4731b01331cc14ac3bddd7830b2b14513dd751012e9bd08cd68",
+    "frontend_api/service.py": "ca465b0159551ac5046e2aa52e800a8e2a6d3b4e8a4919663c2ecaf2d66053a8",
+    "frontend_api/history_audit.py": "74a04ed5cbb47ab0e23794760cd83d75eeb59aa9a76a57453475bef8d6f1c912",
+    "frontend_api/server.py": "84a71cc3c07ea44ffd54a8249ff7d98b2febd200373a30c1886f712abefc26c5",
+    "frontend_api/activation_server.py": "2c90810c594c0aa371a778332417d005bc9be15051041f610354bbc29f1e4179",
+    "frontend_api/http_runtime.py": "2237905a2ca33c99738e4fc0b77a42a383ff2df974b7493f27164dfd8f6f3548",
+    "frontend_api/admission.py": "0333d6a3ad29d1d788bd6c7c74ce8cea6abdca5469b4b3a3a674dc24afc91d52",
+    "frontend_api/worker.py": "548b87df6785835a1af5e1ea2002ca221239639bac9694e22b96220ac2bc6f10",
+    "zzz_ops/work_budget.py": "1dda9e5e95b53ab4972b658021cbe619fefee1a07597f50216abb4f92461a7ea",
+    "zzz_ops/rpc.py": "23686d7eab17caaa2304551c0999a04296185b6fa9c324bea76471aa8328bfd9",
+    "zzz_ops/state.py": "70e2052366737d7772ece12e019573c80263a62537b5cd8312e4d22131e9c8c0",
+    "frontend_api/transactions.py": "b6bcb84046860ebe7d8d659c9bc61c2bd7fe87830191c7de16293152b19ce15c",
+    "frontend_api/activation_config.py": "aa1fa5a48acbe08378c823a1ae59abef9a3a0da88001a8fbac7a7df7eb7483b7",
+    "frontend_api/activation_trace.py": "dafc3b91593a1d74a40d0125962f16aaea62b1909be1e31b440bcc03ee57c284",
+    "frontend_api/activation_v4.py": "9662e26bfe828bf47b4bb67e86b172511706c2279c0894a7b6a1f2a45b8e222b",
+    "frontend_api/liquidity_context.py": "f9e71555ccab8b77023f66a7c32f9e0c11ba38c2f4bd2d5bd6bb199d30924797",
+    "zzz_ops/price_policy.py": "2f5e41da367c04fd811ac14a09bf0662abf8fe46f7a7619a17efa58295ce2958",
+    "frontend_api/portfolio.py": "1f966461325e67ed28beec40c529e70e3fbf1512bba76ce149757f5cf96309eb",
+    "frontend_api/collection.py": "c08c9688343fe826be7cf11c3654b09fa569424f8fed7c9f44996da1fbe8b1bb",
+    "frontend_api/earnings_prices.py": "52f5e6f6f6067cc00491e9f50ecdf570ea903daea71ceb6e454c95d7fb8a82c0",
+    "frontend_api/history.py": "f17e8060aa538c77ead85cc278345a7bdeaa5c4bd25eb11c17a9ff01eb3f66b8",
+    "frontend_api/lineage.py": "8266bf95492b5f1e51d257c8c49664ba08f98d41311fea29440aff1bbc2b1984",
+    "frontend_api/royalty_reporting.py": "bc5ae709afb482b719c3db7ac3aa2c1df3c1bbf5caf36cf830ee6106b5afc915",
+    "indexer/monitor.py": "6f50a2839a9abc174b5224a52f7aeca2584ab51492bebd963d30091a6b683e02",
+    "keeper/monitor.py": "cf13b3ad3f9270947ad2ffd7673b6531d44e18a4956a6bf00d81c5fad092cdd5",
+    "keeper/royalties.py": "2d28ffc9be3720495fca9c3bffa9dda1d9e8a70b0febc8859613fb3b38e7a91b",
+    "keeper/ops.py": "cc8259b31755fdef6a1a4105b8cdcf73413a3cface28fa59e77f4c758349d227",
+    "keeper/zzz-keeper.service": "72e4edee1150077a8d8dd909ee3f595e61707c06f811d5c6c95718f610797f81",
+    "zzz_ops/production_v2.py": "81a35e20c9bac84ec01552f44454c456a12991336908f80c83fafed688752eff",
+    "zzz_ops/production_observer.py": "670210e66a5b7854a4bea374dd3c650da59f4d9aa87ddbe3df117db19ab17953",
+    "zzz_ops/holder_preflight.py": "369f4e55b698a6442fdea98d074f4e2eb79b23b0fe2dc74c4cca99388bf6de4c"
+  },
+  "owned_tests_sha256": {
+    "tests_python/test_current_activation_profile.py": "270da42852f3413d42d27c07efe7903d9b08fe48cab6ca858db78135266e6670",
+    "tests_python/test_history_audit_transport.py": "d88dbfaff7a38e2c9ebb4e952d157f186396f658307c0938fa9b62ccee1710bf"
+  },
+  "test_fixture_sha256": {
+    "tests_python/test_frontend_api.py": "a9334c246cb2ab5b073863dc1331a28fcbe3e4dec4e2912303ab1e6e7f8bd01c",
+    "tests_python/test_frontend_activation.py": "b786987370327064fa927d3cfa3e82a04dd02cc8e1d6d52f9f0ff23e77b750cd",
+    "tests_python/test_native_backend_boundary.py": "316741f6fccb2972a4e0092d28887ebdc56d9bf531d79942ce1ec9eb9383c05a",
+    "tests_python/test_typed_v4_activation.py": "09c07a9a237b3c12ca5e82b96c0765af17906b1338bc526a4acac9422dd1dc85",
+    "tests_python/test_dual_price_integration.py": "4499983a9254a5ea0cf0d64a22d59a7ed2c59d494f4578e82719078362e9e7d1",
+    "tests_python/test_entry_review_policy.py": "2c393b3e422593a40505c5f1a55dbb002c312031060f03a421df48aaa5feac9d",
+    "tests_python/test_history_audit.py": "878964b1c210bda93e1b6e7b281d2827ff3a08c63e8a718d71de281b71f8d767"
+  },
+  "website_read_only_source_sha256": {
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "deployment-native.js": "79caedbc5ed15c066f9b9944f34b001179c8c6883b05116c84a7f8a1e434e377",
+    "deployment-api.js": "2c71558cc1ef5f2b15157715105afd724ca88a9efc35fad3095255afe920cae2",
+    "deployment-session.js": "c9f193c95c96bbbd865a29760a32b8e418351a8639ed1ae9aa052fb0f4fc6482",
+    "deployment-view.js": "0948b5651d4ab1b4e66edb5aa5b81efc1e8aac4e593430d65ed9fecbdea5bc24",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106"
+  },
+  "new_source_edits": [
+    "frontend_api/activation.py",
+    "frontend_api/service.py",
+    "frontend_api/history_audit.py"
+  ],
+  "no_solidity_network_signer_service_or_existing_state_action": true
+}

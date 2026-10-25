@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "exit_code": 0,
+  "elapsed_seconds": 108.329,
+  "command": [
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\foundry-v1.4.4\\forge.exe",
+    "test",
+    "--root",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\full-audit-20261025\\principal-gas-attempt2\\execution\\ast-focused-profile-gg9kqag8",
+    "--use",
+    "C:\\Users\\Ali\\.codex\\visualizations\\2026\\10\\14\\01a13899-2be7-76f2-a5d0-72e4804c67b9\\toolchain-0.8.26\\solc.exe",
+    "--match-contract",
+    "^(CombinedCapacityGasTest)$",
+    "--json"
+  ],
+  "selected_methods": 1,
+  "complete_selection_executed": true,
+  "missing": [],
+  "unexpected": [],
+  "cases": [
+    {
+      "suite": "test/CombinedCapacityGas.t.sol:CombinedCapacityGasTest",
+      "method": "testMaximumOptionalRoyaltyGasFaultsFitReviewedActivationBudget()",
+      "status": "Success",
+      "reason": null,
+      "gas": null,
+      "kind": {
+        "Unit": {
+          "gas": 14347040
+        }
+      }
+    }
+  ],
+  "manifest_sha256": "c4ff71c2d40d4679a0a013c6e223c2907419d699261a158a2d256174b65fad53"
+}

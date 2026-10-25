@@ -1,5 +1,42 @@
 # PoPL operator manual
 
+## Full current-candidate audit - 2026-10-25
+
+The [full audit](../reports/full-audit-20261025/REVIEW.md) preserves existing
+functions, custody trust and economic rules. It adds no signer, privileged role,
+write call or deployment authority.
+
+- **Current activation preparation:** accounting3 uses `Dormant=3`; historical
+  profiles retain their own status. Matching native ETH source-policy reads must
+  permit address(0) only in the typed asset argument, never as owner/target. The
+  repaired backend now composes these current bindings before exact approval,
+  trace and unsigned review. Do not relabel an old deployment to obtain a quote.
+- **Independent history audit:** use a reviewed actual Rpc adapter and a complete
+  copied SQLite index. Checked integer chain IDs and canonical hexadecimal
+  transport quantities are accepted; Boolean/float/malformed responses reject.
+  This command reads evidence only. Preserve the original database, anchors and
+  raw history; do not run an automatic repair/reset on a failed audit.
+- **Buyback qualification:** fixed ZZZ must actually support `burn(uint256)` and
+  reduce both its balance and totalSupply by the exact acquired amount. Token
+  symbol/pool admission does not establish this. Failure reverts buyback and
+  leaves its reserve classified; no transfer to an arbitrary burn wallet occurs.
+- **Late royalty currencies:** source `forwardLate(asset)` supports only currencies
+  admitted before retirement. Retired governance cannot admit a new ERC20.
+  Unexpected/unadmitted tokens sent there have no generic rescue path. Inventory
+  settlement currencies, cached old royalty receivers and pending orders before
+  handoff; update marketplace receiver configuration where supported. Do not
+  promise universal recovery or silently introduce a sweep. See [recovery scope](ROYALTY_SETTLEMENT.md#late-receipts-after-retirement).
+- **Price/operation availability:** the 3% source-agreement tolerance is not a
+  guarantee a contribution can meet its tighter 2% loss floor. Upper input/lower
+  LP bounds plus venue costs can reject it; reprepare using actual reviewed
+  prices/depth. Never average away disagreement, widen a caller's reviewed cap
+  or count idle/incumbent funds as newly deployed LP to force success.
+
+See [verification](../reports/full-audit-20261025/VERIFICATION.md) for actual
+fresh static analysis, narrow regression and gas evidence. Local tests do not
+qualify real feeds/routes/VRF/OpenSea/authorities, current website/services,
+max-state target-chain gas or independent audit. No service rollout occurred.
+
 ## Day-change audit: royalty custody and evidence - 2026-10-25
 
 No new on-chain function, permission, default or signing capability is added.

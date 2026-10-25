@@ -152,7 +152,7 @@ class ActivationTransactions:
         if not _bool(p._call(p.contracts['nft'].address,'traitsReady(uint256)',req['id'],block=block)[0]):
             raise ActivationInputError('NFT reveal must finish before activation')
         status=p._uint('vault','nftStatus(uint256)',req['id'],block=block)
-        if status!=(1 if req['increase'] else 5):
+        if status!=(1 if req['increase'] else p.dormant_status):
             raise ActivationInputError('Selected action does not match the NFT custody state')
         registry=cfg.contracts['pools'];p._code(registry.address,registry.code_hash,block)
         actual=p._call(registry.address,'get(bytes32)',req['pool'],block=block,words=14)

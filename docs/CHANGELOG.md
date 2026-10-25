@@ -1,3 +1,13 @@
+## Full candidate audit checkpoint - 2026-10-25
+
+See [audit](../reports/full-audit-20261025/REVIEW.md) and
+[verification](../reports/full-audit-20261025/VERIFICATION.md). Current contribution
+default is2%, conversion1%, maintenance3%, maxima10%, gas separate. User inputs
+are ETH/fixed ZZZ; direct governance2 has no executor/timelock. Older dated
+descriptions below keep historical scope. Backend current-profile activation
+and independent-history adapter composition are fixed; production Solidity,
+rights, permissions, signer, existing Anvil and services remain unchanged.
+
 ## 2026-10-25 - Reviewed contributions and resilient indexed history
 
 Reviewed EntryV1 and Pricing bind the caller loss maximum before asset pulls,

@@ -139,7 +139,12 @@ class HistoryAudit:
         require(peer is not None, 'unconfigured_epoch')
         history = peer.history
         require(start >= history.start, 'window_before_history')
-        require(_quantity(self.rpc.call('eth_chainId', [])) == peer.chain, 'wrong_chain')
+        # Rpc.call returns a checked integer for eth_chainId; explicitly injected
+        # read transports may return the canonical wire quantity. No bool/float
+        # coercion is allowed for either representation.
+        observed_chain = self.rpc.call('eth_chainId', [])
+        chain = number(observed_chain) if type(observed_chain) is int else _quantity(observed_chain)
+        require(chain == peer.chain, 'wrong_chain')
         head = number(_quantity(self.rpc.call('eth_blockNumber', [])))
         require(end <= head-peer.confirmations+1 and peer.start <= head-peer.confirmations+1, 'insufficient_confirmations')
         anchor = self.header(peer.start)

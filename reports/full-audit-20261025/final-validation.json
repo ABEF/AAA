@@ -1,0 +1,64 @@
+{
+  "observed_at_utc": "2026-10-25T23:09:16.466661+00:00",
+  "checks": [
+    {
+      "args": [
+        "scripts/generate-function-reference.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"checked\": true, \"contracts\": 31, \"functions\": 608, \"constructors\": 31, \"receive_hooks\": 13, \"fallback_hooks\": 0, \"explanation_gaps\": 0, \"unannotated_inputs\": 0, \"unannotated_outputs\": 123}",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "scripts/sync-project-todo.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Project Todo verified.",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "scripts/check-slither-review.py",
+        "reports/full-audit-20261025/slither-current.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"review_coverage_pass\": true, \"independent_audit\": false, \"errors\": []}",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "scripts/source_checks.py",
+        "--output",
+        "reports/full-audit-20261025/source-checks.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"source_files\": 44, \"errors\": [], \"scope\": \"consistency only\"}",
+      "stderr": ""
+    }
+  ],
+  "production_dependency_build_bindings_match": {
+    "production": 44,
+    "dependencies": 31,
+    "build": 4
+  },
+  "source_static_bindings_match": 47,
+  "original_dirty_files_preserved": 14,
+  "owned_partial_paths": [
+    "AGENTS.md",
+    "PROJECT_CONTEXT.md",
+    "docs/CHANGELOG.md",
+    "docs/DEVELOPMENT.md"
+  ],
+  "fresh_Python_methods": 11,
+  "fresh_EVM_methods": 1,
+  "fresh_static_flags_reviewed": 399,
+  "fresh_solc_input_count": 86,
+  "Forge_overall_CLI_status": 1,
+  "Forge_failure": "Postcompiler host signature cache; not relabeled",
+  "fresh_size_lengths_match_normal": 37,
+  "full_regression_executed": false,
+  "production_approved": false
+}

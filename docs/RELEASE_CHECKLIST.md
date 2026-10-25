@@ -1,5 +1,23 @@
 # Release approval record - NOT APPROVED
 
+## Full audit disposition - 2026-10-26
+
+The [current audit](../reports/full-audit-20261025/REVIEW.md),
+[verification](../reports/full-audit-20261025/VERIFICATION.md) and
+[gate assessment](../reports/full-audit-20261025/READINESS.md) fix three backend
+composition failures and refresh actual source-bound static triage. Internal
+static coverage now passes for399reviewed flags/47bindings; the earlier stale
+triage failure is historical. Accepted custody/token/gas risks remain open.
+Solc86-input output succeeds; Forge overall CLI later fails on the host signature
+cache and is not relabeled.37object lengths match the captured normal build;
+dynamic release arguments and actual target gas remain unqualified.
+
+No production contract changed. Eleven scoped Python methods and one composed
+gas/accounting method pass; no fresh full release regression, live dependency,
+OpenSea/VRF/wallet/service, published CI green or independent approval is claimed.
+Unknown currencies at retired royalty receivers remain unsupported; qualify
+actual fixed-ZZZ burn semantics. Deployment/sign-off fields remain unapproved.
+
 ## Day-change audit disposition - 2026-10-25
 
 [Current findings](../reports/day-readiness-20261025/REVIEW.md),

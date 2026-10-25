@@ -1,5 +1,17 @@
 # Activation and top-up preparation
 
+## Current accounting3 composition - 2026-10-25
+
+Preparation uses the confirmed Projection profile's `dormant_status`:3 for
+current local accounting3,5 for compatible historical profiles. Growth still
+requires Active=1. Current fee-intake1 source-policy reads accept address(0)
+only as the typed `isContributionAsset(address)` asset argument. They do not
+relax contract-target/owner address validation, runtime/feed/route bindings,
+canonicality, exact approval amounts or captured execution floors. The
+[composition regressions](../reports/full-audit-20261025/SERVICES.md) cover
+native activation, fixed-ZZZ approval, growth and historical-profile rejection/
+compatibility. Source support is not a live route or wallet qualification.
+
 
 ## Current release simplification - 2026-10-25
 

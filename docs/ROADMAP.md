@@ -1,5 +1,19 @@
 # Engineering roadmap
 
+## After full candidate audit - 2026-10-26
+
+The [full audit](../reports/full-audit-20261025/REVIEW.md) fixes current activation
+and independent-history composition and replaces stale Slither triage with an
+actual399-finding manual review. Internal static coverage is no longer the next
+unperformed step; it does not close independent review or external qualification.
+
+Next complete explicit current3website/API/browser acceptance, supported OpenSea/
+VRF integration and real feed/route/authority selection. Qualify ZZZ burn/actual
+venue/target gas and settle retired unknown-currency expectations before sealing.
+Then freeze the complete release for operating rehearsals, full release suite,
+independent audit/remediation and named approval. No public rollout is authorized
+by this sequence. The [sole Todo](../TODO.md) retains stable task ownership.
+
 ## Follow-up after the day-change audit - 2026-10-25
 
 [Implemented corrections](IMPLEMENTATION_STATUS.md#day-change-audit---2026-10-25)

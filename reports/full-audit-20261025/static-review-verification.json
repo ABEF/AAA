@@ -1,0 +1,29 @@
+{
+  "observed_at_utc": "2026-10-25T22:54:07.769344+00:00",
+  "source_head": "e32e9669d79bc3c576175f51f72d8277f6fa48f9",
+  "findings": 399,
+  "source_bindings": 47,
+  "by_impact": {
+    "High": 77,
+    "Medium": 57,
+    "Low": 193,
+    "Informational": 54,
+    "Optimization": 18
+  },
+  "by_disposition": {
+    "false_positive": 165,
+    "informational": 82,
+    "accepted_risk": 152
+  },
+  "slices": {
+    "root": 91,
+    "rights": 165,
+    "principal": 143
+  },
+  "review_coverage_pass": true,
+  "errors": [],
+  "review_sha256": "b54220595a3fd161be3a5e3533bab6ce10051b1432284871b7f11ed337b7edbf",
+  "detector_projection_sha256": "c09d8b6302039c634ea1dcc2612732b5824dff424f1f0a8b293d9cc2704dbe3e",
+  "independent_audit": false,
+  "production_approved": false
+}

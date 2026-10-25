@@ -1,5 +1,17 @@
 # Security audit plan
 
+## Full current-candidate audit - 2026-10-25
+
+[Scope, findings and fixes](../reports/full-audit-20261025/REVIEW.md),
+[principal execution](../reports/full-audit-20261025/PRINCIPAL.md),
+[ownership/custody rights](../reports/full-audit-20261025/RIGHTS.md) and
+[services](../reports/full-audit-20261025/SERVICES.md) cover the current fixed
+ETH/ZZZ/accounting3/governance2/localV4 source. Fresh analyzer findings are
+reviewed against actual call paths; detector labels are not confirmed exploit
+counts or independent approval. Backend composition defects are fixed without
+changing financial rights or permissions. Complete release regression, live
+dependencies, authority/marketplace/operations and independent audit stay open.
+
 ## Current smaller architecture - 2026-10-25
 
 Read [the pruning review](../reports/architecture-pruning-20261025/REVIEW.md),
